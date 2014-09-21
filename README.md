@@ -47,6 +47,12 @@ You must do a `make mrproper` between if you want to use both.
 Start program with root privileges allow to use Dmidecode.
 Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x_portable` is also possible.
 
+
+## Download binairies
+
+You can also download an archive with two portable binaries (i686 & x86_64) at https://github.com/X0rg/CPU-X/releases (file "CPU-X_portable.tar.gz").
+
+
 ## Screenshots
 
 You can see CPU-X here:
