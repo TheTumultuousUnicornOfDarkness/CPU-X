@@ -16,4 +16,7 @@
 #define PROCESSOR_SOCKET	7
 #define PROCESSOR_CLOCK		8
 
+
+int libdmi(char dmiexport[L][C]);
+
 #endif
