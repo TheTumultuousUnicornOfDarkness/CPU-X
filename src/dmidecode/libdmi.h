@@ -1,7 +1,7 @@
 #ifndef _LIBDMI_H_
 #define _LIBDMI_H_
 
-#define L 9
+#define L 10
 #define C 30
 
 #define BIOS_VENDOR		0
@@ -14,8 +14,8 @@
 #define BASEBOARD_VERSION	6
 
 #define PROCESSOR_SOCKET	7
-#define PROCESSOR_CLOCK		8
-
+#define PROCESSOR_MANUFACTURER	8
+#define PROCESSOR_CLOCK		9
 
 int libdmi(char dmiexport[L][C]);
 

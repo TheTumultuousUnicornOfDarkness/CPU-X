@@ -3183,6 +3183,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		
 		case 4: /* 7.5 Processor Information */
 			strcpy(dmiexport[PROCESSOR_SOCKET], dmi_string(h, data[0x04]));
+			strcpy(dmiexport[PROCESSOR_MANUFACTURER], dmi_string(h, data[0x07]));
 			sprintf(dmiexport[PROCESSOR_CLOCK], "%u MHz", WORD(data + 0x12));
 			break;
 		
