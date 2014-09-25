@@ -32,6 +32,10 @@
 # include <libcpuid/libcpuid.h>
 #endif
 
+#ifdef LIBDMI
+# include "dmidecode/libdmi.h"
+#endif
+
 #ifdef EMBED
 # include "../embed/cpu-x.ui.h"
 #endif
@@ -198,6 +202,29 @@ int ext_dmidecode(Dmi *info) {
 
 	return err;
 }
+
+#ifdef LIBDMI
+/* Elements provided by libdmi library (need root privileges) */
+int libdmidecode(Dmi *data) {
+	int err = 0;
+	char datanr[L][C];
+
+	err += libdmi(datanr);
+
+	sprintf(data->vendor,	"%s", datanr[PROCESSOR_MANUFACTURER]);
+	sprintf(data->socket,	"%s", datanr[PROCESSOR_SOCKET]);
+	sprintf(data->bus,	"%d", datanr[PROCESSOR_CLOCK]);
+	sprintf(data->manu,	"%s", datanr[BASEBOARD_MANUFACTURER]);
+	sprintf(data->model,	"%s", datanr[BASEBOARD_PRODUCT_NAME]);
+	sprintf(data->rev,	"%s", datanr[BASEBOARD_VERSION]);
+	sprintf(data->brand,	"%s", datanr[BIOS_VENDOR]);
+	sprintf(data->version,	"%s", datanr[BIOS_VERSION]);
+	sprintf(data->date,	"%s", datanr[BIOS_RELEASE_DATE]);
+	sprintf(data->rom,	"%s", datanr[BIOS_ROM_SIZE]);
+
+	return err;
+}
+#endif
 
 /* Determine CPU multiplicator from base clock */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[Q]) {

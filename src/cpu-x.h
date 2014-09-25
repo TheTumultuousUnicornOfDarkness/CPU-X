@@ -68,6 +68,7 @@ typedef struct {
 	} Lscpu;	/* Designed for lscpu */
 
 typedef struct {
+	char vendor[S];
 	char socket[S];
 	char bus[S];
 	char manu[S];
@@ -136,6 +137,9 @@ int ext_lscpu(Lscpu *info);
 
 /* Use extern commande 'dmidecode' to build 'extrainfo' */
 int ext_dmidecode(Dmi *info);
+
+/* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
+int libdmidecode(Dmi *data);
 
 /* If 'dmidecode' can be called, return CPU multipliers (actual, min and max) */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);

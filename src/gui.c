@@ -87,6 +87,7 @@ void empty_labels(Libcpuid *data, Lscpu *info, Dmi *extrainfo) {
 	info->mips[0] = '\0';
 	info->virtu[0] = '\0';
 
+	extrainfo->vendor[0] = '\0';
 	extrainfo->socket[0] = '\0';
 	extrainfo->bus[0] = '\0';
 	extrainfo->manu[0] = '\0';
