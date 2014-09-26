@@ -141,6 +141,12 @@ int ext_dmidecode(Dmi *info);
 /* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
 int libdmidecode(Dmi *data);
 
+/* Get CPU frequencies (current - min - max) */
+int cpufreq(char *curfreq, char *multmin, char *multmax);
+
+/* Read value "bobomips" from file /proc/cpuinfo */
+void bogomips(char *c);
+
 /* If 'dmidecode' can be called, return CPU multipliers (actual, min and max) */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
 

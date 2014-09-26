@@ -226,6 +226,53 @@ int libdmidecode(Dmi *data) {
 }
 #endif
 
+/* Get CPU frequencies (current - min - max) */
+int cpufreq(char *curfreq, char *multmin, char *multmax) {
+	char c1, c2;
+	FILE *min = NULL, *max = NULL;
+
+	min = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
+	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
+	if(min == NULL || max == NULL)
+		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_mXX_freq'.\n", PRGNAME, __FILE__, __LINE__);
+
+	sprintf(curfreq, "%d MHz", cpu_clock());
+
+	c1 = fgetc(min);
+	c2 = fgetc(min);
+	sprintf(multmin, "%c%c", c1, c2);
+
+	c1 = fgetc(max);
+	c2 = fgetc(max);
+	sprintf(multmax, "%c%c", c1, c2);
+
+	fclose(min);
+	fclose(max);
+}
+
+/* Read value "bobomips" from file /proc/cpuinfo */
+void bogomips(char *c) {
+	char read[20];
+	char *mips = NULL;
+	int size = 20, i = 0;
+	FILE *cpuinfo = NULL;
+
+	cpuinfo = fopen("/proc/cpuinfo", "r");
+	if(cpuinfo == NULL) {
+		g_printerr("%s (error in file %s at line %i) : failed to open '/proc/cpuinfo'.\n", PRGNAME, __FILE__, __LINE__);
+		return;
+	}
+
+	while(fgets(read, size, cpuinfo) != NULL) {
+		mips = strstr(read, "bogomips");
+		if(mips != NULL)
+			break;
+	}
+
+	sprintf(c, "%s", strrchr(mips, ' '));
+	c[strlen(c) - 1] = '\0';
+}
+
 /* Determine CPU multiplicator from base clock */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[Q]) {
 	int i, fcpu, fbus, fmin, fmax;
