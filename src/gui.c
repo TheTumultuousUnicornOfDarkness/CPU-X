@@ -60,6 +60,7 @@ gpointer boucle(Gwid *cpu) {
 void empty_labels(Libcpuid *data, Lscpu *info, Dmi *extrainfo) {
 	data->vendor[0] = '\0';
 	data->name[0] = '\0';
+	data->arch[0] = '\0';
 	data->spec[0] = '\0';
 	data->fam[0] = '\0';
 	data->mod[0] = '\0';

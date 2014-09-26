@@ -37,6 +37,7 @@
 typedef struct {
 	char vendor[S];
 	char name[S];
+	char arch[S];
 	char spec[S];
 	char fam[S];
 	char mod[S];

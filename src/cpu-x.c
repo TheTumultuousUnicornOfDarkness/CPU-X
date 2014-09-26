@@ -295,26 +295,47 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 
 /* Show some instructions supported by CPU */
 void instructions(Lscpu *info, Libcpuid *data, char instr[S]) {
-	int sse = 0;
-	char found[S] = "";
+	struct cpu_raw_data_t raw;
+	struct cpu_id_t id;
 
-	if(strstr(data->instr, "mmx") == 0)
-		strcat(found, ", MMX");
-
-	if(strstr(data->instr, "sse ") == 0) {
-		strcat(found, ", SSE (1");
-		sse = 1;
+	if (cpuid_get_raw_data(&raw) == 0 && cpu_identify(&raw, &id) == 0) {
+		if(id.flags[CPU_FEATURE_MMX]) {
+			strcpy(instr, "MMX");
+			if(id.flags[CPU_FEATURE_MMXEXT])
+				strcat(instr, "(+)");
+		}
+		if(id.flags[CPU_FEATURE_3DNOW]) {
+			strcat(instr, ", 3DNOW!");
+			if(id.flags[CPU_FEATURE_3DNOWEXT])
+				strcat(instr, "(+)");
+		}
+		if(id.flags[CPU_FEATURE_SSE])
+			strcat(instr, ", SSE (1");
+		if(id.flags[CPU_FEATURE_SSE2])
+			strcat(instr, ", 2");
+		if(id.flags[CPU_FEATURE_SSSE3])
+			strcat(instr, ", 3S");
+		if(id.flags[CPU_FEATURE_SSE4_1])
+			strcat(instr, ", 4.1");
+		if(id.flags[CPU_FEATURE_SSE4_2])
+			strcat(instr, ", 4.2");
+		if(id.flags[CPU_FEATURE_SSE4A])
+			strcat(instr, ", 4A");
+		if(id.flags[CPU_FEATURE_SSE])
+			strcat(instr, ")");
+		if(id.flags[CPU_FEATURE_AES])
+			strcat(instr, ", AES");
+		if(id.flags[CPU_FEATURE_AVX])
+			strcat(instr, ", AVX");
+		if(id.flags[CPU_FEATURE_VMX])
+			strcat(instr, ", VT-x");
+		if(id.flags[CPU_FEATURE_SVM])
+			strcat(instr, ", AMD-V");
+		if(id.flags[CPU_FEATURE_LM])
+			strcpy(data->arch, "x86_64 (64-bit)");
+		else
+			strcpy(data->arch, "ix86 (32-bit)");
 	}
-	if(strstr(data->instr, "sse2") == 0)
-		strcat(found, ", 2");
-	if(strstr(data->instr, "sse3") == 0)
-		strcat(found, ", 3");
-	if(strstr(data->instr, "sse4_1") == 0)
-		strcat(found, ", 4.1");
-	if(strstr(data->instr, "sse4_2") == 0)
-		strcat(found, ", 4.2");
-	if(sse)
-		strcat(found, ")");
-
-	sprintf(instr, "%s, %s%s", info->endian, info->virtu, found);
+	else
+	g_printerr("%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, __FILE__, __LINE__);
 }
