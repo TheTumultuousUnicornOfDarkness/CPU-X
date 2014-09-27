@@ -1,7 +1,7 @@
 # CPU-X
 
 CPU-X is a Free software that gathers information on CPU & motherboard.
-CPU-X is similar to CPU-Z (only available for Microsoft Windows, see http://www.cpuid.com/softwares/cpu-z.html for mor informations), but CPU-X is designed for GNU/Linux.
+CPU-X is similar to CPU-Z (only available for Microsoft Windows, see http://www.cpuid.com/softwares/cpu-z.html for more informations), but CPU-X is designed for GNU/Linux.
 It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X11 or Wayland.
 
 
@@ -26,21 +26,25 @@ It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X1
 
 ## Build
 
+First, you must to have CMake installed to continue (only needed for building).
 GTK headers are needed to compile.
 
 * If you want to install CPU-X on your system, do:
 ```
+mkdir build && cd build
+cmake ..
 make
 make install
 ```
 
 * If you want a portable binary, do:
 ```
-make embed
+mkdir ebuild && cd ebuild
+cmake -DEMBED=1 ..
+make
 ```
 
-You must do a `make mrproper` between if you want to use both.
-
+Note: portable binary will be in directory "ebuild/bin".
 
 ## Usage
 
