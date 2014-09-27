@@ -55,12 +55,14 @@ int main(int argc, char *argv[]) {
 	if(libcpuid(&data))
 		fprintf(stderr, "%s: %s: %i: fails in call 'libcpuid(&data)'.\n", PRGNAME, __FILE__, __LINE__);
 #endif
+#ifdef LIBDMI
 	if(ext_lscpu(&info))
 		fprintf(stderr, "%s: %s: %i: fails in call 'ext_lscpu(&info))'.\n", PRGNAME, __FILE__, __LINE__);
 	if(!getuid()) {
-		if(ext_dmidecode(&extrainfo))
-			fprintf(stderr, "%s: %s: %i: fails in call 'ext_dmidecode(&extrainfo)'.\n", PRGNAME, __FILE__, __LINE__);
+		if(libdmidecode(&extrainfo))
+			fprintf(stderr, "%s: %s: %i: fails in call 'libdmidecode(&extrainfo)'.\n", PRGNAME, __FILE__, __LINE__);
 	}
+#endif
 
 	/* Build UI from Glade file */
 	gtk_init(&argc, &argv);
@@ -186,23 +188,6 @@ int ext_lscpu(Lscpu *info) {
 	return err;
 }
 
-/* Elements provided by command 'dmidecode' (need root privileges) */
-int ext_dmidecode(Dmi *info) {
-	int err = 0;
-
-	err += cmd_char("dmidecode -t processor", "'Socket Designation'", info->socket);
-	err += cmd_char("dmidecode -t processor", "'External Clock'", info->bus);
-	err += cmd_char("dmidecode -t baseboard", "Manufacturer", info->manu);
-	err += cmd_char("dmidecode -t baseboard", "'Product Name'", info->model);
-	err += cmd_char("dmidecode -t baseboard", "Version", info->rev);
-	err += cmd_char("dmidecode -t bios", "Vendor", info->brand);
-	err += cmd_char("dmidecode -t bios", "Version", info->version);
-	err += cmd_char("dmidecode -t bios", "'Release Date'", info->date);
-	err += cmd_char("dmidecode -t bios", "'ROM Size'", info->rom);
-
-	return err;
-}
-
 #ifdef LIBDMI
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Dmi *data) {
@@ -213,7 +198,7 @@ int libdmidecode(Dmi *data) {
 
 	sprintf(data->vendor,	"%s", datanr[PROCESSOR_MANUFACTURER]);
 	sprintf(data->socket,	"%s", datanr[PROCESSOR_SOCKET]);
-	sprintf(data->bus,	"%d", datanr[PROCESSOR_CLOCK]);
+	sprintf(data->bus,	"%s", datanr[PROCESSOR_CLOCK]);
 	sprintf(data->manu,	"%s", datanr[BASEBOARD_MANUFACTURER]);
 	sprintf(data->model,	"%s", datanr[BASEBOARD_PRODUCT_NAME]);
 	sprintf(data->rev,	"%s", datanr[BASEBOARD_VERSION]);

@@ -136,9 +136,6 @@ int libcpuid(Libcpuid *data);
 /* Use extern command 'lscpu' to build 'info' */
 int ext_lscpu(Lscpu *info);
 
-/* Use extern commande 'dmidecode' to build 'extrainfo' */
-int ext_dmidecode(Dmi *info);
-
 /* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
 int libdmidecode(Dmi *data);
 

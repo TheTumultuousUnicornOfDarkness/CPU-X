@@ -38,11 +38,8 @@ gpointer refresh(Gwid *cpu) {
 	char multsyntrefr[Q];
 
 	ext_lscpu(&inforefr);
-	if(!getuid()) {
-		ext_dmidecode(&extrainforefr);
+	if(!getuid())
 		mult(extrainforefr.bus, inforefr.mhz, inforefr.mhzmin, inforefr.mhzmax, multsyntrefr);
-		gtk_label_set_text(GTK_LABEL(cpu->clock_vbus), extrainforefr.bus);
-	}
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), inforefr.mhz);
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
 
