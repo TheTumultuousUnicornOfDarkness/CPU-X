@@ -117,9 +117,6 @@ typedef struct {
 
 /********************************** Core **********************************/
 
-/* Run extern command and stock the output */
-int cmd_char(char *command, char *regex, char data[S]);
-
 /* Use 'libcpuid' to build 'data' */
 int libcpuid(Libcpuid *data);
 
@@ -127,7 +124,7 @@ int libcpuid(Libcpuid *data);
 int libdmidecode(Dmi *data);
 
 /* Get CPU frequencies (current - min - max) */
-int cpufreq(char *curfreq, char *multmin, char *multmax);
+void cpufreq(char *curfreq, char *multmin, char *multmax);
 
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c);

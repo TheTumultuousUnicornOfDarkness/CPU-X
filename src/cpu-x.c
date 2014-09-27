@@ -95,45 +95,6 @@ int main(int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
-int cmd_char(char *command, char *regex, char data[S]) {
-	int fd, err = 0, i = 0;
-	char c, tmpfile[18] = "/tmp/cpu-x.XXXXXX";
-	FILE *extfile = NULL;
-
-	fd = mkstemp(tmpfile);
-
-	err = system( g_strjoin(NULL, command, " | grep ", regex, " | cut -d: -f2", " > ", tmpfile, NULL) );
-	if(err != 0)
-		fprintf(stderr, "%s: %s: %i: '%s' exited with non-zero.\n", PRGNAME, __FILE__, __LINE__, command);
-	
-	extfile = fopen(tmpfile, "r");
-	if(extfile == NULL) {
-		fprintf(stderr, "%s: %s: %i: failed to open file '%s'.\n", PRGNAME, __FILE__, __LINE__, tmpfile);
-		perror(tmpfile);
-		err++;
-	}
-	else {
-		while(!feof(extfile)) {
-			c = fgetc(extfile);
-			if(isalnum(c) || c == '_' || c == '-') {
-				data[i] = c;
-				i++;
-			}
-		}
-		while(i < S) {
-			data[i] = '\0';
-			i++;
-		}
-
-		err = fclose(extfile);
-		if(err != 0)
-			fprintf(stderr, "%s: %s: %i: failed to close file '%s'.", PRGNAME, __FILE__, __LINE__, command);
-		close(fd);
-		remove(tmpfile);
-	}
-	return err;
-}
-
 /* Elements provided by libcpuid library */
 #ifdef LIBCPUID
 int libcpuid(Libcpuid *data) {
@@ -193,7 +154,7 @@ int libdmidecode(Dmi *data) {
 #endif
 
 /* Get CPU frequencies (current - min - max) */
-int cpufreq(char *curfreq, char *multmin, char *multmax) {
+void cpufreq(char *curfreq, char *multmin, char *multmax) {
 	char c1, c2;
 	FILE *min = NULL, *max = NULL;
 
@@ -220,7 +181,7 @@ int cpufreq(char *curfreq, char *multmin, char *multmax) {
 void bogomips(char *c) {
 	char read[20];
 	char *mips = NULL;
-	int size = 20, i = 0;
+	int size = 20;
 	FILE *cpuinfo = NULL;
 
 	cpuinfo = fopen("/proc/cpuinfo", "r");
@@ -241,7 +202,7 @@ void bogomips(char *c) {
 
 /* Determine CPU multiplicator from base clock */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[Q]) {
-	int i, fcpu, fbus, fmin, fmax;
+	int i, fcpu, fbus;
 	char ncpu[P] = "", nbus[P] = "";
 
 	for(i = 0; isdigit(cpufreq[i]); i++)
