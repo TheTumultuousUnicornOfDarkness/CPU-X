@@ -4677,7 +4677,9 @@ int main(int argc, char * const argv[])
 	opt.devmem = DEFAULT_MEM_DEV;
 	opt.flags = 0;
 
-#ifndef CPUX
+#ifdef CPUX
+	opt.flags |= FLAG_QUIET;
+#else
 	if (parse_command_line(argc, argv)<0)
 	{
 		ret = 2;
