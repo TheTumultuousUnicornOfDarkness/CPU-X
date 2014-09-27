@@ -59,16 +59,6 @@ typedef struct {
 	} Libcpuid;	/* Designed for libcpuid */
 
 typedef struct {
-	char arch[S];
-	char endian[S];
-	char mhz[S];
-	char mhzmin[S];
-	char mhzmax[S];
-	char mips[S];
-	char virtu[S];
-	} Lscpu;	/* Designed for lscpu */
-
-typedef struct {
 	char vendor[S];
 	char socket[S];
 	char bus[S];
@@ -133,9 +123,6 @@ int cmd_char(char *command, char *regex, char data[S]);
 /* Use 'libcpuid' to build 'data' */
 int libcpuid(Libcpuid *data);
 
-/* Use extern command 'lscpu' to build 'info' */
-int ext_lscpu(Lscpu *info);
-
 /* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
 int libdmidecode(Dmi *data);
 
@@ -149,7 +136,7 @@ void bogomips(char *c);
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
 
 /* Print some instruction sets */ 
-void instructions(Lscpu *info, Libcpuid *data, char instr[S]);
+void instructions(Libcpuid *data, char instr[S]);
 
 
 /********************************** GUI  **********************************/
@@ -161,7 +148,7 @@ gpointer refresh(Gwid *cpu);
 gpointer boucle(Gwid *cpu);
 
 /* Set empty labels */
-void empty_labels(Libcpuid *data, Lscpu *info, Dmi *extrainfo);
+void empty_labels(Libcpuid *data, Dmi *extrainfo);
 
 /* White was too simple... */
 void set_colors(Gwid *cpu);
@@ -173,6 +160,6 @@ void set_vendorlogo(Gwid *cpu, Libcpuid *data);
 void build_tab_cpu(GtkBuilder *builder, Gwid *cpu);
 
 /* Set values in labels */
-void set_labels(Gwid *cpu, Libcpuid *data, Lscpu *info, Dmi *extrainfo);
+void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo);
 
 #endif

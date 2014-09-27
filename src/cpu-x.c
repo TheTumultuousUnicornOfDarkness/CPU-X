@@ -46,18 +46,15 @@ int main(int argc, char *argv[]) {
 	GtkBuilder *builder;
 	Gwid cpu;
 	Libcpuid data;
-	Lscpu info;
 	Dmi extrainfo;
 
 	/* Populate structures */
-	empty_labels(&data, &info, &extrainfo);
+	empty_labels(&data, &extrainfo);
 #ifdef LIBCPUID
 	if(libcpuid(&data))
 		fprintf(stderr, "%s: %s: %i: fails in call 'libcpuid(&data)'.\n", PRGNAME, __FILE__, __LINE__);
 #endif
 #ifdef LIBDMI
-	if(ext_lscpu(&info))
-		fprintf(stderr, "%s: %s: %i: fails in call 'ext_lscpu(&info))'.\n", PRGNAME, __FILE__, __LINE__);
 	if(!getuid()) {
 		if(libdmidecode(&extrainfo))
 			fprintf(stderr, "%s: %s: %i: fails in call 'libdmidecode(&extrainfo)'.\n", PRGNAME, __FILE__, __LINE__);
@@ -87,7 +84,7 @@ int main(int argc, char *argv[]) {
 	g_object_unref(G_OBJECT(builder));
 	set_colors(&cpu);
 	set_vendorlogo(&cpu, &data);
-	set_labels(&cpu, &data, &info, &extrainfo);
+	set_labels(&cpu, &data, &extrainfo);
 	
 	g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
@@ -172,22 +169,6 @@ int libcpuid(Libcpuid *data) {
 }
 #endif
 
-/* Elements provided by command 'lspcu' */
-int ext_lscpu(Lscpu *info) {
-	int err = 0;
-
-	err += cmd_char("lscpu", "Architecture", info->arch);
-	err += cmd_char("lscpu", "'Byte Order'", info->endian);
-	err += cmd_char("lscpu", "'CPU MHz'", info->mhz);
-	err += cmd_char("lscpu", "'CPU min MHz'", info->mhzmin);
-	err += cmd_char("lscpu", "'CPU max MHz'", info->mhzmax);
-	err += cmd_char("lscpu", "BogoMIPS", info->mips);
-	err += cmd_char("lscpu", "Virtualization", info->virtu);
-	sprintf(info->mhz, "%c%c%c%c.%c%cMHz", info->mhz[0],info->mhz[1],info->mhz[2],info->mhz[3],info->mhz[4],info->mhz[5]);
-
-	return err;
-}
-
 #ifdef LIBDMI
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Dmi *data) {
@@ -271,15 +252,13 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 		nbus[i] = busfreq[i];
 	nbus[i - 1] = '\0';
 	fbus = atoi(nbus);
-	fmin = atoi(multmin);
-	fmax = atoi(multmax);
 
 	if(fbus > 0)
-		sprintf(multsynt, "x %i (%i-%i)", (fcpu / fbus), (fmin / (fbus * 10000)), (fmax / (fbus * 10000)));
+		sprintf(multsynt, "x %i (%s-%s)", (fcpu / fbus), multmin, multmax);
 }
 
 /* Show some instructions supported by CPU */
-void instructions(Lscpu *info, Libcpuid *data, char instr[S]) {
+void instructions(Libcpuid *data, char instr[S]) {
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t id;
 

@@ -33,14 +33,15 @@
 
 
 gpointer refresh(Gwid *cpu) {
-	Lscpu inforefr;
+	char clockrefr[P], mhzminrefr[P], mhzmaxrefr[P], multsyntrefr[Q];
 	Dmi extrainforefr;
-	char multsyntrefr[Q];
 
-	ext_lscpu(&inforefr);
-	if(!getuid())
-		mult(extrainforefr.bus, inforefr.mhz, inforefr.mhzmin, inforefr.mhzmax, multsyntrefr);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), inforefr.mhz);
+	cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
+	if(!getuid()) {
+		libdmidecode(&extrainforefr);
+		mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
+	}
+	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
 
 	return NULL;
@@ -54,7 +55,7 @@ gpointer boucle(Gwid *cpu) {
 	return NULL;
 }
 
-void empty_labels(Libcpuid *data, Lscpu *info, Dmi *extrainfo) {
+void empty_labels(Libcpuid *data, Dmi *extrainfo) {
 	data->vendor[0] = '\0';
 	data->name[0] = '\0';
 	data->arch[0] = '\0';
@@ -76,14 +77,6 @@ void empty_labels(Libcpuid *data, Lscpu *info, Dmi *extrainfo) {
 	data->soc[0] = '\0';
 	data->core[0] = '\0';
 	data->thrd[0] = '\0';
-
-	info->arch[0] = '\0';
-	info->endian[0] = '\0';
-	info->mhz[0] = '\0';
-	info->mhzmin[0] = '\0';
-	info->mhzmax[0] = '\0';
-	info->mips[0] = '\0';
-	info->virtu[0] = '\0';
 
 	extrainfo->vendor[0] = '\0';
 	extrainfo->socket[0] = '\0';
@@ -175,17 +168,19 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu){
 	cpu->bios_vroms		= GTK_WIDGET(gtk_builder_get_object(builder, "bios_vroms"));
 }
 
-void set_labels(Gwid *cpu, Libcpuid *data, Lscpu *info, Dmi *extrainfo) {
-	char clock_multsynt[Q], proc_instr[S];
+void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
+	char clock[P], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q], proc_instr[S];
 
-	mult(extrainfo->bus, info->mhz, info->mhzmin, info->mhzmax, clock_multsynt);
-	instructions(info, data, proc_instr);
+	cpufreq(clock, mhzmin, mhzmax);
+	mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
+	instructions(data, proc_instr);
+	bogomips(mips);
 
 	gtk_label_set_text(GTK_LABEL(cpu->lprgver),	 "Version " PRGVER);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vvendor), data->vendor);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vname),	 data->name);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vpkg),	 extrainfo->socket);
-	gtk_label_set_text(GTK_LABEL(cpu->proc_varch),	 info->arch);
+	gtk_label_set_text(GTK_LABEL(cpu->proc_varch),	 data->arch);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vspec),	 data->spec);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vfam),	 data->fam);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vmod),	 data->mod);
@@ -193,10 +188,10 @@ void set_labels(Gwid *cpu, Libcpuid *data, Lscpu *info, Dmi *extrainfo) {
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vextmod), data->extmod);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vstep),	 data->step);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vinstr),	 proc_instr);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore),	 info->mhz);
+	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore),	 clock);
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vmult),	 clock_multsynt);
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vbus),	 extrainfo->bus);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vmips),	 info->mips);
+	gtk_label_set_text(GTK_LABEL(cpu->clock_vmips),	 mips);
 	gtk_label_set_text(GTK_LABEL(cpu->cache_vl1d),	 data->l1d);
 	gtk_label_set_text(GTK_LABEL(cpu->cache_vl1i),	 data->l1i);
 	gtk_label_set_text(GTK_LABEL(cpu->cache_vl2),	 data->l2);
