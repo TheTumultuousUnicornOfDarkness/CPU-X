@@ -15,12 +15,8 @@ It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X1
     * Extract CPU features
     * http://libcpuid.sourceforge.net/
 
-* Util-Linux
-    * Provide command 'lscpu'
-    * http://ftp.kernel.org/pub/linux/utils/util-linux/
-
 * Dmidecode
-    * Usefull informations on hardware
+    * Usefull informations on hardware ; a library is provided
     * http://www.nongnu.org/dmidecode/
 
 
@@ -49,7 +45,7 @@ Note: portable binary will be in directory "ebuild/bin".
 ## Usage
 
 Start program with root privileges allow to use Dmidecode.
-Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x_portable` is also possible.
+Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.
 
 
 ## Download binairies
