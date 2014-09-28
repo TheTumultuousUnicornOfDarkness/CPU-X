@@ -41,9 +41,9 @@ gpointer refresh(Gwid *cpu) {
 	if(!getuid()) {
 		libdmidecode(&extrainforefr);
 		mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
+		gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
 	}
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
 
 	return NULL;
 }
@@ -174,10 +174,11 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu){
 }
 
 void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
-	char clock[P], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q], proc_instr[S];
+	char clock[P], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q] = { '\0' }, proc_instr[S];
 
 	cpufreq(clock, mhzmin, mhzmax);
-	mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
+	if(!getuid())
+		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
 	instructions(data, proc_instr);
 	bogomips(mips);
 
