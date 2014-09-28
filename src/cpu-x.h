@@ -27,7 +27,6 @@
 #define PRGNAME "CPU-X"
 #define PRGVER  "1.0.0"
 #define EXIT_FNO 2	/* Exit when File Not Open */
-#define DATADIR(str) "/usr/local/share/cpu-x/"str /* Data directory | TODO: Find an alternative */
 
 #define S 80		/* Big	  char* */
 #define P 5		/* Little char* */
@@ -134,6 +133,8 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 
 /* Print some instruction sets */ 
 void instructions(Libcpuid *data, char instr[S]);
+
+size_t get_path (char* buffer, char *file);
 
 
 /********************************** GUI  **********************************/

@@ -24,6 +24,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <unistd.h>
+#include <limits.h>
 #include <gtk/gtk.h>
 #include <glib.h>
 #include "cpu-x.h"
@@ -43,6 +45,7 @@
 
 int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
+	char pathui[PATH_MAX];
 	GtkBuilder *builder;
 	Gwid cpu;
 	Libcpuid data;
@@ -70,7 +73,8 @@ int main(int argc, char *argv[]) {
 		exit(EXIT_FAILURE);
 	}
 #else
-	if(!gtk_builder_add_from_file(builder, DATADIR("cpu-x.ui"), NULL)) {
+	get_path(pathui, "cpu-x.ui");
+	if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
 		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, __FILE__, __LINE__);
 		exit(EXIT_FAILURE);
 	}
@@ -263,4 +267,25 @@ void instructions(Libcpuid *data, char instr[S]) {
 	}
 	else
 	g_printerr("%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, __FILE__, __LINE__);
+}
+
+/* Search file location */
+size_t get_path (char* buffer, char *file) {
+	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
+	See this file for more informations */
+	char *path_end;
+	size_t len = PATH_MAX;
+
+	if(readlink ("/proc/self/exe", buffer, len) <= 0)
+		return -1;
+
+	path_end = strrchr(buffer, '/');
+	if(path_end == NULL)
+		return -1;
+
+	path_end++;
+	*path_end = '\0';
+	sprintf(buffer, "%s../share/cpu-x/%s", buffer, file);
+
+	return (size_t) (path_end - buffer);
 }

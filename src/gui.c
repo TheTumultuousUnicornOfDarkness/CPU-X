@@ -22,6 +22,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 #include <gtk/gtk.h>
 #include "cpu-x.h"
 
@@ -108,6 +109,7 @@ void set_colors(Gwid *cpu) {
 }
 
 void set_vendorlogo(Gwid *cpu, Libcpuid *data) {
+	char pathlogo[PATH_MAX], pathintel[PATH_MAX], pathamd[PATH_MAX];
 #ifdef EMBED
 	GdkPixbuf *pixbuf_AMD	= gdk_pixbuf_new_from_inline (-1, AMD, FALSE, NULL);
 	GdkPixbuf *pixbuf_Intel = gdk_pixbuf_new_from_inline (-1, Intel, FALSE, NULL);
@@ -121,13 +123,16 @@ void set_vendorlogo(Gwid *cpu, Libcpuid *data) {
 	else
 		gtk_image_set_from_pixbuf(GTK_IMAGE(cpu->proc_logo), pixbuf_CPU_X);
 #else
-	gtk_window_set_icon_from_file(GTK_WINDOW(cpu->window), DATADIR("CPU-X.png"), NULL);
+	get_path(pathlogo, "CPU-X.png");
+	get_path(pathintel, "Intel.png");
+	get_path(pathamd, "AMD.png");
+	gtk_window_set_icon_from_file(GTK_WINDOW(cpu->window), pathlogo, NULL);
 	if(!strcmp(data->vendor, "GenuineIntel"))
-		gtk_image_set_from_file(GTK_IMAGE(cpu->proc_logo), DATADIR("Intel.png"));
+		gtk_image_set_from_file(GTK_IMAGE(cpu->proc_logo), pathintel);
 	else if(!strcmp(data->vendor, "AuthenticAMD"))
-		gtk_image_set_from_file(GTK_IMAGE(cpu->proc_logo), DATADIR("AMD.png"));
+		gtk_image_set_from_file(GTK_IMAGE(cpu->proc_logo), pathamd);
 	else
-		gtk_image_set_from_file(GTK_IMAGE(cpu->proc_logo), DATADIR("CPU-X.png"));
+		gtk_image_set_from_file(GTK_IMAGE(cpu->proc_logo), pathlogo);
 #endif
 }
 
