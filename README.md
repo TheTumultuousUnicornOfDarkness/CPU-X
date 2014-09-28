@@ -32,6 +32,7 @@ cmake ..
 make
 make install
 ```
+By default, CPU-X will be installed in */usr/local*. If you want to change it, change `cmake ..` by `cmake -DCMAKE_INSTALL_PREFIX=YOUR_ABSOLUTE_PATH ..`.
 
 * If you want a portable binary, do:
 ```
