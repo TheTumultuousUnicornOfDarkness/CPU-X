@@ -25,7 +25,7 @@
 
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define PRGNAME "CPU-X"
-#define PRGVER  "1.0.0"
+#define PRGVER  "1.1.0"
 #define EXIT_FNO 2	/* Exit when File Not Open */
 
 #define S 80		/* Big	  char* */
