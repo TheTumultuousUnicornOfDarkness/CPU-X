@@ -159,23 +159,21 @@ int libdmidecode(Dmi *data) {
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(char *curfreq, char *multmin, char *multmax) {
-	char c1, c2;
 	FILE *min = NULL, *max = NULL;
 
 	min = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
 	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
-	if(min == NULL || max == NULL)
-		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_mXX_freq'.\n", PRGNAME, __FILE__, __LINE__);
+	if(min == NULL)
+		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, __FILE__, __LINE__);
+	else
+		fgets(multmin, 9, min);
+
+	if(max == NULL)
+		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, __FILE__, __LINE__);
+	else
+		fgets(multmax, 9, max);
 
 	sprintf(curfreq, "%d MHz", cpu_clock());
-
-	c1 = fgetc(min);
-	c2 = fgetc(min);
-	sprintf(multmin, "%c%c", c1, c2);
-
-	c1 = fgetc(max);
-	c2 = fgetc(max);
-	sprintf(multmax, "%c%c", c1, c2);
 
 	fclose(min);
 	fclose(max);
@@ -206,7 +204,7 @@ void bogomips(char *c) {
 
 /* Determine CPU multiplicator from base clock */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[Q]) {
-	int i, fcpu, fbus;
+	int i, fcpu, fbus, min, max;
 	char ncpu[P] = "", nbus[P] = "";
 
 	for(i = 0; isdigit(cpufreq[i]); i++)
@@ -217,9 +215,11 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 		nbus[i] = busfreq[i];
 	nbus[i - 1] = '\0';
 	fbus = atoi(nbus);
+	min = atoi(multmin) / (fbus * 1000);
+	max = atoi(multmax) / (fbus * 1000);
 
 	if(fbus > 0)
-		sprintf(multsynt, "x %i (%s-%s)", (fcpu / fbus), multmin, multmax);
+		sprintf(multsynt, "x %i (%i-%i)", (fcpu / fbus), min, max);
 }
 
 /* Show some instructions supported by CPU */
