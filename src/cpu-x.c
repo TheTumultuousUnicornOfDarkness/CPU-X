@@ -55,12 +55,12 @@ int main(int argc, char *argv[]) {
 	empty_labels(&data, &extrainfo);
 #ifdef LIBCPUID
 	if(libcpuid(&data))
-		fprintf(stderr, "%s: %s: %i: fails in call 'libcpuid(&data)'.\n", PRGNAME, __FILE__, __LINE__);
+		fprintf(stderr, "%s: %s: %i: fails in call 'libcpuid(&data)'.\n", PRGNAME, BASEFILE, __LINE__);
 #endif
 #ifdef LIBDMI
 	if(!getuid()) {
 		if(libdmidecode(&extrainfo))
-			fprintf(stderr, "%s: %s: %i: fails in call 'libdmidecode(&extrainfo)'.\n", PRGNAME, __FILE__, __LINE__);
+			fprintf(stderr, "%s: %s: %i: fails in call 'libdmidecode(&extrainfo)'.\n", PRGNAME, BASEFILE, __LINE__);
 	}
 #endif
 
@@ -69,13 +69,13 @@ int main(int argc, char *argv[]) {
 	builder = gtk_builder_new();
 #ifdef EMBED
 	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
-		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, __FILE__, __LINE__);
+		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, BASEFILE, __LINE__);
 		exit(EXIT_FAILURE);
 	}
 #else
 	get_path(pathui, "cpu-x.ui");
 	if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
-		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, __FILE__, __LINE__);
+		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, BASEFILE, __LINE__);
 		exit(EXIT_FAILURE);
 	}
 #endif
@@ -164,12 +164,12 @@ void cpufreq(char *curfreq, char *multmin, char *multmax) {
 	min = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
 	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
 	if(min == NULL)
-		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, __FILE__, __LINE__);
+		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, BASEFILE, __LINE__);
 	else
 		fgets(multmin, 9, min);
 
 	if(max == NULL)
-		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, __FILE__, __LINE__);
+		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, BASEFILE, __LINE__);
 	else
 		fgets(multmax, 9, max);
 
@@ -188,7 +188,7 @@ void bogomips(char *c) {
 
 	cpuinfo = fopen("/proc/cpuinfo", "r");
 	if(cpuinfo == NULL) {
-		g_printerr("%s (error in file %s at line %i) : failed to open '/proc/cpuinfo'.\n", PRGNAME, __FILE__, __LINE__);
+		g_printerr("%s (error in file %s at line %i) : failed to open '/proc/cpuinfo'.\n", PRGNAME, BASEFILE, __LINE__);
 		return;
 	}
 
@@ -266,7 +266,7 @@ void instructions(Libcpuid *data, char instr[S]) {
 			strcpy(data->arch, "ix86 (32-bit)");
 	}
 	else
-	g_printerr("%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, __FILE__, __LINE__);
+	g_printerr("%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, BASEFILE, __LINE__);
 }
 
 /* Search file location */

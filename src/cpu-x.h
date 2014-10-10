@@ -24,6 +24,7 @@
 #define _CPUX_H_
 
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
+#define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
 #define PRGNAME "CPU-X"
 #define PRGVER  "1.1.0"
 #define EXIT_FNO 2	/* Exit when File Not Open */
