@@ -165,18 +165,19 @@ void cpufreq(char *curfreq, char *multmin, char *multmax) {
 	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
 	if(min == NULL)
 		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, BASEFILE, __LINE__);
-	else
+	else {
 		fgets(multmin, 9, min);
+		fclose(min);
+	}
 
 	if(max == NULL)
 		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, BASEFILE, __LINE__);
-	else
+	else {
 		fgets(multmax, 9, max);
+		fclose(max);
+	}
 
 	sprintf(curfreq, "%d MHz", cpu_clock());
-
-	fclose(min);
-	fclose(max);
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */
@@ -215,8 +216,14 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 		nbus[i] = busfreq[i];
 	nbus[i - 1] = '\0';
 	fbus = atoi(nbus);
-	min = atoi(multmin) / (fbus * 1000);
-	max = atoi(multmax) / (fbus * 1000);
+	min = atoi(multmin);
+	max = atoi(multmax);
+
+	if(min >= 10000)
+		min /= (fbus * 1000);
+
+	if(max >= 10000)
+		max /= (fbus * 1000);
 
 	if(fbus > 0)
 		sprintf(multsynt, "x %i (%i-%i)", (fcpu / fbus), min, max);
