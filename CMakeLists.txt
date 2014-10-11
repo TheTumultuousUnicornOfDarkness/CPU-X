@@ -36,6 +36,12 @@ include_directories(${GTK3_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS})
 add_definitions(${GTK3_CFLAGS_OTHER})
 
+# NCurses libs
+pkg_check_modules(NCURSES REQUIRED ncurses)
+include_directories(${NCURSES_INCLUDE_DIRS})
+link_directories(${NCURSES_LIBRARY_DIRS})
+add_definitions(-DNCURSES)
+
 # Libcpuid lib
 pkg_check_modules(LIBCPUID REQUIRED libcpuid)
 include_directories(${LIBCPUID_INCLUDE_DIRS})
@@ -62,9 +68,10 @@ add_executable(
 	src/cpu-x.c
 	src/cpu-x.h
 	src/gui.c
+	src/ncurses.c
 )
 
-target_link_libraries(cpu-x ${GTK3_LIBRARIES} ${LIBCPUID_LIBRARIES} dmi-cpux)
+target_link_libraries(cpu-x ${GTK3_LIBRARIES} ${NCURSES_LIBRARIES} ${LIBCPUID_LIBRARIES} dmi-cpux)
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

@@ -30,6 +30,10 @@
 #include <glib.h>
 #include "cpu-x.h"
 
+#ifdef NCURSES
+# include "cpux_ncurses.h"
+#endif
+
 #ifdef LIBCPUID
 # include <libcpuid/libcpuid.h>
 #endif
@@ -42,7 +46,7 @@
 # include "../embed/cpu-x.ui.h"
 #endif
 
-
+#include "cpux_ncurses.h"
 int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
 	char pathui[PATH_MAX];
@@ -64,38 +68,46 @@ int main(int argc, char *argv[]) {
 	}
 #endif
 
-	/* Build UI from Glade file */
-	gtk_init(&argc, &argv);
-	builder = gtk_builder_new();
+	/* Start with GTK3 */
+	if(argc == 1 || strcmp(argv[1], "--no-gui") != 0) {
+		/* Build UI from Glade file */
+		gtk_init(&argc, &argv);
+		builder = gtk_builder_new();
 #ifdef EMBED
-	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
-		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, BASEFILE, __LINE__);
-		exit(EXIT_FAILURE);
-	}
+		if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
+			g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, BASEFILE, __LINE__);
+			exit(EXIT_FAILURE);
+		}
 #else
-	get_path(pathui, "cpu-x.ui");
-	if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
-		g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, BASEFILE, __LINE__);
-		exit(EXIT_FAILURE);
-	}
+		get_path(pathui, "cpu-x.ui");
+		if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
+			g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, BASEFILE, __LINE__);
+			exit(EXIT_FAILURE);
+		}
 #endif
-	g_set_prgname(PRGNAME);
-	cpu.window	= GTK_WIDGET(gtk_builder_get_object(builder, "window"));
-	cpu.okbutton	= GTK_WIDGET(gtk_builder_get_object(builder, "okbutton"));
-	cpu.lprgver	= GTK_WIDGET(gtk_builder_get_object(builder, "lprgver"));
-	cpu.notebook1	= GTK_WIDGET(gtk_builder_get_object(builder, "notebook1"));
-	build_tab_cpu(builder, &cpu);
-	g_object_unref(G_OBJECT(builder));
-	set_colors(&cpu);
-	set_vendorlogo(&cpu, &data);
-	set_labels(&cpu, &data, &extrainfo);
+		g_set_prgname(PRGNAME);
+		cpu.window	= GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+		cpu.okbutton	= GTK_WIDGET(gtk_builder_get_object(builder, "okbutton"));
+		cpu.lprgver	= GTK_WIDGET(gtk_builder_get_object(builder, "lprgver"));
+		cpu.notebook1	= GTK_WIDGET(gtk_builder_get_object(builder, "notebook1"));
+		build_tab_cpu(builder, &cpu);
+		g_object_unref(G_OBJECT(builder));
+		set_colors(&cpu);
+		set_vendorlogo(&cpu, &data);
+		set_labels(&cpu, &data, &extrainfo);
 	
-	g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-	g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
+		g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+		g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 
-	cpu.threfresh = g_thread_new(NULL, (gpointer)boucle, &cpu);
-	gtk_main();
+		cpu.threfresh = g_thread_new(NULL, (gpointer)boucle, &cpu);
+		gtk_main();
+	}
 
+#ifdef NCURSES
+	/* Start with NCurses */
+	else
+		cpux_ncurses(&data, &extrainfo);
+#endif
 	return EXIT_SUCCESS;
 }
 
