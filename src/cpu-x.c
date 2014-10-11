@@ -44,11 +44,10 @@
 # include "dmidecode/libdmi.h"
 #endif
 
-#ifdef EMBED
+#if defined EMBED && defined GTK
 # include "../embed/cpu-x.ui.h"
 #endif
 
-#include "cpux_ncurses.h"
 int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
 	char pathui[PATH_MAX];

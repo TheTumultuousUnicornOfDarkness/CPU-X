@@ -70,11 +70,15 @@ if(WITH_LIBDMI)
 endif()
 
 if(${EMBED})
-message("${BoldBlue}CPU-X will be compiled as portable binary.${ColourReset}")
-set(LIBCPUID_LIBRARIES -l:libcpuid.a)
-execute_process(COMMAND ${CMAKE_CURRENT_LIST_DIR}/embed.sh
-	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-)
+  message("${BoldBlue}CPU-X will be compiled as portable binary.${ColourReset}")
+  if(WITH_LIBCPUID)
+    set(LIBCPUID_LIBRARIES -l:libcpuid.a)
+  endif()
+  if(WITH_GTK)
+    execute_process(COMMAND ${CMAKE_CURRENT_LIST_DIR}/embed.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+  )
+  endif()
 add_definitions(-DEMBED)
 endif(${EMBED})
 
@@ -91,6 +95,7 @@ target_link_libraries(cpu-x ${GTK3_LIBRARIES} ${NCURSES_LIBRARIES} ${LIBCPUID_LI
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+if(WITH_GTK)
 install(FILES
 	data/AMD.png
 	data/CPU-X.png
@@ -98,3 +103,4 @@ install(FILES
 	data/Intel.png
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/cpu-x/
 )
+endif()
