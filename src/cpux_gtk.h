@@ -23,6 +23,9 @@
 #ifndef _CPUX_GTK_H_
 #define _CPUX_GTK_H_
 
+#include <gtk/gtk.h>
+#include <glib.h>
+
 typedef struct {
 	GtkWidget *window;
 	GtkWidget *notebook1;

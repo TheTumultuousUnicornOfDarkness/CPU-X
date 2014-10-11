@@ -20,7 +20,8 @@
 * ncurses.c
 */
 
-#include <ncurses.h>
+#ifdef NCURSES
+
 #include <string.h>
 
 #include "cpu-x.h"
@@ -234,3 +235,5 @@ void destroy_win(WINDOW *local_win) {
 	wrefresh(local_win);
 	delwin(local_win);
 }
+
+#endif

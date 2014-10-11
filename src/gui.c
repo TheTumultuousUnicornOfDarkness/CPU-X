@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
-#include <gtk/gtk.h>
 #include "cpu-x.h"
 #include "cpux_gtk.h"
 

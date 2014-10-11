@@ -29,8 +29,6 @@
 #include "cpu-x.h"
 
 #ifdef GTK
-# include <gtk/gtk.h>
-# include <glib.h>
 # include "cpux_gtk.h"
 #endif
 
