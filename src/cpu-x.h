@@ -95,6 +95,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 /* Print some instruction sets */ 
 void instructions(Libcpuid *data, char instr[S]);
 
-size_t get_path (char* buffer, char *file);
+/* Get path for data files */
+size_t get_path(char* buffer, char *file);
 
 #endif
