@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
 
 #ifdef NCURSES
 	/* Start with NCurses */
-	if(argc == 1 || strcmp(argv[1], "--no-gui") == 0)
+	if(argc >= 1 && strcmp(argv[1], "--no-gui") == 0)
 		cpux_ncurses(&data, &extrainfo);
 #endif
 
