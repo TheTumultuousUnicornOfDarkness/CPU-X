@@ -39,7 +39,7 @@ void cpux_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	keypad(stdscr, TRUE);
 
 	height = 25;
-	width = 56;
+	width = 62;
 	starty = (LINES - height) / 2; /* Calculating for a center placement of the window */
 	startx = (COLS - width) / 2;
 
@@ -53,7 +53,7 @@ void cpux_ncurses(Libcpuid *data, Dmi *extrainfo) {
 		switch(ch)
 		{	case KEY_LEFT:
 				if(current_tab > 0) {
-					current_tab--;;
+					current_tab--;
 					destroy_win(tab);
 					main = main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo);
@@ -104,7 +104,7 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcp
 }
 
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo) {
-	char clock[P], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q] = { '\0' }, proc_instr[S];
+	char clock[Q], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q] = { '\0' }, proc_instr[S];
 	WINDOW *local_win;
 
 	cpufreq(clock, mhzmin, mhzmax);
@@ -127,11 +127,11 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	mvwprintw(local_win, 4, 2, "%13s: %s", "Package", extrainfo->socket);
 	mvwprintw(local_win, 5, 2, "%13s: %s", "Architecture", data->arch);
 	mvwprintw(local_win, 6, 2, "%13s: %s", "Specification", data->spec);
-	mvwprintw(local_win, 7, 2, "%13s: %s", "Family", data->fam);
-	mvwprintw(local_win, 7, 22, "%11s: %s", "Model", data->mod);
+	mvwprintw(local_win, 7, 2, "%13s: %2s", "Family", data->fam);
+	mvwprintw(local_win, 7, 22, "%11s: %2s", "Model", data->mod);
 	mvwprintw(local_win, 7, 38, "%9s: %s", "Stepping", data->step);
-	mvwprintw(local_win, 8, 2, "%13s: %s", "Ext. Family", data->extfam);
-	mvwprintw(local_win, 8, 22, "%11s: %s", "Ext. Model", data->extmod);
+	mvwprintw(local_win, 8, 2, "%13s: %2s", "Ext. Family", data->extfam);
+	mvwprintw(local_win, 8, 22, "%11s: %2s", "Ext. Model", data->extmod);
 	mvwprintw(local_win, 9, 2, "%13s: %s", "Instructions", proc_instr);
 
 	/* Clocks frame */
@@ -141,15 +141,15 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	mvwprintw(local_win, 15, 2, "%13s: %s", "BogoMIPS", mips);
 
 	/* Cache frame */
-	mvwprintw(local_win, 12, width / 2 + 2, "%7s: %s %s", "L1 Data", data->l1d, data->l1dw);
-	mvwprintw(local_win, 13, width / 2 + 2, "%7s: %s %s", "L1 Inst", data->l1i, data->l1iw);
-	mvwprintw(local_win, 14, width / 2 + 2, "%7s: %s %s", "Level 2", data->l2, data->l2w);
-	mvwprintw(local_win, 15, width / 2 + 2, "%7s: %s %s", "Level 3", data->l3, data->l3w);
+	mvwprintw(local_win, 12, width / 2 + 2, "%7s: %10s %6s", "L1 Data", data->l1d, data->l1dw);
+	mvwprintw(local_win, 13, width / 2 + 2, "%7s: %10s %6s", "L1 Inst", data->l1i, data->l1iw);
+	mvwprintw(local_win, 14, width / 2 + 2, "%7s: %10s %6s", "Level 2", data->l2, data->l2w);
+	mvwprintw(local_win, 15, width / 2 + 2, "%7s: %10s %6s", "Level 3", data->l3, data->l3w);
 
 	/* Last frame */
-	mvwprintw(local_win, 18, 2, "%10s: %s", "Sockets(s)", data->soc);
-	mvwprintw(local_win, 18, 17, "%10s: %s", "Core(s)", data->core);
-	mvwprintw(local_win, 18, 34, "%10s: %s", "Thread(s)", data->thrd);
+	mvwprintw(local_win, 18, 4, "%s: %2s", "Sockets(s)", data->soc);
+	mvwprintw(local_win, 18, 23, "%s: %2s", "Core(s)", data->core);
+	mvwprintw(local_win, 18, 39, "%s: %2s", "Thread(s)", data->thrd);
 
 	wrefresh(local_win);
 
