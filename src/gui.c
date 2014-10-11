@@ -36,7 +36,7 @@
 
 
 gpointer grefresh(Gwid *cpu) {
-	char clockrefr[Q], mhzminrefr[P], mhzmaxrefr[P], multsyntrefr[Q];
+	char clockrefr[Q] = { '\0' }, mhzminrefr[P] = { '\0' }, mhzmaxrefr[P] = { '\0' }, multsyntrefr[Q] = { '\0' };
 	Dmi extrainforefr;
 
 	cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
@@ -140,7 +140,7 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu){
 }
 
 void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
-	char clock[Q], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q] = { '\0' }, proc_instr[S];
+	char clock[Q] = { '\0' }, mhzmin[P] = { '\0' }, mhzmax[P] = { '\0' }, mips[Q] = { '\0' }, clock_multsynt[Q] = { '\0' }, proc_instr[S] = { '\0' };
 
 	cpufreq(clock, mhzmin, mhzmax);
 	if(!getuid())
