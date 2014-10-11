@@ -156,8 +156,8 @@ void empty_labels(Libcpuid *data, Dmi *extrainfo) {
 	extrainfo->rom[0] = '\0';
 }
 
-/* Elements provided by libcpuid library */
 #ifdef LIBCPUID
+/* Elements provided by libcpuid library */
 int libcpuid(Libcpuid *data) {
 	int err = 0;
 	struct cpu_raw_data_t raw;
@@ -234,7 +234,9 @@ void cpufreq(char *curfreq, char *multmin, char *multmax) {
 		fclose(max);
 	}
 
+#ifdef LIBCPUID
 	sprintf(curfreq, "%d MHz", cpu_clock());
+#endif
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */
@@ -269,23 +271,23 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 		ncpu[i] = cpufreq[i];
 	fcpu = atoi(ncpu);
 
-	for(i = 0; isdigit(cpufreq[i]); i++)
+	for(i = 0; isdigit(busfreq[i]); i++)
 		nbus[i] = busfreq[i];
-	nbus[i - 1] = '\0';
+	nbus[i] = '\0';
 	fbus = atoi(nbus);
 	min = atoi(multmin);
 	max = atoi(multmax);
 
-	if(min >= 10000)
-		min /= (fbus * 1000);
-
-	if(max >= 10000)
-		max /= (fbus * 1000);
-
-	if(fbus > 0)
+	if(fbus > 0) {
+		if(min >= 10000)
+			min /= (fbus * 1000);
+		if(max >= 10000 && fbus > 0)
+			max /= (fbus * 1000);
 		sprintf(multsynt, "x %i (%i-%i)", (fcpu / fbus), min, max);
+	}
 }
 
+#ifdef LIBCPUID
 /* Show some instructions supported by CPU */
 void instructions(Libcpuid *data, char instr[S]) {
 	struct cpu_raw_data_t raw;
@@ -332,6 +334,7 @@ void instructions(Libcpuid *data, char instr[S]) {
 	else
 	fprintf(stderr, "%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, BASEFILE, __LINE__);
 }
+#endif
 
 /* Search file location */
 size_t get_path (char* buffer, char *file) {

@@ -145,7 +145,9 @@ void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
 	cpufreq(clock, mhzmin, mhzmax);
 	if(!getuid())
 		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
+#ifdef LIBCPUID
 	instructions(data, proc_instr);
+#endif
 	bogomips(mips);
 
 	gtk_label_set_text(GTK_LABEL(cpu->lprgver),	 "Version " PRGVER);

@@ -108,7 +108,9 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	cpufreq(clock, mhzmin, mhzmax);
 	if(!getuid())
 		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
+#ifdef LIBCPUID
 	instructions(data, proc_instr);
+#endif
 	bogomips(mips);
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);

@@ -9,6 +9,7 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 option(WITH_GTK "Add support for GUI in GTK3+" ON)
 option(WITH_NCURSES "Add support for GUI in NCurses" ON)
+option(WITH_LIBCPUID "Allow use of library Libcpuid" ON)
 
 find_package(PkgConfig REQUIRED)
 
@@ -50,10 +51,14 @@ if(WITH_NCURSES)
 endif()
 
 # Libcpuid lib
-pkg_check_modules(LIBCPUID REQUIRED libcpuid)
-include_directories(${LIBCPUID_INCLUDE_DIRS})
-link_directories(${LIBCPUID_LIBRARY_DIRS})
-add_definitions(-DLIBCPUID)
+if(WITH_LIBCPUID)
+  pkg_check_modules(LIBCPUID libcpuid)
+  if(LIBCPUID_FOUND)
+    include_directories(${LIBCPUID_INCLUDE_DIRS})
+    link_directories(${LIBCPUID_LIBRARY_DIRS})
+    add_definitions(-DLIBCPUID)
+  endif(LIBCPUID)
+endif(WITH_LIBCPUID)
 
 # Dmidecode lib
 add_subdirectory(src/dmidecode)
