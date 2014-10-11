@@ -141,7 +141,7 @@ size_t get_path (char* buffer, char *file);
 /********************************** GUI  **********************************/
 
 /* Refresh non-static values */
-gpointer refresh(Gwid *cpu);
+gpointer grefresh(Gwid *cpu);
 
 /* Infinite loop which auto-refresh GUI */
 gpointer boucle(Gwid *cpu);

@@ -33,7 +33,7 @@
 #endif
 
 
-gpointer refresh(Gwid *cpu) {
+gpointer grefresh(Gwid *cpu) {
 	char clockrefr[P], mhzminrefr[P], mhzmaxrefr[P], multsyntrefr[Q];
 	Dmi extrainforefr;
 
@@ -50,7 +50,7 @@ gpointer refresh(Gwid *cpu) {
 
 gpointer boucle(Gwid *cpu) {
 	while(42) {
-		refresh(cpu);
+		grefresh(cpu);
 		sleep(1);
 	}
 	return NULL;
