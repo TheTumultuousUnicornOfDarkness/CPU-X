@@ -40,11 +40,13 @@ gpointer grefresh(Gwid *cpu) {
 	Dmi extrainforefr;
 
 	cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
+#ifdef LIBDMI
 	if(!getuid()) {
 		libdmidecode(&extrainforefr);
 		mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
 		gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
 	}
+#endif
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
 
 	return NULL;

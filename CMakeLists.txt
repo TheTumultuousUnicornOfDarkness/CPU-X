@@ -10,6 +10,8 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 option(WITH_GTK "Add support for GUI in GTK3+" ON)
 option(WITH_NCURSES "Add support for GUI in NCurses" ON)
 option(WITH_LIBCPUID "Allow use of library Libcpuid" ON)
+option(WITH_LIBDMI "Allow use of library Libdmi" ON)
+
 
 find_package(PkgConfig REQUIRED)
 
@@ -57,13 +59,15 @@ if(WITH_LIBCPUID)
     include_directories(${LIBCPUID_INCLUDE_DIRS})
     link_directories(${LIBCPUID_LIBRARY_DIRS})
     add_definitions(-DLIBCPUID)
-  endif(LIBCPUID)
+  endif()
 endif(WITH_LIBCPUID)
 
 # Dmidecode lib
-add_subdirectory(src/dmidecode)
-include_directories(src/dmidecode)
-add_definitions(-DLIBDMI)
+if(WITH_LIBDMI)
+  add_subdirectory(src/dmidecode)
+  include_directories(src/dmidecode)
+  add_definitions(-DLIBDMI)
+endif()
 
 if(${EMBED})
 message("${BoldBlue}CPU-X will be compiled as portable binary.${ColourReset}")
