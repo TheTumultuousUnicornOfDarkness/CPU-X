@@ -22,12 +22,9 @@
 
 #include <ncurses.h>
 #include <string.h>
-#include <gtk/gtk.h>
-#include <glib.h>
 
 #include "cpu-x.h"
 #include "cpux_ncurses.h"
-
 
 
 void cpux_ncurses(Libcpuid *data, Dmi *extrainfo) {

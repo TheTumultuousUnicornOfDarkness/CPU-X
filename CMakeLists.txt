@@ -7,6 +7,10 @@ set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE) 
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+option(WITH_GTK "Add support for GUI in GTK3+" ON)
+option(WITH_NCURSES "Add support for GUI in NCurses" ON)
+
+find_package(PkgConfig REQUIRED)
 
 # Colours
 if(NOT WIN32)
@@ -30,17 +34,20 @@ if(NOT WIN32)
 endif()
 
 # GTK3+ libs
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
-include_directories(${GTK3_INCLUDE_DIRS})
-link_directories(${GTK3_LIBRARY_DIRS})
-add_definitions(${GTK3_CFLAGS_OTHER})
+if(WITH_GTK)
+  pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+  include_directories(${GTK3_INCLUDE_DIRS})
+  link_directories(${GTK3_LIBRARY_DIRS})
+  add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
+endif()
 
 # NCurses libs
-pkg_check_modules(NCURSES REQUIRED ncurses)
-include_directories(${NCURSES_INCLUDE_DIRS})
-link_directories(${NCURSES_LIBRARY_DIRS})
-add_definitions(-DNCURSES)
+if(WITH_NCURSES)
+  pkg_check_modules(NCURSES REQUIRED ncurses)
+  include_directories(${NCURSES_INCLUDE_DIRS})
+  link_directories(${NCURSES_LIBRARY_DIRS})
+  add_definitions(-DNCURSES)
+endif()
 
 # Libcpuid lib
 pkg_check_modules(LIBCPUID REQUIRED libcpuid)

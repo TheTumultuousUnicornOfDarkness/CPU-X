@@ -71,51 +71,11 @@ typedef struct {
 	char rom[S];
 	} Dmi;		/* Designed for dmidecode */
 
-typedef struct {
-	GtkWidget *window;
-	GtkWidget *notebook1;
-	GtkWidget *okbutton;
-	GtkWidget *lprgname;
-	GtkWidget *lprgver;
-	GtkWidget *proc_logo;
-	GtkWidget *proc_vvendor;
-	GtkWidget *proc_vname;
-	GtkWidget *proc_vpkg;
-	GtkWidget *proc_varch;
-	GtkWidget *proc_vspec;
-	GtkWidget *proc_vfam;
-	GtkWidget *proc_vmod;
-	GtkWidget *proc_vextfam;
-	GtkWidget *proc_vextmod;
-	GtkWidget *proc_vstep;
-	GtkWidget *proc_vinstr;
-	GtkWidget *clock_vcore;
-	GtkWidget *clock_vmult;
-	GtkWidget *clock_vbus;
-	GtkWidget *clock_vmips;
-	GtkWidget *cache_vl1d;
-	GtkWidget *cache_vl1i;
-	GtkWidget *cache_vl2;
-	GtkWidget *cache_vl3;
-	GtkWidget *cache_vl1dway;
-	GtkWidget *cache_vl1iway;
-	GtkWidget *cache_vl2way;
-	GtkWidget *cache_vl3way;
-	GtkWidget *trg_vsoc;
-	GtkWidget *trg_vcore;
-	GtkWidget *trg_vthrd;
-	GtkWidget *mb_vmanu;
-	GtkWidget *mb_vmodel;
-	GtkWidget *mb_vrev;
-	GtkWidget *bios_vbrand;
-	GtkWidget *bios_vversion;
-	GtkWidget *bios_vdate;
-	GtkWidget *bios_vroms;
-	GThread *threfresh;
-	} Gwid;		/* Useful GtkWidgets */
-
 
 /********************************** Core **********************************/
+
+/* Set empty labels */
+void empty_labels(Libcpuid *data, Dmi *extrainfo);
 
 /* Use 'libcpuid' to build 'data' */
 int libcpuid(Libcpuid *data);
@@ -136,29 +96,5 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 void instructions(Libcpuid *data, char instr[S]);
 
 size_t get_path (char* buffer, char *file);
-
-
-/********************************** GUI  **********************************/
-
-/* Refresh non-static values */
-gpointer grefresh(Gwid *cpu);
-
-/* Infinite loop which auto-refresh GUI */
-gpointer boucle(Gwid *cpu);
-
-/* Set empty labels */
-void empty_labels(Libcpuid *data, Dmi *extrainfo);
-
-/* White was too simple... */
-void set_colors(Gwid *cpu);
-
-/* Show vendor logo (Intel/AMD) */
-void set_vendorlogo(Gwid *cpu, Libcpuid *data);
-
-/* Build tab 'CPU' thanks to GtkBuilder */
-void build_tab_cpu(GtkBuilder *builder, Gwid *cpu);
-
-/* Set values in labels */
-void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo);
 
 #endif

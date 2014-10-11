@@ -20,11 +20,14 @@
 * gui.c
 */
 
+#ifdef GTK
+
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
 #include <gtk/gtk.h>
 #include "cpu-x.h"
+#include "cpux_gtk.h"
 
 #ifdef EMBED
 # include "../embed/AMD.png.h"
@@ -54,42 +57,6 @@ gpointer boucle(Gwid *cpu) {
 		sleep(1);
 	}
 	return NULL;
-}
-
-void empty_labels(Libcpuid *data, Dmi *extrainfo) {
-	data->vendor[0] = '\0';
-	data->name[0] = '\0';
-	data->arch[0] = '\0';
-	data->spec[0] = '\0';
-	data->fam[0] = '\0';
-	data->mod[0] = '\0';
-	data->step[0] = '\0';
-	data->extfam[0] = '\0';
-	data->extmod[0] = '\0';
-	data->instr[0] = '\0';
-	data->l1d[0] = '\0';
-	data->l1i[0] = '\0';
-	data->l2[0] = '\0';
-	data->l3[0] = '\0';
-	data->l1dw[0] = '\0';
-	data->l1iw[0] = '\0';
-	data->l2w[0] = '\0';
-	data->l3w[0] = '\0';
-	data->soc[0] = '\0';
-	data->core[0] = '\0';
-	data->thrd[0] = '\0';
-
-	extrainfo->vendor[0] = '\0';
-	extrainfo->socket[0] = '\0';
-	extrainfo->bus[0] = '\0';
-	extrainfo->manu[0] = '\0';
-	extrainfo->model[0] = '\0';
-	extrainfo->rev[0] = '\0';
-	extrainfo->brand[0] = '\0';
-	extrainfo->version[0] = '\0';
-	extrainfo->date[0] = '\0';
-	extrainfo->rom[0] = '\0';
-	
 }
 
 void set_colors(Gwid *cpu) {
@@ -217,3 +184,5 @@ void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vdate),	extrainfo->date);
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vroms),	extrainfo->rom);
 }
+
+#endif

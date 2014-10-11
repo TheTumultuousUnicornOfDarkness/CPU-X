@@ -26,9 +26,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <limits.h>
-#include <gtk/gtk.h>
-#include <glib.h>
 #include "cpu-x.h"
+
+#ifdef GTK
+# include <gtk/gtk.h>
+# include <glib.h>
+# include "cpux_gtk.h"
+#endif
 
 #ifdef NCURSES
 # include "cpux_ncurses.h"
@@ -50,8 +54,6 @@
 int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
 	char pathui[PATH_MAX];
-	GtkBuilder *builder;
-	Gwid cpu;
 	Libcpuid data;
 	Dmi extrainfo;
 
@@ -68,23 +70,26 @@ int main(int argc, char *argv[]) {
 	}
 #endif
 
+#ifdef GTK
 	/* Start with GTK3 */
 	if(argc == 1 || strcmp(argv[1], "--no-gui") != 0) {
 		/* Build UI from Glade file */
+		GtkBuilder *builder;
+		Gwid cpu;
 		gtk_init(&argc, &argv);
 		builder = gtk_builder_new();
-#ifdef EMBED
+# ifdef EMBED
 		if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
-			g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, BASEFILE, __LINE__);
+			fprintf(stderr, "%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, BASEFILE, __LINE__);
 			exit(EXIT_FAILURE);
 		}
-#else
+# else
 		get_path(pathui, "cpu-x.ui");
 		if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
-			g_printerr("%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, BASEFILE, __LINE__);
+			fprintf(stderr, "%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, BASEFILE, __LINE__);
 			exit(EXIT_FAILURE);
 		}
-#endif
+# endif
 		g_set_prgname(PRGNAME);
 		cpu.window	= GTK_WIDGET(gtk_builder_get_object(builder, "window"));
 		cpu.okbutton	= GTK_WIDGET(gtk_builder_get_object(builder, "okbutton"));
@@ -102,13 +107,55 @@ int main(int argc, char *argv[]) {
 		cpu.threfresh = g_thread_new(NULL, (gpointer)boucle, &cpu);
 		gtk_main();
 	}
+#endif
 
 #ifdef NCURSES
 	/* Start with NCurses */
-	else
+	if(argc == 1 || strcmp(argv[1], "--no-gui") == 0)
 		cpux_ncurses(&data, &extrainfo);
 #endif
+
+#if !defined GTK && !defined NCURSES
+	fprintf(stderr, "Hey! You need to compile with GTK3+ support and/or NCurses!\n");
+	return EXIT_FAILURE;
+#endif
 	return EXIT_SUCCESS;
+}
+
+/* Set empty labels */
+void empty_labels(Libcpuid *data, Dmi *extrainfo) {
+	data->vendor[0] = '\0';
+	data->name[0] = '\0';
+	data->arch[0] = '\0';
+	data->spec[0] = '\0';
+	data->fam[0] = '\0';
+	data->mod[0] = '\0';
+	data->step[0] = '\0';
+	data->extfam[0] = '\0';
+	data->extmod[0] = '\0';
+	data->instr[0] = '\0';
+	data->l1d[0] = '\0';
+	data->l1i[0] = '\0';
+	data->l2[0] = '\0';
+	data->l3[0] = '\0';
+	data->l1dw[0] = '\0';
+	data->l1iw[0] = '\0';
+	data->l2w[0] = '\0';
+	data->l3w[0] = '\0';
+	data->soc[0] = '\0';
+	data->core[0] = '\0';
+	data->thrd[0] = '\0';
+
+	extrainfo->vendor[0] = '\0';
+	extrainfo->socket[0] = '\0';
+	extrainfo->bus[0] = '\0';
+	extrainfo->manu[0] = '\0';
+	extrainfo->model[0] = '\0';
+	extrainfo->rev[0] = '\0';
+	extrainfo->brand[0] = '\0';
+	extrainfo->version[0] = '\0';
+	extrainfo->date[0] = '\0';
+	extrainfo->rom[0] = '\0';
 }
 
 /* Elements provided by libcpuid library */
@@ -176,14 +223,14 @@ void cpufreq(char *curfreq, char *multmin, char *multmax) {
 	min = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
 	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
 	if(min == NULL)
-		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, BASEFILE, __LINE__);
+		fprintf(stderr, "%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, BASEFILE, __LINE__);
 	else {
 		fgets(multmin, 9, min);
 		fclose(min);
 	}
 
 	if(max == NULL)
-		g_printerr("%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, BASEFILE, __LINE__);
+		fprintf(stderr, "%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, BASEFILE, __LINE__);
 	else {
 		fgets(multmax, 9, max);
 		fclose(max);
@@ -201,7 +248,7 @@ void bogomips(char *c) {
 
 	cpuinfo = fopen("/proc/cpuinfo", "r");
 	if(cpuinfo == NULL) {
-		g_printerr("%s (error in file %s at line %i) : failed to open '/proc/cpuinfo'.\n", PRGNAME, BASEFILE, __LINE__);
+		fprintf(stderr, "%s (error in file %s at line %i) : failed to open '/proc/cpuinfo'.\n", PRGNAME, BASEFILE, __LINE__);
 		return;
 	}
 
@@ -285,7 +332,7 @@ void instructions(Libcpuid *data, char instr[S]) {
 			strcpy(data->arch, "ix86 (32-bit)");
 	}
 	else
-	g_printerr("%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, BASEFILE, __LINE__);
+	fprintf(stderr, "%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, BASEFILE, __LINE__);
 }
 
 /* Search file location */
