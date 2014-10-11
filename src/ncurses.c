@@ -104,8 +104,14 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcp
 }
 
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo) {
+	char clock[P], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q] = { '\0' }, proc_instr[S];
 	WINDOW *local_win;
 
+	cpufreq(clock, mhzmin, mhzmax);
+	if(!getuid())
+		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
+	instructions(data, proc_instr);
+	bogomips(mips);
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
@@ -116,34 +122,34 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	frame(local_win, 17, 1, 20, width - 1, "");
 
 	/* Processor frame */
-	mvwprintw(local_win, 2, 2, "%13s: %s", "Vendor", "");
-	mvwprintw(local_win, 3, 2, "%13s: %s", "Code Name", "");
-	mvwprintw(local_win, 4, 2, "%13s: %s", "Package", "");
-	mvwprintw(local_win, 5, 2, "%13s: %s", "Architecture", "");
-	mvwprintw(local_win, 6, 2, "%13s: %s", "Specification", "");
-	mvwprintw(local_win, 7, 2, "%13s: %s", "Family", "");
-	mvwprintw(local_win, 7, 22, "%11s: %s", "Model", "");
-	mvwprintw(local_win, 7, 38, "%9s: %s", "Stepping", "");
-	mvwprintw(local_win, 8, 2, "%13s: %s", "Ext. Family", "");
-	mvwprintw(local_win, 8, 22, "%11s: %s", "Ext. Model", "");
-	mvwprintw(local_win, 9, 2, "%13s: %s", "Instructions", "");
+	mvwprintw(local_win, 2, 2, "%13s: %s", "Vendor", extrainfo->vendor);
+	mvwprintw(local_win, 3, 2, "%13s: %s", "Code Name", data->name);
+	mvwprintw(local_win, 4, 2, "%13s: %s", "Package", extrainfo->socket);
+	mvwprintw(local_win, 5, 2, "%13s: %s", "Architecture", data->arch);
+	mvwprintw(local_win, 6, 2, "%13s: %s", "Specification", data->spec);
+	mvwprintw(local_win, 7, 2, "%13s: %s", "Family", data->fam);
+	mvwprintw(local_win, 7, 22, "%11s: %s", "Model", data->mod);
+	mvwprintw(local_win, 7, 38, "%9s: %s", "Stepping", data->step);
+	mvwprintw(local_win, 8, 2, "%13s: %s", "Ext. Family", data->extfam);
+	mvwprintw(local_win, 8, 22, "%11s: %s", "Ext. Model", data->extmod);
+	mvwprintw(local_win, 9, 2, "%13s: %s", "Instructions", proc_instr);
 
 	/* Clocks frame */
-	mvwprintw(local_win, 12, 2, "%13s: %s", "Core Speed", "");
-	mvwprintw(local_win, 13, 2, "%13s: %s", "Multiplier", "");
-	mvwprintw(local_win, 14, 2, "%13s: %s", "Bus Speed", "");
-	mvwprintw(local_win, 15, 2, "%13s: %s", "BogoMIPS", "");
+	mvwprintw(local_win, 12, 2, "%13s: %s", "Core Speed", clock);
+	mvwprintw(local_win, 13, 2, "%13s: %s", "Multiplier", clock_multsynt);
+	mvwprintw(local_win, 14, 2, "%13s: %s", "Bus Speed", extrainfo->bus);
+	mvwprintw(local_win, 15, 2, "%13s: %s", "BogoMIPS", mips);
 
 	/* Cache frame */
-	mvwprintw(local_win, 12, width / 2 + 2, "%7s: %s %s", "L1 Data", "", "");
-	mvwprintw(local_win, 13, width / 2 + 2, "%7s: %s %s", "L1 Inst", "", "");
-	mvwprintw(local_win, 14, width / 2 + 2, "%7s: %s %s", "Level 2", "", "");
-	mvwprintw(local_win, 15, width / 2 + 2, "%7s: %s %s", "Level 3", "", "");
+	mvwprintw(local_win, 12, width / 2 + 2, "%7s: %s %s", "L1 Data", data->l1d, data->l1dw);
+	mvwprintw(local_win, 13, width / 2 + 2, "%7s: %s %s", "L1 Inst", data->l1i, data->l1iw);
+	mvwprintw(local_win, 14, width / 2 + 2, "%7s: %s %s", "Level 2", data->l2, data->l2w);
+	mvwprintw(local_win, 15, width / 2 + 2, "%7s: %s %s", "Level 3", data->l3, data->l3w);
 
 	/* Last frame */
-	mvwprintw(local_win, 18, 2, "%10s: %s", "Sockets(s)", "");
-	mvwprintw(local_win, 18, 17, "%10s: %s", "Core(s)", "");
-	mvwprintw(local_win, 18, 34, "%10s: %s", "Thread(s)", "");
+	mvwprintw(local_win, 18, 2, "%10s: %s", "Sockets(s)", data->soc);
+	mvwprintw(local_win, 18, 17, "%10s: %s", "Core(s)", data->core);
+	mvwprintw(local_win, 18, 34, "%10s: %s", "Thread(s)", data->thrd);
 
 	wrefresh(local_win);
 
@@ -161,15 +167,15 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Libcpuid *d
 	frame(local_win, 6, 1, 12, width - 1, "BIOS");
 
 	/* Motherboard frame */
-	mvwprintw(local_win, 2, 2, "%13s: %s", "Manufactureur", "");
-	mvwprintw(local_win, 3, 2, "%13s: %s", "Model", "");
-	mvwprintw(local_win, 4, 2, "%13s: %s", "Revision", "");
+	mvwprintw(local_win, 2, 2, "%13s: %s", "Manufactureur", extrainfo->manu);
+	mvwprintw(local_win, 3, 2, "%13s: %s", "Model", extrainfo->model);
+	mvwprintw(local_win, 4, 2, "%13s: %s", "Revision", extrainfo->rev);
 
 	/* BIOS frame */
-	mvwprintw(local_win, 7, 2, "%13s: %s", "Brand", "");
-	mvwprintw(local_win, 8, 2, "%13s: %s", "Version", "");
-	mvwprintw(local_win, 9, 2, "%13s: %s", "Date", "");
-	mvwprintw(local_win, 10, 2, "%13s: %s", "ROM Size", "");
+	mvwprintw(local_win, 7, 2, "%13s: %s", "Brand", extrainfo->brand);
+	mvwprintw(local_win, 8, 2, "%13s: %s", "Version", extrainfo->version);
+	mvwprintw(local_win, 9, 2, "%13s: %s", "Date", extrainfo->date);
+	mvwprintw(local_win, 10, 2, "%13s: %s", "ROM Size", extrainfo->rom);
 
 	wrefresh(local_win);
 
