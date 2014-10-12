@@ -69,7 +69,9 @@ int main(int argc, char *argv[]) {
 
 #ifdef GTK
 	/* Start with GTK3 */
-	if(argc == 1 || strcmp(argv[1], "--no-gui") != 0) {
+	if(argc > 1 && strcmp(argv[1], "--no-gui") != 0)
+		fprintf(stderr, "Usage: %s [OPTION]\n\nAvailable OPTION:\n\t--no-gui\tStart NCurses mode instead of GTK\n", argv[0]);
+	else if(argc == 1 || strcmp(argv[1], "--no-gui") != 0) {
 		/* Build UI from Glade file */
 		GtkBuilder *builder;
 		Gwid cpu;
