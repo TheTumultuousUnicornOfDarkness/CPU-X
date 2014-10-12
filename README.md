@@ -1,7 +1,7 @@
 # CPU-X
 
-CPU-X is a Free software that gathers information on CPU & motherboard.
-CPU-X is similar to CPU-Z (only available for Microsoft Windows, see http://www.cpuid.com/softwares/cpu-z.html for more informations), but CPU-X is designed for GNU/Linux.
+CPU-X is a Free software that gathers information on CPU & motherboard.  
+CPU-X is similar to CPU-Z (only available for Microsoft Windows, see http://www.cpuid.com/softwares/cpu-z.html for more informations), but CPU-X is designed for GNU/Linux.  
 It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X11 or Wayland.
 
 
@@ -23,7 +23,12 @@ It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X1
 ## Build
 
 First, you must to have CMake installed to continue (only needed for building).
-GTK headers are needed to compile.
+GTK headers are needed to compile with GTK support.  
+You can disable some functionalities by passing argument `-D<var>=0` when running CMake, like this:  
+`-DWITH_GTK=0` will disable support of GUI in GTK3+  
+`-DWITH_NCURSES=0` will disable support of NCurses mode (need to run from a shell)  
+`-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
+`-DWITH_LIBDMI=0` will not compile Libdmi and will avoid calls to Libdmi (not recommended)  
 
 * If you want to install CPU-X on your system, do:
 ```
@@ -45,8 +50,9 @@ Note: portable binary will be in directory "ebuild/bin".
 
 ## Usage
 
-Start program with root privileges allow to use Dmidecode.
-Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.
+Start program with **root privileges** allow to use **Dmidecode** (Libdmi).  
+Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.  
+If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell `cpu-x --no-gui`.
 
 
 ## Download binairies

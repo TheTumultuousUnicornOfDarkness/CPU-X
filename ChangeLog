@@ -1,3 +1,13 @@
+v1.2.0 (10.12.2014):
+	* Add NCurses mode
+	* Add possibility to disable GTK/NCurses/Libcpuid/Libdmi before compiling
+	* Fixes:
+		** CPU multipliers calculation
+		** Relative path of file on error
+		** Segfault on unknown multiplier
+		** Unwanted characters
+
+
 v1.1.0 (09.28.2014):
 	* Remove calls to external command 'dmidecode', use provided library instead of
 	* Remove calls to external command 'lscpu'
