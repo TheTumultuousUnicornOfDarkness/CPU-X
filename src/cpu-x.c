@@ -44,7 +44,7 @@
 # include "dmidecode/libdmi.h"
 #endif
 
-#if defined EMBED && defined GTK
+#if defined GTK && defined EMBED
 # include "../embed/cpu-x.ui.h"
 #endif
 
@@ -106,11 +106,11 @@ int main(int argc, char *argv[]) {
 		cpu.threfresh = g_thread_new(NULL, (gpointer)grefresh, &cpu);
 		gtk_main();
 	}
-#endif
 
-#ifdef NCURSES
 	/* Start with NCurses */
-	if(argc >= 1 && strcmp(argv[1], "--no-gui") == 0)
+	if(argc > 1 && strcmp(argv[1], "--no-gui") == 0)
+#endif
+#ifdef NCURSES
 		cpux_ncurses(&data, &extrainfo);
 #endif
 
