@@ -27,13 +27,14 @@
 #include "cpu-x.h"
 #include "cpux_ncurses.h"
 
-
 void cpux_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	int startx, starty, width, height, ch, current_tab = 0;
 	WINDOW *main, *tab;
-	
+
 	initscr();
 	cbreak();
+	noecho();
+	curs_set(0);
 	keypad(stdscr, TRUE);
 
 	height = 25;
