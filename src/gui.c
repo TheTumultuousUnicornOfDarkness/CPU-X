@@ -39,24 +39,19 @@ gpointer grefresh(Gwid *cpu) {
 	char clockrefr[Q] = { '\0' }, mhzminrefr[P] = { '\0' }, mhzmaxrefr[P] = { '\0' }, multsyntrefr[Q] = { '\0' };
 	Dmi extrainforefr;
 
-	cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
-#ifdef LIBDMI
-	if(!getuid()) {
-		libdmidecode(&extrainforefr);
-		mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
-		gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
-	}
-#endif
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
-
-	return NULL;
-}
-
-gpointer boucle(Gwid *cpu) {
 	while(42) {
-		grefresh(cpu);
-		sleep(1);
+		cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
+#ifdef LIBDMI
+		if(!getuid()) {
+			libdmidecode(&extrainforefr);
+			mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
+			gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
+		}
+#endif
+		gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
+	sleep(1);
 	}
+
 	return NULL;
 }
 

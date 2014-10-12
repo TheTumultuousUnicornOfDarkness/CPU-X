@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
 		g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 		g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 
-		cpu.threfresh = g_thread_new(NULL, (gpointer)boucle, &cpu);
+		cpu.threfresh = g_thread_new(NULL, (gpointer)grefresh, &cpu);
 		gtk_main();
 	}
 #endif

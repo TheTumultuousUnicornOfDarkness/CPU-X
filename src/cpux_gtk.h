@@ -75,9 +75,6 @@ typedef struct {
 /* Refresh non-static values */
 gpointer grefresh(Gwid *cpu);
 
-/* Infinite loop which auto-refresh GUI */
-gpointer boucle(Gwid *cpu);
-
 /* White was too simple... */
 void set_colors(Gwid *cpu);
 
