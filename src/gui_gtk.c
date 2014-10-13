@@ -20,8 +20,6 @@
 * gui.c
 */
 
-#ifdef GTK
-
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
@@ -182,5 +180,3 @@ void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vdate),	extrainfo->date);
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vroms),	extrainfo->rom);
 }
-
-#endif

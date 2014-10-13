@@ -13,17 +13,17 @@ file(GLOB_RECURSE
         *.c
 )
 
-if(${EMBED})
+if(EMBED)
 add_library(dmi-cpux
         STATIC
         ${dmidecode}
 )
-else (${EMBED})
+else()
 add_library(dmi-cpux
         SHARED
         ${dmidecode}
 )
-endif(${EMBED})
+endif()
 
 add_definitions(-DCPUX)
 

@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(CPU-X)
 
 set(EXECUTABLE_OUTPUT_PATH bin/)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY lib/)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE) 
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -42,6 +43,11 @@ if(WITH_GTK)
   include_directories(${GTK3_INCLUDE_DIRS})
   link_directories(${GTK3_LIBRARY_DIRS})
   add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
+  add_library(gui_gtk
+		src/gui_gtk.c
+		src/cpu-x_gtk.h
+  )
+  set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
 endif()
 
 # NCurses libs
@@ -50,6 +56,11 @@ if(WITH_NCURSES)
   include_directories(${NCURSES_INCLUDE_DIRS})
   link_directories(${NCURSES_LIBRARY_DIRS})
   add_definitions(-DNCURSES)
+  add_library(gui_ncurses
+		src/gui_ncurses.c
+		src/cpu-x_ncurses.h
+  )
+  set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES})
 endif()
 
 # Libcpuid lib
@@ -67,9 +78,10 @@ if(WITH_LIBDMI)
   add_subdirectory(src/dmidecode)
   include_directories(src/dmidecode)
   add_definitions(-DLIBDMI)
+  set(GUI_LIBDMI_LIBRARY "dmi-cpux")
 endif()
 
-if(${EMBED})
+if(EMBED)
   message("${BoldBlue}CPU-X will be compiled as portable binary.${ColourReset}")
   if(WITH_LIBCPUID)
     set(LIBCPUID_LIBRARIES -l:libcpuid.a)
@@ -79,24 +91,21 @@ if(${EMBED})
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
   )
   endif()
-add_definitions(-DEMBED)
-endif(${EMBED})
+  add_definitions(-DEMBED)
+endif()
 
 # Main executable
-add_executable(
-	cpu-x
+add_executable(cpu-x
 	src/cpu-x.c
 	src/cpu-x.h
-	src/gui_gtk.c
-	src/gui_ncurses.c
 )
 
-target_link_libraries(cpu-x ${GTK3_LIBRARIES} ${NCURSES_LIBRARIES} ${LIBCPUID_LIBRARIES} dmi-cpux)
+target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${GUI_LIBDMI_LIBRARY})
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 if(WITH_GTK)
-install(FILES
+  install(FILES
 	data/AMD.png
 	data/CPU-X.png
 	data/cpu-x.ui
