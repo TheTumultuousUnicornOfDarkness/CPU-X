@@ -26,7 +26,7 @@
 #include <string.h>
 #include <limits.h>
 #include "cpu-x.h"
-#include "cpux_gtk.h"
+#include "cpu-x_gtk.h"
 
 #ifdef EMBED
 # include "../embed/AMD.png.h"

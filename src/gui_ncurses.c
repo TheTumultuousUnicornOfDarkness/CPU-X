@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "cpu-x.h"
-#include "cpux_ncurses.h"
+#include "cpu-x_ncurses.h"
 
 void cpux_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	int startx, starty, width, height, ch, current_tab = 0;

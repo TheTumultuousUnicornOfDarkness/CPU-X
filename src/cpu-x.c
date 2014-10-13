@@ -29,11 +29,11 @@
 #include "cpu-x.h"
 
 #ifdef GTK
-# include "cpux_gtk.h"
+# include "cpu-x_gtk.h"
 #endif
 
 #ifdef NCURSES
-# include "cpux_ncurses.h"
+# include "cpu-x_ncurses.h"
 #endif
 
 #ifdef LIBCPUID

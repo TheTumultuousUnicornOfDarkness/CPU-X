@@ -87,8 +87,8 @@ add_executable(
 	cpu-x
 	src/cpu-x.c
 	src/cpu-x.h
-	src/gui.c
-	src/ncurses.c
+	src/gui_gtk.c
+	src/gui_ncurses.c
 )
 
 target_link_libraries(cpu-x ${GTK3_LIBRARIES} ${NCURSES_LIBRARIES} ${LIBCPUID_LIBRARIES} dmi-cpux)
