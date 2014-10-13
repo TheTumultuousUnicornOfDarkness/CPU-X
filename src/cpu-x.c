@@ -58,12 +58,12 @@ int main(int argc, char *argv[]) {
 	empty_labels(&data, &extrainfo);
 #ifdef LIBCPUID
 	if(libcpuid(&data))
-		fprintf(stderr, "%s: %s: %i: fails in call 'libcpuid(&data)'.\n", PRGNAME, BASEFILE, __LINE__);
+		MSGERR("libcpuid failed.");
 #endif
 #ifdef LIBDMI
 	if(!getuid()) {
 		if(libdmidecode(&extrainfo))
-			fprintf(stderr, "%s: %s: %i: fails in call 'libdmidecode(&extrainfo)'.\n", PRGNAME, BASEFILE, __LINE__);
+			MSGERR("libdmidecode failed");
 	}
 #endif
 
@@ -79,13 +79,13 @@ int main(int argc, char *argv[]) {
 		builder = gtk_builder_new();
 # ifdef EMBED
 		if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
-			fprintf(stderr, "%s (error in file %s at line %i) : gtk_builder_add_from_string failed.\n", PRGNAME, BASEFILE, __LINE__);
+			MSGERR("gtk_builder_add_from_string failed when loading embeded UI file.");
 			exit(EXIT_FAILURE);
 		}
 # else
 		get_path(pathui, "cpu-x.ui");
 		if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
-			fprintf(stderr, "%s (error in file %s at line %i) : gtk_builder_add_from_file failed.\n", PRGNAME, BASEFILE, __LINE__);
+			MSGERR("gtk_builder_add_from_file failed.");
 			exit(EXIT_FAILURE);
 		}
 # endif
@@ -222,14 +222,14 @@ void cpufreq(char *curfreq, char *multmin, char *multmax) {
 	min = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
 	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
 	if(min == NULL)
-		fprintf(stderr, "%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.\n", PRGNAME, BASEFILE, __LINE__);
+		MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.");
 	else {
 		fgets(multmin, 9, min);
 		fclose(min);
 	}
 
 	if(max == NULL)
-		fprintf(stderr, "%s (error in file %s at line %i) : failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.\n", PRGNAME, BASEFILE, __LINE__);
+		MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.");
 	else {
 		fgets(multmax, 9, max);
 		fclose(max);
@@ -249,7 +249,7 @@ void bogomips(char *c) {
 
 	cpuinfo = fopen("/proc/cpuinfo", "r");
 	if(cpuinfo == NULL) {
-		fprintf(stderr, "%s (error in file %s at line %i) : failed to open '/proc/cpuinfo'.\n", PRGNAME, BASEFILE, __LINE__);
+		MSGERR("failed to open '/proc/cpuinfo'.");
 		return;
 	}
 
@@ -333,12 +333,12 @@ void instructions(Libcpuid *data, char instr[S]) {
 			strcpy(data->arch, "ix86 (32-bit)");
 	}
 	else
-	fprintf(stderr, "%s (error in file %s at line %i) : failed to call 'libcpuid'.\n", PRGNAME, BASEFILE, __LINE__);
+	MSGERR("failed to call 'libcpuid'.");
 }
 #endif
 
 /* Search file location */
-size_t get_path (char* buffer, char *file) {
+size_t get_path(char* buffer, char *file) {
 	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
 	See this file for more informations */
 	char *path_end;

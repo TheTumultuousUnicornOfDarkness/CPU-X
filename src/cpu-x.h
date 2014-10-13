@@ -33,6 +33,8 @@
 #define P 5		/* Little char* */
 #define Q 3*P		/* Medium char* */
 
+#define MSGERR(msg, args...) fprintf(stderr, "%s:%s:%i: " msg "\n", PRGNAME, BASEFILE, __LINE__, ##args)
+
 
 typedef struct {
 	char vendor[S];
