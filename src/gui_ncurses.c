@@ -25,7 +25,7 @@
 #include "cpu-x.h"
 #include "cpu-x_ncurses.h"
 
-void cpux_ncurses(Libcpuid *data, Dmi *extrainfo) {
+void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	int startx, starty, width, height, ch, current_tab = 0;
 	WINDOW *main, *tab;
 

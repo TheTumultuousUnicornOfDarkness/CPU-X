@@ -50,7 +50,6 @@
 
 int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
-	char pathui[PATH_MAX];
 	Libcpuid data;
 	Dmi extrainfo;
 
@@ -68,50 +67,18 @@ int main(int argc, char *argv[]) {
 #endif
 
 #ifdef GTK
-	/* Start with GTK3 */
 	if(argc > 1 && strcmp(argv[1], "--no-gui") != 0)
 		fprintf(stderr, "Usage: %s [OPTION]\n\nAvailable OPTION:\n\t--no-gui\tStart NCurses mode instead of GTK\n", argv[0]);
-	else if(argc == 1 || strcmp(argv[1], "--no-gui") != 0) {
-		/* Build UI from Glade file */
-		GtkBuilder *builder;
-		Gwid cpu;
-		gtk_init(&argc, &argv);
-		builder = gtk_builder_new();
-# ifdef EMBED
-		if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
-			MSGERR("gtk_builder_add_from_string failed when loading embeded UI file.");
-			exit(EXIT_FAILURE);
-		}
-# else
-		get_path(pathui, "cpu-x.ui");
-		if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
-			MSGERR("gtk_builder_add_from_file failed.");
-			exit(EXIT_FAILURE);
-		}
-# endif
-		g_set_prgname(PRGNAME);
-		cpu.window	= GTK_WIDGET(gtk_builder_get_object(builder, "window"));
-		cpu.okbutton	= GTK_WIDGET(gtk_builder_get_object(builder, "okbutton"));
-		cpu.lprgver	= GTK_WIDGET(gtk_builder_get_object(builder, "lprgver"));
-		cpu.notebook1	= GTK_WIDGET(gtk_builder_get_object(builder, "notebook1"));
-		build_tab_cpu(builder, &cpu);
-		g_object_unref(G_OBJECT(builder));
-		set_colors(&cpu);
-		set_vendorlogo(&cpu, &data);
-		set_labels(&cpu, &data, &extrainfo);
-	
-		g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-		g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 
-		cpu.threfresh = g_thread_new(NULL, (gpointer)grefresh, &cpu);
-		gtk_main();
-	}
+	/* Start with GTK3 */
+	else if(argc == 1 || strcmp(argv[1], "--no-gui") != 0)
+		start_gui_gtk(&argc, &argv, &data, &extrainfo);
 
 	/* Start with NCurses */
 	if(argc > 1 && strcmp(argv[1], "--no-gui") == 0)
 #endif
 #ifdef NCURSES
-		cpux_ncurses(&data, &extrainfo);
+		start_gui_ncurses(&data, &extrainfo);
 #endif
 
 #if !defined GTK && !defined NCURSES

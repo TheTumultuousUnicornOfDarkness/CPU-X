@@ -72,6 +72,9 @@ typedef struct {
 
 /********************************** GUI  **********************************/
 
+/* Start CPU-X in GTK mode */
+void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo);
+
 /* Refresh non-static values */
 gpointer grefresh(Gwid *cpu);
 

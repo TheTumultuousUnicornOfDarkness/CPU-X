@@ -21,6 +21,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <limits.h>
 #include "cpu-x.h"
@@ -32,6 +33,45 @@
 # include "../embed/CPU-X.png.h"
 #endif
 
+
+void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo) {
+	char pathui[PATH_MAX];
+	GtkBuilder *builder;
+	Gwid cpu;
+
+	gtk_init(argc, argv);
+	builder = gtk_builder_new();
+
+	/* Build UI from Glade file */
+#ifdef EMBED
+	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
+		MSGERR("gtk_builder_add_from_string failed when loading embeded UI file.");
+		exit(EXIT_FAILURE);
+	}
+#else
+	get_path(pathui, "cpu-x.ui");
+	if(!gtk_builder_add_from_file(builder, pathui, NULL)) {
+		MSGERR("gtk_builder_add_from_file failed.");
+		exit(EXIT_FAILURE);
+	}
+#endif
+	g_set_prgname(PRGNAME);
+	cpu.window	= GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+	cpu.okbutton	= GTK_WIDGET(gtk_builder_get_object(builder, "okbutton"));
+	cpu.lprgver	= GTK_WIDGET(gtk_builder_get_object(builder, "lprgver"));
+	cpu.notebook1	= GTK_WIDGET(gtk_builder_get_object(builder, "notebook1"));
+	build_tab_cpu(builder, &cpu);
+	g_object_unref(G_OBJECT(builder));
+	set_colors(&cpu);
+	set_vendorlogo(&cpu, data);
+	set_labels(&cpu, data, extrainfo);
+
+	g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+	g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
+
+	cpu.threfresh = g_thread_new(NULL, (gpointer)grefresh, &cpu);
+	gtk_main();
+}
 
 gpointer grefresh(Gwid *cpu) {
 	char clockrefr[Q] = { '\0' }, mhzminrefr[P] = { '\0' }, mhzmaxrefr[P] = { '\0' }, multsyntrefr[Q] = { '\0' };

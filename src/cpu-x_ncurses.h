@@ -26,7 +26,7 @@
 #include <ncurses.h>
 
 /* Start CPU-X in NCurses mode */
-void cpux_ncurses(Libcpuid *data, Dmi *extrainfo);
+void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo);
 
 /* NCurses main window */
 WINDOW *main_win(int height, int width, int starty, int startx, int tab);
