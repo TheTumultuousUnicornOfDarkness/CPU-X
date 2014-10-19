@@ -142,7 +142,7 @@ int libcpuid(Libcpuid *data) {
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Dmi *data) {
 	int err = 0;
-	char datanr[L][C] = { '\0' };
+	char datanr[L][C] = { { '\0' } };
 
 	err += libdmi(datanr);
 
