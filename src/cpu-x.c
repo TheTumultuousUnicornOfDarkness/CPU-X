@@ -31,11 +31,13 @@
 
 
 int main(int argc, char *argv[]) {
+	char option;
 	setenv("LC_ALL", "C", 1);
 	Libcpuid data;
 	Dmi extrainfo;
 
 	/* Populate structures */
+	option = menu(argc, argv);
 	empty_labels(&data, &extrainfo);
 
 	if(HAS_LIBCPUID && libcpuid(&data))
@@ -46,17 +48,9 @@ int main(int argc, char *argv[]) {
 			MSGERR("libdmidecode failed");
 	}
 
-	if(HAS_GTK && argc > 1 && strcmp(argv[1], "--no-gui") != 0)
-		fprintf(stderr, "Usage: %s [OPTION]\n\nAvailable OPTION:\n\t--no-gui\tStart NCurses mode instead of GTK\n", argv[0]);
-
-	/* Start with GTK3 */
-	else if(HAS_GTK && (argc == 1 || strcmp(argv[1], "--no-gui") != 0))
+	if(option == 'G') /* Start with GTK3 */
 		start_gui_gtk(&argc, &argv, &data, &extrainfo);
-
-	/* Start with NCurses */
-	if(argc > 1 && strcmp(argv[1], "--no-gui") == 0)
-
-	if(HAS_NCURSES)
+	else if(option == 'N') /* Start with NCurses */
 		start_gui_ncurses(&data, &extrainfo);
 
 	if(!HAS_GTK && !HAS_NCURSES) {

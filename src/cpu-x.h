@@ -76,6 +76,9 @@ typedef struct {
 
 /********************************** Core **********************************/
 
+/* Get options */
+char menu(int argc, char *argv[]);
+
 /* Set empty labels */
 void empty_labels(Libcpuid *data, Dmi *extrainfo);
 

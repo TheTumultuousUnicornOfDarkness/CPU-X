@@ -98,6 +98,7 @@ endif()
 add_executable(cpu-x
 	src/cpu-x.c
 	src/cpu-x.h
+	src/options.c
 )
 
 target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${GUI_LIBDMI_LIBRARY})
