@@ -27,7 +27,7 @@
 
 void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	int startx, starty, width, height, ch, current_tab = 0;
-	WINDOW *main, *tab;
+	WINDOW *master, *tab;
 
 	initscr();
 	cbreak();
@@ -42,7 +42,7 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 
 	printw("Press 'q' to exit");
 	refresh();
-	main = main_win(height, width, starty, startx, current_tab);
+	master = main_win(height, width, starty, startx, current_tab);
 	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
 
 	while((ch = getch()) != 'q')
@@ -52,7 +52,7 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 				if(current_tab > 0) {
 					current_tab--;
 					destroy_win(tab);
-					main = main_win(height, width, starty, startx, current_tab);
+					master = main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo);
 				}
 				break;
@@ -60,7 +60,7 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 				if(current_tab < 2) {
 					current_tab++;
 					destroy_win(tab);
-					main = main_win(height, width, starty, startx, current_tab);
+					master = main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo);
 				}
 				break;	
