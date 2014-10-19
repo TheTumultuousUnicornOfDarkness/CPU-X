@@ -23,8 +23,10 @@
 #ifndef _CPUX_H_
 #define _CPUX_H_
 
+
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
+#define MSGERR(msg, args...) fprintf(stderr, "%s:%s:%i: " msg "\n", PRGNAME, BASEFILE, __LINE__, ##args)
 #define PRGNAME "CPU-X"
 #define PRGVER  "1.2.0"
 #define EXIT_FNO 2	/* Exit when File Not Open */
@@ -32,8 +34,6 @@
 #define S 80		/* Big	  char* */
 #define P 5		/* Little char* */
 #define Q 3*P		/* Medium char* */
-
-#define MSGERR(msg, args...) fprintf(stderr, "%s:%s:%i: " msg "\n", PRGNAME, BASEFILE, __LINE__, ##args)
 
 
 typedef struct {
@@ -100,4 +100,5 @@ void instructions(Libcpuid *data, char instr[S]);
 /* Get path for data files */
 size_t get_path(char* buffer, char *file);
 
-#endif
+
+#endif /* _CPUX_H_ */

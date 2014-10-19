@@ -23,8 +23,10 @@
 #ifndef _CPUX_GTK_H_
 #define _CPUX_GTK_H_
 
+
 #include <gtk/gtk.h>
 #include <glib.h>
+
 
 typedef struct {
 	GtkWidget *window;
@@ -90,4 +92,5 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu);
 /* Set values in labels */
 void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo);
 
-#endif
+
+#endif /* _CPUX_GTK_H_ */

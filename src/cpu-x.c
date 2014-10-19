@@ -27,26 +27,8 @@
 #include <unistd.h>
 #include <limits.h>
 #include "cpu-x.h"
+#include "includes.h"
 
-#ifdef GTK
-# include "cpu-x_gtk.h"
-#endif
-
-#ifdef NCURSES
-# include "cpu-x_ncurses.h"
-#endif
-
-#ifdef LIBCPUID
-# include <libcpuid/libcpuid.h>
-#endif
-
-#ifdef LIBDMI
-# include "dmidecode/libdmi.h"
-#endif
-
-#if defined GTK && defined EMBED
-# include "../embed/cpu-x.ui.h"
-#endif
 
 int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
@@ -55,36 +37,33 @@ int main(int argc, char *argv[]) {
 
 	/* Populate structures */
 	empty_labels(&data, &extrainfo);
-#ifdef LIBCPUID
-	if(libcpuid(&data))
+
+	if(HAS_LIBCPUID && libcpuid(&data))
 		MSGERR("libcpuid failed.");
-#endif
-#ifdef LIBDMI
-	if(!getuid()) {
+
+	if(HAS_LIBDMI && !getuid()) {
 		if(libdmidecode(&extrainfo))
 			MSGERR("libdmidecode failed");
 	}
-#endif
 
-#ifdef GTK
-	if(argc > 1 && strcmp(argv[1], "--no-gui") != 0)
+	if(HAS_GTK && argc > 1 && strcmp(argv[1], "--no-gui") != 0)
 		fprintf(stderr, "Usage: %s [OPTION]\n\nAvailable OPTION:\n\t--no-gui\tStart NCurses mode instead of GTK\n", argv[0]);
 
 	/* Start with GTK3 */
-	else if(argc == 1 || strcmp(argv[1], "--no-gui") != 0)
+	else if(HAS_GTK && (argc == 1 || strcmp(argv[1], "--no-gui") != 0))
 		start_gui_gtk(&argc, &argv, &data, &extrainfo);
 
 	/* Start with NCurses */
 	if(argc > 1 && strcmp(argv[1], "--no-gui") == 0)
-#endif
-#ifdef NCURSES
-		start_gui_ncurses(&data, &extrainfo);
-#endif
 
-#if !defined GTK && !defined NCURSES
-	fprintf(stderr, "Hey! You need to compile with GTK3+ support and/or NCurses!\n");
-	return EXIT_FAILURE;
-#endif
+	if(HAS_NCURSES)
+		start_gui_ncurses(&data, &extrainfo);
+
+	if(!HAS_GTK && !HAS_NCURSES) {
+		fprintf(stderr, "Hey! You need to compile with GTK3+ support and/or NCurses!\n");
+		return EXIT_FAILURE;
+	}
+
 	return EXIT_SUCCESS;
 }
 
@@ -124,7 +103,7 @@ void empty_labels(Libcpuid *data, Dmi *extrainfo) {
 	extrainfo->rom[0] = '\0';
 }
 
-#ifdef LIBCPUID
+#if HAS_LIBCPUID
 /* Elements provided by libcpuid library */
 int libcpuid(Libcpuid *data) {
 	int err = 0;
@@ -157,9 +136,9 @@ int libcpuid(Libcpuid *data) {
 
 	return err;
 }
-#endif
+#endif /* HAS_LIBCPUID */
 
-#ifdef LIBDMI
+#if HAS_LIBDMI
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Dmi *data) {
 	int err = 0;
@@ -180,7 +159,7 @@ int libdmidecode(Dmi *data) {
 
 	return err;
 }
-#endif
+#endif /* HAS_LIBDMI */
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(char *curfreq, char *multmin, char *multmax) {
@@ -202,9 +181,8 @@ void cpufreq(char *curfreq, char *multmin, char *multmax) {
 		fclose(max);
 	}
 
-#ifdef LIBCPUID
-	sprintf(curfreq, "%d MHz", cpu_clock());
-#endif
+	if(HAS_LIBCPUID)
+		sprintf(curfreq, "%d MHz", cpu_clock());
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */
@@ -255,7 +233,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 	}
 }
 
-#ifdef LIBCPUID
+#if HAS_LIBCPUID
 /* Show some instructions supported by CPU */
 void instructions(Libcpuid *data, char instr[S]) {
 	struct cpu_raw_data_t raw;
@@ -302,7 +280,7 @@ void instructions(Libcpuid *data, char instr[S]) {
 	else
 	MSGERR("failed to call 'libcpuid'.");
 }
-#endif
+#endif /* HAS_LIBCPUID */
 
 /* Search file location */
 size_t get_path(char* buffer, char *file) {

@@ -23,7 +23,9 @@
 #ifndef _CPUX_NCURSES_H_
 #define _CPUX_NCURSES_H_
 
+
 #include <ncurses.h>
+
 
 /* Start CPU-X in NCurses mode */
 void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo);
@@ -49,4 +51,5 @@ void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *
 /* Destroy a window */
 void destroy_win(WINDOW *local_win);
 
-#endif
+
+#endif /* _CPUX_NCURSES_H_ */

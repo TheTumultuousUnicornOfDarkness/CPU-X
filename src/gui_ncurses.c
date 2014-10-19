@@ -21,9 +21,9 @@
 */
 
 #include <string.h>
-
 #include "cpu-x.h"
-#include "cpu-x_ncurses.h"
+#include "includes.h"
+
 
 void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	int startx, starty, width, height, ch, current_tab = 0;
@@ -107,9 +107,10 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	cpufreq(clock, mhzmin, mhzmax);
 	if(!getuid())
 		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
-#ifdef LIBCPUID
-	instructions(data, proc_instr);
-#endif
+
+	if(HAS_LIBCPUID)
+		instructions(data, proc_instr);
+
 	bogomips(mips);
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);

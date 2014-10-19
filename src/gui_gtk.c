@@ -25,12 +25,13 @@
 #include <string.h>
 #include <limits.h>
 #include "cpu-x.h"
-#include "cpu-x_gtk.h"
+#include "includes.h"
 
 #ifdef EMBED
 # include "../embed/AMD.png.h"
 # include "../embed/Intel.png.h"
 # include "../embed/CPU-X.png.h"
+# include "../embed/cpu-x.ui.h"
 #endif
 
 
@@ -79,15 +80,13 @@ gpointer grefresh(Gwid *cpu) {
 
 	while(42) {
 		cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
-#ifdef LIBDMI
-		if(!getuid()) {
+		if(HAS_LIBDMI && !getuid()) {
 			libdmidecode(&extrainforefr);
 			mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
 			gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
 		}
-#endif
 		gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
-	sleep(1);
+		sleep(1);
 	}
 
 	return NULL;
@@ -180,9 +179,10 @@ void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
 	cpufreq(clock, mhzmin, mhzmax);
 	if(!getuid())
 		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
-#ifdef LIBCPUID
-	instructions(data, proc_instr);
-#endif
+
+	if(HAS_LIBCPUID)
+		instructions(data, proc_instr);
+
 	bogomips(mips);
 
 	gtk_label_set_text(GTK_LABEL(cpu->lprgver),	 "Version " PRGVER);
