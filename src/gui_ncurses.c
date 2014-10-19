@@ -101,7 +101,7 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcp
 }
 
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo) {
-	char clock[Q], mhzmin[P], mhzmax[P], mips[Q], clock_multsynt[Q] = { '\0' }, proc_instr[S];
+	char clock[Q] = { '\0' }, mhzmin[P] = { '\0' }, mhzmax[P] = { '\0' }, mips[Q] = { '\0' }, clock_multsynt[Q] = { '\0' }, proc_instr[S] = { '\0' };
 	WINDOW *local_win;
 
 	cpufreq(clock, mhzmin, mhzmax);
