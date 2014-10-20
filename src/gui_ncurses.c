@@ -92,9 +92,9 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcp
 		case 0:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo, global);
 		case 1:
-			return tab_mainboard(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
+			return tab_mainboard(height - 4, width - 2, starty + 2, startx + 1, extrainfo);
 		case 2:
-			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
+			return tab_about(height - 4, width - 2, starty + 2, startx + 1);
 		default:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo, global); /* If problem */
 	}
@@ -147,7 +147,7 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	return local_win;
 }
 
-WINDOW *tab_mainboard(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo) {
+WINDOW *tab_mainboard(int height, int width, int starty, int startx, Dmi *extrainfo) {
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
@@ -173,7 +173,7 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Libcpuid *d
 	return local_win;
 }
 
-WINDOW *tab_about(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo) {
+WINDOW *tab_about(int height, int width, int starty, int startx) {
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);

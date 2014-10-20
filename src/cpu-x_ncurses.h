@@ -40,10 +40,10 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcp
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* Tab Mainboard */
-WINDOW *tab_mainboard(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo);
+WINDOW *tab_mainboard(int height, int width, int starty, int startx, Dmi *extrainfo);
 
 /* Tab About */
-WINDOW *tab_about(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo);
+WINDOW *tab_about(int height, int width, int starty, int startx);
 
 /* Draw a frame in a NCurses window */
 void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label);
