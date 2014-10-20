@@ -60,7 +60,7 @@ if(WITH_NCURSES)
 		src/gui_ncurses.c
 		src/cpu-x_ncurses.h
   )
-  set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES})
+  set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
 endif()
 
 # Libcpuid lib

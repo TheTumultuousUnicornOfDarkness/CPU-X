@@ -26,9 +26,18 @@
 
 #include <ncurses.h>
 
+typedef struct {
+	WINDOW *win;
+	Dmi *extrainforefr;
+	Internal *globalrefr;
+	} NThrd;
+
 
 /* Start CPU-X in NCurses mode */
 void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global);
+
+/* Refresh non-static values */
+void *nrefresh(void *ptr);
 
 /* NCurses main window */
 WINDOW *main_win(int height, int width, int starty, int startx, int tab);

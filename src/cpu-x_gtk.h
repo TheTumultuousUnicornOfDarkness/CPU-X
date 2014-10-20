@@ -75,7 +75,7 @@ typedef struct {
 	Gwid *cpu;
 	Dmi *extrainforefr;
 	Internal *globalrefr;
-	} Thrd;
+	} GThrd;
 	
 
 /********************************** GUI  **********************************/
@@ -84,7 +84,7 @@ typedef struct {
 void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* Refresh non-static values */
-gpointer grefresh(Thrd *refr);
+gpointer grefresh(GThrd *refr);
 
 /* White was too simple... */
 void set_colors(Gwid *cpu);

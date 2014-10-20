@@ -21,6 +21,7 @@
 */
 
 #include <string.h>
+#include <pthread.h>
 #include "cpu-x.h"
 #include "includes.h"
 
@@ -28,6 +29,8 @@
 void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	int startx, starty, width, height, ch, current_tab = 0;
 	WINDOW *master, *tab;
+	pthread_t threfresh;
+	NThrd refr;
 
 	initscr();
 	cbreak();
@@ -45,12 +48,18 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	master = main_win(height, width, starty, startx, current_tab);
 	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo, global);
 
+	refr.win = tab;
+	refr.extrainforefr = extrainfo;
+	refr.globalrefr = global;
+	pthread_create(&threfresh, NULL, nrefresh, &refr);
+
 	while((ch = getch()) != 'q')
 	{	
 		switch(ch)
 		{	case KEY_LEFT:
 				if(current_tab > 0) {
 					current_tab--;
+					pthread_cancel(threfresh);
 					destroy_win(tab);
 					master = main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo, global);
@@ -59,15 +68,35 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 			case KEY_RIGHT:
 				if(current_tab < 2) {
 					current_tab++;
+					pthread_cancel(threfresh);
 					destroy_win(tab);
 					master = main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo, global);
 				}
 				break;	
 		}
+
+		if(current_tab == 0) {
+			refr.win = tab;
+			pthread_create(&threfresh, NULL, nrefresh, &refr);
+		}
 	}
 
 	endwin();
+}
+
+void *nrefresh(void *ptr) {
+	NThrd *refr = (NThrd *) ptr;
+	while(42) {
+		cpufreq(refr->globalrefr, refr->extrainforefr->bus);
+		if(HAS_LIBDMI && !getuid()) {
+			libdmidecode(refr->extrainforefr);
+			mvwprintw(refr->win, 13, 2, "%13s: %s", "Multiplier", refr->globalrefr->mults);
+		}
+		mvwprintw(refr->win, 12, 2, "%13s: %s", "Core Speed", refr->globalrefr->clock);
+		wrefresh(refr->win);
+		sleep(1);
+	}
 }
 
 WINDOW *main_win(int height, int width, int starty, int startx, int tab) {

@@ -39,7 +39,7 @@ void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo, Int
 	char pathui[PATH_MAX];
 	GtkBuilder *builder;
 	Gwid cpu;
-	Thrd refr;
+	GThrd refr;
 
 	gtk_init(argc, argv);
 	builder = gtk_builder_new();
@@ -78,7 +78,7 @@ void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo, Int
 	gtk_main();
 }
 
-gpointer grefresh(Thrd *refr) {
+gpointer grefresh(GThrd *refr) {
 	while(42) {
 		cpufreq(refr->globalrefr, refr->extrainforefr->bus);
 		if(HAS_LIBDMI && !getuid()) {
