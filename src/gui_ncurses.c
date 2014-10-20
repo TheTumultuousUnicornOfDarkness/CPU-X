@@ -25,7 +25,7 @@
 #include "includes.h"
 
 
-void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
+void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	int startx, starty, width, height, ch, current_tab = 0;
 	WINDOW *master, *tab;
 
@@ -43,7 +43,7 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 	printw("Press 'q' to exit");
 	refresh();
 	master = main_win(height, width, starty, startx, current_tab);
-	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
+	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo, global);
 
 	while((ch = getch()) != 'q')
 	{	
@@ -53,7 +53,7 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 					current_tab--;
 					destroy_win(tab);
 					master = main_win(height, width, starty, startx, current_tab);
-					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo);
+					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo, global);
 				}
 				break;
 			case KEY_RIGHT:
@@ -61,7 +61,7 @@ void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo) {
 					current_tab++;
 					destroy_win(tab);
 					master = main_win(height, width, starty, startx, current_tab);
-					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo);
+					tab = select_tab(height, width, starty, startx, current_tab, data, extrainfo, global);
 				}
 				break;	
 		}
@@ -87,31 +87,22 @@ WINDOW *main_win(int height, int width, int starty, int startx, int tab) {
 	return local_win;
 }
 
-WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcpuid *data, Dmi *extrainfo) {
+WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	switch(num) {
 		case 0:
-			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
+			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo, global);
 		case 1:
 			return tab_mainboard(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
 		case 2:
 			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo);
 		default:
-			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo); /* If problem */
+			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data, extrainfo, global); /* If problem */
 	}
 }
 
-WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo) {
-	char clock[Q] = { '\0' }, mhzmin[P] = { '\0' }, mhzmax[P] = { '\0' }, mips[Q] = { '\0' }, clock_multsynt[Q] = { '\0' }, proc_instr[S] = { '\0' };
+WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	WINDOW *local_win;
 
-	cpufreq(clock, mhzmin, mhzmax);
-	if(!getuid())
-		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
-
-	if(HAS_LIBCPUID)
-		instructions(data, proc_instr);
-
-	bogomips(mips);
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
@@ -132,13 +123,13 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	mvwprintw(local_win, 7, 38, "%9s: %s", "Stepping", data->step);
 	mvwprintw(local_win, 8, 2, "%13s: %2s", "Ext. Family", data->extfam);
 	mvwprintw(local_win, 8, 22, "%11s: %2s", "Ext. Model", data->extmod);
-	mvwprintw(local_win, 9, 2, "%13s: %s", "Instructions", proc_instr);
+	mvwprintw(local_win, 9, 2, "%13s: %s", "Instructions", global->instr);
 
 	/* Clocks frame */
-	mvwprintw(local_win, 12, 2, "%13s: %s", "Core Speed", clock);
-	mvwprintw(local_win, 13, 2, "%13s: %s", "Multiplier", clock_multsynt);
+	mvwprintw(local_win, 12, 2, "%13s: %s", "Core Speed", global->clock);
+	mvwprintw(local_win, 13, 2, "%13s: %s", "Multiplier", global->mults);
 	mvwprintw(local_win, 14, 2, "%13s: %s", "Bus Speed", extrainfo->bus);
-	mvwprintw(local_win, 15, 2, "%13s: %s", "BogoMIPS", mips);
+	mvwprintw(local_win, 15, 2, "%13s: %s", "BogoMIPS", global->mips);
 
 	/* Cache frame */
 	mvwprintw(local_win, 12, width / 2 + 2, "%7s: %10s %6s", "L1 Data", data->l1d, data->l1dw);

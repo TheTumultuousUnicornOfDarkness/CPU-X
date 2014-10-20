@@ -35,10 +35,11 @@
 #endif
 
 
-void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo) {
+void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	char pathui[PATH_MAX];
 	GtkBuilder *builder;
 	Gwid cpu;
+	Thrd refr;
 
 	gtk_init(argc, argv);
 	builder = gtk_builder_new();
@@ -65,27 +66,26 @@ void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo) {
 	g_object_unref(G_OBJECT(builder));
 	set_colors(&cpu);
 	set_vendorlogo(&cpu, data);
-	set_labels(&cpu, data, extrainfo);
+	set_labels(&cpu, data, extrainfo, global);
 
 	g_signal_connect(cpu.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(cpu.okbutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 
-	cpu.threfresh = g_thread_new(NULL, (gpointer)grefresh, &cpu);
+	refr.cpu = &cpu;
+	refr.extrainforefr = extrainfo;
+	refr.globalrefr = global;
+	cpu.threfresh = g_thread_new(NULL, (gpointer)grefresh, &refr);
 	gtk_main();
 }
 
-gpointer grefresh(Gwid *cpu) {
-	char clockrefr[Q] = { '\0' }, mhzminrefr[P] = { '\0' }, mhzmaxrefr[P] = { '\0' }, multsyntrefr[Q] = { '\0' };
-	Dmi extrainforefr;
-
+gpointer grefresh(Thrd *refr) {
 	while(42) {
-		cpufreq(clockrefr, mhzminrefr, mhzmaxrefr);
+		cpufreq(refr->globalrefr, refr->extrainforefr->bus);
 		if(HAS_LIBDMI && !getuid()) {
-			libdmidecode(&extrainforefr);
-			mult(extrainforefr.bus, clockrefr, mhzminrefr, mhzmaxrefr, multsyntrefr);
-			gtk_label_set_text(GTK_LABEL(cpu->clock_vmult), multsyntrefr);
+			libdmidecode(refr->extrainforefr);
+			gtk_label_set_text(GTK_LABEL(refr->cpu->clock_vmult), refr->globalrefr->mults);
 		}
-		gtk_label_set_text(GTK_LABEL(cpu->clock_vcore), clockrefr);
+		gtk_label_set_text(GTK_LABEL(refr->cpu->clock_vcore), refr->globalrefr->clock);
 		sleep(1);
 	}
 
@@ -173,18 +173,7 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu){
 	cpu->bios_vroms		= GTK_WIDGET(gtk_builder_get_object(builder, "bios_vroms"));
 }
 
-void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
-	char clock[Q] = { '\0' }, mhzmin[P] = { '\0' }, mhzmax[P] = { '\0' }, mips[Q] = { '\0' }, clock_multsynt[Q] = { '\0' }, proc_instr[S] = { '\0' };
-
-	cpufreq(clock, mhzmin, mhzmax);
-	if(!getuid())
-		mult(extrainfo->bus, clock, mhzmin, mhzmax, clock_multsynt);
-
-	if(HAS_LIBCPUID)
-		instructions(data, proc_instr);
-
-	bogomips(mips);
-
+void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	gtk_label_set_text(GTK_LABEL(cpu->lprgver),	 "Version " PRGVER);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vvendor), extrainfo->vendor);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vname),	 data->name);
@@ -196,11 +185,11 @@ void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo) {
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vextfam), data->extfam);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vextmod), data->extmod);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vstep),	 data->step);
-	gtk_label_set_text(GTK_LABEL(cpu->proc_vinstr),	 proc_instr);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore),	 clock);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vmult),	 clock_multsynt);
+	gtk_label_set_text(GTK_LABEL(cpu->proc_vinstr),	 global->instr);
+	gtk_label_set_text(GTK_LABEL(cpu->clock_vcore),	 global->clock);
+	gtk_label_set_text(GTK_LABEL(cpu->clock_vmult),	 global->mults);
 	gtk_label_set_text(GTK_LABEL(cpu->clock_vbus),	 extrainfo->bus);
-	gtk_label_set_text(GTK_LABEL(cpu->clock_vmips),	 mips);
+	gtk_label_set_text(GTK_LABEL(cpu->clock_vmips),	 global->mips);
 	gtk_label_set_text(GTK_LABEL(cpu->cache_vl1d),	 data->l1d);
 	gtk_label_set_text(GTK_LABEL(cpu->cache_vl1i),	 data->l1i);
 	gtk_label_set_text(GTK_LABEL(cpu->cache_vl2),	 data->l2);

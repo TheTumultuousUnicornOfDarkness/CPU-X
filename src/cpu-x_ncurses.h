@@ -28,16 +28,16 @@
 
 
 /* Start CPU-X in NCurses mode */
-void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo);
+void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* NCurses main window */
 WINDOW *main_win(int height, int width, int starty, int startx, int tab);
 
 /* Switch to different tabs */
-WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcpuid *data, Dmi *extrainfo);
+WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* Tab CPU */
-WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo);
+WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* Tab Mainboard */
 WINDOW *tab_mainboard(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo);

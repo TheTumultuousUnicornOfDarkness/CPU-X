@@ -35,24 +35,32 @@ int main(int argc, char *argv[]) {
 	setenv("LC_ALL", "C", 1);
 	Libcpuid data;
 	Dmi extrainfo;
+	Internal global;
 
 	/* Populate structures */
 	option = menu(argc, argv);
-	empty_labels(&data, &extrainfo);
+	empty_labels(&data, &extrainfo, &global);
+	cpufreq(&global, extrainfo.bus);
+	bogomips(global.mips);
 
-	if(HAS_LIBCPUID && libcpuid(&data))
-		MSGERR("libcpuid failed.");
+	if(HAS_LIBCPUID)
+		if(libcpuid(&data))
+			MSGERR("libcpuid failed.");
+		else
+			instructions(&data, global.instr);
 
 	if(HAS_LIBDMI && !getuid()) {
 		if(libdmidecode(&extrainfo))
 			MSGERR("libdmidecode failed");
 	}
 
+	/* Start GUI */
 	if(option == 'G') /* Start with GTK3 */
-		start_gui_gtk(&argc, &argv, &data, &extrainfo);
+		start_gui_gtk(&argc, &argv, &data, &extrainfo, &global);
 	else if(option == 'N') /* Start with NCurses */
-		start_gui_ncurses(&data, &extrainfo);
+		start_gui_ncurses(&data, &extrainfo, &global);
 
+	/* Error when compiled without GUI */
 	if(!HAS_GTK && !HAS_NCURSES) {
 		fprintf(stderr, "Hey! You need to compile with GTK3+ support and/or NCurses!\n");
 		return EXIT_FAILURE;
@@ -62,7 +70,7 @@ int main(int argc, char *argv[]) {
 }
 
 /* Set empty labels */
-void empty_labels(Libcpuid *data, Dmi *extrainfo) {
+void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	data->vendor[0] = '\0';
 	data->name[0] = '\0';
 	data->arch[0] = '\0';
@@ -95,6 +103,11 @@ void empty_labels(Libcpuid *data, Dmi *extrainfo) {
 	extrainfo->version[0] = '\0';
 	extrainfo->date[0] = '\0';
 	extrainfo->rom[0] = '\0';
+
+	global->clock[0] = '\0';
+	global->mults[0] = '\0';
+	global->mips[0] = '\0';
+	global->instr[0] = '\0';
 }
 
 #if HAS_LIBCPUID
@@ -156,27 +169,33 @@ int libdmidecode(Dmi *data) {
 #endif /* HAS_LIBDMI */
 
 /* Get CPU frequencies (current - min - max) */
-void cpufreq(char *curfreq, char *multmin, char *multmax) {
-	FILE *min = NULL, *max = NULL;
-
-	min = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
-	max = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
-	if(min == NULL)
-		MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.");
-	else {
-		fgets(multmin, 9, min);
-		fclose(min);
-	}
-
-	if(max == NULL)
-		MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.");
-	else {
-		fgets(multmax, 9, max);
-		fclose(max);
-	}
+void cpufreq(Internal *global, char *busfreq) {
+	char multmin[P], multmax[P];
+	FILE *fmin = NULL, *fmax = NULL;
 
 	if(HAS_LIBCPUID)
-		sprintf(curfreq, "%d MHz", cpu_clock());
+		sprintf(global->clock, "%d MHz", cpu_clock());
+
+	/* Can't get base clock without root rights, skip multiplicators calculation */
+	if(!getuid()) {
+		fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
+		fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
+		if(fmin == NULL)
+			MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.");
+		else {
+			fgets(multmin, 9, fmin);
+			fclose(fmin);
+		}
+
+		if(fmax == NULL)
+			MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.");
+		else {
+			fgets(multmax, 9, fmax);
+			fclose(fmax);
+		}
+
+		mult(busfreq, global->clock, multmin, multmax, global->mults);
+	}
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */

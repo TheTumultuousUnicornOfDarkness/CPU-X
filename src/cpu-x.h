@@ -73,6 +73,13 @@ typedef struct {
 	char rom[S];
 	} Dmi;		/* Designed for dmidecode */
 
+typedef struct {
+	char clock[Q];
+	char mults[Q];
+	char mips[Q];
+	char instr[S];
+	} Internal;	/* Used to call core functions */
+
 
 /********************************** Core **********************************/
 
@@ -80,7 +87,7 @@ typedef struct {
 char menu(int argc, char *argv[]);
 
 /* Set empty labels */
-void empty_labels(Libcpuid *data, Dmi *extrainfo);
+void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* Use 'libcpuid' to build 'data' */
 int libcpuid(Libcpuid *data);
@@ -89,7 +96,7 @@ int libcpuid(Libcpuid *data);
 int libdmidecode(Dmi *data);
 
 /* Get CPU frequencies (current - min - max) */
-void cpufreq(char *curfreq, char *multmin, char *multmax);
+void cpufreq(Internal *global, char *busfreq);
 
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c);

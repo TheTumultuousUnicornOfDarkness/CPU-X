@@ -70,15 +70,21 @@ typedef struct {
 	GtkWidget *bios_vroms;
 	GThread *threfresh;
 	} Gwid;		/* Useful GtkWidgets */
+
+typedef struct {
+	Gwid *cpu;
+	Dmi *extrainforefr;
+	Internal *globalrefr;
+	} Thrd;
 	
 
 /********************************** GUI  **********************************/
 
 /* Start CPU-X in GTK mode */
-void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo);
+void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 /* Refresh non-static values */
-gpointer grefresh(Gwid *cpu);
+gpointer grefresh(Thrd *refr);
 
 /* White was too simple... */
 void set_colors(Gwid *cpu);
@@ -90,7 +96,7 @@ void set_vendorlogo(Gwid *cpu, Libcpuid *data);
 void build_tab_cpu(GtkBuilder *builder, Gwid *cpu);
 
 /* Set values in labels */
-void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo);
+void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo, Internal *global);
 
 
 #endif /* _CPUX_GTK_H_ */
