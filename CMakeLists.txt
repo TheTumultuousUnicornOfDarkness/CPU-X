@@ -78,7 +78,7 @@ if(WITH_LIBDMI)
   add_subdirectory(src/dmidecode)
   include_directories(src/dmidecode)
   add_definitions(-DLIBDMI)
-  set(GUI_LIBDMI_LIBRARY "dmi-cpux")
+  set(LIBDMI_LIBRARY "dmi-cpux")
 endif()
 
 if(EMBED)
@@ -101,7 +101,7 @@ add_executable(cpu-x
 	src/options.c
 )
 
-target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${GUI_LIBDMI_LIBRARY})
+target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY})
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
