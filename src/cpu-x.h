@@ -28,7 +28,7 @@
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
 #define MSGERR(msg, args...) fprintf(stderr, "%s:%s:%i: " msg "\n", PRGNAME, BASEFILE, __LINE__, ##args)
 #define PRGNAME "CPU-X"
-#define PRGVER  "1.2.0"
+#define PRGVER  "1.2.1"
 #define EXIT_FNO 2	/* Exit when File Not Open */
 
 #define S 80		/* Big	  char* */

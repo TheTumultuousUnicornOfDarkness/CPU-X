@@ -52,7 +52,8 @@ Note: portable binary will be in directory "ebuild/bin".
 
 Start program with **root privileges** allow to use **Dmidecode** (Libdmi).  
 Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.  
-If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell `cpu-x --no-gui`.
+If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell `cpu-x --no-gui`.  
+Use `cpu-x --help` for other commands and help.
 
 
 ## Download binairies

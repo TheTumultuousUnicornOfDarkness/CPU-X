@@ -1,3 +1,14 @@
+v1.2.1 (10.24.2014):
+	* Add arguments support (--no-gui, --version, --help)
+	* Add support for custom refresh time (--refresh)
+	* Rewrite error messages
+	* Restructuration of files and functions in files
+	* Fixes:
+		** Segfault when compiling without GTK & embeded
+		** Unwanted characters in NCurses
+		** Compilation with CMake
+
+
 v1.2.0 (10.12.2014):
 	* Add NCurses mode
 	* Add possibility to disable GTK/NCurses/Libcpuid/Libdmi before compiling
