@@ -86,7 +86,7 @@ gpointer grefresh(GThrd *refr) {
 			gtk_label_set_text(GTK_LABEL(refr->cpu->clock_vmult), refr->globalrefr->mults);
 		}
 		gtk_label_set_text(GTK_LABEL(refr->cpu->clock_vcore), refr->globalrefr->clock);
-		sleep(1);
+		sleep(refreshtime);
 	}
 
 	return NULL;

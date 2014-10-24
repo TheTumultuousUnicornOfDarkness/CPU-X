@@ -95,7 +95,7 @@ void *nrefresh(void *ptr) {
 		}
 		mvwprintw(refr->win, 12, 2, "%13s: %s", "Core Speed", refr->globalrefr->clock);
 		wrefresh(refr->win);
-		sleep(1);
+		sleep(refreshtime);
 	}
 }
 

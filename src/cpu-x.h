@@ -35,6 +35,8 @@
 #define P 5		/* Little char* */
 #define Q 3*P		/* Medium char* */
 
+extern int refreshtime;
+
 
 typedef struct {
 	char vendor[S];

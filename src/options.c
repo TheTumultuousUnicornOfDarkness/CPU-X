@@ -26,11 +26,14 @@
 #include "cpu-x.h"
 #include "includes.h"
 
+int refreshtime = 1;
+
 
 void help(FILE *out, char *argv[]) {
 	fprintf(out, "Usage: %s [OPTION]\n\n"
 		"Available OPTION:\n"
 		"\t--no-gui\tStart NCurses mode instead of GTK\n"
+		"\t--refresh\tTime between two refreshs in seconds\n"
 		"\t--help\t\tPrint help and exit\n"
 		"\t--version\tPrint version and exit\n", argv[0]);
 }
@@ -45,19 +48,24 @@ void version() {
 
 char menu(int argc, char *argv[]) {
 	int c;
+	char r = 'G';
 	static struct option longopts[] =
 	{
 		{"no-gui",	no_argument, 0, 'n'},
+		{"refresh",	required_argument, 0, 'r'},
 		{"help",	no_argument, 0, 'h'},
 		{"version",	no_argument, 0, 'V'},
 		{0,		0,	     0,  0}
 	};
 
-	if(argc > 1) {
-		c = getopt_long(argc, argv, ":nhV", longopts, NULL);
+	while((c = getopt_long(argc, argv, ":nr:hV", longopts, NULL)) != -1) {
 		switch(c) {
 			case 'n':
-				return 'N';
+				r = 'N';
+				break;
+			case 'r':
+				refreshtime = (atoi(optarg) < 1) ? /* Nothing */ : atoi(optarg);
+				break;
 			case 'h':
 				help(stdout, argv);
 				exit(EXIT_SUCCESS);
@@ -70,11 +78,11 @@ char menu(int argc, char *argv[]) {
 				exit(EXIT_FAILURE);
 		}
 	}
-	else {
-		if(HAS_GTK)
-			return 'G';
-		else if(!HAS_GTK && HAS_NCURSES)
-			return 'N';
-	}
-	
+
+	if(HAS_GTK && r == 'G')
+		r = 'G';
+	else if(!HAS_GTK && HAS_NCURSES)
+		r = 'N';
+
+	return r;
 }
