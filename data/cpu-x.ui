@@ -7,7 +7,6 @@
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">CPU-X</property>
     <property name="resizable">False</property>
-    <property name="has_resize_grip">False</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
@@ -1633,14 +1632,7 @@
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">
 Based on GTK3+ library
-
-Version : 1.2.0
-Author : X0rg
-GitHub : https://github.com/X0rg
-
-Copyright © 2014 Xorg
-This program comes with ABSOLUTELY NO WARRANTY
-See the following license</property>
+</property>
                                 <property name="justify">center</property>
                                 <property name="width_chars">47</property>
                                 <property name="lines">3</property>
@@ -1664,7 +1656,36 @@ See the following license</property>
                               </object>
                               <packing>
                                 <property name="left_attach">0</property>
+                                <property name="top_attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="about_version">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Version : x.x.x</property>
+                                <property name="lines">1</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
                                 <property name="top_attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="infos2">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Author : X0rg
+GitHub : https://github.com/X0rg
+
+Copyright © 2014 Xorg
+This program comes with ABSOLUTELY NO WARRANTY
+See the following license</property>
+                                <property name="justify">center</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">2</property>
                               </packing>
                             </child>
                           </object>

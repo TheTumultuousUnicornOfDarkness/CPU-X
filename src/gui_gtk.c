@@ -171,6 +171,7 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu){
 	cpu->bios_vversion	= GTK_WIDGET(gtk_builder_get_object(builder, "bios_vversion"));
 	cpu->bios_vdate		= GTK_WIDGET(gtk_builder_get_object(builder, "bios_vdate"));
 	cpu->bios_vroms		= GTK_WIDGET(gtk_builder_get_object(builder, "bios_vroms"));
+	cpu->about_version	= GTK_WIDGET(gtk_builder_get_object(builder, "about_version"));
 }
 
 void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo, Internal *global) {
@@ -208,4 +209,5 @@ void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vversion), extrainfo->version);
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vdate),	extrainfo->date);
 	gtk_label_set_text(GTK_LABEL(cpu->bios_vroms),	extrainfo->rom);
+	gtk_label_set_text(GTK_LABEL(cpu->about_version), "Version : " PRGVER);
 }

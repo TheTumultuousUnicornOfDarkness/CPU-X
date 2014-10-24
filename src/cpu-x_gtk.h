@@ -68,6 +68,7 @@ typedef struct {
 	GtkWidget *bios_vversion;
 	GtkWidget *bios_vdate;
 	GtkWidget *bios_vroms;
+	GtkWidget *about_version;
 	GThread *threfresh;
 	} Gwid;		/* Useful GtkWidgets */
 
