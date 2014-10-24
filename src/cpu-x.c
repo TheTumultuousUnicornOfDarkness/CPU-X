@@ -55,9 +55,9 @@ int main(int argc, char *argv[]) {
 	}
 
 	/* Start GUI */
-	if(option == 'G') /* Start with GTK3 */
+	if(HAS_GTK && option == 'G') /* Start with GTK3 */
 		start_gui_gtk(&argc, &argv, &data, &extrainfo, &global);
-	else if(option == 'N') /* Start with NCurses */
+	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
 		start_gui_ncurses(&data, &extrainfo, &global);
 
 	/* Error when compiled without GUI */
