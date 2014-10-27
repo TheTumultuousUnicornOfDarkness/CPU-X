@@ -21,6 +21,7 @@
 */
 
 #include <string.h>
+#include <unistd.h>
 #include <pthread.h>
 #include "cpu-x.h"
 #include "includes.h"
