@@ -22,6 +22,7 @@ It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X1
 
 ## Build
 
+For step-by-step guide, you can see the [wiki page](https://github.com/X0rg/CPU-X/wiki).  
 First, you must to have CMake installed to continue (only needed for building).
 GTK headers are needed to compile with GTK support.  
 You can disable some functionalities by passing argument `-D<var>=0` when running CMake, like this:  
