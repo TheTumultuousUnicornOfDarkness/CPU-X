@@ -170,7 +170,7 @@ int libdmidecode(Dmi *data) {
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(Internal *global, char *busfreq) {
-	char multmin[P], multmax[P];
+	char multmin[P] = { "0" }, multmax[P] = { "0" };
 	FILE *fmin = NULL, *fmax = NULL;
 
 	if(HAS_LIBCPUID)
@@ -178,6 +178,7 @@ void cpufreq(Internal *global, char *busfreq) {
 
 	/* Can't get base clock without root rights, skip multiplicators calculation */
 	if(!getuid()) {
+#ifdef __linux__
 		fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
 		fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
 		if(fmin == NULL)
@@ -193,7 +194,7 @@ void cpufreq(Internal *global, char *busfreq) {
 			fgets(multmax, 9, fmax);
 			fclose(fmax);
 		}
-
+#endif /* __linux__ */
 		mult(busfreq, global->clock, multmin, multmax, global->mults);
 	}
 }
@@ -205,6 +206,7 @@ void bogomips(char *c) {
 	int size = 20;
 	FILE *cpuinfo = NULL;
 
+#ifdef __linux__
 	cpuinfo = fopen("/proc/cpuinfo", "r");
 	if(cpuinfo == NULL) {
 		MSGERR("failed to open '/proc/cpuinfo'.");
@@ -219,6 +221,9 @@ void bogomips(char *c) {
 
 	sprintf(c, "%s", strrchr(mips, ' '));
 	c[strlen(c) - 1] = '\0';
+#else
+	sprintf(c, "%s", "Unavailable");
+#endif /* __linux__ */
 }
 
 /* Determine CPU multiplicator from base clock */
