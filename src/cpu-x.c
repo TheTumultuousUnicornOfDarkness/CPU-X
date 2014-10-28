@@ -170,6 +170,7 @@ int libdmidecode(Dmi *data) {
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(Internal *global, char *busfreq) {
+	static int error = 0;
 	char multmin[P] = { "0" }, multmax[P] = { "0" };
 	FILE *fmin = NULL, *fmax = NULL;
 
@@ -179,20 +180,28 @@ void cpufreq(Internal *global, char *busfreq) {
 	/* Can't get base clock without root rights, skip multiplicators calculation */
 	if(!getuid()) {
 #ifdef __linux__
-		fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
-		fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
-		if(fmin == NULL)
-			MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.");
-		else {
-			fgets(multmin, 9, fmin);
-			fclose(fmin);
+		if(error != 1 && error != 3) {
+			fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
+			if(fmin == NULL) {
+				MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.");
+				error = 1;
+			}
+			else {
+				fgets(multmin, 9, fmin);
+				fclose(fmin);
+			}
 		}
 
-		if(fmax == NULL)
-			MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.");
-		else {
-			fgets(multmax, 9, fmax);
-			fclose(fmax);
+		if(error != 2 && error != 3) {
+			fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
+			if(fmax == NULL) {
+				MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.");
+				error = (error == 1) ? 3 : 2;
+			}
+			else {
+				fgets(multmax, 9, fmax);
+				fclose(fmax);
+			}
 		}
 #endif /* __linux__ */
 		mult(busfreq, global->clock, multmin, multmax, global->mults);
