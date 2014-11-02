@@ -188,7 +188,7 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Dmi *extrai
 	frame(local_win, 6, 1, 12, width - 1, "BIOS");
 
 	/* Motherboard frame */
-	mvwprintw(local_win, 2, 2, "%13s: %s", "Manufactureur", extrainfo->manu);
+	mvwprintw(local_win, 2, 2, "%13s: %s", "Manufacturer", extrainfo->manu);
 	mvwprintw(local_win, 3, 2, "%13s: %s", "Model", extrainfo->model);
 	mvwprintw(local_win, 4, 2, "%13s: %s", "Revision", extrainfo->rev);
 
