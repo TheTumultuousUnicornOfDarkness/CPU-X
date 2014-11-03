@@ -210,9 +210,9 @@ void cpufreq(Internal *global, char *busfreq) {
 
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c) {
+	int i = 0, j = 0;
 	char read[20];
 	char *mips = NULL;
-	int size = 20;
 	FILE *cpuinfo = NULL;
 
 #ifdef __linux__
@@ -222,14 +222,19 @@ void bogomips(char *c) {
 		return;
 	}
 
-	while(fgets(read, size, cpuinfo) != NULL) {
+	while(fgets(read, sizeof(read), cpuinfo) != NULL) {
 		mips = strstr(read, "bogomips");
 		if(mips != NULL)
 			break;
 	}
 
-	sprintf(c, "%s", strrchr(mips, ' '));
-	c[strlen(c) - 1] = '\0';
+	while(mips[i] != '\n') {
+		if(isdigit(mips[i]) || mips[i] == '.') {
+			c[j] = mips[i];
+			j++;
+		}
+		i++;
+	}
 #else
 	sprintf(c, "%s", "Unavailable");
 #endif /* __linux__ */
