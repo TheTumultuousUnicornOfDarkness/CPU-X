@@ -4678,7 +4678,8 @@ int main(int argc, char * const argv[])
 	opt.flags = 0;
 
 #ifdef CPUX
-	opt.flags |= FLAG_QUIET;
+	if(!verbose)
+		opt.flags |= FLAG_QUIET;
 #else
 	if (parse_command_line(argc, argv)<0)
 	{
@@ -4745,6 +4746,7 @@ int main(int argc, char * const argv[])
 
 #ifdef CPUX
 	if (smbios_decode(buf, opt.devmem, dmiexport))
+		verbose = 0;
 #else
 	if (smbios_decode(buf, opt.devmem))
 #endif

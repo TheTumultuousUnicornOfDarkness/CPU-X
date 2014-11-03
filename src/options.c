@@ -27,6 +27,7 @@
 #include "includes.h"
 
 int refreshtime = 1;
+int verbose = 0;
 
 
 void help(FILE *out, char *argv[]) {
@@ -34,6 +35,7 @@ void help(FILE *out, char *argv[]) {
 		"Available OPTION:\n"
 		"\t--no-gui\tStart NCurses mode instead of GTK\n"
 		"\t--refresh\tTime between two refreshs in seconds\n"
+		"\t--verbose\tVerbose output (in Dmidecode)\n"
 		"\t--help\t\tPrint help and exit\n"
 		"\t--version\tPrint version and exit\n", argv[0]);
 }
@@ -53,18 +55,22 @@ char menu(int argc, char *argv[]) {
 	{
 		{"no-gui",	no_argument, 0, 'n'},
 		{"refresh",	required_argument, 0, 'r'},
+		{"verbose",	no_argument, 0, 'v'},
 		{"help",	no_argument, 0, 'h'},
 		{"version",	no_argument, 0, 'V'},
 		{0,		0,	     0,  0}
 	};
 
-	while((c = getopt_long(argc, argv, ":nr:hV", longopts, NULL)) != -1) {
+	while((c = getopt_long(argc, argv, ":nr:vhV", longopts, NULL)) != -1) {
 		switch(c) {
 			case 'n':
 				r = 'N';
 				break;
 			case 'r':
 				refreshtime = (atoi(optarg) < 1) ? /* Nothing */ : atoi(optarg);
+				break;
+			case 'v':
+				verbose = 1;
 				break;
 			case 'h':
 				help(stdout, argv);

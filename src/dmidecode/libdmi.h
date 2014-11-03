@@ -17,6 +17,8 @@
 #define PROCESSOR_MANUFACTURER	8
 #define PROCESSOR_CLOCK		9
 
+extern int verbose;
+
 int libdmi(char dmiexport[L][C]);
 
 #endif
