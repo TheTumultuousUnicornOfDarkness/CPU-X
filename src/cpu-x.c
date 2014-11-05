@@ -131,15 +131,24 @@ int libcpuid(Libcpuid *data) {
 	sprintf(data->extfam,	"%d",		datanr.ext_family);
 	sprintf(data->extmod,	"%d",		datanr.ext_model);
 	sprintf(data->instr,	"%s",		datanr.flags);
-	sprintf(data->l1d,	"%d x %d KB",	datanr.num_cores, datanr.l1_data_cache);
-	sprintf(data->l1i,	"%d x %d KB",	datanr.num_cores, datanr.l1_instruction_cache);
-	sprintf(data->l2,	"%d x %d KB",	datanr.num_cores, datanr.l2_cache);
-	sprintf(data->l3,	"%d KB",	datanr.l3_cache);
-	sprintf(data->l1dw,	"%d-way",	datanr.l1_assoc);
-	sprintf(data->l1iw,	"%d-way",	datanr.l1_assoc);
-	sprintf(data->l2w,	"%d-way",	datanr.l2_assoc);
-	sprintf(data->l3w,	"%d-way",	datanr.l3_assoc);
-	sprintf(data->soc,	"%d",		datanr.total_logical_cpus / datanr.num_cores);
+	if(datanr.l1_data_cache > 0)
+		sprintf(data->l1d,	"%d x %d KB",	datanr.num_cores, datanr.l1_data_cache);
+	if(datanr.l1_instruction_cache > 0)
+		sprintf(data->l1i,	"%d x %d KB",	datanr.num_cores, datanr.l1_instruction_cache);
+	if(datanr.l2_cache > 0)
+		sprintf(data->l2,	"%d x %d KB",	datanr.num_cores, datanr.l2_cache);
+	if(datanr.l3_cache > 0)
+		sprintf(data->l3,	"%d KB",	datanr.l3_cache);
+	if(datanr.l1_assoc > 0) {
+		sprintf(data->l1dw,	"%d-way",	datanr.l1_assoc);
+		sprintf(data->l1iw,	"%d-way",	datanr.l1_assoc);
+	}
+	if(datanr.l2_assoc > 0)
+		sprintf(data->l2w,	"%d-way",	datanr.l2_assoc);
+	if(datanr.l3_assoc > 0)
+		sprintf(data->l3w,	"%d-way",	datanr.l3_assoc);
+	if(datanr.num_cores > 0) /* Avoid divide by 0 */
+		sprintf(data->soc,	"%d",		datanr.total_logical_cpus / datanr.num_cores);
 	sprintf(data->core,	"%d",		datanr.num_cores);
 	sprintf(data->thrd,	"%d",		datanr.num_logical_cpus);
 
