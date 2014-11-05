@@ -276,6 +276,7 @@ void bogomips(char *c) {
 		}
 		i++;
 	}
+	c[j] = '\0';
 #else
 	sprintf(c, "%s", "Unavailable");
 #endif /* __linux__ */
