@@ -43,13 +43,14 @@ int main(int argc, char *argv[]) {
 	cpufreq(&global, extrainfo.bus);
 	bogomips(global.mips);
 
-	if(HAS_LIBCPUID)
+	if(HAS_LIBCPUID) {
 		if(libcpuid(&data))
 			MSGERR("libcpuid failed.");
 		else {
 			cpuvendor(data.vendor, global.prettyvendor);
 			instructions(&data, global.instr);
 		}
+	}
 
 	if(HAS_LIBDMI && !getuid()) {
 		if(libdmidecode(&extrainfo))
