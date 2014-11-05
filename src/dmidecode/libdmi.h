@@ -14,8 +14,7 @@
 #define BASEBOARD_VERSION	6
 
 #define PROCESSOR_SOCKET	7
-#define PROCESSOR_MANUFACTURER	8
-#define PROCESSOR_CLOCK		9
+#define PROCESSOR_CLOCK		8
 
 extern int verbose;
 

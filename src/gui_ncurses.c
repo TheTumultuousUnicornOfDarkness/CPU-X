@@ -143,7 +143,7 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, D
 	frame(local_win, 17, 1, 20, width - 1, "");
 
 	/* Processor frame */
-	mvwprintw(local_win, 2, 2, "%13s: %s", "Vendor", extrainfo->vendor);
+	mvwprintw(local_win, 2, 2, "%13s: %s", "Vendor", global->prettyvendor);
 	mvwprintw(local_win, 3, 2, "%13s: %s", "Code Name", data->name);
 	mvwprintw(local_win, 4, 2, "%13s: %s", "Package", extrainfo->socket);
 	mvwprintw(local_win, 5, 2, "%13s: %s", "Architecture", data->arch);

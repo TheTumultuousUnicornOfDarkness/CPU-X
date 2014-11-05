@@ -63,7 +63,6 @@ typedef struct {
 	} Libcpuid;	/* Designed for libcpuid */
 
 typedef struct {
-	char vendor[S];
 	char socket[S];
 	char bus[S];
 	char manu[S];
@@ -76,6 +75,7 @@ typedef struct {
 	} Dmi;		/* Designed for dmidecode */
 
 typedef struct {
+	char prettyvendor[S];
 	char clock[Q];
 	char mults[Q];
 	char mips[Q];
@@ -96,6 +96,9 @@ int libcpuid(Libcpuid *data);
 
 /* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
 int libdmidecode(Dmi *data);
+
+/* Pretty label CPU Vendor */
+void cpuvendor(char *vendor, char *prettyvendor);
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(Internal *global, char *busfreq);

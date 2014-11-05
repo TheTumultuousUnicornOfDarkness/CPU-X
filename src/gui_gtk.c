@@ -176,7 +176,7 @@ void build_tab_cpu(GtkBuilder *builder, Gwid *cpu){
 
 void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	gtk_label_set_text(GTK_LABEL(cpu->lprgver),	 "Version " PRGVER);
-	gtk_label_set_text(GTK_LABEL(cpu->proc_vvendor), extrainfo->vendor);
+	gtk_label_set_text(GTK_LABEL(cpu->proc_vvendor), global->prettyvendor);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vname),	 data->name);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_vpkg),	 extrainfo->socket);
 	gtk_label_set_text(GTK_LABEL(cpu->proc_varch),	 data->arch);

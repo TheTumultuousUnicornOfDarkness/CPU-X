@@ -46,8 +46,10 @@ int main(int argc, char *argv[]) {
 	if(HAS_LIBCPUID)
 		if(libcpuid(&data))
 			MSGERR("libcpuid failed.");
-		else
+		else {
+			cpuvendor(data.vendor, global.prettyvendor);
 			instructions(&data, global.instr);
+		}
 
 	if(HAS_LIBDMI && !getuid()) {
 		if(libdmidecode(&extrainfo))
@@ -93,7 +95,6 @@ void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	data->core[0] = '\0';
 	data->thrd[0] = '\0';
 
-	extrainfo->vendor[0] = '\0';
 	extrainfo->socket[0] = '\0';
 	extrainfo->bus[0] = '\0';
 	extrainfo->manu[0] = '\0';
@@ -104,6 +105,7 @@ void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	extrainfo->date[0] = '\0';
 	extrainfo->rom[0] = '\0';
 
+	global->prettyvendor[0] = '\0';
 	global->clock[0] = '\0';
 	global->mults[0] = '\0';
 	global->mips[0] = '\0';
@@ -153,7 +155,6 @@ int libdmidecode(Dmi *data) {
 
 	err += libdmi(datanr);
 
-	sprintf(data->vendor,	"%s", datanr[PROCESSOR_MANUFACTURER]);
 	sprintf(data->socket,	"%s", datanr[PROCESSOR_SOCKET]);
 	sprintf(data->bus,	"%s", datanr[PROCESSOR_CLOCK]);
 	sprintf(data->manu,	"%s", datanr[BASEBOARD_MANUFACTURER]);
@@ -167,6 +168,37 @@ int libdmidecode(Dmi *data) {
 	return err;
 }
 #endif /* HAS_LIBDMI */
+
+#if HAS_LIBCPUID
+/* Pretty label CPU Vendor */
+void cpuvendor(char *vendor, char *prettyvendor) {
+	/* This use Libcpuid. See here: https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
+
+	if(!strcmp(vendor, "GenuineIntel"))	 /* Intel */
+		strcpy(prettyvendor, "Intel");
+	else if(!strcmp(vendor, "AuthenticAMD")) /* AMD */
+		strcpy(prettyvendor, "AMD");
+	else if(!strcmp(vendor, "CyrixInstead")) /* Cyrix */
+		strcpy(prettyvendor, "Cyrix");
+	else if(!strcmp(vendor, "NexGenDriven")) /* NexGen */
+		strcpy(prettyvendor, "NexGen");
+	else if(!strcmp(vendor, "GenuineTMx86")) /* Transmeta */
+		strcpy(prettyvendor, "Transmeta");
+	else if(!strcmp(vendor, "UMC UMC UMC ")) /* UMC */
+		strcpy(prettyvendor, "UMC");
+	else if(!strcmp(vendor, "CentaurHauls")) /* Centaur */
+		strcpy(prettyvendor, "Centaur");
+	else if(!strcmp(vendor, "RiseRiseRise")) /* Rise */
+		strcpy(prettyvendor, "Rise");
+	else if(!strcmp(vendor, "SiS SiS SiS ")) /* SiS */
+		strcpy(prettyvendor, "SiS");
+	else if(!strcmp(vendor, "Geode by NSC")) /* National Semiconductor */
+		strcpy(prettyvendor, "National Semiconductor");
+	else
+		strcpy(prettyvendor, "Unknown");
+
+}
+#endif /* HAS_LIBCPUID */
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(Internal *global, char *busfreq) {
