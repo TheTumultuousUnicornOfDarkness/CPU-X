@@ -67,7 +67,8 @@ char menu(int argc, char *argv[]) {
 				r = 'N';
 				break;
 			case 'r':
-				refreshtime = (atoi(optarg) < 1) ? /* Nothing */ : atoi(optarg);
+				if(atoi(optarg) > 1)
+					refreshtime = atoi(optarg);
 				break;
 			case 'v':
 				verbose = 1;
