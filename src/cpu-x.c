@@ -26,19 +26,50 @@
 #include <string.h>
 #include <unistd.h>
 #include <limits.h>
+#include <locale.h>
+#include <libintl.h>
 #include "cpu-x.h"
 #include "includes.h"
 
 
 int main(int argc, char *argv[]) {
 	char option;
-	setenv("LC_ALL", "C", 1);
+	option = menu(argc, argv);
+
+#ifdef NEXT
+	char pathlocale[PATH_MAX];
+	Labels data;
+	get_path(pathlocale, "cpux");
+	setlocale(LC_ALL, "");
+	bindtextdomain("cpux", pathlocale);
+	textdomain("cpux");
+
+	labels_setempty(&data);
+	labels_setname(&data);
+	bogomips(data.tabcpu[VALUE][BOGOMIPS]);
+
+	if(HAS_LIBCPUID) {
+		if(libcpuid(&data))
+			MSGERR("libcpuid failed.");
+		else {
+			cpuvendor(data.tabcpu[VALUE][VENDOR]);
+			instructions(data.tabcpu[VALUE][ARCHITECTURE], data.tabcpu[VALUE][INSTRUCTIONS]);
+		}
+	}
+
+	if(HAS_LIBDMI && !getuid()) {
+		if(libdmidecode(&data))
+			MSGERR("libdmidecode failed");
+	}
+	cpufreq(data.tabcpu[VALUE][BUSSPEED], data.tabcpu[VALUE][CORESPEED], data.tabcpu[VALUE][MULTIPLIER]);
+	dump_data(&data);
+#else
+	setenv("LC_ALL", "", 1);
 	Libcpuid data;
 	Dmi extrainfo;
 	Internal global;
 
 	/* Populate structures */
-	option = menu(argc, argv);
 	empty_labels(&data, &extrainfo, &global);
 	cpufreq(&global, extrainfo.bus);
 	bogomips(global.mips);
@@ -68,11 +99,31 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "Hey! You need to compile with GTK3+ support and/or NCurses!\n");
 		return EXIT_FAILURE;
 	}
-
+#endif
 	return EXIT_SUCCESS;
 }
 
 /* Set empty labels */
+#ifdef NEXT
+void labels_setempty(Labels *data)
+{
+	int i;
+
+	/* Tab CPU */
+	for(i = VENDOR; i < LASTCPU; i++)
+	{
+		memset(data->tabcpu[NAME][i], 0, MAXSTR);
+		memset(data->tabcpu[VALUE][i], 0, MAXSTR);
+	}
+
+	/* Tab Mainboard */
+	for(i = MANUFACTURER; i < LASTMB; i++)
+	{
+		memset(data->tabmb[NAME][i], 0, MAXSTR);
+		memset(data->tabmb[VALUE][i], 0, MAXSTR);
+	}
+}
+#else
 void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	data->vendor[0] = '\0';
 	data->name[0] = '\0';
@@ -112,9 +163,123 @@ void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global) {
 	global->mips[0] = '\0';
 	global->instr[0] = '\0';
 }
+#endif
+
+#ifdef NEXT
+/* Set label name */
+void labels_setname(Labels *data)
+{
+	/* Tab CPU */
+	snprintf(data->tabcpu[NAME][VENDOR],		MAXSTR, _("Vendor"));
+	snprintf(data->tabcpu[NAME][CODENAME],		MAXSTR, _("Code Name"));
+	snprintf(data->tabcpu[NAME][PACKAGE],		MAXSTR, _("Package"));
+	snprintf(data->tabcpu[NAME][ARCHITECTURE],	MAXSTR, _("Architecture"));
+	snprintf(data->tabcpu[NAME][SPECIFICATION],	MAXSTR, _("Specification"));
+	snprintf(data->tabcpu[NAME][FAMILY],		MAXSTR, _("Family"));
+	snprintf(data->tabcpu[NAME][EXTFAMILY],		MAXSTR, _("Ext. Family"));
+	snprintf(data->tabcpu[NAME][MODEL],		MAXSTR, _("Model"));
+	snprintf(data->tabcpu[NAME][EXTMODEL],		MAXSTR, _("Ext. Model"));
+	snprintf(data->tabcpu[NAME][STEPPING],		MAXSTR, _("Stepping"));
+	snprintf(data->tabcpu[NAME][INSTRUCTIONS],	MAXSTR, _("Instructions"));
+
+	snprintf(data->tabcpu[NAME][CORESPEED],		MAXSTR, _("Core Speed"));
+	snprintf(data->tabcpu[NAME][MULTIPLIER],	MAXSTR, _("Multiplier"));
+	snprintf(data->tabcpu[NAME][BUSSPEED],		MAXSTR, _("Bus Speed"));
+	snprintf(data->tabcpu[NAME][BOGOMIPS],		MAXSTR, _("BogoMIPS"));
+
+	snprintf(data->tabcpu[NAME][LEVEL1D],		MAXSTR, _("L1 Data"));
+	snprintf(data->tabcpu[NAME][LEVEL1I],		MAXSTR, _("L1 Inst."));
+	snprintf(data->tabcpu[NAME][LEVEL2],		MAXSTR, _("Level 2"));
+	snprintf(data->tabcpu[NAME][LEVEL3],		MAXSTR, _("Level 3"));
+
+	snprintf(data->tabcpu[NAME][SOCKETS],		MAXSTR, _("Sockets(s)"));
+	snprintf(data->tabcpu[NAME][CORES],		MAXSTR, _("Core(s)"));
+	snprintf(data->tabcpu[NAME][THREADS],		MAXSTR, _("Thread(s)"));
+
+	/* Tab Mainboard */
+	snprintf(data->tabmb[NAME][MANUFACTURER],	MAXSTR, _("Manufacturer"));
+	snprintf(data->tabmb[NAME][MBMODEL],		MAXSTR, _("Model"));
+	snprintf(data->tabmb[NAME][REVISION],		MAXSTR, _("Revision"));
+
+	snprintf(data->tabmb[NAME][BRAND],		MAXSTR, _("Brand"));
+	snprintf(data->tabmb[NAME][VERSION],		MAXSTR, _("Version"));
+	snprintf(data->tabmb[NAME][DATE],		MAXSTR, _("Date"));
+	snprintf(data->tabmb[NAME][ROMSIZE],		MAXSTR, _("ROM Size"));
+}
+#endif
 
 #if HAS_LIBCPUID
 /* Elements provided by libcpuid library */
+# ifdef NEXT
+int libcpuid(Labels *data)
+{
+	int err = 0;
+	char tmp[MAXSTR];
+	struct cpu_raw_data_t raw;
+	struct cpu_id_t datanr;
+
+	err += cpuid_get_raw_data(&raw);
+	err += cpu_identify(&raw, &datanr);
+
+	/* Tab CPU */
+	snprintf(data->tabcpu[VALUE][VENDOR],		MAXSTR, "%s", datanr.vendor_str);
+	snprintf(data->tabcpu[VALUE][CODENAME],		MAXSTR, "%s", datanr.cpu_codename);
+	snprintf(data->tabcpu[VALUE][SPECIFICATION],	MAXSTR, "%s", datanr.brand_str);
+	snprintf(data->tabcpu[VALUE][FAMILY],		MAXSTR, "%d", datanr.family);
+	snprintf(data->tabcpu[VALUE][EXTFAMILY],	MAXSTR, "%d", datanr.ext_family);
+	snprintf(data->tabcpu[VALUE][MODEL],		MAXSTR, "%d", datanr.model);
+	snprintf(data->tabcpu[VALUE][EXTMODEL],		MAXSTR, "%d", datanr.ext_model);
+	snprintf(data->tabcpu[VALUE][STEPPING],		MAXSTR, "%d", datanr.stepping);
+
+	if(datanr.l1_data_cache > 0)
+	{
+		snprintf(data->tabcpu[VALUE][LEVEL1D],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
+		if(datanr.l1_assoc > 0)
+		{
+			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l1_assoc);
+			strncat(data->tabcpu[VALUE][LEVEL1D], tmp, MAXSTR);
+		}
+	}
+
+	if(datanr.l1_instruction_cache > 0)
+	{
+		snprintf(data->tabcpu[VALUE][LEVEL1I],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_instruction_cache);
+		if(datanr.l1_assoc > 0)
+		{
+			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l1_assoc);
+			strncat(data->tabcpu[VALUE][LEVEL1I], tmp, MAXSTR);
+		}
+	}
+
+	if(datanr.l2_cache > 0)
+	{
+		snprintf(data->tabcpu[VALUE][LEVEL2],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l2_cache);
+		if(datanr.l1_assoc > 0)
+		{
+			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l2_assoc);
+			strncat(data->tabcpu[VALUE][LEVEL2], tmp, MAXSTR);
+		}
+	}
+
+	if(datanr.l3_cache > 0)
+	{
+		snprintf(data->tabcpu[VALUE][LEVEL3],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l3_cache);
+		if(datanr.l1_assoc > 0)
+		{
+			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l3_assoc);
+			strncat(data->tabcpu[VALUE][LEVEL3], tmp, MAXSTR);
+		}
+	}
+
+	if(datanr.num_cores > 0) /* Avoid divide by 0 */
+		snprintf(data->tabcpu[VALUE][SOCKETS],	MAXSTR, "%d", datanr.total_logical_cpus / datanr.num_cores);
+
+	snprintf(data->tabcpu[VALUE][CORES],		MAXSTR, "%d", datanr.num_cores);
+	snprintf(data->tabcpu[VALUE][THREADS],		MAXSTR, "%d", datanr.num_logical_cpus);
+
+	return err;
+}
+# else
 int libcpuid(Libcpuid *data) {
 	int err = 0;
 	struct cpu_raw_data_t raw;
@@ -155,10 +320,36 @@ int libcpuid(Libcpuid *data) {
 
 	return err;
 }
+# endif
 #endif /* HAS_LIBCPUID */
 
 #if HAS_LIBDMI
 /* Elements provided by libdmi library (need root privileges) */
+# ifdef NEXT
+int libdmidecode(Labels *data)
+{
+	int err = 0;
+	char datanr[L][C] = { { '\0' } };
+
+	err += libdmi(datanr);
+
+	/* Tab CPU */
+	snprintf(data->tabcpu[VALUE][PACKAGE],		MAXSTR, "%s", datanr[PROCESSOR_SOCKET]);
+	snprintf(data->tabcpu[VALUE][BUSSPEED],		MAXSTR, "%s", datanr[PROCESSOR_CLOCK]);
+
+	/* Tab Mainboard */
+	snprintf(data->tabmb[VALUE][MANUFACTURER],	MAXSTR, "%s", datanr[BASEBOARD_MANUFACTURER]);
+	snprintf(data->tabmb[VALUE][MBMODEL],		MAXSTR, "%s", datanr[BASEBOARD_PRODUCT_NAME]);
+	snprintf(data->tabmb[VALUE][REVISION],		MAXSTR, "%s", datanr[BASEBOARD_VERSION]);
+
+	snprintf(data->tabmb[VALUE][BRAND],		MAXSTR, "%s", datanr[BIOS_VENDOR]);
+	snprintf(data->tabmb[VALUE][VERSION],		MAXSTR, "%s", datanr[BIOS_VERSION]);
+	snprintf(data->tabmb[VALUE][DATE],		MAXSTR, "%s", datanr[BIOS_RELEASE_DATE]);
+	snprintf(data->tabmb[VALUE][ROMSIZE],		MAXSTR, "%s", datanr[BIOS_ROM_SIZE]);
+
+	return err;
+}
+# else
 int libdmidecode(Dmi *data) {
 	int err = 0;
 	char datanr[L][C] = { { '\0' } };
@@ -177,10 +368,40 @@ int libdmidecode(Dmi *data) {
 
 	return err;
 }
+# endif
 #endif /* HAS_LIBDMI */
 
 #if HAS_LIBCPUID
 /* Pretty label CPU Vendor */
+# ifdef NEXT
+void cpuvendor(char *vendor)
+{
+	/* This use Libcpuid. See here: https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
+
+	if(!strcmp(vendor, "GenuineIntel"))	 /* Intel */
+		strcpy(vendor, "Intel");
+	else if(!strcmp(vendor, "AuthenticAMD")) /* AMD */
+		strcpy(vendor, "AMD");
+	else if(!strcmp(vendor, "CyrixInstead")) /* Cyrix */
+		strcpy(vendor, "Cyrix");
+	else if(!strcmp(vendor, "NexGenDriven")) /* NexGen */
+		strcpy(vendor, "NexGen");
+	else if(!strcmp(vendor, "GenuineTMx86")) /* Transmeta */
+		strcpy(vendor, "Transmeta");
+	else if(!strcmp(vendor, "UMC UMC UMC ")) /* UMC */
+		strcpy(vendor, "UMC");
+	else if(!strcmp(vendor, "CentaurHauls")) /* Centaur */
+		strcpy(vendor, "Centaur");
+	else if(!strcmp(vendor, "RiseRiseRise")) /* Rise */
+		strcpy(vendor, "Rise");
+	else if(!strcmp(vendor, "SiS SiS SiS ")) /* SiS */
+		strcpy(vendor, "SiS");
+	else if(!strcmp(vendor, "Geode by NSC")) /* National Semiconductor */
+		strcpy(vendor, "National Semiconductor");
+	else
+		strcpy(vendor, "Unknown");
+}
+# else
 void cpuvendor(char *vendor, char *prettyvendor) {
 	/* This use Libcpuid. See here: https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
 
@@ -208,9 +429,52 @@ void cpuvendor(char *vendor, char *prettyvendor) {
 		strcpy(prettyvendor, "Unknown");
 
 }
+# endif
 #endif /* HAS_LIBCPUID */
 
 /* Get CPU frequencies (current - min - max) */
+#ifdef NEXT
+void cpufreq(char *busfreq, char *clock, char *mults)
+{
+	static int error = 0;
+	char multmin[P] = { "0" }, multmax[P] = { "0" };
+	FILE *fmin = NULL, *fmax = NULL;
+
+	if(HAS_LIBCPUID)
+		snprintf(clock, MAXSTR, "%d MHz", cpu_clock());
+
+	/* Can't get base clock without root rights, skip multiplicators calculation */
+	if(!getuid())
+	{
+#ifdef __linux__
+		if(error != 1 && error != 3) {
+			fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
+			if(fmin == NULL) {
+				MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'.");
+				error = 1;
+			}
+			else {
+				fgets(multmin, 9, fmin);
+				fclose(fmin);
+			}
+		}
+
+		if(error != 2 && error != 3) {
+			fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
+			if(fmax == NULL) {
+				MSGERR("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'.");
+				error = (error == 1) ? 3 : 2;
+			}
+			else {
+				fgets(multmax, 9, fmax);
+				fclose(fmax);
+			}
+		}
+#endif /* __linux__ */
+		mult(busfreq, clock, multmin, multmax, mults);
+	}
+}
+#else
 void cpufreq(Internal *global, char *busfreq) {
 	static int error = 0;
 	char multmin[P] = { "0" }, multmax[P] = { "0" };
@@ -249,6 +513,7 @@ void cpufreq(Internal *global, char *busfreq) {
 		mult(busfreq, global->clock, multmin, multmax, global->mults);
 	}
 }
+#endif
 
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c) {
@@ -310,6 +575,57 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 
 #if HAS_LIBCPUID
 /* Show some instructions supported by CPU */
+# ifdef NEXT
+void instructions(char arch[MAXSTR], char instr[MAXSTR])
+{
+	struct cpu_raw_data_t raw;
+	struct cpu_id_t id;
+
+	if (!cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
+	{
+		if(id.flags[CPU_FEATURE_MMX])
+		{
+			strcpy(instr, "MMX");
+			if(id.flags[CPU_FEATURE_MMXEXT])
+				strcat(instr, "(+)");
+		}
+		if(id.flags[CPU_FEATURE_3DNOW])
+		{
+			strcat(instr, ", 3DNOW!");
+			if(id.flags[CPU_FEATURE_3DNOWEXT])
+				strcat(instr, "(+)");
+		}
+		if(id.flags[CPU_FEATURE_SSE])
+			strcat(instr, ", SSE (1");
+		if(id.flags[CPU_FEATURE_SSE2])
+			strcat(instr, ", 2");
+		if(id.flags[CPU_FEATURE_SSSE3])
+			strcat(instr, ", 3S");
+		if(id.flags[CPU_FEATURE_SSE4_1])
+			strcat(instr, ", 4.1");
+		if(id.flags[CPU_FEATURE_SSE4_2])
+			strcat(instr, ", 4.2");
+		if(id.flags[CPU_FEATURE_SSE4A])
+			strcat(instr, ", 4A");
+		if(id.flags[CPU_FEATURE_SSE])
+			strcat(instr, ")");
+		if(id.flags[CPU_FEATURE_AES])
+			strcat(instr, ", AES");
+		if(id.flags[CPU_FEATURE_AVX])
+			strcat(instr, ", AVX");
+		if(id.flags[CPU_FEATURE_VMX])
+			strcat(instr, ", VT-x");
+		if(id.flags[CPU_FEATURE_SVM])
+			strcat(instr, ", AMD-V");
+		if(id.flags[CPU_FEATURE_LM])
+			strcpy(arch, "x86_64 (64-bit)");
+		else
+			strcpy(arch, "ix86 (32-bit)");
+	}
+	else
+		MSGERR("failed to call 'libcpuid'.");
+}
+# else
 void instructions(Libcpuid *data, char instr[S]) {
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t id;
@@ -355,7 +671,26 @@ void instructions(Libcpuid *data, char instr[S]) {
 	else
 	MSGERR("failed to call 'libcpuid'.");
 }
+# endif
 #endif /* HAS_LIBCPUID */
+
+#ifdef NEXT
+/* Dump all datas in stdout */
+void dump_data(Labels *data)
+{
+	int i;
+
+	/* Tab CPU */
+	printf("\t***** CPU *****\n");
+	for(i = VENDOR; i < LASTCPU; i++)
+		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+
+	/* Tab Mainboard */
+	printf("\n\t***** Mainboard *****\n");
+	for(i = MANUFACTURER; i < LASTMB; i++)
+		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+}
+#endif
 
 /* Search file location */
 size_t get_path(char* buffer, char *file) {

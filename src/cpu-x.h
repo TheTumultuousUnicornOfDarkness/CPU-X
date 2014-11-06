@@ -37,6 +37,36 @@
 
 extern int refreshtime;
 
+#ifdef NEXT
+
+#define _(str) gettext(str)
+#define MAXSTR	60
+#define NAME	0
+#define VALUE	1
+
+enum EnTabCpu
+{
+	VENDOR, CODENAME, PACKAGE, ARCHITECTURE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, STEPPING, INSTRUCTIONS,
+	CORESPEED, MULTIPLIER, BUSSPEED, BOGOMIPS,
+	LEVEL1D, LEVEL1I, LEVEL2, LEVEL3,
+	SOCKETS, CORES, THREADS,
+	LASTCPU
+};
+
+enum EnTabMainboard
+{
+	MANUFACTURER, MBMODEL, REVISION,
+	BRAND, VERSION, DATE, ROMSIZE,
+	LASTMB
+};
+
+typedef struct
+{
+	char tabcpu[2][LASTCPU][MAXSTR];
+	char tabmb[2][LASTMB][MAXSTR];
+} Labels;
+
+#else
 
 typedef struct {
 	char vendor[S];
@@ -82,12 +112,34 @@ typedef struct {
 	char instr[S];
 	} Internal;	/* Used to call core functions */
 
+#endif
+
 
 /********************************** Core **********************************/
 
 /* Get options */
 char menu(int argc, char *argv[]);
 
+#ifdef NEXT
+/* Set empty labels */
+void labels_setempty(Labels *data);
+
+/* Set labels name */
+void labels_setname(Labels *data);
+
+/* Elements provided by libcpuid library */
+int libcpuid(Labels *data);
+
+/* Elements provided by libdmi library (need root privileges) */
+int libdmidecode(Labels *data);
+
+/* Get CPU frequencies (current - min - max) */
+void cpufreq(char *busfreq, char *clock, char *mults);
+
+/* Pretty label CPU Vendor */
+void cpuvendor(char *vendor);
+
+#else
 /* Set empty labels */
 void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global);
 
@@ -97,11 +149,12 @@ int libcpuid(Libcpuid *data);
 /* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
 int libdmidecode(Dmi *data);
 
-/* Pretty label CPU Vendor */
-void cpuvendor(char *vendor, char *prettyvendor);
-
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(Internal *global, char *busfreq);
+
+/* Pretty label CPU Vendor */
+void cpuvendor(char *vendor, char *prettyvendor);
+#endif
 
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c);
@@ -109,8 +162,17 @@ void bogomips(char *c);
 /* If 'dmidecode' can be called, return CPU multipliers (actual, min and max) */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
 
+#ifdef NEXT
 /* Print some instruction sets */ 
+void instructions(char arch[MAXSTR], char instr[MAXSTR]);
+
+/* Dump all datas in stdout */
+void dump_data(Labels *data);
+
+#else
+/* Print some instruction sets */
 void instructions(Libcpuid *data, char instr[S]);
+#endif
 
 /* Get path for data files */
 size_t get_path(char* buffer, char *file);
