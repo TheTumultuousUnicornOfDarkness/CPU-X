@@ -37,11 +37,10 @@ int main(int argc, char *argv[]) {
 	option = menu(argc, argv);
 
 #ifdef NEXT
-	char pathlocale[PATH_MAX];
 	Labels data;
-	get_path(pathlocale, "cpux");
 	setlocale(LC_ALL, "");
-	bindtextdomain("cpux", pathlocale);
+	bindtextdomain("cpux", get_path("locale"));
+	free(get_path("locale"));
 	textdomain("cpux");
 
 	labels_setempty(&data);
@@ -693,6 +692,33 @@ void dump_data(Labels *data)
 #endif
 
 /* Search file location */
+#ifdef NEXT
+char *get_path(char *file)
+{
+	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
+	See this file for more informations */
+	char *path_end;
+	char *buffer = malloc(PATH_MAX);
+	size_t len = PATH_MAX;
+
+	if(readlink ("/proc/self/exe", buffer, len) <= 0)
+		return NULL;
+
+	path_end = strrchr(buffer, '/');
+	if(path_end == NULL)
+		return NULL;
+
+	path_end++;
+	*path_end = '\0';
+
+	if(!strcmp(file, "locale"))
+		sprintf(buffer, "%s../share/%s", buffer, file);
+	else
+		sprintf(buffer, "%s../share/cpu-x/%s", buffer, file);
+
+	return buffer;
+}
+#else
 size_t get_path(char* buffer, char *file) {
 	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
 	See this file for more informations */
@@ -712,3 +738,4 @@ size_t get_path(char* buffer, char *file) {
 
 	return (size_t) (path_end - buffer);
 }
+#endif

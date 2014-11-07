@@ -169,13 +169,19 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR]);
 /* Dump all datas in stdout */
 void dump_data(Labels *data);
 
+/* Get path for data files */
+char *get_path(char *file);
+
 #else
 /* Print some instruction sets */
 void instructions(Libcpuid *data, char instr[S]);
-#endif
 
 /* Get path for data files */
 size_t get_path(char* buffer, char *file);
+
+#endif
+
+
 
 
 #endif /* _CPUX_H_ */
