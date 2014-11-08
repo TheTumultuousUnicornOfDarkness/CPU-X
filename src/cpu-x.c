@@ -61,7 +61,11 @@ int main(int argc, char *argv[]) {
 			MSGERR("libdmidecode failed");
 	}
 	cpufreq(data.tabcpu[VALUE][BUSSPEED], data.tabcpu[VALUE][CORESPEED], data.tabcpu[VALUE][MULTIPLIER]);
-	dump_data(&data);
+	//dump_data(&data);
+
+	/* Start GUI */
+	if(HAS_GTK && option == 'G') /* Start with GTK3 */
+		start_gui_gtk(&argc, &argv, &data);
 #else
 	setenv("LC_ALL", "", 1);
 	Libcpuid data;
