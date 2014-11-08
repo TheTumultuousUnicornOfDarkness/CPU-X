@@ -175,7 +175,8 @@ void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
 
-	gtk_label_set_text(GTK_LABEL(glab->labprgver),  "Version " PRGVER);
+	gtk_label_set_text(GTK_LABEL(glab->labprgver),   "Version " PRGVER);
+	gtk_label_set_text(GTK_LABEL(glab->aboutprgver), "Version " PRGVER);
 
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
