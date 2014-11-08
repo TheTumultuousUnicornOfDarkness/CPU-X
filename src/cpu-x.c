@@ -227,7 +227,7 @@ int libcpuid(Labels *data)
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Labels *data)
 {
-	int err = 0;
+	int i, err = 0;
 	char datanr[L][C] = { { '\0' } };
 
 	err += libdmi(datanr);
@@ -237,14 +237,8 @@ int libdmidecode(Labels *data)
 	snprintf(data->tabcpu[VALUE][BUSSPEED],		MAXSTR, "%s", datanr[PROCESSOR_CLOCK]);
 
 	/* Tab Mainboard */
-	snprintf(data->tabmb[VALUE][MANUFACTURER],	MAXSTR, "%s", datanr[BASEBOARD_MANUFACTURER]);
-	snprintf(data->tabmb[VALUE][MBMODEL],		MAXSTR, "%s", datanr[BASEBOARD_PRODUCT_NAME]);
-	snprintf(data->tabmb[VALUE][REVISION],		MAXSTR, "%s", datanr[BASEBOARD_VERSION]);
-
-	snprintf(data->tabmb[VALUE][BRAND],		MAXSTR, "%s", datanr[BIOS_VENDOR]);
-	snprintf(data->tabmb[VALUE][VERSION],		MAXSTR, "%s", datanr[BIOS_VERSION]);
-	snprintf(data->tabmb[VALUE][DATE],		MAXSTR, "%s", datanr[BIOS_RELEASE_DATE]);
-	snprintf(data->tabmb[VALUE][ROMSIZE],		MAXSTR, "%s", datanr[BIOS_ROM_SIZE]);
+	for(i = MANUFACTURER; i < LASTMB; i++)
+		snprintf(data->tabmb[VALUE][i],	MAXSTR, "%s", datanr[i]);
 
 	return err;
 }
