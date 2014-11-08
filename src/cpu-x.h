@@ -37,8 +37,6 @@
 
 extern int refreshtime;
 
-#ifdef NEXT
-
 #define _(str) gettext(str)
 #define MAXSTR	60
 #define NAME	0
@@ -66,61 +64,12 @@ typedef struct
 	char tabmb[2][LASTMB][MAXSTR];
 } Labels;
 
-#else
-
-typedef struct {
-	char vendor[S];
-	char name[S];
-	char arch[S];
-	char spec[S];
-	char fam[S];
-	char mod[S];
-	char step[S];
-	char extfam[S];
-	char extmod[S];
-	char instr[S];
-	char l1d[S];
-	char l1i[S];
-	char l2[S];
-	char l3[S];
-	char l1dw[S];
-	char l1iw[S];
-	char l2w[S];
-	char l3w[S];
-	char soc[S];
-	char core[S];
-	char thrd[S];
-	} Libcpuid;	/* Designed for libcpuid */
-
-typedef struct {
-	char socket[S];
-	char bus[S];
-	char manu[S];
-	char model[S];
-	char rev[S];
-	char brand[S];
-	char version[S];
-	char date[S];
-	char rom[S];
-	} Dmi;		/* Designed for dmidecode */
-
-typedef struct {
-	char prettyvendor[S];
-	char clock[Q];
-	char mults[Q];
-	char mips[Q];
-	char instr[S];
-	} Internal;	/* Used to call core functions */
-
-#endif
-
 
 /********************************** Core **********************************/
 
 /* Get options */
 char menu(int argc, char *argv[]);
 
-#ifdef NEXT
 /* Set empty labels */
 void labels_setempty(Labels *data);
 
@@ -139,30 +88,12 @@ void cpufreq(char *busfreq, char *clock, char *mults);
 /* Pretty label CPU Vendor */
 void cpuvendor(char *vendor);
 
-#else
-/* Set empty labels */
-void empty_labels(Libcpuid *data, Dmi *extrainfo, Internal *global);
-
-/* Use 'libcpuid' to build 'data' */
-int libcpuid(Libcpuid *data);
-
-/* Use 'libdmi' to build 'extrainfo' (replace ext_dmidecode) */
-int libdmidecode(Dmi *data);
-
-/* Get CPU frequencies (current - min - max) */
-void cpufreq(Internal *global, char *busfreq);
-
-/* Pretty label CPU Vendor */
-void cpuvendor(char *vendor, char *prettyvendor);
-#endif
-
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c);
 
 /* If 'dmidecode' can be called, return CPU multipliers (actual, min and max) */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
 
-#ifdef NEXT
 /* Print some instruction sets */ 
 void instructions(char arch[MAXSTR], char instr[MAXSTR]);
 
@@ -171,17 +102,6 @@ void dump_data(Labels *data);
 
 /* Get path for data files */
 char *get_path(char *file);
-
-#else
-/* Print some instruction sets */
-void instructions(Libcpuid *data, char instr[S]);
-
-/* Get path for data files */
-size_t get_path(char* buffer, char *file);
-
-#endif
-
-
 
 
 #endif /* _CPUX_H_ */

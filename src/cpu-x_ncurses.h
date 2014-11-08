@@ -26,15 +26,15 @@
 
 #include <ncurses.h>
 
-typedef struct {
+typedef struct
+{
 	WINDOW *win;
-	Dmi *extrainforefr;
-	Internal *globalrefr;
-	} NThrd;
+	Labels *data;
+} NThrd;
 
 
 /* Start CPU-X in NCurses mode */
-void start_gui_ncurses(Libcpuid *data, Dmi *extrainfo, Internal *global);
+void start_gui_ncurses(Labels *data);
 
 /* Refresh non-static values */
 void *nrefresh(void *ptr);
@@ -43,13 +43,13 @@ void *nrefresh(void *ptr);
 WINDOW *main_win(int height, int width, int starty, int startx, int tab);
 
 /* Switch to different tabs */
-WINDOW *select_tab(int height, int width, int starty, int startx, int num, Libcpuid *data, Dmi *extrainfo, Internal *global);
+WINDOW *select_tab(int height, int width, int starty, int startx, int num, Labels *data);
 
 /* Tab CPU */
-WINDOW *tab_cpu(int height, int width, int starty, int startx, Libcpuid *data, Dmi *extrainfo, Internal *global);
+WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab Mainboard */
-WINDOW *tab_mainboard(int height, int width, int starty, int startx, Dmi *extrainfo);
+WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab About */
 WINDOW *tab_about(int height, int width, int starty, int startx);

@@ -111,7 +111,7 @@ if(WITH_GTK)
   install(FILES
 	data/AMD.png
 	data/CPU-X.png
-	data/cpu-x.ui
+	data/cpux-gtk-3.8.ui
 	data/Intel.png
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/cpu-x/
 )

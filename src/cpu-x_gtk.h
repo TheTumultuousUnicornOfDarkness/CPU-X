@@ -27,77 +27,49 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 
+typedef struct
+{
+	/* Common */
+	GtkWidget *mainwindow;
+	GtkWidget *labprgver;
+	GtkWidget *closebutton;
 
-typedef struct {
-	GtkWidget *window;
-	GtkWidget *notebook1;
-	GtkWidget *okbutton;
-	GtkWidget *lprgname;
-	GtkWidget *lprgver;
-	GtkWidget *proc_logo;
-	GtkWidget *proc_vvendor;
-	GtkWidget *proc_vname;
-	GtkWidget *proc_vpkg;
-	GtkWidget *proc_varch;
-	GtkWidget *proc_vspec;
-	GtkWidget *proc_vfam;
-	GtkWidget *proc_vmod;
-	GtkWidget *proc_vextfam;
-	GtkWidget *proc_vextmod;
-	GtkWidget *proc_vstep;
-	GtkWidget *proc_vinstr;
-	GtkWidget *clock_vcore;
-	GtkWidget *clock_vmult;
-	GtkWidget *clock_vbus;
-	GtkWidget *clock_vmips;
-	GtkWidget *cache_vl1d;
-	GtkWidget *cache_vl1i;
-	GtkWidget *cache_vl2;
-	GtkWidget *cache_vl3;
-	GtkWidget *cache_vl1dway;
-	GtkWidget *cache_vl1iway;
-	GtkWidget *cache_vl2way;
-	GtkWidget *cache_vl3way;
-	GtkWidget *trg_vsoc;
-	GtkWidget *trg_vcore;
-	GtkWidget *trg_vthrd;
-	GtkWidget *mb_vmanu;
-	GtkWidget *mb_vmodel;
-	GtkWidget *mb_vrev;
-	GtkWidget *bios_vbrand;
-	GtkWidget *bios_vversion;
-	GtkWidget *bios_vdate;
-	GtkWidget *bios_vroms;
-	GtkWidget *about_version;
-	GThread *threfresh;
-	} Gwid;		/* Useful GtkWidgets */
+	/* Tab CPU */
+	GtkWidget *logocpu;
+	GtkWidget *gtktabcpu[2][LASTCPU];
 
-typedef struct {
-	Gwid *cpu;
-	Dmi *extrainforefr;
-	Internal *globalrefr;
-	} GThrd;
-	
+	/* Tab Mainboard */
+	GtkWidget *gtktabmb[2][LASTMB];
+
+	/* Tab About */
+	GtkWidget *logoprg;
+	GtkWidget *aboutprgver;
+
+} GtkLabels; /* Useful GtkWidgets */
+
+typedef struct
+{
+	GThread *thrdrefr;
+	GtkLabels *glab;
+	Labels *data;
+} GThrd; /* Used to refresh GUI */
 
 /********************************** GUI  **********************************/
 
 /* Start CPU-X in GTK mode */
-void start_gui_gtk(int *argc, char **argv[], Libcpuid *data, Dmi *extrainfo, Internal *global);
+void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
 /* Refresh non-static values */
 gpointer grefresh(GThrd *refr);
 
-/* White was too simple... */
-void set_colors(Gwid *cpu);
-
 /* Show vendor logo (Intel/AMD) */
-void set_vendorlogo(Gwid *cpu, Libcpuid *data);
+void set_vendorlogo(GtkLabels *glab, Labels *data);
 
 /* Build tab 'CPU' thanks to GtkBuilder */
-void build_tab_cpu(GtkBuilder *builder, Gwid *cpu);
+void get_labels(GtkBuilder *builder, GtkLabels *glab);
 
 /* Set values in labels */
-void set_labels(Gwid *cpu, Libcpuid *data, Dmi *extrainfo, Internal *global);
+void set_labels(GtkLabels *glab, Labels *data);
 
 
 #endif /* _CPUX_GTK_H_ */
