@@ -46,19 +46,28 @@ int main(int argc, char *argv[]) {
 	labels_setname(&data);
 	bogomips(data.tabcpu[VALUE][BOGOMIPS]);
 
-	if(HAS_LIBCPUID) {
+	if(HAS_LIBCPUID)
+	{
 		if(libcpuid(&data))
 			MSGERR("libcpuid failed.");
-		else {
+		else
+		{
 			cpuvendor(data.tabcpu[VALUE][VENDOR]);
 			instructions(data.tabcpu[VALUE][ARCHITECTURE], data.tabcpu[VALUE][INSTRUCTIONS]);
 		}
 	}
 
-	if(HAS_LIBDMI && !getuid()) {
+	if(!getuid() && HAS_LIBDMI)
+	{
 		if(libdmidecode(&data))
 			MSGERR("libdmidecode failed");
 	}
+	else
+	{
+		if(libdmi_fallback(&data))
+			MSGERR("libdmi_fallback failed");
+	}
+
 	cpufreq(data.tabcpu[VALUE][BUSSPEED], data.tabcpu[VALUE][CORESPEED], data.tabcpu[VALUE][MULTIPLIER]);
 
 	/* Start GUI */
@@ -238,6 +247,33 @@ int libdmidecode(Labels *data)
 	return err;
 }
 #endif /* HAS_LIBDMI */
+
+/* Alternative for libdmidecode (Linux only) */
+int libdmi_fallback(Labels *data)
+{
+	int i, err = 0;
+#ifdef __linux__
+	char path[PATH_MAX];
+	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date" };
+	FILE *mb[LASTMB] = { NULL };
+
+	/* Tab Mainboard */
+	for(i = MANUFACTURER; i < ROMSIZE; i++)
+	{
+		snprintf(path, PATH_MAX, "%s/%s", SYS_DMI, id[i]);
+		mb[i] = fopen(path, "r");
+		if(mb[i] != NULL)
+		{
+			fgets(data->tabmb[VALUE][i], MAXSTR, mb[i]);
+			data->tabmb[VALUE][i][ strlen(data->tabmb[VALUE][i]) - 1 ] = '\0';
+			fclose(mb[i]);
+		}
+		else
+			err++;
+	}
+#endif /* __linux__ */
+	return err;
+}
 
 #if HAS_LIBCPUID
 /* Pretty label CPU Vendor */

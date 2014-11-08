@@ -32,6 +32,7 @@
 #define PRGNAME "CPU-X"
 #define PRGVER  "1.2.2"
 #define EXIT_FNO 2	/* Exit when File Not Open */
+#define SYS_DMI "/sys/devices/virtual/dmi/id"
 #define NAME	0
 #define VALUE	1
 #define MAXSTR	60	/* Max string */
@@ -80,12 +81,14 @@ int libcpuid(Labels *data);
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Labels *data);
 
-/* Get CPU frequencies (current - min - max) */
-void cpufreq(char *busfreq, char *clock, char *mults);
+/* Alternative for libdmidecode (Linux only) */
+int libdmi_fallback(Labels *data);
 
 /* Pretty label CPU Vendor */
 void cpuvendor(char *vendor);
 
+/* Get CPU frequencies (current - min - max) */
+void cpufreq(char *busfreq, char *clock, char *mults);
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c);
 
