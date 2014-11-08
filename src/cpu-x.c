@@ -176,7 +176,7 @@ int libcpuid(Labels *data)
 		snprintf(data->tabcpu[VALUE][LEVEL1D],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l1_assoc);
+			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l1_assoc);
 			strncat(data->tabcpu[VALUE][LEVEL1D], tmp, MAXSTR);
 		}
 	}
@@ -186,7 +186,7 @@ int libcpuid(Labels *data)
 		snprintf(data->tabcpu[VALUE][LEVEL1I],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_instruction_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l1_assoc);
+			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l1_assoc);
 			strncat(data->tabcpu[VALUE][LEVEL1I], tmp, MAXSTR);
 		}
 	}
@@ -196,7 +196,7 @@ int libcpuid(Labels *data)
 		snprintf(data->tabcpu[VALUE][LEVEL2],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l2_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l2_assoc);
+			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l2_assoc);
 			strncat(data->tabcpu[VALUE][LEVEL2], tmp, MAXSTR);
 		}
 	}
@@ -206,7 +206,7 @@ int libcpuid(Labels *data)
 		snprintf(data->tabcpu[VALUE][LEVEL3],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l3_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, " , %2d-way", datanr.l3_assoc);
+			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l3_assoc);
 			strncat(data->tabcpu[VALUE][LEVEL3], tmp, MAXSTR);
 		}
 	}
@@ -216,6 +216,8 @@ int libcpuid(Labels *data)
 
 	snprintf(data->tabcpu[VALUE][CORES],		MAXSTR, "%d", datanr.num_cores);
 	snprintf(data->tabcpu[VALUE][THREADS],		MAXSTR, "%d", datanr.num_logical_cpus);
+
+	clean_specification(data->tabcpu[VALUE][SPECIFICATION]);
 
 	return err;
 }
@@ -303,6 +305,34 @@ void cpuvendor(char *vendor)
 		strcpy(vendor, "National Semiconductor");
 	else
 		strcpy(vendor, "Unknown");
+}
+
+/* Remove unwanted spaces in value Specification */
+void clean_specification(char *spec)
+{
+	int i = 0, j = 0, skip = 0;
+	char tmp[MAXSTR];
+
+	while(spec[i] != '\0')
+	{
+		if(isspace(spec[i]))
+			skip = 1;
+		else
+		{
+			if(skip)
+			{
+				tmp[j] = ' ';
+				skip = 0;
+				j++;
+			}
+
+			tmp[j] = spec[i];
+			j++;
+		}
+		i++;
+	}
+	tmp[j] = '\0';
+	strcpy(spec, tmp);
 }
 #endif /* HAS_LIBCPUID */
 

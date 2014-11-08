@@ -87,6 +87,9 @@ int libdmi_fallback(Labels *data);
 /* Pretty label CPU Vendor */
 void cpuvendor(char *vendor);
 
+/* Remove unwanted spaces in value Specification */
+void clean_specification(char *spec);
+
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(char *busfreq, char *clock, char *mults);
 /* Read value "bobomips" from file /proc/cpuinfo */
