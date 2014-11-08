@@ -66,6 +66,8 @@ int main(int argc, char *argv[]) {
 	/* Start GUI */
 	if(HAS_GTK && option == 'G') /* Start with GTK3 */
 		start_gui_gtk(&argc, &argv, &data);
+	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
+		start_gui_ncurses(&data);
 #else
 	setenv("LC_ALL", "", 1);
 	Libcpuid data;
