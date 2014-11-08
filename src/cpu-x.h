@@ -27,20 +27,18 @@
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
 #define MSGERR(msg, args...) fprintf(stderr, "%s:%s:%i: " msg "\n", PRGNAME, BASEFILE, __LINE__, ##args)
+#define _(str) gettext(str)
+
 #define PRGNAME "CPU-X"
 #define PRGVER  "1.2.2"
 #define EXIT_FNO 2	/* Exit when File Not Open */
-
-#define S 80		/* Big	  char* */
-#define P 5		/* Little char* */
-#define Q 3*P		/* Medium char* */
+#define NAME	0
+#define VALUE	1
+#define MAXSTR	60	/* Max string */
+#define S 10		/* Little string */
 
 extern int refreshtime;
 
-#define _(str) gettext(str)
-#define MAXSTR	60
-#define NAME	0
-#define VALUE	1
 
 enum EnTabCpu
 {

@@ -271,7 +271,7 @@ void cpuvendor(char *vendor)
 void cpufreq(char *busfreq, char *clock, char *mults)
 {
 	static int error = 0;
-	char multmin[P] = { "0" }, multmax[P] = { "0" };
+	char multmin[S] = { "0" }, multmax[S] = { "0" };
 	FILE *fmin = NULL, *fmax = NULL;
 
 	if(HAS_LIBCPUID)
@@ -343,10 +343,10 @@ void bogomips(char *c) {
 }
 
 /* Determine CPU multiplicator from base clock */
-void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[Q])
+void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[MAXSTR])
 {
 	int i, fcpu, fbus, min, max;
-	char ncpu[P] = "", nbus[P] = "";
+	char ncpu[S] = "", nbus[S] = "";
 
 	for(i = 0; isdigit(cpufreq[i]); i++)
 		ncpu[i] = cpufreq[i];
