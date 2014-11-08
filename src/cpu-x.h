@@ -57,10 +57,17 @@ enum EnTabMainboard
 	LASTMB
 };
 
+enum EnTabSystem
+{
+	KERNELNAME, KERNELVER, DISTRONAME, DISTROVER, HOSTNAME,
+	LASTSYS
+};
+
 typedef struct
 {
 	char tabcpu[2][LASTCPU][MAXSTR];
 	char tabmb[2][LASTMB][MAXSTR];
+	char tabsys[2][LASTMB][MAXSTR];
 } Labels;
 
 
@@ -100,6 +107,9 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 
 /* Print some instruction sets */ 
 void instructions(char arch[MAXSTR], char instr[MAXSTR]);
+
+/* Get system informations */
+void sysinfo(Labels *data);
 
 /* Dump all datas in stdout */
 void dump_data(Labels *data);

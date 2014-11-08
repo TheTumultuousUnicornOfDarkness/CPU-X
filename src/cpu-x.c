@@ -26,6 +26,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <limits.h>
+#include <sys/utsname.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -45,6 +46,7 @@ int main(int argc, char *argv[]) {
 	labels_setempty(&data);
 	labels_setname(&data);
 	bogomips(data.tabcpu[VALUE][BOGOMIPS]);
+	sysinfo(&data);
 
 	if(HAS_LIBCPUID)
 	{
@@ -106,6 +108,13 @@ void labels_setempty(Labels *data)
 		memset(data->tabmb[NAME][i], 0, MAXSTR);
 		memset(data->tabmb[VALUE][i], 0, MAXSTR);
 	}
+
+	/* Tab System */
+	for(i = KERNELNAME; i < LASTSYS; i++)
+	{
+		memset(data->tabsys[NAME][i], 0, MAXSTR);
+		memset(data->tabsys[VALUE][i], 0, MAXSTR);
+	}
 }
 
 /* Set label name */
@@ -147,6 +156,13 @@ void labels_setname(Labels *data)
 	snprintf(data->tabmb[NAME][VERSION],		MAXSTR, _("Version"));
 	snprintf(data->tabmb[NAME][DATE],		MAXSTR, _("Date"));
 	snprintf(data->tabmb[NAME][ROMSIZE],		MAXSTR, _("ROM Size"));
+
+	/* Tab System */
+	snprintf(data->tabsys[NAME][KERNELNAME],	MAXSTR, _("Kernel name"));
+	snprintf(data->tabsys[NAME][KERNELVER],		MAXSTR, _("Kernel version"));
+	snprintf(data->tabsys[NAME][DISTRONAME],	MAXSTR, _("Distro name"));
+	snprintf(data->tabsys[NAME][DISTROVER],		MAXSTR, _("Distro version"));
+	snprintf(data->tabsys[NAME][HOSTNAME],		MAXSTR, _("Hostname"));
 }
 
 #if HAS_LIBCPUID
@@ -485,6 +501,55 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 }
 #endif /* HAS_LIBCPUID */
 
+/* Get system informations */
+void sysinfo(Labels *data)
+{
+	char tmp[MAXSTR], *dname, *dver;
+	struct utsname name;
+	FILE *osrel = NULL;
+
+	osrel = fopen("/etc/os-release", "r");
+	uname(&name);
+
+	snprintf(data->tabsys[VALUE][KERNELNAME],	MAXSTR, "%s", name.sysname);
+	snprintf(data->tabsys[VALUE][KERNELVER],	MAXSTR, "%s", name.release);
+	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
+
+	if(osrel == NULL)
+	{
+		MSGERR("can't open file '/etc/os-release'.");
+		return;
+	}
+
+	while(fgets(tmp, MAXSTR, osrel) != NULL)
+	{
+		dname = strstr(tmp, "NAME=");
+		if(dname != NULL)
+			break;
+	}
+	if(dname != NULL)
+	{
+		snprintf(data->tabsys[VALUE][DISTRONAME], MAXSTR, "%s", 1 + strchr(dname, '"'));
+		data->tabsys[VALUE][DISTRONAME][ strlen(data->tabsys[VALUE][DISTRONAME]) - 2 ] = '\0';
+	}
+	else
+		snprintf(data->tabsys[VALUE][DISTRONAME], MAXSTR, "Unknown distro");
+
+	while(fgets(tmp, MAXSTR, osrel) != NULL)
+	{
+		dver  = strstr(tmp, "VERSION=");
+		if(dver != NULL)
+			break;
+	}
+	if(dver != NULL)
+	{
+		snprintf(data->tabsys[VALUE][DISTROVER], MAXSTR, "%s", 1 + strchr(dver, '"'));
+		data->tabsys[VALUE][DISTROVER][ strlen(data->tabsys[VALUE][DISTROVER]) - 2 ] = '\0';
+	}
+	else
+		snprintf(data->tabsys[VALUE][DISTROVER], MAXSTR, "Rolling");
+}
+
 /* Dump all datas in stdout */
 void dump_data(Labels *data)
 {
@@ -499,6 +564,11 @@ void dump_data(Labels *data)
 	printf("\n\t***** Mainboard *****\n");
 	for(i = MANUFACTURER; i < LASTMB; i++)
 		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+
+	/* Tab System */
+	printf("\n\t***** System *****\n");
+	for(i = KERNELNAME; i < LASTSYS; i++)
+		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
 }
 
 /* Search file location */
