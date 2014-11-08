@@ -34,6 +34,7 @@ void help(FILE *out, char *argv[]) {
 	fprintf(out, "Usage: %s [OPTION]\n\n"
 		"Available OPTION:\n"
 		"\t--no-gui\tStart NCurses mode instead of GTK\n"
+		"\t--dump\t\tDump all data on stdout and exit\n"
 		"\t--refresh\tTime between two refreshs in seconds\n"
 		"\t--verbose\tVerbose output (in Dmidecode)\n"
 		"\t--help\t\tPrint help and exit\n"
@@ -54,6 +55,7 @@ char menu(int argc, char *argv[]) {
 	static struct option longopts[] =
 	{
 		{"no-gui",	no_argument, 0, 'n'},
+		{"dump",	no_argument, 0, 'd'},
 		{"refresh",	required_argument, 0, 'r'},
 		{"verbose",	no_argument, 0, 'v'},
 		{"help",	no_argument, 0, 'h'},
@@ -61,10 +63,13 @@ char menu(int argc, char *argv[]) {
 		{0,		0,	     0,  0}
 	};
 
-	while((c = getopt_long(argc, argv, ":nr:vhV", longopts, NULL)) != -1) {
+	while((c = getopt_long(argc, argv, ":ndr:vhV", longopts, NULL)) != -1) {
 		switch(c) {
 			case 'n':
 				r = 'N';
+				break;
+			case 'd':
+				r = 'D';
 				break;
 			case 'r':
 				if(atoi(optarg) > 1)

@@ -66,11 +66,14 @@ int main(int argc, char *argv[]) {
 		start_gui_gtk(&argc, &argv, &data);
 	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
 		start_gui_ncurses(&data);
+	else if(option == 'D') /* Just dump datas */
+		dump_data(&data);
 
-	/* Error when compiled without GUI */
-	if(!HAS_GTK && !HAS_NCURSES) {
-		fprintf(stderr, "Hey! You need to compile with GTK3+ support and/or NCurses!\n");
-		return EXIT_FAILURE;
+	/* If compiled without GUI */
+	if(!HAS_GTK && !HAS_NCURSES && option != 'D')
+	{
+		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
+		dump_data(&data);
 	}
 
 	return EXIT_SUCCESS;
