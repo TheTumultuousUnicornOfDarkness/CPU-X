@@ -26,14 +26,14 @@
 
 #ifdef GTK
 # define HAS_GTK 1
-# include "cpu-x_gtk.h"
+# include "gui_gtk.h"
 #else
 # define HAS_GTK 0
 #endif
 
 #ifdef NCURSES
 # define HAS_NCURSES 1
-# include "cpu-x_ncurses.h"
+# include "gui_ncurses.h"
 #else
 # define HAS_NCURSES 0
 #endif

@@ -47,7 +47,7 @@ if(WITH_GTK)
   add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
   add_library(gui_gtk
 		src/gui_gtk.c
-		src/cpu-x_gtk.h
+		src/gui_gtk.h
   )
   set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
 endif()
@@ -60,7 +60,7 @@ if(WITH_NCURSES)
   add_definitions(-DNCURSES)
   add_library(gui_ncurses
 		src/gui_ncurses.c
-		src/cpu-x_ncurses.h
+		src/gui_ncurses.h
   )
   set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
 endif()
