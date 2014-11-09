@@ -59,7 +59,7 @@ enum EnTabMainboard
 
 enum EnTabSystem
 {
-	KERNEL, DISTRIBUTION, HOSTNAME, COMPILER,
+	KERNEL, DISTRIBUTION, HOSTNAME, UPTIME, COMPILER,
 	LASTSYS
 };
 
@@ -109,7 +109,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 void instructions(char arch[MAXSTR], char instr[MAXSTR]);
 
 /* Get system informations */
-void sysinfo(Labels *data);
+void tabsystem(Labels *data);
 
 /* Dump all datas in stdout */
 void dump_data(Labels *data);

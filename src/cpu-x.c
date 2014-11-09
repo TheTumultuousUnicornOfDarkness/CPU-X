@@ -27,6 +27,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include <sys/utsname.h>
+#include <sys/sysinfo.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -46,7 +47,7 @@ int main(int argc, char *argv[]) {
 	labels_setempty(&data);
 	labels_setname(&data);
 	bogomips(data.tabcpu[VALUE][BOGOMIPS]);
-	sysinfo(&data);
+	tabsystem(&data);
 
 	if(HAS_LIBCPUID)
 	{
@@ -161,6 +162,7 @@ void labels_setname(Labels *data)
 	snprintf(data->tabsys[NAME][KERNEL],		MAXSTR, _("Kernel"));
 	snprintf(data->tabsys[NAME][DISTRIBUTION],	MAXSTR, _("Distribution"));
 	snprintf(data->tabsys[NAME][HOSTNAME],		MAXSTR, _("Hostname"));
+	snprintf(data->tabsys[NAME][UPTIME],		MAXSTR, _("Uptime"));
 	snprintf(data->tabsys[NAME][COMPILER],		MAXSTR, _("Compiler"));
 }
 
@@ -501,16 +503,19 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 #endif /* HAS_LIBCPUID */
 
 /* Get system informations */
-void sysinfo(Labels *data)
+void tabsystem(Labels *data)
 {
 	int i = -1;
+	long duptime, huptime, muptime;
 	char tmp[MAXSTR], *distro = NULL;
 	const char *command[2] = { "gcc --version", "clang --version" };
 	struct utsname name;
+	struct sysinfo info;
 	FILE *osrel = NULL, *comp = NULL;
 
 	osrel = fopen("/etc/os-release", "r");
 	uname(&name);
+	sysinfo(&info);
 
 	snprintf(data->tabsys[VALUE][KERNEL],		MAXSTR, "%s %s", name.sysname, name.release);
 	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
@@ -534,6 +539,11 @@ void sysinfo(Labels *data)
 			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "Unknown distro");
 		fclose(osrel);
 	}
+
+	duptime = info.uptime / (24 * 60 * 60); info.uptime -= duptime * (24 * 60 * 60);  /* Label Uptime */
+	huptime = info.uptime / (60 * 60); info.uptime -= huptime * (60 * 60);
+	muptime = info.uptime / 60; info.uptime -= muptime * 60;
+	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, "%ld days, %2ld hours, %2ld minutes, %2ld secondes", duptime, huptime, muptime, info.uptime);
 
 	while(comp == NULL && i++ < 2) /* Label Compiler */
 		comp = popen(command[i], "r");

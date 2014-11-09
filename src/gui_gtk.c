@@ -64,9 +64,9 @@ static const char *objectmb[2][LASTMB] =
 /* Objects' ID in tab System */
 static const char *objectsys[2][LASTSYS] =
 {
-	{ "os_labkern", "os_labdistro", "os_labhost", "os_labcomp"
+	{ "os_labkern", "os_labdistro", "os_labhost", "os_labuptime", "os_labcomp"
 	},
-	{ "os_valkern", "os_valdistro", "os_valhost", "os_valcomp"
+	{ "os_valkern", "os_valdistro", "os_valhost", "os_valuptime", "os_valcomp"
 	}
 };
 
@@ -121,12 +121,14 @@ gpointer grefresh(GThrd *refr)
 	while(42)
 	{
 		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
+		tabsystem(refr->data);
 		if(HAS_LIBDMI && !getuid())
 		{
 			libdmidecode(refr->data);
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][MULTIPLIER]), refr->data->tabcpu[VALUE][MULTIPLIER]);
 		}
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][CORESPEED]),  refr->data->tabcpu[VALUE][CORESPEED]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][UPTIME]),	refr->data->tabsys[VALUE][UPTIME]);
 		sleep(refreshtime);
 	}
 

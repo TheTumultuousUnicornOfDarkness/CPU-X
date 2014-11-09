@@ -26,7 +26,7 @@
 #include "cpu-x.h"
 #include "includes.h"
 
-int loop = 1;
+static int loop = 0;
 
 
 void start_gui_ncurses(Labels *data)
@@ -81,14 +81,13 @@ void start_gui_ncurses(Labels *data)
 				break;
 		}
 
-		if(current_tab == 0)
+		loop = current_tab;
+
+		if(current_tab == 0 || current_tab == 2)
 		{
-			loop = 1;
 			refr.win = tab;
 			pthread_create(&thrdrefr, NULL, nrefresh, &refr);
 		}
-		else
-			loop = 0;
 	}
 
 	endwin();
@@ -97,7 +96,9 @@ void start_gui_ncurses(Labels *data)
 void *nrefresh(void *ptr)
 {
 	NThrd *refr = (NThrd *) ptr;
-	while(loop)
+
+	/* Refresh tab CPU */
+	while(loop == 0)
 	{
 		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
 		if(HAS_LIBDMI && !getuid())
@@ -106,6 +107,15 @@ void *nrefresh(void *ptr)
 			mvwprintw(refr->win, 13, 2, "%13s: %s", refr->data->tabcpu[NAME][MULTIPLIER], refr->data->tabcpu[VALUE][MULTIPLIER]);
 		}
 		mvwprintw(refr->win, 12, 2, "%13s: %s", refr->data->tabcpu[NAME][CORESPEED], refr->data->tabcpu[VALUE][CORESPEED]);
+		wrefresh(refr->win);
+		sleep(refreshtime);
+	}
+
+	/* Refresh tab System */
+	while(loop == 2)
+	{
+		tabsystem(refr->data);
+		mvwprintw(refr->win, 5,  2, "%13s: %s", refr->data->tabsys[NAME][UPTIME], refr->data->tabsys[VALUE][UPTIME]);
 		wrefresh(refr->win);
 		sleep(refreshtime);
 	}
@@ -220,7 +230,7 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in System tab */
-	frame(local_win, 1, 1, 7, width - 1, "Operating System");
+	frame(local_win, 1, 1, 8, width - 1, "Operating System");
 
 	/* System frame */
 	for(i = KERNEL; i < LASTSYS; i++)
