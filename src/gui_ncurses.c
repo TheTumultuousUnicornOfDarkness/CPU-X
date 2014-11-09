@@ -26,11 +26,13 @@
 #include "cpu-x.h"
 #include "includes.h"
 
+int loop = 1;
+
 
 void start_gui_ncurses(Labels *data)
 {
 	int startx, starty, width, height, ch, current_tab = 0;
-	WINDOW *master, *tab;
+	WINDOW *tab;
 	pthread_t thrdrefr;
 	NThrd refr;
 
@@ -47,7 +49,7 @@ void start_gui_ncurses(Labels *data)
 
 	printw("Press 'q' to exit");
 	refresh();
-	master = main_win(height, width, starty, startx, current_tab);
+	main_win(height, width, starty, startx, current_tab);
 	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
 
 	refr.win = tab;
@@ -63,7 +65,7 @@ void start_gui_ncurses(Labels *data)
 					current_tab--;
 					pthread_cancel(thrdrefr);
 					destroy_win(tab);
-					master = main_win(height, width, starty, startx, current_tab);
+					main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
 				}
 				break;
@@ -73,7 +75,7 @@ void start_gui_ncurses(Labels *data)
 					current_tab++;
 					pthread_cancel(thrdrefr);
 					destroy_win(tab);
-					master = main_win(height, width, starty, startx, current_tab);
+					main_win(height, width, starty, startx, current_tab);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
 				}
 				break;
@@ -81,9 +83,12 @@ void start_gui_ncurses(Labels *data)
 
 		if(current_tab == 0)
 		{
+			loop = 1;
 			refr.win = tab;
 			pthread_create(&thrdrefr, NULL, nrefresh, &refr);
 		}
+		else
+			loop = 0;
 	}
 
 	endwin();
@@ -92,7 +97,7 @@ void start_gui_ncurses(Labels *data)
 void *nrefresh(void *ptr)
 {
 	NThrd *refr = (NThrd *) ptr;
-	while(42)
+	while(loop)
 	{
 		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
 		if(HAS_LIBDMI && !getuid())
@@ -106,7 +111,7 @@ void *nrefresh(void *ptr)
 	}
 }
 
-WINDOW *main_win(int height, int width, int starty, int startx, int tab)
+void main_win(int height, int width, int starty, int startx, int tab)
 {
 	const char *tab_name[] = { "CPU", "Mainboard", "System", "About" };
 	WINDOW *local_win;
@@ -120,8 +125,6 @@ WINDOW *main_win(int height, int width, int starty, int startx, int tab)
 	mvwprintw(local_win, height - 2, width / 2, "Version %s", PRGVER);
 
 	wrefresh(local_win);
-
-	return local_win;
 }
 
 WINDOW *select_tab(int height, int width, int starty, int startx, int num, Labels *data)

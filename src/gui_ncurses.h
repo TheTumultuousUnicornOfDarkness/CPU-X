@@ -40,7 +40,7 @@ void start_gui_ncurses(Labels *data);
 void *nrefresh(void *ptr);
 
 /* NCurses main window */
-WINDOW *main_win(int height, int width, int starty, int startx, int tab);
+void main_win(int height, int width, int starty, int startx, int tab);
 
 /* Switch to different tabs */
 WINDOW *select_tab(int height, int width, int starty, int startx, int num, Labels *data);
