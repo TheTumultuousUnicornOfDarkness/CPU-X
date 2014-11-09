@@ -51,6 +51,9 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data);
 /* Tab Mainboard */
 WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *data);
 
+/* Tab System */
+WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data);
+
 /* Tab About */
 WINDOW *tab_about(int height, int width, int starty, int startx);
 

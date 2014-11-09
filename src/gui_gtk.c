@@ -61,6 +61,15 @@ static const char *objectmb[2][LASTMB] =
 	}
 };
 
+/* Objects' ID in tab System */
+static const char *objectsys[2][LASTSYS] =
+{
+	{ "os_labkern", "os_labdistro", "os_labhost", "os_labcomp"
+	},
+	{ "os_valkern", "os_valdistro", "os_valhost", "os_valcomp"
+	}
+};
+
 
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
@@ -169,6 +178,13 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktabmb[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[NAME][i]));
 		glab->gtktabmb[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[VALUE][i]));
 	}
+
+	/* Tab System */
+	for(i = KERNEL; i < LASTSYS; i++)
+	{
+		glab->gtktabsys[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[NAME][i]));
+		glab->gtktabsys[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[VALUE][i]));
+	}
 }
 
 void set_labels(GtkLabels *glab, Labels *data)
@@ -190,5 +206,12 @@ void set_labels(GtkLabels *glab, Labels *data)
 	{
 		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[NAME][i]), data->tabmb[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[VALUE][i]), data->tabmb[VALUE][i]);
+	}
+
+	/* Tab System */
+	for(i = KERNEL; i < LASTSYS; i++)
+	{
+		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[NAME][i]), data->tabsys[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][i]), data->tabsys[VALUE][i]);
 	}
 }

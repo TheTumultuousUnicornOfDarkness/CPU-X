@@ -1771,6 +1771,259 @@
               </packing>
             </child>
             <child>
+              <object class="GtkBox" id="system_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkFrame" id="os_fram">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_right">6</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">6</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">out</property>
+                    <child>
+                      <object class="GtkAlignment" id="os_align">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="bottom_padding">6</property>
+                        <property name="left_padding">6</property>
+                        <property name="right_padding">6</property>
+                        <child>
+                          <object class="GtkGrid" id="grid1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">end</property>
+                            <child>
+                              <object class="GtkAspectFrame" id="os_framkern">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkLabel" id="os_valkern">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="justify">center</property>
+                                    <property name="selectable">True</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="width_chars">40</property>
+                                    <property name="single_line_mode">True</property>
+                                    <property name="max_width_chars">40</property>
+                                    <property name="lines">1</property>
+                                    <attributes>
+                                      <attribute name="foreground" value="#000000008080"/>
+                                    </attributes>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="top_attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="os_framdistro">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkLabel" id="os_valdistro">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="justify">center</property>
+                                    <property name="selectable">True</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="width_chars">40</property>
+                                    <property name="single_line_mode">True</property>
+                                    <property name="max_width_chars">40</property>
+                                    <property name="lines">1</property>
+                                    <attributes>
+                                      <attribute name="foreground" value="#000000008080"/>
+                                    </attributes>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="top_attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="os_framhost">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkLabel" id="os_valhost">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="justify">center</property>
+                                    <property name="selectable">True</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="width_chars">40</property>
+                                    <property name="single_line_mode">True</property>
+                                    <property name="max_width_chars">40</property>
+                                    <property name="lines">1</property>
+                                    <attributes>
+                                      <attribute name="foreground" value="#000000008080"/>
+                                    </attributes>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="top_attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="os_framcomp">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkLabel" id="os_valcomp">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="justify">center</property>
+                                    <property name="selectable">True</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="width_chars">40</property>
+                                    <property name="single_line_mode">True</property>
+                                    <property name="max_width_chars">40</property>
+                                    <property name="lines">1</property>
+                                    <attributes>
+                                      <attribute name="foreground" value="#000000008080"/>
+                                    </attributes>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="top_attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="os_labkern">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="single_line_mode">True</property>
+                                <property name="lines">1</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="os_labdistro">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="single_line_mode">True</property>
+                                <property name="lines">1</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="os_labhost">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="single_line_mode">True</property>
+                                <property name="lines">1</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="os_labcomp">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="single_line_mode">True</property>
+                                <property name="lines">1</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">3</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="os_lab">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Operating System</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="systemlabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">System</property>
+                <property name="lines">1</property>
+              </object>
+              <packing>
+                <property name="position">2</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkBox" id="about_box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -2042,7 +2295,7 @@ This program comes with ABSOLUTELY NO WARRANTY</property>
                 </child>
               </object>
               <packing>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child type="tab">
@@ -2053,7 +2306,7 @@ This program comes with ABSOLUTELY NO WARRANTY</property>
                 <property name="lines">1</property>
               </object>
               <packing>
-                <property name="position">2</property>
+                <property name="position">3</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>

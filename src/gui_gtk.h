@@ -41,6 +41,9 @@ typedef struct
 	/* Tab Mainboard */
 	GtkWidget *gtktabmb[2][LASTMB];
 
+	/* Tab System */
+	GtkWidget *gtktabsys[2][LASTMB];
+
 	/* Tab About */
 	GtkWidget *logoprg;
 	GtkWidget *aboutprgver;

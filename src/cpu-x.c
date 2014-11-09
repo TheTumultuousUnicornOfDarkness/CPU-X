@@ -540,6 +540,7 @@ void sysinfo(Labels *data)
 	if(comp != NULL)
 	{
 		fgets(data->tabsys[VALUE][COMPILER], MAXSTR, comp);
+		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1] = '\0';
 		pclose(comp);
 	}
 }
