@@ -110,7 +110,7 @@ void labels_setempty(Labels *data)
 	}
 
 	/* Tab System */
-	for(i = KERNELNAME; i < LASTSYS; i++)
+	for(i = KERNEL; i < LASTSYS; i++)
 	{
 		memset(data->tabsys[NAME][i], 0, MAXSTR);
 		memset(data->tabsys[VALUE][i], 0, MAXSTR);
@@ -158,11 +158,10 @@ void labels_setname(Labels *data)
 	snprintf(data->tabmb[NAME][ROMSIZE],		MAXSTR, _("ROM Size"));
 
 	/* Tab System */
-	snprintf(data->tabsys[NAME][KERNELNAME],	MAXSTR, _("Kernel name"));
-	snprintf(data->tabsys[NAME][KERNELVER],		MAXSTR, _("Kernel version"));
-	snprintf(data->tabsys[NAME][DISTRONAME],	MAXSTR, _("Distro name"));
-	snprintf(data->tabsys[NAME][DISTROVER],		MAXSTR, _("Distro version"));
+	snprintf(data->tabsys[NAME][KERNEL],		MAXSTR, _("Kernel"));
+	snprintf(data->tabsys[NAME][DISTRIBUTION],	MAXSTR, _("Distribution"));
 	snprintf(data->tabsys[NAME][HOSTNAME],		MAXSTR, _("Hostname"));
+	snprintf(data->tabsys[NAME][COMPILER],		MAXSTR, _("Compiler"));
 }
 
 #if HAS_LIBCPUID
@@ -504,50 +503,45 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 /* Get system informations */
 void sysinfo(Labels *data)
 {
-	char tmp[MAXSTR], *dname, *dver;
+	int i = -1;
+	char tmp[MAXSTR], *distro = NULL;
+	const char *command[2] = { "gcc --version", "clang --version" };
 	struct utsname name;
-	FILE *osrel = NULL;
+	FILE *osrel = NULL, *comp = NULL;
 
 	osrel = fopen("/etc/os-release", "r");
 	uname(&name);
 
-	snprintf(data->tabsys[VALUE][KERNELNAME],	MAXSTR, "%s", name.sysname);
-	snprintf(data->tabsys[VALUE][KERNELVER],	MAXSTR, "%s", name.release);
+	snprintf(data->tabsys[VALUE][KERNEL],		MAXSTR, "%s %s", name.sysname, name.release);
 	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
 
-	if(osrel == NULL)
+	if(osrel == NULL) /* Label Distribution */
 	{
 		MSGERR("can't open file '/etc/os-release'.");
 		return;
 	}
-
-	while(fgets(tmp, MAXSTR, osrel) != NULL)
-	{
-		dname = strstr(tmp, "NAME=");
-		if(dname != NULL)
-			break;
-	}
-	if(dname != NULL)
-	{
-		snprintf(data->tabsys[VALUE][DISTRONAME], MAXSTR, "%s", 1 + strchr(dname, '"'));
-		data->tabsys[VALUE][DISTRONAME][ strlen(data->tabsys[VALUE][DISTRONAME]) - 2 ] = '\0';
-	}
 	else
-		snprintf(data->tabsys[VALUE][DISTRONAME], MAXSTR, "Unknown distro");
+	{
+		while(distro == NULL && fgets(tmp, MAXSTR, osrel) != NULL)
+			distro = strstr(tmp, "PRETTY_NAME=");
 
-	while(fgets(tmp, MAXSTR, osrel) != NULL)
-	{
-		dver  = strstr(tmp, "VERSION=");
-		if(dver != NULL)
-			break;
+		if(distro != NULL)
+		{
+			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "%s", 1 + strchr(distro, '"'));
+			data->tabsys[VALUE][DISTRIBUTION][ strlen(data->tabsys[VALUE][DISTRIBUTION]) - 2 ] = '\0';
+		}
+		else
+			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "Unknown distro");
+		fclose(osrel);
 	}
-	if(dver != NULL)
+
+	while(comp == NULL && i++ < 2) /* Label Compiler */
+		comp = popen(command[i], "r");
+	if(comp != NULL)
 	{
-		snprintf(data->tabsys[VALUE][DISTROVER], MAXSTR, "%s", 1 + strchr(dver, '"'));
-		data->tabsys[VALUE][DISTROVER][ strlen(data->tabsys[VALUE][DISTROVER]) - 2 ] = '\0';
+		fgets(data->tabsys[VALUE][COMPILER], MAXSTR, comp);
+		pclose(comp);
 	}
-	else
-		snprintf(data->tabsys[VALUE][DISTROVER], MAXSTR, "Rolling");
 }
 
 /* Dump all datas in stdout */
@@ -567,7 +561,7 @@ void dump_data(Labels *data)
 
 	/* Tab System */
 	printf("\n\t***** System *****\n");
-	for(i = KERNELNAME; i < LASTSYS; i++)
+	for(i = KERNEL; i < LASTSYS; i++)
 		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
 }
 
