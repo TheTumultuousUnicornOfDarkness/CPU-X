@@ -59,7 +59,8 @@
 #include <unistd.h>
 
 #ifdef CPUX
-#include "libdmi.h"
+# include "libdmi.h"
+# include "../cpu-x.h"
 #else
 # include "version.h"
 #endif
@@ -3169,16 +3170,16 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 	switch (h->type)
 	{
 		case 0: /* 7.1 BIOS Information */
-			strcpy(dmiexport[BIOS_VENDOR], dmi_string(h, data[0x04]));
-			strcpy(dmiexport[BIOS_VERSION], dmi_string(h, data[0x05]));
-			strcpy(dmiexport[BIOS_RELEASE_DATE], dmi_string(h, data[0x08]));
-			sprintf(dmiexport[BIOS_ROM_SIZE], "%u kB", (data[0x09] + 1) << 6);
+			strcpy(dmiexport[BRAND], dmi_string(h, data[0x04]));
+			strcpy(dmiexport[VERSION], dmi_string(h, data[0x05]));
+			strcpy(dmiexport[DATE], dmi_string(h, data[0x08]));
+			sprintf(dmiexport[ROMSIZE], "%u kB", (data[0x09] + 1) << 6);
 			break;
 		
 		case 2: /* 7.3 Base Board Information */
-			strcpy(dmiexport[BASEBOARD_MANUFACTURER], dmi_string(h, data[0x04]));
-			strcpy(dmiexport[BASEBOARD_PRODUCT_NAME], dmi_string(h, data[0x05]));
-			strcpy(dmiexport[BASEBOARD_VERSION], dmi_string(h, data[0x06]));
+			strcpy(dmiexport[MANUFACTURER], dmi_string(h, data[0x04]));
+			strcpy(dmiexport[MBMODEL], dmi_string(h, data[0x05]));
+			strcpy(dmiexport[REVISION], dmi_string(h, data[0x06]));
 			break;
 		
 		case 4: /* 7.5 Processor Information */
