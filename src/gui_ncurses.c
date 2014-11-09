@@ -109,6 +109,8 @@ void *nrefresh(void *ptr)
 		wrefresh(refr->win);
 		sleep(refreshtime);
 	}
+
+	return NULL;
 }
 
 void main_win(int height, int width, int starty, int startx, int tab)
