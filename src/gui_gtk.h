@@ -42,7 +42,11 @@ typedef struct
 	GtkWidget *gtktabmb[2][LASTMB];
 
 	/* Tab System */
-	GtkWidget *gtktabsys[2][LASTMB];
+	GtkWidget *barused;
+	GtkWidget *barbuff;
+	GtkWidget *barcache;
+	GtkWidget *barfree;
+	GtkWidget *gtktabsys[2][LASTSYS];
 
 	/* Tab About */
 	GtkWidget *logoprg;
@@ -65,6 +69,9 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data);
 /* Refresh non-static values */
 gpointer grefresh(GThrd *refr);
 
+/* Set default background color in GUI */
+void set_colors(GtkLabels *glab);
+
 /* Show vendor logo (Intel/AMD) */
 void set_vendorlogo(GtkLabels *glab, Labels *data);
 
@@ -73,6 +80,9 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab);
 
 /* Set values in labels */
 void set_labels(GtkLabels *glab, Labels *data);
+
+/* Set Memory bar in tab System */
+void set_membar(GtkLabels *glab, Labels *data);
 
 
 #endif /* _CPUX_GTK_H_ */

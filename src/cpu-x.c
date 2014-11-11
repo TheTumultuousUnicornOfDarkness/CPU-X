@@ -27,7 +27,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include <sys/utsname.h>
-#include <sys/sysinfo.h>
+#include <proc/sysinfo.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -164,6 +164,11 @@ void labels_setname(Labels *data)
 	snprintf(data->tabsys[NAME][HOSTNAME],		MAXSTR, _("Hostname"));
 	snprintf(data->tabsys[NAME][UPTIME],		MAXSTR, _("Uptime"));
 	snprintf(data->tabsys[NAME][COMPILER],		MAXSTR, _("Compiler"));
+
+	snprintf(data->tabsys[NAME][USED],		MAXSTR, _("Used"));
+	snprintf(data->tabsys[NAME][BUFFERS],		MAXSTR, _("Buffers"));
+	snprintf(data->tabsys[NAME][CACHED],		MAXSTR, _("Cached"));
+	snprintf(data->tabsys[NAME][FREE],		MAXSTR, _("Free"));
 }
 
 #if HAS_LIBCPUID
@@ -506,16 +511,15 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 void tabsystem(Labels *data)
 {
 	int i = -1;
-	long duptime, huptime, muptime;
+	long duptime, huptime, muptime, suptime;
 	char tmp[MAXSTR], *distro = NULL;
 	const char *command[2] = { "gcc --version", "clang --version" };
 	struct utsname name;
-	struct sysinfo info;
 	FILE *osrel = NULL, *comp = NULL;
 
 	osrel = fopen("/etc/os-release", "r");
 	uname(&name);
-	sysinfo(&info);
+	meminfo();
 
 	snprintf(data->tabsys[VALUE][KERNEL],		MAXSTR, "%s %s", name.sysname, name.release);
 	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
@@ -540,10 +544,11 @@ void tabsystem(Labels *data)
 		fclose(osrel);
 	}
 
-	duptime = info.uptime / (24 * 60 * 60); info.uptime -= duptime * (24 * 60 * 60);  /* Label Uptime */
-	huptime = info.uptime / (60 * 60); info.uptime -= huptime * (60 * 60);
-	muptime = info.uptime / 60; info.uptime -= muptime * 60;
-	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, "%ld days, %2ld hours, %2ld minutes, %2ld secondes", duptime, huptime, muptime, info.uptime);
+	suptime = uptime(NULL, NULL); /* Label Uptime */
+	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
+	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
+	muptime = suptime / 60; suptime -= muptime * 60;
+	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, "%ld days, %2ld hours, %2ld minutes, %2ld secondes", duptime, huptime, muptime, suptime);
 
 	while(comp == NULL && i++ < 2) /* Label Compiler */
 		comp = popen(command[i], "r");
@@ -553,6 +558,11 @@ void tabsystem(Labels *data)
 		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1] = '\0';
 		pclose(comp);
 	}
+
+	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", (kb_main_total - (kb_main_buffers + kb_main_cached + kb_main_free)) / 1000, kb_main_total / 1000);
+	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / 1000, kb_main_total / 1000);
+	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / 1000, kb_main_total / 1000);
+	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
 }
 
 /* Dump all datas in stdout */

@@ -115,7 +115,11 @@ void *nrefresh(void *ptr)
 	while(loop == 2)
 	{
 		tabsystem(refr->data);
-		mvwprintw(refr->win, 5,  2, "%13s: %s", refr->data->tabsys[NAME][UPTIME], refr->data->tabsys[VALUE][UPTIME]);
+		mvwprintw(refr->win, 5,   2, "%13s: %s", refr->data->tabsys[NAME][UPTIME],	refr->data->tabsys[VALUE][UPTIME]);
+		mvwprintw(refr->win, 9,   2, "%13s: %s", refr->data->tabsys[NAME][USED],	refr->data->tabsys[VALUE][USED]);
+		mvwprintw(refr->win, 10,  2, "%13s: %s", refr->data->tabsys[NAME][BUFFERS],	refr->data->tabsys[VALUE][BUFFERS]);
+		mvwprintw(refr->win, 11,  2, "%13s: %s", refr->data->tabsys[NAME][CACHED],	refr->data->tabsys[VALUE][CACHED]);
+		mvwprintw(refr->win, 12,  2, "%13s: %s", refr->data->tabsys[NAME][FREE],	refr->data->tabsys[VALUE][FREE]);
 		wrefresh(refr->win);
 		sleep(refreshtime);
 	}
@@ -231,10 +235,15 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 
 	/* Frames in System tab */
 	frame(local_win, 1, 1, 8, width - 1, "Operating System");
+	frame(local_win, 8, 1, 14, width - 1, "Memory");
 
-	/* System frame */
-	for(i = KERNEL; i < LASTSYS; i++)
+	/* OS frame */
+	for(i = KERNEL; i < USED; i++)
 		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+
+	/* Memory frame */
+	for(i = USED; i < LASTSYS; i++)
+		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
 
 	wrefresh(local_win);
 

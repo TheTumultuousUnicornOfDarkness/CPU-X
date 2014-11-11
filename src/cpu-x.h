@@ -60,6 +60,7 @@ enum EnTabMainboard
 enum EnTabSystem
 {
 	KERNEL, DISTRIBUTION, HOSTNAME, UPTIME, COMPILER,
+	USED, BUFFERS, CACHED, FREE,
 	LASTSYS
 };
 
@@ -67,7 +68,7 @@ typedef struct
 {
 	char tabcpu[2][LASTCPU][MAXSTR];
 	char tabmb[2][LASTMB][MAXSTR];
-	char tabsys[2][LASTMB][MAXSTR];
+	char tabsys[2][LASTSYS][MAXSTR];
 } Labels;
 
 
@@ -99,6 +100,7 @@ void clean_specification(char *spec);
 
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(char *busfreq, char *clock, char *mults);
+
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c);
 

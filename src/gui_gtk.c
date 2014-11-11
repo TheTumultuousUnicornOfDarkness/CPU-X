@@ -64,9 +64,11 @@ static const char *objectmb[2][LASTMB] =
 /* Objects' ID in tab System */
 static const char *objectsys[2][LASTSYS] =
 {
-	{ "os_labkern", "os_labdistro", "os_labhost", "os_labuptime", "os_labcomp"
+	{ "os_labkern", "os_labdistro", "os_labhost", "os_labuptime", "os_labcomp",
+		"mem_labused", "mem_labbuff", "mem_labcache", "mem_labfree"
 	},
-	{ "os_valkern", "os_valdistro", "os_valhost", "os_valuptime", "os_valcomp"
+	{ "os_valkern", "os_valdistro", "os_valhost", "os_valuptime", "os_valcomp",
+		"mem_valused", "mem_valbuff", "mem_valcache", "mem_valfree"
 	}
 };
 
@@ -98,6 +100,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	glab.closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
 	glab.labprgver	 = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
 	glab.aboutprgver = GTK_WIDGET(gtk_builder_get_object(builder, "about_version"));
+	set_colors(&glab);
 	get_labels(builder, &glab);
 	g_object_unref(G_OBJECT(builder));
 
@@ -105,6 +108,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	gtk_image_set_from_file(GTK_IMAGE(glab.logoprg), get_path("CPU-X.png")); /* Program icon in About */
 	set_vendorlogo(&glab, data); /* Vendor icon */
 	set_labels(&glab, data);
+	set_membar(&glab, data);
 
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
@@ -129,10 +133,26 @@ gpointer grefresh(GThrd *refr)
 		}
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][CORESPEED]),  refr->data->tabcpu[VALUE][CORESPEED]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][UPTIME]),	refr->data->tabsys[VALUE][UPTIME]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][USED]), refr->data->tabsys[VALUE][USED]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][BUFFERS]), refr->data->tabsys[VALUE][BUFFERS]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][CACHED]), refr->data->tabsys[VALUE][CACHED]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][FREE]), refr->data->tabsys[VALUE][FREE]);
+		set_membar(refr->glab, refr->data);
 		sleep(refreshtime);
 	}
 
 	return NULL;
+}
+
+void set_colors(GtkLabels *glab)
+{
+	GdkRGBA window_colors;
+
+	window_colors.red	= 0.3;
+	window_colors.green	= 0.6;
+	window_colors.blue	= 0.9;
+	window_colors.alpha	= 0.95;
+	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
 }
 
 void set_vendorlogo(GtkLabels *glab, Labels *data)
@@ -187,6 +207,10 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktabsys[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[NAME][i]));
 		glab->gtktabsys[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[VALUE][i]));
 	}
+	glab->barused  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barused"));
+	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
+	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
+	glab->barfree  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barfree"));
 }
 
 void set_labels(GtkLabels *glab, Labels *data)
@@ -216,4 +240,17 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[NAME][i]), data->tabsys[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][i]), data->tabsys[VALUE][i]);
 	}
+}
+
+/* Set Memory bar in tab System */
+void set_membar(GtkLabels *glab, Labels *data)
+{
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barused), (double) strtol(data->tabsys[VALUE][USED], NULL, 10)
+						/ strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10));
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barbuff), (double) strtol(data->tabsys[VALUE][BUFFERS], NULL, 10)
+						/ strtol(strstr(data->tabsys[VALUE][BUFFERS], "/ ") + 2, NULL, 10));
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barcache), (double) strtol(data->tabsys[VALUE][CACHED], NULL, 10)
+						/ strtol(strstr(data->tabsys[VALUE][CACHED], "/ ") + 2, NULL, 10));
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barfree), (double) strtol(data->tabsys[VALUE][FREE], NULL, 10)
+						/ strtol(strstr(data->tabsys[VALUE][FREE], "/ ") + 2, NULL, 10));
 }
