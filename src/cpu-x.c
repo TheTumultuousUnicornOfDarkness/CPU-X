@@ -571,19 +571,39 @@ void dump_data(Labels *data)
 	int i;
 
 	/* Tab CPU */
-	printf("\t***** CPU *****\n");
+	printf(" ***** CPU *****\n\n");
+	printf("\t*** Processor ***\n");
 	for(i = VENDOR; i < LASTCPU; i++)
+	{
+		if(i == CORESPEED)
+			printf("\n\t*** Clocks ***\n");
+		else if(i == LEVEL1D)
+			printf("\n\t*** Cache ***\n");
+		else if(i == SOCKETS)
+			printf("\n\t***  ***\n");
 		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+	}
 
 	/* Tab Mainboard */
-	printf("\n\t***** Mainboard *****\n");
+	
+	printf("\n\n ***** Mainboard *****\n");
+	printf("\n\t*** Motherboard ***\n");
 	for(i = MANUFACTURER; i < LASTMB; i++)
+	{
+		if(i == BRAND)
+			printf("\n\t*** BIOS ***\n");
 		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+	}
 
 	/* Tab System */
-	printf("\n\t***** System *****\n");
+	printf("\n\n ***** System *****\n");
+	printf("\n\t*** Operating System ***\n");
 	for(i = KERNEL; i < LASTSYS; i++)
+	{
+		if(i == USED)
+			printf("\n\t*** Memory ***\n");
 		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+	}
 }
 
 /* Search file location */
