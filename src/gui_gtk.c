@@ -104,9 +104,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	get_labels(builder, &glab);
 	g_object_unref(G_OBJECT(builder));
 
-	gtk_window_set_icon_from_file(GTK_WINDOW(glab.mainwindow), get_path("CPU-X.png"), NULL); /* Window icon */
-	gtk_image_set_from_file(GTK_IMAGE(glab.logoprg), get_path("CPU-X.png")); /* Program icon in About */
-	set_vendorlogo(&glab, data); /* Vendor icon */
+	set_logos(&glab, data); /* Vendor icon */
 	set_labels(&glab, data);
 	set_membar(&glab, data);
 
@@ -155,23 +153,28 @@ void set_colors(GtkLabels *glab)
 	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
 }
 
-void set_vendorlogo(GtkLabels *glab, Labels *data)
+void set_logos(GtkLabels *glab, Labels *data)
 {
 #ifdef EMBED
 	GdkPixbuf *pixbuf_AMD	= gdk_pixbuf_new_from_inline (-1, AMD, FALSE, NULL);
 	GdkPixbuf *pixbuf_Intel = gdk_pixbuf_new_from_inline (-1, Intel, FALSE, NULL);
 	GdkPixbuf *pixbuf_CPU_X = gdk_pixbuf_new_from_inline (-1, CPU_X, FALSE, NULL);
 
-	gtk_window_set_icon(GTK_WINDOW(glab->window), pixbuf_CPU_X);
-	if(!strcmp(data->vendor, "Intel"))
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->proc_logo), pixbuf_Intel);
-	else if(!strcmp(data->vendor, "AMD"))
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->proc_logo), pixbuf_AMD);
+	gtk_window_set_icon(GTK_WINDOW(glab->mainwindow), pixbuf_CPU_X); /* Window icon */
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), pixbuf_CPU_X); /* Program icon in About */
+
+	if(!strcmp(data->tabcpu[VALUE][VENDOR], "Intel")) /* CPU vendor icon */
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_Intel);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "AMD"))
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_AMD);
 	else
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->proc_logo), pixbuf_CPU_X);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_CPU_X);
 #else
 
-	if(!strcmp(data->tabcpu[VALUE][VENDOR], "Intel"))
+	gtk_window_set_icon_from_file(GTK_WINDOW(glab->mainwindow), get_path("CPU-X.png"), NULL); /* Window icon */
+	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), get_path("CPU-X.png")); /* Program icon in About */
+
+	if(!strcmp(data->tabcpu[VALUE][VENDOR], "Intel")) /* CPU vendor icon */
 		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("Intel.png"));
 	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "AMD"))
 		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("AMD.png"));

@@ -72,8 +72,8 @@ gpointer grefresh(GThrd *refr);
 /* Set default background color in GUI */
 void set_colors(GtkLabels *glab);
 
-/* Show vendor logo (Intel/AMD) */
-void set_vendorlogo(GtkLabels *glab, Labels *data);
+/* Set logos (Window, CPU vendor, tab About) */
+void set_logos(GtkLabels *glab, Labels *data);
 
 /* Build tab 'CPU' thanks to GtkBuilder */
 void get_labels(GtkBuilder *builder, GtkLabels *glab);
