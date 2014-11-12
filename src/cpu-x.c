@@ -121,6 +121,30 @@ void labels_setempty(Labels *data)
 /* Set label name */
 void labels_setname(Labels *data)
 {
+	/* Various objects*/
+	snprintf(data->objects[TABCPU],			MAXSTR, _("CPU"));
+	snprintf(data->objects[TABMB],			MAXSTR, _("Mainboard"));
+	snprintf(data->objects[TABSYS],			MAXSTR, _("System"));
+	snprintf(data->objects[TABABOUT],		MAXSTR, _("About"));
+	snprintf(data->objects[FRAMPROCESSOR],		MAXSTR, _("Processor"));
+	snprintf(data->objects[FRAMCLOCKS],		MAXSTR, _("Clocks"));
+	snprintf(data->objects[FRAMCACHE],		MAXSTR, _("Cache"));
+	snprintf(data->objects[FRAMMOBO],		MAXSTR, _("Motherboard"));
+	snprintf(data->objects[FRAMBIOS],		MAXSTR, _("BIOS"));
+	snprintf(data->objects[FRAMOS],			MAXSTR, _("Operating System"));
+	snprintf(data->objects[FRAMMEMORY],		MAXSTR, _("Memory"));
+	snprintf(data->objects[FRAMABOUT],		MAXSTR, _("About"));
+	snprintf(data->objects[FRAMLICENSE],		MAXSTR, _("License"));
+	snprintf(data->objects[LABVERSION],		MAXSTR, _("Version %s"), PRGVER);
+	snprintf(data->objects[LABDESCRIPTION],		MAXSTR + 20, _(
+		"CPU-X is a Free software that gathers information\n"
+		"on CPU & motherboard."));
+	snprintf(data->objects[LABAUTHOR],		MAXSTR, _("Author : X0rg"));
+	snprintf(data->objects[LABLICENSE],		MAXSTR + 20, _(
+		"Copyright © 2014 Xorg\n\n"
+		"This program comes with ABSOLUTELY NO WARRANTY"));
+
+
 	/* Tab CPU */
 	snprintf(data->tabcpu[NAME][VENDOR],		MAXSTR, _("Vendor"));
 	snprintf(data->tabcpu[NAME][CODENAME],		MAXSTR, _("Code Name"));
@@ -573,14 +597,14 @@ void dump_data(Labels *data)
 	int i;
 
 	/* Tab CPU */
-	printf(" ***** CPU *****\n\n");
-	printf("\t*** Processor ***\n");
+	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
+	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
 		if(i == CORESPEED)
-			printf("\n\t*** Clocks ***\n");
+			printf("\n\t*** %s ***\n", data->objects[FRAMCLOCKS]);
 		else if(i == LEVEL1D)
-			printf("\n\t*** Cache ***\n");
+			printf("\n\t*** %s ***\n", data->objects[FRAMCACHE]);
 		else if(i == SOCKETS)
 			printf("\n\t***  ***\n");
 		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
@@ -588,22 +612,22 @@ void dump_data(Labels *data)
 
 	/* Tab Mainboard */
 	
-	printf("\n\n ***** Mainboard *****\n");
-	printf("\n\t*** Motherboard ***\n");
+	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
 		if(i == BRAND)
-			printf("\n\t*** BIOS ***\n");
+			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
 		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
 	}
 
 	/* Tab System */
-	printf("\n\n ***** System *****\n");
-	printf("\n\t*** Operating System ***\n");
+	printf("\n\n ***** %s *****\n", data->objects[TABSYS]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMOS]);
 	for(i = KERNEL; i < LASTSYS; i++)
 	{
 		if(i == USED)
-			printf("\n\t*** Memory ***\n");
+			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
 		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
 	}
 }

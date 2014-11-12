@@ -2624,42 +2624,16 @@ This program comes with ABSOLUTELY NO WARRANTY</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkBox" id="license_box2">
+                              <object class="GtkLinkButton" id="license_linklicense">
+                                <property name="label" translatable="yes">GPL v3</property>
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">center</property>
-                                <child>
-                                  <object class="GtkLabel" id="license_lablicense2">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">See the following license:</property>
-                                    <property name="justify">center</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLinkButton" id="license_linklicense">
-                                    <property name="label" translatable="yes">GPL v3</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="relief">none</property>
-                                    <property name="uri">http://www.gnu.org/licenses/gpl.txt</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">True</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="relief">none</property>
+                                <property name="uri">http://www.gnu.org/licenses/gpl.txt</property>
                               </object>
                               <packing>
-                                <property name="expand">False</property>
+                                <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="position">1</property>
                               </packing>

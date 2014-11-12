@@ -49,7 +49,7 @@ void start_gui_ncurses(Labels *data)
 
 	printw("Press 'q' to exit");
 	refresh();
-	main_win(height, width, starty, startx, current_tab);
+	main_win(height, width, starty, startx, current_tab, data);
 	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
 
 	refr.win = tab;
@@ -65,7 +65,7 @@ void start_gui_ncurses(Labels *data)
 					current_tab--;
 					pthread_cancel(thrdrefr);
 					destroy_win(tab);
-					main_win(height, width, starty, startx, current_tab);
+					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
 				}
 				break;
@@ -75,7 +75,7 @@ void start_gui_ncurses(Labels *data)
 					current_tab++;
 					pthread_cancel(thrdrefr);
 					destroy_win(tab);
-					main_win(height, width, starty, startx, current_tab);
+					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
 				}
 				break;
@@ -128,18 +128,17 @@ void *nrefresh(void *ptr)
 	return NULL;
 }
 
-void main_win(int height, int width, int starty, int startx, int tab)
+void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
 {
-	const char *tab_name[] = { "CPU", "Mainboard", "System", "About" };
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
 	/* General stuff */
-	mvwaddstr(local_win, 1, 2, tab_name[tab]);
+	mvwaddstr(local_win, 1, 2, data->objects[tab]);
 	mvwprintw(local_win, height - 2, 2, PRGNAME);
-	mvwprintw(local_win, height - 2, width / 2, "Version %s", PRGVER);
+	mvwprintw(local_win, height - 2, width / 2, data->objects[LABVERSION]);
 
 	wrefresh(local_win);
 }
@@ -155,7 +154,7 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 		case 2:
 			return tab_system(height - 4, width - 2, starty + 2, startx + 1, data);
 		case 3:
-			return tab_about(height - 4, width - 2, starty + 2, startx + 1);
+			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data);
 		default:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data); /* If problem */
 	}
@@ -170,9 +169,9 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in CPU tab */
-	frame(local_win, 1, 1, 11, width - 1, "Processor");
-	frame(local_win, 11, 1, 17, startx + 22, "Clocks");
-	frame(local_win, 11, startx + 22, 17, width - 1, "Cache");
+	frame(local_win, 1, 1, 11, width - 1, data->objects[FRAMPROCESSOR]);
+	frame(local_win, 11, 1, 17, startx + 14, data->objects[FRAMCLOCKS]);
+	frame(local_win, 11, startx + 14, 17, width - 1, data->objects[FRAMCACHE]);
 	frame(local_win, 17, 1, 20, width - 1, "");
 
 	/* Processor frame */
@@ -211,8 +210,8 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *dat
 	box(local_win, 0 , 0);
 
 	/* Frames in Mainboard tab */
-	frame(local_win, 1, 1, 6, width - 1, "Motherboard");
-	frame(local_win, 6, 1, 12, width - 1, "BIOS");
+	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMMOBO]);
+	frame(local_win, 6, 1, 12, width - 1, data->objects[FRAMBIOS]);
 
 	/* Motherboard frame */
 	for(i = MANUFACTURER; i < BRAND; i++)
@@ -235,8 +234,8 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in System tab */
-	frame(local_win, 1, 1, 8, width - 1, "Operating System");
-	frame(local_win, 8, 1, 15, width - 1, "Memory");
+	frame(local_win, 1, 1, 8, width - 1, data->objects[FRAMOS]);
+	frame(local_win, 8, 1, 15, width - 1, data->objects[FRAMMEMORY]);
 
 	/* OS frame */
 	for(i = KERNEL; i < USED; i++)
@@ -251,7 +250,7 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 	return local_win;
 }
 
-WINDOW *tab_about(int height, int width, int starty, int startx)
+WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 {
 	WINDOW *local_win;
 
@@ -264,8 +263,8 @@ WINDOW *tab_about(int height, int width, int starty, int startx)
 	/* About CPU-X frame */
 	mvwaddstr(local_win, 3, 2, "\tBased on GTK3+ library");
 	mvwprintw(local_win, 4, 2, "\tCompiled with NCusrses %i.%i", NCURSES_VERSION_MAJOR, NCURSES_VERSION_MINOR);
-	mvwprintw(local_win, 6, 2, "\tVersion : %s", PRGVER);
-	mvwaddstr(local_win, 7, 2, "\tAuthor : X0rg");
+	mvwprintw(local_win, 6, 2, "\t%s", data->objects[LABVERSION]);
+	mvwprintw(local_win, 7, 2, "\t%s", data->objects[LABAUTHOR]);
 	mvwaddstr(local_win, 8, 2, "\tGitHub : https://github.com/X0rg");
 	mvwaddstr(local_win, 10, 2, "\tCopyright © 2014 Xorg");
 	mvwaddstr(local_win, 11, 2, "\tThis program comes with ABSOLUTELY NO WARRANTY");

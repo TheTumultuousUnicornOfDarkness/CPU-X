@@ -33,6 +33,7 @@ typedef struct
 	GtkWidget *mainwindow;
 	GtkWidget *labprgver;
 	GtkWidget *closebutton;
+	GtkWidget *gtktrad[LASTOBJ];
 
 	/* Tab CPU */
 	GtkWidget *logocpu;
@@ -51,7 +52,6 @@ typedef struct
 
 	/* Tab About */
 	GtkWidget *logoprg;
-	GtkWidget *aboutprgver;
 
 } GtkLabels; /* Useful GtkWidgets */
 

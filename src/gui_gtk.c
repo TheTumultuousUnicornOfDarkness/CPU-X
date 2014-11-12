@@ -35,6 +35,14 @@
 #endif
 
 
+/* Objects' ID for traduction */
+static const char *trad[LASTOBJ] =
+{
+	"cpulabel", "mainboardlabel", "systemlabel", "aboutlabel",
+	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
+	"about_version", "about_descr", "about_author", "license_lablicense"
+};
+
 /* Objects' ID in tab CPU */
 static const char *objectcpu[2][LASTCPU] =
 {
@@ -99,7 +107,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	glab.mainwindow	 = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
 	glab.closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
 	glab.labprgver	 = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
-	glab.aboutprgver = GTK_WIDGET(gtk_builder_get_object(builder, "about_version"));
 	set_colors(&glab);
 	get_labels(builder, &glab);
 	g_object_unref(G_OBJECT(builder));
@@ -191,6 +198,10 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->logocpu = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->logoprg = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 
+	/* Various labels to translate */
+	for(i = TABCPU; i < LASTOBJ; i++)
+		glab->gtktrad[i] = GTK_WIDGET(gtk_builder_get_object(builder, trad[i]));
+
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -222,8 +233,11 @@ void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
 
-	gtk_label_set_text(GTK_LABEL(glab->labprgver),   "Version " PRGVER);
-	gtk_label_set_text(GTK_LABEL(glab->aboutprgver), "Version " PRGVER);
+	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->objects[LABVERSION]); /* Footer label */
+
+	/* Various labels to translate */
+	for(i = TABCPU; i < LASTOBJ; i++)
+		gtk_label_set_text(GTK_LABEL(glab->gtktrad[i]), data->objects[i]);
 
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
