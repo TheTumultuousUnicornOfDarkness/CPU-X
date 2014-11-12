@@ -169,6 +169,7 @@ void labels_setname(Labels *data)
 	snprintf(data->tabsys[NAME][BUFFERS],		MAXSTR, _("Buffers"));
 	snprintf(data->tabsys[NAME][CACHED],		MAXSTR, _("Cached"));
 	snprintf(data->tabsys[NAME][FREE],		MAXSTR, _("Free"));
+	snprintf(data->tabsys[NAME][SWAP],		MAXSTR, _("Swap"));
 }
 
 #if HAS_LIBCPUID
@@ -563,6 +564,7 @@ void tabsystem(Labels *data)
 	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
+	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / 1000, kb_swap_total / 1000);
 }
 
 /* Dump all datas in stdout */

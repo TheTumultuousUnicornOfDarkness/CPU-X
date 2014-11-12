@@ -46,6 +46,7 @@ typedef struct
 	GtkWidget *barbuff;
 	GtkWidget *barcache;
 	GtkWidget *barfree;
+	GtkWidget *barswap;
 	GtkWidget *gtktabsys[2][LASTSYS];
 
 	/* Tab About */

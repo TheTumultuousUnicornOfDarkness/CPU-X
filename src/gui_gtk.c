@@ -65,10 +65,10 @@ static const char *objectmb[2][LASTMB] =
 static const char *objectsys[2][LASTSYS] =
 {
 	{ "os_labkern", "os_labdistro", "os_labhost", "os_labuptime", "os_labcomp",
-		"mem_labused", "mem_labbuff", "mem_labcache", "mem_labfree"
+		"mem_labused", "mem_labbuff", "mem_labcache", "mem_labfree", "mem_labswap",
 	},
 	{ "os_valkern", "os_valdistro", "os_valhost", "os_valuptime", "os_valcomp",
-		"mem_valused", "mem_valbuff", "mem_valcache", "mem_valfree"
+		"mem_valused", "mem_valbuff", "mem_valcache", "mem_valfree", "mem_valswap"
 	}
 };
 
@@ -135,6 +135,7 @@ gpointer grefresh(GThrd *refr)
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][BUFFERS]), refr->data->tabsys[VALUE][BUFFERS]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][CACHED]), refr->data->tabsys[VALUE][CACHED]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][FREE]), refr->data->tabsys[VALUE][FREE]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][SWAP]), refr->data->tabsys[VALUE][SWAP]);
 		set_membar(refr->glab, refr->data);
 		sleep(refreshtime);
 	}
@@ -214,6 +215,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
 	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
 	glab->barfree  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barfree"));
+	glab->barswap  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barswap"));
 }
 
 void set_labels(GtkLabels *glab, Labels *data)
@@ -256,4 +258,6 @@ void set_membar(GtkLabels *glab, Labels *data)
 						/ strtol(strstr(data->tabsys[VALUE][CACHED], "/ ") + 2, NULL, 10));
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barfree), (double) strtol(data->tabsys[VALUE][FREE], NULL, 10)
 						/ strtol(strstr(data->tabsys[VALUE][FREE], "/ ") + 2, NULL, 10));
+	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barswap), (double) strtol(data->tabsys[VALUE][SWAP], NULL, 10)
+						/ strtol(strstr(data->tabsys[VALUE][SWAP], "/ ") + 2, NULL, 10));
 }

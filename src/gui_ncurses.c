@@ -120,6 +120,7 @@ void *nrefresh(void *ptr)
 		mvwprintw(refr->win, 10,  2, "%13s: %s", refr->data->tabsys[NAME][BUFFERS],	refr->data->tabsys[VALUE][BUFFERS]);
 		mvwprintw(refr->win, 11,  2, "%13s: %s", refr->data->tabsys[NAME][CACHED],	refr->data->tabsys[VALUE][CACHED]);
 		mvwprintw(refr->win, 12,  2, "%13s: %s", refr->data->tabsys[NAME][FREE],	refr->data->tabsys[VALUE][FREE]);
+		mvwprintw(refr->win, 13,  2, "%13s: %s", refr->data->tabsys[NAME][SWAP],	refr->data->tabsys[VALUE][SWAP]);
 		wrefresh(refr->win);
 		sleep(refreshtime);
 	}
@@ -235,7 +236,7 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 
 	/* Frames in System tab */
 	frame(local_win, 1, 1, 8, width - 1, "Operating System");
-	frame(local_win, 8, 1, 14, width - 1, "Memory");
+	frame(local_win, 8, 1, 15, width - 1, "Memory");
 
 	/* OS frame */
 	for(i = KERNEL; i < USED; i++)
