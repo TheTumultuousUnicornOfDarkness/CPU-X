@@ -429,23 +429,24 @@ void bogomips(char *c) {
 	cpuinfo = fopen("/proc/cpuinfo", "r");
 	if(cpuinfo == NULL) {
 		MSGERR("failed to open '/proc/cpuinfo'.");
-		return;
 	}
-
-	while(fgets(read, sizeof(read), cpuinfo) != NULL) {
-		mips = strstr(read, "bogomips");
-		if(mips != NULL)
-			break;
-	}
-
-	while(mips[i] != '\n') {
-		if(isdigit(mips[i]) || mips[i] == '.') {
-			c[j] = mips[i];
-			j++;
+	else
+	{
+		while(fgets(read, sizeof(read), cpuinfo) != NULL) {
+			mips = strstr(read, "bogomips");
+			if(mips != NULL)
+				break;
 		}
-		i++;
+
+		while(mips[i] != '\n') {
+			if(isdigit(mips[i]) || mips[i] == '.') {
+				c[j] = mips[i];
+				j++;
+			}
+			i++;
+		}
+		c[j] = '\0';
 	}
-	c[j] = '\0';
 #else
 	sprintf(c, "%s", "Unavailable");
 #endif /* __linux__ */
@@ -551,7 +552,6 @@ void tabsystem(Labels *data)
 	if(osrel == NULL) /* Label Distribution */
 	{
 		MSGERR("can't open file '/etc/os-release'.");
-		return;
 	}
 	else
 	{
