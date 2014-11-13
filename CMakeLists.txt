@@ -120,4 +120,9 @@ if(WITH_GTK)
 	data/cpu-x.desktop
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/
   )
+  install(FILES
+	data/CPU-X.png
+	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/pixmaps/
+	RENAME cpu-x.png
+  )
 endif()
