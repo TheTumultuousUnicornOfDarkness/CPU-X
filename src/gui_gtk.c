@@ -28,9 +28,18 @@
 #include "includes.h"
 
 #ifdef EMBED
-# include "../embed/AMD.png.h"
-# include "../embed/Intel.png.h"
 # include "../embed/CPU-X.png.h"
+# include "../embed/NoVendor.png.h"
+# include "../embed/AMD.png.h"
+# include "../embed/Centaur.png.h"
+# include "../embed/Cyrix.png.h"
+# include "../embed/Intel.png.h"
+# include "../embed/NexGen.png.h"
+# include "../embed/NSC.png.h"
+# include "../embed/Rise.png.h"
+# include "../embed/SiS.png.h"
+# include "../embed/Transmeta.png.h"
+# include "../embed/UMC.png.h"
 # include "../embed/cpu-x.ui.h"
 #endif
 
@@ -164,30 +173,49 @@ void set_colors(GtkLabels *glab)
 void set_logos(GtkLabels *glab, Labels *data)
 {
 #ifdef EMBED
-	GdkPixbuf *pixbuf_AMD	= gdk_pixbuf_new_from_inline (-1, AMD, FALSE, NULL);
-	GdkPixbuf *pixbuf_Intel = gdk_pixbuf_new_from_inline (-1, Intel, FALSE, NULL);
-	GdkPixbuf *pixbuf_CPU_X = gdk_pixbuf_new_from_inline (-1, CPU_X, FALSE, NULL);
+	GdkPixbuf *pixbuf_CPU_X = gdk_pixbuf_new_from_inline	(-1, CPU_X, FALSE, NULL);
+	GdkPixbuf *pixbuf_NOVENDOR = gdk_pixbuf_new_from_inline (-1, NOVENDOR, FALSE, NULL);
+	GdkPixbuf *pixbuf_vendor = NULL;
 
 	gtk_window_set_icon(GTK_WINDOW(glab->mainwindow), pixbuf_CPU_X); /* Window icon */
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), pixbuf_CPU_X); /* Program icon in About */
 
-	if(!strcmp(data->tabcpu[VALUE][VENDOR], "Intel")) /* CPU vendor icon */
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_Intel);
+	if(!strcmp(data->tabcpu[VALUE][VENDOR], "Intel"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, Intel, FALSE, NULL);
 	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "AMD"))
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_AMD);
-	else
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_CPU_X);
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, AMD, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "Cyrix"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, Cyrix, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "NexGen"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, NexGen, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "Transmeta"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, Transmeta, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "UMC"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, UMC, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "Centaur"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, Centaur, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "Rise"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, Rise, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "SiS"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, SiS, FALSE, NULL);
+	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "National Semiconductor"))
+		pixbuf_vendor = gdk_pixbuf_new_from_inline (-1, National_Semiconductor, FALSE, NULL);
+
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_vendor); /* CPU vendor icon */
+	if(gtk_image_get_pixbuf(GTK_IMAGE(glab->logocpu)) == NULL) /* If no icon is set, apply "novendor.png" */
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_NOVENDOR);
 #else
+	char *tmp;
+	const gchar **icon_name;
+	sprintf(tmp, "%s.png", data->tabcpu[VALUE][VENDOR]);
 
 	gtk_window_set_icon_from_file(GTK_WINDOW(glab->mainwindow), get_path("CPU-X.png"), NULL); /* Window icon */
 	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), get_path("CPU-X.png")); /* Program icon in About */
 
-	if(!strcmp(data->tabcpu[VALUE][VENDOR], "Intel")) /* CPU vendor icon */
-		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("Intel.png"));
-	else if(!strcmp(data->tabcpu[VALUE][VENDOR], "AMD"))
-		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("AMD.png"));
-	else
-		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("CPU-X.png"));
+	gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path(tmp)); /* CPU vendor icon */
+	gtk_image_get_icon_name(GTK_IMAGE(glab->logocpu), icon_name, NULL);
+	if(icon_name[0] != NULL) /* If no icon is set, apply "novendor.png" */
+		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("novendor.png"));
 #endif
 }
 

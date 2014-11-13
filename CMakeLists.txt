@@ -109,11 +109,13 @@ target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 if(WITH_GTK)
+  file(GLOB_RECURSE
+	pictures
+        *.png
+  )
   install(FILES
-	data/AMD.png
-	data/CPU-X.png
 	data/cpux-gtk-3.8.ui
-	data/Intel.png
+	${pictures}
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/cpu-x/
   )
   install(FILES
