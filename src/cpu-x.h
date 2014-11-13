@@ -31,6 +31,7 @@
 
 #define PRGNAME "CPU-X"
 #define PRGVER  "1.2.2"
+#define PRGAUTH "X0rg"
 #define EXIT_FNO 2	/* Exit when File Not Open */
 #define SYS_DMI "/sys/devices/virtual/dmi/id"
 #define NAME	0
@@ -74,7 +75,7 @@ enum EnTabSystem
 
 typedef struct
 {
-	char objects[LASTOBJ][MAXSTR + 20];
+	char objects[LASTOBJ][MAXSTR + 40];
 	char tabcpu[2][LASTCPU][MAXSTR];
 	char tabmb[2][LASTMB][MAXSTR];
 	char tabsys[2][LASTSYS][MAXSTR];

@@ -136,12 +136,11 @@ void labels_setname(Labels *data)
 	snprintf(data->objects[FRAMABOUT],		MAXSTR, _("About"));
 	snprintf(data->objects[FRAMLICENSE],		MAXSTR, _("License"));
 	snprintf(data->objects[LABVERSION],		MAXSTR, _("Version %s"), PRGVER);
-	snprintf(data->objects[LABDESCRIPTION],		MAXSTR + 20, _(
-		"CPU-X is a Free software that gathers information\n"
-		"on CPU & motherboard."));
-	snprintf(data->objects[LABAUTHOR],		MAXSTR, _("Author : X0rg"));
-	snprintf(data->objects[LABLICENSE],		MAXSTR + 20, _(
-		"Copyright © 2014 Xorg\n\n"
+	snprintf(data->objects[LABDESCRIPTION],		MAXSTR + 40, _(
+		"%s is a Free software that gathers information\n"
+		"on CPU & motherboard."), PRGNAME);
+	snprintf(data->objects[LABAUTHOR],		MAXSTR, _("Author : %s"), PRGAUTH);
+	snprintf(data->objects[LABLICENSE],		MAXSTR + 40, _(
 		"This program comes with ABSOLUTELY NO WARRANTY"));
 
 
@@ -573,7 +572,7 @@ void tabsystem(Labels *data)
 	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
 	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
 	muptime = suptime / 60; suptime -= muptime * 60;
-	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, "%ld days, %2ld hours, %2ld minutes, %2ld secondes", duptime, huptime, muptime, suptime);
+	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld secondes"), duptime, huptime, muptime, suptime);
 
 	while(comp == NULL && i++ < 2) /* Label Compiler */
 		comp = popen(command[i], "r");

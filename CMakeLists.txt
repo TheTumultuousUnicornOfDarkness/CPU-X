@@ -17,6 +17,7 @@ option(WITH_LIBDMI "Allow use of library Libdmi" ON)
 
 
 find_package(PkgConfig REQUIRED)
+add_subdirectory(po)
 
 # Colours
 if(NOT WIN32)

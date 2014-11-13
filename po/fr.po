@@ -1,0 +1,349 @@
+# French translation.
+# Copyright © 2014 Xorg
+# This file is distributed under the same license as the PACKAGE package.
+# Xorg, 2014.
+#
+#: src/cpu-x.c:42 src/cpu-x.c:459
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: CPU-X\n"
+"Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
+"POT-Creation-Date: 2014-11-13 17:23+0100\n"
+"PO-Revision-Date: 2014-11-13 17:23+0100\n"
+"Last-Translator: Xorg\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/cpu-x.c:55
+msgid "libcpuid failed."
+msgstr "libcpuid a échoué."
+
+#: src/cpu-x.c:66
+msgid "libdmidecode failed"
+msgstr "libdmidecode a échoué."
+
+#: src/cpu-x.c:71
+msgid "libdmi_fallback failed"
+msgstr "libdmi_fallback a échoué."
+
+#: src/cpu-x.c:87
+#, c-format
+msgid ""
+"%s is compiled without GUI support. Dumping data...\n"
+"\n"
+msgstr ""
+"%s est compilé sans interface graphique. Vidage des données...\n"
+"\n"
+
+#: src/cpu-x.c:125
+#, c-format
+msgid "CPU"
+msgstr "CPU"
+
+#: src/cpu-x.c:126
+#, c-format
+msgid "Mainboard"
+msgstr "Carte-mère"
+
+#: src/cpu-x.c:127
+#, c-format
+msgid "System"
+msgstr "Système"
+
+#: src/cpu-x.c:128 src/cpu-x.c:136
+#, c-format
+msgid "About"
+msgstr "À propos"
+
+#: src/cpu-x.c:129
+#, c-format
+msgid "Processor"
+msgstr "Processeur"
+
+#: src/cpu-x.c:130
+#, c-format
+msgid "Clocks"
+msgstr "Fréquences"
+
+#: src/cpu-x.c:131
+#, c-format
+msgid "Cache"
+msgstr "Cache"
+
+#: src/cpu-x.c:132
+#, c-format
+msgid "Motherboard"
+msgstr "Carte-mère"
+
+#: src/cpu-x.c:133
+#, c-format
+msgid "BIOS"
+msgstr "BIOS"
+
+#: src/cpu-x.c:134
+#, c-format
+msgid "Operating System"
+msgstr "Système d'exploitation"
+
+#: src/cpu-x.c:135
+#, c-format
+msgid "Memory"
+msgstr "Mémoire"
+
+#: src/cpu-x.c:137
+#, c-format
+msgid "License"
+msgstr "Licence"
+
+#: src/cpu-x.c:138
+#, c-format
+msgid "Version %s"
+msgstr "Version %s"
+
+#: src/cpu-x.c:140
+#, c-format
+msgid ""
+"%s is a Free software that gathers information\n"
+"on CPU & motherboard."
+msgstr ""
+"%s est un logiciel Libre qui récolte des informations\n"
+"sur le CPU et la carte-mère."
+
+#: src/cpu-x.c:142
+#, c-format
+msgid "Author : %s"
+msgstr "Auteur : %s"
+
+#: src/cpu-x.c:144
+#, c-format
+msgid ""
+"This program comes with ABSOLUTELY NO WARRANTY"
+msgstr ""
+"Ce programme est distribué SANS AUCUNE GARANTIE"
+
+#: src/cpu-x.c:149
+#, c-format
+msgid "Vendor"
+msgstr "Vendeur"
+
+#: src/cpu-x.c:150
+#, c-format
+msgid "Code Name"
+msgstr "Nom de code"
+
+#: src/cpu-x.c:151
+#, c-format
+msgid "Package"
+msgstr "Socket"
+
+#: src/cpu-x.c:152
+#, c-format
+msgid "Architecture"
+msgstr "Architecture"
+
+#: src/cpu-x.c:153
+#, c-format
+msgid "Specification"
+msgstr "Spécification"
+
+#: src/cpu-x.c:154
+#, c-format
+msgid "Family"
+msgstr "Famille"
+
+#: src/cpu-x.c:155
+#, c-format
+msgid "Ext. Family"
+msgstr "Famille ét."
+
+#: src/cpu-x.c:156 src/cpu-x.c:177
+#, c-format
+msgid "Model"
+msgstr "Modèle"
+
+#: src/cpu-x.c:157
+#, c-format
+msgid "Ext. Model"
+msgstr "Modèle ét."
+
+#: src/cpu-x.c:158
+#, c-format
+msgid "Stepping"
+msgstr "Stepping"
+
+#: src/cpu-x.c:159
+#, c-format
+msgid "Instructions"
+msgstr "Instructions"
+
+#: src/cpu-x.c:161
+#, c-format
+msgid "Vitesse du cœur"
+msgstr ""
+
+#: src/cpu-x.c:162
+#, c-format
+msgid "Multiplier"
+msgstr "Multiplicateur"
+
+#: src/cpu-x.c:163
+#, c-format
+msgid "Bus Speed"
+msgstr "Vitesse du bus"
+
+#: src/cpu-x.c:164
+#, c-format
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: src/cpu-x.c:166
+#, c-format
+msgid "L1 Data"
+msgstr "Données N1"
+
+#: src/cpu-x.c:167
+#, c-format
+msgid "L1 Inst."
+msgstr "Instruc. N1"
+
+#: src/cpu-x.c:168
+#, c-format
+msgid "Level 2"
+msgstr "Niveau 2"
+
+#: src/cpu-x.c:169
+#, c-format
+msgid "Level 3"
+msgstr "Niveau 3"
+
+#: src/cpu-x.c:171
+#, c-format
+msgid "Sockets(s)"
+msgstr "Sockets(s)"
+
+#: src/cpu-x.c:172
+#, c-format
+msgid "Core(s)"
+msgstr "Cœur(s)"
+
+#: src/cpu-x.c:173
+#, c-format
+msgid "Thread(s)"
+msgstr "Thread(s)"
+
+#: src/cpu-x.c:176
+#, c-format
+msgid "Manufacturer"
+msgstr "Fabricant"
+
+#: src/cpu-x.c:178
+#, c-format
+msgid "Revision"
+msgstr "Révision"
+
+#: src/cpu-x.c:180
+#, c-format
+msgid "Brand"
+msgstr "Marque"
+
+#: src/cpu-x.c:181
+#, c-format
+msgid "Version"
+msgstr "Version"
+
+#: src/cpu-x.c:182
+#, c-format
+msgid "Date"
+msgstr "Date"
+
+#: src/cpu-x.c:183
+#, c-format
+msgid "ROM Size"
+msgstr "Taille de la ROM"
+
+#: src/cpu-x.c:186
+#, c-format
+msgid "Kernel"
+msgstr "Noyau"
+
+#: src/cpu-x.c:187
+#, c-format
+msgid "Distribution"
+msgstr "Distribution"
+
+#: src/cpu-x.c:188
+#, c-format
+msgid "Hostname"
+msgstr "Nom d'hôte"
+
+#: src/cpu-x.c:189
+#, c-format
+msgid "Uptime"
+msgstr "Disponibilité"
+
+#: src/cpu-x.c:190
+#, c-format
+msgid "Compiler"
+msgstr "Compilateur"
+
+#: src/cpu-x.c:192
+#, c-format
+msgid "Used"
+msgstr "Utilisée"
+
+#: src/cpu-x.c:193
+#, c-format
+msgid "Buffers"
+msgstr "Tampons"
+
+#: src/cpu-x.c:194
+#, c-format
+msgid "Cached"
+msgstr "Cachée"
+
+#: src/cpu-x.c:195
+#, c-format
+msgid "Free"
+msgstr "Libre"
+
+#: src/cpu-x.c:196
+#, c-format
+msgid "Swap"
+msgstr "Swap"
+
+#: src/cpu-x.c:396
+msgid ""
+"failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'."
+msgstr ""
+"échec à l'ouverture du fichier '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'."
+
+#: src/cpu-x.c:409
+msgid ""
+"failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'."
+msgstr ""
+"échec à l'ouverture du fichier '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'."
+
+#: src/cpu-x.c:432
+msgid "failed to open '/proc/cpuinfo'."
+msgstr "échec à l'ouverture du fichier '/proc/cpuinfo'."
+
+#: src/cpu-x.c:531
+msgid "failed to call 'libcpuid'."
+msgstr "échec lors de l'appel de 'libcpuid'."
+
+#: src/cpu-x.c:554
+msgid "can't open file '/etc/os-release'."
+msgstr "ne peut pas ouvrir le fichier '/etc/os-release'"
+
+#: src/cpu-x.c:568
+#, c-format
+msgid "Unknown distro"
+msgstr "Distribution inconnue"
+
+#: src/cpu-x.c:576
+#, c-format
+msgid "%ld days, %2ld hours, %2ld minutes, %2ld secondes"
+msgstr "%ld jours, %2ld heures, %2ld minutes, %2ld secondes"
