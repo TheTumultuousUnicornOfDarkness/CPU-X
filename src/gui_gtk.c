@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
+#include <libintl.h>
 #include "cpu-x.h"
 #include "includes.h"
 
@@ -123,6 +124,17 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	set_logos(&glab, data); /* Vendor icon */
 	set_labels(&glab, data);
 	set_membar(&glab, data);
+
+	if(getuid()) /* Show warning if not root */
+	{
+		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(glab.mainwindow),
+                                 (GTK_DIALOG_DESTROY_WITH_PARENT, GTK_DIALOG_MODAL),
+                                 GTK_MESSAGE_WARNING,
+                                 GTK_BUTTONS_CLOSE,
+                                 MSGROOT, PRGNAME);
+		gtk_dialog_run(GTK_DIALOG (dialog));
+		gtk_widget_destroy(dialog);
+	}
 
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);

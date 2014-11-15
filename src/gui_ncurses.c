@@ -39,7 +39,8 @@ void start_gui_ncurses(Labels *data)
 
 	if(getuid())
 	{
-		fprintf(stderr, _("WARNING: Root privileges are required to run %s correctly.\nStart in 3 seconds..."), PRGNAME);
+		fprintf(stderr, MSGROOT, PRGNAME);
+		fprintf(stderr, _("Start in 3 seconds...\n"));
 		sleep(3);
 	}
 

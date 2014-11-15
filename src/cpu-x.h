@@ -27,6 +27,7 @@
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
 #define MSGERR(msg, args...) fprintf(stderr, "%s:%s:%i: " msg "\n", PRGNAME, BASEFILE, __LINE__, ##args)
+#define MSGROOT _("\n\t\t\tWARNING:\n%s requires root privileges to run correctly.\n")
 #define _(str) gettext(str)
 
 #define PRGNAME "CPU-X"
