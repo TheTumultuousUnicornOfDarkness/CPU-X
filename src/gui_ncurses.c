@@ -23,6 +23,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <libintl.h>
 #include "cpu-x.h"
 #include "includes.h"
 
@@ -35,6 +36,12 @@ void start_gui_ncurses(Labels *data)
 	WINDOW *tab;
 	pthread_t thrdrefr;
 	NThrd refr;
+
+	if(getuid())
+	{
+		fprintf(stderr, _("WARNING: Root privileges are required to run %s correctly.\nStart in 3 seconds..."), PRGNAME);
+		sleep(3);
+	}
 
 	initscr();
 	cbreak();
