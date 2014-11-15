@@ -205,8 +205,9 @@ void set_logos(GtkLabels *glab, Labels *data)
 	if(gtk_image_get_pixbuf(GTK_IMAGE(glab->logocpu)) == NULL) /* If no icon is set, apply "novendor.png" */
 		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_NOVENDOR);
 #else
-	char *tmp;
-	const gchar **icon_name;
+
+	char tmp[MAXSTR];
+	const gchar *icon_name[MAXSTR];
 	sprintf(tmp, "%s.png", data->tabcpu[VALUE][VENDOR]);
 
 	gtk_window_set_icon_from_file(GTK_WINDOW(glab->mainwindow), get_path("CPU-X.png"), NULL); /* Window icon */
