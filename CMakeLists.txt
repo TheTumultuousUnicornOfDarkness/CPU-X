@@ -120,7 +120,17 @@ if(WITH_GTK)
   )
   install(FILES
 	data/cpu-x.desktop
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/
+	data/cpu-x-root.desktop
+	DESTINATION /usr/share/applications/
+  )
+  install(FILES
+	data/org.pkexec.cpu-x.policy
+	DESTINATION /usr/share/polkit-1/actions
+  )
+  install(FILES
+	cpu-x_polkit
+	DESTINATION /usr/bin
+	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
   )
   install(FILES
 	data/CPU-X.png
