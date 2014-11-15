@@ -41,7 +41,6 @@ int main(int argc, char *argv[]) {
 	Labels data;
 	setlocale(LC_ALL, "");
 	bindtextdomain("cpux", get_path("locale"));
-	free(get_path("locale"));
 	textdomain("cpux");
 
 	labels_setempty(&data);
@@ -636,9 +635,14 @@ char *get_path(char *file)
 {
 	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
 	See this file for more informations */
-	char *path_end;
-	char *buffer = malloc(PATH_MAX);
+	char *path_end;	
+	static char *buffer;
 	size_t len = PATH_MAX;
+
+	if(buffer == NULL)
+		buffer = malloc(PATH_MAX);
+	else
+		memset(buffer, 0, PATH_MAX);
 
 	if(readlink ("/proc/self/exe", buffer, len) <= 0)
 		return NULL;
