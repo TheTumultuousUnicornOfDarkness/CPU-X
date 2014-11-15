@@ -169,16 +169,18 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 {
-	int i;
+	int i, middle;
 	WINDOW *local_win;
 
+	middle = (strlen(data->tabcpu[VALUE][MULTIPLIER]) == 0) ? 15 + strlen(data->tabcpu[VALUE][CORESPEED]) + 4 :
+								  15 + strlen(data->tabcpu[VALUE][MULTIPLIER]) + 4;
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
 	/* Frames in CPU tab */
 	frame(local_win, 1, 1, 11, width - 1, data->objects[FRAMPROCESSOR]);
-	frame(local_win, 11, 1, 17, startx + 14, data->objects[FRAMCLOCKS]);
-	frame(local_win, 11, startx + 14, 17, width - 1, data->objects[FRAMCACHE]);
+	frame(local_win, 11, 1, 17, middle, data->objects[FRAMCLOCKS]);
+	frame(local_win, 11, middle, 17, width - 1, data->objects[FRAMCACHE]);
 	frame(local_win, 17, 1, 20, width - 1, "");
 
 	/* Processor frame */
@@ -196,7 +198,7 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 
 	/* Cache frame */
 	for(i = LEVEL1D; i < SOCKETS; i++)
-		mvwprintw(local_win, i - 3,  34, "%8s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i - 3, middle + 1, "%10s: %20s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
 
 	/* Last frame */
 	mvwprintw(local_win, 18, 4, "%s: %2s", data->tabcpu[NAME][SOCKETS], data->tabcpu[VALUE][SOCKETS]);
