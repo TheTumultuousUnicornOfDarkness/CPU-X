@@ -1,14 +1,17 @@
 #ifndef _LIBDMI_H_
 #define _LIBDMI_H_
 
-#define L 10
-#define C 30
+#include "../cpu-x.h"
 
-#define PROCESSOR_SOCKET	7
-#define PROCESSOR_CLOCK		8
+#define PROC_PACKAGE 0
+#define PROC_BUS 1
 
 extern int verbose;
+extern char dmicpu[2][MAXSTR];
+extern char dmimb[LASTMB][MAXSTR];
+extern char dmiram[LASTRAM][MAXSTR];
 
-int libdmi(char dmiexport[L][C]);
+int maindmi(void);
+
 
 #endif
