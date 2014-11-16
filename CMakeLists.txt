@@ -52,7 +52,7 @@ endif()
 
 # NCurses libs
 if(WITH_NCURSES)
-  pkg_check_modules(NCURSES REQUIRED ncurses)
+  pkg_check_modules(NCURSES ncurses)
   include_directories(${NCURSES_INCLUDE_DIRS})
   link_directories(${NCURSES_LIBRARY_DIRS})
   add_definitions(-DNCURSES)
@@ -69,7 +69,7 @@ if(WITH_LIBCPUID)
   if(LIBCPUID_FOUND)
     include_directories(${LIBCPUID_INCLUDE_DIRS})
     link_directories(${LIBCPUID_LIBRARY_DIRS})
-    add_definitions(-DLIBCPUID)
+    add_definitions(${LIBCPUIDCFLAGS_OTHER} -DLIBCPUID)
   endif()
 endif(WITH_LIBCPUID)
 
@@ -94,6 +94,12 @@ if(EMBED)
   add_definitions(-DEMBED)
 endif()
 
+pkg_check_modules(LIBPROCPS libprocps)
+if(LIBPROCPS_FOUND)
+  include_directories(${LIBPROCPS_INCLUDE_DIRS})
+  link_directories(${LIBPROCPS_LIBRARY_DIRS})
+endif()
+
 # Main executable
 add_executable(cpu-x
 	src/cpu-x.c
@@ -101,7 +107,7 @@ add_executable(cpu-x
 	src/options.c
 )
 
-target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} -lprocps)
+target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} ${LIBPROCPS_LIBRARIES})
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
