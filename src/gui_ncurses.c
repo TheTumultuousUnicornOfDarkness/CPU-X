@@ -284,24 +284,27 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 {
+	char *part2 = strstr(data->objects[LABDESCRIPTION], "\n");
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
 	/* Frames in About tab */
-	frame(local_win, 1, 1, 16, width - 1, "About CPU-X");
+	frame(local_win, 1, 1, 7, width - 1, "");
+	frame(local_win, 7, 1, 12, width - 1, data->objects[FRAMABOUT]);
+	frame(local_win, 12, 1, 18, width - 1, data->objects[FRAMLICENSE]);
 
 	/* About CPU-X frame */
-	mvwaddstr(local_win, 3, 2, "\tBased on GTK3+ library");
-	mvwprintw(local_win, 4, 2, "\tCompiled with NCusrses %i.%i", NCURSES_VERSION_MAJOR, NCURSES_VERSION_MINOR);
-	mvwprintw(local_win, 6, 2, "\t%s", data->objects[LABVERSION]);
-	mvwprintw(local_win, 7, 2, "\t%s", data->objects[LABAUTHOR]);
-	mvwaddstr(local_win, 8, 2, "\tGitHub : https://github.com/X0rg");
-	mvwaddstr(local_win, 10, 2, "\tCopyright © 2014 Xorg");
-	mvwaddstr(local_win, 11, 2, "\tThis program comes with ABSOLUTELY NO WARRANTY");
-	mvwaddstr(local_win, 12, 2, "\tSee the following license");
-	mvwaddstr(local_win, 13, 2, "\tGPLv3");
+	strcpy(part2, "\0");
+	mvwprintw(local_win, 3, 4, "%s", data->objects[LABDESCRIPTION]);
+	mvwprintw(local_win, 4, 4, "%s", part2 + 1);
+	mvwprintw(local_win, 8, 20, "%s", data->objects[LABVERSION]);
+	mvwprintw(local_win, 9, 20, "%s", data->objects[LABAUTHOR]);
+	mvwaddstr(local_win, 10, 20, "GitHub : https://github.com/X0rg");
+	mvwaddstr(local_win, 13, 20, "Copyright © 2014 Xorg");
+	mvwprintw(local_win, 15, 4, "%s", data->objects[LABLICENSE]);
+	mvwaddstr(local_win, 16, 20, "\tGPLv3");
 
 	wrefresh(local_win);
 
