@@ -42,6 +42,9 @@ typedef struct
 	/* Tab Mainboard */
 	GtkWidget *gtktabmb[2][LASTMB];
 
+	/* Tab RAM */
+	GtkWidget *gtktabram[2][LASTRAM];
+
 	/* Tab System */
 	GtkWidget *barused;
 	GtkWidget *barbuff;

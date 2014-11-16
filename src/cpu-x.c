@@ -109,6 +109,13 @@ void labels_setempty(Labels *data)
 		memset(data->tabmb[VALUE][i], 0, MAXSTR);
 	}
 
+	/* Tab RAM */
+	for(i = BANK0_0; i < LASTRAM; i++)
+	{
+		memset(data->tabram[NAME][i], 0, MAXSTR);
+		memset(data->tabram[VALUE][i], 0, MAXSTR);
+	}
+
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
 	{
@@ -123,6 +130,7 @@ void labels_setname(Labels *data)
 	/* Various objects*/
 	snprintf(data->objects[TABCPU],			MAXSTR, _("CPU"));
 	snprintf(data->objects[TABMB],			MAXSTR, _("Mainboard"));
+	snprintf(data->objects[TABRAM],			MAXSTR, _("RAM"));
 	snprintf(data->objects[TABSYS],			MAXSTR, _("System"));
 	snprintf(data->objects[TABABOUT],		MAXSTR, _("About"));
 	snprintf(data->objects[FRAMPROCESSOR],		MAXSTR, _("Processor"));
@@ -130,6 +138,7 @@ void labels_setname(Labels *data)
 	snprintf(data->objects[FRAMCACHE],		MAXSTR, _("Cache"));
 	snprintf(data->objects[FRAMMOBO],		MAXSTR, _("Motherboard"));
 	snprintf(data->objects[FRAMBIOS],		MAXSTR, _("BIOS"));
+	snprintf(data->objects[FRAMBANKS],		MAXSTR, _("Banks"));
 	snprintf(data->objects[FRAMOS],			MAXSTR, _("Operating System"));
 	snprintf(data->objects[FRAMMEMORY],		MAXSTR, _("Memory"));
 	snprintf(data->objects[FRAMABOUT],		MAXSTR, _("About"));
@@ -179,6 +188,24 @@ void labels_setname(Labels *data)
 	snprintf(data->tabmb[NAME][VERSION],		MAXSTR, _("Version"));
 	snprintf(data->tabmb[NAME][DATE],		MAXSTR, _("Date"));
 	snprintf(data->tabmb[NAME][ROMSIZE],		MAXSTR, _("ROM Size"));
+
+	/* Tab RAM */
+	snprintf(data->tabram[NAME][BANK0_0],		MAXSTR, _("Bank 0 Ref."));
+	snprintf(data->tabram[NAME][BANK0_1],		MAXSTR, _("Bank 0 Type"));
+	snprintf(data->tabram[NAME][BANK1_0],		MAXSTR, _("Bank 1 Ref."));
+	snprintf(data->tabram[NAME][BANK1_1],		MAXSTR, _("Bank 1 Type"));
+	snprintf(data->tabram[NAME][BANK2_0],		MAXSTR, _("Bank 2 Ref."));
+	snprintf(data->tabram[NAME][BANK2_1],		MAXSTR, _("Bank 2 Type"));
+	snprintf(data->tabram[NAME][BANK3_0],		MAXSTR, _("Bank 3 Ref."));
+	snprintf(data->tabram[NAME][BANK3_1],		MAXSTR, _("Bank 3 Type"));
+	snprintf(data->tabram[NAME][BANK4_0],		MAXSTR, _("Bank 4 Ref."));
+	snprintf(data->tabram[NAME][BANK4_1],		MAXSTR, _("Bank 4 Type"));
+	snprintf(data->tabram[NAME][BANK5_0],		MAXSTR, _("Bank 5 Ref."));
+	snprintf(data->tabram[NAME][BANK5_1],		MAXSTR, _("Bank 5 Type"));
+	snprintf(data->tabram[NAME][BANK6_0],		MAXSTR, _("Bank 6 Ref."));
+	snprintf(data->tabram[NAME][BANK6_1],		MAXSTR, _("Bank 6 Type"));
+	snprintf(data->tabram[NAME][BANK7_0],		MAXSTR, _("Bank 7 Ref."));
+	snprintf(data->tabram[NAME][BANK7_1],		MAXSTR, _("Bank 7 Type"));
 
 	/* Tab System */
 	snprintf(data->tabsys[NAME][KERNEL],		MAXSTR, _("Kernel"));
@@ -273,17 +300,22 @@ int libcpuid(Labels *data)
 int libdmidecode(Labels *data)
 {
 	int i, err = 0;
-	char datanr[L][C] = { { '\0' } };
-
-	err += libdmi(datanr);
+	char datanr[LASTRAM][MAXSTR] = { { '\0' } };
 
 	/* Tab CPU */
-	snprintf(data->tabcpu[VALUE][PACKAGE],		MAXSTR, "%s", datanr[PROCESSOR_SOCKET]);
-	snprintf(data->tabcpu[VALUE][BUSSPEED],		MAXSTR, "%s", datanr[PROCESSOR_CLOCK]);
+	err += libdmi(datanr, 'c');
+	strncpy(data->tabcpu[VALUE][PACKAGE],  datanr[PROC_PACKAGE], MAXSTR);
+	strncpy(data->tabcpu[VALUE][BUSSPEED], datanr[PROC_BUS], MAXSTR);
 
 	/* Tab Mainboard */
+	err += libdmi(datanr, 'm');
 	for(i = MANUFACTURER; i < LASTMB; i++)
-		snprintf(data->tabmb[VALUE][i],	MAXSTR, "%s", datanr[i]);
+		strncpy(data->tabmb[VALUE][i], datanr[i], MAXSTR);
+
+	/* Tab RAM */
+	err += libdmi(datanr, 'r');
+	for(i = BANK0_0; i < LASTRAM; i++)
+		strncpy(data->tabram[VALUE][i], datanr[i], MAXSTR);
 
 	return err;
 }
@@ -617,6 +649,17 @@ void dump_data(Labels *data)
 		if(i == BRAND)
 			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
 		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+	}
+
+	/* Tab RAM */
+	printf("\n\n ***** %s *****\n", data->objects[TABRAM]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
+	for(i = BANK0_0; i < LASTRAM; i++)
+	{
+		if(i % 2 == 0 && data->tabram[VALUE][i][0] == '\0') /* Don't print non-existent bank */
+			i++;
+		else
+			printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
 	}
 
 	/* Tab System */

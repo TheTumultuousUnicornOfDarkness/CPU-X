@@ -48,8 +48,8 @@
 /* Objects' ID for traduction */
 static const char *trad[LASTOBJ] =
 {
-	"cpulabel", "mainboardlabel", "systemlabel", "aboutlabel",
-	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
+	"cpulabel", "mainboardlabel", "ramlabel", "systemlabel", "aboutlabel",
+	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "banks_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_lablicense"
 };
 
@@ -76,6 +76,17 @@ static const char *objectmb[2][LASTMB] =
 	},
 	{ "motherboard_valmanu", "motherboard_valmod", "motherboard_valrev",
 		"bios_valbrand", "bios_valvers", "bios_valdate", "bios_valrom"
+	}
+};
+
+/* Objects' ID in tab RAM */
+static const char *objectram[2][LASTRAM] =
+{
+	{ "banks_labbank0_0", "banks_labbank0_1", "banks_labbank1_0", "banks_labbank1_1", "banks_labbank2_0", "banks_labbank2_1", "banks_labbank3_0", "banks_labbank3_1",
+		"banks_labbank4_0", "banks_labbank4_1", "banks_labbank5_0", "banks_labbank5_1", "banks_labbank6_0", "banks_labbank6_1", "banks_labbank7_0", "banks_labbank7_1"
+	},
+	{ "banks_valbank0_0", "banks_valbank0_1", "banks_valbank1_0", "banks_valbank1_1", "banks_valbank2_0", "banks_valbank2_1", "banks_valbank3_0", "banks_valbank3_1",
+		"banks_valbank4_0", "banks_valbank4_1", "banks_valbank5_0", "banks_valbank5_1", "banks_valbank6_0", "banks_valbank6_1", "banks_valbank7_0", "banks_valbank7_1"
 	}
 };
 
@@ -257,6 +268,13 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktabmb[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[VALUE][i]));
 	}
 
+	/* Tab RAM */
+	for(i = BANK0_0; i < LASTRAM; i++)
+	{
+		glab->gtktabram[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectram[NAME][i]));
+		glab->gtktabram[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectram[VALUE][i]));
+	}
+
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
 	{
@@ -292,6 +310,13 @@ void set_labels(GtkLabels *glab, Labels *data)
 	{
 		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[NAME][i]), data->tabmb[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[VALUE][i]), data->tabmb[VALUE][i]);
+	}
+
+	/* Tab RAM */
+	for(i = BANK0_0; i < LASTRAM; i++)
+	{
+		gtk_label_set_text(GTK_LABEL(glab->gtktabram[NAME][i]), data->tabram[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktabram[VALUE][i]), data->tabram[VALUE][i]);
 	}
 
 	/* Tab System */

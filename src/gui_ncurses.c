@@ -78,7 +78,7 @@ void start_gui_ncurses(Labels *data)
 				}
 				break;
 			case KEY_RIGHT:
-				if(current_tab < 3)
+				if(current_tab < 4)
 				{
 					current_tab++;
 					pthread_cancel(thrdrefr);
@@ -91,7 +91,7 @@ void start_gui_ncurses(Labels *data)
 
 		loop = current_tab;
 
-		if(current_tab == 0 || current_tab == 2)
+		if(current_tab == 0 || current_tab == 3)
 		{
 			refr.win = tab;
 			pthread_create(&thrdrefr, NULL, nrefresh, &refr);
@@ -120,7 +120,7 @@ void *nrefresh(void *ptr)
 	}
 
 	/* Refresh tab System */
-	while(loop == 2)
+	while(loop == 3)
 	{
 		tabsystem(refr->data);
 		mvwprintw(refr->win, 5,   2, "%13s: %s", refr->data->tabsys[NAME][UPTIME],	refr->data->tabsys[VALUE][UPTIME]);
@@ -160,8 +160,10 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 		case 1:
 			return tab_mainboard(height - 4, width - 2, starty + 2, startx + 1, data);
 		case 2:
-			return tab_system(height - 4, width - 2, starty + 2, startx + 1, data);
+			return tab_ram(height - 4, width - 2, starty + 2, startx + 1, data);
 		case 3:
+			return tab_system(height - 4, width - 2, starty + 2, startx + 1, data);
+		case 4:
 			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data);
 		default:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data); /* If problem */
@@ -230,6 +232,26 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *dat
 	/* BIOS frame */
 	for(i = BRAND; i < LASTMB; i++)
 		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+
+	wrefresh(local_win);
+
+	return local_win;
+}
+
+WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
+{
+	int i;
+	WINDOW *local_win;
+
+	local_win = newwin(height, width, starty, startx);
+	box(local_win, 0 , 0);
+
+	/* Frames in RAM tab */
+	frame(local_win, 1, 1, 19, width - 1, data->objects[FRAMBANKS]);
+
+	/* Banks frame */
+	for(i = BANK0_0; i < LASTRAM; i++)
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabram[NAME][i], data->tabram[VALUE][i]);
 
 	wrefresh(local_win);
 
