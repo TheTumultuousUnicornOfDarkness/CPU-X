@@ -87,6 +87,17 @@ if(WITH_LIBDMI)
   set(LIBDMI_LIBRARY "dmi-cpux")
 endif()
 
+# Libprocps lib
+if(WITH_LIBPROCPS)
+  pkg_check_modules(LIBPROCPS libprocps)
+  if(LIBPROCPS_FOUND)
+    include_directories(${LIBPROCPS_INCLUDE_DIRS})
+    link_directories(${LIBPROCPS_LIBRARY_DIRS})
+    add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
+  endif()
+endif()
+
+# Embed compilation
 if(EMBED)
   message("${BoldBlue}CPU-X will be compiled as portable binary.${ColourReset}")
   if(WITH_LIBCPUID)
@@ -98,15 +109,6 @@ if(EMBED)
   )
   endif()
   add_definitions(-DEMBED)
-endif()
-
-if(WITH_LIBPROCS)
-  pkg_check_modules(LIBPROCPS libprocps)
-  if(LIBPROCPS_FOUND)
-    include_directories(${LIBPROCPS_INCLUDE_DIRS})
-    link_directories(${LIBPROCPS_LIBRARY_DIRS})
-    add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
-  endif()
 endif()
 
 # Main executable

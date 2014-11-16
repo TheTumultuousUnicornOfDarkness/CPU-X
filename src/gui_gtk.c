@@ -330,7 +330,7 @@ void set_labels(GtkLabels *glab, Labels *data)
 /* Set Memory bar in tab System */
 void set_membar(GtkLabels *glab, Labels *data)
 {
-#if HAS_LIBPROCS
+#if HAS_LIBPROCPS
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barused), (double) strtol(data->tabsys[VALUE][USED], NULL, 10)
 						/ strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10));
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barbuff), (double) strtol(data->tabsys[VALUE][BUFFERS], NULL, 10)
