@@ -14,6 +14,7 @@ option(WITH_GTK "Add support for GUI in GTK3+" ON)
 option(WITH_NCURSES "Add support for GUI in NCurses" ON)
 option(WITH_LIBCPUID "Allow use of library Libcpuid" ON)
 option(WITH_LIBDMI "Allow use of library Libdmi" ON)
+option(WITH_LIBPROCPS "Allow use of library Libprocps" ON)
 
 
 find_package(PkgConfig REQUIRED)
