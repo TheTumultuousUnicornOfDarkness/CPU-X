@@ -4,6 +4,9 @@ project(CPU-X)
 
 set(EXECUTABLE_OUTPUT_PATH bin/)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY lib/)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall")
 
@@ -53,14 +56,16 @@ endif()
 # NCurses libs
 if(WITH_NCURSES)
   pkg_check_modules(NCURSES ncurses)
-  include_directories(${NCURSES_INCLUDE_DIRS})
-  link_directories(${NCURSES_LIBRARY_DIRS})
-  add_definitions(-DNCURSES)
-  add_library(gui_ncurses
+  if(NCURSES_FOUND)
+    include_directories(${NCURSES_INCLUDE_DIRS})
+    link_directories(${NCURSES_LIBRARY_DIRS})
+    add_definitions(-DNCURSES)
+    add_library(gui_ncurses
 		src/gui_ncurses.c
 		src/gui_ncurses.h
   )
   set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
+  endif()
 endif()
 
 # Libcpuid lib
@@ -107,7 +112,7 @@ add_executable(cpu-x
 	src/options.c
 )
 
-target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} ${LIBPROCPS_LIBRARIES})
+target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} ${LIBPROCPS_LIBRARIES} -lintl)
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
