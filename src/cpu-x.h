@@ -31,7 +31,7 @@
 #define _(str) gettext(str)
 
 #define PRGNAME "CPU-X"
-#define PRGVER  "1.2.2"
+#define PRGVER  "2.0.0"
 #define PRGAUTH "X0rg"
 #define EXIT_FNO 2	/* Exit when File Not Open */
 #define SYS_DMI "/sys/devices/virtual/dmi/id"

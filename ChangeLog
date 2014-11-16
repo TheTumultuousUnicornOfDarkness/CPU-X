@@ -1,3 +1,20 @@
+v2.0.0 (11.16.2014):
+	* Big changes in core
+	* Full rewrite GTK GUI
+	* Minor changes in NCurses GUI
+	* Add argument --dump (no start GUI)
+	* Add fallback mode for Libdmi (but it not replaces Libdmi)
+	* Add new tab System
+	* Add new tab RAM
+	* Add support for translations (only French available)
+	* Add CPU-X launchers (depends of GTK); cpu-x.desktop and cpu-x-root.desktop
+	* Add possibility to run CPU-X as root with pkexec
+	* Add more CPU vendor logos
+	* Fixes:
+		** Segfault when compiling with target Release
+		** Memory leak (with function get_path)
+
+
 v1.2.2 (11.05.2014):
 	* Add argument --verbose (set Dmidecode verbose)
 	* Print nothing on impossible values (Caches section)
