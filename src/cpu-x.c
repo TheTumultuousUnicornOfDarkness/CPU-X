@@ -567,6 +567,7 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 void tabsystem(Labels *data)
 {
 	int i = -1;
+	static int err = 0;
 	long duptime, huptime, muptime, suptime;
 	char tmp[MAXSTR], *distro = NULL;
 	const char *command[2] = { "gcc --version", "clang --version" };
@@ -575,14 +576,14 @@ void tabsystem(Labels *data)
 
 	osrel = fopen("/etc/os-release", "r");
 	uname(&name);
-	meminfo();
 
 	snprintf(data->tabsys[VALUE][KERNEL],		MAXSTR, "%s %s", name.sysname, name.release);
 	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
 
-	if(osrel == NULL) /* Label Distribution */
+	if(osrel == NULL && !err) /* Label Distribution */
 	{
 		MSGERR("can't open file '/etc/os-release'.");
+		err++;
 	}
 	else
 	{
@@ -599,12 +600,6 @@ void tabsystem(Labels *data)
 		fclose(osrel);
 	}
 
-	suptime = uptime(NULL, NULL); /* Label Uptime */
-	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
-	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
-	muptime = suptime / 60; suptime -= muptime * 60;
-	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld secondes"), duptime, huptime, muptime, suptime);
-
 	while(comp == NULL && i++ < 2) /* Label Compiler */
 		comp = popen(command[i], "r");
 	if(comp != NULL)
@@ -614,11 +609,21 @@ void tabsystem(Labels *data)
 		pclose(comp);
 	}
 
+#ifdef __linux__
+	meminfo(); /* Need procps */
+
+	suptime = uptime(NULL, NULL); /* Label Uptime */
+	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
+	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
+	muptime = suptime / 60; suptime -= muptime * 60;
+	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld secondes"), duptime, huptime, muptime, suptime);
+
 	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", (kb_main_total - (kb_main_buffers + kb_main_cached + kb_main_free)) / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / 1000, kb_swap_total / 1000);
+#endif /* __linux__ */
 }
 
 /* Dump all datas in stdout */
