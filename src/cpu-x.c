@@ -27,7 +27,6 @@
 #include <unistd.h>
 #include <limits.h>
 #include <sys/utsname.h>
-#include <proc/sysinfo.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -609,7 +608,7 @@ void tabsystem(Labels *data)
 		pclose(comp);
 	}
 
-#ifdef __linux__
+#if defined (__linux__) && HAS_LIBPROCPS
 	meminfo(); /* Need procps */
 
 	suptime = uptime(NULL, NULL); /* Label Uptime */
@@ -623,7 +622,7 @@ void tabsystem(Labels *data)
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / 1000, kb_swap_total / 1000);
-#endif /* __linux__ */
+#endif /* (__linux__) && HAS_LIBPROCPS */
 }
 
 /* Dump all datas in stdout */

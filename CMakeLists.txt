@@ -74,7 +74,7 @@ if(WITH_LIBCPUID)
   if(LIBCPUID_FOUND)
     include_directories(${LIBCPUID_INCLUDE_DIRS})
     link_directories(${LIBCPUID_LIBRARY_DIRS})
-    add_definitions(${LIBCPUIDCFLAGS_OTHER} -DLIBCPUID)
+    add_definitions(${LIBCPUID_CFLAGS_OTHER} -DLIBCPUID)
   endif()
 endif(WITH_LIBCPUID)
 
@@ -99,10 +99,13 @@ if(EMBED)
   add_definitions(-DEMBED)
 endif()
 
-pkg_check_modules(LIBPROCPS libprocps)
-if(LIBPROCPS_FOUND)
-  include_directories(${LIBPROCPS_INCLUDE_DIRS})
-  link_directories(${LIBPROCPS_LIBRARY_DIRS})
+if(WITH_LIBPROCS)
+  pkg_check_modules(LIBPROCPS libprocps)
+  if(LIBPROCPS_FOUND)
+    include_directories(${LIBPROCPS_INCLUDE_DIRS})
+    link_directories(${LIBPROCPS_LIBRARY_DIRS})
+    add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
+  endif()
 endif()
 
 # Main executable
@@ -112,7 +115,7 @@ add_executable(cpu-x
 	src/options.c
 )
 
-target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} ${LIBPROCPS_LIBRARIES} -lintl)
+target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} ${LIBPROCPS_LIBRARIES})
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

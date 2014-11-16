@@ -52,5 +52,12 @@
 # define HAS_LIBDMI 0
 #endif
 
+#ifdef LIBPROCPS
+# define HAS_LIBPROCPS 1
+# include <proc/sysinfo.h>
+#else
+# define HAS_LIBPROCPS 0
+#endif
+
 
 #endif /*_INCLUDES_H_*/
