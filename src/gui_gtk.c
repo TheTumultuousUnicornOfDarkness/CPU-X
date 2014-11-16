@@ -139,7 +139,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	if(getuid()) /* Show warning if not root */
 	{
 		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(glab.mainwindow),
-                                 (GTK_DIALOG_DESTROY_WITH_PARENT, GTK_DIALOG_MODAL),
+                                 (GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL),
                                  GTK_MESSAGE_WARNING,
                                  GTK_BUTTONS_CLOSE,
                                  MSGROOT, PRGNAME);

@@ -12,6 +12,7 @@ extern char dmimb[LASTMB][MAXSTR];
 extern char dmiram[LASTRAM][MAXSTR];
 
 int maindmi(void);
+int libdmi(char data[LASTRAM][MAXSTR], char c);
 
 
 #endif
