@@ -1,6 +1,6 @@
 # CPU-X
 
-CPU-X is a Free software that gathers information on CPU & motherboard.  
+CPU-X is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is similar to CPU-Z (only available for Microsoft Windows, see http://www.cpuid.com/softwares/cpu-z.html for more informations), but CPU-X is designed for GNU/Linux.  
 It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X11 or Wayland.
 
