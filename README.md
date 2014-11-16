@@ -11,13 +11,17 @@ It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X1
     * GUI
     * http://www.gtk.org/
 
+* Ncurses
+    * GUI in a terminal
+    * http://www.gnu.org/software/ncurses/
+
 * Libcpuid
     * Extract CPU features
     * http://libcpuid.sourceforge.net/
 
-* Dmidecode
-    * Usefull informations on hardware ; a library is provided
-    * http://www.nongnu.org/dmidecode/
+* Procps-ng
+    * Usefull informations on system
+    * http://sourceforge.net/projects/procps-ng/
 
 
 ## Build
@@ -53,6 +57,7 @@ Note: portable binary will be in directory "ebuild/bin".
 
 Start program with **root privileges** allow to use **Dmidecode** (Libdmi).  
 Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.  
+Two application files are installed if GTK is enabled: one use pkexec and allow you to run CPU-X as root.  
 If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell `cpu-x --no-gui`.  
 Use `cpu-x --help` for other commands and help.
 
