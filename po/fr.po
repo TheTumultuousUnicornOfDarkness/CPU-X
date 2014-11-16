@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2014-11-13 17:23+0100\n"
-"PO-Revision-Date: 2014-11-13 17:23+0100\n"
+"POT-Creation-Date: 2014-11-16 16:46+0100\n"
+"PO-Revision-Date: 2014-11-16 16:46+0100\n"
 "Last-Translator: Xorg\n"
 "Language: French\n"
 "MIME-Version: 1.0\n"
@@ -119,10 +119,8 @@ msgstr "Auteur : %s"
 
 #: src/cpu-x.c:144
 #, c-format
-msgid ""
-"This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
-"Ce programme est distribué SANS AUCUNE GARANTIE"
+msgid "This program comes with ABSOLUTELY NO WARRANTY"
+msgstr "Ce programme est distribué SANS AUCUNE GARANTIE"
 
 #: src/cpu-x.c:149
 #, c-format
@@ -181,8 +179,8 @@ msgstr "Instructions"
 
 #: src/cpu-x.c:161
 #, c-format
-msgid "Vitesse du cœur"
-msgstr ""
+msgid "Core Speed"
+msgstr "Vitesse du cœur"
 
 #: src/cpu-x.c:162
 #, c-format
@@ -207,7 +205,7 @@ msgstr "Données N1"
 #: src/cpu-x.c:167
 #, c-format
 msgid "L1 Inst."
-msgstr "Instruc. N1"
+msgstr "Instr. N1"
 
 #: src/cpu-x.c:168
 #, c-format
@@ -318,13 +316,15 @@ msgstr "Swap"
 msgid ""
 "failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'."
 msgstr ""
-"échec à l'ouverture du fichier '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'."
+"échec à l'ouverture du fichier '/sys/devices/system/cpu/cpu0/cpufreq/"
+"cpuinfo_min_freq'."
 
 #: src/cpu-x.c:409
 msgid ""
 "failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'."
 msgstr ""
-"échec à l'ouverture du fichier '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'."
+"échec à l'ouverture du fichier '/sys/devices/system/cpu/cpu0/cpufreq/"
+"cpuinfo_max_freq'."
 
 #: src/cpu-x.c:432
 msgid "failed to open '/proc/cpuinfo'."
@@ -347,3 +347,93 @@ msgstr "Distribution inconnue"
 #, c-format
 msgid "%ld days, %2ld hours, %2ld minutes, %2ld secondes"
 msgstr "%ld jours, %2ld heures, %2ld minutes, %2ld secondes"
+
+#: src/cpu-x.c:133
+#, c-format
+msgid "RAM"
+msgstr "RAM"
+
+#: src/cpu-x.c:141
+#, c-format
+msgid "Banks"
+msgstr "Bancs"
+
+#: src/cpu-x.c:193
+#, c-format
+msgid "Bank 0 Ref."
+msgstr "Banc 0 Réf."
+
+#: src/cpu-x.c:194
+#, c-format
+msgid "Bank 0 Type"
+msgstr "Banc 0 Type"
+
+#: src/cpu-x.c:195
+#, c-format
+msgid "Bank 1 Ref."
+msgstr "Banc 1 Réf."
+
+#: src/cpu-x.c:196
+#, c-format
+msgid "Bank 1 Type"
+msgstr "Banc 1 Type"
+
+#: src/cpu-x.c:197
+#, c-format
+msgid "Bank 2 Ref."
+msgstr "Banc 2 Réf."
+
+#: src/cpu-x.c:198
+#, c-format
+msgid "Bank 2 Type"
+msgstr "Banc 2 Type"
+
+#: src/cpu-x.c:199
+#, c-format
+msgid "Bank 3 Ref."
+msgstr "Banc 3 Réf."
+
+#: src/cpu-x.c:200
+#, c-format
+msgid "Bank 3 Type"
+msgstr "Banc 3 Type"
+
+#: src/cpu-x.c:201
+#, c-format
+msgid "Bank 4 Ref."
+msgstr "Banc 4 Réf."
+
+#: src/cpu-x.c:202
+#, c-format
+msgid "Bank 4 Type"
+msgstr "Banc 4 Type"
+
+#: src/cpu-x.c:203
+#, c-format
+msgid "Bank 5 Ref."
+msgstr "Banc 5 Réf."
+
+#: src/cpu-x.c:204
+#, c-format
+msgid "Bank 5 Type"
+msgstr "Banc 5 Type"
+
+#: src/cpu-x.c:205
+#, c-format
+msgid "Bank 6 Ref."
+msgstr "Banc 6 Réf."
+
+#: src/cpu-x.c:206
+#, c-format
+msgid "Bank 6 Type"
+msgstr "Banc 6 Type"
+
+#: src/cpu-x.c:207
+#, c-format
+msgid "Bank 7 Ref."
+msgstr "Banc 7 Réf."
+
+#: src/cpu-x.c:208
+#, c-format
+msgid "Bank 7 Type"
+msgstr "Banc 7 Type"
