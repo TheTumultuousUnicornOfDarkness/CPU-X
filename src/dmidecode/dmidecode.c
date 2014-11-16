@@ -66,7 +66,6 @@
 #include "util.h"
 #include "dmidecode.h"
 #include "dmiopt.h"
-#include "dmioem.h"
 
 #define out_of_spec "<OUT OF SPEC>"
 static const char *bad_index = "<BAD INDEX>";
@@ -453,8 +452,8 @@ static void dmi_table(u32 base, u16 len, u16 num, u16 ver, const char *devmem)
 				h.handle, h.type, h.length);
 
 		/* assign vendor for vendor-specific decodes later */
-		if (h.type == 0 && h.length >= 5)
-			dmi_set_vendor(dmi_string(&h, data[0x04]));
+		/*if (h.type == 0 && h.length >= 5)
+			dmi_set_vendor(dmi_string(&h, data[0x04]));*/
 
 		/* look for the next handle */
 		next = data + h.length;
