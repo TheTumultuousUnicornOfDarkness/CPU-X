@@ -289,9 +289,24 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 {
-	char *part2 = strstr(data->objects[LABDESCRIPTION], "\n");
+	int i = 0, j = 0;
+	static char part1[MAXSTR], part2[MAXSTR];
 	WINDOW *local_win;
 
+	if(strlen(part2) == 0)
+	{
+		while(data->objects[LABDESCRIPTION][i] != '\n')
+			i++;
+
+		while(data->objects[LABDESCRIPTION][i] != '\0')
+		{
+			i++;
+			part2[j] = data->objects[LABDESCRIPTION][i];
+			data->objects[LABDESCRIPTION][i - 1] = '\0';
+			j++;
+		}
+		part2[j] = '\0';
+	}
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
@@ -301,9 +316,9 @@ WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 	frame(local_win, 12, 1, 18, width - 1, data->objects[FRAMLICENSE]);
 
 	/* About CPU-X frame */
-	strcpy(part2, "\0");
+	//strcpy(part2, "\0");
 	mvwprintw(local_win, 3, 4, "%s", data->objects[LABDESCRIPTION]);
-	mvwprintw(local_win, 4, 4, "%s", part2 + 1);
+	mvwprintw(local_win, 4, 4, "%s", part2);
 	mvwprintw(local_win, 8, 20, "%s", data->objects[LABVERSION]);
 	mvwprintw(local_win, 9, 20, "%s", data->objects[LABAUTHOR]);
 	mvwaddstr(local_win, 10, 20, "GitHub : https://github.com/X0rg");
