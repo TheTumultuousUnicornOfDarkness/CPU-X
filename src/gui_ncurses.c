@@ -75,6 +75,7 @@ void start_gui_ncurses(Labels *data)
 					destroy_win(tab);
 					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
+					test_refresh(current_tab, &refr, tab, &thrdrefr);
 				}
 				break;
 			case KEY_RIGHT:
@@ -85,17 +86,12 @@ void start_gui_ncurses(Labels *data)
 					destroy_win(tab);
 					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
+					test_refresh(current_tab, &refr, tab, &thrdrefr);
 				}
 				break;
 		}
 
 		loop = current_tab;
-
-		if(current_tab == 0 || current_tab == 3)
-		{
-			refr.win = tab;
-			pthread_create(&thrdrefr, NULL, nrefresh, &refr);
-		}
 	}
 
 	endwin();
@@ -134,6 +130,15 @@ void *nrefresh(void *ptr)
 	}
 
 	return NULL;
+}
+
+void test_refresh(int curtab, NThrd *refr, WINDOW *tab, pthread_t *thrdrefr)
+{
+	if(curtab == 0 || curtab == 3)
+	{
+		refr->win = tab;
+		pthread_create(thrdrefr, NULL, nrefresh, refr);
+	}
 }
 
 void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
