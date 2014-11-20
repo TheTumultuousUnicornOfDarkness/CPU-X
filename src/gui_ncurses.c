@@ -252,10 +252,10 @@ WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in RAM tab */
-	frame(local_win, 1, 1, 19, width - 1, data->objects[FRAMBANKS]);
+	frame(local_win, 1, 1, last_bank(data) + 3, width - 1, data->objects[FRAMBANKS]);
 
 	/* Banks frame */
-	for(i = BANK0_0; i < LASTRAM; i++)
+	for(i = BANK0_0; i < last_bank(data); i++)
 		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabram[NAME][i], data->tabram[VALUE][i]);
 
 	wrefresh(local_win);

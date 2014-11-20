@@ -627,6 +627,20 @@ void tabsystem(Labels *data)
 #endif /* (__linux__) && HAS_LIBPROCPS */
 }
 
+/* Find the number of existing banks */
+int last_bank(Labels *data)
+{
+	int i, cpt = LASTRAM;
+
+	for(i = BANK7_0; i > BANK0_0; i -= 2)
+	{
+		if(data->tabram[VALUE][i][0] == '\0')
+			cpt -= 2;
+	}
+
+	return cpt;
+}
+
 /* Dump all datas in stdout */
 void dump_data(Labels *data)
 {
@@ -660,13 +674,8 @@ void dump_data(Labels *data)
 	/* Tab RAM */
 	printf("\n\n ***** %s *****\n", data->objects[TABRAM]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
-	for(i = BANK0_0; i < LASTRAM; i++)
-	{
-		if(i % 2 == 0 && data->tabram[VALUE][i][0] == '\0') /* Don't print non-existent bank */
-			i++;
-		else
-			printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
-	}
+	for(i = BANK0_0; i < last_bank(data); i++)
+		printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
 
 	/* Tab System */
 	printf("\n\n ***** %s *****\n", data->objects[TABSYS]);

@@ -313,10 +313,15 @@ void set_labels(GtkLabels *glab, Labels *data)
 	}
 
 	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
+	for(i = BANK0_0; i < last_bank(data); i++)
 	{
 		gtk_label_set_text(GTK_LABEL(glab->gtktabram[NAME][i]), data->tabram[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabram[VALUE][i]), data->tabram[VALUE][i]);
+	}
+	for(; i < LASTRAM; i++)
+	{
+		gtk_widget_hide(GTK_WIDGET(glab->gtktabram[NAME][i]));
+		gtk_widget_hide(GTK_WIDGET(glab->gtktabram[VALUE][i]));
 	}
 
 	/* Tab System */

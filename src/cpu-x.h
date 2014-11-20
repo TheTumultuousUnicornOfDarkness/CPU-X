@@ -132,6 +132,9 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR]);
 /* Get system informations */
 void tabsystem(Labels *data);
 
+/* Find the number of existing banks */
+int last_bank(Labels *data);
+
 /* Dump all datas in stdout */
 void dump_data(Labels *data);
 
