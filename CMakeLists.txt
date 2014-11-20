@@ -118,7 +118,14 @@ add_executable(cpu-x
 	src/options.c
 )
 
-target_link_libraries(cpu-x ${GUI_GTK_LIBRARY} ${GUI_NCURSES_LIBRARY} ${LIBCPUID_LIBRARIES} ${LIBDMI_LIBRARY} ${LIBPROCPS_LIBRARIES})
+target_link_libraries(cpu-x
+	${GUI_GTK_LIBRARY}
+	${GUI_NCURSES_LIBRARY}
+	${LIBCPUID_LIBRARIES}
+	${LIBDMI_LIBRARY}
+	${LIBPROCPS_LIBRARIES}
+	-lm
+)
 
 # Installation
 install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

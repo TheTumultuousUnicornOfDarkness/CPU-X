@@ -25,6 +25,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <unistd.h>
+#include <math.h>
 #include <limits.h>
 #include <sys/utsname.h>
 #include <locale.h>
@@ -485,7 +486,7 @@ void bogomips(char *c) {
 /* Determine CPU multiplicator from base clock */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[MAXSTR])
 {
-	int i, fcpu, fbus, min, max;
+	int i, fcpu, fbus, cur, min, max;
 	char ncpu[S] = "", nbus[S] = "";
 
 	for(i = 0; isdigit(cpufreq[i]); i++)
@@ -496,6 +497,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 		nbus[i] = busfreq[i];
 	nbus[i] = '\0';
 	fbus = atoi(nbus);
+	cur = round((double) fcpu / fbus);
 	min = atoi(multmin);
 	max = atoi(multmax);
 
@@ -505,7 +507,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 			min /= (fbus * 1000);
 		if(max >= 10000 && fbus > 0)
 			max /= (fbus * 1000);
-		sprintf(multsynt, "x %i (%i-%i)", (fcpu / fbus), min, max);
+		sprintf(multsynt, "x %i (%i-%i)", cur, min, max);
 	}
 }
 
