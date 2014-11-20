@@ -567,11 +567,9 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 /* Get system informations */
 void tabsystem(Labels *data)
 {
-	int i = -1;
 	static int err = 0;
 	long duptime, huptime, muptime, suptime;
 	char tmp[MAXSTR], *distro = NULL;
-	const char *command[2] = { "gcc --version", "clang --version" };
 	struct utsname name;
 	FILE *osrel = NULL, *comp = NULL;
 
@@ -601,8 +599,7 @@ void tabsystem(Labels *data)
 		fclose(osrel);
 	}
 
-	while(comp == NULL && i++ < 2) /* Label Compiler */
-		comp = popen(command[i], "r");
+	comp = popen("cc --version", "r"); /* Label Compiler */
 	if(comp != NULL)
 	{
 		fgets(data->tabsys[VALUE][COMPILER], MAXSTR, comp);
