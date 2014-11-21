@@ -43,6 +43,7 @@ typedef struct
 	GtkWidget *gtktabmb[2][LASTMB];
 
 	/* Tab RAM */
+	GtkWidget *gridbanks;
 	GtkWidget *gtktabram[2][LASTRAM];
 
 	/* Tab System */

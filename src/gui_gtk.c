@@ -274,6 +274,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktabram[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectram[NAME][i]));
 		glab->gtktabram[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectram[VALUE][i]));
 	}
+	glab->gridbanks = GTK_WIDGET(gtk_builder_get_object(builder, "banks_grid"));
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
@@ -318,11 +319,8 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktabram[NAME][i]), data->tabram[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabram[VALUE][i]), data->tabram[VALUE][i]);
 	}
-	for(; i < LASTRAM; i++)
-	{
-		gtk_widget_hide(GTK_WIDGET(glab->gtktabram[NAME][i]));
-		gtk_widget_hide(GTK_WIDGET(glab->gtktabram[VALUE][i]));
-	}
+	for(i = BANK7_1; i >= last_bank(data); i--)
+		gtk_grid_remove_row(GTK_GRID(glab->gridbanks), i);
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
