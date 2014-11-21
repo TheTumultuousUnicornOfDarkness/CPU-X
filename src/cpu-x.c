@@ -629,7 +629,7 @@ int last_bank(Labels *data)
 {
 	int i, cpt = LASTRAM;
 
-	for(i = BANK7_0; i > BANK0_0; i -= 2)
+	for(i = BANK7_0; i >= BANK0_0; i -= 2)
 	{
 		if(data->tabram[VALUE][i][0] == '\0')
 			cpt -= 2;
