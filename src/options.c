@@ -24,7 +24,6 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include "cpu-x.h"
-#include "includes.h"
 
 int refreshtime = 1;
 int verbose = 0;

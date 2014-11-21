@@ -31,7 +31,26 @@
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
-#include "includes.h"
+
+#if HAS_GTK
+# include "gui_gtk.h"
+#endif
+
+#if HAS_NCURSES
+# include "gui_ncurses.h"
+#endif
+
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
+
+#if HAS_LIBDMI
+# include "dmidecode/libdmi.h"
+#endif
+
+#if HAS_LIBPROCPS
+# include <proc/sysinfo.h>
+#endif
 
 
 int main(int argc, char *argv[]) {

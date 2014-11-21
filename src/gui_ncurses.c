@@ -25,7 +25,7 @@
 #include <pthread.h>
 #include <libintl.h>
 #include "cpu-x.h"
-#include "includes.h"
+#include "gui_ncurses.h"
 
 static int loop = 0;
 

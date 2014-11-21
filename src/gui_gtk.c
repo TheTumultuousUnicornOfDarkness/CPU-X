@@ -26,7 +26,7 @@
 #include <limits.h>
 #include <libintl.h>
 #include "cpu-x.h"
-#include "includes.h"
+#include "gui_gtk.h"
 
 #ifdef EMBED
 # include "../embed/CPU-X.png.h"
