@@ -35,7 +35,9 @@ void help(FILE *out, char *argv[]) {
 		"\t--no-gui\tStart NCurses mode instead of GTK\n"
 		"\t--dump\t\tDump all data on stdout and exit\n"
 		"\t--refresh\tTime between two refreshs in seconds\n"
+#if HAS_LIBDMI
 		"\t--verbose\tVerbose output (in Dmidecode)\n"
+#endif /* HAS_LIBDMI */
 		"\t--help\t\tPrint help and exit\n"
 		"\t--version\tPrint version and exit\n", argv[0]);
 }
@@ -56,7 +58,9 @@ char menu(int argc, char *argv[]) {
 		{"no-gui",	no_argument, 0, 'n'},
 		{"dump",	no_argument, 0, 'd'},
 		{"refresh",	required_argument, 0, 'r'},
+#if HAS_LIBDMI
 		{"verbose",	no_argument, 0, 'v'},
+#endif /* HAS_LIBDMI */
 		{"help",	no_argument, 0, 'h'},
 		{"version",	no_argument, 0, 'V'},
 		{0,		0,	     0,  0}
@@ -74,9 +78,11 @@ char menu(int argc, char *argv[]) {
 				if(atoi(optarg) > 1)
 					refreshtime = atoi(optarg);
 				break;
+#if HAS_LIBDMI
 			case 'v':
 				verbose = 1;
 				break;
+#endif /* HAS_LIBDMI */
 			case 'h':
 				help(stdout, argv);
 				exit(EXIT_SUCCESS);
