@@ -167,6 +167,7 @@ void labels_setname(Labels *data)
 		"%s is a Free software that gathers information\n"
 		"on CPU & motherboard."), PRGNAME);
 	snprintf(data->objects[LABAUTHOR],		MAXSTR, _("Author : %s"), PRGAUTH);
+	snprintf(data->objects[LABCOPYRIGHT],		MAXSTR, "%s", PRGCPYR);
 	snprintf(data->objects[LABLICENSE],		MAXSTR + 40, _(
 		"This program comes with ABSOLUTELY NO WARRANTY"));
 

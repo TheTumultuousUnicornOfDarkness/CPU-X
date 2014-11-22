@@ -50,7 +50,7 @@ static const char *trad[LASTOBJ] =
 {
 	"cpulabel", "mainboardlabel", "ramlabel", "systemlabel", "aboutlabel",
 	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "banks_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
-	"about_version", "about_descr", "about_author", "license_lablicense"
+	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
 };
 
 /* Objects' ID in tab CPU */

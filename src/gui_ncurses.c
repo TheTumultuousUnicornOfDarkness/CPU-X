@@ -322,7 +322,7 @@ WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 	mvwprintw(local_win, 8, 20, "%s", data->objects[LABVERSION]);
 	mvwprintw(local_win, 9, 20, "%s", data->objects[LABAUTHOR]);
 	mvwaddstr(local_win, 10, 20, "GitHub : https://github.com/X0rg");
-	mvwaddstr(local_win, 13, 20, "Copyright © 2014 Xorg");
+	mvwprintw(local_win, 13, 20, "%s", PRGCPYR);
 	mvwprintw(local_win, 15, 4, "%s", data->objects[LABLICENSE]);
 	mvwaddstr(local_win, 16, 20, "\tGPLv3");
 
