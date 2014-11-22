@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
 
@@ -76,6 +77,10 @@ char menu(int argc, char *argv[]) {
 		{optstring[5],	no_argument, 0, 'V'}, /* Arg version */
 		{0,		0,	     0,  0}
 	};
+
+	setlocale(LC_ALL, "");
+	bindtextdomain("cpux", get_path("locale"));
+	textdomain("cpux");
 
 	while((c = getopt_long(argc, argv, ":ndr:vhV", longopts, NULL)) != -1) {
 		switch(c) {
