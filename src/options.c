@@ -23,46 +23,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <libintl.h>
 #include "cpu-x.h"
 
 int refreshtime = 1;
 int verbose = 0;
 
+const char *optstring[] =
+{	"ncurses",
+	"dump",
+	"refresh",
+	"verbose",
+	"help",
+	"version"
+};
+
 
 void help(FILE *out, char *argv[]) {
-	fprintf(out, "Usage: %s [OPTION]\n\n"
+	fprintf(out, _("Usage: %s [OPTION]\n\n"
 		"Available OPTION:\n"
-		"\t--no-gui\tStart NCurses mode instead of GTK\n"
-		"\t--dump\t\tDump all data on stdout and exit\n"
-		"\t--refresh\tTime between two refreshs in seconds\n"
+		"  -n, --%-10s Start text-based user interface (TUI)\n"
+		"  -d, --%-10s Dump all data on standard output and exit\n"
+		"  -r, --%-10s Set custom time between two refreshes (in seconds)\n"
 #if HAS_LIBDMI
-		"\t--verbose\tVerbose output (in Dmidecode)\n"
+		"  -v, --%-10s Verbose output (in Dmidecode)\n"
 #endif /* HAS_LIBDMI */
-		"\t--help\t\tPrint help and exit\n"
-		"\t--version\tPrint version and exit\n", argv[0]);
+		"  -h, --%-10s Print help and exit\n"
+		"  -V, --%-10s Print version and exit\n"), argv[0],
+		optstring[0], optstring[1], optstring[2], optstring[3], optstring[4], optstring[5]);
 }
 
 void version() {
-	printf("%s %s\n"
-	"Copyright © 2014 Xorg\n\n"
+	printf(_("%s %s\n"
+	"%s\n\n"
 	"This is free software: you are free to change and redistribute it.\n"
 	"This program comes with ABSOLUTELY NO WARRANTY\n"
-	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n", PRGNAME, PRGVER);
+	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"), PRGNAME, PRGVER, PRGCPYR);
 }
 
 char menu(int argc, char *argv[]) {
 	int c;
 	char r = 'G';
-	static struct option longopts[] =
+	const struct option longopts[] =
 	{
-		{"no-gui",	no_argument, 0, 'n'},
-		{"dump",	no_argument, 0, 'd'},
-		{"refresh",	required_argument, 0, 'r'},
+		{optstring[0],	no_argument, 0, 'n'}, /* Arg ncurses */
+		{optstring[1],	no_argument, 0, 'd'}, /* Arg dump */
+		{optstring[2],	required_argument, 0, 'r'}, /* Arg refresh */
 #if HAS_LIBDMI
-		{"verbose",	no_argument, 0, 'v'},
+		{optstring[3],	no_argument, 0, 'v'}, /* Arg verbose */
 #endif /* HAS_LIBDMI */
-		{"help",	no_argument, 0, 'h'},
-		{"version",	no_argument, 0, 'V'},
+		{optstring[4],	no_argument, 0, 'h'}, /* Arg help */
+		{optstring[5],	no_argument, 0, 'V'}, /* Arg version */
 		{0,		0,	     0,  0}
 	};
 
