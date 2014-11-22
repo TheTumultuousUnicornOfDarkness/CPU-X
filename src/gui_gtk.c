@@ -152,23 +152,31 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	refr.glab = &glab;
 	refr.data = data;
-	refr.thrdrefr = g_thread_new(NULL, (gpointer)grefresh, &refr);
+	g_timeout_add_seconds(refreshtime, (gpointer)grefresh, &refr);
 	gtk_main();
 }
 
 
 gpointer grefresh(GThrd *refr)
 {
-	while(42)
+	int page = gtk_notebook_get_current_page(GTK_NOTEBOOK(refr->glab->notebook));
+
+	/* Refresh tab CPU */
+	if(page == NB_TAB_CPU)
 	{
 		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
-		tabsystem(refr->data);
 		if(HAS_LIBDMI && !getuid())
 		{
 			libdmidecode(refr->data);
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][MULTIPLIER]), refr->data->tabcpu[VALUE][MULTIPLIER]);
 		}
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][CORESPEED]),  refr->data->tabcpu[VALUE][CORESPEED]);
+	}
+
+	/* Refresh tab System */
+	else if(page == NB_TAB_SYS)
+	{
+		tabsystem(refr->data);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][UPTIME]),	refr->data->tabsys[VALUE][UPTIME]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][USED]), refr->data->tabsys[VALUE][USED]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][BUFFERS]), refr->data->tabsys[VALUE][BUFFERS]);
@@ -176,10 +184,9 @@ gpointer grefresh(GThrd *refr)
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][FREE]), refr->data->tabsys[VALUE][FREE]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][SWAP]), refr->data->tabsys[VALUE][SWAP]);
 		set_membar(refr->glab, refr->data);
-		sleep(refreshtime);
 	}
 
-	return NULL;
+	return;
 }
 
 void set_colors(GtkLabels *glab)
@@ -247,6 +254,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 {
 	int i;
 
+	glab->notebook = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->logoprg = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 

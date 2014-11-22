@@ -31,6 +31,7 @@ typedef struct
 {
 	/* Common */
 	GtkWidget *mainwindow;
+	GtkWidget *notebook;
 	GtkWidget *labprgver;
 	GtkWidget *closebutton;
 	GtkWidget *gtktrad[LASTOBJ];
@@ -61,7 +62,6 @@ typedef struct
 
 typedef struct
 {
-	GThread *thrdrefr;
 	GtkLabels *glab;
 	Labels *data;
 } GThrd; /* Used to refresh GUI */
