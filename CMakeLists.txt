@@ -62,8 +62,8 @@ if(WITH_NCURSES)
     link_directories(${NCURSES_LIBRARY_DIRS})
     add_definitions(-DNCURSES)
     add_library(gui_ncurses
-		src/gui_ncurses.c
-		src/gui_ncurses.h
+		src/tui_ncurses.c
+		src/tui_ncurses.h
   )
   set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
   endif()

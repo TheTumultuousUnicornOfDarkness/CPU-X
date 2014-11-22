@@ -37,7 +37,7 @@
 #endif
 
 #if HAS_NCURSES
-# include "gui_ncurses.h"
+# include "tui_ncurses.h"
 #endif
 
 #if HAS_LIBCPUID

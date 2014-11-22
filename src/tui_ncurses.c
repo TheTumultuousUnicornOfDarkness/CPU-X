@@ -25,7 +25,7 @@
 #include <pthread.h>
 #include <libintl.h>
 #include "cpu-x.h"
-#include "gui_ncurses.h"
+#include "tui_ncurses.h"
 
 static int loop = NB_TAB_CPU;
 
