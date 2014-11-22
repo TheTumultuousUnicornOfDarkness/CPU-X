@@ -27,7 +27,7 @@
 #include "cpu-x.h"
 #include "gui_ncurses.h"
 
-static int loop = 0;
+static int loop = NB_TAB_CPU;
 
 
 void start_gui_ncurses(Labels *data)
@@ -68,7 +68,7 @@ void start_gui_ncurses(Labels *data)
 	{	
 		switch(ch)
 		{	case KEY_LEFT:
-				if(current_tab > 0)
+				if(current_tab > NB_TAB_CPU)
 				{
 					current_tab--;
 					pthread_cancel(thrdrefr);
@@ -79,7 +79,7 @@ void start_gui_ncurses(Labels *data)
 				}
 				break;
 			case KEY_RIGHT:
-				if(current_tab < 4)
+				if(current_tab < NB_TAB_ABOUT)
 				{
 					current_tab++;
 					pthread_cancel(thrdrefr);
@@ -102,7 +102,7 @@ void *nrefresh(void *ptr)
 	NThrd *refr = (NThrd *) ptr;
 
 	/* Refresh tab CPU */
-	while(loop == 0)
+	while(loop == NB_TAB_CPU)
 	{
 		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
 		if(HAS_LIBDMI && !getuid())
@@ -116,7 +116,7 @@ void *nrefresh(void *ptr)
 	}
 
 	/* Refresh tab System */
-	while(loop == 3)
+	while(loop == NB_TAB_SYS)
 	{
 		tabsystem(refr->data);
 		mvwprintw(refr->win, 5,   2, "%13s: %s", refr->data->tabsys[NAME][UPTIME],	refr->data->tabsys[VALUE][UPTIME]);
@@ -134,7 +134,7 @@ void *nrefresh(void *ptr)
 
 void test_refresh(int curtab, NThrd *refr, WINDOW *tab, pthread_t *thrdrefr)
 {
-	if(curtab == 0 || curtab == 3)
+	if(curtab == NB_TAB_CPU || curtab == NB_TAB_SYS)
 	{
 		refr->win = tab;
 		pthread_create(thrdrefr, NULL, nrefresh, refr);
@@ -160,15 +160,15 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 {
 	switch(num)
 	{
-		case 0:
+		case NB_TAB_CPU:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
-		case 1:
+		case NB_TAB_MB:
 			return tab_mainboard(height - 4, width - 2, starty + 2, startx + 1, data);
-		case 2:
+		case NB_TAB_RAM:
 			return tab_ram(height - 4, width - 2, starty + 2, startx + 1, data);
-		case 3:
+		case NB_TAB_SYS:
 			return tab_system(height - 4, width - 2, starty + 2, startx + 1, data);
-		case 4:
+		case NB_TAB_ABOUT:
 			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data);
 		default:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data); /* If problem */

@@ -26,6 +26,11 @@
 
 #include <ncurses.h>
 
+enum EnTabNumber
+{
+	NB_TAB_CPU, NB_TAB_MB, NB_TAB_RAM, NB_TAB_SYS, NB_TAB_ABOUT
+};
+
 typedef struct
 {
 	WINDOW *win;
