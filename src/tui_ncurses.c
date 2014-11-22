@@ -55,7 +55,7 @@ void start_gui_ncurses(Labels *data)
 	starty = (LINES - height) / 2; /* Calculating for a center placement of the window */
 	startx = (COLS - width) / 2;
 
-	printw("Press 'q' to exit");
+	printw("Press 'q' to exit; use right/left key to change tab");
 	refresh();
 	main_win(height, width, starty, startx, current_tab, data);
 	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
@@ -73,6 +73,7 @@ void start_gui_ncurses(Labels *data)
 				if(current_tab > NB_TAB_CPU)
 				{
 					current_tab--;
+					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
 				}
 				break;
@@ -81,6 +82,7 @@ void start_gui_ncurses(Labels *data)
 				if(current_tab < NB_TAB_ABOUT)
 				{
 					current_tab++;
+					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
 				}
 				break;
@@ -91,6 +93,15 @@ void start_gui_ncurses(Labels *data)
 					refr.win = tab;
 					nrefresh(&refr);
 				}
+				break;
+			case KEY_RESIZE:
+				erase() ;
+				starty = (LINES - height) / 2;
+				startx = (COLS - width) / 2;
+				printw("Press 'q' to exit; use right/left key to change tab");
+				refresh();
+				main_win(height, width, starty, startx, current_tab, data);
+				tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
 				break;
 		}
 
