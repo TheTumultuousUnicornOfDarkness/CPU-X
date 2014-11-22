@@ -22,7 +22,6 @@
 
 #include <string.h>
 #include <unistd.h>
-#include <pthread.h>
 #include <libintl.h>
 #include "cpu-x.h"
 #include "tui_ncurses.h"
@@ -34,7 +33,6 @@ void start_gui_ncurses(Labels *data)
 {
 	int startx, starty, width, height, ch, current_tab = 0;
 	WINDOW *tab;
-	pthread_t thrdrefr;
 	NThrd refr;
 
 	if(getuid())
@@ -48,6 +46,8 @@ void start_gui_ncurses(Labels *data)
 	cbreak();
 	noecho();
 	curs_set(0);
+	halfdelay(0);
+	nodelay(stdscr, TRUE);
 	keypad(stdscr, TRUE);
 
 	height = 25;
@@ -62,31 +62,34 @@ void start_gui_ncurses(Labels *data)
 
 	refr.win = tab;
 	refr.data = data;
-	pthread_create(&thrdrefr, NULL, nrefresh, &refr);
+	timeout(refreshtime * 1000);
 
-	while((ch = getch()) != 'q')
-	{	
+	while(ch != 'q')
+	{
+		ch = getch();
 		switch(ch)
 		{	case KEY_LEFT:
+				/* Switch to left tab */
 				if(current_tab > NB_TAB_CPU)
 				{
 					current_tab--;
-					pthread_cancel(thrdrefr);
-					destroy_win(tab);
-					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
-					test_refresh(current_tab, &refr, tab, &thrdrefr);
 				}
 				break;
 			case KEY_RIGHT:
+				/* Switch to right tab */
 				if(current_tab < NB_TAB_ABOUT)
 				{
 					current_tab++;
-					pthread_cancel(thrdrefr);
-					destroy_win(tab);
-					main_win(height, width, starty, startx, current_tab, data);
 					tab = select_tab(height, width, starty, startx, current_tab, data);
-					test_refresh(current_tab, &refr, tab, &thrdrefr);
+				}
+				break;
+			case ERR:
+				/* Refresh labels if needed */
+				if(current_tab == NB_TAB_CPU || current_tab == NB_TAB_SYS)
+				{
+					refr.win = tab;
+					nrefresh(&refr);
 				}
 				break;
 		}
@@ -97,12 +100,10 @@ void start_gui_ncurses(Labels *data)
 	endwin();
 }
 
-void *nrefresh(void *ptr)
+void nrefresh(NThrd *refr)
 {
-	NThrd *refr = (NThrd *) ptr;
-
 	/* Refresh tab CPU */
-	while(loop == NB_TAB_CPU)
+	if(loop == NB_TAB_CPU)
 	{
 		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
 		if(HAS_LIBDMI && !getuid())
@@ -112,11 +113,10 @@ void *nrefresh(void *ptr)
 		}
 		mvwprintw(refr->win, 12, 2, "%13s: %s", refr->data->tabcpu[NAME][CORESPEED], refr->data->tabcpu[VALUE][CORESPEED]);
 		wrefresh(refr->win);
-		sleep(refreshtime);
 	}
 
 	/* Refresh tab System */
-	while(loop == NB_TAB_SYS)
+	else if(loop == NB_TAB_SYS)
 	{
 		tabsystem(refr->data);
 		mvwprintw(refr->win, 5,   2, "%13s: %s", refr->data->tabsys[NAME][UPTIME],	refr->data->tabsys[VALUE][UPTIME]);
@@ -126,18 +126,6 @@ void *nrefresh(void *ptr)
 		mvwprintw(refr->win, 12,  2, "%13s: %s", refr->data->tabsys[NAME][FREE],	refr->data->tabsys[VALUE][FREE]);
 		mvwprintw(refr->win, 13,  2, "%13s: %s", refr->data->tabsys[NAME][SWAP],	refr->data->tabsys[VALUE][SWAP]);
 		wrefresh(refr->win);
-		sleep(refreshtime);
-	}
-
-	return NULL;
-}
-
-void test_refresh(int curtab, NThrd *refr, WINDOW *tab, pthread_t *thrdrefr)
-{
-	if(curtab == NB_TAB_CPU || curtab == NB_TAB_SYS)
-	{
-		refr->win = tab;
-		pthread_create(thrdrefr, NULL, nrefresh, refr);
 	}
 }
 
@@ -357,11 +345,4 @@ void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *
 			mvwprintw(local_win, starty, i, "%s", label);
 		mvwprintw(local_win, endy - 1, i, "-");
 	}
-}
-
-void destroy_win(WINDOW *local_win)
-{	
-	wborder(local_win, ' ', ' ', ' ',' ',' ',' ',' ',' ');
-	wrefresh(local_win);
-	delwin(local_win);
 }

@@ -37,10 +37,7 @@ typedef struct
 void start_gui_ncurses(Labels *data);
 
 /* Refresh non-static values */
-void *nrefresh(void *ptr);
-
-/* Test if to call nrefresh is needed */
-void test_refresh(int curtab, NThrd *refr, WINDOW *tab, pthread_t *thrdrefr);
+void nrefresh(NThrd *refr);
 
 /* NCurses main window */
 void main_win(int height, int width, int starty, int startx, int tab, Labels *data);
@@ -65,9 +62,6 @@ WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data);
 
 /* Draw a frame in a NCurses window */
 void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label);
-
-/* Destroy a window */
-void destroy_win(WINDOW *local_win);
 
 
 #endif /* _CPUX_NCURSES_H_ */
