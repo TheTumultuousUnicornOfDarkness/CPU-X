@@ -599,12 +599,12 @@ void tabsystem(Labels *data)
 	snprintf(data->tabsys[VALUE][KERNEL],		MAXSTR, "%s %s", name.sysname, name.release);
 	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
 
-	if(osrel == NULL && !err) /* Label Distribution */
+	if(osrel == NULL && err == 0) /* Label Distribution */
 	{
 		MSGERR("can't open file '/etc/os-release'.");
 		err++;
 	}
-	else
+	else if(err == 0)
 	{
 		while(distro == NULL && fgets(tmp, MAXSTR, osrel) != NULL)
 			distro = strstr(tmp, "PRETTY_NAME=");
