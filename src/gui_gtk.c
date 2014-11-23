@@ -157,7 +157,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 }
 
 
-gpointer grefresh(GThrd *refr)
+gboolean grefresh(GThrd *refr)
 {
 	int page = gtk_notebook_get_current_page(GTK_NOTEBOOK(refr->glab->notebook));
 
@@ -186,7 +186,7 @@ gpointer grefresh(GThrd *refr)
 		set_membar(refr->glab, refr->data);
 	}
 
-	return;
+	return G_SOURCE_CONTINUE;
 }
 
 void set_colors(GtkLabels *glab)

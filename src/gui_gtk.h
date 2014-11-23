@@ -72,7 +72,7 @@ typedef struct
 void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
 /* Refresh non-static values */
-gpointer grefresh(GThrd *refr);
+gboolean grefresh(GThrd *refr);
 
 /* Set default background color in GUI */
 void set_colors(GtkLabels *glab);
