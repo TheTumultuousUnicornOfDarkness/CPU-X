@@ -29,7 +29,7 @@
 static int loop = NB_TAB_CPU;
 
 
-void start_gui_ncurses(Labels *data)
+void start_tui_ncurses(Labels *data)
 {
 	int startx, starty, width, height, ch, current_tab = 0;
 	WINDOW *tab;

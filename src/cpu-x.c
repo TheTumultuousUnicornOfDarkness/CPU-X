@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
 	if(HAS_GTK && option == 'G') /* Start with GTK3 */
 		start_gui_gtk(&argc, &argv, &data);
 	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
-		start_gui_ncurses(&data);
+		start_tui_ncurses(&data);
 	else if(option == 'D') /* Just dump datas */
 		dump_data(&data);
 

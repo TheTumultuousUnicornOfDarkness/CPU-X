@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall")
 
 option(WITH_GTK "Add support for GUI in GTK3+" ON)
-option(WITH_NCURSES "Add support for GUI in NCurses" ON)
+option(WITH_NCURSES "Add support for TUI in NCurses" ON)
 option(WITH_LIBCPUID "Allow use of library Libcpuid" ON)
 option(WITH_LIBDMI "Allow use of library Libdmi" ON)
 option(WITH_LIBPROCPS "Allow use of library Libprocps" ON)
@@ -52,7 +52,7 @@ if(WITH_GTK)
 		src/gui_gtk.h
   )
   set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
-endif()
+endif(WITH_GTK)
 
 # NCurses libs
 if(WITH_NCURSES)
@@ -61,13 +61,16 @@ if(WITH_NCURSES)
     include_directories(${NCURSES_INCLUDE_DIRS})
     link_directories(${NCURSES_LIBRARY_DIRS})
     add_definitions(-DNCURSES)
-    add_library(gui_ncurses
+    add_library(tui_ncurses
 		src/tui_ncurses.c
 		src/tui_ncurses.h
-  )
-  set(GUI_NCURSES_LIBRARY "gui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
-  endif()
-endif()
+    )
+  if(EMBED)
+    set(NCURSES_LIBRARIES -l:libncursesw.a)
+  endif(EMBED)
+  set(TUI_NCURSES_LIBRARY "tui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
+  endif(NCURSES_FOUND)
+endif(WITH_NCURSES)
 
 # Libcpuid lib
 if(WITH_LIBCPUID)
@@ -76,7 +79,10 @@ if(WITH_LIBCPUID)
     include_directories(${LIBCPUID_INCLUDE_DIRS})
     link_directories(${LIBCPUID_LIBRARY_DIRS})
     add_definitions(${LIBCPUID_CFLAGS_OTHER} -DLIBCPUID)
-  endif()
+    if(EMBED)
+      set(LIBCPUID_LIBRARIES -l:libcpuid.a)
+    endif(EMBED)
+  endif(LIBCPUID_FOUND)
 endif(WITH_LIBCPUID)
 
 # Dmidecode lib
@@ -94,22 +100,23 @@ if(WITH_LIBPROCPS)
     include_directories(${LIBPROCPS_INCLUDE_DIRS})
     link_directories(${LIBPROCPS_LIBRARY_DIRS})
     add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
-  endif()
-endif()
+    if(EMBED)
+      set(LIBPROCPS_LIBRARIES -l:libprocps.a)
+    endif(EMBED)
+  endif(LIBPROCPS_FOUND)
+endif(WITH_LIBPROCPS)
 
 # Embed compilation
 if(EMBED)
   message("${BoldBlue}CPU-X will be compiled as portable binary.${ColourReset}")
-  if(WITH_LIBCPUID)
-    set(LIBCPUID_LIBRARIES -l:libcpuid.a)
-  endif()
   if(WITH_GTK)
+    message("${Green}Converting files to embed${ColourReset}")
     execute_process(COMMAND ${CMAKE_CURRENT_LIST_DIR}/embed.sh
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-  )
-  endif()
+	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+    )
+  endif(WITH_GTK)
   add_definitions(-DEMBED)
-endif()
+endif(EMBED)
 
 # Main executable
 add_executable(cpu-x
@@ -120,7 +127,7 @@ add_executable(cpu-x
 
 target_link_libraries(cpu-x
 	${GUI_GTK_LIBRARY}
-	${GUI_NCURSES_LIBRARY}
+	${TUI_NCURSES_LIBRARY}
 	${LIBCPUID_LIBRARIES}
 	${LIBDMI_LIBRARY}
 	${LIBPROCPS_LIBRARIES}
