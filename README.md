@@ -8,20 +8,24 @@ It is written in C, and GUI uses GTK3+ library, so it's working out-of-box on X1
 ## Dependencies
 
 * GTK3+ (version 3.10 or uppers recommanded)
-    * GUI
+    * Graphical User Interface (GUI)
     * http://www.gtk.org/
+    * Required to run CPU-X in GTK mode; **not** embedded in portable version
 
 * Ncurses
-    * GUI in a terminal
+    * Text-based User Interface (TUI)
     * http://www.gnu.org/software/ncurses/
+    * Required to run CPU-X in NCurses mode; embedded in portable version
 
 * Libcpuid
     * Extract CPU features
     * http://libcpuid.sourceforge.net/
+    * Required to run CPU-X correctly; embedded in portable version
 
 * Procps-ng
     * Usefull informations on system
     * http://sourceforge.net/projects/procps-ng/
+    * Required to run CPU-X correctly; embedded in portable version
 
 
 ## Build
@@ -34,6 +38,7 @@ You can disable some functionalities by passing argument `-D<var>=0` when runnin
 `-DWITH_NCURSES=0` will disable support of NCurses mode (need to run from a shell)  
 `-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
 `-DWITH_LIBDMI=0` will not compile Libdmi and will avoid calls to Libdmi (not recommended)  
+`-DWITH_LIBPROCPS=0` will avoid calls to Libprocps (not recommended) 
 
 * If you want to install CPU-X on your system, do:
 ```
@@ -51,14 +56,14 @@ cmake -DEMBED=1 ..
 make
 ```
 
-Note: portable binary will be in directory "ebuild/bin".
+Note: portable binary will be in directory "ebuild/bin". Don't do `make install` after.
 
 ## Usage
 
 Start program with **root privileges** allow to use **Dmidecode** (Libdmi).  
 Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.  
 Two application files are installed if GTK is enabled: one use pkexec and allow you to run CPU-X as root.  
-If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell `cpu-x --no-gui`.  
+If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell (as root) `cpu-x --ncurses`.  
 Use `cpu-x --help` for other commands and help.
 
 
