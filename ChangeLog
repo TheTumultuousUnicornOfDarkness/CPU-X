@@ -1,3 +1,18 @@
+v2.0.1 (11.23.2014):
+	* Better CPU multiplier calculation
+	* Don't show non-existent banks in tab RAM
+	* Better compiler detection
+	* Improve option --help
+	* Better translation support
+	* Add possibility to resize terminal with NCurses TUI
+	* Add more static libraries in portable binary
+	* Fixes :
+		** NCurses TUI: correct refresh (when left key/button 3 on mouse are spammed)
+		** NCurses TUI: segfault when spamming right key
+		** GTK GUI/NCurses TUI: use timeout instead of new thread to refresh
+		** Segfault when file '/etc/os-release' could not be open
+
+
 v2.0.0 (11.16.2014):
 	* Big changes in core
 	* Full rewrite GTK GUI
