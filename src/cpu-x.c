@@ -165,12 +165,11 @@ void labels_setname(Labels *data)
 	snprintf(data->objects[LABVERSION],		MAXSTR, _("Version %s"), PRGVER);
 	snprintf(data->objects[LABDESCRIPTION],		MAXSTR + 40, _(
 		"%s is a Free software that gathers information\n"
-		"on CPU & motherboard."), PRGNAME);
+		"on CPU, motherboard and more."), PRGNAME);
 	snprintf(data->objects[LABAUTHOR],		MAXSTR, _("Author : %s"), PRGAUTH);
 	snprintf(data->objects[LABCOPYRIGHT],		MAXSTR, "%s", PRGCPYR);
 	snprintf(data->objects[LABLICENSE],		MAXSTR + 40, _(
 		"This program comes with ABSOLUTELY NO WARRANTY"));
-
 
 	/* Tab CPU */
 	snprintf(data->tabcpu[NAME][VENDOR],		MAXSTR, _("Vendor"));
