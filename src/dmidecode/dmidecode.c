@@ -413,11 +413,7 @@ static void dmi_table(u32 base, u16 len, u16 num, u16 ver, const char *devmem)
 	}
 
 	data = buf;
-#ifdef CPUX
-	while (i <= num && data+4 <= buf + len) /* 4 is last handle ; 4 is the length of an SMBIOS structure header */
-#else
 	while (i < num && data+4 <= buf + len) /* 4 is the length of an SMBIOS structure header */
-#endif
 	{
 		u8 *next;
 		struct dmi_header h;
