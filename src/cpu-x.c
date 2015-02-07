@@ -321,6 +321,7 @@ int libcpuid(Labels *data)
 int libdmidecode(Labels *data)
 {
 	int i, err = 0;
+	static int nodyn = 0;
 	char datanr[LASTRAM][MAXSTR] = { { '\0' } };
 
 	/* Tab CPU */
@@ -328,15 +329,21 @@ int libdmidecode(Labels *data)
 	strncpy(data->tabcpu[VALUE][PACKAGE],  datanr[PROC_PACKAGE], MAXSTR);
 	strncpy(data->tabcpu[VALUE][BUSSPEED], datanr[PROC_BUS], MAXSTR);
 
-	/* Tab Mainboard */
-	err += libdmi(datanr, 'm');
-	for(i = MANUFACTURER; i < LASTMB; i++)
-		strncpy(data->tabmb[VALUE][i], datanr[i], MAXSTR);
+	/* Skip this part on refresh */
+	if(!nodyn)
+	{
+		/* Tab Mainboard */
+		err += libdmi(datanr, 'm');
+		for(i = MANUFACTURER; i < LASTMB; i++)
+			strncpy(data->tabmb[VALUE][i], datanr[i], MAXSTR);
 
-	/* Tab RAM */
-	err += libdmi(datanr, 'r');
-	for(i = BANK0_0; i < LASTRAM; i++)
-		strncpy(data->tabram[VALUE][i], datanr[i], MAXSTR);
+		/* Tab RAM */
+		err += libdmi(datanr, 'r');
+		for(i = BANK0_0; i < LASTRAM; i++)
+			strncpy(data->tabram[VALUE][i], datanr[i], MAXSTR);
+
+		nodyn++;
+	}
 
 	return err;
 }
