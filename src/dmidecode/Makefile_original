@@ -49,7 +49,9 @@ PROGRAMS-i686 := $(PROGRAMS-i386)
 PROGRAMS-x86_64 := biosdecode ownership vpddecode
 PROGRAMS-amd64 := $(PROGRAMS-x86_64)
 
-PROGRAMS := dmidecode $(PROGRAMS-$(MACHINE))
+# CPU-X uses only dmidecode; it's possible to make original dmidecode binary, but not other binaries
+#PROGRAMS := dmidecode $(PROGRAMS-$(MACHINE))
+PROGRAMS := dmidecode
 
 all : $(PROGRAMS)
 
