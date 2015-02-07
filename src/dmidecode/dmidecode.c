@@ -58,7 +58,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "version.h"
+#ifdef CPUX
+ #include "libdmi.h"
+#else
+ #include "version.h"
+#endif
 #include "config.h"
 #include "types.h"
 #include "util.h"
@@ -4582,8 +4586,14 @@ static int address_from_efi(size_t *address)
 	return ret;
 }
 
+#ifdef CPUX
+int maindmi(void)
+{
+	char *argv[] = { "dmidecode (embedded version for CPU-X)", NULL };
+#else
 int main(int argc, char * const argv[])
 {
+#endif
 	int ret = 0;                /* Returned value */
 	int found = 0;
 	size_t fp;
@@ -4598,6 +4608,7 @@ int main(int argc, char * const argv[])
 
 	/* Set default option values */
 	opt.devmem = DEFAULT_MEM_DEV;
+#ifndef CPUX
 	opt.flags = 0;
 
 	if (parse_command_line(argc, argv)<0)
@@ -4617,9 +4628,14 @@ int main(int argc, char * const argv[])
 		printf("%s\n", VERSION);
 		goto exit_free;
 	}
+#endif
 
 	if (!(opt.flags & FLAG_QUIET))
+#ifdef CPUX
+		printf("%s: version %s\n", argv[0], DMIVERSION);
+#else
 		printf("# dmidecode %s\n", VERSION);
+#endif
 
 	/* Read from dump if so instructed */
 	if (opt.flags & FLAG_FROM_DUMP)

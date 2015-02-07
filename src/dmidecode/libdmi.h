@@ -3,16 +3,16 @@
 
 #include "../cpu-x.h"
 
+#define DMIVERSION "2.12"
 #define PROC_PACKAGE 0
 #define PROC_BUS 1
+#define LASTPROC 2
 
 extern int verbose;
-extern char dmicpu[2][MAXSTR];
-extern char dmimb[LASTMB][MAXSTR];
-extern char dmiram[LASTRAM][MAXSTR];
+extern char **dmidata;
 
 int maindmi(void);
-int libdmi(char data[LASTRAM][MAXSTR], char c);
+int libdmi(char data[][MAXSTR], char c);
 
 
 #endif
