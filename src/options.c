@@ -34,7 +34,10 @@ const char *optstring[] =
 {	"ncurses",
 	"dump",
 	"refresh",
+#if HAS_LIBDMI
+	"dmidecode",
 	"verbose",
+#endif /* HAS_LIBDMI */
 	"help",
 	"version"
 };
@@ -47,11 +50,12 @@ void help(FILE *out, char *argv[]) {
 		"  -d, --%-10s Dump all data on standard output and exit\n"
 		"  -r, --%-10s Set custom time between two refreshes (in seconds)\n"
 #if HAS_LIBDMI
+		"  -D, --%-10s Run embedded command dmidecode and exit\n"
 		"  -v, --%-10s Verbose output (in Dmidecode)\n"
 #endif /* HAS_LIBDMI */
 		"  -h, --%-10s Print help and exit\n"
 		"  -V, --%-10s Print version and exit\n"), argv[0],
-		optstring[0], optstring[1], optstring[2], optstring[3], optstring[4], optstring[5]);
+		optstring[0], optstring[1], optstring[2], optstring[3], optstring[4], optstring[5], optstring[6]);
 }
 
 void version() {
@@ -71,10 +75,11 @@ char menu(int argc, char *argv[]) {
 		{optstring[1],	no_argument, 0, 'd'}, /* Arg dump */
 		{optstring[2],	required_argument, 0, 'r'}, /* Arg refresh */
 #if HAS_LIBDMI
-		{optstring[3],	no_argument, 0, 'v'}, /* Arg verbose */
+		{optstring[3],	no_argument, 0, 'D'}, /* Arg Dmidecode */
+		{optstring[4],	no_argument, 0, 'v'}, /* Arg verbose */
 #endif /* HAS_LIBDMI */
-		{optstring[4],	no_argument, 0, 'h'}, /* Arg help */
-		{optstring[5],	no_argument, 0, 'V'}, /* Arg version */
+		{optstring[5],	no_argument, 0, 'h'}, /* Arg help */
+		{optstring[6],	no_argument, 0, 'V'}, /* Arg version */
 		{0,		0,	     0,  0}
 	};
 
@@ -82,7 +87,7 @@ char menu(int argc, char *argv[]) {
 	bindtextdomain("cpux", get_path("locale"));
 	textdomain("cpux");
 
-	while((c = getopt_long(argc, argv, ":ndr:vhV", longopts, NULL)) != -1) {
+	while((c = getopt_long(argc, argv, ":ndDr:vhV", longopts, NULL)) != -1) {
 		switch(c) {
 			case 'n':
 				r = 'N';
@@ -95,6 +100,9 @@ char menu(int argc, char *argv[]) {
 					refreshtime = atoi(optarg);
 				break;
 #if HAS_LIBDMI
+			case 'D':
+				r = 'I';
+				break;
 			case 'v':
 				verbose = 1;
 				break;

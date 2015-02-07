@@ -96,6 +96,8 @@ int main(int argc, char *argv[]) {
 		start_gui_gtk(&argc, &argv, &data);
 	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
 		start_tui_ncurses(&data);
+	else if(HAS_LIBDMI && option == 'I')
+		libdmi(NULL, 'i');
 	else if(option == 'D') /* Just dump datas */
 		dump_data(&data);
 
