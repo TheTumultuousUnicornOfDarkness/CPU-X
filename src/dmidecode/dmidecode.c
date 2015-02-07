@@ -62,7 +62,7 @@
  #include "libdmi.h"
 #else
  #include "version.h"
-#endif
+#endif /* CPUX */
 #include "config.h"
 #include "types.h"
 #include "util.h"
@@ -278,6 +278,7 @@ static void dmi_bios_runtime_size(u32 code)
 		printf(" %u kB", code >> 10);
 }
 
+#ifdef CPUX
 static char *dmi_bios_runtime_size_str(u32 code)
 {
 	static char size[24];
@@ -289,6 +290,7 @@ static char *dmi_bios_runtime_size_str(u32 code)
 
 	return size;
 }
+#endif /* CPUX */
 
 static void dmi_bios_characteristics(u64 code, const char *prefix)
 {
@@ -1125,6 +1127,7 @@ static void dmi_processor_frequency(const u8 *p)
 		printf("Unknown");
 }
 
+#ifdef CPUX
 static char *dmi_processor_frequency_str(const u8 *p)
 {
 	u16 code = WORD(p);
@@ -1137,6 +1140,7 @@ static char *dmi_processor_frequency_str(const u8 *p)
 
 	return freq;
 }
+#endif /* CPUX */
 
 /* code is assumed to be a 3-bit value */
 static const char *dmi_processor_status(u8 code)
@@ -2247,6 +2251,7 @@ static void dmi_memory_device_size(u16 code)
 	}
 }
 
+#ifdef CPUX
 static char *dmi_memory_device_size_str(u16 code)
 {
 	static char size[8];
@@ -2265,6 +2270,7 @@ static char *dmi_memory_device_size_str(u16 code)
 
 	return size;
 }
+#endif /* CPUX */
 
 static void dmi_memory_device_extended_size(u32 code)
 {
@@ -3201,6 +3207,7 @@ static const char *dmi_management_controller_host_type(u8 code)
 static void dmi_decode(const struct dmi_header *h, u16 ver)
 {
 	const u8 *data = h->data;
+#ifdef CPUX
 	static int bank = BANK0_0;
 
 	/*
@@ -3260,6 +3267,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 	/* verbose = 2 or verbose = 3 -> only print all */
 	else
 	{
+#endif /* CPUX */
 		switch (h->type)
 		{
 			case 0: /* 7.1 BIOS Information */
@@ -4369,7 +4377,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				dmi_dump(h, "\t");
 		}
 		printf("\n");
+#ifdef CPUX
 	}
+#endif /* CPUX */
 }
 
 static void to_dmi_header(struct dmi_header *h, u8 *data)
@@ -4693,7 +4703,7 @@ int maindmi(void)
 #else
 int main(int argc, char * const argv[])
 {
-#endif
+#endif /* CPUX */
 	int ret = 0;                /* Returned value */
 	int found = 0;
 	size_t fp;
@@ -4728,14 +4738,14 @@ int main(int argc, char * const argv[])
 		printf("%s\n", VERSION);
 		goto exit_free;
 	}
-#endif
+#endif /* CPUX */
 
 	if (!(opt.flags & FLAG_QUIET))
 #ifdef CPUX
 		printf("%s: version %s\n", argv[0], DMIVERSION);
 #else
 		printf("# dmidecode %s\n", VERSION);
-#endif
+#endif /* CPUX */
 
 	/* Read from dump if so instructed */
 	if (opt.flags & FLAG_FROM_DUMP)
@@ -4815,6 +4825,10 @@ done:
 	free(buf);
 exit_free:
 	free(opt.type);
+#ifdef CPUX
+	if(verbose)
+		printf("\n\n");
+#endif /* CPUX */
 
 	return ret;
 }
