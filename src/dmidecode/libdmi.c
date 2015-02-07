@@ -64,12 +64,12 @@ void dmifree(char ***str, int l) {
 
 int libdmi(char data[][MAXSTR], char c)
 {
-	int err = 0;
+	int i, err = 0;
 
 	/* Dmidecode options */
 	opt.flags = 0;
 	opt.type = NULL;
-	if(!verbose)
+	if(verbose == 0 || verbose == 2)
 		opt.flags |= FLAG_QUIET;
 
 	switch(c)

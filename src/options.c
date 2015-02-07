@@ -102,9 +102,10 @@ char menu(int argc, char *argv[]) {
 #if HAS_LIBDMI
 			case 'D':
 				r = 'I';
+				verbose += 2;
 				break;
 			case 'v':
-				verbose = 1;
+				verbose++;
 				break;
 #endif /* HAS_LIBDMI */
 			case 'h':
