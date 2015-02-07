@@ -79,6 +79,8 @@ int libdmi(char data[][MAXSTR], char c)
 			{
 				opt.type = dmiparse(opt.type, 4);
 				err = maindmi();
+				for(i = PROC_PACKAGE; i < LASTPROC; i++)
+					strncpy(data[i], dmidata[i], MAXSTR);
 				dmifree(&dmidata, LASTPROC);
 			}
 			break;
@@ -88,6 +90,8 @@ int libdmi(char data[][MAXSTR], char c)
 				opt.type = dmiparse(opt.type, 0);
 				opt.type = dmiparse(opt.type, 2);
 				err = maindmi();
+				for(i = MANUFACTURER; i < LASTMB; i++)
+					strncpy(data[i], dmidata[i], MAXSTR);
 				dmifree(&dmidata, LASTMB);
 			}
 			break;
@@ -96,6 +100,8 @@ int libdmi(char data[][MAXSTR], char c)
 			{
 				opt.type = dmiparse(opt.type, 17);
 				err = maindmi();
+				for(i = BANK0_0; i < LASTRAM; i++)
+					strncpy(data[i], dmidata[i], MAXSTR);
 				dmifree(&dmidata, LASTRAM);
 			}
 			break;
