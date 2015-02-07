@@ -4,14 +4,18 @@ project(libdmi)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-file(GLOB_RECURSE
-	dmidecode
-        *.c
-)
-
 add_library(dmi-cpux
         STATIC
-        ${dmidecode}
+	types.h
+	util.c
+	util.h
+	dmiopt.h
+	dmioem.c
+	dmioem.h
+	dmidecode.c
+	dmidecode.h
+	libdmi.c
+	libdmi.h
 )
 
 add_definitions(-DCPUX)
