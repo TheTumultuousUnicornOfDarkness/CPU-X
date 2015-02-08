@@ -3243,7 +3243,10 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				if(bank <= BANK7_0)
 				{
 					if(!strcmp(dmi_string(h, data[0x17]), "[Empty]"))
-						strcpy(dmidata[bank], "Empty");
+					{
+						strcpy(dmidata[bank], "- - - - - -");
+						strcpy(dmidata[bank + 1], "- - - - - -");
+					}
 					else
 					{
 						snprintf(dmidata[bank], MAXSTR, "%s %s",
