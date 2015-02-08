@@ -1,3 +1,13 @@
+v2.0.2 (02.08.2015):
+	* Rebase dmidecode code on 2.12
+	* Add argument --dmidecode to run (internal) Dmidecode alone
+	* Improve options parsing
+	* Less (useless) function recalls on refresh loop
+	* Display dashes for empty banks in RAM tab
+	* Fix:
+		** Empty RAM tab on certain machines
+
+
 v2.0.1 (11.23.2014):
 	* Better CPU multiplier calculation
 	* Don't show non-existent banks in tab RAM
