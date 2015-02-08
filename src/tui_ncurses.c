@@ -350,7 +350,7 @@ void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *
 	/* Top and bottom */
 	for (i = startx + 1; i < (endx - 1); i++)
 	{
-		if(i < startx + 2 || i > strlen(label) + startx + 1)
+		if(i < startx + 2 || i > (int) strlen(label) + startx + 1)
 			mvwprintw(local_win, starty, i, "-");
 		if(i == startx + 2)
 			mvwprintw(local_win, starty, i, "%s", label);

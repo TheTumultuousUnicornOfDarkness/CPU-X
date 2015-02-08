@@ -75,7 +75,7 @@ int libdmi(char data[][MAXSTR], char c)
 	switch(c)
 	{
 		case 'c':
-			if(!dmialloc(&dmidata, LASTPROC));
+			if(!dmialloc(&dmidata, LASTPROC))
 			{
 				opt.type = dmiparse(opt.type, 4);
 				err = maindmi();
@@ -85,7 +85,7 @@ int libdmi(char data[][MAXSTR], char c)
 			}
 			break;
 		case 'm':
-			if(!dmialloc(&dmidata, LASTMB));
+			if(!dmialloc(&dmidata, LASTMB))
 			{
 				opt.type = dmiparse(opt.type, 0);
 				opt.type = dmiparse(opt.type, 2);
@@ -96,7 +96,7 @@ int libdmi(char data[][MAXSTR], char c)
 			}
 			break;
 		case 'r':
-			if(!dmialloc(&dmidata, LASTRAM));
+			if(!dmialloc(&dmidata, LASTRAM))
 			{
 				opt.type = dmiparse(opt.type, 17);
 				err = maindmi();

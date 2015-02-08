@@ -55,10 +55,14 @@ void help(FILE *out, char *argv[]) {
 #endif /* HAS_LIBDMI */
 		"  -h, --%-10s Print help and exit\n"
 		"  -V, --%-10s Print version and exit\n"), argv[0],
-		optstring[0], optstring[1], optstring[2], optstring[3], optstring[4], optstring[5], optstring[6]);
+		optstring[0], optstring[1], optstring[2], optstring[3], optstring[4]
+#if HAS_LIBDMI
+		, optstring[5], optstring[6]
+#endif /* HAS_LIBDMI */
+		);
 }
 
-void version() {
+void version(void) {
 	printf(_("%s %s\n"
 	"%s\n\n"
 	"This is free software: you are free to change and redistribute it.\n"
