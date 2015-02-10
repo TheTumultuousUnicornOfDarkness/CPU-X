@@ -58,10 +58,12 @@ int main(int argc, char *argv[]) {
 	option = menu(argc, argv);
 
 	Labels data;
+	MSGVERB("Set locale");
 	setlocale(LC_ALL, "");
 	bindtextdomain("cpux", get_path("locale"));
 	textdomain("cpux");
 
+	MSGVERB("Initialize main array");
 	labels_setempty(&data);
 	labels_setname(&data);
 	bogomips(data.tabcpu[VALUE][BOGOMIPS]);
@@ -96,7 +98,7 @@ int main(int argc, char *argv[]) {
 		start_gui_gtk(&argc, &argv, &data);
 	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
 		start_tui_ncurses(&data);
-	else if(HAS_LIBDMI && option == 'I')
+	else if(HAS_LIBDMI && option == 'I') /* Just run command dmidecode */
 		libdmi(NULL, 'i');
 	else if(option == 'D') /* Just dump datas */
 		dump_data(&data);
@@ -115,6 +117,8 @@ int main(int argc, char *argv[]) {
 void labels_setempty(Labels *data)
 {
 	int i;
+
+	MSGVERB(_("Put null value in labels"));
 
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
@@ -145,9 +149,11 @@ void labels_setempty(Labels *data)
 	}
 }
 
-/* Set label name */
+/* Set labels name */
 void labels_setname(Labels *data)
 {
+	MSGVERB(_("Set labels name"));
+
 	/* Various objects*/
 	snprintf(data->objects[TABCPU],			MAXSTR, _("CPU"));
 	snprintf(data->objects[TABMB],			MAXSTR, _("Mainboard"));
@@ -251,6 +257,7 @@ int libcpuid(Labels *data)
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
+	MSGVERB("Call Libcpuid");
 	err += cpuid_get_raw_data(&raw);
 	err += cpu_identify(&raw, &datanr);
 
@@ -264,6 +271,7 @@ int libcpuid(Labels *data)
 	snprintf(data->tabcpu[VALUE][EXTMODEL],		MAXSTR, "%d", datanr.ext_model);
 	snprintf(data->tabcpu[VALUE][STEPPING],		MAXSTR, "%d", datanr.stepping);
 
+	MSGVERB(_("Fill array with values provided by Libcpuid"));
 	if(datanr.l1_data_cache > 0)
 	{
 		snprintf(data->tabcpu[VALUE][LEVEL1D],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
@@ -324,8 +332,11 @@ int libdmidecode(Labels *data)
 	static int nodyn = 0;
 	char datanr[LASTRAM][MAXSTR] = { { '\0' } };
 
-	/* Tab CPU */
+	MSGVERB("Call Libdmi");
 	err += libdmi(datanr, 'c');
+
+	/* Tab CPU */
+	MSGVERB(_("Fill array with values provided by Libdmi"));
 	strncpy(data->tabcpu[VALUE][PACKAGE],  datanr[PROC_PACKAGE], MAXSTR);
 	strncpy(data->tabcpu[VALUE][BUSSPEED], datanr[PROC_BUS], MAXSTR);
 
@@ -353,6 +364,9 @@ int libdmidecode(Labels *data)
 int libdmi_fallback(Labels *data)
 {
 	int i, err = 0;
+
+	MSGVERB("Call Libdmi (fallback mode)");
+
 #ifdef __linux__
 	char path[PATH_MAX];
 	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date" };
@@ -373,6 +387,7 @@ int libdmi_fallback(Labels *data)
 			err++;
 	}
 #endif /* __linux__ */
+
 	return err;
 }
 
@@ -382,6 +397,7 @@ void cpuvendor(char *vendor)
 {
 	/* This use Libcpuid. See here: https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
 
+	MSGVERB(_("Improve CPU Vendor label"));
 	if(!strcmp(vendor, "GenuineIntel"))	 /* Intel */
 		strcpy(vendor, "Intel");
 	else if(!strcmp(vendor, "AuthenticAMD")) /* AMD */
@@ -412,6 +428,7 @@ void clean_specification(char *spec)
 	int i = 0, j = 0, skip = 0;
 	char tmp[MAXSTR];
 
+	MSGVERB(_("Remove unnecessary spaces in value Specification"));
 	while(spec[i] != '\0')
 	{
 		if(isspace(spec[i]))
@@ -442,6 +459,7 @@ void cpufreq(char *busfreq, char *clock, char *mults)
 	char multmin[S] = { "0" }, multmax[S] = { "0" };
 	FILE *fmin = NULL, *fmax = NULL;
 
+	MSGVERB("Get CPU frequency");
 	if(HAS_LIBCPUID)
 		snprintf(clock, MAXSTR, "%d MHz", cpu_clock());
 
@@ -484,6 +502,8 @@ void bogomips(char *c) {
 	char *mips = NULL;
 	FILE *cpuinfo = NULL;
 
+	MSGVERB(_("Read value BogoMIPS"));
+
 #ifdef __linux__
 	cpuinfo = fopen("/proc/cpuinfo", "r");
 	if(cpuinfo == NULL) {
@@ -517,6 +537,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 	int i, fcpu, fbus, cur, min, max;
 	char ncpu[S] = "", nbus[S] = "";
 
+	MSGVERB(_("Estimate CPU multiplicateurs (current - minimum - maximum)"));
 	for(i = 0; isdigit(cpufreq[i]); i++)
 		ncpu[i] = cpufreq[i];
 	fcpu = atoi(ncpu);
@@ -546,6 +567,7 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t id;
 
+	MSGVERB(_("Find CPU instructions"));
 	if (!cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
 	{
 		if(id.flags[CPU_FEATURE_MMX])
@@ -601,6 +623,7 @@ void tabsystem(Labels *data)
 	struct utsname name;
 	FILE *osrel = NULL, *comp = NULL;
 
+	MSGVERB(_("Fill System tab"));
 	osrel = fopen("/etc/os-release", "r");
 	uname(&name);
 
@@ -666,7 +689,7 @@ int last_bank(Labels *data)
 	return cpt;
 }
 
-/* Dump all datas in stdout */
+/* Dump all data in stdout */
 void dump_data(Labels *data)
 {
 	int i;

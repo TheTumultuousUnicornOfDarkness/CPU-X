@@ -26,6 +26,7 @@
 
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
+#define MSGVERB(msg) if(verbose == 1 || verbose == 3) printf("%s\n", msg)
 #define MSGERR(msg) fprintf(stderr, "%s:%s:%i: %s\n", PRGNAME, BASEFILE, __LINE__, _(msg))
 #define MSGROOT _("\n\t\t\tWARNING:\n%s requires root privileges to run correctly.\n")
 #define _(str) gettext(str)
@@ -171,7 +172,7 @@ void tabsystem(Labels *data);
 /* Find the number of existing banks */
 int last_bank(Labels *data);
 
-/* Dump all datas in stdout */
+/* Dump all data in stdout */
 void dump_data(Labels *data);
 
 /* Get path for data files */
