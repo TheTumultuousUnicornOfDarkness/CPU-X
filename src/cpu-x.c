@@ -694,6 +694,13 @@ void dump_data(Labels *data)
 {
 	int i;
 
+	if(getuid())
+	{
+		fprintf(stderr, "\033[1;33m");
+		fprintf(stderr, MSGROOT, PRGNAME);
+		fprintf(stderr, "\n\033[0m");
+	}
+
 	/* Tab CPU */
 	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
 	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
