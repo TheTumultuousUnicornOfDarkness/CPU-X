@@ -101,6 +101,26 @@ void *mem_chunk(size_t base, size_t len, const char *devmem)
 	void *mmp;
 #endif
 
+#ifdef CPUX
+	static int err = 0;
+
+	if(err)
+		return NULL;
+
+	if ((fd = open(devmem, O_RDONLY)) == -1)
+	{
+		err++;
+		perror(devmem);
+		return NULL;
+	}
+
+	if ((p = malloc(len)) == NULL)
+	{
+		err++;
+		perror("malloc");
+		return NULL;
+	}
+#else
 	if ((fd = open(devmem, O_RDONLY)) == -1)
 	{
 		perror(devmem);
@@ -112,6 +132,7 @@ void *mem_chunk(size_t base, size_t len, const char *devmem)
 		perror("malloc");
 		return NULL;
 	}
+#endif /* CPUX */
 
 #ifdef USE_MMAP
 #ifdef _SC_PAGESIZE
