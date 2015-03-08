@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
+if(APPLE)
+  cmake_policy(SET CMP0025 NEW)
+endif(APPLE)
 
 project(libdmi)
 

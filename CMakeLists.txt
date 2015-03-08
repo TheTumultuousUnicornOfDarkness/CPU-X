@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
+if(APPLE)
+  cmake_policy(SET CMP0025 NEW)
+endif(APPLE)
 
 project(CPU-X)
 
@@ -39,7 +42,7 @@ if(NOT WIN32)
   set(BoldMagenta "${Esc}[1;35m")
   set(BoldCyan    "${Esc}[1;36m")
   set(BoldWhite   "${Esc}[1;37m")
-endif()
+endif(NOT WIN32)
 
 # GTK3+ libs
 if(WITH_GTK)
