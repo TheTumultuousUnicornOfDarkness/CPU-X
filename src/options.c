@@ -94,10 +94,8 @@ char menu(int argc, char *argv[]) {
 	while((c = getopt_long(argc, argv, ":ndDr:vhV", longopts, NULL)) != -1) {
 		switch(c) {
 			case 'n':
-				r = 'N';
-				break;
 			case 'd':
-				r = 'D';
+				r = c;
 				break;
 			case 'r':
 				if(atoi(optarg) > 1)
@@ -105,7 +103,7 @@ char menu(int argc, char *argv[]) {
 				break;
 #if HAS_LIBDMI
 			case 'D':
-				r = 'I';
+				r = c;
 				verbose += 2;
 				break;
 			case 'v':
@@ -125,10 +123,8 @@ char menu(int argc, char *argv[]) {
 		}
 	}
 
-	if(HAS_GTK && r == 'G')
-		r = 'G';
-	else if(!HAS_GTK && HAS_NCURSES)
-		r = 'N';
+	if(!HAS_GTK && HAS_NCURSES && r == 'G')
+		r = 'n';
 
 	return r;
 }

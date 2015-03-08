@@ -105,7 +105,7 @@ int libdmi(char data[][MAXSTR], char c)
 				dmifree(&dmidata, LASTRAM);
 			}
 			break;
-		case 'i':
+		case 'D':
 			err = maindmi();
 			break;
 		default:

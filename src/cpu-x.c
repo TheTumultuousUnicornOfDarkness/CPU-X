@@ -96,11 +96,11 @@ int main(int argc, char *argv[]) {
 	/* Start GUI */
 	if(HAS_GTK && option == 'G') /* Start with GTK3 */
 		start_gui_gtk(&argc, &argv, &data);
-	else if(HAS_NCURSES && option == 'N') /* Start with NCurses */
+	else if(HAS_NCURSES && option == 'n') /* Start with NCurses */
 		start_tui_ncurses(&data);
-	else if(HAS_LIBDMI && option == 'I') /* Just run command dmidecode */
-		libdmi(NULL, 'i');
-	else if(option == 'D') /* Just dump datas */
+	else if(HAS_LIBDMI && option == 'D') /* Just run command dmidecode */
+		libdmi(NULL, option);
+	else if(option == 'd') /* Just dump datas */
 		dump_data(&data);
 
 	/* If compiled without GUI */
@@ -709,7 +709,7 @@ void dump_data(Labels *data)
 	}
 
 	/* Tab Mainboard */
-	
+
 	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
 	for(i = MANUFACTURER; i < LASTMB; i++)
@@ -741,7 +741,7 @@ char *get_path(char *file)
 {
 	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
 	See this file for more informations */
-	char *path_end;	
+	char *path_end;
 	static char *buffer;
 	size_t len = PATH_MAX;
 
