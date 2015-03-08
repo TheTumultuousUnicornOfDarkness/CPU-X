@@ -37,8 +37,10 @@ void start_tui_ncurses(Labels *data)
 
 	if(getuid())
 	{
+		fprintf(stderr, "\033[1;33m");
 		fprintf(stderr, MSGROOT, PRGNAME);
 		fprintf(stderr, _("Start in 3 seconds...\n"));
+		fprintf(stderr, "\033[0m");
 		sleep(3);
 	}
 
@@ -198,7 +200,7 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 	mvwprintw(local_win, FAMILY + 2,	38, "%9s: %s", data->tabcpu[NAME][STEPPING], data->tabcpu[VALUE][STEPPING]);
 	mvwprintw(local_win, EXTFAMILY + 2,	22, "%11s: %2s", data->tabcpu[NAME][EXTMODEL], data->tabcpu[VALUE][EXTMODEL]);
 	mvwprintw(local_win, EXTFAMILY + 3,	2, "%13s: %2s", data->tabcpu[NAME][INSTRUCTIONS], data->tabcpu[VALUE][INSTRUCTIONS]);
-	
+
 	/* Clocks frame */
 	for(i = CORESPEED; i < LEVEL1D; i++)
 		mvwprintw(local_win, i + 1, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
