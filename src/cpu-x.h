@@ -73,6 +73,7 @@
 #endif
 
 extern int refreshtime;
+extern int verbose;
 
 
 enum EnTabNumber
@@ -163,7 +164,7 @@ void bogomips(char *c);
 /* If 'dmidecode' can be called, return CPU multipliers (actual, min and max) */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
 
-/* Print some instruction sets */ 
+/* Print some instruction sets */
 void instructions(char arch[MAXSTR], char instr[MAXSTR]);
 
 /* Get system informations */

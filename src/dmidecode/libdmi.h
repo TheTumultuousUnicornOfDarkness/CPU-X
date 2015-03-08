@@ -8,7 +8,6 @@
 #define PROC_BUS 1
 #define LASTPROC 2
 
-extern int verbose;
 extern char **dmidata;
 
 int maindmi(void);
