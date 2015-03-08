@@ -125,13 +125,18 @@ add_executable(cpu-x
 	src/options.c
 )
 
+set(ADDITIONNAL_LIBRARIES "-lm")
+if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  set(ADDITIONNAL_LIBRARIES "${ADDITIONNAL_LIBRARIES} -lintl")
+endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
 target_link_libraries(cpu-x
 	${GUI_GTK_LIBRARY}
 	${TUI_NCURSES_LIBRARY}
 	${LIBCPUID_LIBRARIES}
 	${LIBDMI_LIBRARY}
 	${LIBPROCPS_LIBRARIES}
-	-lm
+	${ADDITIONNAL_LIBRARIES}
 )
 
 # Installation
