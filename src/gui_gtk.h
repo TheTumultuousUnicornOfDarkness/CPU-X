@@ -89,5 +89,8 @@ void set_labels(GtkLabels *glab, Labels *data);
 /* Set Memory bar in tab System */
 void set_membar(GtkLabels *glab, Labels *data);
 
+/* Get path for data files thanks to GLib */
+char *data_path(char *file);
+
 
 #endif /* _CPUX_GTK_H_ */

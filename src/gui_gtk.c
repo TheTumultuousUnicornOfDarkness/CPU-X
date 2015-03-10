@@ -118,13 +118,13 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		exit(EXIT_FAILURE);
 	}
 #else
-	if(!gtk_builder_add_from_file(builder, get_path("cpux-gtk-3.8.ui"), NULL))
+	if(!gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
 	{
 		MSGERR("gtk_builder_add_from_file failed.");
 		exit(EXIT_FAILURE);
 	}
 #endif
-	g_set_prgname(PRGNAME);
+	g_set_prgname(g_ascii_strdown(PRGNAME, -1));
 	glab.mainwindow	 = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
 	glab.closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
 	glab.labprgver	 = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
@@ -234,19 +234,19 @@ void set_logos(GtkLabels *glab, Labels *data)
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_vendor); /* CPU vendor icon */
 	if(gtk_image_get_pixbuf(GTK_IMAGE(glab->logocpu)) == NULL) /* If no icon is set, apply "novendor.png" */
 		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf_NOVENDOR);
-#else
 
+#else
 	char tmp[MAXSTR];
 	const gchar *icon_name[MAXSTR];
 	sprintf(tmp, "%s.png", data->tabcpu[VALUE][VENDOR]);
 
-	gtk_window_set_icon_from_file(GTK_WINDOW(glab->mainwindow), get_path("CPU-X.png"), NULL); /* Window icon */
-	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), get_path("CPU-X.png")); /* Program icon in About */
+	gtk_window_set_icon_from_file(GTK_WINDOW(glab->mainwindow), data_path("CPU-X.png"), NULL); /* Window icon */
+	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), data_path("CPU-X.png")); /* Program icon in About */
 
-	gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path(tmp)); /* CPU vendor icon */
+	gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), data_path(tmp)); /* CPU vendor icon */
 	gtk_image_get_icon_name(GTK_IMAGE(glab->logocpu), icon_name, NULL);
 	if(icon_name[0] != NULL) /* If no icon is set, apply "novendor.png" */
-		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), get_path("novendor.png"));
+		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), data_path("novendor.png"));
 #endif
 }
 
@@ -353,4 +353,26 @@ void set_membar(GtkLabels *glab, Labels *data)
 	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barswap), (double) strtol(data->tabsys[VALUE][SWAP], NULL, 10)
 						/ strtol(strstr(data->tabsys[VALUE][SWAP], "/ ") + 2, NULL, 10));
 #endif
+}
+
+/* Search file location to avoid hardcode them */
+char *data_path(char *file)
+{
+	int i = 0;
+	const char *prgname = g_get_prgname();
+	const gchar *const *paths = g_get_system_data_dirs();
+	static char *buffer;
+
+	while(paths[i] != NULL)
+	{
+		gchar *path = g_build_filename(paths[i], prgname, file, NULL);
+		if(g_file_test(path, G_FILE_TEST_EXISTS))
+		{
+			buffer = g_strdup(path);
+			return buffer;
+		}
+		i++;
+	}
+
+	return NULL;
 }
