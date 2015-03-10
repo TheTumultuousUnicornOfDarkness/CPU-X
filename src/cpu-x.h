@@ -27,8 +27,8 @@
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
 #define MSGVERB(msg) if(verbose == 1 || verbose == 3) printf("\033[1;32m%s\033[0m\n", msg)
-#define MSGERR(msg) fprintf(stderr, "\033[1;32m%s:%s:%i: %s\033[0m\n", PRGNAME, BASEFILE, __LINE__, _(msg))
-#define MSGROOT _("\n\t\t\tWARNING:\n%s requires root privileges to run correctly.\n")
+#define MSGERR(msg) fprintf(stderr, "\033[1;31m%s:%s:%i: %s\033[0m\n", PRGNAME, BASEFILE, __LINE__, _(msg))
+#define MSGROOT _("WARNING:\n%s requires root privileges to run correctly.")
 #define _(str) gettext(str)
 
 #define PRGNAME "CPU-X"

@@ -138,11 +138,16 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	if(getuid()) /* Show warning if not root */
 	{
-		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(glab.mainwindow),
+		gchar markup1[MAXSTR*2], markup2[MAXSTR*3];
+		sprintf(markup1, MSGROOT, PRGNAME);
+		sprintf(markup2, "\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s", strtok(markup1, ":"), strstr(markup1, "\n"));
+		GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(glab.mainwindow),
                                  (GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL),
                                  GTK_MESSAGE_WARNING,
                                  GTK_BUTTONS_CLOSE,
-                                 MSGROOT, PRGNAME);
+                                 markup2);
+				 gtk_container_set_border_width(GTK_CONTAINER (dialog), 5);
+		gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);
 		gtk_dialog_run(GTK_DIALOG (dialog));
 		gtk_widget_destroy(dialog);
 	}

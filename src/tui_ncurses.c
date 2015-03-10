@@ -37,11 +37,10 @@ void start_tui_ncurses(Labels *data)
 
 	if(getuid())
 	{
-		fprintf(stderr, "\033[1;33m");
+		fprintf(stderr, "\n\t\t\t\033[1;33m");
 		fprintf(stderr, MSGROOT, PRGNAME);
-		fprintf(stderr, _("Start in 3 seconds...\n"));
-		fprintf(stderr, "\033[0m");
-		sleep(3);
+		fprintf(stderr, "\n\033[0m");
+		sleep(1.5);
 	}
 
 	initscr();

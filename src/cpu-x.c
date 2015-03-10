@@ -697,9 +697,9 @@ void dump_data(Labels *data)
 
 	if(getuid())
 	{
-		fprintf(stderr, "\033[1;33m");
+		fprintf(stderr, "\n\t\t\t\033[1;33m");
 		fprintf(stderr, MSGROOT, PRGNAME);
-		fprintf(stderr, "\n\033[0m");
+		fprintf(stderr, "\n\n\033[0m");
 	}
 
 	/* Tab CPU */
