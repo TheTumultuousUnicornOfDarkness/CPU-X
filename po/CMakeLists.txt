@@ -1,17 +1,22 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 if(APPLE)
-  cmake_policy(SET CMP0025 NEW)
+	cmake_policy(SET CMP0025 NEW)
 endif(APPLE)
 
+cmake_policy(SET CMP0048 OLD)
 project(po)
 
-set(_GMO_DIR ${CMAKE_BINARY_DIR})
+set(GMO_DIR ${CMAKE_BINARY_DIR}/accomplished/locale/)
 set(MSGFMT_EXECUTABLE msgfmt)
 
-execute_process(COMMAND ${MSGFMT_EXECUTABLE} -o ${_GMO_DIR}/cpu-x.mo fr.po
+
+# French
+execute_process(COMMAND mkdir -p ${GMO_DIR}/fr)
+
+execute_process(COMMAND ${MSGFMT_EXECUTABLE} fr.po -o ${GMO_DIR}/fr/cpu-x.mo
 	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
 
-install(FILES ${_GMO_DIR}/cpu-x.mo
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/locale/fr/LC_MESSAGES/
+install(FILES ${GMO_DIR}/fr/cpu-x.mo
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/locale/fr/LC_MESSAGES/
 )

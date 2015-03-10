@@ -1,19 +1,20 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 if(APPLE)
-  cmake_policy(SET CMP0025 NEW)
+	cmake_policy(SET CMP0025 NEW)
 endif(APPLE)
 
 cmake_policy(SET CMP0048 NEW)
 project(libdmi
-  VERSION 2.12
-  LANGUAGES C
+	VERSION 2.12
+	LANGUAGES C
 )
-message("--   found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+
+# Print libdmi version
+message("-- ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-add_library(dmi-cpux
+# Compile statically dmi
+add_library(dmi
         STATIC
 	types.h
 	util.c
@@ -29,4 +30,4 @@ add_library(dmi-cpux
 
 add_definitions(-DCPUX)
 
-target_link_libraries(dmi-cpux)
+target_link_libraries(dmi)
