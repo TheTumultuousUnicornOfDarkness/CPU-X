@@ -32,7 +32,6 @@
 #define _(str) gettext(str)
 
 #define PRGNAME "CPU-X"
-#define PRGVER  "2.0.2"
 #define PRGAUTH "X0rg"
 #define PRGCPYR "Copyright © 2014 Xorg"
 #define EXIT_FNO 2	/* Exit when File Not Open */
