@@ -75,33 +75,33 @@ message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **
 if(WITH_GTK)
 	message("${BoldCyan}**   ${BoldCyan}GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
 else(WITH_GTK)
-	message("${BoldCyan}**	 ${BoldCyan}GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_GTK)
 
 # NCurses libs
 if(WITH_NCURSES)
-	message("${BoldCyan}**	 NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
+	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
 else(WITH_NCURSES)
-	message("${BoldCyan}**	 NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
+	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_NCURSES)
 
 # Libcpuid lib
 if(WITH_LIBCPUID)
-	message("${BoldCyan}**	 ${BoldCyan}LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
 else(WITH_LIBCPUID)
-	message("${BoldCyan}**	 ${BoldCyan}LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBCPUID)
 
 # Dmidecode lib
 if(WITH_LIBDMI)
-	message("${BoldCyan}**	 ${BoldCyan}LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
 else(WITH_LIBDMI)
-	message("${BoldCyan}**	 ${BoldCyan}LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBDMI)
 
 # Libprocps lib
 if(WITH_LIBPROCPS)
-	message("${BoldCyan}**	 ${BoldCyan}LIBPROCPS${ColourReset} is ${BoldGreen}ON${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}LIBPROCPS${ColourReset} is ${BoldGreen}ON${ColourReset}")
 else(WITH_LIBPROCPS)
-	message("${BoldCyan}**	 ${BoldCyan}LIBPROCPS${ColourReset} is ${BoldRed}OFF${ColourReset}")
+	message("${BoldCyan}**   ${BoldCyan}LIBPROCPS${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBPROCPS)
