@@ -1,6 +1,0 @@
-#!/bin/bash
-if [ $(which pkexec) ]; then
-	pkexec --disable-internal-agent "/usr/bin/cpu-x" "$@"
-else
-	/usr/bin/cpu-x "$@"
-fi

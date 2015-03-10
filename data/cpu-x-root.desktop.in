@@ -1,9 +1,10 @@
 [Desktop Entry]
-Name=CPU-X
+Name=CPU-X (Root)
 Encoding=UTF-8
 Comment=Gathers information on CPU & motherboard
 Comment[fr]=Récolte des informations sur le CPU et la carte-mère
-Exec=cpu-x
+Exec=@EXEC@
+TryExec=@TRYEXEC@
 Icon=cpu-x.png
 Type=Application
 Categories=GTK;System;
