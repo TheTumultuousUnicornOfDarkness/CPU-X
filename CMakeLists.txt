@@ -1,16 +1,17 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 if(APPLE)
   cmake_policy(SET CMP0025 NEW)
 endif(APPLE)
 
-project(CPU-X)
+cmake_policy(SET CMP0048 NEW)
+project(cpu-x
+  VERSION 2.0.2
+  LANGUAGES C
+)
 
 set(EXECUTABLE_OUTPUT_PATH bin/)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY lib/)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wuninitialized -Wstrict-prototypes")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Wuninitialized -Wstrict-prototypes")
 
 option(WITH_GTK "Add support for GUI in GTK3+" ON)
@@ -123,7 +124,7 @@ if(EMBED)
 endif(EMBED)
 
 # Main executable
-add_definitions(-DGETTEXT_PACKAGE="cpux" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
+add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
 
 add_executable(cpu-x
 	src/cpu-x.c
@@ -146,7 +147,8 @@ target_link_libraries(cpu-x
 )
 
 # Installation
-install(TARGETS cpu-x DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+install(TARGETS cpu-x DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)
+
 if(WITH_GTK)
   file(GLOB_RECURSE
 	pictures
@@ -155,25 +157,58 @@ if(WITH_GTK)
   install(FILES
 	data/cpux-gtk-3.8.ui
 	${pictures}
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/cpu-x/
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/
   )
   install(FILES
 	data/cpu-x.desktop
 	data/cpu-x-root.desktop
-	DESTINATION /usr/share/applications/
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/applications/
   )
   install(FILES
 	data/org.pkexec.cpu-x.policy
-	DESTINATION /usr/share/polkit-1/actions
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions
   )
   install(FILES
 	cpu-x_polkit
-	DESTINATION /usr/bin
+	DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/
 	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
   )
   install(FILES
 	data/CPU-X.png
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/pixmaps/
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/pixmaps/
 	RENAME cpu-x.png
   )
 endif()
+
+
+message("${BoldCyan}*** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration ***${ColourReset}")
+
+if(WITH_GTK)
+  message("	${BoldCyan}GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_GTK)
+  message("	${BoldCyan}GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_GTK)
+
+if(WITH_NCURSES)
+  message("	${BoldCyan}NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_NCURSES)
+  message("	${BoldCyan}NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_NCURSES)
+
+if(WITH_LIBCPUID)
+  message("	${BoldCyan}LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_LIBCPUID)
+  message("	${BoldCyan}LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_LIBCPUID)
+
+if(WITH_LIBDMI)
+  message("	${BoldCyan}LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_LIBDMI)
+  message("	${BoldCyan}LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_LIBDMI)
+
+if(WITH_LIBPROCPS)
+  message("	${BoldCyan}LIBPROCPS${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_LIBPROCPS)
+  message("	${BoldCyan}LIBPROCPS${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_LIBPROCPS)

@@ -3,7 +3,13 @@ if(APPLE)
   cmake_policy(SET CMP0025 NEW)
 endif(APPLE)
 
-project(libdmi)
+cmake_policy(SET CMP0048 NEW)
+project(libdmi
+  VERSION 2.12
+  LANGUAGES C
+)
+message("--   found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
