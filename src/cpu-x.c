@@ -60,8 +60,9 @@ int main(int argc, char *argv[]) {
 	Labels data;
 	MSGVERB("Set locale");
 	setlocale(LC_ALL, "");
-	bindtextdomain("cpux", get_path("locale"));
-	textdomain("cpux");
+	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	MSGVERB("Initialize main array");
 	labels_setempty(&data);
@@ -741,36 +742,4 @@ void dump_data(Labels *data)
 			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
 		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
 	}
-}
-
-/* Search file location */
-char *get_path(char *file)
-{
-	/* Taken from http://www.advancedlinuxprogramming.com/listings/chapter-7/get-exe-path.c
-	See this file for more informations */
-	char *path_end;
-	static char *buffer;
-	size_t len = PATH_MAX;
-
-	if(buffer == NULL)
-		buffer = malloc(PATH_MAX);
-	else
-		memset(buffer, 0, PATH_MAX);
-
-	if(readlink ("/proc/self/exe", buffer, len) <= 0)
-		return NULL;
-
-	path_end = strrchr(buffer, '/');
-	if(path_end == NULL)
-		return NULL;
-
-	path_end++;
-	*path_end = '\0';
-
-	if(!strcmp(file, "locale"))
-		sprintf(buffer, "%s../share/%s", buffer, file);
-	else
-		sprintf(buffer, "%s../share/cpu-x/%s", buffer, file);
-
-	return buffer;
 }

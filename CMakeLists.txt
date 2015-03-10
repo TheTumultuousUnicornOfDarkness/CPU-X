@@ -20,6 +20,7 @@ option(WITH_LIBDMI "Allow use of library Libdmi" ON)
 option(WITH_LIBPROCPS "Allow use of library Libprocps" ON)
 
 
+include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 add_subdirectory(po)
 
@@ -122,6 +123,8 @@ if(EMBED)
 endif(EMBED)
 
 # Main executable
+add_definitions(-DGETTEXT_PACKAGE="cpux" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
+
 add_executable(cpu-x
 	src/cpu-x.c
 	src/cpu-x.h

@@ -176,8 +176,5 @@ int last_bank(Labels *data);
 /* Dump all data in stdout */
 void dump_data(Labels *data);
 
-/* Get path for data files */
-char *get_path(char *file);
-
 
 #endif /* _CPUX_H_ */

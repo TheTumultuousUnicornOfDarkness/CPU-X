@@ -88,8 +88,9 @@ char menu(int argc, char *argv[]) {
 	};
 
 	setlocale(LC_ALL, "");
-	bindtextdomain("cpux", get_path("locale"));
-	textdomain("cpux");
+	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	while((c = getopt_long(argc, argv, ":ndDr:vhV", longopts, NULL)) != -1) {
 		switch(c) {
