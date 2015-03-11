@@ -40,7 +40,7 @@ void start_tui_ncurses(Labels *data)
 		fprintf(stderr, "\n\t\t\t\033[1;33m");
 		fprintf(stderr, MSGROOT, PRGNAME);
 		fprintf(stderr, "\n\033[0m");
-		sleep(1.5);
+		sleep(1);
 	}
 
 	initscr();
@@ -289,24 +289,9 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 {
-	int i = 0, j = 0;
-	static char part2[MAXSTR];
+	char *part2 = strdup(data->objects[LABDESCRIPTION]);
+	const char *part1 = strsep(&part2, "\n");
 	WINDOW *local_win;
-
-	if(strlen(part2) == 0) /* Cut description */
-	{
-		while(data->objects[LABDESCRIPTION][i] != '\n')
-			i++;
-
-		while(data->objects[LABDESCRIPTION][i] != '\0')
-		{
-			i++;
-			part2[j] = data->objects[LABDESCRIPTION][i];
-			data->objects[LABDESCRIPTION][i - 1] = '\0';
-			j++;
-		}
-		part2[j] = '\0';
-	}
 
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
@@ -317,7 +302,7 @@ WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
 	frame(local_win, 12, 1, 18, width - 1, data->objects[FRAMLICENSE]);
 
 	/* About CPU-X frame */
-	mvwprintw(local_win, 3, 4, "%s", data->objects[LABDESCRIPTION]);
+	mvwprintw(local_win, 3, 4, "%s", part1);
 	mvwprintw(local_win, 4, 4, "%s", part2);
 	mvwprintw(local_win, 8, 20, "%s", data->objects[LABVERSION]);
 	mvwprintw(local_win, 9, 20, "%s", data->objects[LABAUTHOR]);
