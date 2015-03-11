@@ -52,6 +52,14 @@
 # include <proc/sysinfo.h>
 #endif
 
+#ifndef __linux__
+# include <sys/types.h>
+# include <sys/sysctl.h>
+# include <sys/timespec.h>
+# include <time.h>
+# include <statgrab.h>
+#endif
+
 
 int main(int argc, char *argv[]) {
 	char option;
@@ -666,13 +674,48 @@ void tabsystem(Labels *data)
 	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
 	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
 	muptime = suptime / 60; suptime -= muptime * 60;
-	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld secondes"), duptime, huptime, muptime, suptime);
+	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
 
 	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", (kb_main_total - (kb_main_buffers + kb_main_cached + kb_main_free)) / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / 1000, kb_swap_total / 1000);
+
+#else
+	static int init_called = 0;
+	char os[MAXSTR];
+	size_t len = sizeof(os);
+	const int div = 1000000;
+	struct timespec tsp;
+	sg_mem_stats *mem;
+	sg_swap_stats *swap;
+
+	sysctlbyname("kern.osrelease", &os, &len, NULL, 0);
+	stpncpy(data->tabsys[VALUE][KERNEL], os, MAXSTR);
+
+	sysctlbyname("kern.ostype", &os, &len, NULL, 0);
+	stpncpy(data->tabsys[VALUE][DISTRIBUTION], os, MAXSTR);
+
+	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
+	suptime = tsp.tv_sec;
+	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
+	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
+	muptime = suptime / 60; suptime -= muptime * 60;
+	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
+
+	if(!init_called)
+	{
+		init_called = 1;
+		sg_init(0);
+	}
+	mem  = sg_get_mem_stats(NULL);
+	swap = sg_get_swap_stats(NULL);
+	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5llu MB / %5llu MB", mem->used / div, mem->total / div);
+	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5s MB / %5llu MB", "???", mem->total / div);
+	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5llu MB", mem->cache / div, mem->total / div);
+	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5llu MB", mem->free / div, mem->total / div);
+	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
 #endif /* (__linux__) && HAS_LIBPROCPS */
 }
 

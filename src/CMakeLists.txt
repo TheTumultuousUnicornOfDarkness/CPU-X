@@ -71,6 +71,12 @@ if(WITH_LIBPROCPS)
 		if(EMBED)
 			set(LIBPROCPS_LIBRARIES -l:libprocps.a)
 		endif(EMBED)
+	else(LIBPROCPS_FOUND)
+		pkg_check_modules(LIBSTATGRAB libstatgrab)
+		if(LIBSTATGRAB_FOUND)
+			include_directories(${LIBSTATGRAB_INCLUDE_DIRS})
+			link_directories(${LIBSTATGRAB_LIBRARY_DIRS})
+		endif(LIBSTATGRAB_FOUND)
 	endif(LIBPROCPS_FOUND)
 endif(WITH_LIBPROCPS)
 
@@ -97,6 +103,7 @@ target_link_libraries(cpu-x
 	${LIBCPUID_LIBRARIES}
 	${LIBDMI_LIBRARY}
 	${LIBPROCPS_LIBRARIES}
+	${LIBSTATGRAB_LIBRARIES}
 	${ADDITIONNAL_LIBRARIES}
 )
 
