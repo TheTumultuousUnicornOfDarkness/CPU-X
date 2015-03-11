@@ -12,14 +12,20 @@ project(binary)
 # GTK3+ libs
 if(WITH_GTK)
 	pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
-	include_directories(${GTK3_INCLUDE_DIRS})
-	link_directories(${GTK3_LIBRARY_DIRS})
-	add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
-	add_library(gui_gtk
-		gui_gtk.c
-		gui_gtk.h
-	)
-	set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
+	if(GTK3_FOUND)
+		include_directories(${GTK3_INCLUDE_DIRS})
+		link_directories(${GTK3_LIBRARY_DIRS})
+		add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
+		add_library(gui_gtk
+			gui_gtk.c
+			gui_gtk.h
+		)
+		set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
+	else(GTK3_FOUND)
+		message("${BoldYellow} GTK3 headers not found!")
+		message("Set PKG_CONFIG_PATH environment variable,")
+		message("or use CMake variable ${ColourReset}${ColourBold}-DWITH_GTK=0${ColourReset}${BoldYellow}.${ColourReset}")
+	endif(GTK3_FOUND)
 endif(WITH_GTK)
 
 # NCurses libs

@@ -59,6 +59,9 @@
 #ifndef __linux__
 # include <sys/types.h>
 # include <sys/sysctl.h>
+#endif
+
+#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
 # include <sys/timespec.h>
 # include <time.h>
 #endif
@@ -631,7 +634,7 @@ void tabsystem(Labels *data)
 {
 	MSGVERB(_("Fill System tab"));
 	static int called = 0;
-	long int duptime, huptime, muptime, suptime, memtot;
+	long int duptime, huptime, muptime, suptime = 0, memtot;
 	struct utsname name;
 	FILE *cc;
 	uname(&name);
@@ -681,16 +684,12 @@ void tabsystem(Labels *data)
 	char os[MAXSTR];
 	size_t len = sizeof(os);
 	const int div = 1000000;
-	struct timespec tsp;
 
 	sysctlbyname("kern.osrelease", &os, &len, NULL, 0); /* Label Kernel */
 	stpncpy(data->tabsys[VALUE][KERNEL], os, MAXSTR);
 
 	sysctlbyname("kern.ostype", &os, &len, NULL, 0); /* Label Distribution */
 	stpncpy(data->tabsys[VALUE][DISTRIBUTION], os, MAXSTR);
-
-	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
-	suptime = tsp.tv_sec;
 
 # if HAS_LIBSTATGRAB
 	sg_mem_stats *mem; /* Memory labels */
@@ -715,12 +714,22 @@ void tabsystem(Labels *data)
 
 #endif /* __linux__ */
 
-	snprintf(data->tabsys[VALUE][HOSTNAME],	MAXSTR, "%s", name.nodename); /* Label Hostname */
+#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	struct timespec tsp;
 
-	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60); /* Label Uptime */
-	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
-	muptime = suptime / 60; suptime -= muptime * 60;
-	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
+	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
+	suptime = tsp.tv_sec;
+#endif /* BSD */
+
+	if(suptime > 0)
+	{
+		duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60); /* Label Uptime */
+		huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
+		muptime = suptime / 60; suptime -= muptime * 60;
+		snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
+	}
+
+	snprintf(data->tabsys[VALUE][HOSTNAME],	MAXSTR, "%s", name.nodename); /* Label Hostname */
 
 	cc = popen("cc --version", "r"); /* Label Compiler */
 	if(cc != NULL)
