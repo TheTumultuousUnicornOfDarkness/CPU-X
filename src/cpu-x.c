@@ -52,12 +52,15 @@
 # include <proc/sysinfo.h>
 #endif
 
+#if HAS_LIBSTATGRAB
+# include <statgrab.h>
+#endif
+
 #ifndef __linux__
 # include <sys/types.h>
 # include <sys/sysctl.h>
 # include <sys/timespec.h>
 # include <time.h>
-# include <statgrab.h>
 #endif
 
 
@@ -626,97 +629,106 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 /* Get system informations */
 void tabsystem(Labels *data)
 {
-	static int err = 0;
-	long duptime, huptime, muptime, suptime;
-	char tmp[MAXSTR], *distro = NULL;
-	struct utsname name;
-	FILE *osrel = NULL, *comp = NULL;
-
 	MSGVERB(_("Fill System tab"));
-	osrel = fopen("/etc/os-release", "r");
+	static int called = 0;
+	long int duptime, huptime, muptime, suptime, memtot;
+	struct utsname name;
+	FILE *cc;
 	uname(&name);
 
-	snprintf(data->tabsys[VALUE][KERNEL],		MAXSTR, "%s %s", name.sysname, name.release);
-	snprintf(data->tabsys[VALUE][HOSTNAME],		MAXSTR, "%s", name.nodename);
+#ifdef __linux__
+	const int div = 1000;
+	char *filestr = NULL, *distro = NULL;
+	FILE *osrel = NULL;
 
-	if(osrel == NULL && err == 0) /* Label Distribution */
-	{
-		MSGERR("can't open file '/etc/os-release'.");
-		err++;
-	}
-	else if(err == 0)
-	{
-		while(distro == NULL && fgets(tmp, MAXSTR, osrel) != NULL)
-			distro = strstr(tmp, "PRETTY_NAME=");
-
-		if(distro != NULL)
-		{
-			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "%s", 1 + strchr(distro, '"'));
-			data->tabsys[VALUE][DISTRIBUTION][ strlen(data->tabsys[VALUE][DISTRIBUTION]) - 2 ] = '\0';
-		}
-		else
-			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "Unknown distro");
-		fclose(osrel);
-	}
-
-	comp = popen("cc --version", "r"); /* Label Compiler */
-	if(comp != NULL)
-	{
-		fgets(data->tabsys[VALUE][COMPILER], MAXSTR, comp);
-		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1] = '\0';
-		pclose(comp);
-	}
-
-#if defined (__linux__) && HAS_LIBPROCPS
-	meminfo(); /* Need procps */
-
+	snprintf(data->tabsys[VALUE][KERNEL], MAXSTR, "%s %s", name.sysname, name.release); /* Label Kernel */
 	suptime = uptime(NULL, NULL); /* Label Uptime */
-	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
-	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
-	muptime = suptime / 60; suptime -= muptime * 60;
-	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
 
-	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", (kb_main_total - (kb_main_buffers + kb_main_cached + kb_main_free)) / 1000, kb_main_total / 1000);
-	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / 1000, kb_main_total / 1000);
-	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / 1000, kb_main_total / 1000);
-	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
-	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / 1000, kb_swap_total / 1000);
+	osrel = fopen("/etc/os-release", "r"); /* Label Distribution */
+	if(osrel == NULL && !called)
+		MSGERR("can't open file '/etc/os-release'.");
+	else if(!called)
+	{
+		filestr = malloc(500 * (sizeof(char)));
+		if(filestr == NULL)
+			MSGERR("malloc failed.");
+		else
+		{
+			fread(filestr, sizeof(char), 500, osrel);
+			distro = strstr(filestr, "PRETTY_NAME=");
+			if(distro == NULL)
+				snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, _("Unknown distro"));
+			else
+			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "%s", strtok(strchr(distro, '"') + 1, "\""));
+			fclose(osrel);
+			free(filestr);
+		}
+	}
+	called = 1;
 
-#elif !defined (__linux__) && HAS_LIBSTATGRAB
-	static int init_called = 0;
+# if HAS_LIBPROCPS
+	meminfo(); /* Memory labels */
+	memtot = kb_main_total / div;
+
+	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", (kb_main_total - (kb_main_buffers + kb_main_cached + kb_main_free)) / div, memtot);
+	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / div, memtot);
+	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / div, memtot);
+	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / div, memtot);
+	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / div, kb_swap_total / div);
+# endif /* HAS_LIBPROCPS */
+
+#else /* __ linux__ */
 	char os[MAXSTR];
 	size_t len = sizeof(os);
 	const int div = 1000000;
 	struct timespec tsp;
-	sg_mem_stats *mem;
-	sg_swap_stats *swap;
 
-	sysctlbyname("kern.osrelease", &os, &len, NULL, 0);
+	sysctlbyname("kern.osrelease", &os, &len, NULL, 0); /* Label Kernel */
 	stpncpy(data->tabsys[VALUE][KERNEL], os, MAXSTR);
 
-	sysctlbyname("kern.ostype", &os, &len, NULL, 0);
+	sysctlbyname("kern.ostype", &os, &len, NULL, 0); /* Label Distribution */
 	stpncpy(data->tabsys[VALUE][DISTRIBUTION], os, MAXSTR);
 
 	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
 	suptime = tsp.tv_sec;
-	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60);
+
+# if HAS_LIBSTATGRAB
+	sg_mem_stats *mem; /* Memory labels */
+	sg_swap_stats *swap;
+
+	if(!called)
+	{
+		sg_init(0);
+		called = 1;
+	}
+
+	mem  = sg_get_mem_stats(NULL);
+	swap = sg_get_swap_stats(NULL);
+
+	memtot = mem->total / div;
+	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5llu MB / %5ld MB", mem->used / div, memtot);
+	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5s MB / %5ld MB", "???", memtot);
+	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5ld MB", mem->cache / div, memtot);
+	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5ld MB", mem->free / div, memtot);
+	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
+# endif /* HAS_LIBSTATGRAB */
+
+#endif /* __linux__ */
+
+	snprintf(data->tabsys[VALUE][HOSTNAME],	MAXSTR, "%s", name.nodename); /* Label Hostname */
+
+	duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60); /* Label Uptime */
 	huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
 	muptime = suptime / 60; suptime -= muptime * 60;
 	snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
 
-	if(!init_called)
+	cc = popen("cc --version", "r"); /* Label Compiler */
+	if(cc != NULL)
 	{
-		init_called = 1;
-		sg_init(0);
+		fgets(data->tabsys[VALUE][COMPILER], MAXSTR, cc);
+		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1] = '\0';
+		pclose(cc);
 	}
-	mem  = sg_get_mem_stats(NULL);
-	swap = sg_get_swap_stats(NULL);
-	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5llu MB / %5llu MB", mem->used / div, mem->total / div);
-	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5s MB / %5llu MB", "???", mem->total / div);
-	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5llu MB", mem->cache / div, mem->total / div);
-	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5llu MB", mem->free / div, mem->total / div);
-	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
-#endif /* (__linux__) && HAS_LIBPROCPS || !defined (__linux__) && HAS_LIBSTATGRAB */
 }
 
 /* Find the number of existing banks */
