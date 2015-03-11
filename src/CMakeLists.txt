@@ -61,24 +61,31 @@ if(WITH_LIBDMI)
 	set(LIBDMI_LIBRARY "dmi")
 endif(WITH_LIBDMI)
 
-# Libprocps lib
-if(WITH_LIBPROCPS)
-	pkg_check_modules(LIBPROCPS libprocps)
-	if(LIBPROCPS_FOUND)
-		include_directories(${LIBPROCPS_INCLUDE_DIRS})
-		link_directories(${LIBPROCPS_LIBRARY_DIRS})
-		add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
-		if(EMBED)
-			set(LIBPROCPS_LIBRARIES -l:libprocps.a)
-		endif(EMBED)
-	else(LIBPROCPS_FOUND)
+# Libprocps / Libstatgrab lib
+if(WITH_LIBSYSTEM)
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Linux: Libprocps
+		pkg_check_modules(LIBPROCPS libprocps)
+		if(LIBPROCPS_FOUND)
+			include_directories(${LIBPROCPS_INCLUDE_DIRS})
+			link_directories(${LIBPROCPS_LIBRARY_DIRS})
+			add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
+			if(EMBED)
+				set(LIBPROCPS_LIBRARIES -l:libprocps.a)
+			endif(EMBED)
+		endif(LIBPROCPS_FOUND)
+
+	else(${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Others: Libstatgrab
 		pkg_check_modules(LIBSTATGRAB libstatgrab)
 		if(LIBSTATGRAB_FOUND)
 			include_directories(${LIBSTATGRAB_INCLUDE_DIRS})
 			link_directories(${LIBSTATGRAB_LIBRARY_DIRS})
+			add_definitions(${LIBSTATGRAB_CFLAGS_OTHER} -DLIBSTATGRAB)
+			if(EMBED)
+				set(LIBSTATGRAB_LIBRARIES -l:libstatgrab.a)
+			endif(EMBED)
 		endif(LIBSTATGRAB_FOUND)
-	endif(LIBPROCPS_FOUND)
-endif(WITH_LIBPROCPS)
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+endif(WITH_LIBSYSTEM)
 
 
 ### Main executable

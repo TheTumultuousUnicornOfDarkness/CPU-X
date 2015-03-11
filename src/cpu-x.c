@@ -682,7 +682,7 @@ void tabsystem(Labels *data)
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / 1000, kb_main_total / 1000);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / 1000, kb_swap_total / 1000);
 
-#else
+#elif !defined (__linux__) && HAS_LIBSTATGRAB
 	static int init_called = 0;
 	char os[MAXSTR];
 	size_t len = sizeof(os);
@@ -716,7 +716,7 @@ void tabsystem(Labels *data)
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5llu MB", mem->cache / div, mem->total / div);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5llu MB", mem->free / div, mem->total / div);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
-#endif /* (__linux__) && HAS_LIBPROCPS */
+#endif /* (__linux__) && HAS_LIBPROCPS || !defined (__linux__) && HAS_LIBSTATGRAB */
 }
 
 /* Find the number of existing banks */

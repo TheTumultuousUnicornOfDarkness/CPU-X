@@ -71,6 +71,12 @@
 # define HAS_LIBPROCPS 0
 #endif
 
+#ifdef LIBSTATGRAB
+# define HAS_LIBSTATGRAB 1
+#else
+# define HAS_LIBSTATGRAB 0
+#endif
+
 extern int refreshtime;
 extern int verbose;
 

@@ -20,11 +20,15 @@ find_package(PkgConfig REQUIRED)
 
 
 # Options
-option(WITH_GTK		"Add support for GUI in GTK3+"		ON)
-option(WITH_NCURSES	"Add support for TUI in NCurses"	ON)
-option(WITH_LIBCPUID	"Allow use of library Libcpuid"		ON)
-option(WITH_LIBDMI	"Allow use of library Libdmi"		ON)
-option(WITH_LIBPROCPS	"Allow use of library Libprocps"	ON)
+option(WITH_GTK		"Add support for GUI in GTK3+"			ON)
+option(WITH_NCURSES	"Add support for TUI in NCurses"		ON)
+option(WITH_LIBCPUID	"Allow use of library Libcpuid"			ON)
+option(WITH_LIBDMI	"Allow use of library Libdmi"			ON)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"	ON)
+else(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"	ON)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
 # Colours
@@ -72,25 +76,25 @@ endif(EMBED)
 message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
 
 # GTK3+ libs
-if(WITH_GTK)
+if(GTK3_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_GTK)
+else(GTK3_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_GTK)
+endif(GTK3_FOUND)
 
 # NCurses libs
-if(WITH_NCURSES)
+if(NCURSES_FOUND)
 	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_NCURSES)
+else(NCURSES_FOUND)
 	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_NCURSES)
+endif(NCURSES_FOUND)
 
 # Libcpuid lib
-if(WITH_LIBCPUID)
+if(LIBCPUID_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBCPUID)
+else(LIBCPUID_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBCPUID)
+endif(LIBCPUID_FOUND)
 
 # Dmidecode lib
 if(WITH_LIBDMI)
@@ -99,9 +103,9 @@ else(WITH_LIBDMI)
 	message("${BoldCyan}**   ${BoldCyan}LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBDMI)
 
-# Libprocps lib
-if(WITH_LIBPROCPS)
-	message("${BoldCyan}**   ${BoldCyan}LIBPROCPS${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBPROCPS)
-	message("${BoldCyan}**   ${BoldCyan}LIBPROCPS${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBPROCPS)
+# Libprocps / Libstatgrab lib
+if(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
+	message("${BoldCyan}**   ${BoldCyan}LIBSYSTEM${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
+	message("${BoldCyan}**   ${BoldCyan}LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
