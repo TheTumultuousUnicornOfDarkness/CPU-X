@@ -6,8 +6,17 @@ endif(APPLE)
 cmake_policy(SET CMP0048 OLD)
 project(po)
 
-set(GMO_DIR ${CMAKE_BINARY_DIR}/accomplished/locale/)
-set(MSGFMT_EXECUTABLE msgfmt)
+set(GMO_DIR ${CMAKE_BINARY_DIR}/accomplished/locale)
+
+execute_process(COMMAND which msgfmt
+	 OUTPUT_VARIABLE MSGFMT_EXECUTABLE
+)
+if(MSGFMT_EXECUTABLE STREQUAL "")
+	 execute_process(COMMAND find /usr/local -name msgfmt
+		OUTPUT_VARIABLE MSGFMT_EXECUTABLE
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+	)
+endif(MSGFMT_EXECUTABLE STREQUAL "")
 
 
 # French
