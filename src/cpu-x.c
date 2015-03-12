@@ -66,6 +66,11 @@
 # include <time.h>
 #endif
 
+#ifdef __MACH__
+# include <mach/clock.h>
+# include <mach/mach.h>
+#endif
+
 
 int main(int argc, char *argv[]) {
 	char option;
@@ -720,6 +725,30 @@ void tabsystem(Labels *data)
 	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
 	suptime = tsp.tv_sec;
 #endif /* BSD */
+
+#ifdef __MACH__
+	clock_serv_t cclock;
+	mach_timespec_t mts;
+
+	host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &cclock); /* Label Uptime */
+	clock_get_time(cclock, &mts);
+	mach_port_deallocate(mach_task_self(), cclock);
+	suptime = mts.tv_sec;
+#endif /* __MACH__ */
+
+#ifdef __APPLE__
+	char *tmp;
+	tmp = strdup(data->tabsys[VALUE][KERNEL]);
+
+	snprintf(data->tabsys[VALUE][KERNEL], MAXSTR, "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
+
+	cc = popen("echo $(sw_vers -productName ; sw_vers -productVersion)", "r"); /* Label Distribution */
+	if(cc != NULL)
+	{
+		fgets(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, cc);
+		pclose(cc);
+	}
+#endif /* __APPLE__ */
 
 	if(suptime > 0)
 	{
