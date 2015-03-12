@@ -7,7 +7,7 @@ cmake_policy(SET CMP0048 OLD)
 project(data)
 
 set(DATA_DIR ${CMAKE_BINARY_DIR}/accomplished/data/)
-execute_process(COMMAND mkdir -p ${DATA_DIR})
+file(MAKE_DIRECTORY ${DATA_DIR})
 
 
 # Files needed by GTK GUI

@@ -10,6 +10,7 @@ set(GMO_DIR ${CMAKE_BINARY_DIR}/accomplished/locale)
 
 execute_process(COMMAND which msgfmt
 	 OUTPUT_VARIABLE MSGFMT_EXECUTABLE
+	 OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 if(MSGFMT_EXECUTABLE STREQUAL "")
 	 execute_process(COMMAND find /usr/local -name msgfmt
@@ -20,8 +21,9 @@ endif(MSGFMT_EXECUTABLE STREQUAL "")
 
 
 # French
-execute_process(COMMAND mkdir -p ${GMO_DIR}/fr)
+file(MAKE_DIRECTORY ${GMO_DIR}/fr)
 
+message ("TEST ${MSGFMT_EXECUTABLE}")
 execute_process(COMMAND ${MSGFMT_EXECUTABLE} fr.po -o ${GMO_DIR}/fr/cpu-x.mo
 	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
