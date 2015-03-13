@@ -110,6 +110,8 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	gtk_init(argc, argv);
 	builder = gtk_builder_new();
+	refr.glab = &glab;
+	refr.data = data;
 
 	/* Build UI from Glade file */
 #ifdef EMBED
@@ -134,7 +136,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	set_logos(&glab, data); /* Vendor icon */
 	set_labels(&glab, data);
-	set_membar(&glab, data);
 
 	if(getuid()) /* Show warning if not root */
 	{
@@ -156,8 +157,14 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 
-	refr.glab = &glab;
-	refr.data = data;
+#if HAS_LIBPROCPS || HAS_LIBSTATGRAB
+	g_signal_connect(G_OBJECT(glab.barused), "draw", G_CALLBACK(setbar_used), data); /* Level bars */
+	g_signal_connect(G_OBJECT(glab.barbuff), "draw", G_CALLBACK(setbar_buff), data);
+	g_signal_connect(G_OBJECT(glab.barcache), "draw", G_CALLBACK(setbar_cache), data);
+	g_signal_connect(G_OBJECT(glab.barfree), "draw", G_CALLBACK(setbar_free), data);
+	g_signal_connect(G_OBJECT(glab.barswap), "draw", G_CALLBACK(setbar_swap), data);
+#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
+
 	g_timeout_add_seconds(refreshtime, (gpointer)grefresh, &refr);
 	gtk_main();
 }
@@ -189,7 +196,6 @@ gboolean grefresh(GThrd *refr)
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][CACHED]), refr->data->tabsys[VALUE][CACHED]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][FREE]), refr->data->tabsys[VALUE][FREE]);
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][SWAP]), refr->data->tabsys[VALUE][SWAP]);
-		set_membar(refr->glab, refr->data);
 	}
 
 	return G_SOURCE_CONTINUE;
@@ -344,22 +350,93 @@ void set_labels(GtkLabels *glab, Labels *data)
 	}
 }
 
-/* Set Memory bar in tab System */
-void set_membar(GtkLabels *glab, Labels *data)
-{
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barused), (double) strtol(data->tabsys[VALUE][USED], NULL, 10)
-						/ strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10));
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barbuff), (double) strtol(data->tabsys[VALUE][BUFFERS], NULL, 10)
-						/ strtol(strstr(data->tabsys[VALUE][BUFFERS], "/ ") + 2, NULL, 10));
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barcache), (double) strtol(data->tabsys[VALUE][CACHED], NULL, 10)
-						/ strtol(strstr(data->tabsys[VALUE][CACHED], "/ ") + 2, NULL, 10));
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barfree), (double) strtol(data->tabsys[VALUE][FREE], NULL, 10)
-						/ strtol(strstr(data->tabsys[VALUE][FREE], "/ ") + 2, NULL, 10));
-	gtk_level_bar_set_value(GTK_LEVEL_BAR(glab->barswap), (double) strtol(data->tabsys[VALUE][SWAP], NULL, 10)
-						/ strtol(strstr(data->tabsys[VALUE][SWAP], "/ ") + 2, NULL, 10));
-#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
+void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
+{
+	double percent;
+	guint width, height, x, y;
+	char text[MAXSTR];
+
+	width = gtk_widget_get_allocated_width(widget);
+	height = gtk_widget_get_allocated_height(widget);
+	snprintf(text, MAXSTR, "%.2f%%", val);
+
+	cairo_rectangle(cr, before / 100 * width, 0, val / 100 * width, 14);
+	cairo_fill(cr);
+
+	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
+	//cairo_select_font_face(cr, "Purisa",      CAIRO_FONT_SLANT_NORMAL,      CAIRO_FONT_WEIGHT_BOLD);
+	cairo_move_to(cr, (width / 2) - 20, height - 2);
+	cairo_set_font_size(cr, 14);
+	cairo_show_text(cr, text);
+	cairo_fill(cr);
 }
+
+void setbar_used(GtkWidget *widget, cairo_t *cr, Labels *data)
+{
+	double percent;
+
+	percent = (double) strtol(data->tabsys[VALUE][USED], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
+
+	cairo_set_source_rgb(cr, 255.0 / 255.0, 215.0 / 255.0, 40.0 / 255.0);
+	fill_frame(widget, cr, 0, percent);
+}
+
+void setbar_buff(GtkWidget *widget, cairo_t *cr, Labels *data)
+{
+	double before, percent;
+
+	before = (double) strtol(data->tabsys[VALUE][USED], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
+	percent = (double) strtol(data->tabsys[VALUE][BUFFERS], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][BUFFERS], "/ ") + 2, NULL, 10) * 100;
+
+	cairo_set_source_rgb(cr, 65.0 / 255.0, 155.0 / 255.0, 240.0 / 255.0);
+	fill_frame(widget, cr, before, percent);
+}
+
+void setbar_cache(GtkWidget *widget, cairo_t *cr, Labels *data)
+{
+	double before, percent;
+
+	before = (double) ( strtol(data->tabsys[VALUE][USED], NULL, 10) +
+		strtol(data->tabsys[VALUE][BUFFERS], NULL, 10) ) /
+		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
+
+	percent = (double) strtol(data->tabsys[VALUE][CACHED], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][CACHED], "/ ") + 2, NULL, 10) * 100;
+
+	cairo_set_source_rgb(cr, 250.0 / 255.0, 90.0 / 255.0, 35.0 / 255.0);
+	fill_frame(widget, cr, before, percent);
+}
+
+void setbar_free(GtkWidget *widget, cairo_t *cr, Labels *data)
+{
+	double before, percent;
+
+	before = (double) ( strtol(data->tabsys[VALUE][USED], NULL, 10) +
+		strtol(data->tabsys[VALUE][BUFFERS], NULL, 10) +
+		strtol(data->tabsys[VALUE][CACHED], NULL, 10) ) /
+		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
+	percent = (double) strtol(data->tabsys[VALUE][FREE], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][FREE], "/ ") + 2, NULL, 10) * 100;
+
+	cairo_set_source_rgb(cr, 48.0 / 255.0, 225.0 / 255.0, 58.0 / 255.0);
+	fill_frame(widget, cr, before, percent);
+}
+
+void setbar_swap(GtkWidget *widget, cairo_t *cr, Labels *data)
+{
+	double percent;
+
+	percent = (double) strtol(data->tabsys[VALUE][SWAP], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][SWAP], "/ ") + 2, NULL, 10) * 100;
+
+	cairo_set_source_rgb(cr, 250.0 / 255.0, 60.0 / 255.0, 225.0 / 255.0);
+	fill_frame(widget, cr, 0, percent);
+}
+#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
 /* Search file location to avoid hardcode them */
 char *data_path(char *file)

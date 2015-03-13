@@ -258,7 +258,7 @@
                                                 <property name="width_chars">30</property>
                                                 <property name="single_line_mode">True</property>
                                                 <property name="max_width_chars">30</property>
-                                                <property name="lines">1</property>
+                                                <property name="lines">0</property>
                                                 <attributes>
                                                   <attribute name="foreground" value="#000000008080"/>
                                                 </attributes>
@@ -2940,59 +2940,6 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLevelBar" id="mem_barused">
-                                <property name="width_request">172</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">2</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLevelBar" id="mem_barbuff">
-                                <property name="width_request">172</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">2</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLevelBar" id="mem_barfree">
-                                <property name="width_request">172</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="inverted">True</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">2</property>
-                                <property name="top_attach">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLevelBar" id="mem_barcache">
-                                <property name="width_request">172</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">2</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkAspectFrame" id="mem_framused">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
@@ -3169,12 +3116,117 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLevelBar" id="mem_barswap">
-                                <property name="width_request">172</property>
+                              <object class="GtkAspectFrame" id="mem_fraused">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkDrawingArea" id="mem_barused">
+                                    <property name="width_request">172</property>
+                                    <property name="height_request">14</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">2</property>
+                                <property name="top_attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="mem_frabuff">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkDrawingArea" id="mem_barbuff">
+                                    <property name="width_request">172</property>
+                                    <property name="height_request">14</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="margin_top">1</property>
+                                    <property name="margin_bottom">1</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">2</property>
+                                <property name="top_attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="mem_fracache">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkDrawingArea" id="mem_barcache">
+                                    <property name="width_request">172</property>
+                                    <property name="height_request">14</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="margin_top">1</property>
+                                    <property name="margin_bottom">1</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">2</property>
+                                <property name="top_attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="mem_frafree">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkDrawingArea" id="mem_barfree">
+                                    <property name="width_request">172</property>
+                                    <property name="height_request">14</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="margin_top">1</property>
+                                    <property name="margin_bottom">1</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">2</property>
+                                <property name="top_attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="mem_fraswap">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                                <property name="label_xalign">0</property>
+                                <property name="shadow_type">in</property>
+                                <child>
+                                  <object class="GtkDrawingArea" id="mem_barswap">
+                                    <property name="width_request">172</property>
+                                    <property name="height_request">14</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="margin_top">1</property>
+                                    <property name="margin_bottom">1</property>
+                                  </object>
+                                </child>
                               </object>
                               <packing>
                                 <property name="left_attach">2</property>

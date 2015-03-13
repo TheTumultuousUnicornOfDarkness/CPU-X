@@ -711,7 +711,7 @@ void tabsystem(Labels *data)
 
 	memtot = mem->total / div;
 	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5llu MB / %5ld MB", mem->used / div, memtot);
-	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5llu MB / %5ld MB", 0, memtot);
+	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5u MB / %5ld MB", 0, memtot);
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5ld MB", mem->cache / div, memtot);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5ld MB", mem->free / div, memtot);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
