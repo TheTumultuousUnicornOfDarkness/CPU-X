@@ -547,7 +547,7 @@ void bogomips(char *c) {
 		c[j] = '\0';
 	}
 #else
-	sprintf(c, "%s", "Unavailable");
+	sprintf(c, "%s", "- - - -");
 #endif /* __linux__ */
 }
 
@@ -678,7 +678,7 @@ void tabsystem(Labels *data)
 	meminfo(); /* Memory labels */
 	memtot = kb_main_total / div;
 
-	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", (kb_main_total - (kb_main_buffers + kb_main_cached + kb_main_free)) / div, memtot);
+	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", kb_main_used / div, memtot);
 	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / div, memtot);
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / div, memtot);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / div, memtot);
@@ -711,7 +711,7 @@ void tabsystem(Labels *data)
 
 	memtot = mem->total / div;
 	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5llu MB / %5ld MB", mem->used / div, memtot);
-	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5s MB / %5ld MB", "???", memtot);
+	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5llu MB / %5ld MB", 0, memtot);
 	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5ld MB", mem->cache / div, memtot);
 	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5ld MB", mem->free / div, memtot);
 	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);

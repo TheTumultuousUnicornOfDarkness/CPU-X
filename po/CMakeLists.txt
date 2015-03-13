@@ -23,7 +23,6 @@ endif(MSGFMT_EXECUTABLE STREQUAL "")
 # French
 file(MAKE_DIRECTORY ${GMO_DIR}/fr)
 
-message ("TEST ${MSGFMT_EXECUTABLE}")
 execute_process(COMMAND ${MSGFMT_EXECUTABLE} fr.po -o ${GMO_DIR}/fr/cpu-x.mo
 	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
