@@ -110,3 +110,15 @@ if(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
 else(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
+
+
+# Uninstall target
+set(CPUX_DATADIR ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+	IMMEDIATE @ONLY
+)
+
+add_custom_target(uninstall
+	COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
+)
