@@ -26,9 +26,10 @@
 
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
-#define MSGVERB(msg) if(verbose == 1 || verbose == 3) printf("\033[1;32m%s\033[0m\n", msg)
-#define MSGERR(msg) fprintf(stderr, "\033[1;31m%s:%s:%i: %s\033[0m\n", PRGNAME, BASEFILE, __LINE__, _(msg))
-#define MSGROOT _("WARNING:\n%s requires root privileges to run correctly.")
+#define MSGVERB(str) msg('v', str)
+#define MSGSERR(str) msg('e', str)
+#define MSGPERR(str) msg('p', str)
+#define MSGROOT _("WARNING:\nroot privileges are required to work properly.")
 #define _(str) gettext(str)
 
 #define PRGNAME "CPU-X"
@@ -180,6 +181,9 @@ int last_bank(Labels *data);
 
 /* Dump all data in stdout */
 void dump_data(Labels *data);
+
+/* Print a formatted message */
+void msg(char type, char *msg);
 
 
 #endif /* _CPUX_H_ */

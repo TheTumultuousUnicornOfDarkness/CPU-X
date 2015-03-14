@@ -36,11 +36,10 @@ void start_tui_ncurses(Labels *data)
 	WINDOW *tab;
 	NThrd refr;
 
+	MSGVERB(_("Starting NCurses TUI..."));
 	if(getuid())
 	{
-		fprintf(stderr, "\n\t\t\t\033[1;33m");
-		fprintf(stderr, MSGROOT, PRGNAME);
-		fprintf(stderr, "\n\033[0m");
+		fprintf(stderr, "\n\t\t\t\033[1;33m%s\033[0m\n", MSGROOT);
 		sleep(1);
 	}
 

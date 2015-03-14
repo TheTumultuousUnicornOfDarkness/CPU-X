@@ -106,8 +106,8 @@ void warning_window(GtkWidget *mainwindow)
 {
 	char markup1[MAXSTR*2], markup2[MAXSTR*2], markup[MAXSTR*3];
 
-	sprintf(markup1, MSGROOT, PRGNAME);
-	sprintf(markup2, MSGROOT, PRGNAME);
+	sprintf(markup1, MSGROOT);
+	sprintf(markup2, MSGROOT);
 	sprintf(markup, "\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s", strtok(markup1, ":"), strstr(markup2, "\n"));
 
 	GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(mainwindow),
@@ -135,6 +135,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	GtkLabels glab;
 	GThrd refr;
 
+	MSGVERB(_("Starting GTK GUI..."));
 	gtk_init(argc, argv);
 	builder = gtk_builder_new();
 	refr.glab = &glab;
@@ -143,13 +144,13 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	/* Build UI from Glade file */
 #ifdef EMBED
 	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
-		MSGERR("gtk_builder_add_from_string failed when loading embeded UI file.");
+		MSGPERR(_("gtk_builder_add_from_string failed"));
 		exit(EXIT_FAILURE);
 	}
 #else
 	if(!gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
 	{
-		MSGERR("gtk_builder_add_from_file failed.");
+		MSGPERR(_("gtk_builder_add_from_file failed"));
 		exit(EXIT_FAILURE);
 	}
 #endif
