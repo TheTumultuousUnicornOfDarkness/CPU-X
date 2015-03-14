@@ -55,6 +55,8 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *dat
 WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab System */
+void draw_bar(WINDOW *win, Labels *data, int bar);
+void clear_bar(WINDOW *win, int bar);
 WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab About */

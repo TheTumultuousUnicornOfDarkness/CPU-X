@@ -20,6 +20,7 @@
 * ncurses.c
 */
 
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <libintl.h>
@@ -114,6 +115,8 @@ void start_tui_ncurses(Labels *data)
 
 void nrefresh(NThrd *refr)
 {
+	int i;
+
 	/* Refresh tab CPU */
 	if(loop == NB_TAB_CPU)
 	{
@@ -131,12 +134,12 @@ void nrefresh(NThrd *refr)
 	else if(loop == NB_TAB_SYS)
 	{
 		tabsystem(refr->data);
-		mvwprintw(refr->win, 5,   2, "%13s: %s", refr->data->tabsys[NAME][UPTIME],	refr->data->tabsys[VALUE][UPTIME]);
-		mvwprintw(refr->win, 9,   2, "%13s: %s", refr->data->tabsys[NAME][USED],	refr->data->tabsys[VALUE][USED]);
-		mvwprintw(refr->win, 10,  2, "%13s: %s", refr->data->tabsys[NAME][BUFFERS],	refr->data->tabsys[VALUE][BUFFERS]);
-		mvwprintw(refr->win, 11,  2, "%13s: %s", refr->data->tabsys[NAME][CACHED],	refr->data->tabsys[VALUE][CACHED]);
-		mvwprintw(refr->win, 12,  2, "%13s: %s", refr->data->tabsys[NAME][FREE],	refr->data->tabsys[VALUE][FREE]);
-		mvwprintw(refr->win, 13,  2, "%13s: %s", refr->data->tabsys[NAME][SWAP],	refr->data->tabsys[VALUE][SWAP]);
+		for(i = USED; i < LASTSYS; i++)
+		{
+			mvwprintw(refr->win, i + 4,  2, "%13s: %s", refr->data->tabsys[NAME][i], refr->data->tabsys[VALUE][i]);
+			clear_bar(refr->win, i);
+			draw_bar(refr->win, refr->data, i);
+		}
 		wrefresh(refr->win);
 	}
 }
@@ -263,6 +266,36 @@ WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
 	return local_win;
 }
 
+void draw_bar(WINDOW *win, Labels *data, int bar)
+{
+	int i;
+	const int val = 38, start = 45, end = 62;
+	static double before;
+	double percent;
+
+	before = (bar == USED) ? 0 : before;
+	percent = (double) strtol(data->tabsys[VALUE][bar], NULL, 10) /
+		strtol(strstr(data->tabsys[VALUE][bar], "/ ") + 2, NULL, 10) * 100;
+
+	mvwprintw(win, bar + 4, val, "%.2f%%", percent);
+	mvwprintw(win, bar + 4, start, "[");
+
+	for(i = 0; i < (percent / 100) * (end - start); i++)
+		mvwprintw(win, bar + 4, start + 1 + (before / 100) * (end - start) + i, "|");
+
+	mvwprintw(win, bar + 4, end, "]");
+	before += percent;
+}
+
+void clear_bar(WINDOW *win, int bar)
+{
+	int i;
+	const int start = 45, end = 62;
+
+	for(i = 0; i < (end - start); i++)
+		mvwprintw(win, bar + 4, start + 1 + i, " ");
+}
+
 WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 {
 	int i;WINDOW *local_win;
@@ -280,7 +313,10 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 
 	/* Memory frame */
 	for(i = USED; i < LASTSYS; i++)
+	{
 		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+		draw_bar(local_win, data, i);
+	}
 
 	wrefresh(local_win);
 
