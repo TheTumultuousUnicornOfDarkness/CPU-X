@@ -102,6 +102,33 @@ static const char *objectsys[2][LASTSYS] =
 };
 
 
+void warning_window(GtkWidget *mainwindow)
+{
+	char markup1[MAXSTR*2], markup2[MAXSTR*2], markup[MAXSTR*3];
+
+	sprintf(markup1, MSGROOT, PRGNAME);
+	sprintf(markup2, MSGROOT, PRGNAME);
+	sprintf(markup, "\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s", strtok(markup1, ":"), strstr(markup2, "\n"));
+
+	GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(mainwindow),
+		GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL,
+		GTK_MESSAGE_WARNING,
+		GTK_BUTTONS_NONE,
+		markup);
+
+	gtk_container_set_border_width(GTK_CONTAINER(dialog), 5);
+	gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, _("Ignore"), GTK_RESPONSE_REJECT, NULL);
+	gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);
+
+	if(gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+	{
+		system("cpu-x_polkit &");
+		exit(0);
+	}
+
+	gtk_widget_destroy(dialog);
+}
+
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
 	GtkBuilder *builder;
@@ -138,21 +165,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	set_labels(&glab, data);
 
 	if(getuid()) /* Show warning if not root */
-	{
-		char markup1[MAXSTR*2], markup2[MAXSTR*2], markup[MAXSTR*3];
-		sprintf(markup1, MSGROOT, PRGNAME);
-		sprintf(markup2, MSGROOT, PRGNAME);
-		sprintf(markup, "\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s", strtok(markup1, ":"), strstr(markup2, "\n"));
-		GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(glab.mainwindow),
-                                 (GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL),
-                                 GTK_MESSAGE_WARNING,
-                                 GTK_BUTTONS_CLOSE,
-                                 markup);
-				 gtk_container_set_border_width(GTK_CONTAINER (dialog), 5);
-		gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);
-		gtk_dialog_run(GTK_DIALOG (dialog));
-		gtk_widget_destroy(dialog);
-	}
+		warning_window(glab.mainwindow);
 
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
@@ -168,7 +181,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_timeout_add_seconds(refreshtime, (gpointer)grefresh, &refr);
 	gtk_main();
 }
-
 
 gboolean grefresh(GThrd *refr)
 {
