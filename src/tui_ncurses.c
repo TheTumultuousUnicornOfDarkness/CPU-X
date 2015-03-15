@@ -17,7 +17,7 @@
 ****************************************************************************/
 
 /*
-* ncurses.c
+* tui_ncurses.c
 */
 
 #include <stdlib.h>
@@ -265,6 +265,34 @@ WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
 	return local_win;
 }
 
+WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
+{
+	int i;
+	WINDOW *local_win;
+
+	local_win = newwin(height, width, starty, startx);
+	box(local_win, 0 , 0);
+
+	/* Frames in System tab */
+	frame(local_win, 1, 1, 8, width - 1, data->objects[FRAMOS]);
+	frame(local_win, 8, 1, 15, width - 1, data->objects[FRAMMEMORY]);
+
+	/* OS frame */
+	for(i = KERNEL; i < USED; i++)
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+
+	/* Memory frame */
+	for(i = USED; i < LASTSYS; i++)
+	{
+		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+		draw_bar(local_win, data, i);
+	}
+
+	wrefresh(local_win);
+
+	return local_win;
+}
+
 void draw_bar(WINDOW *win, Labels *data, int bar)
 {
 	int i;
@@ -293,34 +321,6 @@ void clear_bar(WINDOW *win, int bar)
 
 	for(i = 0; i < (end - start); i++)
 		mvwprintw(win, bar + 4, start + 1 + i, " ");
-}
-
-WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
-{
-	int i;
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in System tab */
-	frame(local_win, 1, 1, 8, width - 1, data->objects[FRAMOS]);
-	frame(local_win, 8, 1, 15, width - 1, data->objects[FRAMMEMORY]);
-
-	/* OS frame */
-	for(i = KERNEL; i < USED; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
-
-	/* Memory frame */
-	for(i = USED; i < LASTSYS; i++)
-	{
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
-		draw_bar(local_win, data, i);
-	}
-
-	wrefresh(local_win);
-
-	return local_win;
 }
 
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)

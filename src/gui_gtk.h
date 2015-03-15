@@ -17,7 +17,7 @@
 ****************************************************************************/
 
 /*
-* cpux_gtk.h
+* gui_gtk.h
 */
 
 #ifndef _GUI_GTK_H_
@@ -73,6 +73,9 @@ typedef struct
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
+/* Show a warning if launched as regulat user */
+void warning_window(GtkWidget *mainwindow);
+
 /* Refresh non-static values */
 gboolean grefresh(GThrd *refr);
 
@@ -89,6 +92,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab);
 void set_labels(GtkLabels *glab, Labels *data);
 
 /* Set Memory bar in tab System */
+void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val);
 void setbar_used(GtkWidget *widget, cairo_t *cr, Labels *data);
 void setbar_buff(GtkWidget *widget, cairo_t *cr, Labels *data);
 void setbar_cache(GtkWidget *widget, cairo_t *cr, Labels *data);

@@ -17,7 +17,7 @@
 ****************************************************************************/
 
 /*
-* cpux_ncurses.h
+* tui_ncurses.h
 */
 
 #ifndef _TUI_NCURSES_H_
@@ -57,9 +57,9 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *dat
 WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab System */
+WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data);
 void draw_bar(WINDOW *win, Labels *data, int bar);
 void clear_bar(WINDOW *win, int bar);
-WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab About */
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data);

@@ -140,50 +140,61 @@ typedef struct
 /* Get options */
 char menu(int argc, char *argv[]);
 
+/* Print a formatted message */
+void msg(char type, char *msg);
+
 /* Set empty labels */
 void labels_setempty(Labels *data);
 
 /* Set labels name */
 void labels_setname(Labels *data);
 
-/* Elements provided by libcpuid library */
-int libcpuid(Labels *data);
-
-/* Elements provided by libdmi library (need root privileges) */
-int libdmidecode(Labels *data);
-
-/* Alternative for libdmidecode (Linux only) */
-int libdmi_fallback(Labels *data);
-
-/* Pretty label CPU Vendor */
-void cpuvendor(char *vendor);
-
-/* Remove unwanted spaces in value Specification */
-void clean_specification(char *spec);
-
-/* Get CPU frequencies (current - min - max) */
-void cpufreq(char *busfreq, char *clock, char *mults);
-
-/* Read value "bobomips" from file /proc/cpuinfo */
-void bogomips(char *c);
-
-/* If 'dmidecode' can be called, return CPU multipliers (actual, min and max) */
-void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
-
-/* Print some instruction sets */
-void instructions(char arch[MAXSTR], char instr[MAXSTR]);
-
-/* Get system informations */
-void tabsystem(Labels *data);
-
-/* Find the number of existing banks */
-int last_bank(Labels *data);
-
 /* Dump all data in stdout */
 void dump_data(Labels *data);
 
-/* Print a formatted message */
-void msg(char type, char *msg);
+/* Elements provided by libcpuid library
+TAB: CPU. */
+int libcpuid(Labels *data);
+
+/* Pretty label CPU Vendor
+TAB: CPU. */
+void cpuvendor(char *vendor);
+
+/* Remove unwanted spaces in value Specification
+TAB: CPU. */
+void clean_specification(char *spec);
+
+/* Print some instruction sets
+TAB: CPU. */
+void instructions(char arch[MAXSTR], char instr[MAXSTR]);
+
+/* Elements provided by libdmi library (need root privileges)
+TAB: CPU, Motherboard. */
+int libdmidecode(Labels *data);
+
+/* Alternative for libdmidecode (Linux only)
+TAB: Motherboard. */
+int libdmi_fallback(Labels *data);
+
+/* Get CPU frequencies (current - min - max)
+TAB: CPU. */
+void cpufreq(char *busfreq, char *clock, char *mults);
+
+/* If 'dmidecode' can be called, return CPU multipliers (actual, min and max)
+TAB: CPU. */
+void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
+
+/* Read value "bobomips" from file /proc/cpuinfo
+TAB: CPU. */
+void bogomips(char *c);
+
+/* Find the number of existing banks
+TAB: RAM. */
+int last_bank(Labels *data);
+
+/* Get system informations
+TAB: System. */
+void tabsystem(Labels *data);
 
 
 #endif /* _CPUX_H_ */

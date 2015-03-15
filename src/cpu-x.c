@@ -131,6 +131,26 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
+void msg(char type, char *msg)
+{
+	const char *reset = "\033[0m";
+	const char *boldred = "\033[1;31m";
+	const char *boldgre = "\033[1;32m";
+
+	if(type == 'p')
+	{
+		fprintf(stderr, "%s%s:%s:%i: ", boldred, PRGNAME, BASEFILE, __LINE__);
+		perror(msg);
+		fprintf(stderr, "%s\n", reset);
+	}
+
+	else if(type == 'e')
+		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, PRGNAME, BASEFILE, __LINE__, msg, reset);
+
+	else if(type == 'v' && (verbose == 1 || verbose == 3))
+		printf("%s%s%s\n", boldgre, msg, reset);
+}
+
 /* Set empty labels */
 void labels_setempty(Labels *data)
 {
@@ -266,6 +286,57 @@ void labels_setname(Labels *data)
 	snprintf(data->tabsys[NAME][SWAP],		MAXSTR, _("Swap"));
 }
 
+/* Dump all data in stdout */
+void dump_data(Labels *data)
+{
+	int i;
+
+	MSGVERB(_("Dumping data..."));
+	if(getuid())
+		fprintf(stderr, "\n\t\t\t\033[1;33m%s\033[0m\n", MSGROOT);
+
+	/* Tab CPU */
+	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
+	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
+	for(i = VENDOR; i < LASTCPU; i++)
+	{
+		if(i == CORESPEED)
+			printf("\n\t*** %s ***\n", data->objects[FRAMCLOCKS]);
+		else if(i == LEVEL1D)
+			printf("\n\t*** %s ***\n", data->objects[FRAMCACHE]);
+		else if(i == SOCKETS)
+			printf("\n\t***  ***\n");
+		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+	}
+
+	/* Tab Mainboard */
+
+	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
+	for(i = MANUFACTURER; i < LASTMB; i++)
+	{
+		if(i == BRAND)
+			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
+		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+	}
+
+	/* Tab RAM */
+	printf("\n\n ***** %s *****\n", data->objects[TABRAM]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
+	for(i = BANK0_0; i < last_bank(data); i++)
+		printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
+
+	/* Tab System */
+	printf("\n\n ***** %s *****\n", data->objects[TABSYS]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMOS]);
+	for(i = KERNEL; i < LASTSYS; i++)
+	{
+		if(i == USED)
+			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
+		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+	}
+}
+
 #if HAS_LIBCPUID
 /* Elements provided by libcpuid library */
 int libcpuid(Labels *data)
@@ -340,6 +411,89 @@ int libcpuid(Labels *data)
 
 	return err;
 }
+
+/* Pretty label CPU Vendor */
+void cpuvendor(char *vendor)
+{
+	/* https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
+	MSGVERB(_("Improving CPU Vendor label"));
+
+	if     (!strcmp(vendor, "GenuineIntel"))		strcpy(vendor, "Intel");
+	else if(!strcmp(vendor, "AuthenticAMD"))	strcpy(vendor, "AMD");
+	else if(!strcmp(vendor, "CyrixInstead"))	strcpy(vendor, "Cyrix");
+	else if(!strcmp(vendor, "NexGenDriven"))	strcpy(vendor, "NexGen");
+	else if(!strcmp(vendor, "GenuineTMx86"))	strcpy(vendor, "Transmeta");
+	else if(!strcmp(vendor, "UMC UMC UMC "))	strcpy(vendor, "UMC");
+	else if(!strcmp(vendor, "CentaurHauls"))	strcpy(vendor, "Centaur");
+	else if(!strcmp(vendor, "RiseRiseRise"))	strcpy(vendor, "Rise");
+	else if(!strcmp(vendor, "SiS SiS SiS "))	strcpy(vendor, "SiS");
+	else if(!strcmp(vendor, "Geode by NSC"))	strcpy(vendor, "National Semiconductor");
+	else						strcpy(vendor, "Unknown");
+}
+
+/* Remove unwanted spaces in value Specification */
+void clean_specification(char *spec)
+{
+	int i = 0, j = 0, skip = 0;
+	char tmp[MAXSTR];
+
+	MSGVERB(_("Removing unnecessary spaces in label Specification"));
+	while(spec[i] != '\0')
+	{
+		if(isspace(spec[i]))
+			skip = 1;
+		else
+		{
+			if(skip)
+			{
+				tmp[j] = ' ';
+				skip = 0;
+				j++;
+			}
+
+			tmp[j] = spec[i];
+			j++;
+		}
+		i++;
+	}
+	tmp[j] = '\0';
+	strcpy(spec, tmp);
+}
+
+/* Show some instructions supported by CPU */
+void instructions(char arch[MAXSTR], char instr[MAXSTR])
+{
+	struct cpu_raw_data_t raw;
+	struct cpu_id_t id;
+
+	MSGVERB(_("Finding CPU instructions"));
+	if(cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
+	{
+		MSGSERR(_("libcpuid failed"));
+		return;
+	}
+
+	if(id.flags[CPU_FEATURE_MMX])		strcpy(instr, "MMX");
+	if(id.flags[CPU_FEATURE_MMXEXT])	strcat(instr, "(+)");
+	if(id.flags[CPU_FEATURE_3DNOW])		strcat(instr, ", 3DNOW!");
+	if(id.flags[CPU_FEATURE_3DNOWEXT])	strcat(instr, "(+)");
+
+	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ", SSE (1");
+	if(id.flags[CPU_FEATURE_SSE2])		strcat(instr, ", 2");
+	if(id.flags[CPU_FEATURE_SSSE3])		strcat(instr, ", 3S");
+	if(id.flags[CPU_FEATURE_SSE4_1])	strcat(instr, ", 4.1");
+	if(id.flags[CPU_FEATURE_SSE4_2])	strcat(instr, ", 4.2");
+	if(id.flags[CPU_FEATURE_SSE4A])		strcat(instr, ", 4A");
+	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ")");
+
+	if(id.flags[CPU_FEATURE_AES])		strcat(instr, ", AES");
+	if(id.flags[CPU_FEATURE_AVX])		strcat(instr, ", AVX");
+	if(id.flags[CPU_FEATURE_VMX])		strcat(instr, ", VT-x");
+	if(id.flags[CPU_FEATURE_SVM])		strcat(instr, ", AMD-V");
+
+	if(id.flags[CPU_FEATURE_LM])		strcpy(arch, "x86_64 (64-bit)");
+	else					strcpy(arch, "ix86 (32-bit)");
+}
 #endif /* HAS_LIBCPUID */
 
 #if HAS_LIBDMI
@@ -410,56 +564,6 @@ int libdmi_fallback(Labels *data)
 	return err;
 }
 
-#if HAS_LIBCPUID
-/* Pretty label CPU Vendor */
-void cpuvendor(char *vendor)
-{
-	/* https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
-	MSGVERB(_("Improving CPU Vendor label"));
-
-	if     (!strcmp(vendor, "GenuineIntel"))		strcpy(vendor, "Intel");
-	else if(!strcmp(vendor, "AuthenticAMD"))	strcpy(vendor, "AMD");
-	else if(!strcmp(vendor, "CyrixInstead"))	strcpy(vendor, "Cyrix");
-	else if(!strcmp(vendor, "NexGenDriven"))	strcpy(vendor, "NexGen");
-	else if(!strcmp(vendor, "GenuineTMx86"))	strcpy(vendor, "Transmeta");
-	else if(!strcmp(vendor, "UMC UMC UMC "))	strcpy(vendor, "UMC");
-	else if(!strcmp(vendor, "CentaurHauls"))	strcpy(vendor, "Centaur");
-	else if(!strcmp(vendor, "RiseRiseRise"))	strcpy(vendor, "Rise");
-	else if(!strcmp(vendor, "SiS SiS SiS "))	strcpy(vendor, "SiS");
-	else if(!strcmp(vendor, "Geode by NSC"))	strcpy(vendor, "National Semiconductor");
-	else						strcpy(vendor, "Unknown");
-}
-
-/* Remove unwanted spaces in value Specification */
-void clean_specification(char *spec)
-{
-	int i = 0, j = 0, skip = 0;
-	char tmp[MAXSTR];
-
-	MSGVERB(_("Removing unnecessary spaces in label Specification"));
-	while(spec[i] != '\0')
-	{
-		if(isspace(spec[i]))
-			skip = 1;
-		else
-		{
-			if(skip)
-			{
-				tmp[j] = ' ';
-				skip = 0;
-				j++;
-			}
-
-			tmp[j] = spec[i];
-			j++;
-		}
-		i++;
-	}
-	tmp[j] = '\0';
-	strcpy(spec, tmp);
-}
-#endif /* HAS_LIBCPUID */
-
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(char *busfreq, char *clock, char *mults)
 {
@@ -509,6 +613,35 @@ void cpufreq(char *busfreq, char *clock, char *mults)
 #endif /* __linux__ */
 }
 
+/* Determine CPU multiplicator from base clock */
+void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[MAXSTR])
+{
+	int i, fcpu, fbus, cur, min, max;
+	char ncpu[S] = "", nbus[S] = "";
+
+	MSGVERB(_("Estimating CPU multiplicateurs (current - minimum - maximum)"));
+	for(i = 0; isdigit(cpufreq[i]); i++)
+		ncpu[i] = cpufreq[i];
+	fcpu = atoi(ncpu);
+
+	for(i = 0; isdigit(busfreq[i]); i++)
+		nbus[i] = busfreq[i];
+	nbus[i] = '\0';
+	fbus = atoi(nbus);
+	cur = round((double) fcpu / fbus);
+	min = atoi(multmin);
+	max = atoi(multmax);
+
+	if(fbus > 0)
+	{
+		if(min >= 10000)
+			min /= (fbus * 1000);
+		if(max >= 10000 && fbus > 0)
+			max /= (fbus * 1000);
+		sprintf(multsynt, "x %i (%i-%i)", cur, min, max);
+	}
+}
+
 /* Read value "bobomips" from file /proc/cpuinfo */
 void bogomips(char *c)
 {
@@ -550,71 +683,19 @@ void bogomips(char *c)
 #endif /* __linux__ */
 }
 
-/* Determine CPU multiplicator from base clock */
-void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[MAXSTR])
+/* Find the number of existing banks */
+int last_bank(Labels *data)
 {
-	int i, fcpu, fbus, cur, min, max;
-	char ncpu[S] = "", nbus[S] = "";
+	int i, cpt = LASTRAM;
 
-	MSGVERB(_("Estimating CPU multiplicateurs (current - minimum - maximum)"));
-	for(i = 0; isdigit(cpufreq[i]); i++)
-		ncpu[i] = cpufreq[i];
-	fcpu = atoi(ncpu);
-
-	for(i = 0; isdigit(busfreq[i]); i++)
-		nbus[i] = busfreq[i];
-	nbus[i] = '\0';
-	fbus = atoi(nbus);
-	cur = round((double) fcpu / fbus);
-	min = atoi(multmin);
-	max = atoi(multmax);
-
-	if(fbus > 0)
+	for(i = BANK7_0; i >= BANK0_0; i -= 2)
 	{
-		if(min >= 10000)
-			min /= (fbus * 1000);
-		if(max >= 10000 && fbus > 0)
-			max /= (fbus * 1000);
-		sprintf(multsynt, "x %i (%i-%i)", cur, min, max);
-	}
-}
-
-#if HAS_LIBCPUID
-/* Show some instructions supported by CPU */
-void instructions(char arch[MAXSTR], char instr[MAXSTR])
-{
-	struct cpu_raw_data_t raw;
-	struct cpu_id_t id;
-
-	MSGVERB(_("Finding CPU instructions"));
-	if(cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
-	{
-		MSGSERR(_("libcpuid failed"));
-		return;
+		if(data->tabram[VALUE][i][0] == '\0')
+			cpt -= 2;
 	}
 
-	if(id.flags[CPU_FEATURE_MMX])		strcpy(instr, "MMX");
-	if(id.flags[CPU_FEATURE_MMXEXT])	strcat(instr, "(+)");
-	if(id.flags[CPU_FEATURE_3DNOW])		strcat(instr, ", 3DNOW!");
-	if(id.flags[CPU_FEATURE_3DNOWEXT])	strcat(instr, "(+)");
-
-	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ", SSE (1");
-	if(id.flags[CPU_FEATURE_SSE2])		strcat(instr, ", 2");
-	if(id.flags[CPU_FEATURE_SSSE3])		strcat(instr, ", 3S");
-	if(id.flags[CPU_FEATURE_SSE4_1])	strcat(instr, ", 4.1");
-	if(id.flags[CPU_FEATURE_SSE4_2])	strcat(instr, ", 4.2");
-	if(id.flags[CPU_FEATURE_SSE4A])		strcat(instr, ", 4A");
-	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ")");
-
-	if(id.flags[CPU_FEATURE_AES])		strcat(instr, ", AES");
-	if(id.flags[CPU_FEATURE_AVX])		strcat(instr, ", AVX");
-	if(id.flags[CPU_FEATURE_VMX])		strcat(instr, ", VT-x");
-	if(id.flags[CPU_FEATURE_SVM])		strcat(instr, ", AMD-V");
-
-	if(id.flags[CPU_FEATURE_LM])		strcpy(arch, "x86_64 (64-bit)");
-	else					strcpy(arch, "ix86 (32-bit)");
+	return cpt;
 }
-#endif /* HAS_LIBCPUID */
 
 /* Get system informations */
 void tabsystem(Labels *data)
@@ -749,89 +830,4 @@ void tabsystem(Labels *data)
 		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1] = '\0';
 		pclose(cc);
 	}
-}
-
-/* Find the number of existing banks */
-int last_bank(Labels *data)
-{
-	int i, cpt = LASTRAM;
-
-	for(i = BANK7_0; i >= BANK0_0; i -= 2)
-	{
-		if(data->tabram[VALUE][i][0] == '\0')
-			cpt -= 2;
-	}
-
-	return cpt;
-}
-
-/* Dump all data in stdout */
-void dump_data(Labels *data)
-{
-	int i;
-
-	MSGVERB(_("Dumping data..."));
-	if(getuid())
-		fprintf(stderr, "\n\t\t\t\033[1;33m%s\033[0m\n", MSGROOT);
-
-	/* Tab CPU */
-	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
-	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
-	for(i = VENDOR; i < LASTCPU; i++)
-	{
-		if(i == CORESPEED)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCLOCKS]);
-		else if(i == LEVEL1D)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCACHE]);
-		else if(i == SOCKETS)
-			printf("\n\t***  ***\n");
-		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
-	}
-
-	/* Tab Mainboard */
-
-	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
-	for(i = MANUFACTURER; i < LASTMB; i++)
-	{
-		if(i == BRAND)
-			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
-		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
-	}
-
-	/* Tab RAM */
-	printf("\n\n ***** %s *****\n", data->objects[TABRAM]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
-	for(i = BANK0_0; i < last_bank(data); i++)
-		printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
-
-	/* Tab System */
-	printf("\n\n ***** %s *****\n", data->objects[TABSYS]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMOS]);
-	for(i = KERNEL; i < LASTSYS; i++)
-	{
-		if(i == USED)
-			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
-		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
-	}
-}
-
-void msg(char type, char *msg)
-{
-	const char *reset = "\033[0m";
-	const char *boldred = "\033[1;31m";
-	const char *boldgre = "\033[1;32m";
-
-	if(type == 'p')
-	{
-		fprintf(stderr, "%s%s:%s:%i: ", boldred, PRGNAME, BASEFILE, __LINE__);
-		perror(msg);
-		fprintf(stderr, "%s\n", reset);
-	}
-
-	else if(type == 'e')
-		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, PRGNAME, BASEFILE, __LINE__, msg, reset);
-
-	else if(type == 'v' && (verbose == 1 || verbose == 3))
-		printf("%s%s%s\n", boldgre, msg, reset);
 }

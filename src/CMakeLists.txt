@@ -19,6 +19,7 @@ if(WITH_GTK)
 		add_library(gui_gtk
 			gui_gtk.c
 			gui_gtk.h
+			gui_gtk_id.h
 		)
 		set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
 	else(GTK3_FOUND)
