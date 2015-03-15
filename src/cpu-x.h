@@ -26,9 +26,9 @@
 
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
-#define MSGVERB(str) msg('v', str)
-#define MSGSERR(str) msg('e', str)
-#define MSGPERR(str) msg('p', str)
+#define MSGVERB(str) msg('v', str, PRGNAME, BASEFILE, __LINE__)
+#define MSGSERR(str) msg('e', str, PRGNAME, BASEFILE, __LINE__)
+#define MSGPERR(str) msg('p', str, PRGNAME, BASEFILE, __LINE__)
 #define MSGROOT _("WARNING:\nroot privileges are required to work properly.")
 #define _(str) gettext(str)
 
@@ -141,7 +141,7 @@ typedef struct
 char menu(int argc, char *argv[]);
 
 /* Print a formatted message */
-void msg(char type, char *msg);
+void msg(char type, char *msg, char *prgname, char *basefile, int line);
 
 /* Set empty labels */
 void labels_setempty(Labels *data);

@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-void msg(char type, char *msg)
+void msg(char type, char *msg, char *prgname, char *basefile, int line)
 {
 	const char *reset = "\033[0m";
 	const char *boldred = "\033[1;31m";
@@ -139,13 +139,13 @@ void msg(char type, char *msg)
 
 	if(type == 'p')
 	{
-		fprintf(stderr, "%s%s:%s:%i: ", boldred, PRGNAME, BASEFILE, __LINE__);
+		fprintf(stderr, "%s%s:%s:%i: ", boldred, prgname, basefile, line);
 		perror(msg);
 		fprintf(stderr, "%s\n", reset);
 	}
 
 	else if(type == 'e')
-		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, PRGNAME, BASEFILE, __LINE__, msg, reset);
+		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, prgname, basefile, line, msg, reset);
 
 	else if(type == 'v' && (verbose == 1 || verbose == 3))
 		printf("%s%s%s\n", boldgre, msg, reset);
