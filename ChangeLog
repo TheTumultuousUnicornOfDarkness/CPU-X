@@ -1,3 +1,20 @@
+v2.0.3 (03.15.2015):
+	* Add verbose mode (for CPU-X, previously Dmidecode only)
+	* Better support for non-Linux OS
+	* Colorized messages
+	* Remove RPATH
+	* Improve displaying of memory usage in System tab
+	* Add 'make' target uninstall to allow to properly uninstall CPU-X
+	* Add 'make' target genpot to generate a pot file
+	* Add 'make' target updatepo to update a po file from a newer pot file
+	* Add a 'Run as root' button in GTK GUI
+	* Fixes:
+		* Stop spam errors (in Dmidecode)
+		* Options when built without GTK
+		* Incomplete possibility for translation
+		* Output messages (verbose and error)
+
+
 v2.0.2 (02.08.2015):
 	* Rebase dmidecode code on 2.12
 	* Add argument --dmidecode to run (internal) Dmidecode alone
