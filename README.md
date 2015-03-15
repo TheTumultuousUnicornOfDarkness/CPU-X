@@ -77,3 +77,15 @@ You can also download an archive with two portable binaries (i686 & x86_64) at h
 
 You can see CPU-X here:
 https://github.com/X0rg/CPU-X/wiki/Screenshots
+
+
+## Translate
+
+You want to translate CPU-X? No problem!  
+Fork this repo, then clone your fork, and generate the .pot (Portable Object Template) file like this:
+```
+mkdir build && cd build
+cmake ..
+make genpot
+```
+It will produce file `cpu-x.pot`, located in `po` directory. Copy it to `<lang>.po` and start to translate...
