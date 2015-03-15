@@ -115,13 +115,22 @@ void warning_window(GtkWidget *mainwindow)
 		strstr(MSGROOT, "\n"));
 
 	gtk_container_set_border_width(GTK_CONTAINER(dialog), 5);
-	gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, _("Ignore"), GTK_RESPONSE_REJECT, NULL);
 	gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);
 
-	if(gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+	if(system("pkexec --version"))
 	{
-		system("cpu-x_polkit &");
-		exit(EXIT_SUCCESS);
+		gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Ignore"), GTK_RESPONSE_REJECT, NULL);
+		gtk_dialog_run(GTK_DIALOG(dialog));
+	}
+	else
+	{
+		gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, _("Ignore"), GTK_RESPONSE_REJECT, NULL);
+
+		if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
+		{
+			system("cpu-x_polkit &");
+			exit(EXIT_SUCCESS);
+		}
 	}
 
 	gtk_widget_destroy(dialog);
@@ -317,7 +326,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
 	height = gtk_widget_get_allocated_height(widget);
 	snprintf(text, MAXSTR, "%.2f%%", val);
 
-	cairo_rectangle(cr, before / 100 * width, 0, val / 100 * width, 14);
+	cairo_rectangle(cr, before / 100 * width, 0, val / 100 * width, 13);
 	cairo_fill(cr);
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
