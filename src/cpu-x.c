@@ -24,9 +24,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include <unistd.h>
 #include <math.h>
-#include <limits.h>
 #include <sys/utsname.h>
 #include <locale.h>
 #include <libintl.h>
@@ -72,7 +70,8 @@
 #endif
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	char option;
 	option = menu(argc, argv);
 
@@ -382,11 +381,12 @@ int libdmidecode(Labels *data)
 /* Alternative for libdmidecode (Linux only) */
 int libdmi_fallback(Labels *data)
 {
-	int i, err = 0;
+	int err = 0;
 
 	MSGVERB(_("Call Libdmi (fallback mode)"));
 
 #ifdef __linux__
+	int i;
 	char path[PATH_MAX];
 	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date" };
 	FILE *mb[LASTMB] = { NULL };
@@ -414,31 +414,20 @@ int libdmi_fallback(Labels *data)
 /* Pretty label CPU Vendor */
 void cpuvendor(char *vendor)
 {
-	/* This use Libcpuid. See here: https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
-
+	/* https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
 	MSGVERB(_("Improving CPU Vendor label"));
-	if(!strcmp(vendor, "GenuineIntel"))	 /* Intel */
-		strcpy(vendor, "Intel");
-	else if(!strcmp(vendor, "AuthenticAMD")) /* AMD */
-		strcpy(vendor, "AMD");
-	else if(!strcmp(vendor, "CyrixInstead")) /* Cyrix */
-		strcpy(vendor, "Cyrix");
-	else if(!strcmp(vendor, "NexGenDriven")) /* NexGen */
-		strcpy(vendor, "NexGen");
-	else if(!strcmp(vendor, "GenuineTMx86")) /* Transmeta */
-		strcpy(vendor, "Transmeta");
-	else if(!strcmp(vendor, "UMC UMC UMC ")) /* UMC */
-		strcpy(vendor, "UMC");
-	else if(!strcmp(vendor, "CentaurHauls")) /* Centaur */
-		strcpy(vendor, "Centaur");
-	else if(!strcmp(vendor, "RiseRiseRise")) /* Rise */
-		strcpy(vendor, "Rise");
-	else if(!strcmp(vendor, "SiS SiS SiS ")) /* SiS */
-		strcpy(vendor, "SiS");
-	else if(!strcmp(vendor, "Geode by NSC")) /* National Semiconductor */
-		strcpy(vendor, "National Semiconductor");
-	else
-		strcpy(vendor, "Unknown");
+
+	if     (!strcmp(vendor, "GenuineIntel"))		strcpy(vendor, "Intel");
+	else if(!strcmp(vendor, "AuthenticAMD"))	strcpy(vendor, "AMD");
+	else if(!strcmp(vendor, "CyrixInstead"))	strcpy(vendor, "Cyrix");
+	else if(!strcmp(vendor, "NexGenDriven"))	strcpy(vendor, "NexGen");
+	else if(!strcmp(vendor, "GenuineTMx86"))	strcpy(vendor, "Transmeta");
+	else if(!strcmp(vendor, "UMC UMC UMC "))	strcpy(vendor, "UMC");
+	else if(!strcmp(vendor, "CentaurHauls"))	strcpy(vendor, "Centaur");
+	else if(!strcmp(vendor, "RiseRiseRise"))	strcpy(vendor, "Rise");
+	else if(!strcmp(vendor, "SiS SiS SiS "))	strcpy(vendor, "SiS");
+	else if(!strcmp(vendor, "Geode by NSC"))	strcpy(vendor, "National Semiconductor");
+	else						strcpy(vendor, "Unknown");
 }
 
 /* Remove unwanted spaces in value Specification */
@@ -474,21 +463,24 @@ void clean_specification(char *spec)
 /* Get CPU frequencies (current - min - max) */
 void cpufreq(char *busfreq, char *clock, char *mults)
 {
+	MSGVERB(_("Getting CPU frequency"));
+
+	if(HAS_LIBCPUID)
+		snprintf(clock, MAXSTR, "%d MHz", cpu_clock());
+
+#ifdef __linux__
 	static int error = 0;
 	char multmin[S] = { "0" }, multmax[S] = { "0" };
 	FILE *fmin = NULL, *fmax = NULL;
 
-	MSGVERB(_("Getting CPU frequency"));
-	if(HAS_LIBCPUID)
-		snprintf(clock, MAXSTR, "%d MHz", cpu_clock());
-
 	/* Can't get base clock without root rights, skip multiplicators calculation */
 	if(!getuid())
 	{
-#ifdef __linux__
-		if(error != 1 && error != 3) {
+		if(error != 1 && error != 3)
+		{
 			fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
-			if(fmin == NULL) {
+			if(fmin == NULL)
+			{
 				MSGPERR(_("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'"));
 				error = 1;
 			}
@@ -498,9 +490,11 @@ void cpufreq(char *busfreq, char *clock, char *mults)
 			}
 		}
 
-		if(error != 2 && error != 3) {
+		if(error != 2 && error != 3)
+		{
 			fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
-			if(fmax == NULL) {
+			if(fmax == NULL)
+			{
 				MSGPERR(_("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'"));
 				error = (error == 1) ? 3 : 2;
 			}
@@ -509,35 +503,41 @@ void cpufreq(char *busfreq, char *clock, char *mults)
 				fclose(fmax);
 			}
 		}
-#endif /* __linux__ */
+
 		mult(busfreq, clock, multmin, multmax, mults);
 	}
+#endif /* __linux__ */
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */
-void bogomips(char *c) {
+void bogomips(char *c)
+{
+	MSGVERB(_("Reading value BogoMIPS"));
+
+#ifdef __linux__
 	int i = 0, j = 0;
 	char read[20];
 	char *mips = NULL;
 	FILE *cpuinfo = NULL;
 
-	MSGVERB(_("Reading value BogoMIPS"));
-
-#ifdef __linux__
 	cpuinfo = fopen("/proc/cpuinfo", "r");
-	if(cpuinfo == NULL) {
+	if(cpuinfo == NULL)
+	{
 		MSGPERR(_("failed to open file '/proc/cpuinfo'"));
 	}
 	else
 	{
-		while(fgets(read, sizeof(read), cpuinfo) != NULL) {
+		while(fgets(read, sizeof(read), cpuinfo) != NULL)
+		{
 			mips = strstr(read, "bogomips");
 			if(mips != NULL)
 				break;
 		}
 
-		while(mips[i] != '\n') {
-			if(isdigit(mips[i]) || mips[i] == '.') {
+		while(mips[i] != '\n')
+		{
+			if(isdigit(mips[i]) || mips[i] == '.')
+			{
 				c[j] = mips[i];
 				j++;
 			}
@@ -546,7 +546,7 @@ void bogomips(char *c) {
 		c[j] = '\0';
 	}
 #else
-	sprintf(c, "%s", "- - - -");
+	sprintf(c, "- - - -");
 #endif /* __linux__ */
 }
 
@@ -587,49 +587,32 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 	struct cpu_id_t id;
 
 	MSGVERB(_("Finding CPU instructions"));
-	if (!cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
+	if(cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
 	{
-		if(id.flags[CPU_FEATURE_MMX])
-		{
-			strcpy(instr, "MMX");
-			if(id.flags[CPU_FEATURE_MMXEXT])
-				strcat(instr, "(+)");
-		}
-		if(id.flags[CPU_FEATURE_3DNOW])
-		{
-			strcat(instr, ", 3DNOW!");
-			if(id.flags[CPU_FEATURE_3DNOWEXT])
-				strcat(instr, "(+)");
-		}
-		if(id.flags[CPU_FEATURE_SSE])
-			strcat(instr, ", SSE (1");
-		if(id.flags[CPU_FEATURE_SSE2])
-			strcat(instr, ", 2");
-		if(id.flags[CPU_FEATURE_SSSE3])
-			strcat(instr, ", 3S");
-		if(id.flags[CPU_FEATURE_SSE4_1])
-			strcat(instr, ", 4.1");
-		if(id.flags[CPU_FEATURE_SSE4_2])
-			strcat(instr, ", 4.2");
-		if(id.flags[CPU_FEATURE_SSE4A])
-			strcat(instr, ", 4A");
-		if(id.flags[CPU_FEATURE_SSE])
-			strcat(instr, ")");
-		if(id.flags[CPU_FEATURE_AES])
-			strcat(instr, ", AES");
-		if(id.flags[CPU_FEATURE_AVX])
-			strcat(instr, ", AVX");
-		if(id.flags[CPU_FEATURE_VMX])
-			strcat(instr, ", VT-x");
-		if(id.flags[CPU_FEATURE_SVM])
-			strcat(instr, ", AMD-V");
-		if(id.flags[CPU_FEATURE_LM])
-			strcpy(arch, "x86_64 (64-bit)");
-		else
-			strcpy(arch, "ix86 (32-bit)");
-	}
-	else
 		MSGSERR(_("libcpuid failed"));
+		return;
+	}
+
+	if(id.flags[CPU_FEATURE_MMX])		strcpy(instr, "MMX");
+	if(id.flags[CPU_FEATURE_MMXEXT])	strcat(instr, "(+)");
+	if(id.flags[CPU_FEATURE_3DNOW])		strcat(instr, ", 3DNOW!");
+	if(id.flags[CPU_FEATURE_3DNOWEXT])	strcat(instr, "(+)");
+
+	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ", SSE (1");
+	if(id.flags[CPU_FEATURE_SSE2])		strcat(instr, ", 2");
+	if(id.flags[CPU_FEATURE_SSSE3])		strcat(instr, ", 3S");
+	if(id.flags[CPU_FEATURE_SSE4_1])	strcat(instr, ", 4.1");
+	if(id.flags[CPU_FEATURE_SSE4_2])	strcat(instr, ", 4.2");
+	if(id.flags[CPU_FEATURE_SSE4A])		strcat(instr, ", 4A");
+	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ")");
+
+	if(id.flags[CPU_FEATURE_AES])		strcat(instr, ", AES");
+	if(id.flags[CPU_FEATURE_AVX])		strcat(instr, ", AVX");
+	if(id.flags[CPU_FEATURE_VMX])		strcat(instr, ", VT-x");
+	if(id.flags[CPU_FEATURE_SVM])		strcat(instr, ", AMD-V");
+
+	if(id.flags[CPU_FEATURE_LM])		strcpy(arch, "x86_64 (64-bit)");
+	else					strcpy(arch, "ix86 (32-bit)");
 }
 #endif /* HAS_LIBCPUID */
 
@@ -838,7 +821,6 @@ void msg(char type, char *msg)
 	const char *reset = "\033[0m";
 	const char *boldred = "\033[1;31m";
 	const char *boldgre = "\033[1;32m";
-
 
 	if(type == 'p')
 	{

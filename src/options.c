@@ -43,7 +43,8 @@ const char *optstring[] =
 };
 
 
-void help(FILE *out, char *argv[]) {
+void help(FILE *out, char *argv[])
+{
 	int o = 0;
 
 	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
@@ -59,7 +60,8 @@ void help(FILE *out, char *argv[]) {
 	fprintf(out, _("  -V, --%-10s Print version and exit\n"), optstring[o]); o++;
 }
 
-void version(void) {
+void version(void)
+{
 	printf(_("%s %s\n"
 	"%s\n\n"
 	"This is free software: you are free to change and redistribute it.\n"
@@ -67,7 +69,8 @@ void version(void) {
 	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"), PRGNAME, PRGVER, PRGCPYR);
 }
 
-char menu(int argc, char *argv[]) {
+char menu(int argc, char *argv[])
+{
 	int c;
 	char r = 'G';
 	const struct option longopts[] =
@@ -84,13 +87,10 @@ char menu(int argc, char *argv[]) {
 		{0,		0,	     0,  0}
 	};
 
-	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain(GETTEXT_PACKAGE);
-
-	while((c = getopt_long(argc, argv, ":ndDr:vhV", longopts, NULL)) != -1) {
-		switch(c) {
+	while((c = getopt_long(argc, argv, ":ndDr:vhV", longopts, NULL)) != -1)
+	{
+		switch(c)
+		{
 			case 'n':
 			case 'd':
 				r = c;

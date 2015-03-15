@@ -23,7 +23,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
 #include <libintl.h>
 #include "cpu-x.h"
 #include "gui_gtk.h"
@@ -104,17 +103,17 @@ static const char *objectsys[2][LASTSYS] =
 
 void warning_window(GtkWidget *mainwindow)
 {
-	char markup1[MAXSTR*2], markup2[MAXSTR*2], markup[MAXSTR*3];
+	char markup[MAXSTR*2];
 
-	sprintf(markup1, MSGROOT);
-	sprintf(markup2, MSGROOT);
-	sprintf(markup, "\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s", strtok(markup1, ":"), strstr(markup2, "\n"));
+	sprintf(markup, MSGROOT);
 
 	GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(mainwindow),
 		GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL,
 		GTK_MESSAGE_WARNING,
 		GTK_BUTTONS_NONE,
-		markup);
+		"\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s",
+		strtok(markup, ":"),
+		strstr(MSGROOT, "\n"));
 
 	gtk_container_set_border_width(GTK_CONTAINER(dialog), 5);
 	gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, _("Ignore"), GTK_RESPONSE_REJECT, NULL);
@@ -123,7 +122,7 @@ void warning_window(GtkWidget *mainwindow)
 	if(gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
 		system("cpu-x_polkit &");
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 
 	gtk_widget_destroy(dialog);
@@ -143,7 +142,8 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	/* Build UI from Glade file */
 #ifdef EMBED
-	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL)) {
+	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL))
+	{
 		MSGPERR(_("gtk_builder_add_from_string failed"));
 		exit(EXIT_FAILURE);
 	}
@@ -366,8 +366,7 @@ void set_labels(GtkLabels *glab, Labels *data)
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
 void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
 {
-	double percent;
-	guint width, height, x, y;
+	guint width, height;
 	char text[MAXSTR];
 
 	width = gtk_widget_get_allocated_width(widget);
@@ -378,7 +377,6 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
 	cairo_fill(cr);
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
-	//cairo_select_font_face(cr, "Purisa",      CAIRO_FONT_SLANT_NORMAL,      CAIRO_FONT_WEIGHT_BOLD);
 	cairo_move_to(cr, (width / 2) - 20, height - 2);
 	cairo_set_font_size(cr, 14);
 	cairo_show_text(cr, text);

@@ -20,8 +20,8 @@
 * cpux_ncurses.h
 */
 
-#ifndef _CPUX_NCURSES_H_
-#define _CPUX_NCURSES_H_
+#ifndef _TUI_NCURSES_H_
+#define _TUI_NCURSES_H_
 
 
 #include <ncurses.h>
@@ -32,6 +32,8 @@ typedef struct
 	Labels *data;
 } NThrd;
 
+
+/********************************** TUI  **********************************/
 
 /* Start CPU-X in NCurses mode */
 void start_tui_ncurses(Labels *data);
@@ -66,4 +68,4 @@ WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data);
 void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label);
 
 
-#endif /* _CPUX_NCURSES_H_ */
+#endif /* _TUI_NCURSES_H_ */

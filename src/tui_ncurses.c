@@ -297,7 +297,8 @@ void clear_bar(WINDOW *win, int bar)
 
 WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 {
-	int i;WINDOW *local_win;
+	int i;
+	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);

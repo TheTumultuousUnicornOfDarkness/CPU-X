@@ -20,8 +20,8 @@
 * cpux_gtk.h
 */
 
-#ifndef _CPUX_GTK_H_
-#define _CPUX_GTK_H_
+#ifndef _GUI_GTK_H_
+#define _GUI_GTK_H_
 
 
 #include <gtk/gtk.h>
@@ -67,6 +67,7 @@ typedef struct
 	Labels *data;
 } GThrd; /* Used to refresh GUI */
 
+
 /********************************** GUI  **********************************/
 
 /* Start CPU-X in GTK mode */
@@ -98,4 +99,4 @@ void setbar_swap(GtkWidget *widget, cairo_t *cr, Labels *data);
 char *data_path(char *file);
 
 
-#endif /* _CPUX_GTK_H_ */
+#endif /* _GUI_GTK_H_ */
