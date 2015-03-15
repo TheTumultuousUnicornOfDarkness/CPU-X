@@ -1,5 +1,5 @@
 /****************************************************************************
-*    Copyright © 2014 Xorg
+*    Copyright © 2014-2015 Xorg
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 
 #define PRGNAME "CPU-X"
 #define PRGAUTH "X0rg"
-#define PRGCPYR "Copyright © 2014 Xorg"
+#define PRGCPYR "Copyright © 2014-2015 Xorg"
 #define EXIT_FNO 2	/* Exit when File Not Open */
 #define SYS_DMI "/sys/devices/virtual/dmi/id"
 #define NAME	0
