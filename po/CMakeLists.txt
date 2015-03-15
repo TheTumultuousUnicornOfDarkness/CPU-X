@@ -30,3 +30,23 @@ execute_process(COMMAND ${MSGFMT_EXECUTABLE} fr.po -o ${GMO_DIR}/fr/cpu-x.mo
 install(FILES ${GMO_DIR}/fr/cpu-x.mo
 	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/locale/fr/LC_MESSAGES/
 )
+
+add_custom_target(genpot
+	COMMAND xgettext
+		--language=C
+		--package-name=${CMAKE_PROJECT_NAME}
+		--package-version=${PROJECT_VERSION}
+		--default-domain=${CMAKE_PROJECT_NAME}
+		--msgid-bugs-address=https://github.com/X0rg/CPU-X/issues
+		--copyright-holder=Xorg
+		--output-dir=${CMAKE_SOURCE_DIR}/po
+		--output=${CMAKE_PROJECT_NAME}.pot
+		--keyword=_ --indent
+		cpu-x.c cpu-x.h options.c gui_gtk.c tui_ncurses.c
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
+)
+
+add_custom_target(updatepo
+	COMMAND msgmerge --indent --update --backup=existing fr.po cpu-x.pot
+	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
