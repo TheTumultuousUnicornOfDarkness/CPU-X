@@ -97,6 +97,10 @@ endif(WITH_LIBSYSTEM)
 
 ### Main executable
 
+if(EMBED)
+	add_definitions(-DEMBED)
+endif(EMBED)
+
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
 
 add_executable(cpu-x
