@@ -467,32 +467,32 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 	struct cpu_id_t id;
 
 	MSGVERB(_("Finding CPU instructions"));
-	if(cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
+	if (!cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
 	{
-		MSGSERR(_("libcpuid failed"));
-		return;
+		if(id.flags[CPU_FEATURE_MMX])		strcpy(instr, "MMX");
+		if(id.flags[CPU_FEATURE_MMXEXT])	strcat(instr, "(+)");
+		if(id.flags[CPU_FEATURE_3DNOW])		strcat(instr, ", 3DNOW!");
+		if(id.flags[CPU_FEATURE_3DNOWEXT])	strcat(instr, "(+)");
+
+		if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ", SSE (1");
+		if(id.flags[CPU_FEATURE_SSE2])		strcat(instr, ", 2");
+		if(id.flags[CPU_FEATURE_SSSE3])		strcat(instr, ", 3S");
+		if(id.flags[CPU_FEATURE_SSE4_1])	strcat(instr, ", 4.1");
+		if(id.flags[CPU_FEATURE_SSE4_2])	strcat(instr, ", 4.2");
+		if(id.flags[CPU_FEATURE_SSE4A])		strcat(instr, ", 4A");
+		if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ")");
+
+		if(id.flags[CPU_FEATURE_AES])		strcat(instr, ", AES");
+		if(id.flags[CPU_FEATURE_AVX])		strcat(instr, ", AVX");
+		if(id.flags[CPU_FEATURE_VMX])		strcat(instr, ", VT-x");
+		if(id.flags[CPU_FEATURE_SVM])		strcat(instr, ", AMD-V");
+
+		if(id.flags[CPU_FEATURE_LM])		strcpy(arch, "x86_64 (64-bit)");
+		else					strcpy(arch, "ix86 (32-bit)");
+
 	}
-
-	if(id.flags[CPU_FEATURE_MMX])		strcpy(instr, "MMX");
-	if(id.flags[CPU_FEATURE_MMXEXT])	strcat(instr, "(+)");
-	if(id.flags[CPU_FEATURE_3DNOW])		strcat(instr, ", 3DNOW!");
-	if(id.flags[CPU_FEATURE_3DNOWEXT])	strcat(instr, "(+)");
-
-	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ", SSE (1");
-	if(id.flags[CPU_FEATURE_SSE2])		strcat(instr, ", 2");
-	if(id.flags[CPU_FEATURE_SSSE3])		strcat(instr, ", 3S");
-	if(id.flags[CPU_FEATURE_SSE4_1])	strcat(instr, ", 4.1");
-	if(id.flags[CPU_FEATURE_SSE4_2])	strcat(instr, ", 4.2");
-	if(id.flags[CPU_FEATURE_SSE4A])		strcat(instr, ", 4A");
-	if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ")");
-
-	if(id.flags[CPU_FEATURE_AES])		strcat(instr, ", AES");
-	if(id.flags[CPU_FEATURE_AVX])		strcat(instr, ", AVX");
-	if(id.flags[CPU_FEATURE_VMX])		strcat(instr, ", VT-x");
-	if(id.flags[CPU_FEATURE_SVM])		strcat(instr, ", AMD-V");
-
-	if(id.flags[CPU_FEATURE_LM])		strcpy(arch, "x86_64 (64-bit)");
-	else					strcpy(arch, "ix86 (32-bit)");
+	else
+		MSGSERR(_("libcpuid failed"));
 }
 #endif /* HAS_LIBCPUID */
 
