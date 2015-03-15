@@ -44,22 +44,19 @@ const char *optstring[] =
 
 
 void help(FILE *out, char *argv[]) {
-	fprintf(out, _("Usage: %s [OPTION]\n\n"
-		"Available OPTION:\n"
-		"  -n, --%-10s Start text-based user interface (TUI)\n"
-		"  -d, --%-10s Dump all data on standard output and exit\n"
-		"  -r, --%-10s Set custom time between two refreshes (in seconds)\n"
+	int o = 0;
+
+	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
+	fprintf(out, _("Available OPTION:\n"));
+	fprintf(out, _("  -n, --%-10s Start text-based user interface (TUI)\n"), optstring[o]); o++;
+	fprintf(out, _("  -d, --%-10s Dump all data on standard output and exit\n"), optstring[o]); o++;
+	fprintf(out, _("  -r, --%-10s Set custom time between two refreshes (in seconds)\n"), optstring[o]); o++;
 #if HAS_LIBDMI
-		"  -D, --%-10s Run embedded command dmidecode and exit\n"
+	fprintf(out, _("  -D, --%-10s Run embedded command dmidecode and exit\n"), optstring[o]); o++;
 #endif /* HAS_LIBDMI */
-		"  -v, --%-10s Verbose output\n"
-		"  -h, --%-10s Print help and exit\n"
-		"  -V, --%-10s Print version and exit\n"), argv[0],
-		optstring[0], optstring[1], optstring[2], optstring[3], optstring[4], optstring[5]
-#if HAS_LIBDMI
-		, optstring[6]
-#endif /* HAS_LIBDMI */
-		);
+	fprintf(out, _("  -v, --%-10s Verbose output\n"), optstring[o]); o++;
+	fprintf(out, _("  -h, --%-10s Print help and exit\n"), optstring[o]); o++;
+	fprintf(out, _("  -V, --%-10s Print version and exit\n"), optstring[o]); o++;
 }
 
 void version(void) {
