@@ -39,7 +39,7 @@ You can disable some functionalities by passing argument `-D<var>=0` when runnin
 `-DWITH_NCURSES=0` will disable support of NCurses mode (need to run from a shell)  
 `-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
 `-DWITH_LIBDMI=0` will not compile Libdmi and will avoid calls to Libdmi (not recommended)  
-`-DWITH_LIBPROCPS=0` will avoid calls to Libprocps (not recommended) 
+`-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps (not recommended) 
 
 * If you want to install CPU-X on your system, do:
 ```
