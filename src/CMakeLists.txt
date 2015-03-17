@@ -31,7 +31,7 @@ endif(WITH_GTK)
 
 # NCurses libs
 if(WITH_NCURSES)
-	pkg_check_modules(NCURSES ncurses)
+	pkg_check_modules(NCURSES ncursesw)
 	if(NCURSES_FOUND)
 		include_directories(${NCURSES_INCLUDE_DIRS})
 		link_directories(${NCURSES_LIBRARY_DIRS})
