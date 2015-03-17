@@ -326,11 +326,12 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
 	height = gtk_widget_get_allocated_height(widget);
 	snprintf(text, MAXSTR, "%.2f%%", val);
 
-	cairo_rectangle(cr, before / 100 * width, 0, val / 100 * width, 13);
+	cairo_rectangle(cr, before / 100 * width, 0, val / 100 * width, height);
 	cairo_fill(cr);
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
-	cairo_move_to(cr, (width / 2) - 20, height - 2);
+	cairo_select_font_face(cr, "Helvetica Neue Medium", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+	cairo_move_to(cr, (width / 2) - 20, height - 3);
 	cairo_set_font_size(cr, 14);
 	cairo_show_text(cr, text);
 	cairo_fill(cr);
