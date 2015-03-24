@@ -20,8 +20,10 @@
 * cpu-x.c
 */
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <ctype.h>
 #include <string.h>
 #include <math.h>
@@ -82,9 +84,9 @@ int main(int argc, char *argv[])
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	labels_setempty(&data);
+	labels_setnull(&data);
 	labels_setname(&data);
-	bogomips(data.tabcpu[VALUE][BOGOMIPS]);
+	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
 	tabsystem(&data);
 
 	if(HAS_LIBCPUID)
@@ -94,7 +96,7 @@ int main(int argc, char *argv[])
 		else
 		{
 			cpuvendor(data.tabcpu[VALUE][VENDOR]);
-			instructions(data.tabcpu[VALUE][ARCHITECTURE], data.tabcpu[VALUE][INSTRUCTIONS]);
+			instructions(&data.tabcpu[VALUE][ARCHITECTURE], &data.tabcpu[VALUE][INSTRUCTIONS]);
 		}
 	}
 
@@ -109,7 +111,8 @@ int main(int argc, char *argv[])
 			MSGSERR(_("libdmi_fallback failed"));
 	}
 
-	cpufreq(data.tabcpu[VALUE][BUSSPEED], data.tabcpu[VALUE][CORESPEED], data.tabcpu[VALUE][MULTIPLIER]);
+	cpufreq(&data);
+	labels_delnull(&data);
 
 	/* Start GUI */
 	if(HAS_GTK && option == 'G') /* Start with GTK3 */
@@ -131,6 +134,7 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
+/* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line)
 {
 	const char *reset = "\033[0m";
@@ -151,40 +155,27 @@ void msg(char type, char *msg, char *prgname, char *basefile, int line)
 		printf("%s%s%s\n", boldgre, msg, reset);
 }
 
-/* Set empty labels */
-void labels_setempty(Labels *data)
+/* Initialize all labels pointers to null */
+void labels_setnull(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Initializing labels"));
-
+	MSGVERB("Setting label pointer");
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
-	{
-		memset(data->tabcpu[NAME][i], 0, MAXSTR);
-		memset(data->tabcpu[VALUE][i], 0, MAXSTR);
-	}
+		data->tabcpu[VALUE][i] = NULL;
 
 	/* Tab Mainboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
-	{
-		memset(data->tabmb[NAME][i], 0, MAXSTR);
-		memset(data->tabmb[VALUE][i], 0, MAXSTR);
-	}
+		data->tabmb[VALUE][i] = NULL;
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < LASTRAM; i++)
-	{
-		memset(data->tabram[NAME][i], 0, MAXSTR);
-		memset(data->tabram[VALUE][i], 0, MAXSTR);
-	}
+		data->tabram[VALUE][i] = NULL;
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
-	{
-		memset(data->tabsys[NAME][i], 0, MAXSTR);
-		memset(data->tabsys[VALUE][i], 0, MAXSTR);
-	}
+		data->tabsys[VALUE][i] = NULL;
 }
 
 /* Set labels name */
@@ -193,97 +184,144 @@ void labels_setname(Labels *data)
 	MSGVERB(_("Setting label name"));
 
 	/* Various objects*/
-	snprintf(data->objects[TABCPU],			MAXSTR, _("CPU"));
-	snprintf(data->objects[TABMB],			MAXSTR, _("Mainboard"));
-	snprintf(data->objects[TABRAM],			MAXSTR, _("RAM"));
-	snprintf(data->objects[TABSYS],			MAXSTR, _("System"));
-	snprintf(data->objects[TABABOUT],		MAXSTR, _("About"));
-	snprintf(data->objects[FRAMPROCESSOR],		MAXSTR, _("Processor"));
-	snprintf(data->objects[FRAMCLOCKS],		MAXSTR, _("Clocks"));
-	snprintf(data->objects[FRAMCACHE],		MAXSTR, _("Cache"));
-	snprintf(data->objects[FRAMMOBO],		MAXSTR, _("Motherboard"));
-	snprintf(data->objects[FRAMBIOS],		MAXSTR, _("BIOS"));
-	snprintf(data->objects[FRAMBANKS],		MAXSTR, _("Banks"));
-	snprintf(data->objects[FRAMOS],			MAXSTR, _("Operating System"));
-	snprintf(data->objects[FRAMMEMORY],		MAXSTR, _("Memory"));
-	snprintf(data->objects[FRAMABOUT],		MAXSTR, _("About"));
-	snprintf(data->objects[FRAMLICENSE],		MAXSTR, _("License"));
-	snprintf(data->objects[LABVERSION],		MAXSTR, _("Version %s"), PRGVER);
-	snprintf(data->objects[LABDESCRIPTION],		MAXSTR + 40, _(
+	asprintf(&data->objects[TABCPU],		_("CPU"));
+	asprintf(&data->objects[TABMB],			_("Mainboard"));
+	asprintf(&data->objects[TABRAM],		_("RAM"));
+	asprintf(&data->objects[TABSYS],		_("System"));
+	asprintf(&data->objects[TABABOUT],		_("About"));
+	asprintf(&data->objects[FRAMPROCESSOR],		_("Processor"));
+	asprintf(&data->objects[FRAMCLOCKS],		_("Clocks"));
+	asprintf(&data->objects[FRAMCACHE],		_("Cache"));
+	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
+	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
+	asprintf(&data->objects[FRAMBANKS],		_("Banks"));
+	asprintf(&data->objects[FRAMOS],		_("Operating System"));
+	asprintf(&data->objects[FRAMMEMORY],		_("Memory"));
+	asprintf(&data->objects[FRAMABOUT],		_("About"));
+	asprintf(&data->objects[FRAMLICENSE],		_("License"));
+	asprintf(&data->objects[LABVERSION],		_("Version %s"), PRGVER);
+	asprintf(&data->objects[LABDESCRIPTION],	_(
 		"%s is a Free software that gathers information\n"
 		"on CPU, motherboard and more."), PRGNAME);
-	snprintf(data->objects[LABAUTHOR],		MAXSTR, _("Author : %s"), PRGAUTH);
-	snprintf(data->objects[LABCOPYRIGHT],		MAXSTR, "%s", PRGCPYR);
-	snprintf(data->objects[LABLICENSE],		MAXSTR + 40, _(
+	asprintf(&data->objects[LABAUTHOR],		_("Author : %s"), PRGAUTH);
+	asprintf(&data->objects[LABCOPYRIGHT],		"%s", PRGCPYR);
+	asprintf(&data->objects[LABLICENSE],		_(
 		"This program comes with ABSOLUTELY NO WARRANTY"));
 
 	/* Tab CPU */
-	snprintf(data->tabcpu[NAME][VENDOR],		MAXSTR, _("Vendor"));
-	snprintf(data->tabcpu[NAME][CODENAME],		MAXSTR, _("Code Name"));
-	snprintf(data->tabcpu[NAME][PACKAGE],		MAXSTR, _("Package"));
-	snprintf(data->tabcpu[NAME][ARCHITECTURE],	MAXSTR, _("Architecture"));
-	snprintf(data->tabcpu[NAME][SPECIFICATION],	MAXSTR, _("Specification"));
-	snprintf(data->tabcpu[NAME][FAMILY],		MAXSTR, _("Family"));
-	snprintf(data->tabcpu[NAME][EXTFAMILY],		MAXSTR, _("Ext. Family"));
-	snprintf(data->tabcpu[NAME][MODEL],		MAXSTR, _("Model"));
-	snprintf(data->tabcpu[NAME][EXTMODEL],		MAXSTR, _("Ext. Model"));
-	snprintf(data->tabcpu[NAME][STEPPING],		MAXSTR, _("Stepping"));
-	snprintf(data->tabcpu[NAME][INSTRUCTIONS],	MAXSTR, _("Instructions"));
+	asprintf(&data->tabcpu[NAME][VENDOR],		_("Vendor"));
+	asprintf(&data->tabcpu[NAME][CODENAME],		_("Code Name"));
+	asprintf(&data->tabcpu[NAME][PACKAGE],		_("Package"));
+	asprintf(&data->tabcpu[NAME][ARCHITECTURE],	_("Architecture"));
+	asprintf(&data->tabcpu[NAME][SPECIFICATION],	_("Specification"));
+	asprintf(&data->tabcpu[NAME][FAMILY],		_("Family"));
+	asprintf(&data->tabcpu[NAME][EXTFAMILY],	_("Ext. Family"));
+	asprintf(&data->tabcpu[NAME][MODEL],		_("Model"));
+	asprintf(&data->tabcpu[NAME][EXTMODEL],		_("Ext. Model"));
+	asprintf(&data->tabcpu[NAME][STEPPING],		_("Stepping"));
+	asprintf(&data->tabcpu[NAME][INSTRUCTIONS],	_("Instructions"));
 
-	snprintf(data->tabcpu[NAME][CORESPEED],		MAXSTR, _("Core Speed"));
-	snprintf(data->tabcpu[NAME][MULTIPLIER],	MAXSTR, _("Multiplier"));
-	snprintf(data->tabcpu[NAME][BUSSPEED],		MAXSTR, _("Bus Speed"));
-	snprintf(data->tabcpu[NAME][BOGOMIPS],		MAXSTR, _("BogoMIPS"));
+	asprintf(&data->tabcpu[NAME][CORESPEED],	_("Core Speed"));
+	asprintf(&data->tabcpu[NAME][MULTIPLIER],	_("Multiplier"));
+	asprintf(&data->tabcpu[NAME][BUSSPEED],		_("Bus Speed"));
+	asprintf(&data->tabcpu[NAME][BOGOMIPS],		_("BogoMIPS"));
 
-	snprintf(data->tabcpu[NAME][LEVEL1D],		MAXSTR, _("L1 Data"));
-	snprintf(data->tabcpu[NAME][LEVEL1I],		MAXSTR, _("L1 Inst."));
-	snprintf(data->tabcpu[NAME][LEVEL2],		MAXSTR, _("Level 2"));
-	snprintf(data->tabcpu[NAME][LEVEL3],		MAXSTR, _("Level 3"));
+	asprintf(&data->tabcpu[NAME][LEVEL1D],		_("L1 Data"));
+	asprintf(&data->tabcpu[NAME][LEVEL1I],		_("L1 Inst."));
+	asprintf(&data->tabcpu[NAME][LEVEL2],		_("Level 2"));
+	asprintf(&data->tabcpu[NAME][LEVEL3],		_("Level 3"));
 
-	snprintf(data->tabcpu[NAME][SOCKETS],		MAXSTR, _("Sockets(s)"));
-	snprintf(data->tabcpu[NAME][CORES],		MAXSTR, _("Core(s)"));
-	snprintf(data->tabcpu[NAME][THREADS],		MAXSTR, _("Thread(s)"));
+	asprintf(&data->tabcpu[NAME][SOCKETS],		_("Sockets(s)"));
+	asprintf(&data->tabcpu[NAME][CORES],		_("Core(s)"));
+	asprintf(&data->tabcpu[NAME][THREADS],		_("Thread(s)"));
 
 	/* Tab Mainboard */
-	snprintf(data->tabmb[NAME][MANUFACTURER],	MAXSTR, _("Manufacturer"));
-	snprintf(data->tabmb[NAME][MBMODEL],		MAXSTR, _("Model"));
-	snprintf(data->tabmb[NAME][REVISION],		MAXSTR, _("Revision"));
+	asprintf(&data->tabmb[NAME][MANUFACTURER],	_("Manufacturer"));
+	asprintf(&data->tabmb[NAME][MBMODEL],		_("Model"));
+	asprintf(&data->tabmb[NAME][REVISION],		_("Revision"));
 
-	snprintf(data->tabmb[NAME][BRAND],		MAXSTR, _("Brand"));
-	snprintf(data->tabmb[NAME][VERSION],		MAXSTR, _("Version"));
-	snprintf(data->tabmb[NAME][DATE],		MAXSTR, _("Date"));
-	snprintf(data->tabmb[NAME][ROMSIZE],		MAXSTR, _("ROM Size"));
+	asprintf(&data->tabmb[NAME][BRAND],		_("Brand"));
+	asprintf(&data->tabmb[NAME][VERSION],		_("Version"));
+	asprintf(&data->tabmb[NAME][DATE],		_("Date"));
+	asprintf(&data->tabmb[NAME][ROMSIZE],		_("ROM Size"));
 
 	/* Tab RAM */
-	snprintf(data->tabram[NAME][BANK0_0],		MAXSTR, _("Bank 0 Ref."));
-	snprintf(data->tabram[NAME][BANK0_1],		MAXSTR, _("Bank 0 Type"));
-	snprintf(data->tabram[NAME][BANK1_0],		MAXSTR, _("Bank 1 Ref."));
-	snprintf(data->tabram[NAME][BANK1_1],		MAXSTR, _("Bank 1 Type"));
-	snprintf(data->tabram[NAME][BANK2_0],		MAXSTR, _("Bank 2 Ref."));
-	snprintf(data->tabram[NAME][BANK2_1],		MAXSTR, _("Bank 2 Type"));
-	snprintf(data->tabram[NAME][BANK3_0],		MAXSTR, _("Bank 3 Ref."));
-	snprintf(data->tabram[NAME][BANK3_1],		MAXSTR, _("Bank 3 Type"));
-	snprintf(data->tabram[NAME][BANK4_0],		MAXSTR, _("Bank 4 Ref."));
-	snprintf(data->tabram[NAME][BANK4_1],		MAXSTR, _("Bank 4 Type"));
-	snprintf(data->tabram[NAME][BANK5_0],		MAXSTR, _("Bank 5 Ref."));
-	snprintf(data->tabram[NAME][BANK5_1],		MAXSTR, _("Bank 5 Type"));
-	snprintf(data->tabram[NAME][BANK6_0],		MAXSTR, _("Bank 6 Ref."));
-	snprintf(data->tabram[NAME][BANK6_1],		MAXSTR, _("Bank 6 Type"));
-	snprintf(data->tabram[NAME][BANK7_0],		MAXSTR, _("Bank 7 Ref."));
-	snprintf(data->tabram[NAME][BANK7_1],		MAXSTR, _("Bank 7 Type"));
+	asprintf(&data->tabram[NAME][BANK0_0],		_("Bank 0 Ref."));
+	asprintf(&data->tabram[NAME][BANK0_1],		_("Bank 0 Type"));
+	asprintf(&data->tabram[NAME][BANK1_0],		_("Bank 1 Ref."));
+	asprintf(&data->tabram[NAME][BANK1_1],		_("Bank 1 Type"));
+	asprintf(&data->tabram[NAME][BANK2_0],		_("Bank 2 Ref."));
+	asprintf(&data->tabram[NAME][BANK2_1],		_("Bank 2 Type"));
+	asprintf(&data->tabram[NAME][BANK3_0],		_("Bank 3 Ref."));
+	asprintf(&data->tabram[NAME][BANK3_1],		_("Bank 3 Type"));
+	asprintf(&data->tabram[NAME][BANK4_0],		_("Bank 4 Ref."));
+	asprintf(&data->tabram[NAME][BANK4_1],		_("Bank 4 Type"));
+	asprintf(&data->tabram[NAME][BANK5_0],		_("Bank 5 Ref."));
+	asprintf(&data->tabram[NAME][BANK5_1],		_("Bank 5 Type"));
+	asprintf(&data->tabram[NAME][BANK6_0],		_("Bank 6 Ref."));
+	asprintf(&data->tabram[NAME][BANK6_1],		_("Bank 6 Type"));
+	asprintf(&data->tabram[NAME][BANK7_0],		_("Bank 7 Ref."));
+	asprintf(&data->tabram[NAME][BANK7_1],		_("Bank 7 Type"));
 
 	/* Tab System */
-	snprintf(data->tabsys[NAME][KERNEL],		MAXSTR, _("Kernel"));
-	snprintf(data->tabsys[NAME][DISTRIBUTION],	MAXSTR, _("Distribution"));
-	snprintf(data->tabsys[NAME][HOSTNAME],		MAXSTR, _("Hostname"));
-	snprintf(data->tabsys[NAME][UPTIME],		MAXSTR, _("Uptime"));
-	snprintf(data->tabsys[NAME][COMPILER],		MAXSTR, _("Compiler"));
+	asprintf(&data->tabsys[NAME][KERNEL],		_("Kernel"));
+	asprintf(&data->tabsys[NAME][DISTRIBUTION],	_("Distribution"));
+	asprintf(&data->tabsys[NAME][HOSTNAME],		_("Hostname"));
+	asprintf(&data->tabsys[NAME][UPTIME],		_("Uptime"));
+	asprintf(&data->tabsys[NAME][COMPILER],		_("Compiler"));
 
-	snprintf(data->tabsys[NAME][USED],		MAXSTR, _("Used"));
-	snprintf(data->tabsys[NAME][BUFFERS],		MAXSTR, _("Buffers"));
-	snprintf(data->tabsys[NAME][CACHED],		MAXSTR, _("Cached"));
-	snprintf(data->tabsys[NAME][FREE],		MAXSTR, _("Free"));
-	snprintf(data->tabsys[NAME][SWAP],		MAXSTR, _("Swap"));
+	asprintf(&data->tabsys[NAME][USED],		_("Used"));
+	asprintf(&data->tabsys[NAME][BUFFERS],		_("Buffers"));
+	asprintf(&data->tabsys[NAME][CACHED],		_("Cached"));
+	asprintf(&data->tabsys[NAME][FREE],		_("Free"));
+	asprintf(&data->tabsys[NAME][SWAP],		_("Swap"));
+}
+
+/* Replace null pointers by character '\0' */
+void labels_delnull(Labels *data)
+{
+	int i;
+
+	MSGVERB("Removing null label");
+	/* Tab CPU */
+	for(i = VENDOR; i < LASTCPU; i++)
+	{
+		if(data->tabcpu[VALUE][i] == NULL)
+		{
+			data->tabcpu[VALUE][i] = malloc(1 * sizeof(char));
+			data->tabcpu[VALUE][i][0] = '\0';
+		}
+	}
+
+	/* Tab Mainboard */
+	for(i = MANUFACTURER; i < LASTMB; i++)
+	{
+		if(data->tabmb[VALUE][i] == NULL)
+		{
+			data->tabmb[VALUE][i] = malloc(1 * sizeof(char));
+			data->tabmb[VALUE][i][0] = '\0';
+		}
+	}
+
+	/* Tab RAM */
+	for(i = BANK0_0; i < LASTRAM; i++)
+	{
+		if(data->tabram[VALUE][i] == NULL)
+		{
+			data->tabram[VALUE][i] = malloc(1 * sizeof(char));
+			data->tabram[VALUE][i][0] = '\0';
+		}
+	}
+
+	/* Tab System */
+	for(i = KERNEL; i < LASTSYS; i++)
+	{
+		if(data->tabsys[VALUE][i] == NULL)
+		{
+			data->tabsys[VALUE][i] = malloc(1 * sizeof(char));
+			data->tabsys[VALUE][i][0] = '\0';
+		}
+	}
 }
 
 /* Dump all data in stdout */
@@ -342,7 +380,7 @@ void dump_data(Labels *data)
 int libcpuid(Labels *data)
 {
 	int err = 0;
-	char tmp[MAXSTR];
+	char *tmp;
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
@@ -351,61 +389,73 @@ int libcpuid(Labels *data)
 	err += cpu_identify(&raw, &datanr);
 
 	/* Tab CPU */
-	snprintf(data->tabcpu[VALUE][VENDOR],		MAXSTR, "%s", datanr.vendor_str);
-	snprintf(data->tabcpu[VALUE][CODENAME],		MAXSTR, "%s", datanr.cpu_codename);
-	snprintf(data->tabcpu[VALUE][SPECIFICATION],	MAXSTR, "%s", datanr.brand_str);
-	snprintf(data->tabcpu[VALUE][FAMILY],		MAXSTR, "%d", datanr.family);
-	snprintf(data->tabcpu[VALUE][EXTFAMILY],	MAXSTR, "%d", datanr.ext_family);
-	snprintf(data->tabcpu[VALUE][MODEL],		MAXSTR, "%d", datanr.model);
-	snprintf(data->tabcpu[VALUE][EXTMODEL],		MAXSTR, "%d", datanr.ext_model);
-	snprintf(data->tabcpu[VALUE][STEPPING],		MAXSTR, "%d", datanr.stepping);
+	asprintf(&data->tabcpu[VALUE][VENDOR],		"%s", datanr.vendor_str);
+	asprintf(&data->tabcpu[VALUE][CODENAME],	"%s", datanr.cpu_codename);
+	asprintf(&data->tabcpu[VALUE][SPECIFICATION],	"%s", datanr.brand_str);
+	asprintf(&data->tabcpu[VALUE][FAMILY],		"%d", datanr.family);
+	asprintf(&data->tabcpu[VALUE][EXTFAMILY],	"%d", datanr.ext_family);
+	asprintf(&data->tabcpu[VALUE][MODEL],		"%d", datanr.model);
+	asprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
+	asprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
 
 	MSGVERB(_("Filling array with values provided by Libcpuid"));
 	if(datanr.l1_data_cache > 0)
 	{
-		snprintf(data->tabcpu[VALUE][LEVEL1D],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
+		asprintf(&data->tabcpu[VALUE][LEVEL1D],	"%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l1_assoc);
-			strncat(data->tabcpu[VALUE][LEVEL1D], tmp, MAXSTR);
+			asprintf(&tmp, ", %2d-way", datanr.l1_assoc);
+			data->tabcpu[VALUE][LEVEL1D] = realloc(data->tabcpu[VALUE][LEVEL1D],
+				(strlen(data->tabcpu[VALUE][LEVEL1D]) + strlen(tmp) + 1) * sizeof(char));
+			strcat(data->tabcpu[VALUE][LEVEL1D], tmp);
+			free(tmp);
 		}
 	}
 
 	if(datanr.l1_instruction_cache > 0)
 	{
-		snprintf(data->tabcpu[VALUE][LEVEL1I],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l1_instruction_cache);
+		asprintf(&data->tabcpu[VALUE][LEVEL1I],	"%d x %4d KB", datanr.num_cores, datanr.l1_instruction_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l1_assoc);
-			strncat(data->tabcpu[VALUE][LEVEL1I], tmp, MAXSTR);
+			asprintf(&tmp, ", %2d-way", datanr.l1_assoc);
+			data->tabcpu[VALUE][LEVEL1I] = realloc(data->tabcpu[VALUE][LEVEL1I],
+				(strlen(data->tabcpu[VALUE][LEVEL1I]) + strlen(tmp) + 1) * sizeof(char));
+			strcat(data->tabcpu[VALUE][LEVEL1I], tmp);
+			free(tmp);
 		}
 	}
 
 	if(datanr.l2_cache > 0)
 	{
-		snprintf(data->tabcpu[VALUE][LEVEL2],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l2_cache);
+		asprintf(&data->tabcpu[VALUE][LEVEL2],	"%d x %4d KB", datanr.num_cores, datanr.l2_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l2_assoc);
-			strncat(data->tabcpu[VALUE][LEVEL2], tmp, MAXSTR);
+			asprintf(&tmp, ", %2d-way", datanr.l2_assoc);
+			data->tabcpu[VALUE][LEVEL2] = realloc(data->tabcpu[VALUE][LEVEL2],
+				(strlen(data->tabcpu[VALUE][LEVEL2]) + strlen(tmp) + 1) * sizeof(char));
+			strcat(data->tabcpu[VALUE][LEVEL2], tmp);
+			free(tmp);
 		}
 	}
 
 	if(datanr.l3_cache > 0)
 	{
-		snprintf(data->tabcpu[VALUE][LEVEL3],	MAXSTR, "%d x %4d KB", datanr.num_cores, datanr.l3_cache);
+		asprintf(&data->tabcpu[VALUE][LEVEL3],	"%d x %4d KB", datanr.num_cores, datanr.l3_cache);
 		if(datanr.l1_assoc > 0)
 		{
-			snprintf(tmp, MAXSTR, ", %2d-way", datanr.l3_assoc);
-			strncat(data->tabcpu[VALUE][LEVEL3], tmp, MAXSTR);
+			asprintf(&tmp, ", %2d-way", datanr.l3_assoc);
+			data->tabcpu[VALUE][LEVEL3] = realloc(data->tabcpu[VALUE][LEVEL3],
+				(strlen(data->tabcpu[VALUE][LEVEL3]) + strlen(tmp) + 1) * sizeof(char));
+			strcat(data->tabcpu[VALUE][LEVEL3], tmp);
+			free(tmp);
 		}
 	}
 
 	if(datanr.num_cores > 0) /* Avoid divide by 0 */
-		snprintf(data->tabcpu[VALUE][SOCKETS],	MAXSTR, "%d", datanr.total_logical_cpus / datanr.num_cores);
+		asprintf(&data->tabcpu[VALUE][SOCKETS],	"%d", datanr.total_logical_cpus / datanr.num_cores);
 
-	snprintf(data->tabcpu[VALUE][CORES],		MAXSTR, "%d", datanr.num_cores);
-	snprintf(data->tabcpu[VALUE][THREADS],		MAXSTR, "%d", datanr.num_logical_cpus);
+	asprintf(&data->tabcpu[VALUE][CORES],		"%d", datanr.num_cores);
+	asprintf(&data->tabcpu[VALUE][THREADS],		"%d", datanr.num_logical_cpus);
 
 	clean_specification(data->tabcpu[VALUE][SPECIFICATION]);
 
@@ -418,7 +468,7 @@ void cpuvendor(char *vendor)
 	/* https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
 	MSGVERB(_("Improving CPU Vendor label"));
 
-	if     (!strcmp(vendor, "GenuineIntel"))		strcpy(vendor, "Intel");
+	if     (!strcmp(vendor, "GenuineIntel"))	strcpy(vendor, "Intel");
 	else if(!strcmp(vendor, "AuthenticAMD"))	strcpy(vendor, "AMD");
 	else if(!strcmp(vendor, "CyrixInstead"))	strcpy(vendor, "Cyrix");
 	else if(!strcmp(vendor, "NexGenDriven"))	strcpy(vendor, "NexGen");
@@ -460,8 +510,36 @@ void clean_specification(char *spec)
 	strcpy(spec, tmp);
 }
 
+
+void catinstr(char **str, char *in)
+{
+	int sep = 1;
+	static int first = 1;
+	char *tmp;
+
+	if(first)
+	{
+		*str = strdup(in);
+		first = 0;
+	}
+	else
+	{
+		sep = isalnum(in[0]) ? 3 : sep;
+		tmp = strdup(*str);
+		free(*str);
+		tmp = (char *) realloc(tmp, (strlen(tmp) + strlen(in) + sep) * sizeof(char));
+
+		if(isalnum(in[0]))
+			strcat(tmp, ", ");
+		strcat(tmp, in);
+		*str = strdup(tmp);
+		free(tmp);
+	}
+}
+
+
 /* Show some instructions supported by CPU */
-void instructions(char arch[MAXSTR], char instr[MAXSTR])
+void instructions(char **arch, char **instr)
 {
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t id;
@@ -469,27 +547,26 @@ void instructions(char arch[MAXSTR], char instr[MAXSTR])
 	MSGVERB(_("Finding CPU instructions"));
 	if (!cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
 	{
-		if(id.flags[CPU_FEATURE_MMX])		strcpy(instr, "MMX");
-		if(id.flags[CPU_FEATURE_MMXEXT])	strcat(instr, "(+)");
-		if(id.flags[CPU_FEATURE_3DNOW])		strcat(instr, ", 3DNOW!");
-		if(id.flags[CPU_FEATURE_3DNOWEXT])	strcat(instr, "(+)");
+		if(id.flags[CPU_FEATURE_MMX])		catinstr(instr, "MMX");
+		if(id.flags[CPU_FEATURE_MMXEXT])	catinstr(instr, "(+)");
+		if(id.flags[CPU_FEATURE_3DNOW])		catinstr(instr, ", 3DNOW!");
+		if(id.flags[CPU_FEATURE_3DNOWEXT])	catinstr(instr, "(+)");
 
-		if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ", SSE (1");
-		if(id.flags[CPU_FEATURE_SSE2])		strcat(instr, ", 2");
-		if(id.flags[CPU_FEATURE_SSSE3])		strcat(instr, ", 3S");
-		if(id.flags[CPU_FEATURE_SSE4_1])	strcat(instr, ", 4.1");
-		if(id.flags[CPU_FEATURE_SSE4_2])	strcat(instr, ", 4.2");
-		if(id.flags[CPU_FEATURE_SSE4A])		strcat(instr, ", 4A");
-		if(id.flags[CPU_FEATURE_SSE])		strcat(instr, ")");
+		if(id.flags[CPU_FEATURE_SSE])		catinstr(instr, ", SSE (1");
+		if(id.flags[CPU_FEATURE_SSE2])		catinstr(instr, ", 2");
+		if(id.flags[CPU_FEATURE_SSSE3])		catinstr(instr, ", 3S");
+		if(id.flags[CPU_FEATURE_SSE4_1])	catinstr(instr, ", 4.1");
+		if(id.flags[CPU_FEATURE_SSE4_2])	catinstr(instr, ", 4.2");
+		if(id.flags[CPU_FEATURE_SSE4A])		catinstr(instr, ", 4A");
+		if(id.flags[CPU_FEATURE_SSE])		catinstr(instr, ")");
 
-		if(id.flags[CPU_FEATURE_AES])		strcat(instr, ", AES");
-		if(id.flags[CPU_FEATURE_AVX])		strcat(instr, ", AVX");
-		if(id.flags[CPU_FEATURE_VMX])		strcat(instr, ", VT-x");
-		if(id.flags[CPU_FEATURE_SVM])		strcat(instr, ", AMD-V");
+		if(id.flags[CPU_FEATURE_AES])		catinstr(instr, ", AES");
+		if(id.flags[CPU_FEATURE_AVX])		catinstr(instr, ", AVX");
+		if(id.flags[CPU_FEATURE_VMX])		catinstr(instr, ", VT-x");
+		if(id.flags[CPU_FEATURE_SVM])		catinstr(instr, ", AMD-V");
 
-		if(id.flags[CPU_FEATURE_LM])		strcpy(arch, "x86_64 (64-bit)");
-		else					strcpy(arch, "ix86 (32-bit)");
-
+		if(id.flags[CPU_FEATURE_LM])		*arch = strdup("x86_64 (64-bit)");
+		else					*arch = strdup("ix86 (32-bit)");
 	}
 	else
 		MSGSERR(_("libcpuid failed"));
@@ -509,8 +586,8 @@ int libdmidecode(Labels *data)
 
 	/* Tab CPU */
 	MSGVERB(_("Filling array with values provided by Libdmi"));
-	strncpy(data->tabcpu[VALUE][PACKAGE],  datanr[PROC_PACKAGE], MAXSTR);
-	strncpy(data->tabcpu[VALUE][BUSSPEED], datanr[PROC_BUS], MAXSTR);
+	data->tabcpu[VALUE][PACKAGE] = strdup(datanr[PROC_PACKAGE]);
+	data->tabcpu[VALUE][BUSSPEED] = strdup(datanr[PROC_BUS]);
 
 	/* Skip this part on refresh */
 	if(!nodyn)
@@ -518,12 +595,12 @@ int libdmidecode(Labels *data)
 		/* Tab Mainboard */
 		err += libdmi(datanr, 'm');
 		for(i = MANUFACTURER; i < LASTMB; i++)
-			strncpy(data->tabmb[VALUE][i], datanr[i], MAXSTR);
+			data->tabmb[VALUE][i] = strdup(datanr[i]);
 
 		/* Tab RAM */
 		err += libdmi(datanr, 'r');
 		for(i = BANK0_0; i < LASTRAM; i++)
-			strncpy(data->tabram[VALUE][i], datanr[i], MAXSTR);
+			data->tabram[VALUE][i] = strdup(datanr[i]);
 
 		nodyn++;
 	}
@@ -541,7 +618,7 @@ int libdmi_fallback(Labels *data)
 
 #ifdef __linux__
 	int i;
-	char path[PATH_MAX];
+	char path[PATH_MAX], buff[MAXSTR];
 	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date" };
 	FILE *mb[LASTMB] = { NULL };
 
@@ -552,7 +629,8 @@ int libdmi_fallback(Labels *data)
 		mb[i] = fopen(path, "r");
 		if(mb[i] != NULL)
 		{
-			fgets(data->tabmb[VALUE][i], MAXSTR, mb[i]);
+			fgets(buff, MAXSTR, mb[i]);
+			data->tabmb[VALUE][i] = strdup(buff);
 			data->tabmb[VALUE][i][ strlen(data->tabmb[VALUE][i]) - 1 ] = '\0';
 			fclose(mb[i]);
 		}
@@ -565,12 +643,12 @@ int libdmi_fallback(Labels *data)
 }
 
 /* Get CPU frequencies (current - min - max) */
-void cpufreq(char *busfreq, char *clock, char *mults)
+void cpufreq(Labels *data)
 {
 	MSGVERB(_("Getting CPU frequency"));
 
 	if(HAS_LIBCPUID)
-		snprintf(clock, MAXSTR, "%d MHz", cpu_clock());
+		asprintf(&data->tabcpu[VALUE][CORESPEED], "%d MHz", cpu_clock());
 
 #ifdef __linux__
 	static int error = 0;
@@ -608,13 +686,13 @@ void cpufreq(char *busfreq, char *clock, char *mults)
 			}
 		}
 
-		mult(busfreq, clock, multmin, multmax, mults);
+		mult(data->tabcpu[VALUE][BUSSPEED], data->tabcpu[VALUE][CORESPEED], multmin, multmax, &data->tabcpu[VALUE][MULTIPLIER]);
 	}
 #endif /* __linux__ */
 }
 
 /* Determine CPU multiplicator from base clock */
-void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[MAXSTR])
+void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **multsynt)
 {
 	int i, fcpu, fbus, cur, min, max;
 	char ncpu[S] = "", nbus[S] = "";
@@ -638,19 +716,19 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char mults
 			min /= (fbus * 1000);
 		if(max >= 10000 && fbus > 0)
 			max /= (fbus * 1000);
-		sprintf(multsynt, "x %i (%i-%i)", cur, min, max);
+		asprintf(multsynt, "x %i (%i-%i)", cur, min, max);
 	}
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */
-void bogomips(char *c)
+void bogomips(char **c)
 {
 	MSGVERB(_("Reading value BogoMIPS"));
 
 #ifdef __linux__
 	int i = 0, j = 0;
 	char read[20];
-	char *mips = NULL;
+	char tmp[10], *mips = NULL;
 	FILE *cpuinfo = NULL;
 
 	cpuinfo = fopen("/proc/cpuinfo", "r");
@@ -671,15 +749,16 @@ void bogomips(char *c)
 		{
 			if(isdigit(mips[i]) || mips[i] == '.')
 			{
-				c[j] = mips[i];
+				tmp[j] = mips[i];
 				j++;
 			}
 			i++;
 		}
-		c[j] = '\0';
+		tmp[j] = '\0';
 	}
+	*c = strdup(tmp);
 #else
-	sprintf(c, "- - - -");
+	*c = strdup("- - - -");
 #endif /* __linux__ */
 }
 
@@ -703,6 +782,7 @@ void tabsystem(Labels *data)
 	MSGVERB(_("Filling System tab"));
 	static int called = 0;
 	long int duptime, huptime, muptime, suptime = 0, memtot;
+	char buff[MAXSTR];
 	struct utsname name;
 	FILE *cc;
 	uname(&name);
@@ -712,7 +792,7 @@ void tabsystem(Labels *data)
 	char *filestr = NULL, *distro = NULL;
 	FILE *osrel = NULL;
 
-	snprintf(data->tabsys[VALUE][KERNEL], MAXSTR, "%s %s", name.sysname, name.release); /* Label Kernel */
+	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", name.sysname, name.release); /* Label Kernel */
 	suptime = uptime(NULL, NULL); /* Label Uptime */
 
 	osrel = fopen("/etc/os-release", "r"); /* Label Distribution */
@@ -728,9 +808,9 @@ void tabsystem(Labels *data)
 			fread(filestr, sizeof(char), 500, osrel);
 			distro = strstr(filestr, "PRETTY_NAME=");
 			if(distro == NULL)
-				snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, _("Unknown distro"));
+				asprintf(&data->tabsys[VALUE][DISTRIBUTION], _("Unknown distro"));
 			else
-			snprintf(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, "%s", strtok(strchr(distro, '"') + 1, "\""));
+			asprintf(&data->tabsys[VALUE][DISTRIBUTION], "%s", strtok(strchr(distro, '"') + 1, "\""));
 			fclose(osrel);
 			free(filestr);
 		}
@@ -741,11 +821,11 @@ void tabsystem(Labels *data)
 	meminfo(); /* Memory labels */
 	memtot = kb_main_total / div;
 
-	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5ld MB / %5ld MB", kb_main_used / div, memtot);
-	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5ld MB / %5ld MB", kb_main_buffers / div, memtot);
-	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5ld MB / %5ld MB", kb_main_cached / div, memtot);
-	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5ld MB / %5ld MB", kb_main_free / div, memtot);
-	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5ld MB / %5ld MB", kb_swap_used / div, kb_swap_total / div);
+	asprintf(&data->tabsys[VALUE][USED], "%5ld MB / %5ld MB", kb_main_used / div, memtot);
+	asprintf(&data->tabsys[VALUE][BUFFERS], "%5ld MB / %5ld MB", kb_main_buffers / div, memtot);
+	asprintf(&data->tabsys[VALUE][CACHED], "%5ld MB / %5ld MB", kb_main_cached / div, memtot);
+	asprintf(&data->tabsys[VALUE][FREE], "%5ld MB / %5ld MB", kb_main_free / div, memtot);
+	asprintf(&data->tabsys[VALUE][SWAP], "%5ld MB / %5ld MB", kb_swap_used / div, kb_swap_total / div);
 # endif /* HAS_LIBPROCPS */
 
 #else /* __ linux__ */
@@ -754,10 +834,10 @@ void tabsystem(Labels *data)
 	const int div = 1000000;
 
 	sysctlbyname("kern.osrelease", &os, &len, NULL, 0); /* Label Kernel */
-	stpncpy(data->tabsys[VALUE][KERNEL], os, MAXSTR);
+	data->tabsys[VALUE][KERNEL] = strdup(os);
 
 	sysctlbyname("kern.ostype", &os, &len, NULL, 0); /* Label Distribution */
-	stpncpy(data->tabsys[VALUE][DISTRIBUTION], os, MAXSTR);
+	data->tabsys[VALUE][DISTRIBUTION] = strdup(os);
 
 # if HAS_LIBSTATGRAB
 	sg_mem_stats *mem; /* Memory labels */
@@ -773,11 +853,11 @@ void tabsystem(Labels *data)
 	swap = sg_get_swap_stats(NULL);
 
 	memtot = mem->total / div;
-	snprintf(data->tabsys[VALUE][USED], MAXSTR, "%5llu MB / %5ld MB", mem->used / div, memtot);
-	snprintf(data->tabsys[VALUE][BUFFERS], MAXSTR, "%5u MB / %5ld MB", 0, memtot);
-	snprintf(data->tabsys[VALUE][CACHED], MAXSTR, "%5llu MB / %5ld MB", mem->cache / div, memtot);
-	snprintf(data->tabsys[VALUE][FREE], MAXSTR, "%5llu MB / %5ld MB", mem->free / div, memtot);
-	snprintf(data->tabsys[VALUE][SWAP], MAXSTR, "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
+	asprintf(&data->tabsys[VALUE][USED], "%5llu MB / %5ld MB", mem->used / div, memtot);
+	asprintf(&data->tabsys[VALUE][BUFFERS], "%5u MB / %5ld MB", 0, memtot);
+	asprintf(&data->tabsys[VALUE][CACHED], "%5llu MB / %5ld MB", mem->cache / div, memtot);
+	asprintf(&data->tabsys[VALUE][FREE], "%5llu MB / %5ld MB", mem->free / div, memtot);
+	asprintf(&data->tabsys[VALUE][SWAP], "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
 # endif /* HAS_LIBSTATGRAB */
 
 #endif /* __linux__ */
@@ -803,12 +883,13 @@ void tabsystem(Labels *data)
 	char *tmp;
 	tmp = strdup(data->tabsys[VALUE][KERNEL]);
 
-	snprintf(data->tabsys[VALUE][KERNEL], MAXSTR, "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
+	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
 
 	cc = popen("echo $(sw_vers -productName ; sw_vers -productVersion)", "r"); /* Label Distribution */
 	if(cc != NULL)
 	{
-		fgets(data->tabsys[VALUE][DISTRIBUTION], MAXSTR, cc);
+		fgets(buff, MAXSTR, cc);
+		data->tabsys[VALUE][DISTRIBUTION] = strdup(buff);
 		pclose(cc);
 	}
 #endif /* __APPLE__ */
@@ -818,16 +899,17 @@ void tabsystem(Labels *data)
 		duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60); /* Label Uptime */
 		huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
 		muptime = suptime / 60; suptime -= muptime * 60;
-		snprintf(data->tabsys[VALUE][UPTIME], MAXSTR, _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
+		asprintf(&data->tabsys[VALUE][UPTIME], _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
 	}
 
-	snprintf(data->tabsys[VALUE][HOSTNAME],	MAXSTR, "%s", name.nodename); /* Label Hostname */
+	asprintf(&data->tabsys[VALUE][HOSTNAME],	"%s", name.nodename); /* Label Hostname */
 
 	cc = popen("cc --version", "r"); /* Label Compiler */
 	if(cc != NULL)
 	{
-		fgets(data->tabsys[VALUE][COMPILER], MAXSTR, cc);
-		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1] = '\0';
+		fgets(buff, MAXSTR, cc);
+		data->tabsys[VALUE][COMPILER] = strdup(buff);
+		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1 ] = '\0';
 		pclose(cc);
 	}
 }

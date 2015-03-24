@@ -119,7 +119,7 @@ void nrefresh(NThrd *refr)
 	/* Refresh tab CPU */
 	if(loop == NB_TAB_CPU)
 	{
-		cpufreq(refr->data->tabcpu[VALUE][BUSSPEED], refr->data->tabcpu[VALUE][CORESPEED], refr->data->tabcpu[VALUE][MULTIPLIER]);
+		cpufreq(refr->data);
 		if(HAS_LIBDMI && !getuid())
 		{
 			libdmidecode(refr->data);

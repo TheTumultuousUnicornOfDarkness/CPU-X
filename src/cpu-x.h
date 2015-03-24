@@ -127,11 +127,11 @@ enum EnTabSystem
 
 typedef struct
 {
-	char objects[LASTOBJ][MAXSTR + 40];
-	char tabcpu[2][LASTCPU][MAXSTR];
-	char tabmb[2][LASTMB][MAXSTR];
-	char tabram[2][LASTRAM][MAXSTR];
-	char tabsys[2][LASTSYS][MAXSTR];
+	char *objects[LASTOBJ];
+	char *tabcpu[2][LASTCPU];
+	char *tabmb[2][LASTMB];
+	char *tabram[2][LASTRAM];
+	char *tabsys[2][LASTSYS];
 } Labels;
 
 
@@ -143,11 +143,14 @@ char menu(int argc, char *argv[]);
 /* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line);
 
-/* Set empty labels */
-void labels_setempty(Labels *data);
+/* Initialize all labels pointers to null */
+void labels_setnull(Labels *data);
 
 /* Set labels name */
 void labels_setname(Labels *data);
+
+/* Replace null pointers by character '\0' */
+void labels_delnull(Labels *data);
 
 /* Dump all data in stdout */
 void dump_data(Labels *data);
@@ -166,7 +169,7 @@ void clean_specification(char *spec);
 
 /* Print some instruction sets
 TAB: CPU. */
-void instructions(char arch[MAXSTR], char instr[MAXSTR]);
+void instructions(char **arch, char **instr);
 
 /* Elements provided by libdmi library (need root privileges)
 TAB: CPU, Motherboard. */
@@ -178,15 +181,15 @@ int libdmi_fallback(Labels *data);
 
 /* Get CPU frequencies (current - min - max)
 TAB: CPU. */
-void cpufreq(char *busfreq, char *clock, char *mults);
+void cpufreq(Labels *data);
 
 /* If 'dmidecode' can be called, return CPU multipliers (actual, min and max)
 TAB: CPU. */
-void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char multsynt[15]);
+void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **multsynt);
 
 /* Read value "bobomips" from file /proc/cpuinfo
 TAB: CPU. */
-void bogomips(char *c);
+void bogomips(char **c);
 
 /* Find the number of existing banks
 TAB: RAM. */
