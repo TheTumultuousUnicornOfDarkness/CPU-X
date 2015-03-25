@@ -77,62 +77,65 @@ int main(int argc, char *argv[])
 	char option;
 	option = menu(argc, argv);
 
-	Labels data;
-	MSGVERB(_("Setting locale"));
-	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain(GETTEXT_PACKAGE);
-
-	labels_setnull(&data);
-	labels_setname(&data);
-	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
-	tabsystem(&data);
-
-	if(HAS_LIBCPUID)
+	if(option != 'D')
 	{
-		if(libcpuid(&data))
-			MSGSERR(_("libcpuid failed"));
+		Labels data;
+		MSGVERB(_("Setting locale"));
+		setlocale(LC_ALL, "");
+		bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+		textdomain(GETTEXT_PACKAGE);
+
+		labels_setnull(&data);
+		labels_setname(&data);
+		bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
+		tabsystem(&data);
+
+		if(HAS_LIBCPUID)
+		{
+			if(libcpuid(&data))
+				MSGSERR(_("libcpuid failed"));
+			else
+			{
+				cpuvendor(data.tabcpu[VALUE][VENDOR]);
+				instructions(&data.tabcpu[VALUE][ARCHITECTURE], &data.tabcpu[VALUE][INSTRUCTIONS]);
+			}
+		}
+
+		if(!getuid() && HAS_LIBDMI)
+		{
+			if(libdmidecode(&data))
+				MSGSERR(_("libdmidecode failed"));
+		}
 		else
 		{
-			cpuvendor(data.tabcpu[VALUE][VENDOR]);
-			instructions(&data.tabcpu[VALUE][ARCHITECTURE], &data.tabcpu[VALUE][INSTRUCTIONS]);
+			if(libdmi_fallback(&data))
+				MSGSERR(_("libdmi_fallback failed"));
+		}
+
+		cpufreq(&data);
+		labels_delnull(&data);
+
+		/* Start GUI */
+		if(HAS_GTK && option == 'G') /* Start with GTK3 */
+			start_gui_gtk(&argc, &argv, &data);
+		else if(HAS_NCURSES && option == 'n') /* Start with NCurses */
+			start_tui_ncurses(&data);
+		else if(option == 'd') /* Just dump datas */
+		{
+			dump_data(&data);
+			labels_free(&data);
+		}
+
+		/* If compiled without UI */
+		if(!HAS_GTK && !HAS_NCURSES && option != 'd')
+		{
+			fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
+			dump_data(&data);
 		}
 	}
-
-	if(!getuid() && HAS_LIBDMI)
-	{
-		if(libdmidecode(&data))
-			MSGSERR(_("libdmidecode failed"));
-	}
-	else
-	{
-		if(libdmi_fallback(&data))
-			MSGSERR(_("libdmi_fallback failed"));
-	}
-
-	cpufreq(&data);
-	labels_delnull(&data);
-
-	/* Start GUI */
-	if(HAS_GTK && option == 'G') /* Start with GTK3 */
-		start_gui_gtk(&argc, &argv, &data);
-	else if(HAS_NCURSES && option == 'n') /* Start with NCurses */
-		start_tui_ncurses(&data);
 	else if(HAS_LIBDMI && option == 'D') /* Just run command dmidecode */
-		libdmi(option);
-	else if(option == 'd') /* Just dump datas */
-	{
-		dump_data(&data);
-		labels_free(&data);
-	}
-
-	/* If compiled without GUI */
-	if(!HAS_GTK && !HAS_NCURSES && option != 'D')
-	{
-		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
-		dump_data(&data);
-	}
+			libdmi(option);
 
 	return EXIT_SUCCESS;
 }
