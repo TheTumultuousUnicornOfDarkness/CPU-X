@@ -122,7 +122,10 @@ int main(int argc, char *argv[])
 	else if(HAS_LIBDMI && option == 'D') /* Just run command dmidecode */
 		libdmi(option);
 	else if(option == 'd') /* Just dump datas */
+	{
 		dump_data(&data);
+		labels_free(&data);
+	}
 
 	/* If compiled without GUI */
 	if(!HAS_GTK && !HAS_NCURSES && option != 'D')
@@ -321,6 +324,43 @@ void labels_delnull(Labels *data)
 			data->tabsys[VALUE][i] = malloc(1 * sizeof(char));
 			data->tabsys[VALUE][i][0] = '\0';
 		}
+	}
+}
+
+/* Free memory after display labels */
+void labels_free(Labels *data)
+{
+	int i;
+
+	MSGVERB("Freeing labels");
+	/* Tab CPU */
+	for(i = VENDOR; i < LASTCPU; i++)
+	{
+		free(data->tabcpu[NAME][i]);
+		if(i != MULTIPLIER)
+			free(data->tabcpu[VALUE][i]);
+	}
+
+	/* Tab Mainboard */
+	for(i = MANUFACTURER; i < LASTMB; i++)
+	{
+		free(data->tabmb[NAME][i]);
+		free(data->tabmb[VALUE][i]);
+	}
+
+	/* Tab RAM */
+	for(i = BANK0_0; i < LASTRAM; i++)
+	{
+		free(data->tabram[NAME][i]);
+		free(data->tabram[VALUE][i]);
+	}
+
+	/* Tab System */
+	for(i = KERNEL; i < LASTSYS; i++)
+	{
+		free(data->tabsys[NAME][i]);
+		if(i != USED && i != BUFFERS && i != CACHED && i != FREE && i != SWAP)
+			free(data->tabsys[VALUE][i]);
 	}
 }
 

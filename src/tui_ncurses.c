@@ -110,6 +110,7 @@ void start_tui_ncurses(Labels *data)
 	}
 
 	endwin();
+	labels_free(data);
 }
 
 void nrefresh(NThrd *refr)

@@ -152,6 +152,9 @@ void labels_setname(Labels *data);
 /* Replace null pointers by character '\0' */
 void labels_delnull(Labels *data);
 
+/* Free memory after display labels */
+void labels_free(Labels *data);
+
 /* Dump all data in stdout */
 void dump_data(Labels *data);
 

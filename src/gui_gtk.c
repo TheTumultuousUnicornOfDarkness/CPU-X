@@ -81,6 +81,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	set_logos(&glab, data); /* Vendor icon */
 	set_labels(&glab, data);
+	labels_free(data);
 
 	if(getuid()) /* Show warning if not root */
 		warning_window(glab.mainwindow);
