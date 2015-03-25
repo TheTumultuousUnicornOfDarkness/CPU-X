@@ -30,7 +30,7 @@
 
 /* Options are global */
 struct opt opt;
-char **dmidata;
+char **dmidata[LASTRAM];
 
 
 static u8 *dmiparse(u8 *p, int l)
@@ -50,43 +50,9 @@ static u8 *dmiparse(u8 *p, int l)
 	return p;
 }
 
-int dmialloc(char ***str, int l)
+int libdmi(char c)
 {
-	int i;
-
-	*str = (char **) malloc(l * sizeof(char*));
-	if(*str == NULL)
-	{
-		perror("malloc");
-		return 1;
-	}
-
-	for(i = 0; i < l; i++)
-	{
-		(*str)[i] = (char *) calloc(MAXSTR, sizeof(char));
-		if((*str)[i] == NULL)
-		{
-			perror("malloc");
-			return 2;
-		}
-		memset((*str)[i], '\0', MAXSTR);
-	}
-
-	return 0;
-}
-
-void dmifree(char ***str, int l) {
-	int i;
-
-	for(i = 0; i < l; i++)
-		free((*str)[i]);
-
-	free(*str);
-}
-
-int libdmi(char data[][MAXSTR], char c)
-{
-	int i, err = 0;
+	int err = 0;
 
 	/* Dmidecode options */
 	opt.flags = 0;
@@ -97,42 +63,21 @@ int libdmi(char data[][MAXSTR], char c)
 	switch(c)
 	{
 		case 'c':
-			if(!dmialloc(&dmidata, LASTPROC))
-			{
-				opt.type = dmiparse(opt.type, 4);
-				err = maindmi();
-				for(i = PROC_PACKAGE; i < LASTPROC; i++)
-					strncpy(data[i], dmidata[i], MAXSTR);
-				dmifree(&dmidata, LASTPROC);
-			}
+			opt.type = dmiparse(opt.type, 4);
 			break;
 		case 'm':
-			if(!dmialloc(&dmidata, LASTMB))
-			{
-				opt.type = dmiparse(opt.type, 0);
-				opt.type = dmiparse(opt.type, 2);
-				err = maindmi();
-				for(i = MANUFACTURER; i < LASTMB; i++)
-					strncpy(data[i], dmidata[i], MAXSTR);
-				dmifree(&dmidata, LASTMB);
-			}
+			opt.type = dmiparse(opt.type, 0);
+			opt.type = dmiparse(opt.type, 2);
 			break;
 		case 'r':
-			if(!dmialloc(&dmidata, LASTRAM))
-			{
-				opt.type = dmiparse(opt.type, 17);
-				err = maindmi();
-				for(i = BANK0_0; i < LASTRAM; i++)
-					strncpy(data[i], dmidata[i], MAXSTR);
-				dmifree(&dmidata, LASTRAM);
-			}
+			opt.type = dmiparse(opt.type, 17);
 			break;
 		case 'D':
-			err = maindmi();
 			break;
 		default:
-			break;
+			return -1;
 	}
+	err = maindmi();
 
 	return err;
 }

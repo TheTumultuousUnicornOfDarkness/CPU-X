@@ -52,6 +52,9 @@
  *    http://www.dmtf.org/standards/pmci
  */
 
+#ifdef CPUX
+# define _GNU_SOURCE
+#endif /* CPUX */
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
@@ -3220,23 +3223,23 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		switch (h->type)
 		{
 			case 0: /* 7.1 BIOS Information */
-				strncpy(dmidata[BRAND], dmi_string(h, data[0x04]), MAXSTR);
-				strncpy(dmidata[VERSION], dmi_string(h, data[0x05]), MAXSTR);
-				strncpy(dmidata[DATE], dmi_string(h, data[0x08]), MAXSTR);
-				snprintf(dmidata[ROMSIZE], MAXSTR, "%s / %u kB",
+				*dmidata[BRAND]		= strdup(dmi_string(h, data[0x04]));
+				*dmidata[VERSION]	= strdup(dmi_string(h, data[0x05]));
+				*dmidata[DATE]		= strdup(dmi_string(h, data[0x08]));
+				asprintf(dmidata[ROMSIZE], "%s / %u kB",
 					dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
 					(data[0x09] + 1) << 6);
 				break;
 
 			case 2: /* 7.3 Base Board Information */
-				strncpy(dmidata[MANUFACTURER], dmi_string(h, data[0x04]), MAXSTR);
-				strncpy(dmidata[MBMODEL], dmi_string(h, data[0x05]), MAXSTR);
-				strncpy(dmidata[REVISION], dmi_string(h, data[0x06]), MAXSTR);
+				*dmidata[MANUFACTURER]	= strdup(dmi_string(h, data[0x04]));
+				*dmidata[MBMODEL]	= strdup(dmi_string(h, data[0x05]));
+				*dmidata[REVISION]	= strdup(dmi_string(h, data[0x06]));
 				break;
 
 			case 4: /* 7.5 Processor Information */
-				strncpy(dmidata[PROC_PACKAGE], dmi_string(h, data[0x04]), MAXSTR);
-				strncpy(dmidata[PROC_BUS], dmi_processor_frequency_str(data + 0x12), MAXSTR);
+				*dmidata[PROC_PACKAGE]	= strdup(dmi_string(h, data[0x04]));
+				*dmidata[PROC_BUS]	= strdup(dmi_processor_frequency_str(data + 0x12));
 				break;
 
 			case 17: /* 7.18 Memory Device */
@@ -3244,15 +3247,15 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				{
 					if(!strcmp(dmi_string(h, data[0x17]), "[Empty]"))
 					{
-						strcpy(dmidata[bank], "- - - - - -");
-						strcpy(dmidata[bank + 1], "- - - - - -");
+						*dmidata[bank] = strdup("- - - - - -");
+						*dmidata[bank + 1] = strdup("- - - - - -");
 					}
 					else
 					{
-						snprintf(dmidata[bank], MAXSTR, "%s %s",
+						asprintf(dmidata[bank], "%s %s",
 							dmi_string(h, data[0x17]),
 							dmi_string(h, data[0x1A]));
-						snprintf(dmidata[bank + 1], MAXSTR, "%s @ %uMHz (%s %s)",
+						asprintf(dmidata[bank + 1], "%s @ %uMHz (%s %s)",
 							dmi_memory_device_size_str(WORD(data + 0x0C)),
 							(WORD(data + 0x15)),
 							dmi_memory_device_form_factor(data[0x0E]),

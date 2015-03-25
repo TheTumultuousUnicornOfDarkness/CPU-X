@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
 	else if(HAS_NCURSES && option == 'n') /* Start with NCurses */
 		start_tui_ncurses(&data);
 	else if(HAS_LIBDMI && option == 'D') /* Just run command dmidecode */
-		libdmi(NULL, option);
+		libdmi(option);
 	else if(option == 'd') /* Just dump datas */
 		dump_data(&data);
 
@@ -579,28 +579,25 @@ int libdmidecode(Labels *data)
 {
 	int i, err = 0;
 	static int nodyn = 0;
-	char datanr[LASTRAM][MAXSTR] = { { '\0' } };
 
 	MSGVERB(_("Calling Libdmi"));
-	err += libdmi(datanr, 'c');
-
 	/* Tab CPU */
-	MSGVERB(_("Filling array with values provided by Libdmi"));
-	data->tabcpu[VALUE][PACKAGE] = strdup(datanr[PROC_PACKAGE]);
-	data->tabcpu[VALUE][BUSSPEED] = strdup(datanr[PROC_BUS]);
+	dmidata[PROC_PACKAGE]	= &data->tabcpu[VALUE][PACKAGE];
+	dmidata[PROC_BUS]	= &data->tabcpu[VALUE][BUSSPEED];
+	err += libdmi('c');
 
 	/* Skip this part on refresh */
 	if(!nodyn)
 	{
 		/* Tab Mainboard */
-		err += libdmi(datanr, 'm');
 		for(i = MANUFACTURER; i < LASTMB; i++)
-			data->tabmb[VALUE][i] = strdup(datanr[i]);
+			dmidata[i] = &data->tabmb[VALUE][i];
+		err += libdmi('m');
 
 		/* Tab RAM */
-		err += libdmi(datanr, 'r');
 		for(i = BANK0_0; i < LASTRAM; i++)
-			data->tabram[VALUE][i] = strdup(datanr[i]);
+			dmidata[i] = &data->tabram[VALUE][i];
+		err += libdmi('r');
 
 		nodyn++;
 	}
