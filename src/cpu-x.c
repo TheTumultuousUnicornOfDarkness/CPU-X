@@ -846,7 +846,7 @@ void tabsystem(Labels *data)
 			if(distro == NULL)
 				asprintf(&data->tabsys[VALUE][DISTRIBUTION], _("Unknown distro"));
 			else
-			asprintf(&data->tabsys[VALUE][DISTRIBUTION], "%s", strtok(strchr(distro, '"') + 1, "\""));
+				asprintf(&data->tabsys[VALUE][DISTRIBUTION], "%s", strtok(strchr(distro, '"') + 1, "\""));
 			fclose(osrel);
 			free(filestr);
 		}
