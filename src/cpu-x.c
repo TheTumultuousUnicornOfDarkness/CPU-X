@@ -528,29 +528,25 @@ void cpuvendor(char *vendor)
 void clean_specification(char *spec)
 {
 	int i = 0, j = 0, skip = 0;
-	char tmp[MAXSTR];
 
 	MSGVERB(_("Removing unnecessary spaces in label Specification"));
 	while(spec[i] != '\0')
 	{
-		if(isspace(spec[i]))
-			skip = 1;
-		else
+		if(isspace(spec[i]) && !skip)
 		{
-			if(skip)
-			{
-				tmp[j] = ' ';
-				skip = 0;
-				j++;
-			}
-
-			tmp[j] = spec[i];
+			spec[j] = ' ';
 			j++;
+			skip = 1;
+		}
+		else if(!isspace(spec[i]))
+		{
+			spec[j] = spec[i];
+			j++;
+			skip = 0;
 		}
 		i++;
 	}
-	tmp[j] = '\0';
-	strcpy(spec, tmp);
+	spec[j] = '\0';
 }
 
 
