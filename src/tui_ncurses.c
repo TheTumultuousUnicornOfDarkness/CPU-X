@@ -232,14 +232,19 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *dat
 	/* Frames in Mainboard tab */
 	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMMOBO]);
 	frame(local_win, 6, 1, 12, width - 1, data->objects[FRAMBIOS]);
+	frame(local_win, 12, 1, 16, width - 1, data->objects[FRAMCHIP]);
 
 	/* Motherboard frame */
 	for(i = MANUFACTURER; i < BRAND; i++)
 		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
 
 	/* BIOS frame */
-	for(i = BRAND; i < LASTMB; i++)
+	for(i = BRAND; i < CHIPVENDOR; i++)
 		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+
+	/* Chipset frame */
+	for(i = CHIPVENDOR; i < LASTMB; i++)
+		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
 
 	wrefresh(local_win);
 

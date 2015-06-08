@@ -68,6 +68,19 @@ if(WITH_LIBDMI)
 	set(LIBDMI_LIBRARY "dmi")
 endif(WITH_LIBDMI)
 
+# Pciutils lib
+if(WITH_LIBPCI)
+	pkg_check_modules(LIBPCI libpci)
+	if(LIBPCI_FOUND)
+		include_directories(${LIBPCI_INCLUDE_DIRS})
+		link_directories(${LIBPCI_LIBRARY_DIRS})
+		add_definitions(${LIBPCI_CFLAGS_OTHER} -DLIBPCI)
+		if(EMBED)
+			set(LIBPCI_LIBRARIES -l:libpci.a)
+		endif(EMBED)
+	endif(LIBPCI_FOUND)
+endif(WITH_LIBPCI)
+
 # Libprocps / Libstatgrab lib
 if(WITH_LIBSYSTEM)
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Linux: Libprocps
@@ -120,6 +133,7 @@ target_link_libraries(cpu-x
 	${TUI_NCURSES_LIBRARY}
 	${LIBCPUID_LIBRARIES}
 	${LIBDMI_LIBRARY}
+	${LIBPCI_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}
 	${ADDITIONNAL_LIBRARIES}

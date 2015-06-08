@@ -28,7 +28,7 @@
 static const char *trad[LASTOBJ] =
 {
 	"cpulabel", "mainboardlabel", "ramlabel", "systemlabel", "aboutlabel",
-	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "banks_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
+	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
 };
 
@@ -51,10 +51,12 @@ static const char *objectcpu[2][LASTCPU] =
 static const char *objectmb[2][LASTMB] =
 {
 	{ "motherboard_labmanu", "motherboard_labmod", "motherboard_labrev",
-		"bios_labbrand", "bios_labvers", "bios_labdate", "bios_labrom"
+		"bios_labbrand", "bios_labvers", "bios_labdate", "bios_labrom",
+		"chip_labvend", "chip_labname"
 	},
 	{ "motherboard_valmanu", "motherboard_valmod", "motherboard_valrev",
-		"bios_valbrand", "bios_valvers", "bios_valdate", "bios_valrom"
+		"bios_valbrand", "bios_valvers", "bios_valdate", "bios_valrom",
+		"chip_valvend", "chip_valname"
 	}
 };
 

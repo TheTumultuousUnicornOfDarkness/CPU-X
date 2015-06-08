@@ -25,6 +25,7 @@ option(WITH_GTK		"Add support for GUI in GTK3+"			ON)
 option(WITH_NCURSES	"Add support for TUI in NCurses"		ON)
 option(WITH_LIBCPUID	"Allow use of library Libcpuid"			ON)
 option(WITH_LIBDMI	"Allow use of library Libdmi"			ON)
+option(WITH_LIBPCI	"Allow use of library Libpci"			ON)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"	ON)
 else(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -103,6 +104,13 @@ if(WITH_LIBDMI)
 else(WITH_LIBDMI)
 	message("${BoldCyan}**   ${BoldCyan}LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBDMI)
+
+# Pciutils lib
+if(WITH_LIBPCI)
+	message("${BoldCyan}**   ${BoldCyan}LIBPCI${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_LIBPCI)
+	message("${BoldCyan}**   ${BoldCyan}LIBPCI${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_LIBPCI)
 
 # Libprocps / Libstatgrab lib
 if(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)

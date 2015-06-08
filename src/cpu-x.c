@@ -48,6 +48,10 @@
 # include "dmidecode/libdmi.h"
 #endif
 
+#if HAS_LIBPCI
+# include "pci/pci.h"
+#endif
+
 #if HAS_LIBPROCPS
 # include <proc/sysinfo.h>
 #endif
@@ -112,6 +116,9 @@ int main(int argc, char *argv[])
 			if(libdmi_fallback(&data))
 				MSGSERR(_("libdmi_fallback failed"));
 		}
+
+		if(HAS_LIBPCI)
+			pcidev(&data);
 
 		cpufreq(&data);
 		labels_delnull(&data);
@@ -200,6 +207,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMCACHE],		_("Cache"));
 	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
+	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
 	asprintf(&data->objects[FRAMBANKS],		_("Banks"));
 	asprintf(&data->objects[FRAMOS],		_("Operating System"));
 	asprintf(&data->objects[FRAMMEMORY],		_("Memory"));
@@ -250,6 +258,10 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabmb[NAME][VERSION],		_("Version"));
 	asprintf(&data->tabmb[NAME][DATE],		_("Date"));
 	asprintf(&data->tabmb[NAME][ROMSIZE],		_("ROM Size"));
+
+	asprintf(&data->tabmb[NAME][CHIPVENDOR],	_("Vendor"));
+	asprintf(&data->tabmb[NAME][CHIPNAME],		_("Model"));
+
 
 	/* Tab RAM */
 	asprintf(&data->tabram[NAME][BANK0_0],		_("Bank 0 Ref."));
@@ -398,6 +410,8 @@ void dump_data(Labels *data)
 	{
 		if(i == BRAND)
 			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
+		else if(i == CHIPVENDOR)
+			printf("\n\t*** %s ***\n", data->objects[FRAMCHIP]);
 		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
 	}
 
@@ -797,6 +811,36 @@ void bogomips(char **c)
 	*c = strdup("- - - -");
 #endif /* __linux__ */
 }
+
+#if HAS_LIBPCI
+/* Find some PCI devices */
+void pcidev(Labels *data)
+{
+	struct pci_access *pacc;
+	struct pci_dev *dev;
+	char namebuf[MAXSTR], *vendor, *product;
+
+	pacc = pci_alloc();		/* Get the pci_access structure */
+	pci_init(pacc);		/* Initialize the PCI library */
+	pci_scan_bus(pacc);		/* We want to get the list of devices */
+
+	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
+	{
+		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
+		vendor = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
+		product = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
+
+		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)
+		{
+			data->tabmb[VALUE][CHIPVENDOR] = strdup(vendor);
+			data->tabmb[VALUE][CHIPNAME] = strdup(product);
+		}
+	}
+	pci_cleanup(pacc);		/* Close everything */
+	free(vendor);
+	free(product);
+}
+#endif /* HAS_LIBPCI */
 
 /* Find the number of existing banks */
 int last_bank(Labels *data)

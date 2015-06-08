@@ -66,6 +66,12 @@
 # define HAS_LIBDMI 0
 #endif
 
+#ifdef LIBPCI
+# define HAS_LIBPCI 1
+#else
+# define HAS_LIBPCI 0
+#endif
+
 #ifdef LIBPROCPS
 # define HAS_LIBPROCPS 1
 #else
@@ -90,7 +96,7 @@ enum EnTabNumber
 enum EnObjects
 {
 	TABCPU, TABMB, TABRAM, TABSYS, TABABOUT,
-	FRAMPROCESSOR, FRAMCLOCKS, FRAMCACHE, FRAMMOBO, FRAMBIOS, FRAMBANKS, FRAMOS, FRAMMEMORY, FRAMABOUT, FRAMLICENSE,
+	FRAMPROCESSOR, FRAMCLOCKS, FRAMCACHE, FRAMMOBO, FRAMBIOS, FRAMCHIP, FRAMBANKS, FRAMOS, FRAMMEMORY, FRAMABOUT, FRAMLICENSE,
 	LABVERSION, LABDESCRIPTION, LABAUTHOR, LABCOPYRIGHT, LABLICENSE,
 	LASTOBJ
 };
@@ -108,6 +114,7 @@ enum EnTabMainboard
 {
 	MANUFACTURER, MBMODEL, REVISION,
 	BRAND, VERSION, DATE, ROMSIZE,
+	CHIPVENDOR, CHIPNAME,
 	LASTMB
 };
 
@@ -193,6 +200,10 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **mul
 /* Read value "bobomips" from file /proc/cpuinfo
 TAB: CPU. */
 void bogomips(char **c);
+
+/* Find some PCI devices
+TAB: Motherboad. */
+void pcidev(Labels *data);
 
 /* Find the number of existing banks
 TAB: RAM. */
