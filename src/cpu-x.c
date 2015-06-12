@@ -813,6 +813,37 @@ void bogomips(char **c)
 }
 
 #if HAS_LIBPCI
+static char *find_driver(struct pci_dev *dev, char *buf)
+{
+	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
+	int n;
+	char name[MAXSTR], *drv, *base;
+
+	if (dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
+		return NULL;
+
+	base = pci_get_param(dev->access, "sysfs.path");
+	if (!base || !base[0])
+		return NULL;
+
+	n = snprintf(name, sizeof(name), "%s/devices/%04x:%02x:%02x.%d/driver",
+		base, dev->domain, dev->bus, dev->dev, dev->func);
+	if (n < 0 || n >= (int)sizeof(name))
+		printf("show_driver: sysfs device name too long, why?");
+
+	n = readlink(name, buf, MAXSTR);
+	if (n < 0)
+		return NULL;
+	if (n >= MAXSTR)
+		return "<name-too-long>";
+	buf[n] = 0;
+
+	if (drv = strrchr(buf, '/'))
+		return drv+1;
+	else
+		return buf;
+}
+
 /* Find some PCI devices */
 void pcidev(Labels *data)
 {
