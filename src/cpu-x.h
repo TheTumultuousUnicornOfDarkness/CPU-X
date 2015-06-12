@@ -95,8 +95,9 @@ enum EnTabNumber
 
 enum EnObjects
 {
-	TABCPU, TABMB, TABRAM, TABSYS, TABABOUT,
-	FRAMPROCESSOR, FRAMCLOCKS, FRAMCACHE, FRAMMOBO, FRAMBIOS, FRAMCHIP, FRAMBANKS, FRAMOS, FRAMMEMORY, FRAMABOUT, FRAMLICENSE,
+	TABCPU, TABMB, TABRAM, TABSYS, TABGPU, TABABOUT,
+	FRAMPROCESSOR, FRAMCLOCKS, FRAMCACHE, FRAMMOBO, FRAMBIOS, FRAMCHIP,
+	FRAMGPU1, FRAMGPU2, FRAMBANKS, FRAMOS, FRAMMEMORY, FRAMABOUT, FRAMLICENSE,
 	LABVERSION, LABDESCRIPTION, LABAUTHOR, LABCOPYRIGHT, LABLICENSE,
 	LASTOBJ
 };
@@ -132,6 +133,13 @@ enum EnTabSystem
 	LASTSYS
 };
 
+enum EnTabGraphics
+{
+	GPUVENDOR1, GPUNAME1, GPUDRIVER1,
+	GPUVENDOR2, GPUNAME2, GPUDRIVER2,
+	LASTGPU
+};
+
 typedef struct
 {
 	char *objects[LASTOBJ];
@@ -139,6 +147,7 @@ typedef struct
 	char *tabmb[2][LASTMB];
 	char *tabram[2][LASTRAM];
 	char *tabsys[2][LASTSYS];
+	char *tabgpu[2][LASTGPU];
 } Labels;
 
 
@@ -202,7 +211,7 @@ TAB: CPU. */
 void bogomips(char **c);
 
 /* Find some PCI devices
-TAB: Motherboad. */
+TAB: Motherboad, Graphics. */
 void pcidev(Labels *data);
 
 /* Find the number of existing banks

@@ -189,6 +189,10 @@ void labels_setnull(Labels *data)
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
 		data->tabsys[VALUE][i] = NULL;
+
+	/* Tab Graphics */
+	for(i = GPUVENDOR1; i < LASTGPU; i++)
+		data->tabgpu[VALUE][i] = NULL;
 }
 
 /* Set labels name */
@@ -201,6 +205,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[TABMB],			_("Mainboard"));
 	asprintf(&data->objects[TABRAM],		_("RAM"));
 	asprintf(&data->objects[TABSYS],		_("System"));
+	asprintf(&data->objects[TABGPU],		_("Graphics"));
 	asprintf(&data->objects[TABABOUT],		_("About"));
 	asprintf(&data->objects[FRAMPROCESSOR],		_("Processor"));
 	asprintf(&data->objects[FRAMCLOCKS],		_("Clocks"));
@@ -208,6 +213,8 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
 	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
+	asprintf(&data->objects[FRAMGPU1],		_("GPU 1"));
+	asprintf(&data->objects[FRAMGPU2],		_("GPU 2"));
 	asprintf(&data->objects[FRAMBANKS],		_("Banks"));
 	asprintf(&data->objects[FRAMOS],		_("Operating System"));
 	asprintf(&data->objects[FRAMMEMORY],		_("Memory"));
@@ -293,6 +300,15 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabsys[NAME][CACHED],		_("Cached"));
 	asprintf(&data->tabsys[NAME][FREE],		_("Free"));
 	asprintf(&data->tabsys[NAME][SWAP],		_("Swap"));
+
+	/* Tab Graphics */
+	asprintf(&data->tabgpu[NAME][GPUVENDOR1],	_("Vendor"));
+	asprintf(&data->tabgpu[NAME][GPUNAME1],		_("Model"));
+	asprintf(&data->tabgpu[NAME][GPUDRIVER1],	_("Driver"));
+
+	asprintf(&data->tabgpu[NAME][GPUVENDOR2],	_("Vendor"));
+	asprintf(&data->tabgpu[NAME][GPUNAME2],		_("Model"));
+	asprintf(&data->tabgpu[NAME][GPUDRIVER2],	_("Driver"));
 }
 
 /* Replace null pointers by character '\0' */
@@ -338,6 +354,16 @@ void labels_delnull(Labels *data)
 		{
 			data->tabsys[VALUE][i] = malloc(1 * sizeof(char));
 			data->tabsys[VALUE][i][0] = '\0';
+		}
+	}
+
+	/* Tab Graphics */
+	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	{
+		if(data->tabgpu[VALUE][i] == NULL)
+		{
+			data->tabgpu[VALUE][i] = malloc(1 * sizeof(char));
+			data->tabgpu[VALUE][i][0] = '\0';
 		}
 	}
 }
@@ -403,7 +429,6 @@ void dump_data(Labels *data)
 	}
 
 	/* Tab Mainboard */
-
 	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
 	for(i = MANUFACTURER; i < LASTMB; i++)
@@ -429,6 +454,19 @@ void dump_data(Labels *data)
 		if(i == USED)
 			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
 		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+	}
+
+	/* Tab Graphics */
+	printf("\n\n ***** %s *****\n", data->objects[TABGPU]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMGPU1]);
+	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	{
+		if(data->tabgpu[VALUE][i][0] != '\0')
+		{
+			if(i == GPUVENDOR2)
+				printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);
+			printf("%16s: %s\n", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
+		}
 	}
 }
 
@@ -813,6 +851,7 @@ void bogomips(char **c)
 }
 
 #if HAS_LIBPCI
+/* Find driver name for a device */
 static char *find_driver(struct pci_dev *dev, char *buf)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
@@ -847,13 +886,16 @@ static char *find_driver(struct pci_dev *dev, char *buf)
 /* Find some PCI devices */
 void pcidev(Labels *data)
 {
+	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
+	int nbgpu = 0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	char namebuf[MAXSTR], *vendor, *product;
+	char namebuf[MAXSTR], *vendor, *product, *driver;
 
-	pacc = pci_alloc();		/* Get the pci_access structure */
+	MSGVERB("Find some PCI devices");
+	pacc = pci_alloc();	/* Get the pci_access structure */
 	pci_init(pacc);		/* Initialize the PCI library */
-	pci_scan_bus(pacc);		/* We want to get the list of devices */
+	pci_scan_bus(pacc);	/* We want to get the list of devices */
 
 	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
 	{
@@ -866,7 +908,22 @@ void pcidev(Labels *data)
 			data->tabmb[VALUE][CHIPVENDOR] = strdup(vendor);
 			data->tabmb[VALUE][CHIPNAME] = strdup(product);
 		}
+
+		if(nbgpu < LASTGPU / 3 &&
+				(dev->device_class == PCI_BASE_CLASS_DISPLAY	||
+				dev->device_class == PCI_CLASS_DISPLAY_VGA	||
+				dev->device_class == PCI_CLASS_DISPLAY_XGA	||
+				dev->device_class == PCI_CLASS_DISPLAY_3D	||
+				dev->device_class == PCI_CLASS_DISPLAY_OTHER))
+		{
+			driver = find_driver(dev, namebuf);
+			data->tabgpu[VALUE][GPUVENDOR1 + nbgpu * 3] = strdup(vendor);
+			data->tabgpu[VALUE][GPUNAME1 + nbgpu * 3] = strdup(product);
+			data->tabgpu[VALUE][GPUDRIVER1 + nbgpu * 3] = strdup(driver);
+			nbgpu++;
+		}
 	}
+
 	pci_cleanup(pacc);		/* Close everything */
 	free(vendor);
 	free(product);
