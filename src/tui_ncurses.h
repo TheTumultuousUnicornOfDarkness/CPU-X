@@ -61,6 +61,9 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data);
 void draw_bar(WINDOW *win, Labels *data, int bar);
 void clear_bar(WINDOW *win, int bar);
 
+/* Tab Graphics */
+WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data);
+
 /* Tab About */
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data);
 

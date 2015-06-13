@@ -171,6 +171,8 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 			return tab_ram(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_SYS:
 			return tab_system(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NB_TAB_GPU:
+			return tab_graphics(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_ABOUT:
 			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data);
 		default:
@@ -327,6 +329,33 @@ void clear_bar(WINDOW *win, int bar)
 
 	for(i = 0; i < (end - start); i++)
 		mvwprintw(win, bar + 4, start + 1 + i, " ");
+}
+
+WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data)
+{
+	int i, start = 1, end = 6, space = 0;
+	WINDOW *local_win;
+
+	local_win = newwin(height, width, starty, startx);
+	box(local_win, 0 , 0);
+
+	/* Card frames */
+	for(i = GPUVENDOR1; i < last_gpu(data); i++)
+	{
+		if(i % GPUFIELDS == 0)
+		{
+			frame(local_win, start, 1, end, width - 1, data->objects[FRAMGPU1 + i / GPUFIELDS]);
+			start = end;
+			end += 5;
+			space += 2;
+		}
+
+		mvwprintw(local_win, i + space,  2, "%13s: %s", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
+	}
+
+	wrefresh(local_win);
+
+	return local_win;
 }
 
 WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
