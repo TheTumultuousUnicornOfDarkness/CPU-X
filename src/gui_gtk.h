@@ -56,6 +56,10 @@ typedef struct
 	GtkWidget *barswap;
 	GtkWidget *gtktabsys[2][LASTSYS];
 
+	/* Tab Graphics */
+	GtkWidget *gridcards;
+	GtkWidget *gtktabgpu[2][LASTGPU];
+
 	/* Tab About */
 	GtkWidget *logoprg;
 

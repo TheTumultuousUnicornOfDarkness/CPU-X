@@ -274,6 +274,14 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
 	glab->barfree  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barfree"));
 	glab->barswap  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barswap"));
+
+	/* Tab Graphics */
+	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	{
+		glab->gtktabgpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[NAME][i]));
+		glab->gtktabgpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[VALUE][i]));
+	}
+	glab->gridcards = GTK_WIDGET(gtk_builder_get_object(builder, "graphics_box"));
 }
 
 void set_labels(GtkLabels *glab, Labels *data)
@@ -315,6 +323,15 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[NAME][i]), data->tabsys[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][i]), data->tabsys[VALUE][i]);
 	}
+
+	/* Tab Graphics */
+	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	{
+		gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[NAME][i]), data->tabgpu[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[VALUE][i]), data->tabgpu[VALUE][i]);
+	}
+	for(i = LASTGPU; i >= last_gpu(data); i -= GPUFIELDS)
+		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i / GPUFIELDS);
 }
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB

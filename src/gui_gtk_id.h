@@ -27,8 +27,9 @@
 /* Translation */
 static const char *trad[LASTOBJ] =
 {
-	"cpulabel", "mainboardlabel", "ramlabel", "systemlabel", "aboutlabel",
-	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab", "about_lab", "license_lab",
+	"cpulabel", "mainboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
+	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
+	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
 };
 
@@ -75,10 +76,25 @@ static const char *objectram[2][LASTRAM] =
 static const char *objectsys[2][LASTSYS] =
 {
 	{ "os_labkern", "os_labdistro", "os_labhost", "os_labuptime", "os_labcomp",
-		"mem_labused", "mem_labbuff", "mem_labcache", "mem_labfree", "mem_labswap",
+		"mem_labused", "mem_labbuff", "mem_labcache", "mem_labfree", "mem_labswap"
 	},
 	{ "os_valkern", "os_valdistro", "os_valhost", "os_valuptime", "os_valcomp",
 		"mem_valused", "mem_valbuff", "mem_valcache", "mem_valfree", "mem_valswap"
+	}
+};
+
+/* Tab Graphics */
+static const char *objectgpu[2][LASTGPU] =
+{
+	{ "card0_labvend", "card0_labmod", "card0_labdrv",
+		"card1_labvend", "card1_labmod", "card1_labdrv",
+		"card2_labvend", "card2_labmod", "card2_labdrv",
+		"card3_labvend", "card3_labmod", "card3_labdrv"
+	},
+	{ "card0_valvend", "card0_valmod", "card0_valdrv",
+		"card1_valvend", "card1_valmod", "card1_valdrv",
+		"card2_valvend", "card2_valmod", "card2_valdrv",
+		"card3_valvend", "card3_valmod", "card3_valdrv"
 	}
 };
 
