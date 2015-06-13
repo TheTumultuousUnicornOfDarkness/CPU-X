@@ -198,6 +198,7 @@ void labels_setnull(Labels *data)
 /* Set labels name */
 void labels_setname(Labels *data)
 {
+	int i;
 	MSGVERB(_("Setting label name"));
 
 	/* Various objects*/
@@ -213,8 +214,10 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
 	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
-	asprintf(&data->objects[FRAMGPU1],		_("GPU 1"));
-	asprintf(&data->objects[FRAMGPU2],		_("GPU 2"));
+	asprintf(&data->objects[FRAMGPU1],		_("Card 0"));
+	asprintf(&data->objects[FRAMGPU2],		_("Card 1"));
+	asprintf(&data->objects[FRAMGPU3],		_("Card 2"));
+	asprintf(&data->objects[FRAMGPU4],		_("Card 3"));
 	asprintf(&data->objects[FRAMBANKS],		_("Banks"));
 	asprintf(&data->objects[FRAMOS],		_("Operating System"));
 	asprintf(&data->objects[FRAMMEMORY],		_("Memory"));
@@ -302,13 +305,12 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabsys[NAME][SWAP],		_("Swap"));
 
 	/* Tab Graphics */
-	asprintf(&data->tabgpu[NAME][GPUVENDOR1],	_("Vendor"));
-	asprintf(&data->tabgpu[NAME][GPUNAME1],		_("Model"));
-	asprintf(&data->tabgpu[NAME][GPUDRIVER1],	_("Driver"));
-
-	asprintf(&data->tabgpu[NAME][GPUVENDOR2],	_("Vendor"));
-	asprintf(&data->tabgpu[NAME][GPUNAME2],		_("Model"));
-	asprintf(&data->tabgpu[NAME][GPUDRIVER2],	_("Driver"));
+	for(i = 0; i < LASTGPU; i += GPUFIELDS)
+	{
+		asprintf(&data->tabgpu[NAME][GPUVENDOR1 + i],	_("Vendor"));
+		asprintf(&data->tabgpu[NAME][GPUNAME1 + i],	_("Model"));
+		asprintf(&data->tabgpu[NAME][GPUDRIVER1 + i],	_("Driver"));
+	}
 }
 
 /* Replace null pointers by character '\0' */
@@ -403,6 +405,13 @@ void labels_free(Labels *data)
 		if(i != USED && i != BUFFERS && i != CACHED && i != FREE && i != SWAP)
 			free(data->tabsys[VALUE][i]);
 	}
+
+	/* Tab Graphics */
+	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	{
+		free(data->tabgpu[NAME][i]);
+		free(data->tabgpu[VALUE][i]);
+	}
 }
 
 /* Dump all data in stdout */
@@ -465,6 +474,10 @@ void dump_data(Labels *data)
 		{
 			if(i == GPUVENDOR2)
 				printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);
+			else if(i == GPUVENDOR3)
+				printf("\n\t*** %s ***\n", data->objects[FRAMGPU3]);
+			else if(i == GPUVENDOR4)
+				printf("\n\t*** %s ***\n", data->objects[FRAMGPU4]);
 			printf("%16s: %s\n", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
 		}
 	}
@@ -900,31 +913,31 @@ void pcidev(Labels *data)
 	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
 	{
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
-		vendor = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
+		vendor  = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
 		product = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
 
-		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)
+		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)	/* Looking for chipset */
 		{
 			data->tabmb[VALUE][CHIPVENDOR] = strdup(vendor);
 			data->tabmb[VALUE][CHIPNAME] = strdup(product);
 		}
 
-		if(nbgpu < LASTGPU / 3 &&
+		if(nbgpu < LASTGPU / GPUFIELDS &&
 				(dev->device_class == PCI_BASE_CLASS_DISPLAY	||
 				dev->device_class == PCI_CLASS_DISPLAY_VGA	||
 				dev->device_class == PCI_CLASS_DISPLAY_XGA	||
 				dev->device_class == PCI_CLASS_DISPLAY_3D	||
-				dev->device_class == PCI_CLASS_DISPLAY_OTHER))
+				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
 		{
 			driver = find_driver(dev, namebuf);
-			data->tabgpu[VALUE][GPUVENDOR1 + nbgpu * 3] = strdup(vendor);
-			data->tabgpu[VALUE][GPUNAME1 + nbgpu * 3] = strdup(product);
-			data->tabgpu[VALUE][GPUDRIVER1 + nbgpu * 3] = strdup(driver);
+			data->tabgpu[VALUE][GPUVENDOR1  + nbgpu * GPUFIELDS] = strdup(vendor);
+			data->tabgpu[VALUE][GPUNAME1	+ nbgpu * GPUFIELDS] = strdup(product);
+			data->tabgpu[VALUE][GPUDRIVER1  + nbgpu * GPUFIELDS] = strdup(driver);
 			nbgpu++;
 		}
 	}
 
-	pci_cleanup(pacc);		/* Close everything */
+	pci_cleanup(pacc);	/* Close everything */
 	free(vendor);
 	free(product);
 }
