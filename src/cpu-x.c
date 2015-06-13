@@ -468,18 +468,15 @@ void dump_data(Labels *data)
 	/* Tab Graphics */
 	printf("\n\n ***** %s *****\n", data->objects[TABGPU]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMGPU1]);
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	for(i = GPUVENDOR1; i < last_gpu(data); i++)
 	{
-		if(data->tabgpu[VALUE][i][0] != '\0')
-		{
-			if(i == GPUVENDOR2)
-				printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);
-			else if(i == GPUVENDOR3)
-				printf("\n\t*** %s ***\n", data->objects[FRAMGPU3]);
-			else if(i == GPUVENDOR4)
-				printf("\n\t*** %s ***\n", data->objects[FRAMGPU4]);
-			printf("%16s: %s\n", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
-		}
+		if(i == GPUVENDOR2)
+			printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);
+		else if(i == GPUVENDOR3)
+			printf("\n\t*** %s ***\n", data->objects[FRAMGPU3]);
+		else if(i == GPUVENDOR4)
+			printf("\n\t*** %s ***\n", data->objects[FRAMGPU4]);
+		printf("%16s: %s\n", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
 	}
 }
 
@@ -863,86 +860,6 @@ void bogomips(char **c)
 #endif /* __linux__ */
 }
 
-#if HAS_LIBPCI
-/* Find driver name for a device */
-static char *find_driver(struct pci_dev *dev, char *buf)
-{
-	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
-	int n;
-	char name[MAXSTR], *drv, *base;
-
-	if (dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
-		return NULL;
-
-	base = pci_get_param(dev->access, "sysfs.path");
-	if (!base || !base[0])
-		return NULL;
-
-	n = snprintf(name, sizeof(name), "%s/devices/%04x:%02x:%02x.%d/driver",
-		base, dev->domain, dev->bus, dev->dev, dev->func);
-	if (n < 0 || n >= (int)sizeof(name))
-		printf("show_driver: sysfs device name too long, why?");
-
-	n = readlink(name, buf, MAXSTR);
-	if (n < 0)
-		return NULL;
-	if (n >= MAXSTR)
-		return "<name-too-long>";
-	buf[n] = 0;
-
-	if (drv = strrchr(buf, '/'))
-		return drv+1;
-	else
-		return buf;
-}
-
-/* Find some PCI devices */
-void pcidev(Labels *data)
-{
-	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
-	int nbgpu = 0;
-	struct pci_access *pacc;
-	struct pci_dev *dev;
-	char namebuf[MAXSTR], *vendor, *product, *driver;
-
-	MSGVERB("Find some PCI devices");
-	pacc = pci_alloc();	/* Get the pci_access structure */
-	pci_init(pacc);		/* Initialize the PCI library */
-	pci_scan_bus(pacc);	/* We want to get the list of devices */
-
-	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
-	{
-		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
-		vendor  = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
-		product = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
-
-		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)	/* Looking for chipset */
-		{
-			data->tabmb[VALUE][CHIPVENDOR] = strdup(vendor);
-			data->tabmb[VALUE][CHIPNAME] = strdup(product);
-		}
-
-		if(nbgpu < LASTGPU / GPUFIELDS &&
-				(dev->device_class == PCI_BASE_CLASS_DISPLAY	||
-				dev->device_class == PCI_CLASS_DISPLAY_VGA	||
-				dev->device_class == PCI_CLASS_DISPLAY_XGA	||
-				dev->device_class == PCI_CLASS_DISPLAY_3D	||
-				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
-		{
-			driver = find_driver(dev, namebuf);
-			data->tabgpu[VALUE][GPUVENDOR1  + nbgpu * GPUFIELDS] = strdup(vendor);
-			data->tabgpu[VALUE][GPUNAME1	+ nbgpu * GPUFIELDS] = strdup(product);
-			data->tabgpu[VALUE][GPUDRIVER1  + nbgpu * GPUFIELDS] = strdup(driver);
-			nbgpu++;
-		}
-	}
-
-	pci_cleanup(pacc);	/* Close everything */
-	free(vendor);
-	free(product);
-}
-#endif /* HAS_LIBPCI */
-
 /* Find the number of existing banks */
 int last_bank(Labels *data)
 {
@@ -1094,3 +1011,97 @@ void tabsystem(Labels *data)
 		pclose(cc);
 	}
 }
+
+#if HAS_LIBPCI
+/* Find driver name for a device */
+static char *find_driver(struct pci_dev *dev, char *buf)
+{
+	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
+	int n;
+	char name[MAXSTR], *drv, *base;
+
+	if (dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
+		return NULL;
+
+	base = pci_get_param(dev->access, "sysfs.path");
+	if (!base || !base[0])
+		return NULL;
+
+	n = snprintf(name, sizeof(name), "%s/devices/%04x:%02x:%02x.%d/driver",
+		base, dev->domain, dev->bus, dev->dev, dev->func);
+	if (n < 0 || n >= (int)sizeof(name))
+		printf("show_driver: sysfs device name too long, why?");
+
+	n = readlink(name, buf, MAXSTR);
+	if (n < 0)
+		return NULL;
+	if (n >= MAXSTR)
+		return "<name-too-long>";
+	buf[n] = 0;
+
+	if (drv = strrchr(buf, '/'))
+		return drv+1;
+	else
+		return buf;
+}
+
+/* Find some PCI devices */
+void pcidev(Labels *data)
+{
+	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
+	int nbgpu = 0;
+	struct pci_access *pacc;
+	struct pci_dev *dev;
+	char namebuf[MAXSTR], *vendor, *product, *driver;
+
+	MSGVERB("Find some PCI devices");
+	pacc = pci_alloc();	/* Get the pci_access structure */
+	pci_init(pacc);		/* Initialize the PCI library */
+	pci_scan_bus(pacc);	/* We want to get the list of devices */
+
+	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
+	{
+		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
+		vendor  = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
+		product = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
+
+		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)	/* Looking for chipset */
+		{
+			data->tabmb[VALUE][CHIPVENDOR] = strdup(vendor);
+			data->tabmb[VALUE][CHIPNAME] = strdup(product);
+		}
+
+		if(nbgpu < LASTGPU / GPUFIELDS &&
+				(dev->device_class == PCI_BASE_CLASS_DISPLAY	||
+				dev->device_class == PCI_CLASS_DISPLAY_VGA	||
+				dev->device_class == PCI_CLASS_DISPLAY_XGA	||
+				dev->device_class == PCI_CLASS_DISPLAY_3D	||
+				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
+		{
+			driver = find_driver(dev, namebuf);
+			data->tabgpu[VALUE][GPUVENDOR1  + nbgpu * GPUFIELDS] = strdup(vendor);
+			data->tabgpu[VALUE][GPUNAME1	+ nbgpu * GPUFIELDS] = strdup(product);
+			data->tabgpu[VALUE][GPUDRIVER1  + nbgpu * GPUFIELDS] = strdup(driver);
+			nbgpu++;
+		}
+	}
+
+	pci_cleanup(pacc);	/* Close everything */
+	free(vendor);
+	free(product);
+}
+
+/* Find the number of GPU */
+int last_gpu(Labels *data)
+{
+	int i, cpt = LASTGPU;
+
+	for(i = GPUVENDOR4; i >= GPUVENDOR1; i -= GPUFIELDS)
+	{
+		if(data->tabgpu[VALUE][i][0] == '\0')
+			cpt -= GPUFIELDS;
+	}
+
+	return cpt;
+}
+#endif /* HAS_LIBPCI */

@@ -213,10 +213,6 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **mul
 TAB: CPU. */
 void bogomips(char **c);
 
-/* Find some PCI devices
-TAB: Motherboad, Graphics. */
-void pcidev(Labels *data);
-
 /* Find the number of existing banks
 TAB: RAM. */
 int last_bank(Labels *data);
@@ -224,6 +220,14 @@ int last_bank(Labels *data);
 /* Get system informations
 TAB: System. */
 void tabsystem(Labels *data);
+
+/* Find some PCI devices
+TAB: Motherboad, Graphics. */
+void pcidev(Labels *data);
+
+/* Find the number of GPU
+TAB: Graphics. */
+int last_gpu(Labels *data);
 
 
 #endif /* _CPUX_H_ */
