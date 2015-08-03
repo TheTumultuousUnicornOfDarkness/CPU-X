@@ -335,17 +335,57 @@ void set_labels(GtkLabels *glab, Labels *data)
 }
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
+void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 {
+	int i = USED;
 	guint width, height;
+	double before = 0, percent;
 	char text[MAXSTR];
+	cairo_pattern_t *pat;
 
 	width = gtk_widget_get_allocated_width(widget);
 	height = gtk_widget_get_allocated_height(widget);
-	snprintf(text, MAXSTR, "%.2f%%", val);
 
-	cairo_rectangle(cr, before / 100 * width, 0, val / 100 * width, height);
+	while(i < n)
+	{
+		before += (double) strtol(data->tabsys[VALUE][i], NULL, 10) /
+			strtol(strstr(data->tabsys[VALUE][i], "/ ") + 2, NULL, 10) * 100;
+		i++;
+	}
+	percent = (double) strtol(data->tabsys[VALUE][n], NULL, 10) /
+	strtol(strstr(data->tabsys[VALUE][n], "/ ") + 2, NULL, 10) * 100;
+
+	snprintf(text, MAXSTR, "%.2f%%", percent);
+	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
+
+	switch(n)
+	{
+		case USED:
+			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 1.00, 0.15, 1);
+			cairo_pattern_add_color_stop_rgba (pat, 1, 1.00, 0.75, 0.15, 1);
+			break;
+		case BUFFERS:
+			cairo_pattern_add_color_stop_rgba (pat, 0, 0.00, 0.30, 0.75, 1);
+			cairo_pattern_add_color_stop_rgba (pat, 1, 0.25, 0.55, 1.00, 1);
+			break;
+		case CACHED:
+			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 0.35, 0.15, 1);
+			cairo_pattern_add_color_stop_rgba (pat, 1, 0.75, 0.15, 0.00, 1);
+			break;
+		case FREE:
+			cairo_pattern_add_color_stop_rgba (pat, 0, 0.20, 1.00, 0.25, 1);
+			cairo_pattern_add_color_stop_rgba (pat, 1, 0.00, 0.75, 0.05, 1);
+			break;
+		case SWAP:
+			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 0.25, 0.90, 1);
+			cairo_pattern_add_color_stop_rgba (pat, 1, 0.75, 0.00, 0.65, 1);
+			break;
+	}
+
+	cairo_rectangle(cr, before / 100 * width, 0, percent / 100 * width, height);
+	cairo_set_source (cr, pat);
 	cairo_fill(cr);
+	cairo_pattern_destroy(pat);
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
 	cairo_select_font_face(cr, "Helvetica Neue Medium", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
@@ -357,67 +397,27 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val)
 
 void setbar_used(GtkWidget *widget, cairo_t *cr, Labels *data)
 {
-	double percent;
-
-	percent = (double) strtol(data->tabsys[VALUE][USED], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
-
-	cairo_set_source_rgb(cr, 255.0 / 255.0, 215.0 / 255.0, 40.0 / 255.0);
-	fill_frame(widget, cr, 0, percent);
+	fill_frame(widget, cr, data, USED);
 }
 
 void setbar_buff(GtkWidget *widget, cairo_t *cr, Labels *data)
 {
-	double before, percent;
-
-	before = (double) strtol(data->tabsys[VALUE][USED], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
-	percent = (double) strtol(data->tabsys[VALUE][BUFFERS], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][BUFFERS], "/ ") + 2, NULL, 10) * 100;
-
-	cairo_set_source_rgb(cr, 65.0 / 255.0, 155.0 / 255.0, 240.0 / 255.0);
-	fill_frame(widget, cr, before, percent);
+	fill_frame(widget, cr, data, BUFFERS);
 }
 
 void setbar_cache(GtkWidget *widget, cairo_t *cr, Labels *data)
 {
-	double before, percent;
-
-	before = (double) ( strtol(data->tabsys[VALUE][USED], NULL, 10) +
-		strtol(data->tabsys[VALUE][BUFFERS], NULL, 10) ) /
-		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
-
-	percent = (double) strtol(data->tabsys[VALUE][CACHED], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][CACHED], "/ ") + 2, NULL, 10) * 100;
-
-	cairo_set_source_rgb(cr, 250.0 / 255.0, 90.0 / 255.0, 35.0 / 255.0);
-	fill_frame(widget, cr, before, percent);
+	fill_frame(widget, cr, data, CACHED);
 }
 
 void setbar_free(GtkWidget *widget, cairo_t *cr, Labels *data)
 {
-	double before, percent;
-
-	before = (double) ( strtol(data->tabsys[VALUE][USED], NULL, 10) +
-		strtol(data->tabsys[VALUE][BUFFERS], NULL, 10) +
-		strtol(data->tabsys[VALUE][CACHED], NULL, 10) ) /
-		strtol(strstr(data->tabsys[VALUE][USED], "/ ") + 2, NULL, 10) * 100;
-	percent = (double) strtol(data->tabsys[VALUE][FREE], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][FREE], "/ ") + 2, NULL, 10) * 100;
-
-	cairo_set_source_rgb(cr, 48.0 / 255.0, 225.0 / 255.0, 58.0 / 255.0);
-	fill_frame(widget, cr, before, percent);
+	fill_frame(widget, cr, data, FREE);
 }
 
 void setbar_swap(GtkWidget *widget, cairo_t *cr, Labels *data)
 {
-	double percent;
-
-	percent = (double) strtol(data->tabsys[VALUE][SWAP], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][SWAP], "/ ") + 2, NULL, 10) * 100;
-
-	cairo_set_source_rgb(cr, 250.0 / 255.0, 60.0 / 255.0, 225.0 / 255.0);
-	fill_frame(widget, cr, 0, percent);
+	fill_frame(widget, cr, data, SWAP);
 }
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 

@@ -96,7 +96,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab);
 void set_labels(GtkLabels *glab, Labels *data);
 
 /* Set Memory bar in tab System */
-void fill_frame(GtkWidget *widget, cairo_t *cr, double before, double val);
+void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n);
 void setbar_used(GtkWidget *widget, cairo_t *cr, Labels *data);
 void setbar_buff(GtkWidget *widget, cairo_t *cr, Labels *data);
 void setbar_cache(GtkWidget *widget, cairo_t *cr, Labels *data);
