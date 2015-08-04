@@ -1039,7 +1039,7 @@ static char *find_driver(struct pci_dev *dev, char *buf)
 		return "<name-too-long>";
 	buf[n] = 0;
 
-	if (drv = strrchr(buf, '/'))
+	if ((drv = strrchr(buf, '/')))
 		return drv+1;
 	else
 		return buf;
