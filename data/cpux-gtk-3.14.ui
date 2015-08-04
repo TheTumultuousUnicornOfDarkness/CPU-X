@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.19.0 -->
 <interface>
   <requires lib="gtk+" version="3.14"/>
   <object class="GtkWindow" id="mainwindow">
@@ -38,9 +38,9 @@
                       <object class="GtkAlignment" id="proc_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkBox" id="proc_box1">
                             <property name="visible">True</property>
@@ -702,9 +702,9 @@
                           <object class="GtkAlignment" id="clock_align">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_bottom">6</property>
                             <property name="margin_start">6</property>
                             <property name="margin_end">6</property>
+                            <property name="margin_bottom">6</property>
                             <child>
                               <object class="GtkGrid" id="clock_grid">
                                 <property name="visible">True</property>
@@ -926,9 +926,9 @@
                           <object class="GtkAlignment" id="cache_align">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_bottom">6</property>
                             <property name="margin_start">6</property>
                             <property name="margin_end">6</property>
+                            <property name="margin_bottom">6</property>
                             <child>
                               <object class="GtkGrid" id="cache_grid">
                                 <property name="visible">True</property>
@@ -1156,9 +1156,9 @@
                       <object class="GtkAlignment" id="trg_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="trg_grid">
                             <property name="visible">True</property>
@@ -1359,9 +1359,9 @@
                       <object class="GtkAlignment" id="motherboard_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="motherboard_grid">
                             <property name="visible">True</property>
@@ -1540,9 +1540,9 @@
                       <object class="GtkAlignment" id="bios_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="bios_grid">
                             <property name="visible">True</property>
@@ -1768,9 +1768,9 @@
                       <object class="GtkAlignment" id="chip_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="chip_grid">
                             <property name="visible">True</property>
@@ -1919,10 +1919,9 @@
                   <object class="GtkAlignment" id="banks_align">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">0.50999999046325684</property>
-                    <property name="margin_bottom">6</property>
                     <property name="margin_start">6</property>
                     <property name="margin_end">6</property>
+                    <property name="margin_bottom">6</property>
                     <child>
                       <object class="GtkGrid" id="banks_grid">
                         <property name="visible">True</property>
@@ -2727,9 +2726,9 @@
                       <object class="GtkAlignment" id="os_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="os_grid">
                             <property name="visible">True</property>
@@ -3001,9 +3000,9 @@
                       <object class="GtkAlignment" id="mem_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="mem_grid">
                             <property name="visible">True</property>
@@ -3260,7 +3259,7 @@
                                 <child>
                                   <object class="GtkDrawingArea" id="mem_barused">
                                     <property name="width_request">172</property>
-                                    <property name="height_request">15</property>
+                                    <property name="height_request">21</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                   </object>
@@ -3282,7 +3281,7 @@
                                 <child>
                                   <object class="GtkDrawingArea" id="mem_barbuff">
                                     <property name="width_request">172</property>
-                                    <property name="height_request">15</property>
+                                    <property name="height_request">21</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                   </object>
@@ -3304,7 +3303,7 @@
                                 <child>
                                   <object class="GtkDrawingArea" id="mem_barcache">
                                     <property name="width_request">172</property>
-                                    <property name="height_request">15</property>
+                                    <property name="height_request">21</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                   </object>
@@ -3326,7 +3325,7 @@
                                 <child>
                                   <object class="GtkDrawingArea" id="mem_barfree">
                                     <property name="width_request">172</property>
-                                    <property name="height_request">15</property>
+                                    <property name="height_request">21</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                   </object>
@@ -3348,7 +3347,7 @@
                                 <child>
                                   <object class="GtkDrawingArea" id="mem_barswap">
                                     <property name="width_request">172</property>
-                                    <property name="height_request">15</property>
+                                    <property name="height_request">21</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                   </object>
@@ -3412,9 +3411,9 @@
                       <object class="GtkAlignment" id="card3_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="card3_grid">
                             <property name="visible">True</property>
@@ -3593,9 +3592,9 @@
                       <object class="GtkAlignment" id="card2_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="card2_grid">
                             <property name="visible">True</property>
@@ -3774,9 +3773,9 @@
                       <object class="GtkAlignment" id="card1_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="card1_grid">
                             <property name="visible">True</property>
@@ -3955,9 +3954,9 @@
                       <object class="GtkAlignment" id="card0_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkGrid" id="card0_grid">
                             <property name="visible">True</property>
@@ -4157,9 +4156,9 @@
                       <object class="GtkAlignment" id="descr_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkBox" id="descr_box">
                             <property name="visible">True</property>
@@ -4219,9 +4218,9 @@ on CPU &amp; motherboard.</property>
                       <object class="GtkAlignment" id="about_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkBox" id="about_bo">
                             <property name="visible">True</property>
@@ -4326,9 +4325,9 @@ on CPU &amp; motherboard.</property>
                       <object class="GtkAlignment" id="license_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_bottom">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
                         <child>
                           <object class="GtkBox" id="license_box">
                             <property name="visible">True</property>

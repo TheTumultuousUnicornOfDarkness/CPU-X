@@ -345,6 +345,8 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 	double before = 0, percent;
 	char text[MAXSTR];
 	cairo_pattern_t *pat;
+	GSettings *setting = g_settings_new("org.gnome.desktop.interface");
+	gchar *font = g_settings_get_string(setting, "font-name");
 
 	width = gtk_widget_get_allocated_width(widget);
 	height = gtk_widget_get_allocated_height(widget);
@@ -391,9 +393,9 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 	cairo_pattern_destroy(pat);
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
-	cairo_select_font_face(cr, "Helvetica Neue Medium", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
-	cairo_move_to(cr, (width / 2) - 20, height - 3);
-	cairo_set_font_size(cr, 14);
+	cairo_select_font_face(cr, font, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+	cairo_move_to(cr, (width / 2) - 20, height - 6);
+	cairo_set_font_size(cr, 13);
 	cairo_show_text(cr, text);
 	cairo_fill(cr);
 }
