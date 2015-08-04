@@ -31,6 +31,7 @@ if(WITH_GTK)
 
 	install(FILES
 		cpux-gtk-3.8.ui
+		cpux-gtk-3.14.ui
 		${pictures}
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/
 	)
