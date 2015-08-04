@@ -62,6 +62,7 @@ typedef struct
 
 	/* Tab About */
 	GtkWidget *logoprg;
+	GtkWidget *butcol;
 
 } GtkLabels; /* Useful GtkWidgets */
 
@@ -85,6 +86,9 @@ gboolean grefresh(GThrd *refr);
 
 /* Set default background color in GUI */
 void set_colors(GtkLabels *glab);
+
+/* Change UI color by using GtkColorButton */
+void change_color(GtkWidget *button, GtkLabels *glab);
 
 /* Set logos (Window, CPU vendor, tab About) */
 void set_logos(GtkLabels *glab, Labels *data);

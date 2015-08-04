@@ -78,7 +78,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	glab.mainwindow	 = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
 	glab.closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
 	glab.labprgver	 = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
-	set_colors(&glab);
 	get_labels(builder, &glab);
 	g_object_unref(G_OBJECT(builder));
 
@@ -91,6 +90,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
+	g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
 	g_signal_connect(G_OBJECT(glab.barused), "draw", G_CALLBACK(setbar_used), data); /* Level bars */
@@ -100,6 +100,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_signal_connect(G_OBJECT(glab.barswap), "draw", G_CALLBACK(setbar_swap), data);
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
+	set_colors(&glab);
 	g_timeout_add_seconds(refreshtime, (gpointer)grefresh, &refr);
 	gtk_main();
 }
@@ -180,6 +181,15 @@ void set_colors(GtkLabels *glab)
 	window_colors.blue	= 0.9;
 	window_colors.alpha	= 0.95;
 	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
+	gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(glab->butcol), &window_colors);
+}
+
+void change_color(GtkWidget *button, GtkLabels *glab)
+{
+	GdkRGBA color;
+
+	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(button), &color);
+	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &color);
 }
 
 void set_logos(GtkLabels *glab, Labels *data)
@@ -239,6 +249,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->notebook = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->logoprg = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
+	glab->butcol = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
