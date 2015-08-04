@@ -41,7 +41,8 @@
 # include "../embed/SiS.png.h"
 # include "../embed/Transmeta.png.h"
 # include "../embed/UMC.png.h"
-# include "../embed/cpu-x.ui.h"
+# include "../embed/cpu-x-3.8.ui.h"
+# include "../embed/cpu-x-3.14.ui.h"
 #endif
 
 
@@ -59,18 +60,20 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	/* Build UI from Glade file */
 #ifdef EMBED
-	if(!gtk_builder_add_from_string(builder, cpux_glade, -1, NULL))
-	{
-		MSGPERR(_("gtk_builder_add_from_string failed"));
-		exit(EXIT_FAILURE);
-	}
+	if(gtk_builder_add_from_string(builder, cpux_314, -1, NULL))
+		goto open_ok;
+	if(gtk_builder_add_from_string(builder, cpux_38, -1, NULL))
+		goto open_ok;
 #else
-	if(!gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
-	{
-		MSGPERR(_("gtk_builder_add_from_file failed"));
-		exit(EXIT_FAILURE);
-	}
+	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.14.ui"), NULL))
+		goto open_ok;
+	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
+		goto open_ok;
 #endif
+	MSGPERR(_("Import UI in GK Builder failed"));
+	exit(EXIT_FAILURE);
+
+	open_ok:
 	g_set_prgname(g_ascii_strdown(PRGNAME, -1));
 	glab.mainwindow	 = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
 	glab.closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));

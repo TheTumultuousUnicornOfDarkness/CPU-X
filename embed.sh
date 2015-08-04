@@ -1,6 +1,9 @@
 #!/usr/bin/sh
 
+# Put temporary stuff in "embed" directory
 mkdir -p embed
+
+# Convert PNG pictures to GDK Pixbuf
 gdk-pixbuf-csource --raw --name=CPU_X			data/pictures/CPU-X.png		> embed/CPU-X.png.h
 gdk-pixbuf-csource --raw --name=NOVENDOR		data/pictures/novendor.png	> embed/NoVendor.png.h
 gdk-pixbuf-csource --raw --name=AMD			data/pictures/AMD.png		> embed/AMD.png.h
@@ -14,6 +17,40 @@ gdk-pixbuf-csource --raw --name=SiS			data/pictures/SiS.png		> embed/SiS.png.h
 gdk-pixbuf-csource --raw --name=Transmeta		data/pictures/Transmeta.png	> embed/Transmeta.png.h
 gdk-pixbuf-csource --raw --name=UMC			data/pictures/UMC.png		> embed/UMC.png.h
 
-echo -e "#ifndef CPUX_GLADE_H\n#define CPUX_GLADE_H\n\nstatic const char *cpux_glade =" > embed/cpu-x.ui.h
-sed -e 's/\\/\\\\/g;s/"/\\"/g;s/ / /g;s/^/"/;s/$/\\n"/' 'data/cpux-gtk-3.8.ui' >> embed/cpu-x.ui.h
-echo -e ";\n\n#endif\n" >> embed/cpu-x.ui.h
+# Convert UI file to header file
+file1="embed/cpu-x-3.8.ui.h"
+file2="embed/cpu-x-3.14.ui.h"
+
+## GTK 3.8+
+cat << EOF > "$file1"
+#ifndef CPUX_38_UI_H
+#define CPUX_38_UI_H
+
+static const char *cpux_38 =
+EOF
+
+sed -e 's/\\/\\\\/g;s/"/\\"/g;s/ / /g;s/^/"/;s/$/\\n"/' 'data/cpux-gtk-3.8.ui' >> "$file1"
+
+cat << EOF >> "$file1"
+;
+
+#endif
+
+EOF
+
+## GTK 3.14+
+cat << EOF > "$file2"
+#ifndef CPUX_314_UI_H
+#define CPUX_314_UI_H
+
+static const char *cpux_314 =
+EOF
+
+sed -e 's/\\/\\\\/g;s/"/\\"/g;s/ / /g;s/^/"/;s/$/\\n"/' 'data/cpux-gtk-3.14.ui' >> "$file2"
+
+cat << EOF >> "$file2"
+;
+
+#endif
+
+EOF
