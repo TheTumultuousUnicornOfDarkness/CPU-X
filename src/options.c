@@ -66,7 +66,9 @@ void version(void)
 	"%s\n\n"
 	"This is free software: you are free to change and redistribute it.\n"
 	"This program comes with ABSOLUTELY NO WARRANTY\n"
-	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"), PRGNAME, PRGVER, PRGCPYR);
+	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
+	"Compiled on %s, %s, with compiler version %s.\n"),
+	PRGNAME, PRGVER, PRGCPYR, __DATE__, __TIME__, __VERSION__);
 }
 
 char menu(int argc, char *argv[])

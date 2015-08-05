@@ -75,9 +75,10 @@ if(WITH_LIBPCI)
 		include_directories(${LIBPCI_INCLUDE_DIRS})
 		link_directories(${LIBPCI_LIBRARY_DIRS})
 		add_definitions(${LIBPCI_CFLAGS_OTHER} -DLIBPCI)
-		if(EMBED)
-			set(LIBPCI_LIBRARIES -l:libpci.a)
-		endif(EMBED)
+		# Can't link with libpci.a, always use shared library
+		#if(EMBED)
+		#	set(LIBPCI_LIBRARIES -l:libpci.a)
+		#endif(EMBED)
 	endif(LIBPCI_FOUND)
 endif(WITH_LIBPCI)
 
