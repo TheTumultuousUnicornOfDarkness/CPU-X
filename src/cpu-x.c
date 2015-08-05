@@ -1090,6 +1090,7 @@ void pcidev(Labels *data)
 	free(vendor);
 	free(product);
 }
+#endif /* HAS_LIBPCI */
 
 /* Find the number of GPU */
 int last_gpu(Labels *data)
@@ -1104,4 +1105,3 @@ int last_gpu(Labels *data)
 
 	return cpt;
 }
-#endif /* HAS_LIBPCI */
