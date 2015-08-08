@@ -326,7 +326,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 	width = gtk_widget_get_allocated_width(widget);
 	height = gtk_widget_get_allocated_height(widget);
 
-	while(i < n)
+	while(i < n) /* Get value to start */
 	{
 		before += (double) strtol(data->tabsys[VALUE][i], NULL, 10) /
 			strtol(strstr(data->tabsys[VALUE][i], "/ ") + 2, NULL, 10) * 100;
@@ -335,10 +335,10 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 	percent = (double) strtol(data->tabsys[VALUE][n], NULL, 10) /
 	strtol(strstr(data->tabsys[VALUE][n], "/ ") + 2, NULL, 10) * 100;
 
-	snprintf(text, MAXSTR, "%.2f%%", percent);
+	snprintf(text, MAXSTR, "%.2f%%", percent); /* Percentage in level bar */
 	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
 
-	switch(n)
+	switch(n) /* Set differents level bar color */
 	{
 		case USED:
 			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 1.00, 0.15, 1);
@@ -362,12 +362,12 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 			break;
 	}
 
-	cairo_rectangle(cr, before / 100 * width, 0, percent / 100 * width, height);
+	cairo_rectangle(cr, before / 100 * width, 0, percent / 100 * width, height); /* Print a colored rectangle */
 	cairo_set_source (cr, pat);
 	cairo_fill(cr);
 	cairo_pattern_destroy(pat);
 
-	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5);
+	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5); /* Print percentage */
 	cairo_select_font_face(cr, font, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
 	cairo_move_to(cr, (width / 2) - 20, height - 6);
 	cairo_set_font_size(cr, 13);
