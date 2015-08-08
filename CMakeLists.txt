@@ -107,11 +107,11 @@ else(WITH_LIBDMI)
 endif(WITH_LIBDMI)
 
 # Pciutils lib
-if(WITH_LIBPCI)
+if(LIBPCI_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}LIBPCI${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBPCI)
+else(LIBPCI_FOUND)
 	message("${BoldCyan}**   ${BoldCyan}LIBPCI${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBPCI)
+endif(LIBPCI_FOUND)
 
 # Libprocps / Libstatgrab lib
 if(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
