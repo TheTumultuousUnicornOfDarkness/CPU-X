@@ -123,9 +123,10 @@ void system_macos(Labels *data, long int *suptime)
 #endif /* __MACH__ */
 
 #ifdef __APPLE__
-	char *tmp;
-	tmp = strdup(data->tabsys[VALUE][KERNEL]);
+	char *tmp, buff[MAXSTR];
+	FILE *cc;
 
+	tmp = strdup(data->tabsys[VALUE][KERNEL]);
 	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
 
 	cc = popen("echo $(sw_vers -productName ; sw_vers -productVersion)", "r"); /* Label Distribution */
@@ -151,7 +152,9 @@ void system_nonlinux(Labels *data, long int *suptime)
 	data->tabsys[VALUE][DISTRIBUTION] = strdup(buff);
 
 # if HAS_LIBSTATGRAB
+	long int memtot = 0;
 	static int called = 0;
+	const int div = 1000000;
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 
@@ -172,8 +175,8 @@ void system_nonlinux(Labels *data, long int *suptime)
 	asprintf(&data->tabsys[VALUE][SWAP], "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
 # endif /* HAS_LIBSTATGRAB */
 
-	system_bsd(suptime);
-	system_macos(suptime);
+	system_bsd(data, suptime);
+	system_macos(data, suptime);
 #endif /* !__linux__ */
 }
 
