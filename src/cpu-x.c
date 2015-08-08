@@ -23,11 +23,9 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <ctype.h>
 #include <string.h>
 #include <math.h>
-#include <sys/utsname.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -50,29 +48,6 @@
 
 #if HAS_LIBPCI
 # include "pci/pci.h"
-#endif
-
-#if HAS_LIBPROCPS
-# include <proc/sysinfo.h>
-#endif
-
-#if HAS_LIBSTATGRAB
-# include <statgrab.h>
-#endif
-
-#ifndef __linux__
-# include <sys/types.h>
-# include <sys/sysctl.h>
-#endif
-
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-# include <sys/timespec.h>
-# include <time.h>
-#endif
-
-#ifdef __MACH__
-# include <mach/clock.h>
-# include <mach/mach.h>
 #endif
 
 
@@ -611,7 +586,6 @@ void clean_specification(char *spec)
 	spec[j] = '\0';
 }
 
-
 void catinstr(char **str, char *in)
 {
 	int sep = 1;
@@ -637,7 +611,6 @@ void catinstr(char **str, char *in)
 		free(tmp);
 	}
 }
-
 
 /* Show some instructions supported by CPU */
 void instructions(char **arch, char **instr)
@@ -872,144 +845,6 @@ int last_bank(Labels *data)
 	}
 
 	return cpt;
-}
-
-/* Get system informations */
-void tabsystem(Labels *data)
-{
-	MSGVERB(_("Filling System tab"));
-	static int called = 0;
-	long int duptime, huptime, muptime, suptime = 0, memtot;
-	char buff[MAXSTR];
-	struct utsname name;
-	FILE *cc;
-	uname(&name);
-
-#ifdef __linux__
-	const int div = 1000;
-	char *filestr = NULL, *distro = NULL;
-	FILE *osrel = NULL;
-
-	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", name.sysname, name.release); /* Label Kernel */
-	suptime = uptime(NULL, NULL); /* Label Uptime */
-
-	osrel = fopen("/etc/os-release", "r"); /* Label Distribution */
-	if(osrel == NULL && !called)
-		MSGPERR(_("failed to open file '/etc/os-release'"));
-	else if(!called)
-	{
-		filestr = malloc(500 * (sizeof(char)));
-		if(filestr == NULL)
-			MSGPERR(_("malloc failed"));
-		else
-		{
-			fread(filestr, sizeof(char), 500, osrel);
-			distro = strstr(filestr, "PRETTY_NAME=");
-			if(distro == NULL)
-				asprintf(&data->tabsys[VALUE][DISTRIBUTION], _("Unknown distro"));
-			else
-				asprintf(&data->tabsys[VALUE][DISTRIBUTION], "%s", strtok(strchr(distro, '"') + 1, "\""));
-			fclose(osrel);
-			free(filestr);
-		}
-	}
-	called = 1;
-
-# if HAS_LIBPROCPS
-	meminfo(); /* Memory labels */
-	memtot = kb_main_total / div;
-
-	asprintf(&data->tabsys[VALUE][USED], "%5ld MB / %5ld MB", kb_main_used / div, memtot);
-	asprintf(&data->tabsys[VALUE][BUFFERS], "%5ld MB / %5ld MB", kb_main_buffers / div, memtot);
-	asprintf(&data->tabsys[VALUE][CACHED], "%5ld MB / %5ld MB", kb_main_cached / div, memtot);
-	asprintf(&data->tabsys[VALUE][FREE], "%5ld MB / %5ld MB", kb_main_free / div, memtot);
-	asprintf(&data->tabsys[VALUE][SWAP], "%5ld MB / %5ld MB", kb_swap_used / div, kb_swap_total / div);
-# endif /* HAS_LIBPROCPS */
-
-#else /* __ linux__ */
-	char os[MAXSTR];
-	size_t len = sizeof(os);
-	const int div = 1000000;
-
-	sysctlbyname("kern.osrelease", &os, &len, NULL, 0); /* Label Kernel */
-	data->tabsys[VALUE][KERNEL] = strdup(os);
-
-	sysctlbyname("kern.ostype", &os, &len, NULL, 0); /* Label Distribution */
-	data->tabsys[VALUE][DISTRIBUTION] = strdup(os);
-
-# if HAS_LIBSTATGRAB
-	sg_mem_stats *mem; /* Memory labels */
-	sg_swap_stats *swap;
-
-	if(!called)
-	{
-		sg_init(0);
-		called = 1;
-	}
-
-	mem  = sg_get_mem_stats(NULL);
-	swap = sg_get_swap_stats(NULL);
-
-	memtot = mem->total / div;
-	asprintf(&data->tabsys[VALUE][USED], "%5llu MB / %5ld MB", mem->used / div, memtot);
-	asprintf(&data->tabsys[VALUE][BUFFERS], "%5u MB / %5ld MB", 0, memtot);
-	asprintf(&data->tabsys[VALUE][CACHED], "%5llu MB / %5ld MB", mem->cache / div, memtot);
-	asprintf(&data->tabsys[VALUE][FREE], "%5llu MB / %5ld MB", mem->free / div, memtot);
-	asprintf(&data->tabsys[VALUE][SWAP], "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
-# endif /* HAS_LIBSTATGRAB */
-
-#endif /* __linux__ */
-
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	struct timespec tsp;
-
-	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
-	suptime = tsp.tv_sec;
-#endif /* BSD */
-
-#ifdef __MACH__
-	clock_serv_t cclock;
-	mach_timespec_t mts;
-
-	host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &cclock); /* Label Uptime */
-	clock_get_time(cclock, &mts);
-	mach_port_deallocate(mach_task_self(), cclock);
-	suptime = mts.tv_sec;
-#endif /* __MACH__ */
-
-#ifdef __APPLE__
-	char *tmp;
-	tmp = strdup(data->tabsys[VALUE][KERNEL]);
-
-	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
-
-	cc = popen("echo $(sw_vers -productName ; sw_vers -productVersion)", "r"); /* Label Distribution */
-	if(cc != NULL)
-	{
-		fgets(buff, MAXSTR, cc);
-		data->tabsys[VALUE][DISTRIBUTION] = strdup(buff);
-		pclose(cc);
-	}
-#endif /* __APPLE__ */
-
-	if(suptime > 0)
-	{
-		duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60); /* Label Uptime */
-		huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
-		muptime = suptime / 60; suptime -= muptime * 60;
-		asprintf(&data->tabsys[VALUE][UPTIME], _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
-	}
-
-	asprintf(&data->tabsys[VALUE][HOSTNAME],	"%s", name.nodename); /* Label Hostname */
-
-	cc = popen("cc --version", "r"); /* Label Compiler */
-	if(cc != NULL)
-	{
-		fgets(buff, MAXSTR, cc);
-		data->tabsys[VALUE][COMPILER] = strdup(buff);
-		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1 ] = '\0';
-		pclose(cc);
-	}
 }
 
 #if HAS_LIBPCI

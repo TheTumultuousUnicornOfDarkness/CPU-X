@@ -124,6 +124,7 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT
 add_executable(cpu-x
 	cpu-x.c
 	cpu-x.h
+	libsystem.c
 	options.c
 )
 
