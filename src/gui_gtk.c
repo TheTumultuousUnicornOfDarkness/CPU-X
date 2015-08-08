@@ -111,7 +111,7 @@ void warning_window(GtkWidget *mainwindow)
 	gtk_container_set_border_width(GTK_CONTAINER(dialog), 5);
 	gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);
 
-	if(system("pkexec --version"))
+	if(system("pkexec --version > /dev/null"))
 	{
 		gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Ignore"), GTK_RESPONSE_REJECT, NULL);
 		gtk_dialog_run(GTK_DIALOG(dialog));
