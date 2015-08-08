@@ -1,3 +1,19 @@
+v2.1.0 (08.08.2015):
+	* Improve drawing bars in System tab in GTK GUI
+	* Use dynamic arrays instead of static arrays
+	* Add libsystem
+	* GTK 3.14 support / partial GTK 3.16 support
+	* Use GResource instead of GdkPixbuf in GTK embedded GUI
+	* Add a button to change GTK GUI color
+	* Add libpci support:
+		** New chipset section in Motherboard tab
+		** New tab Graphics
+	* Fixes:
+		** Build
+		** Options
+		** Deprecated functions in GTK GUI code
+
+
 v2.0.3 (03.15.2015):
 	* Add verbose mode (for CPU-X, previously Dmidecode only)
 	* Better support for non-Linux OS
@@ -9,10 +25,10 @@ v2.0.3 (03.15.2015):
 	* Add 'make' target updatepo to update a po file from a newer pot file
 	* Add a 'Run as root' button in GTK GUI
 	* Fixes:
-		* Stop spam errors (in Dmidecode)
-		* Options when built without GTK
-		* Incomplete possibility for translation
-		* Output messages (verbose and error)
+		** Stop spam errors (in Dmidecode)
+		** Options when built without GTK
+		** Incomplete possibility for translation
+		** Output messages (verbose and error)
 
 
 v2.0.2 (02.08.2015):
@@ -43,7 +59,7 @@ v2.0.1 (11.23.2014):
 v2.0.0 (11.16.2014):
 	* Big changes in core
 	* Full rewrite GTK GUI
-	* Minor changes in NCurses GUI
+	* Minor changes in NCurses TUI
 	* Add argument --dump (no start GUI)
 	* Add fallback mode for Libdmi (but it not replaces Libdmi)
 	* Add new tab System
