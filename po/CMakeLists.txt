@@ -42,7 +42,7 @@ add_custom_target(genpot
 		--output-dir=${CMAKE_SOURCE_DIR}/po
 		--output=${CMAKE_PROJECT_NAME}.pot
 		--keyword=_ --indent
-		cpu-x.c cpu-x.h options.c gui_gtk.c tui_ncurses.c
+		cpu-x.c cpu-x.h libsystem.c options.c gui_gtk.c tui_ncurses.c
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 )
 
