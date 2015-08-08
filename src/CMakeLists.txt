@@ -16,10 +16,14 @@ if(WITH_GTK)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
+		if(EMBED)
+			set(GRESOURCES "gtk-resources.c")
+		endif(EMBED)
 		add_library(gui_gtk
 			gui_gtk.c
 			gui_gtk.h
 			gui_gtk_id.h
+			${GRESOURCES}
 		)
 		set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
 	else(GTK3_FOUND)

@@ -66,8 +66,9 @@ if(EMBED)
 	message("${BoldBlue}${CMAKE_PROJECT_NAME} will be compiled as portable binary.${ColourReset}")
 	if(WITH_GTK)
 		message("${Green}Converting files to embed${ColourReset}")
-		execute_process(COMMAND ${CMAKE_CURRENT_LIST_DIR}/embed.sh
-			WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+		execute_process(COMMAND glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
+				COMMAND	glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.h --generate-header cpu-x.gresource.xml
+			WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
 		)
 	endif(WITH_GTK)
 	add_definitions(-DEMBED)

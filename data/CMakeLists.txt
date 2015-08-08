@@ -12,7 +12,7 @@ file(MAKE_DIRECTORY ${DATA_DIR})
 
 # Files needed by GTK GUI
 
-if(WITH_GTK)
+if(WITH_GTK AND NOT EMBED)
 	# Set config
 	set(EXEC ${CMAKE_INSTALL_FULL_BINDIR}/${CMAKE_PROJECT_NAME})
 	set(TRYEXEC ${EXEC})
@@ -59,4 +59,4 @@ if(WITH_GTK)
 		RENAME cpu-x.png
 	)
 
-endif(WITH_GTK)
+endif(WITH_GTK AND NOT EMBED)
