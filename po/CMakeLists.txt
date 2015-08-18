@@ -20,6 +20,17 @@ if(MSGFMT_EXECUTABLE STREQUAL "")
 endif(MSGFMT_EXECUTABLE STREQUAL "")
 
 
+# Brazilian Portuguese
+file(MAKE_DIRECTORY ${GMO_DIR}/pt_BR)
+
+execute_process(COMMAND ${MSGFMT_EXECUTABLE} pt_BR.po -o ${GMO_DIR}/pt_BR/cpu-x.mo
+	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
+
+install(FILES ${GMO_DIR}/pt_BR/cpu-x.mo
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/locale/pt_BR/LC_MESSAGES/
+)
+
 # French
 file(MAKE_DIRECTORY ${GMO_DIR}/fr)
 
