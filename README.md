@@ -79,7 +79,7 @@ Note: portable binary is *accomplished/bin/cpu-x*, in directory *ebuild*. Don't 
 Start program with **root privileges** allow to use **Dmidecode** (Libdmi) and avoid empty labels.
 Application is put in the desktop menus, in **System Tools** category: entry *CPU-X* run CPU-X as regular user, and entry *CPU-X (Root)* grant root privileges.  
 Else, you can use command `cpu-x`, or double-click on `cpu-x` binary is also possible (if program won't start, check if file has executable bit set).  
-If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell (as root) `cpu-x --ncurses`.
+If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell (as root) `cpu-x --ncurses`.  
 Use `cpu-x --help` for other commands and help.
 
 
@@ -87,7 +87,7 @@ Use `cpu-x --help` for other commands and help.
 
 CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32-bit), like CPU-Z.  
 Latest release is [>>> HERE <<<](https://github.com/X0rg/CPU-X/releases/latest), all releases are [here](https://github.com/X0rg/CPU-X/releases).  
-Download file *CPU-X_vX.X.X_portable.tar.gz* or *CPU-X_vX.X.X_portable_noGTK.tar.gz*, extract archive, and you can now run CPU-X portable.  
+Download file *CPU-X_vX.X.X_portable.tar.gz* or file *CPU-X_vX.X.X_portable_noGTK.tar.gz*, extract archive, and you can now run CPU-X portable.  
 You can put these files on a USB stick for example.
 
 
@@ -111,6 +111,6 @@ You want to contribute to CPU-X? In the top-right corner of the page, click **Fo
 * **Some labels are empty**: verify if CPU-X is run with root privileges. If it is the case, your hardware is not recognised by a library.
 
 
-## Bugs/Improvement/Request feature
+## Bugs/Improvements/Request features
 
 Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new).
