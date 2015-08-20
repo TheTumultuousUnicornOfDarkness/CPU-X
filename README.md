@@ -3,18 +3,18 @@
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X)
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/pX0rg/CPU-X/issues)
 
-CPU-X is a Free software that gathers information on CPU, motherboard and more.
-CPU-X is similar to CPU-Z (only available for Microsoft Windows, see http://www.cpuid.com/softwares/cpu-z.html for more informations), but CPU-X is designed for GNU/Linux. It can works on *BSD on OS X (some features are missing).
-It is written in C, and Graphical User Interface (GUI) uses GTK3+ library, so it's working out-of-box on X11 or Wayland.
-It is also possible to run a Text-based User Interface (TUI) which uses NCurses, or else to print data on standard output.
+CPU-X is a Free software that gathers information on CPU, motherboard and more.  
+CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD and on OS X (some features are missing).  
+This software is written in C programming language, and built with [CMake](http://www.cmake.org/).  
+This is a graphical software (GTK is used), but it can be used from a shell by using Ncurses or by dumping data.
 
 
 ## Dependencies
 
-* GTK3+ (version 3.10 or uppers recommanded)
+* GTK3+ (version 3.8 or newer, latest is recommended)
     * Graphical User Interface (GUI)
     * http://www.gtk.org/
-    * Required to run CPU-X in GTK mode; **not** embedded in portable version (system library will be used)
+    * Required to run CPU-X in GTK mode; **not** embedded in portable version (use system shared library)
 
 * Ncurses
     * Text-based User Interface (TUI)
@@ -29,7 +29,7 @@ It is also possible to run a Text-based User Interface (TUI) which uses NCurses,
 * Libpci
     * Extract others hardware features
     * http://mj.ucw.cz/sw/pciutils/
-    * Required to run CPU-X correctly; **not** embedded in portable version (system library will be used)
+    * Required to run CPU-X correctly; **not** embedded in portable version (use system shared library)
 
 * Procps-ng, provides *libsystem* (**Linux only**)
     * Useful informations on system
@@ -44,16 +44,16 @@ It is also possible to run a Text-based User Interface (TUI) which uses NCurses,
 
 ## Build
 
-For step-by-step guide, you can see the [wiki page](https://github.com/X0rg/CPU-X/wiki) (GNU/Linux, *BSD and OS X).
-First, you must to have CMake installed to continue (only needed for building).
-GTK headers are needed to compile with GTK support.
-You can disable some functionalities by passing argument `-D<var>=0` when running CMake, like this:
-`-DWITH_GTK=0` will disable support of GUI in GTK3+
-`-DWITH_NCURSES=0` will disable support of NCurses mode
-`-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)
-`-DWITH_LIBDMI=0` will not compile Libdmi and will avoid calls to Libdmi (not recommended)
-`-DWITH_LIBPCI=0` will avoid calls to Libpci (not recommended)
-`-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps (not recommended)
+For step-by-step guide, you can see the [wiki page](https://github.com/X0rg/CPU-X/wiki) (GNU/Linux, *BSD and OS X).  
+First of all, you need to install [CMake](http://www.cmake.org/) (this is only needed for build).
+GTK headers are needed to compile with GTK support.  
+You can disable components in CPU-X before build by passing argument `-D<var>=0` when running CMake:  
+`-DWITH_GTK=0` will disable support of GUI in GTK3+  
+`-DWITH_NCURSES=0` will disable support of NCurses mode  
+`-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
+`-DWITH_LIBDMI=0` will not compile Libdmi and will avoid calls to Libdmi (not recommended)  
+`-DWITH_LIBPCI=0` will avoid calls to Libpci (not recommended)  
+`-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps/Libstatgrab (not recommended)  
 
 * If you want to install CPU-X on your system, do:
 ```
@@ -62,7 +62,7 @@ cmake ..
 make
 make install
 ```
-By default, CPU-X will be installed in */usr/local*. If you want to change it, change `cmake ..` by `cmake -DCMAKE_INSTALL_PREFIX=YOUR_ABSOLUTE_PATH ..`.
+By default, CPU-X will be installed in */usr/local*. If you want to change it, add option `cmake -DCMAKE_INSTALL_PREFIX=<absolute_path> ..` on CMake invocation.
 
 * If you want a portable binary, do:
 ```
@@ -71,37 +71,46 @@ cmake -DEMBED=1 ..
 make
 ```
 
-Note: portable binary will be in directory "ebuild/bin". Don't do `make install` after.
+Note: portable binary is *accomplished/bin/cpu-x*, in directory *ebuild*. Don't do `make install` after.You can move this runnable file where you want.
 
 
 ## Usage
 
-Start program with **root privileges** allow to use **Dmidecode** (Libdmi).
-Simply run command `cpu-x` if it is installed on you system, or double-click on `cpu-x` is also possible.
-Two application files are installed if GTK is enabled: one use pkexec and allow you to run CPU-X as root.
+Start program with **root privileges** allow to use **Dmidecode** (Libdmi) and avoid empty labels.
+Application is put in the desktop menus, in **System Tools** category: entry *CPU-X* run CPU-X as regular user, and entry *CPU-X (Root)* grant root privileges.  
+Else, you can use command `cpu-x`, or double-click on `cpu-x` binary is also possible (if program won't start, check if file has executable bit set).  
 If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell (as root) `cpu-x --ncurses`.
 Use `cpu-x --help` for other commands and help.
 
 
-## Download binairies
+## Portable version
 
-You can also download an archive with two portable binaries (i686 & x86_64) at https://github.com/X0rg/CPU-X/releases/latest (file "CPU-X_vX.X.X_portable.tar.gz").
-This doesn't need to be installed, you can put it on a USB stick for example.
+CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32-bit), like CPU-Z.  
+Latest release is [>>> HERE <<<](https://github.com/X0rg/CPU-X/releases/latest), all releases are [here](https://github.com/X0rg/CPU-X/releases).  
+Download file *CPU-X_vX.X.X_portable.tar.gz* or *CPU-X_vX.X.X_portable_noGTK.tar.gz*, extract archive, and you can now run CPU-X portable.  
+You can put these files on a USB stick for example.
 
 
 ## Screenshots
 
-You can see CPU-X here:
+You can see how CPU-X looks here:
 https://github.com/X0rg/CPU-X/wiki/Screenshots
 
 
-## Translate
+## Translate/Contributions
 
-You want to translate CPU-X? No problem!
-Fork this repo, then clone your fork, and generate the .pot (Portable Object Template) file like this:
-```
-mkdir build && cd build
-cmake ..
-make genpot
-```
-It will produce file `cpu-x.pot`, located in `po` directory. Copy it to `<lang>.po` and start to translate...
+You want to have CPU-X in a foreign language but no translation exists? See the following wiki page:
+https://github.com/X0rg/CPU-X/wiki/Translate  
+You want to contribute to CPU-X? In the top-right corner of the page, click **Fork**.
+
+
+## Troubleshooting
+
+* **CPU-X won't start**: try to do a `chmod +x` on binary.
+* **CPU-X still won't start**: run it from a shell, and look output.
+* **Some labels are empty**: verify if CPU-X is run with root privileges. If it is the case, your hardware is not recognised by a library.
+
+
+## Bugs/Improvement/Request feature
+
+Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new).
