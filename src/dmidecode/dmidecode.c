@@ -62,9 +62,10 @@
 #include <unistd.h>
 
 #ifdef CPUX
- #include "libdmi.h"
+# include "libdmi.h"
+# include "../cpu-x.h"
 #else
- #include "version.h"
+# include "version.h"
 #endif /* CPUX */
 #include "config.h"
 #include "types.h"
@@ -3223,23 +3224,23 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		switch (h->type)
 		{
 			case 0: /* 7.1 BIOS Information */
-				*dmidata[BRAND]		= strdup(dmi_string(h, data[0x04]));
-				*dmidata[VERSION]	= strdup(dmi_string(h, data[0x05]));
-				*dmidata[DATE]		= strdup(dmi_string(h, data[0x08]));
+				*dmidata[BRAND]		= strdupnullok(dmi_string(h, data[0x04]));
+				*dmidata[VERSION]	= strdupnullok(dmi_string(h, data[0x05]));
+				*dmidata[DATE]		= strdupnullok(dmi_string(h, data[0x08]));
 				asprintf(dmidata[ROMSIZE], "%s / %u kB",
 					dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
 					(data[0x09] + 1) << 6);
 				break;
 
 			case 2: /* 7.3 Base Board Information */
-				*dmidata[MANUFACTURER]	= strdup(dmi_string(h, data[0x04]));
-				*dmidata[MBMODEL]	= strdup(dmi_string(h, data[0x05]));
-				*dmidata[REVISION]	= strdup(dmi_string(h, data[0x06]));
+				*dmidata[MANUFACTURER]	= strdupnullok(dmi_string(h, data[0x04]));
+				*dmidata[MBMODEL]	= strdupnullok(dmi_string(h, data[0x05]));
+				*dmidata[REVISION]	= strdupnullok(dmi_string(h, data[0x06]));
 				break;
 
 			case 4: /* 7.5 Processor Information */
-				*dmidata[PROC_PACKAGE]	= strdup(dmi_string(h, data[0x04]));
-				*dmidata[PROC_BUS]	= strdup(dmi_processor_frequency_str(data + 0x12));
+				*dmidata[PROC_PACKAGE]	= strdupnullok(dmi_string(h, data[0x04]));
+				*dmidata[PROC_BUS]	= strdupnullok(dmi_processor_frequency_str(data + 0x12));
 				break;
 
 			case 17: /* 7.18 Memory Device */
@@ -3247,8 +3248,8 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				{
 					if(!strcmp(dmi_string(h, data[0x17]), "[Empty]"))
 					{
-						*dmidata[bank] = strdup("- - - - - -");
-						*dmidata[bank + 1] = strdup("- - - - - -");
+						*dmidata[bank]     = strdupnullok("- - - - - -");
+						*dmidata[bank + 1] = strdupnullok("- - - - - -");
 					}
 					else
 					{

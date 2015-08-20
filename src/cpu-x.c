@@ -595,20 +595,20 @@ void catinstr(char **str, char *in)
 
 	if(first)
 	{
-		*str = strdup(in);
+		*str = strdupnullok(in);
 		first = 0;
 	}
 	else
 	{
 		sep = isalnum(in[0]) ? 3 : sep;
-		tmp = strdup(*str);
+		tmp = strdupnullok(*str);
 		free(*str);
 		tmp = (char *) realloc(tmp, (strlen(tmp) + strlen(in) + sep) * sizeof(char));
 
 		if(isalnum(in[0]))
 			strcat(tmp, ", ");
 		strcat(tmp, in);
-		*str = strdup(tmp);
+		*str = strdupnullok(tmp);
 		free(tmp);
 	}
 }
@@ -640,8 +640,8 @@ void instructions(char **arch, char **instr)
 		if(id.flags[CPU_FEATURE_VMX])		catinstr(instr, ", VT-x");
 		if(id.flags[CPU_FEATURE_SVM])		catinstr(instr, ", AMD-V");
 
-		if(id.flags[CPU_FEATURE_LM])		*arch = strdup("x86_64 (64-bit)");
-		else					*arch = strdup("ix86 (32-bit)");
+		if(id.flags[CPU_FEATURE_LM])		*arch = strdupnullok("x86_64 (64-bit)");
+		else					*arch = strdupnullok("ix86 (32-bit)");
 	}
 	else
 		MSGSERR(_("libcpuid failed"));
@@ -702,7 +702,7 @@ int libdmi_fallback(Labels *data)
 		if(mb[i] != NULL)
 		{
 			fgets(buff, MAXSTR, mb[i]);
-			data->tabmb[VALUE][i] = strdup(buff);
+			data->tabmb[VALUE][i] = strdupnullok(buff);
 			data->tabmb[VALUE][i][ strlen(data->tabmb[VALUE][i]) - 1 ] = '\0';
 			fclose(mb[i]);
 		}
@@ -828,9 +828,9 @@ void bogomips(char **c)
 		}
 		tmp[j] = '\0';
 	}
-	*c = strdup(tmp);
+	*c = strdupnullok(tmp);
 #else
-	*c = strdup("- - - -");
+	*c = strdupnullok("- - - -");
 #endif /* __linux__ */
 }
 
@@ -898,13 +898,13 @@ void pcidev(Labels *data)
 	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
 	{
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
-		vendor  = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
-		product = strdup(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
+		vendor  = strdupnullok(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
+		product = strdupnullok(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
 
 		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)	/* Looking for chipset */
 		{
-			data->tabmb[VALUE][CHIPVENDOR] = strdup(vendor);
-			data->tabmb[VALUE][CHIPNAME] = strdup(product);
+			data->tabmb[VALUE][CHIPVENDOR] = strdupnullok(vendor);
+			data->tabmb[VALUE][CHIPNAME] = strdupnullok(product);
 		}
 
 		if(nbgpu < LASTGPU / GPUFIELDS &&
@@ -915,9 +915,9 @@ void pcidev(Labels *data)
 				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
 		{
 			driver = find_driver(dev, namebuf);
-			data->tabgpu[VALUE][GPUVENDOR1  + nbgpu * GPUFIELDS] = strdup(vendor);
-			data->tabgpu[VALUE][GPUNAME1	+ nbgpu * GPUFIELDS] = strdup(product);
-			data->tabgpu[VALUE][GPUDRIVER1  + nbgpu * GPUFIELDS] = strdup(driver);
+			data->tabgpu[VALUE][GPUVENDOR1  + nbgpu * GPUFIELDS] = strdupnullok(vendor);
+			data->tabgpu[VALUE][GPUNAME1	+ nbgpu * GPUFIELDS] = strdupnullok(product);
+			data->tabgpu[VALUE][GPUDRIVER1  + nbgpu * GPUFIELDS] = strdupnullok(driver);
 			nbgpu++;
 		}
 	}
@@ -940,4 +940,10 @@ int last_gpu(Labels *data)
 	}
 
 	return cpt;
+}
+
+/* Duplicate a not null string */
+char *strdupnullok(const char *s)
+{
+	return (s != NULL) ? strdup(s) : NULL;
 }

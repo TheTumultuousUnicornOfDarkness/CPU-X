@@ -229,5 +229,8 @@ void pcidev(Labels *data);
 TAB: Graphics. */
 int last_gpu(Labels *data);
 
+/* Duplicate a not null string */
+char *strdupnullok(const char *s);
+
 
 #endif /* _CPUX_H_ */
