@@ -769,6 +769,9 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **mul
 	int i, fcpu, fbus, cur, min, max;
 	char ncpu[S] = "", nbus[S] = "";
 
+	if(busfreq == NULL || cpufreq == NULL)
+		return ;
+
 	MSGVERB(_("Estimating CPU multiplicateurs (current - minimum - maximum)"));
 	for(i = 0; isdigit(cpufreq[i]); i++)
 		ncpu[i] = cpufreq[i];
