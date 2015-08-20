@@ -41,7 +41,7 @@ typedef struct
 	GtkWidget *logocpu;
 	GtkWidget *gtktabcpu[2][LASTCPU];
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	GtkWidget *gtktabmb[2][LASTMB];
 
 	/* Tab RAM */

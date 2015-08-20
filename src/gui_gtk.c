@@ -226,7 +226,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktabcpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[VALUE][i]));
 	}
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
 		glab->gtktabmb[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[NAME][i]));
@@ -279,7 +279,7 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][i]), data->tabcpu[VALUE][i]);
 	}
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
 		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[NAME][i]), data->tabmb[NAME][i]);

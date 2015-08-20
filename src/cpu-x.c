@@ -154,7 +154,7 @@ void labels_setnull(Labels *data)
 	for(i = VENDOR; i < LASTCPU; i++)
 		data->tabcpu[VALUE][i] = NULL;
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 		data->tabmb[VALUE][i] = NULL;
 
@@ -179,7 +179,7 @@ void labels_setname(Labels *data)
 
 	/* Various objects*/
 	asprintf(&data->objects[TABCPU],		_("CPU"));
-	asprintf(&data->objects[TABMB],			_("Mainboard"));
+	asprintf(&data->objects[TABMB],			_("Motherboard"));
 	asprintf(&data->objects[TABRAM],		_("RAM"));
 	asprintf(&data->objects[TABSYS],		_("System"));
 	asprintf(&data->objects[TABGPU],		_("Graphics"));
@@ -235,7 +235,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][CORES],		_("Core(s)"));
 	asprintf(&data->tabcpu[NAME][THREADS],		_("Thread(s)"));
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	asprintf(&data->tabmb[NAME][MANUFACTURER],	_("Manufacturer"));
 	asprintf(&data->tabmb[NAME][MBMODEL],		_("Model"));
 	asprintf(&data->tabmb[NAME][REVISION],		_("Revision"));
@@ -305,7 +305,7 @@ void labels_delnull(Labels *data)
 		}
 	}
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
 		if(data->tabmb[VALUE][i] == NULL)
@@ -360,7 +360,7 @@ void labels_free(Labels *data)
 			free(data->tabcpu[VALUE][i]);
 	}
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
 		free(data->tabmb[NAME][i]);
@@ -413,7 +413,7 @@ void dump_data(Labels *data)
 		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
 	}
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
 	for(i = MANUFACTURER; i < LASTMB; i++)
@@ -664,7 +664,7 @@ int libdmidecode(Labels *data)
 	/* Skip this part on refresh */
 	if(!nodyn)
 	{
-		/* Tab Mainboard */
+		/* Tab Motherboard */
 		for(i = MANUFACTURER; i < LASTMB; i++)
 			dmidata[i] = &data->tabmb[VALUE][i];
 		err += libdmi('m');
@@ -694,7 +694,7 @@ int libdmi_fallback(Labels *data)
 	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date" };
 	FILE *mb[LASTMB] = { NULL };
 
-	/* Tab Mainboard */
+	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < ROMSIZE; i++)
 	{
 		snprintf(path, PATH_MAX, "%s/%s", SYS_DMI, id[i]);

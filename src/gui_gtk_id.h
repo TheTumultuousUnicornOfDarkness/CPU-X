@@ -27,7 +27,7 @@
 /* Translation */
 static const char *trad[LASTOBJ] =
 {
-	"cpulabel", "mainboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
+	"cpulabel", "motherboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
 	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
 	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
@@ -48,7 +48,7 @@ static const char *objectcpu[2][LASTCPU] =
 	}
 };
 
-/* Tab Mainboard */
+/* Tab Motherboard */
 static const char *objectmb[2][LASTMB] =
 {
 	{ "motherboard_labmanu", "motherboard_labmod", "motherboard_labrev",

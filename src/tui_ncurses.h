@@ -50,8 +50,8 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 /* Tab CPU */
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data);
 
-/* Tab Mainboard */
-WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *data);
+/* Tab Motherboard */
+WINDOW *tab_motherboard(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab RAM */
 WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data);

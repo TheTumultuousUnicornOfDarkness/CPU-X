@@ -166,7 +166,7 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 		case NB_TAB_CPU:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_MB:
-			return tab_mainboard(height - 4, width - 2, starty + 2, startx + 1, data);
+			return tab_motherboard(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_RAM:
 			return tab_ram(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_SYS:
@@ -223,7 +223,7 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 	return local_win;
 }
 
-WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *data)
+WINDOW *tab_motherboard(int height, int width, int starty, int startx, Labels *data)
 {
 	int i;
 	WINDOW *local_win;
@@ -231,7 +231,7 @@ WINDOW *tab_mainboard(int height, int width, int starty, int startx, Labels *dat
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
-	/* Frames in Mainboard tab */
+	/* Frames in Motherboard tab */
 	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMMOBO]);
 	frame(local_win, 6, 1, 12, width - 1, data->objects[FRAMBIOS]);
 	frame(local_win, 12, 1, 16, width - 1, data->objects[FRAMCHIP]);
