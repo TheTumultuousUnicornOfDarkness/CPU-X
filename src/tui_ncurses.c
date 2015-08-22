@@ -312,6 +312,9 @@ void draw_bar(WINDOW *win, Labels *data, int bar)
 	percent = (double) strtol(data->tabsys[VALUE][bar], NULL, 10) /
 		strtol(strstr(data->tabsys[VALUE][bar], "/ ") + 2, NULL, 10) * 100;
 
+	if(isnan(percent))
+		percent = 0.00;
+
 	mvwprintw(win, bar + 4, val, "%.2f%%", percent);
 	mvwprintw(win, bar + 4, start, "[");
 

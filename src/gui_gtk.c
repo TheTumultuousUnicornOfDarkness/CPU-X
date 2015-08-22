@@ -333,7 +333,10 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 		i++;
 	}
 	percent = (double) strtol(data->tabsys[VALUE][n], NULL, 10) /
-	strtol(strstr(data->tabsys[VALUE][n], "/ ") + 2, NULL, 10) * 100;
+		strtol(strstr(data->tabsys[VALUE][n], "/ ") + 2, NULL, 10) * 100;
+
+	if(isnan(percent))
+		percent = 0.00;
 
 	snprintf(text, MAXSTR, "%.2f%%", percent); /* Percentage in level bar */
 	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
