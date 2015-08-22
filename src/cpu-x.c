@@ -79,6 +79,9 @@ int main(int argc, char *argv[])
 			{
 				cpuvendor(data.tabcpu[VALUE][VENDOR]);
 				instructions(&data.tabcpu[VALUE][ARCHITECTURE], &data.tabcpu[VALUE][INSTRUCTIONS]);
+
+				if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
+					strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
 			}
 		}
 
@@ -533,8 +536,7 @@ int libcpuid(Labels *data)
 	}
 
 	if(datanr.num_cores > 0) /* Avoid divide by 0 */
-		asprintf(&data->tabcpu[VALUE][SOCKETS],	"%d", datanr.total_logical_cpus /
-			(datanr.num_cores * (datanr.total_logical_cpus / datanr.num_logical_cpus)));
+		asprintf(&data->tabcpu[VALUE][SOCKETS],	"%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
 	asprintf(&data->tabcpu[VALUE][CORES],		"%d", datanr.num_cores);
 	asprintf(&data->tabcpu[VALUE][THREADS],		"%d", datanr.num_logical_cpus);
@@ -640,7 +642,6 @@ void instructions(char **arch, char **instr)
 		if(id.flags[CPU_FEATURE_AVX])		catinstr(instr, ", AVX");
 		if(id.flags[CPU_FEATURE_VMX])		catinstr(instr, ", VT-x");
 		if(id.flags[CPU_FEATURE_SVM])		catinstr(instr, ", AMD-V");
-		if(id.flags[CPU_FEATURE_HT])		catinstr(instr, ", HT");
 
 		if(id.flags[CPU_FEATURE_LM])		*arch = strdupnullok("x86_64 (64-bit)");
 		else					*arch = strdupnullok("ix86 (32-bit)");
