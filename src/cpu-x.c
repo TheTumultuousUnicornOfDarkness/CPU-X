@@ -741,7 +741,7 @@ void cpufreq(Labels *data)
 				error = 1;
 			}
 			else {
-				fgets(multmin, 9, fmin);
+				fgets(multmin, S - 1, fmin);
 				fclose(fmin);
 			}
 		}
@@ -755,12 +755,13 @@ void cpufreq(Labels *data)
 				error = (error == 1) ? 3 : 2;
 			}
 			else {
-				fgets(multmax, 9, fmax);
+				fgets(multmax, S - 1, fmax);
 				fclose(fmax);
 			}
 		}
 
-		mult(data->tabcpu[VALUE][BUSSPEED], data->tabcpu[VALUE][CORESPEED], multmin, multmax, &data->tabcpu[VALUE][MULTIPLIER]);
+		if(data->tabcpu[VALUE][BUSSPEED] != NULL && data->tabcpu[VALUE][CORESPEED] != NULL)
+			mult(data->tabcpu[VALUE][BUSSPEED], data->tabcpu[VALUE][CORESPEED], multmin, multmax, &data->tabcpu[VALUE][MULTIPLIER]);
 	}
 #endif /* __linux__ */
 }
@@ -768,33 +769,37 @@ void cpufreq(Labels *data)
 /* Determine CPU multiplicator from base clock */
 void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **multsynt)
 {
-	int i, fcpu, fbus, cur, min, max;
+	int i, fcpu, min, max;
+	static int fbus = -1;
+	double cur;
 	char ncpu[S] = "", nbus[S] = "";
-
-	if(busfreq == NULL || cpufreq == NULL)
-		return ;
 
 	MSGVERB(_("Estimating CPU multiplicateurs (current - minimum - maximum)"));
 	for(i = 0; isdigit(cpufreq[i]); i++)
 		ncpu[i] = cpufreq[i];
+	ncpu[i] = '\0';
 	fcpu = atoi(ncpu);
 
-	for(i = 0; isdigit(busfreq[i]); i++)
-		nbus[i] = busfreq[i];
-	nbus[i] = '\0';
-	fbus = atoi(nbus);
-	cur = round((double) fcpu / fbus);
+	if(fbus == -1)
+	{
+		for(i = 0; isdigit(busfreq[i]); i++)
+			nbus[i] = busfreq[i];
+		nbus[i] = '\0';
+		fbus = atoi(nbus);
+	}
+
+	cur = (double) fcpu / fbus;
 	min = atoi(multmin);
 	max = atoi(multmax);
 
-	if(fbus > 0)
+	if(fbus > 0 && min >= 10000 && max >= 10000)
 	{
-		if(min >= 10000)
-			min /= (fbus * 1000);
-		if(max >= 10000 && fbus > 0)
-			max /= (fbus * 1000);
-		asprintf(multsynt, "x %i (%i-%i)", cur, min, max);
+		min /= (fbus * 1000);
+		max /= (fbus * 1000);
+		asprintf(multsynt, "x %i (%i-%i)", (int) round(cur), min, max);
 	}
+	else if(cur > 0)
+			asprintf(multsynt, "x %.2f", cur);
 }
 
 /* Read value "bobomips" from file /proc/cpuinfo */
