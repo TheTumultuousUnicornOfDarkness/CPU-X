@@ -359,37 +359,56 @@ void labels_free(Labels *data)
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
 		free(data->tabcpu[NAME][i]);
+		data->tabcpu[NAME][i] = NULL;
+
 		if(i != MULTIPLIER)
+		{
 			free(data->tabcpu[VALUE][i]);
+			data->tabcpu[VALUE][i] = NULL;
+		}
 	}
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
 		free(data->tabmb[NAME][i]);
+		data->tabmb[NAME][i] = NULL;
+
 		free(data->tabmb[VALUE][i]);
+		data->tabmb[VALUE][i] = NULL;
 	}
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < LASTRAM; i++)
 	{
 		free(data->tabram[NAME][i]);
+		data->tabram[NAME][i] = NULL;
+
 		free(data->tabram[VALUE][i]);
+		data->tabram[VALUE][i] = NULL;
 	}
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYS; i++)
 	{
 		free(data->tabsys[NAME][i]);
+		data->tabsys[NAME][i] = NULL;
+
 		if(i != USED && i != BUFFERS && i != CACHED && i != FREE && i != SWAP)
+		{
 			free(data->tabsys[VALUE][i]);
+			data->tabsys[VALUE][i] = NULL;
+		}
 	}
 
 	/* Tab Graphics */
 	for(i = GPUVENDOR1; i < LASTGPU; i++)
 	{
 		free(data->tabgpu[NAME][i]);
+		data->tabgpu[NAME][i] = NULL;
+
 		free(data->tabgpu[VALUE][i]);
+		data->tabgpu[VALUE][i] = NULL;
 	}
 }
 
