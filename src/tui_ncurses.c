@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <math.h>
 #include <libintl.h>
 #include "cpu-x.h"
 #include "tui_ncurses.h"
