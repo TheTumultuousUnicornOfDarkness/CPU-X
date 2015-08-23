@@ -35,15 +35,21 @@ if(GETTEXT_FOUND)
 	)
 
 	# Update existing translations
-	### TODO: Do a loop and use filename from var ${absPoFiles}
-	add_custom_target(updatepo
-		COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --indent --update --backup=existing fr.po ${absPotFile}
-		COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --indent --update --backup=existing pt_BR.po ${absPotFile}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+	add_custom_target(updatepo)
+	set(results)
+	foreach(absPoFile ${absPoFiles})
+		add_custom_command(TARGET updatepo
+			COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --indent --update --backup=existing fr.po ${absPotFile}
+			COMMENT "Update po file ${absPoFile}"
+		)
+		set(results ${results} ${absPoFile})
+	endforeach(absPoFile)
+	add_custom_command(TARGET updatepo
+		DEPENDS ${results}
 	)
 
 	# Convert .po to .mo and install
-	FILE(COPY ${absPoFiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+	file(COPY ${absPoFiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 	foreach(absPoFile ${absPoFiles})
 		get_filename_component(poFile ${absPoFile} NAME)
 		string(REGEX REPLACE "^(.+)(\\.[^.]+)$" "\\1" poFile ${poFile})
