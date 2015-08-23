@@ -232,5 +232,8 @@ int last_gpu(Labels *data);
 /* Duplicate a not null string */
 char *strdupnullok(const char *s);
 
+/* Check for a new portable version and apply it */
+int update_prg(char *executable);
+
 
 #endif /* _CPUX_H_ */

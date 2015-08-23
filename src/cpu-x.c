@@ -123,6 +123,8 @@ int main(int argc, char *argv[])
 	else if(HAS_LIBDMI && option == 'D') /* Just run command dmidecode */
 			libdmi(option);
 
+	update_prg(argv[0]);
+
 	return EXIT_SUCCESS;
 }
 
@@ -976,4 +978,76 @@ int last_gpu(Labels *data)
 char *strdupnullok(const char *s)
 {
 	return (s != NULL) ? strdup(s) : NULL;
+}
+
+/* Check for a new portable version and apply it */
+int update_prg(char *executable)
+{
+#ifdef EMBED
+	int i = 0;
+	char version[S], *portype, *tgzname, *cmd, *bin;
+	char *ext[] = { "bsd32", "linux32", "linux64", "end" };
+	FILE *page = NULL;
+
+	MSGVERB("Check for a new portable version...");
+	page = popen("curl https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
+
+	/* Open file descriptor and put version number in variable */
+	if(page == NULL)
+	{
+		MSGSERR("Failed to check on Internet.");
+		return 1;
+	}
+	else
+	{
+		fgets(version, S - 1, page);
+		pclose(page);
+		version[strlen(version) - 1] = '\0';
+	}
+
+	if(!strcmp(PRGVER, version))
+	{
+		MSGVERB("No new version available.");
+		return 0;
+	}
+
+	/* Find what archive we need to download */
+	if(HAS_GTK)
+		portype = strdup("portable");
+	else
+		portype = strdup("portable_noGTK");
+
+	/* Download an extract archive */
+	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, version, portype);
+	asprintf(&cmd, "curl -L https://github.com/%s/%s/releases/download/v%s/%s -o %s", PRGAUTH, PRGNAME, version, tgzname, tgzname);
+	system(cmd);
+
+	asprintf(&cmd, "tar -zxf %s", tgzname);
+	system(cmd);
+	free(cmd);
+
+#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, "bsd32");
+#elif defined (__linux__) && defined (__LP64__)
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, "linux64");
+#elif defined (__linux__) && !defined (__LP64__)
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, "linux32");
+#endif /* OS */
+
+	/* Rename new binary and delete temporary files */
+	rename(bin, executable);
+	remove(tgzname);
+	while(strcmp(ext[i], "end"))
+	{
+		asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, ext[i]);
+		remove(bin);
+		i++;
+	}
+
+	free(portype);
+	free(tgzname);
+	free(bin);
+
+#endif /* EMBED */
+	return 0;
 }
