@@ -62,8 +62,6 @@ void system_linux(Labels *data, long int *suptime)
 	char *filestr = NULL, *distro = NULL;
 	FILE *osrel = NULL;
 
-	*suptime = uptime(NULL, NULL); /* Label Uptime */
-
 	osrel = fopen("/etc/os-release", "r"); /* Label Distribution */
 	if(osrel == NULL && !called)
 		MSGPERR(_("failed to open file '/etc/os-release'"));
@@ -87,6 +85,8 @@ void system_linux(Labels *data, long int *suptime)
 	called = 1;
 
 # if HAS_LIBPROCPS
+	*suptime = uptime(NULL, NULL); /* Label Uptime */
+
 	meminfo(); /* Memory labels */
 	memtot = kb_main_total / div;
 
