@@ -20,6 +20,7 @@
 * options.c
 */
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
@@ -62,13 +63,20 @@ void help(FILE *out, char *argv[])
 
 void version(void)
 {
-	printf(_("%s %s\n"
+	char *strver, *newver = check_lastver();
+
+	if(newver[0] == 'f')
+		asprintf(&strver, _("(up-to-date)"));
+	else
+		asprintf(&strver, _("(version %s is available)"), newver);
+
+	printf(_("%s %s %s\n"
 	"%s\n\n"
 	"This is free software: you are free to change and redistribute it.\n"
 	"This program comes with ABSOLUTELY NO WARRANTY\n"
 	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
 	"Compiled on %s, %s, with compiler version %s.\n"),
-	PRGNAME, PRGVER, PRGCPYR, __DATE__, __TIME__, __VERSION__);
+	PRGNAME, PRGVER, strver, PRGCPYR, __DATE__, __TIME__, __VERSION__);
 }
 
 char menu(int argc, char *argv[])

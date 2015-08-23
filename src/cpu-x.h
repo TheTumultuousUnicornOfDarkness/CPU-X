@@ -232,7 +232,10 @@ int last_gpu(Labels *data);
 /* Duplicate a not null string */
 char *strdupnullok(const char *s);
 
-/* Check for a new portable version and apply it */
+/* Check if running version is latest */
+char *check_lastver(void);
+
+/* Apply new portable version if available */
 int update_prg(char *executable);
 
 

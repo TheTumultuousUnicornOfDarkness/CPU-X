@@ -980,36 +980,57 @@ char *strdupnullok(const char *s)
 	return (s != NULL) ? strdup(s) : NULL;
 }
 
-/* Check for a new portable version and apply it */
-int update_prg(char *executable)
+/* Check if running version is latest */
+char *check_lastver(void)
 {
-#ifdef EMBED
-	int i = 0;
-	char version[S], *portype, *tgzname, *cmd, *bin;
-	char *ext[] = { "bsd32", "linux32", "linux64", "end" };
+	char version[S];
+	static char *ret = NULL;
 	FILE *page = NULL;
 
+	if(ret != NULL)
+		return ret;
+
 	MSGVERB("Check for a new portable version...");
-	page = popen("curl https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
+	page = popen("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
 
 	/* Open file descriptor and put version number in variable */
 	if(page == NULL)
 	{
 		MSGSERR("Failed to check on Internet.");
-		return 1;
+		ret = strdup("f");
+		return ret;
 	}
-	else
-	{
-		fgets(version, S - 1, page);
-		pclose(page);
-		version[strlen(version) - 1] = '\0';
-	}
+
+	fgets(version, S - 1, page);
+	pclose(page);
+	version[strlen(version) - 1] = '\0';
 
 	if(!strcmp(PRGVER, version))
 	{
 		MSGVERB("No new version available.");
-		return 0;
+		ret = strdup("f");
 	}
+	else
+	{
+		MSGVERB("A new version is available.");
+		ret = strdup(version);
+	}
+
+	return ret;
+}
+
+/* Apply new portable version if available */
+int update_prg(char *executable)
+{
+#ifdef EMBED
+	int i = 0;
+	char *version, *opt, *portype, *tgzname, *cmd, *bin;
+	char *ext[] = { "bsd32", "linux32", "linux64", "end" };
+
+	opt = verbose ? strdup("-s") : strdup("");
+	version = check_lastver();
+	if(version[0] == 'f')
+		return 1;
 
 	/* Find what archive we need to download */
 	if(HAS_GTK)
@@ -1019,11 +1040,14 @@ int update_prg(char *executable)
 
 	/* Download an extract archive */
 	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, version, portype);
-	asprintf(&cmd, "curl -L https://github.com/%s/%s/releases/download/v%s/%s -o %s", PRGAUTH, PRGNAME, version, tgzname, tgzname);
+	asprintf(&cmd, "curl %s-L https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, version, tgzname, tgzname);
 	system(cmd);
 
 	asprintf(&cmd, "tar -zxf %s", tgzname);
 	system(cmd);
+
+	free(version);
+	free(opt);
 	free(cmd);
 
 #if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
