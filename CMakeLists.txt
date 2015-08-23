@@ -79,46 +79,46 @@ endif(EMBED)
 message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
 
 # GTK3+ libs
-if(GTK3_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(GTK3_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(GTK3_FOUND)
+if(GTK3_FOUND AND WITH_GTK)
+	message("${BoldCyan}**   GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(GTK3_FOUND AND WITH_GTK)
+	message("${BoldCyan}**   GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(GTK3_FOUND AND WITH_GTK)
 
 # NCurses libs
-if(NCURSES_FOUND)
+if(NCURSES_FOUND AND WITH_NCURSES)
 	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(NCURSES_FOUND)
+else(NCURSES_FOUND AND WITH_NCURSES)
 	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(NCURSES_FOUND)
+endif(NCURSES_FOUND AND WITH_NCURSES)
 
 # Libcpuid lib
-if(LIBCPUID_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBCPUID_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBCPUID_FOUND)
+if(LIBCPUID_FOUND AND WITH_LIBCPUID)
+	message("${BoldCyan}**   LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(LIBCPUID_FOUND AND WITH_LIBCPUID)
+	message("${BoldCyan}**   LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(LIBCPUID_FOUND AND WITH_LIBCPUID)
 
 # Dmidecode lib
 if(WITH_LIBDMI)
-	message("${BoldCyan}**   ${BoldCyan}LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
+	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
 else(WITH_LIBDMI)
-	message("${BoldCyan}**   ${BoldCyan}LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
+	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBDMI)
 
 # Pciutils lib
-if(LIBPCI_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}LIBPCI${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBPCI_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}LIBPCI${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBPCI_FOUND)
+if(LIBPCI_FOUND AND WITH_LIBPCI)
+	message("${BoldCyan}**   LIBPCI${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(LIBPCI_FOUND AND WITH_LIBPCI)
+	message("${BoldCyan}**   LIBPCI${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(LIBPCI_FOUND AND WITH_LIBPCI)
 
 # Libprocps / Libstatgrab lib
-if(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}LIBSYSTEM${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
-	message("${BoldCyan}**   ${BoldCyan}LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND)
+if((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
+	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
+	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
 
 
 # Uninstall target
