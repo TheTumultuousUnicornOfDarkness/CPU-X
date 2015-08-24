@@ -85,6 +85,7 @@ void system_linux(Labels *data, long int *suptime)
 	called = 1;
 
 # if HAS_LIBPROCPS
+	MSGVERB(_("Filling labels (libprocps step)"));
 	*suptime = uptime(NULL, NULL); /* Label Uptime */
 
 	meminfo(); /* Memory labels */
@@ -158,6 +159,7 @@ void system_nonlinux(Labels *data, long int *suptime)
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 
+	MSGVERB(_("Filling labels (libstatgrab step)"));
 	if(!called)
 	{
 		sg_init(0);
@@ -183,12 +185,12 @@ void system_nonlinux(Labels *data, long int *suptime)
 /* Get system informations */
 void tabsystem(Labels *data)
 {
-	MSGVERB(_("Filling System tab"));
 	long int duptime, huptime, muptime, suptime = 0;
 	char buff[MAXSTR];
 	FILE *cc;
 	struct utsname name;
 
+	MSGVERB(_("Filling labels (libsystem step)"));
 	uname(&name);
 	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", name.sysname, name.release); /* Label Kernel */
 	asprintf(&data->tabsys[VALUE][HOSTNAME], "%s", name.nodename); /* Label Hostname */

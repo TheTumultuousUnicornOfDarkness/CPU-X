@@ -186,7 +186,7 @@ void labels_setnull(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Setting label pointer"));
+	MSGVERB(_("Setting label pointers"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 		data->tabcpu[VALUE][i] = NULL;
@@ -212,8 +212,8 @@ void labels_setnull(Labels *data)
 void labels_setname(Labels *data)
 {
 	int i;
-	MSGVERB(_("Setting label name"));
 
+	MSGVERB(_("Setting label names"));
 	/* Various objects*/
 	asprintf(&data->objects[TABCPU],		_("CPU"));
 	asprintf(&data->objects[TABMB],			_("Motherboard"));
@@ -331,7 +331,7 @@ void labels_delnull(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Removing null label"));
+	MSGVERB(_("Replace undefined label by empty string"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -388,7 +388,7 @@ void labels_free(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Freeing labels"));
+	MSGVERB(_("Freeing memory"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -523,7 +523,7 @@ int libcpuid(Labels *data)
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
-	MSGVERB(_("Calling Libcpuid"));
+	MSGVERB(_("Filling labels (libcpuid step)"));
 	err += cpuid_get_raw_data(&raw);
 	err += cpu_identify(&raw, &datanr);
 
@@ -537,7 +537,6 @@ int libcpuid(Labels *data)
 	asprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
 	asprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
 
-	MSGVERB(_("Filling array with values provided by Libcpuid"));
 	if(datanr.l1_data_cache > 0)
 	{
 		asprintf(&data->tabcpu[VALUE][LEVEL1D],	"%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
@@ -713,7 +712,7 @@ int libdmidecode(Labels *data)
 	int i, err = 0;
 	static int nodyn = 0;
 
-	MSGVERB(_("Calling Libdmi"));
+	MSGVERB(_("Filling labels (libdmi step)"));
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE]	= &data->tabcpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]	= &data->tabcpu[VALUE][BUSSPEED];
@@ -744,8 +743,7 @@ int libdmi_fallback(Labels *data)
 {
 	int err = 0;
 
-	MSGVERB(_("Call Libdmi (fallback mode)"));
-
+	MSGVERB(_("Filling labels (libdmi step, fallback mode)"));
 #ifdef __linux__
 	int i;
 	char path[PATH_MAX], buff[MAXSTR];
@@ -830,7 +828,7 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **mul
 	double cur;
 	char ncpu[S] = "", nbus[S] = "";
 
-	MSGVERB(_("Estimating CPU multiplicateurs (current - minimum - maximum)"));
+	MSGVERB(_("Estimating CPU multipliers"));
 	for(i = 0; isdigit(cpufreq[i]); i++)
 		ncpu[i] = cpufreq[i];
 	ncpu[i] = '\0';
@@ -862,7 +860,6 @@ void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **mul
 void bogomips(char **c)
 {
 	MSGVERB(_("Reading value BogoMIPS"));
-
 #ifdef __linux__
 	int i = 0, j = 0;
 	char read[20];
@@ -956,7 +953,7 @@ void pcidev(Labels *data)
 	struct pci_dev *dev;
 	char namebuf[MAXSTR], *vendor, *product, *driver;
 
-	MSGVERB(_("Find some PCI devices"));
+	MSGVERB(_("Filling labels (libpci step)"));
 	pacc = pci_alloc();	/* Get the pci_access structure */
 	pci_init(pacc);		/* Initialize the PCI library */
 	pci_scan_bus(pacc);	/* We want to get the list of devices */
@@ -1024,7 +1021,7 @@ char *check_lastver(void)
 	if(ret != NULL)
 		return ret;
 
-	MSGVERB(_("Check for a new portable version..."));
+	MSGVERB(_("Check for a new version..."));
 	page = popen("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
 
 	/* Open file descriptor and put version number in variable */
@@ -1046,7 +1043,7 @@ char *check_lastver(void)
 	}
 	else
 	{
-		MSGVERB(_("A new version is available."));
+		MSGVERB(_("A new version is available!"));
 		ret = strdup(version);
 	}
 
@@ -1057,7 +1054,7 @@ char *check_lastver(void)
 int update_prg(char *executable)
 {
 #ifdef EMBED
-	int i = 0;
+	int err = 0, i = 0;
 	char *version, *opt, *portype, *tgzname, *cmd, *bin;
 	char *ext[] = { "bsd32", "linux32", "linux64", "end" };
 
@@ -1073,6 +1070,7 @@ int update_prg(char *executable)
 		portype = strdup("portable_noGTK");
 
 	/* Download an extract archive */
+	MSGVERB(_("Downloading new version..."));
 	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, version, portype);
 	asprintf(&cmd, "curl %s-L https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, version, tgzname, tgzname);
 	system(cmd);
@@ -1093,14 +1091,22 @@ int update_prg(char *executable)
 #endif /* OS */
 
 	/* Rename new binary and delete temporary files */
-	rename(bin, executable);
-	remove(tgzname);
+	MSGVERB(_("Applying new version..."));
+	if(err = rename(bin, executable))
+		MSGVERB(_("Error when updating."));
+	else
+		MSGVERB(_("Update successful!"));
+
+	err = remove(tgzname);
 	while(strcmp(ext[i], "end"))
 	{
 		asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, ext[i]);
-		remove(bin);
+		err += remove(bin);
 		i++;
 	}
+
+	if(err)
+		MSGVERB(_("Error when deleting temporary files."));
 
 	free(portype);
 	free(tgzname);

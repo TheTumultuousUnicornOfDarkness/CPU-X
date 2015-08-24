@@ -1,13 +1,13 @@
 # Brazilian Portuguese translation.
 # Copyright © 2014-2015 Xorg
-# This file is distributed under the same license as the PACKAGE package.
-# Xorg, 2015.
+# This file is distributed under the same license as the CPU-X package.
+# Lara Maia <dev@lara.click>, 2015.
 #
 #, fuzzy
 msgid   ""
 msgstr  "Project-Id-Version: cpu-x 2.1.0\n"
         "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-        "POT-Creation-Date: 2015-08-13 02:54-0300\n"
+        "POT-Creation-Date: 2015-08-24 20:08+0200\n"
         "PO-Revision-Date: 2015-08-13 03:36-0300\n"
         "Last-Translator: Lara Maia <dev@lara.click>\n"
         "Language: Brazilian Portuguese\n"
@@ -15,402 +15,455 @@ msgstr  "Project-Id-Version: cpu-x 2.1.0\n"
         "Content-Type: text/plain; charset=UTF-8\n"
         "Content-Transfer-Encoding: 8bit\n"
 
-#: cpu-x.c:62
-msgid   "Setting locale"
+#: cpu-x.c:107
+#, fuzzy
+msgid   "Setting locale done"
 msgstr  "Configuração de idioma"
 
-#: cpu-x.c:76 cpu-x.c:646
+#: cpu-x.c:117 cpu-x.c:704
 msgid   "libcpuid failed"
 msgstr  "libcpuid falhou"
 
-#: cpu-x.c:87
+#: cpu-x.c:131
 msgid   "libdmidecode failed"
 msgstr  "libdmidecode falhou"
 
-#: cpu-x.c:92
+#: cpu-x.c:136
 msgid   "libdmi_fallback failed"
 msgstr  "libdmi_fallback falhou"
 
-#: cpu-x.c:177
-msgid   "Setting label name"
+#: cpu-x.c:189
+#, fuzzy
+msgid   "Setting label pointers"
 msgstr  "Configuração de nome do rótulo"
 
-#: cpu-x.c:180
+#: cpu-x.c:216
+#, fuzzy
+msgid   "Setting label names"
+msgstr  "Configuração de nome do rótulo"
+
+#: cpu-x.c:218
 msgid   "CPU"
 msgstr  "CPU"
 
-#: cpu-x.c:181
+#: cpu-x.c:219 cpu-x.c:227
 msgid   "Motherboard"
 msgstr  "Placa-mãe"
 
-#: cpu-x.c:182
+#: cpu-x.c:220
 msgid   "RAM"
 msgstr  "RAM"
 
-#: cpu-x.c:183
+#: cpu-x.c:221
 msgid   "System"
 msgstr  "Sistema"
 
-#: cpu-x.c:184
+#: cpu-x.c:222
 msgid   "Graphics"
 msgstr  "Gráficos"
 
-#: cpu-x.c:185 cpu-x.c:199
+#: cpu-x.c:223 cpu-x.c:237
 msgid   "About"
 msgstr  "Sobre"
 
-#: cpu-x.c:186
+#: cpu-x.c:224
 msgid   "Processor"
 msgstr  "Processador"
 
-#: cpu-x.c:187
+#: cpu-x.c:225
 msgid   "Clocks"
 msgstr  "Frequências"
 
-#: cpu-x.c:188
+#: cpu-x.c:226
 msgid   "Cache"
 msgstr  "Cache"
 
-#: cpu-x.c:190
+#: cpu-x.c:228
 msgid   "BIOS"
 msgstr  "BIOS"
 
-#: cpu-x.c:191
+#: cpu-x.c:229
 msgid   "Chipset"
 msgstr  "Chipset"
 
-#: cpu-x.c:192
+#: cpu-x.c:230
 msgid   "Card 0"
 msgstr  "Placa 0"
 
-#: cpu-x.c:193
+#: cpu-x.c:231
 msgid   "Card 1"
 msgstr  "Placa 1"
 
-#: cpu-x.c:194
+#: cpu-x.c:232
 msgid   "Card 2"
 msgstr  "Placa 2"
 
-#: cpu-x.c:195
+#: cpu-x.c:233
 msgid   "Card 3"
 msgstr  "Placa 3"
 
-#: cpu-x.c:196
+#: cpu-x.c:234
 msgid   "Banks"
 msgstr  "Bancos"
 
-#: cpu-x.c:197
+#: cpu-x.c:235
 msgid   "Operating System"
 msgstr  "Sistema Operacional"
 
-#: cpu-x.c:198
+#: cpu-x.c:236
 msgid   "Memory"
 msgstr  "Memória"
 
-#: cpu-x.c:200
+#: cpu-x.c:238
 msgid   "License"
 msgstr  "Licença"
 
-#: cpu-x.c:201
+#: cpu-x.c:239
 #, c-format
 msgid   "Version %s"
 msgstr  "Versão %s"
 
-#: cpu-x.c:203
+#: cpu-x.c:241
 #, c-format
 msgid   "%s is a Free software that gathers information\n"
         "on CPU, motherboard and more."
 msgstr  "%s é um software Livre que coleta informações sobre\n"
         "sua CPU, placa-mãe and mais."
 
-#: cpu-x.c:205
+#: cpu-x.c:243
 #, c-format
 msgid   "Author : %s"
 msgstr  "Autor : %s"
 
-#: cpu-x.c:208
+#: cpu-x.c:246
 msgid   "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr  "Esse programa vem com ABSOLUTAMENTE NENHUMA GARANTIA"
 
-#: cpu-x.c:211 cpu-x.c:247 cpu-x.c:285
+#: cpu-x.c:249 cpu-x.c:285 cpu-x.c:323
 msgid   "Vendor"
 msgstr  "Fornecedor"
 
-#: cpu-x.c:212
+#: cpu-x.c:250
 msgid   "Code Name"
 msgstr  "Nome de Código"
 
-#: cpu-x.c:213
+#: cpu-x.c:251
 msgid   "Package"
 msgstr  "Pacote"
 
-#: cpu-x.c:214
+#: cpu-x.c:252
 msgid   "Architecture"
 msgstr  "Arquitetura"
 
-#: cpu-x.c:215
+#: cpu-x.c:253
 msgid   "Specification"
 msgstr  "Especificação"
 
-#: cpu-x.c:216
+#: cpu-x.c:254
 msgid   "Family"
 msgstr  "Família"
 
-#: cpu-x.c:217
+#: cpu-x.c:255
 msgid   "Ext. Family"
 msgstr  "Ext. Família"
 
-#: cpu-x.c:218 cpu-x.c:239 cpu-x.c:248 cpu-x.c:286
+#: cpu-x.c:256 cpu-x.c:277 cpu-x.c:286 cpu-x.c:324
 msgid   "Model"
 msgstr  "Modelo"
 
-#: cpu-x.c:219
+#: cpu-x.c:257
 msgid   "Ext. Model"
 msgstr  "Ext. Modelo"
 
-#: cpu-x.c:220
+#: cpu-x.c:258
 msgid   "Stepping"
 msgstr  "Stepping"
 
-#: cpu-x.c:221
+#: cpu-x.c:259
 msgid   "Instructions"
 msgstr  "Instruções"
 
-#: cpu-x.c:223
+#: cpu-x.c:261
 msgid   "Core Speed"
 msgstr  "Velocidade do Núcleo"
 
-#: cpu-x.c:224
+#: cpu-x.c:262
 msgid   "Multiplier"
 msgstr  "Multiplicador"
 
-#: cpu-x.c:225
+#: cpu-x.c:263
 msgid   "Bus Speed"
 msgstr  "Velocidade do Bus"
 
-#: cpu-x.c:226
+#: cpu-x.c:264
 msgid   "BogoMIPS"
 msgstr  "BogoMIPS"
 
-#: cpu-x.c:228
+#: cpu-x.c:266
 msgid   "L1 Data"
 msgstr  "L1 Data"
 
-#: cpu-x.c:229
+#: cpu-x.c:267
 msgid   "L1 Inst."
 msgstr  "L1 Inst."
 
-#: cpu-x.c:230
+#: cpu-x.c:268
 msgid   "Level 2"
 msgstr  "Nível 2"
 
-#: cpu-x.c:231
+#: cpu-x.c:269
 msgid   "Level 3"
 msgstr  "Nível 3"
 
-#: cpu-x.c:233
+#: cpu-x.c:271
 msgid   "Sockets(s)"
 msgstr  "Sockets(s)"
 
-#: cpu-x.c:234
+#: cpu-x.c:272
 msgid   "Core(s)"
 msgstr  "Núcleo(s)"
 
-#: cpu-x.c:235
+#: cpu-x.c:273
 msgid   "Thread(s)"
 msgstr  "Thread(s)"
 
-#: cpu-x.c:238
+#: cpu-x.c:276
 msgid   "Manufacturer"
 msgstr  "Fabricante"
 
-#: cpu-x.c:240
+#: cpu-x.c:278
 msgid   "Revision"
 msgstr  "Revisão"
 
-#: cpu-x.c:242
+#: cpu-x.c:280
 msgid   "Brand"
 msgstr  "Marca"
 
-#: cpu-x.c:243
+#: cpu-x.c:281
 msgid   "Version"
 msgstr  "Versão"
 
-#: cpu-x.c:244
+#: cpu-x.c:282
 msgid   "Date"
 msgstr  "Data"
 
-#: cpu-x.c:245
+#: cpu-x.c:283
 msgid   "ROM Size"
 msgstr  "Tamanho da ROM"
 
-#: cpu-x.c:252
+#: cpu-x.c:290
 msgid   "Bank 0 Ref."
 msgstr  "Banco 0 Réf."
 
-#: cpu-x.c:253
+#: cpu-x.c:291
 msgid   "Bank 0 Type"
 msgstr  "Banco 0 Type"
 
-#: cpu-x.c:254
+#: cpu-x.c:292
 msgid   "Bank 1 Ref."
 msgstr  "Banco 1 Réf."
 
-#: cpu-x.c:255
+#: cpu-x.c:293
 msgid   "Bank 1 Type"
 msgstr  "Banco 1 Type"
 
-#: cpu-x.c:256
+#: cpu-x.c:294
 msgid   "Bank 2 Ref."
 msgstr  "Banco 2 Réf."
 
-#: cpu-x.c:257
+#: cpu-x.c:295
 msgid   "Bank 2 Type"
 msgstr  "Banco 2 Type"
 
-#: cpu-x.c:258
+#: cpu-x.c:296
 msgid   "Bank 3 Ref."
 msgstr  "Banco 3 Réf."
 
-#: cpu-x.c:259
+#: cpu-x.c:297
 msgid   "Bank 3 Type"
 msgstr  "Banco 3 Type"
 
-#: cpu-x.c:260
+#: cpu-x.c:298
 msgid   "Bank 4 Ref."
 msgstr  "Banco 4 Réf."
 
-#: cpu-x.c:261
+#: cpu-x.c:299
 msgid   "Bank 4 Type"
 msgstr  "Banco 4 Type"
 
-#: cpu-x.c:262
+#: cpu-x.c:300
 msgid   "Bank 5 Ref."
 msgstr  "Banco 5 Réf."
 
-#: cpu-x.c:263
+#: cpu-x.c:301
 msgid   "Bank 5 Type"
 msgstr  "Banco 5 Type"
 
-#: cpu-x.c:264
+#: cpu-x.c:302
 msgid   "Bank 6 Ref."
 msgstr  "Banco 6 Réf."
 
-#: cpu-x.c:265
+#: cpu-x.c:303
 msgid   "Bank 6 Type"
 msgstr  "Banco 6 Type"
 
-#: cpu-x.c:266
+#: cpu-x.c:304
 msgid   "Bank 7 Ref."
 msgstr  "Banco 7 Réf."
 
-#: cpu-x.c:267
+#: cpu-x.c:305
 msgid   "Bank 7 Type"
 msgstr  "Banco 7 Type"
 
-#: cpu-x.c:270
+#: cpu-x.c:308
 msgid   "Kernel"
 msgstr  "Kernel"
 
-#: cpu-x.c:271
+#: cpu-x.c:309
 msgid   "Distribution"
 msgstr  "Distribuição"
 
-#: cpu-x.c:272
+#: cpu-x.c:310
 msgid   "Hostname"
 msgstr  "Nome do Host"
 
-#: cpu-x.c:273
+#: cpu-x.c:311
 msgid   "Uptime"
 msgstr  "Disponibilidade"
 
-#: cpu-x.c:274
+#: cpu-x.c:312
 msgid   "Compiler"
 msgstr  "Compilador"
 
-#: cpu-x.c:276
+#: cpu-x.c:314
 msgid   "Used"
 msgstr  "Utilizado"
 
-#: cpu-x.c:277
+#: cpu-x.c:315
 msgid   "Buffers"
 msgstr  "Buffers"
 
-#: cpu-x.c:278
+#: cpu-x.c:316
 msgid   "Cached"
 msgstr  "Em Cache"
 
-#: cpu-x.c:279
+#: cpu-x.c:317
 msgid   "Free"
 msgstr  "Livre"
 
-#: cpu-x.c:280
+#: cpu-x.c:318
 msgid   "Swap"
 msgstr  "Swap"
 
-#: cpu-x.c:287
+#: cpu-x.c:325
 msgid   "Driver"
 msgstr  "Driver"
 
-#: cpu-x.c:397
+#: cpu-x.c:334
+msgid   "Replace undefined label by empty string"
+msgstr  ""
+
+#: cpu-x.c:391
+#, fuzzy
+msgid   "Freeing memory"
+msgstr  "Configuração de nome do rótulo"
+
+#: cpu-x.c:454
 msgid   "Dumping data..."
 msgstr  "Dados de despejo..."
 
-#: cpu-x.c:467
-msgid   "Calling Libcpuid"
-msgstr  "Chamando Libcpuid"
+#: cpu-x.c:526
+msgid   "Filling labels (libcpuid step)"
+msgstr  ""
 
-#: cpu-x.c:481
-msgid   "Filling array with values provided by Libcpuid"
-msgstr  "Preenchendo matriz com os valores fornecidos pelo Libcpuid"
-
-#: cpu-x.c:549
+#: cpu-x.c:607
 msgid   "Improving CPU Vendor label"
 msgstr  "Melhorando a etiqueta do fornecedor da CPU"
 
-#: cpu-x.c:569
+#: cpu-x.c:627
 msgid   "Removing unnecessary spaces in label Specification"
 msgstr  "Removendo espaços desnecessário na etiqueta Especificação"
 
-#: cpu-x.c:621
+#: cpu-x.c:679
 msgid   "Finding CPU instructions"
 msgstr  "Encontrando instruções da CPU"
 
-#: cpu-x.c:657
-msgid   "Calling Libdmi"
-msgstr  "Chamando Libdmi"
+#: cpu-x.c:715
+msgid   "Filling labels (libdmi step)"
+msgstr  ""
 
-#: cpu-x.c:688
-msgid   "Call Libdmi (fallback mode)"
+#: cpu-x.c:746
+#, fuzzy
+msgid   "Filling labels (libdmi step, fallback mode)"
 msgstr  "Chamar Libdmi (modo fallback)"
 
-#: cpu-x.c:719
+#: cpu-x.c:776
 msgid   "Getting CPU frequency"
 msgstr  "Obtendo frequência da CPU"
 
-#: cpu-x.c:737
+#: cpu-x.c:794
 msgid   "failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/"
         "cpuinfo_min_freq'"
 msgstr  "falhou ao abrir o arquivo '/sys/devices/system/cpu/cpu0/cpufreq/"
         "cpuinfo_min_freq'"
 
-#: cpu-x.c:751
+#: cpu-x.c:808
 msgid   "failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/"
         "cpuinfo_max_freq'"
 msgstr  "falhou ao abrir o arquivo '/sys/devices/system/cpu/cpu0/cpufreq/"
         "cpuinfo_max_freq'"
 
-#: cpu-x.c:771
-msgid   "Estimating CPU multiplicateurs (current - minimum - maximum)"
-msgstr  "Estimando multiplicador da CPU (atual - mínimo - máximo)"
+#: cpu-x.c:831
+msgid   "Estimating CPU multipliers"
+msgstr  "Estimando multiplicador da CPU"
 
-#: cpu-x.c:797
+#: cpu-x.c:862
 msgid   "Reading value BogoMIPS"
 msgstr  "Lendo valor do BogoMIPS"
 
-#: cpu-x.c:808
+#: cpu-x.c:872
 msgid   "failed to open file '/proc/cpuinfo'"
 msgstr  "falhou ao abrir arquivo '/proc/cpuinfo'"
+
+#: cpu-x.c:956
+msgid   "Filling labels (libpci step)"
+msgstr  ""
+
+#: cpu-x.c:1024
+msgid   "Check for a new version..."
+msgstr  ""
+
+#: cpu-x.c:1030
+msgid   "Failed to check on Internet."
+msgstr  ""
+
+#: cpu-x.c:1041
+msgid   "No new version available."
+msgstr  ""
+
+#: cpu-x.c:1046
+msgid   "A new version is available!"
+msgstr  ""
+
+#: cpu-x.c:1073
+msgid   "Downloading new version..."
+msgstr  ""
+
+#: cpu-x.c:1094
+msgid   "Applying new version..."
+msgstr  ""
+
+#: cpu-x.c:1096
+msgid   "Error when updating."
+msgstr  ""
+
+#: cpu-x.c:1098
+msgid   "Update successful!"
+msgstr  ""
+
+#: cpu-x.c:1109
+msgid   "Error when deleting temporary files."
+msgstr  ""
 
 #: cpu-x.h:32
 msgid   "WARNING:\n"
@@ -418,78 +471,95 @@ msgid   "WARNING:\n"
 msgstr  "ATENÇÃO :\n"
         "É necessário privilégios de root para funcionar corretamente."
 
-#: libsystem.c:69
+#: libsystem.c:67
 msgid   "failed to open file '/etc/os-release'"
 msgstr  "falhou ao abrir o arquivo /etc/os-release'"
 
-#: libsystem.c:74
+#: libsystem.c:72
 msgid   "malloc failed"
 msgstr  "malloc falhou"
 
-#: libsystem.c:80
+#: libsystem.c:78
 msgid   "Unknown distro"
 msgstr  "Distribuição desconhecida"
 
-#: libsystem.c:186
-msgid   "Filling System tab"
+#: libsystem.c:88
+msgid   "Filling labels (libprocps step)"
+msgstr  ""
+
+#: libsystem.c:162
+msgid   "Filling labels (libstatgrab step)"
+msgstr  ""
+
+#: libsystem.c:193
+#, fuzzy
+msgid   "Filling labels (libsystem step)"
 msgstr  "Preenchendo aba do Sistema"
 
-#: libsystem.c:213
+#: libsystem.c:215
 #, c-format
 msgid   "%ld days, %2ld hours, %2ld minutes, %2ld seconds"
 msgstr  "%ld dias, %2ld horas, %2ld minutos, %2ld segundos"
 
-#: options.c:50
+#: options.c:51
 #, c-format
 msgid   "Usage: %s [OPTION]\n"
         "\n"
 msgstr  "Utilzação : %s [OPÇÕES]\n"
         "\n"
 
-#: options.c:51
+#: options.c:52
 #, c-format
 msgid   "Available OPTION:\n"
 msgstr  "OPÇÕES Disponíveis:\n"
 
-#: options.c:52
+#: options.c:53
 #, c-format
 msgid   "  -n, --%-10s Start text-based user interface (TUI)\n"
 msgstr  "  -n, --%-10s Inicia a interface de usuário em modo de texto (TUI)\n"
 
-#: options.c:53
+#: options.c:54
 #, c-format
 msgid   "  -d, --%-10s Dump all data on standard output and exit\n"
 msgstr  "  -d, --%-10s Despeja todos os dados na saída padrão e sai\n"
 
-#: options.c:54
+#: options.c:55
 #, c-format
 msgid   "  -r, --%-10s Set custom time between two refreshes (in seconds)\n"
 msgstr  "  -r, --%-10s Definir um intervalo personalizado entre duas "
         "atualizações (em segundos)\n"
 
-#: options.c:56
+#: options.c:57
 #, c-format
 msgid   "  -D, --%-10s Run embedded command dmidecode and exit\n"
 msgstr  "  -D, --%-10s Executa o comando dmidecode embutido e sai\n"
 
-#: options.c:58
+#: options.c:59
 #, c-format
 msgid   "  -v, --%-10s Verbose output\n"
 msgstr  "  -v, --%-10s saída Verbosa\n"
 
-#: options.c:59
+#: options.c:60
 #, c-format
 msgid   "  -h, --%-10s Print help and exit\n"
 msgstr  "  -h, --%-10s Imprime a ajuda e sai\n"
 
-#: options.c:60
+#: options.c:61
 #, c-format
 msgid   "  -V, --%-10s Print version and exit\n"
 msgstr  "  -V, --%-10s Imprime a versão e sai\n"
 
-#: options.c:65
+#: options.c:69
+msgid   "(up-to-date)"
+msgstr  ""
+
+#: options.c:71
 #, c-format
-msgid   "%s %s\n"
+msgid   "(version %s is available)"
+msgstr  ""
+
+#: options.c:73
+msgid   "%s %s %s\n"
         "%s\n"
         "\n"
         "This is free software: you are free to change and redistribute it.\n"
@@ -497,32 +567,45 @@ msgid   "%s %s\n"
         "See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"
         "\n"
         "Compiled on %s, %s, with compiler version %s.\n"
-msgstr  "%s %s\n"
+msgstr  "%s %s %s\n"
         "%s\n"
         "\n"
-        "Este é um programa livre : você é livre para modificá-lo e"
-        "redistribuí-lo.\n"
+        "Este é um programa livre : você é livre para modificá-lo "
+        "eredistribuí-lo.\n"
         "Este programa vem com ABSOLUTAMENTE NENHUMA GARANTIA\n"
         "Veja a licença GPLv3: <http://www.gnu.org/licenses/gpl.txt>\n"
         "\n"
         "Compilado em %s à %s, com a versão do compilador %s.\n"
 
-#: gui_gtk.c:42
+#: gui_gtk.c:43
 msgid   "Starting GTK GUI..."
 msgstr  "Iniciando a interface gráfica GTK..."
 
-#: gui_gtk.c:62
+#: gui_gtk.c:63
 msgid   "Import UI in GtkBuilder failed"
 msgstr  "Falha ao importar o UI no GtkBuilder"
 
-#: gui_gtk.c:116 gui_gtk.c:121
+#: gui_gtk.c:117 gui_gtk.c:122
 msgid   "Ignore"
 msgstr  "Ignorar"
 
-#: gui_gtk.c:121
+#: gui_gtk.c:122
 msgid   "Run as root"
 msgstr  "Executar como root"
 
-#: tui_ncurses.c:39
+#: tui_ncurses.c:40
 msgid   "Starting NCurses TUI..."
 msgstr  "Iniciando a interface de texto NCurses..."
+
+#~ msgid        "Calling Libcpuid"
+#~ msgstr       "Chamando Libcpuid"
+
+#~ msgid        "Calling Libdmi"
+#~ msgstr       "Chamando Libdmi"
+
+#, fuzzy
+#~ msgid        "Removing null label"
+#~ msgstr       "Melhorando a etiqueta do fornecedor da CPU"
+
+#~ msgid        "Filling array with values provided by Libcpuid"
+#~ msgstr       "Preenchendo matriz com os valores fornecidos pelo Libcpuid"
