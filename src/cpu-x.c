@@ -186,7 +186,7 @@ void labels_setnull(Labels *data)
 {
 	int i;
 
-	MSGVERB("Setting label pointer");
+	MSGVERB(_("Setting label pointer"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 		data->tabcpu[VALUE][i] = NULL;
@@ -331,7 +331,7 @@ void labels_delnull(Labels *data)
 {
 	int i;
 
-	MSGVERB("Removing null label");
+	MSGVERB(_("Removing null label"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -388,7 +388,7 @@ void labels_free(Labels *data)
 {
 	int i;
 
-	MSGVERB("Freeing labels");
+	MSGVERB(_("Freeing labels"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -956,7 +956,7 @@ void pcidev(Labels *data)
 	struct pci_dev *dev;
 	char namebuf[MAXSTR], *vendor, *product, *driver;
 
-	MSGVERB("Find some PCI devices");
+	MSGVERB(_("Find some PCI devices"));
 	pacc = pci_alloc();	/* Get the pci_access structure */
 	pci_init(pacc);		/* Initialize the PCI library */
 	pci_scan_bus(pacc);	/* We want to get the list of devices */
@@ -1024,13 +1024,13 @@ char *check_lastver(void)
 	if(ret != NULL)
 		return ret;
 
-	MSGVERB("Check for a new portable version...");
+	MSGVERB(_("Check for a new portable version..."));
 	page = popen("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
 
 	/* Open file descriptor and put version number in variable */
 	if(page == NULL)
 	{
-		MSGSERR("Failed to check on Internet.");
+		MSGSERR(_("Failed to check on Internet."));
 		ret = strdup("f");
 		return ret;
 	}
@@ -1041,12 +1041,12 @@ char *check_lastver(void)
 
 	if(!strcmp(PRGVER, version))
 	{
-		MSGVERB("No new version available.");
+		MSGVERB(_("No new version available."));
 		ret = strdup("f");
 	}
 	else
 	{
-		MSGVERB("A new version is available.");
+		MSGVERB(_("A new version is available."));
 		ret = strdup(version);
 	}
 
