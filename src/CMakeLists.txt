@@ -118,12 +118,6 @@ endif(WITH_LIBSYSTEM)
 
 ### Main executable
 
-if(EMBED)
-	add_definitions(-DEMBED)
-endif(EMBED)
-
-add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
-
 add_executable(cpu-x
 	cpu-x.c
 	cpu-x.h
@@ -131,6 +125,15 @@ add_executable(cpu-x
 	options.c
 )
 
+if(EMBED)
+	add_definitions(-DEMBED)
+	set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
+	add_dependencies(cpu-x convertgmo)
+else(EMBED)
+	add_dependencies(cpu-x potfiles)
+endif(EMBED)
+
+add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
 set(ADDITIONNAL_LIBRARIES "-lm")
 
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")

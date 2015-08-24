@@ -31,6 +31,11 @@
 #include <libintl.h>
 #include "cpu-x.h"
 
+#if EMBED
+# include <sys/stat.h>
+# include "../po/mo.h"
+#endif
+
 #if HAS_GTK
 # include "gui_gtk.h"
 #endif
@@ -54,76 +59,103 @@
 
 int main(int argc, char *argv[])
 {
+	/* Parse options */
 	char option;
 	option = menu(argc, argv);
 
-	if(option != 'D')
+	/* If option --dmidecode is passed, start dmidecode and exit */
+	if(HAS_LIBDMI && option == 'D')
+		return libdmi(option);
+
+#ifdef EMBED
+	int i;
+	char *path;
+	FILE *mofile;
+
+	/* Write .mo files in temporary directory */
+	MSGVERB("Extract translations");
+	asprintf(&path, "%s", LOCALEDIR);
+	mkdir(path, 0777);
+
+	for(i = 0; ptrlen[i] != NULL; i++)
 	{
-		Labels data;
-		MSGVERB(_("Setting locale"));
-		setlocale(LC_ALL, "");
-		bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-		textdomain(GETTEXT_PACKAGE);
+		asprintf(&path, "%s/%s", LOCALEDIR, lang[i]);
+		mkdir(path, 0777);
 
-		labels_setnull(&data);
-		labels_setname(&data);
-		bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
-		tabsystem(&data);
+		asprintf(&path, "%s/%s/LC_MESSAGES", LOCALEDIR, lang[i]);
+		mkdir(path, 0777);
 
-		if(HAS_LIBCPUID)
+		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
+
+		mofile = fopen(path, "w");
+		if(mofile != NULL)
 		{
-			if(libcpuid(&data))
-				MSGSERR(_("libcpuid failed"));
-			else
-			{
-				cpuvendor(data.tabcpu[VALUE][VENDOR]);
-				instructions(&data.tabcpu[VALUE][ARCHITECTURE], &data.tabcpu[VALUE][INSTRUCTIONS]);
-
-				if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
-					strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
-			}
-		}
-
-		if(!getuid() && HAS_LIBDMI)
-		{
-			if(libdmidecode(&data))
-				MSGSERR(_("libdmidecode failed"));
-		}
-		else
-		{
-			if(libdmi_fallback(&data))
-				MSGSERR(_("libdmi_fallback failed"));
-		}
-
-		if(HAS_LIBPCI)
-			pcidev(&data);
-
-		cpufreq(&data);
-		labels_delnull(&data);
-
-		/* Start GUI */
-		if(HAS_GTK && option == 'G') /* Start with GTK3 */
-			start_gui_gtk(&argc, &argv, &data);
-		else if(HAS_NCURSES && option == 'n') /* Start with NCurses */
-			start_tui_ncurses(&data);
-		else if(option == 'd') /* Just dump datas */
-		{
-			dump_data(&data);
-			labels_free(&data);
-		}
-
-		/* If compiled without UI */
-		if(!HAS_GTK && !HAS_NCURSES && option != 'd')
-		{
-			fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
-			dump_data(&data);
+			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
+			fclose(mofile);
 		}
 	}
-	else if(HAS_LIBDMI && option == 'D') /* Just run command dmidecode */
-			libdmi(option);
 
 	update_prg(argv[0]);
+#endif /* EMBED */
+
+	/* Start collecting data */
+	Labels data;
+	setlocale(LC_ALL, "");
+	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
+	MSGVERB(_("Setting locale done"));
+
+	labels_setnull(&data);
+	labels_setname(&data);
+	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
+	tabsystem(&data);
+
+	if(HAS_LIBCPUID)
+	{
+		if(libcpuid(&data))
+			MSGSERR(_("libcpuid failed"));
+		else
+		{
+			cpuvendor(data.tabcpu[VALUE][VENDOR]);
+			instructions(&data.tabcpu[VALUE][ARCHITECTURE], &data.tabcpu[VALUE][INSTRUCTIONS]);
+
+			if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
+				strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
+		}
+	}
+
+	if(!getuid() && HAS_LIBDMI)
+	{
+		if(libdmidecode(&data))
+			MSGSERR(_("libdmidecode failed"));
+	}
+	else
+	{
+		if(libdmi_fallback(&data))
+			MSGSERR(_("libdmi_fallback failed"));
+	}
+
+	if(HAS_LIBPCI)
+		pcidev(&data);
+
+	cpufreq(&data);
+	labels_delnull(&data);
+
+	/* Show data */
+	if(HAS_GTK && option == 'G') /* Start GTK3 GUI */
+		start_gui_gtk(&argc, &argv, &data);
+	else if(HAS_NCURSES && option == 'n') /* Start NCurses TUI */
+		start_tui_ncurses(&data);
+	else if(option == 'd') /* Just dump data and exit */
+		dump_data(&data);
+
+	/* If compiled without UI */
+	if(!HAS_GTK && !HAS_NCURSES && option != 'd')
+	{
+		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
+		dump_data(&data);
+	}
 
 	return EXIT_SUCCESS;
 }
@@ -478,6 +510,8 @@ void dump_data(Labels *data)
 			printf("\n\t*** %s ***\n", data->objects[FRAMGPU4]);
 		printf("%16s: %s\n", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
 	}
+
+	labels_free(data);
 }
 
 #if HAS_LIBCPUID
