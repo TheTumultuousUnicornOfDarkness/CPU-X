@@ -39,7 +39,7 @@ if(GETTEXT_FOUND)
 	set(results)
 	foreach(absPoFile ${absPoFiles})
 		add_custom_command(TARGET updatepo
-			COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --indent --update --backup=existing fr.po ${absPotFile}
+			COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --indent --update --backup=existing ${absPoFile} ${absPotFile}
 			COMMENT "Update po file ${absPoFile}"
 		)
 		set(results ${results} ${absPoFile})
