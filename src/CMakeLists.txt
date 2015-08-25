@@ -84,7 +84,7 @@ if(WITH_LIBPCI)
 		add_definitions(${LIBPCI_CFLAGS_OTHER} -DLIBPCI)
 		# Can't link with libpci.a, always use shared library
 		#if(EMBED)
-		#	set(LIBPCI_LIBRARIES -l:libpci.a)
+		#       set(LIBPCI_LIBRARIES -l:libpci.a)
 		#endif(EMBED)
 	endif(LIBPCI_FOUND)
 endif(WITH_LIBPCI)
@@ -125,11 +125,13 @@ add_executable(cpu-x
 	options.c
 )
 
-if(GETTEXT_FOUND AND EMBED)
+if(EMBED)
 	add_definitions(-DEMBED)
-	set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
-	add_dependencies(cpu-x convertgmo)
-elseif(GETTEXT_FOUND AND NOT EMBED)
+	if(WITH_GETTEXT)
+		set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
+		add_dependencies(cpu-x convertgmo)
+	endif(WITH_GETTEXT)
+elseif(NOT EMBED AND WITH_GETTEXT)
 	add_dependencies(cpu-x potfiles)
 endif(EMBED)
 

@@ -15,6 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/bin/)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/lib/)
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}		-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}	-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
+set(WITH_GETTEXT ON)
 
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
@@ -56,9 +57,9 @@ endif(NOT WIN32)
 
 
 # Subdirectories
+add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(data)
-add_subdirectory(po)
 
 
 # Embed compilation

@@ -104,4 +104,5 @@ if(GETTEXT_FOUND)
 
 else(GETTEXT_FOUND)
 	message("${BoldRed}GETTEXT${ColourReset}${Red} not found. Internationalization support is ${BoldRed}OFF${ColourReset}")
+	set(WITH_GETTEXT OFF PARENT_SCOPE)
 endif(GETTEXT_FOUND)
