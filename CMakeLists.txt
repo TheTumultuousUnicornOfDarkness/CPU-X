@@ -13,8 +13,8 @@ project(cpu-x
 # CMake default config
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/bin/)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/lib/)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}   -Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}		-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}	-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
 
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
@@ -119,6 +119,10 @@ if((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
 else((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
 	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
+
+if(NOT (WITH_GTK OR WITH_NCURSES OR WITH_LIBCPUID OR WITH_LIBDMI OR WITH_LIBPCI OR WITH_LIBSYSTEM))
+	message(FATAL_ERROR "${BoldRed}FATAL ERROR:${ColourReset} ${Red}All is turned off, build aborted.${ColourReset}")
+endif()
 
 
 # Uninstall target
