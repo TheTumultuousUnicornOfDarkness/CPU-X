@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	if(!getuid() && HAS_LIBDMI)
+	if(HAS_LIBDMI && !getuid())
 	{
 		if(libdmidecode(&data))
 			MSGSERR(_("libdmidecode failed"));
