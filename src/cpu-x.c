@@ -746,14 +746,15 @@ int libdmi_fallback(Labels *data)
 	MSGVERB(_("Filling labels (libdmi step, fallback mode)"));
 #ifdef __linux__
 	int i;
-	char path[PATH_MAX], buff[MAXSTR];
+	const int path_max = 4096;
+	char path[path_max], buff[MAXSTR];
 	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date" };
 	FILE *mb[LASTMB] = { NULL };
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < ROMSIZE; i++)
 	{
-		snprintf(path, PATH_MAX, "%s/%s", SYS_DMI, id[i]);
+		snprintf(path, path_max, "%s/%s", SYS_DMI, id[i]);
 		mb[i] = fopen(path, "r");
 		if(mb[i] != NULL)
 		{
