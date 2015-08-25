@@ -56,9 +56,7 @@
 void system_linux(Labels *data, long int *suptime)
 {
 #ifdef __linux__
-	long int memtot = 0;
 	static int called = 0;
-	const int div = 1000;
 	char *filestr = NULL, *distro = NULL;
 	FILE *osrel = NULL;
 
@@ -85,6 +83,9 @@ void system_linux(Labels *data, long int *suptime)
 	called = 1;
 
 # if HAS_LIBPROCPS
+	long int memtot = 0;
+	const int div = 1000;
+
 	MSGVERB(_("Filling labels (libprocps step)"));
 	*suptime = uptime(NULL, NULL); /* Label Uptime */
 
