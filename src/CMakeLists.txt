@@ -125,11 +125,11 @@ add_executable(cpu-x
 	options.c
 )
 
-if(EMBED)
+if(GETTEXT_FOUND AND EMBED)
 	add_definitions(-DEMBED)
 	set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
 	add_dependencies(cpu-x convertgmo)
-else(EMBED)
+elseif(GETTEXT_FOUND AND NOT EMBED)
 	add_dependencies(cpu-x potfiles)
 endif(EMBED)
 
