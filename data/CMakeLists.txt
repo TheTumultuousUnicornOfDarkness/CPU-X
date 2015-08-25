@@ -18,7 +18,7 @@ if(WITH_GTK AND NOT EMBED)
 	set(TRYEXEC ${EXEC})
 	configure_file(cpu-x.desktop.in ${DATA_DIR}/cpu-x.desktop)
 	configure_file(org.pkexec.cpu-x.policy.in ${DATA_DIR}/org.pkexec.cpu-x.policy)
-	configure_file(../cpu-x_polkit.in ${DATA_DIR}/cpu-x_polkit)
+	configure_file(cpu-x_polkit.in ${DATA_DIR}/cpu-x_polkit)
 
 	set(EXEC ${EXEC}_polkit)
 	configure_file(cpu-x-root.desktop.in ${DATA_DIR}/cpu-x-root.desktop)
