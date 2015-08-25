@@ -94,8 +94,6 @@ int main(int argc, char *argv[])
 			fclose(mofile);
 		}
 	}
-
-	update_prg(argv[0]);
 #endif /* EMBED */
 
 	/* Start collecting data */
@@ -156,6 +154,10 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
 		dump_data(&data);
 	}
+
+#ifdef EMBED
+	update_prg(argv[0]);
+#endif /* EMBED */
 
 	return EXIT_SUCCESS;
 }
@@ -1014,7 +1016,7 @@ char *strdupnullok(const char *s)
 /* Check if running version is latest */
 char *check_lastver(void)
 {
-	char version[S];
+	char newver[S];
 	static char *ret = NULL;
 	FILE *page = NULL;
 
@@ -1032,11 +1034,11 @@ char *check_lastver(void)
 		return ret;
 	}
 
-	fgets(version, S - 1, page);
+	fgets(newver, S - 1, page);
 	pclose(page);
-	version[strlen(version) - 1] = '\0';
+	newver[strlen(newver) - 1] = '\0';
 
-	if(!strcmp(PRGVER, version))
+	if(!strcmp(PRGVER, newver))
 	{
 		MSGVERB(_("No new version available."));
 		ret = strdup("f");
@@ -1044,7 +1046,7 @@ char *check_lastver(void)
 	else
 	{
 		MSGVERB(_("A new version is available!"));
-		ret = strdup(version);
+		ret = strdup(newver);
 	}
 
 	return ret;
@@ -1055,12 +1057,12 @@ int update_prg(char *executable)
 {
 #ifdef EMBED
 	int err = 0, i = 0;
-	char *version, *opt, *portype, *tgzname, *cmd, *bin;
-	char *ext[] = { "bsd32", "linux32", "linux64", "end" };
+	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
+	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
 
-	opt = verbose ? strdup("-s") : strdup("");
-	version = check_lastver();
-	if(version[0] == 'f')
+	opt = verbose ? strdup("") : strdup("s");
+	newver = check_lastver();
+	if(newver[0] == 'f')
 		return 1;
 
 	/* Find what archive we need to download */
@@ -1069,48 +1071,56 @@ int update_prg(char *executable)
 	else
 		portype = strdup("portable_noGTK");
 
-	/* Download an extract archive */
+	/* Download archive */
 	MSGVERB(_("Downloading new version..."));
-	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, version, portype);
-	asprintf(&cmd, "curl %s-L https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, version, tgzname, tgzname);
+	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, newver, portype);
+	asprintf(&cmd, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, newver, tgzname, tgzname);
 	system(cmd);
 
-	asprintf(&cmd, "tar -zxf %s", tgzname);
+	/* Extract archive */
+	opt = verbose ? strdup("v") : strdup("");
+	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
 	system(cmd);
 
-	free(version);
 	free(opt);
 	free(cmd);
 
 #if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, "bsd32");
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "bsd32");
 #elif defined (__linux__) && defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, "linux64");
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux64");
 #elif defined (__linux__) && !defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, "linux32");
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux32");
 #endif /* OS */
 
-	/* Rename new binary and delete temporary files */
+	/* Rename new binary */
 	MSGVERB(_("Applying new version..."));
-	if(err = rename(bin, executable))
+	err = rename(bin, executable);
+	if(err)
 		MSGVERB(_("Error when updating."));
 	else
 		MSGVERB(_("Update successful!"));
 
+	/* Delete temporary files */
 	err = remove(tgzname);
-	while(strcmp(ext[i], "end"))
+	while(strcmp(ext[i], ""))
 	{
-		asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, PRGVER, portype, ext[i]);
-		err += remove(bin);
+		asprintf(&tmp, "%s_v%s_%s.%s", PRGNAME, newver, portype, ext[i]);
+		if(strcmp(bin, tmp))
+		{
+			err += remove(tmp);
+		}
 		i++;
 	}
 
 	if(err)
 		MSGVERB(_("Error when deleting temporary files."));
 
+	free(newver);
 	free(portype);
 	free(tgzname);
 	free(bin);
+	free(tmp);
 
 #endif /* EMBED */
 	return 0;
