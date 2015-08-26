@@ -33,7 +33,9 @@
 
 #if EMBED
 # include <sys/stat.h>
-# include "../po/mo.h"
+# if GETTEXT
+#  include "../po/mo.h"
+# endif
 #endif
 
 #if HAS_GTK
@@ -67,7 +69,7 @@ int main(int argc, char *argv[])
 	if(HAS_LIBDMI && option == 'D')
 		return libdmi(option);
 
-#ifdef EMBED
+#if defined(EMBED) && defined (GETTEXT)
 	int i;
 	char *path;
 	FILE *mofile;
@@ -94,7 +96,7 @@ int main(int argc, char *argv[])
 			fclose(mofile);
 		}
 	}
-#endif /* EMBED */
+#endif /* EMBED && GETTEXT */
 
 	/* Start collecting data */
 	Labels data;
