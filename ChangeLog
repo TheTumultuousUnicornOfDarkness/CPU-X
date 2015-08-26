@@ -1,3 +1,19 @@
+v2.1.1 (08.26.2015):
+	* Add pt_BR translation (thanks to ShyPixie)
+	* Improve translations support (rewrite target updatepo, add target newpo...)
+	* Add translations support in portable version
+	* Some text changes in --verbose mode
+	* Add HyperThreading detection
+	* Option --version informs if a new version is available
+	* Add an auto-update module for portable version
+	* Fixes:
+		** Segfault with strdup() on NULL pointer
+		** Avoid multipliers "(0 - 0)" in CPU tab and "-nan" values in System tab
+		** Fixes garbages after freeing
+		** Some problems with build
+		** Do changes to enable compilation with libpci.a in portable version
+
+
 v2.1.0 (08.08.2015):
 	* Improve drawing bars in System tab in GTK GUI
 	* Use dynamic arrays instead of static arrays
