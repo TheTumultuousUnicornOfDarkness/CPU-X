@@ -12,7 +12,6 @@ FILE(GLOB absPoFiles ${CMAKE_SOURCE_DIR}/po/*.po)
 
 find_package(Gettext)
 if(GETTEXT_FOUND)
-	add_definitions(-DGETTEXT)
 	# Creation of file cpu-x.pot
 	add_custom_target(genpot
 		COMMAND xgettext
