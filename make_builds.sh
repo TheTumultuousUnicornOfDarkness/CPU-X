@@ -49,6 +49,7 @@ make_release() {
 		sleep 1
 	done
 
+	[[ $1 == "Arch"* ]] && (ssh $1 ls /usr/lib/{libncursesw.a,libcpuid.a,libpci.a,libprocps.a} || exit 2)
 	ssh $1 << EOF
 
 [[ ! -d $DIR ]] && git clone https://github.com/X0rg/CPU-X $DIR
@@ -82,8 +83,8 @@ if [[ $# < 1 ]]; then
 	exit 1
 else
 	case "$1" in
-		-b|--build)	choice="build"; exit 0;;
-		-r|--release)	choice="release"; exit 1;;
+		-b|--build)	choice="build";;
+		-r|--release)	choice="release";;
 		-h|--help)	help; exit 0;;
 		- |--)		help; exit 1;;
 		*)		help; exit 1;;
@@ -99,9 +100,9 @@ if [[ $choice == "build" ]]; then
 
 	# Start build
 	make_build Arch32
-	read
+	echo "Press a key to continue..." ; read
 	make_build BSD
-	read
+	echo "Press a key to continue..." ; read
 	make_build OSX
 
 elif [[ $choice == "release" ]]; then
