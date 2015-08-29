@@ -63,7 +63,7 @@
 
 #ifdef CPUX
 # include "libdmi.h"
-# include "../cpu-x.h"
+# include "../core.h"
 #else
 # include "version.h"
 #endif /* CPUX */

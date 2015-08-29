@@ -119,10 +119,10 @@ endif(WITH_LIBSYSTEM)
 ### Main executable
 
 add_executable(cpu-x
-	cpu-x.c
-	cpu-x.h
+	main.c
+	core.c
+	core.h
 	libsystem.c
-	options.c
 )
 
 if(EMBED)

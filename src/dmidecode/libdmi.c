@@ -17,12 +17,12 @@
 ****************************************************************************/
 
 /*
-* libdmi.c
+* PROJECT CPU-X
+* FILE libdmi.c
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "libdmi.h"
 #include "types.h"
 #include "dmiopt.h"

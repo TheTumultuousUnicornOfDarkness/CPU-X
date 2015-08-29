@@ -17,18 +17,18 @@
 ****************************************************************************/
 
 /*
-* libsystem.c
+* PROJECT CPU-X
+* FILE libsystem.c
 */
 
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
 #include <sys/utsname.h>
 #include <locale.h>
 #include <libintl.h>
-#include "cpu-x.h"
+#include "core.h"
 
 #if HAS_LIBPROCPS
 # include <proc/sysinfo.h>
@@ -52,6 +52,7 @@
 # include <mach/clock.h>
 # include <mach/mach.h>
 #endif
+
 
 void system_linux(Labels *data, long int *suptime)
 {

@@ -17,7 +17,8 @@
 ****************************************************************************/
 
 /*
-* tui_ncurses.c
+* PROJECT CPU-X
+* FILE tui_ncurses.c
 */
 
 #include <stdlib.h>
@@ -25,7 +26,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <libintl.h>
-#include "cpu-x.h"
+#include "core.h"
 #include "tui_ncurses.h"
 
 static int loop = NB_TAB_CPU;

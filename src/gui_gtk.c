@@ -17,7 +17,8 @@
 ****************************************************************************/
 
 /*
-* gui_gtk.c
+* PROJECT CPU-X
+* FILE gui_gtk.c
 */
 
 #include <stdio.h>
@@ -25,7 +26,7 @@
 #include <string.h>
 #include <math.h>
 #include <libintl.h>
-#include "cpu-x.h"
+#include "core.h"
 #include "gui_gtk.h"
 #include "gui_gtk_id.h"
 

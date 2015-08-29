@@ -17,7 +17,8 @@
 ****************************************************************************/
 
 /*
-* tui_ncurses.h
+* PROJECT CPU-X
+* FILE tui_ncurses.h
 */
 
 #ifndef _TUI_NCURSES_H_

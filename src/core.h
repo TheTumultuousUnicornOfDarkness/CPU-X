@@ -17,7 +17,8 @@
 ****************************************************************************/
 
 /*
-* cpu-x.h
+* PROJECT CPU-X
+* FILE core.h
 */
 
 #ifndef _CPUX_H_
@@ -87,7 +88,6 @@
 
 extern int refreshtime;
 extern int verbose;
-
 
 enum EnTabNumber
 {
@@ -237,6 +237,18 @@ char *check_lastver(void);
 
 /* Apply new portable version if available */
 int update_prg(char *executable);
+
+
+/********************************** External headers **********************/
+
+/* Start CPU-X in GTK mode */
+void start_gui_gtk(int *argc, char **argv[], Labels *data);
+
+/* Start CPU-X in NCurses mode */
+void start_tui_ncurses(Labels *data);
+
+/* Call dmidecode library */
+int libdmi(char c);
 
 
 #endif /* _CPUX_H_ */

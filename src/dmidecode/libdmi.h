@@ -17,13 +17,14 @@
 ****************************************************************************/
 
 /*
-* libdmi.h
+* PROJECT CPU-X
+* FILE libdmi.h
 */
 
 #ifndef _LIBDMI_H_
 #define _LIBDMI_H_
 
-#include "../cpu-x.h"
+#include "../core.h"
 
 #define DMIVERSION "2.12"
 #define PROC_PACKAGE 0
