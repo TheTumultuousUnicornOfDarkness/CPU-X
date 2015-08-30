@@ -366,7 +366,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][LEVEL2],		_("Level 2"));
 	asprintf(&data->tabcpu[NAME][LEVEL3],		_("Level 3"));
 
-	asprintf(&data->tabcpu[NAME][SOCKETS],		_("Sockets(s)"));
+	asprintf(&data->tabcpu[NAME][SOCKETS],		_("Socket(s)"));
 	asprintf(&data->tabcpu[NAME][CORES],		_("Core(s)"));
 	asprintf(&data->tabcpu[NAME][THREADS],		_("Thread(s)"));
 
