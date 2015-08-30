@@ -134,7 +134,7 @@ void warning_window(GtkWidget *mainwindow)
 
 gboolean grefresh(GThrd *refr)
 {
-	int page = gtk_notebook_get_current_page(GTK_NOTEBOOK(refr->glab->notebook));
+	int i, page = gtk_notebook_get_current_page(GTK_NOTEBOOK(refr->glab->notebook));
 
 	/* Refresh tab CPU */
 	if(page == NB_TAB_CPU)
@@ -152,12 +152,9 @@ gboolean grefresh(GThrd *refr)
 	else if(page == NB_TAB_SYS)
 	{
 		tabsystem(refr->data);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][UPTIME]),	refr->data->tabsys[VALUE][UPTIME]);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][USED]), refr->data->tabsys[VALUE][USED]);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][BUFFERS]), refr->data->tabsys[VALUE][BUFFERS]);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][CACHED]), refr->data->tabsys[VALUE][CACHED]);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][FREE]), refr->data->tabsys[VALUE][FREE]);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][SWAP]), refr->data->tabsys[VALUE][SWAP]);
+		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][UPTIME]), refr->data->tabsys[VALUE][UPTIME]);
+		for(i = USED; i < LASTSYS; i++)
+			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][i]), refr->data->tabsys[VALUE][i]);
 	}
 
 	return G_SOURCE_CONTINUE;

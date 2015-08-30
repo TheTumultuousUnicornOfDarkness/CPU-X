@@ -333,10 +333,8 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
 	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
-	asprintf(&data->objects[FRAMGPU1],		_("Card 0"));
-	asprintf(&data->objects[FRAMGPU2],		_("Card 1"));
-	asprintf(&data->objects[FRAMGPU3],		_("Card 2"));
-	asprintf(&data->objects[FRAMGPU4],		_("Card 3"));
+	for(i = 0; i < LASTGPU / GPUFIELDS; i ++)
+		asprintf(&data->objects[FRAMGPU1 + i],	_("Card %i"), i);
 	asprintf(&data->objects[FRAMBANKS],		_("Banks"));
 	asprintf(&data->objects[FRAMOS],		_("Operating System"));
 	asprintf(&data->objects[FRAMMEMORY],		_("Memory"));
@@ -391,24 +389,12 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabmb[NAME][CHIPVENDOR],	_("Vendor"));
 	asprintf(&data->tabmb[NAME][CHIPNAME],		_("Model"));
 
-
 	/* Tab RAM */
-	asprintf(&data->tabram[NAME][BANK0_0],		_("Bank 0 Ref."));
-	asprintf(&data->tabram[NAME][BANK0_1],		_("Bank 0 Type"));
-	asprintf(&data->tabram[NAME][BANK1_0],		_("Bank 1 Ref."));
-	asprintf(&data->tabram[NAME][BANK1_1],		_("Bank 1 Type"));
-	asprintf(&data->tabram[NAME][BANK2_0],		_("Bank 2 Ref."));
-	asprintf(&data->tabram[NAME][BANK2_1],		_("Bank 2 Type"));
-	asprintf(&data->tabram[NAME][BANK3_0],		_("Bank 3 Ref."));
-	asprintf(&data->tabram[NAME][BANK3_1],		_("Bank 3 Type"));
-	asprintf(&data->tabram[NAME][BANK4_0],		_("Bank 4 Ref."));
-	asprintf(&data->tabram[NAME][BANK4_1],		_("Bank 4 Type"));
-	asprintf(&data->tabram[NAME][BANK5_0],		_("Bank 5 Ref."));
-	asprintf(&data->tabram[NAME][BANK5_1],		_("Bank 5 Type"));
-	asprintf(&data->tabram[NAME][BANK6_0],		_("Bank 6 Ref."));
-	asprintf(&data->tabram[NAME][BANK6_1],		_("Bank 6 Type"));
-	asprintf(&data->tabram[NAME][BANK7_0],		_("Bank 7 Ref."));
-	asprintf(&data->tabram[NAME][BANK7_1],		_("Bank 7 Type"));
+	for(i = 0; i < BANK7_1 / RAMFIELDS + 1; i++)
+	{
+		asprintf(&data->tabram[NAME][i * RAMFIELDS],	 _("Bank %i Ref."), i);
+		asprintf(&data->tabram[NAME][i * RAMFIELDS + 1], _("Bank %i Type"), i);
+	}
 
 	/* Tab System */
 	asprintf(&data->tabsys[NAME][KERNEL],		_("Kernel"));

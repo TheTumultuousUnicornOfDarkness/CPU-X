@@ -42,6 +42,7 @@
 #define VALUE	1
 #define MAXSTR	60	/* Max string */
 #define S 10		/* Little string */
+#define RAMFIELDS 2	/* Nb of fields by bank */
 #define GPUFIELDS 3	/* Nb of fields by GPU frame */
 
 #ifdef GTK
