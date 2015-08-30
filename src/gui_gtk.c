@@ -84,11 +84,11 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-	g_signal_connect(G_OBJECT(glab.barused), "draw", G_CALLBACK(setbar_used), data); /* Level bars */
-	g_signal_connect(G_OBJECT(glab.barbuff), "draw", G_CALLBACK(setbar_buff), data);
-	g_signal_connect(G_OBJECT(glab.barcache), "draw", G_CALLBACK(setbar_cache), data);
-	g_signal_connect(G_OBJECT(glab.barfree), "draw", G_CALLBACK(setbar_free), data);
-	g_signal_connect(G_OBJECT(glab.barswap), "draw", G_CALLBACK(setbar_swap), data);
+	g_signal_connect(G_OBJECT(glab.barused),  "draw", G_CALLBACK(fill_frame), data); /* Level bars */
+	g_signal_connect(G_OBJECT(glab.barbuff),  "draw", G_CALLBACK(fill_frame), data);
+	g_signal_connect(G_OBJECT(glab.barcache), "draw", G_CALLBACK(fill_frame), data);
+	g_signal_connect(G_OBJECT(glab.barfree),  "draw", G_CALLBACK(fill_frame), data);
+	g_signal_connect(G_OBJECT(glab.barswap),  "draw", G_CALLBACK(fill_frame), data);
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
 	set_colors(&glab);
@@ -251,6 +251,11 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
 	glab->barfree  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barfree"));
 	glab->barswap  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barswap"));
+	gtk_widget_set_name(glab->barused,  g_strdup_printf("%i", USED));
+	gtk_widget_set_name(glab->barbuff,  g_strdup_printf("%i", BUFFERS));
+	gtk_widget_set_name(glab->barcache, g_strdup_printf("%i", CACHED));
+	gtk_widget_set_name(glab->barfree,  g_strdup_printf("%i", FREE));
+	gtk_widget_set_name(glab->barswap,  g_strdup_printf("%i", SWAP));
 
 	/* Tab Graphics */
 	for(i = GPUVENDOR1; i < LASTGPU; i++)
@@ -312,18 +317,20 @@ void set_labels(GtkLabels *glab, Labels *data)
 }
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
+void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 {
-	int i = USED;
+	int i = USED, n;
 	guint width, height;
 	double before = 0, percent;
-	char text[MAXSTR];
+	char text[MAXSTR], *widget_name;
 	cairo_pattern_t *pat;
 	GSettings *setting = g_settings_new("org.gnome.desktop.interface");
 	gchar *font = g_settings_get_string(setting, "font-name");
 
 	width = gtk_widget_get_allocated_width(widget);
 	height = gtk_widget_get_allocated_height(widget);
+	widget_name = gtk_widget_get_name(widget);
+	n = atoi(widget_name);
 
 	while(i < n) /* Get value to start */
 	{
@@ -375,31 +382,6 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data, int n)
 	cairo_set_font_size(cr, 13);
 	cairo_show_text(cr, text);
 	cairo_fill(cr);
-}
-
-void setbar_used(GtkWidget *widget, cairo_t *cr, Labels *data)
-{
-	fill_frame(widget, cr, data, USED);
-}
-
-void setbar_buff(GtkWidget *widget, cairo_t *cr, Labels *data)
-{
-	fill_frame(widget, cr, data, BUFFERS);
-}
-
-void setbar_cache(GtkWidget *widget, cairo_t *cr, Labels *data)
-{
-	fill_frame(widget, cr, data, CACHED);
-}
-
-void setbar_free(GtkWidget *widget, cairo_t *cr, Labels *data)
-{
-	fill_frame(widget, cr, data, FREE);
-}
-
-void setbar_swap(GtkWidget *widget, cairo_t *cr, Labels *data)
-{
-	fill_frame(widget, cr, data, SWAP);
 }
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
