@@ -30,24 +30,26 @@
 #include <locale.h>
 #include <libintl.h>
 #include "core.h"
+#include "options.h"
 
 #if defined (EMBED) && defined (GETTEXT)
 # include "../po/mo.h"
 #endif
 
-int refreshtime = 1;
-int verbose = 0;
+/* Options are global */
+unsigned int flags;
 
 
 int main(int argc, char *argv[])
 {
 	/* Parse options */
-	char option;
-	option = menu(argc, argv);
+	Labels data;
+	flags = 0;
+	data.refr_time = menu(argc, argv);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_LIBDMI && option == 'D')
-		return libdmi(option);
+	if(HAS_LIBDMI && !getuid() && (flags & OPT_DMIDECODE))
+		return libdmi('D');
 
 #if defined(EMBED) && defined (GETTEXT)
 	int i;
@@ -79,7 +81,6 @@ int main(int argc, char *argv[])
 #endif /* EMBED && GETTEXT */
 
 	/* Start collecting data */
-	Labels data;
 	setlocale(LC_ALL, "");
 	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -123,15 +124,15 @@ int main(int argc, char *argv[])
 	labels_delnull(&data);
 
 	/* Show data */
-	if(HAS_GTK && option == 'G') /* Start GTK3 GUI */
+	if(HAS_GTK && (flags & OPT_GTK)) /* Start GTK3 GUI */
 		start_gui_gtk(&argc, &argv, &data);
-	else if(HAS_NCURSES && option == 'n') /* Start NCurses TUI */
+	else if(HAS_NCURSES && (flags & OPT_NCURSES)) /* Start NCurses TUI */
 		start_tui_ncurses(&data);
-	else if(option == 'd') /* Just dump data and exit */
+	else if(flags & OPT_DUMP) /* Just dump data and exit */
 		dump_data(&data);
 
 	/* If compiled without UI */
-	if(!HAS_GTK && !HAS_NCURSES && option != 'd')
+	if(!HAS_GTK && !HAS_NCURSES && !(flags & OPT_DUMP))
 	{
 		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
 		dump_data(&data);
@@ -145,7 +146,9 @@ int main(int argc, char *argv[])
 }
 
 const char *optstring[] =
-{	"ncurses",
+{
+	"gtk",
+	"ncurses",
 	"dump",
 	"refresh",
 #if HAS_LIBDMI
@@ -163,6 +166,7 @@ void help(FILE *out, char *argv[])
 
 	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
 	fprintf(out, _("Available OPTION:\n"));
+	fprintf(out, _("  -g, --%-10s Start graphical user interface (GUI) (default)\n"), optstring[o]); o++;
 	fprintf(out, _("  -n, --%-10s Start text-based user interface (TUI)\n"), optstring[o]); o++;
 	fprintf(out, _("  -d, --%-10s Dump all data on standard output and exit\n"), optstring[o]); o++;
 	fprintf(out, _("  -r, --%-10s Set custom time between two refreshes (in seconds)\n"), optstring[o]); o++;
@@ -194,44 +198,48 @@ void version(void)
 }
 
 /* Parse options given in arg */
-char menu(int argc, char *argv[])
+int menu(int argc, char *argv[])
 {
-	int c;
-	char r = 'G';
+	int c, tmp_refr = -1;
+
 	const struct option longopts[] =
 	{
-		{optstring[0],	no_argument, 0, 'n'}, /* Arg ncurses */
-		{optstring[1],	no_argument, 0, 'd'}, /* Arg dump */
-		{optstring[2],	required_argument, 0, 'r'}, /* Arg refresh */
+		{optstring[0],	no_argument, 0, 'g'}, /* Arg gtk */
+		{optstring[1],	no_argument, 0, 'n'}, /* Arg ncurses */
+		{optstring[2],	no_argument, 0, 'd'}, /* Arg dump */
+		{optstring[3],	required_argument, 0, 'r'}, /* Arg refresh */
 #if HAS_LIBDMI
-		{optstring[3],	no_argument, 0, 'D'}, /* Arg Dmidecode */
+		{optstring[4],	no_argument, 0, 'D'}, /* Arg Dmidecode */
 #endif /* HAS_LIBDMI */
-		{optstring[4],	no_argument, 0, 'v'}, /* Arg verbose */
-		{optstring[5],	no_argument, 0, 'h'}, /* Arg help */
-		{optstring[6],	no_argument, 0, 'V'}, /* Arg version */
+		{optstring[5],	no_argument, 0, 'v'}, /* Arg verbose */
+		{optstring[6],	no_argument, 0, 'h'}, /* Arg help */
+		{optstring[7],	no_argument, 0, 'V'}, /* Arg version */
 		{0,		0,	     0,  0}
 	};
 
-	while((c = getopt_long(argc, argv, ":ndDr:vhV", longopts, NULL)) != -1)
+	while((c = getopt_long(argc, argv, ":gndr:DvhV", longopts, NULL)) != -1)
 	{
 		switch(c)
 		{
+			case 'g':
+				flags |= OPT_GTK;
+				break;
 			case 'n':
+				flags |= OPT_NCURSES;
+				break;
 			case 'd':
-				r = c;
+				flags |= OPT_DUMP;
 				break;
 			case 'r':
-				if(atoi(optarg) > 1)
-					refreshtime = atoi(optarg);
+				tmp_refr = atoi(optarg);
 				break;
 #if HAS_LIBDMI
 			case 'D':
-				r = c;
-				verbose += 2;
+				flags |= OPT_DMIDECODE;
 				break;
 #endif /* HAS_LIBDMI */
 			case 'v':
-				verbose++;
+				flags |= OPT_VERBOSE;
 				break;
 			case 'h':
 				help(stdout, argv);
@@ -246,10 +254,10 @@ char menu(int argc, char *argv[])
 		}
 	}
 
-	if(!HAS_GTK && HAS_NCURSES && r == 'G')
-		r = 'n';
+	if(!((flags & OPT_NCURSES) || (flags & OPT_DUMP)))
+		 flags |= OPT_GTK;
 
-	return r;
+	return (tmp_refr == -1) ? 1 : tmp_refr;
 }
 
 /* Print a formatted message */
@@ -269,7 +277,7 @@ void msg(char type, char *msg, char *prgname, char *basefile, int line)
 	else if(type == 'e')
 		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, prgname, basefile, line, msg, reset);
 
-	else if(type == 'v' && (verbose == 1 || verbose == 3))
+	else if(type == 'v' && (flags & OPT_VERBOSE))
 		printf("%s%s%s\n", boldgre, msg, reset);
 }
 

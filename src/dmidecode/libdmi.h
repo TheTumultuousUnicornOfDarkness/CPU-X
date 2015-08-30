@@ -25,6 +25,7 @@
 #define _LIBDMI_H_
 
 #include "../core.h"
+#include "../options.h"
 
 #define DMIVERSION "2.12"
 #define PROC_PACKAGE 0

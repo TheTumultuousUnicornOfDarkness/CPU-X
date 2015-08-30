@@ -18,66 +18,21 @@
 
 /*
 * PROJECT CPU-X
-* FILE libdmi.c
+* FILE options.h
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "libdmi.h"
-#include "types.h"
-#include "dmiopt.h"
+#ifndef _OPTIONS_H_
+#define _OPTIONS_H_
 
 
-/* Options are global */
-struct opt opt;
-char **dmidata[LASTRAM];
+#define OPT_GTK			(1 << 0)
+#define OPT_NCURSES		(1 << 1)
+#define OPT_DUMP		(1 << 2)
+#define OPT_DMIDECODE		(1 << 3)
+#define OPT_VERBOSE		(1 << 4)
 
 
-static u8 *dmiparse(u8 *p, int l)
-{
-	/* Allocate memory on first call only */
-	if (p == NULL)
-	{
-		p = (u8 *)calloc(256, sizeof(u8));
-		if (p == NULL)
-		{
-			perror("calloc");
-			return NULL;
-		}
-	}
+extern unsigned int flags;
 
-	p[l] = 1;
-	return p;
-}
 
-int libdmi(char c)
-{
-	int err = 0;
-
-	/* Dmidecode options */
-	opt.flags = 0;
-	opt.type = NULL;
-	if(!(flags & OPT_VERBOSE))
-		opt.flags |= FLAG_QUIET;
-
-	switch(c)
-	{
-		case 'c':
-			opt.type = dmiparse(opt.type, 4);
-			break;
-		case 'm':
-			opt.type = dmiparse(opt.type, 0);
-			opt.type = dmiparse(opt.type, 2);
-			break;
-		case 'r':
-			opt.type = dmiparse(opt.type, 17);
-			break;
-		case 'D':
-			break;
-		default:
-			return -1;
-	}
-	err = maindmi();
-
-	return err;
-}
+#endif /* _OPTIONS_H_ */

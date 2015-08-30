@@ -92,7 +92,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
 	set_colors(&glab);
-	g_timeout_add_seconds(refreshtime, (gpointer)grefresh, &refr);
+	g_timeout_add_seconds(data->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();
 }
 

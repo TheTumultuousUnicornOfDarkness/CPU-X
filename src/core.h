@@ -86,8 +86,6 @@
 # define HAS_LIBSTATGRAB 0
 #endif
 
-extern int refreshtime;
-extern int verbose;
 
 enum EnTabNumber
 {
@@ -145,6 +143,7 @@ enum EnTabGraphics
 
 typedef struct
 {
+	int refr_time;
 	char *objects[LASTOBJ];
 	char *tabcpu[2][LASTCPU];
 	char *tabmb[2][LASTMB];
@@ -157,7 +156,7 @@ typedef struct
 /********************************** Core **********************************/
 
 /* Get options */
-char menu(int argc, char *argv[]);
+int menu(int argc, char *argv[]);
 
 /* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line);

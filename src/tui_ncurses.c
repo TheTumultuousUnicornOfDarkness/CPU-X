@@ -65,7 +65,7 @@ void start_tui_ncurses(Labels *data)
 
 	refr.win = tab;
 	refr.data = data;
-	timeout(refreshtime * 1000);
+	timeout(data->refr_time * 1000);
 
 	while(ch != 'q')
 	{

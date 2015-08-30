@@ -3211,15 +3211,15 @@ static const char *dmi_management_controller_host_type(u8 code)
 static void dmi_decode(const struct dmi_header *h, u16 ver)
 {
 	const u8 *data = h->data;
-#ifdef CPUX
-	static int bank = BANK0_0;
 
 	/*
 	 * Note: DMI types 37, 39 and 40 are untested
 	 */
 
-	/* verbose = 0 or verbose = 1 -> need to copy data in string array dmidata */
-	if(verbose < 2)
+#ifdef CPUX
+	static int bank = BANK0_0;
+
+	if(!(flags & OPT_DMIDECODE))
 	{
 		switch (h->type)
 		{
@@ -3271,7 +3271,6 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		}
 	}
 
-	/* verbose = 2 or verbose = 3 -> only print all */
 	else
 	{
 #endif /* CPUX */
@@ -4833,7 +4832,7 @@ done:
 exit_free:
 	free(opt.type);
 #ifdef CPUX
-	if(verbose)
+	if(flags & OPT_VERBOSE)
 		printf("\n\n");
 #endif /* CPUX */
 
