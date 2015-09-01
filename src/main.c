@@ -32,8 +32,11 @@
 #include "core.h"
 #include "options.h"
 
-#if defined (EMBED) && defined (GETTEXT)
-# include "../po/mo.h"
+#ifdef EMBED
+# include <sys/stat.h>
+# ifdef GETTEXT
+#  include "../po/mo.h"
+# endif
 #endif
 
 /* Options are global */
@@ -653,7 +656,7 @@ int update_prg(char *executable)
 	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
 	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
 
-	opt = verbose ? strdup("") : strdup("s");
+	opt = (flags & OPT_VERBOSE) ? strdup("") : strdup("s");
 	newver = check_lastver();
 	if(newver[0] == 'f')
 		return 1;
@@ -671,7 +674,7 @@ int update_prg(char *executable)
 	system(cmd);
 
 	/* Extract archive */
-	opt = verbose ? strdup("v") : strdup("");
+	opt = (flags & OPT_VERBOSE) ? strdup("v") : strdup("");
 	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
 	system(cmd);
 
