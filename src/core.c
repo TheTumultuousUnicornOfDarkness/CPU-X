@@ -121,7 +121,7 @@ int libcpuid(Labels *data)
 
 	if(datanr.l3_cache > 0)
 	{
-		asprintf(&data->tabcpu[VALUE][LEVEL3],	"%d x %4d KB", datanr.num_cores, datanr.l3_cache);
+		asprintf(&data->tabcpu[VALUE][LEVEL3],	"%9d KB", datanr.l3_cache);
 		if(datanr.l1_assoc > 0)
 		{
 			asprintf(&tmp, ", %2d-way", datanr.l3_assoc);
