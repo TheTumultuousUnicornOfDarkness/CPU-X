@@ -1,0 +1,1516 @@
+2015-09-03  Jean Delvare  <jdelvare@suse.de>
+
+	* version.h: Set version to 3.0.
+
+2015-08-04  Tyler Bell  <tyler.bell@hp.com>
+
+	* dmioem.c: Decode HP-specific DMI type 233
+	* dmioem.c: Refactored HP-specific types 209 and 221 to use common code
+	* dmioem.c: Documented spec for HP-specific types 209, 221 and 233
+
+2015-05-21  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix up invalid DMI type 34 structure length.
+	* dmioem.c: Decode HP-specific DMI types 212 and 219.
+	* dmioem.c: Move function is_printable to dmidecode.c.
+
+2015-05-13  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Add support for SMBIOS3 EFI table.
+	* dmidecode.c: Fix warnings about comparison between signed and
+	  unsigned integers.
+	* util.c: Fix warnings about unused labels when building without
+	  -DUSE_MMAP.
+	* dmioem.c: Strip spaces at the end of vendor names.
+	* dmioem.c: Decode Acer-specific DMI type 170.
+
+2015-05-12  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Remove extra blank line after hidden DMI type 40
+	  structure.
+
+2015-05-04  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Move table decoding to a separate function.
+	* dmidecode.c: Simplify function dmi_table_dump.
+	* dmidecode.c: Display types 41 and 42 in quiet mode too.
+	* dmidecode.c: Get OEM vendor from System Information (DMI type 1).
+
+2015-04-28  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.h, dmiopt.h: Fix sparse errors.
+	* biosdecode.c, dmiopt.c, ownership.c, vpdopt.c: Fix sparse warnings.
+	* util.c: Fix sparse warning.
+
+2015-04-27  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix --dump-bin when reading from sysfs.
+
+2015-04-27  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 3.0.0.
+
+	* dmidecode.c: Add support for the new _SM3_ 64-bit entry point
+	  defined in the SMBIOS specification version 3.0.0, including
+	  support of 64-bit addresses and 32-bit table lengths.
+	* dmidecode.c: Add 3 new chassis types (DMI type 3).
+	* dmidecode.c: Add 4 new processor families (DMI type 4).
+	* dmidecode.c: Add 4 new Intel socket types (DMI type 4).
+	* dmidecode.c: Add 13 new slot types (DMI type 9).
+	* dmidecode.c: Add 4 new memory device types (DMI type 17).
+	* dmidecode.c: Add support for processors with more than 255 cores
+	  or threads (DMI type 4).
+	* dmidecode.c: Stop decoding v3 tables at End-of-Table marker.
+
+2015-04-21  Roy Franz  <roy.franz@linaro.org>
+
+	* util.c, util.h: Add utility function read_file, which reads an
+	  entire binary file into a buffer.
+	* dmidecode.c: Add passing of flags parameter to dmi_table.
+	* dmidecode.c: Add reading of SMBIOS tables from sysfs.
+	* dmidecode.c, dmiopt.c, dmiopt.h: Add --no-sysfs option to disable
+	  use of sysfs.
+	* dmidecode.8: Document the changes above.
+
+2015-04-20  Jean Delvare  <jdelvare@suse.de>
+
+	* biosdecode.c: Add support for the _SM3_ entry point, as defined in
+	  the SMBIOS 3.0.0 specification.
+
+2014-11-14  Jean Delvare  <jdelvare@suse.de>
+
+	* man/dmidecode.8: Add a note about DMI strings available from sysfs
+	  on Linux.
+
+2014-10-13  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Add support for DDR4 (DMI type 17). Patch from Tomohiro
+	  Kimura. The value was taken from preliminary SMBIOS specification
+	  version 3.0.0d.
+	  This fixes Savannah bug #43370:
+	  https://savannah.nongnu.org/bugs/?43370
+
+2014-07-11  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Decode the CPUID of recent AMD processors (DMI type 4).
+
+2014-03-20  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Let legacy_decode be quiet in dump mode too.
+	* dmidecode.c: Skip the SMBIOS version comparison in quiet mode.
+	  Patch from Jens Rosenboom.
+
+2014-02-25  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix spacing of memory module voltage attributes
+	  (DMI type 17).
+
+2014-01-13  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Decode ID of PCI Express 3 slots (DMI type 9).
+	  This fixes Savannah bug #40178:
+	  https://savannah.nongnu.org/bugs/?40178
+
+2014-01-13  Jean Delvare  <jdelvare@suse.de>
+
+	* LICENSE: Update to the latest upstream version. Amongst other
+	  things, this fixes the FSF address.
+
+2013-04-24  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Strip trailing zeroes from memory voltage values
+	  (DMI type 17).
+	* dmidecode.c: Fix support for new processor upgrade types (DMI
+	  type 4) and new memory device type (DMI type 17.)
+
+2013-04-17  Anton Arapov  <anton@redhat.com>
+
+	* version.h: Set version to 2.12.
+
+2013-04-17  Anton Arapov  <anton@redhat.com>
+
+	Update to support SMBIOS specification version 2.8.0.
+
+	* dmidecode.c: Correct processor family name (DMI type 4).
+	* dmidecode.c: Correct typo in processor upgrade type (DMI type 4).
+	* dmidecode.c: Add 9 new processor families (DMI type 4).
+	* dmidecode.c: Add 2 new Intel socket types (DMI type 4).
+	* dmidecode.c: Add Min/Max/Configured memory voltages (DMI type 17).
+	* dmidecode.c: Add LRDIMM to memory device list (DMI type 17).
+
+2012-03-26  Anton Arapov  <anton@redhat.com>
+
+	* man/dmidecode.8: Add missing DMI type introduced with SMBIOS 2.7+, and
+	  include the information about the extra output when dmidecode is run
+	  on a hardware that has non-supported SMBIOS version.
+
+2012-03-12  Anton Arapov  <anton@redhat.com>
+
+	* dmioem.c: Add "PXE" to the HP OEM Type 209 output so it is similar to
+	  the "iSCSI" description in HP OEM Type 221. Patch from Naga Chumbalkar.
+
+2011-11-18  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Properly print the hexadecimal value of invalid
+	  string characters.
+
+2011-11-14  Anton Arapov  <anton@redhat.com>
+
+	* dmidecode.c: Make dmi_chassis_type aware of the lock bit.
+	  Patch from Stefan Tauner.
+	* config.h: Haiku dropped the _BEOS_ definition in favor of its own
+	  platform identification _HAIKU_. Patch from Francois Revol.
+
+2011-04-20  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.7.1.
+
+	* dmidecode.c: Add 6 AMD processor families (DMI type 4).
+	* dmidecode.c: Add cache associativity value
+	  "20-way Set-associative" (DMI type 7).
+	* dmidecode.c: Add PCI Express 3 slot types (DMI type 9).
+
+2011-01-25  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix boundary checks of memory array location codes
+	  (DMI type 16). Reported by Andrey Matveyev.
+
+2011-01-19  Anton Arapov  <anton@redhat.com>
+
+	* version.h: Set version to 2.11.
+
+2010-11-24  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Assume that the max power capacity is expressed in
+	  Watts, not milliWatts (DMI type 39). The specification isn't
+	  clear about the actual unit, but the only implementation I've
+	  seen (HP Proliant G7) clearly uses Watts. Also, using milliWatts
+	  would limit the max value that can be stored to 32 W, which
+	  doesn't make much sense.
+	* dmidecode.c: Fix offset of partition width (DMI type 19).
+	* dmidecode.c: Decode BIOS language information flags
+	  (DMI type 13).
+	* dmidecode.c: Fix CPU flags mask (DMI type 4).
+	* dmidecode.c: Reword "PCI Express Gen 2" to just "PCI Express 2"
+	  (DMI type 9).
+	* dmidecode.c: Decode the slot ID for all PCI Express and PCI
+	  Express 2 slots (DMI type 9).
+
+2010-11-24  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.7.0.
+
+	* dmidecode.c: Update all references to the SMBIOS specification
+	  to match the new numbering.
+	* dmidecode.c: Add UEFI support and virtual machine flags to BIOS
+	  characteristics (DMI type 0).
+	* dmideocde.c: Add SKU number field to system enclosure or chassis
+	  (DMI type 3).
+	* dmidecode.c: Add many Intel, AMD and VIA CPU family names
+	  (DMI type 4).
+	* dmidecode.c: Add many socket formats (DMI type 4).
+	* dmidecode.c: Add processor characteristics flags (DMI type 4).
+	* util.c, util.h: Add utility function u64_range, which computes
+	  the range between two u64 values.
+	* dmidecode.c: Add support for memory arrays of 2 TB and more
+	  (DMI types 16, 19 and 20).
+	* dmidecode.c: Add support for memory devices of 32 GB and more
+	  (DMI type 17).
+	* dmidecode.c: Add description of cooling device (DMI type 27).
+	* dmidecode.c: Add limited support for new DMI type 42 (Management
+	  Controller Host Interface).
+
+2010-11-16  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Handle ambiguous processor family value 0x30
+	  (DMI type 4).
+	* dmidecode.c: Prevent unlikely array overrun when decoding
+	  processor family value 0xBE (DMI type 4).
+	* dmidecode.c: Handle DMI type 2 record of size 0x0E.
+
+2010-11-11  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix decoding of IPMI base address LSB.
+
+2010-11-09  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Drop redundant/obsolete references to
+	  CIM_Processor.Family.
+
+2010-10-26  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support Intel AP-485 (CPUID) revision 36 (was 32).
+
+	* dmidecode.c: Update the link to the AP-485 document, the revision
+	  and the table number.
+	* dmidecode.c: Update two CPU flag descriptions (FXSR and HTT).
+	  Drop CPU flag IA64.
+	* dmidecode.c: Update the list of processors for which we decode the
+	  CPUID flags.
+
+2010-10-11  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: One more SMBIOS version fix-up case.
+	* Makefile: Rework BSD make compatibility trick. The previous
+	  trick would break GNU make 3.82.
+
+2010-09-29  Anton Arapov  <anton@redhat.com>
+
+	* util.c: makes dmidecode fall back to regular reads if the mmap
+	  fails. Patch from Olof Johansson.
+
+2010-09-21  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix Xeon 7xxx entries in CPU name lookup table
+	  (DMI type 4). Patch from Paul Flo Williams.
+
+2009-08-28  Jarod Wilson  <jarod@redhat.com>
+
+	Update to support SMBIOS specification version 2.6.1.
+
+	* dmidecode.c: Add processor types "Dual-Core Xeon 5200",
+	  "Dual-Core Xeon 7200", "Quad-Core Xeon 7300", "QuadCore Xeon 7400",
+	  "Multi-Core Xeon 7400", "Core i7", "Dual-Core Celeron",
+	  "Multi-Core Xeon", "Dual-Core Xeon 3xxx", "Quad-Core Xeon 3xxx",
+	  "Dual-Core Xeon 5xxx", "Quad-Core Xeon 5xxx", "Dual-Core Xeon 7xxx",
+	  "Quad-Core Xeon 7xxx" and "Multi-Core Xeon 7xxx" (DMI type 4).
+	* dmidecode.c: Add slot types "PCI Express Gen 2 x1",
+	  "PCI Express Gen 2 x2", "PCI Express Gen 2 x4",
+	  "PCI Express Gen 2 x8" and "PCI Express Gen 2 x16" (DMI type 9).
+	* dmidecode.c: Add memory device types "DDR3" and "FB-DIMM"
+	  (DMI type 17).
+	* dmidecode.c: Add cache associativity types "12-way Set-associative",
+	  "24-way Set-associative", "32-way Set-associative",
+	  "48-way Set-associative" and "64-way Set-associative" (DMI type 7).
+
+2009-07-27  Jean Delvare  <jdelvare@suse.de>
+
+	* dmioem.c: Recognize "Hewlett-Packard" as a possible DMI vendor
+	  string for HP. Orginal patch from Thomas Hiller (HP).
+	* dmidecode.c: Add processor upgrade type "Socket LGA1366"
+	  (DMI type 4).
+
+2009-06-19  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix decoding of memory array capacity. A maximum
+	  capacity of 128 GB would erroneously be reported as Unknown,
+	  while a unknown capacity would be erroneously reported as 2048
+	  GB. Bug reported by Lin Li (HP).
+
+2009-04-30  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Warn if decoding an SMBIOS implementation which is
+	  newer than what we support.
+
+2009-04-04  Jean Delvare  <jdelvare@suse.de>
+
+	* Makefile: Clarify license.
+
+2008-11-23  Jean Delvare  <jdelvare@suse.de>
+
+	* biosdecode.c: Stop using the inline keyword. It causes more
+	  portability issues than is worth given how little we care about
+	  performance in this tool, and recent versions of gcc know when
+	  to inline functions anyway.
+	* version.h: Set version to 2.10.
+
+2008-11-14  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Handle chassis information records of size 19
+	  (DMI type 3).
+
+2008-11-10  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Claim to support revision 32 of Intel AP-485
+	  (CPUID). No relevant change since revision 31.
+	* dmidecode.c: Update reference to AMD CPUID document.
+
+2008-11-09  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Decode the CPUID of more Intel, VIA and AMD
+	  processors (DMI type 4).
+	* dmidecode.c: More CPUID exceptions based on the version string
+	  (DMI type 4).
+	* README: Drop reference to the Linux kernel.
+	* README: Drop "model-specific issues" common problem entry, it is
+	  no longer relevant.
+	* README: Simplify "IA-64" common problem entry, most of the
+	  issues are solved by now.
+
+2008-11-08  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Add many processor types taken from the CIM Schema.
+	* dmidecode.c: Drop all references to the DMTF Master MIF
+	  document. This document hasn't been updated in years, so the
+	  additions it may contain are no longer relevant.
+
+2008-11-07  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Handle base board information records of size 9
+	  (DMI type 2).
+	* dmidecode.c: Don't display access time equivalent of memory
+	  device speed (DMI type 17). The access time didn't add much
+	  value, and rounding effects made it look bad at times.
+
+2008-11-07  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.6, fourth round.
+
+	* dmidecode.c: Initial support for additional information entries
+	  (DMI type 40). Proper support of this new entry type would
+	  require redesigning a large part of the code, so I am waiting
+	  to see actual implementations of it to decide whether it's worth
+	  the effort.
+	* dmidecode.c, dmidecode.8: Update reference SMBIOS document.
+	* dmiopt.c, dmidecode.8: Include entry type 41 in --type baseboard.
+
+2008-11-05  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.6, third round.
+
+	* dmidecode.c: Decode the group number, bus number and
+	  device/function number of system slots (DMI type 9).
+	  Based on a preliminary patch by Matt Domsch.
+	* dmidecode.c: Decode onboard devices extended information
+	  entries (DMI type 41). Based on a preliminary patch by Matt
+	  Domsch.
+	* dmidecode.c: Add slot types "PCI Express x1", "PCI Express x2",
+	  "PCI Express x4", "PCI Express x8" and "PCI Express x16"
+	  (DMI type 9).
+	* dmidecode.c: Decode the memory device rank (DMI type 17).
+
+2008-11-02  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Use binary search for dmi_processor_family, it's
+	  faster than linear search (DMI type 4).
+	* dmidecode.c: Decode boot integrity services entry point entries
+	  (DMI type 31).
+
+2008-10-31  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: The compiler knows how to reuse strings, it doesn't
+	  need our help, and actually it does a better job without it. So,
+	  turn out_of_spec into a define.
+	* dmidecode.c: Optimize functions dmi_processor_status(),
+	  dmi_cache_location(), dmi_system_reset_boot_option() and
+	  dmi_ipmi_register_spacing().
+
+2008-10-30  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c, dmiopt.c, dmidecode.8: Option --dump is only a
+	  modifier as --quiet is, so it's not actually mutually exclusive
+	  with the output format options.
+	* dmidecode.c: Make options --dump-bin and --quiet work together.
+	* dmidecode.c: Delay string filtering when option --dump is used.
+	* dmidecode.c: Refactor dmi_processor_family function to avoid
+	  code duplication.
+	* dmidecode.c: Fix up invalid SMBIOS version 2.51.
+
+2008-10-29  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Handle special case of processor family code 0xBE,
+	  which can be both Core 2 or K7. We use the processor
+	  manufacturer string as a hint (DMI type 4).
+
+2008-10-28  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c, dmidecode.h, dmiopt.c, dmiopt.h: Don't use function
+	  pointers for special string cases. Each special case is itself
+	  special and needs to call a function with its own prototype, so
+	  better have dedicated code to handle it all.
+	* dmidecode.c, dmidecode.h, dmioem.c, dmioem.h: Mark a few
+	  pointers const.
+	* dmidecode.c, util.c, util.h: When dumping the DMI table to a
+	  binary file, truncate the file first.
+	* dmidecode.c: Support Processor Family 2 field also when queried
+	  with option --string.
+
+2008-10-27  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.6, second round.
+
+	* dmidecode.c: Add support for Processor Family 2 field
+	  (DMI type 4).
+	* dmidecode.c: Add processor types "Turion 64 X2", "Core Solo",
+	  "Core 2 Duo", "ESA/390 G6", "z/Architectur", "C7-M", "C7-D",
+	  "C7" and "Eden" (DMI type 4).
+	* dmidecode.c: Fix typo in processor type "AMD29000" (DMI type 4).
+	* dmidecode.c: Add processor upgrade types "Socket S1",
+	  "Socket AM2" and "Socket F (1207)" (DMI type 4).
+
+2008-10-26  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.6, first round.
+
+	* dmidecode.c: Byte-swap the first 3 fields of the UUID
+	  (DMI type 1).
+	* dmidecode.c: Add chassis types "Blade" and "Blade Enclosure"
+	  (DMI type 3).
+
+2008-10-26  Jean Delvare  <jdelvare@suse.de>
+
+	* dmiopt.c, dmidecode.8: Simplify the handling and documentation
+	  of mutually exclusive output format options.
+	* dmidecode.8: Document the binary dump file format.
+	* dmidecode.c: Don't display the source dump file name in quiet
+	  mode.
+	* biosdecode.c, dmidecode.c, dmioem.c, dmiopt.c, dmiopt.h,
+	  ownership.c, types.h, util.c, vpddecode.c, vpdopt.c, vpdopt.h:
+	  Mass coding-style change: add spaces around operators.
+	* vpddecode.c: Fix --quiet option.
+	* dmidecode.h, dmiopt.h: Pass version information to print
+	  callback functions.
+	* dmidecode.c: Fix up invalid SMBIOS version.
+	* dmidecode.c: Handle base board information records of size 10
+	  (DMI type 2).
+
+2008-10-25  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Limit indentation in smbios_decode and
+	  legacy_decode.
+	* dmidecode.c, dmiopt.c: Write binary dump to a compact file
+	  rather than a sparse file.
+	* dmidecode.c, dmiopt.c, dmiopt.h: New option --from-dump, read
+	  the DMI data from a binary file.
+	* dmidecode.8: Update the option --dump-bin, document the new
+	  option --from-dump.
+
+2008-08-28  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Add missing colon to temperature probe label.
+	  Patch from Alex Iribarren.
+
+2008-02-16  Jean Delvare  <jdelvare@suse.de>
+
+	* util.c, util.h: New helper function write_dump.
+	* dmidecode.c, dmiopt.c, dmiopt.h: New option --dump-bin, dump
+	  the DMI data to a sparse binary file.
+	* dmidecode.8: Document the new option --dump-bin.
+	* Makefile, biosdecode.c, dmidecode.c, dmidecode.h, dmioem.c,
+	  dmioem.h, dmiopt.c, dmiopt.h, ownership.c, util.c, util.h,
+	  vpddecode.c, vpdopt.c, vpdopt.h: Update copyright statements.
+	* dmidecode.c: Adjust the error message which is displayed when
+	  the table is unreachable.
+
+2007-06-30  Jean Delvare  <jdelvare@suse.de>
+
+	* config.h: Add support for Solaris (x86 only, of course). Based
+	  on a patch by Sun's Dan Mick, brought to my knowledge by
+	  Attila Nagy.
+
+2007-06-27  Jean Delvare  <jdelvare@suse.de>
+
+	* Makefile: Fix the uninstall-man target.
+
+2007-06-07  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: If the SMBIOS entry point decoding fails (for
+	  example due to a bad checksum), still try decoding the
+	  encapsulated DMI entry point. Suggested by Luke Suchocki.
+	* dmidecode.c: Replace all occurrences of "KB" by the more
+	  correct "kB".
+
+2007-03-16  Jean Delvare  <jdelvare@suse.de>
+
+	* vpddecode.c: Stop asking the user to report bad checksums,
+	  unaligned records and the like. Such machines exist, too bad,
+	  we have to live with it.
+
+2007-02-27  Jean Delvare  <jdelvare@suse.de>
+
+	* biosdecode.c: Fix a compilation error with non-C99 compilers.
+	  Patch from Francois Revol.
+
+2007-02-26  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix an array overrun while decoding the system
+	  event log status (DMI type 15).
+	* biosdecode.c: Use printf instead of fwrite.
+	* dmidecode.8: Some OEM-specific types can be decoded now.
+	* biosdecode.8: List the FJKEYINF entry point type.
+	* vpddecode.8: The product name is no longer displayed.
+	* version.h: Set version to 2.9.
+
+2007-02-16  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Do not print the BIOS base address and runtime size
+	  if the base address is 0. This happens on IA-64 because there's
+	  no BIOS.
+	* Makefile, README: Do not build biosdecode, ownership and
+	  vpddecode on IA-64, as IA-64 systems have no BIOS. This was
+	  quite tricky to keep both GNU make and BSD make happy, but it
+	  seems that I finally succeeded.
+
+2007-02-13  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 2.5, second round.
+
+	* dmidecode.c: Decode new processor characteristics (multi-core,
+	  multi-thread, 64-bit) (DMI type 4).
+	* dmidecode.c: Decode slot ID of AGP 8x and PCI Express slots (DMI
+	  type 9).
+
+	* dmidecode.c: Fix the mask of 3 bitfield tests. This will let
+	  the memory type of some systems be properly reported as SDRAM.
+	* dmidecode.c: Fix the AMD processors signature decoding.
+	* README: Minor edits.
+
+2007-02-12  Jens Elkner  <elkner@linofee.org>
+
+	Update to support SMBIOS specification version 2.5, first round.
+
+	* dmidecode.c: Add chassis types "CompactPCI" and "AdvancedTCA"
+	  (DMI type 3).
+	* dmidecode.c: Add processor types "Turion 64",
+	  "Dual-Core Opteron", "Athlon 64 X2", "Celeron D", "Pentium D"
+	  and "Pentium EE" (DMI type 4).
+	* dmidecode.c: Add processor upgrade types "Socket mPGA604",
+	  "Socket LGA771" and "Socket LGA775" (DMI type 4).
+	* dmidecode.c: Add connector type "SAS/SATA Plug Receptacle" and
+	  port types "SATA" and "SAS" (DMI type 8).
+	* dmidecode.c: Add on-board device types "PATA Controller",
+	  "SATA Controller" and "SAS Controller" (DMI type 10).
+	* dmidecode.c: Add memory device form factor "FB-DIMM" and memory
+	  device type "DDR2 FB-DIMM" (DMI type 17).
+
+2007-02-12  Jean Delvare  <jdelvare@suse.de>
+
+	* dmioem.c: Share the code between HP-specific types 209 and 221.
+	  Both types are really the same, only the title is different.
+	* dmioem.c: Make the HP-specific types 209 and 221 output a bit
+	  more verbose.
+	* dmidecode.c: Let --type decode OEM-specific entries when
+	  possible.
+	* dmidecode.c: Include decoded OEM-specific entries in quiet mode
+	  output (--quiet).
+	* dmidecode.c: Do not complain about truncated entries in quiet
+	  mode.
+	* dmioem.c: Decode HP-specific type 204 entries in a safer way:
+	  check the length before decoding, and don't assume that all
+	  strings are provided in the same order as they are used.
+
+	Update to support Intel AP-485 (CPUID) revision 31 (was 28).
+
+	* dmidecode.c: New CPUID flag IA64.
+	* dmidecode.c: Fix the decoding of Intel extended family.
+
+2007-02-11  Jean Delvare  <jdelvare@suse.de>
+
+	* dmioem.c, dmioem.h: New.
+	* Makefile, dmidecode.c, dmidecode.h, dmioem.c, dmioem.h: Move the
+	  decoding of OEM-specific entries to a separate source file.
+	* dmidecode.c: DMI type 38 is tested by now.
+	* dmioem.c: The PCI function is typically represented as a single
+	  digit.
+	* Makefile, dmiopt.c, vpdopt.c, util.h: Define an ARRAY_SIZE macro
+	  which computes the size of a static array, and use it where
+	  relevant.
+
+2007-02-11  John Cagle  <jcagle@kernel.org>
+
+	* dmidecode.c: Add support for 3 HP-specific entries: system/rack
+	  locator (type 204), NIC MAC information (type 209) and NIC iSCSI
+	  MAC information (type 221).
+
+2007-01-14  Jean Delvare  <jdelvare@suse.de>
+
+	* vpddecode.c: Fix a rare warning.
+	* biosdecode.c: Add support for the FJKEYINF entry point, which
+	  contains data related to the "application panel" on Fujitsu
+	  laptops.
+
+2006-05-23  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Fix a recently introduced compilation error with
+	  non-C99 compilers.
+	* dmidecode.c: Check for short entries (less than 4 bytes), stop
+	  with an error when one is encountered.
+
+2006-05-13  Jean Delvare  <jdelvare@suse.de>
+
+	* vpddecode.c, README: Drop the product name lookup table. It
+	  was reported to be unreliable too many times, and was also
+	  difficult to maintain.
+
+2006-05-10  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Don't cast from u8* to dmi_header*, else
+	  architectures which do not support unaligned memory accesses
+	  may break. Instead, copy the members individually. That's a
+	  bit slower, but that's also safer and we only need to do it
+	  once per DMI entry, so it's not time critical. So far, we
+	  were using a trick to later work around the unaligned memory
+	  access, but the compiler would still warn about the risk,
+	  which is always confusing.
+	* config.h, types.h, README: Automatically enable the unaligned
+	  memory access workaround on ia64.
+	* types.h: Inline U64. It makes sense per se and also lets us
+	  get rid of a warning about U64 being unused.
+	* dmidecode.c: Detect EFI at run-time rather than compilation-
+	  time. Based on an original patch from Matthew Garrett. This
+	  will make x86 binaries work for both PC systems with BIOS and
+	  Macintosh systems with EFI. Also prevent a possible, though
+	  unlikely, NULL-pointer dereference in the EFI code.
+
+2006-02-25  Jean Delvare
+
+	* dmidecode.c: Fix typo reported by David Wilson (DMI case 3).
+
+2006-02-04  Jean Delvare
+
+	* vpddecode.c: Update lookup table from revision 2006-01-31 of IBM
+	  reference document (add product ID "7B").
+	* version.h: Set version to 2.8.
+
+2006-01-21  Jean Delvare
+
+	* vpddecode.c: The mysterious last character of xSeries records
+	  may be a BIOS revision. Display it as such when present and
+	  non zero, and ask users to report.
+	* vpddecode.c: Adjust an error message.
+	* dmidecode.8: Update the sample entry to match the new output
+	  format.
+	* README: Improve the IA-64 specific section and the vpddecode
+	  tool description.
+	* vpdopt.h: Add missing system header file include.
+
+2006-01-20  Jean Delvare
+
+	* vpddecode.c: Assume a constant length of 12 characters for the
+	  "Default Flash Image File Name" entry. The 13th character never
+	  contained anything useful, so it probably has a different
+	  meaning (unknown for now).
+
+2005-12-24  Jean Delvare
+
+	* vpddecode.c: Scan for VPD records on 4-byte boundaries instead
+	  of 16-byte boundaries. This is needed for some eServer xSeries
+	  206. Still emit a warning if a VPD record is found not on a
+	  16-byte boundary.
+
+2005-10-26  Jean Delvare
+
+	* vpddecode.c: Add product ID "NR". Reported by Klaus Muth.
+	* vpddecode.c: Update lookup table from revision 2005-10-06 of IBM
+	  reference document (add product IDs "77" and "78").
+
+2005-10-05  Jean Delvare
+
+	Update to support IPMI specification version 2.0 (was 1.5).
+
+	* dmidecode.c: Support IPMI interface type SSIF. Original patch
+	  by Garry Belka.
+
+2005-10-04  Jean Delvare
+
+	* vpdopt.c: Display the list of all valid string keywords when
+	  --string is used without an argument.
+	* vpddecode.8: Document the new -s, --string option.
+	* dmidecode.8: List the four new string keywords.
+	* vpddecode.c: Keep quiet when --string is used, even when no VPD
+	  record is found.
+
+2005-10-03  Jean Delvare
+
+	* biosdecode.c: Fix a potential (but highly improbable) buffer
+	  overrun in the VPD record decoding.
+	* biosdecode.c: Change the xSeries checksumming method to
+	  accommodate a strange xSeries 440 VPD record, as was done in
+	  vpddecode.c some weeks ago. Do not display the default flash
+	  image file name anymore, it's not so useful and the field length
+	  is now uncertain.
+	* vpdopt.c, vpdopt.h: New.
+	* Makefile, vpddecode.c, vpdopt.c, vpdopt.h: Move the command line
+	  handling of vpddecode to a separate source file.
+	* vpddecode.c, vpdopt.c, vpdopt.h: Add option -s, --string. It
+	  prints one selected VPD string instead of the regular output.
+
+2005-09-24  Jean Delvare
+
+	* dmiopt.c: Fix incorrect header include. The strcasecmp function
+	  is defined in <strings.h>, not <string.h>. Reported by Petter
+	  Reinholdtsen.
+
+2005-09-14  Jean Delvare
+
+	* dmidecode.h: New.
+	* dmidecode.c, dmidecode.h, Makefile: Export four specific
+	  decoding functions, make them suitable for external call.
+	* dmidecode.c, dmiopt.c, dmiopt.h, Makefile: Make it possible
+	  for --string to print decoded binary data rather than only
+	  DMI strings. Add four such string keywords.
+	* dmidecode.c, dmiopt.c, dmiopt.h: Modify the opt structure
+	  to handle the string option more efficiently.
+
+2005-09-13  Jean Delvare
+
+	* vpddecode.c: Slightly change the xSeries checksumming method to
+	  accommodate a strange xSeries 440 VPD record. Also tweak the
+	  decoding of the "Default Flash Image File Name" entry. Thanks
+	  to Torsten Seemann for providing a test VPD record.
+
+2005-09-05  Jean Delvare
+
+	* Makefile: Use -Wundef.
+
+2005-08-31  Jean Delvare
+
+	* dmidecode.c: Drop trailing dot from handle description line.
+
+2005-08-29  Jean Delvare
+
+	* dmidecode.c: Reword a comment about CPUID.
+	* dmidecode.c: Claim to support revision 28 of Intel AP-485
+	  (CPUID). No relevant change since revision 27.
+
+2005-08-25  Jean Delvare
+
+	* vpddecode.c: Add product ID "VI". Reported by Torsten Seemann.
+	* vpddecode.c: Update lookup table from revision 2005-06-24 of IBM
+	  reference document (add product IDs "1U", "1X", "70", "74", "75"
+	  and "76", update product ID "1Y").
+	* dmiopt.c: Complain about unknown options again.
+	* biosdecode.c, ownership.c, vpddecode.c: getopt_long() will never
+	  return ':'.
+
+2005-08-04  Jean Delvare
+
+	* README: Manual pages document the command line interface.
+	  A discussion list exists for developers. Mmap is used on
+	  most systems, not just Linux.
+	* version.h: Set version to 2.7.
+
+2005-08-02  Jean Delvare
+
+	* dmiopt.c, dmidecode.8: Options --dump and --quiet are mutually
+	  exclusive.
+
+2005-06-23  Jean Delvare
+
+	* dmiopt.c, dmidecode.8: Options --dump and --string are mutually
+	  exclusive.
+
+2005-06-22  Jean Delvare
+
+	* dmiopt.c: Display the list of all valid type or string keywords
+	  when --type or --string, respectively, is used without an
+	  argument or with an invalid one.
+	* dmidecode.8: Document the new -s, --string option. Update the
+	  -t, --type option documentation.
+	* dmiopt.c, dmidecode.8: Add string keyword "bios-release-date",
+	  the Linux kernel uses it.
+	* dmidecode.c, dmidecode.8: Fix typo ("Controler" becomes
+	  "Controller").
+
+2005-06-21  Jean Delvare
+
+	* dmidecode.c, dmiopt.c, dmiopt.h: Add option -s, --string. It
+	  prints one selected DMI string instead of the regular output.
+
+2005-06-18  Jean Delvare
+
+	* dmidecode.c: Hide handle references and entries of unknown
+	  type when --quiet is used.
+	* dmidecode.8: Document the new -q, --quiet option.
+	* dmidecode.c: Stop decoding at end of table entry when --quiet
+	  is used. Also don't warn about incorrect table length or entries
+	  count when --quiet is used.
+
+2005-06-17  Jean Delvare
+
+	* dmidecode.c, dmiopt.c, dmiopt.h: Add option -q, --quiet. It
+	  makes the output less verbose.
+	* dmidecode.c: Suppress one level of indentation in the output,
+	  insert blank lines between records. This will hopefully make
+	  the output easier to read.
+	* dmidecode.c: Hide table address and size when --type is used.
+
+2005-06-16  Jean Delvare
+
+	* dmidecode.8: Document the new -t, --type option.
+
+2005-06-15  Jean Delvare
+
+	* dmiopt.c, dmiopt.h: New.
+	* Makefile, dmidecode.c, dmiopt.c, dmiopt.h: Move the command line
+	  handling of dmidecode to a separate source file.
+	* dmiopt.c: Define keywords to be used with --type (instead of
+	  numeric values).
+
+2005-06-14  Jean Delvare
+
+	* dmidecode.c: Centralize the main exit point. This allows fixing
+	  a minor, recently introduced memory leak which was happening on
+	  error conditions.
+
+2005-06-13  Jean Delvare
+
+	* dmidecode.c: Add option -t, --type. It limits the output to
+	  the given type(s) of DMI entries.
+
+2005-05-25  Jean Delvare
+
+	* vpddecode.c: Add product IDs "KE", "NT" and "ZR". Reported by
+	  Bernd Krumboeck.
+
+2005-05-15  Jean Delvare
+
+	* dmidecode.8, vpddecode.8: Document the new -u, --dump option.
+
+	Update to support SMBIOS specification version 2.4 (was 2.4
+	preliminary). There is actually no difference between 2.4
+	preliminary and 2.4 final.
+
+	* dmidecode.c: Update the "System Management BIOS Reference
+	  Specification" version.
+
+2005-04-26  Jean Delvare
+
+	* vpddecode.c: Add product ID "M1". Reported by Myke Olson.
+	* vpddecode.c: Add option -u, --dump. It disables decoding of the
+	  VPD records, a raw dump is displayed instead. This option is
+	  mainly intended for debugging.
+
+2005-04-03  Jean Delvare
+
+	* Makefile: Use variables for install and rm commands, so that these
+	  can be overridden by the caller.
+
+2005-03-25  Jean Delvare
+
+	* Makefile: Install some documentation files (README, CHANGELOG,
+	  AUTHORS).
+
+	Update to support SMBIOS specification version 2.4 preliminary
+	[11/18/2004] (was 2.3.4).
+
+	* dmidecode.c: Add BIOS characteristics (DMI type 0).
+	* dmidecode.c: Display BIOS and firmware revisions where available
+	  (DMI type 0).
+	* dmidecode.c: Display system SKU number and family where available
+	  (DMI type 1).
+	* dmidecode.c: Add system slot types and widths (DMI type 9).
+	* dmidecode.c: Add memory device type "DDR2" (DMI type 17).
+
+2005-03-20  Jean Delvare
+
+	* Makefile: Install manual pages under $(prefix)/share/man by
+	  default, instead of $(prefix)/man, so as to comply with the FHS.
+
+2005-03-08  Jean Delvare
+
+	* vpddecode.c: Update lookup table from revision 2005-03-08 of IBM
+	  reference document (add product ID "1V", update product ID "1R").
+	  Thanks to Ingo van Lil for reporting about product ID "1V".
+
+2005-03-06  Jean Delvare
+
+	* dmidecode.c: Add option -u, --dump. It disables decoding of the
+	  entries, raw dumps are displayed instead. This option is mainly
+	  intended for debugging.
+	* Makefile: Use -Winline.
+	* dmidecode.c: Make ASCII filtering of strings faster.
+
+2005-02-28  Jean Delvare
+
+	* version.h: Set version to 2.6.
+	* Makefile: ownership.o depends on version.h.
+
+2005-02-24  Jean Delvare
+
+	* vpddecode.c: Add product ID "2C". Reported by Tomek Mateja.
+
+2005-02-17  Jean Delvare
+
+	* vpddecode.c: Add product IDs "OP" and "PN". Reported by Scott
+	  Denham.
+	* vpddecode.c: Fix typo in one product name (560E improperly
+	  spelled 650E).
+	* vpddecode.c: Add product IDs "IW" and "IY", as added recently
+	  on IBM's reference web page. Update reference.
+	* config.h: Use mmap on all but BeOS, instead of only Linux.
+
+2005-02-12  Jean Delvare
+
+	* util.c: Fix incorrect length in munmap call.
+	* Makefile: Use -Wmissing-prototypes.
+	* dmidecode.c: Fix maximum battery error value.
+
+2005-02-11  Jean Delvare
+
+	* Makefile: Discard -pedantic, we don't really need this.
+	* util.c: Display an error message on memory shortage. Suggested
+	  by Don Howard.
+
+	Fix a bug causing dmidecode to crash on some systems with more than
+	2 GB of memory. This is a signed vs unsigned issue, which existed
+	up to version 2.2, was fixed in 2.3 but reintroduced in a different
+	form in 2.5 as part of a code clean up and refactoring.
+	https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=112355
+	Thanks to Petter Reinholdtsen for reporting. Thanks to Don Howard
+	for additional insight.
+
+	* dmidecode.c, util.c, util.h: Use size_t instead of off_t when
+	  handling memory addresses.
+
+2005-02-10  Jean Delvare
+
+	* dmidecode.c: Add option -h, --help, display a usage summary.
+	* biosdecode.c, ownership.c, vpddecode.c: Copy command-line handling
+	  from dmidecode.c.
+	* biosdecode.8, dmidecode.8, ownership.8, vpddecode.8: Document
+	  the new command-line interface.
+
+2005-02-06  Jean Delvare
+
+	* Makefile: Everything depends on config.h.
+	* dmidecode.c: Add basic command-line handling. This was suggested
+	  a long time ago by Erwan Velu.
+
+2005-02-01  Jean Delvare
+
+	* vpddecode.c: Add product IDs "AP", "KP" and "RD". Reported by
+	  David Rosala.
+
+2005-01-17  Jean Delvare
+
+	* README: Add a note about Cygwin. Thanks to Dominik Klein for
+	  reporting success.
+
+2004-12-10  Jean Delvare
+
+	Increase portability and configurability to in order to support BeOS.
+
+	* config.h: New.
+	* config.h: Define a default memory device.
+	* biosdecode.c, dmidecode.c, ownership.c, vpddecide.c: Include
+	  config.h and use the defined default memory device.
+	* Makefile, config.h, util.c, README: Move USE_MMAP to config.h,
+	  use mmap on Linux only.
+
+2004-11-22  Jean Delvare
+
+	* biosdecode.c: Avoid size_t in printf. Should remove a warning on
+	  ia64. Thanks to Petter Reinholdtsen for reporting.
+	* util.c: Use sysconf(_SC_PAGESIZE) instead of getpagesize() where
+	  available. This may remove a warning on ia64 as a side effect.
+	  Thanks to Petter Reinholdtsen for reporting.
+
+2004-11-21  Jean Delvare
+
+	* util.c, util.h: Function myread has no more user outside of util.c.
+	* biosdecode.c: Speed improvements.
+
+2004-11-20  Jean Delvare
+
+	* biosdecode.c, ownership.c, vpddecode.c: Make use of the mem_chunk
+	  function.
+	* vpddecode.c: Simplify the memory loop code a bit.
+
+2004-11-12  Jean Delvare
+
+	* dmidecode.c: Hide bank connection type for non-installed memory
+	  modules.
+	* dmidecode.c: Reference comment fix.
+	* dmidecode.c: Hide watchdog timer details when no watchdog is
+	  present. Change label for no watchdog.
+	* README: Match case change for PREFIX (now prefix) in the Makefile
+	  file. Reported by Raul Nunez de Arenas Coronado.
+
+2004-11-12  Jean Delvare
+
+	Update to support DMTF Master MIF version 040707 (was 030621).
+
+	* dmidecode.c: One additional processor type (Sempron).
+	* dmidecode.c: One additional processor type (Efficeon TM8800).
+	* dmidecode.c: One additional processor upgrade type (Socket 939).
+	* dmidecode.c: Add the AMD Sempron to the list of x86-class
+	  processors.
+
+	Update to support Intel AP-485 (CPUID) revision 27 (was 25).
+
+	* dmidecode.c: Rename SBF flag to PBE.
+
+2004-11-11  Jean Delvare
+
+	* util.c: More helpful error messages.
+	* util.c: Use MAP_SHARED instead of MAP_PRIVATE in mmap.
+	* version.h: Set version to 2.5.
+
+2004-11-10  Jean Delvare
+
+	* README: Update dmidecode presentation (copied from the web page).
+	  Move the list of supported systems from the documentation section
+	  to the installation section.
+
+2004-11-09  Jean Delvare
+
+	* vpddecode.c: Update product ID "1R". Reported by Marco Wertejuk.
+
+2004-10-24  Jean Delvare
+
+	* util.c: Workaround missing MAP_FAILED definition, needed on
+	  old systems. Original patch from Durval Menezes.
+
+2004-10-14  Jean Delvare
+
+	* dmidecode.c: Search for EFI systab at /sys/firmware/efi/systab.
+	  Original patch from Alex Williamson.
+	* dmidecode.c: Remove warning about legacy_decode not being used
+	  when USE_EFI is defined.
+	* dmidecode.c: Detect missing SMBIOS entry point in efi/systab.
+	* dmidecode.c: Fix fatal typo in USE_EFI-specific code.
+
+2004-10-01  Roberto Nibali  <ratz@tac.ch>
+
+	* Makefile: Be LDFLAGS aware.
+
+2004-07-24  Jean Delvare
+
+	* util.c: Add missing header include.
+
+2004-06-11  Jean Delvare
+
+	* vpddecode.c: Add product IDs "GE" and "T2". Reported by Doug Brenner.
+
+2004-05-02  Jean Delvare
+
+	* dmidecode.c: Move legacy DMI entry point decoding to a separate
+	  function.
+	* dmidecode.c: Use a 64 kB buffer for searching entry points,
+	  instead of repeated 16-byte reads.
+	* util.c, util.h: New mem_chunk function. It returns a buffer
+	  containing a copy of a given chunk of the physical memory.
+	* dmidecode.c: Make use of the new mem_chunk function.
+
+2004-04-30  Jean Delvare
+
+	* vpddecode.c: Add product ID "JP". Reported by Bernd Krumboeck.
+
+2004-04-22  Jean Delvare
+
+	* dmidecode.c, biosdecode.c, ownership.c, types.h: Move common
+	  WORD-like macros to types.h.
+
+2004-04-21  Jean Delvare
+
+	* dmidecode.c, biosdecode.c: Fix my contact information.
+	* dmidecode.c: Update copyright year.
+
+2004-04-20  Jean Delvare
+
+	* README: Correct Chad Smith's name. Reported by Martin Pool.
+
+2004-04-15  Jean Delvare
+
+	* vpddecode.c: Add product ID "PL". Reported by Mark Syms.
+
+2004-04-14  Jean Delvare
+
+	* vpddecode.c: Add product ID "PD". Reported by Roger Koot.
+
+2004-04-11  Jean Delvare
+
+	* dmidecode.c, Makefile, README: Drop TABLE_LITTLEENDIAN.
+	* README: Update manual pages information.
+
+2004-04-02  Jean Delvare
+
+	* vpddecode.c: Add product ID "NV". Reported by Shawn Starr.
+
+2004-03-27  Jean Delvare
+
+	* vpddecode.c: Add product ID "24". Reported by Paul Sturm.
+	* dmidecode.c: Fix two missing comas in string enumerations. Thanks to
+	  Joshua Goldenhar for reporting the first one.
+
+2004-03-24  Jean Delvare
+
+	* vpddecode.c: Add product ID "PJ". Reported by Roger Koot.
+	* vpddecode.c: Rename two Netvista systems to use their real name
+	  instead of machine type.
+
+2004-03-20  Petter Reinholdtsen  <pere@hungry.com>
+
+	* Makefile: Make it easier to select where to install the binaries
+	  and manual pages, and to use different paths when building and
+	  installing.
+
+2004-03-19  Jean Delvare
+
+	* vpddecode.c: Add product ID "2A". Reported by Rafael Avila
+	  de Espindola.
+	* version.h: Set version to 2.4.
+
+2004-03-07  Jean Delvare
+
+	* biosdecode.c, vpddecode.c: Add a third checksumming method for
+	  VPD records.
+	* vpddecode.c: Add product ID "PI", update "20". Reported by
+	  Zing Zing Shishak.
+
+2004-03-05  Jean Delvare
+
+	* README: Update.
+
+2004-02-25  Jean Delvare
+
+	* dmidecode.c: Support CPUID document revision 25 (no change).
+	* dmidecode.c: Shorten the EOF error message.
+
+2004-02-23  Jean Delvare
+
+	* man/biosdecode.8, man/dmidecode.8, man/ownership.8,
+	  man/vpddecode.8: New.
+	* Makefile: Handle new manual pages.
+
+2003-12-28  Jean Delvare
+
+	* vpddecode.c: Add product ID "PT". Reported by Ramiro Barreiro.
+
+2003-12-17  Jean Delvare
+
+	* vpddecode.c: Add product ID "RE". Reported by Josef Moellers.
+	* vpddecode.c, biosdecode.c: Handle longer VPD records as seen on
+	  xSeries. These have a different checksumming method.
+
+2003-12-03  Jean Delvare
+
+	* vpddecode.c: Add product ID "TT". Reported by Hugues Lepesant.
+	* vpddecode.c, biosdecode.c: Fix typo ("Bios" becomes "BIOS").
+	* dmidecode.c: Add another exception to the CPUID-supporting CPU list
+	  ("Pentium III MMX").
+	* dmidecode.c: Number devices in multi-device on board device
+	  information structures (DMI case 10).
+
+2003-11-13  Jean Delvare
+
+	* dmidecode.c: Automatically detect architectures on which to use EFI
+	  (ia64 for now). Suggested by Jeff Moyer.
+
+2003-11-11  Jean Delvare
+
+	* vpddecode.c: Add product ID "KX". Reported by Klaus Ade Johnstad,
+	  confirmed by Pamela Huntley.
+	* dmidecode.c: Display CPUID values as decimal, not hexadecimal.
+	  This is a reversal of the 2003-07-18 change to be consistent with
+	  /proc/cpuinfo under Linux.
+	* dmidecode.c: Fix processor ID decoding for older 80486. Not very
+	  important since such systems are unlikely to support SMBIOS.
+	* dmidecode.c: Modify CPU signature display for AMD processors.
+	* vpddecode.c, biosdecode.c: Fix incorrect VPD checksumming.
+
+2003-10-24  Jean Delvare
+
+	* dmidecode.c: Add another exception to the CPUID-supporting CPU list.
+
+2003-10-19  Jean Delvare
+
+	* README: Clarify why mmap is used. Fix typo.
+	* Makefile: Add deleting core to the clean target.
+	* version.h: Set version to 2.3.
+
+2003-10-17  Jean Delvare
+
+	* biosdecode.c: Use (void) instead of __attribute__ ((unused)) to
+	  declare that a function parameter isn't used. According to Alexandre
+	  Duret-Lutz, this is the portable way do to it. Fix typo in comment.
+	* dmidecode.c: Fix typo.
+
+2003-10-16  Jean Delvare
+
+	* dmidecode.c: Remove useless comparison in dmi_system_boot_status.
+	  Thanks to Alexandre Duret-Lutz for pointing this out.
+	* biosdecode.c: Add a missing length check in acpi_decode. Found
+	  using Valgrind.
+	* biosdecode.c: Fix buffer overrun in main. Found using Valgrind.
+
+2003-10-14  Jean Delvare
+
+	* dmidecode.c: Update DMTF reference addresses.
+	* dmidecode.c: List two more processors (Athlon64 and Pentium M)
+	  as x86-class (i.e. supporting CPUID).
+
+2003-10-11  Jean Delvare
+
+	Update to support DMTF Master MIF version 030621 (was 021205).
+
+	* dmidecode.c: Handle unknown processor voltage.
+	* dmidecode.c: Fix typo in event log method.
+	* dmidecode.c: One additional processor type (Pentium M).
+	* dmidecode.c: Add the AMD Opteron to the list of x86-class
+	  processors. Thanks to Mike Cooper for providing information.
+	* vpddecode.c: New program for decoding a machine's VPD structure
+	  (only found in IBM machines).
+	* Makefile: Update accordingly.
+	* Makefile: Fix dependencies for ownership. Add strip target. Various
+	  cleanups (reordering, comments, optimization and debug flags).
+	* README: Update to reflect the addition of the strip target and the
+	  vpddecode program. Some additional changes and fixes.
+
+2003-10-10  Jean Delvare
+
+	* dmidecode.c: Change mmap options to prevent dmidecode from being
+	  killed by the Linux kernel in some rare cases. Reported by
+	  Mike Cooper.
+	* dmidecode.c: Various code cleanups and optimizations.
+
+2003-10-09  Jean Delvare
+
+	* dmidecode.c: Fix a bug that prevented dmidecode to reach DMI tables
+	  beyond the 2GB memory limit. Reported by Mike Cooper.
+	* ownership.c: Add one reference. Code cleanups.
+	* CHANGELOG: Fix typo.
+
+2003-10-08  Jean Delvare
+
+	* biosdecode.c: Fix potentially wrong checksum on Sony-specific entry.
+	* biosdecode.c: Unimportant changes (comment, typo...) in
+	  Compaq-specific section.
+	* biosdecode.c: Add support for VPD (vital product data, IBM-specific).
+	* CHANGELOG: Various updates.
+
+2003-10-07  Jean Delvare
+
+	* ownership.c: Fix a harmless warning on x86_64. Reported by Mike
+	  Cooper.
+
+2003-09-19  Jean Delvare
+
+	* dmidecode.c: Explicitly say when no SMBIOS nor DMI entry point
+	  was found. Implicitly suggested by Sergey Leonovich.
+
+2003-09-11  Jean Delvare
+
+	* Makefile: Don't use $^ since it isn't supported by BSD make.
+	  Reported by Hugues Lepesant.
+
+2003-09-05  Jean Delvare
+
+	* Makefile: Fix missing ownership dependency for install target.
+	  Reported by Mario Lang.
+
+2003-08-08  Jean Delvare
+
+	* dmidecode.c: Update the README file (mainly the now solved laptop
+	  and IA-64 issues, and add a section for biosdecode and ownership).
+	* version.h: Set version to 2.2.
+
+2003-07-18  Jean Delvare
+
+	* dmidecode.c: Display CPUID values as hexadecimal, not decimal.
+	* dmidecode.c: Shift the I2C slave address by one bit to the right
+	  (DMI case 38).
+
+2003-06-27  Jean Delvare
+
+	* biosdecode.c: Better display of Compaq-specific entries (thank to
+	  some documentation).
+
+2003-06-25  Jean Delvare
+
+	* dmidecode.c: Remove fp_last (not useful anymore). Reworded the "table
+	  is unreachable" message to mention the -DUSE_MMAP solution.
+
+2003-06-19  Jean Delvare
+
+	* dmidecode.c: Add support for IA-64.
+	* Makefile: Add new option CFLAGS modifier lines for IA-64.
+
+2003-06-17  Jean Delvare
+
+	* dmidecode.c, biosdecode.c: Move common "util" functions to util.c.
+	* util.c, util.h: New.
+	* types.h: New.
+	* Makefile: Update accordingly.
+	* biosdecode.c: Add detection of Compaq-specific entries.
+	* ownership.c: New program for finding a machine's ownership tag
+	  (only found in Compaq machines). Requested by Luc Van de Velde.
+	* Makefile: Update again.
+
+2003-06-10  Jean Delvare
+
+	* dmidecode.c: Fix typo in IPMI register spacing table.
+	* version.h: Set version to 2.1.
+
+2003-06-04  Jean Delvare
+
+	* Makefile: Restore optional CFLAGS modifier lines.
+	* README: New.
+
+2003-05-30  Jean Delvare
+
+	* dmidecode.c: Cleaner handling of unreachable table.
+
+2003-05-27  Jean Delvare
+
+	Update to support Intel AP-485 specification (CPUID) revision 023
+	(was 021).
+
+	* dmidecode.c: Add SBF flag to processor ID (DMI case 4). Add comment
+	  about new flags returned in ECX.
+
+2003-05-26  Jean Delvare
+
+	Update to support SMBIOS specification version 2.3.4 (was 2.3.3).
+
+	* dmidecode.c: Add processor and processor upgrade names (DMI case 4).
+	* dmidecode.c: Add slot names (DMI case 9).
+
+2003-05-22  Jean Delvare
+
+	* dmidecode.c: Fix typo reported by David Wilson (DMI case 6).
+
+2003-03-08  Jean Delvare
+
+	* dmidecode.c: Decode more fields according to the IPMI specification
+	  (DMI case 38).
+
+2003-03-07  Jean Delvare
+
+	Fixed IPMI device information (DMI case 38). Thanks to Richard Sharpe
+	for pointing the bugs out.
+
+	* dmidecode.c: Fix IPMI interface type being shifted by one.
+	* dmidecode.c: Fix NV storage device being improperly displayed.
+	* dmidecode.c: Reword IPMI specification revision into specification
+	  version, as suggested in the IPMI specification itself.
+	* dmidecode.c: Add a reference to the IPMI specification.
+	* dmidecode.c: Show I2C address as hexadecimal.
+	* dmidecode.c: Base address is a QWORD, not DWORD.
+	* dmidecode.c: Decode some extra fields according to the IPMI
+	  specification.
+
+2003-03-06  Jean Delvare
+
+	* dmidecode.c, biosdecode.c: Move all changelog entries to CHANGELOG.
+	* CHANGELOG: New. Format inspired by Heroes' ChangeLog file.
+	* dmidecode.c, biosdecode.c, Makefile: Update copyright years.
+	* dmidecode.c, biosdecode.c, Makefile: Move version definition to
+	  version.h. Update dependencies accordingly.
+	* version.h: New.
+
+2002-10-21  Jean Delvare
+
+	* dmidecode.c: Change supported log type descriptors display.
+	* dmidecode.c: Code optimization in event log status.
+	* dmidecode.c: Remove extra newline in voltage probe accuracy.
+	* dmidecode.c: Display "OEM-specific" if type is 128 or more.
+	* dmidecode.c: Do not display Strings on dump if there are no strings.
+	* dmidecode.c: Add ASCII-filtering to dmi_string.
+	* dmidecode.c: Convert all dates to ISO 8601.
+
+2002-10-18  Jean Delvare
+
+	* dmidecode.c: Complete rewrite.
+	* dmidecode.c: Now complies with SMBIOS specification 2.3.3.
+	* dmidecode.c: Move all non-DMI stuff to biosdecode.c.
+	* biosdecode.c: New.
+
+2002-10-15  Jean Delvare
+
+	* dmidecode.c: Fix bad index in DMI case 27 (cooling device).
+
+2002-10-14  Jean Delvare
+
+	* dmidecode.c: Fix typo in dmi_memory_array_location.
+	* dmidecode.c: Replace Kbyte by kB in DMI case 16.
+	* dmidecode.c: Add DDR entry in dmi_memory_device_type.
+	* dmidecode.c: Fix extra s in SYSID.
+
+2002-10-12  Jean Delvare
+
+	* dmidecode.c: Fix maximum cache size and installed size being
+	  inverted.
+	* dmidecode.c: Fix typos in port types.
+
+2002-10-10  Jean Delvare
+
+	* dmidecode.c: Remove extra semicolon at the end of
+	  dmi_memory_array_use.
+	* dmidecode.c: Fix compilation warnings.
+	* dmidecode.c: Add missing backslash in DMI case 37.
+	* dmidecode.c: Fix BIOS ROM size (DMI case 0).
+
+2002-10-05  Jean Delvare
+
+	* dmidecode.c: More ACPI decoded.
+	* dmidecode.c: More PNP decoded.
+	* dmidecode.c: More SYSID decoded.
+	* dmidecode.c: PCI Interrupt Routing decoded.
+	* dmidecode.c: BIOS32 Service Directory decoded.
+	* dmidecode.c: Sony system detection (unconfirmed).
+	* dmidecode.c: Checksums verified whenever possible.
+	* dmidecode.c: Better checks on file read and close.
+	* dmidecode.c: Define VERSION and display version at beginning.
+	* dmidecode.c: More secure decoding (won't run off the table in any
+	  case).
+	* dmidecode.c: Do not try to decode more structures than announced.
+	* dmidecode.c: Fix an off-by-one error that caused the last address
+	  being scanned to be 0x100000, not 0xFFFF0 as it should.
+
+2002-09-28  Jean Delvare
+
+	* dmidecode.c: Fix missing coma in dmi_bus_name.
+	* dmidecode.c: Remove unwanted bitmaskings in dmi_mgmt_dev_type,
+	  dmi_mgmt_addr_type, dmi_fan_type, dmi_volt_loc, dmi_temp_loc and
+	  dmi_status.
+	* dmidecode.c: Fix DMI table read bug ("dmi: read: Success").
+	* dmidecode.c: Make the code pass -W again.
+	* dmidecode.c: Fix return value of dmi_card_size.
+
+2002-09-20  Dave Johnson  <ddj@cascv.brown.edu>
+
+	* dmidecode.c: Fix comparisons in dmi_bus_name.
+	* dmidecode.c: Fix comparison in dmi_processor_type.
+	* dmidecode.c: Fix bitmasking in dmi_onboard_type.
+	* dmidecode.c: Fix return value of dmi_temp_loc.
+
+2002-09-17  Larry Lile  <llile@dreamworks.com>
+
+	* dmidecode.c: Type 16 & 17 structures displayed per SMBIOS 2.3.1 spec.
+
+2002-08-23  Alan Cox  <alan@redhat.com>
+
+	* dmidecode.c: Make the code pass -Wall -pedantic by fixing a few
+	  harmless sign of pointer mismatches.
+	* dmidecode.c: Correct main() prototype.
+	* dmidecode.c: Check for compilers with wrong type sizes.
+
+2002-08-09  Jean Delvare
+
+	* dmidecode.c: Better DMI struct count/size error display.
+	* dmidecode.c: More careful memory access in dmi_table.
+	* dmidecode.c: DMI case 13 (Language) decoded.
+	* dmidecode.c: C++ style comments removed. Commented out code removed.
+	* dmidecode.c: DMI 0.0 case handled.
+	* dmideocde.c: Fix return value of dmi_port_type and
+	  dmi_port_connector_type.
+
+2002-08-06  Jean Delvare
+
+	* dmidecode.c: Reposition file pointer after DMI table display.
+	* dmidecode.c: Disable first RSD PTR checksum (was not correct anyway).
+	* dmidecode.c: Show actual DMI struct count and occupied size.
+	* dmidecode.c: Check for NULL after malloc.
+	* dmidecode.c: Use SEEK_* constants instead of numeric values.
+	* dmidecode.c: Code optimization (and warning fix) in DMI cases 10 and
+	  14.
+	* dmidecode.c: Add else's to avoid unneeded cascaded if's in main loop.
+	* dmidecode.c: Code optimization in DMI information display.
+	* dmidecode.c: Fix all compilation warnings.
+
+2002-08-03  Mark D. Studebaker  <mds@paradyne.com>
+
+	* dmidecode.c: Better indent in dump_raw_data.
+	* dmidecode.c: Fix return value of dmi_bus_name.
+	* dmidecode.c: Additional sensor fields decoded.
+	* dmidecode.c: Fix compilation warnings.
+
+2001-12-13  Arjan van de Ven  <arjanv@redhat.com>
+
+	* dmidecode.c: Fix memory bank type (DMI case 6).
+
+2001-07-02  Matt Domsch  <Matt_Domsch@dell.com>
+
+	* dmidecode.c: Additional structures displayed per SMBIOS 2.3.1 spec.

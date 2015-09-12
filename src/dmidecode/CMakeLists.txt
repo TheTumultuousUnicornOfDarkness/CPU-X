@@ -5,7 +5,7 @@ endif(APPLE)
 
 cmake_policy(SET CMP0048 NEW)
 project(libdmi
-	VERSION 2.12
+	VERSION 3.0
 	LANGUAGES C
 )
 

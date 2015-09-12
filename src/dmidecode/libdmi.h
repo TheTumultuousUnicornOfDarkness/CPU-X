@@ -27,7 +27,6 @@
 #include "../core.h"
 #include "../options.h"
 
-#define DMIVERSION "2.12"
 #define PROC_PACKAGE 0
 #define PROC_BUS 1
 #define LASTPROC 2

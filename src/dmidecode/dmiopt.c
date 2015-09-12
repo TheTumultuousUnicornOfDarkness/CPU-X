@@ -2,7 +2,7 @@
  * Command line handling of dmidecode
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2005-2008 Jean Delvare <khali@linux-fr.org>
+ *   Copyright (C) 2005-2008 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -225,8 +225,9 @@ int parse_command_line(int argc, char * const argv[])
 		{ "dump", no_argument, NULL, 'u' },
 		{ "dump-bin", required_argument, NULL, 'B' },
 		{ "from-dump", required_argument, NULL, 'F' },
+		{ "no-sysfs", no_argument, NULL, 'S' },
 		{ "version", no_argument, NULL, 'V' },
-		{ 0, 0, 0, 0 }
+		{ NULL, 0, NULL, 0 }
 	};
 
 	while ((option = getopt_long(argc, argv, optstring, longopts, NULL)) != -1)
@@ -261,6 +262,9 @@ int parse_command_line(int argc, char * const argv[])
 				break;
 			case 'u':
 				opt.flags |= FLAG_DUMP;
+				break;
+			case 'S':
+				opt.flags |= FLAG_NO_SYSFS;
 				break;
 			case 'V':
 				opt.flags |= FLAG_VERSION;

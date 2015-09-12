@@ -2,7 +2,7 @@
  * Common "util" functions
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2002-2010 Jean Delvare <khali@linux-fr>
+ *   Copyright (C) 2002-2015 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -89,15 +89,70 @@ int checksum(const u8 *buf, size_t len)
 }
 
 /*
+ * Reads all of file, up to max_len bytes.
+ * A buffer of max_len bytes is allocated by this function, and
+ * needs to be freed by the caller.
+ * This provides a similar usage model to mem_chunk()
+ *
+ * Returns pointer to buffer of max_len bytes, or NULL on error
+ *
+ */
+void *read_file(size_t max_len, const char *filename)
+{
+	int fd;
+	size_t r2 = 0;
+	ssize_t r;
+	u8 *p;
+
+	/*
+	 * Don't print error message on missing file, as we will try to read
+	 * files that may or may not be present.
+	 */
+	if ((fd = open(filename, O_RDONLY)) == -1)
+	{
+		if (errno != ENOENT)
+			perror(filename);
+		return(NULL);
+	}
+
+	if ((p = malloc(max_len)) == NULL)
+	{
+		perror("malloc");
+		return NULL;
+	}
+
+	do
+	{
+		r = read(fd, p + r2, max_len - r2);
+		if (r == -1)
+		{
+			if (errno != EINTR)
+			{
+				close(fd);
+				perror(filename);
+				free(p);
+				return NULL;
+			}
+		}
+		else
+			r2 += r;
+	}
+	while (r != 0);
+
+	close(fd);
+	return p;
+}
+
+/*
  * Copy a physical memory chunk into a memory buffer.
  * This function allocates memory.
  */
-void *mem_chunk(size_t base, size_t len, const char *devmem)
+void *mem_chunk(off_t base, size_t len, const char *devmem)
 {
 	void *p;
 	int fd;
 #ifdef USE_MMAP
-	size_t mmoffset;
+	off_t mmoffset;
 	void *mmp;
 #endif
 
@@ -145,7 +200,7 @@ void *mem_chunk(size_t base, size_t len, const char *devmem)
 	 * but to workaround problems many people encountered when trying
 	 * to read from /dev/mem using regular read() calls.
 	 */
-	mmp = mmap(0, mmoffset + len, PROT_READ, MAP_SHARED, fd, base - mmoffset);
+	mmp = mmap(NULL, mmoffset + len, PROT_READ, MAP_SHARED, fd, base - mmoffset);
 	if (mmp == MAP_FAILED)
 		goto try_read;
 
@@ -159,9 +214,8 @@ void *mem_chunk(size_t base, size_t len, const char *devmem)
 
 	goto out;
 
-#endif /* USE_MMAP */
-
 try_read:
+#endif /* USE_MMAP */
 	if (lseek(fd, base, SEEK_SET) == -1)
 	{
 		fprintf(stderr, "%s: ", devmem);
@@ -176,7 +230,9 @@ try_read:
 		return NULL;
 	}
 
+#ifdef USE_MMAP
 out:
+#endif
 	if (close(fd) == -1)
 		perror(devmem);
 

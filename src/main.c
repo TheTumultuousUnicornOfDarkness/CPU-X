@@ -385,7 +385,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabmb[NAME][REVISION],		_("Revision"));
 
 	asprintf(&data->tabmb[NAME][BRAND],		_("Brand"));
-	asprintf(&data->tabmb[NAME][VERSION],		_("Version"));
+	asprintf(&data->tabmb[NAME][BIOSVER],		_("Version"));
 	asprintf(&data->tabmb[NAME][DATE],		_("Date"));
 	asprintf(&data->tabmb[NAME][ROMSIZE],		_("ROM Size"));
 
