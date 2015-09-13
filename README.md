@@ -1,13 +1,31 @@
-# CPU-X
+->![CPU-X](https://raw.githubusercontent.com/X0rg/CPU-X/master/data/pictures/CPU-X.png)
+
 [![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X)
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X)
-[![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/pX0rg/CPU-X/issues)
+[![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)<-
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD and on OS X (some features are missing).  
 This software is written in C programming language, and built with [CMake](http://www.cmake.org/).  
 This is a graphical software (GTK is used), but it can be used from a shell by using Ncurses or by dumping data.
 
+->![](http://i.imgur.com/oCqilgK.png)<-
+
+***
+
+# Table of contents
+* [Dependencies](#dependencies)
+* [Download/Install](#downloadinstall)
+  * [Download packages](#download-packages)
+  * [Manual build](#manual-build)
+  * [Portable version](#portable-version)
+* [Usage](#usage)
+* [Screenshots](#screenshots)
+* [Translate/Contributions](#translatecontributions)
+* [Troubleshooting](#troubleshooting)
+* [Bugs/Improvements/Request features](#bugsimprovementsrequest-features)
+
+***
 
 ## Dependencies
 
@@ -42,7 +60,17 @@ This is a graphical software (GTK is used), but it can be used from a shell by u
     * Required to run CPU-X correctly; embedded in portable version
 
 
-## Build
+## Download/Install
+
+### Download packages
+
+You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, click on your distro logo and follow instruction:  
+[![Arch Linux](http://i.stack.imgur.com/ymaLV.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Arch-Linux)
+[![Debian](https://phrozensoft.com/uploads/2014/11/debian_logo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Debian)
+[![Fedora](http://kivy.org/images/os_fedora.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Fedora)
+
+
+### Manual build
 
 For step-by-step guide, you can see the [wiki page](https://github.com/X0rg/CPU-X/wiki) (GNU/Linux, *BSD and OS X).  
 First of all, you need to install [CMake](http://www.cmake.org/) (this is only needed for build).
@@ -64,7 +92,7 @@ make install
 ```
 By default, CPU-X will be installed in */usr/local*. If you want to change it, add option `cmake -DCMAKE_INSTALL_PREFIX=<absolute_path> ..` on CMake invocation.
 
-* If you want a portable binary, do:
+* If you want to build a portable binary, do:
 ```
 mkdir ebuild && cd ebuild
 cmake -DEMBED=1 ..
@@ -74,6 +102,14 @@ make
 Note: portable binary is *accomplished/bin/cpu-x*, in directory *ebuild*. Don't do `make install` after.You can move this runnable file where you want.
 
 
+### Portable version
+
+CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32-bit), like CPU-Z.  
+Latest release is [HERE](https://github.com/X0rg/CPU-X/releases/latest), all releases are [here](https://github.com/X0rg/CPU-X/releases).  
+Download file *CPU-X_vX.X.X_portable.tar.gz* or file *CPU-X_vX.X.X_portable_noGTK.tar.gz*, extract archive, and you can now run CPU-X portable.  
+You can put these files on a USB stick for example.
+
+
 ## Usage
 
 Start program with **root privileges** allow to use **Dmidecode** (Libdmi) and avoid empty labels.
@@ -81,14 +117,6 @@ Application is put in the desktop menus, in **System Tools** category: entry *CP
 Else, you can use command `cpu-x`, or double-click on `cpu-x` binary is also possible (if program won't start, check if file has executable bit set).  
 If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell (as root) `cpu-x --ncurses`.  
 Use `cpu-x --help` for other commands and help.
-
-
-## Portable version
-
-CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32-bit), like CPU-Z.  
-Latest release is [>>> HERE <<<](https://github.com/X0rg/CPU-X/releases/latest), all releases are [here](https://github.com/X0rg/CPU-X/releases).  
-Download file *CPU-X_vX.X.X_portable.tar.gz* or file *CPU-X_vX.X.X_portable_noGTK.tar.gz*, extract archive, and you can now run CPU-X portable.  
-You can put these files on a USB stick for example.
 
 
 ## Screenshots
