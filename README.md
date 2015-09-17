@@ -1,15 +1,16 @@
-->![CPU-X](https://raw.githubusercontent.com/X0rg/CPU-X/master/data/pictures/CPU-X.png)
+
+<p align="center"><img src="https://raw.githubusercontent.com/X0rg/CPU-X/master/data/pictures/CPU-X.png" alt="CPU-X"></p>
 
 [![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X)
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X)
-[![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)<-
+[![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD and on OS X (some features are missing).  
 This software is written in C programming language, and built with [CMake](http://www.cmake.org/).  
 This is a graphical software (GTK is used), but it can be used from a shell by using Ncurses or by dumping data.
 
-->![](http://i.imgur.com/oCqilgK.png)<-
+<p align="center"><img src="http://i.imgur.com/oCqilgK.png" alt="Screenshot"></p>
 
 ***
 
@@ -69,8 +70,8 @@ You can download binary packages to easily install CPU-X on your system. A lot o
 [![Debian](https://phrozensoft.com/uploads/2014/11/debian_logo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Debian)
 [![Fedora](http://kivy.org/images/os_fedora.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Fedora)
 [![Gentoo](http://www.ltsp.org/images/distro/gentoo.png)](http://gpo.zugaina.org/sys-apps/cpu-x)
+[![OpenSUSE](https://harmonyseq.files.wordpress.com/2010/10/opensuse-logo_design_mini.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-OpenSUSE)
 [![Ubuntu](http://computriks.com/img/icon/ubuntu24.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Ubuntu)
-
 
 
 ### Manual build
