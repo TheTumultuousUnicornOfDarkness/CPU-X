@@ -73,6 +73,8 @@ You can download binary packages to easily install CPU-X on your system. A lot o
 [![OpenSUSE](https://harmonyseq.files.wordpress.com/2010/10/opensuse-logo_design_mini.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-OpenSUSE)
 [![Ubuntu](http://computriks.com/img/icon/ubuntu24.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Ubuntu)
 
+Note: only recent versions of distributions are supported due to CMake 3.0 is needed to *build* CPU-X but not available on old distributions. A package can be installed on non-supported versions if dependencies can be satisfied (CMake is a build dependency, not an install dependency).
+
 
 ### Manual build
 
