@@ -346,7 +346,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMCACHE],		_("Cache"));
 	asprintf(&data->objects[FRAMCACHEL1],		_("L1 Cache"));
 	asprintf(&data->objects[FRAMCACHEL2],		_("L2 Cache"));
-	asprintf(&data->objects[FRAMCACHEL3],		_("L2 Cache"));
+	asprintf(&data->objects[FRAMCACHEL3],		_("L3 Cache"));
 	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
 	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
