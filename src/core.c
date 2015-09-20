@@ -62,7 +62,6 @@
 int libcpuid(Labels *data)
 {
 	int err = 0;
-	char *tmp;
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
@@ -80,63 +79,58 @@ int libcpuid(Labels *data)
 	asprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
 	asprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
 
-	if(datanr.l1_data_cache > 0)
+	/* Cache : level 1 (data) */
+	if(datanr.l1_data_cache)
 	{
 		asprintf(&data->tabcpu[VALUE][LEVEL1D],	"%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
+
 		if(datanr.l1_assoc > 0)
-		{
-			asprintf(&tmp, ", %2d-way", datanr.l1_assoc);
-			data->tabcpu[VALUE][LEVEL1D] = realloc(data->tabcpu[VALUE][LEVEL1D],
-				(strlen(data->tabcpu[VALUE][LEVEL1D]) + strlen(tmp) + 1) * sizeof(char));
-			strcat(data->tabcpu[VALUE][LEVEL1D], tmp);
-			free(tmp);
-			asprintf(&data->tabcache[VALUE][L1SIZE],  "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_data_cache, datanr.l1_assoc);
-			asprintf(&data->tabcache[VALUE][L1DESCR], "%2d-way set associative, %2d-byte line size", datanr.l1_assoc, datanr.l1_cacheline);
-		}
+			asprintf(&data->tabcpu[VALUE][LEVEL1D],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL1D], datanr.l1_assoc);
 	}
 
+	/* Cache : level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
 	{
 		asprintf(&data->tabcpu[VALUE][LEVEL1I],	"%d x %4d KB", datanr.num_cores, datanr.l1_instruction_cache);
+		data->tabcache[VALUE][L1SIZE] = strdup(data->tabcpu[VALUE][LEVEL1I]);
+
 		if(datanr.l1_assoc > 0)
 		{
-			asprintf(&tmp, ", %2d-way", datanr.l1_assoc);
-			data->tabcpu[VALUE][LEVEL1I] = realloc(data->tabcpu[VALUE][LEVEL1I],
-				(strlen(data->tabcpu[VALUE][LEVEL1I]) + strlen(tmp) + 1) * sizeof(char));
-			strcat(data->tabcpu[VALUE][LEVEL1I], tmp);
-			free(tmp);
+			asprintf(&data->tabcpu[VALUE][LEVEL1I],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL1I], datanr.l1_assoc);
+			asprintf(&data->tabcache[VALUE][L1DESCR], "%2d-way set associative", datanr.l1_assoc);
 		}
+		if(datanr.l1_cacheline > 0)
+			asprintf(&data->tabcache[VALUE][L1DESCR], "%s, %2d-byte line size", data->tabcache[VALUE][L1DESCR], datanr.l1_cacheline);
 	}
 
+	/* Cache : level 2 */
 	if(datanr.l2_cache > 0)
 	{
-		asprintf(&data->tabcpu[VALUE][LEVEL2],	"%d x %4d KB", datanr.num_cores, datanr.l2_cache);
-		if(datanr.l1_assoc > 0)
+		asprintf(&data->tabcpu[VALUE][LEVEL2], "%d x %4d KB", datanr.num_cores, datanr.l2_cache);
+		data->tabcache[VALUE][L2SIZE] = strdup(data->tabcpu[VALUE][LEVEL2]);
+
+		if(datanr.l2_assoc > 0)
 		{
-			asprintf(&tmp, ", %2d-way", datanr.l2_assoc);
-			data->tabcpu[VALUE][LEVEL2] = realloc(data->tabcpu[VALUE][LEVEL2],
-				(strlen(data->tabcpu[VALUE][LEVEL2]) + strlen(tmp) + 1) * sizeof(char));
-			strcat(data->tabcpu[VALUE][LEVEL2], tmp);
-			free(tmp);
-			asprintf(&data->tabcache[VALUE][L2SIZE],  "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
-			asprintf(&data->tabcache[VALUE][L2DESCR], "%2d-way set associative, %2d-byte line size", datanr.l2_assoc, datanr.l2_cacheline);
+			asprintf(&data->tabcpu[VALUE][LEVEL2],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL2], datanr.l2_assoc);
+			asprintf(&data->tabcache[VALUE][L2DESCR], "%2d-way set associative", datanr.l2_assoc);
 		}
+		if(datanr.l2_cacheline > 0)
+			asprintf(&data->tabcache[VALUE][L2DESCR], "%s, %2d-byte line size", data->tabcache[VALUE][L2DESCR], datanr.l2_cacheline);
 	}
 
+	/* Cache : level 3 */
 	if(datanr.l3_cache > 0)
 	{
-		asprintf(&data->tabcpu[VALUE][LEVEL3],	"%9d KB", datanr.l3_cache);
-		if(datanr.l1_assoc > 0)
-		{
-			asprintf(&tmp, ", %2d-way", datanr.l3_assoc);
-			data->tabcpu[VALUE][LEVEL3] = realloc(data->tabcpu[VALUE][LEVEL3],
-				(strlen(data->tabcpu[VALUE][LEVEL3]) + strlen(tmp) + 1) * sizeof(char));
-			strcat(data->tabcpu[VALUE][LEVEL3], tmp);
-			free(tmp);
-			asprintf(&data->tabcache[VALUE][L3SIZE],  "%4d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
-			asprintf(&data->tabcache[VALUE][L3DESCR], "%2d-way set associative, %2d-byte line size", datanr.l3_assoc, datanr.l3_cacheline);
+		asprintf(&data->tabcpu[VALUE][LEVEL3], "%9d KB", datanr.l3_cache);
+		data->tabcache[VALUE][L3SIZE] = strdup(data->tabcpu[VALUE][LEVEL3]);
 
+		if(datanr.l3_assoc > 0)
+		{
+			asprintf(&data->tabcpu[VALUE][LEVEL3],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL3], datanr.l3_assoc);
+			asprintf(&data->tabcache[VALUE][L3DESCR], "%2d-way set associative", datanr.l3_assoc);
 		}
+		if(datanr.l3_cacheline > 0)
+			asprintf(&data->tabcache[VALUE][L3DESCR], "%s, %2d-byte line size", data->tabcache[VALUE][L3DESCR], datanr.l3_cacheline);
 	}
 
 	if(datanr.num_cores > 0) /* Avoid divide by 0 */
