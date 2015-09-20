@@ -32,6 +32,13 @@
 #include <wchar.h>
 #include <math.h>
 
+#ifdef CPUX
+# include <stdint.h>
+# include <libintl.h>
+# include "../core.h"
+# include "defs.h"
+#else
+
 #include <netdb.h> // gethostbyname
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -39,7 +46,6 @@
 
 #define GRAPH_WIDTH 1440
 #define GRAPH_HEIGHT 900
-
 #include "defs.h"
 #include "BMP.h"
 #include "BMPGraphing.h"
@@ -50,17 +56,17 @@
 #ifdef __WIN32__
 #include <windows.h>
 #endif
-
 #ifdef __linux__
 #include <linux/fb.h>
 #include <sys/mman.h>
 #endif
 
-static int network_port = NETWORK_DEFAULT_PORTNUM;
 
+static int network_port = NETWORK_DEFAULT_PORTNUM;
+#endif /* CPUX */
 enum {
 	NO_SSE2,
-	SSE2,	
+	SSE2,
 	SSE2_BYPASS,
 	AVX,
 	AVX_BYPASS,
@@ -69,7 +75,11 @@ enum {
 	LODSW,
 	LODSB
 };
-
+#ifdef CPUX
+static long usec_per_test = 5000;
+static bool use_sse2 = true;
+static uint32_t cpu_has_sse2 = 0;
+#else
 static BMPGraph *graph = NULL;
 
 static bool use_sse2 = true;
@@ -96,7 +106,7 @@ static uint32_t cpu_has_xd = 0;
 //
 
 static long usec_per_test = 5000000;	// 5 seconds per memory test.
-
+#endif /* CPUX */
 static int chunk_sizes[] = {
 	128,
 	256,
@@ -138,7 +148,7 @@ static int chunk_sizes[] = {
 	(2048 + 256) * 1024,	// 2.25
 	(2048 + 512) * 1024,	// 2.5
 	(2048 + 768) * 1024,	// 2.75
-	3072 * 1024,	// 3 MB = common L2 cache size. 
+	3072 * 1024,	// 3 MB = common L2 cache size.
 	3407872, // 3.25 MB
 	3 * 1024 * 1024 + 1024 * 512,	// 3.5 MB
 	1 << 22,	// 4 MB
@@ -186,37 +196,37 @@ void error (char *s)
 }
 
 //============================================================================
-// Output buffer logic. 
+// Output buffer logic.
 // This is somewhat vestigial code, originating with Windows Mobile ARM port.
 //============================================================================
 
 #define MSGLEN 10000
-static wchar_t msg [MSGLEN];
+static wchar_t msgb [MSGLEN];
 
 void print (wchar_t *s)
 {
-	wcsncat (msg, s, MSGLEN-1);
+	wcsncat (msgb, s, MSGLEN-1);
 }
 
 void newline ()
 {
-	wcsncat (msg, L"\n", MSGLEN-1);
+	wcsncat (msgb, L"\n", MSGLEN-1);
 }
 
 void println (wchar_t *s)
 {
-	wcsncat (msg, s, MSGLEN-1);
+	wcsncat (msgb, s, MSGLEN-1);
 	newline ();
 }
 
 void print_int (int d)
 {
-	swprintf (msg + wcslen (msg), MSGLEN, L"%d", d);
+	swprintf (msgb + wcslen (msgb), MSGLEN, L"%d", d);
 }
 
 void print_uint (unsigned int d)
 {
-	swprintf (msg + wcslen (msg), MSGLEN, L"%lu", d);
+	swprintf (msgb + wcslen (msgb), MSGLEN, L"%lu", d);
 }
 
 void println_int (int d)
@@ -227,7 +237,7 @@ void println_int (int d)
 
 void print_result (long double result)
 {
-	swprintf (msg + wcslen (msg), MSGLEN, L"%.1Lf MB/s", result);
+	swprintf (msgb + wcslen (msgb), MSGLEN, L"%.1Lf MB/s", result);
 }
 
 void dump (FILE *f)
@@ -236,13 +246,13 @@ void dump (FILE *f)
 		f = stdout;
 
 	int i = 0;
-	while (msg[i]) {
-		char ch = (char) msg[i];
+	while (msgb[i]) {
+		char ch = (char) msgb[i];
 		fputc (ch, f);
 		i++;
 	}
 
-	msg [0] = 0;
+	msgb [0] = 0;
 }
 
 void flush ()
@@ -293,11 +303,15 @@ unsigned long mytime ()
 }
 
 //----------------------------------------------------------------------------
-// Name:	calculate_result 
+// Name:	calculate_result
 // Purpose:	Calculates and prints a result.
 // Returns:	10 times the number of megabytes per second.
 //----------------------------------------------------------------------------
+#ifdef CPUX
+long double
+#else
 int
+#endif /* CPUX */
 calculate_result (unsigned long chunk_size, long long total_loops, long diff)
 {
 	if (!diff)
@@ -309,10 +323,13 @@ calculate_result (unsigned long chunk_size, long long total_loops, long diff)
 	result *= 1000000.; // Convert to microseconds.
 	result /= 1048576.;
 	result /= (long double) diff;
-
+#ifndef CPUX
 	print_result (result);
 
 	return (long) (10.0 * result);
+#else
+	return result;
+#endif /* CPUX */
 }
 
 //============================================================================
@@ -345,9 +362,9 @@ do_write (unsigned long size, int mode, bool random)
 	//-------------------------------------------------
 	chunk0 = malloc (size+64);
 	chunk = chunk0;
-	if (!chunk) 
+	if (!chunk)
 		error ("Out of memory");
-	
+
 	tmp = (unsigned long) chunk;
 	if (tmp & 31) {
 		tmp -= (tmp & 31);
@@ -361,7 +378,7 @@ do_write (unsigned long size, int mode, bool random)
 	if (random) {
 		tmp = size/256;
 		chunk_ptrs = (unsigned long**) malloc (sizeof (unsigned long*) * tmp);
-		if (!chunk_ptrs) 
+		if (!chunk_ptrs)
 			error ("Out of memory.");
 
 		//----------------------------------------
@@ -400,7 +417,7 @@ do_write (unsigned long size, int mode, bool random)
 		break;
 	case AVX:
 		print (L"(256-bit), size = ");
-		break; 
+		break;
 	case AVX_BYPASS:
                 print (L"bypassing cache (256-bit), size = ");
 		break;
@@ -432,7 +449,7 @@ do_write (unsigned long size, int mode, bool random)
 			if (random)
 				RandomWriterSSE2 (chunk_ptrs, size/256, loops, value);
 			else {
-				if (size & 128) 
+				if (size & 128)
 					WriterSSE2_128bytes (chunk, size, loops, value);
 				else
 					WriterSSE2 (chunk, size, loops, value);
@@ -443,7 +460,7 @@ do_write (unsigned long size, int mode, bool random)
 			if (random)
 				RandomWriterSSE2_bypass (chunk_ptrs, size/256, loops, value);
 			else {
-				if (size & 128) 
+				if (size & 128)
 					WriterSSE2_128bytes_bypass (chunk, size, loops, value);
 				else
 					WriterSSE2_bypass (chunk, size, loops, value);
@@ -461,12 +478,12 @@ do_write (unsigned long size, int mode, bool random)
 				WriterAVX_bypass (chunk, size, loops, value);
 			}
 			break;
-		
+
 		default:
 			if (random)
 				RandomWriter (chunk_ptrs, size/256, loops, value);
 			else {
-				if (size & 128) 
+				if (size & 128)
 					Writer_128bytes (chunk, size, loops, value);
 				else
 					Writer (chunk, size, loops, value);
@@ -500,7 +517,11 @@ do_write (unsigned long size, int mode, bool random)
 // Name:	do_read
 // Purpose:	Performs sequential read on chunk of memory of specified size.
 //----------------------------------------------------------------------------
+#ifdef CPUX
+long double
+#else
 int
+#endif /* CPUX */
 do_read (unsigned long size, int mode, bool random)
 {
 	unsigned long loops;
@@ -516,7 +537,7 @@ do_read (unsigned long size, int mode, bool random)
 
 	//-------------------------------------------------
 	chunk0 = chunk = malloc (size+64);
-	if (!chunk) 
+	if (!chunk)
 		error ("Out of memory");
 
 	memset (chunk, 0, size);
@@ -534,7 +555,7 @@ do_read (unsigned long size, int mode, bool random)
 	if (random) {
 		int tmp = size/256;
 		chunk_ptrs = (unsigned long**) malloc (sizeof (unsigned long*) * tmp);
-		if (!chunk_ptrs) 
+		if (!chunk_ptrs)
 			error ("Out of memory.");
 
 		//----------------------------------------
@@ -560,7 +581,7 @@ do_read (unsigned long size, int mode, bool random)
 			}
 		}
 	}
-
+#ifndef CPUX
 	//-------------------------------------------------
 	if (random)
 		print (L"Random read ");
@@ -573,19 +594,19 @@ do_read (unsigned long size, int mode, bool random)
 		break;
 	case LODSB:
 		print (L"(8-bit LODSB), size = ");
-		break; 
+		break;
 	case LODSW:
 		print (L"(16-bit LODSW), size = ");
-		break; 
+		break;
 	case LODSD:
 		print (L"(32-bit LODSD), size = ");
-		break; 
+		break;
 	case LODSQ:
 		print (L"(64-bit LODSQ), size = ");
-		break; 
+		break;
 	case AVX:
 		print (L"(256-bit), size = ");
-		break; 
+		break;
 	case AVX_BYPASS:
                 print (L"bypassing cache (256-bit), size = ");
 		break;
@@ -604,11 +625,11 @@ do_read (unsigned long size, int mode, bool random)
 	print (L", ");
 
 	flush ();
-
+#endif /* CPUX */
 	loops = (1 << 26) / size;	// XX need to adjust for CPU MHz
 	if (loops < 1)
 		loops = 1;
-	
+
 	t0 = mytime ();
 
 	while (diff < usec_per_test) {
@@ -619,20 +640,20 @@ do_read (unsigned long size, int mode, bool random)
 			if (random)
 				RandomReaderSSE2 (chunk_ptrs, size/256, loops);
 			else {
-				if (size & 128) 
+				if (size & 128)
 					ReaderSSE2_128bytes (chunk, size, loops);
 				else
 					ReaderSSE2 (chunk, size, loops);
 			}
 			break;
-		
+
 		case SSE2_BYPASS:
 			// No random reader for bypass.
 			//
 			if (random)
 				RandomReaderSSE2_bypass (chunk_ptrs, size/256, loops);
 			else {
-				if (size & 128) 
+				if (size & 128)
 					ReaderSSE2_128bytes_bypass (chunk, size, loops);
 				else
 					ReaderSSE2_bypass (chunk, size, loops);
@@ -644,36 +665,36 @@ do_read (unsigned long size, int mode, bool random)
 				ReaderAVX (chunk, size, loops);
 			}
 			break;
-		
+
 		case LODSB:
 			if (!random) {
 				ReaderLODSB (chunk, size, loops);
 			}
 			break;
-		
+
 		case LODSW:
 			if (!random) {
 				ReaderLODSW (chunk, size, loops);
 			}
 			break;
-		
+
 		case LODSD:
 			if (!random) {
 				ReaderLODSD (chunk, size, loops);
 			}
 			break;
-		
+
 		case LODSQ:
 			if (!random) {
 				ReaderLODSQ (chunk, size, loops);
 			}
 			break;
-		
+
 		default:
 			if (random) {
 				RandomReader (chunk_ptrs, size/256, loops);
 			} else {
-				if (size & 128) 
+				if (size & 128)
 					Reader_128bytes (chunk, size, loops);
 				else
 					Reader (chunk, size, loops);
@@ -682,16 +703,18 @@ do_read (unsigned long size, int mode, bool random)
 
 		diff = mytime () - t0;
 	}
-
+#ifdef CPUX
+	long double result = calculate_result (size, total_count, diff);
+#else
 	print (L"loops = ");
 	print_uint (total_count);
 	print (L", ");
-
+/
 	int result = calculate_result (size, total_count, diff);
 	newline ();
 
 	flush ();
-
+#endif /* CPUX */
 	free (chunk0);
 
 	if (chunk_ptrs)
@@ -701,7 +724,7 @@ do_read (unsigned long size, int mode, bool random)
 }
 
 
-
+#ifndef CPUX
 //----------------------------------------------------------------------------
 // Name:	do_copy
 // Purpose:	Performs sequential memory copy.
@@ -723,15 +746,15 @@ do_copy (unsigned long size, int mode)
 
 	//-------------------------------------------------
 	chunk_src0 = chunk_src = malloc (size+64);
-	if (!chunk_src) 
+	if (!chunk_src)
 		error ("Out of memory");
 	chunk_dest0 = chunk_dest = malloc (size+64);
-	if (!chunk_dest) 
+	if (!chunk_dest)
 		error ("Out of memory");
 
 	memset (chunk_src, 100, size);
 	memset (chunk_dest, 200, size);
-	
+
 	tmp = (unsigned long) chunk_src;
 	if (tmp & 31) {
 		tmp -= (tmp & 31);
@@ -750,10 +773,10 @@ do_copy (unsigned long size, int mode)
 
 	if (mode == SSE2) {
 		print (L"(128-bit), size = ");
-	} 
+	}
 	else if (mode == AVX) {
 		print (L"(256-bit), size = ");
-	} 
+	}
 	else {
 #ifdef __x86_64__
 		print (L"(64-bit), size = ");
@@ -770,7 +793,7 @@ do_copy (unsigned long size, int mode)
 	loops = (1 << 26) / size;	// XX need to adjust for CPU MHz
 	if (loops < 1)
 		loops = 1;
-	
+
 	t0 = mytime ();
 
 	while (diff < usec_per_test) {
@@ -836,11 +859,11 @@ fb_readwrite (bool use_sse2)
 	//-------------------------------------------------
 
 	fd = open ("/dev/fb0", O_RDWR);
-	if (fd < 0) 
+	if (fd < 0)
 		fd = open ("/dev/fb/0", O_RDWR);
 	if (fd < 0) {
 		println (L"Cannot open framebuffer device.");
-		return;	
+		return;
 	}
 
 	if (ioctl (fd, FBIOGET_FSCREENINFO, &fi)) {
@@ -921,7 +944,7 @@ fb_readwrite (bool use_sse2)
 
 	total_count = FBLOOPS_W;
 
-	if (use_sse2) 
+	if (use_sse2)
 		WriterSSE2_bypass (fb, length, FBLOOPS_W, value);
 	else
 		Writer (fb, length, FBLOOPS_W, value);
@@ -938,7 +961,7 @@ fb_readwrite (bool use_sse2)
 // Purpose:	Determines bandwidth of register-to-register transfers.
 //----------------------------------------------------------------------------
 void
-register_test () 
+register_test ()
 {
 	long long total_count = 0;
 	unsigned long t0;
@@ -954,7 +977,7 @@ register_test ()
 #define REGISTER_COUNT 10000
 
 	t0 = mytime ();
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		RegisterToRegister (REGISTER_COUNT);
 		total_count += REGISTER_COUNT;
@@ -978,7 +1001,7 @@ register_test ()
 	t0 = mytime ();
 	diff = 0;
 	total_count = 0;
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		RegisterToVector (VREGISTER_COUNT);
 		total_count += VREGISTER_COUNT;
@@ -1001,7 +1024,7 @@ register_test ()
 	t0 = mytime ();
 	diff = 0;
 	total_count = 0;
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		VectorToRegister (VREGISTER_COUNT);
 		total_count += VREGISTER_COUNT;
@@ -1020,7 +1043,7 @@ register_test ()
 	t0 = mytime ();
 	diff = 0;
 	total_count = 0;
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		VectorToVector (VREGISTER_COUNT);
 		total_count += VREGISTER_COUNT;
@@ -1040,7 +1063,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			VectorToVectorAVX (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1061,7 +1084,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			Vector8ToRegister (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1081,7 +1104,7 @@ register_test ()
 	t0 = mytime ();
 	diff = 0;
 	total_count = 0;
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		Vector16ToRegister (VREGISTER_COUNT);
 		total_count += VREGISTER_COUNT;
@@ -1101,7 +1124,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			Vector32ToRegister (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1122,7 +1145,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			Vector64ToRegister (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1143,7 +1166,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			Register8ToVector (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1163,7 +1186,7 @@ register_test ()
 	t0 = mytime ();
 	diff = 0;
 	total_count = 0;
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		Register16ToVector (VREGISTER_COUNT);
 		total_count += VREGISTER_COUNT;
@@ -1183,7 +1206,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			Register32ToVector (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1204,7 +1227,7 @@ register_test ()
 		t0 = mytime ();
 		diff = 0;
 		total_count = 0;
-		while (diff < usec_per_test) 
+		while (diff < usec_per_test)
 		{
 			Register64ToVector (VREGISTER_COUNT);
 			total_count += VREGISTER_COUNT;
@@ -1223,7 +1246,7 @@ register_test ()
 // Purpose:	Determines bandwidth of stack-to/from-register transfers.
 //----------------------------------------------------------------------------
 void
-stack_test () 
+stack_test ()
 {
 	long long total_count = 0;
 	unsigned long t0;
@@ -1240,7 +1263,7 @@ stack_test ()
 	diff = 0;
 	total_count = 0;
 	t0 = mytime ();
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		StackReader (REGISTER_COUNT);
 		total_count += REGISTER_COUNT;
@@ -1263,7 +1286,7 @@ stack_test ()
 	diff = 0;
 	total_count = 0;
 	t0 = mytime ();
-	while (diff < usec_per_test) 
+	while (diff < usec_per_test)
 	{
 		StackWriter (REGISTER_COUNT);
 		total_count += REGISTER_COUNT;
@@ -1281,7 +1304,7 @@ stack_test ()
 // Purpose:	Performs C library tests (memset, memcpy).
 //----------------------------------------------------------------------------
 void
-library_test () 
+library_test ()
 {
 	char *a1, *a2;
 	unsigned long t, t0;
@@ -1291,11 +1314,11 @@ library_test ()
 	#define NT_SIZE2 (100)
 
 	a1 = malloc (NT_SIZE);
-	if (!a1) 
+	if (!a1)
 		error ("Out of memory");
-	
+
 	a2 = malloc (NT_SIZE);
-	if (!a2) 
+	if (!a2)
 		error ("Out of memory");
 
 	//--------------------------------------
@@ -1336,8 +1359,8 @@ library_test ()
 // Returns:	-1 on error, else the network duration in microseconds.
 //----------------------------------------------------------------------------
 bool
-network_test_core (const char *hostname, char *chunk, 
-			unsigned long chunk_size, 
+network_test_core (const char *hostname, char *chunk,
+			unsigned long chunk_size,
 			unsigned long n_chunks,
 			long *duration_send_return,
 			long *duration_recv_return)
@@ -1350,7 +1373,7 @@ network_test_core (const char *hostname, char *chunk,
 	struct hostent* host = gethostbyname (hostname);
 	if (!host)
 		return false;
-	
+
 	char *host_ip = inet_ntoa (*(struct in_addr *)*host->h_addr_list);
 	int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -1379,7 +1402,7 @@ network_test_core (const char *hostname, char *chunk,
 	//
 	sprintf (chunk, "%lu\n", n_chunks);
 	int i;
-	for (i = 0; i < n_chunks; i++) 
+	for (i = 0; i < n_chunks; i++)
 		send (sock, chunk, chunk_size, 0);
 
 #if 0
@@ -1404,8 +1427,8 @@ network_test_core (const char *hostname, char *chunk,
 	unsigned long duration_send = mytime() - t0;
 
 	//------------------------------------
-	// Validate the response, which 
-	// contains the transponder's 
+	// Validate the response, which
+	// contains the transponder's
 	// perceived read duration. This value
 	// may be as little as half our number.
 	//
@@ -1442,7 +1465,7 @@ network_test_core (const char *hostname, char *chunk,
 //----------------------------------------------------------------------------
 // Name:	ip_to_str
 //----------------------------------------------------------------------------
-void 
+void
 ip_to_str (unsigned long addr, char *str)
 {
 	if (!str)
@@ -1509,7 +1532,7 @@ network_transponder ()
 		unsigned long t0 = mytime ();
 
 		if (len != sizeof (struct sockaddr_in)) {
-			close (sock); 
+			close (sock);
 			close (listensock);
 			return false;
 		}
@@ -1531,7 +1554,7 @@ network_transponder ()
 		chunk [amount_read] = 0;
 		if (1 != sscanf (chunk, "%ld", &n_chunks)) {
 			close (sock);
-			close (listensock); 
+			close (listensock);
 			return false;
 		}
 
@@ -1540,8 +1563,8 @@ network_transponder ()
 		// -99, this indicates that we should exit.
 		//
 		if (n_chunks == -99) {
-			close (sock); 
-			close (listensock); 
+			close (sock);
+			close (listensock);
 			return true;
 		}
 
@@ -1560,7 +1583,7 @@ network_transponder ()
 			if (amount_read < 0) {
 				perror ("read");
 				break;
-			} else 
+			} else
 			if (!amount_read)
 				break;
 		}
@@ -1577,7 +1600,7 @@ network_transponder ()
 		// Send all of our data.
 		//
 		int i;
-		for (i = 0; i < n_chunks; i++) 
+		for (i = 0; i < n_chunks; i++)
 			send (sock, chunk, NETWORK_CHUNK_SIZE, 0);
 
 		close (sock);
@@ -1597,11 +1620,11 @@ network_test (char **destinations, int n_destinations)
 	//----------------------------------------
 	// The memory chunk starts with a 12-byte
 	// length of the overall send size.
-	// The memory chunk will have a list of 
+	// The memory chunk will have a list of
 	// the destinations in it.
-	// In future, there will be a mechanism 
+	// In future, there will be a mechanism
 	// for testing bandwidth between all nodes,
-	// not just the leader & each of the 
+	// not just the leader & each of the
 	// transponders.
 	//
 	char chunk [NETWORK_CHUNK_SIZE];
@@ -1693,10 +1716,10 @@ network_test (char **destinations, int n_destinations)
 			total_duration_send += n_runs/2;	// Round up
 			total_duration_send /= n_runs;	// Get average
 			long duration = (long) total_duration_send;
-			
+
 			total_duration_recv += n_runs/2;	// Round up
 			total_duration_recv /= n_runs;	// Get average
-			
+
 			unsigned long amt_in_kb = amt_to_send / 1024;
 			unsigned long amt_in_mb = amt_to_send / 1048576;
 			if (!amt_in_mb) {
@@ -1788,10 +1811,23 @@ usage ()
 
 	exit (0);
 }
-
+#endif /* CPUX */
 //----------------------------------------------------------------------------
 // Name:	main
 //----------------------------------------------------------------------------
+#ifdef CPUX
+int bandwidth(Labels *data)
+{
+	int i, chunk_size, ind, level, size;
+	long double speed;
+	uint32_t edx = get_cpuid1_edx ();
+
+	MSGVERB(_("Filling labels (libbandwidth step)"));
+	cpu_has_sse2 = edx & CPUID_EDX_SSE2;
+	if (!cpu_has_sse2)
+		use_sse2 = false;
+
+#else
 int
 main (int argc, char **argv)
 {
@@ -1811,7 +1847,7 @@ main (int argc, char **argv)
 	i = 0;
 	while (i < argc) {
 		char *s = argv [i++];
-		
+
 		if (!strcmp ("--network", s)) {
 			network_mode = true;
 			network_leader = true;
@@ -1866,7 +1902,7 @@ main (int argc, char **argv)
 		}
 	}
 
-	msg[0] = 0;
+	msgb[0] = 0;
 
 	for (i = 0; chunk_sizes[i] && i < sizeof(chunk_sizes)/sizeof(int); i++) {
 		chunk_sizes_log2[i] = log2 (chunk_sizes[i]);
@@ -1891,7 +1927,7 @@ main (int argc, char **argv)
 			BMPGraphing_set_title (graph, graph_title);
 
 			network_test (network_destinations, n_network_destinations);
-			
+
 		        BMPGraphing_make (graph);
 
 			BMP_write (graph->image, "network_bandwidth.bmp");
@@ -1970,7 +2006,7 @@ main (int argc, char **argv)
 	if (cpu_has_64bit) {
 		if (!is_amd)
 			printf ("Intel64 ");
-		else 
+		else
 			printf ("LongMode ");
 	}
 	puts ("\n");
@@ -1984,7 +2020,7 @@ main (int argc, char **argv)
 				break;
 
 #if 0
-			printf ("Cache info %d = 0x%08x, 0x%08x, 0x%08x, 0x%08x\n", i, 
+			printf ("Cache info %d = 0x%08x, 0x%08x, 0x%08x, 0x%08x\n", i,
 				cache_info [0],
 				cache_info [1],
 				cache_info [2],
@@ -2011,7 +2047,7 @@ main (int argc, char **argv)
 			printf ("size %dk ", size);
 			puts ("");
 			i++;
-		} 
+		}
 	}
 
 	if (!cpu_has_sse41)
@@ -2068,7 +2104,44 @@ main (int argc, char **argv)
 			BMPGraphing_add_point (graph, chunk_size, amount);
 		}
 	}
+#endif /* CPUX */
 
+#ifdef CPUX
+	if (use_sse2)
+	{
+		i = 0;
+		ind = 0;
+		level = LEVEL1I;
+		size = atoi(strstr(data->tabcpu[VALUE][level], "x") + 1);
+		speed = 0;
+
+		while ((chunk_size = chunk_sizes [i++]))
+		{
+			if(chunk_size > size * 1024)
+			{
+				//printf("%.1Lf MB/s\n", speed / ind);
+				ind = 0;
+				level++;
+				speed = 0;
+
+				if(level == LEVEL3)
+					size = atoi(data->tabcpu[VALUE][level]);
+				else if(level < LEVEL3)
+					size = atoi(strstr(data->tabcpu[VALUE][level], "x") + 1);
+				else
+					break;
+
+				if(size <= 0)
+					return 2;
+			}
+
+			speed += do_read (chunk_size, SSE2, false);
+			ind++;
+		}
+	}
+	else
+		return 1;
+#else
 	//------------------------------------------------------------
 	// AVX sequential reads.
 	//
@@ -2203,7 +2276,7 @@ main (int argc, char **argv)
 
 	//------------------------------------------------------------
 	// AVX sequential writes that do bypass the caches.
-	// Currently on Intel CPUs (including Xeon) there is a 
+	// Currently on Intel CPUs (including Xeon) there is a
 	// microcode bug that leads to a severe drop in performance
 	// in this part of the test.
 	//
@@ -2265,7 +2338,7 @@ main (int argc, char **argv)
 	BMPGraphing_new_line (graph, "Random 32-bit reads", RGB_CYAN);
 #endif
 	srand (time (NULL));
-	
+
 	i = 0;
 	while ((chunk_size = chunk_sizes [i++])) {
 		if (!(chunk_size & 128)) {
@@ -2437,6 +2510,6 @@ premature_end_for_testing:
 	puts ("Done.");
 
 	BMPGraphing_destroy (graph);
-
+#endif /* CPUX */
 	return 0;
 }

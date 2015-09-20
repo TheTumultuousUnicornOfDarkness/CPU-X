@@ -69,6 +69,12 @@
 # define HAS_LIBDMI 0
 #endif
 
+#ifdef LIBBDWT
+# define HAS_LIBBDWT 1
+#else
+# define HAS_LIBBDWT 0
+#endif
+
 #ifdef LIBPCI
 # define HAS_LIBPCI 1
 #else
@@ -249,6 +255,9 @@ void start_tui_ncurses(Labels *data);
 
 /* Call dmidecode library */
 int libdmi(char c);
+
+/* Call bandwidth library */
+int bandwidth(Labels *data);
 
 
 #endif /* _CPUX_H_ */

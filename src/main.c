@@ -106,6 +106,12 @@ int main(int argc, char *argv[])
 
 			if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
 				strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
+
+			if(HAS_LIBBDWT)
+			{
+				if(bandwidth(&data))
+					MSGSERR(_("bandwidth failed"));
+			}
 		}
 	}
 

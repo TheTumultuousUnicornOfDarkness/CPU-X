@@ -74,6 +74,14 @@ if(WITH_LIBDMI)
 	set(LIBDMI_LIBRARY "dmi")
 endif(WITH_LIBDMI)
 
+# Bandwidth lib
+if(WITH_LIBBDWT)
+	add_subdirectory(bandwidth)
+	include_directories(bandwidth)
+	add_definitions(-DLIBBDWT)
+	set(LIBBDWT_LIBRARY "bandwidth")
+endif(WITH_LIBBDWT)
+
 # Pciutils lib
 if(WITH_LIBPCI)
 	pkg_check_modules(LIBPCI libpci)
@@ -148,6 +156,7 @@ target_link_libraries(cpu-x
 	${TUI_NCURSES_LIBRARY}
 	${LIBCPUID_LIBRARIES}
 	${LIBDMI_LIBRARY}
+	${LIBBDWT_LIBRARY}
 	${LIBPCI_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}

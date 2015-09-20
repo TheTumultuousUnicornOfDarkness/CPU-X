@@ -26,6 +26,7 @@ option(WITH_GTK		"Add support for GUI in GTK3+"			ON)
 option(WITH_NCURSES	"Add support for TUI in NCurses"		ON)
 option(WITH_LIBCPUID	"Allow use of library Libcpuid"			ON)
 option(WITH_LIBDMI	"Allow use of library Libdmi"			ON)
+option(WITH_LIBBDWT	"Allow use of library Libwandwidth"		ON)
 option(WITH_LIBPCI	"Allow use of library Libpci"			ON)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"	ON)
@@ -106,6 +107,13 @@ if(WITH_LIBDMI)
 else(WITH_LIBDMI)
 	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
 endif(WITH_LIBDMI)
+
+# Bandwidth lib
+if(WITH_LIBBDWT)
+	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldGreen}ON${ColourReset}")
+else(WITH_LIBBDWT)
+	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldRed}OFF${ColourReset}")
+endif(WITH_LIBBDWT)
 
 # Pciutils lib
 if(LIBPCI_FOUND AND WITH_LIBPCI)
