@@ -306,6 +306,10 @@ void labels_setnull(Labels *data)
 	for(i = VENDOR; i < LASTCPU; i++)
 		data->tabcpu[VALUE][i] = NULL;
 
+	/* Tab Cache */
+	for(i = L1SIZE; i < LASTCACHE; i++)
+		data->tabcache[VALUE][i] = NULL;
+
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 		data->tabmb[VALUE][i] = NULL;
@@ -331,6 +335,7 @@ void labels_setname(Labels *data)
 	MSGVERB(_("Setting label names"));
 	/* Various objects*/
 	asprintf(&data->objects[TABCPU],		_("CPU"));
+	asprintf(&data->objects[TABCACHE],		_("Caches"));
 	asprintf(&data->objects[TABMB],			_("Motherboard"));
 	asprintf(&data->objects[TABRAM],		_("RAM"));
 	asprintf(&data->objects[TABSYS],		_("System"));
@@ -339,6 +344,9 @@ void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMPROCESSOR],		_("Processor"));
 	asprintf(&data->objects[FRAMCLOCKS],		_("Clocks"));
 	asprintf(&data->objects[FRAMCACHE],		_("Cache"));
+	asprintf(&data->objects[FRAMCACHEL1],		_("L1 Cache"));
+	asprintf(&data->objects[FRAMCACHEL2],		_("L2 Cache"));
+	asprintf(&data->objects[FRAMCACHEL3],		_("L2 Cache"));
 	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
 	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
@@ -384,6 +392,14 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][SOCKETS],		_("Socket(s)"));
 	asprintf(&data->tabcpu[NAME][CORES],		_("Core(s)"));
 	asprintf(&data->tabcpu[NAME][THREADS],		_("Thread(s)"));
+
+	/* Tab Cache */
+	for(i = 0; i < LASTCACHE / CACHEFIELDS + 1; i++)
+	{
+		asprintf(&data->tabcache[NAME][i * CACHEFIELDS],	_("Size"));
+		asprintf(&data->tabcache[NAME][i * CACHEFIELDS + 1],	_("Descriptor"));
+		asprintf(&data->tabcache[NAME][i * CACHEFIELDS + 2],	_("Speed"));
+	}
 
 	/* Tab Motherboard */
 	asprintf(&data->tabmb[NAME][MANUFACTURER],	_("Manufacturer"));
@@ -440,6 +456,16 @@ void labels_delnull(Labels *data)
 		{
 			data->tabcpu[VALUE][i] = malloc(1 * sizeof(char));
 			data->tabcpu[VALUE][i][0] = '\0';
+		}
+	}
+
+	/* Tab Cache */
+	for(i = L1SIZE; i < LASTCACHE; i++)
+	{
+		if(data->tabcache[VALUE][i] == NULL)
+		{
+			data->tabcache[VALUE][i] = malloc(1 * sizeof(char));
+			data->tabcache[VALUE][i][0] = '\0';
 		}
 	}
 
@@ -501,6 +527,16 @@ void labels_free(Labels *data)
 			free(data->tabcpu[VALUE][i]);
 			data->tabcpu[VALUE][i] = NULL;
 		}
+	}
+
+	/* Tab Cache */
+	for(i = L1SIZE; i < LASTCACHE; i++)
+	{
+		free(data->tabcache[NAME][i]);
+		data->tabcache[NAME][i] = NULL;
+
+		free(data->tabcache[VALUE][i]);
+		data->tabcache[VALUE][i] = NULL;
 	}
 
 	/* Tab Motherboard */
@@ -568,6 +604,18 @@ void dump_data(Labels *data)
 		else if(i == SOCKETS)
 			printf("\n\t***  ***\n");
 		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+	}
+
+	/* Tab Cache */
+	printf("\n\n ***** %s *****\n", data->objects[TABCACHE]);
+	printf("\t*** %s ***\n", data->objects[FRAMCACHEL1]);
+	for(i = L1SIZE; i < LASTCACHE; i++)
+	{
+		if(i == L2SIZE)
+			printf("\n\t*** %s ***\n", data->objects[FRAMCACHEL2]);
+		else if(i == L3SIZE)
+			printf("\n\t*** %s ***\n", data->objects[FRAMCACHEL3]);
+		printf("%16s: %s\n", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
 	}
 
 	/* Tab Motherboard */

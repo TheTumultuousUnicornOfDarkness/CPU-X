@@ -19,6 +19,9 @@
   The author may be reached at veritas@comcast.net.
  *===========================================================================*/
 
+#ifdef CPUX
+# define _GNU_SOURCE
+#endif /* CPUX */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -2119,7 +2122,7 @@ main (int argc, char **argv)
 		{
 			if(chunk_size > size * 1024)
 			{
-				//printf("%.1Lf MB/s\n", speed / ind);
+				asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
 				ind = 0;
 				level++;
 				speed = 0;

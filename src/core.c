@@ -90,6 +90,8 @@ int libcpuid(Labels *data)
 				(strlen(data->tabcpu[VALUE][LEVEL1D]) + strlen(tmp) + 1) * sizeof(char));
 			strcat(data->tabcpu[VALUE][LEVEL1D], tmp);
 			free(tmp);
+			asprintf(&data->tabcache[VALUE][L1SIZE],  "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_data_cache, datanr.l1_assoc);
+			asprintf(&data->tabcache[VALUE][L1DESCR], "%2d-way set associative, %2d-byte line size", datanr.l1_assoc, datanr.l1_cacheline);
 		}
 	}
 
@@ -116,6 +118,8 @@ int libcpuid(Labels *data)
 				(strlen(data->tabcpu[VALUE][LEVEL2]) + strlen(tmp) + 1) * sizeof(char));
 			strcat(data->tabcpu[VALUE][LEVEL2], tmp);
 			free(tmp);
+			asprintf(&data->tabcache[VALUE][L2SIZE],  "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
+			asprintf(&data->tabcache[VALUE][L2DESCR], "%2d-way set associative, %2d-byte line size", datanr.l2_assoc, datanr.l2_cacheline);
 		}
 	}
 
@@ -129,6 +133,9 @@ int libcpuid(Labels *data)
 				(strlen(data->tabcpu[VALUE][LEVEL3]) + strlen(tmp) + 1) * sizeof(char));
 			strcat(data->tabcpu[VALUE][LEVEL3], tmp);
 			free(tmp);
+			asprintf(&data->tabcache[VALUE][L3SIZE],  "%4d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
+			asprintf(&data->tabcache[VALUE][L3DESCR], "%2d-way set associative, %2d-byte line size", datanr.l3_assoc, datanr.l3_cacheline);
+
 		}
 	}
 
