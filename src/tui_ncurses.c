@@ -91,7 +91,7 @@ void start_tui_ncurses(Labels *data)
 				break;
 			case ERR:
 				/* Refresh labels if needed */
-				if(current_tab == NB_TAB_CPU || current_tab == NB_TAB_SYS)
+				if(current_tab == NB_TAB_CPU || current_tab == NB_TAB_CACHE || current_tab == NB_TAB_SYS)
 				{
 					refr.win = tab;
 					nrefresh(&refr);
@@ -117,7 +117,7 @@ void start_tui_ncurses(Labels *data)
 
 void nrefresh(NThrd *refr)
 {
-	int i;
+	int i, j = 2;
 
 	/* Refresh tab CPU */
 	if(loop == NB_TAB_CPU)
@@ -130,6 +130,22 @@ void nrefresh(NThrd *refr)
 		}
 		mvwprintw(refr->win, 12, 2, "%13s: %s", refr->data->tabcpu[NAME][CORESPEED], refr->data->tabcpu[VALUE][CORESPEED]);
 		wrefresh(refr->win);
+	}
+
+	/* Refresh tab Caches */
+	else if(loop == NB_TAB_CACHE)
+	{
+		if(HAS_LIBCPUID && HAS_LIBBDWT)
+		{
+			bandwidth(refr->data);
+			for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
+			{
+				mvwprintw(refr->win, i + j,  2, "%13s: %s", refr->data->tabcache[NAME][i], refr->data->tabcache[VALUE][i]);
+				j += 2;
+			}
+
+			wrefresh(refr->win);
+		}
 	}
 
 	/* Refresh tab System */

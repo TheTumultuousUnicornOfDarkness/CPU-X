@@ -522,7 +522,7 @@ void labels_free(Labels *data)
 		free(data->tabcpu[NAME][i]);
 		data->tabcpu[NAME][i] = NULL;
 
-		if(i != MULTIPLIER)
+		if(i != MULTIPLIER && i != LEVEL1I && i != LEVEL2 && i != LEVEL3)
 		{
 			free(data->tabcpu[VALUE][i]);
 			data->tabcpu[VALUE][i] = NULL;

@@ -148,6 +148,14 @@ gboolean grefresh(GThrd *refr)
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][CORESPEED]),  refr->data->tabcpu[VALUE][CORESPEED]);
 	}
 
+	/* Refresh tab Caches */
+	else if(page == NB_TAB_CACHE && HAS_LIBCPUID && HAS_LIBBDWT)
+	{
+		bandwidth(refr->data);
+		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
+			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcache[VALUE][i]), refr->data->tabcache[VALUE][i]);
+	}
+
 	/* Refresh tab System */
 	else if(page == NB_TAB_SYS)
 	{
