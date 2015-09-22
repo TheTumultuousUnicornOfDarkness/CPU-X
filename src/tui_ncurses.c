@@ -167,6 +167,8 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 	{
 		case NB_TAB_CPU:
 			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NB_TAB_CACHE:
+			return tab_cache(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_MB:
 			return tab_motherboard(height - 4, width - 2, starty + 2, startx + 1, data);
 		case NB_TAB_RAM:
@@ -219,6 +221,36 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 	mvwprintw(local_win, 18, 4, "%s: %2s", data->tabcpu[NAME][SOCKETS], data->tabcpu[VALUE][SOCKETS]);
 	mvwprintw(local_win, 18, 23, "%s: %2s", data->tabcpu[NAME][CORES], data->tabcpu[VALUE][CORES]);
 	mvwprintw(local_win, 18, 39, "%s: %2s", data->tabcpu[NAME][THREADS], data->tabcpu[VALUE][THREADS]);
+
+	wrefresh(local_win);
+
+	return local_win;
+}
+
+WINDOW *tab_cache(int height, int width, int starty, int startx, Labels *data)
+{
+	int i;
+	WINDOW *local_win;
+
+	local_win = newwin(height, width, starty, startx);
+	box(local_win, 0 , 0);
+
+	/* Frames in Caches tab */
+	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMCACHEL1]);
+	frame(local_win, 6, 1, 11, width - 1, data->objects[FRAMCACHEL2]);
+	frame(local_win, 11, 1, 16, width - 1, data->objects[FRAMCACHEL3]);
+
+	/* L1 Cache frame */
+	for(i = L1SIZE; i < L2SIZE; i++)
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+
+	/* L2 Cache frame */
+	for(i = L2SIZE; i < L3SIZE; i++)
+		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+
+	/* L3 Cache frame */
+	for(i = L3SIZE; i < LASTCACHE; i++)
+		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
 
 	wrefresh(local_win);
 
