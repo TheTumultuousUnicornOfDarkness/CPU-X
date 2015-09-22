@@ -164,13 +164,27 @@ void nrefresh(NThrd *refr)
 
 void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
 {
+	int i, cpt = 2;
+	char *buff[MAXSTR];
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
 	/* General stuff */
-	mvwaddstr(local_win, 1, 2, data->objects[tab]);
+	for(i = NB_TAB_CPU; i <= NB_TAB_ABOUT; i++)
+	{
+		if(i == tab)
+		{
+			sprintf(buff, "(%s)", data->objects[i]);
+			mvwaddstr(local_win, 1, cpt, buff);
+		}
+		else
+			mvwaddstr(local_win, 1, cpt, data->objects[i]);
+
+		cpt += strlen(data->objects[i]) + 2;
+	}
+
 	mvwprintw(local_win, height - 2, 2, PRGNAME);
 	mvwprintw(local_win, height - 2, width / 2, data->objects[LABVERSION]);
 
