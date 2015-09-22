@@ -225,6 +225,13 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktabcpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[VALUE][i]));
 	}
 
+	/* Tab Caches */
+	for(i = L1SIZE; i < LASTCACHE; i++)
+	{
+		glab->gtktabcache[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[NAME][i]));
+		glab->gtktabcache[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[VALUE][i]));
+	}
+
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMB; i++)
 	{
@@ -281,6 +288,13 @@ void set_labels(GtkLabels *glab, Labels *data)
 	{
 		gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[NAME][i]), data->tabcpu[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][i]), data->tabcpu[VALUE][i]);
+	}
+
+	/* Tab Caches */
+	for(i = L1SIZE; i < LASTCACHE; i++)
+	{
+		gtk_label_set_text(GTK_LABEL(glab->gtktabcache[NAME][i]), data->tabcache[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktabcache[VALUE][i]), data->tabcache[VALUE][i]);
 	}
 
 	/* Tab Motherboard */

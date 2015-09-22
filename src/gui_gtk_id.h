@@ -28,8 +28,8 @@
 /* Translation */
 static const char *trad[LASTOBJ] =
 {
-	"cpulabel", "motherboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
-	"proc_lab", "clock_lab", "cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
+	"cpulabel", "cacheslabel", "motherboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
+	"proc_lab", "clock_lab", "cache_lab", "l1cache_lab", "l2cache_lab", "l3cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
 	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
 };
@@ -46,6 +46,19 @@ static const char *objectcpu[2][LASTCPU] =
 		"clock_valcore", "clock_valmult", "clock_valbus", "clock_valmips",
 		"cache_vall1d", "cache_vall1i", "cache_vall2", "cache_vall3",
 		"trg_valsock", "trg_valcore", "trg_valthrd"
+	}
+};
+
+/* Tab Caches */
+static const char *objectcache[2][LASTCACHE] =
+{
+	{ "l1cache_labsize", "l1cache_labdescr", "l1cache_labspeed",
+		"l2cache_labsize", "l2cache_labdescr", "l2cache_labspeed",
+		"l3cache_labsize", "l3cache_labdescr", "l3cache_labspeed"
+	},
+	{ "l1cache_valsize", "l1cache_valdescr", "l1cache_valspeed",
+		"l2cache_valsize", "l2cache_valdescr", "l2cache_valspeed",
+		"l3cache_valsize", "l3cache_valdescr", "l3cache_valspeed"
 	}
 };
 
