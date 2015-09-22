@@ -3010,6 +3010,9 @@ static void dmi_fixup_type_34(struct dmi_header *h)
 	if (h->length == 0x10
 	 && is_printable(p + 0x0B, 0x10 - 0x0B))
 	{
+#ifdef CPUX
+		if(!(opt.flags & FLAG_QUIET))
+#endif /* CPUX */
 		printf("Invalid entry length (%u). Fixed up to %u.\n", 0x10, 0x0B);
 		h->length = 0x0B;
 	}
