@@ -289,7 +289,7 @@ int libdmi_fallback(Labels *data)
 
 	MSGVERB(_("Filling labels (libdmi step, fallback mode)"));
 #ifdef __linux__
-	int i = 0;
+	int i = 0, len;
 	char path[PATH_MAX], buff[MAXSTR];
 	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 	FILE *mb[LASTMB] = { NULL };
@@ -301,11 +301,12 @@ int libdmi_fallback(Labels *data)
 		mb[i] = fopen(path, "r");
 		if(mb[i] != NULL)
 		{
-			fgets(buff, MAXSTR, mb[i]);
-			data->tabmb[VALUE][i] = strdupnullok(buff);
-
-			if(data->tabmb[VALUE][i] != NULL)
-				data->tabmb[VALUE][i][ strlen(data->tabmb[VALUE][i]) - 1 ] = '\0';
+			if(fgets(buff, MAXSTR, mb[i]) != NULL)
+			{
+				len = (strlen(buff) >= 1) ? strlen(buff) - 1 : 0;
+				buff[len] = '\0';
+				data->tabmb[VALUE][i] = strdupnullok(buff);
+			}
 			else
 				err++;
 
