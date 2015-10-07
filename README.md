@@ -69,7 +69,7 @@ You can download binary packages to easily install CPU-X on your system. A lot o
 [![Arch Linux](http://i.stack.imgur.com/ymaLV.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Arch-Linux)
 [![Debian](https://phrozensoft.com/uploads/2014/11/debian_logo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Debian)
 [![Fedora](http://kivy.org/images/os_fedora.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Fedora)
-[![Gentoo](http://www.ltsp.org/images/distro/gentoo.png)](http://gpo.zugaina.org/sys-apps/cpu-x)
+[![Gentoo](http://www.ltsp.org/images/distro/gentoo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Gentoo)
 [![OpenSUSE](https://harmonyseq.files.wordpress.com/2010/10/opensuse-logo_design_mini.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-OpenSUSE)
 [![Ubuntu](http://computriks.com/img/icon/ubuntu24.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Ubuntu)
 
