@@ -344,7 +344,8 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 	int i = USED, n;
 	guint width, height;
 	double before = 0, percent;
-	char text[MAXSTR], *widget_name;
+	char text[MAXSTR];
+	const char *widget_name;
 	cairo_pattern_t *pat;
 	GSettings *setting = g_settings_new("org.gnome.desktop.interface");
 	gchar *font = g_settings_get_string(setting, "font-name");
