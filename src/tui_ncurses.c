@@ -165,7 +165,7 @@ void nrefresh(NThrd *refr)
 void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
 {
 	int i, cpt = 2;
-	char *buff[MAXSTR];
+	char buff[MAXSTR];
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
