@@ -76,10 +76,14 @@ endif(WITH_LIBDMI)
 
 # Bandwidth lib
 if(WITH_LIBBDWT)
+	set(LIBBDWT_FOUND OFF)
 	add_subdirectory(bandwidth)
-	include_directories(bandwidth)
-	add_definitions(-DLIBBDWT)
-	set(LIBBDWT_LIBRARY "bandwidth")
+	if(LIBBDWT_FOUND)
+		include_directories(bandwidth)
+		add_definitions(-DLIBBDWT)
+		set(LIBBDWT_LIBRARY "bandwidth")
+		set(LIBBDWT_FOUND ON PARENT_SCOPE)
+	endif(LIBBDWT_FOUND)
 endif(WITH_LIBBDWT)
 
 # Pciutils lib

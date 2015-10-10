@@ -16,6 +16,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/lib/)
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}		-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}	-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
 set(WITH_GETTEXT ON)
+set(LIBBDWT_FOUND OFF)
 
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
@@ -109,11 +110,11 @@ else(WITH_LIBDMI)
 endif(WITH_LIBDMI)
 
 # Bandwidth lib
-if(WITH_LIBBDWT)
+if(WITH_LIBBDWT AND LIBBDWT_FOUND)
 	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBBDWT)
+else(WITH_LIBBDWT AND LIBBDWT_FOUND)
 	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBBDWT)
+endif(WITH_LIBBDWT AND LIBBDWT_FOUND)
 
 # Pciutils lib
 if(LIBPCI_FOUND AND WITH_LIBPCI)

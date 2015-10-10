@@ -9,28 +9,39 @@ project(libbandwidth
 	LANGUAGES C ASM
 )
 
-# Print libbandwidth version
-message("-- ${PROJECT_NAME}, version ${PROJECT_VERSION}")
-
-
 # Compile statically bandwidth
-enable_language(ASM_NASM)
-if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
-	add_library(bandwidth
-		STATIC
-		main.c
-		defs.h
-		routines32.asm
-	)
-else("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
-	add_library(bandwidth
-		STATIC
-		main.c
-		defs.h
-		routines64.asm
-	)
-endif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+enable_language(ASM_NASM OPTIONAL)
+if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
+	message("-- ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+	set(CMAKE_C_FLAGS_DEBUG "")
+	set(LIBBDWT_FOUND ON PARENT_SCOPE)
+	file(COPY routines32.asm routines64.asm DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_definitions(-DCPUX)
+	if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+		add_custom_command(OUTPUT routines32.o
+			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf routines.asm -o routines.o
+			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+		)
+		add_library(bandwidth
+			STATIC
+			main.c
+			defs.h
+			routines32.o
+		)
+	else("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+		add_custom_command(OUTPUT routines64.o
+			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf64 routines64.asm -o routines64.o
+			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+		)
+		add_library(bandwidth
+			STATIC
+			main.c
+			defs.h
+			routines64.o
+		)
+	endif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
 
-target_link_libraries(bandwidth)
+	add_definitions(-DCPUX)
+
+	target_link_libraries(bandwidth)
+endif()
