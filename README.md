@@ -16,6 +16,8 @@ This is a graphical software (GTK is used), but it can be used from a shell by u
 
 # Table of contents
 * [Dependencies](#dependencies)
+  * [Build-only dependencies](#build-only-dependencies)
+  * [Build and run dependencies](#build-and-run-dependencies)
 * [Download/Install](#downloadinstall)
   * [Download packages](#download-packages)
   * [Manual build](#manual-build)
@@ -30,35 +32,22 @@ This is a graphical software (GTK is used), but it can be used from a shell by u
 
 ## Dependencies
 
-* GTK3+ (version 3.8 or newer, latest is recommended)
-    * Graphical User Interface (GUI)
-    * http://www.gtk.org/
-    * Required to run CPU-X in GTK mode; **not** embedded in portable version (use system shared library)
+### Build-only dependencies
 
-* Ncurses
-    * Text-based User Interface (TUI)
-    * http://www.gnu.org/software/ncurses/
-    * Required to run CPU-X in NCurses mode; embedded in portable version
+These dependencies are needed to **manually build** CPU-X (e.g you can safely remove them after build):
+* [CMake](http://www.cmake.org/) (minimum version is 3.0, older aren't supported): needed to build CPU-X
+* [NASM](http://www.nasm.us/): needed to build Libbandwidth
 
-* Libcpuid
-    * Extract CPU features
-    * http://libcpuid.sourceforge.net/
-    * Required to run CPU-X correctly; embedded in portable version
 
-* Libpci
-    * Extract others hardware features
-    * http://mj.ucw.cz/sw/pciutils/
-    * Required to run CPU-X correctly; **not** embedded in portable version (use system shared library)
+### Build and run dependencies
 
-* Procps-ng, provides *libsystem* (**Linux only**)
-    * Useful informations on system
-    * http://sourceforge.net/projects/procps-ng/
-    * Required to run CPU-X correctly; embedded in portable version
-
-* Libstatgrab, provides *libsystem* (replaces **Procps-ng**)
-    * Useful informations on system
-    * http://www.i-scream.org/libstatgrab/
-    * Required to run CPU-X correctly; embedded in portable version
+These dependencies are needed to **manually build** and **run** CPU-X (e.g you can't remove a dependency if CPU-X was built with):
+* [GTK3+](http://www.gtk.org/) (minimum version is 3.8, version 3.14 or newer recommended): required to run CPU-X in GTK mode; **not** embedded in portable version (use system shared library)
+* [Ncurses](http://www.gnu.org/software/ncurses/): required to run CPU-X in NCurses mode; embedded in portable version
+* [Libcpuid](http://libcpuid.sourceforge.net/): required to run CPU-X correctly; embedded in portable version
+* [Libpci](http://mj.ucw.cz/sw/pciutils/): required to run CPU-X correctly; embedded in portable version
+* [Procps-ng](http://sourceforge.net/projects/procps-ng/), provides *libsystem* (**Linux only**): required to run CPU-X correctly; embedded in portable version
+* [Libstatgrab](http://www.i-scream.org/libstatgrab/), provides *libsystem* (replaces **Procps-ng** for **non-Linux OS**): required to run CPU-X correctly; embedded in portable version
 
 
 ## Download/Install
@@ -85,7 +74,8 @@ You can disable components in CPU-X before build by passing argument `-D<var>=0`
 `-DWITH_GTK=0` will disable support of GUI in GTK3+  
 `-DWITH_NCURSES=0` will disable support of NCurses mode  
 `-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
-`-DWITH_LIBDMI=0` will not compile Libdmi and will avoid calls to Libdmi (not recommended)  
+`-DWITH_LIBDMI=0` will not compile Libdmidecode and will avoid calls to Libdmidecode (not recommended)  
+`-DWITH_LIBBDWT=0` will not compile Libbandwidth and will avoid calls to Libbandwidth (not recommended)  
 `-DWITH_LIBPCI=0` will avoid calls to Libpci (not recommended)  
 `-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps/Libstatgrab (not recommended)  
 
