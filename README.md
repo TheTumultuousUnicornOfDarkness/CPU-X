@@ -132,7 +132,7 @@ You want to contribute to CPU-X? In the top-right corner of the page, click **Fo
 
 * **CPU-X won't start**: try to do a `chmod +x` on binary.
 * **CPU-X still won't start**: run it from a shell, and look output.
-* **Some labels are empty**: verify if CPU-X is run with root privileges. If it is the case, your hardware is not recognised by a library.
+* **Some labels are empty**: CPU-X needs root privileges to run fine. If you manually build CPU-X, check dependencies. Or else, if a label is still empty, your hardware isn't recognized by a library.
 
 
 ## Bugs/Improvements/Request features
