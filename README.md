@@ -36,6 +36,7 @@ This is a graphical software (GTK is used), but it can be used from a shell by u
 
 These dependencies are needed to **manually build** CPU-X (e.g you can safely remove them after build):
 * [CMake](http://www.cmake.org/) (minimum version is 3.0, older aren't supported): needed to build CPU-X
+* [Pkg-Config](http://www.freedesktop.org/wiki/Software/pkg-config/)/[Pkgconf](https://github.com/pkgconf/pkgconf): needed by CMake for libraries detection
 * [NASM](http://www.nasm.us/): needed to build Libbandwidth
 
 
