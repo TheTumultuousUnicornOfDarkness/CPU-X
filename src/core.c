@@ -217,7 +217,7 @@ void catinstr(char **str, char *in)
 }
 
 /* Show some instructions supported by CPU */
-void instructions(char **arch, char **instr)
+void instructions(char **instr)
 {
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t id;
@@ -243,8 +243,20 @@ void instructions(char **arch, char **instr)
 		if(id.flags[CPU_FEATURE_VMX])		catinstr(instr, ", VT-x");
 		if(id.flags[CPU_FEATURE_SVM])		catinstr(instr, ", AMD-V");
 
-		if(id.flags[CPU_FEATURE_LM])		*arch = strdupnullok("x86_64 (64-bit)");
-		else					*arch = strdupnullok("ix86 (32-bit)");
+		if(id.flags[CPU_FEATURE_LM])
+		{
+			switch(cpuid_get_vendor())
+			{
+				case VENDOR_INTEL:
+					catinstr(instr, ", Intel 64");
+					break;
+				case VENDOR_AMD:
+					catinstr(instr, ", AMD64");
+					break;
+				default:
+					catinstr(instr, ", 64-bit");
+			}
+		}
 	}
 	else
 		MSGSERR(_("libcpuid failed"));
