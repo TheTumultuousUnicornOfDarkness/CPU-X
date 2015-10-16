@@ -72,6 +72,8 @@ int libcpuid(Labels *data)
 	/* Tab CPU */
 	asprintf(&data->tabcpu[VALUE][VENDOR],		"%s", datanr.vendor_str);
 	asprintf(&data->tabcpu[VALUE][CODENAME],	"%s", datanr.cpu_codename);
+	asprintf(&data->tabcpu[VALUE][TECHNOLOGY],	"%inm", cpu_technology(datanr.model, datanr.ext_model));
+	asprintf(&data->tabcpu[VALUE][VOLTAGE],		"%.3fV", cpu_voltage(0));
 	asprintf(&data->tabcpu[VALUE][SPECIFICATION],	"%s", datanr.brand_str);
 	asprintf(&data->tabcpu[VALUE][FAMILY],		"%d", datanr.family);
 	asprintf(&data->tabcpu[VALUE][EXTFAMILY],	"%d", datanr.ext_family);
@@ -246,6 +248,73 @@ void instructions(char **arch, char **instr)
 	}
 	else
 		MSGSERR(_("libcpuid failed"));
+}
+
+/* Get CPU core voltage */
+double cpu_voltage(int core)
+{
+	int voltage = 0;
+	struct msr_driver_t *msr = NULL;
+
+	MSGVERB(_("Finding CPU core voltage"));
+	msr = cpu_msr_driver_open_core(core);
+	if(msr != NULL)
+	{
+		voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
+		if(voltage != CPU_INVALID_VALUE)
+			return (double) voltage / 100;
+	}
+
+	MSGSERR(_("error when finding CPU core voltage"));
+	return 0.0;
+}
+
+/* Get CPU technology, in nanometre (nm) */
+int cpu_technology(int32_t model, int32_t ext_model)
+{
+	MSGVERB(_("Finding CPU technology"));
+	if(cpuid_get_vendor() == VENDOR_INTEL)
+	{
+		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
+		switch(model)
+		{
+			case 5:
+				if(ext_model == 37) return 32;
+				if(ext_model == 69) return 22;
+			case 7:
+				if(ext_model == 23) return 45;
+				if(ext_model == 71) return 14;
+			case 10:
+				if(ext_model == 26 || ext_model == 30) return 45;
+				if(ext_model == 42) return 32;
+				if(ext_model == 58) return 22;
+			case 12:
+				if(ext_model == 44) return 32;
+				if(ext_model == 60) return 22;
+			case 13:
+				if(ext_model == 45) return 32;
+				if(ext_model == 61) return 14;
+			case 14:
+				if(ext_model == 62) return 22;
+				if(ext_model == 94) return 14;
+			case 15:
+				if(ext_model == 63) return 22;
+
+		}
+	}
+	else if(cpuid_get_vendor() == VENDOR_AMD)
+	{
+		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_amd.c */
+		switch(model)
+		{
+			default:
+				MSGSERR(_("VENDOR_AMD: not yet implemented"));
+				return 0;
+		}
+	}
+
+	MSGSERR(_("error when finding CPU technology"));
+	return 0;
 }
 #endif /* HAS_LIBCPUID */
 

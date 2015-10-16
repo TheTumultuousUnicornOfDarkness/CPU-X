@@ -115,7 +115,7 @@ enum EnObjects
 
 enum EnTabCpu
 {
-	VENDOR, CODENAME, PACKAGE, ARCHITECTURE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, STEPPING, INSTRUCTIONS,
+	VENDOR, CODENAME, PACKAGE, TECHNOLOGY, VOLTAGE, ARCHITECTURE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, STEPPING, INSTRUCTIONS,
 	CORESPEED, MULTIPLIER, BUSSPEED, BOGOMIPS,
 	LEVEL1D, LEVEL1I, LEVEL2, LEVEL3,
 	SOCKETS, CORES, THREADS,
@@ -212,6 +212,14 @@ void clean_specification(char *spec);
 /* Print some instruction sets
 TAB: CPU. */
 void instructions(char **arch, char **instr);
+
+/* Get CPU core voltage
+TAB: CPU. */
+double cpu_voltage(int core);
+
+/* Get CPU technology, in nanometre (nm)
+TAB: CPU. */
+int cpu_technology(int32_t model, int32_t ext_model);
 
 /* Elements provided by libdmi library (need root privileges)
 TAB: CPU, Motherboard. */

@@ -370,6 +370,8 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][VENDOR],		_("Vendor"));
 	asprintf(&data->tabcpu[NAME][CODENAME],		_("Code Name"));
 	asprintf(&data->tabcpu[NAME][PACKAGE],		_("Package"));
+	asprintf(&data->tabcpu[NAME][TECHNOLOGY],	_("Technology"));
+	asprintf(&data->tabcpu[NAME][VOLTAGE],		_("Voltage"));
 	asprintf(&data->tabcpu[NAME][ARCHITECTURE],	_("Architecture"));
 	asprintf(&data->tabcpu[NAME][SPECIFICATION],	_("Specification"));
 	asprintf(&data->tabcpu[NAME][FAMILY],		_("Family"));
