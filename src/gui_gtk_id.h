@@ -37,12 +37,12 @@ static const char *trad[LASTOBJ] =
 /* Tab CPU */
 static const char *objectcpu[2][LASTCPU] =
 {
-	{ "proc_labvendor", "proc_labcdename", "proc_labpkg", "proc_labarch", "proc_labspec", "proc_labfam", "proc_labextfam", "proc_labmod", "proc_labextmod", "proc_labstep", "proc_labinstr",
+	{ "proc_labvendor", "proc_labcdename", "proc_labpkg", "proc_labtech", "proc_labvolt", "proc_labspec", "proc_labfam", "proc_labextfam", "proc_labmod", "proc_labextmod", "proc_labstep", "proc_labinstr",
 		"clock_labcore", "clock_labmult", "clock_labbus", "clock_labmips",
 		"cache_labl1d", "cache_labl1i", "cache_labl2", "cache_labl3",
 		"trg_labsock", "trg_labcore", "trg_labthrd"
 	},
-	{ "proc_valvendor", "proc_valcdename", "proc_valpkg", "proc_valarch", "proc_valspec", "proc_valfam", "proc_valextfam", "proc_valmod", "proc_valextmod", "proc_valstep", "proc_valinstr",
+	{ "proc_valvendor", "proc_valcdename", "proc_valpkg", "proc_valtech", "proc_valvolt", "proc_valspec", "proc_valfam", "proc_valextfam", "proc_valmod", "proc_valextmod", "proc_valstep", "proc_valinstr",
 		"clock_valcore", "clock_valmult", "clock_valbus", "clock_valmips",
 		"cache_vall1d", "cache_vall1i", "cache_vall2", "cache_vall3",
 		"trg_valsock", "trg_valcore", "trg_valthrd"

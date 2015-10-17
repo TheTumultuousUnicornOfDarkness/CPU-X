@@ -216,7 +216,7 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 
 WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 {
-	int i, middle;
+	int i, j, middle;
 	WINDOW *local_win;
 
 	middle = (strlen(data->tabcpu[VALUE][MULTIPLIER]) == 0) ? 15 + strlen(data->tabcpu[VALUE][CORESPEED]) + 4 :
@@ -231,21 +231,36 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 	frame(local_win, 17, 1, 20, width - 1, "");
 
 	/* Processor frame */
-	for(i = VENDOR; i < MODEL; i++)
-		mvwprintw(local_win, i + 2, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
-
-	mvwprintw(local_win, FAMILY + 2,	22, "%11s: %2s", data->tabcpu[NAME][MODEL], data->tabcpu[VALUE][MODEL]);
-	mvwprintw(local_win, FAMILY + 2,	38, "%9s: %s", data->tabcpu[NAME][STEPPING], data->tabcpu[VALUE][STEPPING]);
-	mvwprintw(local_win, EXTFAMILY + 2,	22, "%11s: %2s", data->tabcpu[NAME][EXTMODEL], data->tabcpu[VALUE][EXTMODEL]);
-	mvwprintw(local_win, EXTFAMILY + 3,	2, "%13s: %2s", data->tabcpu[NAME][INSTRUCTIONS], data->tabcpu[VALUE][INSTRUCTIONS]);
+	j = VENDOR + 2;
+	for(i = VENDOR; i < CORESPEED; i++)
+	{
+		mvwprintw(local_win, j, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		switch(i)
+		{
+			case VOLTAGE:
+				mvwprintw(local_win, j - 1, 22, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+				break;
+			case MODEL:
+				mvwprintw(local_win, j - 2, 22, "%11s: %2s", data->tabcpu[NAME][MODEL], data->tabcpu[VALUE][MODEL]);
+				break;
+			case EXTMODEL:
+				mvwprintw(local_win, j - 1, 22, "%11s: %2s", data->tabcpu[NAME][EXTMODEL], data->tabcpu[VALUE][EXTMODEL]);
+				break;
+			case STEPPING:
+				mvwprintw(local_win, j - 2, 38, "%9s: %s", data->tabcpu[NAME][STEPPING], data->tabcpu[VALUE][STEPPING]);
+				break;
+			default:
+				j++;
+		}
+	}
 
 	/* Clocks frame */
 	for(i = CORESPEED; i < LEVEL1D; i++)
-		mvwprintw(local_win, i + 1, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
 
 	/* Cache frame */
 	for(i = LEVEL1D; i < SOCKETS; i++)
-		mvwprintw(local_win, i - 3, middle + 1, "%10s: %20s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i - 4, middle + 1, "%10s: %20s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
 
 	/* Last frame */
 	mvwprintw(local_win, 18, 4, "%s: %2s", data->tabcpu[NAME][SOCKETS], data->tabcpu[VALUE][SOCKETS]);
