@@ -61,7 +61,8 @@
 /* Elements provided by libcpuid library */
 int libcpuid(Labels *data)
 {
-	int err = 0;
+	int err = 0, tech, temp;
+	double volt;
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
@@ -72,14 +73,24 @@ int libcpuid(Labels *data)
 	/* Tab CPU */
 	asprintf(&data->tabcpu[VALUE][VENDOR],		"%s", datanr.vendor_str);
 	asprintf(&data->tabcpu[VALUE][CODENAME],	"%s", datanr.cpu_codename);
-	asprintf(&data->tabcpu[VALUE][TECHNOLOGY],	"%inm", cpu_technology(datanr.model, datanr.ext_model));
-	asprintf(&data->tabcpu[VALUE][VOLTAGE],		"%.3fV", cpu_voltage(0));
 	asprintf(&data->tabcpu[VALUE][SPECIFICATION],	"%s", datanr.brand_str);
 	asprintf(&data->tabcpu[VALUE][FAMILY],		"%d", datanr.family);
 	asprintf(&data->tabcpu[VALUE][EXTFAMILY],	"%d", datanr.ext_family);
 	asprintf(&data->tabcpu[VALUE][MODEL],		"%d", datanr.model);
 	asprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
 	asprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
+
+	tech = cpu_technology(datanr.model, datanr.ext_model);
+	if(tech)
+		asprintf(&data->tabcpu[VALUE][TECHNOLOGY], "%inm", tech);
+
+	volt = cpu_voltage(0);
+	if(volt)
+		asprintf(&data->tabcpu[VALUE][VOLTAGE], "%.3fV", volt);
+
+	temp = cpu_temperature(0);
+	if(temp)
+		asprintf(&data->tabcpu[VALUE][TEMPERATURE], "%i°C", temp);
 
 	/* Cache : level 1 (data) */
 	if(datanr.l1_data_cache)
@@ -279,6 +290,25 @@ double cpu_voltage(int core)
 
 	MSGSERR(_("error when finding CPU core voltage"));
 	return 0.0;
+}
+
+/* Get CPU core temprature */
+int cpu_temperature(int core)
+{
+	int temp = 0;
+	struct msr_driver_t *msr = NULL;
+
+	MSGVERB(_("Finding CPU core temperature"));
+	msr = cpu_msr_driver_open_core(core);
+	if(msr != NULL)
+	{
+		temp = cpu_msrinfo(msr, INFO_TEMPERATURE);
+		if(temp != CPU_INVALID_VALUE)
+			return temp;
+	}
+
+	MSGSERR(_("error when finding CPU core temperature"));
+	return 0;
 }
 
 /* Get CPU technology, in nanometre (nm) */

@@ -377,6 +377,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][EXTFAMILY],	_("Ext. Family"));
 	asprintf(&data->tabcpu[NAME][MODEL],		_("Model"));
 	asprintf(&data->tabcpu[NAME][EXTMODEL],		_("Ext. Model"));
+	asprintf(&data->tabcpu[NAME][TEMPERATURE],	_("Temp."));
 	asprintf(&data->tabcpu[NAME][STEPPING],		_("Stepping"));
 	asprintf(&data->tabcpu[NAME][INSTRUCTIONS],	_("Instructions"));
 

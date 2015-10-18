@@ -115,7 +115,7 @@ enum EnObjects
 
 enum EnTabCpu
 {
-	VENDOR, CODENAME, PACKAGE, TECHNOLOGY, VOLTAGE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, STEPPING, INSTRUCTIONS,
+	VENDOR, CODENAME, PACKAGE, TECHNOLOGY, VOLTAGE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, TEMPERATURE, STEPPING, INSTRUCTIONS,
 	CORESPEED, MULTIPLIER, BUSSPEED, BOGOMIPS,
 	LEVEL1D, LEVEL1I, LEVEL2, LEVEL3,
 	SOCKETS, CORES, THREADS,
@@ -216,6 +216,10 @@ void instructions(char **instr);
 /* Get CPU core voltage
 TAB: CPU. */
 double cpu_voltage(int core);
+
+/* Get CPU core temprature
+TAB: CPU. */
+int cpu_temperature(int core);
 
 /* Get CPU technology, in nanometre (nm)
 TAB: CPU. */

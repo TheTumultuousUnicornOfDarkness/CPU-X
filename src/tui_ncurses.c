@@ -246,8 +246,11 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 			case EXTMODEL:
 				mvwprintw(local_win, j - 1, 22, "%11s: %2s", data->tabcpu[NAME][EXTMODEL], data->tabcpu[VALUE][EXTMODEL]);
 				break;
+			case TEMPERATURE:
+				mvwprintw(local_win, j - 2, 38, "%9s: %s", data->tabcpu[NAME][TEMPERATURE], data->tabcpu[VALUE][TEMPERATURE]);
+				break;
 			case STEPPING:
-				mvwprintw(local_win, j - 2, 38, "%9s: %s", data->tabcpu[NAME][STEPPING], data->tabcpu[VALUE][STEPPING]);
+				mvwprintw(local_win, j - 1, 38, "%9s: %s", data->tabcpu[NAME][STEPPING], data->tabcpu[VALUE][STEPPING]);
 				break;
 			default:
 				j++;
@@ -256,11 +259,11 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 
 	/* Clocks frame */
 	for(i = CORESPEED; i < LEVEL1D; i++)
-		mvwprintw(local_win, i, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i - 1, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
 
 	/* Cache frame */
 	for(i = LEVEL1D; i < SOCKETS; i++)
-		mvwprintw(local_win, i - 4, middle + 1, "%10s: %20s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i - 5, middle + 1, "%10s: %20s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
 
 	/* Last frame */
 	mvwprintw(local_win, 18, 4, "%s: %2s", data->tabcpu[NAME][SOCKETS], data->tabcpu[VALUE][SOCKETS]);
