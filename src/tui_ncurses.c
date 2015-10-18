@@ -123,6 +123,12 @@ void nrefresh(NThrd *refr)
 	if(loop == NB_TAB_CPU)
 	{
 		cpufreq(refr->data);
+		if(HAS_LIBCPUID && !getuid())
+		{
+			libcpuid(refr->data);
+			mvwprintw(refr->win, 5, 22, "%13s: %s", refr->data->tabcpu[NAME][VOLTAGE], refr->data->tabcpu[VALUE][VOLTAGE]);
+			mvwprintw(refr->win, 7, 38, "%9s: %s", refr->data->tabcpu[NAME][TEMPERATURE], refr->data->tabcpu[VALUE][TEMPERATURE]);
+		}
 		if(HAS_LIBDMI && !getuid())
 		{
 			libdmidecode(refr->data);

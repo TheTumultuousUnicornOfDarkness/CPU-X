@@ -82,11 +82,11 @@ int libcpuid(Labels *data)
 
 	tech = cpu_technology(datanr.model, datanr.ext_model);
 	if(tech)
-		asprintf(&data->tabcpu[VALUE][TECHNOLOGY], "%inm", tech);
+		asprintf(&data->tabcpu[VALUE][TECHNOLOGY], "%i nm", tech);
 
 	volt = cpu_voltage(0);
 	if(volt)
-		asprintf(&data->tabcpu[VALUE][VOLTAGE], "%.3fV", volt);
+		asprintf(&data->tabcpu[VALUE][VOLTAGE], "%.3f V", volt);
 
 	temp = cpu_temperature(0);
 	if(temp)

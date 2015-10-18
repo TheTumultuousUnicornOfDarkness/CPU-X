@@ -140,6 +140,12 @@ gboolean grefresh(GThrd *refr)
 	if(page == NB_TAB_CPU)
 	{
 		cpufreq(refr->data);
+		if(HAS_LIBCPUID && !getuid())
+		{
+			libcpuid(refr->data);
+			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][VOLTAGE]), refr->data->tabcpu[VALUE][VOLTAGE]);
+			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][TEMPERATURE]), refr->data->tabcpu[VALUE][TEMPERATURE]);
+		}
 		if(HAS_LIBDMI && !getuid())
 		{
 			libdmidecode(refr->data);
