@@ -654,6 +654,48 @@ void pcidev(Labels *data)
 }
 #endif /* HAS_LIBPCI */
 
+/* Get GPU tempreature */
+double gpu_temperature(void)
+{
+	enum GPU_Driver { NVIDIA, CATALYST, MESA, UNKNOWN = -1 };
+	static enum GPU_Driver driver = UNKNOWN;
+	char buff[MAXSTR];
+	FILE *command = NULL;
+
+	MSGVERB(_("Finding GPU temperature"));
+	if(!system("nvidia-settings 2> /dev/null"))
+	{
+		command = popen("nvidia-settings -q GPUCoreTemp -t", "r");
+		driver = NVIDIA;
+	}
+	else if(!system("aticonfig 2> /dev/null"))
+	{
+		command = popen("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", "r");
+		driver = CATALYST;
+	}
+	else
+	{
+		command = fopen("/sys/class/drm/card0/device/hwmon/hwmon0/temp1_input", "r");
+		driver = MESA;
+	}
+
+	if((driver == NVIDIA || driver == CATALYST) && command != NULL)
+	{
+		fgets(buff, MAXSTR, command);
+		return atof(buff);
+	}
+	else if(driver == MESA && command != NULL)
+	{
+		fgets(buff, MAXSTR, command);
+		return ((double) atoi(buff) / 1000);
+	}
+	else
+	{
+		MSGSERR(_("error when finding GPU temperature"));
+		return 0.0;
+	}
+}
+
 /* Find the number of GPU */
 int last_gpu(Labels *data)
 {

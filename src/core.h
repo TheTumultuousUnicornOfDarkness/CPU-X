@@ -257,6 +257,10 @@ void tabsystem(Labels *data);
 TAB: Motherboad, Graphics. */
 void pcidev(Labels *data);
 
+/* Get GPU tempreature
+TAB: Graphics. */
+double gpu_temperature(void);
+
 /* Find the number of GPU
 TAB: Graphics. */
 int last_gpu(Labels *data);
