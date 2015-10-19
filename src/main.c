@@ -441,7 +441,7 @@ void labels_setname(Labels *data)
 	{
 		asprintf(&data->tabgpu[NAME][GPUVENDOR1 + i],	_("Vendor"));
 		asprintf(&data->tabgpu[NAME][GPUNAME1 + i],	_("Model"));
-		asprintf(&data->tabgpu[NAME][GPUDRIVER1 + i],	_("Driver"));
+		asprintf(&data->tabgpu[NAME][GPUTEMP1 + i],	_("Temperature"));
 	}
 }
 

@@ -606,7 +606,7 @@ static char *find_driver(struct pci_dev *dev, char *buf)
 	else
 		return buf;
 }
-
+char *clean_gpuvendor(char *str);
 /* Find some PCI devices */
 void pcidev(Labels *data)
 {
@@ -641,9 +641,9 @@ void pcidev(Labels *data)
 				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
 		{
 			driver = find_driver(dev, namebuf);
-			data->tabgpu[VALUE][GPUVENDOR1  + nbgpu * GPUFIELDS] = strdupnullok(vendor);
-			data->tabgpu[VALUE][GPUNAME1	+ nbgpu * GPUFIELDS] = strdupnullok(product);
-			data->tabgpu[VALUE][GPUDRIVER1  + nbgpu * GPUFIELDS] = strdupnullok(driver);
+			asprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], _("%s (%s driver)"), clean_gpuvendor(vendor), driver);
+			asprintf(&data->tabgpu[VALUE][GPUNAME1		+ nbgpu * GPUFIELDS], "%s", product);
+			asprintf(&data->tabgpu[VALUE][GPUTEMP1		+ nbgpu * GPUFIELDS], "%.2f°C", gpu_temperature());
 			nbgpu++;
 		}
 	}
@@ -651,6 +651,18 @@ void pcidev(Labels *data)
 	pci_cleanup(pacc);	/* Close everything */
 	free(vendor);
 	free(product);
+}
+
+char *clean_gpuvendor(char *str)
+{
+	if(strstr(str, "NVIDIA") != NULL)
+		return strdup("NVIDIA");
+	else if(strstr(str, "AMD") != NULL)
+		return strdup("AMD");
+	else if(strstr(str, "Intel") != NULL)
+		return strdup("Intel");
+	else
+		return NULL;
 }
 #endif /* HAS_LIBPCI */
 
