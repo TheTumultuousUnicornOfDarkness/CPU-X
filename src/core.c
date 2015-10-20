@@ -606,7 +606,7 @@ static char *find_driver(struct pci_dev *dev, char *buf)
 	else
 		return buf;
 }
-char *clean_gpuvendor(char *str);
+
 /* Find some PCI devices */
 void pcidev(Labels *data)
 {
@@ -656,6 +656,7 @@ void pcidev(Labels *data)
 	free(product);
 }
 
+/* Pretty label GPU Vendor */
 char *clean_gpuvendor(char *str)
 {
 	if(strstr(str, "NVIDIA") != NULL)

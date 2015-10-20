@@ -257,6 +257,10 @@ void tabsystem(Labels *data);
 TAB: Motherboad, Graphics. */
 void pcidev(Labels *data);
 
+/* Pretty label GPU Vendor
+TAB: Graphics. */
+char *clean_gpuvendor(char *str);
+
 /* Get GPU tempreature
 TAB: Graphics. */
 double gpu_temperature(void);
