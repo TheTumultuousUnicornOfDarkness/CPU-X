@@ -91,7 +91,7 @@ void start_tui_ncurses(Labels *data)
 				break;
 			case ERR:
 				/* Refresh labels if needed */
-				if(current_tab == NB_TAB_CPU || current_tab == NB_TAB_CACHE || current_tab == NB_TAB_SYS)
+				if(current_tab == NB_TAB_CPU || current_tab == NB_TAB_CACHE || current_tab == NB_TAB_SYS || current_tab == NB_TAB_GPU)
 				{
 					refr.win = tab;
 					nrefresh(&refr);
@@ -163,6 +163,19 @@ void nrefresh(NThrd *refr)
 			mvwprintw(refr->win, i + 4,  2, "%13s: %s", refr->data->tabsys[NAME][i], refr->data->tabsys[VALUE][i]);
 			clear_bar(refr->win, i);
 			draw_bar(refr->win, refr->data, i);
+		}
+		wrefresh(refr->win);
+	}
+
+	/* Refresh tab GPU */
+	else if(loop == NB_TAB_GPU && HAS_LIBPCI)
+	{
+		j = GPUTEMP1 + 2;
+		pcidev(refr->data);
+		for(i = 0; i < last_gpu(refr->data); i += GPUFIELDS)
+		{
+			mvwprintw(refr->win, j,  2, "%13s: %s", refr->data->tabgpu[NAME][GPUTEMP1 + i], refr->data->tabgpu[VALUE][GPUTEMP1 + i]);
+			j += GPUFIELDS + 2;
 		}
 		wrefresh(refr->win);
 	}

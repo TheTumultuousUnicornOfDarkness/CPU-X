@@ -612,6 +612,7 @@ void pcidev(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	int nbgpu = 0;
+	double temp = 0.0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	char namebuf[MAXSTR], *vendor, *product, *driver;
@@ -641,9 +642,11 @@ void pcidev(Labels *data)
 				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
 		{
 			driver = find_driver(dev, namebuf);
+			temp = gpu_temperature();
 			asprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], _("%s (%s driver)"), clean_gpuvendor(vendor), driver);
 			asprintf(&data->tabgpu[VALUE][GPUNAME1		+ nbgpu * GPUFIELDS], "%s", product);
-			asprintf(&data->tabgpu[VALUE][GPUTEMP1		+ nbgpu * GPUFIELDS], "%.2f°C", gpu_temperature());
+			if(temp)
+				asprintf(&data->tabgpu[VALUE][GPUTEMP1		+ nbgpu * GPUFIELDS], "%.2f°C", temp);
 			nbgpu++;
 		}
 	}

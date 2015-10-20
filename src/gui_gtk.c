@@ -171,6 +171,15 @@ gboolean grefresh(GThrd *refr)
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][i]), refr->data->tabsys[VALUE][i]);
 	}
 
+	/* Refresh tab GPU */
+	else if(page == NB_TAB_GPU && HAS_LIBPCI)
+	{
+		pcidev(refr->data);
+		i = 0;
+		//for(i = 0; i < last_gpu(refr->data); i += GPUFIELDS)
+			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabgpu[VALUE][GPUTEMP1 + i]), refr->data->tabgpu[VALUE][GPUTEMP1 + i]);
+	}
+
 	return G_SOURCE_CONTINUE;
 }
 
