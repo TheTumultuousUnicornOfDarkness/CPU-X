@@ -277,6 +277,7 @@ void instructions(char **instr)
 double cpu_voltage(int core)
 {
 	int voltage = 0;
+	static int err = 0;
 	struct msr_driver_t *msr = NULL;
 
 	MSGVERB(_("Finding CPU core voltage"));
@@ -288,7 +289,11 @@ double cpu_voltage(int core)
 			return (double) voltage / 100;
 	}
 
-	MSGSERR(_("error when finding CPU core voltage"));
+	if(!err)
+	{
+		MSGSERR(_("error when finding CPU core voltage"));
+		err++;
+	}
 	return 0.0;
 }
 
@@ -296,6 +301,7 @@ double cpu_voltage(int core)
 int cpu_temperature(int core)
 {
 	int temp = 0;
+	static int err = 0;
 	struct msr_driver_t *msr = NULL;
 
 	MSGVERB(_("Finding CPU core temperature"));
@@ -307,13 +313,19 @@ int cpu_temperature(int core)
 			return temp;
 	}
 
-	MSGSERR(_("error when finding CPU core temperature"));
+	if(!err)
+	{
+		MSGSERR(_("error when finding CPU core temperature"));
+		err++;
+	}
 	return 0;
 }
 
 /* Get CPU technology, in nanometre (nm) */
 int cpu_technology(int32_t model, int32_t ext_model)
 {
+	static int err = 0;
+
 	MSGVERB(_("Finding CPU technology"));
 	if(cpuid_get_vendor() == VENDOR_INTEL)
 	{
@@ -355,7 +367,11 @@ int cpu_technology(int32_t model, int32_t ext_model)
 		}
 	}
 
-	MSGSERR(_("error when finding CPU technology"));
+	if(!err)
+	{
+		MSGSERR(_("error when finding CPU technology"));
+		err++;
+	}
 	return 0;
 }
 #endif /* HAS_LIBCPUID */
@@ -675,6 +691,7 @@ double gpu_temperature(void)
 {
 	enum GPU_Driver { NVIDIA, CATALYST, MESA, UNKNOWN = -1 };
 	static enum GPU_Driver driver = UNKNOWN;
+	static int err = 0;
 	char buff[MAXSTR];
 	FILE *command = NULL;
 
@@ -705,11 +722,13 @@ double gpu_temperature(void)
 		fgets(buff, MAXSTR, command);
 		return ((double) atoi(buff) / 1000);
 	}
-	else
+
+	if(!err)
 	{
 		MSGSERR(_("error when finding GPU temperature"));
-		return 0.0;
+		err++;
 	}
+	return 0.0;
 }
 
 /* Find the number of GPU */
