@@ -104,7 +104,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="proc_labarch">
+                                  <object class="GtkLabel" id="proc_labtech">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">end</property>
@@ -303,33 +303,91 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="proc_framarch">
+                                          <object class="GtkBox" id="proc_box6">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="margin_top">1</property>
-                                            <property name="margin_bottom">1</property>
-                                            <property name="label_xalign">0</property>
-                                            <property name="shadow_type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="proc_valarch">
+                                              <object class="GtkAspectFrame" id="proc_framtech">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
-                                                <property name="justify">center</property>
-                                                <property name="selectable">True</property>
-                                                <property name="ellipsize">end</property>
-                                                <property name="width_chars">30</property>
-                                                <property name="single_line_mode">True</property>
-                                                <property name="max_width_chars">30</property>
-                                                <property name="lines">1</property>
-                                                <attributes>
-                                                  <attribute name="foreground" value="#000000008080"/>
-                                                </attributes>
+                                                <property name="margin_top">1</property>
+                                                <property name="margin_bottom">1</property>
+                                                <property name="label_xalign">0</property>
+                                                <property name="shadow_type">in</property>
+                                                <child>
+                                                  <object class="GtkLabel" id="proc_valtech">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="justify">center</property>
+                                                    <property name="selectable">True</property>
+                                                    <property name="ellipsize">end</property>
+                                                    <property name="width_chars">8</property>
+                                                    <property name="single_line_mode">True</property>
+                                                    <property name="max_width_chars">8</property>
+                                                    <property name="lines">1</property>
+                                                    <attributes>
+                                                      <attribute name="foreground" value="#000000008080"/>
+                                                    </attributes>
+                                                  </object>
+                                                </child>
                                               </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">False</property>
+                                                <property name="position">0</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <object class="GtkAspectFrame" id="proc_framvolt">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="margin_top">1</property>
+                                                <property name="margin_bottom">1</property>
+                                                <property name="label_xalign">0</property>
+                                                <property name="shadow_type">in</property>
+                                                <child>
+                                                  <object class="GtkLabel" id="proc_valvolt">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="justify">center</property>
+                                                    <property name="selectable">True</property>
+                                                    <property name="ellipsize">end</property>
+                                                    <property name="width_chars">8</property>
+                                                    <property name="single_line_mode">True</property>
+                                                    <property name="max_width_chars">8</property>
+                                                    <property name="lines">1</property>
+                                                    <attributes>
+                                                      <attribute name="foreground" value="#000000008080"/>
+                                                    </attributes>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">False</property>
+                                                <property name="pack_type">end</property>
+                                                <property name="position">1</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <object class="GtkLabel" id="proc_labvolt">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="margin_left">6</property>
+                                                <property name="margin_right">4</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">True</property>
+                                                <property name="pack_type">end</property>
+                                                <property name="position">3</property>
+                                              </packing>
                                             </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
-                                            <property name="fill">False</property>
+                                            <property name="fill">True</property>
                                             <property name="position">3</property>
                                           </packing>
                                         </child>
@@ -517,7 +575,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkAspectFrame" id="proc_framstep">
+                                      <object class="GtkAspectFrame" id="proc_framtemp">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">1</property>
@@ -525,7 +583,7 @@
                                         <property name="label_xalign">0</property>
                                         <property name="shadow_type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="proc_valstep">
+                                          <object class="GtkLabel" id="proc_valtemp">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="justify">center</property>
@@ -583,7 +641,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="proc_labstep">
+                                      <object class="GtkLabel" id="proc_labtemp">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="halign">end</property>
@@ -601,24 +659,50 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="empty1">
+                                      <object class="GtkAspectFrame" id="proc_framstep">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="lines">1</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="proc_valstep">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">8</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">8</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="foreground" value="#000000008080"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
                                       </object>
                                       <packing>
-                                        <property name="left_attach">3</property>
+                                        <property name="left_attach">4</property>
                                         <property name="top_attach">1</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="empty2">
+                                      <object class="GtkLabel" id="proc_labstep">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_left">6</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="single_line_mode">True</property>
                                         <property name="lines">1</property>
                                       </object>
                                       <packing>
-                                        <property name="left_attach">4</property>
+                                        <property name="left_attach">3</property>
                                         <property name="top_attach">1</property>
                                       </packing>
                                     </child>
@@ -1340,7 +1424,7 @@
                 <property name="reorderable">True</property>
               </packing>
             </child>
-	    <child>
+            <child>
               <object class="GtkBox" id="cachesbox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -4763,6 +4847,19 @@ on CPU &amp; motherboard.</property>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkColorButton" id="colorbutton">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="halign">center</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
                               </packing>
                             </child>
                           </object>
