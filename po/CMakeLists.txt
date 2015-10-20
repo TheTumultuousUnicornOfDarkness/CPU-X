@@ -24,7 +24,7 @@ if(GETTEXT_FOUND)
 			--output-dir=${CMAKE_SOURCE_DIR}/po
 			--output=${CMAKE_PROJECT_NAME}.pot
 			--keyword=_ --indent
-			cpu-x.c cpu-x.h libsystem.c options.c gui_gtk.c tui_ncurses.c
+			core.c core.h libsystem.c main.c gui_gtk.c tui_ncurses.c
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 	)
 
