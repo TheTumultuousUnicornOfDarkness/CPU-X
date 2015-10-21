@@ -8,7 +8,7 @@ msgid   ""
 msgstr  "Project-Id-Version: cpu-x 2.1.0\n"
         "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
         "POT-Creation-Date: 2015-10-20 17:08+0200\n"
-        "PO-Revision-Date: 2015-08-13 03:36-0300\n"
+        "PO-Revision-Date: 2015-10-20 21:30-0300\n"
         "Last-Translator: Lara Maia <dev@lara.click>\n"
         "Language: Brazilian Portuguese\n"
         "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr  "Project-Id-Version: cpu-x 2.1.0\n"
 
 #: core.c:69
 msgid   "Filling labels (libcpuid step)"
-msgstr  ""
+msgstr  "Preenchendo rótulos (etapa libcpuid)"
 
 #: core.c:164
 msgid   "Improving CPU Vendor label"
@@ -25,7 +25,7 @@ msgstr  "Melhorando a etiqueta do fornecedor da CPU"
 
 #: core.c:184
 msgid   "Removing unnecessary spaces in label Specification"
-msgstr  "Removendo espaços desnecessário na etiqueta Especificação"
+msgstr  "Removendo espaços desnecessários na etiqueta Especificação"
 
 #: core.c:236
 msgid   "Finding CPU instructions"
@@ -37,41 +37,41 @@ msgstr  "libcpuid falhou"
 
 #: core.c:282
 msgid   "Finding CPU core voltage"
-msgstr  ""
+msgstr  "Encontrando voltagem do núcleo da CPU"
 
 #: core.c:291
 msgid   "error when finding CPU core voltage"
-msgstr  ""
+msgstr  "erro ao encontrar voltagem do núcleo da CPU"
 
 #: core.c:301
 msgid   "Finding CPU core temperature"
-msgstr  ""
+msgstr  "Encontrando temperatura do núcleo da CPU"
 
 #: core.c:310
 msgid   "error when finding CPU core temperature"
-msgstr  ""
+msgstr  "erro ao encontrar temperature do núcleo da CPU"
 
 #: core.c:317
 #, fuzzy
 msgid   "Finding CPU technology"
-msgstr  "Encontrando instruções da CPU"
+msgstr  "Encontrando tecnologia da CPU"
 
 #: core.c:353
 msgid   "VENDOR_AMD: not yet implemented"
-msgstr  ""
+msgstr  "VENDOR_AMD: ainda não implementado"
 
 #: core.c:358
 msgid   "error when finding CPU technology"
-msgstr  ""
+msgstr  "erro ao encontrar tecnologia da CPU"
 
 #: core.c:370
 msgid   "Filling labels (libdmi step)"
-msgstr  ""
+msgstr  "Preenchendo rótulos (etapa libdmi)"
 
 #: core.c:401
 #, fuzzy
 msgid   "Filling labels (libdmi step, fallback mode)"
-msgstr  "Chamar Libdmi (modo fallback)"
+msgstr  "Preenchendo rótulos (etapa Libdmi, modo fallback)"
 
 #: core.c:439
 msgid   "Getting CPU frequency"
@@ -103,20 +103,20 @@ msgstr  "falhou ao abrir arquivo '/proc/cpuinfo'"
 
 #: core.c:620
 msgid   "Filling labels (libpci step)"
-msgstr  ""
+msgstr  "Preenchendo rótulos (etapa libpci)"
 
 #: core.c:646
 #, c-format
 msgid   "%s (%s driver)"
-msgstr  ""
+msgstr  "%s (%s driver)"
 
 #: core.c:681
 msgid   "Finding GPU temperature"
-msgstr  ""
+msgstr  "Encontrando temperatura da GPU"
 
 #: core.c:710
 msgid   "error when finding GPU temperature"
-msgstr  ""
+msgstr  "erro ao encontrar temperatura da GPU"
 
 #: core.h:33
 msgid   "WARNING:\n"
@@ -126,7 +126,7 @@ msgstr  "ATENÇÃO :\n"
 
 #: libsystem.c:66
 msgid   "failed to open file '/etc/os-release'"
-msgstr  "falhou ao abrir o arquivo /etc/os-release'"
+msgstr  "falhou ao abrir o arquivo '/etc/os-release'"
 
 #: libsystem.c:71
 msgid   "malloc failed"
@@ -138,16 +138,16 @@ msgstr  "Distribuição desconhecida"
 
 #: libsystem.c:90
 msgid   "Filling labels (libprocps step)"
-msgstr  ""
+msgstr  "Preenchendo rótulos (etapa libprocps)"
 
 #: libsystem.c:164
 msgid   "Filling labels (libstatgrab step)"
-msgstr  ""
+msgstr  "Preenchendo rótulos (etapa libstatgrab)"
 
 #: libsystem.c:195
 #, fuzzy
 msgid   "Filling labels (libsystem step)"
-msgstr  "Preenchendo aba do Sistema"
+msgstr  "Preenchendo rótulos (etapa libsystem)"
 
 #: libsystem.c:217
 #, c-format
@@ -157,12 +157,12 @@ msgstr  "%ld dias, %2ld horas, %2ld minutos, %2ld segundos"
 #: main.c:91
 #, fuzzy
 msgid   "Setting locale done"
-msgstr  "Configuração de idioma"
+msgstr  "Configuração de idioma concluída."
 
 #: main.c:113
 #, fuzzy
 msgid   "bandwidth failed"
-msgstr  "libcpuid falhou"
+msgstr  "bandwidth falhou"
 
 #: main.c:121
 msgid   "libdmidecode failed"
@@ -187,7 +187,7 @@ msgstr  "OPÇÕES Disponíveis:\n"
 #: main.c:178
 #, fuzzy, c-format
 msgid   "  -g, --%-10s Start graphical user interface (GUI) (default)\n"
-msgstr  "  -n, --%-10s Inicia a interface de usuário em modo de texto (TUI)\n"
+msgstr  "  -n, --%-10s Inicia a interface de usuário em modo gráfico (GUI) (padrão)\n"
 
 #: main.c:179
 #, c-format
@@ -227,12 +227,12 @@ msgstr  "  -V, --%-10s Imprime a versão e sai\n"
 
 #: main.c:196
 msgid   "(up-to-date)"
-msgstr  ""
+msgstr  "(atualizado)"
 
 #: main.c:198
 #, c-format
 msgid   "(version %s is available)"
-msgstr  ""
+msgstr  "(versão %s está disponível)"
 
 #: main.c:200
 #, c-format
@@ -257,7 +257,7 @@ msgstr  "%s %s %s\n"
 #: main.c:304
 #, fuzzy
 msgid   "Setting label pointers"
-msgstr  "Configuração de nome do rótulo"
+msgstr  "Configuração de indicadores de etiqueta"
 
 #: main.c:335
 #, fuzzy
@@ -271,7 +271,7 @@ msgstr  "CPU"
 #: main.c:338
 #, fuzzy
 msgid   "Caches"
-msgstr  "Cache"
+msgstr  "Caches"
 
 #: main.c:339 main.c:350
 msgid   "Motherboard"
@@ -308,17 +308,17 @@ msgstr  "Cache"
 #: main.c:347
 #, fuzzy
 msgid   "L1 Cache"
-msgstr  "Cache"
+msgstr  "L1 Cache"
 
 #: main.c:348
 #, fuzzy
 msgid   "L2 Cache"
-msgstr  "Cache"
+msgstr  "L2 Cache"
 
 #: main.c:349
 #, fuzzy
 msgid   "L3 Cache"
-msgstr  "Cache"
+msgstr  "L3 Cache"
 
 #: main.c:351
 msgid   "BIOS"
@@ -376,7 +376,7 @@ msgstr  "Fornecedor"
 
 #: main.c:371
 msgid   "Code Name"
-msgstr  "Nome de Código"
+msgstr  "Codinome"
 
 #: main.c:372
 msgid   "Package"
@@ -384,11 +384,11 @@ msgstr  "Pacote"
 
 #: main.c:373
 msgid   "Technology"
-msgstr  ""
+msgstr  "Tecnologia"
 
 #: main.c:374
 msgid   "Voltage"
-msgstr  ""
+msgstr  "Voltagem"
 
 #: main.c:375
 msgid   "Specification"
@@ -412,7 +412,7 @@ msgstr  "Ext. Modelo"
 
 #: main.c:380
 msgid   "Temp."
-msgstr  ""
+msgstr  "Temp."
 
 #: main.c:381
 msgid   "Stepping"
@@ -448,16 +448,16 @@ msgstr  "L1 Inst."
 
 #: main.c:391
 msgid   "Level 2"
-msgstr  "Nível 2"
+msgstr  "Level 2"
 
 #: main.c:392
 msgid   "Level 3"
-msgstr  "Nível 3"
+msgstr  "Level 3"
 
 #: main.c:394
 #, fuzzy
 msgid   "Socket(s)"
-msgstr  "Sockets(s)"
+msgstr  "Socket(s)"
 
 #: main.c:395
 msgid   "Core(s)"
@@ -470,16 +470,16 @@ msgstr  "Thread(s)"
 #: main.c:401
 #, fuzzy
 msgid   "Size"
-msgstr  "Tamanho da ROM"
+msgstr  "Tamanho"
 
 #: main.c:402
 msgid   "Descriptor"
-msgstr  ""
+msgstr  "Descritor"
 
 #: main.c:403
 #, fuzzy
 msgid   "Speed"
-msgstr  "Velocidade do Bus"
+msgstr  "Velocidade"
 
 #: main.c:407
 msgid   "Manufacturer"
@@ -508,12 +508,12 @@ msgstr  "Tamanho da ROM"
 #: main.c:422
 #, fuzzy, c-format
 msgid   "Bank %i Ref."
-msgstr  "Banco 0 Réf."
+msgstr  "Banco %i Ref."
 
 #: main.c:423
 #, fuzzy, c-format
 msgid   "Bank %i Type"
-msgstr  "Banco 0 Type"
+msgstr  "Banco %i Type"
 
 #: main.c:427
 msgid   "Kernel"
@@ -529,7 +529,7 @@ msgstr  "Nome do Host"
 
 #: main.c:430
 msgid   "Uptime"
-msgstr  "Disponibilidade"
+msgstr  "Tempo ligado"
 
 #: main.c:431
 msgid   "Compiler"
@@ -557,16 +557,16 @@ msgstr  "Swap"
 
 #: main.c:444
 msgid   "Temperature"
-msgstr  ""
+msgstr  "Temperatura"
 
 #: main.c:453
 msgid   "Replace undefined label by empty string"
-msgstr  ""
+msgstr  "Substituir rótulo não definido por uma string vazia"
 
 #: main.c:520
 #, fuzzy
 msgid   "Freeing memory"
-msgstr  "Configuração de nome do rótulo"
+msgstr  "Liberando memória"
 
 #: main.c:593
 msgid   "Dumping data..."
@@ -574,39 +574,39 @@ msgstr  "Dados de despejo..."
 
 #: main.c:678
 msgid   "Check for a new version..."
-msgstr  ""
+msgstr  "Checando for uma nova versão..."
 
 #: main.c:684
 msgid   "Failed to check on Internet."
-msgstr  ""
+msgstr  "Falhou ao checar na Internet."
 
 #: main.c:695
 msgid   "No new version available."
-msgstr  ""
+msgstr  "Nenhuma nova versão disponível."
 
 #: main.c:700
 msgid   "A new version is available!"
-msgstr  ""
+msgstr  "Uma nova versão está disponível!"
 
 #: main.c:727
 msgid   "Downloading new version..."
-msgstr  ""
+msgstr  "Baixando nova versão..."
 
 #: main.c:749
 msgid   "Applying new version..."
-msgstr  ""
+msgstr  "Aplicando nova versão..."
 
 #: main.c:752
 msgid   "Error when updating."
-msgstr  ""
+msgstr  "Erro ao atualizar."
 
 #: main.c:754
 msgid   "Update successful!"
-msgstr  ""
+msgstr  "Atualização bem sucedida!"
 
 #: main.c:769
 msgid   "Error when deleting temporary files."
-msgstr  ""
+msgstr  "Erro ao deletar arquivos temporários."
 
 #: gui_gtk.c:44
 msgid   "Starting GTK GUI..."
@@ -641,43 +641,43 @@ msgstr  "Iniciando a interface de texto NCurses..."
 #~ msgstr       "Arquitetura"
 
 #~ msgid        "Bank 1 Ref."
-#~ msgstr       "Banco 1 Réf."
+#~ msgstr       "Banco 1 Ref."
 
 #~ msgid        "Bank 1 Type"
 #~ msgstr       "Banco 1 Type"
 
 #~ msgid        "Bank 2 Ref."
-#~ msgstr       "Banco 2 Réf."
+#~ msgstr       "Banco 2 Ref."
 
 #~ msgid        "Bank 2 Type"
 #~ msgstr       "Banco 2 Type"
 
 #~ msgid        "Bank 3 Ref."
-#~ msgstr       "Banco 3 Réf."
+#~ msgstr       "Banco 3 Ref."
 
 #~ msgid        "Bank 3 Type"
 #~ msgstr       "Banco 3 Type"
 
 #~ msgid        "Bank 4 Ref."
-#~ msgstr       "Banco 4 Réf."
+#~ msgstr       "Banco 4 Ref."
 
 #~ msgid        "Bank 4 Type"
 #~ msgstr       "Banco 4 Type"
 
 #~ msgid        "Bank 5 Ref."
-#~ msgstr       "Banco 5 Réf."
+#~ msgstr       "Banco 5 Ref."
 
 #~ msgid        "Bank 5 Type"
 #~ msgstr       "Banco 5 Type"
 
 #~ msgid        "Bank 6 Ref."
-#~ msgstr       "Banco 6 Réf."
+#~ msgstr       "Banco 6 Ref."
 
 #~ msgid        "Bank 6 Type"
 #~ msgstr       "Banco 6 Type"
 
 #~ msgid        "Bank 7 Ref."
-#~ msgstr       "Banco 7 Réf."
+#~ msgstr       "Banco 7 Ref."
 
 #~ msgid        "Bank 7 Type"
 #~ msgstr       "Banco 7 Type"
@@ -691,9 +691,8 @@ msgstr  "Iniciando a interface de texto NCurses..."
 #~ msgid        "Calling Libdmi"
 #~ msgstr       "Chamando Libdmi"
 
-#, fuzzy
 #~ msgid        "Removing null label"
-#~ msgstr       "Melhorando a etiqueta do fornecedor da CPU"
+#~ msgstr       "Removendo label nulo"
 
 #~ msgid        "Filling array with values provided by Libcpuid"
 #~ msgstr       "Preenchendo matriz com os valores fornecidos pelo Libcpuid"
