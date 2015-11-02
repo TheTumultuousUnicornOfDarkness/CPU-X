@@ -80,7 +80,7 @@ int libcpuid(Labels *data)
 	asprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
 	asprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
 
-	tech = cpu_technology(datanr.model, datanr.ext_model);
+	tech = cpu_technology(datanr.model, datanr.ext_family, datanr.ext_model);
 	if(tech)
 		asprintf(&data->tabcpu[VALUE][TECHNOLOGY], "%i nm", tech);
 
@@ -322,7 +322,7 @@ int cpu_temperature(int core)
 }
 
 /* Get CPU technology, in nanometre (nm) */
-int cpu_technology(int32_t model, int32_t ext_model)
+int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 {
 	static int err = 0;
 
@@ -333,26 +333,26 @@ int cpu_technology(int32_t model, int32_t ext_model)
 		switch(model)
 		{
 			case 5:
-				if(ext_model == 37) return 32;
-				if(ext_model == 69) return 22;
+				if(ext_model == 37) return 32; // Westmere
+				if(ext_model == 69) return 22; // Haswell
 			case 7:
 				if(ext_model == 23) return 45;
-				if(ext_model == 71) return 14;
+				if(ext_model == 71) return 14; // Broadwell
 			case 10:
-				if(ext_model == 26 || ext_model == 30) return 45;
-				if(ext_model == 42) return 32;
-				if(ext_model == 58) return 22;
+				if(ext_model == 26 || ext_model == 30) return 45; // Nehalem
+				if(ext_model == 42) return 32; // Sandy Bridge
+				if(ext_model == 58) return 22; // Ivy Bridge
 			case 12:
-				if(ext_model == 44) return 32;
-				if(ext_model == 60) return 22;
+				if(ext_model == 44) return 32; // Westmere
+				if(ext_model == 60) return 22; // Haswell
 			case 13:
-				if(ext_model == 45) return 32;
-				if(ext_model == 61) return 14;
+				if(ext_model == 45) return 32; // Sandy Bridge-E
+				if(ext_model == 61) return 14; // Broadwell
 			case 14:
-				if(ext_model == 62) return 22;
-				if(ext_model == 94) return 14;
+				if(ext_model == 62) return 22; // Ivy Bridge-E
+				if(ext_model == 94) return 14; // Skylake
 			case 15:
-				if(ext_model == 63) return 22;
+				if(ext_model == 63) return 22; // Haswell-E
 
 		}
 	}
@@ -361,9 +361,19 @@ int cpu_technology(int32_t model, int32_t ext_model)
 		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_amd.c */
 		switch(model)
 		{
-			default:
-				MSGSERR(_("VENDOR_AMD: not yet implemented"));
-				return 0;
+			case 0:
+				if(ext_model == 0) return 28; // Jaguar (Kabini)
+				if(ext_model == 10) return 32; // Piledriver (Trinity)
+				if(ext_family == 21) return 28; // Steamroller (Kaveri)
+				if(ext_family == 22) return 28; // Puma (Mullins)
+			case 1:
+				if(ext_model == 1) return 32; // K10 (Llano)
+				if(ext_family == 20) return 40; // Bobcat
+				if(ext_model == 60) return 28; // Excavator (Carrizo)
+			case 2:
+				if(ext_family == 20) return 40; // Bobcat
+			case 3:
+				if(ext_model == 13) return 32; // Piledriver (Richland)
 		}
 	}
 

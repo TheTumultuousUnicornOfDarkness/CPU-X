@@ -223,7 +223,7 @@ int cpu_temperature(int core);
 
 /* Get CPU technology, in nanometre (nm)
 TAB: CPU. */
-int cpu_technology(int32_t model, int32_t ext_model);
+int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model);
 
 /* Elements provided by libdmi library (need root privileges)
 TAB: CPU, Motherboard. */
