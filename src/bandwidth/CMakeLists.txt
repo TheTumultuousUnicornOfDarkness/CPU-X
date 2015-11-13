@@ -19,7 +19,7 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 
 	if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
 		add_custom_command(OUTPUT routines32.o
-			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf routines.asm -o routines.o
+			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf routines32.asm -o routines32.o
 			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		)
 		add_library(bandwidth
