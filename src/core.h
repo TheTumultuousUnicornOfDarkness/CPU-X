@@ -24,7 +24,7 @@
 #ifndef _CPUX_H_
 #define _CPUX_H_
 
-
+#include <stdint.h>
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 #define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
 #define MSGVERB(str) msg('v', str, PRGNAME, BASEFILE, __LINE__)
