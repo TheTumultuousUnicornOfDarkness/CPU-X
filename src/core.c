@@ -256,6 +256,7 @@ void instructions(char **instr)
 
 		if(id.flags[CPU_FEATURE_LM])
 		{
+#ifdef HAVE_LIBCPUID_0_2_2
 			switch(cpuid_get_vendor())
 			{
 				case VENDOR_INTEL:
@@ -267,6 +268,9 @@ void instructions(char **instr)
 				default:
 					catinstr(instr, ", 64-bit");
 			}
+#else
+			catinstr(instr, ", 64-bit");
+#endif /* HAVE_LIBCPUID_0_2_2 */
 		}
 	}
 	else
@@ -276,6 +280,7 @@ void instructions(char **instr)
 /* Get CPU core voltage */
 double cpu_voltage(int core)
 {
+#ifdef HAVE_LIBCPUID_0_2_2
 	int voltage = 0;
 	static int err = 0;
 	struct msr_driver_t *msr = NULL;
@@ -294,12 +299,14 @@ double cpu_voltage(int core)
 		MSGSERR(_("error when finding CPU core voltage"));
 		err++;
 	}
+#endif /* HAVE_LIBCPUID_0_2_2 */
 	return 0.0;
 }
 
 /* Get CPU core temprature */
 int cpu_temperature(int core)
 {
+#ifdef HAVE_LIBCPUID_0_2_2
 	int temp = 0;
 	static int err = 0;
 	struct msr_driver_t *msr = NULL;
@@ -318,12 +325,14 @@ int cpu_temperature(int core)
 		MSGSERR(_("error when finding CPU core temperature"));
 		err++;
 	}
+#endif /* HAVE_LIBCPUID_0_2_2 */
 	return 0;
 }
 
 /* Get CPU technology, in nanometre (nm) */
 int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 {
+#ifdef HAVE_LIBCPUID_0_2_2
 	static int err = 0;
 
 	MSGVERB(_("Finding CPU technology"));
@@ -382,6 +391,7 @@ int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 		MSGSERR(_("error when finding CPU technology"));
 		err++;
 	}
+#endif /* HAVE_LIBCPUID_0_2_2 */
 	return 0;
 }
 #endif /* HAS_LIBCPUID */
