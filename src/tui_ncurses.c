@@ -139,19 +139,15 @@ void nrefresh(NThrd *refr)
 	}
 
 	/* Refresh tab Caches */
-	else if(loop == NB_TAB_CACHE)
+	else if(HAS_LIBCPUID && HAS_LIBBDWT && loop == NB_TAB_CACHE)
 	{
-		if(HAS_LIBCPUID && HAS_LIBBDWT)
+		bandwidth(refr->data);
+		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
 		{
-			bandwidth(refr->data);
-			for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
-			{
-				mvwprintw(refr->win, i + j,  2, "%13s: %s", refr->data->tabcache[NAME][i], refr->data->tabcache[VALUE][i]);
-				j += 2;
-			}
-
-			wrefresh(refr->win);
+			mvwprintw(refr->win, i + j,  2, "%13s: %s", refr->data->tabcache[NAME][i], refr->data->tabcache[VALUE][i]);
+			j += 2;
 		}
+		wrefresh(refr->win);
 	}
 
 	/* Refresh tab System */
@@ -168,7 +164,7 @@ void nrefresh(NThrd *refr)
 	}
 
 	/* Refresh tab GPU */
-	else if(loop == NB_TAB_GPU && HAS_LIBPCI)
+	else if(HAS_LIBPCI && loop == NB_TAB_GPU)
 	{
 		j = GPUTEMP1 + 2;
 		pcidev(refr->data);

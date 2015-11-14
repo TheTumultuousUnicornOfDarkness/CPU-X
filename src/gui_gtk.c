@@ -155,7 +155,7 @@ gboolean grefresh(GThrd *refr)
 	}
 
 	/* Refresh tab Caches */
-	else if(page == NB_TAB_CACHE && HAS_LIBCPUID && HAS_LIBBDWT)
+	else if(HAS_LIBCPUID && HAS_LIBBDWT && page == NB_TAB_CACHE)
 	{
 		bandwidth(refr->data);
 		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
@@ -172,7 +172,7 @@ gboolean grefresh(GThrd *refr)
 	}
 
 	/* Refresh tab GPU */
-	else if(page == NB_TAB_GPU && HAS_LIBPCI)
+	else if(HAS_LIBPCI && page == NB_TAB_GPU)
 	{
 		pcidev(refr->data);
 		i = 0;
