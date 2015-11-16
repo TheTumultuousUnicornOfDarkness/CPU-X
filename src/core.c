@@ -651,7 +651,7 @@ void pcidev(Labels *data)
 	double temp = 0.0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	char namebuf[MAXSTR], *vendor, *product, *driver;
+	char namebuf[MAXSTR], *vendor, *product, *drivername, *driverstr;
 
 	MSGVERB(_("Filling labels (libpci step)"));
 	pacc = pci_alloc();	/* Get the pci_access structure */
@@ -677,9 +677,13 @@ void pcidev(Labels *data)
 				dev->device_class == PCI_CLASS_DISPLAY_3D	||
 				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
 		{
-			driver = find_driver(dev, namebuf);
+			drivername = find_driver(dev, namebuf);
 			temp = gpu_temperature();
-			asprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], _("%s (%s driver)"), clean_gpuvendor(vendor), driver);
+			if(drivername != NULL)
+				asprintf(&driverstr, _("(%s driver)"), drivername);
+			else
+				driverstr = strdup("");
+			asprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], "%s %s", clean_gpuvendor(vendor), driverstr);
 			asprintf(&data->tabgpu[VALUE][GPUNAME1		+ nbgpu * GPUFIELDS], "%s", product);
 			if(temp)
 				asprintf(&data->tabgpu[VALUE][GPUTEMP1		+ nbgpu * GPUFIELDS], "%.2f°C", temp);
@@ -702,7 +706,7 @@ char *clean_gpuvendor(char *str)
 	else if(strstr(str, "Intel") != NULL)
 		return strdup("Intel");
 	else
-		return NULL;
+		return str;
 }
 #endif /* HAS_LIBPCI */
 
