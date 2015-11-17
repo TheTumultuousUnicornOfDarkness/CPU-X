@@ -672,6 +672,12 @@ char *check_lastver(void)
 	static char *ret = NULL;
 	FILE *page = NULL;
 
+	if(system("curl -V 2>&1 /dev/null"))
+	{
+		ret = strdup("f");
+		return ret;
+	}
+
 	if(ret != NULL)
 		return ret;
 
@@ -711,6 +717,9 @@ int update_prg(char *executable)
 	int err = 0, i = 0;
 	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
 	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
+
+	if(system("curl -V 2>&1 /dev/null"))
+		return -1;
 
 	opt = (flags & OPT_VERBOSE) ? strdup("") : strdup("s");
 	newver = check_lastver();
