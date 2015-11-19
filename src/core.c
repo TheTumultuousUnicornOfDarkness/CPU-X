@@ -720,12 +720,12 @@ double gpu_temperature(void)
 	FILE *command = NULL;
 
 	MSGVERB(_("Finding GPU temperature"));
-	if(!system("nvidia-settings 2> /dev/null"))
+	if(command_exists("nvidia-settings"))
 	{
 		command = popen("nvidia-settings -q GPUCoreTemp -t", "r");
 		driver = NVIDIA;
 	}
-	else if(!system("aticonfig 2> /dev/null"))
+	else if(command_exists("aticonfig"))
 	{
 		command = popen("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", "r");
 		driver = CATALYST;
@@ -767,4 +767,17 @@ int last_gpu(Labels *data)
 	}
 
 	return cpt;
+}
+
+/* Check if a command exists */
+int command_exists(char *in)
+{
+	int ret;
+	char *cmd;
+
+	asprintf(&cmd, "which %s >/dev/null 2>&1", in);
+	ret = system(cmd);
+	free(cmd);
+
+	return !ret;
 }

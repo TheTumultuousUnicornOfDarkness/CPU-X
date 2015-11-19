@@ -269,6 +269,9 @@ double gpu_temperature(void);
 TAB: Graphics. */
 int last_gpu(Labels *data);
 
+/* Check if a command exists */
+int command_exists(char *in);
+
 /* Duplicate a not null string */
 char *strdupnullok(const char *s);
 
