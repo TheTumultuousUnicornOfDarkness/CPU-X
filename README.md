@@ -10,7 +10,7 @@ CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html)
 This software is written in C programming language, and built with [CMake](http://www.cmake.org/).  
 This is a graphical software (GTK is used), but it can be used from a shell by using Ncurses or by dumping data.
 
-<p align="center"><img src="http://i.imgur.com/oCqilgK.png" alt="Screenshot"></p>
+<p align="center"><img src="http://i.imgur.com/J6d04TP.png" alt="Screenshot"></p>
 
 ***
 
@@ -45,10 +45,11 @@ These dependencies are needed to **manually build** CPU-X (e.g you can safely re
 These dependencies are needed to **manually build** and **run** CPU-X (e.g you can't remove a dependency if CPU-X was built with):
 * [GTK3+](http://www.gtk.org/) (minimum version is 3.8, version 3.14 or newer recommended): required to run CPU-X in GTK mode; **not** embedded in portable version (use system shared library)
 * [Ncurses](http://www.gnu.org/software/ncurses/): required to run CPU-X in NCurses mode; embedded in portable version
-* [Libcpuid](http://libcpuid.sourceforge.net/): required to run CPU-X correctly; embedded in portable version
+* [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.2.2 or newer is recommended): required to run CPU-X correctly; embedded in portable version
 * [Libpci](http://mj.ucw.cz/sw/pciutils/): required to run CPU-X correctly; embedded in portable version
 * [Procps-ng](http://sourceforge.net/projects/procps-ng/), provides *libsystem* (**Linux only**): required to run CPU-X correctly; embedded in portable version
 * [Libstatgrab](http://www.i-scream.org/libstatgrab/), provides *libsystem* (replaces **Procps-ng** for **non-Linux OS**): required to run CPU-X correctly; embedded in portable version
+* [Curl](http://curl.haxx.se/): optionnal, needed to check if CPU-X is up-to-date
 
 
 ## Download/Install
