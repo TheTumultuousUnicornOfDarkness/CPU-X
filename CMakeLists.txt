@@ -6,7 +6,7 @@ endif(APPLE)
 
 cmake_policy(SET CMP0048 NEW)
 project(cpu-x
-	VERSION 2.1.1
+	VERSION 2.2.0
 	LANGUAGES C
 )
 

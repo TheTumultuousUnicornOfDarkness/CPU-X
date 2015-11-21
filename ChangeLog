@@ -1,3 +1,24 @@
+v2.2.0 (11.21.2015):
+	* Some changes in options parsing
+	* Update to dmidecode 3.0
+	* Add support for libcpuid 0.2.2
+	* Add new tab Caches
+	* In NCurses TUI, add tab names
+	* Merge Architecture label in Instructions label in CPU tab
+	* Add labels Technology, Voltage and Temp in CPU tab
+	* Merge GPU driver with GPU vendor in Graphics tab
+	* Add lebel Temperature in Graphics tab
+	* Update translations
+	* Update GUI for GTK >= 3.8 and < 3.14
+	* Fixes:
+		** Typo
+		** L3 cache value
+		** Some problems with libdmi_fallback()
+		** .desktop files
+		** Build with Clang
+		** Stop update if curl is missing
+
+
 v2.1.1 (08.26.2015):
 	* Add pt_BR translation (thanks to ShyPixie)
 	* Improve translations support (rewrite target updatepo, add target newpo...)
