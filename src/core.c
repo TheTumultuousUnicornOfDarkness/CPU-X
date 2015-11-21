@@ -58,6 +58,20 @@
 
 
 #if HAS_LIBCPUID
+/* Load MSR driver */
+int load_driver(void)
+{
+	static int loaded = 0;
+#ifdef __linux__
+	if(!getuid() && !loaded)
+	{
+		loaded = !system("modprobe msr 2> /dev/null");
+		return loaded;
+	}
+#endif /* __linux__ */
+	return loaded;
+}
+
 /* Elements provided by libcpuid library */
 int libcpuid(Labels *data)
 {
@@ -69,6 +83,7 @@ int libcpuid(Labels *data)
 	MSGVERB(_("Filling labels (libcpuid step)"));
 	err += cpuid_get_raw_data(&raw);
 	err += cpu_identify(&raw, &datanr);
+	load_driver();
 
 	/* Tab CPU */
 	asprintf(&data->tabcpu[VALUE][VENDOR],		"%s", datanr.vendor_str);
