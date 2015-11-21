@@ -135,9 +135,9 @@ int main(int argc, char *argv[])
 	/* Show data */
 	if(HAS_GTK && (flags & OPT_GTK)) /* Start GTK3 GUI */
 		start_gui_gtk(&argc, &argv, &data);
-	else if(HAS_NCURSES && (flags & OPT_NCURSES)) /* Start NCurses TUI */
+	if(HAS_NCURSES && (flags & OPT_NCURSES) && !(flags & OPT_GTK)) /* Start NCurses TUI */
 		start_tui_ncurses(&data);
-	else if(flags & OPT_DUMP) /* Just dump data and exit */
+	if(flags & OPT_DUMP && !(flags & OPT_NCURSES) && !(flags & OPT_GTK)) /* Just dump data and exit */
 		dump_data(&data);
 
 	/* If compiled without UI */
@@ -156,8 +156,12 @@ int main(int argc, char *argv[])
 
 const char *optstring[] =
 {
+#if HAS_GTK
 	"gtk",
+#endif /* HAS_GTK */
+#if HAS_NCURSES
 	"ncurses",
+#endif /* HAS_NCURSES */
 	"dump",
 	"refresh",
 #if HAS_LIBDMI
@@ -175,8 +179,12 @@ void help(FILE *out, char *argv[])
 
 	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
 	fprintf(out, _("Available OPTION:\n"));
+#if HAS_GTK
 	fprintf(out, _("  -g, --%-10s Start graphical user interface (GUI) (default)\n"), optstring[o]); o++;
+#endif /* HAS_GTK */
+#if HAS_NCURSES
 	fprintf(out, _("  -n, --%-10s Start text-based user interface (TUI)\n"), optstring[o]); o++;
+#endif /* HAS_NCURSES */
 	fprintf(out, _("  -d, --%-10s Dump all data on standard output and exit\n"), optstring[o]); o++;
 	fprintf(out, _("  -r, --%-10s Set custom time between two refreshes (in seconds)\n"), optstring[o]); o++;
 #if HAS_LIBDMI
@@ -213,8 +221,12 @@ int menu(int argc, char *argv[])
 
 	const struct option longopts[] =
 	{
+#if HAS_GTK
 		{optstring[0],	no_argument, 0, 'g'}, /* Arg gtk */
+#endif /* HAS_GTK */
+#if HAS_NCURSES
 		{optstring[1],	no_argument, 0, 'n'}, /* Arg ncurses */
+#endif /* HAS_NCURSES */
 		{optstring[2],	no_argument, 0, 'd'}, /* Arg dump */
 		{optstring[3],	required_argument, 0, 'r'}, /* Arg refresh */
 #if HAS_LIBDMI
@@ -230,12 +242,16 @@ int menu(int argc, char *argv[])
 	{
 		switch(c)
 		{
+#if HAS_GTK
 			case 'g':
 				flags |= OPT_GTK;
 				break;
+#endif /* HAS_GTK */
+#if HAS_NCURSES
 			case 'n':
 				flags |= OPT_NCURSES;
 				break;
+#endif /* HAS_NCURSES */
 			case 'd':
 				flags |= OPT_DUMP;
 				break;
@@ -262,6 +278,11 @@ int menu(int argc, char *argv[])
 				exit(EXIT_FAILURE);
 		}
 	}
+
+#if !HAS_GTK
+	if(!(flags & OPT_DUMP))
+		 flags |= OPT_NCURSES;
+#endif /* !HAS_GTK */
 
 	if(!((flags & OPT_NCURSES) || (flags & OPT_DUMP)))
 		 flags |= OPT_GTK;
