@@ -78,7 +78,7 @@ mkdir -pv $DIR/{,g}n_build
 cd $DIR && VER=\$(git tag | tail -n1)
 
 cd $DIR/gn_build && cmake -DCMAKE_BUILD_TYPE=Release -DEMBED=1 .. && makeopts
-cd $DIR/n_build  && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_GTK=0 .. && makeopts
+cd $DIR/n_build  && cmake -DCMAKE_BUILD_TYPE=Release -DEMBED=1 -DWITH_GTK=0 .. && makeopts
 
 [[ $1 != "Arch"*  ]] && exit
 [[ $1 == "Arch32" ]] && ARCH="linux32"
@@ -152,7 +152,7 @@ elif [[ $choice == "release" ]]; then
 	cp -v SSHFS/gn_build/accomplished/bin/cpu-x "./CPU-X_${VER}_portable.bsd32"
 	cp -v SSHFS/n_build/accomplished/bin/cpu-x  "./CPU-X_${VER}_portable_noGTK.bsd32"
 	fusermount -u SSHFS
-	ssh BSD poweroff
+	ssh BSD sudo poweroff
 
 	# Make tarball
 	tar -zcvf CPU-X_${VER}_portable.tar.gz CPU-X_${VER}_portable.*
