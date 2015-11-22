@@ -1824,6 +1824,7 @@ int bandwidth(Labels *data)
 	int i, chunk_size, ind, level, size;
 	long double speed;
 	uint32_t edx = get_cpuid1_edx ();
+	char *ptr = NULL;
 
 	MSGVERB(_("Filling labels (libbandwidth step)"));
 	cpu_has_sse2 = edx & CPUID_EDX_SSE2;
@@ -2114,25 +2115,41 @@ main (int argc, char **argv)
 	{
 		i = 0;
 		ind = 0;
-		level = LEVEL1I;
-		size = atoi(strstr(data->tabcpu[VALUE][level], "x") + 1);
 		speed = 0;
+		level = LEVEL1I;
+		ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
+		size = (ptr == NULL) ? 0 : atoi(ptr);
 
 		while ((chunk_size = chunk_sizes [i++]))
 		{
 			if(chunk_size > size * 1024)
 			{
-				asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
-				ind = 0;
-				level++;
-				speed = 0;
-
-				if(level == LEVEL3)
-					size = atoi(data->tabcpu[VALUE][level]);
-				else if(level < LEVEL3)
-					size = atoi(strstr(data->tabcpu[VALUE][level], "x") + 1);
+				if(speed > 0 && ind > 0)
+					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
 				else
+					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "");
+				ind = 0;
+				speed = 0;
+				level++;
+
+				if(level > LEVEL3)
 					break;
+
+				/* Avoid to check size if label is empty */
+				if(strstr(data->tabcpu[VALUE][level], "KB") == NULL)
+					return 3;
+
+				/* Retrieve size from label */
+				switch(level)
+				{
+					case LEVEL1I:
+					case LEVEL2:
+						ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
+						size = (ptr == NULL) ? 0 : atoi(ptr);
+						break;
+					case LEVEL3:
+						size = atoi(data->tabcpu[VALUE][level]);
+				}
 
 				if(size <= 0)
 					return 2;
