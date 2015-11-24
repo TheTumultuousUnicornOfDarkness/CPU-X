@@ -7,7 +7,7 @@ cmake_policy(SET CMP0048 OLD)
 project(binary)
 
 
-### Libs
+### Check libraries
 
 # GTK3+ libs
 if(WITH_GTK)
@@ -115,6 +115,7 @@ if(WITH_LIBSYSTEM)
 			if(EMBED)
 				set(LIBPROCPS_LIBRARIES -l:libprocps.a)
 			endif(EMBED)
+			set(LIBSYSTEM_FOUND ON PARENT_SCOPE)
 		endif(LIBPROCPS_FOUND)
 
 	else(${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Others: Libstatgrab
@@ -126,9 +127,44 @@ if(WITH_LIBSYSTEM)
 			if(EMBED)
 				set(LIBSTATGRAB_LIBRARIES -l:libstatgrab.a -ldevstat)
 			endif(EMBED)
+			set(LIBSYSTEM_FOUND ON PARENT_SCOPE)
 		endif(LIBSTATGRAB_FOUND)
 	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif(WITH_LIBSYSTEM)
+
+
+### Final config
+macro(print_config libname foundstate withstate)
+	if(${foundstate} AND ${withstate})
+		if(${foundstate} EQUAL 2)
+			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enable${ColourReset} (built-in)")
+		else(${foundstate} EQUAL 2)
+			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enable${ColourReset}")
+		endif(${foundstate} EQUAL 2)
+		add_definitions(-DHAS_${libname}=1)
+	else(${foundstate} AND ${withstate})
+		if(NOT ${withstate})
+			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disable${ColourReset} (explicitly disable)")
+		elseif(NOT ${foundstate})
+			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disable${ColourReset} (not found by pkg-config)")
+		endif()
+		add_definitions(-DHAS_${libname}=0)
+	endif(${foundstate} AND ${withstate})
+endmacro(print_config)
+
+message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
+# UI librairies
+print_config("GTK" GTK3_FOUND WITH_GTK)
+print_config("NCURSES" NCURSES_FOUND WITH_NCURSES)
+
+# Others librairies
+print_config("LIBCPUID" LIBCPUID_FOUND WITH_LIBCPUID)
+print_config("LIBPCI" LIBPCI_FOUND WITH_LIBPCI)
+print_config("LIBSYSTEM" LIBSYSTEM_FOUND WITH_LIBSYSTEM)
+
+# Subprojects
+print_config("DMIDECODE" 2 WITH_LIBDMI)
+print_config("BANDWIDTH" 2 WITH_LIBBDWT)
 
 
 ### Main executable

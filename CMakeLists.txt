@@ -78,63 +78,6 @@ if(EMBED)
 endif(EMBED)
 
 
-### Final config
-message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
-
-# GTK3+ libs
-if(GTK3_FOUND AND WITH_GTK)
-	message("${BoldCyan}**   GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(GTK3_FOUND AND WITH_GTK)
-	message("${BoldCyan}**   GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(GTK3_FOUND AND WITH_GTK)
-
-# NCurses libs
-if(NCURSES_FOUND AND WITH_NCURSES)
-	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(NCURSES_FOUND AND WITH_NCURSES)
-	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(NCURSES_FOUND AND WITH_NCURSES)
-
-# Libcpuid lib
-if(LIBCPUID_FOUND AND WITH_LIBCPUID)
-	message("${BoldCyan}**   LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBCPUID_FOUND AND WITH_LIBCPUID)
-	message("${BoldCyan}**   LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBCPUID_FOUND AND WITH_LIBCPUID)
-
-# Dmidecode lib
-if(WITH_LIBDMI)
-	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBDMI)
-	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBDMI)
-
-# Bandwidth lib
-if(WITH_LIBBDWT AND LIBBDWT_FOUND)
-	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBBDWT AND LIBBDWT_FOUND)
-	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBBDWT AND LIBBDWT_FOUND)
-
-# Pciutils lib
-if(LIBPCI_FOUND AND WITH_LIBPCI)
-	message("${BoldCyan}**   LIBPCI${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBPCI_FOUND AND WITH_LIBPCI)
-	message("${BoldCyan}**   LIBPCI${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBPCI_FOUND AND WITH_LIBPCI)
-
-# Libprocps / Libstatgrab lib
-if((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
-	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
-	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
-
-if(NOT (WITH_GTK OR WITH_NCURSES OR WITH_LIBCPUID OR WITH_LIBDMI OR WITH_LIBPCI OR WITH_LIBSYSTEM))
-	message(FATAL_ERROR "${BoldRed}FATAL ERROR:${ColourReset} ${Red}All is turned off, build aborted.${ColourReset}")
-endif()
-
-
 # Uninstall target
 set(CPUX_DATADIR ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
