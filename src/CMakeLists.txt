@@ -26,6 +26,7 @@ if(WITH_GTK)
 			${GRESOURCES}
 		)
 		set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
+		add_definitions(-DGTK_VERSION="${GTK3_VERSION}")
 	else(GTK3_FOUND)
 		message("${BoldYellow} GTK3 headers not found!")
 		message("Set PKG_CONFIG_PATH environment variable,")
@@ -44,12 +45,10 @@ if(WITH_NCURSES)
 			tui_ncurses.c
 			tui_ncurses.h
 		)
-		if(EMBED AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-			set(NCURSES_LIBRARIES -l:libncursesw.a)
-		elseif(EMBED AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-			set(NCURSES_LIBRARIES -l:libncursesw.a -l:libtinfo.a)
-		endif(EMBED AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set(TUI_NCURSES_LIBRARY "tui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
+		add_embedded_library(-l:libncursesw.a)
+		add_embedded_library_others(-l:libtinfo.a)
+		set(TUI_NCURSES_LIBRARY "tui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
+		add_definitions(-DNCURSES_VERSION="${NCURSES_VERSION}")
 	endif(NCURSES_FOUND)
 endif(WITH_NCURSES)
 
@@ -60,12 +59,11 @@ if(WITH_LIBCPUID)
 		include_directories(${LIBCPUID_INCLUDE_DIRS})
 		link_directories(${LIBCPUID_LIBRARY_DIRS})
 		add_definitions(${LIBCPUID_CFLAGS_OTHER} -DLIBCPUID)
-		if(EMBED)
-			set(LIBCPUID_LIBRARIES -l:libcpuid.a)
-		endif(EMBED)
+		add_embedded_library(-l:libcpuid.a)
 		if(${LIBCPUID_VERSION} VERSION_GREATER "0.2.1")
 			add_definitions(${LIBCPUID_CFLAGS_OTHER} -DHAVE_LIBCPUID_0_2_2)
 		endif(${LIBCPUID_VERSION} VERSION_GREATER "0.2.1")
+		add_definitions(-DLIBCPUID_VERSION="${LIBCPUID_VERSION}")
 	endif(LIBCPUID_FOUND)
 endif(WITH_LIBCPUID)
 
@@ -96,63 +94,51 @@ if(WITH_LIBPCI)
 		include_directories(${LIBPCI_INCLUDE_DIRS})
 		link_directories(${LIBPCI_LIBRARY_DIRS})
 		add_definitions(${LIBPCI_CFLAGS_OTHER} -DLIBPCI)
-		if(EMBED AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-			set(LIBPCI_LIBRARIES -l:libpci.a -lresolv -ludev)
-		elseif(EMBED AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-			set(LIBPCI_LIBRARIES -l:libpci.a -lz)
-		endif(EMBED AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+		add_embedded_library(-l:libpci.a)
+		add_embedded_library_linux(-lresolv)
+		add_embedded_library_linux(-ludev)
+		add_embedded_library_others(-lz)
+		add_definitions(-DLIBPCI_VERSION="${LIBPCI_VERSION}")
 	endif(LIBPCI_FOUND)
 endif(WITH_LIBPCI)
 
 # Libprocps / Libstatgrab lib
 if(WITH_LIBSYSTEM)
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Linux: Libprocps
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB) # Linux: Libprocps
 		pkg_check_modules(LIBPROCPS libprocps)
 		if(LIBPROCPS_FOUND)
 			include_directories(${LIBPROCPS_INCLUDE_DIRS})
 			link_directories(${LIBPROCPS_LIBRARY_DIRS})
 			add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
-			if(EMBED)
-				set(LIBPROCPS_LIBRARIES -l:libprocps.a)
-			endif(EMBED)
-			set(LIBSYSTEM_FOUND ON PARENT_SCOPE)
+			add_embedded_library(-l:libprocps.a)
+			add_definitions(-DLIBPROCPS_VERSION="${LIBPROCPS_VERSION}")
+			set(LIBSYSTEM_FOUND ON)
 		endif(LIBPROCPS_FOUND)
-
-	else(${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Others: Libstatgrab
+	elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB) # Others: Libstatgrab
 		pkg_check_modules(LIBSTATGRAB libstatgrab)
 		if(LIBSTATGRAB_FOUND)
 			include_directories(${LIBSTATGRAB_INCLUDE_DIRS})
 			link_directories(${LIBSTATGRAB_LIBRARY_DIRS})
 			add_definitions(${LIBSTATGRAB_CFLAGS_OTHER} -DLIBSTATGRAB)
-			if(EMBED)
-				set(LIBSTATGRAB_LIBRARIES -l:libstatgrab.a -ldevstat)
-			endif(EMBED)
-			set(LIBSYSTEM_FOUND ON PARENT_SCOPE)
+			add_embedded_library(-l:libstatgrab.a)
+			add_embedded_library_others(-ldevstat)
+			add_definitions(-DLIBSTATGRAB_VERSION="${LIBSTATGRAB_VERSION}")
+			set(LIBSYSTEM_FOUND ON)
 		endif(LIBSTATGRAB_FOUND)
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	endif()
 endif(WITH_LIBSYSTEM)
+
+# Needed librairies
+set(ADDITIONNAL_LIBRARIES "-lm")
+if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	set(ADDITIONNAL_LIBRARIES "${ADDITIONNAL_LIBRARIES} -lintl")
+endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
 ### Final config
-macro(print_config libname foundstate withstate)
-	if(${foundstate} AND ${withstate})
-		if(${foundstate} EQUAL 2)
-			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enable${ColourReset} (built-in)")
-		else(${foundstate} EQUAL 2)
-			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enable${ColourReset}")
-		endif(${foundstate} EQUAL 2)
-		add_definitions(-DHAS_${libname}=1)
-	else(${foundstate} AND ${withstate})
-		if(NOT ${withstate})
-			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disable${ColourReset} (explicitly disable)")
-		elseif(NOT ${foundstate})
-			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disable${ColourReset} (not found by pkg-config)")
-		endif()
-		add_definitions(-DHAS_${libname}=0)
-	endif(${foundstate} AND ${withstate})
-endmacro(print_config)
 
 message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
+
 # UI librairies
 print_config("GTK" GTK3_FOUND WITH_GTK)
 print_config("NCURSES" NCURSES_FOUND WITH_NCURSES)
@@ -176,23 +162,20 @@ add_executable(cpu-x
 	libsystem.c
 )
 
-if(EMBED)
+if(PORTABLE_BINARY OR EMBED)
+	message("${BoldBlue}${CMAKE_PROJECT_NAME} will be compiled as portable binary.${ColourReset}")
+	message("${BoldBlue}These librairies will be added to binary:${ColourReset} ${EMBEDDED_LIBRARIES}")
 	add_definitions(-DEMBED)
 	if(WITH_GETTEXT)
 		set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
 		add_dependencies(cpu-x convertgmo)
 		add_definitions(-DGETTEXT)
 	endif(WITH_GETTEXT)
-elseif(NOT EMBED AND WITH_GETTEXT)
+elseif(NOT (PORTABLE_BINARY OR EMBED) AND WITH_GETTEXT)
 	add_dependencies(cpu-x potfiles)
-endif(EMBED)
+endif(PORTABLE_BINARY OR EMBED)
 
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
-set(ADDITIONNAL_LIBRARIES "-lm")
-
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set(ADDITIONNAL_LIBRARIES "${ADDITIONNAL_LIBRARIES} -lintl")
-endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 target_link_libraries(cpu-x
 	${GUI_GTK_LIBRARY}
@@ -204,6 +187,7 @@ target_link_libraries(cpu-x
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}
 	${ADDITIONNAL_LIBRARIES}
+	${EMBEDDED_LIBRARIES}
 )
 
 
