@@ -4,15 +4,17 @@ if(APPLE)
 endif(APPLE)
 
 cmake_policy(SET CMP0048 NEW)
-project(libbandwidth
+project(bandwidth
 	VERSION 1.1
 	LANGUAGES C ASM
 )
 
+message("-- Checking for submodule '${PROJECT_NAME}'")
+
 # Compile statically bandwidth
 enable_language(ASM_NASM OPTIONAL)
 if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
-	message("-- ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+	message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 	set(CMAKE_C_FLAGS_DEBUG "")
 	set(LIBBDWT_FOUND ON PARENT_SCOPE)
 	file(COPY routines32.asm routines64.asm DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -42,6 +44,7 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 	endif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
 
 	add_definitions(-DCPUX)
+	set(BANDWIDTH_VERSION ${PROJECT_VERSION} PARENT_SCOPE)
 
 	target_link_libraries(bandwidth)
 endif()

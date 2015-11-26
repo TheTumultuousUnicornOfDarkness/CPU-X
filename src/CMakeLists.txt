@@ -73,6 +73,7 @@ if(WITH_LIBDMI)
 	include_directories(dmidecode)
 	add_definitions(-DLIBDMI)
 	set(LIBDMI_LIBRARY "dmi")
+	add_definitions(-DDMIDECODE_VERSION="${DMIDECODE_VERSION}")
 endif(WITH_LIBDMI)
 
 # Bandwidth lib
@@ -83,7 +84,7 @@ if(WITH_LIBBDWT)
 		include_directories(bandwidth)
 		add_definitions(-DLIBBDWT)
 		set(LIBBDWT_LIBRARY "bandwidth")
-		set(LIBBDWT_FOUND ON PARENT_SCOPE)
+		add_definitions(-DBANDWIDTH_VERSION="${BANDWIDTH_VERSION}")
 	endif(LIBBDWT_FOUND)
 endif(WITH_LIBBDWT)
 
@@ -149,8 +150,8 @@ print_config("LIBPCI" LIBPCI_FOUND WITH_LIBPCI)
 print_config("LIBSYSTEM" LIBSYSTEM_FOUND WITH_LIBSYSTEM)
 
 # Subprojects
-print_config("DMIDECODE" 2 WITH_LIBDMI)
-print_config("BANDWIDTH" 2 WITH_LIBBDWT)
+print_config("DMIDECODE" 1 WITH_LIBDMI)
+print_config("BANDWIDTH" LIBBDWT_FOUND WITH_LIBBDWT)
 
 
 ### Main executable
