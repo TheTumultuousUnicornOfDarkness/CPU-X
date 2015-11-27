@@ -1,3 +1,10 @@
+v2.2.1 (11.27.2015):
+	* Add debugs symbols in bandwidth source code when using CMAKE_BUILD_TYPE=Debug
+	* Fixes:
+		** Segfault on NULL pointer in bandwidth()
+		** Buffer overflow when setting label name in Caches tab
+
+
 v2.2.0 (11.21.2015):
 	* Some changes in options parsing
 	* Update to dmidecode 3.0
