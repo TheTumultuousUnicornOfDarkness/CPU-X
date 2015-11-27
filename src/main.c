@@ -417,7 +417,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][THREADS],		_("Thread(s)"));
 
 	/* Tab Cache */
-	for(i = 0; i < LASTCACHE / CACHEFIELDS + 1; i++)
+	for(i = L1SIZE; i < LASTCACHE / CACHEFIELDS; i++)
 	{
 		asprintf(&data->tabcache[NAME][i * CACHEFIELDS],	_("Size"));
 		asprintf(&data->tabcache[NAME][i * CACHEFIELDS + 1],	_("Descriptor"));
