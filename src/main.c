@@ -558,8 +558,11 @@ void labels_free(Labels *data)
 		free(data->tabcache[NAME][i]);
 		data->tabcache[NAME][i] = NULL;
 
-		free(data->tabcache[VALUE][i]);
-		data->tabcache[VALUE][i] = NULL;
+		if(i != L1SPEED && i != L2SPEED && i != L3SPEED)
+		{
+			free(data->tabcache[VALUE][i]);
+			data->tabcache[VALUE][i] = NULL;
+		}
 	}
 
 	/* Tab Motherboard */
