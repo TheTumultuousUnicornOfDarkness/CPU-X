@@ -2117,6 +2117,8 @@ main (int argc, char **argv)
 		ind = 0;
 		speed = 0;
 		level = LEVEL1I;
+		if(data->tabcpu[VALUE][level] == NULL || !strcmp(data->tabcpu[VALUE][level], ""))
+			return 4;
 		ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
 		size = (ptr == NULL) ? 0 : atoi(ptr);
 
@@ -2126,8 +2128,6 @@ main (int argc, char **argv)
 			{
 				if(speed > 0 && ind > 0)
 					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
-				else
-					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "");
 				ind = 0;
 				speed = 0;
 				level++;
@@ -2136,7 +2136,7 @@ main (int argc, char **argv)
 					break;
 
 				/* Avoid to check size if label is empty */
-				if(strstr(data->tabcpu[VALUE][level], "KB") == NULL)
+				if(data->tabcpu[VALUE][level] == NULL || !strcmp(data->tabcpu[VALUE][level], ""))
 					return 3;
 
 				/* Retrieve size from label */
