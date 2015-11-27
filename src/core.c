@@ -712,8 +712,6 @@ void pcidev(Labels *data)
 		free(vendor);
 	if(product != NULL)
 		free(product);
-	if(product != NULL)
-		free(product);
 }
 
 /* Pretty label GPU Vendor */
