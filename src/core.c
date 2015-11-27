@@ -666,7 +666,8 @@ void pcidev(Labels *data)
 	double temp = 0.0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	char namebuf[MAXSTR], *vendor, *product, *drivername, *driverstr;
+	char namebuf[MAXSTR];
+	char *vendor = NULL, *product = NULL, *drivername = NULL, *driverstr;
 
 	MSGVERB(_("Filling labels (libpci step)"));
 	pacc = pci_alloc();	/* Get the pci_access structure */
@@ -707,8 +708,12 @@ void pcidev(Labels *data)
 	}
 
 	pci_cleanup(pacc);	/* Close everything */
-	free(vendor);
-	free(product);
+	if(vendor != NULL)
+		free(vendor);
+	if(product != NULL)
+		free(product);
+	if(product != NULL)
+		free(product);
 }
 
 /* Pretty label GPU Vendor */
