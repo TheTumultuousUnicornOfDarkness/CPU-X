@@ -373,6 +373,7 @@ int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 				if(ext_model == 45) return 32; // Sandy Bridge-E
 				if(ext_model == 61) return 14; // Broadwell
 			case 14:
+				if(ext_model == 30) return 45; // Clarksfield
 				if(ext_model == 62) return 22; // Ivy Bridge-E
 				if(ext_model == 94) return 14; // Skylake
 			case 15:
@@ -397,7 +398,7 @@ int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 			case 2:
 				if(ext_family == 20) return 40; // Bobcat
 			case 3:
-				if(ext_model == 13) return 32; // Piledriver (Richland)
+				if(ext_model == 13 || ext_model == 19) return 32; // Piledriver (Richland)
 		}
 	}
 
