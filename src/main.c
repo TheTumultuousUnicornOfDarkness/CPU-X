@@ -317,6 +317,27 @@ char *strdupnullok(const char *s)
 	return (s != NULL) ? strdup(s) : NULL;
 }
 
+/* The improved asprintf, which allocate a empty string if string is null */
+int iasprintf(char **str, char *fmt, ...)
+{
+	int ret;
+	va_list aptr;
+
+	if(fmt == NULL)
+		ret = asprintf(str, "");
+	else
+	{
+		va_start(aptr, fmt);
+		ret = vasprintf(str, fmt, aptr);
+		va_end(aptr);
+	}
+
+	if(ret < 0)
+		MSGPERR(_("failed to allocate string"));
+
+	return ret;
+}
+
 /* Initialize all labels pointers to null */
 void labels_setnull(Labels *data)
 {
