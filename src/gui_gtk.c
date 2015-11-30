@@ -98,17 +98,13 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 void warning_window(GtkWidget *mainwindow)
 {
-	char markup[MAXSTR*2];
-
-	sprintf(markup, MSGROOT);
-
 	GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(mainwindow),
 		GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL,
 		GTK_MESSAGE_WARNING,
 		GTK_BUTTONS_NONE,
 		"\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s",
-		strtok(markup, ":"),
-		strstr(MSGROOT, "\n"));
+		_("WARNING"),
+		_("root privileges are required to work properly"));
 
 	gtk_container_set_border_width(GTK_CONTAINER(dialog), 5);
 	gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);

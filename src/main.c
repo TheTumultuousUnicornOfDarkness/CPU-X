@@ -27,6 +27,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
 #include <getopt.h>
 #include <locale.h>
 #include <libintl.h>
@@ -131,6 +132,9 @@ int main(int argc, char *argv[])
 
 	cpufreq(&data);
 	labels_delnull(&data);
+
+	if(getuid())
+		MSG_WARNING("WARNING: root privileges are required to work properly\n");
 
 	/* Show data */
 	if(HAS_GTK && (flags & OPT_GTK)) /* Start GTK3 GUI */
@@ -309,6 +313,23 @@ void msg(char type, char *msg, char *prgname, char *basefile, int line)
 
 	else if(type == 'v' && (flags & OPT_VERBOSE))
 		printf("%s%s%s\n", boldgre, msg, reset);
+}
+
+int message(char type, char *msg, char *basefile, int line)
+{
+	switch(type)
+	{
+		case 'v': /* Verbose message */
+			return fprintf(stdout, BOLD_GREEN	"%s\n" RESET, msg);
+		case 'w': /* Warning message */
+			return fprintf(stdout, BOLD_YELLOW	"%s\n" RESET, msg);
+		case 'e': /* Error message */
+			return fprintf(stderr, BOLD_RED	"%s:%s:%i: %s\n" RESET, PRGNAME, basefile, line, msg);
+		case 'n': /* Error message with errno */
+			return fprintf(stderr, BOLD_RED	"%s:%s:%i: %s (%s)\n" RESET, PRGNAME, basefile, line, msg, strerror(errno));
+	}
+
+	return -1;
 }
 
 /* Duplicate a not null string */
@@ -602,9 +623,6 @@ void dump_data(Labels *data)
 	int i;
 
 	MSGVERB(_("Dumping data..."));
-	if(getuid())
-		fprintf(stderr, "\n\t\t\t\033[1;33m%s\033[0m\n", MSGROOT);
-
 	/* Tab CPU */
 	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
 	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);

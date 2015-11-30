@@ -26,11 +26,21 @@
 
 #include <stdint.h>
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
-#define BASEFILE (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
+
+#define BOLD_RED	"\x1b[1;31m"
+#define BOLD_GREEN	"\x1b[1;32m"
+#define BOLD_YELLOW	"\x1b[1;33m"
+#define RESET		"\x1b[0m"
+
+#define BASEFILE		(strrchr(__FILE__, '/') ? \
+					strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
+#define MSG_VERBOSE(str)	message('v', str, BASEFILE, __LINE__)
+#define MSG_WARNING(str)	message('w', str, BASEFILE, __LINE__)
+#define MSG_ERROR(str)		message('e', str, BASEFILE, __LINE__)
+#define MSG_ERROR_ERRNO(str)	message('n', str, BASEFILE, __LINE__)
 #define MSGVERB(str) msg('v', str, PRGNAME, BASEFILE, __LINE__)
 #define MSGSERR(str) msg('e', str, PRGNAME, BASEFILE, __LINE__)
 #define MSGPERR(str) msg('p', str, PRGNAME, BASEFILE, __LINE__)
-#define MSGROOT _("WARNING:\nroot privileges are required to work properly.")
 #define _(str) gettext(str)
 
 #define PRGNAME "CPU-X"
@@ -133,6 +143,7 @@ int menu(int argc, char *argv[]);
 
 /* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line);
+int message(char type, char *msg, char *basefile, int line);
 
 /* Set labels name */
 void labels_setname(Labels *data);
