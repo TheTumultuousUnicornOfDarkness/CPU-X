@@ -24,6 +24,7 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
 #include <getopt.h>
@@ -324,7 +325,7 @@ int iasprintf(char **str, char *fmt, ...)
 	va_list aptr;
 
 	if(fmt == NULL)
-		ret = asprintf(str, "");
+		ret = asprintf(str, " ");
 	else
 	{
 		va_start(aptr, fmt);

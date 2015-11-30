@@ -276,7 +276,7 @@ int command_exists(char *in);
 char *strdupnullok(const char *s);
 
 /* The improved asprintf, which allocate a empty string if string is null */
-int iasprintf(char **str, char *fmt, ...)
+int iasprintf(char **str, char *fmt, ...);
 
 /* Check if running version is latest */
 char *check_lastver(void);
