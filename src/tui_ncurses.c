@@ -129,7 +129,7 @@ void nrefresh(NThrd *refr)
 			mvwprintw(refr->win, 5, 22, "%13s: %s", refr->data->tabcpu[NAME][VOLTAGE], refr->data->tabcpu[VALUE][VOLTAGE]);
 			mvwprintw(refr->win, 7, 38, "%9s: %s", refr->data->tabcpu[NAME][TEMPERATURE], refr->data->tabcpu[VALUE][TEMPERATURE]);
 		}
-		if(HAS_LIBDMI && !getuid())
+		if(HAS_DMIDECODE && !getuid())
 		{
 			libdmidecode(refr->data);
 			mvwprintw(refr->win, 13, 2, "%13s: %s", refr->data->tabcpu[NAME][MULTIPLIER], refr->data->tabcpu[VALUE][MULTIPLIER]);
@@ -139,7 +139,7 @@ void nrefresh(NThrd *refr)
 	}
 
 	/* Refresh tab Caches */
-	else if(HAS_LIBCPUID && HAS_LIBBDWT && loop == NB_TAB_CACHE)
+	else if(HAS_LIBCPUID && HAS_BANDWIDTH && loop == NB_TAB_CACHE)
 	{
 		bandwidth(refr->data);
 		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)

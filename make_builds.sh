@@ -36,9 +36,9 @@ cd $DIR/build1 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr .. 
 cd $DIR/build2 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0 .. && makeopts
 cd $DIR/build3 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=1 -DWITH_NCURSES=0 .. && makeopts
 cd $DIR/build4 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_NCURSES=1 -DWITH_LIBCPUID=0 .. && makeopts
-cd $DIR/build5 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBCPUID=1 -DWITH_LIBDMI=0 .. && makeopts
-cd $DIR/build6 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBDMI=1 -DWITH_LIBBDWT=0 .. && makeopts
-cd $DIR/build7 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBBDWT=1 -DWITH_LIBPCI=0 .. && makeopts
+cd $DIR/build5 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBCPUID=1 -DWITH_DMIDECODE=0 .. && makeopts
+cd $DIR/build6 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_DMIDECODE=1 -DWITH_BANDWIDTH=0 .. && makeopts
+cd $DIR/build7 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_BANDWIDTH=1 -DWITH_LIBPCI=0 .. && makeopts
 cd $DIR/build8 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBPCI=1 -DWITH_LIBSYSTEM=0 .. && makeopts
 
 sleep 5
@@ -47,9 +47,9 @@ cd $DIR/ebuild1 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 .. && makeopts
 cd $DIR/ebuild2 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_GTK=0 .. && makeopts
 cd $DIR/ebuild3 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_GTK=1 -DWITH_NCURSES=0 .. && makeopts
 cd $DIR/ebuild4 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_NCURSES=1 -DWITH_LIBCPUID=0 .. && makeopts
-cd $DIR/ebuild5 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_LIBCPUID=1 -DWITH_LIBDMI=0 .. && makeopts
-cd $DIR/ebuild6 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_LIBDMI=1 -DWITH_LIBBDWT=0 .. && makeopts
-cd $DIR/ebuild7 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_LIBBDWT=1 -DWITH_LIBPCI=0 .. && makeopts
+cd $DIR/ebuild5 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_LIBCPUID=1 -DWITH_DMIDECODE=0 .. && makeopts
+cd $DIR/ebuild6 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_DMIDECODE=1 -DWITH_BANDWIDTH=0 .. && makeopts
+cd $DIR/ebuild7 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_BANDWIDTH=1 -DWITH_LIBPCI=0 .. && makeopts
 cd $DIR/ebuild8 && cmake -DCMAKE_BUILD_TYPE=Debug -DEMBED=1 -DWITH_LIBPCI=1 -DWITH_LIBSYSTEM=0 .. && makeopts
 
 poweroff || sudo poweroff

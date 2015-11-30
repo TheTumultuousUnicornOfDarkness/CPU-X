@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	data.refr_time = menu(argc, argv);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_LIBDMI && !getuid() && (flags & OPT_DMIDECODE))
+	if(HAS_DMIDECODE && !getuid() && (flags & OPT_DMIDECODE))
 		return libdmi('D');
 
 #if defined(EMBED) && defined (GETTEXT)
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 			if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
 				strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
 
-			if(HAS_LIBBDWT)
+			if(HAS_BANDWIDTH)
 			{
 				if(bandwidth(&data))
 					MSGSERR(_("bandwidth failed"));
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	if(HAS_LIBDMI && !getuid())
+	if(HAS_DMIDECODE && !getuid())
 	{
 		if(libdmidecode(&data))
 			MSGSERR(_("libdmidecode failed"));
@@ -164,9 +164,9 @@ const char *optstring[] =
 #endif /* HAS_NCURSES */
 	"dump",
 	"refresh",
-#if HAS_LIBDMI
+#if HAS_DMIDECODE
 	"dmidecode",
-#endif /* HAS_LIBDMI */
+#endif /* HAS_DMIDECODE */
 	"verbose",
 	"help",
 	"version"
@@ -187,9 +187,9 @@ void help(FILE *out, char *argv[])
 #endif /* HAS_NCURSES */
 	fprintf(out, _("  -d, --%-10s Dump all data on standard output and exit\n"), optstring[o]); o++;
 	fprintf(out, _("  -r, --%-10s Set custom time between two refreshes (in seconds)\n"), optstring[o]); o++;
-#if HAS_LIBDMI
+#if HAS_DMIDECODE
 	fprintf(out, _("  -D, --%-10s Run embedded command dmidecode and exit\n"), optstring[o]); o++;
-#endif /* HAS_LIBDMI */
+#endif /* HAS_DMIDECODE */
 	fprintf(out, _("  -v, --%-10s Verbose output\n"), optstring[o]); o++;
 	fprintf(out, _("  -h, --%-10s Print help and exit\n"), optstring[o]); o++;
 	fprintf(out, _("  -V, --%-10s Print version and exit\n"), optstring[o]); o++;
@@ -229,9 +229,9 @@ int menu(int argc, char *argv[])
 #endif /* HAS_NCURSES */
 		{optstring[2],	no_argument, 0, 'd'}, /* Arg dump */
 		{optstring[3],	required_argument, 0, 'r'}, /* Arg refresh */
-#if HAS_LIBDMI
+#if HAS_DMIDECODE
 		{optstring[4],	no_argument, 0, 'D'}, /* Arg Dmidecode */
-#endif /* HAS_LIBDMI */
+#endif /* HAS_DMIDECODE */
 		{optstring[5],	no_argument, 0, 'v'}, /* Arg verbose */
 		{optstring[6],	no_argument, 0, 'h'}, /* Arg help */
 		{optstring[7],	no_argument, 0, 'V'}, /* Arg version */
@@ -258,11 +258,11 @@ int menu(int argc, char *argv[])
 			case 'r':
 				tmp_refr = atoi(optarg);
 				break;
-#if HAS_LIBDMI
+#if HAS_DMIDECODE
 			case 'D':
 				flags |= OPT_DMIDECODE;
 				break;
-#endif /* HAS_LIBDMI */
+#endif /* HAS_DMIDECODE */
 			case 'v':
 				flags |= OPT_VERBOSE;
 				break;

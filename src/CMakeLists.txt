@@ -15,7 +15,7 @@ if(WITH_GTK)
 	if(GTK3_FOUND)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})
-		add_definitions(${GTK3_CFLAGS_OTHER} -DGTK)
+		add_definitions(${GTK3_CFLAGS_OTHER})
 		if(EMBED)
 			set(GRESOURCES "gtk-resources.c")
 		endif(EMBED)
@@ -40,7 +40,6 @@ if(WITH_NCURSES)
 	if(NCURSES_FOUND)
 		include_directories(${NCURSES_INCLUDE_DIRS})
 		link_directories(${NCURSES_LIBRARY_DIRS})
-		add_definitions(-DNCURSES)
 		add_library(tui_ncurses
 			tui_ncurses.c
 			tui_ncurses.h
@@ -58,7 +57,7 @@ if(WITH_LIBCPUID)
 	if(LIBCPUID_FOUND)
 		include_directories(${LIBCPUID_INCLUDE_DIRS})
 		link_directories(${LIBCPUID_LIBRARY_DIRS})
-		add_definitions(${LIBCPUID_CFLAGS_OTHER} -DLIBCPUID)
+		add_definitions(${LIBCPUID_CFLAGS_OTHER})
 		add_embedded_library(-l:libcpuid.a)
 		if(${LIBCPUID_VERSION} VERSION_GREATER "0.2.1")
 			add_definitions(${LIBCPUID_CFLAGS_OTHER} -DHAVE_LIBCPUID_0_2_2)
@@ -68,25 +67,23 @@ if(WITH_LIBCPUID)
 endif(WITH_LIBCPUID)
 
 # Dmidecode lib
-if(WITH_LIBDMI)
+if(WITH_DMIDECODE)
 	add_subdirectory(dmidecode)
 	include_directories(dmidecode)
-	add_definitions(-DLIBDMI)
-	set(LIBDMI_LIBRARY "dmi")
+	set(DMIDECODE_LIBRARY "dmi")
 	add_definitions(-DDMIDECODE_VERSION="${DMIDECODE_VERSION}")
-endif(WITH_LIBDMI)
+endif(WITH_DMIDECODE)
 
 # Bandwidth lib
-if(WITH_LIBBDWT)
-	set(LIBBDWT_FOUND OFF)
+if(WITH_BANDWIDTH)
+	set(BANDWIDTH_FOUND OFF)
 	add_subdirectory(bandwidth)
-	if(LIBBDWT_FOUND)
+	if(BANDWIDTH_FOUND)
 		include_directories(bandwidth)
-		add_definitions(-DLIBBDWT)
-		set(LIBBDWT_LIBRARY "bandwidth")
+		set(BANDWIDTH_LIBRARY "bandwidth")
 		add_definitions(-DBANDWIDTH_VERSION="${BANDWIDTH_VERSION}")
-	endif(LIBBDWT_FOUND)
-endif(WITH_LIBBDWT)
+	endif(BANDWIDTH_FOUND)
+endif(WITH_BANDWIDTH)
 
 # Pciutils lib
 if(WITH_LIBPCI)
@@ -94,7 +91,7 @@ if(WITH_LIBPCI)
 	if(LIBPCI_FOUND)
 		include_directories(${LIBPCI_INCLUDE_DIRS})
 		link_directories(${LIBPCI_LIBRARY_DIRS})
-		add_definitions(${LIBPCI_CFLAGS_OTHER} -DLIBPCI)
+		add_definitions(${LIBPCI_CFLAGS_OTHER})
 		add_embedded_library(-l:libpci.a)
 		add_embedded_library_linux(-lresolv)
 		add_embedded_library_linux(-ludev)
@@ -110,21 +107,19 @@ if(WITH_LIBSYSTEM)
 		if(LIBPROCPS_FOUND)
 			include_directories(${LIBPROCPS_INCLUDE_DIRS})
 			link_directories(${LIBPROCPS_LIBRARY_DIRS})
-			add_definitions(${LIBPROCPS_CFLAGS_OTHER} -DLIBPROCPS)
+			add_definitions(${LIBPROCPS_CFLAGS_OTHER})
 			add_embedded_library(-l:libprocps.a)
-			add_definitions(-DLIBPROCPS_VERSION="${LIBPROCPS_VERSION}")
-			set(LIBSYSTEM_FOUND ON)
+			add_definitions(-DHAS_LIBPROCPS -DLIBPROCPS_VERSION="${LIBPROCPS_VERSION}")
 		endif(LIBPROCPS_FOUND)
 	elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB) # Others: Libstatgrab
 		pkg_check_modules(LIBSTATGRAB libstatgrab)
 		if(LIBSTATGRAB_FOUND)
 			include_directories(${LIBSTATGRAB_INCLUDE_DIRS})
 			link_directories(${LIBSTATGRAB_LIBRARY_DIRS})
-			add_definitions(${LIBSTATGRAB_CFLAGS_OTHER} -DLIBSTATGRAB)
+			add_definitions(${LIBSTATGRAB_CFLAGS_OTHER})
 			add_embedded_library(-l:libstatgrab.a)
 			add_embedded_library_others(-ldevstat)
-			add_definitions(-DLIBSTATGRAB_VERSION="${LIBSTATGRAB_VERSION}")
-			set(LIBSYSTEM_FOUND ON)
+			add_definitions(-DHAS_LIBSTATGRAB -DLIBSTATGRAB_VERSION="${LIBSTATGRAB_VERSION}")
 		endif(LIBSTATGRAB_FOUND)
 	endif()
 endif(WITH_LIBSYSTEM)
@@ -147,11 +142,15 @@ print_config("NCURSES" NCURSES_FOUND WITH_NCURSES)
 # Others librairies
 print_config("LIBCPUID" LIBCPUID_FOUND WITH_LIBCPUID)
 print_config("LIBPCI" LIBPCI_FOUND WITH_LIBPCI)
-print_config("LIBSYSTEM" LIBSYSTEM_FOUND WITH_LIBSYSTEM)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
+	print_config("LIBPROCPS" LIBPROCPS_FOUND WITH_LIBSYSTEM)
+elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB)
+	print_config("LIBSTATGRAB" LIBSTATGRAB_FOUND WITH_LIBSYSTEM)
+endif()
 
 # Subprojects
-print_config("DMIDECODE" 1 WITH_LIBDMI)
-print_config("BANDWIDTH" LIBBDWT_FOUND WITH_LIBBDWT)
+print_config("DMIDECODE" 1 WITH_DMIDECODE)
+print_config("BANDWIDTH" BANDWIDTH_FOUND WITH_BANDWIDTH)
 
 
 ### Main executable
@@ -182,8 +181,8 @@ target_link_libraries(cpu-x
 	${GUI_GTK_LIBRARY}
 	${TUI_NCURSES_LIBRARY}
 	${LIBCPUID_LIBRARIES}
-	${LIBDMI_LIBRARY}
-	${LIBBDWT_LIBRARY}
+	${DMIDECODE_LIBRARY}
+	${BANDWIDTH_LIBRARY}
 	${LIBPCI_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}

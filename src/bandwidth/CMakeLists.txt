@@ -17,7 +17,7 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 	message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}		-Wno-strict-prototypes -Wno-sign-compare -Wno-unused-variable")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}	-Wno-strict-prototypes -Wno-sign-compare -Wno-unused-variable")
-	set(LIBBDWT_FOUND ON PARENT_SCOPE)
+	set(BANDWIDTH_FOUND ON PARENT_SCOPE)
 	file(COPY routines32.asm routines64.asm DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 	if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")

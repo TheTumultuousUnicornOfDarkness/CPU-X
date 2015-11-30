@@ -48,7 +48,7 @@
 # include <libcpuid/libcpuid.h>
 #endif
 
-#if HAS_LIBDMI
+#if HAS_DMIDECODE
 # include "dmidecode/libdmi.h"
 #endif
 
@@ -411,7 +411,7 @@ int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 }
 #endif /* HAS_LIBCPUID */
 
-#if HAS_LIBDMI
+#if HAS_DMIDECODE
 /* Elements provided by libdmi library (need root privileges) */
 int libdmidecode(Labels *data)
 {
@@ -442,7 +442,7 @@ int libdmidecode(Labels *data)
 
 	return err;
 }
-#endif /* HAS_LIBDMI */
+#endif /* HAS_DMIDECODE */
 
 /* Alternative for libdmidecode (Linux only) */
 int libdmi_fallback(Labels *data)

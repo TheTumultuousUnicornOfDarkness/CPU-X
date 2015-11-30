@@ -146,7 +146,7 @@ gboolean grefresh(GThrd *refr)
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][VOLTAGE]), refr->data->tabcpu[VALUE][VOLTAGE]);
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][TEMPERATURE]), refr->data->tabcpu[VALUE][TEMPERATURE]);
 		}
-		if(HAS_LIBDMI && !getuid())
+		if(HAS_DMIDECODE && !getuid())
 		{
 			libdmidecode(refr->data);
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][MULTIPLIER]), refr->data->tabcpu[VALUE][MULTIPLIER]);
@@ -155,7 +155,7 @@ gboolean grefresh(GThrd *refr)
 	}
 
 	/* Refresh tab Caches */
-	else if(HAS_LIBCPUID && HAS_LIBBDWT && page == NB_TAB_CACHE)
+	else if(HAS_LIBCPUID && HAS_BANDWIDTH && page == NB_TAB_CACHE)
 	{
 		bandwidth(refr->data);
 		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)

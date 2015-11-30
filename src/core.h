@@ -46,54 +46,6 @@
 #define RAMFIELDS 2	/* Nb of fields by bank */
 #define GPUFIELDS 3	/* Nb of fields by GPU frame */
 
-#ifdef GTK
-# define HAS_GTK 1
-#else
-# define HAS_GTK 0
-#endif
-
-#ifdef NCURSES
-# define HAS_NCURSES 1
-#else
-# define HAS_NCURSES 0
-#endif
-
-#ifdef LIBCPUID
-# define HAS_LIBCPUID 1
-#else
-# define HAS_LIBCPUID 0
-#endif
-
-#ifdef LIBDMI
-# define HAS_LIBDMI 1
-#else
-# define HAS_LIBDMI 0
-#endif
-
-#ifdef LIBBDWT
-# define HAS_LIBBDWT 1
-#else
-# define HAS_LIBBDWT 0
-#endif
-
-#ifdef LIBPCI
-# define HAS_LIBPCI 1
-#else
-# define HAS_LIBPCI 0
-#endif
-
-#ifdef LIBPROCPS
-# define HAS_LIBPROCPS 1
-#else
-# define HAS_LIBPROCPS 0
-#endif
-
-#ifdef LIBSTATGRAB
-# define HAS_LIBSTATGRAB 1
-#else
-# define HAS_LIBSTATGRAB 0
-#endif
-
 
 enum EnTabNumber
 {

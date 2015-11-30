@@ -76,8 +76,8 @@ You can disable components in CPU-X before build by passing argument `-D<var>=0`
 `-DWITH_GTK=0` will disable support of GUI in GTK3+  
 `-DWITH_NCURSES=0` will disable support of NCurses mode  
 `-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
-`-DWITH_LIBDMI=0` will not compile Libdmidecode and will avoid calls to Libdmidecode (not recommended)  
-`-DWITH_LIBBDWT=0` will not compile Libbandwidth and will avoid calls to Libbandwidth (not recommended)  
+`-DWITH_DMIDECODE=0` will not compile modified Dmidecode code and will avoid calls to Libdmidecode (not recommended)  
+`-DWITH_BANDWIDTH=0` will not compile modified Bandwidth code and will avoid calls to Libbandwidth (not recommended)  
 `-DWITH_LIBPCI=0` will avoid calls to Libpci (not recommended)  
 `-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps/Libstatgrab (not recommended)  
 

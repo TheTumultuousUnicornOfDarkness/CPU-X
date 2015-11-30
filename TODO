@@ -4,7 +4,7 @@ It's to avoid I forget something. :)
 First of all, I need to review consistency of code (e.g. "Caches" tab but array is called "tabcache").
 
 *** CORE ***
-- Remove all #ifdef FOO # define HAS_FOO 1 ... (I do this via CMake now)
++ Remove all #ifdef FOO # define HAS_FOO 1 ... (I do this via CMake now)
 - Review some #define (like removing MSGROOT and add a MSGWARN macro)
 - Add useful var in struct Labels (like L1-L3 cache size, number of DIMMS/GPU...)
 + Remove function labels_setnull() and use C99 struct initialization
