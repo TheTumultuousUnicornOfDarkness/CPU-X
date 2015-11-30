@@ -47,7 +47,7 @@ unsigned int flags;
 int main(int argc, char *argv[])
 {
 	/* Parse options */
-	Labels data;
+	Labels data = { NULL };
 	flags = 0;
 	data.refr_time = menu(argc, argv);
 
@@ -91,7 +91,6 @@ int main(int argc, char *argv[])
 	textdomain(GETTEXT_PACKAGE);
 	MSGVERB(_("Setting locale done"));
 
-	labels_setnull(&data);
 	labels_setname(&data);
 	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
 	tabsystem(&data);
@@ -337,37 +336,6 @@ int iasprintf(char **str, char *fmt, ...)
 		MSGPERR(_("failed to allocate string"));
 
 	return ret;
-}
-
-/* Initialize all labels pointers to null */
-void labels_setnull(Labels *data)
-{
-	int i;
-
-	MSGVERB(_("Setting label pointers"));
-	/* Tab CPU */
-	for(i = VENDOR; i < LASTCPU; i++)
-		data->tabcpu[VALUE][i] = NULL;
-
-	/* Tab Cache */
-	for(i = L1SIZE; i < LASTCACHE; i++)
-		data->tabcache[VALUE][i] = NULL;
-
-	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
-		data->tabmb[VALUE][i] = NULL;
-
-	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
-		data->tabram[VALUE][i] = NULL;
-
-	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
-		data->tabsys[VALUE][i] = NULL;
-
-	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
-		data->tabgpu[VALUE][i] = NULL;
 }
 
 /* Set labels name */

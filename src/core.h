@@ -182,9 +182,6 @@ int menu(int argc, char *argv[]);
 /* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line);
 
-/* Initialize all labels pointers to null */
-void labels_setnull(Labels *data);
-
 /* Set labels name */
 void labels_setname(Labels *data);
 
