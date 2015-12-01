@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 			instructions(&data.tabcpu[VALUE][INSTRUCTIONS]);
 
 			if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
-				strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
+				catinstr(&data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
 
 			if(HAS_LIBBDWT)
 			{
