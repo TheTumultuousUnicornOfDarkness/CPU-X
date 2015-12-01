@@ -32,7 +32,4 @@
 #define OPT_VERBOSE		(1 << 4)
 
 
-extern unsigned int flags;
-
-
 #endif /* _OPTIONS_H_ */

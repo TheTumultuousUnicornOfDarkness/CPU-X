@@ -37,7 +37,7 @@ typedef struct
 /********************************** TUI  **********************************/
 
 /* Start CPU-X in NCurses mode */
-void start_tui_ncurses(Labels *data);
+void start_tui_ncurses(Labels *data, Options *opts);
 
 /* Refresh non-static values */
 void nrefresh(NThrd *refr);

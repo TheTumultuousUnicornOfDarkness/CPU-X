@@ -3296,7 +3296,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 #ifdef CPUX
 	static int bank = BANK0_0;
 
-	if(!(flags & OPT_DMIDECODE))
+	if(opt.flags & FLAG_CPU_X)
 	{
 		switch (h->type)
 		{
@@ -5043,10 +5043,6 @@ done:
 	free(buf);
 exit_free:
 	free(opt.type);
-#ifdef CPUX
-	if(flags & OPT_VERBOSE)
-		printf("\n\n");
-#endif /* CPUX */
 
 	return ret;
 }

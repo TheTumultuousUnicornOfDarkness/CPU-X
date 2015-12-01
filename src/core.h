@@ -125,7 +125,6 @@ enum EnTabGraphics
 
 typedef struct
 {
-	int refr_time;
 	char *objects[LASTOBJ];
 	char *tabcpu[2][LASTCPU];
 	char *tabcache[2][LASTCACHE];
@@ -135,6 +134,13 @@ typedef struct
 	char *tabgpu[2][LASTGPU];
 } Labels;
 
+typedef struct
+{
+	unsigned int refr_time;
+	unsigned int flags_ui;
+	unsigned int flags_opt;
+} Options;
+
 
 /********************************** Core **********************************/
 
@@ -142,7 +148,7 @@ typedef struct
 int extract_locales(void);
 
 /* Get options */
-int menu(int argc, char *argv[]);
+void menu(int argc, char *argv[], Options *opts);
 
 /* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line);
@@ -190,7 +196,7 @@ int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model);
 
 /* Elements provided by libdmi library (need root privileges)
 TAB: CPU, Motherboard. */
-int libdmidecode(Labels *data);
+int libdmidecode(Labels *data, Options *opts);
 
 /* Alternative for libdmidecode (Linux only)
 TAB: Motherboard. */
@@ -245,19 +251,19 @@ int iasprintf(char **str, char *fmt, ...);
 char *check_lastver(void);
 
 /* Apply new portable version if available */
-int update_prg(char *executable);
+int update_prg(char *executable, Options *opts);
 
 
 /********************************** External headers **********************/
 
 /* Start CPU-X in GTK mode */
-void start_gui_gtk(int *argc, char **argv[], Labels *data);
+void start_gui_gtk(int *argc, char **argv[], Labels *data, Options *opts);
 
 /* Start CPU-X in NCurses mode */
-void start_tui_ncurses(Labels *data);
+void start_tui_ncurses(Labels *data, Options *opts);
 
 /* Call dmidecode library */
-int libdmi(char c);
+int libdmi(char c, Options *cpux_opts);
 
 /* Call bandwidth library */
 int bandwidth(Labels *data);

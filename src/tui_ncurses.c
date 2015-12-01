@@ -32,7 +32,7 @@
 static int loop = NB_TAB_CPU;
 
 
-void start_tui_ncurses(Labels *data)
+void start_tui_ncurses(Labels *data, Options *opts)
 {
 	int startx, starty, width, height, ch = 0, current_tab = 0;
 	WINDOW *tab;
@@ -59,7 +59,7 @@ void start_tui_ncurses(Labels *data)
 
 	refr.win = tab;
 	refr.data = data;
-	timeout(data->refr_time * 1000);
+	timeout(opts->refr_time * 1000);
 
 	while(ch != 'q')
 	{
@@ -125,7 +125,7 @@ void nrefresh(NThrd *refr)
 		}
 		if(HAS_DMIDECODE && !getuid())
 		{
-			libdmidecode(refr->data);
+			//libdmidecode(refr->data);
 			mvwprintw(refr->win, 13, 2, "%13s: %s", refr->data->tabcpu[NAME][MULTIPLIER], refr->data->tabcpu[VALUE][MULTIPLIER]);
 		}
 		mvwprintw(refr->win, 12, 2, "%13s: %s", refr->data->tabcpu[NAME][CORESPEED], refr->data->tabcpu[VALUE][CORESPEED]);

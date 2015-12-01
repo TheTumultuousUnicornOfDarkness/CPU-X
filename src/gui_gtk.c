@@ -35,7 +35,7 @@
 #endif
 
 
-void start_gui_gtk(int *argc, char **argv[], Labels *data)
+void start_gui_gtk(int *argc, char **argv[], Labels *data, Options *opts)
 {
 	GtkBuilder *builder;
 	GtkLabels glab;
@@ -92,7 +92,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
 	set_colors(&glab);
-	g_timeout_add_seconds(data->refr_time, (gpointer)grefresh, &refr);
+	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();
 }
 
@@ -144,7 +144,7 @@ gboolean grefresh(GThrd *refr)
 		}
 		if(HAS_DMIDECODE && !getuid())
 		{
-			libdmidecode(refr->data);
+			//libdmidecode(refr->data);
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][MULTIPLIER]), refr->data->tabcpu[VALUE][MULTIPLIER]);
 		}
 		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][CORESPEED]),  refr->data->tabcpu[VALUE][CORESPEED]);

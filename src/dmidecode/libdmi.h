@@ -34,6 +34,6 @@
 extern char **dmidata[LASTRAM];
 
 int maindmi(void);
-int libdmi(char c);
+int libdmi(char c, Options *cpux_opts);
 
 #endif

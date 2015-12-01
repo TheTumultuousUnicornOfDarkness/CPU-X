@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
@@ -42,20 +43,17 @@
 #endif
 
 
-/* Options are global */
-unsigned int flags;
-
-
 int main(int argc, char *argv[])
 {
 	/* Parse options */
 	Labels data = { NULL };
-	flags = 0;
-	data.refr_time = menu(argc, argv);
+	Options *opts = &(Options) { .refr_time = 1, .flags_ui = 0, .flags_opt = 0 };
+	menu(argc, argv, opts);
+	message('i', NULL, NULL, opts->flags_opt & OPT_VERBOSE);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_DMIDECODE && !getuid() && (flags & OPT_DMIDECODE))
-		return libdmi('D');
+	if(HAS_DMIDECODE && !getuid() && (opts->flags_ui & OPT_DMIDECODE))
+		return libdmi('D', opts);
 
 	if(PORTABLE_BINARY && HAS_GETTEXT)
 		extract_locales();
@@ -93,7 +91,7 @@ int main(int argc, char *argv[])
 
 	if(HAS_DMIDECODE && !getuid())
 	{
-		if(libdmidecode(&data))
+		if(libdmidecode(&data, opts))
 			MSGSERR(_("libdmidecode failed"));
 	}
 	else
@@ -112,22 +110,21 @@ int main(int argc, char *argv[])
 		MSG_WARNING("WARNING: root privileges are required to work properly\n");
 
 	/* Show data */
-	if(HAS_GTK && (flags & OPT_GTK)) /* Start GTK3 GUI */
-		start_gui_gtk(&argc, &argv, &data);
-	if(HAS_NCURSES && (flags & OPT_NCURSES) && !(flags & OPT_GTK)) /* Start NCurses TUI */
-		start_tui_ncurses(&data);
-	if(flags & OPT_DUMP && !(flags & OPT_NCURSES) && !(flags & OPT_GTK)) /* Just dump data and exit */
-		dump_data(&data);
-
-	/* If compiled without UI */
-	if(!HAS_GTK && !HAS_NCURSES && !(flags & OPT_DUMP))
+	switch(opts->flags_ui)
 	{
-		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
-		dump_data(&data);
+		case OPT_GTK:
+			start_gui_gtk(&argc, &argv, &data, opts);
+			break;
+		case OPT_NCURSES:
+			start_tui_ncurses(&data, opts);
+			break;
+		case OPT_DUMP:
+			dump_data(&data);
+			break;
 	}
 
 	if(PORTABLE_BINARY)
-		update_prg(argv[0]);
+		update_prg(argv[0], opts);
 
 	return EXIT_SUCCESS;
 }
@@ -189,13 +186,13 @@ int extract_locales(void)
 # endif /* HAS_GETTEXT */
 
 /* Apply new portable version if available */
-int update_prg(char *executable)
+int update_prg(char *executable, Options *opts)
 {
 	int err = 0, i = 0;
 	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
 	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
 
-	opt = (flags & OPT_VERBOSE) ? strdup("") : strdup("s");
+	opt = (opts->flags_opt & OPT_VERBOSE) ? strdup("") : strdup("s");
 	newver = check_lastver();
 	if(newver[0] == 'f')
 		return 1;
@@ -213,7 +210,7 @@ int update_prg(char *executable)
 	system(cmd);
 
 	/* Extract archive */
-	opt = (flags & OPT_VERBOSE) ? strdup("v") : strdup("");
+	opt = (opts->flags_opt & OPT_VERBOSE) ? strdup("v") : strdup("");
 	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
 	system(cmd);
 
@@ -304,7 +301,7 @@ void version(void)
 }
 
 /* Parse options given in arg */
-int menu(int argc, char *argv[])
+void menu(int argc, char *argv[], Options *opts)
 {
 	int c, tmp_refr = -1;
 
@@ -327,33 +324,44 @@ int menu(int argc, char *argv[])
 		{0,		0,	     0,  0}
 	};
 
-	while((c = getopt_long(argc, argv, ":gndr:DvhV", longopts, NULL)) != -1)
+	/* Set the default mode */
+	if(HAS_GTK)
+		c = 'g';
+	else if(HAS_NCURSES)
+		c = 'n';
+	else
+		c = 'd';
+
+	/* Parse options */
+	do
 	{
 		switch(c)
 		{
 #if HAS_GTK
 			case 'g':
-				flags |= OPT_GTK;
+				opts->flags_ui = OPT_GTK;
 				break;
 #endif /* HAS_GTK */
 #if HAS_NCURSES
 			case 'n':
-				flags |= OPT_NCURSES;
+				opts->flags_ui = OPT_NCURSES;
 				break;
 #endif /* HAS_NCURSES */
 			case 'd':
-				flags |= OPT_DUMP;
+				opts->flags_ui = OPT_DUMP;
 				break;
 			case 'r':
 				tmp_refr = atoi(optarg);
+				if(tmp_refr > 1)
+					opts->refr_time = tmp_refr;
 				break;
 #if HAS_DMIDECODE
 			case 'D':
-				flags |= OPT_DMIDECODE;
+				opts->flags_ui = OPT_DMIDECODE;
 				break;
 #endif /* HAS_DMIDECODE */
 			case 'v':
-				flags |= OPT_VERBOSE;
+				opts->flags_opt |= OPT_VERBOSE;
 				break;
 			case 'h':
 				help(stdout, argv);
@@ -366,17 +374,7 @@ int menu(int argc, char *argv[])
 				help(stderr, argv);
 				exit(EXIT_FAILURE);
 		}
-	}
-
-#if !HAS_GTK
-	if(!(flags & OPT_DUMP))
-		 flags |= OPT_NCURSES;
-#endif /* !HAS_GTK */
-
-	if(!((flags & OPT_NCURSES) || (flags & OPT_DUMP)))
-		 flags |= OPT_GTK;
-
-	return (tmp_refr == -1) ? 1 : tmp_refr;
+	} while((c = getopt_long(argc, argv, ":gndr:DvhV", longopts, NULL)) != -1);
 }
 
 /* Print a formatted message */
@@ -396,16 +394,21 @@ void msg(char type, char *msg, char *prgname, char *basefile, int line)
 	else if(type == 'e')
 		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, prgname, basefile, line, msg, reset);
 
-	else if(type == 'v' && (flags & OPT_VERBOSE))
-		printf("%s%s%s\n", boldgre, msg, reset);
+	//else if(type == 'v' && (flags & OPT_VERBOSE))
+		//printf("%s%s%s\n", boldgre, msg, reset);
 }
 
 int message(char type, char *msg, char *basefile, int line)
 {
+	static bool verbose = false;
+
 	switch(type)
 	{
+		case 'i': /* Initialization for verbose mode */
+			verbose = line;
+			break;
 		case 'v': /* Verbose message */
-			return fprintf(stdout, BOLD_GREEN	"%s\n" RESET, msg);
+			return verbose ? fprintf(stdout, BOLD_GREEN	"%s\n" RESET, msg) : -1;
 		case 'w': /* Warning message */
 			return fprintf(stdout, BOLD_YELLOW	"%s\n" RESET, msg);
 		case 'e': /* Error message */

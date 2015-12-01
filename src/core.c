@@ -413,7 +413,7 @@ int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
 
 #if HAS_DMIDECODE
 /* Elements provided by libdmi library (need root privileges) */
-int libdmidecode(Labels *data)
+int libdmidecode(Labels *data, Options *opts)
 {
 	int i, err = 0;
 	static int nodyn = 0;
@@ -422,7 +422,7 @@ int libdmidecode(Labels *data)
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE]	= &data->tabcpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]	= &data->tabcpu[VALUE][BUSSPEED];
-	err += libdmi('c');
+	err += libdmi('c', opts);
 
 	/* Skip this part on refresh */
 	if(!nodyn)
@@ -430,12 +430,12 @@ int libdmidecode(Labels *data)
 		/* Tab Motherboard */
 		for(i = MANUFACTURER; i < LASTMB; i++)
 			dmidata[i] = &data->tabmb[VALUE][i];
-		err += libdmi('m');
+		err += libdmi('m', opts);
 
 		/* Tab RAM */
 		for(i = BANK0_0; i < LASTRAM; i++)
 			dmidata[i] = &data->tabram[VALUE][i];
-		err += libdmi('r');
+		err += libdmi('r', opts);
 
 		nodyn++;
 	}
