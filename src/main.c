@@ -55,16 +55,7 @@ int main(int argc, char *argv[])
 	if(HAS_DMIDECODE && !getuid() && (opts->flags_ui & OPT_DMIDECODE))
 		return libdmi('D', opts);
 
-	if(PORTABLE_BINARY && HAS_GETTEXT)
-		extract_locales();
-
-	/* Start collecting data */
-	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain(GETTEXT_PACKAGE);
-	MSGVERB(_("Setting locale done"));
-
+	set_locales();
 	labels_setname(&data);
 	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
 	tabsystem(&data);
@@ -146,6 +137,19 @@ const char *optstring[] =
 	"help",
 	"version"
 };
+
+/* Enable internationalization support */
+void set_locales(void)
+{
+	if(PORTABLE_BINARY && HAS_GETTEXT)
+		extract_locales();
+
+	setlocale(LC_ALL, "");
+	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
+	MSGVERB(_("Setting locale done"));
+}
 
 #if PORTABLE_BINARY
 # if HAS_GETTEXT

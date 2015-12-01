@@ -144,6 +144,9 @@ typedef struct
 
 /********************************** Core **********************************/
 
+/* Enable internationalization support */
+void set_locales(void);
+
 /* Extract locales in /tmp/.cpu-x */
 int extract_locales(void);
 
