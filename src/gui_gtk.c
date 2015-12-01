@@ -203,7 +203,7 @@ void set_logos(GtkLabels *glab, Labels *data)
 {
 	char tmp[MAXSTR];
 	const gchar *icon_name[MAXSTR];
-#ifdef PORTABLE_BINARY
+#if PORTABLE_BINARY
 	sprintf(tmp, "/cpu-x/pictures/%s.png", data->tabcpu[VALUE][VENDOR]);
 
 	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), "/cpu-x/pictures/CPU-X.png"); /* Program icon in About */
