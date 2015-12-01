@@ -2111,6 +2111,8 @@ main (int argc, char **argv)
 #endif /* CPUX */
 
 #ifdef CPUX
+	FILE *fp = NULL;
+	fp = fopen("/tmp/CPU-X_bandwidth.txt", "w");
 	if (use_sse2)
 	{
 		i = 0;
@@ -2121,6 +2123,7 @@ main (int argc, char **argv)
 			return 4;
 		ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
 		size = (ptr == NULL) ? 0 : atoi(ptr);
+		fprintf(fp, "Cache level %i in test, size is %i KB\n", level - LEVEL1I + 1, size);
 
 		while ((chunk_size = chunk_sizes [i++]))
 		{
@@ -2151,13 +2154,17 @@ main (int argc, char **argv)
 						size = atoi(data->tabcpu[VALUE][level]);
 				}
 
+				fprintf(fp, "\nCache level %i in test, size is %i KB\n", level - LEVEL1I + 1, size);
+
 				if(size <= 0)
 					return 2;
 			}
 
 			speed += do_read (chunk_size, SSE2, false);
+			fprintf(fp, "\tChunk tested: %2i\tChunk size: %8i\n", i, chunk_size);
 			ind++;
 		}
+		fclose(fp);
 	}
 	else
 		return 1;
