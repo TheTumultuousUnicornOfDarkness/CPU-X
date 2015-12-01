@@ -16,9 +16,9 @@ if(WITH_GTK)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER})
-		if(EMBED)
+		if(PORTABLE_BINARY)
 			set(GRESOURCES "gtk-resources.c")
-		endif(EMBED)
+		endif(PORTABLE_BINARY)
 		add_library(gui_gtk
 			gui_gtk.c
 			gui_gtk.h
@@ -140,6 +140,7 @@ print_config("GTK" GTK3_FOUND WITH_GTK)
 print_config("NCURSES" NCURSES_FOUND WITH_NCURSES)
 
 # Others librairies
+print_config("GETTEXT" GETTEXT_FOUND WITH_GETTEXT)
 print_config("LIBCPUID" LIBCPUID_FOUND WITH_LIBCPUID)
 print_config("LIBPCI" LIBPCI_FOUND WITH_LIBPCI)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
@@ -162,18 +163,21 @@ add_executable(cpu-x
 	libsystem.c
 )
 
-if(PORTABLE_BINARY OR EMBED)
+if(PORTABLE_BINARY)
 	message("${BoldBlue}${CMAKE_PROJECT_NAME} will be compiled as portable binary.${ColourReset}")
 	message("${BoldBlue}These librairies will be added to binary:${ColourReset} ${EMBEDDED_LIBRARIES}")
-	add_definitions(-DEMBED)
+	add_definitions(-DPORTABLE_BINARY=1)
 	if(WITH_GETTEXT)
 		set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
 		add_dependencies(cpu-x convertgmo)
 		add_definitions(-DGETTEXT)
 	endif(WITH_GETTEXT)
-elseif(NOT (PORTABLE_BINARY OR EMBED) AND WITH_GETTEXT)
-	add_dependencies(cpu-x potfiles)
-endif(PORTABLE_BINARY OR EMBED)
+else(PORTABLE_BINARY)
+	if(GETTEXT_FOUND)
+		add_dependencies(cpu-x potfiles)
+	endif(GETTEXT_FOUND)
+	add_definitions(-DPORTABLE_BINARY=0)
+endif(PORTABLE_BINARY)
 
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
 

@@ -92,12 +92,12 @@ By default, CPU-X will be installed in */usr/local*. If you want to change it, a
 
 * If you want to build a portable binary, do:
 ```
-mkdir ebuild && cd ebuild
-cmake -DEMBED=1 ..
+mkdir pbuild && cd pbuild
+cmake -DPORTABLE_BINARY=1 ..
 make
 ```
 
-Note: portable binary is *accomplished/bin/cpu-x*, in directory *ebuild*. Don't do `make install` after.You can move this runnable file where you want.
+Note: portable binary is *accomplished/bin/cpu-x*, in directory *pbuild*. Don't do `make install` after.You can move this runnable file where you want.
 
 
 ### Portable version

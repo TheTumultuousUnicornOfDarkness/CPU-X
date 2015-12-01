@@ -23,18 +23,19 @@ find_package(PkgConfig REQUIRED)
 
 
 # Options
-option(WITH_GTK		"Add support for GUI in GTK3+"			ON)
-option(WITH_NCURSES	"Add support for TUI in NCurses"		ON)
-option(WITH_LIBCPUID	"Allow use of library Libcpuid"			ON)
-option(WITH_DMIDECODE	"Allow use of Dmidecode (external modified software)"	ON)
-option(WITH_BANDWIDTH	"Allow use of Bandwidth (external modified software)"		ON)
-option(WITH_LIBPCI	"Allow use of library Libpci"			ON)
+option(WITH_GTK			"Add support for GUI in GTK3+"				ON)
+option(WITH_NCURSES		"Add support for TUI in NCurses"			ON)
+option(WITH_LIBCPUID		"Allow use of library Libcpuid"				ON)
+option(WITH_DMIDECODE		"Allow use of Dmidecode (external modified software)"	ON)
+option(WITH_BANDWIDTH		"Allow use of Bandwidth (external modified software)"	ON)
+option(WITH_LIBPCI		"Allow use of library Libpci"				ON)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"	ON)
-	option(FORCE_LIBSTATGRAB "Force use of library Libstatgrab"	OFF)
+	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"			ON)
+	option(FORCE_LIBSTATGRAB "Force use of library Libstatgrab"			OFF)
 else(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"	ON)
+	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"			ON)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+option(PORTABLE_BINARY		"Do a all-in-one binary"				OFF)
 
 
 # Colours
@@ -81,9 +82,9 @@ endmacro(print_config)
 # This macro add a (static) library to build, useful for portable version.
 #   @lib: the name of the library to add
 macro(add_embedded_library lib)
-	if(PORTABLE_BINARY OR EMBED)
+	if(PORTABLE_BINARY)
 		set(EMBEDDED_LIBRARIES ${EMBEDDED_LIBRARIES} ${lib})
-	endif(PORTABLE_BINARY OR EMBED)
+	endif(PORTABLE_BINARY)
 endmacro(add_embedded_library)
 
 # This macro calls add_embedded_library macro if target is Linux.
@@ -110,7 +111,7 @@ add_subdirectory(data)
 
 
 # Embed compilation
-if(EMBED)
+if(PORTABLE_BINARY)
 	if(WITH_GTK)
 		message("${Green}Converting files to embed${ColourReset}")
 		execute_process(COMMAND glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
@@ -118,8 +119,7 @@ if(EMBED)
 			WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
 		)
 	endif(WITH_GTK)
-	add_definitions(-DEMBED)
-endif(EMBED)
+endif(PORTABLE_BINARY)
 
 
 # Uninstall target

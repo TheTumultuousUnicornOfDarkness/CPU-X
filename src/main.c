@@ -34,12 +34,13 @@
 #include "core.h"
 #include "options.h"
 
-#ifdef EMBED
+#if PORTABLE_BINARY
 # include <sys/stat.h>
-# ifdef GETTEXT
+# if HAS_GETTEXT
 #  include "../po/mo.h"
 # endif
 #endif
+
 
 /* Options are global */
 unsigned int flags;
@@ -56,34 +57,8 @@ int main(int argc, char *argv[])
 	if(HAS_DMIDECODE && !getuid() && (flags & OPT_DMIDECODE))
 		return libdmi('D');
 
-#if defined(EMBED) && defined (GETTEXT)
-	int i;
-	char *path;
-	FILE *mofile;
-
-	/* Write .mo files in temporary directory */
-	MSGVERB("Extract translations");
-	asprintf(&path, "%s", LOCALEDIR);
-	mkdir(path, 0777);
-
-	for(i = 0; ptrlen[i] != NULL; i++)
-	{
-		asprintf(&path, "%s/%s", LOCALEDIR, lang[i]);
-		mkdir(path, 0777);
-
-		asprintf(&path, "%s/%s/LC_MESSAGES", LOCALEDIR, lang[i]);
-		mkdir(path, 0777);
-
-		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
-
-		mofile = fopen(path, "w");
-		if(mofile != NULL)
-		{
-			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
-			fclose(mofile);
-		}
-	}
-#endif /* EMBED && GETTEXT */
+	if(PORTABLE_BINARY && HAS_GETTEXT)
+		extract_locales();
 
 	/* Start collecting data */
 	setlocale(LC_ALL, "");
@@ -151,9 +126,8 @@ int main(int argc, char *argv[])
 		dump_data(&data);
 	}
 
-#ifdef EMBED
-	update_prg(argv[0]);
-#endif /* EMBED */
+	if(PORTABLE_BINARY)
+		update_prg(argv[0]);
 
 	return EXIT_SUCCESS;
 }
@@ -175,6 +149,117 @@ const char *optstring[] =
 	"help",
 	"version"
 };
+
+#if PORTABLE_BINARY
+# if HAS_GETTEXT
+/* Extract locales in /tmp/.cpu-x */
+int extract_locales(void)
+{
+	int i, err = 0;
+	char *path;
+	FILE *mofile;
+
+	/* Write .mo files in temporary directory */
+	MSGVERB("Extract translations");
+	asprintf(&path, "%s", LOCALEDIR);
+	err = mkdir(path, 0777);
+
+	for(i = 0; ptrlen[i] != NULL; i++)
+	{
+		asprintf(&path, "%s/%s", LOCALEDIR, lang[i]);
+		err += mkdir(path, 0777);
+
+		asprintf(&path, "%s/%s/LC_MESSAGES", LOCALEDIR, lang[i]);
+		err += mkdir(path, 0777);
+
+		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
+
+		mofile = fopen(path, "w");
+		if(mofile != NULL)
+		{
+			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
+			fclose(mofile);
+		}
+		else
+			err++;
+	}
+
+	return err;
+}
+# endif /* HAS_GETTEXT */
+
+/* Apply new portable version if available */
+int update_prg(char *executable)
+{
+	int err = 0, i = 0;
+	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
+	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
+
+	opt = (flags & OPT_VERBOSE) ? strdup("") : strdup("s");
+	newver = check_lastver();
+	if(newver[0] == 'f')
+		return 1;
+
+	/* Find what archive we need to download */
+	if(HAS_GTK)
+		portype = strdup("portable");
+	else
+		portype = strdup("portable_noGTK");
+
+	/* Download archive */
+	MSGVERB(_("Downloading new version..."));
+	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, newver, portype);
+	asprintf(&cmd, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, newver, tgzname, tgzname);
+	system(cmd);
+
+	/* Extract archive */
+	opt = (flags & OPT_VERBOSE) ? strdup("v") : strdup("");
+	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
+	system(cmd);
+
+	free(opt);
+	free(cmd);
+
+# if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "bsd32");
+# elif defined (__linux__) && defined (__LP64__)
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux64");
+# elif defined (__linux__) && !defined (__LP64__)
+	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux32");
+# endif /* OS */
+
+	/* Rename new binary */
+	MSGVERB(_("Applying new version..."));
+	err = rename(bin, executable);
+	if(err)
+		MSGVERB(_("Error when updating."));
+	else
+		MSGVERB(_("Update successful!"));
+
+	/* Delete temporary files */
+	err = remove(tgzname);
+	while(strcmp(ext[i], ""))
+	{
+		asprintf(&tmp, "%s_v%s_%s.%s", PRGNAME, newver, portype, ext[i]);
+		if(strcmp(bin, tmp))
+		{
+			err += remove(tmp);
+		}
+		i++;
+	}
+
+	if(err)
+		MSGVERB(_("Error when deleting temporary files."));
+
+	free(newver);
+	free(portype);
+	free(tgzname);
+	free(bin);
+	free(tmp);
+
+	return 0;
+}
+#endif /* PORTABLE_BINARY */
 
 /* This is help display with option --help */
 void help(FILE *out, char *argv[])
@@ -737,78 +822,4 @@ char *check_lastver(void)
 	}
 
 	return ret;
-}
-
-/* Apply new portable version if available */
-int update_prg(char *executable)
-{
-#ifdef EMBED
-	int err = 0, i = 0;
-	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
-	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
-
-	opt = (flags & OPT_VERBOSE) ? strdup("") : strdup("s");
-	newver = check_lastver();
-	if(newver[0] == 'f')
-		return 1;
-
-	/* Find what archive we need to download */
-	if(HAS_GTK)
-		portype = strdup("portable");
-	else
-		portype = strdup("portable_noGTK");
-
-	/* Download archive */
-	MSGVERB(_("Downloading new version..."));
-	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, newver, portype);
-	asprintf(&cmd, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, newver, tgzname, tgzname);
-	system(cmd);
-
-	/* Extract archive */
-	opt = (flags & OPT_VERBOSE) ? strdup("v") : strdup("");
-	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
-	system(cmd);
-
-	free(opt);
-	free(cmd);
-
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "bsd32");
-#elif defined (__linux__) && defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux64");
-#elif defined (__linux__) && !defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux32");
-#endif /* OS */
-
-	/* Rename new binary */
-	MSGVERB(_("Applying new version..."));
-	err = rename(bin, executable);
-	if(err)
-		MSGVERB(_("Error when updating."));
-	else
-		MSGVERB(_("Update successful!"));
-
-	/* Delete temporary files */
-	err = remove(tgzname);
-	while(strcmp(ext[i], ""))
-	{
-		asprintf(&tmp, "%s_v%s_%s.%s", PRGNAME, newver, portype, ext[i]);
-		if(strcmp(bin, tmp))
-		{
-			err += remove(tmp);
-		}
-		i++;
-	}
-
-	if(err)
-		MSGVERB(_("Error when deleting temporary files."));
-
-	free(newver);
-	free(portype);
-	free(tgzname);
-	free(bin);
-	free(tmp);
-
-#endif /* EMBED */
-	return 0;
 }

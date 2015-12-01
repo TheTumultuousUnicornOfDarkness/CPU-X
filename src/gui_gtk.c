@@ -30,7 +30,7 @@
 #include "gui_gtk.h"
 #include "gui_gtk_id.h"
 
-#ifdef EMBED
+#if PORTABLE_BINARY
 # include "gtk-resources.h"
 #endif
 
@@ -48,7 +48,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	refr.data = data;
 
 	/* Build UI from Glade file */
-#ifdef EMBED
+#if PORTABLE_BINARY
 	g_resources_register(cpu_x_get_resource());
 
 	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpux-gtk-3.14.ui", NULL))
@@ -203,7 +203,7 @@ void set_logos(GtkLabels *glab, Labels *data)
 {
 	char tmp[MAXSTR];
 	const gchar *icon_name[MAXSTR];
-#ifdef EMBED
+#ifdef PORTABLE_BINARY
 	sprintf(tmp, "/cpu-x/pictures/%s.png", data->tabcpu[VALUE][VENDOR]);
 
 	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), "/cpu-x/pictures/CPU-X.png"); /* Program icon in About */

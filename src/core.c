@@ -32,7 +32,7 @@
 #include <libintl.h>
 #include "core.h"
 
-#if EMBED
+#if PORTABLE_BINARY
 # include <sys/stat.h>
 #endif
 

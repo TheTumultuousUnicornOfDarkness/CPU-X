@@ -138,6 +138,9 @@ typedef struct
 
 /********************************** Core **********************************/
 
+/* Extract locales in /tmp/.cpu-x */
+int extract_locales(void);
+
 /* Get options */
 int menu(int argc, char *argv[]);
 

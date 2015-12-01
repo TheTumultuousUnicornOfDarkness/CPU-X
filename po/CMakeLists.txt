@@ -13,6 +13,7 @@ FILE(GLOB absPoFiles ${CMAKE_SOURCE_DIR}/po/*.po)
 find_package(Gettext)
 if(GETTEXT_FOUND)
 	# Creation of file cpu-x.pot
+	set(GETTEXT_FOUND ON PARENT_SCOPE)
 	add_custom_target(genpot
 		COMMAND xgettext
 			--language=C
@@ -64,7 +65,7 @@ if(GETTEXT_FOUND)
 		DEPENDS ${poFiles}
 	)
 
-	if(EMBED)
+	if(PORTABLE_BINARY)
 		# Convert .gmo in a header file
 		add_custom_target(convertgmo ALL)
 		set(vars)
@@ -100,9 +101,8 @@ if(GETTEXT_FOUND)
 			COMMAND ${CMAKE_COMMAND} -E echo ${ptrlen} >> ${moHeader}
 			DEPENDS ${lang} ${ptrlang} ${ptrlen})
 		add_dependencies(convertgmo potfiles)
-	endif(EMBED)
+	endif(PORTABLE_BINARY)
 
 else(GETTEXT_FOUND)
-	message("${BoldRed}GETTEXT${ColourReset}${Red} not found. Internationalization support is ${BoldRed}OFF${ColourReset}")
-	set(WITH_GETTEXT OFF PARENT_SCOPE)
+	set(GETTEXT_FOUND OFF PARENT_SCOPE)
 endif(GETTEXT_FOUND)

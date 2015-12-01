@@ -18,8 +18,6 @@ Legend:
 - Remove BogoMIPS label, replaces it by CPU usage in percent
 - Review some core functions (libcpuid(), cpufreq(), mult(), ...)
 - Replace all strdupnullok() and asprintf() by iasprintf()
-- Move some portable binary stuff in another file
-- Move some options related code in another file?
 - Add a public interface, add static functions
 - Add a generic refresh function (partially merge grefresh() and nrefresh())
 - Catch SIGSEV?
