@@ -6,13 +6,18 @@ endif(APPLE)
 cmake_policy(SET CMP0048 OLD)
 project(po)
 
-
+# Config (po)
 set(absPotFile "${CMAKE_SOURCE_DIR}/po/cpu-x.pot")
 FILE(GLOB absPoFiles ${CMAKE_SOURCE_DIR}/po/*.po)
 
+
+### INTERNATIONALIZATION TARGETS
+
 find_package(Gettext)
 if(GETTEXT_FOUND)
-	# Creation of file cpu-x.pot
+	# Target: genpot
+	# Generate a new .pot file
+	Creation of file cpu-x.pot
 	set(GETTEXT_FOUND ON PARENT_SCOPE)
 	add_custom_target(genpot
 		COMMAND xgettext
@@ -29,13 +34,15 @@ if(GETTEXT_FOUND)
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 	)
 
-	# Start a new translation
+	# Target: newpo
+	# Start a new translation (new file is NEW_TRANSLATION.po)
 	add_custom_target(newpo
 		COMMAND ${CMAKE_COMMAND} -E copy ${absPotFile} NEW_TRANSLATION.po
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/po
 	)
 
-	# Update existing translations
+	# Target: updatepo
+	# Update existing translations by merging new strings from .pot file
 	add_custom_target(updatepo)
 	set(results)
 	foreach(absPoFile ${absPoFiles})
@@ -49,7 +56,8 @@ if(GETTEXT_FOUND)
 		DEPENDS ${results}
 	)
 
-	# Convert .po to .mo and install
+	# Target: potfiles_1
+	# Convert .po files to .mo binary files and install them
 	file(COPY ${absPoFiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 	foreach(absPoFile ${absPoFiles})
 		get_filename_component(poFile ${absPoFile} NAME)
@@ -66,7 +74,8 @@ if(GETTEXT_FOUND)
 	)
 
 	if(PORTABLE_BINARY)
-		# Convert .gmo in a header file
+		# Target: convertgmo
+		# Convert .gmo files in a C header file
 		add_custom_target(convertgmo ALL)
 		set(vars)
 		set(moHeader "${CMAKE_SOURCE_DIR}/po/mo.h")

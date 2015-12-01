@@ -7,9 +7,9 @@ cmake_policy(SET CMP0048 OLD)
 project(binary)
 
 
-### Check libraries
+### FIND NEEDED LIBRAIRIES
 
-# GTK3+ libs
+# GTK3+
 if(WITH_GTK)
 	pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 	if(GTK3_FOUND)
@@ -17,6 +17,10 @@ if(WITH_GTK)
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER})
 		if(PORTABLE_BINARY)
+			execute_process(COMMAND glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
+					COMMAND	glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.h --generate-header cpu-x.gresource.xml
+					WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
+			)
 			set(GRESOURCES "gtk-resources.c")
 		endif(PORTABLE_BINARY)
 		add_library(gui_gtk
@@ -34,7 +38,7 @@ if(WITH_GTK)
 	endif(GTK3_FOUND)
 endif(WITH_GTK)
 
-# NCurses libs
+# NCurses
 if(WITH_NCURSES)
 	pkg_check_modules(NCURSES ncursesw)
 	if(NCURSES_FOUND)
@@ -51,7 +55,7 @@ if(WITH_NCURSES)
 	endif(NCURSES_FOUND)
 endif(WITH_NCURSES)
 
-# Libcpuid lib
+# Libcpuid
 if(WITH_LIBCPUID)
 	pkg_check_modules(LIBCPUID libcpuid)
 	if(LIBCPUID_FOUND)
@@ -66,17 +70,16 @@ if(WITH_LIBCPUID)
 	endif(LIBCPUID_FOUND)
 endif(WITH_LIBCPUID)
 
-# Dmidecode lib
+# Dmidecode
 if(WITH_DMIDECODE)
 	add_subdirectory(dmidecode)
 	include_directories(dmidecode)
-	set(DMIDECODE_LIBRARY "dmi")
+	set(DMIDECODE_LIBRARY "dmidecode")
 	add_definitions(-DDMIDECODE_VERSION="${DMIDECODE_VERSION}")
 endif(WITH_DMIDECODE)
 
-# Bandwidth lib
+# Bandwidth
 if(WITH_BANDWIDTH)
-	set(BANDWIDTH_FOUND OFF)
 	add_subdirectory(bandwidth)
 	if(BANDWIDTH_FOUND)
 		include_directories(bandwidth)
@@ -85,7 +88,7 @@ if(WITH_BANDWIDTH)
 	endif(BANDWIDTH_FOUND)
 endif(WITH_BANDWIDTH)
 
-# Pciutils lib
+# Pciutils
 if(WITH_LIBPCI)
 	pkg_check_modules(LIBPCI libpci)
 	if(LIBPCI_FOUND)
@@ -100,7 +103,7 @@ if(WITH_LIBPCI)
 	endif(LIBPCI_FOUND)
 endif(WITH_LIBPCI)
 
-# Libprocps / Libstatgrab lib
+# Libprocps / Libstatgrab
 if(WITH_LIBSYSTEM)
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB) # Linux: Libprocps
 		pkg_check_modules(LIBPROCPS libprocps)
@@ -109,7 +112,7 @@ if(WITH_LIBSYSTEM)
 			link_directories(${LIBPROCPS_LIBRARY_DIRS})
 			add_definitions(${LIBPROCPS_CFLAGS_OTHER})
 			add_embedded_library(-l:libprocps.a)
-			add_definitions(-DHAS_LIBPROCPS -DLIBPROCPS_VERSION="${LIBPROCPS_VERSION}")
+			add_definitions(-DLIBPROCPS_VERSION="${LIBPROCPS_VERSION}")
 		endif(LIBPROCPS_FOUND)
 	elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB) # Others: Libstatgrab
 		pkg_check_modules(LIBSTATGRAB libstatgrab)
@@ -119,19 +122,19 @@ if(WITH_LIBSYSTEM)
 			add_definitions(${LIBSTATGRAB_CFLAGS_OTHER})
 			add_embedded_library(-l:libstatgrab.a)
 			add_embedded_library_others(-ldevstat)
-			add_definitions(-DHAS_LIBSTATGRAB -DLIBSTATGRAB_VERSION="${LIBSTATGRAB_VERSION}")
+			add_definitions(-DLIBSTATGRAB_VERSION="${LIBSTATGRAB_VERSION}")
 		endif(LIBSTATGRAB_FOUND)
 	endif()
 endif(WITH_LIBSYSTEM)
 
-# Needed librairies
+# Various needed librairies
 set(ADDITIONNAL_LIBRARIES "-lm")
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	set(ADDITIONNAL_LIBRARIES "${ADDITIONNAL_LIBRARIES} -lintl")
 endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
-### Final config
+### FINAL CONFIG
 
 message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
 
@@ -154,7 +157,7 @@ print_config("DMIDECODE" 1 WITH_DMIDECODE)
 print_config("BANDWIDTH" BANDWIDTH_FOUND WITH_BANDWIDTH)
 
 
-### Main executable
+### MAIN BINARY
 
 add_executable(cpu-x
 	main.c
@@ -170,7 +173,6 @@ if(PORTABLE_BINARY)
 	if(WITH_GETTEXT)
 		set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
 		add_dependencies(cpu-x convertgmo)
-		add_definitions(-DGETTEXT)
 	endif(WITH_GETTEXT)
 else(PORTABLE_BINARY)
 	if(GETTEXT_FOUND)
@@ -195,5 +197,6 @@ target_link_libraries(cpu-x
 )
 
 
-# Installation
+### INSTALLATION
+
 install(TARGETS cpu-x DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)

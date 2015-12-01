@@ -10,21 +10,24 @@ project(cpu-x
 	LANGUAGES C
 )
 
-# CMake default config
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/bin/)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/lib/)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}		-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}	-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
-set(WITH_GETTEXT ON)
-set(BANDWIDTH_FOUND OFF)
+### DEFAULT CONFIG
 
-include(GNUInstallDirs)
-find_package(PkgConfig REQUIRED)
-
+# Global variables
+if(PORTABLE_BINARY)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR})
+else(PORTABLE_BINARY)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR}/OUTPUT/bin/)
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR}/OUTPUT/lib/)
+	set(DATA_DIR				${CMAKE_BINARY_DIR}/OUTPUT/data/)
+endif(PORTABLE_BINARY)
+set(CPU_X_DEBUG_FLAGS     "-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
+set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${CPU_X_DEBUG_FLAGS}")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${CPU_X_DEBUG_FLAGS}")
 
 # Options
 option(WITH_GTK			"Add support for GUI in GTK3+"				ON)
 option(WITH_NCURSES		"Add support for TUI in NCurses"			ON)
+option(WITH_GETTEXT		"Add support for internationalization"			ON)
 option(WITH_LIBCPUID		"Allow use of library Libcpuid"				ON)
 option(WITH_DMIDECODE		"Allow use of Dmidecode (external modified software)"	ON)
 option(WITH_BANDWIDTH		"Allow use of Bandwidth (external modified software)"	ON)
@@ -35,8 +38,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 else(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"			ON)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-option(PORTABLE_BINARY		"Do a all-in-one binary"				OFF)
-
+option(PORTABLE_BINARY		"Do a all-in-one binary, useful for a portable version"	OFF)
 
 # Colours
 if(NOT WIN32)
@@ -59,11 +61,13 @@ if(NOT WIN32)
 	set(BoldWhite   "${Esc}[1;37m")
 endif(NOT WIN32)
 
-# Macros
-# This macro print the state of CPU-X features: in bold green if enabled, else bold red.
-#   @libname: the name of the library (e.g. GTK)
-#   @foundstate: the result of pkg_check_modules(...) (e.g. XXXXX_FOUND)
-#   @withstate: the CMake option that allow to disable some features (e.g. WITH_XXXXX)
+### MACROS
+
+# Macro: print_config(libname foundstate withstate)
+# Print the state of CPU-X features: in bold green if enabled, else bold red.
+# @libname:	the name of the library (e.g. GTK)
+# @foundstate:	the result of pkg_check_modules(...) (e.g. XXXXX_FOUND)
+# @withstate:	the CMake option that allow to disable some features (e.g. WITH_XXXXX)
 macro(print_config libname foundstate withstate)
 	if(${foundstate} AND ${withstate})
 		message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enable${ColourReset}")
@@ -79,24 +83,27 @@ macro(print_config libname foundstate withstate)
 	endif(${foundstate} AND ${withstate})
 endmacro(print_config)
 
-# This macro add a (static) library to build, useful for portable version.
-#   @lib: the name of the library to add
+# Macro: add_embedded_library(lib)
+# Include a library (satic or not) for building, needed for portable version.
+# @lib:		the name of the library to add
 macro(add_embedded_library lib)
 	if(PORTABLE_BINARY)
 		set(EMBEDDED_LIBRARIES ${EMBEDDED_LIBRARIES} ${lib})
 	endif(PORTABLE_BINARY)
 endmacro(add_embedded_library)
 
-# This macro calls add_embedded_library macro if target is Linux.
-#   @linux_lib: the name of the library to add (Linux OS)
+# Macro: add_embedded_library_linux(linux_lib)
+# Call add_embedded_library macro if target is Linux, else do nothing
+# @linux_lib:	the name of the library to add (Linux OS)
 macro(add_embedded_library_linux linux_lib)
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		add_embedded_library(${linux_lib})
 	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endmacro(add_embedded_library_linux)
 
-# This macro calls add_embedded_library macro if target is NOT Linux.
-#   @others_lib: the name of the library to add (NON-Linux OS)
+# Macro: add_embedded_library_others(others_lib)
+# Call add_embedded_library macro if target is NOT Linux, else do nothing
+# @others_lib:	the name of the library to add (NON-Linux OS)
 macro(add_embedded_library_others others_lib)
 	if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		add_embedded_library(${others_lib})
@@ -104,25 +111,15 @@ macro(add_embedded_library_others others_lib)
 endmacro(add_embedded_library_others)
 
 
-# Subdirectories
+### HELPERS / SUB-DIRECTORIES
+include(GNUInstallDirs)
+find_package(PkgConfig REQUIRED)
 add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(data)
 
 
-# Embed compilation
-if(PORTABLE_BINARY)
-	if(WITH_GTK)
-		message("${Green}Converting files to embed${ColourReset}")
-		execute_process(COMMAND glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
-				COMMAND	glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.h --generate-header cpu-x.gresource.xml
-			WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
-		)
-	endif(WITH_GTK)
-endif(PORTABLE_BINARY)
-
-
-# Uninstall target
+### UNINSTALL TARGET
 set(CPUX_DATADIR ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"

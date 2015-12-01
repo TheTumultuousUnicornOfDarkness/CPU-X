@@ -9,12 +9,12 @@ project(dmidecode
 	LANGUAGES C
 )
 
-# Print libdmi version
+# Config (dmidecode)
 message("-- Checking for submodule '${PROJECT_NAME}'")
 message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
-# Compile statically dmi
-add_library(dmi
+# Build (dmidecode)
+add_library(dmidecode
         STATIC
 	types.h
 	util.c
@@ -29,6 +29,5 @@ add_library(dmi
 )
 
 add_definitions(-DCPUX)
+target_link_libraries(dmidecode)
 set(DMIDECODE_VERSION ${PROJECT_VERSION} PARENT_SCOPE)
-
-target_link_libraries(dmi)
