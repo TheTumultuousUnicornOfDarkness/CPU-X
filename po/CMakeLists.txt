@@ -16,8 +16,7 @@ FILE(GLOB absPoFiles ${CMAKE_SOURCE_DIR}/po/*.po)
 find_package(Gettext)
 if(GETTEXT_FOUND)
 	# Target: genpot
-	# Generate a new .pot file
-	Creation of file cpu-x.pot
+	# Generate a new cpu-x.pot file
 	set(GETTEXT_FOUND ON PARENT_SCOPE)
 	add_custom_target(genpot
 		COMMAND xgettext
