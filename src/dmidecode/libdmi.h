@@ -25,7 +25,6 @@
 #define _LIBDMI_H_
 
 #include "../core.h"
-#include "../options.h"
 
 #define PROC_PACKAGE 0
 #define PROC_BUS 1
@@ -34,6 +33,6 @@
 extern char **dmidata[LASTRAM];
 
 int maindmi(void);
-int libdmi(char c, Options *cpux_opts);
+int libdmi(char c);
 
 #endif

@@ -80,7 +80,7 @@ typedef struct
 /********************************** GUI  **********************************/
 
 /* Start CPU-X in GTK mode */
-void start_gui_gtk(int *argc, char **argv[], Labels *data, Options *opts);
+void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
 /* Show a warning if launched as regulat user */
 void warning_window(GtkWidget *mainwindow);

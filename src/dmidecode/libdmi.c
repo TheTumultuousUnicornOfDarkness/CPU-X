@@ -50,14 +50,14 @@ static u8 *dmiparse(u8 *p, int l)
 	return p;
 }
 
-int libdmi(char c, Options *cpux_opts)
+int libdmi(char c)
 {
 	int err = 0;
 
 	/* Dmidecode options */
 	opt.flags = 0;
 	opt.type = NULL;
-	if(!(cpux_opts->flags_opt & OPT_VERBOSE))
+	if(!opts->verbose)
 		opt.flags |= FLAG_QUIET;
 
 	switch(c)

@@ -33,7 +33,6 @@
 #include <locale.h>
 #include <libintl.h>
 #include "core.h"
-#include "options.h"
 
 #if PORTABLE_BINARY
 # include <sys/stat.h>
@@ -43,17 +42,18 @@
 #endif
 
 
+Options *opts;
+
 int main(int argc, char *argv[])
 {
 	/* Parse options */
 	Labels data = { NULL };
-	Options *opts = &(Options) { .refr_time = 1, .flags_ui = 0, .flags_opt = 0 };
-	menu(argc, argv, opts);
-	message('i', NULL, NULL, opts->flags_opt & OPT_VERBOSE);
+	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false };
+	menu(argc, argv);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_DMIDECODE && !getuid() && (opts->flags_ui & OPT_DMIDECODE))
-		return libdmi('D', opts);
+	if(HAS_DMIDECODE && !getuid() && (opts->output_type & OUT_DMIDECODE))
+		return libdmi('D');
 
 	set_locales();
 	labels_setname(&data);
@@ -101,15 +101,15 @@ int main(int argc, char *argv[])
 		MSG_WARNING("WARNING: root privileges are required to work properly\n");
 
 	/* Show data */
-	switch(opts->flags_ui)
+	switch(opts->output_type)
 	{
-		case OPT_GTK:
-			start_gui_gtk(&argc, &argv, &data, opts);
+		case OUT_GTK:
+			start_gui_gtk(&argc, &argv, &data);
 			break;
-		case OPT_NCURSES:
-			start_tui_ncurses(&data, opts);
+		case OUT_NCURSES:
+			start_tui_ncurses(&data);
 			break;
-		case OPT_DUMP:
+		case OUT_DUMP:
 			dump_data(&data);
 			break;
 	}
@@ -196,7 +196,7 @@ int update_prg(char *executable, Options *opts)
 	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
 	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
 
-	opt = (opts->flags_opt & OPT_VERBOSE) ? strdup("") : strdup("s");
+	opt = opts->verbose ? strdup("") : strdup("s");
 	newver = check_lastver();
 	if(newver[0] == 'f')
 		return 1;
@@ -214,7 +214,7 @@ int update_prg(char *executable, Options *opts)
 	system(cmd);
 
 	/* Extract archive */
-	opt = (opts->flags_opt & OPT_VERBOSE) ? strdup("v") : strdup("");
+	opt = opts->verbose ? strdup("v") : strdup("");
 	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
 	system(cmd);
 
@@ -305,7 +305,7 @@ void version(void)
 }
 
 /* Parse options given in arg */
-void menu(int argc, char *argv[], Options *opts)
+void menu(int argc, char *argv[])
 {
 	int c, tmp_refr = -1;
 
@@ -343,16 +343,16 @@ void menu(int argc, char *argv[], Options *opts)
 		{
 #if HAS_GTK
 			case 'g':
-				opts->flags_ui = OPT_GTK;
+				opts->output_type = OUT_GTK;
 				break;
 #endif /* HAS_GTK */
 #if HAS_NCURSES
 			case 'n':
-				opts->flags_ui = OPT_NCURSES;
+				opts->output_type = OUT_NCURSES;
 				break;
 #endif /* HAS_NCURSES */
 			case 'd':
-				opts->flags_ui = OPT_DUMP;
+				opts->output_type = OUT_DUMP;
 				break;
 			case 'r':
 				tmp_refr = atoi(optarg);
@@ -361,11 +361,11 @@ void menu(int argc, char *argv[], Options *opts)
 				break;
 #if HAS_DMIDECODE
 			case 'D':
-				opts->flags_ui = OPT_DMIDECODE;
+				opts->output_type = OUT_DMIDECODE;
 				break;
 #endif /* HAS_DMIDECODE */
 			case 'v':
-				opts->flags_opt |= OPT_VERBOSE;
+				opts->verbose = true;
 				break;
 			case 'h':
 				help(stdout, argv);
@@ -404,15 +404,10 @@ void msg(char type, char *msg, char *prgname, char *basefile, int line)
 
 int message(char type, char *msg, char *basefile, int line)
 {
-	static bool verbose = false;
-
 	switch(type)
 	{
-		case 'i': /* Initialization for verbose mode */
-			verbose = line;
-			break;
 		case 'v': /* Verbose message */
-			return verbose ? fprintf(stdout, BOLD_GREEN	"%s\n" RESET, msg) : -1;
+			return opts->verbose ? fprintf(stdout, BOLD_GREEN	"%s\n" RESET, msg) : -1;
 		case 'w': /* Warning message */
 			return fprintf(stdout, BOLD_YELLOW	"%s\n" RESET, msg);
 		case 'e': /* Error message */

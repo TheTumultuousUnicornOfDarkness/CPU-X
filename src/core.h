@@ -25,6 +25,7 @@
 #define _CPUX_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 #define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 #define BOLD_RED	"\x1b[1;31m"
@@ -42,6 +43,11 @@
 #define MSGSERR(str) msg('e', str, PRGNAME, BASEFILE, __LINE__)
 #define MSGPERR(str) msg('p', str, PRGNAME, BASEFILE, __LINE__)
 #define _(str) gettext(str)
+
+#define OUT_GTK			(1 << 0)
+#define OUT_NCURSES		(1 << 1)
+#define OUT_DUMP		(1 << 2)
+#define OUT_DMIDECODE		(1 << 3)
 
 #define PRGNAME "CPU-X"
 #define PRGAUTH "X0rg"
@@ -136,10 +142,12 @@ typedef struct
 
 typedef struct
 {
+	unsigned int output_type;
 	unsigned int refr_time;
-	unsigned int flags_ui;
-	unsigned int flags_opt;
+	bool verbose;
 } Options;
+
+extern Options *opts;
 
 
 /********************************** Core **********************************/
@@ -151,7 +159,7 @@ void set_locales(void);
 int extract_locales(void);
 
 /* Get options */
-void menu(int argc, char *argv[], Options *opts);
+void menu(int argc, char *argv[]);
 
 /* Print a formatted message */
 void msg(char type, char *msg, char *prgname, char *basefile, int line);
@@ -260,13 +268,13 @@ int update_prg(char *executable, Options *opts);
 /********************************** External headers **********************/
 
 /* Start CPU-X in GTK mode */
-void start_gui_gtk(int *argc, char **argv[], Labels *data, Options *opts);
+void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
 /* Start CPU-X in NCurses mode */
-void start_tui_ncurses(Labels *data, Options *opts);
+void start_tui_ncurses(Labels *data);
 
 /* Call dmidecode library */
-int libdmi(char c, Options *cpux_opts);
+int libdmi(char c);
 
 /* Call bandwidth library */
 int bandwidth(Labels *data);

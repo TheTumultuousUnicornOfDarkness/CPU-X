@@ -35,7 +35,7 @@
 #endif
 
 
-void start_gui_gtk(int *argc, char **argv[], Labels *data, Options *opts)
+void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
 	GtkBuilder *builder;
 	GtkLabels glab;
