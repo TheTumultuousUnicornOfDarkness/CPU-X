@@ -211,6 +211,7 @@ void clean_specification(char *spec);
 
 /* Print some instruction sets
 TAB: CPU. */
+void catinstr(char **str, char *in);
 void instructions(char **instr);
 
 /* Get CPU core voltage
