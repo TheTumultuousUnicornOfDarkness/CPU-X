@@ -1,3 +1,11 @@
+v2.2.2 (12.02.2015):
+	* Add technology report for some Clarksfield & Richland CPUs
+	* Fixes:
+		** Avoid to free dynamic labels in Caches tab
+		** Free memory when possible in pcidev() function
+		** Fix a buffer overflow on HT detection, causing bug in bandwidth
+
+
 v2.2.1 (11.27.2015):
 	* Add debugs symbols in bandwidth source code when using CMAKE_BUILD_TYPE=Debug
 	* Fixes:
