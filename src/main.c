@@ -102,16 +102,33 @@ const char *optstring[] =
 };
 
 /* Enable internationalization support */
-void set_locales(void)
+int set_locales(void)
 {
+	int i = -1;
+	char *out[3] = { NULL };
+
 	if(PORTABLE_BINARY && HAS_GETTEXT)
 		extract_locales();
 
+	MSG_VERBOSE("Setting locale");
+	/* Apply locale */
 	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain(GETTEXT_PACKAGE);
-	MSGVERB(_("Setting locale done"));
+	out[0] = bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+	out[1] = bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	out[2] = textdomain(GETTEXT_PACKAGE);
+
+	/* Check if something is wrong */
+	while(++i < 3 && out[i] != NULL);
+	if(out[i] == NULL)
+	{
+		MSG_ERROR(_("an error occurred while setting locale"));
+		return 1;
+	}
+	else
+	{
+		MSG_VERBOSE(_("Setting locale done"));
+		return 0;
+	}
 }
 
 #if PORTABLE_BINARY
@@ -124,7 +141,7 @@ int extract_locales(void)
 	FILE *mofile;
 
 	/* Write .mo files in temporary directory */
-	MSGVERB("Extract translations");
+	MSG_VERBOSE("Extracting translations in temporary directory");
 	asprintf(&path, "%s", LOCALEDIR);
 	err = mkdir(path, 0777);
 
@@ -147,6 +164,9 @@ int extract_locales(void)
 		else
 			err++;
 	}
+
+	if(err)
+		MSG_ERROR("an error occurred while extracting translations");
 
 	return err;
 }
@@ -171,7 +191,7 @@ int update_prg(char *executable, Options *opts)
 		portype = strdup("portable_noGTK");
 
 	/* Download archive */
-	MSGVERB(_("Downloading new version..."));
+	MSG_VERBOSE(_("Downloading new version..."));
 	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, newver, portype);
 	asprintf(&cmd, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, newver, tgzname, tgzname);
 	system(cmd);
@@ -193,12 +213,12 @@ int update_prg(char *executable, Options *opts)
 # endif /* OS */
 
 	/* Rename new binary */
-	MSGVERB(_("Applying new version..."));
+	MSG_VERBOSE(_("Applying new version..."));
 	err = rename(bin, executable);
 	if(err)
-		MSGVERB(_("Error when updating."));
+		MSG_VERBOSE(_("Error when updating."));
 	else
-		MSGVERB(_("Update successful!"));
+		MSG_VERBOSE(_("Update successful!"));
 
 	/* Delete temporary files */
 	err = remove(tgzname);
@@ -213,7 +233,7 @@ int update_prg(char *executable, Options *opts)
 	}
 
 	if(err)
-		MSGVERB(_("Error when deleting temporary files."));
+		MSG_VERBOSE(_("Error when deleting temporary files."));
 
 	free(newver);
 	free(portype);
@@ -345,27 +365,6 @@ void menu(int argc, char *argv[])
 }
 
 /* Print a formatted message */
-void msg(char type, char *msg, char *prgname, char *basefile, int line)
-{
-	const char *reset = "\033[0m";
-	const char *boldred = "\033[1;31m";
-	const char *boldgre = "\033[1;32m";
-
-	if(type == 'p')
-	{
-		fprintf(stderr, "%s%s:%s:%i: ", boldred, prgname, basefile, line);
-		perror(msg);
-		fprintf(stderr, "%s\n", reset);
-	}
-
-	else if(type == 'e')
-		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, prgname, basefile, line, msg, reset);
-
-	//else if(type == 'v' && (flags & OPT_VERBOSE))
-	else if(type == 'v')
-		printf("%s%s%s\n", boldgre, msg, reset);
-}
-
 int message(char type, char *msg, char *basefile, int line)
 {
 	switch(type)
@@ -405,7 +404,7 @@ int iasprintf(char **str, const char *fmt, ...)
 	}
 
 	if(ret < 0)
-		MSGPERR(_("failed to allocate string"));
+		MSG_ERROR_ERRNO(_("failed to allocate string"));
 
 	return ret;
 }
@@ -484,7 +483,7 @@ void labels_setname(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Setting label names"));
+	MSG_VERBOSE(_("Setting label names"));
 	/* Various objects*/
 	asprintf(&data->objects[TABCPU],		_("CPU"));
 	asprintf(&data->objects[TABCACHE],		_("Caches"));
@@ -602,7 +601,7 @@ void labels_delnull(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Replace undefined label by empty string"));
+	MSG_VERBOSE(_("Replace undefined label by empty string"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -669,7 +668,7 @@ void labels_free(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Freeing memory"));
+	MSG_VERBOSE(_("Freeing memory"));
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
@@ -742,7 +741,7 @@ void dump_data(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Dumping data..."));
+	MSG_VERBOSE(_("Dumping data..."));
 	/* Tab CPU */
 	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
 	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
@@ -830,13 +829,13 @@ char *check_lastver(void)
 	if(ret != NULL)
 		return ret;
 
-	MSGVERB(_("Check for a new version..."));
+	MSG_VERBOSE(_("Check for a new version..."));
 	page = popen("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
 
 	/* Open file descriptor and put version number in variable */
 	if(page == NULL)
 	{
-		MSGSERR(_("Failed to check on Internet."));
+		MSG_ERROR(_("Failed to check on Internet."));
 		ret = strdup("f");
 		return ret;
 	}
@@ -847,12 +846,12 @@ char *check_lastver(void)
 
 	if(!strcmp(PRGVER, newver))
 	{
-		MSGVERB(_("No new version available."));
+		MSG_VERBOSE(_("No new version available."));
 		ret = strdup("f");
 	}
 	else
 	{
-		MSGVERB(_("A new version is available!"));
+		MSG_VERBOSE(_("A new version is available!"));
 		ret = strdup(newver);
 	}
 

@@ -548,7 +548,7 @@ static int gpu_temperature(Labels *data)
 
 	if(!err && !temp)
 	{
-		MSGSERR(_("failed to retrieve GPU temperature"));
+		MSG_ERROR(_("failed to retrieve GPU temperature"));
 		err++;
 		return 1;
 	}

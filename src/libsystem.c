@@ -63,12 +63,12 @@ void system_linux(Labels *data, long int *suptime)
 
 	osrel = fopen("/etc/os-release", "r"); /* Label Distribution */
 	if(osrel == NULL && !called)
-		MSGPERR(_("failed to open file '/etc/os-release'"));
+		MSG_ERROR_ERRNO(_("failed to open file '/etc/os-release'"));
 	else if(!called)
 	{
 		filestr = malloc(500 * (sizeof(char)));
 		if(filestr == NULL)
-			MSGPERR(_("malloc failed"));
+			MSG_ERROR_ERRNO(_("malloc failed"));
 		else
 		{
 			fread(filestr, sizeof(char), 500, osrel);
@@ -87,7 +87,7 @@ void system_linux(Labels *data, long int *suptime)
 	long int memtot = 0;
 	const int div = 1000;
 
-	MSGVERB(_("Filling labels (libprocps step)"));
+	MSG_VERBOSE(_("Filling labels (libprocps step)"));
 	*suptime = uptime(NULL, NULL); /* Label Uptime */
 
 	meminfo(); /* Memory labels */
@@ -161,7 +161,7 @@ void system_nonlinux(Labels *data, long int *suptime)
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 
-	MSGVERB(_("Filling labels (libstatgrab step)"));
+	MSG_VERBOSE(_("Filling labels (libstatgrab step)"));
 	if(!called)
 	{
 		sg_init(0);
@@ -192,7 +192,7 @@ void tabsystem(Labels *data)
 	FILE *cc;
 	struct utsname name;
 
-	MSGVERB(_("Filling labels (libsystem step)"));
+	MSG_VERBOSE(_("Filling labels (libsystem step)"));
 	uname(&name);
 	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", name.sysname, name.release); /* Label Kernel */
 	asprintf(&data->tabsys[VALUE][HOSTNAME], "%s", name.nodename); /* Label Hostname */

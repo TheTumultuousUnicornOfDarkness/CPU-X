@@ -38,7 +38,7 @@ void start_tui_ncurses(Labels *data)
 	WINDOW *tab;
 	NThrd refr;
 
-	MSGVERB(_("Starting NCurses TUI..."));
+	MSG_VERBOSE(_("Starting NCurses TUI..."));
 	initscr();
 	cbreak();
 	noecho();

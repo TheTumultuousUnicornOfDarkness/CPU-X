@@ -1826,7 +1826,7 @@ int bandwidth(Labels *data)
 	uint32_t edx = get_cpuid1_edx ();
 	char *ptr = NULL;
 
-	MSGVERB(_("Filling labels (libbandwidth step)"));
+	MSG_VERBOSE(_("Estimating CPU caches speed"));
 	cpu_has_sse2 = edx & CPUID_EDX_SSE2;
 	if (!cpu_has_sse2)
 		use_sse2 = false;

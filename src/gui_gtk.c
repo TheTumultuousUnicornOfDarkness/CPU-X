@@ -41,7 +41,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	GtkLabels glab;
 	GThrd refr;
 
-	MSGVERB(_("Starting GTK GUI..."));
+	MSG_VERBOSE(_("Starting GTK GUI..."));
 	gtk_init(argc, argv);
 	builder = gtk_builder_new();
 	refr.glab = &glab;
@@ -61,7 +61,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
 		goto open_ok;
 #endif
-	MSGPERR(_("Import UI in GtkBuilder failed"));
+	MSG_ERROR_ERRNO(_("Import UI in GtkBuilder failed"));
 	exit(EXIT_FAILURE);
 
 	open_ok:

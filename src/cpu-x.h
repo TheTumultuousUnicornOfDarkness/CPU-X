@@ -39,9 +39,6 @@
 #define MSG_WARNING(str)	message('w', str, BASEFILE, __LINE__)
 #define MSG_ERROR(str)		message('e', str, BASEFILE, __LINE__)
 #define MSG_ERROR_ERRNO(str)	message('n', str, BASEFILE, __LINE__)
-#define MSGVERB(str) msg('v', str, PRGNAME, BASEFILE, __LINE__)
-#define MSGSERR(str) msg('e', str, PRGNAME, BASEFILE, __LINE__)
-#define MSGPERR(str) msg('p', str, PRGNAME, BASEFILE, __LINE__)
 #define _(str) gettext(str)
 
 #define OUT_GTK			(1 << 0)
@@ -162,7 +159,7 @@ extern Options *opts;
 /***************************** Defined in main.c *****************************/
 
 /* Enable internationalization support */
-void set_locales(void);
+int set_locales(void);
 
 /* Extract locales in /tmp/.cpu-x */
 int extract_locales(void);
@@ -174,7 +171,6 @@ int update_prg(char *executable, Options *opts);
 void menu(int argc, char *argv[]);
 
 /* Print a formatted message */
-void msg(char type, char *msg, char *prgname, char *basefile, int line);
 int message(char type, char *msg, char *basefile, int line);
 
 /* Duplicate a not null string */
