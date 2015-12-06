@@ -32,7 +32,7 @@
 #include <getopt.h>
 #include <locale.h>
 #include <libintl.h>
-#include "core.h"
+#include "cpu-x.h"
 
 #if PORTABLE_BINARY
 # include <sys/stat.h>
@@ -57,44 +57,7 @@ int main(int argc, char *argv[])
 
 	set_locales();
 	labels_setname(&data);
-	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
-	tabsystem(&data);
-
-	if(HAS_LIBCPUID)
-	{
-		if(libcpuid(&data))
-			MSGSERR(_("libcpuid failed"));
-		else
-		{
-			cpuvendor(data.tabcpu[VALUE][VENDOR]);
-			instructions(&data.tabcpu[VALUE][INSTRUCTIONS]);
-
-			if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
-				strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
-
-			if(HAS_BANDWIDTH)
-			{
-				if(bandwidth(&data))
-					MSGSERR(_("bandwidth failed"));
-			}
-		}
-	}
-
-	if(HAS_DMIDECODE && !getuid())
-	{
-		if(libdmidecode(&data, opts))
-			MSGSERR(_("libdmidecode failed"));
-	}
-	else
-	{
-		if(libdmi_fallback(&data))
-			MSGSERR(_("libdmi_fallback failed"));
-	}
-
-	if(HAS_LIBPCI)
-		pcidev(&data);
-
-	cpufreq(&data);
+	fill_labels(&data);
 	labels_delnull(&data);
 
 	if(getuid())
@@ -399,7 +362,8 @@ void msg(char type, char *msg, char *prgname, char *basefile, int line)
 		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, prgname, basefile, line, msg, reset);
 
 	//else if(type == 'v' && (flags & OPT_VERBOSE))
-		//printf("%s%s%s\n", boldgre, msg, reset);
+	else if(type == 'v')
+		printf("%s%s%s\n", boldgre, msg, reset);
 }
 
 int message(char type, char *msg, char *basefile, int line)
@@ -426,7 +390,7 @@ char *strdupnullok(const char *s)
 }
 
 /* The improved asprintf, which allocate a empty string if string is null */
-int iasprintf(char **str, char *fmt, ...)
+int iasprintf(char **str, const char *fmt, ...)
 {
 	int ret;
 	va_list aptr;
@@ -444,6 +408,75 @@ int iasprintf(char **str, char *fmt, ...)
 		MSGPERR(_("failed to allocate string"));
 
 	return ret;
+}
+
+/* Check if a command exists */
+bool command_exists(char *in)
+{
+	bool ret;
+	char *cmd;
+
+	asprintf(&cmd, "which %s >/dev/null 2>&1", in);
+	ret = system(cmd);
+	free(cmd);
+
+	return !ret;
+}
+
+/* Open a file or a pipe and put its content in buffer */
+int xopen_to_str(char *file, char **buffer, char type)
+{
+	char *test_command;
+	FILE *f = NULL;
+
+	/* Allocate buffer */
+	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
+	{
+		MSG_ERROR_ERRNO(_("xopen_to_str(): malloc() failed"));
+		return 1;
+	}
+
+
+	if(type == 'f')
+	{
+		/* Open file */
+		if((f = fopen(file, "r")) == NULL)
+		{
+			MSG_ERROR_ERRNO("xopen_to_str(): fopen() failed");
+			return 2;
+		}
+	}
+	else if(type == 'p')
+	{
+		/* Open pipe */
+		asprintf(&test_command, file);
+		if(!command_exists(strtok(test_command, " ")))
+			return 2;
+
+		if((f = popen(file, "r")) == NULL)
+		{
+			MSG_ERROR_ERRNO(_("xopen_to_str(): popen() failed"));
+			return 3;
+		}
+	}
+	else
+	{
+		MSG_ERROR("(internal) bad use of xopen_to_str() function");
+		return -1;
+	}
+
+	/* Get string from file descriptor */
+	if(fgets(*buffer, MAXSTR, f) == NULL)
+	{
+		MSG_ERROR_ERRNO(_("xopen_to_str(): fgets() failed"));
+		fclose(f);
+		return 4;
+	}
+
+	(*buffer)[strlen(*buffer) - 1] = '\0';
+	fclose(f);
+
+	return 0;
 }
 
 /* Set labels name */
@@ -751,7 +784,7 @@ void dump_data(Labels *data)
 	/* Tab RAM */
 	printf("\n\n ***** %s *****\n", data->objects[TABRAM]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
-	for(i = BANK0_0; i < last_bank(data); i++)
+	for(i = BANK0_0; i < data->dimms_count; i++)
 		printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
 
 	/* Tab System */
@@ -767,7 +800,7 @@ void dump_data(Labels *data)
 	/* Tab Graphics */
 	printf("\n\n ***** %s *****\n", data->objects[TABGPU]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMGPU1]);
-	for(i = GPUVENDOR1; i < last_gpu(data); i++)
+	for(i = GPUVENDOR1; i < data->gpu_count; i++)
 	{
 		if(i == GPUVENDOR2)
 			printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);

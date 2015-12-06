@@ -26,7 +26,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <libintl.h>
-#include "core.h"
+#include "cpu-x.h"
 #include "tui_ncurses.h"
 
 static int loop = NB_TAB_CPU;
@@ -111,6 +111,7 @@ void start_tui_ncurses(Labels *data)
 
 void nrefresh(NThrd *refr)
 {
+#if 0
 	int i, j = 2;
 
 	/* Refresh tab CPU */
@@ -169,6 +170,7 @@ void nrefresh(NThrd *refr)
 		}
 		wrefresh(refr->win);
 	}
+#endif
 }
 
 void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
@@ -353,10 +355,10 @@ WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in RAM tab */
-	frame(local_win, 1, 1, last_bank(data) + 3, width - 1, data->objects[FRAMBANKS]);
+	frame(local_win, 1, 1, data->dimms_count + 3, width - 1, data->objects[FRAMBANKS]);
 
 	/* Banks frame */
-	for(i = BANK0_0; i < last_bank(data); i++)
+	for(i = BANK0_0; i < data->gpu_count; i++)
 		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabram[NAME][i], data->tabram[VALUE][i]);
 
 	wrefresh(local_win);
@@ -434,7 +436,7 @@ WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data
 	box(local_win, 0 , 0);
 
 	/* Card frames */
-	for(i = GPUVENDOR1; i < last_gpu(data); i++)
+	for(i = GPUVENDOR1; i < data->gpu_count; i++)
 	{
 		if(i % GPUFIELDS == 0)
 		{

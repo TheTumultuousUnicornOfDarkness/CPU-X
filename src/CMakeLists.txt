@@ -161,6 +161,7 @@ print_config("BANDWIDTH" BANDWIDTH_FOUND WITH_BANDWIDTH)
 
 add_executable(cpu-x
 	main.c
+	cpu-x.h
 	core.c
 	core.h
 	libsystem.c

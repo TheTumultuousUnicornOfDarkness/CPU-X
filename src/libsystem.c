@@ -28,7 +28,7 @@
 #include <sys/utsname.h>
 #include <locale.h>
 #include <libintl.h>
-#include "core.h"
+#include "cpu-x.h"
 
 #if HAS_LIBPROCPS
 # include <proc/sysinfo.h>

@@ -31,18 +31,7 @@
 #include <locale.h>
 #include <libintl.h>
 #include "core.h"
-
-#if PORTABLE_BINARY
-# include <sys/stat.h>
-#endif
-
-#if HAS_GTK
-# include "gui_gtk.h"
-#endif
-
-#if HAS_NCURSES
-# include "tui_ncurses.h"
-#endif
+#include "cpu-x.h"
 
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
@@ -57,742 +46,513 @@
 #endif
 
 
-#if HAS_LIBCPUID
-/* Load MSR driver */
-int load_driver(void)
+/************************* Public function *************************/
+
+/* Fill labels by calling below functions */
+int fill_labels(Labels *data)
 {
-	static int loaded = 0;
+	int fallback, err = 0;
+
+	err += call_libcpuid_static(data);
+	err += call_libcpuid_dynamic(data);
+	err += fallback = call_dmidecode(data);
+	err += cpu_multipliers(data);
+	err += gpu_temperature(data);
+	err += bandwidth(data);
+	find_devices(data);
+	if(fallback)
+		fallback_mode(data);
+
+	return err;
+}
+
+
+/************************* Private functions *************************/
+
+#if HAS_LIBCPUID
+/* Get CPU technology, in nanometre (nm) */
+static int cpu_technology(Labels *data)
+{
+	char *msg;
+
+	MSG_VERBOSE(_("Finding CPU technology"));
+	if(data->cpu_vendor_id == VENDOR_INTEL)
+	{
+		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
+		switch(data->cpu_model)
+		{
+			case 5:
+				if(data->cpu_ext_model == 37) return 32; // Westmere
+				if(data->cpu_ext_model == 69) return 22; // Haswell
+			case 7:
+				if(data->cpu_ext_model == 23) return 45;
+				if(data->cpu_ext_model == 71) return 14; // Broadwell
+			case 10:
+				if(data->cpu_ext_model == 26 || data->cpu_ext_model == 30) return 45; // Nehalem
+				if(data->cpu_ext_model == 42) return 32; // Sandy Bridge
+				if(data->cpu_ext_model == 58) return 22; // Ivy Bridge
+			case 12:
+				if(data->cpu_ext_model == 44) return 32; // Westmere
+				if(data->cpu_ext_model == 60) return 22; // Haswell
+			case 13:
+				if(data->cpu_ext_model == 45) return 32; // Sandy Bridge-E
+				if(data->cpu_ext_model == 61) return 14; // Broadwell
+			case 14:
+				if(data->cpu_ext_model == 62) return 22; // Ivy Bridge-E
+				if(data->cpu_ext_model == 94) return 14; // Skylake
+			case 15:
+				if(data->cpu_ext_model == 63) return 22; // Haswell-E
+		}
+	}
+	else if(data->cpu_vendor_id == VENDOR_AMD)
+	{
+		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_amd.c */
+		switch(data->cpu_model)
+		{
+			case 0:
+				if(data->cpu_ext_model  == 0)  return 28; // Jaguar (Kabini)
+				if(data->cpu_ext_model  == 10) return 32; // Piledriver (Trinity)
+				if(data->cpu_ext_family == 21) return 28; // Steamroller (Kaveri)
+				if(data->cpu_ext_family == 22) return 28; // Puma (Mullins)
+			case 1:
+				if(data->cpu_ext_model  == 1)  return 32; // K10 (Llano)
+				if(data->cpu_ext_family == 20) return 40; // Bobcat
+				if(data->cpu_ext_model  == 60) return 28; // Excavator (Carrizo)
+			case 2:
+				if(data->cpu_ext_family == 20) return 40; // Bobcat
+			case 3:
+				if(data->cpu_ext_model  == 13) return 32; // Piledriver (Richland)
+		}
+	}
+
+	asprintf(&msg, _("error, your CPU does not belong in database (%s CPU, model %i, ext. model %i, ext. family %i)"),
+	         data->tabcpu[VALUE][VENDOR], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
+	MSG_ERROR(msg);
+
+	return 0;
+}
+
+/* Static elements provided by libcpuid */
+static int call_libcpuid_static(Labels *data)
+{
+	int i = -1, j = 0;
+	const char *fmt = { _("%2d-way set associative, %2d-byte line size") };
+	struct cpu_raw_data_t raw;
+	struct cpu_id_t datanr;
+
+	/* Call libcpuid */
+	MSG_VERBOSE(_("Calling libcpuid (retrieve static data)"));
+	if(cpuid_get_raw_data(&raw) || cpu_identify(&raw, &datanr))
+	{
+		MSG_ERROR(_("failed to call libcpuid"));
+		return 1;
+	}
+
+	/* Some prerequisites */
+	data->cpu_model = datanr.model;
+	data->cpu_ext_model = datanr.ext_model;
+	data->cpu_ext_family = datanr.ext_family;
+
+	/* Basically fill CPU tab */
+	iasprintf(&data->tabcpu[VALUE][CODENAME],	datanr.cpu_codename);
+	iasprintf(&data->tabcpu[VALUE][SPECIFICATION],	datanr.brand_str);
+	iasprintf(&data->tabcpu[VALUE][FAMILY],		"%d", datanr.family);
+	iasprintf(&data->tabcpu[VALUE][EXTFAMILY],	"%d", datanr.ext_family);
+	iasprintf(&data->tabcpu[VALUE][MODEL],		"%d", datanr.model);
+	iasprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
+	iasprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
+	iasprintf(&data->tabcpu[VALUE][TECHNOLOGY],	"%i nm", cpu_technology(data));
+	iasprintf(&data->tabcpu[VALUE][CORES],		"%d", datanr.num_cores);
+	iasprintf(&data->tabcpu[VALUE][THREADS],	"%d", datanr.num_logical_cpus);
+
+	/* Improve the CPU Vendor label */
+	const struct CpuVendor { char *standard; char *improved; cpu_vendor_t id; } cpuvendors[] =
+	{
+		{ "GenuineIntel", "Intel",                  VENDOR_INTEL     },
+		{ "AuthenticAMD", "AMD",                    VENDOR_AMD       },
+		{ "CyrixInstead", "Cyrix",                  VENDOR_CYRIX     },
+		{ "NexGenDriven", "NexGen",                 VENDOR_NEXGEN    },
+		{ "GenuineTMx86", "Transmeta",              VENDOR_TRANSMETA },
+		{ "UMC UMC UMC ", "UMC",                    VENDOR_UMC       },
+		{ "CentaurHauls", "Centaur",                VENDOR_CENTAUR   },
+		{ "RiseRiseRise", "Rise",                   VENDOR_RISE      },
+		{ "SiS SiS SiS ", "SiS",                    VENDOR_SIS       },
+		{ "Geode by NSC", "National Semiconductor", VENDOR_NSC       },
+		{ datanr.vendor_str, datanr.vendor_str,     VENDOR_UNKNOWN    }
+	};
+	while(strcmp(cpuvendors[++i].standard, datanr.vendor_str));
+	iasprintf(&data->tabcpu[VALUE][VENDOR], cpuvendors[i].improved);
+	data->cpu_vendor_id = cpuvendors[i].id;
+
+	/* Remove training spaces in Specification label */
+	for(i = 1; datanr.brand_str[i] != '\0'; i++)
+	{
+		if(!(isspace(datanr.brand_str[i]) && isspace(datanr.brand_str[i - 1])))
+			data->tabcpu[VALUE][SPECIFICATION][++j] = datanr.brand_str[i];
+	}
+	data->tabcpu[VALUE][SPECIFICATION][++j] = '\0';
+
+	/* Cache level 1 (data) */
+	if(datanr.l1_data_cache > 0)
+	{
+		iasprintf(&data->tabcpu[VALUE][LEVEL1D],	"%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
+		iasprintf(&data->tabcpu[VALUE][LEVEL1D],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL1D], datanr.l1_assoc);
+	}
+
+	/* Cache level 1 (instruction) */
+	if(datanr.l1_instruction_cache > 0)
+	{
+		data->l1_size = datanr.l1_instruction_cache;
+		iasprintf(&data->tabcpu[VALUE][LEVEL1I],	"%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
+		iasprintf(&data->tabcache[VALUE][L1SIZE], data->tabcpu[VALUE][LEVEL1I]);
+		iasprintf(&data->tabcache[VALUE][L1DESCR], fmt, datanr.l1_assoc, datanr.l1_cacheline);
+	}
+
+	/* Cache level 2 */
+	if(datanr.l2_cache > 0)
+	{
+		data->l2_size = datanr.l2_cache;
+		iasprintf(&data->tabcpu[VALUE][LEVEL2], "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
+		iasprintf(&data->tabcache[VALUE][L2SIZE], data->tabcpu[VALUE][LEVEL2]);
+		iasprintf(&data->tabcache[VALUE][L2DESCR], fmt, datanr.l2_assoc, datanr.l2_cacheline);
+	}
+
+	/* Cache level 3 */
+	if(datanr.l3_cache > 0)
+	{
+		data->l3_size = datanr.l3_cache;
+		iasprintf(&data->tabcpu[VALUE][LEVEL3], "%9d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
+		iasprintf(&data->tabcache[VALUE][L3SIZE], data->tabcpu[VALUE][LEVEL3]);
+		iasprintf(&data->tabcache[VALUE][L3DESCR], fmt, datanr.l3_assoc, datanr.l3_cacheline);
+	}
+
+	if(datanr.num_cores > 0) /* Avoid divide by 0 */
+		iasprintf(&data->tabcpu[VALUE][SOCKETS],	"%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
+
+	/* Fill CPU Intructions label */
+	const struct CpuFlags { const cpu_feature_t flag; const char *intrstr; } intructions[] =
+	{
+		{ CPU_FEATURE_MMX,      "MMX"      },
+		{ CPU_FEATURE_MMXEXT,   "(+)"      },
+		{ CPU_FEATURE_3DNOW,    ", 3DNOW!" },
+		{ CPU_FEATURE_3DNOWEXT, "(+)"      },
+
+		{ CPU_FEATURE_SSE,      ", SSE (1" },
+		{ CPU_FEATURE_SSE2,     ", 2"      },
+		{ CPU_FEATURE_SSSE3,    ", 3S"     },
+		{ CPU_FEATURE_SSE4_1,   ", 4.1"    },
+		{ CPU_FEATURE_SSE4_2,   ", 4.2"    },
+		{ CPU_FEATURE_SSE4A,    ", 4A"     },
+		{ CPU_FEATURE_SSE,      ")"        },
+
+		{ CPU_FEATURE_AES,      ", AES"    },
+		{ CPU_FEATURE_AVX,      ", AVX"    },
+		{ CPU_FEATURE_VMX,      ", VT-x"   },
+		{ CPU_FEATURE_SVM,      ", AMD-V"  },
+		{ NUM_CPU_FEATURES,	NULL       }
+	};
+	i = -1;
+	while(intructions[++i].flag != NUM_CPU_FEATURES)
+	{
+		if(datanr.flags[intructions[i].flag] && data->tabcpu[VALUE][INSTRUCTIONS] == NULL)
+			iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
+		else if(datanr.flags[intructions[i].flag])
+			iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], "%s%s", data->tabcpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
+	}
+
+	/* Add string "HT" in CPU Intructions label (if enabled) */
+	if(strcmp(data->tabcpu[VALUE][CORES], data->tabcpu[VALUE][THREADS]))
+		iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], "%s, HT", data->tabcpu[VALUE][INSTRUCTIONS]);
+
+	/* Add string "64-bit" in CPU Intructions label (if supported) */
+	if(datanr.flags[CPU_FEATURE_LM])
+	{
+		switch(data->cpu_vendor_id)
+		{
+			case VENDOR_INTEL:
+				iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], "%s, Intel 64", data->tabcpu[VALUE][INSTRUCTIONS]);
+				break;
+			case VENDOR_AMD:
+				iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], "%s, AMD64", data->tabcpu[VALUE][INSTRUCTIONS]);
+				break;
+			default:
+				iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], "%s, 64-bit", data->tabcpu[VALUE][INSTRUCTIONS]);
+		}
+	}
+
+	return 0;
+}
+
+/* Load CPU MSR kernel module */
+static bool load_msr_driver(void)
+{
+	static bool loaded = false;
 #ifdef __linux__
 	if(!getuid() && !loaded)
 	{
+		MSG_VERBOSE(_("Loading CPU MSR kernel module"));
 		loaded = !system("modprobe msr 2> /dev/null");
-		return loaded;
+		if(!loaded)
+			MSG_ERROR(_("failed to load CPU MSR kernel module"));
 	}
 #endif /* __linux__ */
 	return loaded;
 }
 
-/* Elements provided by libcpuid library */
-int libcpuid(Labels *data)
+/* Dynamic elements provided by libcpuid */
+static int call_libcpuid_dynamic(Labels *data)
 {
-	int err = 0, tech, temp;
-	double volt;
-	struct cpu_raw_data_t raw;
-	struct cpu_id_t datanr;
-
-	MSGVERB(_("Filling labels (libcpuid step)"));
-	err += cpuid_get_raw_data(&raw);
-	err += cpu_identify(&raw, &datanr);
-	load_driver();
-
-	/* Tab CPU */
-	asprintf(&data->tabcpu[VALUE][VENDOR],		"%s", datanr.vendor_str);
-	asprintf(&data->tabcpu[VALUE][CODENAME],	"%s", datanr.cpu_codename);
-	asprintf(&data->tabcpu[VALUE][SPECIFICATION],	"%s", datanr.brand_str);
-	asprintf(&data->tabcpu[VALUE][FAMILY],		"%d", datanr.family);
-	asprintf(&data->tabcpu[VALUE][EXTFAMILY],	"%d", datanr.ext_family);
-	asprintf(&data->tabcpu[VALUE][MODEL],		"%d", datanr.model);
-	asprintf(&data->tabcpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
-	asprintf(&data->tabcpu[VALUE][STEPPING],	"%d", datanr.stepping);
-
-	tech = cpu_technology(datanr.model, datanr.ext_family, datanr.ext_model);
-	if(tech)
-		asprintf(&data->tabcpu[VALUE][TECHNOLOGY], "%i nm", tech);
-
-	volt = cpu_voltage(0);
-	if(volt)
-		asprintf(&data->tabcpu[VALUE][VOLTAGE], "%.3f V", volt);
-
-	temp = cpu_temperature(0);
-	if(temp)
-		asprintf(&data->tabcpu[VALUE][TEMPERATURE], "%i°C", temp);
-
-	/* Cache : level 1 (data) */
-	if(datanr.l1_data_cache)
-	{
-		asprintf(&data->tabcpu[VALUE][LEVEL1D],	"%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
-
-		if(datanr.l1_assoc > 0)
-			asprintf(&data->tabcpu[VALUE][LEVEL1D],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL1D], datanr.l1_assoc);
-	}
-
-	/* Cache : level 1 (instruction) */
-	if(datanr.l1_instruction_cache > 0)
-	{
-		asprintf(&data->tabcpu[VALUE][LEVEL1I],	"%d x %4d KB", datanr.num_cores, datanr.l1_instruction_cache);
-		data->tabcache[VALUE][L1SIZE] = strdup(data->tabcpu[VALUE][LEVEL1I]);
-
-		if(datanr.l1_assoc > 0)
-		{
-			asprintf(&data->tabcpu[VALUE][LEVEL1I],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL1I], datanr.l1_assoc);
-			asprintf(&data->tabcache[VALUE][L1DESCR], "%2d-way set associative", datanr.l1_assoc);
-		}
-		if(datanr.l1_cacheline > 0)
-			asprintf(&data->tabcache[VALUE][L1DESCR], "%s, %2d-byte line size", data->tabcache[VALUE][L1DESCR], datanr.l1_cacheline);
-	}
-
-	/* Cache : level 2 */
-	if(datanr.l2_cache > 0)
-	{
-		asprintf(&data->tabcpu[VALUE][LEVEL2], "%d x %4d KB", datanr.num_cores, datanr.l2_cache);
-		data->tabcache[VALUE][L2SIZE] = strdup(data->tabcpu[VALUE][LEVEL2]);
-
-		if(datanr.l2_assoc > 0)
-		{
-			asprintf(&data->tabcpu[VALUE][LEVEL2],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL2], datanr.l2_assoc);
-			asprintf(&data->tabcache[VALUE][L2DESCR], "%2d-way set associative", datanr.l2_assoc);
-		}
-		if(datanr.l2_cacheline > 0)
-			asprintf(&data->tabcache[VALUE][L2DESCR], "%s, %2d-byte line size", data->tabcache[VALUE][L2DESCR], datanr.l2_cacheline);
-	}
-
-	/* Cache : level 3 */
-	if(datanr.l3_cache > 0)
-	{
-		asprintf(&data->tabcpu[VALUE][LEVEL3], "%9d KB", datanr.l3_cache);
-		data->tabcache[VALUE][L3SIZE] = strdup(data->tabcpu[VALUE][LEVEL3]);
-
-		if(datanr.l3_assoc > 0)
-		{
-			asprintf(&data->tabcpu[VALUE][LEVEL3],	  "%s, %2d-way", data->tabcpu[VALUE][LEVEL3], datanr.l3_assoc);
-			asprintf(&data->tabcache[VALUE][L3DESCR], "%2d-way set associative", datanr.l3_assoc);
-		}
-		if(datanr.l3_cacheline > 0)
-			asprintf(&data->tabcache[VALUE][L3DESCR], "%s, %2d-byte line size", data->tabcache[VALUE][L3DESCR], datanr.l3_cacheline);
-	}
-
-	if(datanr.num_cores > 0) /* Avoid divide by 0 */
-		asprintf(&data->tabcpu[VALUE][SOCKETS],	"%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
-
-	asprintf(&data->tabcpu[VALUE][CORES],		"%d", datanr.num_cores);
-	asprintf(&data->tabcpu[VALUE][THREADS],		"%d", datanr.num_logical_cpus);
-
-	clean_specification(data->tabcpu[VALUE][SPECIFICATION]);
-
-	return err;
-}
-
-/* Pretty label CPU Vendor */
-void cpuvendor(char *vendor)
-{
-	/* https://github.com/anrieff/libcpuid/blob/master/libcpuid/cpuid_main.c#L233 */
-	MSGVERB(_("Improving CPU Vendor label"));
-
-	if     (!strcmp(vendor, "GenuineIntel"))	strcpy(vendor, "Intel");
-	else if(!strcmp(vendor, "AuthenticAMD"))	strcpy(vendor, "AMD");
-	else if(!strcmp(vendor, "CyrixInstead"))	strcpy(vendor, "Cyrix");
-	else if(!strcmp(vendor, "NexGenDriven"))	strcpy(vendor, "NexGen");
-	else if(!strcmp(vendor, "GenuineTMx86"))	strcpy(vendor, "Transmeta");
-	else if(!strcmp(vendor, "UMC UMC UMC "))	strcpy(vendor, "UMC");
-	else if(!strcmp(vendor, "CentaurHauls"))	strcpy(vendor, "Centaur");
-	else if(!strcmp(vendor, "RiseRiseRise"))	strcpy(vendor, "Rise");
-	else if(!strcmp(vendor, "SiS SiS SiS "))	strcpy(vendor, "SiS");
-	else if(!strcmp(vendor, "Geode by NSC"))	strcpy(vendor, "National Semiconductor");
-	else						strcpy(vendor, "Unknown");
-}
-
-/* Remove unwanted spaces in value Specification */
-void clean_specification(char *spec)
-{
-	int i = 0, j = 0, skip = 0;
-
-	MSGVERB(_("Removing unnecessary spaces in label Specification"));
-	while(spec[i] != '\0')
-	{
-		if(isspace(spec[i]) && !skip)
-		{
-			spec[j] = ' ';
-			j++;
-			skip = 1;
-		}
-		else if(!isspace(spec[i]))
-		{
-			spec[j] = spec[i];
-			j++;
-			skip = 0;
-		}
-		i++;
-	}
-	spec[j] = '\0';
-}
-
-void catinstr(char **str, char *in)
-{
-	int sep = 1;
-	static int first = 1;
-	char *tmp;
-
-	if(first)
-	{
-		*str = strdupnullok(in);
-		first = 0;
-	}
-	else
-	{
-		sep = isalnum(in[0]) ? 3 : sep;
-		tmp = strdupnullok(*str);
-		free(*str);
-		tmp = (char *) realloc(tmp, (strlen(tmp) + strlen(in) + sep) * sizeof(char));
-
-		if(isalnum(in[0]))
-			strcat(tmp, ", ");
-		strcat(tmp, in);
-		*str = strdupnullok(tmp);
-		free(tmp);
-	}
-}
-
-/* Show some instructions supported by CPU */
-void instructions(char **instr)
-{
-	struct cpu_raw_data_t raw;
-	struct cpu_id_t id;
-
-	MSGVERB(_("Finding CPU instructions"));
-	if (!cpuid_get_raw_data(&raw) && !cpu_identify(&raw, &id))
-	{
-		if(id.flags[CPU_FEATURE_MMX])		catinstr(instr, "MMX");
-		if(id.flags[CPU_FEATURE_MMXEXT])	catinstr(instr, "(+)");
-		if(id.flags[CPU_FEATURE_3DNOW])		catinstr(instr, ", 3DNOW!");
-		if(id.flags[CPU_FEATURE_3DNOWEXT])	catinstr(instr, "(+)");
-
-		if(id.flags[CPU_FEATURE_SSE])		catinstr(instr, ", SSE (1");
-		if(id.flags[CPU_FEATURE_SSE2])		catinstr(instr, ", 2");
-		if(id.flags[CPU_FEATURE_SSSE3])		catinstr(instr, ", 3S");
-		if(id.flags[CPU_FEATURE_SSE4_1])	catinstr(instr, ", 4.1");
-		if(id.flags[CPU_FEATURE_SSE4_2])	catinstr(instr, ", 4.2");
-		if(id.flags[CPU_FEATURE_SSE4A])		catinstr(instr, ", 4A");
-		if(id.flags[CPU_FEATURE_SSE])		catinstr(instr, ")");
-
-		if(id.flags[CPU_FEATURE_AES])		catinstr(instr, ", AES");
-		if(id.flags[CPU_FEATURE_AVX])		catinstr(instr, ", AVX");
-		if(id.flags[CPU_FEATURE_VMX])		catinstr(instr, ", VT-x");
-		if(id.flags[CPU_FEATURE_SVM])		catinstr(instr, ", AMD-V");
-
-		if(id.flags[CPU_FEATURE_LM])
-		{
-#ifdef HAVE_LIBCPUID_0_2_2
-			switch(cpuid_get_vendor())
-			{
-				case VENDOR_INTEL:
-					catinstr(instr, ", Intel 64");
-					break;
-				case VENDOR_AMD:
-					catinstr(instr, ", AMD64");
-					break;
-				default:
-					catinstr(instr, ", 64-bit");
-			}
-#else
-			catinstr(instr, ", 64-bit");
-#endif /* HAVE_LIBCPUID_0_2_2 */
-		}
-	}
-	else
-		MSGSERR(_("libcpuid failed"));
-}
-
-/* Get CPU core voltage */
-double cpu_voltage(int core)
-{
-#ifdef HAVE_LIBCPUID_0_2_2
-	int voltage = 0;
-	static int err = 0;
+	int voltage, temp, bclk;
 	struct msr_driver_t *msr = NULL;
 
-	MSGVERB(_("Finding CPU core voltage"));
-	msr = cpu_msr_driver_open_core(core);
-	if(msr != NULL)
-	{
-		voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
-		if(voltage != CPU_INVALID_VALUE)
-			return (double) voltage / 100;
-	}
+	/* CPU frequency */
+	MSG_VERBOSE(_("Calling libcpuid (retrieve dynamic data)"));
+	data->cpu_freq = cpu_clock();
+	iasprintf(&data->tabcpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
 
-	if(!err)
-	{
-		MSGSERR(_("error when finding CPU core voltage"));
-		err++;
-	}
-#endif /* HAVE_LIBCPUID_0_2_2 */
-	return 0.0;
-}
-
-/* Get CPU core temprature */
-int cpu_temperature(int core)
-{
 #ifdef HAVE_LIBCPUID_0_2_2
-	int temp = 0;
-	static int err = 0;
-	struct msr_driver_t *msr = NULL;
-
-	MSGVERB(_("Finding CPU core temperature"));
-	msr = cpu_msr_driver_open_core(core);
-	if(msr != NULL)
+	/* MSR stuff */
+	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
+	load_msr_driver();
+	msr = cpu_msr_driver_open_core(data->selected_core);
+	if(msr == NULL)
 	{
-		temp = cpu_msrinfo(msr, INFO_TEMPERATURE);
-		if(temp != CPU_INVALID_VALUE)
-			return temp;
+		MSG_ERROR(_("failed to open CPU MSR"));
+		return 1;
 	}
 
-	if(!err)
-	{
-		MSGSERR(_("error when finding CPU core temperature"));
-		err++;
-	}
-#endif /* HAVE_LIBCPUID_0_2_2 */
-	return 0;
-}
+	/* Get values from MSR */
+	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
+	temp = cpu_msrinfo(msr, INFO_TEMPERATURE);
+	bclk = cpu_msrinfo(msr, INFO_BCLK);
 
-/* Get CPU technology, in nanometre (nm) */
-int cpu_technology(int32_t model, int32_t ext_family, int32_t ext_model)
-{
-#ifdef HAVE_LIBCPUID_0_2_2
-	static int err = 0;
+	/* CPU Voltage */
+	if(voltage != CPU_INVALID_VALUE)
+		iasprintf(&data->tabcpu[VALUE][VOLTAGE],     "%.3f V", (double) voltage / 100);
 
-	MSGVERB(_("Finding CPU technology"));
-	if(cpuid_get_vendor() == VENDOR_INTEL)
-	{
-		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
-		switch(model)
-		{
-			case 5:
-				if(ext_model == 37) return 32; // Westmere
-				if(ext_model == 69) return 22; // Haswell
-			case 7:
-				if(ext_model == 23) return 45;
-				if(ext_model == 71) return 14; // Broadwell
-			case 10:
-				if(ext_model == 26 || ext_model == 30) return 45; // Nehalem
-				if(ext_model == 42) return 32; // Sandy Bridge
-				if(ext_model == 58) return 22; // Ivy Bridge
-			case 12:
-				if(ext_model == 44) return 32; // Westmere
-				if(ext_model == 60) return 22; // Haswell
-			case 13:
-				if(ext_model == 45) return 32; // Sandy Bridge-E
-				if(ext_model == 61) return 14; // Broadwell
-			case 14:
-				if(ext_model == 62) return 22; // Ivy Bridge-E
-				if(ext_model == 94) return 14; // Skylake
-			case 15:
-				if(ext_model == 63) return 22; // Haswell-E
+	/* CPU Temperature */
+	if(temp != CPU_INVALID_VALUE)
+		iasprintf(&data->tabcpu[VALUE][TEMPERATURE], "%i°C", temp);
 
-		}
-	}
-	else if(cpuid_get_vendor() == VENDOR_AMD)
+	/* Base clock */
+	if(bclk != CPU_INVALID_VALUE)
 	{
-		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_amd.c */
-		switch(model)
-		{
-			case 0:
-				if(ext_model == 0) return 28; // Jaguar (Kabini)
-				if(ext_model == 10) return 32; // Piledriver (Trinity)
-				if(ext_family == 21) return 28; // Steamroller (Kaveri)
-				if(ext_family == 22) return 28; // Puma (Mullins)
-			case 1:
-				if(ext_model == 1) return 32; // K10 (Llano)
-				if(ext_family == 20) return 40; // Bobcat
-				if(ext_model == 60) return 28; // Excavator (Carrizo)
-			case 2:
-				if(ext_family == 20) return 40; // Bobcat
-			case 3:
-				if(ext_model == 13) return 32; // Piledriver (Richland)
-		}
-	}
-
-	if(!err)
-	{
-		MSGSERR(_("error when finding CPU technology"));
-		err++;
+		data->bus_freq = (double) bclk / 100;
+		iasprintf(&data->tabcpu[VALUE][BUSSPEED],    "%.2f MHz", data->bus_freq);
 	}
 #endif /* HAVE_LIBCPUID_0_2_2 */
+
 	return 0;
 }
 #endif /* HAS_LIBCPUID */
 
 #if HAS_DMIDECODE
-/* Elements provided by libdmi library (need root privileges) */
-int libdmidecode(Labels *data, Options *opts)
+/* Elements provided by dmidecode (need root privileges) */
+static int call_dmidecode(Labels *data)
 {
 	int i, err = 0;
-	static int nodyn = 0;
 
-	MSGVERB(_("Filling labels (libdmi step)"));
+	MSG_VERBOSE(_("Calling dmidecode"));
 	/* Tab CPU */
-	dmidata[PROC_PACKAGE]	= &data->tabcpu[VALUE][PACKAGE];
-	dmidata[PROC_BUS]	= &data->tabcpu[VALUE][BUSSPEED];
-	err += libdmi('c', opts);
+	dmidata[PROC_PACKAGE] = &data->tabcpu[VALUE][PACKAGE];
+	dmidata[PROC_BUS]     = &data->tabcpu[VALUE][BUSSPEED];
+	err += libdmi('c');
 
-	/* Skip this part on refresh */
-	if(!nodyn)
-	{
-		/* Tab Motherboard */
-		for(i = MANUFACTURER; i < LASTMB; i++)
-			dmidata[i] = &data->tabmb[VALUE][i];
-		err += libdmi('m', opts);
+	/* Tab Motherboard */
+	for(i = MANUFACTURER; i < LASTMB; i++)
+		dmidata[i]    = &data->tabmb[VALUE][i];
+	err += libdmi('m');
 
-		/* Tab RAM */
-		for(i = BANK0_0; i < LASTRAM; i++)
-			dmidata[i] = &data->tabram[VALUE][i];
-		err += libdmi('r', opts);
+	/* Tab RAM */
+	for(i = BANK0_0; i < LASTRAM; i++)
+		dmidata[i]    = &data->tabram[VALUE][i];
+	err += libdmi('r');
 
-		nodyn++;
-	}
+	if(err)
+		MSG_ERROR(_("failed to call dmidecode"));
 
 	return err;
 }
 #endif /* HAS_DMIDECODE */
 
-/* Alternative for libdmidecode (Linux only) */
-int libdmi_fallback(Labels *data)
+/* Alternative function if started as regular user (Linux only) */
+static int fallback_mode(Labels *data)
 {
-	int err = 0;
-
-	MSGVERB(_("Filling labels (libdmi step, fallback mode)"));
 #ifdef __linux__
-	int i = 0, len;
-	char path[PATH_MAX], buff[MAXSTR];
-	const char *id[LASTMB] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
-	FILE *mb[LASTMB] = { NULL };
+	int i = -1;
+	char *file, *buff;
+	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 
+	MSG_VERBOSE(_("Filling labels in fallback mode"));
 	/* Tab Motherboard */
-	while(id[i] != NULL)
+	while(id[++i] != NULL)
 	{
-		snprintf(path, PATH_MAX, "%s/%s", SYS_DMI, id[i]);
-		mb[i] = fopen(path, "r");
-		if(mb[i] != NULL)
-		{
-			if(fgets(buff, MAXSTR, mb[i]) != NULL)
-			{
-				len = (strlen(buff) >= 1) ? strlen(buff) - 1 : 0;
-				buff[len] = '\0';
-				data->tabmb[VALUE][i] = strdupnullok(buff);
-			}
-			else
-				err++;
-
-			fclose(mb[i]);
-		}
-		else
-			err++;
-
-		i++;
+		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
+		xopen_to_str(file, &buff, 'f');
+		iasprintf(&data->tabmb[VALUE][i], buff);
 	}
 #endif /* __linux__ */
-
-	return err;
+	return 0;
 }
 
-/* Get CPU frequencies (current - min - max) */
-void cpufreq(Labels *data)
+/* Get CPU multipliers ("x current (min-max)" label) */
+static int cpu_multipliers(Labels *data)
 {
-	MSGVERB(_("Getting CPU frequency"));
-
-	if(HAS_LIBCPUID)
-		asprintf(&data->tabcpu[VALUE][CORESPEED], "%d MHz", cpu_clock());
-
+	MSG_VERBOSE(_("Getting CPU multipliers"));
 #ifdef __linux__
-	static int error = 0;
-	char multmin[S] = { "0" }, multmax[S] = { "0" };
-	FILE *fmin = NULL, *fmax = NULL;
+	char *min_freq_str, *max_freq_str;
+	char *cpuinfo_min_file, *cpuinfo_max_file;
+	double min_freq, max_freq;
+	double min_mult, cur_mult, max_mult;
 
-	/* Can't get base clock without root rights, skip multiplicators calculation */
-	if(!getuid())
+	if(data->cpu_freq < 0 || data->bus_freq < 0)
 	{
-		if(error != 1 && error != 3)
-		{
-			fmin = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", "r");
-			if(fmin == NULL)
-			{
-				MSGPERR(_("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq'"));
-				error = 1;
-			}
-			else {
-				fgets(multmin, S - 1, fmin);
-				fclose(fmin);
-			}
-		}
-
-		if(error != 2 && error != 3)
-		{
-			fmax = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", "r");
-			if(fmax == NULL)
-			{
-				MSGPERR(_("failed to open file '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'"));
-				error = (error == 1) ? 3 : 2;
-			}
-			else {
-				fgets(multmax, S - 1, fmax);
-				fclose(fmax);
-			}
-		}
-
-		if(data->tabcpu[VALUE][BUSSPEED] != NULL && data->tabcpu[VALUE][CORESPEED] != NULL)
-			mult(data->tabcpu[VALUE][BUSSPEED], data->tabcpu[VALUE][CORESPEED], multmin, multmax, &data->tabcpu[VALUE][MULTIPLIER]);
-	}
-#endif /* __linux__ */
-}
-
-/* Determine CPU multiplicator from base clock */
-void mult(char *busfreq, char *cpufreq, char *multmin, char *multmax, char **multsynt)
-{
-	int i, fcpu, min, max;
-	static int fbus = -1;
-	double cur;
-	char ncpu[S] = "", nbus[S] = "";
-
-	MSGVERB(_("Estimating CPU multipliers"));
-	for(i = 0; isdigit(cpufreq[i]); i++)
-		ncpu[i] = cpufreq[i];
-	ncpu[i] = '\0';
-	fcpu = atoi(ncpu);
-
-	if(fbus == -1)
-	{
-		for(i = 0; isdigit(busfreq[i]); i++)
-			nbus[i] = busfreq[i];
-		nbus[i] = '\0';
-		fbus = atoi(nbus);
+		MSG_ERROR(_("failed to get CPU multipliers"));
+		return 1;
 	}
 
-	cur = (double) fcpu / fbus;
-	min = atoi(multmin);
-	max = atoi(multmax);
+	cur_mult = data->cpu_freq / data->bus_freq;
+	asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, data->selected_core);
+	asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, data->selected_core);
 
-	if(fbus > 0 && min >= 10000 && max >= 10000)
+	if(xopen_to_str(cpuinfo_min_file, &min_freq_str, 'f') || xopen_to_str(cpuinfo_max_file, &max_freq_str, 'f'))
 	{
-		min /= (fbus * 1000);
-		max /= (fbus * 1000);
-		asprintf(multsynt, "x %i (%i-%i)", (int) round(cur), min, max);
-	}
-	else if(cur > 0)
-			asprintf(multsynt, "x %.2f", cur);
-}
-
-/* Read value "bobomips" from file /proc/cpuinfo */
-void bogomips(char **c)
-{
-	MSGVERB(_("Reading value BogoMIPS"));
-#ifdef __linux__
-	int i = 0, j = 0;
-	char read[20];
-	char tmp[10], *mips = NULL;
-	FILE *cpuinfo = NULL;
-
-	cpuinfo = fopen("/proc/cpuinfo", "r");
-	if(cpuinfo == NULL)
-	{
-		MSGPERR(_("failed to open file '/proc/cpuinfo'"));
+		asprintf(&data->tabcpu[VALUE][MULTIPLIER], "x %.2f", cur_mult);
+		MSG_WARNING(_("cannot get minimum and maximum CPU multiplierss"));
 	}
 	else
 	{
-		while(fgets(read, sizeof(read), cpuinfo) != NULL)
-		{
-			mips = strstr(read, "bogomips");
-			if(mips != NULL)
-				break;
-		}
+		min_freq = strtod(min_freq_str, NULL) / 1000;
+		max_freq = strtod(max_freq_str, NULL) / 1000;
 
-		while(mips[i] != '\n')
-		{
-			if(isdigit(mips[i]) || mips[i] == '.')
-			{
-				tmp[j] = mips[i];
-				j++;
-			}
-			i++;
-		}
-		tmp[j] = '\0';
+		min_mult = min_freq / data->bus_freq;
+		max_mult = max_freq / data->bus_freq;
+
+		asprintf(&data->tabcpu[VALUE][MULTIPLIER], "x %.0f (%.0f-%.0f)", round(cur_mult), round(min_mult), round(max_mult));
 	}
-	*c = strdupnullok(tmp);
-#else
-	*c = strdupnullok("- - - -");
 #endif /* __linux__ */
-}
-
-/* Find the number of existing banks */
-int last_bank(Labels *data)
-{
-	int i, cpt = LASTRAM;
-
-	for(i = BANK7_0; i >= BANK0_0; i -= 2)
-	{
-		if(data->tabram[VALUE][i][0] == '\0')
-			cpt -= 2;
-	}
-
-	return cpt;
+	return 0;
 }
 
 #if HAS_LIBPCI
 /* Find driver name for a device */
-static char *find_driver(struct pci_dev *dev, char *buf)
+static char *find_driver(struct pci_dev *dev, char *buff)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
 	char name[MAXSTR], *drv, *base;
 
-	if (dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
+	MSG_VERBOSE(_("Finding graphic card driver"));
+	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
+	{
+		MSG_ERROR(_("failed to find graphic card driver (access is not by PCI bus)"));
 		return NULL;
+	}
 
 	base = pci_get_param(dev->access, "sysfs.path");
-	if (!base || !base[0])
+	if(!base || !base[0])
+	{
+		MSG_ERROR(_("failed to find graphic card driver (failed to get param)"));
 		return NULL;
+	}
 
 	n = snprintf(name, sizeof(name), "%s/devices/%04x:%02x:%02x.%d/driver",
 		base, dev->domain, dev->bus, dev->dev, dev->func);
-	if (n < 0 || n >= (int)sizeof(name))
-		printf("show_driver: sysfs device name too long, why?");
 
-	n = readlink(name, buf, MAXSTR);
-	if (n < 0)
+	n = readlink(name, buff, MAXSTR);
+	if(n < 0)
+	{
+		MSG_ERROR(_("failed to find graphic card driver (driver name seems to be empty)"));
 		return NULL;
-	if (n >= MAXSTR)
-		return "<name-too-long>";
-	buf[n] = 0;
+	}
+	else if(n >= MAXSTR)
+		buff[MAXSTR - 1] = '\0';
+	else
+		buff[n] = '\0';
 
-	if ((drv = strrchr(buf, '/')))
+	if((drv = strrchr(buff, '/')))
 		return drv+1;
 	else
-		return buf;
+		return buff;
 }
 
-/* Find some PCI devices */
-void pcidev(Labels *data)
+/* Find some PCI devices, like chipset and GPU */
+static void find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
-	int nbgpu = 0;
-	double temp = 0.0;
+	int nbgpu = 0, i = -1;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	char namebuf[MAXSTR], *vendor, *product, *drivername, *driverstr;
+	const char *gpu_vendors[] = { "AMD", "Intel", "NVIDIA", NULL };
 
-	MSGVERB(_("Filling labels (libpci step)"));
-	pacc = pci_alloc();	/* Get the pci_access structure */
-	pci_init(pacc);		/* Initialize the PCI library */
-	pci_scan_bus(pacc);	/* We want to get the list of devices */
+	MSG_VERBOSE(_("Finding devices"));
+	pacc = pci_alloc(); /* Get the pci_access structure */
+	pci_init(pacc);	    /* Initialize the PCI library */
+	pci_scan_bus(pacc); /* We want to get the list of devices */
 
-	for (dev=pacc->devices; dev; dev=dev->next)	/* Iterate over all devices */
+	/* Iterate over all devices */
+	for(dev = pacc->devices; dev; dev = dev->next)
 	{
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
-		vendor  = strdupnullok(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
-		product = strdupnullok(pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
+		asprintf(&vendor,  pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
+		asprintf(&product, pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
 
-		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)	/* Looking for chipset */
+		/* Looking for chipset */
+		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)
 		{
-			data->tabmb[VALUE][CHIPVENDOR] = strdupnullok(vendor);
-			data->tabmb[VALUE][CHIPNAME] = strdupnullok(product);
+			iasprintf(&data->tabmb[VALUE][CHIPVENDOR], vendor);
+			iasprintf(&data->tabmb[VALUE][CHIPNAME],   product);
 		}
 
+		/* Looking for GPU */
 		if(nbgpu < LASTGPU / GPUFIELDS &&
-				(dev->device_class == PCI_BASE_CLASS_DISPLAY	||
-				dev->device_class == PCI_CLASS_DISPLAY_VGA	||
-				dev->device_class == PCI_CLASS_DISPLAY_XGA	||
-				dev->device_class == PCI_CLASS_DISPLAY_3D	||
-				dev->device_class == PCI_CLASS_DISPLAY_OTHER))	/* Looking for GPU */
+		  (dev->device_class == PCI_BASE_CLASS_DISPLAY	||
+		  dev->device_class == PCI_CLASS_DISPLAY_VGA	||
+		  dev->device_class == PCI_CLASS_DISPLAY_XGA	||
+		  dev->device_class == PCI_CLASS_DISPLAY_3D	||
+		  dev->device_class == PCI_CLASS_DISPLAY_OTHER))
 		{
+			while(gpu_vendors[++i] != NULL && strstr(vendor, gpu_vendors[i]) == NULL);
 			drivername = find_driver(dev, namebuf);
-			temp = gpu_temperature();
-			if(drivername != NULL)
-				asprintf(&driverstr, _("(%s driver)"), drivername);
-			else
-				driverstr = strdup("");
-			asprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], "%s %s", clean_gpuvendor(vendor), driverstr);
-			asprintf(&data->tabgpu[VALUE][GPUNAME1		+ nbgpu * GPUFIELDS], "%s", product);
-			if(temp)
-				asprintf(&data->tabgpu[VALUE][GPUTEMP1		+ nbgpu * GPUFIELDS], "%.2f°C", temp);
+			iasprintf(&driverstr, _("(%s driver)"), drivername);
+			iasprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], "%s %s", (gpu_vendors[i] == NULL) ? vendor : gpu_vendors[i], driverstr);
+			iasprintf(&data->tabgpu[VALUE][GPUNAME1		+ nbgpu * GPUFIELDS], "%s", product);
 			nbgpu++;
 		}
 	}
 
-	pci_cleanup(pacc);	/* Close everything */
+	/* Close everything */
+	pci_cleanup(pacc);
 	free(vendor);
 	free(product);
-}
-
-/* Pretty label GPU Vendor */
-char *clean_gpuvendor(char *str)
-{
-	if(strstr(str, "NVIDIA") != NULL)
-		return strdup("NVIDIA");
-	else if(strstr(str, "AMD") != NULL)
-		return strdup("AMD");
-	else if(strstr(str, "Intel") != NULL)
-		return strdup("Intel");
-	else
-		return str;
+	if(driverstr != NULL)
+		free(driverstr);
 }
 #endif /* HAS_LIBPCI */
 
-/* Get GPU tempreature */
-double gpu_temperature(void)
+/* Retrieve GPU temperature */
+static int gpu_temperature(Labels *data)
 {
-	enum GPU_Driver { NVIDIA, CATALYST, MESA, UNKNOWN = -1 };
-	static enum GPU_Driver driver = UNKNOWN;
 	static int err = 0;
-	char buff[MAXSTR];
-	FILE *command = NULL;
+	double temp = 0.0;
+	char *buff, *drm;
 
-	MSGVERB(_("Finding GPU temperature"));
-	if(command_exists("nvidia-settings"))
-	{
-		command = popen("nvidia-settings -q GPUCoreTemp -t", "r");
-		driver = NVIDIA;
-	}
-	else if(command_exists("aticonfig"))
-	{
-		command = popen("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", "r");
-		driver = CATALYST;
-	}
-	else
-	{
-		command = fopen("/sys/class/drm/card0/device/hwmon/hwmon0/temp1_input", "r");
-		driver = MESA;
-	}
+	MSG_VERBOSE(_("Retrieve GPU temperature"));
+	asprintf(&drm, "%s%i/device/hwmon/hwmon0/temp1_input", SYS_DRM, 0);
+	if(!xopen_to_str("nvidia-settings -q GPUCoreTemp", &buff, 'p') ||
+	   !xopen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff, 'p'))
+		temp = atof(buff);
+	else if(!xopen_to_str(drm, &buff, 'f'))
+		temp = atof(buff) / 1000.0;
 
-	if((driver == NVIDIA || driver == CATALYST) && command != NULL)
+	if(!err && !temp)
 	{
-		fgets(buff, MAXSTR, command);
-		return atof(buff);
-	}
-	else if(driver == MESA && command != NULL)
-	{
-		fgets(buff, MAXSTR, command);
-		return ((double) atoi(buff) / 1000);
-	}
-
-	if(!err)
-	{
-		MSGSERR(_("error when finding GPU temperature"));
+		MSGSERR(_("failed to retrieve GPU temperature"));
 		err++;
-	}
-	return 0.0;
-}
-
-/* Find the number of GPU */
-int last_gpu(Labels *data)
-{
-	int i, cpt = LASTGPU;
-
-	for(i = GPUVENDOR4; i >= GPUVENDOR1; i -= GPUFIELDS)
-	{
-		if(data->tabgpu[VALUE][i][0] == '\0')
-			cpt -= GPUFIELDS;
+		return 1;
 	}
 
-	return cpt;
-}
-
-/* Check if a command exists */
-int command_exists(char *in)
-{
-	int ret;
-	char *cmd;
-
-	asprintf(&cmd, "which %s >/dev/null 2>&1", in);
-	ret = system(cmd);
-	free(cmd);
-
-	return !ret;
+	iasprintf(&data->tabgpu[VALUE][GPUTEMP1], "%.2f°C", temp);
+	return 0;
 }

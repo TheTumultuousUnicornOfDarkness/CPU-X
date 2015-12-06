@@ -24,7 +24,7 @@
 #ifndef _LIBDMI_H_
 #define _LIBDMI_H_
 
-#include "../core.h"
+#include "../cpu-x.h"
 
 #define PROC_PACKAGE 0
 #define PROC_BUS 1

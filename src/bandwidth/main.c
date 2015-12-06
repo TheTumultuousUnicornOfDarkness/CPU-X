@@ -38,7 +38,7 @@
 #ifdef CPUX
 # include <stdint.h>
 # include <libintl.h>
-# include "../core.h"
+# include "../cpu-x.h"
 # include "defs.h"
 #else
 

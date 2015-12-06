@@ -26,7 +26,7 @@
 #include <string.h>
 #include <math.h>
 #include <libintl.h>
-#include "core.h"
+#include "cpu-x.h"
 #include "gui_gtk.h"
 #include "gui_gtk_id.h"
 
@@ -130,6 +130,7 @@ void warning_window(GtkWidget *mainwindow)
 
 gboolean grefresh(GThrd *refr)
 {
+#if 0
 	int i, page = gtk_notebook_get_current_page(GTK_NOTEBOOK(refr->glab->notebook));
 
 	/* Refresh tab CPU */
@@ -175,7 +176,7 @@ gboolean grefresh(GThrd *refr)
 		//for(i = 0; i < last_gpu(refr->data); i += GPUFIELDS)
 			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabgpu[VALUE][GPUTEMP1 + i]), refr->data->tabgpu[VALUE][GPUTEMP1 + i]);
 	}
-
+#endif
 	return G_SOURCE_CONTINUE;
 }
 
@@ -324,12 +325,12 @@ void set_labels(GtkLabels *glab, Labels *data)
 	}
 
 	/* Tab RAM */
-	for(i = BANK0_0; i < last_bank(data); i++)
+	for(i = BANK0_0; i < data->dimms_count; i++)
 	{
 		gtk_label_set_text(GTK_LABEL(glab->gtktabram[NAME][i]), data->tabram[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabram[VALUE][i]), data->tabram[VALUE][i]);
 	}
-	for(i = BANK7_1; i >= last_bank(data); i--)
+	for(i = BANK7_1; i >= data->dimms_count; i--)
 		gtk_grid_remove_row(GTK_GRID(glab->gridbanks), i);
 
 	/* Tab System */
@@ -345,7 +346,7 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[NAME][i]), data->tabgpu[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[VALUE][i]), data->tabgpu[VALUE][i]);
 	}
-	for(i = LASTGPU; i >= last_gpu(data); i -= GPUFIELDS)
+	for(i = LASTGPU; i >= data->gpu_count; i -= GPUFIELDS)
 		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i / GPUFIELDS);
 }
 
