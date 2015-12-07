@@ -17,7 +17,7 @@ Legend:
 - Remove function labels_delnull() (iasprintf() can replaces it)
 * Remove BogoMIPS label, replaces it by CPU usage in percent
 + Review some core functions (libcpuid(), cpufreq(), mult(), ...)
-* Replace all strdupnullok() and asprintf() by iasprintf()
++ Replace all strdupnullok() and asprintf() by iasprintf()
 + Add a public interface, add static functions
 - Add a generic refresh function (partially merge grefresh() and nrefresh())
 - Catch SIGSEV?

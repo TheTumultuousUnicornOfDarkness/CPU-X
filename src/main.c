@@ -382,12 +382,6 @@ int message(char type, char *msg, char *basefile, int line)
 	return -1;
 }
 
-/* Duplicate a not null string */
-char *strdupnullok(const char *s)
-{
-	return (s != NULL) ? strdup(s) : NULL;
-}
-
 /* The improved asprintf, which allocate a empty string if string is null */
 int iasprintf(char **str, const char *fmt, ...)
 {

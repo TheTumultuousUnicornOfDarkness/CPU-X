@@ -173,9 +173,6 @@ void menu(int argc, char *argv[]);
 /* Print a formatted message */
 int message(char type, char *msg, char *basefile, int line);
 
-/* Duplicate a not null string */
-char *strdupnullok(const char *s);
-
 /* The improved asprintf, which allocate a empty string if string is null */
 int iasprintf(char **str, const char *fmt, ...);
 

@@ -129,14 +129,14 @@ void system_macos(Labels *data, long int *suptime)
 	char *tmp, buff[MAXSTR];
 	FILE *cc;
 
-	tmp = strdupnullok(data->tabsys[VALUE][KERNEL]);
+	asprintf(&tmp, data->tabsys[VALUE][KERNEL]);
 	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
 
 	cc = popen("echo $(sw_vers -productName ; sw_vers -productVersion)", "r"); /* Label Distribution */
 	if(cc != NULL)
 	{
 		fgets(buff, MAXSTR, cc);
-		data->tabsys[VALUE][DISTRIBUTION] = strdupnullok(buff);
+		asprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
 		pclose(cc);
 	}
 #endif /* __APPLE__ */
@@ -149,10 +149,10 @@ void system_nonlinux(Labels *data, long int *suptime)
 	size_t len = sizeof(buff);
 
 	sysctlbyname("kern.osrelease", &buff, &len, NULL, 0); /* Label Kernel */
-	data->tabsys[VALUE][KERNEL] = strdupnullok(buff);
+	asprintf(&data->tabsys[VALUE][KERNEL], buff);
 
 	sysctlbyname("kern.ostype", &buff, &len, NULL, 0); /* Label Distribution */
-	data->tabsys[VALUE][DISTRIBUTION] = strdupnullok(buff);
+	asprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
 
 # if HAS_LIBSTATGRAB
 	long int memtot = 0;
@@ -201,7 +201,7 @@ void tabsystem(Labels *data)
 	if(cc != NULL)
 	{
 		fgets(buff, MAXSTR, cc);
-		data->tabsys[VALUE][COMPILER] = strdupnullok(buff);
+		asprintf(&data->tabsys[VALUE][COMPILER], buff);
 		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1 ] = '\0';
 		pclose(cc);
 	}
