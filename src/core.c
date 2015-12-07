@@ -367,6 +367,7 @@ static int call_dmidecode(Labels *data)
 	for(i = BANK0_0; i < LASTRAM; i++)
 		dmidata[i]    = &data->tabram[VALUE][i];
 	err += libdmi('r');
+	while(data->tabram[VALUE][++data->dimms_count] != NULL);
 
 	if(err)
 		MSG_ERROR(_("failed to call dmidecode"));
@@ -523,6 +524,7 @@ static void find_devices(Labels *data)
 	}
 
 	/* Close everything */
+	data->gpu_count = nbgpu;
 	pci_cleanup(pacc);
 	free(vendor);
 	free(product);
