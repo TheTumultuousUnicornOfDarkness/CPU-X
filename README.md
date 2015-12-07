@@ -6,7 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
-CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD and on OS X (some features are missing).  
+CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD.  
 This software is written in C programming language, and built with [CMake](http://www.cmake.org/).  
 This is a graphical software (GTK is used), but it can be used from a shell by using Ncurses or by dumping data.
 

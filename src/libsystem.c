@@ -44,11 +44,6 @@
 # include <sys/sysctl.h>
 #endif
 
-#ifdef __MACH__
-# include <mach/clock.h>
-# include <mach/mach.h>
-#endif
-
 static int os_specific(Labels *data)
 {
 #ifdef __linux__
@@ -115,35 +110,6 @@ static int library_specific(Labels *data, time_t *time)
 	asprintf(&data->tabsys[VALUE][SWAP],    "%5llu MB / %5llu MB", swap->used  / div, swap->total / div);
 # endif /* HAS_LIBSTATGRAB */
 	return 0;
-}
-
-void system_macos(Labels *data, long int *suptime)
-{
-#ifdef __MACH__
-	clock_serv_t cclock;
-	mach_timespec_t mts;
-
-	host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &cclock); /* Label Uptime */
-	clock_get_time(cclock, &mts);
-	mach_port_deallocate(mach_task_self(), cclock);
-	*suptime = mts.tv_sec;
-#endif /* __MACH__ */
-
-#ifdef __APPLE__
-	char *tmp, buff[MAXSTR];
-	FILE *cc;
-
-	asprintf(&tmp, data->tabsys[VALUE][KERNEL]);
-	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", data->tabsys[VALUE][DISTRIBUTION], tmp); /* Label Kernel */
-
-	cc = popen("echo $(sw_vers -productName ; sw_vers -productVersion)", "r"); /* Label Distribution */
-	if(cc != NULL)
-	{
-		fgets(buff, MAXSTR, cc);
-		asprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
-		pclose(cc);
-	}
-#endif /* __APPLE__ */
 }
 
 /* Get system informations */

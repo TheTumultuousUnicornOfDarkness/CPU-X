@@ -1,9 +1,4 @@
 cmake_minimum_required(VERSION 3.0)
-if(APPLE)
-	cmake_policy(SET CMP0025 NEW)
-	set(ENV{PKG_CONFIG_PATH} "$ENV{PKG_CONFIG_PATH}:/opt/X11/lib/pkgconfig/")
-endif(APPLE)
-
 cmake_policy(SET CMP0048 NEW)
 project(cpu-x
 	VERSION 2.90.0
