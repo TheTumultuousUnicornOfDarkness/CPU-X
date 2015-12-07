@@ -27,11 +27,18 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 #include <math.h>
 #include <locale.h>
 #include <libintl.h>
+#include <sys/utsname.h>
 #include "core.h"
 #include "cpu-x.h"
+
+#ifndef __linux__
+# include <sys/types.h>
+# include <sys/sysctl.h>
+#endif
 
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
@@ -43,6 +50,14 @@
 
 #if HAS_LIBPCI
 # include "pci/pci.h"
+#endif
+
+#if HAS_LIBPROCPS
+# include <proc/sysinfo.h>
+#endif
+
+#if HAS_LIBSTATGRAB
+# include <statgrab.h>
 #endif
 
 
@@ -58,7 +73,8 @@ int fill_labels(Labels *data)
 	err += fallback = call_dmidecode(data);
 	err += cpu_multipliers(data);
 	err += gpu_temperature(data);
-	tabsystem(data);
+	err += system_static(data);
+	err += system_dynamic(data);
 	err += bandwidth(data);
 	find_devices(data);
 	if(fallback)
@@ -558,4 +574,108 @@ static int gpu_temperature(Labels *data)
 
 	iasprintf(&data->tabgpu[VALUE][GPUTEMP1], "%.2f°C", temp);
 	return 0;
+}
+
+/* Satic elements for System tab, OS specific */
+static int system_static(Labels *data)
+{
+	int err = 0;
+	char *buff = NULL;
+	struct utsname name;
+
+	MSG_VERBOSE(_("Identifying system"));
+	err = uname(&name);
+	if(err)
+		MSG_ERROR_ERRNO(_("failed to identify system"));
+	else
+	{
+		iasprintf(&data->tabsys[VALUE][KERNEL],   "%s %s", name.sysname, name.release); /* Kernel label */
+		iasprintf(&data->tabsys[VALUE][HOSTNAME], "%s",    name.nodename); /* Hostname label */
+	}
+
+	/* Compiler label */
+	err += xopen_to_str("cc --version", &buff, 'p');
+	iasprintf(&data->tabsys[VALUE][COMPILER], buff);
+
+#ifdef __linux__
+	/* Distribution label */
+	err += xopen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &buff, 'p');
+	iasprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
+#else
+	char tmp[MAXSTR];
+	size_t len = sizeof(tmp);
+
+	/* Overwrite Kernel label */
+	err += sysctlbyname("kern.osrelease", &tmp, &len, NULL, 0);
+	iasprintf(&data->tabsys[VALUE][KERNEL], tmp);
+
+	/* Distribution label */
+	err += sysctlbyname("kern.ostype", &tmp, &len, NULL, 0);
+	iasprintf(&data->tabsys[VALUE][DISTRIBUTION], tmp);
+#endif /* __linux__ */
+
+	return err;
+}
+
+/* Dynamic elements for System tab, provided by libprocps/libstatgrab */
+static int system_dynamic(Labels *data)
+{
+	int err = 0;
+	long int total_memory = 0;
+	time_t uptime_s;
+	struct tm *tm;
+
+#if HAS_LIBPROCPS
+	const int div = 1000;
+
+	MSG_VERBOSE(_("Calling libprocps"));
+	/* System uptime */
+	uptime_s = (time_t) uptime(NULL, NULL);
+
+	/* Memory labels */
+	meminfo();
+	total_memory = kb_main_total / div;
+	asprintf(&data->tabsys[VALUE][USED],    "%5ld MB / %5ld MB", kb_main_used    / div, total_memory);
+	asprintf(&data->tabsys[VALUE][BUFFERS], "%5ld MB / %5ld MB", kb_main_buffers / div, total_memory);
+	asprintf(&data->tabsys[VALUE][CACHED],  "%5ld MB / %5ld MB", kb_main_cached  / div, total_memory);
+	asprintf(&data->tabsys[VALUE][FREE],    "%5ld MB / %5ld MB", kb_main_free    / div, total_memory);
+	asprintf(&data->tabsys[VALUE][SWAP],    "%5ld MB / %5ld MB", kb_swap_used    / div, kb_swap_total / div);
+#endif /* HAS_LIBPROCPS */
+
+#if HAS_LIBSTATGRAB
+	static bool called = false;
+	const int div = 1000000;
+	sg_mem_stats *mem; /* Memory labels */
+	sg_swap_stats *swap;
+	sg_host_info *info;
+
+	MSG_VERBOSE(_("Calling libstatgrab"));
+	/* Libstatgrab initialization */
+	if(!called)
+	{
+		err += sg_init(0);
+		called = true;
+	}
+	mem  = sg_get_mem_stats(NULL);
+	swap = sg_get_swap_stats(NULL);
+	info = sg_get_host_info(NULL);
+
+	/* System uptime */
+	uptime_s = info->uptime;
+
+	/* Memory labels */
+	total_memory = mem->total / div;
+	asprintf(&data->tabsys[VALUE][USED],    "%5llu MB / %5ld MB",  mem->used   / div, total_memory);
+	asprintf(&data->tabsys[VALUE][BUFFERS], "  %3d MB / %5ld MB",  0                , total_memory);
+	asprintf(&data->tabsys[VALUE][CACHED],  "%5llu MB / %5ld MB",  mem->cache  / div, total_memory);
+	asprintf(&data->tabsys[VALUE][FREE],    "%5llu MB / %5ld MB",  mem->free   / div, total_memory);
+	asprintf(&data->tabsys[VALUE][SWAP],    "%5llu MB / %5llu MB", swap->used  / div, swap->total / div);
+#endif /* HAS_LIBSTATGRAB */
+
+	/* Uptime label */
+	tm = gmtime(&uptime_s);
+	iasprintf(&data->tabsys[VALUE][UPTIME], _("%i days, %i hours, %i minutes, %i seconds"),
+	          tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec);
+
+	return err;
 }

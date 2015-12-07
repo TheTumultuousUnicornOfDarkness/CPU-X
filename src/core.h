@@ -58,5 +58,13 @@ static void find_devices(Labels *data);
 static int gpu_temperature(Labels *data);
 /* Required: none */
 
+/* Satic elements for System tab, OS specific */
+static int system_static(Labels *data);
+/* Required: none */
+
+/* Dynamic elements for System tab, provided by libprocps/libstatgrab */
+static int system_dynamic(Labels *data);
+/* Required: HAS_LIBPROCPS || HAS_LIBSTATGRAB */
+
 
 #endif /* _CORE_H_ */

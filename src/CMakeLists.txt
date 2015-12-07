@@ -160,7 +160,6 @@ add_executable(cpu-x
 	cpu-x.h
 	core.c
 	core.h
-	libsystem.c
 )
 
 if(PORTABLE_BINARY)
