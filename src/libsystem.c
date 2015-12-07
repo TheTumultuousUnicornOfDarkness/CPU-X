@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/utsname.h>
+#include <time.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -43,74 +44,77 @@
 # include <sys/sysctl.h>
 #endif
 
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-# include <sys/timespec.h>
-# include <time.h>
-#endif
-
 #ifdef __MACH__
 # include <mach/clock.h>
 # include <mach/mach.h>
 #endif
 
-
-void system_linux(Labels *data, long int *suptime)
+static int os_specific(Labels *data)
 {
 #ifdef __linux__
-	static int called = 0;
-	char *filestr = NULL, *distro = NULL;
-	FILE *osrel = NULL;
+	char *buff = NULL;
 
-	osrel = fopen("/etc/os-release", "r"); /* Label Distribution */
-	if(osrel == NULL && !called)
-		MSG_ERROR_ERRNO(_("failed to open file '/etc/os-release'"));
-	else if(!called)
-	{
-		filestr = malloc(500 * (sizeof(char)));
-		if(filestr == NULL)
-			MSG_ERROR_ERRNO(_("malloc failed"));
-		else
-		{
-			fread(filestr, sizeof(char), 500, osrel);
-			distro = strstr(filestr, "PRETTY_NAME=");
-			if(distro == NULL)
-				asprintf(&data->tabsys[VALUE][DISTRIBUTION], _("Unknown distro"));
-			else
-				asprintf(&data->tabsys[VALUE][DISTRIBUTION], "%s", strtok(strchr(distro, '"') + 1, "\""));
-			fclose(osrel);
-			free(filestr);
-		}
-	}
-	called = 1;
+	xopen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &buff, 'p'); /* Label Distribution */
+	iasprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
+#else
+	char buff[MAXSTR];
+	size_t len = sizeof(buff);
 
-# if HAS_LIBPROCPS
+	sysctlbyname("kern.osrelease", &buff, &len, NULL, 0); /* Label Kernel */
+	iasprintf(&data->tabsys[VALUE][KERNEL], buff);
+
+	sysctlbyname("kern.ostype", &buff, &len, NULL, 0); /* Label Distribution */
+	iasprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
+#endif /* __linux__ */
+	return 0;
+}
+
+static int library_specific(Labels *data, time_t *time)
+{
 	long int memtot = 0;
+# if HAS_LIBPROCPS
 	const int div = 1000;
 
 	MSG_VERBOSE(_("Filling labels (libprocps step)"));
-	*suptime = uptime(NULL, NULL); /* Label Uptime */
+	*time = (time_t) uptime(NULL, NULL); /* Label Uptime */
 
 	meminfo(); /* Memory labels */
 	memtot = kb_main_total / div;
 
-	asprintf(&data->tabsys[VALUE][USED], "%5ld MB / %5ld MB", kb_main_used / div, memtot);
+	asprintf(&data->tabsys[VALUE][USED],    "%5ld MB / %5ld MB", kb_main_used    / div, memtot);
 	asprintf(&data->tabsys[VALUE][BUFFERS], "%5ld MB / %5ld MB", kb_main_buffers / div, memtot);
-	asprintf(&data->tabsys[VALUE][CACHED], "%5ld MB / %5ld MB", kb_main_cached / div, memtot);
-	asprintf(&data->tabsys[VALUE][FREE], "%5ld MB / %5ld MB", kb_main_free / div, memtot);
-	asprintf(&data->tabsys[VALUE][SWAP], "%5ld MB / %5ld MB", kb_swap_used / div, kb_swap_total / div);
+	asprintf(&data->tabsys[VALUE][CACHED],  "%5ld MB / %5ld MB", kb_main_cached  / div, memtot);
+	asprintf(&data->tabsys[VALUE][FREE],    "%5ld MB / %5ld MB", kb_main_free    / div, memtot);
+	asprintf(&data->tabsys[VALUE][SWAP],    "%5ld MB / %5ld MB", kb_swap_used    / div, kb_swap_total / div);
 # endif /* HAS_LIBPROCPS */
 
-#endif /* __linux__ */
-}
+# if HAS_LIBSTATGRAB
+	static int called = 0;
+	const int div = 1000000;
+	sg_mem_stats *mem; /* Memory labels */
+	sg_swap_stats *swap;
+	sg_host_info *info;
 
-void system_bsd(Labels *data, long int *suptime)
-{
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	struct timespec tsp;
+	MSG_VERBOSE(_("Filling labels (libstatgrab step)"));
+	if(!called)
+	{
+		sg_init(0);
+		called = 1;
+	}
 
-	clock_gettime(CLOCK_MONOTONIC, &tsp); /* Label Uptime */
-	*suptime = tsp.tv_sec;
-#endif /* BSD */
+	mem  = sg_get_mem_stats(NULL);
+	swap = sg_get_swap_stats(NULL);
+	info = sg_get_host_info(NULL);
+	*time = info->uptime;
+
+	memtot = mem->total / div;
+	asprintf(&data->tabsys[VALUE][USED],    "%5llu MB / %5ld MB",  mem->used   / div, memtot);
+	asprintf(&data->tabsys[VALUE][BUFFERS], "  %3d MB / %5ld MB",  0                , memtot);
+	asprintf(&data->tabsys[VALUE][CACHED],  "%5llu MB / %5ld MB",  mem->cache  / div, memtot);
+	asprintf(&data->tabsys[VALUE][FREE],    "%5llu MB / %5ld MB",  mem->free   / div, memtot);
+	asprintf(&data->tabsys[VALUE][SWAP],    "%5llu MB / %5llu MB", swap->used  / div, swap->total / div);
+# endif /* HAS_LIBSTATGRAB */
+	return 0;
 }
 
 void system_macos(Labels *data, long int *suptime)
@@ -142,78 +146,30 @@ void system_macos(Labels *data, long int *suptime)
 #endif /* __APPLE__ */
 }
 
-void system_nonlinux(Labels *data, long int *suptime)
-{
-#ifndef __linux__
-	char buff[MAXSTR];
-	size_t len = sizeof(buff);
-
-	sysctlbyname("kern.osrelease", &buff, &len, NULL, 0); /* Label Kernel */
-	asprintf(&data->tabsys[VALUE][KERNEL], buff);
-
-	sysctlbyname("kern.ostype", &buff, &len, NULL, 0); /* Label Distribution */
-	asprintf(&data->tabsys[VALUE][DISTRIBUTION], buff);
-
-# if HAS_LIBSTATGRAB
-	long int memtot = 0;
-	static int called = 0;
-	const int div = 1000000;
-	sg_mem_stats *mem; /* Memory labels */
-	sg_swap_stats *swap;
-
-	MSG_VERBOSE(_("Filling labels (libstatgrab step)"));
-	if(!called)
-	{
-		sg_init(0);
-		called = 1;
-	}
-
-	mem  = sg_get_mem_stats(NULL);
-	swap = sg_get_swap_stats(NULL);
-
-	memtot = mem->total / div;
-	asprintf(&data->tabsys[VALUE][USED], "%5llu MB / %5ld MB", mem->used / div, memtot);
-	asprintf(&data->tabsys[VALUE][BUFFERS], "%5u MB / %5ld MB", 0, memtot);
-	asprintf(&data->tabsys[VALUE][CACHED], "%5llu MB / %5ld MB", mem->cache / div, memtot);
-	asprintf(&data->tabsys[VALUE][FREE], "%5llu MB / %5ld MB", mem->free / div, memtot);
-	asprintf(&data->tabsys[VALUE][SWAP], "%5llu MB / %5llu MB", swap->used / div, swap->total / div);
-# endif /* HAS_LIBSTATGRAB */
-
-	system_bsd(data, suptime);
-	system_macos(data, suptime);
-#endif /* !__linux__ */
-}
-
 /* Get system informations */
-void tabsystem(Labels *data)
+int tabsystem(Labels *data)
 {
-	long int duptime, huptime, muptime, suptime = 0;
-	char buff[MAXSTR];
-	FILE *cc;
+	int err;
+	char *buff;
+	time_t uptime;
 	struct utsname name;
+	struct tm *tm;
 
 	MSG_VERBOSE(_("Filling labels (libsystem step)"));
-	uname(&name);
-	asprintf(&data->tabsys[VALUE][KERNEL], "%s %s", name.sysname, name.release); /* Label Kernel */
-	asprintf(&data->tabsys[VALUE][HOSTNAME], "%s", name.nodename); /* Label Hostname */
+	if((err = uname(&name)))
+		MSG_ERROR_ERRNO("");
+	err += xopen_to_str("cc --version", &buff, 'p');
 
-	cc = popen("cc --version", "r"); /* Label Compiler */
-	if(cc != NULL)
-	{
-		fgets(buff, MAXSTR, cc);
-		asprintf(&data->tabsys[VALUE][COMPILER], buff);
-		data->tabsys[VALUE][COMPILER][ strlen(data->tabsys[VALUE][COMPILER]) - 1 ] = '\0';
-		pclose(cc);
-	}
+	iasprintf(&data->tabsys[VALUE][KERNEL],   "%s %s", name.sysname, name.release); /* Label Kernel */
+	iasprintf(&data->tabsys[VALUE][HOSTNAME], "%s", name.nodename); /* Label Hostname */
+	iasprintf(&data->tabsys[VALUE][COMPILER], buff); /* Label Compiler */
 
-	system_linux(data, &suptime);
-	system_nonlinux(data, &suptime);
+	os_specific(data);
+	library_specific(data, &uptime);
 
-	if(suptime > 0)
-	{
-		duptime = suptime / (24 * 60 * 60); suptime -= duptime * (24 * 60 * 60); /* Label Uptime */
-		huptime = suptime / (60 * 60); suptime -= huptime * (60 * 60);
-		muptime = suptime / 60; suptime -= muptime * 60;
-		asprintf(&data->tabsys[VALUE][UPTIME], _("%ld days, %2ld hours, %2ld minutes, %2ld seconds"), duptime, huptime, muptime, suptime);
-	}
+	tm = gmtime(&uptime);
+	iasprintf(&data->tabsys[VALUE][UPTIME], _("%i days, %i hours, %i minutes, %i seconds"),
+	          tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec); /* Label Uptime */
+
+	return err;
 }

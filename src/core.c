@@ -58,6 +58,7 @@ int fill_labels(Labels *data)
 	err += fallback = call_dmidecode(data);
 	err += cpu_multipliers(data);
 	err += gpu_temperature(data);
+	tabsystem(data);
 	err += bandwidth(data);
 	find_devices(data);
 	if(fallback)
