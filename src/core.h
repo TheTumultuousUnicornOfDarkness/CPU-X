@@ -50,6 +50,10 @@ static int fallback_mode(Labels *data);
 static int cpu_multipliers(Labels *data);
 /* Required: HAS_LIBCPUID */
 
+/* Calculate CPU usage (total and by core) */
+static void cpu_usage(Labels *data);
+/* Required: none */
+
 /* Find some PCI devices, like chipset and GPU */
 static void find_devices(Labels *data);
 /* Required: HAS_LIBPCI */

@@ -76,6 +76,7 @@ int fill_labels(Labels *data)
 	err += system_static(data);
 	err += system_dynamic(data);
 	err += bandwidth(data);
+	cpu_usage(data);
 	find_devices(data);
 	if(fallback)
 		fallback_mode(data);
@@ -166,6 +167,7 @@ static int call_libcpuid_static(Labels *data)
 	}
 
 	/* Some prerequisites */
+	data->cpu_count = datanr.num_logical_cpus;
 	data->cpu_model = datanr.model;
 	data->cpu_ext_model = datanr.ext_model;
 	data->cpu_ext_family = datanr.ext_family;
@@ -450,6 +452,44 @@ static int cpu_multipliers(Labels *data)
 	}
 #endif /* __linux__ */
 	return 0;
+}
+
+/* Calculate CPU usage (total and by core) */
+static void cpu_usage(Labels *data)
+{
+#ifdef __linux__
+	enum StatType { USER, NICE, SYSTEM, IDLE, LASTSTAT };
+	int i;
+	static bool init = false;
+	static long double pre[8][LASTSTAT];
+	long double        new[8][LASTSTAT], loadavg;
+	FILE *fp;
+
+	MSG_VERBOSE(_("Calculating CPU usage"));
+	if(!init)
+	{
+		fp = fopen("/proc/stat", "r");
+		for(i = 0; i <= data->cpu_count; i++)
+			fscanf(fp,"%*s %Lf %Lf %Lf %Lf %*s %*s %*s %*s %*s %*s", &pre[i][USER], &pre[i][NICE], &pre[i][SYSTEM], &pre[i][IDLE]);
+		fclose(fp);
+		sleep(1);
+		init = true;
+	}
+
+	fp = fopen("/proc/stat","r");
+	for(i = 0; i <= data->cpu_count; i++)
+		fscanf(fp,"%*s %Lf %Lf %Lf %Lf %*s %*s %*s %*s %*s %*s", &new[i][USER], &new[i][NICE], &new[i][SYSTEM], &new[i][IDLE]);
+	fclose(fp);
+
+	for(i = 0; i <= data->cpu_count; i++)
+	{
+		loadavg = ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM])) /
+		          ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]+new[i][IDLE]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM]+pre[i][IDLE]));
+		if(i == 0)
+			iasprintf(&data->tabcpu[VALUE][USAGE], "%6.2Lf %%", loadavg * 100);
+		memcpy(pre[i], new[i], 4 * sizeof(long double));
+	}
+#endif /* __linux__ */
 }
 
 #if HAS_LIBPCI

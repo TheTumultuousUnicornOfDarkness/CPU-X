@@ -15,7 +15,7 @@ Legend:
 + Add useful var in struct Labels (like L1-L3 cache size, number of DIMMS/GPU...)
 + Remove function labels_setnull() and use C99 struct initialization
 - Remove function labels_delnull() (iasprintf() can replaces it)
-* Remove BogoMIPS label, replaces it by CPU usage in percent
++ Remove BogoMIPS label, replaces it by CPU usage in percent
 + Review some core functions (libcpuid(), cpufreq(), mult(), ...)
 + Replace all strdupnullok() and asprintf() by iasprintf()
 + Add a public interface, add static functions

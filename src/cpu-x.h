@@ -83,7 +83,7 @@ enum EnObjects
 enum EnTabCpu
 {
 	VENDOR, CODENAME, PACKAGE, TECHNOLOGY, VOLTAGE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, TEMPERATURE, STEPPING, INSTRUCTIONS,
-	CORESPEED, MULTIPLIER, BUSSPEED, BOGOMIPS,
+	CORESPEED, MULTIPLIER, BUSSPEED, USAGE,
 	LEVEL1D, LEVEL1I, LEVEL2, LEVEL3,
 	SOCKETS, CORES, THREADS,
 	LASTCPU
@@ -140,7 +140,7 @@ typedef struct
 
 	int cpu_freq;
 	int8_t cpu_vendor_id;
-	uint8_t selected_core, gpu_count, dimms_count;
+	uint8_t selected_core, cpu_count, gpu_count, dimms_count;
 	int32_t cpu_model, cpu_ext_model, cpu_ext_family;
 	uint32_t l1_size, l2_size, l3_size;
 	double bus_freq;

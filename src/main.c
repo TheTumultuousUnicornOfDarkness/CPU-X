@@ -529,7 +529,7 @@ void labels_setname(Labels *data)
 	asprintf(&data->tabcpu[NAME][CORESPEED],	_("Core Speed"));
 	asprintf(&data->tabcpu[NAME][MULTIPLIER],	_("Multiplier"));
 	asprintf(&data->tabcpu[NAME][BUSSPEED],		_("Bus Speed"));
-	asprintf(&data->tabcpu[NAME][BOGOMIPS],		_("BogoMIPS"));
+	asprintf(&data->tabcpu[NAME][USAGE],		_("Usage"));
 
 	asprintf(&data->tabcpu[NAME][LEVEL1D],		_("L1 Data"));
 	asprintf(&data->tabcpu[NAME][LEVEL1I],		_("L1 Inst."));
