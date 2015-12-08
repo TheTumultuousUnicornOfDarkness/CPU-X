@@ -151,6 +151,7 @@ typedef struct
 	unsigned int output_type;
 	unsigned int refr_time;
 	bool verbose;
+	bool color;
 } Options;
 
 extern Options *opts;

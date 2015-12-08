@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 {
 	/* Parse options */
 	Labels data = { NULL };
-	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false };
+	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false, .color = true };
 	menu(argc, argv);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
@@ -96,6 +96,7 @@ const char *optstring[] =
 #if HAS_DMIDECODE
 	"dmidecode",
 #endif /* HAS_DMIDECODE */
+	"color",
 	"verbose",
 	"help",
 	"version"
@@ -263,6 +264,7 @@ void help(FILE *out, char *argv[])
 #if HAS_DMIDECODE
 	fprintf(out, _("  -D, --%-10s Run embedded command dmidecode and exit\n"), optstring[o]); o++;
 #endif /* HAS_DMIDECODE */
+	fprintf(out, _("  -c, --%-10s Disable colored output\n"), optstring[o]); o++;
 	fprintf(out, _("  -v, --%-10s Verbose output\n"), optstring[o]); o++;
 	fprintf(out, _("  -h, --%-10s Print help and exit\n"), optstring[o]); o++;
 	fprintf(out, _("  -V, --%-10s Print version and exit\n"), optstring[o]); o++;
@@ -305,9 +307,10 @@ void menu(int argc, char *argv[])
 #if HAS_DMIDECODE
 		{optstring[4],	no_argument, 0, 'D'}, /* Arg Dmidecode */
 #endif /* HAS_DMIDECODE */
-		{optstring[5],	no_argument, 0, 'v'}, /* Arg verbose */
-		{optstring[6],	no_argument, 0, 'h'}, /* Arg help */
-		{optstring[7],	no_argument, 0, 'V'}, /* Arg version */
+		{optstring[5],	no_argument, 0, 'c'}, /* Arg color */
+		{optstring[6],	no_argument, 0, 'v'}, /* Arg verbose */
+		{optstring[7],	no_argument, 0, 'h'}, /* Arg help */
+		{optstring[8],	no_argument, 0, 'V'}, /* Arg version */
 		{0,		0,	     0,  0}
 	};
 
@@ -347,6 +350,9 @@ void menu(int argc, char *argv[])
 				opts->output_type = OUT_DMIDECODE;
 				break;
 #endif /* HAS_DMIDECODE */
+			case 'c':
+				opts->color = false;
+				break;
 			case 'v':
 				opts->verbose = true;
 				break;
@@ -361,7 +367,7 @@ void menu(int argc, char *argv[])
 				help(stderr, argv);
 				exit(EXIT_FAILURE);
 		}
-	} while((c = getopt_long(argc, argv, ":gndr:DvhV", longopts, NULL)) != -1);
+	} while((c = getopt_long(argc, argv, ":gndr:DcvhV", longopts, NULL)) != -1);
 }
 
 /* Print a formatted message */
@@ -370,13 +376,13 @@ int message(char type, char *msg, char *basefile, int line)
 	switch(type)
 	{
 		case 'v': /* Verbose message */
-			return opts->verbose ? fprintf(stdout, BOLD_GREEN	"%s\n" RESET, msg) : -1;
+			return opts->verbose ? fprintf(stdout, "%s%s\n" RESET, opts->color ? BOLD_GREEN : "", msg) : -1;
 		case 'w': /* Warning message */
-			return fprintf(stdout, BOLD_YELLOW	"%s\n" RESET, msg);
+			return fprintf(stdout, "%s%s\n" RESET, opts->color ? BOLD_YELLOW : "", msg);
 		case 'e': /* Error message */
-			return fprintf(stderr, BOLD_RED	"%s:%s:%i: %s\n" RESET, PRGNAME, basefile, line, msg);
+			return fprintf(stderr, "%s%s:%s:%i: %s\n" RESET, opts->color ? BOLD_RED : "", PRGNAME, basefile, line, msg);
 		case 'n': /* Error message with errno */
-			return fprintf(stderr, BOLD_RED	"%s:%s:%i: %s (%s)\n" RESET, PRGNAME, basefile, line, msg, strerror(errno));
+			return fprintf(stderr, "%s%s:%s:%i: %s (%s)\n" RESET, opts->color ? BOLD_RED : "", PRGNAME, basefile, line, msg, strerror(errno));
 	}
 
 	return -1;
