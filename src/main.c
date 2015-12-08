@@ -388,23 +388,92 @@ int message(char type, char *msg, char *basefile, int line)
 	return -1;
 }
 
-/* The improved asprintf, which allocate a empty string if string is null */
+/* The improved asprintf:
+ * - allocate an empty string if input string is null
+ * - only call asprintf if there is no format in input string
+ * - print "valid" args if input string is formatted, or skip them until next arg
+     E.g.: iasprintf(&buff, "%i nm", 32) will allocate "32 nm" string
+           iasprintf(&buff, "%i nm", 0) will allocate an empty string
+	   iasprintf(&buff, "foo %s %s", NULL, "bar") will allocate "foo bar" */
 int iasprintf(char **str, const char *fmt, ...)
 {
-	int ret;
+	bool is_format = false, print = true;
+	int arg_int, ret, i = -1;
+	double arg_double;
+	char *arg_string, *tmp_fmt;
 	va_list aptr;
 
-	if(fmt == NULL)
-		ret = asprintf(str, " ");
-	else
-	{
-		va_start(aptr, fmt);
-		ret = vasprintf(str, fmt, aptr);
-		va_end(aptr);
-	}
+	/* Allocate an empty string */
+	*str    = malloc(1 * sizeof(char));
+	*str[0] = '\0';
 
-	if(ret < 0)
-		MSG_ERROR_ERRNO(_("failed to allocate string"));
+	/* Exit if input is null or without format */
+	if(fmt == NULL)
+		return 0;
+	else if(strchr(fmt, '%') == NULL)
+		return asprintf(str, fmt);
+
+	/* Read format, character by character */
+	va_start(aptr, fmt);
+	while(fmt[++i] != '\0')
+	{
+		is_format = fmt[i] == '%' || is_format;
+		if(is_format)
+		{
+			print = true;
+
+			/* Construct the new temporary format */
+			if(fmt[i] == '%')
+				asprintf(&tmp_fmt, "%%s%%");
+			else
+				asprintf(&tmp_fmt, "%s%c", tmp_fmt, fmt[i]);
+
+			/* Extract arg */
+			switch(fmt[i])
+			{
+				case '%':
+					break;
+				case '.':
+				case '0' ... '9':
+				case 'l':
+				case 'L':
+					break;
+				case 'd':
+				case 'i':
+					is_format = false;
+					arg_int = va_arg(aptr, int);
+					if(arg_int > 0)
+						ret = asprintf(str, tmp_fmt, *str, arg_int);
+					else
+						print = false;
+					break;
+				case 'f':
+					is_format = false;
+					arg_double = va_arg(aptr, double);
+					if(arg_double > 0.0)
+						ret = asprintf(str, tmp_fmt, *str,  arg_double);
+					else
+						print = false;
+					break;
+				case 's':
+					is_format = false;
+					arg_string = va_arg(aptr, char *);
+					if(arg_string != NULL)
+						ret = asprintf(str, tmp_fmt, *str, arg_string);
+					else
+						print = false;
+					break;
+				default:
+					is_format = false;
+					asprintf(&tmp_fmt, "(internal) format not implemented: %%%c\n", fmt[i]);
+					MSG_ERROR(tmp_fmt);
+					break;
+			}
+		}
+		else if(print)
+			ret = asprintf(str, "%s%c", *str, fmt[i]);
+	}
+	va_end(aptr);
 
 	return ret;
 }

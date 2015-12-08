@@ -486,7 +486,7 @@ static void cpu_usage(Labels *data)
 		loadavg = ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM])) /
 		          ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]+new[i][IDLE]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM]+pre[i][IDLE]));
 		if(i == 0)
-			iasprintf(&data->tabcpu[VALUE][USAGE], "%6.2Lf %%", loadavg * 100);
+			asprintf(&data->tabcpu[VALUE][USAGE], "%6.2Lf %%", loadavg * 100);
 		memcpy(pre[i], new[i], 4 * sizeof(long double));
 	}
 #endif /* __linux__ */
