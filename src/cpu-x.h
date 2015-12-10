@@ -159,18 +159,6 @@ extern Options *opts;
 
 /***************************** Defined in main.c *****************************/
 
-/* Enable internationalization support */
-int set_locales(void);
-
-/* Extract locales in /tmp/.cpu-x */
-int extract_locales(void);
-
-/* Apply new portable version if available */
-int update_prg(char *executable, Options *opts);
-
-/* Get options */
-void menu(int argc, char *argv[]);
-
 /* Print a formatted message */
 int message(char type, char *msg, char *basefile, int line);
 
@@ -189,20 +177,8 @@ bool command_exists(char *in);
 /* Open a file or a pipe and put its content in buffer */
 int xopen_to_str(char *file, char **buffer, char type);
 
-/* Set labels name */
-void labels_setname(Labels *data);
-
-/* Replace null pointers by character '\0' */
-int remove_null_ptr(Labels *data);
-
 /* Free memory after display labels */
 void labels_free(Labels *data);
-
-/* Dump all data in stdout */
-void dump_data(Labels *data);
-
-/* Check if running version is latest */
-char *check_lastver(void);
 
 
 /***************************** External headers *****************************/
