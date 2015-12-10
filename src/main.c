@@ -458,14 +458,15 @@ static void version(void)
 	char *strver, *newver = check_lastver();
 	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
 	{
-		{ HAS_GTK,       "GTK",       GTK_VERSION       },
-		{ HAS_NCURSES,   "NCURSES",   NCURSES_VERSION   },
-		{ HAS_LIBCPUID,  "LIBCPUID",  LIBCPUID_VERSION  },
-		{ HAS_LIBPCI,    "LIBPCI",    LIBPCI_VERSION    },
-		{ HAS_LIBPROCPS, "LIBPROCPS", LIBPROCPS_VERSION },
-		{ HAS_DMIDECODE, "DMIDECODE", DMIDECODE_VERSION },
-		{ HAS_BANDWIDTH, "BANDWIDTH", BANDWIDTH_VERSION },
-		{ false,         NULL,        NULL              }
+		{ HAS_GTK,         "GTK",         GTK_VERSION         },
+		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
+		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
+		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
+		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
+		{ HAS_LIBSTATGRAB, "LIBSTATGRAB", LIBSTATGRAB_VERSION },
+		{ HAS_DMIDECODE,   "DMIDECODE",   DMIDECODE_VERSION   },
+		{ HAS_BANDWIDTH,   "BANDWIDTH",   BANDWIDTH_VERSION   },
+		{ false,           NULL,          NULL                }
 	};
 
 	if(newver[0] == 'f')
@@ -661,10 +662,10 @@ int main(int argc, char *argv[])
 	switch(opts->output_type)
 	{
 		case OUT_GTK:
-			start_gui_gtk(&argc, &argv, &data);
+			if(HAS_GTK)	start_gui_gtk(&argc, &argv, &data);
 			break;
 		case OUT_NCURSES:
-			start_tui_ncurses(&data);
+			if(HAS_NCURSES)	start_tui_ncurses(&data);
 			break;
 		case OUT_DUMP:
 			dump_data(&data);

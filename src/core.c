@@ -66,18 +66,20 @@
 /* Fill labels by calling below functions */
 int fill_labels(Labels *data)
 {
-	int fallback, err = 0;
+	int fallback = 0, err = 0;
 
-	err += call_libcpuid_static(data);
-	err += call_libcpuid_dynamic(data);
-	err += fallback = call_dmidecode(data);
-	err += cpu_multipliers(data);
+	if(HAS_LIBCPUID)	err += call_libcpuid_static(data);
+	if(HAS_LIBCPUID)	err += call_libcpuid_dynamic(data);
+	if(HAS_DMIDECODE)	err += fallback = call_dmidecode(data);
+	if(HAS_LIBCPUID)	err += cpu_multipliers(data);
+	if(HAS_LIBPROCPS)	err += system_dynamic(data);
+	if(HAS_LIBSTATGRAB)	err += system_dynamic(data);
+	if(HAS_BANDWIDTH)	err += bandwidth(data);
+	if(HAS_LIBPCI)		find_devices(data);
 	err += gpu_temperature(data);
 	err += system_static(data);
-	err += system_dynamic(data);
-	err += bandwidth(data);
 	cpu_usage(data);
-	find_devices(data);
+
 	if(fallback)
 		fallback_mode(data);
 
@@ -92,15 +94,16 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NB_TAB_CPU:
-			err =  call_libcpuid_dynamic(data);
-			err += cpu_multipliers(data);
+			if(HAS_LIBCPUID)	err = call_libcpuid_dynamic(data);
+			if(HAS_LIBCPUID)	err += cpu_multipliers(data);
 			cpu_usage(data);
 			break;
 		case NB_TAB_CACHE:
-			err = bandwidth(data);
+			if(HAS_BANDWIDTH)	err = bandwidth(data);
 			break;
 		case NB_TAB_SYS:
-			err = system_dynamic(data);
+			if(HAS_LIBPROCPS)	err = system_dynamic(data);
+			if(HAS_LIBSTATGRAB)	err = system_dynamic(data);
 			break;
 		case NB_TAB_GPU:
 			err = gpu_temperature(data);
@@ -688,12 +691,12 @@ static int system_static(Labels *data)
 static int system_dynamic(Labels *data)
 {
 	int err = 0;
-	long int total_memory = 0;
 	time_t uptime_s;
 	struct tm *tm;
 
 #if HAS_LIBPROCPS
 	const int div = 1000;
+	long int total_memory = 0;
 
 	MSG_VERBOSE(_("Calling libprocps"));
 	/* System uptime */
@@ -712,6 +715,7 @@ static int system_dynamic(Labels *data)
 #if HAS_LIBSTATGRAB
 	static bool called = false;
 	const int div = 1000000;
+	long int total_memory = 0;
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 	sg_host_info *info;
