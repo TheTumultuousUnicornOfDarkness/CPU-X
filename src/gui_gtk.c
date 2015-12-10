@@ -130,53 +130,40 @@ void warning_window(GtkWidget *mainwindow)
 
 gboolean grefresh(GThrd *refr)
 {
-#if 0
-	int i, page = gtk_notebook_get_current_page(GTK_NOTEBOOK(refr->glab->notebook));
+	int i;
+	enum EnTabNumber page;
+	Labels *(data) = refr->data;
+	GtkLabels *(glab) = refr->glab;
 
-	/* Refresh tab CPU */
-	if(page == NB_TAB_CPU)
+	page = gtk_notebook_get_current_page(GTK_NOTEBOOK(glab->notebook));
+	do_refresh(data, page);
+
+	switch(page)
 	{
-		cpufreq(refr->data);
-		if(HAS_LIBCPUID && !getuid())
-		{
-			libcpuid(refr->data);
-			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][VOLTAGE]), refr->data->tabcpu[VALUE][VOLTAGE]);
-			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][TEMPERATURE]), refr->data->tabcpu[VALUE][TEMPERATURE]);
-		}
-		if(HAS_DMIDECODE && !getuid())
-		{
-			//libdmidecode(refr->data);
-			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][MULTIPLIER]), refr->data->tabcpu[VALUE][MULTIPLIER]);
-		}
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcpu[VALUE][CORESPEED]),  refr->data->tabcpu[VALUE][CORESPEED]);
+		case NB_TAB_CPU:
+			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][VOLTAGE]),     data->tabcpu[VALUE][VOLTAGE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][TEMPERATURE]), data->tabcpu[VALUE][TEMPERATURE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][MULTIPLIER]),  data->tabcpu[VALUE][MULTIPLIER]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][CORESPEED]),   data->tabcpu[VALUE][CORESPEED]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][USAGE]),       data->tabcpu[VALUE][USAGE]);
+			break;
+		case NB_TAB_CACHE:
+			for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
+				gtk_label_set_text(GTK_LABEL(glab->gtktabcache[VALUE][i]), data->tabcache[VALUE][i]);
+			break;
+		case NB_TAB_SYS:
+			gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][UPTIME]),      data->tabsys[VALUE][UPTIME]);
+			for(i = USED; i < LASTSYS; i++)
+				gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][i]),   data->tabsys[VALUE][i]);
+			break;
+		case NB_TAB_GPU:
+			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
+				gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[VALUE][GPUTEMP1 + i]), data->tabgpu[VALUE][GPUTEMP1 + i]);
+			break;
+		default:
+			break;
 	}
 
-	/* Refresh tab Caches */
-	else if(HAS_LIBCPUID && HAS_BANDWIDTH && page == NB_TAB_CACHE)
-	{
-		bandwidth(refr->data);
-		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
-			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabcache[VALUE][i]), refr->data->tabcache[VALUE][i]);
-	}
-
-	/* Refresh tab System */
-	else if(page == NB_TAB_SYS)
-	{
-		tabsystem(refr->data);
-		gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][UPTIME]), refr->data->tabsys[VALUE][UPTIME]);
-		for(i = USED; i < LASTSYS; i++)
-			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabsys[VALUE][i]), refr->data->tabsys[VALUE][i]);
-	}
-
-	/* Refresh tab GPU */
-	else if(HAS_LIBPCI && page == NB_TAB_GPU)
-	{
-		pcidev(refr->data);
-		i = 0;
-		//for(i = 0; i < last_gpu(refr->data); i += GPUFIELDS)
-			gtk_label_set_text(GTK_LABEL(refr->glab->gtktabgpu[VALUE][GPUTEMP1 + i]), refr->data->tabgpu[VALUE][GPUTEMP1 + i]);
-	}
-#endif
 	return G_SOURCE_CONTINUE;
 }
 

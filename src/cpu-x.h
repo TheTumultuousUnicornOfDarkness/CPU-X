@@ -210,6 +210,9 @@ char *check_lastver(void);
 /* Fill labels by calling core functions */
 int fill_labels(Labels *data);
 
+/* Refresh some labels */
+int do_refresh(Labels *data, enum EnTabNumber page);
+
 /* Call dmidecode library */
 int libdmi(char c);
 

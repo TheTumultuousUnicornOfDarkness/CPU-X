@@ -61,7 +61,7 @@
 #endif
 
 
-/************************* Public function *************************/
+/************************* Public functions *************************/
 
 /* Fill labels by calling below functions */
 int fill_labels(Labels *data)
@@ -80,6 +80,34 @@ int fill_labels(Labels *data)
 	find_devices(data);
 	if(fallback)
 		fallback_mode(data);
+
+	return err;
+}
+
+/* Refresh some labels */
+int do_refresh(Labels *data, enum EnTabNumber page)
+{
+	int err;
+
+	switch(page)
+	{
+		case NB_TAB_CPU:
+			err =  call_libcpuid_dynamic(data);
+			err += cpu_multipliers(data);
+			cpu_usage(data);
+			break;
+		case NB_TAB_CACHE:
+			err = bandwidth(data);
+			break;
+		case NB_TAB_SYS:
+			err = system_dynamic(data);
+			break;
+		case NB_TAB_GPU:
+			err = gpu_temperature(data);
+			break;
+		default:
+			err = -1;
+	}
 
 	return err;
 }

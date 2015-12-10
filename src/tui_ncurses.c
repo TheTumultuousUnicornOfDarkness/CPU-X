@@ -29,7 +29,7 @@
 #include "cpu-x.h"
 #include "tui_ncurses.h"
 
-static int loop = NB_TAB_CPU;
+static int page = NB_TAB_CPU;
 
 
 void start_tui_ncurses(Labels *data)
@@ -102,7 +102,7 @@ void start_tui_ncurses(Labels *data)
 				break;
 		}
 
-		loop = current_tab;
+		page = current_tab;
 	}
 
 	endwin();
@@ -111,66 +111,51 @@ void start_tui_ncurses(Labels *data)
 
 void nrefresh(NThrd *refr)
 {
-#if 0
-	int i, j = 2;
+	int i, j;
+	Labels *(data) = refr->data;
+	WINDOW *(win) = refr->win;
 
-	/* Refresh tab CPU */
-	if(loop == NB_TAB_CPU)
+	do_refresh(data, page);
+
+	switch(page)
 	{
-		cpufreq(refr->data);
-		if(HAS_LIBCPUID && !getuid())
-		{
-			libcpuid(refr->data);
-			mvwprintw(refr->win, 5, 22, "%13s: %s", refr->data->tabcpu[NAME][VOLTAGE], refr->data->tabcpu[VALUE][VOLTAGE]);
-			mvwprintw(refr->win, 7, 38, "%9s: %s", refr->data->tabcpu[NAME][TEMPERATURE], refr->data->tabcpu[VALUE][TEMPERATURE]);
-		}
-		if(HAS_DMIDECODE && !getuid())
-		{
-			//libdmidecode(refr->data);
-			mvwprintw(refr->win, 13, 2, "%13s: %s", refr->data->tabcpu[NAME][MULTIPLIER], refr->data->tabcpu[VALUE][MULTIPLIER]);
-		}
-		mvwprintw(refr->win, 12, 2, "%13s: %s", refr->data->tabcpu[NAME][CORESPEED], refr->data->tabcpu[VALUE][CORESPEED]);
-		wrefresh(refr->win);
+		case NB_TAB_CPU:
+			mvwprintw(win, 5, 22, "%13s: %s", data->tabcpu[NAME][VOLTAGE],     data->tabcpu[VALUE][VOLTAGE]);
+			mvwprintw(win, 7, 38, "%9s: %s",  data->tabcpu[NAME][TEMPERATURE], data->tabcpu[VALUE][TEMPERATURE]);
+			mvwprintw(win, 13, 2, "%13s: %s", data->tabcpu[NAME][MULTIPLIER],  data->tabcpu[VALUE][MULTIPLIER]);
+			mvwprintw(win, 12, 2, "%13s: %s", data->tabcpu[NAME][CORESPEED],   data->tabcpu[VALUE][CORESPEED]);
+			mvwprintw(win, 15, 2, "%13s: %s", data->tabcpu[NAME][USAGE],       data->tabcpu[VALUE][USAGE]);
+			break;
+		case NB_TAB_CACHE:
+			j = 2;
+			for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
+			{
+				mvwprintw(win, i + j,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+				j += 2;
+			}
+			break;
+		case NB_TAB_SYS:
+			mvwprintw(win, 5,  2, "%13s: %s", data->tabsys[NAME][UPTIME], data->tabsys[VALUE][UPTIME]);
+			for(i = USED; i < LASTSYS; i++)
+			{
+				mvwprintw(win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+				clear_bar(win, i);
+				draw_bar(win, data, i);
+			}
+			break;
+		case NB_TAB_GPU:
+			j = GPUTEMP1 + 2;
+			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
+			{
+				mvwprintw(win, j,  2, "%13s: %s", data->tabgpu[NAME][GPUTEMP1 + i], data->tabgpu[VALUE][GPUTEMP1 + i]);
+				j += GPUFIELDS + 2;
+			}
+			break;
+		default:
+			break;
 	}
 
-	/* Refresh tab Caches */
-	else if(HAS_LIBCPUID && HAS_BANDWIDTH && loop == NB_TAB_CACHE)
-	{
-		bandwidth(refr->data);
-		for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
-		{
-			mvwprintw(refr->win, i + j,  2, "%13s: %s", refr->data->tabcache[NAME][i], refr->data->tabcache[VALUE][i]);
-			j += 2;
-		}
-		wrefresh(refr->win);
-	}
-
-	/* Refresh tab System */
-	else if(loop == NB_TAB_SYS)
-	{
-		tabsystem(refr->data);
-		for(i = USED; i < LASTSYS; i++)
-		{
-			mvwprintw(refr->win, i + 4,  2, "%13s: %s", refr->data->tabsys[NAME][i], refr->data->tabsys[VALUE][i]);
-			clear_bar(refr->win, i);
-			draw_bar(refr->win, refr->data, i);
-		}
-		wrefresh(refr->win);
-	}
-
-	/* Refresh tab GPU */
-	else if(HAS_LIBPCI && loop == NB_TAB_GPU)
-	{
-		j = GPUTEMP1 + 2;
-		pcidev(refr->data);
-		for(i = 0; i < last_gpu(refr->data); i += GPUFIELDS)
-		{
-			mvwprintw(refr->win, j,  2, "%13s: %s", refr->data->tabgpu[NAME][GPUTEMP1 + i], refr->data->tabgpu[VALUE][GPUTEMP1 + i]);
-			j += GPUFIELDS + 2;
-		}
-		wrefresh(refr->win);
-	}
-#endif
+	wrefresh(win);
 }
 
 void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
