@@ -83,25 +83,6 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-const char *optstring[] =
-{
-#if HAS_GTK
-	"gtk",
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-	"ncurses",
-#endif /* HAS_NCURSES */
-	"dump",
-	"refresh",
-#if HAS_DMIDECODE
-	"dmidecode",
-#endif /* HAS_DMIDECODE */
-	"color",
-	"verbose",
-	"help",
-	"version"
-};
-
 /* Enable internationalization support */
 int set_locales(void)
 {
@@ -246,28 +227,49 @@ int update_prg(char *executable, Options *opts)
 }
 #endif /* PORTABLE_BINARY */
 
-/* This is help display with option --help */
-void help(FILE *out, char *argv[])
+const struct AvailableOpts
 {
-	int o = 0;
+	const bool has_mod; const char short_opt; const char *long_opt; const int  need_arg;
+} o[] =
+{
+	{ HAS_GTK,       'g', "gtk",       no_argument       },
+	{ HAS_NCURSES,   'n', "ncurses",   no_argument       },
+	{ true,          'd', "dump",      no_argument       },
+	{ true,          'r', "refresh",   required_argument },
+	{ HAS_DMIDECODE, 'D', "dmidecode", no_argument       },
+	{ true,          'c', "color",     no_argument       },
+	{ true,          'v', "verbose",   no_argument       },
+	{ true,          'h', "help",      no_argument       },
+	{ true,          'V', "version",   no_argument       },
+	{ true,          '0', NULL,        0                 }
+};
+
+/* This is help display with option --help */
+void help(FILE *out, char *argv[], int exit_status)
+{
+	int i;
+	const char *description[] =
+	{
+		_("Start graphical user interface (GUI) (default)"),
+		_("Start text-based user interface (TUI)"),
+		_("Dump all data on standard output and exit"),
+		_("Set custom time between two refreshes (in seconds)"),
+		_("Run embedded command dmidecode and exit"),
+		_("Disable colored output"),
+		_("Verbose output"),
+		_("Print help and exit"),
+		_("Print version and exit")
+	};
 
 	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
 	fprintf(out, _("Available OPTION:\n"));
-#if HAS_GTK
-	fprintf(out, _("  -g, --%-10s Start graphical user interface (GUI) (default)\n"), optstring[o]); o++;
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-	fprintf(out, _("  -n, --%-10s Start text-based user interface (TUI)\n"), optstring[o]); o++;
-#endif /* HAS_NCURSES */
-	fprintf(out, _("  -d, --%-10s Dump all data on standard output and exit\n"), optstring[o]); o++;
-	fprintf(out, _("  -r, --%-10s Set custom time between two refreshes (in seconds)\n"), optstring[o]); o++;
-#if HAS_DMIDECODE
-	fprintf(out, _("  -D, --%-10s Run embedded command dmidecode and exit\n"), optstring[o]); o++;
-#endif /* HAS_DMIDECODE */
-	fprintf(out, _("  -c, --%-10s Disable colored output\n"), optstring[o]); o++;
-	fprintf(out, _("  -v, --%-10s Verbose output\n"), optstring[o]); o++;
-	fprintf(out, _("  -h, --%-10s Print help and exit\n"), optstring[o]); o++;
-	fprintf(out, _("  -V, --%-10s Print version and exit\n"), optstring[o]); o++;
+	for(i = 0; o[i].long_opt != NULL; i++)
+	{
+		if(o[i].has_mod)
+			fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, description[i]);
+	}
+
+	exit(exit_status);
 }
 
 /* This is the --version option */
@@ -287,32 +289,28 @@ void version(void)
 	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
 	"Compiled on %s, %s, with compiler version %s.\n"),
 	PRGNAME, PRGVER, strver, PRGCPYR, __DATE__, __TIME__, __VERSION__);
+
+	exit(EXIT_SUCCESS);
 }
 
 /* Parse options given in arg */
 void menu(int argc, char *argv[])
 {
-	int c, tmp_refr = -1;
+	int i, j = 0, c, tmp_refr = -1;
+	struct option longopts[9];
 
-	const struct option longopts[] =
+	/* Filling longopts structure */
+	for(i = 0; o[i].long_opt != NULL; i++)
 	{
-#if HAS_GTK
-		{optstring[0],	no_argument, 0, 'g'}, /* Arg gtk */
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-		{optstring[1],	no_argument, 0, 'n'}, /* Arg ncurses */
-#endif /* HAS_NCURSES */
-		{optstring[2],	no_argument, 0, 'd'}, /* Arg dump */
-		{optstring[3],	required_argument, 0, 'r'}, /* Arg refresh */
-#if HAS_DMIDECODE
-		{optstring[4],	no_argument, 0, 'D'}, /* Arg Dmidecode */
-#endif /* HAS_DMIDECODE */
-		{optstring[5],	no_argument, 0, 'c'}, /* Arg color */
-		{optstring[6],	no_argument, 0, 'v'}, /* Arg verbose */
-		{optstring[7],	no_argument, 0, 'h'}, /* Arg help */
-		{optstring[8],	no_argument, 0, 'V'}, /* Arg version */
-		{0,		0,	     0,  0}
-	};
+		if(o[i].has_mod)
+		{
+			longopts[j].name    = o[i].long_opt;
+			longopts[j].has_arg = o[i].has_mod;
+			longopts[j].flag    = 0;
+			longopts[j].val     = o[i].short_opt;
+			j++;
+		}
+	}
 
 	/* Set the default mode */
 	if(HAS_GTK)
@@ -327,16 +325,18 @@ void menu(int argc, char *argv[])
 	{
 		switch(c)
 		{
-#if HAS_GTK
 			case 'g':
-				opts->output_type = OUT_GTK;
+				if(HAS_GTK)
+					opts->output_type = OUT_GTK;
+				else
+					help(stderr, argv, EXIT_FAILURE);
 				break;
-#endif /* HAS_GTK */
-#if HAS_NCURSES
 			case 'n':
-				opts->output_type = OUT_NCURSES;
+				if(HAS_NCURSES)
+					opts->output_type = OUT_NCURSES;
+				else
+					help(stderr, argv, EXIT_FAILURE);
 				break;
-#endif /* HAS_NCURSES */
 			case 'd':
 				opts->output_type = OUT_DUMP;
 				break;
@@ -345,11 +345,12 @@ void menu(int argc, char *argv[])
 				if(tmp_refr > 1)
 					opts->refr_time = tmp_refr;
 				break;
-#if HAS_DMIDECODE
 			case 'D':
-				opts->output_type = OUT_DMIDECODE;
+				if(HAS_DMIDECODE)
+					opts->output_type = OUT_DMIDECODE;
+				else
+					help(stderr, argv, EXIT_FAILURE);
 				break;
-#endif /* HAS_DMIDECODE */
 			case 'c':
 				opts->color = false;
 				break;
@@ -357,15 +358,12 @@ void menu(int argc, char *argv[])
 				opts->verbose = true;
 				break;
 			case 'h':
-				help(stdout, argv);
-				exit(EXIT_SUCCESS);
+				help(stdout, argv, EXIT_SUCCESS);
 			case 'V':
 				version();
-				exit(EXIT_SUCCESS);
 			case '?':
 			default:
-				help(stderr, argv);
-				exit(EXIT_FAILURE);
+				help(stderr, argv, EXIT_FAILURE);
 		}
 	} while((c = getopt_long(argc, argv, ":gndr:DcvhV", longopts, NULL)) != -1);
 }
