@@ -41,6 +41,14 @@
 # endif
 #endif
 
+#if defined(__clang__)
+# define CC "Clang"
+#elif defined(__GNUC__) || defined(__GNUG__)
+# define CC "GCC"
+#else
+# define CC "Unknown"
+#endif
+
 
 Options *opts;
 
@@ -275,20 +283,39 @@ void help(FILE *out, char *argv[], int exit_status)
 /* This is the --version option */
 void version(void)
 {
+	int i;
 	char *strver, *newver = check_lastver();
+	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
+	{
+		{ HAS_GTK,       "GTK",       GTK_VERSION       },
+		{ HAS_NCURSES,   "NCURSES",   NCURSES_VERSION   },
+		{ HAS_LIBCPUID,  "LIBCPUID",  LIBCPUID_VERSION  },
+		{ HAS_LIBPCI,    "LIBPCI",    LIBPCI_VERSION    },
+		{ HAS_LIBPROCPS, "LIBPROCPS", LIBPROCPS_VERSION },
+		{ HAS_DMIDECODE, "DMIDECODE", DMIDECODE_VERSION },
+		{ HAS_BANDWIDTH, "BANDWIDTH", BANDWIDTH_VERSION },
+		{ false,         NULL,        NULL              }
+	};
 
 	if(newver[0] == 'f')
 		asprintf(&strver, _("(up-to-date)"));
 	else
 		asprintf(&strver, _("(version %s is available)"), newver);
 
-	printf(_("%s %s %s\n"
-	"%s\n\n"
+	printf("%s %s %s\n%s\n\n", PRGNAME, PRGVER, strver, PRGCPYR);
+	printf(_(""
 	"This is free software: you are free to change and redistribute it.\n"
 	"This program comes with ABSOLUTELY NO WARRANTY\n"
 	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
-	"Compiled on %s, %s, with compiler version %s.\n"),
-	PRGNAME, PRGVER, strver, PRGCPYR, __DATE__, __TIME__, __VERSION__);
+	"Built on %s, %s (with %s %s).\n"),
+	__DATE__, __TIME__, CC, __VERSION__);
+
+	/* Print features version */
+	for(i = 0; v[i].lib != NULL; i++)
+	{
+		if(v[i].has_mod)
+			printf(_("-- %12s version: %s\n"), v[i].lib, v[i].version);
+	}
 
 	exit(EXIT_SUCCESS);
 }
