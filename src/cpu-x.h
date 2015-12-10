@@ -193,7 +193,7 @@ int xopen_to_str(char *file, char **buffer, char type);
 void labels_setname(Labels *data);
 
 /* Replace null pointers by character '\0' */
-void labels_delnull(Labels *data);
+int remove_null_ptr(Labels *data);
 
 /* Free memory after display labels */
 void labels_free(Labels *data);

@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	set_locales();
 	labels_setname(&data);
 	fill_labels(&data);
-	labels_delnull(&data);
+	remove_null_ptr(&data);
 
 	if(getuid())
 		MSG_WARNING("WARNING: root privileges are required to work properly\n");
@@ -666,70 +666,35 @@ void labels_setname(Labels *data)
 }
 
 /* Replace null pointers by character '\0' */
-void labels_delnull(Labels *data)
+int remove_null_ptr(Labels *data)
 {
-	int i;
-
-	MSG_VERBOSE(_("Replace undefined label by empty string"));
-	/* Tab CPU */
-	for(i = VENDOR; i < LASTCPU; i++)
+	int i, j, cpt = 0, ret = 0;
+	char *msg;
+	const struct Arrays { char **array; const int last; } a[] =
 	{
-		if(data->tabcpu[VALUE][i] == NULL)
+		{ data->tabcpu[VALUE],   LASTCPU   },
+		{ data->tabcache[VALUE], LASTCACHE },
+		{ data->tabmb[VALUE],    LASTMB    },
+		{ data->tabram[VALUE],   LASTRAM   },
+		{ data->tabsys[VALUE],   LASTSYS   },
+		{ data->tabgpu[VALUE],   LASTGPU   },
+		{ NULL,                  0         }
+	};
+
+	MSG_VERBOSE(_("Replacing undefined labels by an empty string"));
+	for(i = 0; a[i].array != NULL; i++)
+	{
+		for(j = 0; j < a[i].last; j++)
 		{
-			data->tabcpu[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabcpu[VALUE][i][0] = '\0';
+			cpt++;
+			if(a[i].array[j] == NULL)
+				ret += !iasprintf(&a[i].array[j], NULL);
 		}
 	}
 
-	/* Tab Cache */
-	for(i = L1SIZE; i < LASTCACHE; i++)
-	{
-		if(data->tabcache[VALUE][i] == NULL)
-		{
-			data->tabcache[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabcache[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
-	{
-		if(data->tabmb[VALUE][i] == NULL)
-		{
-			data->tabmb[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabmb[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
-	{
-		if(data->tabram[VALUE][i] == NULL)
-		{
-			data->tabram[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabram[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
-	{
-		if(data->tabsys[VALUE][i] == NULL)
-		{
-			data->tabsys[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabsys[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
-	{
-		if(data->tabgpu[VALUE][i] == NULL)
-		{
-			data->tabgpu[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabgpu[VALUE][i][0] = '\0';
-		}
-	}
+	asprintf(&msg, _("\tThere is %i/%i empty strings"), ret, cpt);
+	MSG_VERBOSE(msg);
+	return ret;
 }
 
 /* Free memory after display labels */
