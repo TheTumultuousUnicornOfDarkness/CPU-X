@@ -105,7 +105,7 @@ const char *optstring[] =
 /* Enable internationalization support */
 int set_locales(void)
 {
-	int i = -1;
+	int i;
 	char *out[3] = { NULL };
 
 	if(PORTABLE_BINARY && HAS_GETTEXT)
@@ -119,7 +119,7 @@ int set_locales(void)
 	out[2] = textdomain(GETTEXT_PACKAGE);
 
 	/* Check if something is wrong */
-	while(++i < 3 && out[i] != NULL);
+	for(i = 0; i < 3 && out[i] != NULL; i++);
 	if(out[i] == NULL)
 	{
 		MSG_ERROR(_("an error occurred while setting locale"));
@@ -398,7 +398,7 @@ int message(char type, char *msg, char *basefile, int line)
 int iasprintf(char **str, const char *fmt, ...)
 {
 	bool is_format = false, print = true;
-	int arg_int, ret, i = -1;
+	int arg_int, i, ret;
 	double arg_double;
 	char *arg_string, *tmp_fmt;
 	va_list aptr;
@@ -415,7 +415,7 @@ int iasprintf(char **str, const char *fmt, ...)
 
 	/* Read format, character by character */
 	va_start(aptr, fmt);
-	while(fmt[++i] != '\0')
+	for(i = 0; fmt[i] != '\0'; i++)
 	{
 		is_format = fmt[i] == '%' || is_format;
 		if(is_format)

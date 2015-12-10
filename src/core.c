@@ -153,7 +153,7 @@ static int cpu_technology(Labels *data)
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data)
 {
-	int i = -1, j = 0;
+	int i, j = 0;
 	const char *fmt = { _("%2d-way set associative, %2d-byte line size") };
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
@@ -199,7 +199,7 @@ static int call_libcpuid_static(Labels *data)
 		{ "Geode by NSC", "National Semiconductor", VENDOR_NSC       },
 		{ datanr.vendor_str, datanr.vendor_str,     VENDOR_UNKNOWN    }
 	};
-	while(strcmp(cpuvendors[++i].standard, datanr.vendor_str));
+	for(i = 0; strcmp(cpuvendors[i].standard, datanr.vendor_str); i++);
 	iasprintf(&data->tabcpu[VALUE][VENDOR], cpuvendors[i].improved);
 	data->cpu_vendor_id = cpuvendors[i].id;
 
@@ -270,8 +270,7 @@ static int call_libcpuid_static(Labels *data)
 		{ CPU_FEATURE_SVM,      ", AMD-V"  },
 		{ NUM_CPU_FEATURES,	NULL       }
 	};
-	i = -1;
-	while(intructions[++i].flag != NUM_CPU_FEATURES)
+	for(i = 0; intructions[i].flag != NUM_CPU_FEATURES; i++)
 	{
 		if(datanr.flags[intructions[i].flag] && data->tabcpu[VALUE][INSTRUCTIONS] == NULL)
 			iasprintf(&data->tabcpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
@@ -399,13 +398,13 @@ static int call_dmidecode(Labels *data)
 static int fallback_mode(Labels *data)
 {
 #ifdef __linux__
-	int i = -1;
+	int i;
 	char *file, *buff;
 	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 
 	MSG_VERBOSE(_("Filling labels in fallback mode"));
 	/* Tab Motherboard */
-	while(id[++i] != NULL)
+	for(i = 0; id[i] != NULL; i++)
 	{
 		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
 		xopen_to_str(file, &buff, 'f');
@@ -538,7 +537,7 @@ static char *find_driver(struct pci_dev *dev, char *buff)
 static void find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
-	int nbgpu = 0, i = -1;
+	int i, nbgpu = 0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	char namebuf[MAXSTR], *vendor, *product, *drivername, *driverstr;
@@ -571,7 +570,7 @@ static void find_devices(Labels *data)
 		  dev->device_class == PCI_CLASS_DISPLAY_3D	||
 		  dev->device_class == PCI_CLASS_DISPLAY_OTHER))
 		{
-			while(gpu_vendors[++i] != NULL && strstr(vendor, gpu_vendors[i]) == NULL);
+			for(i = 0; gpu_vendors[i] != NULL && strstr(vendor, gpu_vendors[i]) == NULL; i++);
 			drivername = find_driver(dev, namebuf);
 			iasprintf(&driverstr, _("(%s driver)"), drivername);
 			iasprintf(&data->tabgpu[VALUE][GPUVENDOR1	+ nbgpu * GPUFIELDS], "%s %s", (gpu_vendors[i] == NULL) ? vendor : gpu_vendors[i], driverstr);
