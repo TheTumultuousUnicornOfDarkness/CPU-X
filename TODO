@@ -1,8 +1,6 @@
 THIS IS THE TODO LIST FOR CPU-X 3.0.
 It's to avoid I forget something. :)
 
-First of all, I need to review consistency of code (e.g. "Caches" tab but array is called "tabcache").
-
 Legend:
 - to do
 * work in progress
@@ -10,17 +8,18 @@ Legend:
 
 
 *** CORE ***
+- Review var names (e.g. "Caches" tab but array is called "tabcache")
 + Remove all #ifdef FOO # define HAS_FOO 1 ... (I do this via CMake now)
 + Review some #define (like removing MSGROOT and add a MSGWARN macro)
 + Add useful var in struct Labels (like L1-L3 cache size, number of DIMMS/GPU...)
 + Remove function labels_setnull() and use C99 struct initialization
-- Remove function labels_delnull() (iasprintf() can replaces it)
 + Remove BogoMIPS label, replaces it by CPU usage in percent
 + Review some core functions (libcpuid(), cpufreq(), mult(), ...)
 + Replace all strdupnullok() and asprintf() by iasprintf()
 + Add a public interface, add static functions
 - Add a generic refresh function (partially merge grefresh() and nrefresh())
 - Catch SIGSEV?
+- Multi-threaded data collection?
 
 *** GTK ***
 - GTK 3.20 compliance
@@ -34,6 +33,7 @@ Legend:
 *** VARIOUS ***
 - Patch dmidecode
 - Let select bandwidth test
+- Disable auto-update, inform on new version + auto-update if wanted
 - Clean-ups in dmidecode & bandwidth source code (some code is disabled by CPP)
 - Add a feature to select CPU core to monitor
 - Add a new window to monitor all cores?
