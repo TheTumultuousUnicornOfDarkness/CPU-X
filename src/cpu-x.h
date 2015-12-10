@@ -26,40 +26,45 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#define HAVE_STDINT_H	/* Skip conflicts with <libcpuid/libcpuid_types.h> */
+#define HAVE_STDINT_H		/* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
-#define BOLD_RED	"\x1b[1;31m"
-#define BOLD_GREEN	"\x1b[1;32m"
-#define BOLD_YELLOW	"\x1b[1;33m"
-#define RESET		"\x1b[0m"
+/* Software definition */
+#define PRGNAME			"CPU-X"
+#define PRGAUTH			"X0rg"
+#define PRGCPYR			"Copyright © 2014-2015 Xorg"
 
-#define BASEFILE		(strrchr(__FILE__, '/') ? \
-					strrchr(__FILE__, '/') + 1 : __FILE__) /* Don't show full path of file */
+/* Colors definition */
+#define BOLD_RED		"\x1b[1;31m"
+#define BOLD_GREEN		"\x1b[1;32m"
+#define BOLD_YELLOW		"\x1b[1;33m"
+#define RESET			"\x1b[0m"
+
+/* Formatted messages definition */
+#define BASEFILE		(strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define MSG_VERBOSE(str)	message('v', str, BASEFILE, __LINE__)
 #define MSG_WARNING(str)	message('w', str, BASEFILE, __LINE__)
 #define MSG_ERROR(str)		message('e', str, BASEFILE, __LINE__)
 #define MSG_ERROR_ERRNO(str)	message('n', str, BASEFILE, __LINE__)
-#define _(str) gettext(str)
+#define _(str)			gettext(str)
 
+/* Options definition */
 #define OUT_GTK			(1 << 0)
 #define OUT_NCURSES		(1 << 1)
 #define OUT_DUMP		(1 << 2)
 #define OUT_DMIDECODE		(1 << 3)
 
-#define PRGNAME "CPU-X"
-#define PRGAUTH "X0rg"
-#define PRGCPYR "Copyright © 2014-2015 Xorg"
-#define EXIT_FNO 2	/* Exit when File Not Open */
-#define SYS_DMI "/sys/devices/virtual/dmi/id"
-#define SYS_CPU "/sys/devices/system/cpu/cpu"
-#define SYS_DRM "/sys/class/drm/card"
-#define NAME	0
-#define VALUE	1
-#define MAXSTR	60	/* Max string */
-#define S 10		/* Little string */
-#define CACHEFIELDS 3	/* Nb of fields by cache frame */
-#define RAMFIELDS 2	/* Nb of fields by bank */
-#define GPUFIELDS 3	/* Nb of fields by GPU frame */
+/* Arrays definition */
+#define NAME			0
+#define VALUE			1
+#define MAXSTR			60	/* Max string */
+#define CACHEFIELDS		3	/* Nb of fields by cache frame */
+#define RAMFIELDS		2	/* Nb of fields by bank */
+#define GPUFIELDS		3	/* Nb of fields by GPU frame */
+
+/* Linux-specific paths definition */
+#define SYS_DMI			"/sys/devices/virtual/dmi/id"
+#define SYS_CPU			"/sys/devices/system/cpu/cpu"
+#define SYS_DRM			"/sys/class/drm/card"
 
 
 enum EnTabNumber
@@ -138,12 +143,12 @@ typedef struct
 	char *tabsys[2][LASTSYS];
 	char *tabgpu[2][LASTGPU];
 
-	int cpu_freq;
-	int8_t cpu_vendor_id;
-	uint8_t selected_core, cpu_count, gpu_count, dimms_count;
-	int32_t cpu_model, cpu_ext_model, cpu_ext_family;
+	int      cpu_freq;
+	int8_t   cpu_vendor_id;
+	uint8_t  selected_core, cpu_count, gpu_count, dimms_count;
+	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
 	uint32_t l1_size, l2_size, l3_size;
-	double bus_freq;
+	double   bus_freq;
 } Labels;
 
 typedef struct

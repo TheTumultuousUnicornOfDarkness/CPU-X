@@ -287,7 +287,7 @@ static void dump_data(Labels *data)
 /* Check if running version is latest */
 static char *check_lastver(void)
 {
-	char newver[S];
+	char newver[10];
 	static char *ret = NULL;
 	FILE *page = NULL;
 
@@ -311,7 +311,7 @@ static char *check_lastver(void)
 		return ret;
 	}
 
-	fgets(newver, S - 1, page);
+	fgets(newver, 9, page);
 	pclose(page);
 	newver[strlen(newver) - 1] = '\0';
 
