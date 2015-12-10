@@ -143,8 +143,8 @@ static int cpu_technology(Labels *data)
 		}
 	}
 
-	asprintf(&msg, _("error, your CPU does not belong in database (%s CPU, model %i, ext. model %i, ext. family %i)"),
-	         data->tabcpu[VALUE][VENDOR], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
+	asprintf(&msg, _("error, your CPU does not belong in database (CPU: %s, model: %i, ext. model: %i, ext. family: %i)"),
+	         data->tabcpu[VALUE][CODENAME], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
 	MSG_ERROR(msg);
 
 	return 0;
