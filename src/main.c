@@ -663,13 +663,13 @@ int message(char type, char *msg, char *basefile, int line)
 	switch(type)
 	{
 		case 'v': /* Verbose message */
-			return opts->verbose ? fprintf(stdout, "%s%s\n" RESET, opts->color ? BOLD_GREEN : "", msg) : -1;
+			return opts->verbose ? fprintf(stdout, "%s%s%s\n", opts->color ? BOLD_GREEN  : "", msg, RESET) : -1;
 		case 'w': /* Warning message */
-			return fprintf(stdout, "%s%s\n" RESET, opts->color ? BOLD_YELLOW : "", msg);
+			return fprintf(stdout, "%s%s%s\n",                 opts->color ? BOLD_YELLOW : "", msg, RESET);
 		case 'e': /* Error message */
-			return fprintf(stderr, "%s%s:%s:%i: %s\n" RESET, opts->color ? BOLD_RED : "", PRGNAME, basefile, line, msg);
+			return fprintf(stderr, "%s%s:%s:%i: %s%s\n",       opts->color ? BOLD_RED    : "", PRGNAME, basefile, line, msg, RESET);
 		case 'n': /* Error message with errno */
-			return fprintf(stderr, "%s%s:%s:%i: %s (%s)\n" RESET, opts->color ? BOLD_RED : "", PRGNAME, basefile, line, msg, strerror(errno));
+			return fprintf(stderr, "%s%s:%s:%i: %s (%s)%s\n",  opts->color ? BOLD_RED    : "", PRGNAME, basefile, line, msg, strerror(errno), RESET);
 	}
 
 	return -1;
