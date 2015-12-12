@@ -174,8 +174,8 @@ static int cpu_technology(Labels *data)
 		}
 	}
 
-	asprintf(&msg, _("error, your CPU does not belong in database (CPU: %s, model: %i, ext. model: %i, ext. family: %i)"),
-	         data->tabcpu[VALUE][CODENAME], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
+	asprintf(&msg, _("your CPU does not belong in database\nCPU: %s, model: %i, ext. model: %i, ext. family: %i"),
+	         data->tabcpu[VALUE][SPECIFICATION], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
 	MSG_ERROR(msg);
 
 	return 0;
@@ -361,8 +361,10 @@ static int call_libcpuid_dynamic(Labels *data)
 
 #ifdef HAVE_LIBCPUID_0_2_2
 	/* MSR stuff */
-	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
 	load_msr_driver();
+	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
+	if(getuid())
+		MSG_WARNING(_("Run as regular user, MSR opening should fail"));
 	msr = cpu_msr_driver_open_core(data->selected_core);
 	if(msr == NULL)
 	{
@@ -402,6 +404,8 @@ static int call_dmidecode(Labels *data)
 	int i, err = 0;
 
 	MSG_VERBOSE(_("Calling dmidecode"));
+	if(getuid())
+		MSG_WARNING(_("Run as regular user, dmidecode should fail"));
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE] = &data->tabcpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]     = &data->tabcpu[VALUE][BUSSPEED];
@@ -468,7 +472,7 @@ static int cpu_multipliers(Labels *data)
 	if(xopen_to_str(cpuinfo_min_file, &min_freq_str, 'f') || xopen_to_str(cpuinfo_max_file, &max_freq_str, 'f'))
 	{
 		asprintf(&data->tabcpu[VALUE][MULTIPLIER], "x %.2f", cur_mult);
-		MSG_WARNING(_("cannot get minimum and maximum CPU multiplierss"));
+		MSG_WARNING(_("Cannot get minimum and maximum CPU multiplierss"));
 	}
 	else
 	{

@@ -644,19 +644,19 @@ int main(int argc, char *argv[])
 	/* Parse options */
 	Labels data = { NULL };
 	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false, .color = true };
+	set_locales();
 	menu(argc, argv);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
 	if(HAS_DMIDECODE && !getuid() && (opts->output_type & OUT_DMIDECODE))
 		return libdmi('D');
 
-	set_locales();
+	if(getuid())
+		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
+
 	labels_setname(&data);
 	fill_labels(&data);
 	remove_null_ptr(&data);
-
-	if(getuid())
-		MSG_WARNING("WARNING: root privileges are required to work properly\n");
 
 	/* Show data */
 	switch(opts->output_type)
@@ -821,7 +821,7 @@ int xopen_to_str(char *file, char **buffer, char type)
 		/* Open file */
 		if((f = fopen(file, "r")) == NULL)
 		{
-			MSG_ERROR_ERRNO("xopen_to_str(): fopen() failed");
+			MSG_ERROR_ERRNO(_("xopen_to_str(): fopen() failed"));
 			return 2;
 		}
 	}
