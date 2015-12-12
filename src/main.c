@@ -285,48 +285,30 @@ static void dump_data(Labels *data)
 /************************* Update-related functions *************************/
 
 /* Check if running version is latest */
-static char *check_lastver(void)
+static bool new_version_available(char **newver)
 {
-	char newver[10];
-	static char *ret = NULL;
-	FILE *page = NULL;
-
+	MSG_VERBOSE(_("Checking on Internet for a new version..."));
 	if(!command_exists("curl"))
 	{
-		ret = strdup("f");
-		return ret;
+		MSG_WARNING(_("curl is missing on your system, can't check for a new version"));
+		return false;
 	}
 
-	if(ret != NULL)
-		return ret;
+	/* Retrieve the last tag on Git repo */
+	xopen_to_str("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
+	             newver, 'p');
 
-	MSG_VERBOSE(_("Check for a new version..."));
-	page = popen("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
-
-	/* Open file descriptor and put version number in variable */
-	if(page == NULL)
-	{
-		MSG_ERROR(_("Failed to check on Internet."));
-		ret = strdup("f");
-		return ret;
-	}
-
-	fgets(newver, 9, page);
-	pclose(page);
-	newver[strlen(newver) - 1] = '\0';
-
-	if(!strcmp(PRGVER, newver))
+	/* Compare Git tag with running version */
+	if(!strcmp(PRGVER, *newver))
 	{
 		MSG_VERBOSE(_("No new version available."));
-		ret = strdup("f");
+		return false;
 	}
 	else
 	{
 		MSG_VERBOSE(_("A new version is available!"));
-		ret = strdup(newver);
+		return true;
 	}
-
-	return ret;
 }
 
 /* Apply new portable version if available */
@@ -335,12 +317,12 @@ static int update_prg(char *executable, Options *opts)
 	int err = 0;
 #if PORTABLE_BINARY
 	int i = 0;
-	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
+	char *newver = NULL, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
 	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
 
 	opt = opts->verbose ? strdup("") : strdup("s");
-	newver = check_lastver();
-	if(newver[0] == 'f')
+
+	if(!new_version_available(&newver))
 		return 1;
 
 	/* Find what archive we need to download */
@@ -455,7 +437,7 @@ static void help(FILE *out, char *argv[], int exit_status)
 static void version(void)
 {
 	int i;
-	char *strver, *newver = check_lastver();
+	char *strver, *newver = NULL;
 	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
 	{
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
@@ -469,10 +451,10 @@ static void version(void)
 		{ false,           NULL,          NULL                }
 	};
 
-	if(newver[0] == 'f')
-		asprintf(&strver, _("(up-to-date)"));
-	else
+	if(new_version_available(&newver))
 		asprintf(&strver, _("(version %s is available)"), newver);
+	else
+		asprintf(&strver, _("(up-to-date)"));
 
 	printf("%s %s %s\n%s\n\n", PRGNAME, PRGVER, strver, PRGCPYR);
 	printf(_(""
