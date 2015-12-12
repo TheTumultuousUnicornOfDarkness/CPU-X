@@ -830,14 +830,12 @@ int xopen_to_str(char *file, char **buffer, char type)
 	if(fgets(*buffer, MAXSTR, f) == NULL)
 	{
 		MSG_ERROR_ERRNO(_("xopen_to_str(): fgets() failed"));
-		fclose(f);
-		return 4;
+		return 4 + (type == 'f') ? fclose(f) : pclose(f);
 	}
 
 	(*buffer)[strlen(*buffer) - 1] = '\0';
-	fclose(f);
 
-	return 0;
+	return (type == 'f') ? fclose(f) : pclose(f);
 }
 
 /* Free memory after display labels */
