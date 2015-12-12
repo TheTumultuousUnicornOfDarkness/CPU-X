@@ -749,7 +749,7 @@ static int system_dynamic(Labels *data)
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
-	iasprintf(&data->tabsys[VALUE][UPTIME], _("%i days, %i hours, %i minutes, %i seconds"),
+	asprintf(&data->tabsys[VALUE][UPTIME], _("%i days, %i hours, %i minutes, %i seconds"),
 	          tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec);
 
 	return err;
