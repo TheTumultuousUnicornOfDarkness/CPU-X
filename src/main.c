@@ -49,6 +49,14 @@
 # define CC "Unknown"
 #endif
 
+#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+# define OS "bsd32"
+#elif defined (__linux__) && defined (__LP64__)
+# define OS "linux64"
+#elif defined (__linux__) && !defined (__LP64__)
+# define OS "linux32"
+#endif
+
 
 Options *opts;
 
@@ -316,70 +324,56 @@ static int update_prg(char *executable, Options *opts)
 {
 	int err = 0;
 #if PORTABLE_BINARY
-	int i = 0;
-	char *newver = NULL, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
-	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
-
-	opt = opts->verbose ? strdup("") : strdup("s");
+	int i;
+	char *file, *tmp, *opt, *newver = NULL;
+	const char *ext[] = { "bsd32", "linux32", "linux64", NULL };
 
 	if(!new_version_available(&newver))
 		return 1;
 
 	/* Find what archive we need to download */
 	if(HAS_GTK)
-		portype = strdup("portable");
+		asprintf(&file, "%s_v%s_portable",       PRGNAME, newver);
 	else
-		portype = strdup("portable_noGTK");
+		asprintf(&file, "%s_v%s_portable_noGTK", PRGNAME, newver);
 
 	/* Download archive */
 	MSG_VERBOSE(_("Downloading new version..."));
-	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, newver, portype);
-	asprintf(&cmd, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, newver, tgzname, tgzname);
-	system(cmd);
+	opt = opts->verbose ? strdup("") : strdup("s");
+	asprintf(&tmp, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz ",
+	         opt, PRGAUTH, PRGNAME, newver, file, file);
+	system(tmp);
+	free(newver);
 
 	/* Extract archive */
+	MSG_VERBOSE(_("Extracting new version..."));
 	opt = opts->verbose ? strdup("v") : strdup("");
-	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
-	system(cmd);
-
+	asprintf(&tmp, "tar -zx%sf %s.tar.gz", opt, file);
+	system(tmp);
 	free(opt);
-	free(cmd);
-
-# if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "bsd32");
-# elif defined (__linux__) && defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux64");
-# elif defined (__linux__) && !defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux32");
-# endif /* OS */
 
 	/* Rename new binary */
 	MSG_VERBOSE(_("Applying new version..."));
-	err = rename(bin, executable);
+	asprintf(&tmp, "%s.%s", file, OS);
+	err = rename(tmp, executable);
 	if(err)
 		MSG_VERBOSE(_("Error when updating."));
 	else
 		MSG_VERBOSE(_("Update successful!"));
 
 	/* Delete temporary files */
-	err = remove(tgzname);
-	while(strcmp(ext[i], ""))
+	asprintf(&tmp, "%s.tar.gz", file);
+	err = remove(tmp);
+	for(i = 0; ext[i] != NULL; i++)
 	{
-		asprintf(&tmp, "%s_v%s_%s.%s", PRGNAME, newver, portype, ext[i]);
-		if(strcmp(bin, tmp))
-		{
-			err += remove(tmp);
-		}
-		i++;
+		asprintf(&tmp, "%s.%s", file, ext[i]);
+		err += remove(tmp);
 	}
 
-	if(err)
+	if(err > 1)
 		MSG_VERBOSE(_("Error when deleting temporary files."));
 
-	free(newver);
-	free(portype);
-	free(tgzname);
-	free(bin);
+	free(file);
 	free(tmp);
 #endif /* PORTABLE_BINARY */
 	return err;
