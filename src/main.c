@@ -29,6 +29,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <signal.h>
+#include <execinfo.h>
 #include <getopt.h>
 #include <locale.h>
 #include <libintl.h>
@@ -546,6 +548,42 @@ static void menu(int argc, char *argv[])
 
 /************************* Main-related functions *************************/
 
+/* Action on SIGSEV/SIGFPE */
+void sighandler(int signum)
+{
+	int bt_size, i;
+	char **bt_syms, *cmd, *buff = NULL;
+	void *bt[1 << 4];
+
+	/* Get the backtrace */
+	bt_size = backtrace(bt, 1 << 4);
+	bt_syms = backtrace_symbols(bt, bt_size);
+
+	/* Print the backtrace */
+	fprintf(stderr, strsignal(signum));
+	fprintf(stderr, _("\n%sOops, something was wrong! %s got signal %d and has crashed.%s\n\n"), BOLD_RED, PRGNAME, signum, RESET);
+	fprintf(stderr, "======= Backtrace: =========\n");
+        for(i = 1; i < bt_size; i++)
+	{
+		fprintf(stderr, "#%2i %s", i, bt_syms[i]);
+		asprintf(&cmd, "addr2line %s -e /usr/bin/cpu-x", strtok(strrchr(bt_syms[i], '[') + 1, "]"));
+		xopen_to_str(cmd, &buff, 'p');
+		if(strstr(buff, "??") == NULL)
+			fprintf(stderr, " ==> %s", strrchr(buff, '/') + 1);
+		fprintf(stderr, "\n");
+        }
+	fprintf(stderr, "======= End Backtrace ======\n\n");
+	fprintf(stderr, _("You can paste this backtrace by opening a new issue here:\n"));
+	fprintf(stderr, "https://github.com/X0rg/CPU-X/issues/new\n\n");
+
+	/* Stop program */
+	free(bt_syms);
+	free(cmd);
+	free(buff);
+	signal(signum, SIG_DFL);
+	kill(getpid(), signum);
+}
+
 /* Extract locales in /tmp/.cpu-x */
 static int extract_locales(void)
 {
@@ -621,6 +659,8 @@ int main(int argc, char *argv[])
 	Labels data = { NULL };
 	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false, .color = true };
 	set_locales();
+	signal(SIGSEGV, sighandler);
+	signal(SIGFPE,  sighandler);
 	menu(argc, argv);
 
 	/* If option --dmidecode is passed, start dmidecode and exit */
