@@ -513,7 +513,11 @@ static void cpu_usage(Labels *data)
 		for(i = 0; i <= data->cpu_count; i++)
 			fscanf(fp,"%*s %Lf %Lf %Lf %Lf %*s %*s %*s %*s %*s %*s", &pre[i][USER], &pre[i][NICE], &pre[i][SYSTEM], &pre[i][IDLE]);
 		fclose(fp);
-		sleep(1);
+		if(opts->output_type & OUT_DUMP || opts->refr_time > 1)
+		{
+			MSG_VERBOSE(_("Wait 1 second for stat refresh..."));
+			sleep(1);
+		}
 		init = true;
 	}
 
@@ -526,7 +530,7 @@ static void cpu_usage(Labels *data)
 	{
 		loadavg = ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM])) /
 		          ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]+new[i][IDLE]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM]+pre[i][IDLE]));
-		if(i == 0)
+		if(loadavg > 0.0 && i == 0)
 			asprintf(&data->tabcpu[VALUE][USAGE], "%6.2Lf %%", loadavg * 100);
 		memcpy(pre[i], new[i], 4 * sizeof(long double));
 	}
