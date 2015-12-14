@@ -426,7 +426,8 @@ static int call_dmidecode(Labels *data)
 	for(i = BANK0_0; i < LASTRAM; i++)
 		dmidata[i]    = &data->tabram[VALUE][i];
 	err += libdmi('r');
-	while(data->tabram[VALUE][++data->dimms_count] != NULL);
+	while(data->tabram[VALUE][data->dimms_count] != NULL)
+		data->dimms_count++;
 
 	if(err)
 		MSG_ERROR(_("failed to call dmidecode"));
