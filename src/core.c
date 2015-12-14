@@ -343,6 +343,7 @@ static bool load_msr_driver(void)
 		loaded = !system("modprobe msr 2> /dev/null");
 		if(!loaded)
 			MSG_ERROR(_("failed to load CPU MSR kernel module"));
+		loaded = true;
 	}
 #endif /* __linux__ */
 	return loaded;
@@ -351,6 +352,7 @@ static bool load_msr_driver(void)
 /* Dynamic elements provided by libcpuid */
 static int call_libcpuid_dynamic(Labels *data)
 {
+	static bool skip = false;
 	int voltage, temp, bclk;
 	struct msr_driver_t *msr = NULL;
 
@@ -360,6 +362,9 @@ static int call_libcpuid_dynamic(Labels *data)
 	iasprintf(&data->tabcpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
 
 #ifdef HAVE_LIBCPUID_0_2_2
+	if(skip)
+		return 1;
+
 	/* MSR stuff */
 	load_msr_driver();
 	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
@@ -369,6 +374,7 @@ static int call_libcpuid_dynamic(Labels *data)
 	if(msr == NULL)
 	{
 		MSG_ERROR(_("failed to open CPU MSR"));
+		skip = true;
 		return 1;
 	}
 
