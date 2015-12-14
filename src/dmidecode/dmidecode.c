@@ -3317,7 +3317,8 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 
 			case 4: /* 7.5 Processor Information */
 				asprintf(dmidata[PROC_PACKAGE], dmi_string(h, data[0x04]));
-				asprintf(dmidata[PROC_BUS],     dmi_processor_frequency_str(data + 0x12));
+				if(dmidata[PROC_BUS] == NULL)
+					asprintf(dmidata[PROC_BUS], dmi_processor_frequency_str(data + 0x12));
 				break;
 
 			case 17: /* 7.18 Memory Device */
