@@ -337,13 +337,15 @@ static bool load_msr_driver(void)
 {
 	static bool loaded = false;
 #ifdef __linux__
-	if(!getuid() && !loaded)
+	if(!loaded)
 	{
 		MSG_VERBOSE(_("Loading CPU MSR kernel module"));
+		if(getuid())
+			MSG_WARNING(_("Load a kernel module as regular user should fail"));
+
 		loaded = !system("modprobe msr 2> /dev/null");
 		if(!loaded)
 			MSG_ERROR(_("failed to load CPU MSR kernel module"));
-		loaded = true;
 	}
 #endif /* __linux__ */
 	return loaded;
@@ -362,14 +364,12 @@ static int call_libcpuid_dynamic(Labels *data)
 	iasprintf(&data->tabcpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
 
 #ifdef HAVE_LIBCPUID_0_2_2
-	if(skip)
-		return 1;
-
 	/* MSR stuff */
-	load_msr_driver();
+	if(skip || (skip = !load_msr_driver()))
+		return 1;
 	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
 	if(getuid())
-		MSG_WARNING(_("Run as regular user, MSR opening should fail"));
+		MSG_WARNING(_("Open CPU MSR as regular user should fail"));
 	msr = cpu_msr_driver_open_core(data->selected_core);
 	if(msr == NULL)
 	{
@@ -411,7 +411,7 @@ static int call_dmidecode(Labels *data)
 
 	MSG_VERBOSE(_("Calling dmidecode"));
 	if(getuid())
-		MSG_WARNING(_("Run as regular user, dmidecode should fail"));
+		MSG_WARNING(_("Call dmidecode as regular user should fail"));
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE] = &data->tabcpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]     = &data->tabcpu[VALUE][BUSSPEED];
@@ -465,7 +465,7 @@ static int cpu_multipliers(Labels *data)
 	double min_freq, max_freq;
 	double min_mult, cur_mult, max_mult;
 
-	if(data->cpu_freq < 0 || data->bus_freq < 0)
+	if(data->cpu_freq <= 0 || data->bus_freq <= 0)
 	{
 		MSG_ERROR(_("failed to get CPU multipliers"));
 		return 1;
