@@ -26,45 +26,45 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#define HAVE_STDINT_H		/* Skip conflicts with <libcpuid/libcpuid_types.h> */
+#define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
-#define PRGNAME			"CPU-X"
-#define PRGAUTH			"X0rg"
-#define PRGCPYR			"Copyright © 2014-2015 Xorg"
+#define PRGNAME	              "CPU-X"
+#define PRGAUTH	              "X0rg"
+#define PRGCPYR               "Copyright © 2014-2015 Xorg"
 
 /* Colors definition */
-#define BOLD_RED		"\x1b[1;31m"
-#define BOLD_GREEN		"\x1b[1;32m"
-#define BOLD_YELLOW		"\x1b[1;33m"
-#define RESET			"\x1b[0m"
+#define BOLD_RED              "\x1b[1;31m"
+#define BOLD_GREEN            "\x1b[1;32m"
+#define BOLD_YELLOW           "\x1b[1;33m"
+#define RESET                 "\x1b[0m"
 
 /* Formatted messages definition */
-#define BASEFILE		(strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define MSG_VERBOSE(str)	message('v', str, BASEFILE, __LINE__)
-#define MSG_WARNING(str)	message('w', str, BASEFILE, __LINE__)
-#define MSG_ERROR(str)		message('e', str, BASEFILE, __LINE__)
-#define MSG_ERROR_ERRNO(str)	message('n', str, BASEFILE, __LINE__)
-#define _(str)			gettext(str)
+#define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+#define MSG_VERBOSE(str)      message('v', str, BASEFILE, __LINE__)
+#define MSG_WARNING(str)      message('w', str, BASEFILE, __LINE__)
+#define MSG_ERROR(str)        message('e', str, BASEFILE, __LINE__)
+#define MSG_ERROR_ERRNO(str)  message('n', str, BASEFILE, __LINE__)
+#define _(str)                gettext(str)
 
 /* Options definition */
-#define OUT_GTK			(1 << 0)
-#define OUT_NCURSES		(1 << 1)
-#define OUT_DUMP		(1 << 2)
-#define OUT_DMIDECODE		(1 << 3)
+#define OUT_GTK               (1 << 0)
+#define OUT_NCURSES           (1 << 1)
+#define OUT_DUMP              (1 << 2)
+#define OUT_DMIDECODE         (1 << 3)
 
 /* Arrays definition */
-#define NAME			0
-#define VALUE			1
-#define MAXSTR			60	/* Max string */
-#define CACHEFIELDS		3	/* Nb of fields by cache frame */
-#define RAMFIELDS		2	/* Nb of fields by bank */
-#define GPUFIELDS		3	/* Nb of fields by GPU frame */
+#define NAME                  0
+#define VALUE                 1
+#define MAXSTR                60       /* Max string */
+#define CACHEFIELDS           3        /* Nb of fields by cache frame */
+#define RAMFIELDS             2        /* Nb of fields by bank */
+#define GPUFIELDS             3        /* Nb of fields by GPU frame */
 
 /* Linux-specific paths definition */
-#define SYS_DMI			"/sys/devices/virtual/dmi/id"
-#define SYS_CPU			"/sys/devices/system/cpu/cpu"
-#define SYS_DRM			"/sys/class/drm/card"
+#define SYS_DMI               "/sys/devices/virtual/dmi/id"
+#define SYS_CPU               "/sys/devices/system/cpu/cpu"
+#define SYS_DRM               "/sys/class/drm/card"
 
 
 enum EnTabNumber
@@ -155,8 +155,8 @@ typedef struct
 {
 	unsigned int output_type;
 	unsigned int refr_time;
-	bool verbose;
-	bool color;
+	bool         verbose;
+	bool         color;
 } Options;
 
 extern Options *opts;

@@ -68,14 +68,14 @@ int fill_labels(Labels *data)
 {
 	int fallback = 0, err = 0;
 
-	if(HAS_LIBCPUID)	err += call_libcpuid_static(data);
-	if(HAS_LIBCPUID)	err += call_libcpuid_dynamic(data);
-	if(HAS_DMIDECODE)	err += fallback = call_dmidecode(data);
-	if(HAS_LIBCPUID)	err += cpu_multipliers(data);
-	if(HAS_LIBPROCPS)	err += system_dynamic(data);
-	if(HAS_LIBSTATGRAB)	err += system_dynamic(data);
-	if(HAS_BANDWIDTH)	err += bandwidth(data);
-	if(HAS_LIBPCI)		find_devices(data);
+	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
+	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
+	if(HAS_DMIDECODE)    err += fallback = call_dmidecode(data);
+	if(HAS_LIBCPUID)     err += cpu_multipliers(data);
+	if(HAS_LIBPROCPS)    err += system_dynamic(data);
+	if(HAS_LIBSTATGRAB)  err += system_dynamic(data);
+	if(HAS_BANDWIDTH)    err += bandwidth(data);
+	if(HAS_LIBPCI)       find_devices(data);
 	err += gpu_temperature(data);
 	err += system_static(data);
 	cpu_usage(data);
@@ -94,16 +94,16 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID)	err = call_libcpuid_dynamic(data);
-			if(HAS_LIBCPUID)	err += cpu_multipliers(data);
+			if(HAS_LIBCPUID)     err = call_libcpuid_dynamic(data);
+			if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 			cpu_usage(data);
 			break;
 		case NO_CACHES:
-			if(HAS_BANDWIDTH)	err = bandwidth(data);
+			if(HAS_BANDWIDTH)    err = bandwidth(data);
 			break;
 		case NO_SYSTEM:
-			if(HAS_LIBPROCPS)	err = system_dynamic(data);
-			if(HAS_LIBSTATGRAB)	err = system_dynamic(data);
+			if(HAS_LIBPROCPS)    err = system_dynamic(data);
+			if(HAS_LIBSTATGRAB)  err = system_dynamic(data);
 			break;
 		case NO_GRAPHICS:
 			err = gpu_temperature(data);
@@ -198,22 +198,22 @@ static int call_libcpuid_static(Labels *data)
 	}
 
 	/* Some prerequisites */
-	data->cpu_count = datanr.num_logical_cpus;
-	data->cpu_model = datanr.model;
-	data->cpu_ext_model = datanr.ext_model;
+	data->cpu_count      = datanr.num_logical_cpus;
+	data->cpu_model      = datanr.model;
+	data->cpu_ext_model  = datanr.ext_model;
 	data->cpu_ext_family = datanr.ext_family;
 
 	/* Basically fill CPU tab */
-	iasprintf(&data->tab_cpu[VALUE][CODENAME],	datanr.cpu_codename);
-	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION],	datanr.brand_str);
-	iasprintf(&data->tab_cpu[VALUE][FAMILY],		"%d", datanr.family);
-	iasprintf(&data->tab_cpu[VALUE][EXTFAMILY],	"%d", datanr.ext_family);
-	iasprintf(&data->tab_cpu[VALUE][MODEL],		"%d", datanr.model);
-	iasprintf(&data->tab_cpu[VALUE][EXTMODEL],	"%d", datanr.ext_model);
-	iasprintf(&data->tab_cpu[VALUE][STEPPING],	"%d", datanr.stepping);
-	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],	"%i nm", cpu_technology(data));
-	iasprintf(&data->tab_cpu[VALUE][CORES],		"%d", datanr.num_cores);
-	iasprintf(&data->tab_cpu[VALUE][THREADS],	"%d", datanr.num_logical_cpus);
+	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
+	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
+	iasprintf(&data->tab_cpu[VALUE][FAMILY],        "%d", datanr.family);
+	iasprintf(&data->tab_cpu[VALUE][EXTFAMILY],     "%d", datanr.ext_family);
+	iasprintf(&data->tab_cpu[VALUE][MODEL],         "%d", datanr.model);
+	iasprintf(&data->tab_cpu[VALUE][EXTMODEL],      "%d", datanr.ext_model);
+	iasprintf(&data->tab_cpu[VALUE][STEPPING],      "%d", datanr.stepping);
+	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
+	iasprintf(&data->tab_cpu[VALUE][CORES],         "%d", datanr.num_cores);
+	iasprintf(&data->tab_cpu[VALUE][THREADS],       "%d", datanr.num_logical_cpus);
 
 	/* Improve the CPU Vendor label */
 	const struct CpuVendor { char *standard; char *improved; cpu_vendor_t id; } cpuvendors[] =
@@ -228,7 +228,7 @@ static int call_libcpuid_static(Labels *data)
 		{ "RiseRiseRise", "Rise",                   VENDOR_RISE      },
 		{ "SiS SiS SiS ", "SiS",                    VENDOR_SIS       },
 		{ "Geode by NSC", "National Semiconductor", VENDOR_NSC       },
-		{ datanr.vendor_str, datanr.vendor_str,     VENDOR_UNKNOWN    }
+		{ datanr.vendor_str, datanr.vendor_str,     VENDOR_UNKNOWN   }
 	};
 	for(i = 0; strcmp(cpuvendors[i].standard, datanr.vendor_str); i++);
 	iasprintf(&data->tab_cpu[VALUE][VENDOR], cpuvendors[i].improved);
@@ -245,15 +245,15 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 1 (data) */
 	if(datanr.l1_data_cache > 0)
 	{
-		iasprintf(&data->tab_cpu[VALUE][LEVEL1D],	"%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
-		iasprintf(&data->tab_cpu[VALUE][LEVEL1D],	  "%s, %2d-way", data->tab_cpu[VALUE][LEVEL1D], datanr.l1_assoc);
+		iasprintf(&data->tab_cpu[VALUE][LEVEL1D], "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
+		iasprintf(&data->tab_cpu[VALUE][LEVEL1D], "%s, %2d-way", data->tab_cpu[VALUE][LEVEL1D], datanr.l1_assoc);
 	}
 
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
 	{
 		data->l1_size = datanr.l1_instruction_cache;
-		iasprintf(&data->tab_cpu[VALUE][LEVEL1I],	"%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
+		iasprintf(&data->tab_cpu[VALUE][LEVEL1I], "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
 		iasprintf(&data->tab_caches[VALUE][L1SIZE], data->tab_cpu[VALUE][LEVEL1I]);
 		iasprintf(&data->tab_caches[VALUE][L1DESCRIPTOR], fmt, datanr.l1_assoc, datanr.l1_cacheline);
 	}
@@ -277,7 +277,7 @@ static int call_libcpuid_static(Labels *data)
 	}
 
 	if(datanr.num_cores > 0) /* Avoid divide by 0 */
-		iasprintf(&data->tab_cpu[VALUE][SOCKETS],	"%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
+		iasprintf(&data->tab_cpu[VALUE][SOCKETS], "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
 	/* Fill CPU Intructions label */
 	const struct CpuFlags { const cpu_feature_t flag; const char *intrstr; } intructions[] =
@@ -380,8 +380,8 @@ static int call_libcpuid_dynamic(Labels *data)
 
 	/* Get values from MSR */
 	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
-	temp = cpu_msrinfo(msr, INFO_TEMPERATURE);
-	bclk = cpu_msrinfo(msr, INFO_BCLK);
+	temp    = cpu_msrinfo(msr, INFO_TEMPERATURE);
+	bclk    = cpu_msrinfo(msr, INFO_BCLK);
 
 	/* CPU Voltage */
 	if(voltage != CPU_INVALID_VALUE)
@@ -620,7 +620,7 @@ static void find_devices(Labels *data)
 			drivername = find_driver(dev, namebuf);
 			iasprintf(&driverstr, _("(%s driver)"), drivername);
 			iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], "%s %s", (gpu_vendors[i] == NULL) ? vendor : gpu_vendors[i], driverstr);
-			iasprintf(&data->tab_graphics[VALUE][GPU1MODEL		+ nbgpu * GPUFIELDS], "%s", product);
+			iasprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], "%s", product);
 			nbgpu++;
 		}
 	}
