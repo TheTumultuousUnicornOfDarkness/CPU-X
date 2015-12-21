@@ -459,12 +459,15 @@ static int fallback_mode(Labels *data)
 /* Get CPU multipliers ("x current (min-max)" label) */
 static int cpu_multipliers(Labels *data)
 {
+	static int err = 0;
 	MSG_VERBOSE(_("Getting CPU multipliers"));
 #ifdef __linux__
+	static bool init = false;
 	char *min_freq_str, *max_freq_str;
 	char *cpuinfo_min_file, *cpuinfo_max_file;
 	double min_freq, max_freq;
-	double min_mult, cur_mult, max_mult;
+	double cur_mult;
+	static double min_mult, max_mult;
 
 	if(data->cpu_freq <= 0 || data->bus_freq <= 0)
 	{
@@ -473,26 +476,33 @@ static int cpu_multipliers(Labels *data)
 	}
 
 	cur_mult = data->cpu_freq / data->bus_freq;
-	asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, data->selected_core);
-	asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, data->selected_core);
 
-	if(xopen_to_str(cpuinfo_min_file, &min_freq_str, 'f') || xopen_to_str(cpuinfo_max_file, &max_freq_str, 'f'))
+	if(!init)
+	{
+		/* Open files */
+		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, data->selected_core);
+		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, data->selected_core);
+		err += xopen_to_str(cpuinfo_min_file, &min_freq_str, 'f');
+		err += xopen_to_str(cpuinfo_max_file, &max_freq_str, 'f');
+
+		/* Convert to get min and max values */
+		min_freq = strtod(min_freq_str, NULL) / 1000;
+		max_freq = strtod(max_freq_str, NULL) / 1000;
+		min_mult = min_freq / data->bus_freq;
+		max_mult = max_freq / data->bus_freq;
+		init     = true;
+	}
+
+	if(err)
 	{
 		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", cur_mult);
 		MSG_WARNING(_("Cannot get minimum and maximum CPU multiplierss"));
 	}
 	else
-	{
-		min_freq = strtod(min_freq_str, NULL) / 1000;
-		max_freq = strtod(max_freq_str, NULL) / 1000;
-
-		min_mult = min_freq / data->bus_freq;
-		max_mult = max_freq / data->bus_freq;
-
 		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.0f (%.0f-%.0f)", round(cur_mult), round(min_mult), round(max_mult));
-	}
 #endif /* __linux__ */
-	return 0;
+
+	return err;
 }
 
 /* Calculate CPU usage (total and by core) */
