@@ -25,7 +25,7 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 		)
 		add_library(bandwidth
 			STATIC
-			main.c
+			bandwidth.c
 			defs.h
 			routines32.o
 		)
@@ -36,7 +36,7 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 		)
 		add_library(bandwidth
 			STATIC
-			main.c
+			bandwidth.c
 			defs.h
 			routines64.o
 		)
