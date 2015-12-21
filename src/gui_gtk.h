@@ -40,17 +40,17 @@ typedef struct
 
 	/* Tab CPU */
 	GtkWidget *logocpu;
-	GtkWidget *gtktabcpu[2][LASTCPU];
+	GtkWidget *gtktab_cpu[2][LASTCPU];
 
 	/* Tab Caches */
-	GtkWidget *gtktabcache[2][LASTCACHE];
+	GtkWidget *gtktab_caches[2][LASTCACHES];
 
 	/* Tab Motherboard */
-	GtkWidget *gtktabmb[2][LASTMB];
+	GtkWidget *gtktab_motherboard[2][LASTMOTHERBOARD];
 
 	/* Tab RAM */
 	GtkWidget *gridbanks;
-	GtkWidget *gtktabram[2][LASTRAM];
+	GtkWidget *gtktab_memory[2][LASTMEMORY];
 
 	/* Tab System */
 	GtkWidget *barused;
@@ -58,11 +58,11 @@ typedef struct
 	GtkWidget *barcache;
 	GtkWidget *barfree;
 	GtkWidget *barswap;
-	GtkWidget *gtktabsys[2][LASTSYS];
+	GtkWidget *gtktab_system[2][LASTSYSTEM];
 
 	/* Tab Graphics */
 	GtkWidget *gridcards;
-	GtkWidget *gtktabgpu[2][LASTGPU];
+	GtkWidget *gtktab_graphics[2][LASTGRAPHICS];
 
 	/* Tab About */
 	GtkWidget *logoprg;

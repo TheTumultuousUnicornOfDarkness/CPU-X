@@ -29,7 +29,7 @@
 #include "cpu-x.h"
 #include "tui_ncurses.h"
 
-static int page = NB_TAB_CPU;
+static int page = NO_CPU;
 
 
 void start_tui_ncurses(Labels *data)
@@ -55,7 +55,7 @@ void start_tui_ncurses(Labels *data)
 	printw("Press 'q' to exit; use right/left key to change tab");
 	refresh();
 	main_win(height, width, starty, startx, current_tab, data);
-	tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
+	tab = ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
 
 	refr.win = tab;
 	refr.data = data;
@@ -67,7 +67,7 @@ void start_tui_ncurses(Labels *data)
 		switch(ch)
 		{	case KEY_LEFT:
 				/* Switch to left tab */
-				if(current_tab > NB_TAB_CPU)
+				if(current_tab > NO_CPU)
 				{
 					current_tab--;
 					main_win(height, width, starty, startx, current_tab, data);
@@ -76,7 +76,7 @@ void start_tui_ncurses(Labels *data)
 				break;
 			case KEY_RIGHT:
 				/* Switch to right tab */
-				if(current_tab < NB_TAB_ABOUT)
+				if(current_tab < NO_ABOUT)
 				{
 					current_tab++;
 					main_win(height, width, starty, startx, current_tab, data);
@@ -85,7 +85,7 @@ void start_tui_ncurses(Labels *data)
 				break;
 			case ERR:
 				/* Refresh labels if needed */
-				if(current_tab == NB_TAB_CPU || current_tab == NB_TAB_CACHE || current_tab == NB_TAB_SYS || current_tab == NB_TAB_GPU)
+				if(current_tab == NO_CPU || current_tab == NO_CACHES || current_tab == NO_SYSTEM || current_tab == NO_GRAPHICS)
 				{
 					refr.win = tab;
 					nrefresh(&refr);
@@ -98,7 +98,7 @@ void start_tui_ncurses(Labels *data)
 				printw("Press 'q' to exit; use right/left key to change tab");
 				refresh();
 				main_win(height, width, starty, startx, current_tab, data);
-				tab = tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
+				tab = ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
 				break;
 		}
 
@@ -119,35 +119,35 @@ void nrefresh(NThrd *refr)
 
 	switch(page)
 	{
-		case NB_TAB_CPU:
-			mvwprintw(win, 5, 22, "%13s: %s", data->tabcpu[NAME][VOLTAGE],     data->tabcpu[VALUE][VOLTAGE]);
-			mvwprintw(win, 7, 38, "%9s: %s",  data->tabcpu[NAME][TEMPERATURE], data->tabcpu[VALUE][TEMPERATURE]);
-			mvwprintw(win, 13, 2, "%13s: %s", data->tabcpu[NAME][MULTIPLIER],  data->tabcpu[VALUE][MULTIPLIER]);
-			mvwprintw(win, 12, 2, "%13s: %s", data->tabcpu[NAME][CORESPEED],   data->tabcpu[VALUE][CORESPEED]);
-			mvwprintw(win, 15, 2, "%13s: %s", data->tabcpu[NAME][USAGE],       data->tabcpu[VALUE][USAGE]);
+		case NO_CPU:
+			mvwprintw(win, 5, 22, "%13s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
+			mvwprintw(win, 7, 38, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
+			mvwprintw(win, 13, 2, "%13s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
+			mvwprintw(win, 12, 2, "%13s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
+			mvwprintw(win, 15, 2, "%13s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
 			break;
-		case NB_TAB_CACHE:
+		case NO_CACHES:
 			j = 2;
-			for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
+			for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
 			{
-				mvwprintw(win, i + j,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+				mvwprintw(win, i + j,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 				j += 2;
 			}
 			break;
-		case NB_TAB_SYS:
-			mvwprintw(win, 5,  2, "%13s: %s", data->tabsys[NAME][UPTIME], data->tabsys[VALUE][UPTIME]);
-			for(i = USED; i < LASTSYS; i++)
+		case NO_SYSTEM:
+			mvwprintw(win, 5,  2, "%13s: %s", data->tab_system[NAME][UPTIME], data->tab_system[VALUE][UPTIME]);
+			for(i = USED; i < LASTSYSTEM; i++)
 			{
-				mvwprintw(win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+				mvwprintw(win, i + 4,  2, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
 				clear_bar(win, i);
 				draw_bar(win, data, i);
 			}
 			break;
-		case NB_TAB_GPU:
-			j = GPUTEMP1 + 2;
+		case NO_GRAPHICS:
+			j = GPU1TEMPERATURE + 2;
 			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
 			{
-				mvwprintw(win, j,  2, "%13s: %s", data->tabgpu[NAME][GPUTEMP1 + i], data->tabgpu[VALUE][GPUTEMP1 + i]);
+				mvwprintw(win, j,  2, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 				j += GPUFIELDS + 2;
 			}
 			break;
@@ -168,7 +168,7 @@ void main_win(int height, int width, int starty, int startx, int tab, Labels *da
 	box(local_win, 0 , 0);
 
 	/* General stuff */
-	for(i = NB_TAB_CPU; i <= NB_TAB_ABOUT; i++)
+	for(i = NO_CPU; i <= NO_ABOUT; i++)
 	{
 		if(i == tab)
 		{
@@ -191,32 +191,32 @@ WINDOW *select_tab(int height, int width, int starty, int startx, int num, Label
 {
 	switch(num)
 	{
-		case NB_TAB_CPU:
-			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NB_TAB_CACHE:
-			return tab_cache(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NB_TAB_MB:
-			return tab_motherboard(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NB_TAB_RAM:
-			return tab_ram(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NB_TAB_SYS:
-			return tab_system(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NB_TAB_GPU:
-			return tab_graphics(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NB_TAB_ABOUT:
-			return tab_about(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_CPU:
+			return ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_CACHES:
+			return ncursestab_cache(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_MOTHERBOARD:
+			return ncursestab_motherboard(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_MEMORY:
+			return ncursestab_memory(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_SYSTEM:
+			return ncursestab_system(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_GRAPHICS:
+			return ncursestab_graphics(height - 4, width - 2, starty + 2, startx + 1, data);
+		case NO_ABOUT:
+			return ncursestab_about(height - 4, width - 2, starty + 2, startx + 1, data);
 		default:
-			return tab_cpu(height - 4, width - 2, starty + 2, startx + 1, data); /* If problem */
+			return ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data); /* If problem */
 	}
 }
 
-WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_cpu(int height, int width, int starty, int startx, Labels *data)
 {
 	int i, j, middle;
 	WINDOW *local_win;
 
-	middle = (strlen(data->tabcpu[VALUE][MULTIPLIER]) == 0) ? 15 + strlen(data->tabcpu[VALUE][CORESPEED]) + 4 :
-								  15 + strlen(data->tabcpu[VALUE][MULTIPLIER]) + 4;
+	middle = (strlen(data->tab_cpu[VALUE][MULTIPLIER]) == 0) ? 15 + strlen(data->tab_cpu[VALUE][CORESPEED]) + 4 :
+								  15 + strlen(data->tab_cpu[VALUE][MULTIPLIER]) + 4;
 	local_win = newwin(height, width, starty, startx);
 	box(local_win, 0 , 0);
 
@@ -230,23 +230,23 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 	j = VENDOR + 2;
 	for(i = VENDOR; i < CORESPEED; i++)
 	{
-		mvwprintw(local_win, j, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, j, 2, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 		switch(i)
 		{
 			case VOLTAGE:
-				mvwprintw(local_win, j - 1, 22, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+				mvwprintw(local_win, j - 1, 22, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 				break;
 			case MODEL:
-				mvwprintw(local_win, j - 2, 22, "%11s: %2s", data->tabcpu[NAME][MODEL], data->tabcpu[VALUE][MODEL]);
+				mvwprintw(local_win, j - 2, 22, "%11s: %2s", data->tab_cpu[NAME][MODEL], data->tab_cpu[VALUE][MODEL]);
 				break;
 			case EXTMODEL:
-				mvwprintw(local_win, j - 1, 22, "%11s: %2s", data->tabcpu[NAME][EXTMODEL], data->tabcpu[VALUE][EXTMODEL]);
+				mvwprintw(local_win, j - 1, 22, "%11s: %2s", data->tab_cpu[NAME][EXTMODEL], data->tab_cpu[VALUE][EXTMODEL]);
 				break;
 			case TEMPERATURE:
-				mvwprintw(local_win, j - 2, 38, "%9s: %s", data->tabcpu[NAME][TEMPERATURE], data->tabcpu[VALUE][TEMPERATURE]);
+				mvwprintw(local_win, j - 2, 38, "%9s: %s", data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
 				break;
 			case STEPPING:
-				mvwprintw(local_win, j - 1, 38, "%9s: %s", data->tabcpu[NAME][STEPPING], data->tabcpu[VALUE][STEPPING]);
+				mvwprintw(local_win, j - 1, 38, "%9s: %s", data->tab_cpu[NAME][STEPPING], data->tab_cpu[VALUE][STEPPING]);
 				break;
 			default:
 				j++;
@@ -255,23 +255,23 @@ WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data)
 
 	/* Clocks frame */
 	for(i = CORESPEED; i < LEVEL1D; i++)
-		mvwprintw(local_win, i - 1, 2, "%13s: %s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i - 1, 2, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Cache frame */
 	for(i = LEVEL1D; i < SOCKETS; i++)
-		mvwprintw(local_win, i - 5, middle + 1, "%10s: %20s", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		mvwprintw(local_win, i - 5, middle + 1, "%10s: %20s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Last frame */
-	mvwprintw(local_win, 18, 4, "%s: %2s", data->tabcpu[NAME][SOCKETS], data->tabcpu[VALUE][SOCKETS]);
-	mvwprintw(local_win, 18, 23, "%s: %2s", data->tabcpu[NAME][CORES], data->tabcpu[VALUE][CORES]);
-	mvwprintw(local_win, 18, 39, "%s: %2s", data->tabcpu[NAME][THREADS], data->tabcpu[VALUE][THREADS]);
+	mvwprintw(local_win, 18, 4, "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
+	mvwprintw(local_win, 18, 23, "%s: %2s", data->tab_cpu[NAME][CORES], data->tab_cpu[VALUE][CORES]);
+	mvwprintw(local_win, 18, 39, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
 
 	wrefresh(local_win);
 
 	return local_win;
 }
 
-WINDOW *tab_cache(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_cache(int height, int width, int starty, int startx, Labels *data)
 {
 	int i;
 	WINDOW *local_win;
@@ -280,28 +280,28 @@ WINDOW *tab_cache(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in Caches tab */
-	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMCACHEL1]);
-	frame(local_win, 6, 1, 11, width - 1, data->objects[FRAMCACHEL2]);
-	frame(local_win, 11, 1, 16, width - 1, data->objects[FRAMCACHEL3]);
+	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAML1CACHE]);
+	frame(local_win, 6, 1, 11, width - 1, data->objects[FRAML2CACHE]);
+	frame(local_win, 11, 1, 16, width - 1, data->objects[FRAML3CACHE]);
 
 	/* L1 Cache frame */
 	for(i = L1SIZE; i < L2SIZE; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 
 	/* L2 Cache frame */
 	for(i = L2SIZE; i < L3SIZE; i++)
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 
 	/* L3 Cache frame */
-	for(i = L3SIZE; i < LASTCACHE; i++)
-		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+	for(i = L3SIZE; i < LASTCACHES; i++)
+		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 
 	wrefresh(local_win);
 
 	return local_win;
 }
 
-WINDOW *tab_motherboard(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_motherboard(int height, int width, int starty, int startx, Labels *data)
 {
 	int i;
 	WINDOW *local_win;
@@ -310,28 +310,28 @@ WINDOW *tab_motherboard(int height, int width, int starty, int startx, Labels *d
 	box(local_win, 0 , 0);
 
 	/* Frames in Motherboard tab */
-	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMMOBO]);
+	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMMOTHERBOARD]);
 	frame(local_win, 6, 1, 12, width - 1, data->objects[FRAMBIOS]);
-	frame(local_win, 12, 1, 16, width - 1, data->objects[FRAMCHIP]);
+	frame(local_win, 12, 1, 16, width - 1, data->objects[FRAMCHIPSET]);
 
 	/* Motherboard frame */
 	for(i = MANUFACTURER; i < BRAND; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 
 	/* BIOS frame */
 	for(i = BRAND; i < CHIPVENDOR; i++)
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 
 	/* Chipset frame */
-	for(i = CHIPVENDOR; i < LASTMB; i++)
-		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+	for(i = CHIPVENDOR; i < LASTMOTHERBOARD; i++)
+		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 
 	wrefresh(local_win);
 
 	return local_win;
 }
 
-WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_memory(int height, int width, int starty, int startx, Labels *data)
 {
 	int i;
 	WINDOW *local_win;
@@ -344,14 +344,14 @@ WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data)
 
 	/* Banks frame */
 	for(i = BANK0_0; i < data->gpu_count; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabram[NAME][i], data->tabram[VALUE][i]);
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
 
 	wrefresh(local_win);
 
 	return local_win;
 }
 
-WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_system(int height, int width, int starty, int startx, Labels *data)
 {
 	int i;
 	WINDOW *local_win;
@@ -360,17 +360,17 @@ WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data)
 	box(local_win, 0 , 0);
 
 	/* Frames in System tab */
-	frame(local_win, 1, 1, 8, width - 1, data->objects[FRAMOS]);
+	frame(local_win, 1, 1, 8, width - 1, data->objects[FRAMOPERATINGSYSTEM]);
 	frame(local_win, 8, 1, 15, width - 1, data->objects[FRAMMEMORY]);
 
 	/* OS frame */
 	for(i = KERNEL; i < USED; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
 
 	/* Memory frame */
-	for(i = USED; i < LASTSYS; i++)
+	for(i = USED; i < LASTSYSTEM; i++)
 	{
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
 		draw_bar(local_win, data, i);
 	}
 
@@ -387,8 +387,8 @@ void draw_bar(WINDOW *win, Labels *data, int bar)
 	double percent;
 
 	before = (bar == USED) ? 0 : before;
-	percent = (double) strtol(data->tabsys[VALUE][bar], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][bar], "/ ") + 2, NULL, 10) * 100;
+	percent = (double) strtol(data->tab_system[VALUE][bar], NULL, 10) /
+		strtol(strstr(data->tab_system[VALUE][bar], "/ ") + 2, NULL, 10) * 100;
 
 	if(isnan(percent))
 		percent = 0.00;
@@ -412,7 +412,7 @@ void clear_bar(WINDOW *win, int bar)
 		mvwprintw(win, bar + 4, start + 1 + i, " ");
 }
 
-WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_graphics(int height, int width, int starty, int startx, Labels *data)
 {
 	int i, start = 1, end = 6, space = 0;
 	WINDOW *local_win;
@@ -421,7 +421,7 @@ WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data
 	box(local_win, 0 , 0);
 
 	/* Card frames */
-	for(i = GPUVENDOR1; i < data->gpu_count; i++)
+	for(i = GPU1VENDOR; i < data->gpu_count; i++)
 	{
 		if(i % GPUFIELDS == 0)
 		{
@@ -431,7 +431,7 @@ WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data
 			space += 2;
 		}
 
-		mvwprintw(local_win, i + space,  2, "%13s: %s", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
+		mvwprintw(local_win, i + space,  2, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 	}
 
 	wrefresh(local_win);
@@ -439,7 +439,7 @@ WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data
 	return local_win;
 }
 
-WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data)
+WINDOW *ncursestab_about(int height, int width, int starty, int startx, Labels *data)
 {
 	char *part2 = strdup(data->objects[LABDESCRIPTION]);
 	const char *part1 = strsep(&part2, "\n");

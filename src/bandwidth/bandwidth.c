@@ -2117,7 +2117,7 @@ main (int argc, char **argv)
 		ind = 0;
 		speed = 0;
 		level = LEVEL1I;
-		ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
+		ptr = strstr(data->tab_cpu[VALUE][level], "x") + 1;
 		size = (ptr == NULL) ? 0 : atoi(ptr);
 
 		while ((chunk_size = chunk_sizes [i++]))
@@ -2125,9 +2125,9 @@ main (int argc, char **argv)
 			if(chunk_size > size * 1024)
 			{
 				if(speed > 0 && ind > 0)
-					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
+					asprintf(&data->tab_caches[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
 				else
-					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "");
+					asprintf(&data->tab_caches[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "");
 				ind = 0;
 				speed = 0;
 				level++;
@@ -2136,7 +2136,7 @@ main (int argc, char **argv)
 					break;
 
 				/* Avoid to check size if label is empty */
-				if(strstr(data->tabcpu[VALUE][level], "KB") == NULL)
+				if(strstr(data->tab_cpu[VALUE][level], "KB") == NULL)
 					return 3;
 
 				/* Retrieve size from label */
@@ -2144,11 +2144,11 @@ main (int argc, char **argv)
 				{
 					case LEVEL1I:
 					case LEVEL2:
-						ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
+						ptr = strstr(data->tab_cpu[VALUE][level], "x") + 1;
 						size = (ptr == NULL) ? 0 : atoi(ptr);
 						break;
 					case LEVEL3:
-						size = atoi(data->tabcpu[VALUE][level]);
+						size = atoi(data->tab_cpu[VALUE][level]);
 				}
 
 				if(size <= 0)

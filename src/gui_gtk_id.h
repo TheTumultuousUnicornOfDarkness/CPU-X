@@ -50,7 +50,7 @@ static const char *objectcpu[2][LASTCPU] =
 };
 
 /* Tab Caches */
-static const char *objectcache[2][LASTCACHE] =
+static const char *objectcache[2][LASTCACHES] =
 {
 	{ "l1cache_labsize", "l1cache_labdescr", "l1cache_labspeed",
 		"l2cache_labsize", "l2cache_labdescr", "l2cache_labspeed",
@@ -63,7 +63,7 @@ static const char *objectcache[2][LASTCACHE] =
 };
 
 /* Tab Motherboard */
-static const char *objectmb[2][LASTMB] =
+static const char *objectmb[2][LASTMOTHERBOARD] =
 {
 	{ "motherboard_labmanu", "motherboard_labmod", "motherboard_labrev",
 		"bios_labbrand", "bios_labvers", "bios_labdate", "bios_labrom",
@@ -76,7 +76,7 @@ static const char *objectmb[2][LASTMB] =
 };
 
 /* Tab RAM */
-static const char *objectram[2][LASTRAM] =
+static const char *objectram[2][LASTMEMORY] =
 {
 	{ "banks_labbank0_0", "banks_labbank0_1", "banks_labbank1_0", "banks_labbank1_1", "banks_labbank2_0", "banks_labbank2_1", "banks_labbank3_0", "banks_labbank3_1",
 		"banks_labbank4_0", "banks_labbank4_1", "banks_labbank5_0", "banks_labbank5_1", "banks_labbank6_0", "banks_labbank6_1", "banks_labbank7_0", "banks_labbank7_1"
@@ -87,7 +87,7 @@ static const char *objectram[2][LASTRAM] =
 };
 
 /* Tab System */
-static const char *objectsys[2][LASTSYS] =
+static const char *objectsys[2][LASTSYSTEM] =
 {
 	{ "os_labkern", "os_labdistro", "os_labhost", "os_labuptime", "os_labcomp",
 		"mem_labused", "mem_labbuff", "mem_labcache", "mem_labfree", "mem_labswap"
@@ -98,7 +98,7 @@ static const char *objectsys[2][LASTSYS] =
 };
 
 /* Tab Graphics */
-static const char *objectgpu[2][LASTGPU] =
+static const char *objectgpu[2][LASTGRAPHICS] =
 {
 	{ "card0_labvend", "card0_labmod", "card0_labdrv",
 		"card1_labvend", "card1_labmod", "card1_labdrv",

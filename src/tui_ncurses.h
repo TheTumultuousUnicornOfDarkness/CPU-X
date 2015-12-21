@@ -49,27 +49,27 @@ void main_win(int height, int width, int starty, int startx, int tab, Labels *da
 WINDOW *select_tab(int height, int width, int starty, int startx, int num, Labels *data);
 
 /* Tab CPU */
-WINDOW *tab_cpu(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_cpu(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab Caches */
-WINDOW *tab_cache(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_cache(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab Motherboard */
-WINDOW *tab_motherboard(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_motherboard(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab RAM */
-WINDOW *tab_ram(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_memory(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab System */
-WINDOW *tab_system(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_system(int height, int width, int starty, int startx, Labels *data);
 void draw_bar(WINDOW *win, Labels *data, int bar);
 void clear_bar(WINDOW *win, int bar);
 
 /* Tab Graphics */
-WINDOW *tab_graphics(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_graphics(int height, int width, int starty, int startx, Labels *data);
 
 /* Tab About */
-WINDOW *tab_about(int height, int width, int starty, int startx, Labels *data);
+WINDOW *ncursestab_about(int height, int width, int starty, int startx, Labels *data);
 
 /* Draw a frame in a NCurses window */
 void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label);

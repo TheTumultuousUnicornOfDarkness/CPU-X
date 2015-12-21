@@ -30,7 +30,7 @@
 #define PROC_BUS 1
 #define LASTPROC 2
 
-extern char **dmidata[LASTRAM];
+extern char **dmidata[LASTMEMORY];
 
 int maindmi(void);
 int libdmi(char c);

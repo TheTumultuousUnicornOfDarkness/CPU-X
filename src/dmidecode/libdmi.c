@@ -30,7 +30,7 @@
 
 /* Options are global */
 struct opt opt;
-char **dmidata[LASTRAM];
+char **dmidata[LASTMEMORY];
 
 
 static u8 *dmiparse(u8 *p, int l)

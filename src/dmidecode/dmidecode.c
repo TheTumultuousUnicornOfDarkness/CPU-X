@@ -3302,7 +3302,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		{
 			case 0: /* 7.1 BIOS Information */
 				asprintf(dmidata[BRAND],       dmi_string(h, data[0x04]));
-				asprintf(dmidata[BIOSVER],     dmi_string(h, data[0x05]));
+				asprintf(dmidata[BIOSVERSION],     dmi_string(h, data[0x05]));
 				asprintf(dmidata[DATE],        dmi_string(h, data[0x08]));
 				asprintf(dmidata[ROMSIZE], "%s / %u kB",
 				         dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),

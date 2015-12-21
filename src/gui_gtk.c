@@ -140,25 +140,25 @@ gboolean grefresh(GThrd *refr)
 
 	switch(page)
 	{
-		case NB_TAB_CPU:
-			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][VOLTAGE]),     data->tabcpu[VALUE][VOLTAGE]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][TEMPERATURE]), data->tabcpu[VALUE][TEMPERATURE]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][MULTIPLIER]),  data->tabcpu[VALUE][MULTIPLIER]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][CORESPEED]),   data->tabcpu[VALUE][CORESPEED]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][USAGE]),       data->tabcpu[VALUE][USAGE]);
+		case NO_CPU:
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][VOLTAGE]),     data->tab_cpu[VALUE][VOLTAGE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][TEMPERATURE]), data->tab_cpu[VALUE][TEMPERATURE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][MULTIPLIER]),  data->tab_cpu[VALUE][MULTIPLIER]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][CORESPEED]),   data->tab_cpu[VALUE][CORESPEED]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][USAGE]),       data->tab_cpu[VALUE][USAGE]);
 			break;
-		case NB_TAB_CACHE:
-			for(i = L1SPEED; i < LASTCACHE; i += CACHEFIELDS)
-				gtk_label_set_text(GTK_LABEL(glab->gtktabcache[VALUE][i]), data->tabcache[VALUE][i]);
+		case NO_CACHES:
+			for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 			break;
-		case NB_TAB_SYS:
-			gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][UPTIME]),      data->tabsys[VALUE][UPTIME]);
-			for(i = USED; i < LASTSYS; i++)
-				gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][i]),   data->tabsys[VALUE][i]);
+		case NO_SYSTEM:
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][UPTIME]),      data->tab_system[VALUE][UPTIME]);
+			for(i = USED; i < LASTSYSTEM; i++)
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]),   data->tab_system[VALUE][i]);
 			break;
-		case NB_TAB_GPU:
+		case NO_GRAPHICS:
 			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
-				gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[VALUE][GPUTEMP1 + i]), data->tabgpu[VALUE][GPUTEMP1 + i]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE + i]), data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 			break;
 		default:
 			break;
@@ -192,7 +192,7 @@ void set_logos(GtkLabels *glab, Labels *data)
 	char tmp[MAXSTR];
 	const gchar *icon_name[MAXSTR];
 #if PORTABLE_BINARY
-	sprintf(tmp, "/cpu-x/pictures/%s.png", data->tabcpu[VALUE][VENDOR]);
+	sprintf(tmp, "/cpu-x/pictures/%s.png", data->tab_cpu[VALUE][VENDOR]);
 
 	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), "/cpu-x/pictures/CPU-X.png"); /* Program icon in About */
 	gtk_image_set_from_resource(GTK_IMAGE(glab->logocpu), tmp); /* CPU vendor icon */
@@ -201,7 +201,7 @@ void set_logos(GtkLabels *glab, Labels *data)
 	if(icon_name[0] != NULL) /* If no icon is set, apply "novendor.png" */
 		gtk_image_set_from_resource(GTK_IMAGE(glab->logocpu), "/cpu-x/pictures/novendor.png");
 #else
-	sprintf(tmp, "%s.png", data->tabcpu[VALUE][VENDOR]);
+	sprintf(tmp, "%s.png", data->tab_cpu[VALUE][VENDOR]);
 
 	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), data_path("CPU-X.png")); /* Program icon in About */
 	gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), data_path(tmp)); /* CPU vendor icon */
@@ -228,37 +228,37 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
-		glab->gtktabcpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[NAME][i]));
-		glab->gtktabcpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[VALUE][i]));
+		glab->gtktab_cpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[NAME][i]));
+		glab->gtktab_cpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[VALUE][i]));
 	}
 
 	/* Tab Caches */
-	for(i = L1SIZE; i < LASTCACHE; i++)
+	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
-		glab->gtktabcache[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[NAME][i]));
-		glab->gtktabcache[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[VALUE][i]));
+		glab->gtktab_caches[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[NAME][i]));
+		glab->gtktab_caches[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[VALUE][i]));
 	}
 
 	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
+	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 	{
-		glab->gtktabmb[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[NAME][i]));
-		glab->gtktabmb[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[VALUE][i]));
+		glab->gtktab_motherboard[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[NAME][i]));
+		glab->gtktab_motherboard[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[VALUE][i]));
 	}
 
 	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
+	for(i = BANK0_0; i < LASTMEMORY; i++)
 	{
-		glab->gtktabram[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectram[NAME][i]));
-		glab->gtktabram[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectram[VALUE][i]));
+		glab->gtktab_memory[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectram[NAME][i]));
+		glab->gtktab_memory[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectram[VALUE][i]));
 	}
 	glab->gridbanks = GTK_WIDGET(gtk_builder_get_object(builder, "banks_grid"));
 
 	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
+	for(i = KERNEL; i < LASTSYSTEM; i++)
 	{
-		glab->gtktabsys[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[NAME][i]));
-		glab->gtktabsys[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[VALUE][i]));
+		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[NAME][i]));
+		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[VALUE][i]));
 	}
 	glab->barused  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barused"));
 	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
@@ -272,10 +272,10 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	gtk_widget_set_name(glab->barswap,  g_strdup_printf("%i", SWAP));
 
 	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
 	{
-		glab->gtktabgpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[NAME][i]));
-		glab->gtktabgpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[VALUE][i]));
+		glab->gtktab_graphics[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[NAME][i]));
+		glab->gtktab_graphics[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[VALUE][i]));
 	}
 	glab->gridcards = GTK_WIDGET(gtk_builder_get_object(builder, "graphics_box"));
 }
@@ -293,47 +293,47 @@ void set_labels(GtkLabels *glab, Labels *data)
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[NAME][i]), data->tabcpu[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktabcpu[VALUE][i]), data->tabcpu[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[NAME][i]), data->tab_cpu[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
 
 	/* Tab Caches */
-	for(i = L1SIZE; i < LASTCACHE; i++)
+	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktabcache[NAME][i]), data->tabcache[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktabcache[VALUE][i]), data->tabcache[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]), data->tab_caches[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 	}
 
 	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
+	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[NAME][i]), data->tabmb[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktabmb[VALUE][i]), data->tabmb[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_motherboard[NAME][i]), data->tab_motherboard[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_motherboard[VALUE][i]), data->tab_motherboard[VALUE][i]);
 	}
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < data->dimms_count; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktabram[NAME][i]), data->tabram[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktabram[VALUE][i]), data->tabram[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[NAME][i]), data->tab_memory[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[VALUE][i]), data->tab_memory[VALUE][i]);
 	}
 	for(i = BANK7_1; i >= data->dimms_count; i--)
 		gtk_grid_remove_row(GTK_GRID(glab->gridbanks), i);
 
 	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
+	for(i = KERNEL; i < LASTSYSTEM; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[NAME][i]), data->tabsys[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktabsys[VALUE][i]), data->tabsys[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[NAME][i]), data->tab_system[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 	}
 
 	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
+	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[NAME][i]), data->tabgpu[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktabgpu[VALUE][i]), data->tabgpu[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[NAME][i]), data->tab_graphics[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][i]), data->tab_graphics[VALUE][i]);
 	}
-	for(i = LASTGPU; i >= data->gpu_count; i -= GPUFIELDS)
+	for(i = LASTGRAPHICS; i >= data->gpu_count; i -= GPUFIELDS)
 		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i / GPUFIELDS);
 }
 
@@ -356,12 +356,12 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 
 	while(i < n) /* Get value to start */
 	{
-		before += (double) strtol(data->tabsys[VALUE][i], NULL, 10) /
-			strtol(strstr(data->tabsys[VALUE][i], "/ ") + 2, NULL, 10) * 100;
+		before += (double) strtol(data->tab_system[VALUE][i], NULL, 10) /
+			strtol(strstr(data->tab_system[VALUE][i], "/ ") + 2, NULL, 10) * 100;
 		i++;
 	}
-	percent = (double) strtol(data->tabsys[VALUE][n], NULL, 10) /
-		strtol(strstr(data->tabsys[VALUE][n], "/ ") + 2, NULL, 10) * 100;
+	percent = (double) strtol(data->tab_system[VALUE][n], NULL, 10) /
+		strtol(strstr(data->tab_system[VALUE][n], "/ ") + 2, NULL, 10) * 100;
 
 	if(isnan(percent))
 		percent = 0.00;
