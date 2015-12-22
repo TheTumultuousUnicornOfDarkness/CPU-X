@@ -3301,24 +3301,24 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		switch (h->type)
 		{
 			case 0: /* 7.1 BIOS Information */
-				asprintf(dmidata[BRAND],       dmi_string(h, data[0x04]));
-				asprintf(dmidata[BIOSVERSION],     dmi_string(h, data[0x05]));
-				asprintf(dmidata[DATE],        dmi_string(h, data[0x08]));
-				asprintf(dmidata[ROMSIZE], "%s / %u kB",
+				asprintf(dmidata[BRAND],         "%s", dmi_string(h, data[0x04]));
+				asprintf(dmidata[BIOSVERSION], "%s", dmi_string(h, data[0x05]));
+				asprintf(dmidata[DATE],        "%s", dmi_string(h, data[0x08]));
+				asprintf(dmidata[ROMSIZE],     "%s / %u kB",
 				         dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
 				         (data[0x09] + 1) << 6);
 				break;
 
 			case 2: /* 7.3 Base Board Information */
-				asprintf(dmidata[MANUFACTURER], dmi_string(h, data[0x04]));
-				asprintf(dmidata[MBMODEL],      dmi_string(h, data[0x05]));
-				asprintf(dmidata[REVISION],     dmi_string(h, data[0x06]));
+				asprintf(dmidata[MANUFACTURER], "%s", dmi_string(h, data[0x04]));
+				asprintf(dmidata[MBMODEL],      "%s", dmi_string(h, data[0x05]));
+				asprintf(dmidata[REVISION],     "%s", dmi_string(h, data[0x06]));
 				break;
 
 			case 4: /* 7.5 Processor Information */
-				asprintf(dmidata[PROC_PACKAGE], dmi_string(h, data[0x04]));
+				asprintf(dmidata[PROC_PACKAGE], "%s", dmi_string(h, data[0x04]));
 				if(dmidata[PROC_BUS] == NULL)
-					asprintf(dmidata[PROC_BUS], dmi_processor_frequency_str(data + 0x12));
+					asprintf(dmidata[PROC_BUS], "%s", dmi_processor_frequency_str(data + 0x12));
 				break;
 
 			case 17: /* 7.18 Memory Device */

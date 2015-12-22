@@ -560,7 +560,7 @@ void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	fprintf(stderr, strsignal(signum));
+	fprintf(stderr, "%s", strsignal(signum));
 	fprintf(stderr, _("\n%sOops, something was wrong! %s got signal %d and has crashed.%s\n\n"), BOLD_RED, PRGNAME, signum, RESET);
 	fprintf(stderr, "======= Backtrace: =========\n");
         for(i = 1; i < bt_size; i++)
@@ -656,7 +656,9 @@ static int set_locales(void)
 int main(int argc, char *argv[])
 {
 	/* Parse options */
-	Labels data = { NULL };
+	Labels data = {	.tab_cpu = {{ NULL }}, .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
+	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
+	                .selected_core = 0, .dimms_count = 0 };
 	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false, .color = true };
 	set_locales();
 	signal(SIGSEGV, sighandler);
@@ -738,7 +740,7 @@ int iasprintf(char **str, const char *fmt, ...)
 	if(fmt == NULL)
 		return 0;
 	else if(strchr(fmt, '%') == NULL)
-		return asprintf(str, fmt);
+		return asprintf(str, "%s", fmt);
 
 	/* Read format, character by character */
 	va_start(aptr, fmt);
@@ -843,7 +845,7 @@ int xopen_to_str(char *file, char **buffer, char type)
 	else if(type == 'p')
 	{
 		/* Open pipe */
-		asprintf(&test_command, file);
+		asprintf(&test_command, "%s", file);
 		if(!command_exists(strtok(test_command, " ")))
 			return 2;
 
@@ -863,7 +865,7 @@ int xopen_to_str(char *file, char **buffer, char type)
 	if(fgets(*buffer, MAXSTR, f) == NULL)
 	{
 		MSG_ERROR_ERRNO(_("xopen_to_str(): fgets() failed"));
-		return 4 + (type == 'f') ? fclose(f) : pclose(f);
+		return 4 + ((type == 'f') ? fclose(f) : pclose(f));
 	}
 
 	(*buffer)[strlen(*buffer) - 1] = '\0';

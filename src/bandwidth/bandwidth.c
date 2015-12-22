@@ -2126,8 +2126,6 @@ main (int argc, char **argv)
 			{
 				if(speed > 0 && ind > 0)
 					asprintf(&data->tab_caches[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
-				else
-					asprintf(&data->tab_caches[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "");
 				ind = 0;
 				speed = 0;
 				level++;
