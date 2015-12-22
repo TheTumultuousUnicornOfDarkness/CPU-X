@@ -3296,28 +3296,29 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 #ifdef CPUX
 	static int bank = BANK0_0;
 
-	if(!(flags & OPT_DMIDECODE))
+	if(opt.flags & FLAG_CPU_X)
 	{
 		switch (h->type)
 		{
 			case 0: /* 7.1 BIOS Information */
-				*dmidata[BRAND]		= strdupnullok(dmi_string(h, data[0x04]));
-				*dmidata[BIOSVER]	= strdupnullok(dmi_string(h, data[0x05]));
-				*dmidata[DATE]		= strdupnullok(dmi_string(h, data[0x08]));
-				asprintf(dmidata[ROMSIZE], "%s / %u kB",
-					dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
-					(data[0x09] + 1) << 6);
+				asprintf(dmidata[BRAND],         "%s", dmi_string(h, data[0x04]));
+				asprintf(dmidata[BIOSVERSION], "%s", dmi_string(h, data[0x05]));
+				asprintf(dmidata[DATE],        "%s", dmi_string(h, data[0x08]));
+				asprintf(dmidata[ROMSIZE],     "%s / %u kB",
+				         dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
+				         (data[0x09] + 1) << 6);
 				break;
 
 			case 2: /* 7.3 Base Board Information */
-				*dmidata[MANUFACTURER]	= strdupnullok(dmi_string(h, data[0x04]));
-				*dmidata[MBMODEL]	= strdupnullok(dmi_string(h, data[0x05]));
-				*dmidata[REVISION]	= strdupnullok(dmi_string(h, data[0x06]));
+				asprintf(dmidata[MANUFACTURER], "%s", dmi_string(h, data[0x04]));
+				asprintf(dmidata[MBMODEL],      "%s", dmi_string(h, data[0x05]));
+				asprintf(dmidata[REVISION],     "%s", dmi_string(h, data[0x06]));
 				break;
 
 			case 4: /* 7.5 Processor Information */
-				*dmidata[PROC_PACKAGE]	= strdupnullok(dmi_string(h, data[0x04]));
-				*dmidata[PROC_BUS]	= strdupnullok(dmi_processor_frequency_str(data + 0x12));
+				asprintf(dmidata[PROC_PACKAGE], "%s", dmi_string(h, data[0x04]));
+				if(dmidata[PROC_BUS] == NULL)
+					asprintf(dmidata[PROC_BUS], "%s", dmi_processor_frequency_str(data + 0x12));
 				break;
 
 			case 17: /* 7.18 Memory Device */
@@ -3325,19 +3326,19 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				{
 					if(!strcmp(dmi_string(h, data[0x17]), "[Empty]"))
 					{
-						*dmidata[bank]     = strdupnullok("- - - - - -");
-						*dmidata[bank + 1] = strdupnullok("- - - - - -");
+						asprintf(dmidata[bank + 0], "- - - - - -");
+						asprintf(dmidata[bank + 1], "- - - - - -");
 					}
 					else
 					{
 						asprintf(dmidata[bank], "%s %s",
-							dmi_string(h, data[0x17]),
-							dmi_string(h, data[0x1A]));
+						         dmi_string(h, data[0x17]),
+						         dmi_string(h, data[0x1A]));
 						asprintf(dmidata[bank + 1], "%s @ %uMHz (%s %s)",
-							dmi_memory_device_size_str(WORD(data + 0x0C)),
-							(WORD(data + 0x15)),
-							dmi_memory_device_form_factor(data[0x0E]),
-							dmi_memory_device_type(data[0x12]));
+						         dmi_memory_device_size_str(WORD(data + 0x0C)),
+						         (WORD(data + 0x15)),
+						         dmi_memory_device_form_factor(data[0x0E]),
+						         dmi_memory_device_type(data[0x12]));
 					}
 					bank +=2;
 				}
@@ -5043,10 +5044,6 @@ done:
 	free(buf);
 exit_free:
 	free(opt.type);
-#ifdef CPUX
-	if(flags & OPT_VERBOSE)
-		printf("\n\n");
-#endif /* CPUX */
 
 	return ret;
 }

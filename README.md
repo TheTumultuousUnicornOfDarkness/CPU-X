@@ -6,7 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
-CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD and on OS X (some features are missing).  
+CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is designed for GNU/Linux; it can also works on *BSD.  
 This software is written in C programming language, and built with [CMake](http://www.cmake.org/).  
 This is a graphical software (GTK is used), but it can be used from a shell by using Ncurses or by dumping data.
 
@@ -76,8 +76,8 @@ You can disable components in CPU-X before build by passing argument `-D<var>=0`
 `-DWITH_GTK=0` will disable support of GUI in GTK3+  
 `-DWITH_NCURSES=0` will disable support of NCurses mode  
 `-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
-`-DWITH_LIBDMI=0` will not compile Libdmidecode and will avoid calls to Libdmidecode (not recommended)  
-`-DWITH_LIBBDWT=0` will not compile Libbandwidth and will avoid calls to Libbandwidth (not recommended)  
+`-DWITH_DMIDECODE=0` will not compile modified Dmidecode code and will avoid calls to Libdmidecode (not recommended)  
+`-DWITH_BANDWIDTH=0` will not compile modified Bandwidth code and will avoid calls to Libbandwidth (not recommended)  
 `-DWITH_LIBPCI=0` will avoid calls to Libpci (not recommended)  
 `-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps/Libstatgrab (not recommended)  
 
@@ -92,12 +92,12 @@ By default, CPU-X will be installed in */usr/local*. If you want to change it, a
 
 * If you want to build a portable binary, do:
 ```
-mkdir ebuild && cd ebuild
-cmake -DEMBED=1 ..
+mkdir pbuild && cd pbuild
+cmake -DPORTABLE_BINARY=1 ..
 make
 ```
 
-Note: portable binary is *accomplished/bin/cpu-x*, in directory *ebuild*. Don't do `make install` after.You can move this runnable file where you want.
+Note: portable binary is *accomplished/bin/cpu-x*, in directory *pbuild*. Don't do `make install` after.You can move this runnable file where you want.
 
 
 ### Portable version

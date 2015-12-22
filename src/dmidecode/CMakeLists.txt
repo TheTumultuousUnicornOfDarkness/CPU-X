@@ -1,20 +1,16 @@
 cmake_minimum_required(VERSION 3.0)
-if(APPLE)
-	cmake_policy(SET CMP0025 NEW)
-endif(APPLE)
-
 cmake_policy(SET CMP0048 NEW)
-project(libdmi
+project(dmidecode
 	VERSION 3.0
 	LANGUAGES C
 )
 
-# Print libdmi version
-message("-- ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+# Config (dmidecode)
+message("-- Checking for submodule '${PROJECT_NAME}'")
+message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
-
-# Compile statically dmi
-add_library(dmi
+# Build (dmidecode)
+add_library(dmidecode
         STATIC
 	types.h
 	util.c
@@ -29,5 +25,5 @@ add_library(dmi
 )
 
 add_definitions(-DCPUX)
-
-target_link_libraries(dmi)
+target_link_libraries(dmidecode)
+set(DMIDECODE_VERSION ${PROJECT_VERSION} PARENT_SCOPE)

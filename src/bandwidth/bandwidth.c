@@ -38,7 +38,7 @@
 #ifdef CPUX
 # include <stdint.h>
 # include <libintl.h>
-# include "../core.h"
+# include "../cpu-x.h"
 # include "defs.h"
 #else
 
@@ -1826,7 +1826,7 @@ int bandwidth(Labels *data)
 	uint32_t edx = get_cpuid1_edx ();
 	char *ptr = NULL;
 
-	MSGVERB(_("Filling labels (libbandwidth step)"));
+	MSG_VERBOSE(_("Estimating CPU caches speed"));
 	cpu_has_sse2 = edx & CPUID_EDX_SSE2;
 	if (!cpu_has_sse2)
 		use_sse2 = false;
@@ -2117,9 +2117,9 @@ main (int argc, char **argv)
 		ind = 0;
 		speed = 0;
 		level = LEVEL1I;
-		if(data->tabcpu[VALUE][level] == NULL || !strcmp(data->tabcpu[VALUE][level], ""))
+		if(data->tab_cpu[VALUE][level] == NULL || !strcmp(data->tab_cpu[VALUE][level], ""))
 			return 4;
-		ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
+		ptr = strstr(data->tab_cpu[VALUE][level], "x") + 1;
 		size = (ptr == NULL) ? 0 : atoi(ptr);
 
 		while ((chunk_size = chunk_sizes [i++]))
@@ -2127,7 +2127,7 @@ main (int argc, char **argv)
 			if(chunk_size > size * 1024)
 			{
 				if(speed > 0 && ind > 0)
-					asprintf(&data->tabcache[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
+					asprintf(&data->tab_caches[VALUE][(level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2Lf MB/s", speed / ind);
 				ind = 0;
 				speed = 0;
 				level++;
@@ -2136,7 +2136,7 @@ main (int argc, char **argv)
 					break;
 
 				/* Avoid to check size if label is empty */
-				if(data->tabcpu[VALUE][level] == NULL || !strcmp(data->tabcpu[VALUE][level], ""))
+				if(data->tab_cpu[VALUE][level] == NULL || !strcmp(data->tab_cpu[VALUE][level], ""))
 					return 3;
 
 				/* Retrieve size from label */
@@ -2144,11 +2144,11 @@ main (int argc, char **argv)
 				{
 					case LEVEL1I:
 					case LEVEL2:
-						ptr = strstr(data->tabcpu[VALUE][level], "x") + 1;
+						ptr = strstr(data->tab_cpu[VALUE][level], "x") + 1;
 						size = (ptr == NULL) ? 0 : atoi(ptr);
 						break;
 					case LEVEL3:
-						size = atoi(data->tabcpu[VALUE][level]);
+						size = atoi(data->tab_cpu[VALUE][level]);
 				}
 
 				if(size <= 0)

@@ -24,601 +24,203 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
+#include <signal.h>
+#include <execinfo.h>
 #include <getopt.h>
 #include <locale.h>
 #include <libintl.h>
-#include "core.h"
-#include "options.h"
+#include "cpu-x.h"
 
-#ifdef EMBED
+#if PORTABLE_BINARY
 # include <sys/stat.h>
-# ifdef GETTEXT
+# if HAS_GETTEXT
 #  include "../po/mo.h"
 # endif
 #endif
 
-/* Options are global */
-unsigned int flags;
+#if defined(__clang__)
+# define CC "Clang"
+#elif defined(__GNUC__) || defined(__GNUG__)
+# define CC "GCC"
+#else
+# define CC "Unknown"
+#endif
+
+#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+# define OS "bsd32"
+#elif defined (__linux__) && defined (__LP64__)
+# define OS "linux64"
+#elif defined (__linux__) && !defined (__LP64__)
+# define OS "linux32"
+#endif
 
 
-int main(int argc, char *argv[])
-{
-	/* Parse options */
-	Labels data;
-	flags = 0;
-	data.refr_time = menu(argc, argv);
+Options *opts;
 
-	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_LIBDMI && !getuid() && (flags & OPT_DMIDECODE))
-		return libdmi('D');
-
-#if defined(EMBED) && defined (GETTEXT)
-	int i;
-	char *path;
-	FILE *mofile;
-
-	/* Write .mo files in temporary directory */
-	MSGVERB("Extract translations");
-	asprintf(&path, "%s", LOCALEDIR);
-	mkdir(path, 0777);
-
-	for(i = 0; ptrlen[i] != NULL; i++)
-	{
-		asprintf(&path, "%s/%s", LOCALEDIR, lang[i]);
-		mkdir(path, 0777);
-
-		asprintf(&path, "%s/%s/LC_MESSAGES", LOCALEDIR, lang[i]);
-		mkdir(path, 0777);
-
-		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
-
-		mofile = fopen(path, "w");
-		if(mofile != NULL)
-		{
-			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
-			fclose(mofile);
-		}
-	}
-#endif /* EMBED && GETTEXT */
-
-	/* Start collecting data */
-	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain(GETTEXT_PACKAGE);
-	MSGVERB(_("Setting locale done"));
-
-	labels_setnull(&data);
-	labels_setname(&data);
-	bogomips(&data.tabcpu[VALUE][BOGOMIPS]);
-	tabsystem(&data);
-
-	if(HAS_LIBCPUID)
-	{
-		if(libcpuid(&data))
-			MSGSERR(_("libcpuid failed"));
-		else
-		{
-			cpuvendor(data.tabcpu[VALUE][VENDOR]);
-			instructions(&data.tabcpu[VALUE][INSTRUCTIONS]);
-
-			if(strcmp(data.tabcpu[VALUE][CORES], data.tabcpu[VALUE][THREADS]))
-				strcat(data.tabcpu[VALUE][INSTRUCTIONS], ", HT");
-
-			if(HAS_LIBBDWT)
-			{
-				if(bandwidth(&data))
-					MSGSERR(_("bandwidth failed"));
-			}
-		}
-	}
-
-	if(HAS_LIBDMI && !getuid())
-	{
-		if(libdmidecode(&data))
-			MSGSERR(_("libdmidecode failed"));
-	}
-	else
-	{
-		if(libdmi_fallback(&data))
-			MSGSERR(_("libdmi_fallback failed"));
-	}
-
-	if(HAS_LIBPCI)
-		pcidev(&data);
-
-	cpufreq(&data);
-	labels_delnull(&data);
-
-	/* Show data */
-	if(HAS_GTK && (flags & OPT_GTK)) /* Start GTK3 GUI */
-		start_gui_gtk(&argc, &argv, &data);
-	if(HAS_NCURSES && (flags & OPT_NCURSES) && !(flags & OPT_GTK)) /* Start NCurses TUI */
-		start_tui_ncurses(&data);
-	if(flags & OPT_DUMP && !(flags & OPT_NCURSES) && !(flags & OPT_GTK)) /* Just dump data and exit */
-		dump_data(&data);
-
-	/* If compiled without UI */
-	if(!HAS_GTK && !HAS_NCURSES && !(flags & OPT_DUMP))
-	{
-		fprintf(stderr, "%s is compiled without GUI support. Dumping data...\n\n", PRGNAME);
-		dump_data(&data);
-	}
-
-#ifdef EMBED
-	update_prg(argv[0]);
-#endif /* EMBED */
-
-	return EXIT_SUCCESS;
-}
-
-const char *optstring[] =
-{
-#if HAS_GTK
-	"gtk",
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-	"ncurses",
-#endif /* HAS_NCURSES */
-	"dump",
-	"refresh",
-#if HAS_LIBDMI
-	"dmidecode",
-#endif /* HAS_LIBDMI */
-	"verbose",
-	"help",
-	"version"
-};
-
-/* This is help display with option --help */
-void help(FILE *out, char *argv[])
-{
-	int o = 0;
-
-	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
-	fprintf(out, _("Available OPTION:\n"));
-#if HAS_GTK
-	fprintf(out, _("  -g, --%-10s Start graphical user interface (GUI) (default)\n"), optstring[o]); o++;
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-	fprintf(out, _("  -n, --%-10s Start text-based user interface (TUI)\n"), optstring[o]); o++;
-#endif /* HAS_NCURSES */
-	fprintf(out, _("  -d, --%-10s Dump all data on standard output and exit\n"), optstring[o]); o++;
-	fprintf(out, _("  -r, --%-10s Set custom time between two refreshes (in seconds)\n"), optstring[o]); o++;
-#if HAS_LIBDMI
-	fprintf(out, _("  -D, --%-10s Run embedded command dmidecode and exit\n"), optstring[o]); o++;
-#endif /* HAS_LIBDMI */
-	fprintf(out, _("  -v, --%-10s Verbose output\n"), optstring[o]); o++;
-	fprintf(out, _("  -h, --%-10s Print help and exit\n"), optstring[o]); o++;
-	fprintf(out, _("  -V, --%-10s Print version and exit\n"), optstring[o]); o++;
-}
-
-/* This is the --version option */
-void version(void)
-{
-	char *strver, *newver = check_lastver();
-
-	if(newver[0] == 'f')
-		asprintf(&strver, _("(up-to-date)"));
-	else
-		asprintf(&strver, _("(version %s is available)"), newver);
-
-	printf(_("%s %s %s\n"
-	"%s\n\n"
-	"This is free software: you are free to change and redistribute it.\n"
-	"This program comes with ABSOLUTELY NO WARRANTY\n"
-	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
-	"Compiled on %s, %s, with compiler version %s.\n"),
-	PRGNAME, PRGVER, strver, PRGCPYR, __DATE__, __TIME__, __VERSION__);
-}
-
-/* Parse options given in arg */
-int menu(int argc, char *argv[])
-{
-	int c, tmp_refr = -1;
-
-	const struct option longopts[] =
-	{
-#if HAS_GTK
-		{optstring[0],	no_argument, 0, 'g'}, /* Arg gtk */
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-		{optstring[1],	no_argument, 0, 'n'}, /* Arg ncurses */
-#endif /* HAS_NCURSES */
-		{optstring[2],	no_argument, 0, 'd'}, /* Arg dump */
-		{optstring[3],	required_argument, 0, 'r'}, /* Arg refresh */
-#if HAS_LIBDMI
-		{optstring[4],	no_argument, 0, 'D'}, /* Arg Dmidecode */
-#endif /* HAS_LIBDMI */
-		{optstring[5],	no_argument, 0, 'v'}, /* Arg verbose */
-		{optstring[6],	no_argument, 0, 'h'}, /* Arg help */
-		{optstring[7],	no_argument, 0, 'V'}, /* Arg version */
-		{0,		0,	     0,  0}
-	};
-
-	while((c = getopt_long(argc, argv, ":gndr:DvhV", longopts, NULL)) != -1)
-	{
-		switch(c)
-		{
-#if HAS_GTK
-			case 'g':
-				flags |= OPT_GTK;
-				break;
-#endif /* HAS_GTK */
-#if HAS_NCURSES
-			case 'n':
-				flags |= OPT_NCURSES;
-				break;
-#endif /* HAS_NCURSES */
-			case 'd':
-				flags |= OPT_DUMP;
-				break;
-			case 'r':
-				tmp_refr = atoi(optarg);
-				break;
-#if HAS_LIBDMI
-			case 'D':
-				flags |= OPT_DMIDECODE;
-				break;
-#endif /* HAS_LIBDMI */
-			case 'v':
-				flags |= OPT_VERBOSE;
-				break;
-			case 'h':
-				help(stdout, argv);
-				exit(EXIT_SUCCESS);
-			case 'V':
-				version();
-				exit(EXIT_SUCCESS);
-			case '?':
-			default:
-				help(stderr, argv);
-				exit(EXIT_FAILURE);
-		}
-	}
-
-#if !HAS_GTK
-	if(!(flags & OPT_DUMP))
-		 flags |= OPT_NCURSES;
-#endif /* !HAS_GTK */
-
-	if(!((flags & OPT_NCURSES) || (flags & OPT_DUMP)))
-		 flags |= OPT_GTK;
-
-	return (tmp_refr == -1) ? 1 : tmp_refr;
-}
-
-/* Print a formatted message */
-void msg(char type, char *msg, char *prgname, char *basefile, int line)
-{
-	const char *reset = "\033[0m";
-	const char *boldred = "\033[1;31m";
-	const char *boldgre = "\033[1;32m";
-
-	if(type == 'p')
-	{
-		fprintf(stderr, "%s%s:%s:%i: ", boldred, prgname, basefile, line);
-		perror(msg);
-		fprintf(stderr, "%s\n", reset);
-	}
-
-	else if(type == 'e')
-		fprintf(stderr, "%s%s:%s:%i: %s%s\n", boldred, prgname, basefile, line, msg, reset);
-
-	else if(type == 'v' && (flags & OPT_VERBOSE))
-		printf("%s%s%s\n", boldgre, msg, reset);
-}
-
-/* Duplicate a not null string */
-char *strdupnullok(const char *s)
-{
-	return (s != NULL) ? strdup(s) : NULL;
-}
-
-/* Initialize all labels pointers to null */
-void labels_setnull(Labels *data)
-{
-	int i;
-
-	MSGVERB(_("Setting label pointers"));
-	/* Tab CPU */
-	for(i = VENDOR; i < LASTCPU; i++)
-		data->tabcpu[VALUE][i] = NULL;
-
-	/* Tab Cache */
-	for(i = L1SIZE; i < LASTCACHE; i++)
-		data->tabcache[VALUE][i] = NULL;
-
-	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
-		data->tabmb[VALUE][i] = NULL;
-
-	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
-		data->tabram[VALUE][i] = NULL;
-
-	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
-		data->tabsys[VALUE][i] = NULL;
-
-	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
-		data->tabgpu[VALUE][i] = NULL;
-}
+/************************* Arrays management functions *************************/
 
 /* Set labels name */
-void labels_setname(Labels *data)
+static void labels_setname(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Setting label names"));
-	/* Various objects*/
-	asprintf(&data->objects[TABCPU],		_("CPU"));
-	asprintf(&data->objects[TABCACHE],		_("Caches"));
-	asprintf(&data->objects[TABMB],			_("Motherboard"));
-	asprintf(&data->objects[TABRAM],		_("RAM"));
-	asprintf(&data->objects[TABSYS],		_("System"));
-	asprintf(&data->objects[TABGPU],		_("Graphics"));
-	asprintf(&data->objects[TABABOUT],		_("About"));
-	asprintf(&data->objects[FRAMPROCESSOR],		_("Processor"));
-	asprintf(&data->objects[FRAMCLOCKS],		_("Clocks"));
-	asprintf(&data->objects[FRAMCACHE],		_("Cache"));
-	asprintf(&data->objects[FRAMCACHEL1],		_("L1 Cache"));
-	asprintf(&data->objects[FRAMCACHEL2],		_("L2 Cache"));
-	asprintf(&data->objects[FRAMCACHEL3],		_("L3 Cache"));
-	asprintf(&data->objects[FRAMMOBO],		_("Motherboard"));
-	asprintf(&data->objects[FRAMBIOS],		_("BIOS"));
-	asprintf(&data->objects[FRAMCHIP],		_("Chipset"));
-	for(i = 0; i < LASTGPU / GPUFIELDS; i ++)
-		asprintf(&data->objects[FRAMGPU1 + i],	_("Card %i"), i);
-	asprintf(&data->objects[FRAMBANKS],		_("Banks"));
-	asprintf(&data->objects[FRAMOS],		_("Operating System"));
-	asprintf(&data->objects[FRAMMEMORY],		_("Memory"));
-	asprintf(&data->objects[FRAMABOUT],		_("About"));
-	asprintf(&data->objects[FRAMLICENSE],		_("License"));
-	asprintf(&data->objects[LABVERSION],		_("Version %s"), PRGVER);
-	asprintf(&data->objects[LABDESCRIPTION],	_(
+	MSG_VERBOSE(_("Setting label names"));
+	/* Various objects */
+	asprintf(&data->objects[TABCPU],                _("CPU"));
+	asprintf(&data->objects[TABCACHES],             _("Caches"));
+	asprintf(&data->objects[TABMOTHERBOARD],        _("Motherboard"));
+	asprintf(&data->objects[TABMEMORY],             _("Memory"));
+	asprintf(&data->objects[TABSYSTEM],             _("System"));
+	asprintf(&data->objects[TABGRAPHICS],           _("Graphics"));
+	asprintf(&data->objects[TABABOUT],              _("About"));
+	asprintf(&data->objects[FRAMPROCESSOR],         _("Processor"));
+	asprintf(&data->objects[FRAMCLOCKS],            _("Clocks"));
+	asprintf(&data->objects[FRAMCACHE],             _("Cache"));
+	asprintf(&data->objects[FRAML1CACHE],           _("L1 Cache"));
+	asprintf(&data->objects[FRAML2CACHE],           _("L2 Cache"));
+	asprintf(&data->objects[FRAML3CACHE],           _("L3 Cache"));
+	asprintf(&data->objects[FRAMMOTHERBOARD],       _("Motherboard"));
+	asprintf(&data->objects[FRAMBIOS],              _("BIOS"));
+	asprintf(&data->objects[FRAMCHIPSET],           _("Chipset"));
+	for(i = 0; i < LASTGRAPHICS / GPUFIELDS; i ++)
+		asprintf(&data->objects[FRAMGPU1 + i],  _("Card %i"), i);
+	asprintf(&data->objects[FRAMBANKS],             _("Banks"));
+	asprintf(&data->objects[FRAMOPERATINGSYSTEM],   _("Operating System"));
+	asprintf(&data->objects[FRAMMEMORY],            _("Memory"));
+	asprintf(&data->objects[FRAMABOUT],             _("About"));
+	asprintf(&data->objects[FRAMLICENSE],           _("License"));
+	asprintf(&data->objects[LABVERSION],            _("Version %s"), PRGVER);
+	asprintf(&data->objects[LABDESCRIPTION],        _(
 		"%s is a Free software that gathers information\n"
 		"on CPU, motherboard and more."), PRGNAME);
-	asprintf(&data->objects[LABAUTHOR],		_("Author : %s"), PRGAUTH);
-	asprintf(&data->objects[LABCOPYRIGHT],		"%s", PRGCPYR);
-	asprintf(&data->objects[LABLICENSE],		_(
+	asprintf(&data->objects[LABAUTHOR],             _("Author : %s"), PRGAUTH);
+	asprintf(&data->objects[LABCOPYRIGHT],          "%s", PRGCPYR);
+	asprintf(&data->objects[LABLICENSE],            _(
 		"This program comes with ABSOLUTELY NO WARRANTY"));
 
-	/* Tab CPU */
-	asprintf(&data->tabcpu[NAME][VENDOR],		_("Vendor"));
-	asprintf(&data->tabcpu[NAME][CODENAME],		_("Code Name"));
-	asprintf(&data->tabcpu[NAME][PACKAGE],		_("Package"));
-	asprintf(&data->tabcpu[NAME][TECHNOLOGY],	_("Technology"));
-	asprintf(&data->tabcpu[NAME][VOLTAGE],		_("Voltage"));
-	asprintf(&data->tabcpu[NAME][SPECIFICATION],	_("Specification"));
-	asprintf(&data->tabcpu[NAME][FAMILY],		_("Family"));
-	asprintf(&data->tabcpu[NAME][EXTFAMILY],	_("Ext. Family"));
-	asprintf(&data->tabcpu[NAME][MODEL],		_("Model"));
-	asprintf(&data->tabcpu[NAME][EXTMODEL],		_("Ext. Model"));
-	asprintf(&data->tabcpu[NAME][TEMPERATURE],	_("Temp."));
-	asprintf(&data->tabcpu[NAME][STEPPING],		_("Stepping"));
-	asprintf(&data->tabcpu[NAME][INSTRUCTIONS],	_("Instructions"));
+	/* CPU tab */
+	asprintf(&data->tab_cpu[NAME][VENDOR],          _("Vendor"));
+	asprintf(&data->tab_cpu[NAME][CODENAME],        _("Code Name"));
+	asprintf(&data->tab_cpu[NAME][PACKAGE],         _("Package"));
+	asprintf(&data->tab_cpu[NAME][TECHNOLOGY],      _("Technology"));
+	asprintf(&data->tab_cpu[NAME][VOLTAGE],         _("Voltage"));
+	asprintf(&data->tab_cpu[NAME][SPECIFICATION],   _("Specification"));
+	asprintf(&data->tab_cpu[NAME][FAMILY],          _("Family"));
+	asprintf(&data->tab_cpu[NAME][EXTFAMILY],       _("Ext. Family"));
+	asprintf(&data->tab_cpu[NAME][MODEL],           _("Model"));
+	asprintf(&data->tab_cpu[NAME][EXTMODEL],        _("Ext. Model"));
+	asprintf(&data->tab_cpu[NAME][TEMPERATURE],     _("Temp."));
+	asprintf(&data->tab_cpu[NAME][STEPPING],        _("Stepping"));
+	asprintf(&data->tab_cpu[NAME][INSTRUCTIONS],    _("Instructions"));
 
-	asprintf(&data->tabcpu[NAME][CORESPEED],	_("Core Speed"));
-	asprintf(&data->tabcpu[NAME][MULTIPLIER],	_("Multiplier"));
-	asprintf(&data->tabcpu[NAME][BUSSPEED],		_("Bus Speed"));
-	asprintf(&data->tabcpu[NAME][BOGOMIPS],		_("BogoMIPS"));
+	asprintf(&data->tab_cpu[NAME][CORESPEED],       _("Core Speed"));
+	asprintf(&data->tab_cpu[NAME][MULTIPLIER],      _("Multiplier"));
+	asprintf(&data->tab_cpu[NAME][BUSSPEED],        _("Bus Speed"));
+	asprintf(&data->tab_cpu[NAME][USAGE],           _("Usage"));
 
-	asprintf(&data->tabcpu[NAME][LEVEL1D],		_("L1 Data"));
-	asprintf(&data->tabcpu[NAME][LEVEL1I],		_("L1 Inst."));
-	asprintf(&data->tabcpu[NAME][LEVEL2],		_("Level 2"));
-	asprintf(&data->tabcpu[NAME][LEVEL3],		_("Level 3"));
+	asprintf(&data->tab_cpu[NAME][LEVEL1D],         _("L1 Data"));
+	asprintf(&data->tab_cpu[NAME][LEVEL1I],         _("L1 Inst."));
+	asprintf(&data->tab_cpu[NAME][LEVEL2],          _("Level 2"));
+	asprintf(&data->tab_cpu[NAME][LEVEL3],          _("Level 3"));
 
-	asprintf(&data->tabcpu[NAME][SOCKETS],		_("Socket(s)"));
-	asprintf(&data->tabcpu[NAME][CORES],		_("Core(s)"));
-	asprintf(&data->tabcpu[NAME][THREADS],		_("Thread(s)"));
+	asprintf(&data->tab_cpu[NAME][SOCKETS],         _("Socket(s)"));
+	asprintf(&data->tab_cpu[NAME][CORES],           _("Core(s)"));
+	asprintf(&data->tab_cpu[NAME][THREADS],         _("Thread(s)"));
 
-	/* Tab Cache */
-	for(i = L1SIZE; i < LASTCACHE / CACHEFIELDS; i++)
+	/* Caches tab */
+	for(i = 0; i < LASTCACHES / CACHEFIELDS + 1; i++)
 	{
-		asprintf(&data->tabcache[NAME][i * CACHEFIELDS],	_("Size"));
-		asprintf(&data->tabcache[NAME][i * CACHEFIELDS + 1],	_("Descriptor"));
-		asprintf(&data->tabcache[NAME][i * CACHEFIELDS + 2],	_("Speed"));
+		asprintf(&data->tab_caches[NAME][i * CACHEFIELDS],     _("Size"));
+		asprintf(&data->tab_caches[NAME][i * CACHEFIELDS + 1], _("Descriptor"));
+		asprintf(&data->tab_caches[NAME][i * CACHEFIELDS + 2], _("Speed"));
 	}
 
-	/* Tab Motherboard */
-	asprintf(&data->tabmb[NAME][MANUFACTURER],	_("Manufacturer"));
-	asprintf(&data->tabmb[NAME][MBMODEL],		_("Model"));
-	asprintf(&data->tabmb[NAME][REVISION],		_("Revision"));
+	/* Motherboard tab */
+	asprintf(&data->tab_motherboard[NAME][MANUFACTURER],  _("Manufacturer"));
+	asprintf(&data->tab_motherboard[NAME][MBMODEL],       _("Model"));
+	asprintf(&data->tab_motherboard[NAME][REVISION],      _("Revision"));
 
-	asprintf(&data->tabmb[NAME][BRAND],		_("Brand"));
-	asprintf(&data->tabmb[NAME][BIOSVER],		_("Version"));
-	asprintf(&data->tabmb[NAME][DATE],		_("Date"));
-	asprintf(&data->tabmb[NAME][ROMSIZE],		_("ROM Size"));
+	asprintf(&data->tab_motherboard[NAME][BRAND],         _("Brand"));
+	asprintf(&data->tab_motherboard[NAME][BIOSVERSION],   _("Version"));
+	asprintf(&data->tab_motherboard[NAME][DATE],          _("Date"));
+	asprintf(&data->tab_motherboard[NAME][ROMSIZE],       _("ROM Size"));
 
-	asprintf(&data->tabmb[NAME][CHIPVENDOR],	_("Vendor"));
-	asprintf(&data->tabmb[NAME][CHIPNAME],		_("Model"));
+	asprintf(&data->tab_motherboard[NAME][CHIPVENDOR],    _("Vendor"));
+	asprintf(&data->tab_motherboard[NAME][CHIPMODEL],     _("Model"));
 
-	/* Tab RAM */
+	/* Memory tab */
 	for(i = 0; i < BANK7_1 / RAMFIELDS + 1; i++)
 	{
-		asprintf(&data->tabram[NAME][i * RAMFIELDS],	 _("Bank %i Ref."), i);
-		asprintf(&data->tabram[NAME][i * RAMFIELDS + 1], _("Bank %i Type"), i);
+		asprintf(&data->tab_memory[NAME][i * RAMFIELDS],     _("Bank %i Ref."), i);
+		asprintf(&data->tab_memory[NAME][i * RAMFIELDS + 1], _("Bank %i Type"), i);
 	}
 
-	/* Tab System */
-	asprintf(&data->tabsys[NAME][KERNEL],		_("Kernel"));
-	asprintf(&data->tabsys[NAME][DISTRIBUTION],	_("Distribution"));
-	asprintf(&data->tabsys[NAME][HOSTNAME],		_("Hostname"));
-	asprintf(&data->tabsys[NAME][UPTIME],		_("Uptime"));
-	asprintf(&data->tabsys[NAME][COMPILER],		_("Compiler"));
+	/* System tab */
+	asprintf(&data->tab_system[NAME][KERNEL],             _("Kernel"));
+	asprintf(&data->tab_system[NAME][DISTRIBUTION],       _("Distribution"));
+	asprintf(&data->tab_system[NAME][HOSTNAME],           _("Hostname"));
+	asprintf(&data->tab_system[NAME][UPTIME],             _("Uptime"));
+	asprintf(&data->tab_system[NAME][COMPILER],           _("Compiler"));
 
-	asprintf(&data->tabsys[NAME][USED],		_("Used"));
-	asprintf(&data->tabsys[NAME][BUFFERS],		_("Buffers"));
-	asprintf(&data->tabsys[NAME][CACHED],		_("Cached"));
-	asprintf(&data->tabsys[NAME][FREE],		_("Free"));
-	asprintf(&data->tabsys[NAME][SWAP],		_("Swap"));
+	asprintf(&data->tab_system[NAME][USED],               _("Used"));
+	asprintf(&data->tab_system[NAME][BUFFERS],            _("Buffers"));
+	asprintf(&data->tab_system[NAME][CACHED],             _("Cached"));
+	asprintf(&data->tab_system[NAME][FREE],               _("Free"));
+	asprintf(&data->tab_system[NAME][SWAP],               _("Swap"));
 
-	/* Tab Graphics */
-	for(i = 0; i < LASTGPU; i += GPUFIELDS)
+	/* Graphics tab */
+	for(i = 0; i < LASTGRAPHICS; i += GPUFIELDS)
 	{
-		asprintf(&data->tabgpu[NAME][GPUVENDOR1 + i],	_("Vendor"));
-		asprintf(&data->tabgpu[NAME][GPUNAME1 + i],	_("Model"));
-		asprintf(&data->tabgpu[NAME][GPUTEMP1 + i],	_("Temperature"));
+		asprintf(&data->tab_graphics[NAME][GPU1VENDOR + i],      _("Vendor"));
+		asprintf(&data->tab_graphics[NAME][GPU1MODEL + i],       _("Model"));
+		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));
 	}
 }
 
 /* Replace null pointers by character '\0' */
-void labels_delnull(Labels *data)
+static int remove_null_ptr(Labels *data)
 {
-	int i;
-
-	MSGVERB(_("Replace undefined label by empty string"));
-	/* Tab CPU */
-	for(i = VENDOR; i < LASTCPU; i++)
+	int i, j, cpt = 0, ret = 0;
+	char *msg;
+	const struct Arrays { char **array; const int last; } a[] =
 	{
-		if(data->tabcpu[VALUE][i] == NULL)
+		{ data->tab_cpu[VALUE],         LASTCPU         },
+		{ data->tab_caches[VALUE],      LASTCACHES      },
+		{ data->tab_motherboard[VALUE], LASTMOTHERBOARD },
+		{ data->tab_memory[VALUE],      LASTMEMORY      },
+		{ data->tab_system[VALUE],      LASTSYSTEM      },
+		{ data->tab_graphics[VALUE],    LASTGRAPHICS    },
+		{ NULL,                         0               }
+	};
+
+	MSG_VERBOSE(_("Replacing undefined labels by an empty string"));
+	for(i = 0; a[i].array != NULL; i++)
+	{
+		for(j = 0; j < a[i].last; j++)
 		{
-			data->tabcpu[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabcpu[VALUE][i][0] = '\0';
+			cpt++;
+			if(a[i].array[j] == NULL)
+				ret += !iasprintf(&a[i].array[j], NULL);
 		}
 	}
 
-	/* Tab Cache */
-	for(i = L1SIZE; i < LASTCACHE; i++)
-	{
-		if(data->tabcache[VALUE][i] == NULL)
-		{
-			data->tabcache[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabcache[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
-	{
-		if(data->tabmb[VALUE][i] == NULL)
-		{
-			data->tabmb[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabmb[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
-	{
-		if(data->tabram[VALUE][i] == NULL)
-		{
-			data->tabram[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabram[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
-	{
-		if(data->tabsys[VALUE][i] == NULL)
-		{
-			data->tabsys[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabsys[VALUE][i][0] = '\0';
-		}
-	}
-
-	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
-	{
-		if(data->tabgpu[VALUE][i] == NULL)
-		{
-			data->tabgpu[VALUE][i] = malloc(1 * sizeof(char));
-			data->tabgpu[VALUE][i][0] = '\0';
-		}
-	}
-}
-
-/* Free memory after display labels */
-void labels_free(Labels *data)
-{
-	int i;
-
-	MSGVERB(_("Freeing memory"));
-	/* Tab CPU */
-	for(i = VENDOR; i < LASTCPU; i++)
-	{
-		free(data->tabcpu[NAME][i]);
-		data->tabcpu[NAME][i] = NULL;
-
-		if(i != MULTIPLIER && i != LEVEL1I && i != LEVEL2 && i != LEVEL3)
-		{
-			free(data->tabcpu[VALUE][i]);
-			data->tabcpu[VALUE][i] = NULL;
-		}
-	}
-
-	/* Tab Cache */
-	for(i = L1SIZE; i < LASTCACHE; i++)
-	{
-		free(data->tabcache[NAME][i]);
-		data->tabcache[NAME][i] = NULL;
-
-		if(i != L1SPEED && i != L2SPEED && i != L3SPEED)
-		{
-			free(data->tabcache[VALUE][i]);
-			data->tabcache[VALUE][i] = NULL;
-		}
-	}
-
-	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMB; i++)
-	{
-		free(data->tabmb[NAME][i]);
-		data->tabmb[NAME][i] = NULL;
-
-		free(data->tabmb[VALUE][i]);
-		data->tabmb[VALUE][i] = NULL;
-	}
-
-	/* Tab RAM */
-	for(i = BANK0_0; i < LASTRAM; i++)
-	{
-		free(data->tabram[NAME][i]);
-		data->tabram[NAME][i] = NULL;
-
-		free(data->tabram[VALUE][i]);
-		data->tabram[VALUE][i] = NULL;
-	}
-
-	/* Tab System */
-	for(i = KERNEL; i < LASTSYS; i++)
-	{
-		free(data->tabsys[NAME][i]);
-		data->tabsys[NAME][i] = NULL;
-
-		if(i != USED && i != BUFFERS && i != CACHED && i != FREE && i != SWAP)
-		{
-			free(data->tabsys[VALUE][i]);
-			data->tabsys[VALUE][i] = NULL;
-		}
-	}
-
-	/* Tab Graphics */
-	for(i = GPUVENDOR1; i < LASTGPU; i++)
-	{
-		free(data->tabgpu[NAME][i]);
-		data->tabgpu[NAME][i] = NULL;
-
-		free(data->tabgpu[VALUE][i]);
-		data->tabgpu[VALUE][i] = NULL;
-	}
+	asprintf(&msg, _("\tThere is %i/%i empty strings"), ret, cpt);
+	MSG_VERBOSE(msg);
+	return ret;
 }
 
 /* Dump all data in stdout */
-void dump_data(Labels *data)
+static void dump_data(Labels *data)
 {
 	int i;
 
-	MSGVERB(_("Dumping data..."));
-	if(getuid())
-		fprintf(stderr, "\n\t\t\t\033[1;33m%s\033[0m\n", MSGROOT);
-
-	/* Tab CPU */
+	MSG_VERBOSE(_("Dumping data..."));
+	/* CPU tab */
 	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
 	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
 	for(i = VENDOR; i < LASTCPU; i++)
@@ -629,181 +231,720 @@ void dump_data(Labels *data)
 			printf("\n\t*** %s ***\n", data->objects[FRAMCACHE]);
 		else if(i == SOCKETS)
 			printf("\n\t***  ***\n");
-		printf("%16s: %s\n", data->tabcpu[NAME][i], data->tabcpu[VALUE][i]);
+		printf("%16s: %s\n", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 	}
 
-	/* Tab Cache */
-	printf("\n\n ***** %s *****\n", data->objects[TABCACHE]);
-	printf("\t*** %s ***\n", data->objects[FRAMCACHEL1]);
-	for(i = L1SIZE; i < LASTCACHE; i++)
+	/* Caches tab */
+	printf("\n\n ***** %s *****\n", data->objects[TABCACHES]);
+	printf("\t*** %s ***\n", data->objects[FRAML1CACHE]);
+	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
 		if(i == L2SIZE)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCACHEL2]);
+			printf("\n\t*** %s ***\n", data->objects[FRAML2CACHE]);
 		else if(i == L3SIZE)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCACHEL3]);
-		printf("%16s: %s\n", data->tabcache[NAME][i], data->tabcache[VALUE][i]);
+			printf("\n\t*** %s ***\n", data->objects[FRAML3CACHE]);
+		printf("%16s: %s\n", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 	}
 
-	/* Tab Motherboard */
-	printf("\n\n ***** %s *****\n", data->objects[TABMB]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMMOBO]);
-	for(i = MANUFACTURER; i < LASTMB; i++)
+	/* Motherboard tab */
+	printf("\n\n ***** %s *****\n", data->objects[TABMOTHERBOARD]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMMOTHERBOARD]);
+	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 	{
 		if(i == BRAND)
 			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
 		else if(i == CHIPVENDOR)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCHIP]);
-		printf("%16s: %s\n", data->tabmb[NAME][i], data->tabmb[VALUE][i]);
+			printf("\n\t*** %s ***\n", data->objects[FRAMCHIPSET]);
+		printf("%16s: %s\n", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 	}
 
-	/* Tab RAM */
-	printf("\n\n ***** %s *****\n", data->objects[TABRAM]);
+	/* Memory tab */
+	printf("\n\n ***** %s *****\n", data->objects[TABMEMORY]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
-	for(i = BANK0_0; i < last_bank(data); i++)
-		printf("%16s: %s\n", data->tabram[NAME][i], data->tabram[VALUE][i]);
+	for(i = BANK0_0; i < data->dimms_count; i++)
+		printf("%16s: %s\n", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
 
-	/* Tab System */
-	printf("\n\n ***** %s *****\n", data->objects[TABSYS]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMOS]);
-	for(i = KERNEL; i < LASTSYS; i++)
+	/* System tab */
+	printf("\n\n ***** %s *****\n", data->objects[TABSYSTEM]);
+	printf("\n\t*** %s ***\n", data->objects[FRAMOPERATINGSYSTEM]);
+	for(i = KERNEL; i < LASTSYSTEM; i++)
 	{
 		if(i == USED)
 			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
-		printf("%16s: %s\n", data->tabsys[NAME][i], data->tabsys[VALUE][i]);
+		printf("%16s: %s\n", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
 	}
 
-	/* Tab Graphics */
-	printf("\n\n ***** %s *****\n", data->objects[TABGPU]);
+	/* Graphics tab */
+	printf("\n\n ***** %s *****\n", data->objects[TABGRAPHICS]);
 	printf("\n\t*** %s ***\n", data->objects[FRAMGPU1]);
-	for(i = GPUVENDOR1; i < last_gpu(data); i++)
+	for(i = GPU1VENDOR; i < data->gpu_count; i++)
 	{
-		if(i == GPUVENDOR2)
+		if(i == GPU2VENDOR)
 			printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);
-		else if(i == GPUVENDOR3)
+		else if(i == GPU2VENDOR)
 			printf("\n\t*** %s ***\n", data->objects[FRAMGPU3]);
-		else if(i == GPUVENDOR4)
+		else if(i == GPU2VENDOR)
 			printf("\n\t*** %s ***\n", data->objects[FRAMGPU4]);
-		printf("%16s: %s\n", data->tabgpu[NAME][i], data->tabgpu[VALUE][i]);
+		printf("%16s: %s\n", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 	}
 
 	labels_free(data);
 }
 
-/* Check if running version is latest */
-char *check_lastver(void)
-{
-	char newver[S];
-	static char *ret = NULL;
-	FILE *page = NULL;
 
+/************************* Update-related functions *************************/
+
+/* Check if running version is latest */
+static bool new_version_available(char **newver)
+{
+	MSG_VERBOSE(_("Checking on Internet for a new version..."));
 	if(!command_exists("curl"))
 	{
-		ret = strdup("f");
-		return ret;
+		MSG_WARNING(_("curl is missing on your system, can't check for a new version"));
+		return false;
 	}
 
-	if(ret != NULL)
-		return ret;
+	/* Retrieve the last tag on Git repo */
+	xopen_to_str("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
+	             newver, 'p');
 
-	MSGVERB(_("Check for a new version..."));
-	page = popen("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2", "r");
-
-	/* Open file descriptor and put version number in variable */
-	if(page == NULL)
+	/* Compare Git tag with running version */
+	if(!strcmp(PRGVER, *newver))
 	{
-		MSGSERR(_("Failed to check on Internet."));
-		ret = strdup("f");
-		return ret;
-	}
-
-	fgets(newver, S - 1, page);
-	pclose(page);
-	newver[strlen(newver) - 1] = '\0';
-
-	if(!strcmp(PRGVER, newver))
-	{
-		MSGVERB(_("No new version available."));
-		ret = strdup("f");
+		MSG_VERBOSE(_("No new version available."));
+		return false;
 	}
 	else
 	{
-		MSGVERB(_("A new version is available!"));
-		ret = strdup(newver);
+		MSG_VERBOSE(_("A new version is available!"));
+		return true;
 	}
-
-	return ret;
 }
 
 /* Apply new portable version if available */
-int update_prg(char *executable)
+static int update_prg(char *executable, Options *opts)
 {
-#ifdef EMBED
-	int err = 0, i = 0;
-	char *newver, *opt, *portype, *tgzname, *cmd, *bin, *tmp;
-	const char *ext[] = { "bsd32", "linux32", "linux64", "" };
+	int err = 0;
+#if PORTABLE_BINARY
+	int i;
+	char *file, *tmp, *opt, *newver = NULL;
+	const char *ext[] = { "bsd32", "linux32", "linux64", NULL };
 
-	opt = (flags & OPT_VERBOSE) ? strdup("") : strdup("s");
-	newver = check_lastver();
-	if(newver[0] == 'f')
+	if(!new_version_available(&newver))
 		return 1;
 
 	/* Find what archive we need to download */
 	if(HAS_GTK)
-		portype = strdup("portable");
+		asprintf(&file, "%s_v%s_portable",       PRGNAME, newver);
 	else
-		portype = strdup("portable_noGTK");
+		asprintf(&file, "%s_v%s_portable_noGTK", PRGNAME, newver);
 
 	/* Download archive */
-	MSGVERB(_("Downloading new version..."));
-	asprintf(&tgzname, "%s_v%s_%s.tar.gz", PRGNAME, newver, portype);
-	asprintf(&cmd, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s -o %s", opt, PRGAUTH, PRGNAME, newver, tgzname, tgzname);
-	system(cmd);
+	MSG_VERBOSE(_("Downloading new version..."));
+	opt = opts->verbose ? strdup("") : strdup("s");
+	asprintf(&tmp, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz ",
+	         opt, PRGAUTH, PRGNAME, newver, file, file);
+	system(tmp);
+	free(newver);
 
 	/* Extract archive */
-	opt = (flags & OPT_VERBOSE) ? strdup("v") : strdup("");
-	asprintf(&cmd, "tar -zx%sf %s", opt, tgzname);
-	system(cmd);
-
+	MSG_VERBOSE(_("Extracting new version..."));
+	opt = opts->verbose ? strdup("v") : strdup("");
+	asprintf(&tmp, "tar -zx%sf %s.tar.gz", opt, file);
+	system(tmp);
 	free(opt);
-	free(cmd);
-
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "bsd32");
-#elif defined (__linux__) && defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux64");
-#elif defined (__linux__) && !defined (__LP64__)
-	asprintf(&bin, "%s_v%s_%s.%s", PRGNAME, newver, portype, "linux32");
-#endif /* OS */
 
 	/* Rename new binary */
-	MSGVERB(_("Applying new version..."));
-	err = rename(bin, executable);
+	MSG_VERBOSE(_("Applying new version..."));
+	asprintf(&tmp, "%s.%s", file, OS);
+	err = rename(tmp, executable);
 	if(err)
-		MSGVERB(_("Error when updating."));
+		MSG_VERBOSE(_("Error when updating."));
 	else
-		MSGVERB(_("Update successful!"));
+		MSG_VERBOSE(_("Update successful!"));
 
 	/* Delete temporary files */
-	err = remove(tgzname);
-	while(strcmp(ext[i], ""))
+	asprintf(&tmp, "%s.tar.gz", file);
+	err = remove(tmp);
+	for(i = 0; ext[i] != NULL; i++)
 	{
-		asprintf(&tmp, "%s_v%s_%s.%s", PRGNAME, newver, portype, ext[i]);
-		if(strcmp(bin, tmp))
+		asprintf(&tmp, "%s.%s", file, ext[i]);
+		err += remove(tmp);
+	}
+
+	if(err > 1)
+		MSG_VERBOSE(_("Error when deleting temporary files."));
+
+	free(file);
+	free(tmp);
+#endif /* PORTABLE_BINARY */
+	return err;
+}
+
+
+/************************* Options-related functions *************************/
+
+static const struct AvailableOpts
+{
+	const bool has_mod; const char short_opt; const char *long_opt; const int  need_arg;
+} o[] =
+{
+	{ HAS_GTK,       'g', "gtk",       no_argument       },
+	{ HAS_NCURSES,   'n', "ncurses",   no_argument       },
+	{ true,          'd', "dump",      no_argument       },
+	{ true,          'r', "refresh",   required_argument },
+	{ HAS_DMIDECODE, 'D', "dmidecode", no_argument       },
+	{ true,          'c', "color",     no_argument       },
+	{ true,          'v', "verbose",   no_argument       },
+	{ true,          'h', "help",      no_argument       },
+	{ true,          'V', "version",   no_argument       },
+	{ true,          '0', NULL,        0                 }
+};
+
+/* This is help display with --help option */
+static void help(FILE *out, char *argv[], int exit_status)
+{
+	int i;
+	const char *description[] =
+	{
+		_("Start graphical user interface (GUI) (default)"),
+		_("Start text-based user interface (TUI)"),
+		_("Dump all data on standard output and exit"),
+		_("Set custom time between two refreshes (in seconds)"),
+		_("Run embedded command dmidecode and exit"),
+		_("Disable colored output"),
+		_("Verbose output"),
+		_("Print help and exit"),
+		_("Print version and exit")
+	};
+
+	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
+	fprintf(out, _("Available OPTION:\n"));
+	for(i = 0; o[i].long_opt != NULL; i++)
+	{
+		if(o[i].has_mod)
+			fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, description[i]);
+	}
+
+	exit(exit_status);
+}
+
+/* This is the --version option */
+static void version(void)
+{
+	int i;
+	char *strver, *newver = NULL;
+	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
+	{
+		{ HAS_GTK,         "GTK",         GTK_VERSION         },
+		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
+		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
+		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
+		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
+		{ HAS_LIBSTATGRAB, "LIBSTATGRAB", LIBSTATGRAB_VERSION },
+		{ HAS_DMIDECODE,   "DMIDECODE",   DMIDECODE_VERSION   },
+		{ HAS_BANDWIDTH,   "BANDWIDTH",   BANDWIDTH_VERSION   },
+		{ false,           NULL,          NULL                }
+	};
+
+	if(new_version_available(&newver))
+		asprintf(&strver, _("(version %s is available)"), newver);
+	else
+		asprintf(&strver, _("(up-to-date)"));
+
+	printf("%s %s %s\n%s\n\n", PRGNAME, PRGVER, strver, PRGCPYR);
+	printf(_(""
+	"This is free software: you are free to change and redistribute it.\n"
+	"This program comes with ABSOLUTELY NO WARRANTY\n"
+	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
+	"Built on %s, %s (with %s %s).\n"),
+	__DATE__, __TIME__, CC, __VERSION__);
+
+	/* Print features version */
+	for(i = 0; v[i].lib != NULL; i++)
+	{
+		if(v[i].has_mod)
+			printf(_("-- %12s version: %s\n"), v[i].lib, v[i].version);
+	}
+
+	exit(EXIT_SUCCESS);
+}
+
+/* Parse options given in arg */
+static void menu(int argc, char *argv[])
+{
+	int i, j = 0, c, tmp_refr = -1;
+	struct option longopts[9];
+
+	/* Filling longopts structure */
+	for(i = 0; o[i].long_opt != NULL; i++)
+	{
+		if(o[i].has_mod)
 		{
-			err += remove(tmp);
+			longopts[j].name    = o[i].long_opt;
+			longopts[j].has_arg = o[i].has_mod;
+			longopts[j].flag    = 0;
+			longopts[j].val     = o[i].short_opt;
+			j++;
 		}
-		i++;
+	}
+
+	/* Set the default mode */
+	if(HAS_GTK)
+		c = 'g';
+	else if(HAS_NCURSES)
+		c = 'n';
+	else
+		c = 'd';
+
+	/* Parse options */
+	do
+	{
+		switch(c)
+		{
+			case 'g':
+				if(HAS_GTK)
+					opts->output_type = OUT_GTK;
+				else
+					help(stderr, argv, EXIT_FAILURE);
+				break;
+			case 'n':
+				if(HAS_NCURSES)
+					opts->output_type = OUT_NCURSES;
+				else
+					help(stderr, argv, EXIT_FAILURE);
+				break;
+			case 'd':
+				opts->output_type = OUT_DUMP;
+				break;
+			case 'r':
+				tmp_refr = atoi(optarg);
+				if(tmp_refr > 1)
+					opts->refr_time = tmp_refr;
+				break;
+			case 'D':
+				if(HAS_DMIDECODE)
+					opts->output_type = OUT_DMIDECODE;
+				else
+					help(stderr, argv, EXIT_FAILURE);
+				break;
+			case 'c':
+				opts->color = false;
+				break;
+			case 'v':
+				opts->verbose = true;
+				break;
+			case 'h':
+				help(stdout, argv, EXIT_SUCCESS);
+			case 'V':
+				version();
+			case '?':
+			default:
+				help(stderr, argv, EXIT_FAILURE);
+		}
+	} while((c = getopt_long(argc, argv, ":gndr:DcvhV", longopts, NULL)) != -1);
+}
+
+
+/************************* Main-related functions *************************/
+
+/* Action on SIGSEV/SIGFPE */
+void sighandler(int signum)
+{
+	int bt_size, i;
+	char **bt_syms, *cmd, *buff = NULL;
+	void *bt[1 << 4];
+
+	/* Get the backtrace */
+	bt_size = backtrace(bt, 1 << 4);
+	bt_syms = backtrace_symbols(bt, bt_size);
+
+	/* Print the backtrace */
+	fprintf(stderr, "%s", strsignal(signum));
+	fprintf(stderr, _("\n%sOops, something was wrong! %s got signal %d and has crashed.%s\n\n"), BOLD_RED, PRGNAME, signum, RESET);
+	fprintf(stderr, "======= Backtrace: =========\n");
+        for(i = 1; i < bt_size; i++)
+	{
+		fprintf(stderr, "#%2i %s", i, bt_syms[i]);
+		asprintf(&cmd, "addr2line %s -e /usr/bin/cpu-x", strtok(strrchr(bt_syms[i], '[') + 1, "]"));
+		xopen_to_str(cmd, &buff, 'p');
+		if(strstr(buff, "??") == NULL)
+			fprintf(stderr, " ==> %s", strrchr(buff, '/') + 1);
+		fprintf(stderr, "\n");
+        }
+	fprintf(stderr, "======= End Backtrace ======\n\n");
+	fprintf(stderr, _("You can paste this backtrace by opening a new issue here:\n"));
+	fprintf(stderr, "https://github.com/X0rg/CPU-X/issues/new\n\n");
+
+	/* Stop program */
+	free(bt_syms);
+	free(cmd);
+	free(buff);
+	signal(signum, SIG_DFL);
+	kill(getpid(), signum);
+}
+
+/* Extract locales in /tmp/.cpu-x */
+static int extract_locales(void)
+{
+	int err = 0;
+#if PORTABLE_BINARY && HAS_GETTEXT
+	int i;
+	char *path;
+	FILE *mofile;
+
+	/* Write .mo files in temporary directory */
+	MSG_VERBOSE("Extracting translations in temporary directory");
+	asprintf(&path, "%s", LOCALEDIR);
+	err = mkdir(path, 0777);
+
+	for(i = 0; ptrlen[i] != NULL; i++)
+	{
+		asprintf(&path, "%s/%s", LOCALEDIR, lang[i]);
+		err += mkdir(path, 0777);
+
+		asprintf(&path, "%s/%s/LC_MESSAGES", LOCALEDIR, lang[i]);
+		err += mkdir(path, 0777);
+
+		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
+
+		mofile = fopen(path, "w");
+		if(mofile != NULL)
+		{
+			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
+			fclose(mofile);
+		}
+		else
+			err++;
 	}
 
 	if(err)
-		MSGVERB(_("Error when deleting temporary files."));
+		MSG_ERROR("an error occurred while extracting translations");
+# endif /* PORTABLE_BINARY && HAS_GETTEXT */
+	return err;
 
-	free(newver);
-	free(portype);
-	free(tgzname);
-	free(bin);
-	free(tmp);
+}
 
-#endif /* EMBED */
-	return 0;
+ /* Enable internationalization support */
+static int set_locales(void)
+{
+	int i;
+	char *out[3] = { NULL };
+
+	extract_locales();
+	MSG_VERBOSE("Setting locale");
+	/* Apply locale */
+	setlocale(LC_ALL, "");
+	out[0] = bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+	out[1] = bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	out[2] = textdomain(GETTEXT_PACKAGE);
+
+	/* Check if something is wrong */
+	for(i = 0; i < 3 && out[i] != NULL; i++);
+	if(out[i] == NULL)
+	{
+		MSG_ERROR(_("an error occurred while setting locale"));
+		return 1;
+	}
+	else
+	{
+		MSG_VERBOSE(_("Setting locale done"));
+		return 0;
+	}
+}
+
+int main(int argc, char *argv[])
+{
+	/* Parse options */
+	Labels data = {	.tab_cpu = {{ NULL }}, .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
+	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
+	                .selected_core = 0, .dimms_count = 0 };
+	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false, .color = true };
+	set_locales();
+	signal(SIGSEGV, sighandler);
+	signal(SIGFPE,  sighandler);
+	menu(argc, argv);
+
+	/* If option --dmidecode is passed, start dmidecode and exit */
+	if(HAS_DMIDECODE && !getuid() && (opts->output_type & OUT_DMIDECODE))
+		return libdmi('D');
+
+	if(getuid())
+		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
+
+	labels_setname(&data);
+	fill_labels(&data);
+	remove_null_ptr(&data);
+
+	/* Show data */
+	switch(opts->output_type)
+	{
+		case OUT_GTK:
+			if(HAS_GTK)	start_gui_gtk(&argc, &argv, &data);
+			break;
+		case OUT_NCURSES:
+			if(HAS_NCURSES)	start_tui_ncurses(&data);
+			break;
+		case OUT_DUMP:
+			dump_data(&data);
+			break;
+	}
+
+	if(PORTABLE_BINARY)
+		update_prg(argv[0], opts);
+
+	return EXIT_SUCCESS;
+}
+
+
+/************************* Public functions *************************/
+
+/* Print a formatted message */
+int message(char type, char *msg, char *basefile, int line)
+{
+	switch(type)
+	{
+		case 'v': /* Verbose message */
+			return opts->verbose ? fprintf(stdout, "%s%s%s\n", opts->color ? BOLD_GREEN  : "", msg, RESET) : -1;
+		case 'w': /* Warning message */
+			return fprintf(stdout, "%s%s%s\n",                 opts->color ? BOLD_YELLOW : "", msg, RESET);
+		case 'e': /* Error message */
+			return fprintf(stderr, "%s%s:%s:%i: %s%s\n",       opts->color ? BOLD_RED    : "", PRGNAME, basefile, line, msg, RESET);
+		case 'n': /* Error message with errno */
+			return fprintf(stderr, "%s%s:%s:%i: %s (%s)%s\n",  opts->color ? BOLD_RED    : "", PRGNAME, basefile, line, msg, strerror(errno), RESET);
+	}
+
+	return -1;
+}
+
+/* The improved asprintf:
+ * - allocate an empty string if input string is null
+ * - only call asprintf if there is no format in input string
+ * - print "valid" args if input string is formatted, or skip them until next arg
+     E.g.: iasprintf(&buff, "%i nm", 32) will allocate "32 nm" string
+           iasprintf(&buff, "%i nm", 0) will allocate an empty string
+	   iasprintf(&buff, "foo %s %s", NULL, "bar") will allocate "foo bar" */
+int iasprintf(char **str, const char *fmt, ...)
+{
+	bool is_format = false, print = true;
+	int arg_int, i, ret;
+	double arg_double;
+	char *arg_string, *tmp_fmt;
+	va_list aptr;
+
+	/* Allocate an empty string */
+	*str    = malloc(1 * sizeof(char));
+	*str[0] = '\0';
+
+	/* Exit if input is null or without format */
+	if(fmt == NULL)
+		return 0;
+	else if(strchr(fmt, '%') == NULL)
+		return asprintf(str, "%s", fmt);
+
+	/* Read format, character by character */
+	va_start(aptr, fmt);
+	for(i = 0; fmt[i] != '\0'; i++)
+	{
+		is_format = fmt[i] == '%' || is_format;
+		if(is_format)
+		{
+			print = true;
+
+			/* Construct the new temporary format */
+			if(fmt[i] == '%')
+				asprintf(&tmp_fmt, "%%s%%");
+			else
+				asprintf(&tmp_fmt, "%s%c", tmp_fmt, fmt[i]);
+
+			/* Extract arg */
+			switch(fmt[i])
+			{
+				case '%':
+					break;
+				case '.':
+				case '0' ... '9':
+				case 'l':
+				case 'L':
+					break;
+				case 'd':
+				case 'i':
+					is_format = false;
+					arg_int = va_arg(aptr, int);
+					if(arg_int > 0)
+						ret = asprintf(str, tmp_fmt, *str, arg_int);
+					else
+						print = false;
+					break;
+				case 'f':
+					is_format = false;
+					arg_double = va_arg(aptr, double);
+					if(arg_double > 0.0)
+						ret = asprintf(str, tmp_fmt, *str,  arg_double);
+					else
+						print = false;
+					break;
+				case 's':
+					is_format = false;
+					arg_string = va_arg(aptr, char *);
+					if(arg_string != NULL)
+						ret = asprintf(str, tmp_fmt, *str, arg_string);
+					else
+						print = false;
+					break;
+				default:
+					is_format = false;
+					asprintf(&tmp_fmt, "(internal) format not implemented: %%%c\n", fmt[i]);
+					MSG_ERROR(tmp_fmt);
+					break;
+			}
+		}
+		else if(print)
+			ret = asprintf(str, "%s%c", *str, fmt[i]);
+	}
+	va_end(aptr);
+
+	return ret;
+}
+
+/* Check if a command exists */
+bool command_exists(char *in)
+{
+	bool ret;
+	char *cmd;
+
+	asprintf(&cmd, "which %s >/dev/null 2>&1", in);
+	ret = system(cmd);
+	free(cmd);
+
+	return !ret;
+}
+
+/* Open a file or a pipe and put its content in buffer */
+int xopen_to_str(char *file, char **buffer, char type)
+{
+	char *test_command;
+	FILE *f = NULL;
+
+	/* Allocate buffer */
+	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
+	{
+		MSG_ERROR_ERRNO(_("xopen_to_str(): malloc() failed"));
+		return 1;
+	}
+
+	if(type == 'f')
+	{
+		/* Open file */
+		if((f = fopen(file, "r")) == NULL)
+		{
+			MSG_ERROR_ERRNO(_("xopen_to_str(): fopen() failed"));
+			return 2;
+		}
+	}
+	else if(type == 'p')
+	{
+		/* Open pipe */
+		asprintf(&test_command, "%s", file);
+		if(!command_exists(strtok(test_command, " ")))
+			return 2;
+
+		if((f = popen(file, "r")) == NULL)
+		{
+			MSG_ERROR_ERRNO(_("xopen_to_str(): popen() failed"));
+			return 3;
+		}
+	}
+	else
+	{
+		MSG_ERROR("(internal) bad use of xopen_to_str() function");
+		return -1;
+	}
+
+	/* Get string from file descriptor */
+	if(fgets(*buffer, MAXSTR, f) == NULL)
+	{
+		MSG_ERROR_ERRNO(_("xopen_to_str(): fgets() failed"));
+		return 4 + ((type == 'f') ? fclose(f) : pclose(f));
+	}
+
+	(*buffer)[strlen(*buffer) - 1] = '\0';
+
+	return (type == 'f') ? fclose(f) : pclose(f);
+}
+
+/* Free memory after display labels */
+void labels_free(Labels *data)
+{
+	int i;
+
+	MSG_VERBOSE(_("Freeing memory"));
+	/* CPU tab */
+	for(i = VENDOR; i < LASTCPU; i++)
+	{
+		free(data->tab_cpu[NAME][i]);
+		data->tab_cpu[NAME][i] = NULL;
+
+		if(i != MULTIPLIER && i != LEVEL1I && i != LEVEL2 && i != LEVEL3)
+		{
+			free(data->tab_cpu[VALUE][i]);
+			data->tab_cpu[VALUE][i] = NULL;
+		}
+	}
+
+	/* Caches tab */
+	for(i = L1SIZE; i < LASTCACHES; i++)
+	{
+		free(data->tab_caches[NAME][i]);
+		data->tab_caches[NAME][i] = NULL;
+
+		if(i != L1SPEED && i != L2SPEED && i != L3SPEED)
+		{
+			free(data->tab_caches[VALUE][i]);
+			data->tab_caches[VALUE][i] = NULL;
+		}
+	}
+
+	/* Motherboard tab */
+	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
+	{
+		free(data->tab_motherboard[NAME][i]);
+		data->tab_motherboard[NAME][i] = NULL;
+
+		free(data->tab_motherboard[VALUE][i]);
+		data->tab_motherboard[VALUE][i] = NULL;
+	}
+
+	/* Memory tab */
+	for(i = BANK0_0; i < LASTMEMORY; i++)
+	{
+		free(data->tab_memory[NAME][i]);
+		data->tab_memory[NAME][i] = NULL;
+
+		free(data->tab_memory[VALUE][i]);
+		data->tab_memory[VALUE][i] = NULL;
+	}
+
+	/* System tab */
+	for(i = KERNEL; i < LASTSYSTEM; i++)
+	{
+		free(data->tab_system[NAME][i]);
+		data->tab_system[NAME][i] = NULL;
+
+		if(i != USED && i != BUFFERS && i != CACHED && i != FREE && i != SWAP)
+		{
+			free(data->tab_system[VALUE][i]);
+			data->tab_system[VALUE][i] = NULL;
+		}
+	}
+
+	/* Graphics tab */
+	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
+	{
+		free(data->tab_graphics[NAME][i]);
+		data->tab_graphics[NAME][i] = NULL;
+
+		free(data->tab_graphics[VALUE][i]);
+		data->tab_graphics[VALUE][i] = NULL;
+	}
 }

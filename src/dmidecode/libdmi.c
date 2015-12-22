@@ -30,7 +30,7 @@
 
 /* Options are global */
 struct opt opt;
-char **dmidata[LASTRAM];
+char **dmidata[LASTMEMORY];
 
 
 static u8 *dmiparse(u8 *p, int l)
@@ -57,19 +57,22 @@ int libdmi(char c)
 	/* Dmidecode options */
 	opt.flags = 0;
 	opt.type = NULL;
-	if(!(flags & OPT_VERBOSE))
+	if(!opts->verbose)
 		opt.flags |= FLAG_QUIET;
 
 	switch(c)
 	{
 		case 'c':
+			opt.flags |= FLAG_CPU_X;
 			opt.type = dmiparse(opt.type, 4);
 			break;
 		case 'm':
+			opt.flags |= FLAG_CPU_X;
 			opt.type = dmiparse(opt.type, 0);
 			opt.type = dmiparse(opt.type, 2);
 			break;
 		case 'r':
+			opt.flags |= FLAG_CPU_X;
 			opt.type = dmiparse(opt.type, 17);
 			break;
 		case 'D':

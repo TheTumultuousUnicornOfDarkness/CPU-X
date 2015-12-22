@@ -1,40 +1,39 @@
 cmake_minimum_required(VERSION 3.0)
-if(APPLE)
-	cmake_policy(SET CMP0025 NEW)
-	set(ENV{PKG_CONFIG_PATH} "$ENV{PKG_CONFIG_PATH}:/opt/X11/lib/pkgconfig/")
-endif(APPLE)
-
 cmake_policy(SET CMP0048 NEW)
 project(cpu-x
-	VERSION 2.2.1
+	VERSION 2.90.0
 	LANGUAGES C
 )
 
-# CMake default config
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/bin/)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/accomplished/lib/)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}		-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}	-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
-set(WITH_GETTEXT ON)
-set(LIBBDWT_FOUND OFF)
+### DEFAULT CONFIG
 
-include(GNUInstallDirs)
-find_package(PkgConfig REQUIRED)
-
+# Global variables
+if(PORTABLE_BINARY)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR})
+else(PORTABLE_BINARY)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR}/OUTPUT/bin/)
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR}/OUTPUT/lib/)
+	set(DATA_DIR				${CMAKE_BINARY_DIR}/OUTPUT/data/)
+endif(PORTABLE_BINARY)
+set(CPU_X_DEBUG_FLAGS     "-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
+set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${CPU_X_DEBUG_FLAGS}")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${CPU_X_DEBUG_FLAGS}")
 
 # Options
-option(WITH_GTK		"Add support for GUI in GTK3+"			ON)
-option(WITH_NCURSES	"Add support for TUI in NCurses"		ON)
-option(WITH_LIBCPUID	"Allow use of library Libcpuid"			ON)
-option(WITH_LIBDMI	"Allow use of library Libdmi"			ON)
-option(WITH_LIBBDWT	"Allow use of library Libwandwidth"		ON)
-option(WITH_LIBPCI	"Allow use of library Libpci"			ON)
+option(WITH_GTK			"Add support for GUI in GTK3+"				ON)
+option(WITH_NCURSES		"Add support for TUI in NCurses"			ON)
+option(WITH_GETTEXT		"Add support for internationalization"			ON)
+option(WITH_LIBCPUID		"Allow use of library Libcpuid"				ON)
+option(WITH_DMIDECODE		"Allow use of Dmidecode (external modified software)"	ON)
+option(WITH_BANDWIDTH		"Allow use of Bandwidth (external modified software)"	ON)
+option(WITH_LIBPCI		"Allow use of library Libpci"				ON)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"	ON)
+	option(WITH_LIBSYSTEM	"Allow use of library Libprocps"			ON)
+	option(FORCE_LIBSTATGRAB "Force use of library Libstatgrab"			OFF)
 else(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"	ON)
+	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"			ON)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
+option(PORTABLE_BINARY		"Do a all-in-one binary, useful for a portable version"	OFF)
 
 # Colours
 if(NOT WIN32)
@@ -57,85 +56,66 @@ if(NOT WIN32)
 	set(BoldWhite   "${Esc}[1;37m")
 endif(NOT WIN32)
 
+### MACROS
 
-# Subdirectories
+# Macro: print_config(libname foundstate withstate)
+# Print the state of CPU-X features: in bold green if enabled, else bold red.
+# @libname:	the name of the library (e.g. GTK)
+# @libver:	the library version
+# @foundstate:	the result of pkg_check_modules(...) (e.g. XXXXX_FOUND)
+# @withstate:	the CMake option that allow to disable some features (e.g. WITH_XXXXX)
+macro(print_config libname libver foundstate withstate)
+	if(${foundstate} AND ${withstate})
+		message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enable${ColourReset}")
+		add_definitions(-DHAS_${libname}=1 -D${libname}_VERSION="${libver}")
+	else(${foundstate} AND ${withstate})
+		if(NOT ${withstate})
+			set(cause "(explicitly disable)")
+		elseif(NOT ${foundstate})
+			set(cause "(not found by pkg-config)")
+		endif()
+		message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disable${ColourReset} ${cause}")
+		add_definitions(-DHAS_${libname}=0 -D${libname}_VERSION=NULL)
+	endif(${foundstate} AND ${withstate})
+endmacro(print_config)
+
+# Macro: add_embedded_library(lib)
+# Include a library (satic or not) for building, needed for portable version.
+# @lib:		the name of the library to add
+macro(add_embedded_library lib)
+	if(PORTABLE_BINARY)
+		set(EMBEDDED_LIBRARIES ${EMBEDDED_LIBRARIES} ${lib})
+	endif(PORTABLE_BINARY)
+endmacro(add_embedded_library)
+
+# Macro: add_embedded_library_linux(linux_lib)
+# Call add_embedded_library macro if target is Linux, else do nothing
+# @linux_lib:	the name of the library to add (Linux OS)
+macro(add_embedded_library_linux linux_lib)
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+		add_embedded_library(${linux_lib})
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+endmacro(add_embedded_library_linux)
+
+# Macro: add_embedded_library_others(others_lib)
+# Call add_embedded_library macro if target is NOT Linux, else do nothing
+# @others_lib:	the name of the library to add (NON-Linux OS)
+macro(add_embedded_library_others others_lib)
+	if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+		add_embedded_library(${others_lib})
+	endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+endmacro(add_embedded_library_others)
+
+
+### HELPERS / SUB-DIRECTORIES
+include(GNUInstallDirs)
+find_package(PkgConfig REQUIRED)
 add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(data)
 
 
-# Embed compilation
-if(EMBED)
-	message("${BoldBlue}${CMAKE_PROJECT_NAME} will be compiled as portable binary.${ColourReset}")
-	if(WITH_GTK)
-		message("${Green}Converting files to embed${ColourReset}")
-		execute_process(COMMAND glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
-				COMMAND	glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.h --generate-header cpu-x.gresource.xml
-			WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
-		)
-	endif(WITH_GTK)
-	add_definitions(-DEMBED)
-endif(EMBED)
-
-
-### Final config
-message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
-
-# GTK3+ libs
-if(GTK3_FOUND AND WITH_GTK)
-	message("${BoldCyan}**   GTK${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(GTK3_FOUND AND WITH_GTK)
-	message("${BoldCyan}**   GTK${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(GTK3_FOUND AND WITH_GTK)
-
-# NCurses libs
-if(NCURSES_FOUND AND WITH_NCURSES)
-	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(NCURSES_FOUND AND WITH_NCURSES)
-	message("${BoldCyan}**   NCURSES${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(NCURSES_FOUND AND WITH_NCURSES)
-
-# Libcpuid lib
-if(LIBCPUID_FOUND AND WITH_LIBCPUID)
-	message("${BoldCyan}**   LIBCPUID${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBCPUID_FOUND AND WITH_LIBCPUID)
-	message("${BoldCyan}**   LIBCPUID${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBCPUID_FOUND AND WITH_LIBCPUID)
-
-# Dmidecode lib
-if(WITH_LIBDMI)
-	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBDMI)
-	message("${BoldCyan}**   LIBDMI${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBDMI)
-
-# Bandwidth lib
-if(WITH_LIBBDWT AND LIBBDWT_FOUND)
-	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(WITH_LIBBDWT AND LIBBDWT_FOUND)
-	message("${BoldCyan}**   LIBBDWT${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(WITH_LIBBDWT AND LIBBDWT_FOUND)
-
-# Pciutils lib
-if(LIBPCI_FOUND AND WITH_LIBPCI)
-	message("${BoldCyan}**   LIBPCI${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else(LIBPCI_FOUND AND WITH_LIBPCI)
-	message("${BoldCyan}**   LIBPCI${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif(LIBPCI_FOUND AND WITH_LIBPCI)
-
-# Libprocps / Libstatgrab lib
-if((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
-	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldGreen}ON${ColourReset}")
-else((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
-	message("${BoldCyan}**   LIBSYSTEM${ColourReset} is ${BoldRed}OFF${ColourReset}")
-endif((LIBPROCPS_FOUND OR LIBSTATGRAB_FOUND) AND WITH_LIBSYSTEM)
-
-if(NOT (WITH_GTK OR WITH_NCURSES OR WITH_LIBCPUID OR WITH_LIBDMI OR WITH_LIBPCI OR WITH_LIBSYSTEM))
-	message(FATAL_ERROR "${BoldRed}FATAL ERROR:${ColourReset} ${Red}All is turned off, build aborted.${ColourReset}")
-endif()
-
-
-# Uninstall target
+### UNINSTALL TARGET
 set(CPUX_DATADIR ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
