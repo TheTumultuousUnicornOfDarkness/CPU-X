@@ -27,52 +27,101 @@
 
 #include <ncurses.h>
 
+enum EnLines
+{
+	WINDOW_TOP_LINE,
+	TITLE_LINE,
+	TABS_LINE,
+	LINE_0,
+	LINE_1,
+	LINE_2,
+	LINE_3,
+	LINE_4,
+	LINE_5,
+	LINE_6,
+	LINE_7,
+	LINE_8,
+	LINE_9,
+	LINE_10,
+	LINE_11,
+	LINE_12,
+	LINE_13,
+	LINE_14,
+	LINE_15,
+	LINE_16,
+	LINE_17,
+	LINE_18,
+	HEADER_LINE,
+	WINDOW_BOTTOM_LINE,
+	LINE_COUNT
+};
+
+enum EnColors
+{
+	DEFAULT_COLOR = 1,
+	TITLE_COLOR,
+	ACTIVE_TAB_COLOR,
+	INACTIVE_TAB_COLOR,
+	LABEL_NAME_COLOR,
+	LABEL_VALUE_COLOR,
+	YELLOW_BAR_COLOR,
+	BLUE_BAR_COLOR,
+	RED_BAR_COLOR,
+	GREEN_BAR_COLOR,
+	MAGENTA_BAR_COLOR,
+};
+
+typedef struct
+{
+	const short pair, f, b;
+} Colors;
+
+typedef struct
+{
+	int height, width, start;
+	int tb, tm, te;
+} SizeInfo;
+
 typedef struct
 {
 	WINDOW *win;
 	Labels *data;
+	SizeInfo info;
 } NThrd;
 
 
 /********************************** TUI  **********************************/
 
-/* Start CPU-X in NCurses mode */
-void start_tui_ncurses(Labels *data);
+/* Refresh dynamic values */
+static void nrefresh(NThrd *refr);
 
-/* Refresh non-static values */
-void nrefresh(NThrd *refr);
+/* The main window (title, tabs, footer) */
+static void main_win(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* NCurses main window */
-void main_win(int height, int width, int starty, int startx, int tab, Labels *data);
+/* CPU tab */
+static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* Switch to different tabs */
-WINDOW *select_tab(int height, int width, int starty, int startx, int num, Labels *data);
+/* Caches tab */
+static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* Tab CPU */
-WINDOW *ncursestab_cpu(int height, int width, int starty, int startx, Labels *data);
+/* Motherboard tab */
+static void ntab_motherboard(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* Tab Caches */
-WINDOW *ncursestab_cache(int height, int width, int starty, int startx, Labels *data);
+/* Memory tab */
+static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* Tab Motherboard */
-WINDOW *ncursestab_motherboard(int height, int width, int starty, int startx, Labels *data);
+/* System tab */
+static void ntab_system(WINDOW *win, const SizeInfo info, Labels *data);
+static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar);
 
-/* Tab RAM */
-WINDOW *ncursestab_memory(int height, int width, int starty, int startx, Labels *data);
+/* Graphics tab */
+static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* Tab System */
-WINDOW *ncursestab_system(int height, int width, int starty, int startx, Labels *data);
-void draw_bar(WINDOW *win, Labels *data, int bar);
-void clear_bar(WINDOW *win, int bar);
+/* About tab */
+static void ntab_about(WINDOW *win, const SizeInfo info, Labels *data);
 
-/* Tab Graphics */
-WINDOW *ncursestab_graphics(int height, int width, int starty, int startx, Labels *data);
-
-/* Tab About */
-WINDOW *ncursestab_about(int height, int width, int starty, int startx, Labels *data);
-
-/* Draw a frame in a NCurses window */
-void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label);
+/* Draw a frame */
+static void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label);
 
 
 #endif /* _TUI_NCURSES_H_ */

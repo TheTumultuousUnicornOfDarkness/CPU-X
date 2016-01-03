@@ -24,21 +24,53 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ncurses.h>
 #include <math.h>
 #include <libintl.h>
 #include "cpu-x.h"
 #include "tui_ncurses.h"
 
-static int page = NO_CPU;
+static int  page = NO_CPU;
+static void (*func_ptr[])(WINDOW*, const SizeInfo, Labels*) =
+{
+	ntab_cpu,
+	ntab_caches,
+	ntab_motherboard,
+	ntab_memory,
+	ntab_system,
+	ntab_graphics,
+	ntab_about
+};
+static const Colors color[] =
+{
+	{ 0,                  0,             0             },
+	{ DEFAULT_COLOR,      COLOR_BLACK,   COLOR_WHITE   },
+	{ TITLE_COLOR,        COLOR_BLUE,    COLOR_WHITE   },
+	{ ACTIVE_TAB_COLOR,   COLOR_WHITE,   COLOR_BLUE    },
+	{ INACTIVE_TAB_COLOR, COLOR_WHITE,   COLOR_BLUE    },
+	{ LABEL_NAME_COLOR,   COLOR_BLACK,   COLOR_WHITE   },
+	{ LABEL_VALUE_COLOR,  COLOR_BLUE,    COLOR_WHITE   },
+	{ YELLOW_BAR_COLOR,   COLOR_YELLOW,  COLOR_YELLOW  },
+	{ BLUE_BAR_COLOR,     COLOR_BLUE,    COLOR_BLUE    },
+	{ RED_BAR_COLOR,      COLOR_RED,     COLOR_RED     },
+	{ GREEN_BAR_COLOR,    COLOR_GREEN,   COLOR_GREEN   },
+	{ MAGENTA_BAR_COLOR,  COLOR_MAGENTA, COLOR_MAGENTA }
+};
 
 
+/************************* Public function *************************/
+
+/* Start CPU-X in NCurses mode */
 void start_tui_ncurses(Labels *data)
 {
-	int startx, starty, width, height, ch = 0, current_tab = 0;
-	WINDOW *tab;
-	NThrd refr;
+	int startx, starty, ch = 0;
+	const SizeInfo info = { .height = LINE_COUNT, .width = 70, .start = 1, .tb = 2, .tm = 22, .te = 38 };
+	NThrd refr = { .data = data, .info = info };
+	WINDOW *win;
 
 	MSG_VERBOSE(_("Starting NCurses TUI..."));
+	setenv("TERMINFO", "/lib/terminfo", 0);
+	freopen("/dev/null", "a", stderr);
 	initscr();
 	cbreak();
 	noecho();
@@ -46,109 +78,191 @@ void start_tui_ncurses(Labels *data)
 	halfdelay(0);
 	nodelay(stdscr, TRUE);
 	keypad(stdscr, TRUE);
+	if(opts->color)
+	{
+		start_color();
+		opts->color &= has_colors();
+	}
 
-	height = 25;
-	width = 68;
-	starty = (LINES - height) / 2; /* Calculating for a center placement of the window */
-	startx = (COLS - width) / 2;
+	starty   = (LINES - info.height) / 2; /* Calculating for a center placement of the window */
+	startx   = (COLS  - info.width)  / 2;
+	win      = newwin(info.height, info.width, starty, startx);
+	refr.win = win;
 
 	printw("Press 'q' to exit; use right/left key to change tab");
 	refresh();
-	main_win(height, width, starty, startx, current_tab, data);
-	tab = ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
-
-	refr.win = tab;
-	refr.data = data;
+	main_win(win, info, data);
+	ntab_cpu(win, info, data);
 	timeout(opts->refr_time * 1000);
 
 	while(ch != 'q')
 	{
 		ch = getch();
 		switch(ch)
-		{	case KEY_LEFT:
+		{
+			case KEY_LEFT:
 				/* Switch to left tab */
-				if(current_tab > NO_CPU)
+				if(page > NO_CPU)
 				{
-					current_tab--;
-					main_win(height, width, starty, startx, current_tab, data);
-					tab = select_tab(height, width, starty, startx, current_tab, data);
+					page--;
+					main_win(win, info, data);
+					(*func_ptr[page])(win, info, data);
 				}
 				break;
 			case KEY_RIGHT:
 				/* Switch to right tab */
-				if(current_tab < NO_ABOUT)
+				if(page < NO_ABOUT)
 				{
-					current_tab++;
-					main_win(height, width, starty, startx, current_tab, data);
-					tab = select_tab(height, width, starty, startx, current_tab, data);
+					page++;
+					main_win(win, info, data);
+					(*func_ptr[page])(win, info, data);
 				}
 				break;
+
 			case ERR:
-				/* Refresh labels if needed */
-				if(current_tab == NO_CPU || current_tab == NO_CACHES || current_tab == NO_SYSTEM || current_tab == NO_GRAPHICS)
-				{
-					refr.win = tab;
+				/* Refresh dynamic labels */
+				if(page == NO_CPU || page == NO_CACHES || page == NO_SYSTEM || page == NO_GRAPHICS)
 					nrefresh(&refr);
-				}
 				break;
 			case KEY_RESIZE:
-				erase() ;
-				starty = (LINES - height) / 2;
-				startx = (COLS - width) / 2;
+				/* Resize window */
+				erase();
+				starty = (LINES - info.height) / 2;
+				startx = (COLS - info.width) / 2;
+				mvwin(win, starty, startx);
 				printw("Press 'q' to exit; use right/left key to change tab");
 				refresh();
-				main_win(height, width, starty, startx, current_tab, data);
-				tab = ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
+				main_win(win, info, data);
+				(*func_ptr[page])(win, info, data);
+				break;
+			default:
 				break;
 		}
-
-		page = current_tab;
 	}
 
 	endwin();
 	labels_free(data);
 }
 
-void nrefresh(NThrd *refr)
+
+/************************* Private functions *************************/
+
+/* Clean window */
+static void wclrscr(WINDOW *pwin)
 {
-	int i, j;
+	int y, x, maxy, maxx;
+
+	getmaxyx(pwin, maxy, maxx);
+	for(y = 0; y < maxy; y++)
+	{
+		for(x = 0; x < maxx; x++)
+			mvwaddch(pwin, y, x, ' ');
+	}
+}
+
+/* Similar to mvwprintw, but specify a color pair */
+static int mvwprintwc(WINDOW *win, int y, int x, enum EnColors pair, const char *fmt, ...)
+{
+	int ret, attrs = A_NORMAL;
+	va_list args;
+
+	va_start(args, fmt);
+	wmove(win, y, x);
+	if(opts->color)
+	{
+		if(pair == TITLE_COLOR || pair == ACTIVE_TAB_COLOR)
+			attrs = A_BOLD;
+		init_pair(pair, color[pair].f, color[pair].b);
+		wattron(win, COLOR_PAIR(pair) | attrs);
+	}
+
+	ret = vwprintw(win, fmt, args);
+
+	if(opts->color)
+		wattroff(win, COLOR_PAIR(pair) | attrs);
+	va_end(args);
+	wrefresh(win);
+
+	return ret;
+}
+
+/* Similar to mvwprintw, but print first string in black and second string in blue */
+static int mvwprintw2c(WINDOW *win, int y, int x, const char *fmt, ...)
+{
+	int ret = 0;
+	char *s1, *s2, *f1, *f2, *ptr = strdup(fmt);
+	va_list args;
+
+	/* Retrive args */
+	va_start(args, fmt);
+	f2 = strstr(fmt, ": ") + 1;
+	f1 = strcat(strtok(ptr, ": "), ":");
+	s1 = va_arg(args, char *);
+	s2 = va_arg(args, char *);
+
+	/* Init colors */
+	wmove(win, y, x);
+	if(opts->color)
+	{
+		init_pair(LABEL_NAME_COLOR,  color[LABEL_NAME_COLOR].f,  color[LABEL_NAME_COLOR].b);
+		init_pair(LABEL_VALUE_COLOR, color[LABEL_VALUE_COLOR].f, color[LABEL_VALUE_COLOR].b);
+	}
+
+	/* Print label name */
+	if(opts->color)
+		wattron(win, COLOR_PAIR(LABEL_NAME_COLOR));
+	ret += wprintw(win, f1, s1);
+	if(opts->color)
+		wattroff(win, COLOR_PAIR(LABEL_NAME_COLOR));
+
+	/* Print label value */
+	if(opts->color)
+		wattron(win, COLOR_PAIR(LABEL_VALUE_COLOR));
+	ret += wprintw(win, f2, s2);
+	if(opts->color)
+		wattroff(win, COLOR_PAIR(LABEL_VALUE_COLOR));
+
+	return ret;
+}
+
+/* Refresh dynamic values */
+static void nrefresh(NThrd *refr)
+{
+	int i, line = 0;
+	WINDOW *(win)  = refr->win;
 	Labels *(data) = refr->data;
-	WINDOW *(win) = refr->win;
+	SizeInfo info  = refr->info;
 
 	do_refresh(data, page);
 
 	switch(page)
 	{
 		case NO_CPU:
-			mvwprintw(win, 5, 22, "%13s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
-			mvwprintw(win, 7, 38, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
-			mvwprintw(win, 13, 2, "%13s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
-			mvwprintw(win, 12, 2, "%13s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
-			mvwprintw(win, 15, 2, "%13s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
+			mvwprintw2c(win, LINE_4,  info.tm, "%13s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
+			mvwprintw2c(win, LINE_6,  info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
+			mvwprintw2c(win, LINE_11, info.tb, "%13s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
+			mvwprintw2c(win, LINE_12, info.tb, "%13s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
+			mvwprintw2c(win, LINE_14, info.tb, "%13s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
-			j = 2;
-			for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
-			{
-				mvwprintw(win, i + j,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
-				j += 2;
-			}
+			mvwprintw2c(win, LINE_3,  info.tb, "%13s: %s", data->tab_caches[NAME][L1SPEED],  data->tab_caches[VALUE][L1SPEED]);
+			mvwprintw2c(win, LINE_8,  info.tb, "%13s: %s", data->tab_caches[NAME][L2SPEED],  data->tab_caches[VALUE][L2SPEED]);
+			mvwprintw2c(win, LINE_13, info.tb, "%13s: %s", data->tab_caches[NAME][L3SPEED],  data->tab_caches[VALUE][L3SPEED]);
 			break;
 		case NO_SYSTEM:
-			mvwprintw(win, 5,  2, "%13s: %s", data->tab_system[NAME][UPTIME], data->tab_system[VALUE][UPTIME]);
+			mvwprintw2c(win, LINE_4,  info.tb, "%13s: %s", data->tab_system[NAME][UPTIME],   data->tab_system[VALUE][UPTIME]);
 			for(i = USED; i < LASTSYSTEM; i++)
 			{
-				mvwprintw(win, i + 4,  2, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
-				clear_bar(win, i);
-				draw_bar(win, data, i);
+				mvwprintw2c(win, LINE_8 + line++, info.tb, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
+				draw_bar(win, info, data, i);
 			}
 			break;
 		case NO_GRAPHICS:
-			j = GPU1TEMPERATURE + 2;
+			line = LINE_3;
 			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
 			{
-				mvwprintw(win, j,  2, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
-				j += GPUFIELDS + 2;
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
+				line += GPUFIELDS + 2;
 			}
 			break;
 		default:
@@ -158,340 +272,297 @@ void nrefresh(NThrd *refr)
 	wrefresh(win);
 }
 
-void main_win(int height, int width, int starty, int startx, int tab, Labels *data)
+/* The main window (title, tabs, footer) */
+static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	int i, cpt = 2;
-	char buff[MAXSTR];
-	WINDOW *local_win;
 
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
+	if(opts->color)
+	{
+		init_pair(DEFAULT_COLOR, COLOR_BLACK, COLOR_WHITE);
+		wattrset(win, COLOR_PAIR(DEFAULT_COLOR));
+	}
+	wclrscr(win);
+	box(win, 0 , 0);
 
-	/* General stuff */
+	mvwprintwc(win, TITLE_LINE, info.width / 2 - strlen(PRGNAME) / 2, TITLE_COLOR, PRGNAME);
+	mvwprintwc(win, HEADER_LINE, 2, DEFAULT_COLOR, PRGNAME);
+	mvwprintwc(win, HEADER_LINE, info.width / 2, DEFAULT_COLOR, data->objects[LABVERSION]);
+
+	for(i = 1; i < info.width - 1; i++)
+		mvwprintwc(win, TABS_LINE, i, INACTIVE_TAB_COLOR, " ");
 	for(i = NO_CPU; i <= NO_ABOUT; i++)
 	{
-		if(i == tab)
-		{
-			sprintf(buff, "(%s)", data->objects[i]);
-			mvwaddstr(local_win, 1, cpt, buff);
-		}
+		if(i == page && opts->color)
+			mvwprintwc(win, TABS_LINE, cpt, ACTIVE_TAB_COLOR, data->objects[i]);
+		else if(i == page && !opts->color)
+			mvwprintw(win, TABS_LINE, cpt++, "[%s]", data->objects[i]);
 		else
-			mvwaddstr(local_win, 1, cpt, data->objects[i]);
+			mvwprintwc(win, TABS_LINE, cpt, INACTIVE_TAB_COLOR, data->objects[i]);
 
 		cpt += strlen(data->objects[i]) + 2;
 	}
 
-	mvwprintw(local_win, height - 2, 2, PRGNAME);
-	mvwprintw(local_win, height - 2, width / 2, data->objects[LABVERSION]);
-
-	wrefresh(local_win);
+	wrefresh(win);
 }
 
-WINDOW *select_tab(int height, int width, int starty, int startx, int num, Labels *data)
+/* CPU tab */
+static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	switch(num)
-	{
-		case NO_CPU:
-			return ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NO_CACHES:
-			return ncursestab_cache(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NO_MOTHERBOARD:
-			return ncursestab_motherboard(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NO_MEMORY:
-			return ncursestab_memory(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NO_SYSTEM:
-			return ncursestab_system(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NO_GRAPHICS:
-			return ncursestab_graphics(height - 4, width - 2, starty + 2, startx + 1, data);
-		case NO_ABOUT:
-			return ncursestab_about(height - 4, width - 2, starty + 2, startx + 1, data);
-		default:
-			return ncursestab_cpu(height - 4, width - 2, starty + 2, startx + 1, data); /* If problem */
-	}
-}
-
-WINDOW *ncursestab_cpu(int height, int width, int starty, int startx, Labels *data)
-{
-	int i, j, middle;
-	WINDOW *local_win;
+	int i, line, middle;
 
 	middle = (strlen(data->tab_cpu[VALUE][MULTIPLIER]) == 0) ? 15 + strlen(data->tab_cpu[VALUE][CORESPEED]) + 4 :
-								  15 + strlen(data->tab_cpu[VALUE][MULTIPLIER]) + 4;
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in CPU tab */
-	frame(local_win, 1, 1, 11, width - 1, data->objects[FRAMPROCESSOR]);
-	frame(local_win, 11, 1, 17, middle, data->objects[FRAMCLOCKS]);
-	frame(local_win, 11, middle, 17, width - 1, data->objects[FRAMCACHE]);
-	frame(local_win, 17, 1, 20, width - 1, "");
+	                                                           15 + strlen(data->tab_cpu[VALUE][MULTIPLIER]) + 4;
 
 	/* Processor frame */
-	j = VENDOR + 2;
+	frame(win, LINE_0, info.start , LINE_9, info.width - 1, data->objects[FRAMPROCESSOR]);
+	line = LINE_1;
 	for(i = VENDOR; i < CORESPEED; i++)
 	{
-		mvwprintw(local_win, j, 2, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 		switch(i)
 		{
 			case VOLTAGE:
-				mvwprintw(local_win, j - 1, 22, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
+				mvwprintw2c(win, LINE_4, info.tm, "%13s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
 				break;
 			case MODEL:
-				mvwprintw(local_win, j - 2, 22, "%11s: %2s", data->tab_cpu[NAME][MODEL], data->tab_cpu[VALUE][MODEL]);
+				mvwprintw2c(win, LINE_6, info.tm, "%11s: %s", data->tab_cpu[NAME][MODEL],       data->tab_cpu[VALUE][MODEL]);
 				break;
 			case EXTMODEL:
-				mvwprintw(local_win, j - 1, 22, "%11s: %2s", data->tab_cpu[NAME][EXTMODEL], data->tab_cpu[VALUE][EXTMODEL]);
+				mvwprintw2c(win, LINE_7, info.tm, "%11s: %s", data->tab_cpu[NAME][EXTMODEL],    data->tab_cpu[VALUE][EXTMODEL]);
 				break;
 			case TEMPERATURE:
-				mvwprintw(local_win, j - 2, 38, "%9s: %s", data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
+				mvwprintw2c(win, LINE_6, info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
 				break;
 			case STEPPING:
-				mvwprintw(local_win, j - 1, 38, "%9s: %s", data->tab_cpu[NAME][STEPPING], data->tab_cpu[VALUE][STEPPING]);
+				mvwprintw2c(win, LINE_7, info.te, "%9s: %s",  data->tab_cpu[NAME][STEPPING],    data->tab_cpu[VALUE][STEPPING]);
 				break;
 			default:
-				j++;
+				mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_cpu[NAME][i],           data->tab_cpu[VALUE][i]);
 		}
 	}
 
 	/* Clocks frame */
+	frame(win, LINE_10, info.start, LINE_15, middle, data->objects[FRAMCLOCKS]);
+	line = LINE_11;
 	for(i = CORESPEED; i < LEVEL1D; i++)
-		mvwprintw(local_win, i - 1, 2, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Cache frame */
+	frame(win, LINE_10, middle, LINE_15, info.width - 1, data->objects[FRAMCACHE]);
+	line = LINE_11;
 	for(i = LEVEL1D; i < SOCKETS; i++)
-		mvwprintw(local_win, i - 5, middle + 1, "%10s: %20s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
+		mvwprintw2c(win, line++, middle + 1, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Last frame */
-	mvwprintw(local_win, 18, 4, "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
-	mvwprintw(local_win, 18, 23, "%s: %2s", data->tab_cpu[NAME][CORES], data->tab_cpu[VALUE][CORES]);
-	mvwprintw(local_win, 18, 39, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
+	frame(win, LINE_16, info.start, LINE_18, info.width - 1, "");
+	mvwprintw2c(win, LINE_17, 4,  "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
+	mvwprintw2c(win, LINE_17, 23, "%s: %2s", data->tab_cpu[NAME][CORES],   data->tab_cpu[VALUE][CORES]);
+	mvwprintw2c(win, LINE_17, 39, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
 
-	wrefresh(local_win);
-
-	return local_win;
+	wrefresh(win);
 }
 
-WINDOW *ncursestab_cache(int height, int width, int starty, int startx, Labels *data)
+/* Caches tab */
+static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i;
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in Caches tab */
-	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAML1CACHE]);
-	frame(local_win, 6, 1, 11, width - 1, data->objects[FRAML2CACHE]);
-	frame(local_win, 11, 1, 16, width - 1, data->objects[FRAML3CACHE]);
+	int i, line;
 
 	/* L1 Cache frame */
+	frame(win, LINE_0, info.start , LINE_4, info.width - 1, data->objects[FRAML1CACHE]);
+	line = LINE_1;
 	for(i = L1SIZE; i < L2SIZE; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 
 	/* L2 Cache frame */
-	for(i = L2SIZE; i < L3SIZE; i++)
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
+	frame(win, LINE_5, info.start , LINE_9, info.width - 1, data->objects[FRAML2CACHE]);
+	line = LINE_6;
+	for(i = L1SIZE; i < L2SIZE; i++)
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 
 	/* L3 Cache frame */
+	frame(win, LINE_10, info.start , LINE_14, info.width - 1, data->objects[FRAML3CACHE]);
+	line = LINE_11;
 	for(i = L3SIZE; i < LASTCACHES; i++)
-		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 
-	wrefresh(local_win);
-
-	return local_win;
+	wrefresh(win);
 }
 
-WINDOW *ncursestab_motherboard(int height, int width, int starty, int startx, Labels *data)
+/* Motherboard tab */
+static void ntab_motherboard(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i;
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in Motherboard tab */
-	frame(local_win, 1, 1, 6, width - 1, data->objects[FRAMMOTHERBOARD]);
-	frame(local_win, 6, 1, 12, width - 1, data->objects[FRAMBIOS]);
-	frame(local_win, 12, 1, 16, width - 1, data->objects[FRAMCHIPSET]);
+	int i, line;
 
 	/* Motherboard frame */
+	frame(win, LINE_0, info.start , LINE_4, info.width - 1, data->objects[FRAMMOTHERBOARD]);
+	line = LINE_1;
 	for(i = MANUFACTURER; i < BRAND; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 
 	/* BIOS frame */
+	frame(win, LINE_5, info.start , LINE_10, info.width - 1, data->objects[FRAMBIOS]);
+	line = LINE_6;
 	for(i = BRAND; i < CHIPVENDOR; i++)
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 
 	/* Chipset frame */
+	frame(win, LINE_11, info.start , LINE_14, info.width - 1, data->objects[FRAMCHIPSET]);
+	line = LINE_12;
 	for(i = CHIPVENDOR; i < LASTMOTHERBOARD; i++)
-		mvwprintw(local_win, i + 6,  2, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
 
-	wrefresh(local_win);
-
-	return local_win;
+	wrefresh(win);
 }
 
-WINDOW *ncursestab_memory(int height, int width, int starty, int startx, Labels *data)
+/* Memory tab */
+static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i;
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in RAM tab */
-	frame(local_win, 1, 1, data->dimms_count + 3, width - 1, data->objects[FRAMBANKS]);
+	int i, line;
 
 	/* Banks frame */
-	for(i = BANK0_0; i < data->gpu_count; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
+	frame(win, LINE_0, info.start, LINE_0 + data->dimms_count + 1, info.width - 1, data->objects[FRAMBANKS]);
+	line = LINE_1;
+	for(i = BANK0_0; i < data->dimms_count; i++)
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
 
-	wrefresh(local_win);
-
-	return local_win;
+	wrefresh(win);
 }
 
-WINDOW *ncursestab_system(int height, int width, int starty, int startx, Labels *data)
+/* System tab */
+static void ntab_system(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i;
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in System tab */
-	frame(local_win, 1, 1, 8, width - 1, data->objects[FRAMOPERATINGSYSTEM]);
-	frame(local_win, 8, 1, 15, width - 1, data->objects[FRAMMEMORY]);
+	int i, line;
 
 	/* OS frame */
+	frame(win, LINE_0, info.start , LINE_6, info.width - 1, data->objects[FRAMOPERATINGSYSTEM]);
+	line = LINE_1;
 	for(i = KERNEL; i < USED; i++)
-		mvwprintw(local_win, i + 2,  2, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
 
 	/* Memory frame */
+	frame(win, LINE_7, info.start , LINE_13, info.width - 1, data->objects[FRAMMEMORY]);
+	line = LINE_8;
 	for(i = USED; i < LASTSYSTEM; i++)
 	{
-		mvwprintw(local_win, i + 4,  2, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
-		draw_bar(local_win, data, i);
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
+		draw_bar(win, info, data, i);
 	}
 
-	wrefresh(local_win);
-
-	return local_win;
+	wrefresh(win);
 }
 
-void draw_bar(WINDOW *win, Labels *data, int bar)
+/* Draw an usage bar in System tab */
+static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 {
-	int i;
-	const int val = 38, start = 45, end = 62;
+	int i, line, color, bar_count;
+	const int val = 39, start = 46, end = info.width - 3, size = end - start;
 	static double before;
 	double percent;
 
-	before = (bar == USED) ? 0 : before;
-	percent = (double) strtol(data->tab_system[VALUE][bar], NULL, 10) /
-		strtol(strstr(data->tab_system[VALUE][bar], "/ ") + 2, NULL, 10) * 100;
+	line      = bar - USED + LINE_8;
+	color     = YELLOW_BAR_COLOR + bar - USED;
+	before    = (bar == USED || bar == SWAP) ? 0 : before;
+	percent   = (double) strtol(data->tab_system[VALUE][bar], NULL, 10) /
+	            strtol(strstr(data->tab_system[VALUE][bar], "/ ") + 2, NULL, 10);
+	percent   = (isnan(percent)) ? 0.00 : percent;
+	bar_count = (int) roundf(percent * (size - 1));
+	bar_count = (0.0 < percent && bar_count < 1) ? 1 : bar_count;
 
-	if(isnan(percent))
-		percent = 0.00;
+	/* Write percentage + delimiters */
+	mvwprintwc(win, line, val,   LABEL_VALUE_COLOR, "%.2f%%", percent * 100);
+	mvwprintwc(win, line, start, DEFAULT_COLOR, "[");
+	mvwprintwc(win, line, end,   DEFAULT_COLOR, "]");
 
-	mvwprintw(win, bar + 4, val, "%.2f%%", percent);
-	mvwprintw(win, bar + 4, start, "[");
+	/* Clean existing bar */
+	for(i = 0; i < size - 1; i++)
+		mvwprintwc(win, line, start + 1 + i, DEFAULT_COLOR, " ");
 
-	for(i = 0; i < (percent / 100) * (end - start); i++)
-		mvwprintw(win, bar + 4, start + 1 + (before / 100) * (end - start) + i, "|");
+	/* Draw bar */
+	for(i = 0; i < bar_count; i++)
+	{
+		if(opts->color)
+			mvwprintwc(win, line, start + 1 + before * size + i, color, " ");
+		else
+			mvwprintw(win,  line, start + 1 + before * size + i, "|");
+	}
 
-	mvwprintw(win, bar + 4, end, "]");
 	before += percent;
 }
 
-void clear_bar(WINDOW *win, int bar)
+/* Graphics tab */
+static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i;
-	const int start = 45, end = 62;
-
-	for(i = 0; i < (end - start); i++)
-		mvwprintw(win, bar + 4, start + 1 + i, " ");
-}
-
-WINDOW *ncursestab_graphics(int height, int width, int starty, int startx, Labels *data)
-{
-	int i, start = 1, end = 6, space = 0;
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
+	int i, line, start = LINE_0, end = LINE_4;
 
 	/* Card frames */
-	for(i = GPU1VENDOR; i < data->gpu_count; i++)
+	line = LINE_1;
+	for(i = GPU1VENDOR; i < data->gpu_count * GPUFIELDS; i++)
 	{
 		if(i % GPUFIELDS == 0)
 		{
-			frame(local_win, start, 1, end, width - 1, data->objects[FRAMGPU1 + i / GPUFIELDS]);
-			start = end;
+			frame(win, start, info.start, end, info.width - 1, data->objects[FRAMGPU1 + i / GPUFIELDS]);
+			start = end + 1;
 			end += 5;
-			space += 2;
+			if(i > 0)
+				line += 2;
 		}
-
-		mvwprintw(local_win, i + space,  2, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
+		mvwprintw2c(win, line++, 2, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 	}
 
-	wrefresh(local_win);
-
-	return local_win;
+	wrefresh(win);
 }
 
-WINDOW *ncursestab_about(int height, int width, int starty, int startx, Labels *data)
+/* About tab */
+static void ntab_about(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	char *part2 = strdup(data->objects[LABDESCRIPTION]);
 	const char *part1 = strsep(&part2, "\n");
-	WINDOW *local_win;
-
-	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-
-	/* Frames in About tab */
-	frame(local_win, 1, 1, 7, width - 1, "");
-	frame(local_win, 7, 1, 12, width - 1, data->objects[FRAMABOUT]);
-	frame(local_win, 12, 1, 18, width - 1, data->objects[FRAMLICENSE]);
 
 	/* About CPU-X frame */
-	mvwprintw(local_win, 3, 4, "%s", part1);
-	mvwprintw(local_win, 4, 4, "%s", part2);
-	mvwprintw(local_win, 8, 20, "%s", data->objects[LABVERSION]);
-	mvwprintw(local_win, 9, 20, "%s", data->objects[LABAUTHOR]);
-	mvwaddstr(local_win, 10, 20, "GitHub : https://github.com/X0rg");
-	mvwprintw(local_win, 13, 20, "%s", PRGCPYR);
-	mvwprintw(local_win, 15, 4, "%s", data->objects[LABLICENSE]);
-	mvwaddstr(local_win, 16, 20, "\tGPLv3");
+	frame(win, LINE_0, info.start, LINE_5, info.width - 1, "");
+	mvwprintwc(win, LINE_2, 4,   DEFAULT_COLOR, "%s", part1);
+	mvwprintwc(win, LINE_3, 4,   DEFAULT_COLOR, "%s", part2);
 
-	wrefresh(local_win);
+	frame(win, LINE_6, info.start, LINE_10, info.width - 1, data->objects[FRAMABOUT]);
+	mvwprintwc(win, LINE_7, 20,  DEFAULT_COLOR, "%s", data->objects[LABVERSION]);
+	mvwprintwc(win, LINE_8, 20,  DEFAULT_COLOR, "%s", data->objects[LABAUTHOR]);
+	mvwprintwc(win, LINE_9, 20,  DEFAULT_COLOR, "%s", "GitHub : https://github.com/X0rg");
 
-	return local_win;
+	frame(win, LINE_11, info.start, LINE_16, info.width - 1, data->objects[FRAMLICENSE]);
+	mvwprintwc(win, LINE_12, 20, DEFAULT_COLOR, "%s", PRGCPYR);
+	mvwprintwc(win, LINE_14, 4,  DEFAULT_COLOR, "%s", data->objects[LABLICENSE]);
+	mvwprintwc(win, LINE_15, 30, DEFAULT_COLOR, "%s", "GPLv3");
+
+	wrefresh(win);
 }
 
-void frame(WINDOW *local_win, int starty, int startx, int endy, int endx, char *label)
+/* Draw a frame */
+static void frame(WINDOW *win, int starty, int startx, int endy, int endx, char *label)
 {
-	int i;
 
-	/* 4 corners */
-	mvwprintw(local_win, starty, startx, "+");
-	mvwprintw(local_win, endy - 1, startx, "+");
-	mvwprintw(local_win, starty, endx - 1, "+");
-	mvwprintw(local_win, endy - 1, endx - 1, "+");
-
-	/* Sides */
-	for (i = starty + 1; i < (endy - 1); i++)
+	if(opts->color)
 	{
-		mvwprintw(local_win, i, startx, "|");
-		mvwprintw(local_win, i, endx - 1, "|");
+		init_pair(DEFAULT_COLOR, COLOR_BLACK, COLOR_WHITE);
+		wattron(win, COLOR_PAIR(DEFAULT_COLOR));
 	}
 
-	/* Top and bottom */
-	for (i = startx + 1; i < (endx - 1); i++)
-	{
-		if(i < startx + 2 || i > (int) strlen(label) + startx + 1)
-			mvwprintw(local_win, starty, i, "-");
-		if(i == startx + 2)
-			mvwprintw(local_win, starty, i, "%s", label);
-		mvwprintw(local_win, endy - 1, i, "-");
-	}
+	/* Horizontal lines */
+	mvwhline(win, starty, startx, 0, endx - startx);
+	mvwhline(win, endy, startx, 0, endx - startx);
+
+	/* Vertical lines */
+	mvwvline(win, starty, startx, 0, endy - starty);
+	mvwvline(win, starty, endx - 1, 0, endy - starty);
+
+	/* Corners */
+	mvwhline(win, starty, startx, ACS_ULCORNER, 1);
+	mvwhline(win, endy, startx, ACS_LLCORNER, 1);
+	mvwhline(win, starty, endx - 1, ACS_URCORNER, 1);
+	mvwhline(win, endy, endx - 1, ACS_LRCORNER, 1);
+
+	/* Title */
+	mvwprintwc(win, starty, startx + 2, DEFAULT_COLOR, "%s", label);
+
+	if(opts->color)
+		wattroff(win, COLOR_PAIR(DEFAULT_COLOR));
 }
