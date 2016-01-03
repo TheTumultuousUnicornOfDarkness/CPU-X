@@ -1,5 +1,5 @@
 /****************************************************************************
-*    Copyright © 2014-2015 Xorg
+*    Copyright © 2014-2016 Xorg
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 /* Software definition */
 #define PRGNAME	              "CPU-X"
 #define PRGAUTH	              "X0rg"
-#define PRGCPYR               "Copyright © 2014-2015 Xorg"
+#define PRGCPYR               "Copyright © 2014-2016 Xorg"
 
 /* Colors definition */
 #define BOLD_RED              "\x1b[1;31m"
