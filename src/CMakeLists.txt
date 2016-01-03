@@ -13,9 +13,9 @@ if(WITH_GTK)
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER})
 		if(PORTABLE_BINARY)
-			execute_process(COMMAND glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
-					COMMAND	glib-compile-resources --target=${CMAKE_CURRENT_LIST_DIR}/src/gtk-resources.h --generate-header cpu-x.gresource.xml
-					WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
+			execute_process(COMMAND glib-compile-resources --target=${CMAKE_SOURCE_DIR}/src/gtk-resources.c --generate-source cpu-x.gresource.xml
+					COMMAND	glib-compile-resources --target=${CMAKE_SOURCE_DIR}/src/gtk-resources.h --generate-header cpu-x.gresource.xml
+					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/data
 			)
 			set(GRESOURCES "gtk-resources.c")
 		endif(PORTABLE_BINARY)
