@@ -490,7 +490,7 @@ static void menu(int argc, char *argv[])
 	}
 
 	/* Set the default mode */
-	if(HAS_GTK)
+	if(HAS_GTK && (getenv("DISPLAY") != NULL || getenv("WAYLAND_DISPLAY") != NULL))
 		c = 'g';
 	else if(HAS_NCURSES)
 		c = 'n';
