@@ -189,25 +189,27 @@ void change_color(GtkWidget *button, GtkLabels *glab)
 
 void set_logos(GtkLabels *glab, Labels *data)
 {
-	char tmp[MAXSTR];
-	const gchar *icon_name[MAXSTR];
+	const int width = 105, height = 92;
+	char *name;
+	GdkPixbuf *pixbuf;
+	GError *error = NULL;
 #if PORTABLE_BINARY
-	sprintf(tmp, "/cpu-x/pictures/%s.png", data->tab_cpu[VALUE][VENDOR]);
+	iasprintf(&name, "/cpu-x/pictures/%s.png", data->tab_cpu[VALUE][VENDOR]);
+	pixbuf = gdk_pixbuf_new_from_resource_at_scale(name, width, height, TRUE, &error);
 
-	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), "/cpu-x/pictures/CPU-X.png"); /* Program icon in About */
-	gtk_image_set_from_resource(GTK_IMAGE(glab->logocpu), tmp); /* CPU vendor icon */
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Vendor logo */
+	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), "/cpu-x/pictures/CPU-X.png"); /* Icon in About tab */
 
-	gtk_image_get_icon_name(GTK_IMAGE(glab->logocpu), icon_name, NULL);
-	if(icon_name[0] != NULL) /* If no icon is set, apply "novendor.png" */
+	if(error != NULL)
 		gtk_image_set_from_resource(GTK_IMAGE(glab->logocpu), "/cpu-x/pictures/novendor.png");
 #else
-	sprintf(tmp, "%s.png", data->tab_cpu[VALUE][VENDOR]);
+	iasprintf(&name, "%s.png", data->tab_cpu[VALUE][VENDOR]);
+	pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(name), width, height, TRUE, &error);
 
-	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), data_path("CPU-X.png")); /* Program icon in About */
-	gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), data_path(tmp)); /* CPU vendor icon */
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Vendor logo */
+	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), data_path("CPU-X.png")); /* Icon in About tab */
 
-	gtk_image_get_icon_name(GTK_IMAGE(glab->logocpu), icon_name, NULL);
-	if(icon_name[0] != NULL) /* If no icon is set, apply "novendor.png" */
+	if(error != NULL)
 		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), data_path("novendor.png"));
 #endif
 }
@@ -426,5 +428,6 @@ char *data_path(char *file)
 		i++;
 	}
 
-	return NULL;
+	buffer = strdup(" ");
+	return buffer;
 }
