@@ -19,7 +19,6 @@ Legend:
 + Add a public interface, add static functions
 + Add a generic refresh function (partially merge grefresh() and nrefresh())
 + Catch SIGSEV
-- Multi-threaded data collection?
 
 *** GTK ***
 - GTK 3.20 compliance
@@ -38,4 +37,4 @@ Legend:
 - Add a feature to select CPU core to monitor
 - Add a new window to monitor all cores?
 + Add --color options to disable colored messages
-- Add --debug options to help to find bugs?
+- Don't start GTK if $DISPLAY and $WAYLAND_DISPLAY are empty
