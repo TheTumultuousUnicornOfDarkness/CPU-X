@@ -8,12 +8,14 @@ project(cpu-x
 ### DEFAULT CONFIG
 
 # Global variables
+include(GNUInstallDirs)
 if(PORTABLE_BINARY)
-	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR})
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 else(PORTABLE_BINARY)
-	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR}/OUTPUT/bin/)
-	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY	${CMAKE_BINARY_DIR}/OUTPUT/lib/)
-	set(DATA_DIR				${CMAKE_BINARY_DIR}/OUTPUT/data/)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/OUTPUT/bin/)
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/OUTPUT/lib/)
+	set(CMAKE_DATA_OUTPUT_DIRECTORY    ${CMAKE_BINARY_DIR}/OUTPUT/data/)
+	set(CPU_X_DATA_DIRECTORY           ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
 endif(PORTABLE_BINARY)
 set(CPU_X_DEBUG_FLAGS     "-Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wno-unused-parameter")
 set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${CPU_X_DEBUG_FLAGS}")
@@ -108,7 +110,6 @@ endmacro(add_embedded_library_others)
 
 
 ### HELPERS / SUB-DIRECTORIES
-include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 add_subdirectory(po)
 add_subdirectory(src)
@@ -116,7 +117,6 @@ add_subdirectory(data)
 
 
 ### UNINSTALL TARGET
-set(CPUX_DATADIR ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
 	IMMEDIATE @ONLY

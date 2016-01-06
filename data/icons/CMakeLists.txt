@@ -14,13 +14,13 @@ foreach(icon ${icons})
 	string(REGEX REPLACE "CPU-X_" "" size "${filename}")
 	install(FILES
 		${icon}
-		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/icons/hicolor/${size}/apps
+		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/icons/hicolor/${size}/apps/
 		RENAME cpu-x.png
 	)
 endforeach()
 
 install(FILES
 	CPU-X_original.png
-	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/
+	DESTINATION ${CPU_X_DATA_DIRECTORY}/
 	RENAME CPU-X.png
 )

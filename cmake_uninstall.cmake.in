@@ -21,4 +21,4 @@ foreach(file ${files})
 	endif(IS_SYMLINK "$ENV{DESTDIR}${file}" OR EXISTS "$ENV{DESTDIR}${file}")
 endforeach(file)
 
-file(REMOVE_RECURSE @CPUX_DATADIR@)
+file(REMOVE_RECURSE @CPU_X_DATA_DIRECTORY@)
