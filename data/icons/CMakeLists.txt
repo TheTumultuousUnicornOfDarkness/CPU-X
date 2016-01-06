@@ -18,3 +18,9 @@ foreach(icon ${icons})
 		RENAME cpu-x.png
 	)
 endforeach()
+
+install(FILES
+	CPU-X_original.png
+	DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/
+	RENAME CPU-X.png
+)

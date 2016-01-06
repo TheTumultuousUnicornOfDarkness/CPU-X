@@ -189,33 +189,42 @@ void change_color(GtkWidget *button, GtkLabels *glab)
 
 void set_logos(GtkLabels *glab, Labels *data)
 {
-	const int width = 105, height = 92;
+	const int width = 105, height = 92, prg_size = 92;
 	char *name;
-	GdkPixbuf *pixbuf;
+	GdkPixbuf *cpu_pixbuf, *prg_pixbuf;
 	GError *error = NULL;
+
 #if PORTABLE_BINARY
+	/* CPU-X logo in About tab */
+	prg_pixbuf = gdk_pixbuf_new_from_resource_at_scale(RESOURCE_PICTURES "CPU-X.png", prg_size, prg_size, TRUE, NULL);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
+
+	/* CPU logo in CPU tab */
 	iasprintf(&name, RESOURCE_PICTURES "%s.png", data->tab_cpu[VALUE][VENDOR]);
-	pixbuf = gdk_pixbuf_new_from_resource_at_scale(name, width, height, TRUE, &error);
+	cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(name, width, height, TRUE, &error);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 
-	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Vendor logo */
-	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), RESOURCE_PICTURES "CPU-X.png"); /* Icon in About tab */
-
+	/* Unknown CPU logo */
 	if(error != NULL)
 	{
-		pixbuf = gdk_pixbuf_new_from_resource_at_scale(RESOURCE_PICTURES UNKNOWN_VENDOR, width, height, TRUE, NULL);
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Unknown logo */
+		cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(RESOURCE_PICTURES UNKNOWN_VENDOR, width, height, TRUE, NULL);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 	}
 #else
+	/* CPU-X logo in About tab */
+	prg_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
+
+	/* CPU logo in CPU tab */
 	iasprintf(&name, "%s.png", data->tab_cpu[VALUE][VENDOR]);
-	pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(name), width, height, TRUE, &error);
+	cpu_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(name), width, height, TRUE, &error);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 
-	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Vendor logo */
-	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), data_path("CPU-X.png")); /* Icon in About tab */
-
+	/* Unknown CPU logo */
 	if(error != NULL)
 	{
-		pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(UNKNOWN_VENDOR), width, height, TRUE, NULL);
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Unknown logo */
+		cpu_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(UNKNOWN_VENDOR), width, height, TRUE, NULL);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 	}
 #endif
 }
