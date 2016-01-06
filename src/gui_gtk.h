@@ -29,6 +29,9 @@
 #include <cairo.h>
 #include <glib.h>
 
+#define RESOURCE_PICTURES "/cpu-x/pictures/"
+#define UNKNOWN_VENDOR    "Unknown.png"
+
 typedef struct
 {
 	/* Common */

@@ -194,14 +194,17 @@ void set_logos(GtkLabels *glab, Labels *data)
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
 #if PORTABLE_BINARY
-	iasprintf(&name, "/cpu-x/pictures/%s.png", data->tab_cpu[VALUE][VENDOR]);
+	iasprintf(&name, RESOURCE_PICTURES "%s.png", data->tab_cpu[VALUE][VENDOR]);
 	pixbuf = gdk_pixbuf_new_from_resource_at_scale(name, width, height, TRUE, &error);
 
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Vendor logo */
-	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), "/cpu-x/pictures/CPU-X.png"); /* Icon in About tab */
+	gtk_image_set_from_resource(GTK_IMAGE(glab->logoprg), RESOURCE_PICTURES "CPU-X.png"); /* Icon in About tab */
 
 	if(error != NULL)
-		gtk_image_set_from_resource(GTK_IMAGE(glab->logocpu), "/cpu-x/pictures/novendor.png");
+	{
+		pixbuf = gdk_pixbuf_new_from_resource_at_scale(RESOURCE_PICTURES UNKNOWN_VENDOR, width, height, TRUE, NULL);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Unknown logo */
+	}
 #else
 	iasprintf(&name, "%s.png", data->tab_cpu[VALUE][VENDOR]);
 	pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(name), width, height, TRUE, &error);
@@ -210,7 +213,10 @@ void set_logos(GtkLabels *glab, Labels *data)
 	gtk_image_set_from_file(GTK_IMAGE(glab->logoprg), data_path("CPU-X.png")); /* Icon in About tab */
 
 	if(error != NULL)
-		gtk_image_set_from_file(GTK_IMAGE(glab->logocpu), data_path("novendor.png"));
+	{
+		pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(UNKNOWN_VENDOR), width, height, TRUE, NULL);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), pixbuf); /* CPU Unknown logo */
+	}
 #endif
 }
 
