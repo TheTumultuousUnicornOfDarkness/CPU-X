@@ -46,6 +46,7 @@
 
 #if HAS_DMIDECODE
 # include "dmidecode/libdmi.h"
+# include "dmidecode/dmiopt.h"
 #endif
 
 #if HAS_LIBPCI
@@ -114,6 +115,16 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 
 	return err;
 }
+
+#if HAS_DMIDECODE
+/* Call Dmidecode through CPU-X but do nothing else */
+int run_dmidecode(void)
+{
+	opt.type  = NULL;
+	opt.flags = (opts->verbose) ? 0 : FLAG_QUIET;
+	return dmidecode();
+}
+#endif /* HAS_DMIDECODE */
 
 
 /************************* Private functions *************************/
@@ -404,10 +415,30 @@ static int call_libcpuid_dynamic(Labels *data)
 #endif /* HAS_LIBCPUID */
 
 #if HAS_DMIDECODE
+static u8 *dmiparse(u8 *p, int l)
+{
+	/* Allocate memory on first call only */
+	if (p == NULL)
+	{
+		p = (u8 *)calloc(256, sizeof(u8));
+		if (p == NULL)
+		{
+			perror("calloc");
+			return NULL;
+		}
+	}
+
+	p[l] = 1;
+	return p;
+}
+
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data)
 {
 	int i, err = 0;
+	/* Dmidecode options */
+	opt.type  = NULL;
+	opt.flags = (opts->verbose) ? FLAG_CPU_X : FLAG_CPU_X | FLAG_QUIET;
 
 	MSG_VERBOSE(_("Calling dmidecode"));
 	if(getuid())
@@ -415,17 +446,21 @@ static int call_dmidecode(Labels *data)
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
-	err += libdmi('c');
+	opt.type              = dmiparse(opt.type, 4);
+	err                  += dmidecode();
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 		dmidata[i]    = &data->tab_motherboard[VALUE][i];
-	err += libdmi('m');
+	opt.type              = dmiparse(opt.type, 0);
+	opt.type              = dmiparse(opt.type, 2);
+	err                  += dmidecode();
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < LASTMEMORY; i++)
 		dmidata[i]    = &data->tab_memory[VALUE][i];
-	err += libdmi('r');
+	opt.type              = dmiparse(opt.type, 17);
+	err                  += dmidecode();
 	while(data->tab_memory[VALUE][data->dimms_count] != NULL)
 		data->dimms_count++;
 

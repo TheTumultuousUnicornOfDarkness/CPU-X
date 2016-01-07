@@ -1,3 +1,32 @@
+2015-11-02  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c, util.c, util.h: Let read_file return the actual data
+	  size.
+	* dmidecode.c: Use read_file to read the DMI table from sysfs.
+	  This fixes Savannah bug #46176:
+	  https://savannah.nongnu.org/bugs/?46176
+	* dmidecode.c: Check the sysfs entry point length.
+
+2015-10-21  Xie XiuQi  <xiexiuqi@huawei.com>
+
+	* dmidecode.c: Handle SMBIOS 3.0 entry points on EFI systems.
+
+2015-10-20  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Handle OEM-specific types in group associations
+	  (DMI type 14).
+
+2015-10-14  Jean Delvare  <jdelvare@suse.de>
+
+	* util.c: Avoid SIGBUS on mmap failure.
+	  This fixes Savannah bug #46066:
+	  https://savannah.nongnu.org/bugs/?46066
+	* util.c: Fix error paths in mem_chunk.
+
+2015-10-01  Roy Franz  <roy.franz@linaro.org>
+
+	* dmiopt.c: Add "--no-sysfs" option description to -h output.
+
 2015-09-03  Jean Delvare  <jdelvare@suse.de>
 
 	* version.h: Set version to 3.0.

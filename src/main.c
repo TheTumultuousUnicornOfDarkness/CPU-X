@@ -665,12 +665,12 @@ int main(int argc, char *argv[])
 	signal(SIGFPE,  sighandler);
 	menu(argc, argv);
 
-	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_DMIDECODE && !getuid() && (opts->output_type & OUT_DMIDECODE))
-		return libdmi('D');
-
 	if(getuid())
 		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
+
+	/* If option --dmidecode is passed, start dmidecode and exit */
+	if(HAS_DMIDECODE && (opts->output_type & OUT_DMIDECODE))
+		return run_dmidecode();
 
 	labels_setname(&data);
 	fill_labels(&data);
@@ -728,6 +728,7 @@ int iasprintf(char **str, const char *fmt, ...)
 {
 	bool is_format = false, print = true;
 	int arg_int, i, ret;
+	unsigned int arg_uint;
 	double arg_double;
 	char *arg_string, *tmp_fmt;
 	va_list aptr;
@@ -773,6 +774,14 @@ int iasprintf(char **str, const char *fmt, ...)
 					arg_int = va_arg(aptr, int);
 					if(arg_int > 0)
 						ret = asprintf(str, tmp_fmt, *str, arg_int);
+					else
+						print = false;
+					break;
+				case 'u':
+					is_format = false;
+					arg_uint = va_arg(aptr, unsigned int);
+					if(arg_uint > 0)
+						ret = asprintf(str, tmp_fmt, *str, arg_uint);
 					else
 						print = false;
 					break;

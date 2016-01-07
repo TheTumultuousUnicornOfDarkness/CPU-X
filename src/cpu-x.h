@@ -194,8 +194,8 @@ int fill_labels(Labels *data);
 /* Refresh some labels */
 int do_refresh(Labels *data, enum EnTabNumber page);
 
-/* Call dmidecode library */
-int libdmi(char c);
+/* Call Dmidecode through CPU-X but do nothing else */
+int run_dmidecode(void);
 
 /* Call bandwidth library */
 int bandwidth(Labels *data);

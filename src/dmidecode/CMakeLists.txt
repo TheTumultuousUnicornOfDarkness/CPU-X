@@ -20,10 +20,8 @@ add_library(dmidecode
 	dmioem.h
 	dmidecode.c
 	dmidecode.h
-	libdmi.c
 	libdmi.h
 )
 
-add_definitions(-DCPUX)
 target_link_libraries(dmidecode)
 set(DMIDECODE_VERSION ${PROJECT_VERSION} PARENT_SCOPE)
