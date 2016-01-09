@@ -52,6 +52,7 @@
 #define OUT_NCURSES           (1 << 1)
 #define OUT_DUMP              (1 << 2)
 #define OUT_DMIDECODE         (1 << 3)
+#define OUT_BANDWIDTH         (1 << 4)
 
 /* Arrays definition */
 #define NAME                  0
@@ -155,6 +156,7 @@ typedef struct
 {
 	unsigned int output_type;
 	unsigned int refr_time;
+	unsigned int bw_test;
 	bool         verbose;
 	bool         color;
 } Options;

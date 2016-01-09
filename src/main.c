@@ -393,7 +393,9 @@ static const struct AvailableOpts
 	{ HAS_NCURSES,   'n', "ncurses",   no_argument       },
 	{ true,          'd', "dump",      no_argument       },
 	{ true,          'r', "refresh",   required_argument },
+	{ HAS_BANDWIDTH, 't', "cachetest", required_argument },
 	{ HAS_DMIDECODE, 'D', "dmidecode", no_argument       },
+	{ HAS_BANDWIDTH, 'B', "bandwidth", no_argument       },
 	{ true,          'c', "color",     no_argument       },
 	{ true,          'v', "verbose",   no_argument       },
 	{ true,          'h', "help",      no_argument       },
@@ -411,7 +413,9 @@ static void help(FILE *out, char *argv[], int exit_status)
 		_("Start text-based user interface (TUI)"),
 		_("Dump all data on standard output and exit"),
 		_("Set custom time between two refreshes (in seconds)"),
+		_("Set custom bandwidth test for CPU caches speed (integer)"),
 		_("Run embedded command dmidecode and exit"),
+		_("Run embedded command bandwidth and exit"),
 		_("Disable colored output"),
 		_("Verbose output"),
 		_("Print help and exit"),
@@ -474,7 +478,7 @@ static void version(void)
 static void menu(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_refr = -1;
-	struct option longopts[9];
+	struct option longopts[12];
 
 	/* Filling longopts structure */
 	for(i = 0; o[i].long_opt != NULL; i++)
@@ -522,9 +526,21 @@ static void menu(int argc, char *argv[])
 				if(tmp_refr > 1)
 					opts->refr_time = tmp_refr;
 				break;
+			case 't':
+				if(HAS_BANDWIDTH)
+					opts->bw_test = atoi(optarg);
+				else
+					help(stderr, argv, EXIT_FAILURE);
+				break;
 			case 'D':
 				if(HAS_DMIDECODE)
 					opts->output_type = OUT_DMIDECODE;
+				else
+					help(stderr, argv, EXIT_FAILURE);
+				break;
+			case 'B':
+				if(HAS_BANDWIDTH)
+					opts->output_type = OUT_BANDWIDTH;
 				else
 					help(stderr, argv, EXIT_FAILURE);
 				break;
@@ -542,7 +558,7 @@ static void menu(int argc, char *argv[])
 			default:
 				help(stderr, argv, EXIT_FAILURE);
 		}
-	} while((c = getopt_long(argc, argv, ":gndr:DcvhV", longopts, NULL)) != -1);
+	} while((c = getopt_long(argc, argv, ":gndr:t:DBcvhV", longopts, NULL)) != -1);
 }
 
 
@@ -659,7 +675,7 @@ int main(int argc, char *argv[])
 	Labels data = {	.tab_cpu = {{ NULL }}, .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
 	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
 	                .selected_core = 0, .dimms_count = 0 };
-	opts = &(Options) { .output_type = 0, .refr_time = 1, .verbose = false, .color = true };
+	opts = &(Options) { .output_type = 0, .refr_time = 1, .bw_test = 0, .verbose = false, .color = true };
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
@@ -671,6 +687,9 @@ int main(int argc, char *argv[])
 	/* If option --dmidecode is passed, start dmidecode and exit */
 	if(HAS_DMIDECODE && (opts->output_type & OUT_DMIDECODE))
 		return run_dmidecode();
+
+	if(HAS_BANDWIDTH && (opts->output_type & OUT_BANDWIDTH))
+		return bandwidth(&data);
 
 	labels_setname(&data);
 	fill_labels(&data);

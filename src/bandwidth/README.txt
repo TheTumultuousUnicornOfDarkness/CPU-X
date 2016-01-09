@@ -1,9 +1,18 @@
+** CPU-X INFORMATIONS **
+This sofware has been patched to be used with CPU-X.
+The official web page is here:
+https://zsmith.co/bandwidth.html
+
+This software is used to retrieve following data:
+- Caches tab -> cache speed
+You can reproduce the output of 'bandwidth' command with 'cpu-x -B'.
+
 
 This is the README file for my program, "bandwidth".
 
 Bandwidth is a benchmark that attempts to measure
 memory bandwidth. In December 2010 (and as of
-release 0.24), I extended 'bandwidth' to measure 
+release 0.24), I extended 'bandwidth' to measure
 network bandwidth as well.
 
 Bandwidth is useful because both memory bandwidth
@@ -13,26 +22,26 @@ Merely relying on specs does not give a full picture
 and indeed specs can be misleading.
 
 --------------------------------------------------
-MEMORY BANDWIDTH 
+MEMORY BANDWIDTH
 
 My program bandwidth performs sequential and random
-reads and writes of varying sizes. This permits 
-you to infer from the graph how each type of memory 
+reads and writes of varying sizes. This permits
+you to infer from the graph how each type of memory
 is performing. So for instance when bandwidth
 writes a 256-byte chunk, you know that because
 caches are normally write-back, this chunk
 will reside entirely in the L1 cache. Whereas
 a 512 kB chunk will mainly reside in L2.
 
-You could run a non-artificial benchmark and 
-observe that a general performance number is lower 
+You could run a non-artificial benchmark and
+observe that a general performance number is lower
 on one machine or higher on anotehr, but that may
-conceal the cause. 
+conceal the cause.
 
-So the purpose of this program is to help you 
+So the purpose of this program is to help you
 pinpoint the cause of a performance problem,
 or to affirm a general impression about a memory-
-intensive program. 
+intensive program.
 
 It also tells you the best-case scenario e.g.
 the maximum bandwidth achieved using sequential,
@@ -65,7 +74,7 @@ Release 0.23 added:
 	- Mac OS/X 64-bit support.
 	- Vector-to-vector register transfer test.
 	- Main register to/from vector register transfer test.
-	- Main register byte/word/dword/qword to/from 
+	- Main register byte/word/dword/qword to/from
 	  vector register test (pinsr*, pextr* instructions).
 	- Memory copy test using SSE2.
 	- Automatic checks under Linux for SSE2 & SSE4.
@@ -77,15 +86,15 @@ Release 0.22 added:
 Release 0.21 added:
 	- Standardized memory chunks to always be
 	  a multiple of 256-byte mini-chunks.
-	- Random memory accesses, in which each 
-	  256-byte mini-chunk accessed is accessed 
-	  in a random order, but also, inside each 
+	- Random memory accesses, in which each
+	  256-byte mini-chunk accessed is accessed
+	  in a random order, but also, inside each
 	  mini-chunk the 32/64/128 data are accessed
-	  pseudo-randomly as well. 
-	- Now 'bandwidth' includes chunk sizes that 
-	  are not powers of 2, which increases 
-	  data points around the key chunk sizes 
-	  corresponding to common L1 and L2 cache 
+	  pseudo-randomly as well.
+	- Now 'bandwidth' includes chunk sizes that
+	  are not powers of 2, which increases
+	  data points around the key chunk sizes
+	  corresponding to common L1 and L2 cache
 	  sizes.
 	- Command-line options:
 		--fast for 0.25 seconds per test.

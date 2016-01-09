@@ -6,7 +6,7 @@ project(bandwidth
 )
 
 # Config (bandwidth)
-set(BANDWIDTH_DEBUG_FLAGS "-Wno-strict-prototypes -Wno-sign-compare -Wno-unused-variable")
+set(BANDWIDTH_DEBUG_FLAGS "-Wall -Wextra -Wuninitialized -Wno-strict-prototypes -Wno-unused-parameter -Wno-sign-compare")
 set(CMAKE_C_FLAGS_DEBUG	  "${CMAKE_C_FLAGS_DEBUG}   ${BANDWIDTH_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${BANDWIDTH_DEBUG_FLAGS}")
 message("-- Checking for submodule '${PROJECT_NAME}'")
@@ -26,7 +26,11 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 		add_library(bandwidth
 			STATIC
 			bandwidth.c
-			defs.h
+			BMP.c
+			BMPGraphing.c
+			font.c
+			minifont.c
+			libbandwidth.h
 			routines32.o
 		)
 	else("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86") # 64-bit build
@@ -37,7 +41,11 @@ if(NOT ${CMAKE_ASM_NASM_COMPILER} STREQUAL "CMAKE_ASM_NASM_COMPILER-NOTFOUND")
 		add_library(bandwidth
 			STATIC
 			bandwidth.c
-			defs.h
+			BMP.c
+			BMPGraphing.c
+			font.c
+			minifont.c
+			libbandwidth.h
 			routines64.o
 		)
 	endif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
