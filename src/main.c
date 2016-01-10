@@ -392,11 +392,12 @@ static const struct AvailableOpts
 	{ HAS_GTK,       'g', "gtk",       no_argument       },
 	{ HAS_NCURSES,   'n', "ncurses",   no_argument       },
 	{ true,          'd', "dump",      no_argument       },
+	{ true,          'c', "core",      required_argument },
 	{ true,          'r', "refresh",   required_argument },
 	{ HAS_BANDWIDTH, 't', "cachetest", required_argument },
 	{ HAS_DMIDECODE, 'D', "dmidecode", no_argument       },
 	{ HAS_BANDWIDTH, 'B', "bandwidth", no_argument       },
-	{ true,          'c', "color",     no_argument       },
+	{ true,          'o', "nocolor",   no_argument       },
 	{ true,          'v', "verbose",   no_argument       },
 	{ true,          'h', "help",      no_argument       },
 	{ true,          'V', "version",   no_argument       },
@@ -412,6 +413,7 @@ static void help(FILE *out, char *argv[], int exit_status)
 		_("Start graphical user interface (GUI) (default)"),
 		_("Start text-based user interface (TUI)"),
 		_("Dump all data on standard output and exit"),
+		_("Select CPU core to monitor (integer)"),
 		_("Set custom time between two refreshes (in seconds)"),
 		_("Set custom bandwidth test for CPU caches speed (integer)"),
 		_("Run embedded command dmidecode and exit"),
@@ -477,7 +479,7 @@ static void version(void)
 /* Parse options given in arg */
 static void menu(int argc, char *argv[])
 {
-	int i, j = 0, c, tmp_refr = -1;
+	int i, j = 0, c, tmp_arg = -1;
 	struct option longopts[12];
 
 	/* Filling longopts structure */
@@ -521,10 +523,15 @@ static void menu(int argc, char *argv[])
 			case 'd':
 				opts->output_type = OUT_DUMP;
 				break;
+			case 'c':
+				tmp_arg = atoi(optarg);
+				if(tmp_arg >= 0)
+					opts->selected_core = tmp_arg;
+				break;
 			case 'r':
-				tmp_refr = atoi(optarg);
-				if(tmp_refr > 1)
-					opts->refr_time = tmp_refr;
+				tmp_arg = atoi(optarg);
+				if(tmp_arg > 1)
+					opts->refr_time = tmp_arg;
 				break;
 			case 't':
 				if(HAS_BANDWIDTH)
@@ -544,7 +551,7 @@ static void menu(int argc, char *argv[])
 				else
 					help(stderr, argv, EXIT_FAILURE);
 				break;
-			case 'c':
+			case 'o':
 				opts->color = false;
 				break;
 			case 'v':
@@ -558,7 +565,7 @@ static void menu(int argc, char *argv[])
 			default:
 				help(stderr, argv, EXIT_FAILURE);
 		}
-	} while((c = getopt_long(argc, argv, ":gndr:t:DBcvhV", longopts, NULL)) != -1);
+	} while((c = getopt_long(argc, argv, ":gndc:r:t:DBovhV", longopts, NULL)) != -1);
 }
 
 
@@ -672,10 +679,11 @@ static int set_locales(void)
 int main(int argc, char *argv[])
 {
 	/* Parse options */
-	Labels data = {	.tab_cpu = {{ NULL }}, .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
+	Labels data = { .tab_cpu = {{ NULL }},    .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
 	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
-	                .selected_core = 0, .dimms_count = 0 };
-	opts = &(Options) { .output_type = 0, .refr_time = 1, .bw_test = 0, .verbose = false, .color = true };
+	                .cpu_count = 0,           .gpu_count = 0,           .dimms_count = 0 };
+	opts = &(Options) { .output_type = 0,     .selected_core = 0,       .refr_time = 1,
+	                    .bw_test = 0,         .verbose = false,         .color = true };
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);

@@ -213,6 +213,8 @@ static int call_libcpuid_static(Labels *data)
 	data->cpu_model      = datanr.model;
 	data->cpu_ext_model  = datanr.ext_model;
 	data->cpu_ext_family = datanr.ext_family;
+	if(opts->selected_core >= data->cpu_count)
+		opts->selected_core = 0;
 
 	/* Basically fill CPU tab */
 	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
@@ -381,7 +383,8 @@ static int call_libcpuid_dynamic(Labels *data)
 	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
 	if(getuid())
 		MSG_WARNING(_("Open CPU MSR as regular user should fail"));
-	msr = cpu_msr_driver_open_core(data->selected_core);
+
+	msr = cpu_msr_driver_open_core(opts->selected_core);
 	if(msr == NULL)
 	{
 		MSG_ERROR(_("failed to open CPU MSR"));
@@ -393,6 +396,7 @@ static int call_libcpuid_dynamic(Labels *data)
 	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
 	temp    = cpu_msrinfo(msr, INFO_TEMPERATURE);
 	bclk    = cpu_msrinfo(msr, INFO_BCLK);
+	cpu_msr_driver_close(msr);
 
 	/* CPU Voltage */
 	if(voltage != CPU_INVALID_VALUE)
@@ -515,8 +519,8 @@ static int cpu_multipliers(Labels *data)
 	if(!init)
 	{
 		/* Open files */
-		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, data->selected_core);
-		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, data->selected_core);
+		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
+		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
 		err += xopen_to_str(cpuinfo_min_file, &min_freq_str, 'f');
 		err += xopen_to_str(cpuinfo_max_file, &max_freq_str, 'f');
 

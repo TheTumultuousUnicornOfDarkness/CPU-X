@@ -146,7 +146,7 @@ typedef struct
 
 	int      cpu_freq;
 	int8_t   cpu_vendor_id;
-	uint8_t  selected_core, cpu_count, gpu_count, dimms_count;
+	uint8_t  cpu_count, gpu_count, dimms_count;
 	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
 	uint32_t l1_size, l2_size, l3_size;
 	double   bus_freq;
@@ -155,6 +155,7 @@ typedef struct
 typedef struct
 {
 	unsigned int output_type;
+	unsigned int selected_core;
 	unsigned int refr_time;
 	unsigned int bw_test;
 	bool         verbose;
