@@ -768,6 +768,9 @@ do_copy (unsigned long size, int mode)
 	}
 
 	//-------------------------------------------------
+	if(!BANDWIDTH_MODE && !opts->verbose)
+		goto skip_print_copy;
+
 	print (L"Sequential copy ");
 
 	if (mode == SSE2) {
@@ -789,6 +792,7 @@ do_copy (unsigned long size, int mode)
 
 	flush ();
 
+skip_print_copy:
 	loops = (1 << 26) / size;	// XX need to adjust for CPU MHz
 	if (loops < 1)
 		loops = 1;
@@ -816,9 +820,12 @@ do_copy (unsigned long size, int mode)
 		diff = mytime () - t0;
 	}
 
-	print (L"loops = ");
-	print_uint (total_count);
-	print (L", ");
+	if(BANDWIDTH_MODE && !opts->verbose)
+	{
+		print (L"loops = ");
+		print_uint (total_count);
+		print (L", ");
+	}
 
 	int result = calculate_result (size, total_count, diff);
 	newline ();
@@ -840,15 +847,13 @@ do_copy (unsigned long size, int mode)
 void
 fb_readwrite (bool use_sse2)
 {
-	unsigned long counter, total_count;
+	unsigned long total_count;
 	unsigned long length;
 	unsigned long diff, t0;
 	static struct fb_fix_screeninfo fi;
 	static struct fb_var_screeninfo vi;
 	unsigned long *fb = NULL;
-	unsigned long datum;
 	int fd;
-	register unsigned long foo;
 #ifdef __x86_64__
 	unsigned long value = 0x1234567689abcdef;
 #else
@@ -1817,11 +1822,6 @@ usage ()
 int bandwidth(Labels *data)
 {
 	int i, chunk_size = 0;
-        bool network_mode = false;
-        bool network_leader = false; // false => transponder
-        int network_destinations_size = 0;
-        int n_network_destinations = 0;
-        char **network_destinations = NULL;
 	char graph_title [512] = {0};
 	static bool first = true;
 	double total_amount = 0;
