@@ -81,6 +81,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
+	g_signal_connect(glab.activecore, "changed", G_CALLBACK(change_activecore), data);
 	g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
@@ -167,6 +168,14 @@ gboolean grefresh(GThrd *refr)
 	return G_SOURCE_CONTINUE;
 }
 
+void change_activecore(GtkComboBox *box, Labels *data)
+{
+	const gint core = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
+
+	if(0 <= core && core < data->cpu_count)
+		opts->selected_core = core;
+}
+
 void set_colors(GtkLabels *glab)
 {
 	GdkRGBA window_colors;
@@ -235,6 +244,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 
 	glab->notebook = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
+	glab->activecore = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
 	glab->logoprg = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
 
@@ -300,6 +310,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
+	gchar buff[9];
 
 	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->objects[LABVERSION]); /* Footer label */
 
@@ -313,6 +324,12 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[NAME][i]), data->tab_cpu[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
+	for(i = 0; i < data->cpu_count; i++)
+	{
+		sprintf(buff, _("Core #%i"), i);
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), buff);
+	}
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
 	/* Tab Caches */
 	for(i = L1SIZE; i < LASTCACHES; i++)

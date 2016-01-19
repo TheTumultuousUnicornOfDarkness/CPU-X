@@ -1262,7 +1262,7 @@
                                 <property name="lines">1</property>
                               </object>
                               <packing>
-                                <property name="left_attach">0</property>
+                                <property name="left_attach">1</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>
@@ -1281,7 +1281,7 @@
                                 <property name="lines">1</property>
                               </object>
                               <packing>
-                                <property name="left_attach">2</property>
+                                <property name="left_attach">3</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>
@@ -1300,7 +1300,7 @@
                                 <property name="lines">1</property>
                               </object>
                               <packing>
-                                <property name="left_attach">4</property>
+                                <property name="left_attach">5</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>
@@ -1319,9 +1319,9 @@
                                     <property name="justify">center</property>
                                     <property name="selectable">True</property>
                                     <property name="ellipsize">end</property>
-                                    <property name="width_chars">6</property>
+                                    <property name="width_chars">3</property>
                                     <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">6</property>
+                                    <property name="max_width_chars">3</property>
                                     <property name="lines">1</property>
                                     <attributes>
                                       <attribute name="foreground" value="#000000008080"/>
@@ -1330,7 +1330,7 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="left_attach">1</property>
+                                <property name="left_attach">2</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>
@@ -1349,9 +1349,9 @@
                                     <property name="justify">center</property>
                                     <property name="selectable">True</property>
                                     <property name="ellipsize">end</property>
-                                    <property name="width_chars">8</property>
+                                    <property name="width_chars">5</property>
                                     <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">8</property>
+                                    <property name="max_width_chars">5</property>
                                     <property name="lines">1</property>
                                     <attributes>
                                       <attribute name="foreground" value="#000000008080"/>
@@ -1360,7 +1360,7 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="left_attach">3</property>
+                                <property name="left_attach">4</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>
@@ -1379,9 +1379,9 @@
                                     <property name="justify">center</property>
                                     <property name="selectable">True</property>
                                     <property name="ellipsize">end</property>
-                                    <property name="width_chars">8</property>
+                                    <property name="width_chars">5</property>
                                     <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">8</property>
+                                    <property name="max_width_chars">5</property>
                                     <property name="lines">1</property>
                                     <attributes>
                                       <attribute name="foreground" value="#000000008080"/>
@@ -1390,7 +1390,20 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="left_attach">5</property>
+                                <property name="left_attach">6</property>
+                                <property name="top_attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBoxText" id="trg_activecore">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>

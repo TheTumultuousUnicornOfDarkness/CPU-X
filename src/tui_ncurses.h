@@ -98,6 +98,9 @@ static void nrefresh(NThrd *refr);
 /* The main window (title, tabs, footer) */
 static void main_win(WINDOW *win, const SizeInfo info, Labels *data);
 
+/* Display active Core in CPU tab */
+static void print_activecore(WINDOW *win);
+
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data);
 

@@ -44,6 +44,7 @@ typedef struct
 	/* Tab CPU */
 	GtkWidget *logocpu;
 	GtkWidget *gtktab_cpu[2][LASTCPU];
+	GtkWidget *activecore;
 
 	/* Tab Caches */
 	GtkWidget *gtktab_caches[2][LASTCACHES];
@@ -93,6 +94,9 @@ gboolean grefresh(GThrd *refr);
 
 /* Set default background color in GUI */
 void set_colors(GtkLabels *glab);
+
+/* Change active Core in CPU tab */
+void change_activecore(GtkComboBox *box, Labels *data);
 
 /* Change UI color by using GtkColorButton */
 void change_color(GtkWidget *button, GtkLabels *glab);

@@ -118,7 +118,20 @@ void start_tui_ncurses(Labels *data)
 					(*func_ptr[page])(win, info, data);
 				}
 				break;
-
+			case KEY_DOWN:
+				if(page == NO_CPU && opts->selected_core > 0)
+				{
+					opts->selected_core--;
+					print_activecore(win);
+				}
+				break;
+			case KEY_UP:
+				if(page == NO_CPU && opts->selected_core < data->cpu_count - 1)
+				{
+					opts->selected_core++;
+					print_activecore(win);
+				}
+				break;
 			case ERR:
 				/* Refresh dynamic labels */
 				if(page == NO_CPU || page == NO_CACHES || page == NO_SYSTEM || page == NO_GRAPHICS)
@@ -306,6 +319,14 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 	wrefresh(win);
 }
 
+/* Display active Core in CPU tab */
+static void print_activecore(WINDOW *win)
+{
+	char buff[4];
+	sprintf(buff, "%i", opts->selected_core);
+	mvwprintwc(win, LINE_17, 4, DEFAULT_COLOR, _("Core #%s"), buff);
+}
+
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 {
@@ -355,9 +376,10 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 
 	/* Last frame */
 	frame(win, LINE_16, info.start, LINE_18, info.width - 1, "");
-	mvwprintw2c(win, LINE_17, 4,  "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
-	mvwprintw2c(win, LINE_17, 23, "%s: %2s", data->tab_cpu[NAME][CORES],   data->tab_cpu[VALUE][CORES]);
-	mvwprintw2c(win, LINE_17, 39, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
+	print_activecore(win);
+	mvwprintw2c(win, LINE_17, 18,  "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
+	mvwprintw2c(win, LINE_17, 36, "%s: %2s", data->tab_cpu[NAME][CORES],   data->tab_cpu[VALUE][CORES]);
+	mvwprintw2c(win, LINE_17, 54, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
 
 	wrefresh(win);
 }
