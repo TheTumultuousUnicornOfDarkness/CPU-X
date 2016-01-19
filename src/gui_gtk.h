@@ -48,6 +48,7 @@ typedef struct
 
 	/* Tab Caches */
 	GtkWidget *gtktab_caches[2][LASTCACHES];
+	GtkWidget *activetest;
 
 	/* Tab Motherboard */
 	GtkWidget *gtktab_motherboard[2][LASTMOTHERBOARD];
@@ -97,6 +98,9 @@ void set_colors(GtkLabels *glab);
 
 /* Change active Core in CPU tab */
 void change_activecore(GtkComboBox *box, Labels *data);
+
+/* Change active Test in Caches tab */
+void change_activetest(GtkComboBox *box, Labels *data);
 
 /* Change UI color by using GtkColorButton */
 void change_color(GtkWidget *button, GtkLabels *glab);

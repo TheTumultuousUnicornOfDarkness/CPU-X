@@ -77,7 +77,7 @@ enum EnObjects
 {
 	TABCPU, TABCACHES, TABMOTHERBOARD, TABMEMORY, TABSYSTEM, TABGRAPHICS, TABABOUT,
 	FRAMPROCESSOR, FRAMCLOCKS, FRAMCACHE,
-	FRAML1CACHE, FRAML2CACHE, FRAML3CACHE,
+	FRAML1CACHE, FRAML2CACHE, FRAML3CACHE, FRAMTEST,
 	FRAMMOTHERBOARD, FRAMBIOS, FRAMCHIPSET,
 	FRAMBANKS,
 	FRAMOPERATINGSYSTEM, FRAMMEMORY,
@@ -199,6 +199,12 @@ int do_refresh(Labels *data, enum EnTabNumber page);
 
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void);
+
+/* Get string for selected bandwidth test */
+char *bandwidth_test_name(unsigned int test);
+
+/* Get bandwidth count tests */
+int bandwidth_last_test(void);
 
 /* Call bandwidth library */
 int bandwidth(Labels *data);

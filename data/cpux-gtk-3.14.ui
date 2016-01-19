@@ -1807,7 +1807,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame" id="l3cache_align">
+                  <object class="GtkFrame" id="l3cache_fram">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_start">6</property>
@@ -1817,7 +1817,7 @@
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">out</property>
                     <child>
-                      <object class="GtkAlignment" id="l3cache_alig">
+                      <object class="GtkAlignment" id="l3cache_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_start">6</property>
@@ -1985,6 +1985,49 @@
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="test_fram">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_right">6</property>
+                    <property name="margin_start">6</property>
+                    <property name="margin_end">6</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">6</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">out</property>
+                    <child>
+                      <object class="GtkAlignment" id="test_align">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_start">6</property>
+                        <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
+                        <child>
+                          <object class="GtkComboBoxText" id="test_activetest">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="test_lab">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Test</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </object>

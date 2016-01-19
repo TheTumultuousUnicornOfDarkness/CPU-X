@@ -29,7 +29,7 @@
 static const char *trad[LASTOBJ] =
 {
 	"cpulabel", "cacheslabel", "motherboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
-	"proc_lab", "clock_lab", "cache_lab", "l1cache_lab", "l2cache_lab", "l3cache_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
+	"proc_lab", "clock_lab", "cache_lab", "l1cache_lab", "l2cache_lab", "l3cache_lab", "test_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
 	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
 };

@@ -49,6 +49,10 @@
 # include "dmidecode/dmiopt.h"
 #endif
 
+#if HAS_BANDWIDTH
+# include "bandwidth/libbandwidth.h"
+#endif
+
 #if HAS_LIBPCI
 # include "pci/pci.h"
 #endif
@@ -125,6 +129,25 @@ int run_dmidecode(void)
 	return dmidecode();
 }
 #endif /* HAS_DMIDECODE */
+
+/* Get string for selected bandwidth test */
+char *bandwidth_test_name(unsigned int test)
+{
+	static char *name = NULL;
+
+	if(HAS_BANDWIDTH)
+		asprintf(&name, "#%2i: %s", test, tests[test].name);
+	else
+		asprintf(&name, " ");
+
+	return name;
+}
+
+/* Get bandwidth count tests */
+int bandwidth_last_test(void)
+{
+	return HAS_BANDWIDTH ? LASTTEST : 0;
+}
 
 
 /************************* Private functions *************************/

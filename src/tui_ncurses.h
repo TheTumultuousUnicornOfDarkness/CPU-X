@@ -104,6 +104,9 @@ static void print_activecore(WINDOW *win);
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data);
 
+/* Display active Test in Caches tab */
+static void print_activetest(WINDOW *win);
+
 /* Caches tab */
 static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data);
 

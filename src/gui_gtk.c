@@ -82,6 +82,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.activecore, "changed", G_CALLBACK(change_activecore), data);
+	g_signal_connect(glab.activetest, "changed", G_CALLBACK(change_activetest), data);
 	g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
@@ -176,6 +177,14 @@ void change_activecore(GtkComboBox *box, Labels *data)
 		opts->selected_core = core;
 }
 
+void change_activetest(GtkComboBox *box, Labels *data)
+{
+	const gint test = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
+
+	if(0 <= test && test < bandwidth_last_test())
+		opts->bw_test = test;
+}
+
 void set_colors(GtkLabels *glab)
 {
 	GdkRGBA window_colors;
@@ -245,6 +254,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->notebook = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->activecore = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
+	glab->activetest = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
 	glab->logoprg = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
 
@@ -337,6 +347,9 @@ void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]), data->tab_caches[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 	}
+	for(i = 0; i < bandwidth_last_test(); i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetest), bandwidth_test_name(i));
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activetest), opts->bw_test);
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)

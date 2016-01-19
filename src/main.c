@@ -84,6 +84,7 @@ static void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAML1CACHE],           _("L1 Cache"));
 	asprintf(&data->objects[FRAML2CACHE],           _("L2 Cache"));
 	asprintf(&data->objects[FRAML3CACHE],           _("L3 Cache"));
+	asprintf(&data->objects[FRAMTEST],              _("Test"));
 	asprintf(&data->objects[FRAMMOTHERBOARD],       _("Motherboard"));
 	asprintf(&data->objects[FRAMBIOS],              _("BIOS"));
 	asprintf(&data->objects[FRAMCHIPSET],           _("Chipset"));

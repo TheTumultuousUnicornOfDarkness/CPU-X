@@ -84,7 +84,7 @@ enum EnTests
 	LASTTEST
 };
 
-const struct Tests
+static const struct Tests
 {
 	enum EnTests test;
 	char *name;
