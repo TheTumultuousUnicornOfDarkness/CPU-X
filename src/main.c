@@ -682,7 +682,9 @@ int main(int argc, char *argv[])
 	/* Parse options */
 	Labels data = { .tab_cpu = {{ NULL }},    .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
 	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
-	                .cpu_count = 0,           .gpu_count = 0,           .dimms_count = 0 };
+	                .cpu_freq = 0,            .cpu_vendor_id = 0,       .bus_freq = 0.0,
+	                .cpu_count = 0,           .gpu_count = 0,           .dimms_count = 0,
+	                .l1_size = 0,             .l2_size = 0,             .l3_size = 0 };
 	opts = &(Options) { .output_type = 0,     .selected_core = 0,       .refr_time = 1,
 	                    .bw_test = 0,         .verbose = false,         .color = true };
 	set_locales();
