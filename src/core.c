@@ -29,6 +29,7 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
+#include <dirent.h>
 #include <locale.h>
 #include <libintl.h>
 #include <sys/utsname.h>
@@ -712,15 +713,32 @@ static int gpu_temperature(Labels *data)
 {
 	static int err = 0;
 	double temp = 0.0;
-	char *buff, *drm;
+	char *buff, *drm_hwmon, *drm_temp = NULL;
+	DIR *dp = NULL;
+	struct dirent *dir;
 
 	MSG_VERBOSE(_("Retrieve GPU temperature"));
-	asprintf(&drm, "%s%i/device/hwmon/hwmon0/temp1_input", SYS_DRM, 0);
-	if(!xopen_to_str("nvidia-settings -q GPUCoreTemp", &buff, 'p') ||
-	   !xopen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff, 'p'))
+	if(!xopen_to_str("nvidia-settings -q GPUCoreTemp", &buff, 'p') || /* NVIDIA closed source driver */
+	   !xopen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff, 'p')) /* AMD closed source driver */
 		temp = atof(buff);
-	else if(!xopen_to_str(drm, &buff, 'f'))
-		temp = atof(buff) / 1000.0;
+	else /* Open source drivers */
+	{
+		asprintf(&drm_hwmon, "%s%i/device/hwmon/", SYS_DRM, 0);
+		dp = opendir(drm_hwmon);
+		if(dp)
+		{
+			while((dir = readdir(dp)) != NULL)
+			{
+				asprintf(&drm_temp, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name);
+				if(!access(drm_temp, R_OK) && !xopen_to_str(drm_temp, &buff, 'f'))
+				{
+					temp = atof(buff) / 1000.0;
+					break;
+				}
+			}
+			closedir(dp);
+		}
+	}
 
 	if(!err && !temp)
 	{
