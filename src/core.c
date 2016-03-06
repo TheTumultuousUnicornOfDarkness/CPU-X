@@ -74,6 +74,7 @@ int fill_labels(Labels *data)
 {
 	int fallback = 0, err = 0;
 
+	err += cpu_temperature_lmsensors(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 	if(HAS_DMIDECODE)    err += fallback = call_dmidecode(data);
@@ -100,7 +101,8 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID)     err = call_libcpuid_dynamic(data);
+			err = cpu_temperature_lmsensors(data);
+			if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 			if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 			cpu_usage(data);
 			break;
@@ -427,7 +429,7 @@ static int call_libcpuid_dynamic(Labels *data)
 		iasprintf(&data->tab_cpu[VALUE][VOLTAGE],     "%.3f V", (double) voltage / 100);
 
 	/* CPU Temperature */
-	if(temp != CPU_INVALID_VALUE)
+	if(temp != CPU_INVALID_VALUE && opts->cpu_temp_msr)
 		iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%i°C", temp);
 
 	/* Base clock */
@@ -723,6 +725,7 @@ static int cpu_temperature_lmsensors(Labels *data)
 	if(!err && !temp)
 	{
 		MSG_ERROR(_("failed to retrieve CPU temperature"));
+		opts->cpu_temp_msr = true;
 		err++;
 		return 1;
 	}

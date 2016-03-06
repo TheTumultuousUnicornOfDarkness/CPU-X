@@ -160,6 +160,7 @@ typedef struct
 	unsigned int bw_test;
 	bool         verbose;
 	bool         color;
+	bool         cpu_temp_msr;
 } Options;
 
 extern Options *opts;

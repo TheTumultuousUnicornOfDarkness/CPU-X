@@ -686,7 +686,7 @@ int main(int argc, char *argv[])
 	                .cpu_count = 0,           .gpu_count = 0,           .dimms_count = 0,
 	                .l1_size = 0,             .l2_size = 0,             .l3_size = 0 };
 	opts = &(Options) { .output_type = 0,     .selected_core = 0,       .refr_time = 1,
-	                    .bw_test = 0,         .verbose = false,         .color = true };
+	                    .bw_test = 0,         .verbose = false,         .color = true, .cpu_temp_msr = false };
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
