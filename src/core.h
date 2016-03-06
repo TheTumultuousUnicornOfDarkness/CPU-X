@@ -58,6 +58,10 @@ static void cpu_usage(Labels *data);
 static void find_devices(Labels *data);
 /* Required: HAS_LIBPCI */
 
+/* Retrieve CPU temperature */
+static int cpu_temperature_lmsensors(Labels *data);
+/* Required: none */
+
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data);
 /* Required: none */

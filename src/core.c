@@ -708,6 +708,29 @@ static void find_devices(Labels *data)
 }
 #endif /* HAS_LIBPCI */
 
+/* Retrieve CPU temperature */
+static int cpu_temperature_lmsensors(Labels *data)
+{
+	static int err = 0;
+	double temp = 0.0;
+	char *command, *buff;
+
+	MSG_VERBOSE(_("Retrieve CPU temperature"));
+	asprintf(&command, "sensors | grep 'Core[[:space:]]*%u' | awk '$0=$2' FS=+ RS=°", opts->selected_core);
+	if(!xopen_to_str(command, &buff, 'p'))
+		temp = atof(buff);
+
+	if(!err && !temp)
+	{
+		MSG_ERROR(_("failed to retrieve CPU temperature"));
+		err++;
+		return 1;
+	}
+
+	iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%.2f°C", temp);
+	return 0;
+}
+
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
 {
