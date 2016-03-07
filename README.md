@@ -139,4 +139,5 @@ You want to contribute to CPU-X? In the top-right corner of the page, click **Fo
 
 ## Bugs/Improvements/Request features
 
-Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new).
+Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new).  
+For **bugs**, you can attach `cpu-x -V` and `# cpu-x -vd` outputs to issue.
