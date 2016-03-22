@@ -24,8 +24,9 @@ if(GETTEXT_FOUND)
 			--copyright-holder=Xorg
 			--output-dir=${CMAKE_SOURCE_DIR}/po
 			--output=${CMAKE_PROJECT_NAME}.pot
-			--keyword=_ --indent
-			core.c core.h libsystem.c main.c gui_gtk.c tui_ncurses.c
+			--keyword=_ --keyword=N_ --indent
+			--directory="../src"
+			"*.c"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 	)
 
