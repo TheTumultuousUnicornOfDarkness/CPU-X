@@ -479,46 +479,38 @@ static void version(void)
 /* Parse options given in arg */
 static void menu(int argc, char *argv[])
 {
-	int i, j = 0, c, tmp_arg = -1;
-	struct option longopts[12];
+	int i = -1, j = 0, c, tmp_arg = -1;
+	char *shortopts = { "" };
+	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
 
 	/* Filling longopts structure */
-	for(i = 0; o[i].long_opt != NULL; i++)
+	while(o[++i].long_opt != NULL)
 	{
-		if(o[i].has_mod)
-		{
-			longopts[j].name    = o[i].long_opt;
-			longopts[j].has_arg = o[i].has_mod;
-			longopts[j].flag    = 0;
-			longopts[j].val     = o[i].short_opt;
-			j++;
-		}
+		while(!o[i].has_mod)
+			i++;
+		longopts[j] = (struct option) { .name = o[i].long_opt, .has_arg = o[i].need_arg, .flag = 0, .val = o[i].short_opt };
+		asprintf(&shortopts, "%s%c%s", shortopts, o[i].short_opt, o[i].need_arg ? ":" : "" );
+		j++;
 	}
 
 	/* Set the default mode */
 	if(HAS_GTK && (getenv("DISPLAY") != NULL || getenv("WAYLAND_DISPLAY") != NULL))
-		c = 'g';
+		opts->output_type = OUT_GTK;
 	else if(HAS_NCURSES)
-		c = 'n';
+		opts->output_type = OUT_NCURSES;
 	else
-		c = 'd';
+		opts->output_type = OUT_DUMP;
 
 	/* Parse options */
-	do
+	while((c = getopt_long(argc, argv, shortopts, longopts, NULL)) != -1)
 	{
 		switch(c)
 		{
 			case 'g':
-				if(HAS_GTK)
-					opts->output_type = OUT_GTK;
-				else
-					help(stderr, argv, EXIT_FAILURE);
+				opts->output_type = OUT_GTK;
 				break;
 			case 'n':
-				if(HAS_NCURSES)
-					opts->output_type = OUT_NCURSES;
-				else
-					help(stderr, argv, EXIT_FAILURE);
+				opts->output_type = OUT_NCURSES;
 				break;
 			case 'd':
 				opts->output_type = OUT_DUMP;
@@ -534,22 +526,13 @@ static void menu(int argc, char *argv[])
 					opts->refr_time = tmp_arg;
 				break;
 			case 't':
-				if(HAS_BANDWIDTH)
-					opts->bw_test = atoi(optarg);
-				else
-					help(stderr, argv, EXIT_FAILURE);
+				opts->bw_test = atoi(optarg);
 				break;
 			case 'D':
-				if(HAS_DMIDECODE)
-					opts->output_type = OUT_DMIDECODE;
-				else
-					help(stderr, argv, EXIT_FAILURE);
+				opts->output_type = OUT_DMIDECODE;
 				break;
 			case 'B':
-				if(HAS_BANDWIDTH)
-					opts->output_type = OUT_BANDWIDTH;
-				else
-					help(stderr, argv, EXIT_FAILURE);
+				opts->output_type = OUT_BANDWIDTH;
 				break;
 			case 'o':
 				opts->color = false;
@@ -558,10 +541,7 @@ static void menu(int argc, char *argv[])
 				opts->verbose = true;
 				break;
 			case 'u':
-				if(PORTABLE_BINARY)
-					update_prg(argv[0], opts);
-				else
-					help(stderr, argv, EXIT_FAILURE);
+				update_prg(argv[0], opts);
 				break;
 			case 'h':
 				help(stdout, argv, EXIT_SUCCESS);
@@ -571,7 +551,7 @@ static void menu(int argc, char *argv[])
 			default:
 				help(stderr, argv, EXIT_FAILURE);
 		}
-	} while((c = getopt_long(argc, argv, ":gndc:r:t:DBovhV", longopts, NULL)) != -1);
+	}
 }
 
 
