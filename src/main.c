@@ -385,54 +385,47 @@ static int update_prg(char *executable, Options *opts)
 
 /************************* Options-related functions *************************/
 
+#define N_(x) x
 static const struct AvailableOpts
 {
-	const bool has_mod; const char short_opt; const char *long_opt; const int  need_arg;
+	const bool has_mod;
+	const char short_opt;
+	const char *long_opt;
+	const int  need_arg;
+	char       *description;
 } o[] =
 {
-	{ HAS_GTK,         'g', "gtk",       no_argument       },
-	{ HAS_NCURSES,     'n', "ncurses",   no_argument       },
-	{ true,            'd', "dump",      no_argument       },
-	{ true,            'c', "core",      required_argument },
-	{ true,            'r', "refresh",   required_argument },
-	{ HAS_BANDWIDTH,   't', "cachetest", required_argument },
-	{ HAS_DMIDECODE,   'D', "dmidecode", no_argument       },
-	{ HAS_BANDWIDTH,   'B', "bandwidth", no_argument       },
-	{ true,            'o', "nocolor",   no_argument       },
-	{ true,            'v', "verbose",   no_argument       },
-	{ PORTABLE_BINARY, 'u', "update",    no_argument       },
-	{ true,            'h', "help",      no_argument       },
-	{ true,            'V', "version",   no_argument       },
-	{ true,            '0', NULL,        0                 }
+	{ HAS_GTK,         'g', "gtk",       no_argument,       N_("Start graphical user interface (GUI) (default)")           },
+	{ HAS_NCURSES,     'n', "ncurses",   no_argument,       N_("Start text-based user interface (TUI)")                    },
+	{ true,            'd', "dump",      no_argument,       N_("Dump all data on standard output and exit")                },
+	{ true,            'c', "core",      required_argument, N_("Select CPU core to monitor (integer)")                     },
+	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
+	{ HAS_BANDWIDTH,   't', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
+	{ HAS_DMIDECODE,   'D', "dmidecode", no_argument,       N_("Run embedded command dmidecode and exit")                  },
+	{ HAS_BANDWIDTH,   'B', "bandwidth", no_argument,       N_("Run embedded command bandwidth and exit")                  },
+	{ true,            'o', "nocolor",   no_argument,       N_("Disable colored output")                                   },
+	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
+	{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
+	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
+	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
+	{ true,            '0', NULL,        0,                 NULL                                                           }
 };
+#undef N_
 
 /* This is help display with --help option */
 static void help(FILE *out, char *argv[], int exit_status)
 {
-	int i;
-	const char *description[] =
-	{
-		_("Start graphical user interface (GUI) (default)"),
-		_("Start text-based user interface (TUI)"),
-		_("Dump all data on standard output and exit"),
-		_("Select CPU core to monitor (integer)"),
-		_("Set custom time between two refreshes (in seconds)"),
-		_("Set custom bandwidth test for CPU caches speed (integer)"),
-		_("Run embedded command dmidecode and exit"),
-		_("Run embedded command bandwidth and exit"),
-		_("Disable colored output"),
-		_("Verbose output"),
-		_("Update portable version if a new version is available"),
-		_("Print help and exit"),
-		_("Print version and exit")
-	};
+	int i = -1;
+	char *msgbuf;
 
 	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
 	fprintf(out, _("Available OPTION:\n"));
-	for(i = 0; o[i].long_opt != NULL; i++)
+	while(o[++i].long_opt != NULL)
 	{
-		if(o[i].has_mod)
-			fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, description[i]);
+		while(!o[i].has_mod)
+			i++;
+		asprintf(&msgbuf, _(o[i].description));
+		fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, msgbuf);
 	}
 
 	exit(exit_status);
