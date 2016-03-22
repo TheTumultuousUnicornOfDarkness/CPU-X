@@ -390,19 +390,20 @@ static const struct AvailableOpts
 	const bool has_mod; const char short_opt; const char *long_opt; const int  need_arg;
 } o[] =
 {
-	{ HAS_GTK,       'g', "gtk",       no_argument       },
-	{ HAS_NCURSES,   'n', "ncurses",   no_argument       },
-	{ true,          'd', "dump",      no_argument       },
-	{ true,          'c', "core",      required_argument },
-	{ true,          'r', "refresh",   required_argument },
-	{ HAS_BANDWIDTH, 't', "cachetest", required_argument },
-	{ HAS_DMIDECODE, 'D', "dmidecode", no_argument       },
-	{ HAS_BANDWIDTH, 'B', "bandwidth", no_argument       },
-	{ true,          'o', "nocolor",   no_argument       },
-	{ true,          'v', "verbose",   no_argument       },
-	{ true,          'h', "help",      no_argument       },
-	{ true,          'V', "version",   no_argument       },
-	{ true,          '0', NULL,        0                 }
+	{ HAS_GTK,         'g', "gtk",       no_argument       },
+	{ HAS_NCURSES,     'n', "ncurses",   no_argument       },
+	{ true,            'd', "dump",      no_argument       },
+	{ true,            'c', "core",      required_argument },
+	{ true,            'r', "refresh",   required_argument },
+	{ HAS_BANDWIDTH,   't', "cachetest", required_argument },
+	{ HAS_DMIDECODE,   'D', "dmidecode", no_argument       },
+	{ HAS_BANDWIDTH,   'B', "bandwidth", no_argument       },
+	{ true,            'o', "nocolor",   no_argument       },
+	{ true,            'v', "verbose",   no_argument       },
+	{ PORTABLE_BINARY, 'u', "update",    no_argument       },
+	{ true,            'h', "help",      no_argument       },
+	{ true,            'V', "version",   no_argument       },
+	{ true,            '0', NULL,        0                 }
 };
 
 /* This is help display with --help option */
@@ -421,6 +422,7 @@ static void help(FILE *out, char *argv[], int exit_status)
 		_("Run embedded command bandwidth and exit"),
 		_("Disable colored output"),
 		_("Verbose output"),
+		_("Update portable version if a new version is available"),
 		_("Print help and exit"),
 		_("Print version and exit")
 	};
@@ -561,6 +563,12 @@ static void menu(int argc, char *argv[])
 				break;
 			case 'v':
 				opts->verbose = true;
+				break;
+			case 'u':
+				if(PORTABLE_BINARY)
+					update_prg(argv[0], opts);
+				else
+					help(stderr, argv, EXIT_FAILURE);
 				break;
 			case 'h':
 				help(stdout, argv, EXIT_SUCCESS);
@@ -723,9 +731,6 @@ int main(int argc, char *argv[])
 			dump_data(&data);
 			break;
 	}
-
-	if(PORTABLE_BINARY)
-		update_prg(argv[0], opts);
 
 	return EXIT_SUCCESS;
 }
