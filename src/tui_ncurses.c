@@ -89,6 +89,23 @@ void start_tui_ncurses(Labels *data)
 	win      = newwin(info.height, info.width, starty, startx);
 	refr.win = win;
 
+	if(PORTABLE_BINARY && new_version != NULL)
+	{
+		nodelay(stdscr, FALSE);
+		printw(_("A new version of %s is available!\n\n"), PRGNAME);
+		printw(_("Do you want to update %s to version %s after exit?\n"
+		"It will erase this binary file (%s) by the new version.\n\n"),
+		PRGNAME, new_version, binary_name);
+		printw(_("If you want to update, press 'u' key, or anything else to skip."), PRGNAME);
+		refresh();
+
+		ch = getch();
+		if(ch == 'u')
+			opts->update = true;
+		clear();
+		nodelay(stdscr, TRUE);
+	}
+
 	printw("Press 'q' to exit; use right/left key to change tab");
 	refresh();
 	main_win(win, info, data);

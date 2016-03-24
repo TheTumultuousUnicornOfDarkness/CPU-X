@@ -160,10 +160,12 @@ typedef struct
 	unsigned int bw_test;
 	bool         verbose;
 	bool         color;
+	bool         update;
 	bool         cpu_temp_msr;
 } Options;
 
 extern Options *opts;
+extern char    *binary_name, *new_version;
 
 
 /***************************** Defined in main.c *****************************/

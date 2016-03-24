@@ -79,6 +79,9 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	if(getuid()) /* Show warning if not root */
 		warning_window(glab.mainwindow);
 
+	if(PORTABLE_BINARY && new_version != NULL)
+		new_version_window(glab.mainwindow);
+
 	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.activecore, "changed", G_CALLBACK(change_activecore), data);
@@ -126,6 +129,26 @@ void warning_window(GtkWidget *mainwindow)
 			exit(EXIT_SUCCESS);
 		}
 	}
+
+	gtk_widget_destroy(dialog);
+}
+
+void new_version_window(GtkWidget *mainwindow)
+{
+	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
+		GTK_DIALOG_DESTROY_WITH_PARENT,
+		GTK_MESSAGE_INFO,
+		GTK_BUTTONS_NONE,
+		_("A new version of %s is available!"), PRGNAME);
+
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+		_("Do you want to update %s to version %s after exit?\n"
+		"It will erase this binary file (%s) by the new version."),
+		PRGNAME, new_version, binary_name);
+	gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Not now"), GTK_RESPONSE_REJECT, _("Update"), GTK_RESPONSE_ACCEPT, NULL);
+
+	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
+		opts->update = true;
 
 	gtk_widget_destroy(dialog);
 }

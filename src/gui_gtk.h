@@ -90,6 +90,9 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data);
 /* Show a warning if launched as regulat user */
 void warning_window(GtkWidget *mainwindow);
 
+/* Ask for update when a new version is available (portable version only) */
+void new_version_window(GtkWidget *mainwindow);
+
 /* Refresh non-static values */
 gboolean grefresh(GThrd *refr);
 

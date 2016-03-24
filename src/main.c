@@ -60,7 +60,9 @@
 #endif
 
 
-Options *opts;
+char *binary_name, *new_version = NULL;
+Options     *opts;
+
 
 /************************* Arrays management functions *************************/
 
@@ -296,7 +298,7 @@ static void dump_data(Labels *data)
 /************************* Update-related functions *************************/
 
 /* Check if running version is latest */
-static bool new_version_available(char **newver)
+static bool check_new_version(void)
 {
 	MSG_VERBOSE(_("Checking on Internet for a new version..."));
 	if(!command_exists("curl"))
@@ -307,32 +309,37 @@ static bool new_version_available(char **newver)
 
 	/* Retrieve the last tag on Git repo */
 	xopen_to_str("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
-	             newver, 'p');
+	             &new_version, 'p');
 
 	/* Compare Git tag with running version */
-	if(!strcmp(PRGVER, *newver))
-	{
-		MSG_VERBOSE(_("No new version available."));
-		return false;
-	}
-	else
+	if(strverscmp(new_version, PRGVER) > 0)
 	{
 		MSG_VERBOSE(_("A new version is available!"));
 		return true;
 	}
+	else
+	{
+		MSG_VERBOSE(_("No new version available."));
+		free(new_version);
+		new_version = NULL;
+		return false;
+	}
 }
 
 /* Apply new portable version if available */
-static int update_prg(char *executable, Options *opts)
+static int update_prg(void)
 {
 	int err = 0;
 #if PORTABLE_BINARY
 	int i;
-	char *file, *tmp, *opt, *newver = NULL;
+	char *file, *tmp, *opt;
 	const char *ext[] = { "bsd32", "linux32", "linux64", NULL };
 
-	if(!new_version_available(&newver))
+	if(new_version == NULL)
+	{
+		MSG_ERROR(_("No new version available."));
 		return 1;
+	}
 
 	/* Find what archive we need to download */
 	if(HAS_GTK)
@@ -449,7 +456,7 @@ static void version(void)
 		{ false,           NULL,          NULL                }
 	};
 
-	if(new_version_available(&newver))
+	if(new_version != NULL)
 		asprintf(&strver, _("(version %s is available)"), newver);
 	else
 		asprintf(&strver, _("(up-to-date)"));
@@ -541,7 +548,7 @@ static void menu(int argc, char *argv[])
 				opts->verbose = true;
 				break;
 			case 'u':
-				update_prg(argv[0], opts);
+				opts->update = true;
 				break;
 			case 'h':
 				help(stdout, argv, EXIT_SUCCESS);
@@ -665,13 +672,15 @@ static int set_locales(void)
 int main(int argc, char *argv[])
 {
 	/* Parse options */
+	binary_name = argv[0];
 	Labels data = { .tab_cpu = {{ NULL }},    .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
 	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
 	                .cpu_freq = 0,            .cpu_vendor_id = 0,       .bus_freq = 0.0,
 	                .cpu_count = 0,           .gpu_count = 0,           .dimms_count = 0,
 	                .l1_size = 0,             .l2_size = 0,             .l3_size = 0 };
 	opts = &(Options) { .output_type = 0,     .selected_core = 0,       .refr_time = 1,
-	                    .bw_test = 0,         .verbose = false,         .color = true, .cpu_temp_msr = false };
+	                    .bw_test = 0,         .verbose = false,         .color = true,
+	                    .update = false,      .cpu_temp_msr = false };
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
@@ -687,6 +696,7 @@ int main(int argc, char *argv[])
 	if(HAS_BANDWIDTH && (opts->output_type & OUT_BANDWIDTH))
 		return bandwidth(&data);
 
+	check_new_version();
 	labels_setname(&data);
 	fill_labels(&data);
 	remove_null_ptr(&data);
@@ -704,6 +714,9 @@ int main(int argc, char *argv[])
 			dump_data(&data);
 			break;
 	}
+
+	if(PORTABLE_BINARY && opts->update)
+		update_prg();
 
 	return EXIT_SUCCESS;
 }
