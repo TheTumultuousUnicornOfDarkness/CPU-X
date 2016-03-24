@@ -696,10 +696,12 @@ int main(int argc, char *argv[])
 	if(HAS_BANDWIDTH && (opts->output_type & OUT_BANDWIDTH))
 		return bandwidth(&data);
 
-	check_new_version();
 	labels_setname(&data);
 	fill_labels(&data);
 	remove_null_ptr(&data);
+
+	if(!getenv("CPUX_NETWORK"))
+		check_new_version();
 
 	/* Show data */
 	switch(opts->output_type)
