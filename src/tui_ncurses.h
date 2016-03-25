@@ -95,6 +95,9 @@ typedef struct
 /* Refresh dynamic values */
 static void nrefresh(NThrd *refr);
 
+/* Print how to use this TUI */
+static void print_help(void);
+
 /* The main window (title, tabs, footer) */
 static void main_win(WINDOW *win, const SizeInfo info, Labels *data);
 

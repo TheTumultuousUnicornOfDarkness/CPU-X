@@ -69,6 +69,8 @@ void start_tui_ncurses(Labels *data)
 	WINDOW *win;
 
 	MSG_VERBOSE(_("Starting NCurses TUI..."));
+	fprintf(stdout, "%s%s%s", opts->color ? BOLD_GREEN : "", _("\nPress 'h' to see help.\n"), RESET);
+	sleep(1);
 	setenv("TERMINFO", "/lib/terminfo", 0);
 	freopen("/dev/null", "a", stderr);
 	initscr();
@@ -102,11 +104,10 @@ void start_tui_ncurses(Labels *data)
 		ch = getch();
 		if(ch == 'u')
 			opts->update = true;
-		clear();
+		erase();
 		nodelay(stdscr, TRUE);
 	}
 
-	printw("Press 'q' to exit; use right/left key to change tab");
 	refresh();
 	main_win(win, info, data);
 	ntab_cpu(win, info, data);
@@ -159,6 +160,14 @@ void start_tui_ncurses(Labels *data)
 					print_activetest(win);
 				}
 				break;
+			case 'h':
+				erase();
+				print_help();
+				erase();
+				refresh();
+				main_win(win, info, data);
+				(*func_ptr[page])(win, info, data);
+				break;
 			case ERR:
 				/* Refresh dynamic labels */
 				if(page == NO_CPU || page == NO_CACHES || page == NO_SYSTEM || page == NO_GRAPHICS)
@@ -170,7 +179,6 @@ void start_tui_ncurses(Labels *data)
 				starty = (LINES - info.height) / 2;
 				startx = (COLS - info.width) / 2;
 				mvwin(win, starty, startx);
-				printw("Press 'q' to exit; use right/left key to change tab");
 				refresh();
 				main_win(win, info, data);
 				(*func_ptr[page])(win, info, data);
@@ -310,6 +318,23 @@ static void nrefresh(NThrd *refr)
 	}
 
 	wrefresh(win);
+}
+
+/* Print how to use this TUI */
+static void print_help()
+{
+	nodelay(stdscr, FALSE);
+	timeout(99999);
+
+	printw(_("Welcome in %s NCurses help!\n\n"), PRGNAME);
+	printw(_("Use right/left key to change active tab.\n"));
+	printw(_("Use down/up key to change parameter in active tab (CPU and Caches tabs only).\n\n"));
+	printw(_("Press 'h' to see this help.\n"));
+	printw(_("Press 'q' to exit.\n"));
+
+	getch();
+	nodelay(stdscr, TRUE);
+	timeout(opts->refr_time * 1000);
 }
 
 /* The main window (title, tabs, footer) */
