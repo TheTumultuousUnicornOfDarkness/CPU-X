@@ -726,24 +726,6 @@ int main(int argc, char *argv[])
 
 /************************* Public functions *************************/
 
-/* Print a formatted message */
-int message(char type, char *msg, char *basefile, int line)
-{
-	switch(type)
-	{
-		case 'v': /* Verbose message */
-			return opts->verbose ? fprintf(stdout, "%s%s%s\n", opts->color ? BOLD_GREEN  : "", msg, RESET) : -1;
-		case 'w': /* Warning message */
-			return fprintf(stdout, "%s%s%s\n",                 opts->color ? BOLD_YELLOW : "", msg, RESET);
-		case 'e': /* Error message */
-			return fprintf(stderr, "%s%s:%s:%i: %s%s\n",       opts->color ? BOLD_RED    : "", PRGNAME, basefile, line, msg, RESET);
-		case 'n': /* Error message with errno */
-			return fprintf(stderr, "%s%s:%s:%i: %s (%s)%s\n",  opts->color ? BOLD_RED    : "", PRGNAME, basefile, line, msg, strerror(errno), RESET);
-	}
-
-	return -1;
-}
-
 /* The improved asprintf:
  * - allocate an empty string if input string is null
  * - only call asprintf if there is no format in input string

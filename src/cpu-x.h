@@ -26,6 +26,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <errno.h>
 #define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
@@ -41,11 +42,11 @@
 
 /* Formatted messages definition */
 #define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define MSG_VERBOSE(str)      message('v', str, BASEFILE, __LINE__)
-#define MSG_WARNING(str)      message('w', str, BASEFILE, __LINE__)
-#define MSG_ERROR(str)        message('e', str, BASEFILE, __LINE__)
-#define MSG_ERROR_ERRNO(str)  message('n', str, BASEFILE, __LINE__)
-#define _(str)                gettext(str)
+#define MSG_VERBOSE(msg)      opts->verbose ? fprintf(stdout, "%s%s%s\n", opts->color ? BOLD_GREEN  : "", msg, RESET) : fflush(NULL)
+#define MSG_WARNING(msg)      fprintf(stdout, "%s%s%s\n",                 opts->color ? BOLD_YELLOW : "", msg, RESET)
+#define MSG_ERROR(msg)        fprintf(stderr, "%s%s:%s:%i: %s%s\n",       opts->color ? BOLD_RED    : "", PRGNAME, BASEFILE, __LINE__, msg, RESET)
+#define MSG_ERROR_ERRNO(msg)  fprintf(stderr, "%s%s:%s:%i: %s (%s)%s\n",  opts->color ? BOLD_RED    : "", PRGNAME, BASEFILE, __LINE__, msg, strerror(errno), RESET)
+#define _(msg)                gettext(msg)
 
 /* Options definition */
 #define OUT_GTK               (1 << 0)
@@ -169,9 +170,6 @@ extern char    *binary_name, *new_version;
 
 
 /***************************** Defined in main.c *****************************/
-
-/* Print a formatted message */
-int message(char type, char *msg, char *basefile, int line);
 
 /* The improved asprintf:
  * - allocate an empty string if input string is null
