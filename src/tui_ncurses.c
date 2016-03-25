@@ -86,27 +86,16 @@ void start_tui_ncurses(Labels *data)
 		opts->color &= has_colors();
 	}
 
+	if(PORTABLE_BINARY && new_version != NULL)
+	{
+		print_new_version();
+		erase();
+	}
+
 	starty   = (LINES - info.height) / 2; /* Calculating for a center placement of the window */
 	startx   = (COLS  - info.width)  / 2;
 	win      = newwin(info.height, info.width, starty, startx);
 	refr.win = win;
-
-	if(PORTABLE_BINARY && new_version != NULL)
-	{
-		nodelay(stdscr, FALSE);
-		printw(_("A new version of %s is available!\n\n"), PRGNAME);
-		printw(_("Do you want to update %s to version %s after exit?\n"
-		"It will erase this binary file (%s) by the new version.\n\n"),
-		PRGNAME, new_version, binary_name);
-		printw(_("If you want to update, press 'u' key, or anything else to skip."), PRGNAME);
-		refresh();
-
-		ch = getch();
-		if(ch == 'u')
-			opts->update = true;
-		erase();
-		nodelay(stdscr, TRUE);
-	}
 
 	refresh();
 	main_win(win, info, data);
@@ -331,10 +320,34 @@ static void print_help()
 	printw(_("Use down/up key to change parameter in active tab (CPU and Caches tabs only).\n\n"));
 	printw(_("Press 'h' to see this help.\n"));
 	printw(_("Press 'q' to exit.\n"));
+	refresh();
 
 	getch();
 	nodelay(stdscr, TRUE);
 	timeout(opts->refr_time * 1000);
+}
+
+/* Ask for update when a new version is available (portable version only) */
+static void print_new_version()
+{
+	nodelay(stdscr, FALSE);
+
+	printw(_("A new version of %s is available!\n\n"), PRGNAME);
+	printw(_("Do you want to update %s to version %s after exit?\n"
+		"It will erase this binary file (%s) by the new version.\n\n"),
+		PRGNAME, new_version, binary_name);
+	printw(_("If you want to update, press 'u' key, or anything else to skip.\n"), PRGNAME);
+	refresh();
+
+	if(getch() == 'u')
+	{
+		opts->update = true;
+		printw(_("\n\n%s will be updated."), PRGNAME);
+		refresh();
+		sleep(1);
+	}
+
+	nodelay(stdscr, TRUE);
 }
 
 /* The main window (title, tabs, footer) */
