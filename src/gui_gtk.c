@@ -103,31 +103,23 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 void warning_window(GtkWidget *mainwindow)
 {
-	GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW(mainwindow),
-		GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL,
+	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
+		GTK_DIALOG_DESTROY_WITH_PARENT,
 		GTK_MESSAGE_WARNING,
 		GTK_BUTTONS_NONE,
-		"\n\t\t\t<span font_weight='heavy' font_size='x-large'>%s</span>\n\n%s",
-		_("WARNING"),
-		_("root privileges are required to work properly"));
+		_("Root privileges are required to work properly"));
 
-	gtk_container_set_border_width(GTK_CONTAINER(dialog), 5);
-	gtk_window_set_title(GTK_WINDOW(dialog), PRGNAME);
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+		_("Some informations will not be readable, some labels will be empty."));
 
-	if(system("pkexec --version > /dev/null"))
+	gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT, NULL);
+	if(command_exists("pkexec") && command_exists("cpu-x_polkit"))
+		gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, NULL);
+
+	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
 	{
-		gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Ignore"), GTK_RESPONSE_REJECT, NULL);
-		gtk_dialog_run(GTK_DIALOG(dialog));
-	}
-	else
-	{
-		gtk_dialog_add_buttons(GTK_DIALOG (dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, _("Ignore"), GTK_RESPONSE_REJECT, NULL);
-
-		if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
-		{
-			system("cpu-x_polkit &");
-			exit(EXIT_SUCCESS);
-		}
+		system("cpu-x_polkit &");
+		exit(EXIT_SUCCESS);
 	}
 
 	gtk_widget_destroy(dialog);
