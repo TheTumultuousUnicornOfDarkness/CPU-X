@@ -167,9 +167,21 @@ static int cpu_technology(Labels *data)
 		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
 		switch(data->cpu_model)
 		{
+			case 0:
+				if(data->cpu_ext_model == 0) return 180; // Willamette
+			case 1:
+				if(data->cpu_ext_model == 1) return 180; // Willamette
+			case 2:
+				if(data->cpu_ext_model == 2) return 130; // Northwood / Gallatin
+			case 3:
+				if(data->cpu_ext_model == 3) return 90;  // Prescott
+			case 4:
+				if(data->cpu_ext_model == 4) return 90;  // Prescott / Irwindale
 			case 5:
 				if(data->cpu_ext_model == 37) return 32; // Westmere
 				if(data->cpu_ext_model == 69) return 22; // Haswell
+			case 6:
+				if(data->cpu_ext_model == 6) return 65;  // Cedar Mill
 			case 7:
 				if(data->cpu_ext_model == 23) return 45;
 				if(data->cpu_ext_model == 71) return 14; // Broadwell
