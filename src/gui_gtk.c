@@ -262,6 +262,18 @@ void set_logos(GtkLabels *glab, Labels *data)
 #endif
 }
 
+char *get_id(const char *objectstr, char *type)
+{
+	static char *buff;
+	gchar **split;
+
+	split = g_strsplit(objectstr, "_", 2);
+	buff  = g_strconcat(split[0], "_", type, split[1], NULL);
+	g_strfreev(split);
+
+	return buff;
+}
+
 void get_labels(GtkBuilder *builder, GtkLabels *glab)
 {
 	int i;
@@ -280,37 +292,37 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
-		glab->gtktab_cpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[NAME][i]));
-		glab->gtktab_cpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcpu[VALUE][i]));
+		glab->gtktab_cpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcpu[i], "lab")));
+		glab->gtktab_cpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcpu[i], "val")));
 	}
 
 	/* Tab Caches */
 	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
-		glab->gtktab_caches[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[NAME][i]));
-		glab->gtktab_caches[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectcache[VALUE][i]));
+		glab->gtktab_caches[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcache[i], "lab")));
+		glab->gtktab_caches[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcache[i], "val")));
 	}
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 	{
-		glab->gtktab_motherboard[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[NAME][i]));
-		glab->gtktab_motherboard[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectmb[VALUE][i]));
+		glab->gtktab_motherboard[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectmb[i], "lab")));
+		glab->gtktab_motherboard[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectmb[i], "val")));
 	}
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < LASTMEMORY; i++)
 	{
-		glab->gtktab_memory[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectram[NAME][i]));
-		glab->gtktab_memory[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectram[VALUE][i]));
+		glab->gtktab_memory[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectram[i], "lab")));
+		glab->gtktab_memory[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectram[i], "val")));
 	}
 	glab->gridbanks = GTK_WIDGET(gtk_builder_get_object(builder, "banks_grid"));
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYSTEM; i++)
 	{
-		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[NAME][i]));
-		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys[VALUE][i]));
+		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "lab")));
+		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "val")));
 	}
 	glab->barused  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barused"));
 	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
@@ -326,8 +338,8 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	/* Tab Graphics */
 	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
 	{
-		glab->gtktab_graphics[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[NAME][i]));
-		glab->gtktab_graphics[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, objectgpu[VALUE][i]));
+		glab->gtktab_graphics[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "lab")));
+		glab->gtktab_graphics[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "val")));
 	}
 	glab->gridcards = GTK_WIDGET(gtk_builder_get_object(builder, "graphics_box"));
 }
