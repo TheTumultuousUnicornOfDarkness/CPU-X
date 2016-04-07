@@ -343,17 +343,17 @@ static int update_prg(void)
 
 	/* Find what archive we need to download */
 	if(HAS_GTK)
-		asprintf(&file, "%s_v%s_portable",       PRGNAME, newver);
+		asprintf(&file, "%s_v%s_portable",       PRGNAME, new_version);
 	else
-		asprintf(&file, "%s_v%s_portable_noGTK", PRGNAME, newver);
+		asprintf(&file, "%s_v%s_portable_noGTK", PRGNAME, new_version);
 
 	/* Download archive */
 	MSG_VERBOSE(_("Downloading new version..."));
 	opt = opts->verbose ? strdup("") : strdup("s");
 	asprintf(&tmp, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz ",
-	         opt, PRGAUTH, PRGNAME, newver, file, file);
+	         opt, PRGAUTH, PRGNAME, new_version, file, file);
 	system(tmp);
-	free(newver);
+	free(new_version);
 
 	/* Extract archive */
 	MSG_VERBOSE(_("Extracting new version..."));
@@ -365,7 +365,7 @@ static int update_prg(void)
 	/* Rename new binary */
 	MSG_VERBOSE(_("Applying new version..."));
 	asprintf(&tmp, "%s.%s", file, OS);
-	err = rename(tmp, executable);
+	err = rename(tmp, binary_name);
 	if(err)
 		MSG_VERBOSE(_("Error when updating."));
 	else
