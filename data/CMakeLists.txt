@@ -19,7 +19,8 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 	# Install UIs
 	install(FILES
 		cpux-gtk-3.8.ui
-		cpux-gtk-3.14.ui
+		cpux-gtk-3.16.ui
+		cpu-x-theme.css
 		DESTINATION ${CPU_X_DATA_DIRECTORY}/
 	)
 

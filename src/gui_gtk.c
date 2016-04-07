@@ -51,12 +51,12 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 #if PORTABLE_BINARY
 	g_resources_register(cpu_x_get_resource());
 
-	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpux-gtk-3.14.ui", NULL))
+	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpux-gtk-3.16.ui", NULL))
 		goto open_ok;
 	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpux-gtk-3.8.ui", NULL))
 		goto open_ok;
 #else
-	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.14.ui"), NULL))
+	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.16.ui"), NULL))
 		goto open_ok;
 	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
 		goto open_ok;
@@ -86,7 +86,8 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(glab.activecore, "changed", G_CALLBACK(change_activecore), data);
 	g_signal_connect(glab.activetest, "changed", G_CALLBACK(change_activetest), data);
-	g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
+	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
+		g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
 	g_signal_connect(G_OBJECT(glab.barused),  "draw", G_CALLBACK(fill_frame), data); /* Level bars */
@@ -202,22 +203,39 @@ void change_activetest(GtkComboBox *box, Labels *data)
 
 void set_colors(GtkLabels *glab)
 {
-	GdkRGBA window_colors;
+	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
+	{
+		GtkCssProvider *provider;
 
-	window_colors.red	= 0.3;
-	window_colors.green	= 0.6;
-	window_colors.blue	= 0.9;
-	window_colors.alpha	= 0.95;
-	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
-	gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(glab->butcol), &window_colors);
+		provider = gtk_css_provider_new();
+		gtk_style_context_add_provider(gtk_widget_get_style_context(glab->mainwindow), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+		gtk_css_provider_load_from_path(provider, data_path("cpu-x-theme.css"), NULL);
+
+		g_object_unref(provider);
+	}
+#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
+	else
+	{
+		GdkRGBA window_colors;
+
+		window_colors.red	= 0.3;
+		window_colors.green	= 0.6;
+		window_colors.blue	= 0.9;
+		window_colors.alpha	= 0.95;
+		gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
+		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(glab->butcol), &window_colors);
+	}
+#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
 }
 
 void change_color(GtkWidget *button, GtkLabels *glab)
 {
+#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
 	GdkRGBA color;
 
 	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(button), &color);
 	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &color);
+#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
 }
 
 void set_logos(GtkLabels *glab, Labels *data)
