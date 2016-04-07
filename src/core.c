@@ -182,8 +182,9 @@ static int cpu_technology(Labels *data)
 				if(data->cpu_ext_model == 69) return 22; // Haswell
 			case 6:
 				if(data->cpu_ext_model == 6) return 65;  // P4 Cedar Mill / PD Presler
+				if(data->cpu_ext_model == 22) return 65; // C2 Conroe-L
 			case 7:
-				if(data->cpu_ext_model == 23) return 45;
+				if(data->cpu_ext_model == 23) return 45; // C2 Wolfdale / Yorkfield / Penryn
 				if(data->cpu_ext_model == 71) return 14; // Broadwell
 			case 10:
 				if(data->cpu_ext_model == 26 || data->cpu_ext_model == 30) return 45; // Nehalem
@@ -199,6 +200,7 @@ static int cpu_technology(Labels *data)
 				if(data->cpu_ext_model == 62) return 22; // Ivy Bridge-E
 				if(data->cpu_ext_model == 94) return 14; // Skylake
 			case 15:
+				if(data->cpu_ext_model == 15) return 65; // C2 Conroe / Allendale / Kentsfield / Merom
 				if(data->cpu_ext_model == 63) return 22; // Haswell-E
 		}
 	}
