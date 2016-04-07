@@ -308,7 +308,7 @@ static bool check_new_version(void)
 	}
 
 	/* Retrieve the last tag on Git repo */
-	xopen_to_str("curl -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
+	xopen_to_str("curl --max-time 1 -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
 	             &new_version, 'p');
 
 	/* Compare Git tag with running version */
