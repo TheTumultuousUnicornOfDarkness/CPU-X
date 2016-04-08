@@ -197,6 +197,7 @@ static int cpu_technology(Labels *data)
 				if(data->cpu_ext_model == 45) return 32; // Sandy Bridge-E
 				if(data->cpu_ext_model == 61) return 14; // Broadwell
 			case 14:
+				if(data->cpu_ext_model == 14) return 65; // Yonah (Core Solo)
 				if(data->cpu_ext_model == 62) return 22; // Ivy Bridge-E
 				if(data->cpu_ext_model == 94) return 14; // Skylake
 			case 15:
