@@ -768,6 +768,8 @@ int iasprintf(char **str, const char *fmt, ...)
 				case 'l':
 				case 'L':
 					break;
+				case 'x':
+				case 'X':
 				case 'd':
 				case 'i':
 					is_format = false;
