@@ -284,11 +284,11 @@ static int call_libcpuid_static(Labels *data)
 	/* Basically fill CPU tab */
 	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
 	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
-	iasprintf(&data->tab_cpu[VALUE][FAMILY],        "%d", datanr.family);
-	iasprintf(&data->tab_cpu[VALUE][EXTFAMILY],     "%d", datanr.ext_family);
-	iasprintf(&data->tab_cpu[VALUE][MODEL],         "%d", datanr.model);
-	iasprintf(&data->tab_cpu[VALUE][EXTMODEL],      "%d", datanr.ext_model);
-	iasprintf(&data->tab_cpu[VALUE][STEPPING],      "%d", datanr.stepping);
+	asprintf(&data->tab_cpu[VALUE][FAMILY],         "%X", datanr.family);
+	asprintf(&data->tab_cpu[VALUE][EXTFAMILY],      "%X", datanr.ext_family);
+	asprintf(&data->tab_cpu[VALUE][MODEL],          "%X", datanr.model);
+	asprintf(&data->tab_cpu[VALUE][EXTMODEL],       "%X", datanr.ext_model);
+	asprintf(&data->tab_cpu[VALUE][STEPPING],       "%X", datanr.stepping);
 	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
 	iasprintf(&data->tab_cpu[VALUE][CORES],         "%d", datanr.num_cores);
 	iasprintf(&data->tab_cpu[VALUE][THREADS],       "%d", datanr.num_logical_cpus);
