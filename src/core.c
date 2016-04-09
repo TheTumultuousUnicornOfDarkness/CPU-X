@@ -159,71 +159,81 @@ int bandwidth_last_test(void)
 /* Get CPU technology, in nanometre (nm) */
 static int cpu_technology(Labels *data)
 {
+	int i = -1;
 	char *msg;
+	bool found = false;
+	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor;
 
 	MSG_VERBOSE(_("Finding CPU technology"));
-	if(data->cpu_vendor_id == VENDOR_INTEL)
+	/* Intel CPUs */
+	struct Technology intel[] =
 	{
 		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
-		switch(data->cpu_model)
-		{
-			case 0:
-				if(data->cpu_ext_model == 0) return 180; // P4 Willamette
-			case 1:
-				if(data->cpu_ext_model == 1) return 180; // P4 Willamette
-			case 2:
-				if(data->cpu_ext_model == 2) return 130; // P4 Northwood / Gallatin
-			case 3:
-				if(data->cpu_ext_model == 3) return 90;  // P4 Prescott
-			case 4:
-				if(data->cpu_ext_model == 4) return 90;  // P4 Prescott/Irwindale / PD Smithfield
-			case 5:
-				if(data->cpu_ext_model == 37) return 32; // Westmere
-				if(data->cpu_ext_model == 69) return 22; // Haswell
-			case 6:
-				if(data->cpu_ext_model == 6) return 65;  // P4 Cedar Mill / PD Presler
-				if(data->cpu_ext_model == 22) return 65; // C2 Conroe-L
-			case 7:
-				if(data->cpu_ext_model == 23) return 45; // C2 Wolfdale / Yorkfield / Penryn
-				if(data->cpu_ext_model == 71) return 14; // Broadwell
-			case 10:
-				if(data->cpu_ext_model == 26 || data->cpu_ext_model == 30) return 45; // Nehalem
-				if(data->cpu_ext_model == 42) return 32; // Sandy Bridge
-				if(data->cpu_ext_model == 58) return 22; // Ivy Bridge
-			case 12:
-				if(data->cpu_ext_model == 44) return 32; // Westmere
-				if(data->cpu_ext_model == 60) return 22; // Haswell
-			case 13:
-				if(data->cpu_ext_model == 45) return 32; // Sandy Bridge-E
-				if(data->cpu_ext_model == 61) return 14; // Broadwell
-			case 14:
-				if(data->cpu_ext_model == 14) return 65; // Yonah (Core Solo)
-				if(data->cpu_ext_model == 62) return 22; // Ivy Bridge-E
-				if(data->cpu_ext_model == 94) return 14; // Skylake
-			case 15:
-				if(data->cpu_ext_model == 15) return 65; // C2 Conroe / Allendale / Kentsfield / Merom
-				if(data->cpu_ext_model == 63) return 22; // Haswell-E
-		}
-	}
-	else if(data->cpu_vendor_id == VENDOR_AMD)
+		//Model        E. Model     E. Family   Process
+		{  0,           0,          -1,         180 }, // P4 Willamette
+		{  1,           1,          -1,         180 }, // P4 Willamette
+		{  2,           2,          -1,         130 }, // P4 Northwood / Gallatin
+		{  3,           3,          -1,          90 }, // P4 Prescott
+		{  4,           4,          -1,          90 }, // P4 Prescott/Irwindale / PD Smithfield
+		{  5,          37,          -1,          32 }, // Westmere
+		{  5,          69,          -1,          22 }, // Haswell
+		{  6,           6,          -1,          65 }, // P4 Cedar Mill / PD Presler
+		{  6,          22,          -1,          65 }, // C2 Conroe-L
+		{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
+		{  7,          71,          -1,          14 }, // Broadwell
+		{ 10,          26,          -1,          45 }, // Nehalem
+		{ 10,          30,          -1,          45 }, // Nehalem
+		{ 10,          42,          -1,          32 }, // Sandy Bridge
+		{ 10,          58,          -1,          22 }, // Ivy Bridge
+		{ 12,          44,          -1,          32 }, // Westmere
+		{ 12,          60,          -1,          22 }, // Haswell
+		{ 13,          45,          -1,          32 }, // Sandy Bridge-E
+		{ 13,          61,          -1,          14 }, // Broadwell
+		{ 14,          14,          -1,          65 }, // Yonah (Core Solo)
+		{ 14,          62,          -1,          22 }, // Ivy Bridge-E
+		{ 14,          94,          -1,          14 }, // Skylake
+		{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
+		{ 15,          63,          -1,          22 }, // Haswell-E
+		{ -1,          -1,          -1,           0 }
+	};
+
+	/* AMD CPUs */
+	struct Technology amd[] =
 	{
 		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_amd.c */
-		switch(data->cpu_model)
-		{
-			case 0:
-				if(data->cpu_ext_model  == 0)  return 28; // Jaguar (Kabini)
-				if(data->cpu_ext_model  == 10) return 32; // Piledriver (Trinity)
-				if(data->cpu_ext_family == 21) return 28; // Steamroller (Kaveri)
-				if(data->cpu_ext_family == 22) return 28; // Puma (Mullins)
-			case 1:
-				if(data->cpu_ext_model  == 1)  return 32; // K10 (Llano)
-				if(data->cpu_ext_family == 20) return 40; // Bobcat
-				if(data->cpu_ext_model  == 60) return 28; // Excavator (Carrizo)
-			case 2:
-				if(data->cpu_ext_family == 20) return 40; // Bobcat
-			case 3:
-				if(data->cpu_ext_model  == 13) return 32; // Piledriver (Richland)
-		}
+		//Model        E. Model     E. Family   Process
+		{  0,           0,          -1,          28 }, // Jaguar (Kabini)
+		{  0,          10,          -1,          32 }, // Piledriver (Trinity)
+		{  0,          -1,          21,          28 }, // Steamroller (Kaveri)
+		{  0,          -1,          22,          28 }, // Puma (Mullins)
+		{  1,           1,          -1,          32 }, // K10 (Llano)
+		{  1,          60,          -1,          28 }, // Excavator (Carrizo)
+		{  1,          -1,          20,          40 }, // Bobcat
+		{  2,          -1,          20,          40 }, // Bobcat
+		{  3,          13,          -1,          32 }, // Piledriver (Richland)
+		{ -1,          -1,          -1,           0 }
+	};
+
+	switch(data->cpu_vendor_id)
+	{
+		case VENDOR_INTEL:
+			vendor = intel;
+			break;
+		case VENDOR_AMD:
+			vendor = amd;
+			break;
+		default:
+			break;
+	}
+
+	while(vendor[++i].cpu_model != -1)
+	{
+		found = vendor[i].cpu_model == data->cpu_model;
+		found = found && (vendor[i].cpu_ext_model  < 0 || vendor[i].cpu_ext_model  == data->cpu_ext_model);
+		found = found && (vendor[i].cpu_ext_family < 0 || vendor[i].cpu_ext_family == data->cpu_ext_family);
+
+		if(found)
+			return vendor[i].process;
 	}
 
 	asprintf(&msg, _("your CPU does not belong in database\nCPU: %s, model: %i, ext. model: %i, ext. family: %i"),
