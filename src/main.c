@@ -423,16 +423,13 @@ static const struct AvailableOpts
 static void help(FILE *out, char *argv[], int exit_status)
 {
 	int i = -1;
-	char *msgbuf;
 
 	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
 	fprintf(out, _("Available OPTION:\n"));
 	while(o[++i].long_opt != NULL)
 	{
-		while(!o[i].has_mod)
-			i++;
-		asprintf(&msgbuf, _(o[i].description));
-		fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, msgbuf);
+		if(o[i].has_mod)
+			fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, _(o[i].description));
 	}
 
 	exit(exit_status);
