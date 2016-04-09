@@ -34,6 +34,8 @@
 # include "gtk-resources.h"
 #endif
 
+PangoLayout *layout = NULL;
+
 
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
@@ -208,7 +210,7 @@ void set_colors(GtkLabels *glab)
 		GtkCssProvider *provider;
 
 		provider = gtk_css_provider_new();
-		gtk_style_context_add_provider(gtk_widget_get_style_context(glab->mainwindow), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 		gtk_css_provider_load_from_path(provider, data_path("cpu-x-theme.css"), NULL);
 
 		g_object_unref(provider);
@@ -342,6 +344,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "lab")));
 		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "val")));
 	}
+	layout = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][KERNEL]));
 	glab->barused  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barused"));
 	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
 	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
@@ -438,8 +441,6 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 	char text[MAXSTR];
 	const char *widget_name;
 	cairo_pattern_t *pat;
-	GSettings *setting = g_settings_new("org.gnome.desktop.interface");
-	gchar *font = g_settings_get_string(setting, "font-name");
 
 	width = gtk_widget_get_allocated_width(widget);
 	height = gtk_widget_get_allocated_height(widget);
@@ -490,11 +491,10 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 	cairo_fill(cr);
 	cairo_pattern_destroy(pat);
 
-	cairo_set_source_rgb(cr, 0.0, 0.0, 0.5); /* Print percentage */
-	cairo_select_font_face(cr, font, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-	cairo_move_to(cr, (width / 2) - 20, height - 6);
-	cairo_set_font_size(cr, 13);
-	cairo_show_text(cr, text);
+	cairo_set_source_rgb(cr, 0.0, 0.0, 0.8081); /* Print percentage */
+	cairo_move_to(cr, (width / 2) - 20, 0);
+	pango_layout_set_text(layout, text, -1);
+	pango_cairo_show_layout(cr, layout);
 	cairo_fill(cr);
 }
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
