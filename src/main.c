@@ -420,7 +420,7 @@ static const struct AvailableOpts
 #undef N_
 
 /* This is help display with --help option */
-static void help(FILE *out, char *argv[], int exit_status)
+static void help(FILE *out, char *argv[])
 {
 	int i = -1;
 
@@ -431,8 +431,6 @@ static void help(FILE *out, char *argv[], int exit_status)
 		if(o[i].has_mod)
 			fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, _(o[i].description));
 	}
-
-	exit(exit_status);
 }
 
 /* This is the --version option */
@@ -476,8 +474,6 @@ static void version(void)
 		}
 	}
 	printf(_("=> %i/%i dependencies are enabled.\n"), count, i - 1);
-
-	exit(EXIT_SUCCESS);
 }
 
 /* Parse options given in arg */
@@ -534,10 +530,12 @@ static void menu(int argc, char *argv[])
 				break;
 			case 'D':
 				opts->output_type = OUT_DMIDECODE;
-				break;
+				if(HAS_DMIDECODE)
+					exit(run_dmidecode());
 			case 'B':
 				opts->output_type = OUT_BANDWIDTH;
-				break;
+				if(HAS_BANDWIDTH)
+					exit(run_bandwidth());
 			case 'o':
 				opts->color = false;
 				break;
@@ -548,12 +546,15 @@ static void menu(int argc, char *argv[])
 				opts->update = true;
 				break;
 			case 'h':
-				help(stdout, argv, EXIT_SUCCESS);
+				help(stdout, argv);
+				exit(EXIT_SUCCESS);
 			case 'V':
 				version();
+				exit(EXIT_SUCCESS);
 			case '?':
 			default:
-				help(stderr, argv, EXIT_FAILURE);
+				help(stderr, argv);
+				exit(EXIT_FAILURE);
 		}
 	}
 }
@@ -685,13 +686,6 @@ int main(int argc, char *argv[])
 
 	if(getuid())
 		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
-
-	/* If option --dmidecode is passed, start dmidecode and exit */
-	if(HAS_DMIDECODE && (opts->output_type & OUT_DMIDECODE))
-		return run_dmidecode();
-
-	if(HAS_BANDWIDTH && (opts->output_type & OUT_BANDWIDTH))
-		return bandwidth(&data);
 
 	labels_setname(&data);
 	fill_labels(&data);

@@ -133,24 +133,38 @@ int run_dmidecode(void)
 }
 #endif /* HAS_DMIDECODE */
 
+#if HAS_BANDWIDTH
+/* Call Bandwidth through CPU-X but do nothing else */
+int run_bandwidth(void)
+{
+	return bandwidth(NULL);
+}
+
 /* Get string for selected bandwidth test */
 char *bandwidth_test_name(unsigned int test)
 {
 	static char *name = NULL;
-
-	if(HAS_BANDWIDTH)
-		asprintf(&name, "#%2i: %s", test, tests[test].name);
-	else
-		asprintf(&name, " ");
-
+	asprintf(&name, "#%2i: %s", test, tests[test].name);
 	return name;
 }
 
 /* Get bandwidth count tests */
 int bandwidth_last_test(void)
 {
-	return HAS_BANDWIDTH ? LASTTEST : 0;
+	return LASTTEST;
 }
+
+#else
+char *bandwidth_test_name(unsigned int test)
+{
+	return '\0';
+}
+
+int bandwidth_last_test(void)
+{
+	return 0;
+}
+#endif /* HAS_BANDWIDTH */
 
 
 /************************* Private functions *************************/

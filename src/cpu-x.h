@@ -201,6 +201,9 @@ int do_refresh(Labels *data, enum EnTabNumber page);
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void);
 
+/* Call Bandwidth through CPU-X but do nothing else */
+int run_bandwidth(void);
+
 /* Get string for selected bandwidth test */
 char *bandwidth_test_name(unsigned int test);
 

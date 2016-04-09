@@ -452,7 +452,8 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display active Test in Caches tab */
 static void print_activetest(WINDOW *win)
 {
-	mvwprintwc(win, LINE_16, 12, DEFAULT_COLOR, "%s", bandwidth_test_name(opts->bw_test));
+	if(HAS_BANDWIDTH)
+		mvwprintwc(win, LINE_16, 12, DEFAULT_COLOR, "%s", bandwidth_test_name(opts->bw_test));
 }
 
 /* Caches tab */
