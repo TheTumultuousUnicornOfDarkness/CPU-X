@@ -64,7 +64,7 @@ static const Colors color[] =
 void start_tui_ncurses(Labels *data)
 {
 	int startx, starty, ch = 0;
-	const SizeInfo info = { .height = LINE_COUNT, .width = 70, .start = 1, .tb = 2, .tm = 22, .te = 38 };
+	const SizeInfo info = { .height = LINE_COUNT, .width = 70, .start = 1, .tb = 2, .tm = 26, .te = 48 };
 	NThrd refr = { .data = data, .info = info };
 	WINDOW *win;
 
@@ -275,11 +275,11 @@ static void nrefresh(NThrd *refr)
 	switch(page)
 	{
 		case NO_CPU:
-			mvwprintw2c(win, LINE_4,  info.tm, "%13s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
+			mvwprintw2c(win, LINE_4,  info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
 			mvwprintw2c(win, LINE_6,  info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
-			mvwprintw2c(win, LINE_11, info.tb, "%13s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
-			mvwprintw2c(win, LINE_12, info.tb, "%13s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
-			mvwprintw2c(win, LINE_14, info.tb, "%13s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
+			mvwprintw2c(win, LINE_11, info.tb, "%14s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
+			mvwprintw2c(win, LINE_12, info.tb, "%14s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
+			mvwprintw2c(win, LINE_14, info.tb, "%14s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
 			mvwprintw2c(win, LINE_3,  info.tb, "%13s: %s", data->tab_caches[NAME][L1SPEED],  data->tab_caches[VALUE][L1SPEED]);
@@ -395,10 +395,8 @@ static void print_activecore(WINDOW *win)
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line, middle;
-
-	middle = (strlen(data->tab_cpu[VALUE][MULTIPLIER]) == 0) ? 15 + strlen(data->tab_cpu[VALUE][CORESPEED]) + 4 :
-	                                                           15 + strlen(data->tab_cpu[VALUE][MULTIPLIER]) + 4;
+	int i, line;
+	const int middle = info.width - 38;
 
 	/* Processor frame */
 	frame(win, LINE_0, info.start , LINE_9, info.width - 1, data->objects[FRAMPROCESSOR]);
@@ -408,7 +406,7 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 		switch(i)
 		{
 			case VOLTAGE:
-				mvwprintw2c(win, LINE_4, info.tm, "%13s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
+				mvwprintw2c(win, LINE_4, info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
 				break;
 			case MODEL:
 				mvwprintw2c(win, LINE_6, info.tm, "%11s: %s", data->tab_cpu[NAME][MODEL],       data->tab_cpu[VALUE][MODEL]);
@@ -423,7 +421,7 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 				mvwprintw2c(win, LINE_7, info.te, "%9s: %s",  data->tab_cpu[NAME][STEPPING],    data->tab_cpu[VALUE][STEPPING]);
 				break;
 			default:
-				mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_cpu[NAME][i],           data->tab_cpu[VALUE][i]);
+				mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][i],           data->tab_cpu[VALUE][i]);
 		}
 	}
 
@@ -431,13 +429,13 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 	frame(win, LINE_10, info.start, LINE_15, middle, data->objects[FRAMCLOCKS]);
 	line = LINE_11;
 	for(i = CORESPEED; i < LEVEL1D; i++)
-		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
+		mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Cache frame */
 	frame(win, LINE_10, middle, LINE_15, info.width - 1, data->objects[FRAMCACHE]);
 	line = LINE_11;
 	for(i = LEVEL1D; i < SOCKETS; i++)
-		mvwprintw2c(win, line++, middle + 1, "%13s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
+		mvwprintw2c(win, line++, middle + 1, "%12s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Last frame */
 	frame(win, LINE_16, info.start, LINE_18, info.width - 1, "");
@@ -552,9 +550,9 @@ static void ntab_system(WINDOW *win, const SizeInfo info, Labels *data)
 /* Draw an usage bar in System tab */
 static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 {
-	int i, line, color, bar_count;
+	int i, line, color, bar_count, adjust = 0;
+	static int before = 0;
 	const int val = 39, start = 46, end = info.width - 3, size = end - start;
-	static double before;
 	double percent;
 
 	line      = bar - USED + LINE_8;
@@ -564,7 +562,11 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 	            strtol(strstr(data->tab_system[VALUE][bar], "/ ") + 2, NULL, 10);
 	percent   = (isnan(percent)) ? 0.00 : percent;
 	bar_count = (int) roundf(percent * (size - 1));
-	bar_count = (0.0 < percent && bar_count < 1) ? 1 : bar_count;
+	if(0.0 < percent && bar_count < 1)
+	{
+		bar_count = 1;
+		adjust    = 1;
+	}
 
 	/* Write percentage + delimiters */
 	mvwprintwc(win, line, val,   LABEL_VALUE_COLOR, "%.2f%%", percent * 100);
@@ -579,12 +581,12 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 	for(i = 0; i < bar_count; i++)
 	{
 		if(opts->color)
-			mvwprintwc(win, line, start + 1 + before * size + i, color, " ");
+			mvwprintwc(win, line, start + 1 + before + i, color, " ");
 		else
-			mvwprintw(win,  line, start + 1 + before * size + i, "|");
+			mvwprintw(win,  line, start + 1 + before + i, "|");
 	}
 
-	before += percent;
+	before += bar_count - adjust;
 }
 
 /* Graphics tab */
