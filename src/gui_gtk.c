@@ -51,9 +51,9 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 #if PORTABLE_BINARY
 	g_resources_register(cpu_x_get_resource());
 
-	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpu-x-gtk-3.16.ui", NULL))
+	if(gtk_builder_add_from_resource(builder, GRESOURCE_UI("cpu-x-gtk-3.16.ui"), NULL))
 		goto open_ok;
-	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpu-x-gtk-3.8.ui", NULL))
+	if(gtk_builder_add_from_resource(builder, GRESOURCE_UI("cpu-x-gtk-3.8.ui"), NULL))
 		goto open_ok;
 #else
 	if(gtk_builder_add_from_file(builder, data_path("cpu-x-gtk-3.16.ui"), NULL))
@@ -215,7 +215,11 @@ void set_colors(GtkLabels *glab)
 
 		provider = gtk_css_provider_new();
 		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+#if PORTABLE_BINARY
+		gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
+#else
 		gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
+#endif
 
 		g_object_unref(provider);
 	}
@@ -253,18 +257,18 @@ void set_logos(GtkLabels *glab, Labels *data)
 
 #if PORTABLE_BINARY
 	/* CPU-X logo in About tab */
-	prg_pixbuf = gdk_pixbuf_new_from_resource_at_scale(RESOURCE_PICTURES "CPU-X.png", prg_size, prg_size, TRUE, NULL);
+	prg_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
 
 	/* CPU logo in CPU tab */
-	iasprintf(&name, RESOURCE_PICTURES "%s.png", data->tab_cpu[VALUE][VENDOR]);
+	iasprintf(&name, GRESOURCE_LOGOS("%s.png"), data->tab_cpu[VALUE][VENDOR]);
 	cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(name, width, height, TRUE, &error);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 
 	/* Unknown CPU logo */
 	if(error != NULL)
 	{
-		cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(RESOURCE_PICTURES UNKNOWN_VENDOR, width, height, TRUE, NULL);
+		cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("Unknown.png"), width, height, TRUE, NULL);
 		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 	}
 #else

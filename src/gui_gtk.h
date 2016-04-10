@@ -29,8 +29,9 @@
 #include <cairo.h>
 #include <glib.h>
 
-#define RESOURCE_PICTURES "/cpu-x/pictures/"
-#define UNKNOWN_VENDOR    "Unknown.png"
+#define GRESOURCE_UI(file)    g_strconcat("/cpu-x/ui/",    file, NULL)
+#define GRESOURCE_CSS(file)   g_strconcat("/cpu-x/css/",   file, NULL)
+#define GRESOURCE_LOGOS(file) g_strconcat("/cpu-x/logos/", file, NULL)
 
 typedef struct
 {
