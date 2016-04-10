@@ -354,7 +354,7 @@ static int call_libcpuid_static(Labels *data)
 		iasprintf(&data->tab_caches[VALUE][L3DESCRIPTOR], fmt, datanr.l3_assoc, datanr.l3_cacheline);
 	}
 
-	if(datanr.num_cores > 0) /* Avoid divide by 0 */
+	if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
 		iasprintf(&data->tab_cpu[VALUE][SOCKETS], "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
 	/* Fill CPU Intructions label */
@@ -381,14 +381,12 @@ static int call_libcpuid_static(Labels *data)
 	};
 	for(i = 0; intructions[i].flag != NUM_CPU_FEATURES; i++)
 	{
-		if(datanr.flags[intructions[i].flag] && data->tab_cpu[VALUE][INSTRUCTIONS] == NULL)
-			iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
-		else if(datanr.flags[intructions[i].flag])
+		if(datanr.flags[intructions[i].flag])
 			iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s%s", data->tab_cpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
 	}
 
 	/* Add string "HT" in CPU Intructions label (if enabled) */
-	if(strcmp(data->tab_cpu[VALUE][CORES], data->tab_cpu[VALUE][THREADS]))
+	if(datanr.num_cores < datanr.num_logical_cpus)
 		iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s, HT", data->tab_cpu[VALUE][INSTRUCTIONS]);
 
 	/* Add string "64-bit" in CPU Intructions label (if supported) */
