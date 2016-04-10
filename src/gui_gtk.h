@@ -118,7 +118,7 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab);
 void set_labels(GtkLabels *glab, Labels *data);
 
 /* Set Memory bar in tab System */
-void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data);
+void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr);
 
 /* Get path for data files thanks to GLib */
 char *data_path(char *file);

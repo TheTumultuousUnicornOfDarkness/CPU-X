@@ -34,8 +34,6 @@
 # include "gtk-resources.h"
 #endif
 
-PangoLayout *layout = NULL;
-
 
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
@@ -92,11 +90,11 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-	g_signal_connect(G_OBJECT(glab.barused),  "draw", G_CALLBACK(fill_frame), data); /* Level bars */
-	g_signal_connect(G_OBJECT(glab.barbuff),  "draw", G_CALLBACK(fill_frame), data);
-	g_signal_connect(G_OBJECT(glab.barcache), "draw", G_CALLBACK(fill_frame), data);
-	g_signal_connect(G_OBJECT(glab.barfree),  "draw", G_CALLBACK(fill_frame), data);
-	g_signal_connect(G_OBJECT(glab.barswap),  "draw", G_CALLBACK(fill_frame), data);
+	g_signal_connect(G_OBJECT(glab.barused),  "draw", G_CALLBACK(fill_frame), &refr); /* Level bars */
+	g_signal_connect(G_OBJECT(glab.barbuff),  "draw", G_CALLBACK(fill_frame), &refr);
+	g_signal_connect(G_OBJECT(glab.barcache), "draw", G_CALLBACK(fill_frame), &refr);
+	g_signal_connect(G_OBJECT(glab.barfree),  "draw", G_CALLBACK(fill_frame), &refr);
+	g_signal_connect(G_OBJECT(glab.barswap),  "draw", G_CALLBACK(fill_frame), &refr);
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
 	set_colors(&glab);
@@ -350,7 +348,6 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "lab")));
 		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "val")));
 	}
-	layout = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][KERNEL]));
 	glab->barused  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barused"));
 	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
 	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
@@ -439,19 +436,23 @@ void set_labels(GtkLabels *glab, Labels *data)
 }
 
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
+void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 {
 	int i = USED, n;
 	guint width, height;
 	double before = 0, percent;
-	char text[MAXSTR];
 	const char *widget_name;
 	cairo_pattern_t *pat;
+	PangoLayout *reflayout, *newlayout;
+	Labels *(data) = refr->data;
+	GtkLabels *(glab) = refr->glab;
 
 	width = gtk_widget_get_allocated_width(widget);
 	height = gtk_widget_get_allocated_height(widget);
 	widget_name = gtk_widget_get_name(widget);
 	n = atoi(widget_name);
+	reflayout = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][n]));
+	newlayout = pango_layout_copy(reflayout);
 
 	while(i < n) /* Get value to start */
 	{
@@ -465,7 +466,6 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 	if(isnan(percent))
 		percent = 0.00;
 
-	snprintf(text, MAXSTR, "%.2f%%", percent); /* Percentage in level bar */
 	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
 
 	switch(n) /* Set differents level bar color */
@@ -498,10 +498,11 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, Labels *data)
 	cairo_pattern_destroy(pat);
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.8081); /* Print percentage */
-	cairo_move_to(cr, (width / 2) - 20, 0);
-	pango_layout_set_text(layout, text, -1);
-	pango_cairo_show_layout(cr, layout);
+	cairo_move_to(cr, -40, 0);
+	pango_layout_set_text(newlayout, g_strdup_printf("%.2f%%", percent), -1);
+	pango_cairo_show_layout(cr, newlayout);
 	cairo_fill(cr);
+	g_object_unref(newlayout);
 }
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
