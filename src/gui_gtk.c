@@ -207,11 +207,17 @@ void set_colors(GtkLabels *glab)
 {
 	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
 	{
+		char *filename;
 		GtkCssProvider *provider;
+
+		if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
+			filename = g_strdup("cpu-x-gtk-3.20.css");
+		else // GTK 3.16 or 3.18
+			filename = g_strdup("cpu-x-gtk-3.16.css");
 
 		provider = gtk_css_provider_new();
 		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-		gtk_css_provider_load_from_path(provider, data_path("cpu-x-gtk-3.16.css"), NULL);
+		gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
 
 		g_object_unref(provider);
 	}

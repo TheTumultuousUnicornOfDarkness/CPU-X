@@ -21,6 +21,7 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 		cpu-x-gtk-3.8.ui
 		cpu-x-gtk-3.16.ui
 		cpu-x-gtk-3.16.css
+		cpu-x-gtk-3.20.css
 		DESTINATION ${CPU_X_DATA_DIRECTORY}/
 	)
 
