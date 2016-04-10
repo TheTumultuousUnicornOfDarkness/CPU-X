@@ -53,14 +53,14 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 #if PORTABLE_BINARY
 	g_resources_register(cpu_x_get_resource());
 
-	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpux-gtk-3.16.ui", NULL))
+	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpu-x-gtk-3.16.ui", NULL))
 		goto open_ok;
-	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpux-gtk-3.8.ui", NULL))
+	if(gtk_builder_add_from_resource(builder, "/cpu-x/ui/cpu-x-gtk-3.8.ui", NULL))
 		goto open_ok;
 #else
-	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.16.ui"), NULL))
+	if(gtk_builder_add_from_file(builder, data_path("cpu-x-gtk-3.16.ui"), NULL))
 		goto open_ok;
-	if(gtk_builder_add_from_file(builder, data_path("cpux-gtk-3.8.ui"), NULL))
+	if(gtk_builder_add_from_file(builder, data_path("cpu-x-gtk-3.8.ui"), NULL))
 		goto open_ok;
 #endif
 	MSG_ERROR_ERRNO(_("Import UI in GtkBuilder failed"));
@@ -211,7 +211,7 @@ void set_colors(GtkLabels *glab)
 
 		provider = gtk_css_provider_new();
 		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-		gtk_css_provider_load_from_path(provider, data_path("cpu-x-theme.css"), NULL);
+		gtk_css_provider_load_from_path(provider, data_path("cpu-x-gtk-3.16.css"), NULL);
 
 		g_object_unref(provider);
 	}
