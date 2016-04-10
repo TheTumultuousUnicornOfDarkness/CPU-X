@@ -88,41 +88,47 @@ typedef struct
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
-/* Show a warning if launched as regulat user */
-void warning_window(GtkWidget *mainwindow);
+/* Print a window which allows to restart CPU-X as root */
+static void warning_window(GtkWidget *mainwindow);
 
-/* Ask for update when a new version is available (portable version only) */
-void new_version_window(GtkWidget *mainwindow);
+/* In portable version, inform when a new version is available and ask for update */
+static void new_version_window(GtkWidget *mainwindow);
 
-/* Refresh non-static values */
-gboolean grefresh(GThrd *refr);
+/* Refresh dynamic values */
+static gboolean grefresh(GThrd *refr);
 
-/* Set default background color in GUI */
-void set_colors(GtkLabels *glab);
+/* Event in CPU tab when Core number is changed */
+static void change_activecore(GtkComboBox *box, Labels *data);
 
-/* Change active Core in CPU tab */
-void change_activecore(GtkComboBox *box, Labels *data);
+/* Event in Caches tab when Test number is changed */
+static void change_activetest(GtkComboBox *box, Labels *data);
 
-/* Change active Test in Caches tab */
-void change_activetest(GtkComboBox *box, Labels *data);
+/* Get label ID ('type' must be "lab" or "val") */
+static char *get_id(const char *objectstr, char *type);
 
-/* Change UI color by using GtkColorButton */
-void change_color(GtkWidget *button, GtkLabels *glab);
+/* Search file location in standard paths */
+static char *data_path(const char *file);
 
-/* Set logos (Window, CPU vendor, tab About) */
-void set_logos(GtkLabels *glab, Labels *data);
+/* Retrieve widgets from GtkBuilder */
+static void get_widgets(GtkBuilder *builder, GtkLabels *glab);
 
-/* Build tab 'CPU' thanks to GtkBuilder */
-void get_labels(GtkBuilder *builder, GtkLabels *glab);
+/* Set custom GTK theme */
+static void set_colors(GtkLabels *glab);
 
-/* Set values in labels */
-void set_labels(GtkLabels *glab, Labels *data);
+/* Allow user to choose a new color theme (until GTK 3.14) */
+static void change_color(GtkWidget *button, GtkLabels *glab);
 
-/* Set Memory bar in tab System */
+/* Set CPU vendor logo and program logo */
+static void set_logos(GtkLabels *glab, Labels *data);
+
+/* Filling all labels */
+static void set_labels(GtkLabels *glab, Labels *data);
+
+/* Call defined functions on signals */
+static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr);
+
+/* Draw bars in Memory tab */
 void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr);
-
-/* Get path for data files thanks to GLib */
-char *data_path(char *file);
 
 
 #endif /* _GUI_GTK_H_ */

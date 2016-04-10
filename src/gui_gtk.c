@@ -34,75 +34,59 @@
 # include "gtk-resources.h"
 #endif
 
+static const char *ui_files[] = { "cpu-x-gtk-3.16.ui", "cpu-x-gtk-3.8.ui", NULL };
 
+
+/************************* Public function *************************/
+
+/* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
-	GtkBuilder *builder;
-	GtkLabels glab;
-	GThrd refr;
+	int i = -1;
+	GtkLabels  glab;
+	GThrd      refr     = { &glab, data };
+	GtkBuilder *builder = gtk_builder_new();
 
 	MSG_VERBOSE(_("Starting GTK GUI..."));
 	gtk_init(argc, argv);
-	builder = gtk_builder_new();
-	refr.glab = &glab;
-	refr.data = data;
+	g_set_prgname(g_ascii_strdown(PRGNAME, -1));
 
 	/* Build UI from Glade file */
 #if PORTABLE_BINARY
 	g_resources_register(cpu_x_get_resource());
-
-	if(gtk_builder_add_from_resource(builder, GRESOURCE_UI("cpu-x-gtk-3.16.ui"), NULL))
-		goto open_ok;
-	if(gtk_builder_add_from_resource(builder, GRESOURCE_UI("cpu-x-gtk-3.8.ui"), NULL))
-		goto open_ok;
+	while(ui_files[++i] != NULL && !gtk_builder_add_from_resource(builder, GRESOURCE_UI(ui_files[i]), NULL));
 #else
-	if(gtk_builder_add_from_file(builder, data_path("cpu-x-gtk-3.16.ui"), NULL))
-		goto open_ok;
-	if(gtk_builder_add_from_file(builder, data_path("cpu-x-gtk-3.8.ui"), NULL))
-		goto open_ok;
-#endif
-	MSG_ERROR_ERRNO(_("Import UI in GtkBuilder failed"));
-	exit(EXIT_FAILURE);
+	while(ui_files[++i] != NULL && !gtk_builder_add_from_file(builder, data_path(ui_files[i]), NULL));
+#endif /* PORTABLE_BINARY */
+	if(ui_files[i] == NULL)
+	{
+		MSG_ERROR_ERRNO(_("Import UI in GtkBuilder failed"));
+		exit(EXIT_FAILURE);
+	}
 
-	open_ok:
-	g_set_prgname(g_ascii_strdown(PRGNAME, -1));
-	glab.mainwindow	 = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
-	glab.closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
-	glab.labprgver	 = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
-	get_labels(builder, &glab);
+	get_widgets(builder, &glab);
 	g_object_unref(G_OBJECT(builder));
-
-	set_logos(&glab, data); /* Vendor icon */
-	set_labels(&glab, data);
+	set_colors (&glab);
+	set_logos  (&glab, data);
+	set_labels (&glab, data);
+	set_signals(&glab, data, &refr);
 	labels_free(data);
 
-	if(getuid()) /* Show warning if not root */
+	if(getuid())
 		warning_window(glab.mainwindow);
 
 	if(PORTABLE_BINARY && new_version != NULL)
 		new_version_window(glab.mainwindow);
 
-	g_signal_connect(glab.mainwindow,  "destroy", G_CALLBACK(gtk_main_quit), NULL);
-	g_signal_connect(glab.closebutton, "clicked", G_CALLBACK(gtk_main_quit), NULL);
-	g_signal_connect(glab.activecore, "changed", G_CALLBACK(change_activecore), data);
-	g_signal_connect(glab.activetest, "changed", G_CALLBACK(change_activetest), data);
-	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
-		g_signal_connect(glab.butcol, "color-set", G_CALLBACK(change_color), &glab);
-
-#if HAS_LIBPROCPS || HAS_LIBSTATGRAB
-	g_signal_connect(G_OBJECT(glab.barused),  "draw", G_CALLBACK(fill_frame), &refr); /* Level bars */
-	g_signal_connect(G_OBJECT(glab.barbuff),  "draw", G_CALLBACK(fill_frame), &refr);
-	g_signal_connect(G_OBJECT(glab.barcache), "draw", G_CALLBACK(fill_frame), &refr);
-	g_signal_connect(G_OBJECT(glab.barfree),  "draw", G_CALLBACK(fill_frame), &refr);
-	g_signal_connect(G_OBJECT(glab.barswap),  "draw", G_CALLBACK(fill_frame), &refr);
-#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
-
-	set_colors(&glab);
 	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();
 }
 
-void warning_window(GtkWidget *mainwindow)
+
+/************************* Private functions *************************/
+
+/* Print a window which allows to restart CPU-X as root */
+static void warning_window(GtkWidget *mainwindow)
 {
 	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
 		GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -126,7 +110,8 @@ void warning_window(GtkWidget *mainwindow)
 	gtk_widget_destroy(dialog);
 }
 
-void new_version_window(GtkWidget *mainwindow)
+/* In portable version, inform when a new version is available and ask for update */
+static void new_version_window(GtkWidget *mainwindow)
 {
 	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
 		GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -146,11 +131,12 @@ void new_version_window(GtkWidget *mainwindow)
 	gtk_widget_destroy(dialog);
 }
 
-gboolean grefresh(GThrd *refr)
+/* Refresh dynamic values */
+static gboolean grefresh(GThrd *refr)
 {
 	int i;
 	enum EnTabNumber page;
-	Labels *(data) = refr->data;
+	Labels    *(data) = refr->data;
 	GtkLabels *(glab) = refr->glab;
 
 	page = gtk_notebook_get_current_page(GTK_NOTEBOOK(glab->notebook));
@@ -159,20 +145,20 @@ gboolean grefresh(GThrd *refr)
 	switch(page)
 	{
 		case NO_CPU:
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][VOLTAGE]),     data->tab_cpu[VALUE][VOLTAGE]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][TEMPERATURE]), data->tab_cpu[VALUE][TEMPERATURE]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][MULTIPLIER]),  data->tab_cpu[VALUE][MULTIPLIER]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][CORESPEED]),   data->tab_cpu[VALUE][CORESPEED]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][USAGE]),       data->tab_cpu[VALUE][USAGE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][VOLTAGE]),      data->tab_cpu[VALUE][VOLTAGE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][TEMPERATURE]),  data->tab_cpu[VALUE][TEMPERATURE]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][MULTIPLIER]),   data->tab_cpu[VALUE][MULTIPLIER]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][CORESPEED]),    data->tab_cpu[VALUE][CORESPEED]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][USAGE]),        data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
 			for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 			break;
 		case NO_SYSTEM:
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][UPTIME]),      data->tab_system[VALUE][UPTIME]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][UPTIME]),    data->tab_system[VALUE][UPTIME]);
 			for(i = USED; i < LASTSYSTEM; i++)
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]),   data->tab_system[VALUE][i]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 			break;
 		case NO_GRAPHICS:
 			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
@@ -185,7 +171,8 @@ gboolean grefresh(GThrd *refr)
 	return G_SOURCE_CONTINUE;
 }
 
-void change_activecore(GtkComboBox *box, Labels *data)
+/* Event in CPU tab when Core number is changed */
+static void change_activecore(GtkComboBox *box, Labels *data)
 {
 	const gint core = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
 
@@ -193,7 +180,8 @@ void change_activecore(GtkComboBox *box, Labels *data)
 		opts->selected_core = core;
 }
 
-void change_activetest(GtkComboBox *box, Labels *data)
+/* Event in Caches tab when Test number is changed */
+static void change_activetest(GtkComboBox *box, Labels *data)
 {
 	const gint test = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
 
@@ -201,96 +189,8 @@ void change_activetest(GtkComboBox *box, Labels *data)
 		opts->bw_test = test;
 }
 
-void set_colors(GtkLabels *glab)
-{
-	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
-	{
-		char *filename;
-		GtkCssProvider *provider;
-
-		if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
-			filename = g_strdup("cpu-x-gtk-3.20.css");
-		else // GTK 3.16 or 3.18
-			filename = g_strdup("cpu-x-gtk-3.16.css");
-
-		provider = gtk_css_provider_new();
-		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-#if PORTABLE_BINARY
-		gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
-#else
-		gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
-#endif
-
-		g_object_unref(provider);
-	}
-#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
-	else
-	{
-		GdkRGBA window_colors;
-
-		window_colors.red	= 0.3;
-		window_colors.green	= 0.6;
-		window_colors.blue	= 0.9;
-		window_colors.alpha	= 0.95;
-		gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
-		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(glab->butcol), &window_colors);
-	}
-#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
-}
-
-void change_color(GtkWidget *button, GtkLabels *glab)
-{
-#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
-	GdkRGBA color;
-
-	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(button), &color);
-	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &color);
-#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
-}
-
-void set_logos(GtkLabels *glab, Labels *data)
-{
-	const int width = 105, height = 92, prg_size = 92;
-	char *name;
-	GdkPixbuf *cpu_pixbuf, *prg_pixbuf;
-	GError *error = NULL;
-
-#if PORTABLE_BINARY
-	/* CPU-X logo in About tab */
-	prg_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
-
-	/* CPU logo in CPU tab */
-	iasprintf(&name, GRESOURCE_LOGOS("%s.png"), data->tab_cpu[VALUE][VENDOR]);
-	cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(name, width, height, TRUE, &error);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
-
-	/* Unknown CPU logo */
-	if(error != NULL)
-	{
-		cpu_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("Unknown.png"), width, height, TRUE, NULL);
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
-	}
-#else
-	/* CPU-X logo in About tab */
-	prg_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
-
-	/* CPU logo in CPU tab */
-	iasprintf(&name, "%s.png", data->tab_cpu[VALUE][VENDOR]);
-	cpu_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(name), width, height, TRUE, &error);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
-
-	/* Unknown CPU logo */
-	if(error != NULL)
-	{
-		cpu_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path(UNKNOWN_VENDOR), width, height, TRUE, NULL);
-		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
-	}
-#endif
-}
-
-char *get_id(const char *objectstr, char *type)
+/* Get label ID ('type' must be "lab" or "val") */
+static char *get_id(const char *objectstr, char *type)
 {
 	static char *buff;
 	gchar **split;
@@ -302,16 +202,37 @@ char *get_id(const char *objectstr, char *type)
 	return buff;
 }
 
-void get_labels(GtkBuilder *builder, GtkLabels *glab)
+/* Search file location in standard paths */
+static char *data_path(const char *file)
+{
+	int i = -1;
+	const char *prgname = g_get_prgname();
+	const gchar *const *paths = g_get_system_data_dirs();
+
+	while(paths[++i] != NULL)
+	{
+		gchar *path = g_build_filename(paths[i], prgname, file, NULL);
+		if(g_file_test(path, G_FILE_TEST_EXISTS))
+			return g_strdup(path);
+	}
+
+	return strdup(" ");
+}
+
+/* Retrieve widgets from GtkBuilder */
+static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 {
 	int i;
 
-	glab->notebook = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
-	glab->logocpu = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
-	glab->activecore = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
-	glab->activetest = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
-	glab->logoprg = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
-	glab->butcol = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
+	glab->mainwindow  = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
+	glab->closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
+	glab->labprgver	  = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
+	glab->notebook    = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
+	glab->logocpu     = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
+	glab->activecore  = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
+	glab->activetest  = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
+	glab->logoprg     = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
+	glab->butcol      = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
@@ -372,12 +293,82 @@ void get_labels(GtkBuilder *builder, GtkLabels *glab)
 	glab->gridcards = GTK_WIDGET(gtk_builder_get_object(builder, "graphics_box"));
 }
 
-void set_labels(GtkLabels *glab, Labels *data)
+/* Set custom GTK theme */
+static void set_colors(GtkLabels *glab)
+{
+	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
+	{
+		char *filename;
+		GtkCssProvider *provider = gtk_css_provider_new();
+
+		if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
+			filename = g_strdup("cpu-x-gtk-3.20.css");
+		else // GTK 3.16 or 3.18
+			filename = g_strdup("cpu-x-gtk-3.16.css");
+
+		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+		if(PORTABLE_BINARY)
+			gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
+		else
+			gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
+
+		g_object_unref(provider);
+	}
+#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
+	else
+	{
+		GdkRGBA window_colors = { 0.3, 0.6, 0.9, 0.95 };
+		gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
+		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(glab->butcol), &window_colors);
+	}
+#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
+}
+
+/* Allow user to choose a new color theme (until GTK 3.14) */
+static void change_color(GtkWidget *button, GtkLabels *glab)
+{
+#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
+	GdkRGBA color;
+	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(button), &color);
+	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &color);
+#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
+}
+
+/* Set CPU vendor logo and program logo */
+static void set_logos(GtkLabels *glab, Labels *data)
+{
+	const int width = 105, height = 92, prg_size = 92;
+	GdkPixbuf *cpu_pixbuf, *unknown_pixbuf, *prg_pixbuf;
+	GError *error = NULL;
+
+	if(PORTABLE_BINARY)
+	{
+		cpu_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(g_strdup_printf(GRESOURCE_LOGOS("%s.png"), data->tab_cpu[VALUE][VENDOR]), width, height, TRUE, &error);
+		unknown_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("Unknown.png"), width, height, TRUE, NULL);
+		prg_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
+	}
+	else
+	{
+		cpu_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path(g_strdup_printf("%s.png", data->tab_cpu[VALUE][VENDOR])), width, height, TRUE, &error);
+		unknown_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path("Unknown.png"), width, height, TRUE, NULL);
+		prg_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
+	}
+
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
+
+	if(error != NULL)
+		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), unknown_pixbuf);
+}
+
+/* Filling all labels */
+static void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
-	gchar buff[9];
 
-	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->objects[LABVERSION]); /* Footer label */
+	/* Footer label */
+	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->objects[LABVERSION]);
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
@@ -386,20 +377,17 @@ void set_labels(GtkLabels *glab, Labels *data)
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[NAME][i]), data->tab_cpu[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[NAME][i]),  data->tab_cpu[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
 	for(i = 0; i < data->cpu_count; i++)
-	{
-		sprintf(buff, _("Core #%i"), i);
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), buff);
-	}
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), g_strdup_printf(_("Core #%i"), i));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
 	/* Tab Caches */
 	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]), data->tab_caches[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]),  data->tab_caches[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 	}
 	for(i = 0; i < bandwidth_last_test(); i++)
@@ -409,14 +397,14 @@ void set_labels(GtkLabels *glab, Labels *data)
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_motherboard[NAME][i]), data->tab_motherboard[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_motherboard[NAME][i]),  data->tab_motherboard[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_motherboard[VALUE][i]), data->tab_motherboard[VALUE][i]);
 	}
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < data->dimms_count; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[NAME][i]), data->tab_memory[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[NAME][i]),  data->tab_memory[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[VALUE][i]), data->tab_memory[VALUE][i]);
 	}
 	for(i = BANK7_1; i >= data->dimms_count; i--)
@@ -425,79 +413,101 @@ void set_labels(GtkLabels *glab, Labels *data)
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYSTEM; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[NAME][i]), data->tab_system[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[NAME][i]),  data->tab_system[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 	}
 
 	/* Tab Graphics */
 	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[NAME][i]), data->tab_graphics[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[NAME][i]),  data->tab_graphics[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][i]), data->tab_graphics[VALUE][i]);
 	}
 	for(i = LASTGRAPHICS; i >= data->gpu_count; i -= GPUFIELDS)
 		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i / GPUFIELDS);
 }
 
+/* Call defined functions on signals */
+static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
+{
+	g_signal_connect(glab->mainwindow,  "destroy", G_CALLBACK(gtk_main_quit),     NULL);
+	g_signal_connect(glab->closebutton, "clicked", G_CALLBACK(gtk_main_quit),     NULL);
+	g_signal_connect(glab->activecore,  "changed", G_CALLBACK(change_activecore), data);
+	g_signal_connect(glab->activetest,  "changed", G_CALLBACK(change_activetest), data);
+	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
+		g_signal_connect(glab->butcol, "color-set", G_CALLBACK(change_color), glab);
+
 #if HAS_LIBPROCPS || HAS_LIBSTATGRAB
+	g_signal_connect(G_OBJECT(glab->barused),  "draw", G_CALLBACK(fill_frame), refr); /* Level bars */
+	g_signal_connect(G_OBJECT(glab->barbuff),  "draw", G_CALLBACK(fill_frame), refr);
+	g_signal_connect(G_OBJECT(glab->barcache), "draw", G_CALLBACK(fill_frame), refr);
+	g_signal_connect(G_OBJECT(glab->barfree),  "draw", G_CALLBACK(fill_frame), refr);
+	g_signal_connect(G_OBJECT(glab->barswap),  "draw", G_CALLBACK(fill_frame), refr);
+#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
+}
+
+#if HAS_LIBPROCPS || HAS_LIBSTATGRAB
+/* Draw bars in Memory tab */
 void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 {
-	int i = USED, n;
+	int i = USED, page;
 	guint width, height;
 	double before = 0, percent;
 	const char *widget_name;
 	cairo_pattern_t *pat;
 	PangoLayout *reflayout, *newlayout;
-	Labels *(data) = refr->data;
+
+	Labels *(data)    = refr->data;
 	GtkLabels *(glab) = refr->glab;
 
-	width = gtk_widget_get_allocated_width(widget);
-	height = gtk_widget_get_allocated_height(widget);
-	widget_name = gtk_widget_get_name(widget);
-	n = atoi(widget_name);
-	reflayout = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][n]));
-	newlayout = pango_layout_copy(reflayout);
+	widget_name = gtk_widget_get_name(widget),
+	width       = gtk_widget_get_allocated_width(widget);
+	height      = gtk_widget_get_allocated_height(widget);
+	page        = atoi(widget_name);
+	reflayout   = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][page]));
+	newlayout   = pango_layout_copy(reflayout);
 
-	while(i < n) /* Get value to start */
+	while(1) /* Get value to start */
 	{
-		before += (double) strtol(data->tab_system[VALUE][i], NULL, 10) /
-			strtol(strstr(data->tab_system[VALUE][i], "/ ") + 2, NULL, 10) * 100;
+		percent = (double) strtol(data->tab_system[VALUE][i], NULL, 10) /
+		                   strtol(strstr(data->tab_system[VALUE][i], "/ ") + 2, NULL, 10) * 100;
+
+		if(i == page)
+			break;
+
+		before += percent;
 		i++;
 	}
-	percent = (double) strtol(data->tab_system[VALUE][n], NULL, 10) /
-		strtol(strstr(data->tab_system[VALUE][n], "/ ") + 2, NULL, 10) * 100;
 
-	if(isnan(percent))
-		percent = 0.00;
+	percent = (isnan(percent)) ? 0.00 : percent;
+	pat     = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
 
-	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
-
-	switch(n) /* Set differents level bar color */
+	switch(page) /* Set differents level bar color */
 	{
 		case USED:
-			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 1.00, 0.15, 1);
-			cairo_pattern_add_color_stop_rgba (pat, 1, 1.00, 0.75, 0.15, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 1.00, 0.15, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 1, 1.00, 0.75, 0.15, 1);
 			break;
 		case BUFFERS:
-			cairo_pattern_add_color_stop_rgba (pat, 0, 0.00, 0.30, 0.75, 1);
-			cairo_pattern_add_color_stop_rgba (pat, 1, 0.25, 0.55, 1.00, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 0, 0.00, 0.30, 0.75, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 1, 0.25, 0.55, 1.00, 1);
 			break;
 		case CACHED:
-			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 0.35, 0.15, 1);
-			cairo_pattern_add_color_stop_rgba (pat, 1, 0.75, 0.15, 0.00, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 0.35, 0.15, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 1, 0.75, 0.15, 0.00, 1);
 			break;
 		case FREE:
-			cairo_pattern_add_color_stop_rgba (pat, 0, 0.20, 1.00, 0.25, 1);
-			cairo_pattern_add_color_stop_rgba (pat, 1, 0.00, 0.75, 0.05, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 0, 0.20, 1.00, 0.25, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 1, 0.00, 0.75, 0.05, 1);
 			break;
 		case SWAP:
-			cairo_pattern_add_color_stop_rgba (pat, 0, 1.00, 0.25, 0.90, 1);
-			cairo_pattern_add_color_stop_rgba (pat, 1, 0.75, 0.00, 0.65, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 0.25, 0.90, 1);
+			cairo_pattern_add_color_stop_rgba(pat, 1, 0.75, 0.00, 0.65, 1);
 			break;
 	}
 
 	cairo_rectangle(cr, before / 100 * width, 0, percent / 100 * width, height); /* Print a colored rectangle */
-	cairo_set_source (cr, pat);
+	cairo_set_source(cr, pat);
 	cairo_fill(cr);
 	cairo_pattern_destroy(pat);
 
@@ -509,26 +519,3 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	g_object_unref(newlayout);
 }
 #endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
-
-/* Search file location to avoid hardcode them */
-char *data_path(char *file)
-{
-	int i = 0;
-	const char *prgname = g_get_prgname();
-	const gchar *const *paths = g_get_system_data_dirs();
-	static char *buffer;
-
-	while(paths[i] != NULL)
-	{
-		gchar *path = g_build_filename(paths[i], prgname, file, NULL);
-		if(g_file_test(path, G_FILE_TEST_EXISTS))
-		{
-			buffer = g_strdup(path);
-			return buffer;
-		}
-		i++;
-	}
-
-	buffer = strdup(" ");
-	return buffer;
-}
