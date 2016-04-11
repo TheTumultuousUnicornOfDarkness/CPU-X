@@ -887,75 +887,27 @@ int xopen_to_str(char *file, char **buffer, char type)
 /* Free memory after display labels */
 void labels_free(Labels *data)
 {
-	int i;
+	int i, j;
+	const struct Arrays { char **array_name, **array_value; const int last; } a[] =
+	{
+		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU         },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      LASTCACHES      },
+		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      LASTMEMORY      },
+		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM      },
+		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    LASTGRAPHICS    },
+		{ NULL,                        NULL,                         0               }
+	};
 
 	MSG_VERBOSE(_("Freeing memory"));
-	/* CPU tab */
-	for(i = VENDOR; i < LASTCPU; i++)
+	for(i = 0; a[i].array_name != NULL; i++)
 	{
-		free(data->tab_cpu[NAME][i]);
-		data->tab_cpu[NAME][i] = NULL;
-
-		if(i != MULTIPLIER && i != LEVEL1I && i != LEVEL2 && i != LEVEL3)
+		for(j = 0; j < a[i].last; j++)
 		{
-			free(data->tab_cpu[VALUE][i]);
-			data->tab_cpu[VALUE][i] = NULL;
+			free(a[i].array_name[j]);
+			free(a[i].array_value[j]);
+			a[i].array_name[j] = NULL;
+			a[i].array_value[j] = NULL;
 		}
-	}
-
-	/* Caches tab */
-	for(i = L1SIZE; i < LASTCACHES; i++)
-	{
-		free(data->tab_caches[NAME][i]);
-		data->tab_caches[NAME][i] = NULL;
-
-		if(i != L1SPEED && i != L2SPEED && i != L3SPEED)
-		{
-			free(data->tab_caches[VALUE][i]);
-			data->tab_caches[VALUE][i] = NULL;
-		}
-	}
-
-	/* Motherboard tab */
-	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
-	{
-		free(data->tab_motherboard[NAME][i]);
-		data->tab_motherboard[NAME][i] = NULL;
-
-		free(data->tab_motherboard[VALUE][i]);
-		data->tab_motherboard[VALUE][i] = NULL;
-	}
-
-	/* Memory tab */
-	for(i = BANK0_0; i < LASTMEMORY; i++)
-	{
-		free(data->tab_memory[NAME][i]);
-		data->tab_memory[NAME][i] = NULL;
-
-		free(data->tab_memory[VALUE][i]);
-		data->tab_memory[VALUE][i] = NULL;
-	}
-
-	/* System tab */
-	for(i = KERNEL; i < LASTSYSTEM; i++)
-	{
-		free(data->tab_system[NAME][i]);
-		data->tab_system[NAME][i] = NULL;
-
-		if(i != USED && i != BUFFERS && i != CACHED && i != FREE && i != SWAP)
-		{
-			free(data->tab_system[VALUE][i]);
-			data->tab_system[VALUE][i] = NULL;
-		}
-	}
-
-	/* Graphics tab */
-	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
-	{
-		free(data->tab_graphics[NAME][i]);
-		data->tab_graphics[NAME][i] = NULL;
-
-		free(data->tab_graphics[VALUE][i]);
-		data->tab_graphics[VALUE][i] = NULL;
 	}
 }

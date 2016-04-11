@@ -467,6 +467,9 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	reflayout   = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][page]));
 	newlayout   = pango_layout_copy(reflayout);
 
+	if(data->tab_system[VALUE][page] == NULL)
+		return;
+
 	while(1) /* Get value to start */
 	{
 		percent = (double) strtol(data->tab_system[VALUE][i], NULL, 10) /
