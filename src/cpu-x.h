@@ -183,8 +183,11 @@ int iasprintf(char **str, const char *fmt, ...);
 /* Check if a command exists */
 bool command_exists(char *in);
 
-/* Open a file or a pipe and put its content in buffer */
-int xopen_to_str(char *file, char **buffer, char type);
+/* Open a file and put its content in buffer */
+int fopen_to_str(char *file, char **buffer);
+
+/* Open a pipe and put its content in buffer */
+int popen_to_str(char *command, char **buffer);
 
 /* Free memory after display labels */
 void labels_free(Labels *data);

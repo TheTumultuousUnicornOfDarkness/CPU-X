@@ -556,7 +556,7 @@ static int fallback_mode(Labels *data)
 	for(i = 0; id[i] != NULL; i++)
 	{
 		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
-		xopen_to_str(file, &buff, 'f');
+		fopen_to_str(file, &buff);
 		iasprintf(&data->tab_motherboard[VALUE][i], buff);
 	}
 #endif /* __linux__ */
@@ -589,8 +589,8 @@ static int cpu_multipliers(Labels *data)
 		/* Open files */
 		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
 		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
-		err += xopen_to_str(cpuinfo_min_file, &min_freq_str, 'f');
-		err += xopen_to_str(cpuinfo_max_file, &max_freq_str, 'f');
+		err += fopen_to_str(cpuinfo_min_file, &min_freq_str);
+		err += fopen_to_str(cpuinfo_max_file, &max_freq_str);
 
 		/* Convert to get min and max values */
 		min_freq = strtod(min_freq_str, NULL) / 1000;
@@ -761,7 +761,7 @@ static int cpu_temperature_lmsensors(Labels *data)
 
 	MSG_VERBOSE(_("Retrieve CPU temperature"));
 	asprintf(&command, "sensors | grep 'Core[[:space:]]*%u' | awk '$0=$2' FS=+ RS=°", opts->selected_core);
-	if(!xopen_to_str(command, &buff, 'p'))
+	if(!popen_to_str(command, &buff))
 		temp = atof(buff);
 
 	if(!err && !temp)
@@ -786,8 +786,8 @@ static int gpu_temperature(Labels *data)
 	struct dirent *dir;
 
 	MSG_VERBOSE(_("Retrieve GPU temperature"));
-	if(!xopen_to_str("nvidia-settings -q GPUCoreTemp", &buff, 'p') || /* NVIDIA closed source driver */
-	   !xopen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff, 'p')) /* AMD closed source driver */
+	if(!popen_to_str("nvidia-settings -q GPUCoreTemp", &buff) || /* NVIDIA closed source driver */
+	   !popen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff)) /* AMD closed source driver */
 		temp = atof(buff);
 	else /* Open source drivers */
 	{
@@ -798,7 +798,7 @@ static int gpu_temperature(Labels *data)
 			while((dir = readdir(dp)) != NULL)
 			{
 				asprintf(&drm_temp, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name);
-				if(!access(drm_temp, R_OK) && !xopen_to_str(drm_temp, &buff, 'f'))
+				if(!access(drm_temp, R_OK) && !fopen_to_str(drm_temp, &buff))
 				{
 					temp = atof(buff) / 1000.0;
 					break;
@@ -837,12 +837,12 @@ static int system_static(Labels *data)
 	}
 
 	/* Compiler label */
-	err += xopen_to_str("cc --version", &buff, 'p');
+	err += popen_to_str("cc --version", &buff);
 	iasprintf(&data->tab_system[VALUE][COMPILER], buff);
 
 #ifdef __linux__
 	/* Distribution label */
-	err += xopen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &buff, 'p');
+	err += popen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &buff);
 	iasprintf(&data->tab_system[VALUE][DISTRIBUTION], buff);
 #else
 	char tmp[MAXSTR];

@@ -308,8 +308,8 @@ static bool check_new_version(void)
 	}
 
 	/* Retrieve the last tag on Git repo */
-	xopen_to_str("curl --max-time 1 -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
-	             &new_version, 'p');
+	popen_to_str("curl --max-time 1 -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
+	             &new_version);
 
 	/* Compare Git tag with running version */
 	if(strverscmp(new_version, PRGVER) > 0)
@@ -581,7 +581,7 @@ void sighandler(int signum)
 	{
 		fprintf(stderr, "#%2i %s", i, bt_syms[i]);
 		asprintf(&cmd, "addr2line %s -e /usr/bin/cpu-x", strtok(strrchr(bt_syms[i], '[') + 1, "]"));
-		xopen_to_str(cmd, &buff, 'p');
+		popen_to_str(cmd, &buff);
 		if(strstr(buff, "??") == NULL)
 			fprintf(stderr, " ==> %s", strrchr(buff, '/') + 1);
 		fprintf(stderr, "\n");
@@ -831,57 +831,56 @@ bool command_exists(char *in)
 	return !ret;
 }
 
-/* Open a file or a pipe and put its content in buffer */
-int xopen_to_str(char *file, char **buffer, char type)
+/* Open a file and put its content in buffer */
+int fopen_to_str(char *file, char **buffer)
 {
-	char *test_command;
+	char *msg;
 	FILE *f = NULL;
 
-	/* Allocate buffer */
 	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
-	{
-		MSG_ERROR_ERRNO(_("xopen_to_str(): malloc() failed"));
-		return 1;
-	}
+		goto error;
 
-	if(type == 'f')
-	{
-		/* Open file */
-		if((f = fopen(file, "r")) == NULL)
-		{
-			MSG_ERROR_ERRNO(_("xopen_to_str(): fopen() failed"));
-			return 2;
-		}
-	}
-	else if(type == 'p')
-	{
-		/* Open pipe */
-		asprintf(&test_command, "%s", file);
-		if(!command_exists(strtok(test_command, " ")))
-			return 2;
+	if((f = fopen(file, "r")) == NULL)
+		goto error;
 
-		if((f = popen(file, "r")) == NULL)
-		{
-			MSG_ERROR_ERRNO(_("xopen_to_str(): popen() failed"));
-			return 3;
-		}
-	}
-	else
-	{
-		MSG_ERROR("(internal) bad use of xopen_to_str() function");
-		return -1;
-	}
-
-	/* Get string from file descriptor */
 	if(fgets(*buffer, MAXSTR, f) == NULL)
-	{
-		MSG_ERROR_ERRNO(_("xopen_to_str(): fgets() failed"));
-		return 4 + ((type == 'f') ? fclose(f) : pclose(f));
-	}
+		goto error;
 
 	(*buffer)[strlen(*buffer) - 1] = '\0';
+	return fclose(f);
 
-	return (type == 'f') ? fclose(f) : pclose(f);
+error:
+	asprintf(&msg, _("fopen_to_str(): an error was ocured (file: %s)"), file);
+	MSG_ERROR_ERRNO(msg);
+	return (f == NULL) ? 1 : 2 + fclose(f);
+}
+
+/* Open a pipe and put its content in buffer */
+int popen_to_str(char *command, char **buffer)
+{
+	char *test_command, *msg;
+	FILE *p = NULL;
+
+	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
+		goto error;
+
+	asprintf(&test_command, "%s", command);
+	if(!command_exists(strtok(test_command, " ")))
+		return -1;
+
+	if((p = popen(command, "r")) == NULL)
+		goto error;
+
+	if(fgets(*buffer, MAXSTR, p) == NULL)
+		goto error;
+
+	(*buffer)[strlen(*buffer) - 1] = '\0';
+	return pclose(p);
+
+error:
+	asprintf(&msg, _("popen_to_str(): an error was ocured (command: %s)"), command);
+	MSG_ERROR_ERRNO(msg);
+	return (p == NULL) ? 1 : 2 + pclose(p);
 }
 
 /* Free memory after display labels */
