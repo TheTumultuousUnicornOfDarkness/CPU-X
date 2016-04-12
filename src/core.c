@@ -201,6 +201,7 @@ static int cpu_technology(Labels *data)
 		{  7,          71,          -1,          14 }, // Broadwell
 		{  8,           0,           0,         180 }, // PIII Coppermine-T
 		{  8,           8,          -1,         180 }, // PIII Coppermine
+		{  9,           9,          -1,         130 }, // Pentium M Banias
 		{ 10,          26,          -1,          45 }, // Nehalem
 		{ 10,          30,          -1,          45 }, // Nehalem
 		{ 10,          42,          -1,          32 }, // Sandy Bridge
@@ -210,6 +211,7 @@ static int cpu_technology(Labels *data)
 		{ 12,          44,          -1,          32 }, // Westmere
 		{ 12,          60,          -1,          22 }, // Haswell
 		{ 12,          76,          -1,          14 }, // Atom Cherry Trail
+		{ 13,          13,          -1,          90 }, // Pentium M Dothan
 		{ 13,          45,          -1,          32 }, // Sandy Bridge-E
 		{ 13,          61,          -1,          14 }, // Broadwell
 		{ 14,          14,          -1,          65 }, // Yonah (Core Solo)
