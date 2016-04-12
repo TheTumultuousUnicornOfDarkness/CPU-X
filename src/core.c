@@ -185,14 +185,19 @@ static int cpu_technology(Labels *data)
 		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
 		//Model        E. Model     E. Family   Process
 		{  0,           0,          -1,         180 }, // P4 Willamette
-		{  1,           1,          -1,         180 }, // P4 Willamette
+		{  1,           1,           6,         350 }, // Pentium Pro
+		{  1,           1,          15,         180 }, // P4 Willamette
 		{  2,           2,          -1,         130 }, // P4 Northwood / Gallatin
-		{  3,           3,          -1,          90 }, // P4 Prescott
+		{  3,           3,           5,         350 }, // PII Overdrive
+		{  3,           3,           6,         350 }, // PII Klamath
+		{  3,           3,          15,          90 }, // P4 Prescott
 		{  4,           4,          -1,          90 }, // P4 Prescott/Irwindale / PD Smithfield
+		{  5,           5,           6,         250 }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
 		{  5,          37,          -1,          32 }, // Westmere
 		{  5,          53,          -1,          32 }, // Atom Cloverview
 		{  5,          69,          -1,          22 }, // Haswell
-		{  6,           6,          -1,          65 }, // P4 Cedar Mill / PD Presler
+		{  6,           6,           6,         250 }, // PII Dixon / Celeron Mendocino
+		{  6,           6,          15,          65 }, // P4 Cedar Mill / PD Presler
 		{  6,          22,          -1,          65 }, // C2 Conroe-L
 		{  6,          54,          -1,          32 }, // Atom Cedarview
 		{  7,           7,          -1,         250 }, // PIII Katmai
