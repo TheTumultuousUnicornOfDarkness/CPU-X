@@ -61,7 +61,7 @@
 
 
 char *binary_name, *new_version = NULL;
-Options     *opts;
+Options *opts;
 
 
 /************************* Arrays management functions *************************/
@@ -188,8 +188,7 @@ static void labels_setname(Labels *data)
 /* Replace null pointers by character '\0' */
 static int remove_null_ptr(Labels *data)
 {
-	int i, j, cpt = 0, ret = 0;
-	char *msg;
+	int i, j, ret = 0;
 	const struct Arrays { char **array; const int last; } a[] =
 	{
 		{ data->tab_cpu[VALUE],         LASTCPU         },
@@ -206,14 +205,11 @@ static int remove_null_ptr(Labels *data)
 	{
 		for(j = 0; j < a[i].last; j++)
 		{
-			cpt++;
 			if(a[i].array[j] == NULL)
-				ret += !iasprintf(&a[i].array[j], NULL);
+				ret += iasprintf(&a[i].array[j], NULL);
 		}
 	}
 
-	asprintf(&msg, _("\tThere is %i/%i empty strings"), ret, cpt);
-	MSG_VERBOSE(msg);
 	return ret;
 }
 
@@ -598,31 +594,25 @@ void sighandler(int signum)
 	kill(getpid(), signum);
 }
 
-/* Extract locales in /tmp/.cpu-x */
-static int extract_locales(void)
+ /* Enable internationalization support */
+static int set_locales(void)
 {
 	int err = 0;
+
 #if PORTABLE_BINARY && HAS_GETTEXT
 	int i;
-	char *path;
+	char *command, *path;
 	FILE *mofile;
 
 	/* Write .mo files in temporary directory */
-	MSG_VERBOSE("Extracting translations in temporary directory");
-	asprintf(&path, "%s", LOCALEDIR);
-	err = mkdir(path, 0777);
-
 	for(i = 0; ptrlen[i] != NULL; i++)
 	{
-		asprintf(&path, "%s/%s", LOCALEDIR, lang[i]);
-		err += mkdir(path, 0777);
-
-		asprintf(&path, "%s/%s/LC_MESSAGES", LOCALEDIR, lang[i]);
-		err += mkdir(path, 0777);
-
+		asprintf(&command, "mkdir --parents %s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]);
 		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
-
+		err    = system(command);
+		mofile = NULL;
 		mofile = fopen(path, "w");
+
 		if(mofile != NULL)
 		{
 			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
@@ -635,27 +625,15 @@ static int extract_locales(void)
 	if(err)
 		MSG_ERROR("an error occurred while extracting translations");
 # endif /* PORTABLE_BINARY && HAS_GETTEXT */
-	return err;
 
-}
-
- /* Enable internationalization support */
-static int set_locales(void)
-{
-	int i;
-	char *out[3] = { NULL };
-
-	extract_locales();
-	MSG_VERBOSE("Setting locale");
 	/* Apply locale */
 	setlocale(LC_ALL, "");
-	out[0] = bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-	out[1] = bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	out[2] = textdomain(GETTEXT_PACKAGE);
+	err  = bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR)        ? 0 : 1;
+	err += bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8") ? 0 : 1;
+	err += textdomain(GETTEXT_PACKAGE)                       ? 0 : 1;
 
 	/* Check if something is wrong */
-	for(i = 0; i < 3 && out[i] != NULL; i++);
-	if(out[i] == NULL)
+	if(err)
 	{
 		MSG_ERROR(_("an error occurred while setting locale"));
 		return 1;
@@ -671,14 +649,16 @@ int main(int argc, char *argv[])
 {
 	/* Parse options */
 	binary_name = argv[0];
-	Labels data = { .tab_cpu = {{ NULL }},    .tab_caches = {{ NULL }}, .tab_motherboard = {{ NULL }},
-	                .tab_memory = {{ NULL }}, .tab_system = {{ NULL }}, .tab_graphics = {{ NULL }},
-	                .cpu_freq = 0,            .cpu_vendor_id = 0,       .bus_freq = 0.0,
-	                .cpu_count = 0,           .gpu_count = 0,           .dimms_count = 0,
-	                .l1_size = 0,             .l2_size = 0,             .l3_size = 0 };
-	opts = &(Options) { .output_type = 0,     .selected_core = 0,       .refr_time = 1,
-	                    .bw_test = 0,         .verbose = false,         .color = true,
-	                    .update = false,      .cpu_temp_msr = false };
+	Labels data = { .tab_cpu    = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
+	                .tab_memory = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
+	                .cpu_freq   = 0,          .cpu_vendor_id  = 0,          .bus_freq        = 0.0,
+	                .cpu_count  = 0,          .gpu_count      = 0,          .dimms_count     = 0,
+	                .l1_size    = 0,          .l2_size        = 0,          .l3_size         = 0 };
+
+	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
+	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
+	                    .update      = false, .cpu_temp_msr   = false };
+
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
@@ -687,8 +667,8 @@ int main(int argc, char *argv[])
 	if(getuid())
 		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
 
-	labels_setname(&data);
-	fill_labels(&data);
+	labels_setname (&data);
+	fill_labels    (&data);
 	remove_null_ptr(&data);
 
 	if(!getenv("CPUX_NETWORK"))
@@ -698,10 +678,12 @@ int main(int argc, char *argv[])
 	switch(opts->output_type)
 	{
 		case OUT_GTK:
-			if(HAS_GTK)	start_gui_gtk(&argc, &argv, &data);
+			if(HAS_GTK)
+				start_gui_gtk(&argc, &argv, &data);
 			break;
 		case OUT_NCURSES:
-			if(HAS_NCURSES)	start_tui_ncurses(&data);
+			if(HAS_NCURSES)
+				start_tui_ncurses(&data);
 			break;
 		case OUT_DUMP:
 			dump_data(&data);
