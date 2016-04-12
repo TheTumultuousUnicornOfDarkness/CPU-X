@@ -1822,6 +1822,7 @@ usage ()
 int bandwidth(Labels *data)
 {
 	int i, chunk_size = 0;
+	uint32_t cache_size = 0;
 	char graph_title [512] = {0};
 	static bool first = true;
 	double total_amount = 0;
@@ -2004,9 +2005,9 @@ fast_initialization:
 		opts->bw_test = 0;
 	}
 
-	short    cache_level = LEVEL1I;
-	int      count       = 0;
-	uint32_t cache_size  = data->l1_size;
+	short cache_level = LEVEL1I;
+	int   count       = 0;
+	cache_size        = data->l1_size;
 
 	if(data->cpu_vendor_id == 1)
 	{

@@ -176,7 +176,7 @@ static int cpu_technology(Labels *data)
 	int i = -1;
 	char *msg;
 	bool found = false;
-	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor;
+	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor = NULL;
 
 	MSG_VERBOSE(_("Finding CPU technology"));
 	/* Intel CPUs */
@@ -242,7 +242,7 @@ static int cpu_technology(Labels *data)
 			vendor = amd;
 			break;
 		default:
-			break;
+			goto skip_vendor;
 	}
 
 	while(vendor[++i].cpu_model != -1)
@@ -255,6 +255,7 @@ static int cpu_technology(Labels *data)
 			return vendor[i].process;
 	}
 
+skip_vendor:
 	asprintf(&msg, _("your CPU does not belong in database\nCPU: %s, model: %i, ext. model: %i, ext. family: %i"),
 	         data->tab_cpu[VALUE][SPECIFICATION], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
 	MSG_ERROR(msg);

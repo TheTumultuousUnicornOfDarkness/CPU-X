@@ -709,7 +709,7 @@ int main(int argc, char *argv[])
 int iasprintf(char **str, const char *fmt, ...)
 {
 	bool is_format = false, print = true;
-	int arg_int, i, ret;
+	int arg_int, i, ret = 0;
 	unsigned int arg_uint;
 	double arg_double;
 	char *arg_string, *tmp_fmt;
