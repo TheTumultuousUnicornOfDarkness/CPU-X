@@ -185,27 +185,38 @@ static int cpu_technology(Labels *data)
 		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
 		//Model        E. Model     E. Family   Process
 		{  0,           0,          -1,         180 }, // P4 Willamette
-		{  1,           1,          -1,         180 }, // P4 Willamette
+		{  1,           1,           6,         350 }, // Pentium Pro
+		{  1,           1,          15,         180 }, // P4 Willamette
 		{  2,           2,          -1,         130 }, // P4 Northwood / Gallatin
-		{  3,           3,          -1,          90 }, // P4 Prescott
+		{  3,           3,           5,         350 }, // PII Overdrive
+		{  3,           3,           6,         350 }, // PII Klamath
+		{  3,           3,          15,          90 }, // P4 Prescott
 		{  4,           4,          -1,          90 }, // P4 Prescott/Irwindale / PD Smithfield
+		{  5,           5,           6,         250 }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
 		{  5,          37,          -1,          32 }, // Westmere
 		{  5,          53,          -1,          32 }, // Atom Cloverview
 		{  5,          69,          -1,          22 }, // Haswell
-		{  6,           6,          -1,          65 }, // P4 Cedar Mill / PD Presler
+		{  6,           6,           6,         250 }, // PII Dixon / Celeron Mendocino
+		{  6,           6,          15,          65 }, // P4 Cedar Mill / PD Presler
 		{  6,          22,          -1,          65 }, // C2 Conroe-L
 		{  6,          54,          -1,          32 }, // Atom Cedarview
+		{  7,           7,          -1,         250 }, // PIII Katmai
 		{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 		{  7,          55,          -1,          22 }, // Atom Bay Trail
 		{  7,          71,          -1,          14 }, // Broadwell
+		{  8,           0,           0,         180 }, // PIII Coppermine-T
+		{  8,           8,          -1,         180 }, // PIII Coppermine
+		{  9,           9,          -1,         130 }, // Pentium M Banias
 		{ 10,          26,          -1,          45 }, // Nehalem
 		{ 10,          30,          -1,          45 }, // Nehalem
 		{ 10,          42,          -1,          32 }, // Sandy Bridge
 		{ 10,          58,          -1,          22 }, // Ivy Bridge
+		{ 11,          11,          -1,         130 }, // PIII Tualatine
 		{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
 		{ 12,          44,          -1,          32 }, // Westmere
 		{ 12,          60,          -1,          22 }, // Haswell
 		{ 12,          76,          -1,          14 }, // Atom Cherry Trail
+		{ 13,          13,          -1,          90 }, // Pentium M Dothan
 		{ 13,          45,          -1,          32 }, // Sandy Bridge-E
 		{ 13,          61,          -1,          14 }, // Broadwell
 		{ 14,          14,          -1,          65 }, // Yonah (Core Solo)
