@@ -274,6 +274,15 @@ skip_vendor:
 	return 0;
 }
 
+/* If value is > 9, print both in decimal and hexadecimal */
+static void print_hex(char **string, int32_t value)
+{
+	if(value > 9)
+		asprintf(string, "%d (%X)", value, value);
+	else
+		asprintf(string, "%d", value);
+}
+
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data)
 {
@@ -301,11 +310,11 @@ static int call_libcpuid_static(Labels *data)
 	/* Basically fill CPU tab */
 	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
 	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
-	asprintf(&data->tab_cpu[VALUE][FAMILY],         "%d (%X)", datanr.family, datanr.family);
-	asprintf(&data->tab_cpu[VALUE][EXTFAMILY],      "%d (%X)", datanr.ext_family, datanr.ext_family);
-	asprintf(&data->tab_cpu[VALUE][MODEL],          "%d (%X)", datanr.model, datanr.model);
-	asprintf(&data->tab_cpu[VALUE][EXTMODEL],       "%d (%X)", datanr.ext_model, datanr.ext_model);
-	asprintf(&data->tab_cpu[VALUE][STEPPING],       "%d (%X)", datanr.stepping, datanr.stepping);
+	print_hex(&data->tab_cpu[VALUE][FAMILY],        datanr.family);
+	print_hex(&data->tab_cpu[VALUE][EXTFAMILY],     datanr.ext_family);
+	print_hex(&data->tab_cpu[VALUE][MODEL],         datanr.model);
+	print_hex(&data->tab_cpu[VALUE][EXTMODEL],      datanr.ext_model);
+	print_hex(&data->tab_cpu[VALUE][STEPPING],      datanr.stepping);
 	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
 	iasprintf(&data->tab_cpu[VALUE][CORES],         "%d", datanr.num_cores);
 	iasprintf(&data->tab_cpu[VALUE][THREADS],       "%d", datanr.num_logical_cpus);
