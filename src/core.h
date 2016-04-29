@@ -42,10 +42,6 @@ static int call_libcpuid_dynamic(Labels *data);
 static int call_dmidecode(Labels *data);
 /* Required: HAS_DMIDECODE && root privileges */
 
-/* Alternative function if started as regular user (Linux only) */
-static int fallback_mode(Labels *data);
-/* Required: none */
-
 /* Get CPU multipliers ("x current (min-max)" label) */
 static int cpu_multipliers(Labels *data);
 /* Required: HAS_LIBCPUID */
@@ -54,13 +50,17 @@ static int cpu_multipliers(Labels *data);
 static void cpu_usage(Labels *data);
 /* Required: none */
 
+/* Retrieve CPU sensors data if run as regular user */
+static int cputab_fallback(Labels *data);
+/* Required: none */
+
+/* Retrieve missing Motherboard data if run as regular user */
+static int motherboardtab_fallback(Labels *data);
+/* Required: none */
+
 /* Find some PCI devices, like chipset and GPU */
 static void find_devices(Labels *data);
 /* Required: HAS_LIBPCI */
-
-/* Retrieve CPU temperature */
-static int cpu_temperature_lmsensors(Labels *data);
-/* Required: none */
 
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data);

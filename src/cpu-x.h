@@ -163,6 +163,7 @@ typedef struct
 	bool         color;
 	bool         update;
 	bool         cpu_temp_msr;
+	bool         cpu_volt_msr;
 } Options;
 
 extern Options *opts;

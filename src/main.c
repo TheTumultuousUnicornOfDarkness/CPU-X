@@ -657,7 +657,7 @@ int main(int argc, char *argv[])
 
 	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
 	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
-	                    .update      = false, .cpu_temp_msr   = false };
+	                    .update      = false, .cpu_temp_msr   = false,      .cpu_volt_msr    = false };
 
 	set_locales();
 	signal(SIGSEGV, sighandler);

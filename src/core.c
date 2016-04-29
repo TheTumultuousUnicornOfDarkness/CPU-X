@@ -74,7 +74,7 @@ int fill_labels(Labels *data)
 {
 	int fallback = 0, err = 0;
 
-	err += cpu_temperature_lmsensors(data);
+	err += cputab_fallback(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 	if(HAS_DMIDECODE)    err += fallback = call_dmidecode(data);
@@ -88,7 +88,7 @@ int fill_labels(Labels *data)
 	cpu_usage(data);
 
 	if(fallback)
-		fallback_mode(data);
+		motherboardtab_fallback(data);
 
 	return err;
 }
@@ -101,7 +101,7 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			err = cpu_temperature_lmsensors(data);
+			err = cputab_fallback(data);
 			if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 			if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 			cpu_usage(data);
@@ -488,7 +488,7 @@ static int call_libcpuid_dynamic(Labels *data)
 	cpu_msr_driver_close(msr);
 
 	/* CPU Voltage */
-	if(voltage != CPU_INVALID_VALUE)
+	if(voltage != CPU_INVALID_VALUE && opts->cpu_volt_msr)
 		iasprintf(&data->tab_cpu[VALUE][VOLTAGE],     "%.3f V", (double) voltage / 100);
 
 	/* CPU Temperature */
@@ -563,26 +563,6 @@ static int call_dmidecode(Labels *data)
 	return err;
 }
 #endif /* HAS_DMIDECODE */
-
-/* Alternative function if started as regular user (Linux only) */
-static int fallback_mode(Labels *data)
-{
-#ifdef __linux__
-	int i;
-	char *file, *buff;
-	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
-
-	MSG_VERBOSE(_("Filling labels in fallback mode"));
-	/* Tab Motherboard */
-	for(i = 0; id[i] != NULL; i++)
-	{
-		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
-		fopen_to_str(file, &buff);
-		iasprintf(&data->tab_motherboard[VALUE][i], buff);
-	}
-#endif /* __linux__ */
-	return 0;
-}
 
 /* Get CPU multipliers ("x current (min-max)" label) */
 static int cpu_multipliers(Labels *data)
@@ -673,6 +653,74 @@ static void cpu_usage(Labels *data)
 		memcpy(pre[i], new[i], 4 * sizeof(long double));
 	}
 #endif /* __linux__ */
+}
+
+/* Retrieve CPU sensors data if run as regular user */
+static int cputab_fallback(Labels *data)
+{
+	static int cpu_err = 0, volt_err;
+	double val = 0.0;
+	char *command, *buff;
+
+	if(!opts->cpu_temp_msr && !cpu_err)
+	{
+		MSG_VERBOSE(_("Retrieve CPU temperature"));
+		setlocale(LC_ALL, "C");
+		asprintf(&command, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core);
+		if(!popen_to_str(command, &buff))
+			val = atof(buff);
+		setlocale(LC_ALL, "");
+
+		if(val > 0)
+			iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%.2f°C", val);
+		else
+		{
+			MSG_ERROR(_("failed to retrieve CPU temperature"));
+			opts->cpu_temp_msr = true;
+			cpu_err++;
+		}
+	}
+
+	if(!opts->cpu_volt_msr)
+	{
+		MSG_VERBOSE(_("Retrieve CPU voltage"));
+		setlocale(LC_ALL, "C");
+		asprintf(&command, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'");
+		if(!popen_to_str(command, &buff))
+			val = atof(buff);
+		setlocale(LC_ALL, "");
+
+		if(val > 0)
+			iasprintf(&data->tab_cpu[VALUE][VOLTAGE], "%.3f V", val);
+		else
+		{
+			MSG_ERROR(_("failed to retrieve CPU voltage"));
+			opts->cpu_volt_msr = true;
+			volt_err++;
+		}
+	}
+
+	return cpu_err + volt_err;
+}
+
+/* Retrieve missing Motherboard data if run as regular user */
+static int motherboardtab_fallback(Labels *data)
+{
+#ifdef __linux__
+	int i;
+	char *file, *buff;
+	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
+
+	MSG_VERBOSE(_("Filling labels in fallback mode"));
+	/* Tab Motherboard */
+	for(i = 0; id[i] != NULL; i++)
+	{
+		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
+		fopen_to_str(file, &buff);
+		iasprintf(&data->tab_motherboard[VALUE][i], buff);
+	}
+#endif /* __linux__ */
+	return 0;
 }
 
 #if HAS_LIBPCI
@@ -772,30 +820,6 @@ static void find_devices(Labels *data)
 		free(driverstr);
 }
 #endif /* HAS_LIBPCI */
-
-/* Retrieve CPU temperature */
-static int cpu_temperature_lmsensors(Labels *data)
-{
-	static int err = 0;
-	double temp = 0.0;
-	char *command, *buff;
-
-	MSG_VERBOSE(_("Retrieve CPU temperature"));
-	asprintf(&command, "sensors | grep 'Core[[:space:]]*%u' | awk '$0=$2' FS=+ RS=°", opts->selected_core);
-	if(!popen_to_str(command, &buff))
-		temp = atof(buff);
-
-	if(!err && !temp)
-	{
-		MSG_ERROR(_("failed to retrieve CPU temperature"));
-		opts->cpu_temp_msr = true;
-		err++;
-		return 1;
-	}
-
-	iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%.2f°C", temp);
-	return 0;
-}
 
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
