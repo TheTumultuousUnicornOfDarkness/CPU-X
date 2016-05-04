@@ -75,9 +75,9 @@ int fill_labels(Labels *data)
 	int fallback = 0, err = 0;
 
 	err += cputab_fallback(data);
+	if(HAS_DMIDECODE)    err += fallback = call_dmidecode(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
-	if(HAS_DMIDECODE)    err += fallback = call_dmidecode(data);
 	if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 	if(HAS_LIBPROCPS)    err += system_dynamic(data);
 	if(HAS_LIBSTATGRAB)  err += system_dynamic(data);
@@ -274,6 +274,24 @@ skip_vendor:
 	return 0;
 }
 
+/* If dmidecode fails to find CPU package, check in database */
+static char *cpu_package_fallback(Labels *data)
+{
+	int i;
+
+	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
+	const struct Package { char *name, *socket; } package[] =
+	{
+		{ "Pentium D (SmithField)",         "LGA775" },
+		{ "Pentium D (Presler)",            "LGA775" },
+		{ "Atom (Diamondville)",            "BGA437" },
+		{ NULL,                             ""       }
+	};
+	for(i = 0; package[i].name != NULL && strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]); i++);
+
+	return package[i].socket;
+}
+
 /* If value is > 9, print both in decimal and hexadecimal */
 static void print_hex(char **string, int32_t value)
 {
@@ -309,13 +327,15 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Basically fill CPU tab */
 	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
+	if(strstr(data->tab_cpu[VALUE][PACKAGE], "CPU") != NULL)
+		iasprintf(&data->tab_cpu[VALUE][PACKAGE], cpu_package_fallback(data));
+	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
 	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
 	print_hex(&data->tab_cpu[VALUE][FAMILY],        datanr.family);
 	print_hex(&data->tab_cpu[VALUE][EXTFAMILY],     datanr.ext_family);
 	print_hex(&data->tab_cpu[VALUE][MODEL],         datanr.model);
 	print_hex(&data->tab_cpu[VALUE][EXTMODEL],      datanr.ext_model);
 	print_hex(&data->tab_cpu[VALUE][STEPPING],      datanr.stepping);
-	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
 	iasprintf(&data->tab_cpu[VALUE][CORES],         "%d", datanr.num_cores);
 	iasprintf(&data->tab_cpu[VALUE][THREADS],       "%d", datanr.num_logical_cpus);
 
