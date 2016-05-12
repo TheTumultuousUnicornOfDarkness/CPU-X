@@ -317,7 +317,7 @@ Full-Width Styles
 
 #downloads {
   position: absolute;
-  width: 210px;
+  width: 320px;
   z-index: 10;
   bottom: -40px;
   right: 0;
@@ -344,6 +344,16 @@ Full-Width Styles
   overflow: hidden;
   background: url(../images/sprite_download.png) no-repeat top right;
   margin-left: 10px;
+}
+
+.por_download_link {
+  display: block;
+  float: right;
+  width: 90px;
+  height:70px;
+  text-indent: -5000px;
+  overflow: hidden;
+  background: url(../images/icon_portable.png) no-repeat;
 }
 
 .zip_download_link:hover {
