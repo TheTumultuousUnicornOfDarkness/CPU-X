@@ -327,7 +327,7 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Basically fill CPU tab */
 	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
-	if(strstr(data->tab_cpu[VALUE][PACKAGE], "CPU") != NULL)
+	if(data->tab_cpu[VALUE][PACKAGE] != NULL && strstr(data->tab_cpu[VALUE][PACKAGE], "CPU") != NULL)
 		iasprintf(&data->tab_cpu[VALUE][PACKAGE], cpu_package_fallback(data));
 	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
 	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
