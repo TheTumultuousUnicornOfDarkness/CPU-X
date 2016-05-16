@@ -2998,7 +2998,7 @@ static void dmi_64bit_memory_error_address(u64 code)
  * first 5 characters of the device name to be trimmed. It's easy to
  * check and fix, so do it, but warn.
  */
-static void dmi_fixup_type_34(struct dmi_header *h)
+static void dmi_fixup_type_34(struct dmi_header *h, int display)
 {
 	u8 *p = h->data;
 
@@ -3006,7 +3006,9 @@ static void dmi_fixup_type_34(struct dmi_header *h)
 	if (h->length == 0x10
 	 && is_printable(p + 0x0B, 0x10 - 0x0B))
 	{
-		printf("Invalid entry length (%u). Fixed up to %u.\n", 0x10, 0x0B);
+		if (!(opt.flags & FLAG_QUIET) && display)
+			printf("Invalid entry length (%u). Fixed up to %u.\n",
+				0x10, 0x0B);
 		h->length = 0x0B;
 	}
 }
@@ -4550,7 +4552,7 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 
 		/* Fixup a common mistake */
 		if (h.type == 34)
-			dmi_fixup_type_34(&h);
+			dmi_fixup_type_34(&h, display);
 
 		/* look for the next handle */
 		next = data + h.length;
