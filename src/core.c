@@ -591,16 +591,20 @@ static int cpu_multipliers(Labels *data)
 	MSG_VERBOSE(_("Getting CPU multipliers"));
 #ifdef __linux__
 	static bool init = false;
+	static char mult_err = 0;
 	char *min_freq_str, *max_freq_str;
 	char *cpuinfo_min_file, *cpuinfo_max_file;
 	double min_freq, max_freq;
 	double cur_mult;
 	static double min_mult, max_mult;
 
-	if(data->cpu_freq <= 0 || data->bus_freq <= 0)
+	if(err)
+		return err;
+	else if(data->cpu_freq <= 0 || data->bus_freq <= 0)
 	{
 		MSG_ERROR(_("failed to get CPU multipliers"));
-		return 1;
+		err = 1;
+		return err;
 	}
 
 	cur_mult = data->cpu_freq / data->bus_freq;
@@ -610,8 +614,8 @@ static int cpu_multipliers(Labels *data)
 		/* Open files */
 		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
 		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
-		err += fopen_to_str(cpuinfo_min_file, &min_freq_str);
-		err += fopen_to_str(cpuinfo_max_file, &max_freq_str);
+		mult_err += fopen_to_str(cpuinfo_min_file, &min_freq_str);
+		mult_err += fopen_to_str(cpuinfo_max_file, &max_freq_str);
 
 		/* Convert to get min and max values */
 		min_freq = strtod(min_freq_str, NULL) / 1000;
@@ -621,7 +625,7 @@ static int cpu_multipliers(Labels *data)
 		init     = true;
 	}
 
-	if(err)
+	if(mult_err)
 	{
 		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", cur_mult);
 		MSG_WARNING(_("Cannot get minimum and maximum CPU multiplierss"));
