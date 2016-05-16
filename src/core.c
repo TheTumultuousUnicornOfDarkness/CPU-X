@@ -627,7 +627,7 @@ static int cpu_multipliers(Labels *data)
 		MSG_WARNING(_("Cannot get minimum and maximum CPU multiplierss"));
 	}
 	else
-		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.0f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, min_mult, max_mult);
+		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, min_mult, max_mult);
 #endif /* __linux__ */
 
 	return err;
