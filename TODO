@@ -18,6 +18,8 @@ Legend:
 + Add a "public" interface, add static functions
 + Add a generic refresh function (partially merge grefresh() and nrefresh())
 + Catch SIGSEV
+- Add a "Bench" tab
+- Cleanups
 
 *** GTK ***
 + GTK 3.20 compliance
@@ -41,5 +43,5 @@ Legend:
 + Don't start GTK if $DISPLAY and $WAYLAND_DISPLAY are empty
 
 *** ISSUES ***
-- (libcpuid) Voltage support for AMD CPUs
++ (libcpuid) Voltage support for AMD CPUs
 - (libcpuid) Temperature support for AMD CPUs
