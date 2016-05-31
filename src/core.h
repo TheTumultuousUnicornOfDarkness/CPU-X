@@ -46,8 +46,8 @@ static int call_dmidecode(Labels *data);
 static int cpu_multipliers(Labels *data);
 /* Required: HAS_LIBCPUID */
 
-/* Calculate CPU usage (total and by core) */
-static void cpu_usage(Labels *data);
+/* Calculate CPU usage (total if core < 0, else per given core) */
+static void cpu_usage(Labels *data, int core);
 /* Required: none */
 
 /* Retrieve CPU sensors data if run as regular user */

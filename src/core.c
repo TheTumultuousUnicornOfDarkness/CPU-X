@@ -85,7 +85,7 @@ int fill_labels(Labels *data)
 	if(HAS_LIBPCI)       find_devices(data);
 	err += gpu_temperature(data);
 	err += system_static(data);
-	cpu_usage(data);
+	cpu_usage(data, -1);
 
 	if(fallback)
 		motherboardtab_fallback(data);
@@ -104,7 +104,7 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 			err = cputab_fallback(data);
 			if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 			if(HAS_LIBCPUID)     err += cpu_multipliers(data);
-			cpu_usage(data);
+			cpu_usage(data, -1);
 			break;
 		case NO_CACHES:
 			if(HAS_BANDWIDTH)    err = bandwidth(data);
@@ -633,46 +633,43 @@ static int cpu_multipliers(Labels *data)
 	return err;
 }
 
-/* Calculate CPU usage (total and by core) */
-static void cpu_usage(Labels *data)
+/* Calculate CPU usage (total if core < 0, else per given core) */
+static void cpu_usage(Labels *data, int core)
 {
-#ifdef __linux__
-	enum StatType { USER, NICE, SYSTEM, IDLE, LASTSTAT };
-	int i;
-	static bool init = false;
-	static long double pre[8][LASTSTAT];
-	long double        new[8][LASTSTAT], loadavg;
+	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
+	int i, ind;
+	static long pre[8][LASTSTAT] = { { 0 } };
+	long        new[8][LASTSTAT] = { { 0 } };
+	double loadavg;
 	FILE *fp;
 
 	MSG_VERBOSE(_("Calculating CPU usage"));
-	if(!init)
-	{
-		fp = fopen("/proc/stat", "r");
-		for(i = 0; i <= data->cpu_count; i++)
-			fscanf(fp,"%*s %Lf %Lf %Lf %Lf %*s %*s %*s %*s %*s %*s", &pre[i][USER], &pre[i][NICE], &pre[i][SYSTEM], &pre[i][IDLE]);
-		fclose(fp);
-		if(opts->output_type & OUT_DUMP || opts->refr_time > 1)
-		{
-			MSG_VERBOSE(_("Wait 1 second for stat refresh..."));
-			sleep(1);
-		}
-		init = true;
-	}
-
+#ifdef __linux__
+	ind = (core < 0) ? 0 : core + 1;
 	fp = fopen("/proc/stat","r");
 	for(i = 0; i <= data->cpu_count; i++)
-		fscanf(fp,"%*s %Lf %Lf %Lf %Lf %*s %*s %*s %*s %*s %*s", &new[i][USER], &new[i][NICE], &new[i][SYSTEM], &new[i][IDLE]);
+		fscanf(fp,"%*s %li %li %li %li %*s %*s %*s %*s %*s %*s", &new[i][USER], &new[i][NICE], &new[i][SYSTEM], &new[i][IDLE]);
 	fclose(fp);
+#else
+	long cp_time[LASTSTAT * 8];
+	size_t len = sizeof(cp_time);
+	const char *sysctlvarname = (core < 0) ? "kern.cp_time" : "kern.cp_times";
 
-	for(i = 0; i <= data->cpu_count; i++)
-	{
-		loadavg = ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM])) /
-		          ((new[i][USER]+new[i][NICE]+new[i][SYSTEM]+new[i][IDLE]) - (pre[i][USER]+pre[i][NICE]+pre[i][SYSTEM]+pre[i][IDLE]));
-		if(loadavg > 0.0 && i == 0)
-			asprintf(&data->tab_cpu[VALUE][USAGE], "%6.2Lf %%", loadavg * 100);
-		memcpy(pre[i], new[i], 4 * sizeof(long double));
-	}
+	ind = (core < 0) ? 0 : core;
+	if(sysctlbyname(sysctlvarname, &cp_time, &len, NULL, 0))
+		return;
+	for(i = 0; i <= data->cpu_count * LASTSTAT; i++)
+		new[i / LASTSTAT][i % LASTSTAT] = cp_time[i];
 #endif /* __linux__ */
+	loadavg = (double)((new[ind][USER] + new[ind][NICE] + new[ind][SYSTEM] + new[ind][INTR]) -
+	                   (pre[ind][USER] + pre[ind][NICE] + pre[ind][SYSTEM] + pre[ind][INTR])) /
+	                  ((new[ind][USER] + new[ind][NICE] + new[ind][SYSTEM] + new[ind][INTR] + new[ind][IDLE]) -
+	                   (pre[ind][USER] + pre[ind][NICE] + pre[ind][SYSTEM] + pre[ind][INTR] + pre[ind][IDLE]));
+
+	if(loadavg > 0.0 && ind == 0)
+		asprintf(&data->tab_cpu[VALUE][USAGE], "%6.2f %%", loadavg * 100);
+
+	memcpy(pre, new, LASTSTAT * sizeof(long) * 8);
 }
 
 /* Retrieve CPU sensors data if run as regular user */
