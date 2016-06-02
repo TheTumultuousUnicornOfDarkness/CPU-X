@@ -116,7 +116,7 @@ if(WITH_LIBSYSTEM)
 endif(WITH_LIBSYSTEM)
 
 # Various needed librairies
-set(ADDITIONNAL_LIBRARIES "-lm")
+set(ADDITIONNAL_LIBRARIES "-lm -lpthread")
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	set(ADDITIONNAL_LIBRARIES "${ADDITIONNAL_LIBRARIES} -lexecinfo -lintl")
 endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")

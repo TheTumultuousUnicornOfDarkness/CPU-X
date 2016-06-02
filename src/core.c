@@ -29,6 +29,7 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
+#include <pthread.h>
 #include <dirent.h>
 #include <locale.h>
 #include <libintl.h>
@@ -984,4 +985,64 @@ static int system_dynamic(Labels *data)
 	          tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec);
 
 	return err;
+}
+
+/* Compute all prime numbers in 'duration' seconds */
+static void *primes_bench(void *p_data)
+{
+	uint64_t i, num, sup;
+	BenchData *t_data  = p_data;
+
+	while(t_data->elapsed < t_data->duration * 60)
+	{
+		/* t_data->num is shared by all threads */
+		pthread_mutex_lock(&t_data->mutex_num);
+		t_data->num++;
+		num = t_data->num;
+		pthread_mutex_unlock(&t_data->mutex_num);
+
+		/* Slow mode: loop from i to num, prime if num == i
+		   Fast mode: loop from i to sqrt(num), prime if num mod i != 0 */
+		sup = t_data->fast_mode ? sqrt(num) : num;
+		for(i = 2; (i < sup) && (num % i != 0); i++);
+
+		if((t_data->fast_mode && num % i) || (!t_data->fast_mode && num == i))
+		{
+			pthread_mutex_lock(&t_data->mutex_primes);
+			t_data->primes++;
+			pthread_mutex_unlock(&t_data->mutex_primes);
+		}
+	}
+
+	return NULL;
+}
+
+/* Perform a multithreaded benchmark (compute prime numbers) */
+void benchmarks(BenchData *b_data)
+{
+	unsigned i;
+	const clock_t start = clock();
+	pthread_t *t_id;
+	b_data->num = 2;
+	b_data->primes = 1;
+
+	t_id = malloc(sizeof(pthread_t) * b_data->threads);
+	pthread_mutex_init(&b_data->mutex_num, NULL);
+	pthread_mutex_init(&b_data->mutex_primes, NULL);
+
+	for(i = 0; i < b_data->threads; i++)
+		pthread_create(&t_id[i], NULL, primes_bench, b_data);
+
+	while(b_data->elapsed < b_data->duration * 60)
+	{
+		b_data->elapsed = (clock() - start) / CLOCKS_PER_SEC / b_data->threads;
+		usleep(100);
+	}
+
+	for(i = 0; i < b_data->threads; i++)
+		pthread_join(t_id[i], NULL);
+
+	free(t_id);
+	pthread_mutex_destroy(&b_data->mutex_num);
+	pthread_mutex_destroy(&b_data->mutex_primes);
 }

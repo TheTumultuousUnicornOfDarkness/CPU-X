@@ -74,5 +74,9 @@ static int system_static(Labels *data);
 static int system_dynamic(Labels *data);
 /* Required: HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
+/* Perform a multithreaded benchmark (compute prime numbers) */
+void benchmarks(BenchData *b_data);
+/* Required: none */
+
 
 #endif /* _CORE_H_ */

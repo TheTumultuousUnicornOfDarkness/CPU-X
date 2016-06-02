@@ -137,6 +137,16 @@ enum EnTabGraphics
 
 typedef struct
 {
+	bool fast_mode;
+	unsigned duration, threads;
+	uint32_t primes;
+	uint64_t num;
+	clock_t elapsed;
+	pthread_mutex_t mutex_num, mutex_primes;
+} BenchData;
+
+typedef struct
+{
 	char *objects[LASTOBJ];
 	char *tab_cpu[2][LASTCPU];
 	char *tab_caches[2][LASTCACHES];
@@ -151,6 +161,7 @@ typedef struct
 	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
 	uint32_t l1_size, l2_size, l3_size;
 	double   bus_freq;
+	BenchData *b_data;
 } Labels;
 
 typedef struct
