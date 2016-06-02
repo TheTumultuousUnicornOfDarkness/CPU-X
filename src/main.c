@@ -649,7 +649,8 @@ int main(int argc, char *argv[])
 {
 	/* Parse options */
 	binary_name = argv[0];
-	Labels data = { .tab_cpu    = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
+	Labels *data = &(Labels) {
+	                .tab_cpu    = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
 	                .tab_memory = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
 	                .cpu_freq   = 0,          .cpu_vendor_id  = 0,          .bus_freq        = 0.0,
 	                .cpu_count  = 0,          .gpu_count      = 0,          .dimms_count     = 0,
@@ -667,9 +668,9 @@ int main(int argc, char *argv[])
 	if(getuid())
 		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
 
-	labels_setname (&data);
-	fill_labels    (&data);
-	remove_null_ptr(&data);
+	labels_setname (data);
+	fill_labels    (data);
+	remove_null_ptr(data);
 
 	if(!getenv("CPUX_NETWORK"))
 		check_new_version();
@@ -679,14 +680,14 @@ int main(int argc, char *argv[])
 	{
 		case OUT_GTK:
 			if(HAS_GTK)
-				start_gui_gtk(&argc, &argv, &data);
+				start_gui_gtk(&argc, &argv, data);
 			break;
 		case OUT_NCURSES:
 			if(HAS_NCURSES)
-				start_tui_ncurses(&data);
+				start_tui_ncurses(data);
 			break;
 		case OUT_DUMP:
-			dump_data(&data);
+			dump_data(data);
 			break;
 	}
 
