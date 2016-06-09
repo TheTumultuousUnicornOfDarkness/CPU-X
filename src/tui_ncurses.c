@@ -39,6 +39,7 @@ static void (*func_ptr[])(WINDOW*, const SizeInfo, Labels*) =
 	ntab_memory,
 	ntab_system,
 	ntab_graphics,
+	ntab_bench,
 	ntab_about
 };
 static const Colors color[] =
@@ -136,6 +137,18 @@ void start_tui_ncurses(Labels *data)
 					opts->bw_test--;
 					print_activetest(win);
 				}
+				else if(page == NO_BENCH && data->b_data->duration > 1)
+				{
+					data->b_data->duration--;
+					print_paramduration(win, info, data);
+				}
+				break;
+			case KEY_NPAGE:
+				if(page == NO_BENCH && data->b_data->threads > 1 && !data->b_data->run)
+				{
+					data->b_data->threads--;
+					print_paramthreads(win, info, data);
+				}
 				break;
 			case KEY_UP:
 				if(page == NO_CPU && (int) opts->selected_core < data->cpu_count - 1)
@@ -148,6 +161,36 @@ void start_tui_ncurses(Labels *data)
 					opts->bw_test++;
 					print_activetest(win);
 				}
+				else if(page == NO_BENCH && data->b_data->duration < 60 * 24)
+				{
+					data->b_data->duration++;
+					print_paramduration(win, info, data);
+				}
+				break;
+			case KEY_PPAGE:
+				if(page == NO_BENCH && data->b_data->threads < data->cpu_count && !data->b_data->run)
+				{
+					data->b_data->threads++;
+					print_paramthreads(win, info, data);
+				}
+				break;
+			case 'f':
+				if(page == NO_BENCH && !data->b_data->run)
+				{
+					data->b_data->fast_mode = true;
+					start_benchmarks(data);
+				}
+				else if(page == NO_BENCH && data->b_data->run)
+					data->b_data->run = false;
+				break;
+			case 's':
+				if(page == NO_BENCH && !data->b_data->run)
+				{
+					data->b_data->fast_mode = false;
+					start_benchmarks(data);
+				}
+				else if(page == NO_BENCH && data->b_data->run)
+					data->b_data->run = false;
 				break;
 			case 'h':
 				erase();
@@ -159,7 +202,7 @@ void start_tui_ncurses(Labels *data)
 				break;
 			case ERR:
 				/* Refresh dynamic labels */
-				if(page == NO_CPU || page == NO_CACHES || page == NO_SYSTEM || page == NO_GRAPHICS)
+				if(page == NO_CPU || page == NO_CACHES || page == NO_SYSTEM || page == NO_GRAPHICS || page == NO_BENCH)
 					nrefresh(&refr);
 				break;
 			case KEY_RESIZE:
@@ -301,6 +344,12 @@ static void nrefresh(NThrd *refr)
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 				line += GPUFIELDS + 2;
 			}
+			break;
+		case NO_BENCH:
+			mvwprintw2c(win, LINE_1, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMESLOWSCORE], data->tab_bench[VALUE][PRIMESLOWSCORE]);
+			mvwprintw2c(win, LINE_2, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMESLOWRUN],   data->tab_bench[VALUE][PRIMESLOWRUN]);
+			mvwprintw2c(win, LINE_5, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMEFASTSCORE], data->tab_bench[VALUE][PRIMEFASTSCORE]);
+			mvwprintw2c(win, LINE_6, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMEFASTRUN],   data->tab_bench[VALUE][PRIMEFASTRUN]);
 			break;
 		default:
 			break;
@@ -608,6 +657,47 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 		}
 		mvwprintw2c(win, line++, 2, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 	}
+
+	wrefresh(win);
+}
+
+/* Display Duration parameter in Bench tab */
+static void print_paramduration(WINDOW *win, const SizeInfo info, Labels *data)
+{
+	iasprintf(&data->tab_bench[VALUE][PARAMDURATION], _("%u mins"), data->b_data->duration);
+	mvwprintw2c(win, LINE_9, info.tb, "%13s: %s", data->tab_bench[NAME][PARAMDURATION], data->tab_bench[VALUE][PARAMDURATION]);
+	wrefresh(win);
+}
+
+/* Display Threads parameter in Bench tab */
+static void print_paramthreads(WINDOW *win, const SizeInfo info, Labels *data)
+{
+	iasprintf(&data->tab_bench[VALUE][PARAMTHREADS], "%u", data->b_data->threads);
+	mvwprintw2c(win, LINE_9, info.tm, "%13s: %s", data->tab_bench[NAME][PARAMTHREADS],  data->tab_bench[VALUE][PARAMTHREADS]);
+	wrefresh(win);
+}
+
+/* Bench tab */
+static void ntab_bench(WINDOW *win, const SizeInfo info, Labels *data)
+{
+	int i, line;
+
+	/* Prime numbers (slow) frame */
+	frame(win, LINE_0, info.start , LINE_3, info.width - 1, data->objects[FRAMPRIMESLOW]);
+	line = LINE_1;
+	for(i = PRIMESLOWSCORE; i < PRIMEFASTSCORE; i++)
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_bench[NAME][i], data->tab_bench[VALUE][i]);
+
+	/* Prime numbers (fast) frame */
+	frame(win, LINE_4, info.start , LINE_7, info.width - 1, data->objects[FRAMPRIMEFAST]);
+	line = LINE_5;
+	for(i = PRIMEFASTSCORE; i < PARAMDURATION; i++)
+		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_bench[NAME][i], data->tab_bench[VALUE][i]);
+
+	/* Parameters frame */
+	frame(win, LINE_8, info.start , LINE_10, info.width - 1, data->objects[FRAMPARAM]);
+	print_paramduration(win, info, data);
+	print_paramthreads (win, info, data);
 
 	wrefresh(win);
 }

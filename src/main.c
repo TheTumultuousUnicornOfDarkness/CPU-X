@@ -79,6 +79,7 @@ static void labels_setname(Labels *data)
 	asprintf(&data->objects[TABMEMORY],             _("Memory"));
 	asprintf(&data->objects[TABSYSTEM],             _("System"));
 	asprintf(&data->objects[TABGRAPHICS],           _("Graphics"));
+	asprintf(&data->objects[TABBENCH],              _("Bench"));
 	asprintf(&data->objects[TABABOUT],              _("About"));
 	asprintf(&data->objects[FRAMPROCESSOR],         _("Processor"));
 	asprintf(&data->objects[FRAMCLOCKS],            _("Clocks"));

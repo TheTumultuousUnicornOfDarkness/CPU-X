@@ -87,6 +87,7 @@ int fill_labels(Labels *data)
 	err += gpu_temperature(data);
 	err += system_static(data);
 	cpu_usage(data, -1);
+	benchmark_status(data);
 
 	if(fallback)
 		motherboardtab_fallback(data);
@@ -1039,12 +1040,20 @@ static void benchmark_status(Labels *data)
 	BenchData *b_data   = data->b_data;
 	enum EnTabBench ind = b_data->fast_mode ? PRIMEFASTSCORE : PRIMESLOWSCORE;
 
+	asprintf(&data->tab_bench[VALUE][PARAMDURATION], _("%u mins"), data->b_data->duration);
+	asprintf(&data->tab_bench[VALUE][PARAMTHREADS],    "%u",       data->b_data->threads);
+	asprintf(&data->tab_bench[VALUE][PRIMESLOWRUN],  _("Inactive"));
+	asprintf(&data->tab_bench[VALUE][PRIMEFASTRUN],  _("Inactive"));
+
 	if(b_data->primes == 0)
 	{
 		asprintf(&data->tab_bench[VALUE][PRIMESLOWSCORE], _("Not started"));
 		asprintf(&data->tab_bench[VALUE][PRIMEFASTSCORE], _("Not started"));
 		return;
 	}
+
+	if(b_data->run)
+		asprintf(&data->tab_bench[VALUE][ind + 1], _("Active"));
 
 	if(b_data->run && b_data->duration * 60 - b_data->elapsed >= 60)
 		asprintf(&buff, _("(%li minutes left)"), b_data->duration - b_data->elapsed / 60);
@@ -1055,7 +1064,7 @@ static void benchmark_status(Labels *data)
 	else
 		asprintf(&buff, _("in %li seconds"), b_data->elapsed);
 
-	asprintf(&data->tab_bench[VALUE][ind], _("%u prime numbers calculated %s"), b_data->primes, buff);
+	asprintf(&data->tab_bench[VALUE][ind], _("%'u prime numbers calculated %s"), b_data->primes, buff);
 }
 
 /* Perform a multithreaded benchmark (compute prime numbers) */

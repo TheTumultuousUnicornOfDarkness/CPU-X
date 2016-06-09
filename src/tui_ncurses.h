@@ -129,6 +129,15 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar);
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data);
 
+/* Display Duration parameter in Bench tab */
+static void print_paramduration(WINDOW *win, const SizeInfo info, Labels *data);
+
+/* Display Threads parameter in Bench tab */
+static void print_paramthreads(WINDOW *win, const SizeInfo info, Labels *data);
+
+/* Bench tab */
+static void ntab_bench(WINDOW *win, const SizeInfo info, Labels *data);
+
 /* About tab */
 static void ntab_about(WINDOW *win, const SizeInfo info, Labels *data);
 
