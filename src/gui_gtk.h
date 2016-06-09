@@ -107,7 +107,7 @@ static void change_activecore(GtkComboBox *box, Labels *data);
 static void change_activetest(GtkComboBox *box, Labels *data);
 
 /* Events in Bench tab when a benchmark start/stop */
-static void start_benchmark_bg(GtkSwitch *gswitch, gboolean state, GThrd *refr);
+static void start_benchmark_bg(GtkSwitch *gswitch, GdkEvent *event, GThrd *refr);
 
 /* Events in Bench tab when Duration/Threads SpinButtons are changed */
 static void change_benchparam(GtkSpinButton *spinbutton, Labels *data);

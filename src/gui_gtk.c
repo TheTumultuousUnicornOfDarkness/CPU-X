@@ -195,17 +195,17 @@ static void change_activetest(GtkComboBox *box, Labels *data)
 }
 
 /* Events in Bench tab when a benchmark start/stop */
-static void start_benchmark_bg(GtkSwitch *gswitch, gboolean state, GThrd *refr)
+static void start_benchmark_bg(GtkSwitch *gswitch, GdkEvent *event, GThrd *refr)
 {
 	Labels *data = refr->data;
 
-	if(state && !data->b_data->run)
+	if(!data->b_data->run)
 	{
 		change_benchsensitive(refr->glab, data);
 		data->b_data->fast_mode = !strcmp(gtk_widget_get_name(GTK_WIDGET(gswitch)), objectbench[PRIMEFASTRUN]);
 		start_benchmarks(data);
 	}
-	else if(!state && data->b_data->run)
+	else
 		data->b_data->run = false;
 }
 
@@ -232,14 +232,18 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 	if(data->b_data->run)
 	{
 		skip = false;
+#if GTK_CHECK_VERSION(3, 15, 0)
 		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
+#endif
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],         false);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS], false);
 	}
 	else if(!data->b_data->run && !skip)
 	{
 		skip = true;
+#if GTK_CHECK_VERSION(3, 15, 0)
 		gtk_switch_set_state (GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
+#endif
 		gtk_switch_set_active(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],          true);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS],  true);
@@ -510,10 +514,10 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	g_signal_connect(glab->activecore,  "changed", G_CALLBACK(change_activecore), data);
 	g_signal_connect(glab->activetest,  "changed", G_CALLBACK(change_activetest), data);
 
-	g_signal_connect(glab->gtktab_bench[VALUE][PRIMESLOWRUN],  "state-set",     G_CALLBACK(start_benchmark_bg), refr);
-	g_signal_connect(glab->gtktab_bench[VALUE][PRIMEFASTRUN],  "state-set",     G_CALLBACK(start_benchmark_bg), refr);
-	g_signal_connect(glab->gtktab_bench[VALUE][PARAMDURATION], "value-changed", G_CALLBACK(change_benchparam),  data);
-	g_signal_connect(glab->gtktab_bench[VALUE][PARAMTHREADS],  "value-changed", G_CALLBACK(change_benchparam),  data);
+	g_signal_connect(glab->gtktab_bench[VALUE][PRIMESLOWRUN],  "button-press-event", G_CALLBACK(start_benchmark_bg), refr);
+	g_signal_connect(glab->gtktab_bench[VALUE][PRIMEFASTRUN],  "button-press-event", G_CALLBACK(start_benchmark_bg), refr);
+	g_signal_connect(glab->gtktab_bench[VALUE][PARAMDURATION], "value-changed",      G_CALLBACK(change_benchparam),  data);
+	g_signal_connect(glab->gtktab_bench[VALUE][PARAMTHREADS],  "value-changed",      G_CALLBACK(change_benchparam),  data);
 
 	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
 		g_signal_connect(glab->butcol, "color-set", G_CALLBACK(change_color), glab);
