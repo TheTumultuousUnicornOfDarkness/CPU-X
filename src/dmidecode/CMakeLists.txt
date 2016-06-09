@@ -1,13 +1,20 @@
-cmake_minimum_required(VERSION 3.0)
-cmake_policy(SET CMP0048 NEW)
-project(dmidecode
-	VERSION 3.0
-	LANGUAGES C
-)
+cmake_minimum_required(VERSION 2.8)
+set(LOCALVERSION "3.0")
+if(${CMAKE_VERSION} VERSION_GREATER "2.9")
+	cmake_policy(SET CMP0048 NEW)
+	project(dmidecode
+		VERSION ${LOCALVERSION}
+		LANGUAGES C
+	)
+else(${CMAKE_VERSION} VERSION_GREATER "2.9")
+	project(dmidecode)
+	set(PROJECT_VERSION ${LOCALVERSION})
+endif(${CMAKE_VERSION} VERSION_GREATER "2.9")
 
 # Config (dmidecode)
 message("-- Checking for submodule '${PROJECT_NAME}'")
 message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+
 
 # Build (dmidecode)
 add_library(dmidecode
