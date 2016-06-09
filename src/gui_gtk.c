@@ -63,6 +63,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		MSG_ERROR_ERRNO(_("Import UI in GtkBuilder failed"));
 		exit(EXIT_FAILURE);
 	}
+	g_print(_("Use UI file %s.\n"), ui_files[i]);
 
 	get_widgets(builder, &glab);
 	g_object_unref(G_OBJECT(builder));

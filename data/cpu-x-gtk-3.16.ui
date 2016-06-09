@@ -4912,7 +4912,8 @@
                                 <property name="width_request">350</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_bottom">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
                                 <property name="pulse_step">0.0099999997764825821</property>
                                 <property name="show_text">True</property>
                               </object>
@@ -4925,6 +4926,8 @@
                               <object class="GtkSwitch" id="primeslow_valrun">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -5012,7 +5015,8 @@
                                 <property name="width_request">350</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_bottom">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
                                 <property name="pulse_step">0.0099999997764825821</property>
                                 <property name="show_text">True</property>
                               </object>
@@ -5025,6 +5029,8 @@
                               <object class="GtkSwitch" id="primefast_valrun">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -5072,12 +5078,10 @@
                           <object class="GtkGrid" id="param_grid">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="hexpand">True</property>
                             <child>
                               <object class="GtkSpinButton" id="param_valthreads">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="margin_left">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
                                 <property name="hexpand">True</property>
@@ -5093,7 +5097,6 @@
                               <object class="GtkSpinButton" id="param_valduration">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="margin_left">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
                                 <property name="hexpand">True</property>
@@ -5111,8 +5114,10 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
                                 <property name="hexpand">True</property>
-                                <property name="label" translatable="yes">Duration</property>
                               </object>
                               <packing>
                                 <property name="left_attach">0</property>
@@ -5124,8 +5129,10 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
+                                <property name="margin_top">1</property>
+                                <property name="margin_bottom">1</property>
                                 <property name="hexpand">True</property>
-                                <property name="label" translatable="yes">Threads</property>
                               </object>
                               <packing>
                                 <property name="left_attach">2</property>
