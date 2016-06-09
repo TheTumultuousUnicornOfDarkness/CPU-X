@@ -92,6 +92,15 @@ typedef struct
 
 /********************************** TUI  **********************************/
 
+/* Clean window */
+static void wclrscr(WINDOW *pwin);
+
+/* Similar to mvwprintw, but specify a color pair */
+static int mvwprintwc(WINDOW *win, int y, int x, enum EnColors pair, const char *fmt, ...);
+
+/* Similar to mvwprintw, but print first string in black and second string in blue */
+static int mvwprintw2c(WINDOW *win, int y, int x, const char *fmt, ...);
+
 /* Refresh dynamic values */
 static void nrefresh(NThrd *refr);
 

@@ -70,8 +70,6 @@ void start_tui_ncurses(Labels *data)
 	WINDOW *win;
 
 	MSG_VERBOSE(_("Starting NCurses TUI..."));
-	fprintf(stdout, "%s%s%s", opts->color ? BOLD_GREEN : "", _("\nPress 'h' to see help.\n"), RESET);
-	sleep(1);
 	setenv("TERMINFO", "/lib/terminfo", 0);
 	freopen("/dev/null", "a", stderr);
 	initscr();
@@ -102,6 +100,7 @@ void start_tui_ncurses(Labels *data)
 	main_win(win, info, data);
 	ntab_cpu(win, info, data);
 	timeout(opts->refr_time * 1000);
+	printw(_("Press 'h' to see help.\n"));
 
 	while(ch != 'q')
 	{
@@ -364,13 +363,34 @@ static void print_help()
 	nodelay(stdscr, FALSE);
 	timeout(99999);
 
-	printw(_("Welcome in %s NCurses help!\n\n"), PRGNAME);
-	printw(_("Use right/left key to change active tab.\n"));
-	printw(_("Use down/up key to change parameter in active tab (CPU and Caches tabs only).\n\n"));
-	printw(_("Press 'h' to see this help.\n"));
-	printw(_("Press 'q' to exit.\n"));
-	refresh();
+	printw(_("Welcome in %s NCurses help!\n"), PRGNAME);
+	printw(_("This help describes how to use this Text-based User Interface.\n"));
 
+	printw(_("\nGlobal keys:\n"));
+	printw(_("\tPress 'left' key to switch in left tab.\n"));
+	printw(_("\tPress 'right' key to switch in right tab.\n"));
+	printw(_("\tPress 'h' key to see this help.\n"));
+	printw(_("\tPress 'q' key to exit.\n"));
+
+	printw(_("\nCPU tab:\n"));
+	printw(_("\tPress 'down' key to decrease core number to monitor.\n"));
+	printw(_("\tPress 'up' key to increase core number to monitor.\n"));
+
+	printw(_("\nCaches tab:\n"));
+	printw(_("\tPress 'down' key to switch to previous test.\n"));
+	printw(_("\tPress 'up' key' to switch to next test.\n"));
+
+	printw(_("\nBench tab:\n"));
+	printw(_("\tPress 'down' key to decrement benchmark duration.\n"));
+	printw(_("\tPress 'up' key to increment benchmark duration.\n"));
+	printw(_("\tPress 'next page' key to decrement number of threads to use.\n"));
+	printw(_("\tPress 'previous page' key to increment number of threads to use.\n"));
+	printw(_("\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"));
+	printw(_("\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"));
+
+	printw(_("\nPress any key to exit this help.\n"));
+
+	refresh();
 	getch();
 	nodelay(stdscr, TRUE);
 	timeout(opts->refr_time * 1000);
