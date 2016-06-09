@@ -62,6 +62,7 @@
 #define CACHEFIELDS           3        /* Nb of fields by cache frame */
 #define RAMFIELDS             2        /* Nb of fields by bank */
 #define GPUFIELDS             3        /* Nb of fields by GPU frame */
+#define BENCHFIELDS           2        /* Nb of fields by bench frame */
 
 /* Linux-specific paths definition */
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"
@@ -71,7 +72,7 @@
 
 enum EnTabNumber
 {
-	NO_CPU, NO_CACHES, NO_MOTHERBOARD, NO_MEMORY, NO_SYSTEM, NO_GRAPHICS, NO_ABOUT
+	NO_CPU, NO_CACHES, NO_MOTHERBOARD, NO_MEMORY, NO_SYSTEM, NO_GRAPHICS, NO_BENCH, NO_ABOUT
 };
 
 enum EnObjects
@@ -83,6 +84,7 @@ enum EnObjects
 	FRAMBANKS,
 	FRAMOPERATINGSYSTEM, FRAMMEMORY,
 	FRAMGPU1, FRAMGPU2, FRAMGPU3, FRAMGPU4,
+	FRAMPRIMESLOW, FRAMPRIMEFAST, FRAMPARAM,
 	FRAMABOUT, FRAMLICENSE,	LABVERSION, LABDESCRIPTION, LABAUTHOR, LABCOPYRIGHT, LABLICENSE,
 	LASTOBJ
 };
@@ -135,13 +137,22 @@ enum EnTabGraphics
 	LASTGRAPHICS
 };
 
+enum EnTabBench
+{
+	PRIMESLOWSCORE, PRIMESLOWRUN,
+	PRIMEFASTSCORE, PRIMEFASTRUN,
+	PARAMDURATION,  PARAMTHREADS,
+	LASTBENCH
+};
+
 typedef struct
 {
-	bool fast_mode;
+	bool     run, fast_mode;
 	unsigned duration, threads;
 	uint32_t primes;
 	uint64_t num;
-	clock_t elapsed;
+	clock_t  start, elapsed;
+	pthread_t first_thread;
 	pthread_mutex_t mutex_num, mutex_primes;
 } BenchData;
 
@@ -154,6 +165,7 @@ typedef struct
 	char *tab_memory[2][LASTMEMORY];
 	char *tab_system[2][LASTSYSTEM];
 	char *tab_graphics[2][LASTGRAPHICS];
+	char *tab_bench[2][LASTBENCH];
 
 	int      cpu_freq;
 	int8_t   cpu_vendor_id;
@@ -227,6 +239,9 @@ int bandwidth_last_test(void);
 
 /* Call bandwidth library */
 int bandwidth(Labels *data);
+
+/* Perform a multithreaded benchmark (compute prime numbers) */
+void start_benchmarks(Labels *data);
 
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data);

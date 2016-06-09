@@ -164,6 +164,11 @@ static gboolean grefresh(GThrd *refr)
 			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE + i]), data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 			break;
+		case NO_BENCH:
+			for(i = PRIMESLOWSCORE; i <= PRIMEFASTSCORE; i += BENCHFIELDS)
+				gtk_progress_bar_set_text(GTK_PROGRESS_BAR(glab->gtktab_bench[VALUE][i]), data->tab_bench[VALUE][i]);
+			change_benchsensitive(glab, data);
+			break;
 		default:
 			break;
 	}
@@ -187,6 +192,58 @@ static void change_activetest(GtkComboBox *box, Labels *data)
 
 	if(0 <= test && test < bandwidth_last_test())
 		opts->bw_test = test;
+}
+
+/* Events in Bench tab when a benchmark start/stop */
+static void start_benchmark_bg(GtkSwitch *gswitch, gboolean state, GThrd *refr)
+{
+	Labels *data = refr->data;
+
+	if(state && !data->b_data->run)
+	{
+		change_benchsensitive(refr->glab, data);
+		data->b_data->fast_mode = !strcmp(gtk_widget_get_name(GTK_WIDGET(gswitch)), objectbench[PRIMEFASTRUN]);
+		start_benchmarks(data);
+	}
+	else if(!state && data->b_data->run)
+		data->b_data->run = false;
+}
+
+/* Events in Bench tab when Duration/Threads SpinButtons are changed */
+static void change_benchparam(GtkSpinButton *spinbutton, Labels *data)
+{
+	const gint val = gtk_spin_button_get_value_as_int(spinbutton);
+
+	if(!g_strcmp0(gtk_widget_get_name     (GTK_WIDGET(spinbutton)), objectbench[PARAMDURATION]))
+		data->b_data->duration = val;
+	else if(!g_strcmp0(gtk_widget_get_name(GTK_WIDGET(spinbutton)), objectbench[PARAMTHREADS]))
+		data->b_data->threads = val;
+
+	gtk_spin_button_update(spinbutton);
+}
+
+/* Set/Unset widgets sensitive when a benchmark start/stop */
+static void change_benchsensitive(GtkLabels *glab, Labels *data)
+{
+	static bool skip = false;
+	enum EnTabBench indS = data->b_data->fast_mode ? PRIMESLOWRUN : PRIMEFASTRUN;
+	enum EnTabBench indA = data->b_data->fast_mode ? PRIMEFASTRUN : PRIMESLOWRUN;
+
+	if(data->b_data->run)
+	{
+		skip = false;
+		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
+		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],         false);
+		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS], false);
+	}
+	else if(!data->b_data->run && !skip)
+	{
+		skip = true;
+		gtk_switch_set_state (GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
+		gtk_switch_set_active(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
+		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],          true);
+		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS],  true);
+	}
 }
 
 /* Get label ID ('type' must be "lab" or "val") */
@@ -291,6 +348,14 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_graphics[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "val")));
 	}
 	glab->gridcards = GTK_WIDGET(gtk_builder_get_object(builder, "graphics_box"));
+
+	/* Tab Bench */
+	for(i = PRIMESLOWSCORE; i < LASTBENCH; i++)
+	{
+		glab->gtktab_bench[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectbench[i], "lab")));
+		glab->gtktab_bench[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectbench[i], "val")));
+		gtk_widget_set_name(glab->gtktab_bench[VALUE][i], objectbench[i]);
+	}
 }
 
 /* Set custom GTK theme */
@@ -425,6 +490,16 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	}
 	for(i = LASTGRAPHICS; i >= data->gpu_count; i -= GPUFIELDS)
 		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i / GPUFIELDS);
+
+	/* Tab Bench */
+	for(i = PRIMESLOWSCORE; i < LASTBENCH; i++)
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_bench[NAME][i]), data->tab_bench[NAME][i]);
+	for(i = PRIMESLOWSCORE; i <= PRIMEFASTSCORE; i += BENCHFIELDS)
+		gtk_progress_bar_set_text(GTK_PROGRESS_BAR(glab->gtktab_bench[VALUE][i]), data->tab_bench[VALUE][i]);
+	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60);
+	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, 1);
+	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60 * 24);
+	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, data->cpu_count);
 }
 
 /* Call defined functions on signals */
@@ -434,6 +509,12 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	g_signal_connect(glab->closebutton, "clicked", G_CALLBACK(gtk_main_quit),     NULL);
 	g_signal_connect(glab->activecore,  "changed", G_CALLBACK(change_activecore), data);
 	g_signal_connect(glab->activetest,  "changed", G_CALLBACK(change_activetest), data);
+
+	g_signal_connect(glab->gtktab_bench[VALUE][PRIMESLOWRUN],  "state-set",     G_CALLBACK(start_benchmark_bg), refr);
+	g_signal_connect(glab->gtktab_bench[VALUE][PRIMEFASTRUN],  "state-set",     G_CALLBACK(start_benchmark_bg), refr);
+	g_signal_connect(glab->gtktab_bench[VALUE][PARAMDURATION], "value-changed", G_CALLBACK(change_benchparam),  data);
+	g_signal_connect(glab->gtktab_bench[VALUE][PARAMTHREADS],  "value-changed", G_CALLBACK(change_benchparam),  data);
+
 	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
 		g_signal_connect(glab->butcol, "color-set", G_CALLBACK(change_color), glab);
 
@@ -460,7 +541,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	Labels *(data)    = refr->data;
 	GtkLabels *(glab) = refr->glab;
 
-	widget_name = gtk_widget_get_name(widget),
+	widget_name = gtk_widget_get_name(widget);
 	width       = gtk_widget_get_allocated_width(widget);
 	height      = gtk_widget_get_allocated_height(widget);
 	page        = atoi(widget_name);

@@ -95,6 +95,9 @@ static void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMBANKS],             _("Banks"));
 	asprintf(&data->objects[FRAMOPERATINGSYSTEM],   _("Operating System"));
 	asprintf(&data->objects[FRAMMEMORY],            _("Memory"));
+	asprintf(&data->objects[FRAMPRIMESLOW],         _("Prime numbers (slow)"));
+	asprintf(&data->objects[FRAMPRIMEFAST],         _("Prime numbers (fast)"));
+	asprintf(&data->objects[FRAMPARAM],             _("Parameters"));
 	asprintf(&data->objects[FRAMABOUT],             _("About"));
 	asprintf(&data->objects[FRAMLICENSE],           _("License"));
 	asprintf(&data->objects[LABVERSION],            _("Version %s"), PRGVER);
@@ -183,6 +186,16 @@ static void labels_setname(Labels *data)
 		asprintf(&data->tab_graphics[NAME][GPU1MODEL + i],       _("Model"));
 		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));
 	}
+
+	/* Bench tab */
+	for(i = 0; i < PARAMDURATION; i += 2)
+	{
+		asprintf(&data->tab_bench[NAME][PRIMESLOWSCORE  + i], _("Score"));
+		asprintf(&data->tab_bench[VALUE][PRIMESLOWSCORE + i], _("Not started"));
+		asprintf(&data->tab_bench[NAME][PRIMESLOWRUN    + i], _("Run"));
+	}
+	asprintf(&data->tab_bench[NAME][PARAMDURATION], _("Duration"));
+	asprintf(&data->tab_bench[NAME][PARAMTHREADS],  _("Threads"));
 }
 
 /* Replace null pointers by character '\0' */
@@ -197,6 +210,7 @@ static int remove_null_ptr(Labels *data)
 		{ data->tab_memory[VALUE],      LASTMEMORY      },
 		{ data->tab_system[VALUE],      LASTSYSTEM      },
 		{ data->tab_graphics[VALUE],    LASTGRAPHICS    },
+		{ data->tab_bench[VALUE],       LASTBENCH       },
 		{ NULL,                         0               }
 	};
 
@@ -656,6 +670,8 @@ int main(int argc, char *argv[])
 	                .cpu_count  = 0,          .gpu_count      = 0,          .dimms_count     = 0,
 	                .l1_size    = 0,          .l2_size        = 0,          .l3_size         = 0 };
 
+	data->b_data = &(BenchData) { .run = false, .duration = 1, .threads = 1, .primes = 0 };
+
 	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
 	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
 	                    .update      = false, .cpu_temp_msr   = false,      .cpu_volt_msr    = false };
@@ -878,6 +894,7 @@ void labels_free(Labels *data)
 		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      LASTMEMORY      },
 		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM      },
 		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    LASTGRAPHICS    },
+		{ data->tab_bench[NAME],       data->tab_bench[VALUE],       LASTBENCH       },
 		{ NULL,                        NULL,                         0               }
 	};
 

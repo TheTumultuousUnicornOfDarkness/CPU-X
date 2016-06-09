@@ -30,7 +30,7 @@ static const char *trad[LASTOBJ] =
 {
 	"cpulabel", "cacheslabel", "motherboardlabel", "ramlabel", "systemlabel", "graphicslabel", "aboutlabel",
 	"proc_lab", "clock_lab", "cache_lab", "l1cache_lab", "l2cache_lab", "l3cache_lab", "test_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
-	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "about_lab", "license_lab",
+	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "primeslow_lab", "primefast_lab", "param_lab", "about_lab", "license_lab",
 	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
 };
 
@@ -80,6 +80,14 @@ static const char *objectgpu[LASTGRAPHICS] =
 	"card1_vend", "card1_mod", "card1_drv",
 	"card2_vend", "card2_mod", "card2_drv",
 	"card3_vend", "card3_mod", "card3_drv"
+};
+
+/* Tab Bench */
+static const char *objectbench[LASTBENCH] =
+{
+	"primeslow_score", "primeslow_run",
+	"primefast_score", "primefast_run",
+	"param_duration",  "param_threads"
 };
 
 

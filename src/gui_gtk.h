@@ -70,6 +70,9 @@ typedef struct
 	GtkWidget *gridcards;
 	GtkWidget *gtktab_graphics[2][LASTGRAPHICS];
 
+	/* Tab Bench */
+	GtkWidget *gtktab_bench[2][LASTBENCH];
+
 	/* Tab About */
 	GtkWidget *logoprg;
 	GtkWidget *butcol;
@@ -102,6 +105,15 @@ static void change_activecore(GtkComboBox *box, Labels *data);
 
 /* Event in Caches tab when Test number is changed */
 static void change_activetest(GtkComboBox *box, Labels *data);
+
+/* Events in Bench tab when a benchmark start/stop */
+static void start_benchmark_bg(GtkSwitch *gswitch, gboolean state, GThrd *refr);
+
+/* Events in Bench tab when Duration/Threads SpinButtons are changed */
+static void change_benchparam(GtkSpinButton *spinbutton, Labels *data);
+
+/* Set/Unset widgets sensitive when a benchmark start/stop */
+static void change_benchsensitive(GtkLabels *glab, Labels *data);
 
 /* Get label ID ('type' must be "lab" or "val") */
 static char *get_id(const char *objectstr, char *type);

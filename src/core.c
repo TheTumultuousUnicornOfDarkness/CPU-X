@@ -117,6 +117,9 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 		case NO_GRAPHICS:
 			err = gpu_temperature(data);
 			break;
+		case NO_BENCH:
+			benchmark_status(data);
+			break;
 		default:
 			err = -1;
 	}
@@ -990,59 +993,91 @@ static int system_dynamic(Labels *data)
 /* Compute all prime numbers in 'duration' seconds */
 static void *primes_bench(void *p_data)
 {
-	uint64_t i, num, sup;
-	BenchData *t_data  = p_data;
+	uint64_t  i, num, sup;
+	Labels    *data   = p_data;
+	BenchData *b_data = data->b_data;
 
-	while(t_data->elapsed < t_data->duration * 60)
+	while(b_data->elapsed < b_data->duration * 60 && b_data->run)
 	{
-		/* t_data->num is shared by all threads */
-		pthread_mutex_lock(&t_data->mutex_num);
-		t_data->num++;
-		num = t_data->num;
-		pthread_mutex_unlock(&t_data->mutex_num);
+		/* b_data->num is shared by all threads */
+		pthread_mutex_lock(&b_data->mutex_num);
+		b_data->num++;
+		num = b_data->num;
+		pthread_mutex_unlock(&b_data->mutex_num);
 
 		/* Slow mode: loop from i to num, prime if num == i
 		   Fast mode: loop from i to sqrt(num), prime if num mod i != 0 */
-		sup = t_data->fast_mode ? sqrt(num) : num;
+		sup = b_data->fast_mode ? sqrt(num) : num;
 		for(i = 2; (i < sup) && (num % i != 0); i++);
 
-		if((t_data->fast_mode && num % i) || (!t_data->fast_mode && num == i))
+		if((b_data->fast_mode && num % i) || (!b_data->fast_mode && num == i))
 		{
-			pthread_mutex_lock(&t_data->mutex_primes);
-			t_data->primes++;
-			pthread_mutex_unlock(&t_data->mutex_primes);
+			pthread_mutex_lock(&b_data->mutex_primes);
+			b_data->primes++;
+			pthread_mutex_unlock(&b_data->mutex_primes);
 		}
+
+		/* Only the first thread compute elapsed time */
+		if(b_data->first_thread == pthread_self())
+			b_data->elapsed = (clock() - b_data->start) / CLOCKS_PER_SEC / b_data->threads;
+	}
+
+	if(b_data->first_thread == pthread_self())
+	{
+		b_data->run = false;
+		pthread_mutex_destroy(&b_data->mutex_num);
+		pthread_mutex_destroy(&b_data->mutex_primes);
 	}
 
 	return NULL;
 }
 
+/* Report score of benchmarks */
+static void benchmark_status(Labels *data)
+{
+	char *buff;
+	BenchData *b_data   = data->b_data;
+	enum EnTabBench ind = b_data->fast_mode ? PRIMEFASTSCORE : PRIMESLOWSCORE;
+
+	if(b_data->primes == 0)
+	{
+		asprintf(&data->tab_bench[VALUE][PRIMESLOWSCORE], _("Not started"));
+		asprintf(&data->tab_bench[VALUE][PRIMEFASTSCORE], _("Not started"));
+		return;
+	}
+
+	if(b_data->run && b_data->duration * 60 - b_data->elapsed >= 60)
+		asprintf(&buff, _("(%li minutes left)"), b_data->duration - b_data->elapsed / 60);
+	else if(b_data->run)
+		asprintf(&buff, _("(%li seconds left)"), b_data->duration * 60 - b_data->elapsed);
+	else if(!b_data->run && b_data->elapsed >= 60)
+		asprintf(&buff, _("in %li minutes"), b_data->elapsed / 60);
+	else
+		asprintf(&buff, _("in %li seconds"), b_data->elapsed);
+
+	asprintf(&data->tab_bench[VALUE][ind], _("%u prime numbers calculated %s"), b_data->primes, buff);
+}
+
 /* Perform a multithreaded benchmark (compute prime numbers) */
-void benchmarks(BenchData *b_data)
+void start_benchmarks(Labels *data)
 {
 	unsigned i;
-	const clock_t start = clock();
 	pthread_t *t_id;
-	b_data->num = 2;
-	b_data->primes = 1;
+	BenchData *b_data = data->b_data;
 
-	t_id = malloc(sizeof(pthread_t) * b_data->threads);
-	pthread_mutex_init(&b_data->mutex_num, NULL);
+	b_data->run     = true;
+	b_data->elapsed = 0;
+	b_data->num     = 2;
+	b_data->primes  = 1;
+	b_data->start   = clock();
+	t_id            = malloc(sizeof(pthread_t) * b_data->threads);
+
+	pthread_mutex_init(&b_data->mutex_num,    NULL);
 	pthread_mutex_init(&b_data->mutex_primes, NULL);
 
 	for(i = 0; i < b_data->threads; i++)
-		pthread_create(&t_id[i], NULL, primes_bench, b_data);
+		pthread_create(&t_id[i], NULL, primes_bench, data);
 
-	while(b_data->elapsed < b_data->duration * 60)
-	{
-		b_data->elapsed = (clock() - start) / CLOCKS_PER_SEC / b_data->threads;
-		usleep(100);
-	}
-
-	for(i = 0; i < b_data->threads; i++)
-		pthread_join(t_id[i], NULL);
-
+	b_data->first_thread = t_id[0];
 	free(t_id);
-	pthread_mutex_destroy(&b_data->mutex_num);
-	pthread_mutex_destroy(&b_data->mutex_primes);
 }
