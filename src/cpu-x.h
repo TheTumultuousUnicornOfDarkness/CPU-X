@@ -183,7 +183,7 @@ typedef struct
 	uint8_t  cpu_count, gpu_count, dimms_count;
 	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
 	uint32_t l1_size, l2_size, l3_size;
-	double   bus_freq;
+	double   bus_freq, min_mult, max_mult;
 	BenchData *b_data;
 } Labels;
 

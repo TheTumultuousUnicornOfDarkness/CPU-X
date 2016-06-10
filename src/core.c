@@ -478,16 +478,16 @@ static bool load_msr_driver(void)
 /* Dynamic elements provided by libcpuid */
 static int call_libcpuid_dynamic(Labels *data)
 {
-	static bool skip = false;
-	int voltage, temp, bclk;
-	struct msr_driver_t *msr = NULL;
-
 	/* CPU frequency */
 	MSG_VERBOSE(_("Calling libcpuid (retrieve dynamic data)"));
 	data->cpu_freq = cpu_clock();
 	iasprintf(&data->tab_cpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
 
 #ifdef HAVE_LIBCPUID_0_2_2
+	int voltage, temp, bclk;
+	static bool skip = false;
+	static struct msr_driver_t *msr = NULL;
+
 	if(skip)
 		return 1;
 
@@ -501,7 +501,8 @@ static int call_libcpuid_dynamic(Labels *data)
 
 	/* MSR stuff */
 	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
-	msr = cpu_msr_driver_open_core(opts->selected_core);
+	if(msr == NULL)
+		msr = cpu_msr_driver_open_core(opts->selected_core);
 	if(msr == NULL)
 	{
 		MSG_ERROR(_("failed to open CPU MSR"));
@@ -513,7 +514,6 @@ static int call_libcpuid_dynamic(Labels *data)
 	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
 	temp    = cpu_msrinfo(msr, INFO_TEMPERATURE);
 	bclk    = cpu_msrinfo(msr, INFO_BCLK);
-	cpu_msr_driver_close(msr);
 
 	/* CPU Voltage */
 	if(voltage != CPU_INVALID_VALUE && opts->cpu_volt_msr)
@@ -529,6 +529,21 @@ static int call_libcpuid_dynamic(Labels *data)
 		data->bus_freq = (double) bclk / 100;
 		iasprintf(&data->tab_cpu[VALUE][BUSSPEED],    "%.2f MHz", data->bus_freq);
 	}
+
+#ifdef HAVE_LIBCPUID_0_3_0
+	int min_mult, max_mult;
+
+	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
+	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
+
+	/* Minimum multiplier */
+	if(min_mult != CPU_INVALID_VALUE)
+		data->min_mult = (double) min_mult / 100;
+
+	/* Maximum multiplier */
+	if(max_mult != CPU_INVALID_VALUE)
+		data->max_mult = (double) max_mult / 100;
+#endif /* HAVE_LIBCPUID_0_3_0 */
 #endif /* HAVE_LIBCPUID_0_2_2 */
 
 	return 0;
@@ -600,14 +615,13 @@ static int call_dmidecode(Labels *data)
 static int cpu_multipliers(Labels *data)
 {
 	static int err = 0;
-	MSG_VERBOSE(_("Getting CPU multipliers"));
 #ifdef __linux__
 	static bool init = false;
 	char *min_freq_str, *max_freq_str;
 	char *cpuinfo_min_file, *cpuinfo_max_file;
 	double min_freq, max_freq;
-	static double min_mult, max_mult;
 
+	MSG_VERBOSE(_("Getting CPU multipliers"));
 	if(err)
 		return err;
 	else if(data->cpu_freq <= 0 || data->bus_freq <= 0)
@@ -617,7 +631,7 @@ static int cpu_multipliers(Labels *data)
 		return err;
 	}
 
-	if(!init)
+	if(!init && data->min_mult <= 0 && data->max_mult <= 0)
 	{
 		/* Open files */
 		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
@@ -626,20 +640,20 @@ static int cpu_multipliers(Labels *data)
 		fopen_to_str(cpuinfo_max_file, &max_freq_str);
 
 		/* Convert to get min and max values */
-		min_freq = strtod(min_freq_str, NULL) / 1000;
-		max_freq = strtod(max_freq_str, NULL) / 1000;
-		min_mult = round(min_freq / data->bus_freq);
-		max_mult = round(max_freq / data->bus_freq);
-		init     = true;
+		min_freq       = strtod(min_freq_str, NULL) / 1000;
+		max_freq       = strtod(max_freq_str, NULL) / 1000;
+		data->min_mult = round(min_freq / data->bus_freq);
+		data->max_mult = round(max_freq / data->bus_freq);
+		init           = true;
 	}
 
-	if(min_mult <= 0 || max_mult <= 0)
+	if(data->min_mult <= 0 || data->max_mult <= 0)
 	{
 		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", data->cpu_freq / data->bus_freq);
-		MSG_WARNING(_("Cannot get minimum and maximum CPU multiplierss"));
+		MSG_WARNING(_("Cannot get minimum and maximum CPU multipliers"));
 	}
 	else
-		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, min_mult, max_mult);
+		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, data->min_mult, data->max_mult);
 #endif /* __linux__ */
 
 	return err;

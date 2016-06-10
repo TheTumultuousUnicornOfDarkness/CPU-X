@@ -654,7 +654,8 @@ int main(int argc, char *argv[])
 	                .tab_memory = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
 	                .cpu_freq   = 0,          .cpu_vendor_id  = 0,          .bus_freq        = 0.0,
 	                .cpu_count  = 0,          .gpu_count      = 0,          .dimms_count     = 0,
-	                .l1_size    = 0,          .l2_size        = 0,          .l3_size         = 0 };
+	                .l1_size    = 0,          .l2_size        = 0,          .l3_size         = 0,
+			.min_mult   = -1,         .max_mult       = -1 };
 
 	data->b_data = &(BenchData) { .run = false, .duration = 1, .threads = 1, .primes = 0 };
 
