@@ -464,12 +464,9 @@ static bool load_msr_driver(void)
 {
 	static bool loaded = false;
 #ifdef __linux__
-	if(!loaded)
+	if(!loaded && !getuid())
 	{
 		MSG_VERBOSE(_("Loading CPU MSR kernel module"));
-		if(getuid())
-			MSG_WARNING(_("Load a kernel module as regular user should fail"));
-
 		loaded = !system("modprobe msr 2> /dev/null");
 		if(!loaded)
 			MSG_ERROR(_("failed to load CPU MSR kernel module"));
@@ -491,19 +488,25 @@ static int call_libcpuid_dynamic(Labels *data)
 	iasprintf(&data->tab_cpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
 
 #ifdef HAVE_LIBCPUID_0_2_2
-	/* MSR stuff */
-	if(skip || (skip = !load_msr_driver()))
+	if(skip)
 		return 1;
-	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
-	if(getuid())
-		MSG_WARNING(_("Open CPU MSR as regular user should fail"));
 
+	if(getuid())
+	{
+		MSG_WARNING(_("Skip opening of CPU MSR (need to be root)"));
+		skip = true;
+		return 1;
+	}
+	skip = !load_msr_driver();
+
+	/* MSR stuff */
+	MSG_VERBOSE(_("Opening CPU Model-specific register (MSR)"));
 	msr = cpu_msr_driver_open_core(opts->selected_core);
 	if(msr == NULL)
 	{
 		MSG_ERROR(_("failed to open CPU MSR"));
 		skip = true;
-		return 1;
+		return 2;
 	}
 
 	/* Get values from MSR */
@@ -558,9 +561,13 @@ static int call_dmidecode(Labels *data)
 	opt.type  = NULL;
 	opt.flags = (opts->verbose) ? FLAG_CPU_X : FLAG_CPU_X | FLAG_QUIET;
 
-	MSG_VERBOSE(_("Calling dmidecode"));
 	if(getuid())
-		MSG_WARNING(_("Call dmidecode as regular user should fail"));
+	{
+		MSG_WARNING(_("Skip dmidecode (need to be root)"));
+		return 1;
+	}
+	MSG_VERBOSE(_("Calling dmidecode"));
+
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
