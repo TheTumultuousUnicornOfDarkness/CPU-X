@@ -69,48 +69,13 @@ Options *opts;
 /* Set labels name */
 static void labels_setname(Labels *data)
 {
-	int i;
+	int i, j;
 
 	MSG_VERBOSE(_("Setting label names"));
-	/* Various objects */
-	asprintf(&data->objects[TABCPU],                _("CPU"));
-	asprintf(&data->objects[TABCACHES],             _("Caches"));
-	asprintf(&data->objects[TABMOTHERBOARD],        _("Motherboard"));
-	asprintf(&data->objects[TABMEMORY],             _("Memory"));
-	asprintf(&data->objects[TABSYSTEM],             _("System"));
-	asprintf(&data->objects[TABGRAPHICS],           _("Graphics"));
-	asprintf(&data->objects[TABBENCH],              _("Bench"));
-	asprintf(&data->objects[TABABOUT],              _("About"));
-	asprintf(&data->objects[FRAMPROCESSOR],         _("Processor"));
-	asprintf(&data->objects[FRAMCLOCKS],            _("Clocks"));
-	asprintf(&data->objects[FRAMCACHE],             _("Cache"));
-	asprintf(&data->objects[FRAML1CACHE],           _("L1 Cache"));
-	asprintf(&data->objects[FRAML2CACHE],           _("L2 Cache"));
-	asprintf(&data->objects[FRAML3CACHE],           _("L3 Cache"));
-	asprintf(&data->objects[FRAMTEST],              _("Test"));
-	asprintf(&data->objects[FRAMMOTHERBOARD],       _("Motherboard"));
-	asprintf(&data->objects[FRAMBIOS],              _("BIOS"));
-	asprintf(&data->objects[FRAMCHIPSET],           _("Chipset"));
-	for(i = 0; i < LASTGRAPHICS / GPUFIELDS; i ++)
-		asprintf(&data->objects[FRAMGPU1 + i],  _("Card %i"), i);
-	asprintf(&data->objects[FRAMBANKS],             _("Banks"));
-	asprintf(&data->objects[FRAMOPERATINGSYSTEM],   _("Operating System"));
-	asprintf(&data->objects[FRAMMEMORY],            _("Memory"));
-	asprintf(&data->objects[FRAMPRIMESLOW],         _("Prime numbers (slow)"));
-	asprintf(&data->objects[FRAMPRIMEFAST],         _("Prime numbers (fast)"));
-	asprintf(&data->objects[FRAMPARAM],             _("Parameters"));
-	asprintf(&data->objects[FRAMABOUT],             _("About"));
-	asprintf(&data->objects[FRAMLICENSE],           _("License"));
-	asprintf(&data->objects[LABVERSION],            _("Version %s"), PRGVER);
-	asprintf(&data->objects[LABDESCRIPTION],        _(
-		"%s is a Free software that gathers information\n"
-		"on CPU, motherboard and more."), PRGNAME);
-	asprintf(&data->objects[LABAUTHOR],             _("Author : %s"), PRGAUTH);
-	asprintf(&data->objects[LABCOPYRIGHT],          "%s", PRGCPYR);
-	asprintf(&data->objects[LABLICENSE],            _(
-		"This program comes with ABSOLUTELY NO WARRANTY"));
 
 	/* CPU tab */
+	asprintf(&data->objects[TABCPU],                _("CPU")); // Tab label
+	asprintf(&data->objects[FRAMPROCESSOR],         _("Processor")); // Frame label
 	asprintf(&data->tab_cpu[NAME][VENDOR],          _("Vendor"));
 	asprintf(&data->tab_cpu[NAME][CODENAME],        _("Code Name"));
 	asprintf(&data->tab_cpu[NAME][PACKAGE],         _("Package"));
@@ -125,11 +90,13 @@ static void labels_setname(Labels *data)
 	asprintf(&data->tab_cpu[NAME][STEPPING],        _("Stepping"));
 	asprintf(&data->tab_cpu[NAME][INSTRUCTIONS],    _("Instructions"));
 
+	asprintf(&data->objects[FRAMCLOCKS],            _("Clocks")); // Frame label
 	asprintf(&data->tab_cpu[NAME][CORESPEED],       _("Core Speed"));
 	asprintf(&data->tab_cpu[NAME][MULTIPLIER],      _("Multiplier"));
 	asprintf(&data->tab_cpu[NAME][BUSSPEED],        _("Bus Speed"));
 	asprintf(&data->tab_cpu[NAME][USAGE],           _("Usage"));
 
+	asprintf(&data->objects[FRAMCACHE],             _("Cache")); // Frame label
 	asprintf(&data->tab_cpu[NAME][LEVEL1D],         _("L1 Data"));
 	asprintf(&data->tab_cpu[NAME][LEVEL1I],         _("L1 Inst."));
 	asprintf(&data->tab_cpu[NAME][LEVEL2],          _("Level 2"));
@@ -140,40 +107,53 @@ static void labels_setname(Labels *data)
 	asprintf(&data->tab_cpu[NAME][THREADS],         _("Thread(s)"));
 
 	/* Caches tab */
-	for(i = 0; i < LASTCACHES / CACHEFIELDS + 1; i++)
+	asprintf(&data->objects[TABCACHES], _("Caches")); // Tab label
+	for(i = L1SIZE; i < LASTCACHES; i += CACHEFIELDS)
 	{
-		asprintf(&data->tab_caches[NAME][i * CACHEFIELDS],     _("Size"));
-		asprintf(&data->tab_caches[NAME][i * CACHEFIELDS + 1], _("Descriptor"));
-		asprintf(&data->tab_caches[NAME][i * CACHEFIELDS + 2], _("Speed"));
+		j = i / CACHEFIELDS;
+		asprintf(&data->objects[FRAML1CACHE + j],           _("L%i Cache"), j + 1); // Frame label
+		asprintf(&data->tab_caches[NAME][L1SIZE       + i], _("Size"));
+		asprintf(&data->tab_caches[NAME][L1DESCRIPTOR + i], _("Descriptor"));
+		asprintf(&data->tab_caches[NAME][L1SPEED      + i], _("Speed"));
 	}
+	asprintf(&data->objects[FRAMTEST], _("Test"));
 
 	/* Motherboard tab */
+	asprintf(&data->objects[TABMOTHERBOARD],              _("Motherboard")); // Tab label
+	asprintf(&data->objects[FRAMMOTHERBOARD],             _("Motherboard")); // Frame label
 	asprintf(&data->tab_motherboard[NAME][MANUFACTURER],  _("Manufacturer"));
 	asprintf(&data->tab_motherboard[NAME][MBMODEL],       _("Model"));
 	asprintf(&data->tab_motherboard[NAME][REVISION],      _("Revision"));
 
+	asprintf(&data->objects[FRAMBIOS],                    _("BIOS")); // Frame label
 	asprintf(&data->tab_motherboard[NAME][BRAND],         _("Brand"));
 	asprintf(&data->tab_motherboard[NAME][BIOSVERSION],   _("Version"));
 	asprintf(&data->tab_motherboard[NAME][DATE],          _("Date"));
 	asprintf(&data->tab_motherboard[NAME][ROMSIZE],       _("ROM Size"));
 
+	asprintf(&data->objects[FRAMCHIPSET],                 _("Chipset")); // Frame label
 	asprintf(&data->tab_motherboard[NAME][CHIPVENDOR],    _("Vendor"));
 	asprintf(&data->tab_motherboard[NAME][CHIPMODEL],     _("Model"));
 
 	/* Memory tab */
-	for(i = 0; i < BANK7_1 / RAMFIELDS + 1; i++)
+	asprintf(&data->objects[TABMEMORY], _("Memory")); // Tab label
+	asprintf(&data->objects[FRAMBANKS], _("Banks")); // Frame label
+	for(i = BANK0_0; i < LASTMEMORY; i += RAMFIELDS)
 	{
-		asprintf(&data->tab_memory[NAME][i * RAMFIELDS],     _("Bank %i Ref."), i);
-		asprintf(&data->tab_memory[NAME][i * RAMFIELDS + 1], _("Bank %i Type"), i);
+		asprintf(&data->tab_memory[NAME][BANK0_0 + i], _("Bank %i Ref."), i / RAMFIELDS);
+		asprintf(&data->tab_memory[NAME][BANK0_1 + i], _("Bank %i Type"), i / RAMFIELDS);
 	}
 
 	/* System tab */
+	asprintf(&data->objects[TABSYSTEM],                   _("System")); // Tab label
+	asprintf(&data->objects[FRAMOPERATINGSYSTEM],         _("Operating System")); // Frame label
 	asprintf(&data->tab_system[NAME][KERNEL],             _("Kernel"));
 	asprintf(&data->tab_system[NAME][DISTRIBUTION],       _("Distribution"));
 	asprintf(&data->tab_system[NAME][HOSTNAME],           _("Hostname"));
 	asprintf(&data->tab_system[NAME][UPTIME],             _("Uptime"));
 	asprintf(&data->tab_system[NAME][COMPILER],           _("Compiler"));
 
+	asprintf(&data->objects[FRAMMEMORY],                  _("Memory")); // Frame label
 	asprintf(&data->tab_system[NAME][USED],               _("Used"));
 	asprintf(&data->tab_system[NAME][BUFFERS],            _("Buffers"));
 	asprintf(&data->tab_system[NAME][CACHED],             _("Cached"));
@@ -181,22 +161,45 @@ static void labels_setname(Labels *data)
 	asprintf(&data->tab_system[NAME][SWAP],               _("Swap"));
 
 	/* Graphics tab */
-	for(i = 0; i < LASTGRAPHICS; i += GPUFIELDS)
+	asprintf(&data->objects[TABGRAPHICS], _("Graphics")); // Tab label
+	for(i = GPU1VENDOR; i < LASTGRAPHICS; i += GPUFIELDS)
 	{
-		asprintf(&data->tab_graphics[NAME][GPU1VENDOR + i],      _("Vendor"));
-		asprintf(&data->tab_graphics[NAME][GPU1MODEL + i],       _("Model"));
+		j = i / GPUFIELDS;
+		asprintf(&data->objects[FRAMGPU1 + j],                   _("Card %i"), j); // Frame label
+		asprintf(&data->tab_graphics[NAME][GPU1VENDOR      + i], _("Vendor"));
+		asprintf(&data->tab_graphics[NAME][GPU1MODEL       + i], _("Model"));
 		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));
 	}
 
 	/* Bench tab */
-	for(i = 0; i < PARAMDURATION; i += 2)
+	asprintf(&data->objects[TABBENCH],              _("Bench")); // Tab label
+	asprintf(&data->objects[FRAMPRIMESLOW],         _("Prime numbers (slow)")); // Frame label
+	asprintf(&data->objects[FRAMPRIMEFAST],         _("Prime numbers (fast)")); // Frame label
+	for(i = PRIMESLOWSCORE; i < PARAMDURATION; i += BENCHFIELDS)
 	{
 		asprintf(&data->tab_bench[NAME][PRIMESLOWSCORE  + i], _("Score"));
 		asprintf(&data->tab_bench[VALUE][PRIMESLOWSCORE + i], _("Not started"));
 		asprintf(&data->tab_bench[NAME][PRIMESLOWRUN    + i], _("Run"));
 	}
+
+	asprintf(&data->objects[FRAMPARAM],             _("Parameters")); // Frame label
 	asprintf(&data->tab_bench[NAME][PARAMDURATION], _("Duration"));
 	asprintf(&data->tab_bench[NAME][PARAMTHREADS],  _("Threads"));
+
+	/* About tab */
+	asprintf(&data->objects[TABABOUT],              _("About")); // Tab label
+	asprintf(&data->objects[LABDESCRIPTION],        _(
+		"%s is a Free software that gathers information\n"
+		"on CPU, motherboard and more."), PRGNAME);
+
+	asprintf(&data->objects[FRAMABOUT],             _("About")); // Frame label
+	asprintf(&data->objects[LABVERSION],            _("Version %s"), PRGVER);
+	asprintf(&data->objects[LABAUTHOR],             _("Author : %s"), PRGAUTH);
+
+	asprintf(&data->objects[FRAMLICENSE],           _("License")); // Frame label
+	asprintf(&data->objects[LABCOPYRIGHT],          "%s", PRGCPYR);
+	asprintf(&data->objects[LABLICENSE],            _(
+		"This program comes with ABSOLUTELY NO WARRANTY"));
 }
 
 /* Replace null pointers by character '\0' */
