@@ -361,6 +361,10 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_bench[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectbench[i], "val")));
 		gtk_widget_set_name(glab->gtktab_bench[VALUE][i], objectbench[i]);
 	}
+
+	/* Tab About */
+	for(i = DESCRIPTION; i < LASTABOUT; i++)
+		glab->gtktab_about[i] = GTK_WIDGET(gtk_builder_get_object(builder, objectabout[i]));
 }
 
 /* Set custom GTK theme */
@@ -438,7 +442,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	int i;
 
 	/* Footer label */
-	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->objects[LABVERSION]);
+	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->tab_about[VERSIONSTR]);
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
@@ -505,6 +509,10 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, 1);
 	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60 * 24);
 	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, data->cpu_count);
+
+	/* Tab About */
+	for(i = DESCRIPTION; i < LASTABOUT; i++)
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_about[i]), data->tab_about[i]);
 }
 
 /* Call defined functions on signals */

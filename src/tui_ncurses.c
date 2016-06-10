@@ -434,7 +434,7 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 
 	mvwprintwc(win, TITLE_LINE, info.width / 2 - strlen(PRGNAME) / 2, TITLE_COLOR, PRGNAME);
 	mvwprintwc(win, HEADER_LINE, 2, DEFAULT_COLOR, PRGNAME);
-	mvwprintwc(win, HEADER_LINE, info.width / 2, DEFAULT_COLOR, data->objects[LABVERSION]);
+	mvwprintwc(win, HEADER_LINE, info.width / 2, DEFAULT_COLOR, data->tab_about[VERSIONSTR]);
 
 	for(i = 1; i < info.width - 1; i++)
 		mvwprintwc(win, TABS_LINE, i, INACTIVE_TAB_COLOR, " ");
@@ -725,7 +725,7 @@ static void ntab_bench(WINDOW *win, const SizeInfo info, Labels *data)
 /* About tab */
 static void ntab_about(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	char *part2 = strdup(data->objects[LABDESCRIPTION]);
+	char *part2 = strdup(data->tab_about[DESCRIPTION]);
 	const char *part1 = strsep(&part2, "\n");
 
 	/* About CPU-X frame */
@@ -734,14 +734,14 @@ static void ntab_about(WINDOW *win, const SizeInfo info, Labels *data)
 	mvwprintwc(win, LINE_3, 4,   DEFAULT_COLOR, "%s", part2);
 
 	frame(win, LINE_6, info.start, LINE_10, info.width - 1, data->objects[FRAMABOUT]);
-	mvwprintwc(win, LINE_7, 20,  DEFAULT_COLOR, "%s", data->objects[LABVERSION]);
-	mvwprintwc(win, LINE_8, 20,  DEFAULT_COLOR, "%s", data->objects[LABAUTHOR]);
-	mvwprintwc(win, LINE_9, 20,  DEFAULT_COLOR, "%s", "GitHub : https://github.com/X0rg");
+	mvwprintwc(win, LINE_7, 20,  DEFAULT_COLOR, "%s", data->tab_about[VERSIONSTR]);
+	mvwprintwc(win, LINE_8, 20,  DEFAULT_COLOR, "%s", data->tab_about[AUTHOR]);
+	mvwprintwc(win, LINE_9, 20,  DEFAULT_COLOR, "%s", data->tab_about[SITE]);
 
 	frame(win, LINE_11, info.start, LINE_16, info.width - 1, data->objects[FRAMLICENSE]);
-	mvwprintwc(win, LINE_12, 20, DEFAULT_COLOR, "%s", PRGCPYR);
-	mvwprintwc(win, LINE_14, 4,  DEFAULT_COLOR, "%s", data->objects[LABLICENSE]);
-	mvwprintwc(win, LINE_15, 30, DEFAULT_COLOR, "%s", "GPLv3");
+	mvwprintwc(win, LINE_12, 20, DEFAULT_COLOR, "%s", data->tab_about[COPYRIGHT]);
+	mvwprintwc(win, LINE_14, 6,  DEFAULT_COLOR, "%s", data->tab_about[LICENSE]);
+	mvwprintwc(win, LINE_15, 10, DEFAULT_COLOR, "%s", data->tab_about[NOWARRANTY]);
 
 	wrefresh(win);
 }

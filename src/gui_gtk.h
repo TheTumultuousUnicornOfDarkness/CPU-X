@@ -76,6 +76,7 @@ typedef struct
 	/* Tab About */
 	GtkWidget *logoprg;
 	GtkWidget *butcol;
+	GtkWidget *gtktab_about[LASTABOUT];
 
 } GtkLabels; /* Useful GtkWidgets */
 

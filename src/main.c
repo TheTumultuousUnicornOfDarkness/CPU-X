@@ -188,17 +188,20 @@ static void labels_setname(Labels *data)
 
 	/* About tab */
 	asprintf(&data->objects[TABABOUT],              _("About")); // Tab label
-	asprintf(&data->objects[LABDESCRIPTION],        _(
+	asprintf(&data->tab_about[DESCRIPTION],         _(
 		"%s is a Free software that gathers information\n"
 		"on CPU, motherboard and more."), PRGNAME);
 
 	asprintf(&data->objects[FRAMABOUT],             _("About")); // Frame label
-	asprintf(&data->objects[LABVERSION],            _("Version %s"), PRGVER);
-	asprintf(&data->objects[LABAUTHOR],             _("Author : %s"), PRGAUTH);
+	asprintf(&data->tab_about[VERSIONSTR],          _("Version %s"), PRGVER);
+	asprintf(&data->tab_about[AUTHOR],              _("Author: %s"), PRGAUTH);
+	asprintf(&data->tab_about[SITE],                _("Site: %s"),   PRGURL);
 
 	asprintf(&data->objects[FRAMLICENSE],           _("License")); // Frame label
-	asprintf(&data->objects[LABCOPYRIGHT],          "%s", PRGCPYR);
-	asprintf(&data->objects[LABLICENSE],            _(
+	asprintf(&data->tab_about[COPYRIGHT],           PRGCPYR);
+	asprintf(&data->tab_about[LICENSE],             _(
+		"This software is distributed under the terms of GNU GPL v3"));
+	asprintf(&data->tab_about[NOWARRANTY],            _(
 		"This program comes with ABSOLUTELY NO WARRANTY"));
 }
 

@@ -29,9 +29,14 @@
 static const char *trad[LASTOBJ] =
 {
 	"cpulabel", "cacheslabel", "motherboardlabel", "ramlabel", "systemlabel", "graphicslabel", "benchlabel", "aboutlabel",
-	"proc_lab", "clock_lab", "cache_lab", "l1cache_lab", "l2cache_lab", "l3cache_lab", "test_lab", "motherboard_lab", "bios_lab", "chip_lab", "banks_lab", "os_lab", "mem_lab",
-	"card0_lab", "card1_lab", "card2_lab", "card3_lab", "primeslow_lab", "primefast_lab", "param_lab", "about_lab", "license_lab",
-	"about_version", "about_descr", "about_author", "license_labcopyright", "license_lablicense"
+	"proc_lab", "clock_lab", "cache_lab",
+	"l1cache_lab", "l2cache_lab", "l3cache_lab", "test_lab",
+	"motherboard_lab", "bios_lab", "chip_lab",
+	"banks_lab",
+	"os_lab", "mem_lab",
+	"card0_lab", "card1_lab", "card2_lab", "card3_lab",
+	"primeslow_lab", "primefast_lab", "param_lab",
+	"about_lab", "license_lab"
 };
 
 /* Tab CPU */
@@ -88,6 +93,14 @@ static const char *objectbench[LASTBENCH] =
 	"primeslow_score", "primeslow_run",
 	"primefast_score", "primefast_run",
 	"param_duration",  "param_threads"
+};
+
+/* Tab About */
+static const char *objectabout[LASTABOUT] =
+{
+	"about_descr",
+	"about_version", "about_author", "about_site",
+	"license_labcopyright", "license_lablicense", "license_nowarranty"
 };
 
 

@@ -32,6 +32,7 @@
 /* Software definition */
 #define PRGNAME	              "CPU-X"
 #define PRGAUTH	              "X0rg"
+#define PRGURL                "https://github.com/X0rg/CPU-X"
 #define PRGCPYR               "Copyright © 2014-2016 Xorg"
 
 /* Colors definition */
@@ -86,7 +87,7 @@ enum EnObjects
 	FRAMOPERATINGSYSTEM, FRAMMEMORY,
 	FRAMGPU1, FRAMGPU2, FRAMGPU3, FRAMGPU4,
 	FRAMPRIMESLOW, FRAMPRIMEFAST, FRAMPARAM,
-	FRAMABOUT, FRAMLICENSE,	LABVERSION, LABDESCRIPTION, LABAUTHOR, LABCOPYRIGHT, LABLICENSE,
+	FRAMABOUT, FRAMLICENSE,
 	LASTOBJ
 };
 
@@ -146,6 +147,14 @@ enum EnTabBench
 	LASTBENCH
 };
 
+enum EnTabAbout
+{
+	DESCRIPTION,
+	VERSIONSTR, AUTHOR, SITE,
+	COPYRIGHT, LICENSE, NOWARRANTY,
+	LASTABOUT
+};
+
 typedef struct
 {
 	bool     run, fast_mode;
@@ -167,6 +176,7 @@ typedef struct
 	char *tab_system[2][LASTSYSTEM];
 	char *tab_graphics[2][LASTGRAPHICS];
 	char *tab_bench[2][LASTBENCH];
+	char *tab_about[LASTABOUT];
 
 	int      cpu_freq;
 	int8_t   cpu_vendor_id;
