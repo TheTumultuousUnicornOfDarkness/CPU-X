@@ -4867,7 +4867,7 @@ static int address_from_efi(off_t *address)
 
 int dmidecode(void)
 {
-	int ret = 0;                /* Returned value */
+	int ret = 0, i;                /* Returned value */
 	int found = 0;
 	off_t fp;
 	size_t size;
@@ -5043,8 +5043,12 @@ done:
 
 	free(buf);
 exit_free:
+	for(i = 0; i < 256; i++)
+		opt.type[i] = 0;
+#if 0
 	free(opt.type);
 	opt.type = NULL;
+#endif
 
 	return ret;
 }

@@ -551,23 +551,6 @@ static int call_libcpuid_dynamic(Labels *data)
 #endif /* HAS_LIBCPUID */
 
 #if HAS_DMIDECODE
-static u8 *dmiparse(u8 *p, int l)
-{
-	/* Allocate memory on first call only */
-	if (p == NULL)
-	{
-		p = (u8 *)calloc(256, sizeof(u8));
-		if (p == NULL)
-		{
-			perror("calloc");
-			return NULL;
-		}
-	}
-
-	p[l] = 1;
-	return p;
-}
-
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data)
 {
@@ -581,32 +564,42 @@ static int call_dmidecode(Labels *data)
 		MSG_WARNING(_("Skip dmidecode (need to be root)"));
 		return 1;
 	}
+
 	MSG_VERBOSE(_("Calling dmidecode"));
+	opt.type = calloc(256, sizeof(uint8_t));
+	if(opt.type == NULL)
+	{
+		MSG_ERROR_ERRNO(_("failed to allocate memory for dmidecode"));
+		return 2;
+	}
 
 	/* Tab CPU */
 	dmidata[PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
 	dmidata[PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
-	opt.type              = dmiparse(opt.type, 4);
+	opt.type[4]           = 1;
 	err                  += dmidecode();
 
 	/* Tab Motherboard */
+
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 		dmidata[i]    = &data->tab_motherboard[VALUE][i];
-	opt.type              = dmiparse(opt.type, 0);
-	opt.type              = dmiparse(opt.type, 2);
+	opt.type[0]           = 1;
+	opt.type[2]           = 1;
 	err                  += dmidecode();
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < LASTMEMORY; i++)
 		dmidata[i]    = &data->tab_memory[VALUE][i];
-	opt.type              = dmiparse(opt.type, 17);
+	opt.type[17]          = 1;
 	err                  += dmidecode();
+
 	while(data->tab_memory[VALUE][data->dimms_count] != NULL)
 		data->dimms_count++;
 
 	if(err)
 		MSG_ERROR(_("failed to call dmidecode"));
 
+	free(opt.type);
 	return err;
 }
 #endif /* HAS_DMIDECODE */
