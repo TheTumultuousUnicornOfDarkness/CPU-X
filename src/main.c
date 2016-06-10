@@ -234,75 +234,54 @@ static int remove_null_ptr(Labels *data)
 /* Dump all data in stdout */
 static void dump_data(Labels *data)
 {
-	int i;
+	int i, j, k = 0;
+	const char *col = opts->color ? BOLD_BLUE : "";
+	const struct Arrays { char **array_name, **array_value; int last; } a[] =
+	{
+		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                     },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      LASTCACHES                  },
+		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD             },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimms_count           },
+		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM                  },
+		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    data->gpu_count * GPUFIELDS },
+		{ NULL,                        NULL,                         0                           }
+	};
+	const struct Frames { int tab_nb, lab_nb, frame_nb; } f[] =
+	{
+		{ NO_CPU,         VENDOR,       FRAMPROCESSOR       },
+		{ NO_CPU,         CORESPEED,    FRAMCLOCKS          },
+		{ NO_CPU,         LEVEL1D,      FRAMCACHE           },
+		{ NO_CPU,         SOCKETS,      -1                  },
+		{ NO_CACHES,      L1SIZE,       FRAML1CACHE         },
+		{ NO_CACHES,      L2SIZE,       FRAML2CACHE         },
+		{ NO_CACHES,      L3SIZE,       FRAML3CACHE         },
+		{ NO_MOTHERBOARD, MANUFACTURER, FRAMMOTHERBOARD     },
+		{ NO_MOTHERBOARD, BRAND,        FRAMBIOS            },
+		{ NO_MOTHERBOARD, CHIPVENDOR,   FRAMCHIPSET         },
+		{ NO_MEMORY,      BANK0_0,      FRAMBANKS           },
+		{ NO_SYSTEM,      KERNEL,       FRAMOPERATINGSYSTEM },
+		{ NO_SYSTEM,      USED,         FRAMMEMORY          },
+		{ NO_GRAPHICS,    GPU1VENDOR,   FRAMGPU1            },
+		{ NO_GRAPHICS,    GPU2VENDOR,   FRAMGPU2            },
+		{ NO_GRAPHICS,    GPU3VENDOR,   FRAMGPU3            },
+		{ NO_GRAPHICS,    GPU4VENDOR,   FRAMGPU4            }
+	};
 
 	MSG_VERBOSE(_("Dumping data..."));
-	/* CPU tab */
-	printf(" ***** %s *****\n\n", data->objects[TABCPU]);
-	printf("\t*** %s ***\n", data->objects[FRAMPROCESSOR]);
-	for(i = VENDOR; i < LASTCPU; i++)
+	for(i = 0; a[i].array_name != NULL; i++)
 	{
-		if(i == CORESPEED)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCLOCKS]);
-		else if(i == LEVEL1D)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCACHE]);
-		else if(i == SOCKETS)
-			printf("\n\t***  ***\n");
-		printf("%16s: %s\n", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
-	}
-
-	/* Caches tab */
-	printf("\n\n ***** %s *****\n", data->objects[TABCACHES]);
-	printf("\t*** %s ***\n", data->objects[FRAML1CACHE]);
-	for(i = L1SIZE; i < LASTCACHES; i++)
-	{
-		if(i == L2SIZE)
-			printf("\n\t*** %s ***\n", data->objects[FRAML2CACHE]);
-		else if(i == L3SIZE)
-			printf("\n\t*** %s ***\n", data->objects[FRAML3CACHE]);
-		printf("%16s: %s\n", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
-	}
-
-	/* Motherboard tab */
-	printf("\n\n ***** %s *****\n", data->objects[TABMOTHERBOARD]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMMOTHERBOARD]);
-	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
-	{
-		if(i == BRAND)
-			printf("\n\t*** %s ***\n", data->objects[FRAMBIOS]);
-		else if(i == CHIPVENDOR)
-			printf("\n\t*** %s ***\n", data->objects[FRAMCHIPSET]);
-		printf("%16s: %s\n", data->tab_motherboard[NAME][i], data->tab_motherboard[VALUE][i]);
-	}
-
-	/* Memory tab */
-	printf("\n\n ***** %s *****\n", data->objects[TABMEMORY]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMBANKS]);
-	for(i = BANK0_0; i < data->dimms_count; i++)
-		printf("%16s: %s\n", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
-
-	/* System tab */
-	printf("\n\n ***** %s *****\n", data->objects[TABSYSTEM]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMOPERATINGSYSTEM]);
-	for(i = KERNEL; i < LASTSYSTEM; i++)
-	{
-		if(i == USED)
-			printf("\n\t*** %s ***\n", data->objects[FRAMMEMORY]);
-		printf("%16s: %s\n", data->tab_system[NAME][i], data->tab_system[VALUE][i]);
-	}
-
-	/* Graphics tab */
-	printf("\n\n ***** %s *****\n", data->objects[TABGRAPHICS]);
-	printf("\n\t*** %s ***\n", data->objects[FRAMGPU1]);
-	for(i = GPU1VENDOR; i < data->gpu_count; i++)
-	{
-		if(i == GPU2VENDOR)
-			printf("\n\t*** %s ***\n", data->objects[FRAMGPU2]);
-		else if(i == GPU2VENDOR)
-			printf("\n\t*** %s ***\n", data->objects[FRAMGPU3]);
-		else if(i == GPU2VENDOR)
-			printf("\n\t*** %s ***\n", data->objects[FRAMGPU4]);
-		printf("%16s: %s\n", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
+		printf("  %s>>>>>>>>>> %s <<<<<<<<<<%s\n", col, data->objects[i], RESET);
+		for(j = 0; j < a[i].last; j++)
+		{
+			if(f[k].tab_nb == i && f[k].lab_nb == j)
+			{
+				printf("\n\t%s***** %s *****%s\n", col, (f[k].frame_nb >= 0) ?
+				                                 data->objects[f[k].frame_nb] : "*", RESET);
+				k++;
+			}
+			printf("%16s: %s\n", a[i].array_name[j], a[i].array_value[j]);
+		}
+		printf("\n\n");
 	}
 
 	labels_free(data);

@@ -38,6 +38,7 @@
 #define BOLD_RED              "\x1b[1;31m"
 #define BOLD_GREEN            "\x1b[1;32m"
 #define BOLD_YELLOW           "\x1b[1;33m"
+#define BOLD_BLUE             "\x1b[1;34m"
 #define RESET                 "\x1b[0m"
 
 /* Formatted messages definition */
