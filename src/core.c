@@ -652,17 +652,48 @@ static int cpu_multipliers(Labels *data)
 	return err;
 }
 
+static long **allocate_2d_array(int rows, int columns)
+{
+	int i;
+	long **array = NULL;
+
+	array = calloc(rows, sizeof(long *));
+	if(array == NULL)
+	{
+		MSG_ERROR_ERRNO(_("failed to allocate memory for CPU usage calculation (rows)"));
+		return NULL;
+	}
+	for(i = 0; i < rows; i++)
+	{
+		array[i] = calloc(columns, sizeof(long));
+		if(array[i] == NULL)
+		{
+			MSG_ERROR_ERRNO(_("failed to allocate memory for CPU usage calculation (columns)"));
+			return NULL;
+		}
+	}
+
+	return array;
+}
+
 /* Calculate CPU usage (total if core < 0, else per given core) */
 static void cpu_usage(Labels *data, int core)
 {
 	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
 	int i, ind;
-	static long pre[8][LASTSTAT] = { { 0 } };
-	long        new[8][LASTSTAT] = { { 0 } };
+	static long **pre = NULL;
+	long **new;
 	double loadavg;
 	FILE *fp;
 
 	MSG_VERBOSE(_("Calculating CPU usage"));
+	if(pre == NULL)
+		pre = allocate_2d_array(data->cpu_count + 1, LASTSTAT);
+	new = allocate_2d_array(data->cpu_count + 1, LASTSTAT);
+
+	if(new == NULL || pre == NULL)
+		return;
+
 #ifdef __linux__
 	ind = (core < 0) ? 0 : core + 1;
 	fp = fopen("/proc/stat","r");
@@ -688,7 +719,8 @@ static void cpu_usage(Labels *data, int core)
 	if(loadavg > 0.0 && ind == 0)
 		asprintf(&data->tab_cpu[VALUE][USAGE], "%6.2f %%", loadavg * 100);
 
-	memcpy(pre, new, LASTSTAT * sizeof(long) * 8);
+	memcpy(pre, new, (data->cpu_count + 1) * LASTSTAT * sizeof(long));
+	free(new);
 }
 
 /* Retrieve CPU sensors data if run as regular user */
