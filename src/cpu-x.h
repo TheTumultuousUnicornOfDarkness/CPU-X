@@ -164,6 +164,13 @@ typedef struct
 
 typedef struct
 {
+	uint32_t mem_usage[SWAP - USED + 1];
+	uint32_t mem_total;
+	uint32_t swap_total;
+} MemoryData;
+
+typedef struct
+{
 	bool     run, fast_mode;
 	unsigned duration, threads;
 	uint32_t primes;
@@ -192,6 +199,7 @@ typedef struct
 	double   bus_freq, min_mult, max_mult;
 
 	BandwidthData *w_data;
+	MemoryData    *m_data;
 	BenchData     *b_data;
 } Labels;
 

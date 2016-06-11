@@ -658,6 +658,8 @@ int main(int argc, char *argv[])
 
 	data->w_data = &(BandwidthData) { .l1_size = 0, .test_count = 0, .test_name = NULL };
 
+	data->m_data = &(MemoryData) { .mem_total = 0, .swap_total = 0 };
+
 	data->b_data = &(BenchData) { .run = false, .duration = 1, .threads = 1, .primes = 0 };
 
 	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,

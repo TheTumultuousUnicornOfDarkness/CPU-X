@@ -937,32 +937,33 @@ static int system_static(Labels *data)
 /* Dynamic elements for System tab, provided by libprocps/libstatgrab */
 static int system_dynamic(Labels *data)
 {
-	int err = 0;
+	int err = 0, i;
 	time_t uptime_s;
 	struct tm *tm;
+	enum EnTabSystem ind = USED - USED;
+	MemoryData *m_data = data->m_data;
 
 #if HAS_LIBPROCPS
-	const int div = 1000;
-	long int total_memory = 0;
+	const int div = 1e3;
 
 	MSG_VERBOSE(_("Calling libprocps"));
 	/* System uptime */
 	uptime_s = (time_t) uptime(NULL, NULL);
 
-	/* Memory labels */
+	/* Memory variables */
 	meminfo();
-	total_memory = kb_main_total / div;
-	asprintf(&data->tab_system[VALUE][USED],    "%5ld MB / %5ld MB", kb_main_used    / div, total_memory);
-	asprintf(&data->tab_system[VALUE][BUFFERS], "%5ld MB / %5ld MB", kb_main_buffers / div, total_memory);
-	asprintf(&data->tab_system[VALUE][CACHED],  "%5ld MB / %5ld MB", kb_main_cached  / div, total_memory);
-	asprintf(&data->tab_system[VALUE][FREE],    "%5ld MB / %5ld MB", kb_main_free    / div, total_memory);
-	asprintf(&data->tab_system[VALUE][SWAP],    "%5ld MB / %5ld MB", kb_swap_used    / div, kb_swap_total / div);
+	m_data->mem_usage[ind++] = kb_main_used    / div;
+	m_data->mem_usage[ind++] = kb_main_buffers / div;
+	m_data->mem_usage[ind++] = kb_main_cached  / div;
+	m_data->mem_usage[ind++] = kb_main_free    / div;
+	m_data->mem_usage[ind]   = kb_swap_used    / div;
+	m_data->mem_total        = kb_main_total   / div;
+	m_data->swap_total       = kb_swap_total   / div;
 #endif /* HAS_LIBPROCPS */
 
 #if HAS_LIBSTATGRAB
 	static bool called = false;
-	const int div = 1000000;
-	long int total_memory = 0;
+	const int div = 1e6;
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 	sg_host_info *info;
@@ -981,14 +982,19 @@ static int system_dynamic(Labels *data)
 	/* System uptime */
 	uptime_s = info->uptime;
 
-	/* Memory labels */
-	total_memory = mem->total / div;
-	asprintf(&data->tab_system[VALUE][USED],    "%5llu MB / %5ld MB",  mem->used   / div, total_memory);
-	asprintf(&data->tab_system[VALUE][BUFFERS], "  %3d MB / %5ld MB",  0                , total_memory);
-	asprintf(&data->tab_system[VALUE][CACHED],  "%5llu MB / %5ld MB",  mem->cache  / div, total_memory);
-	asprintf(&data->tab_system[VALUE][FREE],    "%5llu MB / %5ld MB",  mem->free   / div, total_memory);
-	asprintf(&data->tab_system[VALUE][SWAP],    "%5llu MB / %5llu MB", swap->used  / div, swap->total / div);
+	/* Memory variables */
+	m_data->mem_usage[ind++] = mem->used   / div;
+	m_data->mem_usage[ind++] = 0;
+	m_data->mem_usage[ind++] = mem->cache  / div;
+	m_data->mem_usage[ind++] = mem->free   / div;
+	m_data->mem_usage[ind]   = swap->used  / div;
+	m_data->mem_total        = mem->total  / div;
+	m_data->swap_total       = swap->total / div;
 #endif /* HAS_LIBSTATGRAB */
+	/* Memory labels */
+	for(i = USED; i < SWAP; i++)
+		asprintf(&data->tab_system[VALUE][i], "%5u MB / %5u MB", m_data->mem_usage[i - USED], m_data->mem_total);
+	asprintf(&data->tab_system[VALUE][SWAP], "%5u MB / %5u MB", m_data->mem_usage[USED - SWAP], m_data->swap_total);
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);

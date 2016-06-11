@@ -546,7 +546,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 {
 	int i = USED, page;
 	guint width, height;
-	double before = 0, percent;
+	double before = 0, percent = 0;
 	const char *widget_name;
 	cairo_pattern_t *pat;
 	PangoLayout *reflayout, *newlayout;
@@ -561,23 +561,19 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	reflayout   = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][page]));
 	newlayout   = pango_layout_copy(reflayout);
 
-	if(data->tab_system[VALUE][page] == NULL)
+	if((page == SWAP && data->m_data->swap_total == 0) || (page != SWAP && data->m_data->mem_total == 0))
 		return;
 
-	while(1) /* Get value to start */
+	for(i = USED; (i <= page) && (page != SWAP); i++) /* Get value to start */
 	{
-		percent = (double) strtol(data->tab_system[VALUE][i], NULL, 10) /
-		                   strtol(strstr(data->tab_system[VALUE][i], "/ ") + 2, NULL, 10) * 100;
-
-		if(i == page)
-			break;
-
 		before += percent;
-		i++;
+		percent = (double) data->m_data->mem_usage[i - USED] / data->m_data->mem_total * 100;
 	}
 
-	percent = (isnan(percent)) ? 0.00 : percent;
-	pat     = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
+	if(page == SWAP)
+		percent = (double) data->m_data->mem_usage[SWAP - USED] / data->m_data->swap_total * 100;
+
+	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
 
 	switch(page) /* Set differents level bar color */
 	{
