@@ -46,10 +46,6 @@ static int call_dmidecode(Labels *data);
 int call_bandwidth(Labels *data);
 /* Required: HAS_BANDWIDTH */
 
-/* Get CPU multipliers ("x current (min-max)" label) */
-static int cpu_multipliers(Labels *data);
-/* Required: HAS_LIBCPUID */
-
 /* Calculate CPU usage (total if core < 0, else per given core) */
 static void cpu_usage(Labels *data, int core);
 /* Required: none */

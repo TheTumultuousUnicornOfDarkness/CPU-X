@@ -196,7 +196,7 @@ typedef struct
 	int8_t   cpu_vendor_id;
 	uint8_t  cpu_count, gpu_count, dimms_count;
 	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
-	double   bus_freq, min_mult, max_mult;
+	double   bus_freq;
 
 	BandwidthData *w_data;
 	MemoryData    *m_data;

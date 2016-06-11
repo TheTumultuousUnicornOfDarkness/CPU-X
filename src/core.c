@@ -74,7 +74,6 @@ int fill_labels(Labels *data)
 	if(HAS_DMIDECODE)    err += call_dmidecode(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
-	if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 	if(HAS_LIBPROCPS)    err += system_dynamic(data);
 	if(HAS_LIBSTATGRAB)  err += system_dynamic(data);
 	if(HAS_BANDWIDTH)    err += call_bandwidth(data);
@@ -98,7 +97,6 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	{
 		case NO_CPU:
 			if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
-			if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 			cpu_usage(data, -1);
 			err += fallback_mode_dynamic(data);
 			break;
@@ -467,13 +465,11 @@ static int call_libcpuid_dynamic(Labels *data)
 	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
 
-	/* Minimum multiplier */
-	if(min_mult != CPU_INVALID_VALUE)
-		data->min_mult = (double) min_mult / 100;
-
-	/* Maximum multiplier */
-	if(max_mult != CPU_INVALID_VALUE)
-		data->max_mult = (double) max_mult / 100;
+	/* Multipliers (min-max) */
+	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE)
+		iasprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)",
+		         data->cpu_freq / data->bus_freq,
+			 (double) min_mult / 100, (double) max_mult / 100);
 #endif /* HAVE_LIBCPUID_0_3_0 */
 #endif /* HAVE_LIBCPUID_0_2_2 */
 
@@ -542,54 +538,6 @@ static int call_dmidecode(Labels *data)
 	return err;
 }
 #endif /* HAS_DMIDECODE */
-
-/* Get CPU multipliers ("x current (min-max)" label) */
-static int cpu_multipliers(Labels *data)
-{
-	static int err = 0;
-#ifdef __linux__
-	static bool init = false;
-	char *min_freq_str, *max_freq_str;
-	char *cpuinfo_min_file, *cpuinfo_max_file;
-	double min_freq, max_freq;
-
-	MSG_VERBOSE(_("Getting CPU multipliers"));
-	if(err)
-		return err;
-	else if(data->cpu_freq <= 0 || data->bus_freq <= 0)
-	{
-		MSG_ERROR(_("failed to get CPU multipliers"));
-		err = 1;
-		return err;
-	}
-
-	if(!init && data->min_mult <= 0 && data->max_mult <= 0)
-	{
-		/* Open files */
-		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
-		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
-		fopen_to_str(cpuinfo_min_file, &min_freq_str);
-		fopen_to_str(cpuinfo_max_file, &max_freq_str);
-
-		/* Convert to get min and max values */
-		min_freq       = strtod(min_freq_str, NULL) / 1000;
-		max_freq       = strtod(max_freq_str, NULL) / 1000;
-		data->min_mult = round(min_freq / data->bus_freq);
-		data->max_mult = round(max_freq / data->bus_freq);
-		init           = true;
-	}
-
-	if(data->min_mult <= 0 || data->max_mult <= 0)
-	{
-		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", data->cpu_freq / data->bus_freq);
-		MSG_WARNING(_("Cannot get minimum and maximum CPU multipliers"));
-	}
-	else
-		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, data->min_mult, data->max_mult);
-#endif /* __linux__ */
-
-	return err;
-}
 
 static long **allocate_2d_array(int rows, int columns)
 {
@@ -1099,6 +1047,53 @@ static int cputab_volt_fallback(Labels *data)
 	}
 }
 
+/* Get CPU multipliers ("x current (min-max)" label) */
+static int cpu_multipliers_fallback(Labels *data)
+{
+	static int err = 0;
+	static double min_mult = 0, max_mult = 0;
+
+	if(data->cpu_freq <= 0 || data->bus_freq <= 0 || err > 0)
+	{
+		err = 2;
+		return err;
+	}
+#ifdef __linux__
+	static bool init = false;
+	char *min_freq_str, *max_freq_str;
+	char *cpuinfo_min_file, *cpuinfo_max_file;
+	double min_freq, max_freq;
+
+	MSG_VERBOSE(_("Getting CPU multipliers"));
+	if(!init)
+	{
+		/* Open files */
+		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
+		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
+		fopen_to_str(cpuinfo_min_file, &min_freq_str);
+		fopen_to_str(cpuinfo_max_file, &max_freq_str);
+
+		/* Convert to get min and max values */
+		min_freq = strtod(min_freq_str, NULL) / 1000;
+		max_freq = strtod(max_freq_str, NULL) / 1000;
+		min_mult = round(min_freq / data->bus_freq);
+		max_mult = round(max_freq / data->bus_freq);
+		init     = true;
+	}
+#endif /* __linux__ */
+	if(min_mult <= 0 || max_mult <= 0)
+	{
+		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", data->cpu_freq / data->bus_freq);
+		if(!err)
+			MSG_WARNING(_("Cannot get minimum and maximum CPU multipliers"));
+		err = 1;
+	}
+	else
+		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, min_mult, max_mult);
+
+	return err;
+}
+
 /* Retrieve missing Motherboard data if run as regular user */
 static int motherboardtab_fallback(Labels *data)
 {
@@ -1154,6 +1149,9 @@ int fallback_mode_dynamic(Labels *data)
 
 	if(data->tab_cpu[VALUE][VOLTAGE] == NULL)
 		err += cputab_volt_fallback(data);
+
+	if(data->tab_cpu[VALUE][MULTIPLIER] == NULL)
+		err += cpu_multipliers_fallback(data);
 
 	return err;
 }
