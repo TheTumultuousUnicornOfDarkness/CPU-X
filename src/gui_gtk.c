@@ -60,7 +60,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 #endif /* PORTABLE_BINARY */
 	if(ui_files[i] == NULL)
 	{
-		MSG_ERROR_ERRNO(_("Import UI in GtkBuilder failed"));
+		MSG_ERROR_ERRNO(_("failed to import UI in GtkBuilder"));
 		exit(EXIT_FAILURE);
 	}
 	g_print(_("Use UI file %s.\n"), ui_files[i]);

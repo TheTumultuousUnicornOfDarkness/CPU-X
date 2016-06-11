@@ -301,7 +301,7 @@ static bool check_new_version(void)
 	MSG_VERBOSE(_("Checking on Internet for a new version..."));
 	if(!command_exists("curl"))
 	{
-		MSG_WARNING(_("curl is missing on your system, can't check for a new version"));
+		MSG_WARNING(_("Curl is missing on your system, can't check for a new version"));
 		return false;
 	}
 
@@ -317,7 +317,7 @@ static bool check_new_version(void)
 	}
 	else
 	{
-		MSG_VERBOSE(_("No new version available."));
+		MSG_VERBOSE(_("No new version available"));
 		free(new_version);
 		new_version = NULL;
 		return false;
@@ -336,7 +336,7 @@ static int update_prg(void)
 
 	if(new_version == NULL)
 	{
-		MSG_ERROR(_("No new version available."));
+		MSG_WARNING(_("No new version available"));
 		return 1;
 	}
 
@@ -375,7 +375,7 @@ static int update_prg(void)
 	}
 
 	if(err)
-		MSG_VERBOSE(_("Error when updating."));
+		MSG_ERROR(_("an error occurred while renaming files"));
 	else
 		MSG_VERBOSE(_("Update successful!"));
 
@@ -390,7 +390,7 @@ static int update_prg(void)
 	}
 
 	if(err > 1)
-		MSG_VERBOSE(_("Error when deleting temporary files."));
+		MSG_ERROR(_("an error occurred while deleting temporary files"));
 
 	free(file);
 	free(tmp);
@@ -489,6 +489,7 @@ static void menu(int argc, char *argv[])
 	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
 
 	/* Filling longopts structure */
+	MSG_VERBOSE(_("Parsing options"));
 	while(o[++i].long_opt != NULL)
 	{
 		while(!o[i].has_mod)
@@ -682,7 +683,7 @@ int main(int argc, char *argv[])
 	menu(argc, argv);
 
 	if(getuid())
-		MSG_WARNING(_("WARNING: root privileges are required to work properly\n"));
+		MSG_WARNING(_("Root privileges are required to work properly"));
 
 	labels_setname (data);
 	fill_labels    (data);
@@ -804,7 +805,7 @@ int iasprintf(char **str, const char *fmt, ...)
 					break;
 				default:
 					is_format = false;
-					asprintf(&tmp_fmt, "(internal) format not implemented: %%%c\n", fmt[i]);
+					asprintf(&tmp_fmt, "unknown format for iasprintf() '%%%c' (need to be implemented)", fmt[i]);
 					MSG_ERROR(tmp_fmt);
 					break;
 			}
@@ -849,7 +850,7 @@ int fopen_to_str(char *file, char **buffer)
 	return fclose(f);
 
 error:
-	asprintf(&msg, _("fopen_to_str(): an error was ocured (file: %s)"), file);
+	asprintf(&msg, _("an error occurred while opening file '%s'"), file);
 	MSG_ERROR_ERRNO(msg);
 	return (f == NULL) ? 1 : 2 + fclose(f);
 }
@@ -877,7 +878,7 @@ int popen_to_str(char *command, char **buffer)
 	return pclose(p);
 
 error:
-	asprintf(&msg, _("popen_to_str(): an error was ocured (command: %s)"), command);
+	asprintf(&msg, _("an error occurred while running command '%s'"), command);
 	MSG_ERROR_ERRNO(msg);
 	return (p == NULL) ? 1 : 2 + pclose(p);
 }
