@@ -2018,12 +2018,12 @@ fast_initialization:
 	int   count       = 0;
 	cache_size        = data->w_data->l1_size;
 
-	if(data->cpu_vendor_id == 1)
+	if(data->l_data->cpu_vendor_id == 1)
 	{
 		is_amd = true;
 		cpu_has_sse4a = ecx2 & CPUID_ECX_SSE4A;
 	}
-	else if(data->cpu_vendor_id == 0)
+	else if(data->l_data->cpu_vendor_id == 0)
 		is_intel = true;
 
 	cpu_has_xd    = edx2 & CPUID_EDX_XD;

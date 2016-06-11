@@ -132,6 +132,10 @@ static int cpu_technology(Labels *data)
 	char *msg;
 	bool found = false;
 	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor = NULL;
+	LibcpuidData *l_data = data->l_data;
+
+	if(l_data->cpu_vendor_id < 0 || l_data->cpu_model < 0 || l_data->cpu_ext_model < 0 || l_data->cpu_ext_family < 0)
+		return 0;
 
 	MSG_VERBOSE(_("Finding CPU technology"));
 	/* Intel CPUs */
@@ -199,7 +203,7 @@ static int cpu_technology(Labels *data)
 		{ -1,          -1,          -1,           0 }
 	};
 
-	switch(data->cpu_vendor_id)
+	switch(l_data->cpu_vendor_id)
 	{
 		case VENDOR_INTEL:
 			vendor = intel;
@@ -213,17 +217,17 @@ static int cpu_technology(Labels *data)
 
 	while(vendor[++i].cpu_model != -1)
 	{
-		found = vendor[i].cpu_model == data->cpu_model;
-		found = found && (vendor[i].cpu_ext_model  < 0 || vendor[i].cpu_ext_model  == data->cpu_ext_model);
-		found = found && (vendor[i].cpu_ext_family < 0 || vendor[i].cpu_ext_family == data->cpu_ext_family);
+		found = vendor[i].cpu_model == l_data->cpu_model;
+		found = found && (vendor[i].cpu_ext_model  < 0 || vendor[i].cpu_ext_model  == l_data->cpu_ext_model);
+		found = found && (vendor[i].cpu_ext_family < 0 || vendor[i].cpu_ext_family == l_data->cpu_ext_family);
 
 		if(found)
 			return vendor[i].process;
 	}
 
 skip_vendor:
-	asprintf(&msg, _("your CPU does not belong in database\nCPU: %s, model: %i, ext. model: %i, ext. family: %i"),
-	         data->tab_cpu[VALUE][SPECIFICATION], data->cpu_model, data->cpu_ext_model, data->cpu_ext_family);
+	asprintf(&msg, _("your CPU does not belong in database\nCPU: %s model: %i, ext. model: %i, ext. family: %i"),
+	         data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 	MSG_ERROR(msg);
 
 	return 0;
@@ -255,10 +259,10 @@ static int call_libcpuid_static(Labels *data)
 	}
 
 	/* Some prerequisites */
-	data->cpu_count      = datanr.num_logical_cpus;
-	data->cpu_model      = datanr.model;
-	data->cpu_ext_model  = datanr.ext_model;
-	data->cpu_ext_family = datanr.ext_family;
+	data->cpu_count              = datanr.num_logical_cpus;
+	data->l_data->cpu_model      = datanr.model;
+	data->l_data->cpu_ext_model  = datanr.ext_model;
+	data->l_data->cpu_ext_family = datanr.ext_family;
 	if(opts->selected_core >= data->cpu_count)
 		opts->selected_core = 0;
 
@@ -291,7 +295,7 @@ static int call_libcpuid_static(Labels *data)
 	};
 	for(i = 0; strcmp(cpuvendors[i].standard, datanr.vendor_str); i++);
 	iasprintf(&data->tab_cpu[VALUE][VENDOR], cpuvendors[i].improved);
-	data->cpu_vendor_id = cpuvendors[i].id;
+	data->l_data->cpu_vendor_id = cpuvendors[i].id;
 
 	/* Remove training spaces in Specification label */
 	for(i = 1; datanr.brand_str[i] != '\0'; i++)
@@ -373,7 +377,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Add string "64-bit" in CPU Intructions label (if supported) */
 	if(datanr.flags[CPU_FEATURE_LM])
 	{
-		switch(data->cpu_vendor_id)
+		switch(data->l_data->cpu_vendor_id)
 		{
 			case VENDOR_INTEL:
 				iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s, Intel 64", data->tab_cpu[VALUE][INSTRUCTIONS]);

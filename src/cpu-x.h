@@ -157,6 +157,12 @@ enum EnTabAbout
 
 typedef struct
 {
+	int8_t  cpu_vendor_id;
+	int32_t cpu_model, cpu_ext_model, cpu_ext_family;
+} LibcpuidData;
+
+typedef struct
+{
 	uint8_t  test_count;
 	uint32_t l1_size, l2_size, l3_size;
 	char     **test_name;
@@ -193,11 +199,10 @@ typedef struct
 	char *tab_about[LASTABOUT];
 
 	int      cpu_freq;
-	int8_t   cpu_vendor_id;
 	uint8_t  cpu_count, gpu_count, dimms_count;
-	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
 	double   bus_freq;
 
+	LibcpuidData  *l_data;
 	BandwidthData *w_data;
 	MemoryData    *m_data;
 	BenchData     *b_data;

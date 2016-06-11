@@ -648,8 +648,10 @@ int main(int argc, char *argv[])
 	Labels *data = &(Labels) {
 	                .tab_cpu    = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
 	                .tab_memory = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
-	                .cpu_freq   = 0,          .cpu_vendor_id  = 0,          .bus_freq        = 0.0,
+	                .cpu_freq   = 0,          .bus_freq       = 0.0,
 	                .cpu_count  = 0,          .gpu_count      = 0,          .dimms_count     = 0 };
+
+	data->l_data = &(LibcpuidData) { .cpu_vendor_id = -1, .cpu_model = -1, .cpu_ext_model = -1, .cpu_ext_family = -1 };
 
 	data->w_data = &(BandwidthData) { .l1_size = 0, .test_count = 0, .test_name = NULL };
 
