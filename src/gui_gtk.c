@@ -191,7 +191,7 @@ static void change_activetest(GtkComboBox *box, Labels *data)
 {
 	const gint test = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
 
-	if(0 <= test && test < bandwidth_last_test())
+	if(0 <= test && test < data->w_data->test_count)
 		opts->bw_test = test;
 }
 
@@ -464,8 +464,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]),  data->tab_caches[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 	}
-	for(i = 0; i < bandwidth_last_test(); i++)
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetest), bandwidth_test_name(i));
+	for(i = 0; i < data->w_data->test_count; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetest), data->w_data->test_name[i]);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activetest), opts->bw_test);
 
 	/* Tab Motherboard */

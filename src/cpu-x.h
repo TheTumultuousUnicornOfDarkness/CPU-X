@@ -157,6 +157,13 @@ enum EnTabAbout
 
 typedef struct
 {
+	uint8_t  test_count;
+	uint32_t l1_size, l2_size, l3_size;
+	char     **test_name;
+} BandwidthData;
+
+typedef struct
+{
 	bool     run, fast_mode;
 	unsigned duration, threads;
 	uint32_t primes;
@@ -182,9 +189,10 @@ typedef struct
 	int8_t   cpu_vendor_id;
 	uint8_t  cpu_count, gpu_count, dimms_count;
 	int32_t  cpu_model, cpu_ext_model, cpu_ext_family;
-	uint32_t l1_size, l2_size, l3_size;
 	double   bus_freq, min_mult, max_mult;
-	BenchData *b_data;
+
+	BandwidthData *w_data;
+	BenchData     *b_data;
 } Labels;
 
 typedef struct
@@ -241,15 +249,6 @@ int run_dmidecode(void);
 
 /* Call Bandwidth through CPU-X but do nothing else */
 int run_bandwidth(void);
-
-/* Get string for selected bandwidth test */
-char *bandwidth_test_name(unsigned int test);
-
-/* Get bandwidth count tests */
-int bandwidth_last_test(void);
-
-/* Call bandwidth library */
-int bandwidth(Labels *data);
 
 /* Perform a multithreaded benchmark (compute prime numbers) */
 void start_benchmarks(Labels *data);

@@ -38,7 +38,7 @@ if(!BANDWIDTH_MODE && chunk_size > cache_size * 1024) \
 	if(cache_level > LEVEL3) \
 		return 0; \
 \
-	cache_size = (cache_level == LEVEL2) ? data->l2_size : data->l3_size; \
+	cache_size = (cache_level == LEVEL2) ? data->w_data->l2_size : data->w_data->l3_size; \
 	if(cache_size < 1) \
 		return 1; \
 }

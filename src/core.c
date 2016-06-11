@@ -51,10 +51,6 @@
 # include "dmidecode/dmiopt.h"
 #endif
 
-#if HAS_BANDWIDTH
-# include "bandwidth/libbandwidth.h"
-#endif
-
 #if HAS_LIBPCI
 # include "pci/pci.h"
 #endif
@@ -82,7 +78,7 @@ int fill_labels(Labels *data)
 	if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 	if(HAS_LIBPROCPS)    err += system_dynamic(data);
 	if(HAS_LIBSTATGRAB)  err += system_dynamic(data);
-	if(HAS_BANDWIDTH)    err += bandwidth(data);
+	if(HAS_BANDWIDTH)    err += call_bandwidth(data);
 	if(HAS_LIBPCI)       find_devices(data);
 	err += gpu_temperature(data);
 	err += system_static(data);
@@ -109,7 +105,7 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 			cpu_usage(data, -1);
 			break;
 		case NO_CACHES:
-			if(HAS_BANDWIDTH)    err = bandwidth(data);
+			if(HAS_BANDWIDTH)    err = call_bandwidth(data);
 			break;
 		case NO_SYSTEM:
 			if(HAS_LIBPROCPS)    err = system_dynamic(data);
@@ -127,49 +123,6 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 
 	return err;
 }
-
-#if HAS_DMIDECODE
-/* Call Dmidecode through CPU-X but do nothing else */
-int run_dmidecode(void)
-{
-	opt.type  = NULL;
-	opt.flags = (opts->verbose) ? 0 : FLAG_QUIET;
-	return dmidecode();
-}
-#endif /* HAS_DMIDECODE */
-
-#if HAS_BANDWIDTH
-/* Call Bandwidth through CPU-X but do nothing else */
-int run_bandwidth(void)
-{
-	return bandwidth(NULL);
-}
-
-/* Get string for selected bandwidth test */
-char *bandwidth_test_name(unsigned int test)
-{
-	static char *name = NULL;
-	asprintf(&name, "#%2i: %s", test, tests[test].name);
-	return name;
-}
-
-/* Get bandwidth count tests */
-int bandwidth_last_test(void)
-{
-	return LASTTEST;
-}
-
-#else
-char *bandwidth_test_name(unsigned int test)
-{
-	return '\0';
-}
-
-int bandwidth_last_test(void)
-{
-	return 0;
-}
-#endif /* HAS_BANDWIDTH */
 
 
 /************************* Private functions *************************/
@@ -381,7 +334,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
 	{
-		data->l1_size = datanr.l1_instruction_cache;
+		data->w_data->l1_size = datanr.l1_instruction_cache;
 		iasprintf(&data->tab_cpu[VALUE][LEVEL1I], "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
 		iasprintf(&data->tab_caches[VALUE][L1SIZE], data->tab_cpu[VALUE][LEVEL1I]);
 		iasprintf(&data->tab_caches[VALUE][L1DESCRIPTOR], fmt, datanr.l1_assoc, datanr.l1_cacheline);
@@ -390,7 +343,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 2 */
 	if(datanr.l2_cache > 0)
 	{
-		data->l2_size = datanr.l2_cache;
+		data->w_data->l2_size = datanr.l2_cache;
 		iasprintf(&data->tab_cpu[VALUE][LEVEL2], "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
 		iasprintf(&data->tab_caches[VALUE][L2SIZE], data->tab_cpu[VALUE][LEVEL2]);
 		iasprintf(&data->tab_caches[VALUE][L2DESCRIPTOR], fmt, datanr.l2_assoc, datanr.l2_cacheline);
@@ -399,7 +352,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 3 */
 	if(datanr.l3_cache > 0)
 	{
-		data->l3_size = datanr.l3_cache;
+		data->w_data->l3_size = datanr.l3_cache;
 		iasprintf(&data->tab_cpu[VALUE][LEVEL3], "%9d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
 		iasprintf(&data->tab_caches[VALUE][L3SIZE], data->tab_cpu[VALUE][LEVEL3]);
 		iasprintf(&data->tab_caches[VALUE][L3DESCRIPTOR], fmt, datanr.l3_assoc, datanr.l3_cacheline);
@@ -551,6 +504,14 @@ static int call_libcpuid_dynamic(Labels *data)
 #endif /* HAS_LIBCPUID */
 
 #if HAS_DMIDECODE
+/* Call Dmidecode through CPU-X but do nothing else */
+int run_dmidecode(void)
+{
+	opt.type  = NULL;
+	opt.flags = (opts->verbose) ? 0 : FLAG_QUIET;
+	return dmidecode();
+}
+
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data)
 {

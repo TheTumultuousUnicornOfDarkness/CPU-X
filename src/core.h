@@ -42,6 +42,10 @@ static int call_libcpuid_dynamic(Labels *data);
 static int call_dmidecode(Labels *data);
 /* Required: HAS_DMIDECODE && root privileges */
 
+/* Call bandwidth library */
+int call_bandwidth(Labels *data);
+/* Required: HAS_BANDWIDTH */
+
 /* Get CPU multipliers ("x current (min-max)" label) */
 static int cpu_multipliers(Labels *data);
 /* Required: HAS_LIBCPUID */

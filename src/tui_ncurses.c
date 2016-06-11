@@ -134,7 +134,7 @@ void start_tui_ncurses(Labels *data)
 				else if(page == NO_CACHES && opts->bw_test > 0)
 				{
 					opts->bw_test--;
-					print_activetest(win);
+					print_activetest(win, data);
 				}
 				else if(page == NO_BENCH && data->b_data->duration > 1)
 				{
@@ -155,10 +155,10 @@ void start_tui_ncurses(Labels *data)
 					opts->selected_core++;
 					print_activecore(win);
 				}
-				else if(page == NO_CACHES && (int) opts->bw_test < bandwidth_last_test() - 1)
+				else if(page == NO_CACHES && (int) opts->bw_test < data->w_data->test_count - 1)
 				{
 					opts->bw_test++;
-					print_activetest(win);
+					print_activetest(win, data);
 				}
 				else if(page == NO_BENCH && data->b_data->duration < 60 * 24)
 				{
@@ -517,10 +517,10 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 }
 
 /* Display active Test in Caches tab */
-static void print_activetest(WINDOW *win)
+static void print_activetest(WINDOW *win, Labels *data)
 {
 	if(HAS_BANDWIDTH)
-		mvwprintwc(win, LINE_16, 12, DEFAULT_COLOR, "%s", bandwidth_test_name(opts->bw_test));
+		mvwprintwc(win, LINE_16, 12, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
 }
 
 /* Caches tab */
@@ -548,7 +548,7 @@ static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 
 	/* Test frame */
 	frame(win, LINE_15, info.start , LINE_17, info.width - 1, data->objects[FRAMTEST]);
-	print_activetest(win);
+	print_activetest(win, data);
 
 	wrefresh(win);
 }
