@@ -71,17 +71,18 @@ int fill_labels(Labels *data)
 {
 	int err = 0;
 
-	if(HAS_DMIDECODE)    err += call_dmidecode(data);
-	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
-	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
-	if(HAS_LIBPROCPS)    err += system_dynamic(data);
-	if(HAS_LIBSTATGRAB)  err += system_dynamic(data);
-	if(HAS_BANDWIDTH)    err += call_bandwidth(data);
-	if(HAS_LIBPCI)       find_devices(data);
-	err += gpu_temperature(data);
+	err += RUN_IF(HAS_LIBCPUID,    call_libcpuid_static(data));
+	err += RUN_IF(HAS_LIBCPUID,    call_libcpuid_dynamic(data));
+	err += RUN_IF(HAS_DMIDECODE,   call_dmidecode(data));
+	err += RUN_IF(HAS_LIBPROCPS,   system_dynamic(data));
+	err += RUN_IF(HAS_LIBSTATGRAB, system_dynamic(data));
+	err += RUN_IF(HAS_BANDWIDTH,   call_bandwidth(data));
+	err += RUN_IF(HAS_LIBPCI,      find_devices(data));
+	err += cpu_usage(data, -1);
 	err += system_static(data);
-	cpu_usage(data, -1);
-	benchmark_status(data);
+	err += gpu_temperature(data);
+	err += benchmark_status(data);
+
 	err += fallback_mode_static(data);
 	err += fallback_mode_dynamic(data);
 
@@ -96,22 +97,22 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
-			cpu_usage(data, -1);
+			err += RUN_IF(HAS_LIBCPUID, call_libcpuid_dynamic(data));
+			err += cpu_usage(data, -1);
 			err += fallback_mode_dynamic(data);
 			break;
 		case NO_CACHES:
-			if(HAS_BANDWIDTH)    err = call_bandwidth(data);
+			err += RUN_IF(HAS_BANDWIDTH, call_bandwidth(data));
 			break;
 		case NO_SYSTEM:
-			if(HAS_LIBPROCPS)    err = system_dynamic(data);
-			if(HAS_LIBSTATGRAB)  err = system_dynamic(data);
+			err += RUN_IF(HAS_LIBPROCPS,   system_dynamic(data));
+			err += RUN_IF(HAS_LIBSTATGRAB, system_dynamic(data));
 			break;
 		case NO_GRAPHICS:
-			err = gpu_temperature(data);
+			err += gpu_temperature(data);
 			break;
 		case NO_BENCH:
-			benchmark_status(data);
+			err += benchmark_status(data);
 			break;
 		default:
 			err = -1;
@@ -564,7 +565,7 @@ static long **allocate_2d_array(int rows, int columns)
 }
 
 /* Calculate CPU usage (total if core < 0, else per given core) */
-static void cpu_usage(Labels *data, int core)
+static int cpu_usage(Labels *data, int core)
 {
 	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
 	int i, ind;
@@ -579,7 +580,7 @@ static void cpu_usage(Labels *data, int core)
 	new = allocate_2d_array(data->cpu_count + 1, LASTSTAT);
 
 	if(new == NULL || pre == NULL)
-		return;
+		return 1;
 
 #ifdef __linux__
 	ind = (core < 0) ? 0 : core + 1;
@@ -608,6 +609,7 @@ static void cpu_usage(Labels *data, int core)
 
 	memcpy(pre, new, (data->cpu_count + 1) * LASTSTAT * sizeof(long));
 	free(new);
+	return 0;
 }
 
 #if HAS_LIBPCI
@@ -653,7 +655,7 @@ static char *find_driver(struct pci_dev *dev, char *buff)
 }
 
 /* Find some PCI devices, like chipset and GPU */
-static void find_devices(Labels *data)
+static int find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	int i, nbgpu = 0;
@@ -705,6 +707,8 @@ static void find_devices(Labels *data)
 	free(product);
 	if(driverstr != NULL)
 		free(driverstr);
+
+	return !nbgpu;
 }
 #endif /* HAS_LIBPCI */
 
@@ -905,7 +909,7 @@ static void *primes_bench(void *p_data)
 }
 
 /* Report score of benchmarks */
-static void benchmark_status(Labels *data)
+static int benchmark_status(Labels *data)
 {
 	char *buff;
 	BenchData *b_data   = data->b_data;
@@ -920,7 +924,7 @@ static void benchmark_status(Labels *data)
 	{
 		asprintf(&data->tab_bench[VALUE][PRIMESLOWSCORE], _("Not started"));
 		asprintf(&data->tab_bench[VALUE][PRIMEFASTSCORE], _("Not started"));
-		return;
+		return 0;
 	}
 
 	if(b_data->run)
@@ -936,6 +940,7 @@ static void benchmark_status(Labels *data)
 		asprintf(&buff, _("in %li seconds"), b_data->elapsed);
 
 	asprintf(&data->tab_bench[VALUE][ind], _("%'u prime numbers calculated %s"), b_data->primes, buff);
+	return 0;
 }
 
 /* Perform a multithreaded benchmark (compute prime numbers) */
@@ -1119,7 +1124,7 @@ static int motherboardtab_fallback(Labels *data)
 }
 
 /* Retrieve static data if other functions failed */
-int fallback_mode_static(Labels *data)
+static int fallback_mode_static(Labels *data)
 {
 	int err = 0;
 
@@ -1140,7 +1145,7 @@ int fallback_mode_static(Labels *data)
 }
 
 /* Retrieve dynamic data if other functions failed */
-int fallback_mode_dynamic(Labels *data)
+static int fallback_mode_dynamic(Labels *data)
 {
 	int err = 0;
 

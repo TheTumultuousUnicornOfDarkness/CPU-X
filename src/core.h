@@ -29,6 +29,8 @@
 # include "pci/pci.h"
 #endif
 
+#define RUN_IF(cond, fnc) cond ? fnc : 0;
+
 
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data);
@@ -47,11 +49,11 @@ int call_bandwidth(Labels *data);
 /* Required: HAS_BANDWIDTH */
 
 /* Calculate CPU usage (total if core < 0, else per given core) */
-static void cpu_usage(Labels *data, int core);
+static int cpu_usage(Labels *data, int core);
 /* Required: none */
 
 /* Find some PCI devices, like chipset and GPU */
-static void find_devices(Labels *data);
+static int find_devices(Labels *data);
 /* Required: HAS_LIBPCI */
 
 /* Retrieve GPU temperature */
@@ -67,14 +69,14 @@ static int system_dynamic(Labels *data);
 /* Required: HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 
 /* Report score of benchmarks */
-static void benchmark_status(Labels *data);
+static int benchmark_status(Labels *data);
 /* Required: none */
 
 /* Retrieve static data if other functions failed */
-int fallback_mode_static(Labels *data);
+static int fallback_mode_static(Labels *data);
 
 /* Retrieve dynamic data if other functions failed */
-int fallback_mode_dynamic(Labels *data);
+static int fallback_mode_dynamic(Labels *data);
 
 
 #endif /* _CORE_H_ */
