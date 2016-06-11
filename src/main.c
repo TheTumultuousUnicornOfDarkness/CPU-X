@@ -432,7 +432,7 @@ static void help(FILE *out, char *argv[])
 /* This is the --version option */
 static void version(void)
 {
-	int i, count = 0;
+	int i;
 	char *strver, *newver = NULL;
 	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
 	{
@@ -464,12 +464,8 @@ static void version(void)
 	for(i = 0; v[i].lib != NULL; i++)
 	{
 		if(v[i].has_mod)
-		{
 			printf(_("-- %-9s version: %s\n"), v[i].lib, v[i].version);
-			count++;
-		}
 	}
-	printf(_("=> %i/%i dependencies are enabled.\n"), count, i - 1);
 }
 
 /* Parse options given in arg */
