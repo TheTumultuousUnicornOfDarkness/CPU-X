@@ -54,14 +54,6 @@ static int cpu_multipliers(Labels *data);
 static void cpu_usage(Labels *data, int core);
 /* Required: none */
 
-/* Retrieve CPU sensors data if run as regular user */
-static int cputab_fallback(Labels *data);
-/* Required: none */
-
-/* Retrieve missing Motherboard data if run as regular user */
-static int motherboardtab_fallback(Labels *data);
-/* Required: none */
-
 /* Find some PCI devices, like chipset and GPU */
 static void find_devices(Labels *data);
 /* Required: HAS_LIBPCI */
@@ -81,6 +73,12 @@ static int system_dynamic(Labels *data);
 /* Report score of benchmarks */
 static void benchmark_status(Labels *data);
 /* Required: none */
+
+/* Retrieve static data if other functions failed */
+int fallback_mode_static(Labels *data);
+
+/* Retrieve dynamic data if other functions failed */
+int fallback_mode_dynamic(Labels *data);
 
 
 #endif /* _CORE_H_ */

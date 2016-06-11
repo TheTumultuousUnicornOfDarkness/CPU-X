@@ -69,10 +69,9 @@
 /* Fill labels by calling below functions */
 int fill_labels(Labels *data)
 {
-	int fallback = 0, err = 0;
+	int err = 0;
 
-	err += cputab_fallback(data);
-	if(HAS_DMIDECODE)    err += fallback = call_dmidecode(data);
+	if(HAS_DMIDECODE)    err += call_dmidecode(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_static(data);
 	if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 	if(HAS_LIBCPUID)     err += cpu_multipliers(data);
@@ -84,9 +83,8 @@ int fill_labels(Labels *data)
 	err += system_static(data);
 	cpu_usage(data, -1);
 	benchmark_status(data);
-
-	if(fallback)
-		motherboardtab_fallback(data);
+	err += fallback_mode_static(data);
+	err += fallback_mode_dynamic(data);
 
 	return err;
 }
@@ -94,15 +92,15 @@ int fill_labels(Labels *data)
 /* Refresh some labels */
 int do_refresh(Labels *data, enum EnTabNumber page)
 {
-	int err;
+	int err = 0;
 
 	switch(page)
 	{
 		case NO_CPU:
-			err = cputab_fallback(data);
 			if(HAS_LIBCPUID)     err += call_libcpuid_dynamic(data);
 			if(HAS_LIBCPUID)     err += cpu_multipliers(data);
 			cpu_usage(data, -1);
+			err += fallback_mode_dynamic(data);
 			break;
 		case NO_CACHES:
 			if(HAS_BANDWIDTH)    err = call_bandwidth(data);
@@ -232,24 +230,6 @@ skip_vendor:
 	return 0;
 }
 
-/* If dmidecode fails to find CPU package, check in database */
-static char *cpu_package_fallback(Labels *data)
-{
-	int i;
-
-	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
-	const struct Package { char *name, *socket; } package[] =
-	{
-		{ "Pentium D (SmithField)",         "LGA775" },
-		{ "Pentium D (Presler)",            "LGA775" },
-		{ "Atom (Diamondville)",            "BGA437" },
-		{ NULL,                             ""       }
-	};
-	for(i = 0; package[i].name != NULL && strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]); i++);
-
-	return package[i].socket;
-}
-
 /* If value is > 9, print both in decimal and hexadecimal */
 static void print_hex(char **string, int32_t value)
 {
@@ -285,8 +265,6 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Basically fill CPU tab */
 	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
-	if(data->tab_cpu[VALUE][PACKAGE] != NULL && strstr(data->tab_cpu[VALUE][PACKAGE], "CPU") != NULL)
-		iasprintf(&data->tab_cpu[VALUE][PACKAGE], cpu_package_fallback(data));
 	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY],    "%i nm", cpu_technology(data));
 	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
 	print_hex(&data->tab_cpu[VALUE][FAMILY],        datanr.family);
@@ -469,11 +447,11 @@ static int call_libcpuid_dynamic(Labels *data)
 	bclk    = cpu_msrinfo(msr, INFO_BCLK);
 
 	/* CPU Voltage */
-	if(voltage != CPU_INVALID_VALUE && opts->cpu_volt_msr)
+	if(voltage != CPU_INVALID_VALUE)
 		iasprintf(&data->tab_cpu[VALUE][VOLTAGE],     "%.3f V", (double) voltage / 100);
 
 	/* CPU Temperature */
-	if(temp != CPU_INVALID_VALUE && opts->cpu_temp_msr)
+	if(temp != CPU_INVALID_VALUE)
 		iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%i°C", temp);
 
 	/* Base clock */
@@ -682,74 +660,6 @@ static void cpu_usage(Labels *data, int core)
 
 	memcpy(pre, new, (data->cpu_count + 1) * LASTSTAT * sizeof(long));
 	free(new);
-}
-
-/* Retrieve CPU sensors data if run as regular user */
-static int cputab_fallback(Labels *data)
-{
-	static int cpu_err = 0, volt_err;
-	double val = 0.0;
-	char *command, *buff;
-
-	if(!opts->cpu_temp_msr && !cpu_err)
-	{
-		MSG_VERBOSE(_("Retrieve CPU temperature"));
-		setlocale(LC_ALL, "C");
-		asprintf(&command, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core);
-		if(!popen_to_str(command, &buff))
-			val = atof(buff);
-		setlocale(LC_ALL, "");
-
-		if(val > 0)
-			iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%.2f°C", val);
-		else
-		{
-			MSG_ERROR(_("failed to retrieve CPU temperature"));
-			opts->cpu_temp_msr = true;
-			cpu_err++;
-		}
-	}
-
-	if(!opts->cpu_volt_msr)
-	{
-		MSG_VERBOSE(_("Retrieve CPU voltage"));
-		setlocale(LC_ALL, "C");
-		asprintf(&command, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'");
-		if(!popen_to_str(command, &buff))
-			val = atof(buff);
-		setlocale(LC_ALL, "");
-
-		if(val > 0)
-			iasprintf(&data->tab_cpu[VALUE][VOLTAGE], "%.3f V", val);
-		else
-		{
-			MSG_ERROR(_("failed to retrieve CPU voltage"));
-			opts->cpu_volt_msr = true;
-			volt_err++;
-		}
-	}
-
-	return cpu_err + volt_err;
-}
-
-/* Retrieve missing Motherboard data if run as regular user */
-static int motherboardtab_fallback(Labels *data)
-{
-#ifdef __linux__
-	int i;
-	char *file, *buff;
-	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
-
-	MSG_VERBOSE(_("Filling labels in fallback mode"));
-	/* Tab Motherboard */
-	for(i = 0; id[i] != NULL; i++)
-	{
-		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
-		fopen_to_str(file, &buff);
-		iasprintf(&data->tab_motherboard[VALUE][i], buff);
-	}
-#endif /* __linux__ */
-	return 0;
 }
 
 #if HAS_LIBPCI
@@ -1102,4 +1012,148 @@ void start_benchmarks(Labels *data)
 
 	b_data->first_thread = t_id[0];
 	free(t_id);
+}
+
+
+/************************* Fallback functions *************************/
+
+/* If dmidecode fails to find CPU package, check in database */
+static int cpu_package_fallback(Labels *data)
+{
+	int i;
+	char *msg;
+
+	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
+	const struct Package { char *name, *socket; } package[] =
+	{
+		{ "Pentium D (SmithField)",         "LGA775" },
+		{ "Pentium D (Presler)",            "LGA775" },
+		{ "Atom (Diamondville)",            "BGA437" },
+		{ NULL,                             ""       }
+	};
+
+	if(data->tab_cpu[VALUE][CODENAME] == NULL)
+		return 1;
+	for(i = 0; package[i].name != NULL && strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]); i++);
+
+	if(package[i].name != NULL)
+	{
+		iasprintf(&data->tab_cpu[VALUE][PACKAGE], package[i].socket);
+		return 0;
+	}
+	else
+	{
+		asprintf(&msg, _("your CPU socket does not belong in database\nCPU: %s"), data->tab_cpu[VALUE][SPECIFICATION]);
+		MSG_ERROR(msg);
+		return 2;
+	}
+}
+
+/* Retrieve CPU temperature if run as regular user */
+static int cputab_temp_fallback(Labels *data)
+{
+	double val = 0.0;
+	char *command, *buff;
+
+	MSG_VERBOSE(_("Retrieve CPU temperature"));
+	setlocale(LC_ALL, "C");
+	asprintf(&command, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core);
+	if(!popen_to_str(command, &buff))
+		val = atof(buff);
+	setlocale(LC_ALL, "");
+
+	if(val > 0)
+	{
+		iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%.2f°C", val);
+		return 0;
+	}
+	else
+	{
+		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
+		return 1;
+	}
+}
+
+/* Retrieve CPU voltage if run as regular user */
+static int cputab_volt_fallback(Labels *data)
+{
+	double val = 0.0;
+	char *command, *buff;
+
+	MSG_VERBOSE(_("Retrieve CPU voltage"));
+	setlocale(LC_ALL, "C");
+	asprintf(&command, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'");
+	if(!popen_to_str(command, &buff))
+		val = atof(buff);
+	setlocale(LC_ALL, "");
+
+	if(val > 0)
+	{
+		iasprintf(&data->tab_cpu[VALUE][VOLTAGE], "%.3f V", val);
+		return 0;
+	}
+	else
+	{
+		MSG_ERROR(_("failed to retrieve CPU voltage (fallback mode)"));
+		return 1;
+	}
+}
+
+/* Retrieve missing Motherboard data if run as regular user */
+static int motherboardtab_fallback(Labels *data)
+{
+	int err = 0;
+#ifdef __linux__
+	int i;
+	char *file, *buff;
+	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
+
+	MSG_VERBOSE(_("Filling labels in fallback mode"));
+	/* Tab Motherboard */
+	for(i = 0; id[i] != NULL; i++)
+	{
+		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
+		err += fopen_to_str(file, &buff);
+		iasprintf(&data->tab_motherboard[VALUE][i], buff);
+	}
+#endif /* __linux__ */
+	if(err)
+		MSG_ERROR(_("an error occurred while retrieving motherboard informations (fallback mode)"));
+
+	return err;
+}
+
+/* Retrieve static data if other functions failed */
+int fallback_mode_static(Labels *data)
+{
+	int err = 0;
+
+	if(data->tab_cpu[VALUE][PACKAGE]                           == NULL ||
+	   strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
+	   strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL)
+		err += cpu_package_fallback(data);
+
+	if(data->tab_motherboard[VALUE][MANUFACTURER] == NULL ||
+	   data->tab_motherboard[VALUE][MBMODEL]      == NULL ||
+	   data->tab_motherboard[VALUE][REVISION]     == NULL ||
+	   data->tab_motherboard[VALUE][BRAND]        == NULL ||
+	   data->tab_motherboard[VALUE][BIOSVERSION]  == NULL ||
+	   data->tab_motherboard[VALUE][DATE]         == NULL)
+		err += motherboardtab_fallback(data);
+
+	return err;
+}
+
+/* Retrieve dynamic data if other functions failed */
+int fallback_mode_dynamic(Labels *data)
+{
+	int err = 0;
+
+	if(data->tab_cpu[VALUE][TEMPERATURE] == NULL)
+		err += cputab_temp_fallback(data);
+
+	if(data->tab_cpu[VALUE][VOLTAGE] == NULL)
+		err += cputab_volt_fallback(data);
+
+	return err;
 }
