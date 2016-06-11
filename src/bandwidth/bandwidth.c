@@ -2006,7 +2006,7 @@ fast_initialization:
 		opts->bw_test = 0;
 	}
 
-	if(data->w_data->test_count != 0)
+	if(data->w_data->test_count == 0)
 	{
 		data->w_data->test_count = LASTTEST;
 		data->w_data->test_name  = malloc(LASTTEST * sizeof(char *));
