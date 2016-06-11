@@ -51,7 +51,9 @@
 # define CC "Unknown"
 #endif
 
-#if defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+#if (defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)) && defined (__LP64__)
+# define OS "bsd64"
+#elif (defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)) && !defined (__LP64__)
 # define OS "bsd32"
 #elif defined (__linux__) && defined (__LP64__)
 # define OS "linux64"
@@ -327,9 +329,10 @@ static int update_prg(void)
 {
 	int err = 0;
 #if PORTABLE_BINARY
+	bool delete = true;
 	int i;
 	char *file, *tmp, *opt;
-	const char *ext[] = { "bsd32", "linux32", "linux64", NULL };
+	const char *ext[] = { "bsd64", "bsd32", "linux32", "linux64", NULL };
 
 	if(new_version == NULL)
 	{
@@ -360,8 +363,17 @@ static int update_prg(void)
 
 	/* Rename new binary */
 	MSG_VERBOSE(_("Applying new version..."));
-	asprintf(&tmp, "%s.%s", file, OS);
-	err = rename(tmp, binary_name);
+	if(strstr(binary_name, PRGVER) != NULL)
+	{
+		err    = remove(binary_name);
+		delete = false;
+	}
+	else
+	{
+		asprintf(&tmp, "%s.%s", file, OS);
+		err = rename(tmp, binary_name);
+	}
+
 	if(err)
 		MSG_VERBOSE(_("Error when updating."));
 	else
@@ -373,7 +385,8 @@ static int update_prg(void)
 	for(i = 0; ext[i] != NULL; i++)
 	{
 		asprintf(&tmp, "%s.%s", file, ext[i]);
-		err += remove(tmp);
+		if(strcmp(ext[i], OS) != 0 || delete)
+			err += remove(tmp);
 	}
 
 	if(err > 1)
