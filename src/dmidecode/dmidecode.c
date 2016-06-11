@@ -3451,7 +3451,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			if(opt.flags & FLAG_CPU_X)
 			{
 				iasprintf(dmidata[PROC_PACKAGE], "%s", dmi_string(h, data[0x04]));
-				if(dmidata[PROC_BUS] == NULL)
+				if(*dmidata[PROC_BUS] == NULL)
 					iasprintf(dmidata[PROC_BUS], "%s", dmi_processor_frequency_str(data + 0x12));
 			}
 			else

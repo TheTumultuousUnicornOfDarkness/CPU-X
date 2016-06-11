@@ -71,9 +71,9 @@ int fill_labels(Labels *data)
 {
 	int err = 0;
 
+	err += RUN_IF(HAS_DMIDECODE,   call_dmidecode(data));
 	err += RUN_IF(HAS_LIBCPUID,    call_libcpuid_static(data));
 	err += RUN_IF(HAS_LIBCPUID,    call_libcpuid_dynamic(data));
-	err += RUN_IF(HAS_DMIDECODE,   call_dmidecode(data));
 	err += RUN_IF(HAS_LIBPROCPS,   system_dynamic(data));
 	err += RUN_IF(HAS_LIBSTATGRAB, system_dynamic(data));
 	err += RUN_IF(HAS_BANDWIDTH,   call_bandwidth(data));
@@ -491,6 +491,7 @@ int run_dmidecode(void)
 static int call_dmidecode(Labels *data)
 {
 	int i, err = 0;
+
 	/* Dmidecode options */
 	opt.type  = NULL;
 	opt.flags = (opts->verbose) ? FLAG_CPU_X : FLAG_CPU_X | FLAG_QUIET;
@@ -514,9 +515,10 @@ static int call_dmidecode(Labels *data)
 	dmidata[PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
 	opt.type[4]           = 1;
 	err                  += dmidecode();
+	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
+		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
 
 	/* Tab Motherboard */
-
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
 		dmidata[i]    = &data->tab_motherboard[VALUE][i];
 	opt.type[0]           = 1;
