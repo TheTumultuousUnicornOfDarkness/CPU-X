@@ -8,6 +8,7 @@ if(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	)
 else(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	project(bandwidth)
+	enable_language(ASM_NASM)
 	set(PROJECT_VERSION ${LOCALVERSION})
 endif(${CMAKE_VERSION} VERSION_GREATER "2.9")
 
