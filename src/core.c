@@ -1067,7 +1067,8 @@ static int cpu_package_fallback(Labels *data)
 	}
 	else
 	{
-		MSG_WARNING(_("Your CPU socket does not belong in database ==> %s"), data->tab_cpu[VALUE][SPECIFICATION]);
+		MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
+		            data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
 		return 2;
 	}
 }
@@ -1128,7 +1129,7 @@ static int cpu_multipliers_fallback(Labels *data)
 	static int err = 0;
 	static double min_mult = 0, max_mult = 0;
 
-	if(data->cpu_freq <= 0 || data->bus_freq <= 0 || err > 0)
+	if(data->cpu_freq <= 0 || data->bus_freq <= 0 || err > 1)
 	{
 		err = 2;
 		return err;
