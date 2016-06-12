@@ -26,6 +26,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <pthread.h>
 #define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
@@ -180,9 +181,8 @@ typedef struct
 {
 	bool     run, fast_mode;
 	unsigned duration, threads;
-	uint32_t primes;
+	uint32_t primes, start, elapsed;
 	uint64_t num;
-	clock_t  start, elapsed;
 	pthread_t first_thread;
 	pthread_mutex_t mutex_num, mutex_primes;
 } BenchData;

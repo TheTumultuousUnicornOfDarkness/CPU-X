@@ -132,8 +132,9 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 /* Avoid to re-run a function if an error was occurred in previous call */
 static int err_func(int (*func)(Labels *), Labels *data)
 {
+	int err = 0;
+	unsigned i = 0;
 	static unsigned last = 0;
-	unsigned i = 0, err;
 	static struct Functions { void *func; bool skip_func; } f[16];
 
 	for(i = 0; (i < last) && (func != f[i].func); i++);
@@ -604,7 +605,6 @@ static int cpu_usage(Labels *data)
 	static long **pre = NULL;
 	long **new;
 	double loadavg;
-	FILE *fp;
 
 	MSG_VERBOSE(_("Calculating CPU usage"));
 	if(pre == NULL)
@@ -615,6 +615,8 @@ static int cpu_usage(Labels *data)
 		return 1;
 
 #ifdef __linux__
+	FILE *fp;
+
 	ind = (core < 0) ? 0 : core + 1;
 	fp = fopen("/proc/stat","r");
 	for(i = 0; i <= data->cpu_count; i++)
@@ -627,7 +629,7 @@ static int cpu_usage(Labels *data)
 
 	ind = (core < 0) ? 0 : core;
 	if(sysctlbyname(sysctlvarname, &cp_time, &len, NULL, 0))
-		return;
+		return 1;
 	for(i = 0; i <= data->cpu_count * LASTSTAT; i++)
 		new[i / LASTSTAT][i % LASTSTAT] = cp_time[i];
 #endif /* __linux__ */
@@ -949,7 +951,7 @@ static int system_dynamic(Labels *data)
 	/* Memory labels */
 	for(i = USED; i < SWAP; i++)
 		asprintf(&data->tab_system[VALUE][i], "%5u MB / %5u MB", m_data->mem_usage[i - USED], m_data->mem_total);
-	asprintf(&data->tab_system[VALUE][SWAP], "%5u MB / %5u MB", m_data->mem_usage[USED - SWAP], m_data->swap_total);
+	asprintf(&data->tab_system[VALUE][SWAP], "%5u MB / %5u MB", m_data->mem_usage[SWAP - USED], m_data->swap_total);
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
@@ -1025,13 +1027,13 @@ static int benchmark_status(Labels *data)
 		asprintf(&data->tab_bench[VALUE][ind + 1], _("Active"));
 
 	if(b_data->run && b_data->duration * 60 - b_data->elapsed >= 60)
-		asprintf(&buff, _("(%li minutes left)"), b_data->duration - b_data->elapsed / 60);
+		asprintf(&buff, _("(%u minutes left)"), b_data->duration - b_data->elapsed / 60);
 	else if(b_data->run)
-		asprintf(&buff, _("(%li seconds left)"), b_data->duration * 60 - b_data->elapsed);
+		asprintf(&buff, _("(%u seconds left)"), b_data->duration * 60 - b_data->elapsed);
 	else if(!b_data->run && b_data->elapsed >= 60)
-		asprintf(&buff, _("in %li minutes"), b_data->elapsed / 60);
+		asprintf(&buff, _("in %u minutes"), b_data->elapsed / 60);
 	else
-		asprintf(&buff, _("in %li seconds"), b_data->elapsed);
+		asprintf(&buff, _("in %u seconds"), b_data->elapsed);
 
 	asprintf(&data->tab_bench[VALUE][ind], _("%'u prime numbers calculated %s"), b_data->primes, buff);
 	return 0;
