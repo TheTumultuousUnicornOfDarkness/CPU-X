@@ -780,7 +780,8 @@ static int find_devices(Labels *data)
 		{
 			for(i = 0; gpu_vendors[i] != NULL && strstr(vendor, gpu_vendors[i]) == NULL; i++);
 			drivername = find_driver(dev, namebuf);
-			iasprintf(&driverstr, _("(%s driver)"), drivername);
+			if(drivername != NULL)
+				iasprintf(&driverstr, _("(%s driver)"), drivername);
 			iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], "%s %s", (gpu_vendors[i] == NULL) ? vendor : gpu_vendors[i], driverstr);
 			iasprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], "%s", product);
 			nbgpu++;
