@@ -29,7 +29,6 @@
 # include "pci/pci.h"
 #endif
 
-#define RUN_IF(cond, fnc) cond ? fnc : 0;
 
 /* Avoid to re-run a function if an error was occurred in previous call */
 static int err_func(int (*func)(Labels *), Labels *data);

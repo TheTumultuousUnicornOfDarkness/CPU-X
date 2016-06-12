@@ -75,13 +75,13 @@ int fill_labels(Labels *data)
 {
 	int err = 0;
 
-	err += RUN_IF(HAS_DMIDECODE,            call_dmidecode        (data));
-	err += RUN_IF(HAS_LIBCPUID,             call_libcpuid_static  (data));
-	err += RUN_IF(HAS_LIBCPUID,    err_func(call_libcpuid_dynamic, data));
-	err += RUN_IF(HAS_LIBPROCPS,            system_dynamic        (data));
-	err += RUN_IF(HAS_LIBSTATGRAB, err_func(system_dynamic,        data));
-	err += RUN_IF(HAS_BANDWIDTH,   err_func(call_bandwidth,        data));
-	err += RUN_IF(HAS_LIBPCI,               find_devices          (data));
+	if(HAS_DMIDECODE)   err +=          call_dmidecode        (data);
+	if(HAS_LIBCPUID)    err +=          call_libcpuid_static  (data);
+	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_dynamic, data);
+	if(HAS_LIBPROCPS)   err +=          system_dynamic        (data);
+	if(HAS_LIBSTATGRAB) err += err_func(system_dynamic,        data);
+	if(HAS_BANDWIDTH)   err += err_func(call_bandwidth,        data);
+	if(HAS_LIBPCI)      err +=          find_devices          (data);
 
 	err += err_func(cpu_usage,        data);
 	err +=          system_static    (data);
@@ -102,16 +102,16 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			err += RUN_IF(HAS_LIBCPUID, err_func(call_libcpuid_dynamic, data));
+			if(HAS_LIBCPUID) err += err_func(call_libcpuid_dynamic, data);
 			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
 			break;
 		case NO_CACHES:
-			err += RUN_IF(HAS_BANDWIDTH, err_func(call_bandwidth, data));
+			if(HAS_BANDWIDTH) err += err_func(call_bandwidth, data);
 			break;
 		case NO_SYSTEM:
-			err += RUN_IF(HAS_LIBPROCPS,   err_func(system_dynamic, data));
-			err += RUN_IF(HAS_LIBSTATGRAB, err_func(system_dynamic, data));
+			if(HAS_LIBPROCPS)   err += err_func(system_dynamic, data);
+			if(HAS_LIBSTATGRAB) err += err_func(system_dynamic, data);
 			break;
 		case NO_GRAPHICS:
 			err += err_func(gpu_temperature, data);
