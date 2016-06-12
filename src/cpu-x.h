@@ -165,6 +165,7 @@ typedef struct
 {
 	uint8_t  test_count;
 	uint32_t l1_size, l2_size, l3_size;
+	uint32_t speed[LASTCACHES / GPUFIELDS];
 	char     **test_name;
 } BandwidthData;
 

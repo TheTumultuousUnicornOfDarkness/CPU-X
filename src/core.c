@@ -51,6 +51,10 @@
 # include "dmidecode/dmiopt.h"
 #endif
 
+#if HAS_BANDWIDTH
+# include "bandwidth/libbandwidth.h"
+#endif
+
 #if HAS_LIBPCI
 # include "pci/pci.h"
 #endif
@@ -615,6 +619,60 @@ static int cpu_usage(Labels *data, int core)
 	free(new);
 	return 0;
 }
+
+#if HAS_BANDWIDTH
+/* Call Bandwidth through CPU-X but do nothing else */
+int run_bandwidth(void)
+{
+	return bandwidth(NULL);
+}
+
+/* Compute CPU cache speed */
+static int call_bandwidth(Labels *data)
+{
+	static bool first = true;
+	int i, err;
+	pthread_t tid;
+
+	if(data->w_data->l1_size < 1)
+		return 1;
+
+	MSG_VERBOSE(_("Calling bandwidth"));
+	/* Check if selectionned test is valid */
+	if(opts->bw_test >= LASTTEST)
+	{
+		MSG_WARNING(_("Invalid bandwidth test selectionned!"));
+		fprintf(stderr, _("List of available tests:\n"));
+		for(i = SEQ_128_R; i < LASTTEST; i++)
+			fprintf(stderr, "\t%i: %s\n", i, tests[i].name);
+		opts->bw_test = 0;
+		fprintf(stderr, ("%s will use test #%i (%s)\n"), PRGNAME, opts->bw_test, tests[opts->bw_test].name);
+	}
+
+	/* Set test names */
+	if(data->w_data->test_count == 0)
+	{
+		data->w_data->test_count = LASTTEST;
+		data->w_data->test_name  = malloc(LASTTEST * sizeof(char *));
+		for(i = SEQ_128_R; i < LASTTEST; i++)
+			asprintf(&data->w_data->test_name[i], "#%2i: %s", i, tests[i].name);
+	}
+
+	/* Run bandwidth in a separated thread */
+	err = pthread_create(&tid, NULL, (void *)bandwidth, data);
+	if(first)
+	{
+		err += pthread_join(tid, NULL);
+		first = false;
+	}
+
+	/* Speed labels */
+	for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
+		iasprintf(&data->tab_caches[VALUE][i], "%.2f MB/s", (double) data->w_data->speed[(i - L1SPEED) / CACHEFIELDS] / 10);
+
+	return err;
+}
+#endif /* HAS_BANDWIDTH */
 
 #if HAS_LIBPCI
 /* Find driver name for a device */

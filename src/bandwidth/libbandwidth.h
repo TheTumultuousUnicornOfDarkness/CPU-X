@@ -30,7 +30,7 @@
 #define CPU_X_GET_CACHE_SPEED_P1 \
 if(!BANDWIDTH_MODE && chunk_size > cache_size * 1024) \
 { \
-	iasprintf(&data->tab_caches[VALUE][(cache_level - LEVEL1I) * CACHEFIELDS + L1SPEED], "%.2f MB/s", (double) (total_amount / 10) / count); \
+	data->w_data->speed[cache_level - LEVEL1I] = total_amount / count; \
 	count        = 0; \
 	total_amount = 0; \
 	cache_level++; \
@@ -119,6 +119,8 @@ static const struct Tests
 	{ SEQ_16_LR,         "Sequential 16-bit LODSW reads"       },
 	{ SEQ_8_LR,          "Sequential 8-bit LODSB reads"        },
 };
+
+int bandwidth(void *p_data);
 
 
 #endif

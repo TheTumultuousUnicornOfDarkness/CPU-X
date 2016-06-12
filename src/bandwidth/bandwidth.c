@@ -19,7 +19,6 @@
   The author may be reached at veritas@comcast.net.
  *===========================================================================*/
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1820,13 +1819,18 @@ usage ()
 //----------------------------------------------------------------------------
 // Name:	main
 //----------------------------------------------------------------------------
-int call_bandwidth(Labels *data)
+int bandwidth(void *p_data)
 {
 	int i, chunk_size = 0;
-	uint32_t cache_size = 0;
 	char graph_title [512] = {0};
-	static bool first = true;
+
+	/* Used by CPU-X */
+	static bool first   = true;
+	char cache_level    = LEVEL1I;
+	int count           = 0;
+	uint32_t cache_size = 0;
 	double total_amount = 0;
+	Labels *data        = p_data;
 
 	msg[0] = 0;
 
@@ -1994,28 +1998,6 @@ int call_bandwidth(Labels *data)
 	goto end_initialization;
 
 fast_initialization:
-	if(data->w_data->l1_size < 1)
-		return 1;
-
-	if(opts->bw_test >= LASTTEST)
-	{
-		MSG_ERROR(_("Invalid bandwidth test selectionned!"));
-		MSG_ERROR(_("Available tests:"));
-		for(i = SEQ_128_R; i < LASTTEST; i++)
-			fprintf(stderr, "\t%i: %s\n", i, tests[i].name);
-		opts->bw_test = 0;
-	}
-
-	if(data->w_data->test_count == 0)
-	{
-		data->w_data->test_count = LASTTEST;
-		data->w_data->test_name  = malloc(LASTTEST * sizeof(char *));
-		for(i = SEQ_128_R; i < LASTTEST; i++)
-			asprintf(&data->w_data->test_name[i], "#%2i: %s", i, tests[i].name);
-	}
-
-	short cache_level = LEVEL1I;
-	int   count       = 0;
 	cache_size        = data->w_data->l1_size;
 
 	if(data->l_data->cpu_vendor_id == 1)
@@ -2501,9 +2483,4 @@ end_initialization:
 	}
 
 	return 0;
-}
-
-int run_bandwidth()
-{
-	return call_bandwidth(NULL);
 }

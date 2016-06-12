@@ -667,7 +667,7 @@ int main(int argc, char *argv[])
 
 	data->l_data = &(LibcpuidData) { .cpu_vendor_id = -1, .cpu_model = -1, .cpu_ext_model = -1, .cpu_ext_family = -1 };
 
-	data->w_data = &(BandwidthData) { .l1_size = 0, .test_count = 0, .test_name = NULL };
+	data->w_data = &(BandwidthData) { .l1_size = 0, .test_count = 0, .test_name = NULL, .speed = { 0 } };
 
 	data->m_data = &(MemoryData) { .mem_total = 0, .swap_total = 0 };
 
