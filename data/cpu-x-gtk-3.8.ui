@@ -402,6 +402,8 @@
                                       <object class="GtkImage" id="proc_logocpu">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="margin_left">4</property>
+                                        <property name="margin_bottom">2</property>
                                         <property name="icon_size">0</property>
                                       </object>
                                       <packing>
@@ -1374,9 +1376,9 @@
                                     <property name="justify">center</property>
                                     <property name="selectable">True</property>
                                     <property name="ellipsize">end</property>
-                                    <property name="width_chars">6</property>
+                                    <property name="width_chars">4</property>
                                     <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">6</property>
+                                    <property name="max_width_chars">4</property>
                                     <property name="lines">1</property>
                                     <attributes>
                                       <attribute name="foreground" value="#000000008080"/>
@@ -1406,9 +1408,9 @@
                                     <property name="justify">center</property>
                                     <property name="selectable">True</property>
                                     <property name="ellipsize">end</property>
-                                    <property name="width_chars">8</property>
+                                    <property name="width_chars">6</property>
                                     <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">8</property>
+                                    <property name="max_width_chars">6</property>
                                     <property name="lines">1</property>
                                     <attributes>
                                       <attribute name="foreground" value="#000000008080"/>
@@ -1438,9 +1440,9 @@
                                     <property name="justify">center</property>
                                     <property name="selectable">True</property>
                                     <property name="ellipsize">end</property>
-                                    <property name="width_chars">8</property>
+                                    <property name="width_chars">6</property>
                                     <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">8</property>
+                                    <property name="max_width_chars">6</property>
                                     <property name="lines">1</property>
                                     <attributes>
                                       <attribute name="foreground" value="#000000008080"/>
@@ -5215,7 +5217,7 @@
                             </child>
                             <child>
                               <object class="GtkProgressBar" id="primeslow_valscore">
-                                <property name="width_request">350</property>
+                                <property name="width_request">330</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_top">1</property>
@@ -5322,7 +5324,7 @@
                             </child>
                             <child>
                               <object class="GtkProgressBar" id="primefast_valscore">
-                                <property name="width_request">350</property>
+                                <property name="width_request">330</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_top">1</property>

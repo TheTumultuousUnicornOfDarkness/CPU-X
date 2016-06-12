@@ -412,9 +412,15 @@ static void change_color(GtkWidget *button, GtkLabels *glab)
 /* Set CPU vendor logo and program logo */
 static void set_logos(GtkLabels *glab, Labels *data)
 {
-	const int width = 105, height = 92, prg_size = 92;
+	int width = 100, height = 92, prg_size = 72;
 	GdkPixbuf *cpu_pixbuf, *unknown_pixbuf, *prg_pixbuf;
 	GError *error = NULL;
+
+	if(gtk_check_version(3, 15, 0) != NULL) // GTK 3.14 or older
+	{
+		width = 85;
+		height = 80;
+	}
 
 	if(PORTABLE_BINARY)
 	{
