@@ -275,13 +275,13 @@ static void dump_data(Labels *data)
 	MSG_VERBOSE(_("Dumping data..."));
 	for(i = 0; a[i].array_name != NULL; i++)
 	{
-		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col, data->objects[i], RESET);
+		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col, data->objects[i], DEFAULT);
 		for(j = 0; j < a[i].last; j++)
 		{
 			if(f[k].tab_nb == i && f[k].lab_nb == j)
 			{
 				MSG_STDOUT("\n\t%s***** %s *****%s", col, (f[k].frame_nb >= 0) ?
-				                                 data->objects[f[k].frame_nb] : "*", RESET);
+				                                 data->objects[f[k].frame_nb] : "*", DEFAULT);
 				k++;
 			}
 			MSG_STDOUT("%16s: %s", a[i].array_name[j], a[i].array_value[j]);
@@ -579,7 +579,7 @@ void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"), BOLD_RED, PRGNAME, signum, strsignal(signum), RESET);
+	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"), BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
 	MSG_STDERR("======= Backtrace: =========");
         for(i = 1; i < bt_size; i++)
 	{
@@ -715,10 +715,26 @@ int main(int argc, char *argv[])
 /************************* Public functions *************************/
 
 /* Add a newline for given string (used by MSG_XXX macros) */
-char *str_newline(char *str)
+char *msg_newline(char *color, char *str)
 {
 	static char *buff;
-	asprintf(&buff, "%s\n", str);
+
+	asprintf(&buff, "%s%s%s\n", opts->color ? color : DEFAULT, str, DEFAULT);
+
+	return buff;
+}
+
+/* Add a newline and more informations for given string (used by MSG_ERROR macro) */
+char *msg_error(char *color, char *file, int line, char *str)
+{
+	static char *buff;
+
+	if(errno)
+		asprintf(&buff, "%s%s:%s:%i: %s (%s)%s\n", opts->color ? color : DEFAULT, PRGNAME, file, line, str, strerror(errno), DEFAULT);
+	else
+		asprintf(&buff, "%s%s:%s:%i: %s%s\n", opts->color ? color : DEFAULT, PRGNAME, file, line, str, DEFAULT);
+
+	errno = 0;
 	return buff;
 }
 
@@ -839,7 +855,6 @@ bool command_exists(char *in)
 /* Open a file and put its content in buffer */
 int fopen_to_str(char *file, char **buffer)
 {
-	char *msg;
 	FILE *f = NULL;
 
 	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
@@ -855,15 +870,14 @@ int fopen_to_str(char *file, char **buffer)
 	return fclose(f);
 
 error:
-	asprintf(&msg, _("an error occurred while opening file '%s'"), file);
-	MSG_ERROR_ERRNO(msg);
+	MSG_ERROR(_("an error occurred while opening file '%s'"), file);
 	return (f == NULL) ? 1 : 2 + fclose(f);
 }
 
 /* Open a pipe and put its content in buffer */
 int popen_to_str(char *command, char **buffer)
 {
-	char *test_command, *msg;
+	char *test_command;
 	FILE *p = NULL;
 
 	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
@@ -883,8 +897,7 @@ int popen_to_str(char *command, char **buffer)
 	return pclose(p);
 
 error:
-	asprintf(&msg, _("an error occurred while running command '%s'"), command);
-	MSG_ERROR_ERRNO(msg);
+	MSG_ERROR(_("an error occurred while running command '%s'"), command);
 	return (p == NULL) ? 1 : 2 + pclose(p);
 }
 

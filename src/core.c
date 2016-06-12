@@ -133,7 +133,6 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 static int cpu_technology(Labels *data)
 {
 	int i = -1;
-	char *msg;
 	bool found = false;
 	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor = NULL;
 	LibcpuidData *l_data = data->l_data;
@@ -230,9 +229,8 @@ static int cpu_technology(Labels *data)
 	}
 
 skip_vendor:
-	asprintf(&msg, _("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
-	         data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
-	MSG_WARNING(msg);
+	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
+	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 
 	return 0;
 }
@@ -515,7 +513,7 @@ static int call_dmidecode(Labels *data)
 	opt.type = calloc(256, sizeof(uint8_t));
 	if(opt.type == NULL)
 	{
-		MSG_ERROR_ERRNO(_("failed to allocate memory for dmidecode"));
+		MSG_ERROR(_("failed to allocate memory for dmidecode"));
 		return 2;
 	}
 
@@ -568,7 +566,7 @@ static long **allocate_2d_array(int rows, int columns)
 
 	return array;
 error:
-	MSG_ERROR_ERRNO(_("failed to allocate memory for CPU usage calculation (rows)"));
+	MSG_ERROR(_("failed to allocate memory for CPU usage calculation (rows)"));
 	return NULL;
 }
 
@@ -833,7 +831,7 @@ static int system_static(Labels *data)
 	MSG_VERBOSE(_("Identifying running system"));
 	err = uname(&name);
 	if(err)
-		MSG_ERROR_ERRNO(_("failed to identify running system"));
+		MSG_ERROR(_("failed to identify running system"));
 	else
 	{
 		iasprintf(&data->tab_system[VALUE][KERNEL],   "%s %s", name.sysname, name.release); /* Kernel label */
@@ -1048,7 +1046,6 @@ void start_benchmarks(Labels *data)
 static int cpu_package_fallback(Labels *data)
 {
 	int i;
-	char *msg;
 
 	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
 	const struct Package { char *name, *socket; } package[] =
@@ -1070,8 +1067,7 @@ static int cpu_package_fallback(Labels *data)
 	}
 	else
 	{
-		asprintf(&msg, _("Your CPU socket does not belong in database ==> %s"), data->tab_cpu[VALUE][SPECIFICATION]);
-		MSG_WARNING(msg);
+		MSG_WARNING(_("Your CPU socket does not belong in database ==> %s"), data->tab_cpu[VALUE][SPECIFICATION]);
 		return 2;
 	}
 }

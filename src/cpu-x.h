@@ -26,7 +26,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <errno.h>
 #define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
@@ -36,20 +35,19 @@
 #define PRGCPYR               "Copyright © 2014-2016 Xorg"
 
 /* Colors definition */
+#define DEFAULT               "\x1b[0m"
 #define BOLD_RED              "\x1b[1;31m"
 #define BOLD_GREEN            "\x1b[1;32m"
 #define BOLD_YELLOW           "\x1b[1;33m"
 #define BOLD_BLUE             "\x1b[1;34m"
-#define RESET                 "\x1b[0m"
 
 /* Formatted messages definition */
 #define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define MSG_STDOUT(fmt, ...)  fprintf(stdout, str_newline(fmt), ##__VA_ARGS__)
-#define MSG_STDERR(fmt, ...)  fprintf(stderr, str_newline(fmt), ##__VA_ARGS__)
-#define MSG_VERBOSE(msg)      opts->verbose ? fprintf(stdout, "%s%s%s\n", opts->color ? BOLD_GREEN  : "", msg, RESET) : fflush(NULL)
-#define MSG_WARNING(msg)      fprintf(stdout, "%s%s%s\n",                 opts->color ? BOLD_YELLOW : "", msg, RESET)
-#define MSG_ERROR(msg)        fprintf(stderr, "%s%s:%s:%i: %s%s\n",       opts->color ? BOLD_RED    : "", PRGNAME, BASEFILE, __LINE__, msg, RESET)
-#define MSG_ERROR_ERRNO(msg)  fprintf(stderr, "%s%s:%s:%i: %s (%s)%s\n",  opts->color ? BOLD_RED    : "", PRGNAME, BASEFILE, __LINE__, msg, strerror(errno), RESET)
+#define MSG_STDOUT(fmt, ...)  fprintf(stdout, msg_newline(DEFAULT, fmt),     ##__VA_ARGS__)
+#define MSG_STDERR(fmt, ...)  fprintf(stderr, msg_newline(DEFAULT, fmt),     ##__VA_ARGS__)
+#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, msg_newline(BOLD_GREEN, fmt),  ##__VA_ARGS__) : fprintf(stdout, "%c", '\0')
+#define MSG_WARNING(fmt, ...) fprintf(stdout, msg_newline(BOLD_YELLOW, fmt), ##__VA_ARGS__)
+#define MSG_ERROR(fmt, ...)   fprintf(stderr, msg_error(BOLD_RED, BASEFILE, __LINE__, fmt), ##__VA_ARGS__)
 #define _(msg)                gettext(msg)
 
 /* Options definition */
@@ -229,7 +227,10 @@ extern char    *binary_name, *new_version;
 /***************************** Defined in main.c *****************************/
 
 /* Add a newline for given string (used by MSG_XXX macros) */
-char *str_newline(char *str);
+char *msg_newline(char *color, char *str);
+
+/* Add a newline and more informations for given string (used by MSG_ERROR macro) */
+char *msg_error(char *color, char *file, int line, char *str);
 
 /* The improved asprintf:
  * - allocate an empty string if input string is null
