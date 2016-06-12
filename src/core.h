@@ -37,8 +37,12 @@ static int err_func(int (*func)(Labels *), Labels *data);
 static int call_libcpuid_static(Labels *data);
 /* Required: HAS_LIBCPUID */
 
-/* Dynamic elements provided by libcpuid */
-static int call_libcpuid_dynamic(Labels *data);
+/* CPU clock provided by libcpuid */
+static int call_libcpuid_cpuclock(Labels *data);
+/* Required: HAS_LIBCPUID */
+
+/* MSRs values provided by libcpuid */
+static int call_libcpuid_msr(Labels *data);
 /* Required: HAS_LIBCPUID && root privileges */
 
 /* Elements provided by dmidecode (need root privileges) */

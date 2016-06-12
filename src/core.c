@@ -75,13 +75,14 @@ int fill_labels(Labels *data)
 {
 	int err = 0;
 
-	if(HAS_DMIDECODE)   err +=          call_dmidecode        (data);
-	if(HAS_LIBCPUID)    err +=          call_libcpuid_static  (data);
-	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_dynamic, data);
-	if(HAS_LIBPROCPS)   err +=          system_dynamic        (data);
-	if(HAS_LIBSTATGRAB) err += err_func(system_dynamic,        data);
-	if(HAS_BANDWIDTH)   err += err_func(call_bandwidth,        data);
-	if(HAS_LIBPCI)      err +=          find_devices          (data);
+	if(HAS_DMIDECODE)   err +=          call_dmidecode         (data);
+	if(HAS_LIBCPUID)    err +=          call_libcpuid_static   (data);
+	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_cpuclock, data);
+	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_msr,      data);
+	if(HAS_LIBPROCPS)   err += err_func(system_dynamic          data);
+	if(HAS_LIBSTATGRAB) err += err_func(system_dynamic,         data);
+	if(HAS_BANDWIDTH)   err += err_func(call_bandwidth,         data);
+	if(HAS_LIBPCI)      err +=          find_devices           (data);
 
 	err += err_func(cpu_usage,        data);
 	err +=          system_static    (data);
@@ -102,7 +103,8 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID) err += err_func(call_libcpuid_dynamic, data);
+			if(HAS_LIBCPUID) err += err_func(call_libcpuid_cpuclock, data);
+			if(HAS_LIBCPUID) err += err_func(call_libcpuid_msr,      data);
 			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
 			break;
@@ -423,6 +425,17 @@ static int call_libcpuid_static(Labels *data)
 	return 0;
 }
 
+/* CPU clock provided by libcpuid */
+static int call_libcpuid_cpuclock(Labels *data)
+{
+	/* CPU frequency */
+	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU clock"));
+	data->cpu_freq = cpu_clock();
+	iasprintf(&data->tab_cpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
+
+	return (data->cpu_freq <= 0);
+}
+
 /* Load CPU MSR kernel module */
 static bool load_msr_driver(void)
 {
@@ -430,23 +443,18 @@ static bool load_msr_driver(void)
 #ifdef __linux__
 	if(!loaded && !getuid())
 	{
-		MSG_VERBOSE(_("Loading CPU MSR kernel module"));
+		MSG_VERBOSE(_("Loading kernel module 'msr'"));
 		loaded = !system("modprobe msr 2> /dev/null");
 		if(!loaded)
-			MSG_ERROR(_("failed to load CPU MSR kernel module"));
+			MSG_ERROR(_("failed to load kernel module 'msr'"));
 	}
 #endif /* __linux__ */
 	return loaded;
 }
 
-/* Dynamic elements provided by libcpuid */
-static int call_libcpuid_dynamic(Labels *data)
+/* MSRs values provided by libcpuid */
+static int call_libcpuid_msr(Labels *data)
 {
-	/* CPU frequency */
-	MSG_VERBOSE(_("Calling libcpuid for retrieving dynamic data"));
-	data->cpu_freq = cpu_clock();
-	iasprintf(&data->tab_cpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
-
 #ifdef HAVE_LIBCPUID_0_2_2
 	static bool load_module = true;
 	int voltage, temp, bclk;
@@ -459,7 +467,7 @@ static int call_libcpuid_dynamic(Labels *data)
 	}
 
 	/* MSR stuff */
-	MSG_VERBOSE(_("Opening CPU Model-Specific Register (MSR)"));
+	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR values"));
 	if(load_module)
 	{
 		load_msr_driver();
