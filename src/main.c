@@ -429,7 +429,7 @@ static const struct AvailableOpts
 #undef N_
 
 /* This is help display with --help option */
-static void help()
+static void help(void)
 {
 	int i = -1;
 
@@ -558,7 +558,7 @@ static void menu(int argc, char *argv[])
 				exit(EXIT_SUCCESS);
 			case '?':
 			default:
-				help(stderr, argv);
+				help();
 				exit(EXIT_FAILURE);
 		}
 	}
