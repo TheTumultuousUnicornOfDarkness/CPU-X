@@ -44,6 +44,8 @@
 
 /* Formatted messages definition */
 #define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+#define MSG_STDOUT(fmt, ...)  fprintf(stdout, str_newline(fmt), ##__VA_ARGS__)
+#define MSG_STDERR(fmt, ...)  fprintf(stderr, str_newline(fmt), ##__VA_ARGS__)
 #define MSG_VERBOSE(msg)      opts->verbose ? fprintf(stdout, "%s%s%s\n", opts->color ? BOLD_GREEN  : "", msg, RESET) : fflush(NULL)
 #define MSG_WARNING(msg)      fprintf(stdout, "%s%s%s\n",                 opts->color ? BOLD_YELLOW : "", msg, RESET)
 #define MSG_ERROR(msg)        fprintf(stderr, "%s%s:%s:%i: %s%s\n",       opts->color ? BOLD_RED    : "", PRGNAME, BASEFILE, __LINE__, msg, RESET)
@@ -225,6 +227,9 @@ extern char    *binary_name, *new_version;
 
 
 /***************************** Defined in main.c *****************************/
+
+/* Add a newline for given string (used by MSG_XXX macros) */
+char *str_newline(char *str);
 
 /* The improved asprintf:
  * - allocate an empty string if input string is null

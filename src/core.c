@@ -642,11 +642,11 @@ static int call_bandwidth(Labels *data)
 	if(opts->bw_test >= LASTTEST)
 	{
 		MSG_WARNING(_("Invalid bandwidth test selectionned!"));
-		fprintf(stderr, _("List of available tests:\n"));
+		MSG_STDERR(_("List of available tests:"));
 		for(i = SEQ_128_R; i < LASTTEST; i++)
-			fprintf(stderr, "\t%i: %s\n", i, tests[i].name);
+			MSG_STDERR("\t%i: %s", i, tests[i].name);
 		opts->bw_test = 0;
-		fprintf(stderr, ("%s will use test #%i (%s)\n"), PRGNAME, opts->bw_test, tests[opts->bw_test].name);
+		MSG_STDERR(_("%s will use test #%i (%s)"), PRGNAME, opts->bw_test, tests[opts->bw_test].name);
 	}
 
 	/* Set test names */

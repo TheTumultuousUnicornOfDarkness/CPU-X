@@ -275,18 +275,18 @@ static void dump_data(Labels *data)
 	MSG_VERBOSE(_("Dumping data..."));
 	for(i = 0; a[i].array_name != NULL; i++)
 	{
-		printf("  %s>>>>>>>>>> %s <<<<<<<<<<%s\n", col, data->objects[i], RESET);
+		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col, data->objects[i], RESET);
 		for(j = 0; j < a[i].last; j++)
 		{
 			if(f[k].tab_nb == i && f[k].lab_nb == j)
 			{
-				printf("\n\t%s***** %s *****%s\n", col, (f[k].frame_nb >= 0) ?
+				MSG_STDOUT("\n\t%s***** %s *****%s", col, (f[k].frame_nb >= 0) ?
 				                                 data->objects[f[k].frame_nb] : "*", RESET);
 				k++;
 			}
-			printf("%16s: %s\n", a[i].array_name[j], a[i].array_value[j]);
+			MSG_STDOUT("%16s: %s", a[i].array_name[j], a[i].array_value[j]);
 		}
-		printf("\n\n");
+		MSG_STDOUT("\n");
 	}
 
 	labels_free(data);
@@ -429,16 +429,16 @@ static const struct AvailableOpts
 #undef N_
 
 /* This is help display with --help option */
-static void help(FILE *out, char *argv[])
+static void help()
 {
 	int i = -1;
 
-	fprintf(out, _("Usage: %s [OPTION]\n\n"), argv[0]);
-	fprintf(out, _("Available OPTION:\n"));
+	MSG_STDOUT(_("Usage: %s [OPTION]\n"), binary_name);
+	MSG_STDOUT(_("Available OPTION:"));
 	while(o[++i].long_opt != NULL)
 	{
 		if(o[i].has_mod)
-			fprintf(out, "  -%c, --%-10s %s\n", o[i].short_opt, o[i].long_opt, _(o[i].description));
+			MSG_STDOUT("  -%c, --%-10s %s", o[i].short_opt, o[i].long_opt, _(o[i].description));
 	}
 }
 
@@ -465,19 +465,18 @@ static void version(void)
 	else
 		asprintf(&strver, _("(up-to-date)"));
 
-	printf("%s %s %s\n%s\n\n", PRGNAME, PRGVER, strver, PRGCPYR);
-	printf(_(""
-	"This is free software: you are free to change and redistribute it.\n"
-	"This program comes with ABSOLUTELY NO WARRANTY\n"
-	"See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n\n"
-	"Built on %s, %s (with %s %s).\n"),
-	__DATE__, __TIME__, CC, __VERSION__);
+	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, strver);
+	MSG_STDOUT("%s\n", PRGCPYR);
+	MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
+	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
+	MSG_STDOUT(_("See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"));
+	MSG_STDOUT(_("Built on %s, %s (with %s %s)."), __DATE__, __TIME__, CC, __VERSION__);
 
 	/* Print features version */
 	for(i = 0; v[i].lib != NULL; i++)
 	{
 		if(v[i].has_mod)
-			printf(_("-- %-9s version: %s\n"), v[i].lib, v[i].version);
+			MSG_STDOUT(_("-- %-9s version: %s"), v[i].lib, v[i].version);
 	}
 }
 
@@ -552,7 +551,7 @@ static void menu(int argc, char *argv[])
 				opts->update = true;
 				break;
 			case 'h':
-				help(stdout, argv);
+				help();
 				exit(EXIT_SUCCESS);
 			case 'V':
 				version();
@@ -580,21 +579,19 @@ void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	fprintf(stderr, "%s", strsignal(signum));
-	fprintf(stderr, _("\n%sOops, something was wrong! %s got signal %d and has crashed.%s\n\n"), BOLD_RED, PRGNAME, signum, RESET);
-	fprintf(stderr, "======= Backtrace: =========\n");
+	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"), BOLD_RED, PRGNAME, signum, strsignal(signum), RESET);
+	MSG_STDERR("======= Backtrace: =========");
         for(i = 1; i < bt_size; i++)
 	{
-		fprintf(stderr, "#%2i %s", i, bt_syms[i]);
+		MSG_STDERR("#%2i %s", i, bt_syms[i]);
 		asprintf(&cmd, "addr2line %s -e /usr/bin/cpu-x", strtok(strrchr(bt_syms[i], '[') + 1, "]"));
 		popen_to_str(cmd, &buff);
 		if(strstr(buff, "??") == NULL)
-			fprintf(stderr, " ==> %s", strrchr(buff, '/') + 1);
-		fprintf(stderr, "\n");
+			MSG_STDERR(" ==> %s", strrchr(buff, '/') + 1);
         }
-	fprintf(stderr, "======= End Backtrace ======\n\n");
-	fprintf(stderr, _("You can paste this backtrace by opening a new issue here:\n"));
-	fprintf(stderr, "https://github.com/X0rg/CPU-X/issues/new\n\n");
+	MSG_STDERR("======= End Backtrace ======\n");
+	MSG_STDERR(_("You can paste this backtrace by opening a new issue here:"));
+	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
 
 	/* Stop program */
 	free(bt_syms);
@@ -716,6 +713,14 @@ int main(int argc, char *argv[])
 
 
 /************************* Public functions *************************/
+
+/* Add a newline for given string (used by MSG_XXX macros) */
+char *str_newline(char *str)
+{
+	static char *buff;
+	asprintf(&buff, "%s\n", str);
+	return buff;
+}
 
 /* The improved asprintf:
  * - allocate an empty string if input string is null
