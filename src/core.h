@@ -31,6 +31,8 @@
 
 #define RUN_IF(cond, fnc) cond ? fnc : 0;
 
+/* Avoid to re-run a function if an error was occurred in previous call */
+static int err_func(int (*func)(Labels *), Labels *data);
 
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data);
@@ -48,8 +50,8 @@ static int call_dmidecode(Labels *data);
 static int call_bandwidth(Labels *data);
 /* Required: HAS_BANDWIDTH */
 
-/* Calculate CPU usage (total if core < 0, else per given core) */
-static int cpu_usage(Labels *data, int core);
+/* Calculate total CPU usage */
+static int cpu_usage(Labels *data);
 /* Required: none */
 
 /* Find some PCI devices, like chipset and GPU */

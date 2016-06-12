@@ -75,17 +75,18 @@ int fill_labels(Labels *data)
 {
 	int err = 0;
 
-	err += RUN_IF(HAS_DMIDECODE,   call_dmidecode(data));
-	err += RUN_IF(HAS_LIBCPUID,    call_libcpuid_static(data));
-	err += RUN_IF(HAS_LIBCPUID,    call_libcpuid_dynamic(data));
-	err += RUN_IF(HAS_LIBPROCPS,   system_dynamic(data));
-	err += RUN_IF(HAS_LIBSTATGRAB, system_dynamic(data));
-	err += RUN_IF(HAS_BANDWIDTH,   call_bandwidth(data));
-	err += RUN_IF(HAS_LIBPCI,      find_devices(data));
-	err += cpu_usage(data, -1);
-	err += system_static(data);
-	err += gpu_temperature(data);
-	err += benchmark_status(data);
+	err += RUN_IF(HAS_DMIDECODE,            call_dmidecode        (data));
+	err += RUN_IF(HAS_LIBCPUID,             call_libcpuid_static  (data));
+	err += RUN_IF(HAS_LIBCPUID,    err_func(call_libcpuid_dynamic, data));
+	err += RUN_IF(HAS_LIBPROCPS,            system_dynamic        (data));
+	err += RUN_IF(HAS_LIBSTATGRAB, err_func(system_dynamic,        data));
+	err += RUN_IF(HAS_BANDWIDTH,   err_func(call_bandwidth,        data));
+	err += RUN_IF(HAS_LIBPCI,               find_devices          (data));
+
+	err += err_func(cpu_usage,        data);
+	err +=          system_static    (data);
+	err += err_func(gpu_temperature,  data);
+	err += err_func(benchmark_status, data);
 
 	err += fallback_mode_static(data);
 	err += fallback_mode_dynamic(data);
@@ -101,22 +102,22 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 	switch(page)
 	{
 		case NO_CPU:
-			err += RUN_IF(HAS_LIBCPUID, call_libcpuid_dynamic(data));
-			err += cpu_usage(data, -1);
+			err += RUN_IF(HAS_LIBCPUID, err_func(call_libcpuid_dynamic, data));
+			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
 			break;
 		case NO_CACHES:
-			err += RUN_IF(HAS_BANDWIDTH, call_bandwidth(data));
+			err += RUN_IF(HAS_BANDWIDTH, err_func(call_bandwidth, data));
 			break;
 		case NO_SYSTEM:
-			err += RUN_IF(HAS_LIBPROCPS,   system_dynamic(data));
-			err += RUN_IF(HAS_LIBSTATGRAB, system_dynamic(data));
+			err += RUN_IF(HAS_LIBPROCPS,   err_func(system_dynamic, data));
+			err += RUN_IF(HAS_LIBSTATGRAB, err_func(system_dynamic, data));
 			break;
 		case NO_GRAPHICS:
-			err += gpu_temperature(data);
+			err += err_func(gpu_temperature, data);
 			break;
 		case NO_BENCH:
-			err += benchmark_status(data);
+			err += err_func(benchmark_status, data);
 			break;
 		default:
 			err = -1;
@@ -127,6 +128,31 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 
 
 /************************* Private functions *************************/
+
+/* Avoid to re-run a function if an error was occurred in previous call */
+static int err_func(int (*func)(Labels *), Labels *data)
+{
+	static unsigned last = 0;
+	unsigned i = 0, err;
+	static struct Functions { void *func; bool skip_func; } f[16];
+
+	for(i = 0; (i < last) && (func != f[i].func); i++);
+
+	if(i == last)
+	{
+		f[last].func = func;
+		f[last].skip_func = false;
+		last++;
+	}
+
+	if(!f[i].skip_func)
+		err = func(data);
+
+	if(err)
+		f[i].skip_func = true;
+
+	return err;
+}
 
 #if HAS_LIBCPUID
 /* Get CPU technology, in nanometre (nm) */
@@ -421,29 +447,28 @@ static int call_libcpuid_dynamic(Labels *data)
 	iasprintf(&data->tab_cpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
 
 #ifdef HAVE_LIBCPUID_0_2_2
+	static bool load_module = true;
 	int voltage, temp, bclk;
-	static bool skip = false;
-	static struct msr_driver_t *msr = NULL;
-
-	if(skip)
-		return 1;
+	struct msr_driver_t *msr = NULL;
 
 	if(getuid())
 	{
 		MSG_WARNING(_("Skip CPU MSR opening (need to be root)"));
-		skip = true;
 		return 1;
 	}
-	skip = !load_msr_driver();
 
 	/* MSR stuff */
 	MSG_VERBOSE(_("Opening CPU Model-Specific Register (MSR)"));
-	if(msr == NULL)
-		msr = cpu_msr_driver_open_core(opts->selected_core);
+	if(load_module)
+	{
+		load_msr_driver();
+		load_module = false;
+	}
+
+	msr = cpu_msr_driver_open_core(opts->selected_core);
 	if(msr == NULL)
 	{
 		MSG_ERROR(_("failed to open CPU MSR"));
-		skip = true;
 		return 2;
 	}
 
@@ -479,6 +504,7 @@ static int call_libcpuid_dynamic(Labels *data)
 		         data->cpu_freq / data->bus_freq,
 			 (double) min_mult / 100, (double) max_mult / 100);
 #endif /* HAVE_LIBCPUID_0_3_0 */
+	cpu_msr_driver_close(msr);
 #endif /* HAVE_LIBCPUID_0_2_2 */
 
 	return 0;
@@ -570,11 +596,11 @@ error:
 	return NULL;
 }
 
-/* Calculate CPU usage (total if core < 0, else per given core) */
-static int cpu_usage(Labels *data, int core)
+/* Calculate total CPU usage */
+static int cpu_usage(Labels *data)
 {
 	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
-	int i, ind;
+	int i, ind, core = -1;
 	static long **pre = NULL;
 	long **new;
 	double loadavg;
@@ -781,7 +807,6 @@ static int find_devices(Labels *data)
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
 {
-	static int err = 0;
 	double temp = 0.0;
 	char *buff, *drm_hwmon, *drm_temp = NULL;
 	DIR *dp = NULL;
@@ -810,15 +835,16 @@ static int gpu_temperature(Labels *data)
 		}
 	}
 
-	if(!err && !temp)
+	if(temp)
+	{
+		iasprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE], "%.2f°C", temp);
+		return 0;
+	}
+	else
 	{
 		MSG_ERROR(_("failed to retrieve GPU temperature"));
-		err++;
 		return 1;
 	}
-
-	iasprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE], "%.2f°C", temp);
-	return 0;
 }
 
 /* Satic elements for System tab, OS specific */
@@ -1126,14 +1152,12 @@ static int cputab_volt_fallback(Labels *data)
 /* Get CPU multipliers ("x current (min-max)" label) */
 static int cpu_multipliers_fallback(Labels *data)
 {
-	static int err = 0;
+	static bool no_range = false;
 	static double min_mult = 0, max_mult = 0;
 
-	if(data->cpu_freq <= 0 || data->bus_freq <= 0 || err > 1)
-	{
-		err = 2;
-		return err;
-	}
+	if(data->cpu_freq <= 0 || data->bus_freq <= 0)
+		return 1;
+
 #ifdef __linux__
 	static bool init = false;
 	char *min_freq_str, *max_freq_str;
@@ -1160,14 +1184,14 @@ static int cpu_multipliers_fallback(Labels *data)
 	if(min_mult <= 0 || max_mult <= 0)
 	{
 		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", data->cpu_freq / data->bus_freq);
-		if(!err)
-			MSG_WARNING(_("Cannot get minimum and maximum CPU multipliers"));
-		err = 1;
+		if(!no_range)
+			MSG_WARNING(_("Cannot get minimum and maximum CPU multipliers (fallback mode)"));
+		no_range = true;
 	}
 	else
 		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, min_mult, max_mult);
 
-	return err;
+	return 0;
 }
 
 /* Retrieve missing Motherboard data if run as regular user */
@@ -1221,13 +1245,13 @@ static int fallback_mode_dynamic(Labels *data)
 	int err = 0;
 
 	if(data->tab_cpu[VALUE][TEMPERATURE] == NULL)
-		err += cputab_temp_fallback(data);
+		err += err_func(cputab_temp_fallback,     data);
 
 	if(data->tab_cpu[VALUE][VOLTAGE] == NULL)
-		err += cputab_volt_fallback(data);
+		err += err_func(cputab_volt_fallback,     data);
 
 	if(data->tab_cpu[VALUE][MULTIPLIER] == NULL)
-		err += cpu_multipliers_fallback(data);
+		err += err_func(cpu_multipliers_fallback, data);
 
 	return err;
 }
