@@ -59,11 +59,7 @@ typedef struct
 	GtkWidget *gtktab_memory[2][LASTMEMORY];
 
 	/* Tab System */
-	GtkWidget *barused;
-	GtkWidget *barbuff;
-	GtkWidget *barcache;
-	GtkWidget *barfree;
-	GtkWidget *barswap;
+	GtkWidget *bar[LASTBAR];
 	GtkWidget *gtktab_system[2][LASTSYSTEM];
 
 	/* Tab Graphics */

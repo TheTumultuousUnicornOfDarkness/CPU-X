@@ -334,16 +334,11 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "lab")));
 		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "val")));
 	}
-	glab->barused  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barused"));
-	glab->barbuff  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barbuff"));
-	glab->barcache = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barcache"));
-	glab->barfree  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barfree"));
-	glab->barswap  = GTK_WIDGET(gtk_builder_get_object(builder, "mem_barswap"));
-	gtk_widget_set_name(glab->barused,  g_strdup_printf("%i", USED));
-	gtk_widget_set_name(glab->barbuff,  g_strdup_printf("%i", BUFFERS));
-	gtk_widget_set_name(glab->barcache, g_strdup_printf("%i", CACHED));
-	gtk_widget_set_name(glab->barfree,  g_strdup_printf("%i", FREE));
-	gtk_widget_set_name(glab->barswap,  g_strdup_printf("%i", SWAP));
+	for(i = BARUSED; i < LASTBAR; i++)
+	{
+		glab->bar[i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys_bar[i]));
+		gtk_widget_set_name(GTK_WIDGET(glab->bar[i]), g_strdup_printf("%i", i));
+	}
 
 	/* Tab Graphics */
 	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
@@ -443,6 +438,9 @@ static void set_logos(GtkLabels *glab, Labels *data)
 static void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
+	const gint width = gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][COMPILER]) -
+	                   gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][USED]) - 6;
+	GtkRequisition requisition;
 
 	/* Footer label */
 	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->tab_about[VERSIONSTR]);
@@ -493,6 +491,11 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[NAME][i]),  data->tab_system[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 	}
+	for(i = BARUSED; i < LASTBAR; i++)
+	{
+		gtk_widget_get_preferred_size(glab->gtktab_system[VALUE][USED], NULL, &requisition);
+		gtk_widget_set_size_request(glab->bar[i], width, requisition.height);
+	}
 
 	/* Tab Graphics */
 	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
@@ -521,6 +524,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 /* Call defined functions on signals */
 static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 {
+	int i;
+
 	g_signal_connect(glab->mainwindow,  "destroy", G_CALLBACK(gtk_main_quit),     NULL);
 	g_signal_connect(glab->closebutton, "clicked", G_CALLBACK(gtk_main_quit),     NULL);
 	g_signal_connect(glab->activecore,  "changed", G_CALLBACK(change_activecore), data);
@@ -534,11 +539,8 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
 		g_signal_connect(glab->butcol, "color-set", G_CALLBACK(change_color), glab);
 
-	g_signal_connect(G_OBJECT(glab->barused),  "draw", G_CALLBACK(fill_frame), refr); /* Level bars */
-	g_signal_connect(G_OBJECT(glab->barbuff),  "draw", G_CALLBACK(fill_frame), refr);
-	g_signal_connect(G_OBJECT(glab->barcache), "draw", G_CALLBACK(fill_frame), refr);
-	g_signal_connect(G_OBJECT(glab->barfree),  "draw", G_CALLBACK(fill_frame), refr);
-	g_signal_connect(G_OBJECT(glab->barswap),  "draw", G_CALLBACK(fill_frame), refr);
+	for(i = BARUSED; i < LASTBAR; i++)
+		g_signal_connect(G_OBJECT(glab->bar[i]),  "draw", G_CALLBACK(fill_frame), refr);
 }
 
 /* Draw bars in Memory tab */
@@ -558,42 +560,42 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	width       = gtk_widget_get_allocated_width(widget);
 	height      = gtk_widget_get_allocated_height(widget);
 	page        = atoi(widget_name);
-	reflayout   = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][page]));
+	reflayout   = gtk_label_get_layout(GTK_LABEL(glab->gtktab_system[VALUE][page + USED]));
 	newlayout   = pango_layout_copy(reflayout);
 
-	if((page == SWAP && data->m_data->swap_total == 0) || (page != SWAP && data->m_data->mem_total == 0))
+	if((page == BARSWAP && data->m_data->swap_total == 0) || (page != BARSWAP && data->m_data->mem_total == 0))
 		return;
 
-	for(i = USED; (i <= page) && (page != SWAP); i++) /* Get value to start */
+	for(i = BARUSED; (i <= page) && (page != BARSWAP); i++) /* Get value to start */
 	{
 		before += percent;
-		percent = (double) data->m_data->mem_usage[i - USED] / data->m_data->mem_total * 100;
+		percent = (double) data->m_data->mem_usage[i] / data->m_data->mem_total * 100;
 	}
 
-	if(page == SWAP)
-		percent = (double) data->m_data->mem_usage[SWAP - USED] / data->m_data->swap_total * 100;
+	if(page == BARSWAP)
+		percent = (double) data->m_data->mem_usage[BARSWAP] / data->m_data->swap_total * 100;
 
 	pat = cairo_pattern_create_linear(before / 100 * width, 0, percent / 100 * width, height);
 
 	switch(page) /* Set differents level bar color */
 	{
-		case USED:
+		case BARUSED:
 			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 1.00, 0.15, 1);
 			cairo_pattern_add_color_stop_rgba(pat, 1, 1.00, 0.75, 0.15, 1);
 			break;
-		case BUFFERS:
+		case BARBUFFERS:
 			cairo_pattern_add_color_stop_rgba(pat, 0, 0.00, 0.30, 0.75, 1);
 			cairo_pattern_add_color_stop_rgba(pat, 1, 0.25, 0.55, 1.00, 1);
 			break;
-		case CACHED:
+		case BARCACHED:
 			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 0.35, 0.15, 1);
 			cairo_pattern_add_color_stop_rgba(pat, 1, 0.75, 0.15, 0.00, 1);
 			break;
-		case FREE:
+		case BARFREE:
 			cairo_pattern_add_color_stop_rgba(pat, 0, 0.20, 1.00, 0.25, 1);
 			cairo_pattern_add_color_stop_rgba(pat, 1, 0.00, 0.75, 0.05, 1);
 			break;
-		case SWAP:
+		case BARSWAP:
 			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 0.25, 0.90, 1);
 			cairo_pattern_add_color_stop_rgba(pat, 1, 0.75, 0.00, 0.65, 1);
 			break;

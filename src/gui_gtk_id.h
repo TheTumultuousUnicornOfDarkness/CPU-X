@@ -78,6 +78,11 @@ static const char *objectsys[LASTSYSTEM] =
 	"mem_used", "mem_buff", "mem_cache", "mem_free", "mem_swap"
 };
 
+static const char *objectsys_bar[LASTBAR] =
+{
+	"mem_barused", "mem_barbuff", "mem_barcache", "mem_barfree", "mem_barswap"
+};
+
 /* Tab Graphics */
 static const char *objectgpu[LASTGRAPHICS] =
 {
