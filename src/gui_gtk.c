@@ -537,16 +537,13 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
 		g_signal_connect(glab->butcol, "color-set", G_CALLBACK(change_color), glab);
 
-#if HAS_LIBPROCPS || HAS_LIBSTATGRAB
 	g_signal_connect(G_OBJECT(glab->barused),  "draw", G_CALLBACK(fill_frame), refr); /* Level bars */
 	g_signal_connect(G_OBJECT(glab->barbuff),  "draw", G_CALLBACK(fill_frame), refr);
 	g_signal_connect(G_OBJECT(glab->barcache), "draw", G_CALLBACK(fill_frame), refr);
 	g_signal_connect(G_OBJECT(glab->barfree),  "draw", G_CALLBACK(fill_frame), refr);
 	g_signal_connect(G_OBJECT(glab->barswap),  "draw", G_CALLBACK(fill_frame), refr);
-#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 }
 
-#if HAS_LIBPROCPS || HAS_LIBSTATGRAB
 /* Draw bars in Memory tab */
 void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 {
@@ -617,4 +614,3 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	cairo_fill(cr);
 	g_object_unref(newlayout);
 }
-#endif /* HAS_LIBPROCPS || HAS_LIBSTATGRAB */

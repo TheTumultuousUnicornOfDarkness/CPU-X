@@ -79,8 +79,7 @@ int fill_labels(Labels *data)
 	if(HAS_LIBCPUID)    err +=          call_libcpuid_static   (data);
 	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_cpuclock, data);
 	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_msr,      data);
-	if(HAS_LIBPROCPS)   err += err_func(system_dynamic          data);
-	if(HAS_LIBSTATGRAB) err += err_func(system_dynamic,         data);
+	if(HAS_LIBSYSTEM)   err += err_func(system_dynamic,         data);
 	if(HAS_BANDWIDTH)   err += err_func(call_bandwidth,         data);
 	if(HAS_LIBPCI)      err +=          find_devices           (data);
 
@@ -112,8 +111,7 @@ int do_refresh(Labels *data, enum EnTabNumber page)
 			if(HAS_BANDWIDTH) err += err_func(call_bandwidth, data);
 			break;
 		case NO_SYSTEM:
-			if(HAS_LIBPROCPS)   err += err_func(system_dynamic, data);
-			if(HAS_LIBSTATGRAB) err += err_func(system_dynamic, data);
+			if(HAS_LIBSYSTEM) err += err_func(system_dynamic, data);
 			break;
 		case NO_GRAPHICS:
 			err += err_func(gpu_temperature, data);
@@ -903,7 +901,7 @@ static int system_static(Labels *data)
 static int system_dynamic(Labels *data)
 {
 	int err = 0, i;
-	time_t uptime_s;
+	time_t uptime_s = 0;
 	struct tm *tm;
 	enum EnTabSystem ind = USED - USED;
 	MemoryData *m_data = data->m_data;
