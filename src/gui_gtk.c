@@ -411,15 +411,13 @@ static void change_color(GtkWidget *button, GtkLabels *glab)
 /* Set CPU vendor logo and program logo */
 static void set_logos(GtkLabels *glab, Labels *data)
 {
-	int width = 100, height = 92, prg_size = 72;
+	int width, height, prg_size = 72;
 	GdkPixbuf *cpu_pixbuf, *unknown_pixbuf, *prg_pixbuf;
 	GError *error = NULL;
 
-	if(gtk_check_version(3, 15, 0) != NULL) // GTK 3.14 or older
-	{
-		width = 85;
-		height = 80;
-	}
+	width  = gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][SPECIFICATION]) -
+	         gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][VENDOR]);
+	height = (gtk_widget_get_allocated_height(glab->gtktab_cpu[VALUE][VENDOR]) + 4) * 4;
 
 	if(PORTABLE_BINARY)
 	{
