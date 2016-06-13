@@ -500,7 +500,6 @@ static void menu(int argc, char *argv[])
 	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
 
 	/* Filling longopts structure */
-	MSG_VERBOSE(_("Parsing options"));
 	while(o[++i].long_opt != NULL)
 	{
 		while(!o[i].has_mod)
@@ -658,10 +657,7 @@ static int set_locales(void)
 		return 1;
 	}
 	else
-	{
-		MSG_VERBOSE(_("Setting locale done"));
 		return 0;
-	}
 }
 
 int main(int argc, char *argv[])
