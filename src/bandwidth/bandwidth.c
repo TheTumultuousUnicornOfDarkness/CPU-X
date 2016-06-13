@@ -22,7 +22,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stropts.h>
 #include <time.h>
 #include <sys/param.h>
 #include <sys/types.h>
@@ -54,8 +53,11 @@
 
 
 #ifdef __linux__
+#include <stropts.h>
 #include <linux/fb.h>
 #include <sys/mman.h>
+#else
+#include <sys/ioctl.h>
 #endif
 
 static int network_port = NETWORK_DEFAULT_PORTNUM;
