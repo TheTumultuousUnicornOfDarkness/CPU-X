@@ -401,10 +401,12 @@ static void print_new_version()
 {
 	nodelay(stdscr, FALSE);
 
-	printw(_("A new version of %s is available!\n\n"), PRGNAME);
+	printw(_("A new version of %s is available!"), PRGNAME);
+	printw("\n\n");
 	printw(_("Do you want to update %s to version %s after exit?\n"
-		"It will erase this binary file (%s) by the new version.\n\n"),
+		"It will erase this binary file (%s) by the new version."),
 		PRGNAME, new_version, binary_name);
+	printw("\n");
 	printw(_("If you want to update, press 'u' key, or anything else to skip.\n"), PRGNAME);
 	refresh();
 
@@ -456,9 +458,9 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display active Core in CPU tab */
 static void print_activecore(WINDOW *win)
 {
-	char buff[4];
-	sprintf(buff, "%i", opts->selected_core);
-	mvwprintwc(win, LINE_17, 4, DEFAULT_COLOR, _("Core #%s"), buff);
+	char buff[16];
+	sprintf(buff, _("Core #%i"), opts->selected_core);
+	mvwprintwc(win, LINE_17, 4, DEFAULT_COLOR, buff);
 }
 
 /* CPU tab */

@@ -441,10 +441,10 @@ static bool load_msr_driver(void)
 #ifdef __linux__
 	if(!loaded && !getuid())
 	{
-		MSG_VERBOSE(_("Loading kernel module 'msr'"));
+		MSG_VERBOSE(_("Loading 'msr' kernel module"));
 		loaded = !system("modprobe msr 2> /dev/null");
 		if(!loaded)
-			MSG_ERROR(_("failed to load kernel module 'msr'"));
+			MSG_ERROR(_("failed to load 'msr' kernel module"));
 	}
 #endif /* __linux__ */
 	return loaded;

@@ -439,8 +439,8 @@ static void help(void)
 {
 	int i = -1;
 
-	MSG_STDOUT(_("Usage: %s [OPTION]\n"), binary_name);
-	MSG_STDOUT(_("Available OPTION:"));
+	MSG_STDOUT(_("Usage: %s [OPTIONS]\n"), binary_name);
+	MSG_STDOUT(_("Available OPTIONS:"));
 	while(o[++i].long_opt != NULL)
 	{
 		if(o[i].has_mod)
@@ -692,13 +692,16 @@ int main(int argc, char *argv[])
 		opts->use_network = atoi(getenv("CPUX_NETWORK"));
 
 	menu(argc, argv);
+	if(getuid())
+	{
+		MSG_WARNING(_("Root privileges are required to work properly"));
+		MSG_WARNING(_("Some informations will not be retrievable"));
+	}
 	labels_setname (data);
 	fill_labels    (data);
 	remove_null_ptr(data);
 	check_new_version();
 
-	if(getuid())
-		MSG_WARNING(_("Root privileges are required to work properly"));
 
 	/* Show data */
 	switch(opts->output_type)

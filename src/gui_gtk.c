@@ -96,7 +96,7 @@ static void warning_window(GtkWidget *mainwindow)
 		_("Root privileges are required to work properly"));
 
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
-		_("Some informations will not be readable, some labels will be empty."));
+		_("Some informations will not be retrievable"));
 
 	gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT, NULL);
 	if(command_exists("pkexec") && command_exists("cpu-x_polkit"))
