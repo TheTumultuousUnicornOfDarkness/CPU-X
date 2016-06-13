@@ -765,7 +765,7 @@ int iasprintf(char **str, const char *fmt, ...)
 	int arg_int, i, ret = 0;
 	unsigned int arg_uint;
 	double arg_double;
-	char *arg_string, *tmp_fmt;
+	char *arg_string, *tmp_fmt = NULL;
 	va_list aptr;
 
 	/* Allocate an empty string */
@@ -849,6 +849,9 @@ int iasprintf(char **str, const char *fmt, ...)
 			ret = asprintf(str, "%s%c", *str, fmt[i]);
 	}
 	va_end(aptr);
+
+	if(tmp_fmt != NULL)
+		free(tmp_fmt);
 
 	return ret;
 }

@@ -647,7 +647,8 @@ static int cpu_usage(Labels *data)
 	if(loadavg > 0.0 && ind == 0)
 		asprintf(&data->tab_cpu[VALUE][USAGE], "%6.2f %%", loadavg * 100);
 
-	memcpy(pre, new, (data->cpu_count + 1) * LASTSTAT * sizeof(long));
+	for(i = 0; i <= data->cpu_count; i++)
+		memcpy(pre[i], new[i], LASTSTAT * sizeof(long));
 	free(new);
 	return 0;
 }
@@ -755,8 +756,10 @@ static int find_devices(Labels *data)
 	int i, nbgpu = 0, chipset = 0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	char namebuf[MAXSTR], *vendor, *product, *drivername, *driverstr;
-	const char *gpu_vendors[] = { "AMD", "Intel", "NVIDIA", NULL };
+	char namebuf[MAXSTR], *vendor, *product, *drivername;
+	enum Vendors { CURRENT = 3, LASTVENDOR };
+	char *gpu_vendors[LASTVENDOR] = { "AMD", "Intel", "NVIDIA" };
+
 
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
@@ -769,6 +772,7 @@ static int find_devices(Labels *data)
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
 		asprintf(&vendor,  "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
 		asprintf(&product, "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
+		asprintf(&gpu_vendors[CURRENT], vendor);
 
 		/* Looking for chipset */
 		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)
@@ -786,11 +790,13 @@ static int find_devices(Labels *data)
 		  dev->device_class == PCI_CLASS_DISPLAY_3D	||
 		  dev->device_class == PCI_CLASS_DISPLAY_OTHER))
 		{
-			for(i = 0; gpu_vendors[i] != NULL && strstr(vendor, gpu_vendors[i]) == NULL; i++);
+			for(i = 0; (i < CURRENT) && (strstr(vendor, gpu_vendors[i]) == NULL); i++);
+
 			drivername = find_driver(dev, namebuf);
 			if(drivername != NULL)
-				iasprintf(&driverstr, _("(%s driver)"), drivername);
-			iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], "%s %s", (gpu_vendors[i] == NULL) ? vendor : gpu_vendors[i], driverstr);
+				iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], _("%s (%s driver)"), gpu_vendors[i], drivername);
+			else
+				iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], "%s", gpu_vendors[i]);
 			iasprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], "%s", product);
 			nbgpu++;
 		}
@@ -801,8 +807,6 @@ static int find_devices(Labels *data)
 	pci_cleanup(pacc);
 	free(vendor);
 	free(product);
-	if(driverstr != NULL)
-		free(driverstr);
 
 	if(!chipset)
 		MSG_ERROR(_("failed to find chipset vendor and model"));
