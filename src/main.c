@@ -437,11 +437,11 @@ static const struct AvailableOpts
 /* This is help display with --help option */
 static void help(void)
 {
-	int i = -1;
+	int i;
 
 	MSG_STDOUT(_("Usage: %s [OPTIONS]\n"), binary_name);
 	MSG_STDOUT(_("Available OPTIONS:"));
-	while(o[++i].long_opt != NULL)
+	for(i = 0; o[i].long_opt != NULL; i++)
 	{
 		if(o[i].has_mod)
 			MSG_STDOUT("  -%c, --%-10s %s", o[i].short_opt, o[i].long_opt, _(o[i].description));
@@ -495,12 +495,12 @@ static void version(void)
 /* Parse options given in arg */
 static void menu(int argc, char *argv[])
 {
-	int i = -1, j = 0, c, tmp_arg = -1;
+	int i, j = 0, c, tmp_arg = -1;
 	char *shortopts = { "" };
 	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
 
 	/* Filling longopts structure */
-	while(o[++i].long_opt != NULL)
+	for(i = 0; o[i].long_opt != NULL; i++)
 	{
 		while(!o[i].has_mod)
 			i++;

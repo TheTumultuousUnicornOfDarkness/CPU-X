@@ -159,7 +159,7 @@ static int err_func(int (*func)(Labels *), Labels *data)
 /* Get CPU technology, in nanometre (nm) */
 static int cpu_technology(Labels *data)
 {
-	int i = -1;
+	int i;
 	bool found = false;
 	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor = NULL;
 	LibcpuidData *l_data = data->l_data;
@@ -168,6 +168,8 @@ static int cpu_technology(Labels *data)
 		return 0;
 
 	MSG_VERBOSE(_("Finding CPU technology"));
+	struct Technology unknown[] = { { -1, -1, -1, 0 } };
+
 	/* Intel CPUs */
 	struct Technology intel[] =
 	{
@@ -242,24 +244,24 @@ static int cpu_technology(Labels *data)
 			vendor = amd;
 			break;
 		default:
-			goto skip_vendor;
+			vendor = unknown;
+			break;
 	}
 
-	while(vendor[++i].cpu_model != -1)
+	for(i = 0; !found && (vendor[i].cpu_model != -1); i++)
 	{
-		found = vendor[i].cpu_model == l_data->cpu_model;
-		found = found && (vendor[i].cpu_ext_model  < 0 || vendor[i].cpu_ext_model  == l_data->cpu_ext_model);
-		found = found && (vendor[i].cpu_ext_family < 0 || vendor[i].cpu_ext_family == l_data->cpu_ext_family);
-
-		if(found)
-			return vendor[i].process;
+		found  = vendor[i].cpu_model == l_data->cpu_model;
+		found &= ((vendor[i].cpu_ext_model  < 0) || (vendor[i].cpu_ext_model  == l_data->cpu_ext_model));
+		found &= ((vendor[i].cpu_ext_family < 0) || (vendor[i].cpu_ext_family == l_data->cpu_ext_family));
 	}
 
-skip_vendor:
-	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
-	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
+	if(found)
+		i--;
+	else
+		MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
+		            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 
-	return 0;
+	return vendor[i].process;
 }
 
 /* If value is > 9, print both in decimal and hexadecimal */

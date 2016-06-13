@@ -34,18 +34,17 @@
 # include "gtk-resources.h"
 #endif
 
-static const char *ui_files[] = { "cpu-x-gtk-3.16.ui", "cpu-x-gtk-3.8.ui", NULL };
-
 
 /************************* Public function *************************/
 
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
-	int i = -1;
+	int i;
 	GtkLabels  glab;
 	GThrd      refr     = { &glab, data };
 	GtkBuilder *builder = gtk_builder_new();
+	const char *ui_files[] = { "cpu-x-gtk-3.16.ui", "cpu-x-gtk-3.8.ui", NULL };
 
 	MSG_VERBOSE(_("Starting GTK GUI..."));
 	gtk_init(argc, argv);
@@ -54,9 +53,9 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	/* Build UI from Glade file */
 #if PORTABLE_BINARY
 	g_resources_register(cpu_x_get_resource());
-	while(ui_files[++i] != NULL && !gtk_builder_add_from_resource(builder, GRESOURCE_UI(ui_files[i]), NULL));
+	for(i = 0; (ui_files[i] != NULL) && (!gtk_builder_add_from_resource(builder, GRESOURCE_UI(ui_files[i]), NULL)); i++);
 #else
-	while(ui_files[++i] != NULL && !gtk_builder_add_from_file(builder, data_path(ui_files[i]), NULL));
+	for(i = 0; (ui_files[i] != NULL) && (!gtk_builder_add_from_file(builder, data_path(ui_files[i]), NULL)); i++);
 #endif /* PORTABLE_BINARY */
 	if(ui_files[i] == NULL)
 	{
@@ -267,11 +266,11 @@ static char *get_id(const char *objectstr, char *type)
 /* Search file location in standard paths */
 static char *data_path(const char *file)
 {
-	int i = -1;
+	int i;
 	const char *prgname = g_get_prgname();
 	const gchar *const *paths = g_get_system_data_dirs();
 
-	while(paths[++i] != NULL)
+	for(i = 0; paths[i] != NULL; i++)
 	{
 		gchar *path = g_build_filename(paths[i], prgname, file, NULL);
 		if(g_file_test(path, G_FILE_TEST_EXISTS))
