@@ -538,11 +538,13 @@ static void menu(int argc, char *argv[])
 				break;
 			case 'r':
 				tmp_arg = atoi(optarg);
-				if(tmp_arg > 1)
+				if(tmp_arg >= 1)
 					opts->refr_time = tmp_arg;
 				break;
 			case 't':
-				opts->bw_test = atoi(optarg);
+				tmp_arg = atoi(optarg);
+				if(tmp_arg >= 0)
+					opts->bw_test = atoi(optarg);
 				break;
 			case 'D':
 				opts->output_type = OUT_DMIDECODE;
