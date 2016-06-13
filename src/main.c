@@ -585,24 +585,24 @@ void sighandler(int signum)
 {
 	int bt_size, i;
 	char **bt_syms, *cmd, *buff = NULL;
-	void *bt[1 << 4];
+	void *bt[16];
 
 	/* Get the backtrace */
-	bt_size = backtrace(bt, 1 << 4);
+	bt_size = backtrace(bt, 16);
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
 	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"), BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
-	MSG_STDERR("======= Backtrace: =========");
+	MSG_STDERR("========================= Backtrace =========================");
         for(i = 1; i < bt_size; i++)
 	{
 		MSG_STDERR("#%2i %s", i, bt_syms[i]);
-		asprintf(&cmd, "addr2line %s -e /usr/bin/cpu-x", strtok(strrchr(bt_syms[i], '[') + 1, "]"));
+		asprintf(&cmd, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
 		popen_to_str(cmd, &buff);
 		if(strstr(buff, "??") == NULL)
 			MSG_STDERR(" ==> %s", strrchr(buff, '/') + 1);
         }
-	MSG_STDERR("======= End Backtrace ======\n");
+	MSG_STDERR("======================== End Backtrace =======================\n");
 	MSG_STDERR(_("You can paste this backtrace by opening a new issue here:"));
 	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
 
