@@ -211,6 +211,7 @@ typedef struct
 
 typedef struct
 {
+	int          use_network;
 	unsigned int output_type;
 	unsigned int selected_core;
 	unsigned int refr_time;

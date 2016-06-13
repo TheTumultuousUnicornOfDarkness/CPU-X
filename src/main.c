@@ -306,13 +306,12 @@ static bool check_new_version(void)
 	}
 
 	/* Retrieve the last tag on Git repo */
-	popen_to_str("curl --max-time 1 -s https://api.github.com/repos/X0rg/CPU-X/releases/latest | grep 'tag_name' | awk -F '\"' '{ print $4 }' | cut -d'v' -f2",
-	             &new_version);
+	popen_to_str("curl --max-time 1 -s  http://x0rg.github.io/CPU-X/version.txt", &new_version);
 
 	/* Compare Git tag with running version */
-	if(strverscmp(new_version, PRGVER) > 0)
+	if(strcmp(new_version, PRGVER))
 	{
-		MSG_VERBOSE(_("A new version is available!"));
+		MSG_VERBOSE(_("A new version of %s is available!"), PRGNAME);
 		return true;
 	}
 	else
@@ -334,10 +333,17 @@ static int update_prg(void)
 	char *file, *tmp, *opt;
 	const char *ext[] = { "bsd64", "bsd32", "linux32", "linux64", NULL };
 
+	if(opts->use_network <= 0)
+	{
+		MSG_WARNING(_("Network access is disabled by environment variable"
+		            " (set CPUX_NETWORK with a positive to enable it)"));
+		return 1;
+	}
+
 	if(new_version == NULL)
 	{
 		MSG_WARNING(_("No new version available"));
-		return 1;
+		return 2;
 	}
 
 	/* Find what archive we need to download */
@@ -446,7 +452,7 @@ static void help(void)
 static void version(void)
 {
 	int i;
-	char *strver, *newver = NULL;
+	char *strver;
 	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
 	{
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
@@ -460,10 +466,16 @@ static void version(void)
 		{ false,           NULL,          NULL                }
 	};
 
-	if(new_version != NULL)
-		asprintf(&strver, _("(version %s is available)"), newver);
+	if(opts->use_network > 0)
+	{
+		check_new_version();
+		if(new_version != NULL)
+			asprintf(&strver, _("(version %s is available)"), new_version);
+		else
+			asprintf(&strver, _("(up-to-date)"));
+	}
 	else
-		asprintf(&strver, _("(up-to-date)"));
+		strver = "";
 
 	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, strver);
 	MSG_STDOUT("%s\n", PRGCPYR);
@@ -672,22 +684,23 @@ int main(int argc, char *argv[])
 
 	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
 	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
-	                    .update      = false };
+	                    .update      = false, .use_network    = 1 };
 
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
+
+	if(getenv("CPUX_NETWORK"))
+		opts->use_network = atoi(getenv("CPUX_NETWORK"));
+
 	menu(argc, argv);
-
-	if(getuid())
-		MSG_WARNING(_("Root privileges are required to work properly"));
-
 	labels_setname (data);
 	fill_labels    (data);
 	remove_null_ptr(data);
+	check_new_version();
 
-	if(!getenv("CPUX_NETWORK"))
-		check_new_version();
+	if(getuid())
+		MSG_WARNING(_("Root privileges are required to work properly"));
 
 	/* Show data */
 	switch(opts->output_type)
