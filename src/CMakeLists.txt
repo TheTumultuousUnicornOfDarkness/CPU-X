@@ -27,7 +27,7 @@ if(WITH_GTK)
 			gui_gtk_id.h
 			${GRESOURCES}
 		)
-		set(GUI_GTK_LIBRARY "gui_gtk" ${GTK3_LIBRARIES})
+		set(GTK3_LIBRARIES "gui_gtk" ${GTK3_LIBRARIES})
 	else(GTK3_FOUND)
 		message("${BoldYellow} GTK3 headers not found!")
 		message("Set PKG_CONFIG_PATH environment variable,")
@@ -47,7 +47,7 @@ if(WITH_NCURSES)
 		)
 		add_embedded_library(NCURSES_LIBRARIES "-l:libncursesw.a")
 		add_embedded_library_others(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libtinfo.a")
-		set(TUI_NCURSES_LIBRARY "tui_ncurses" ${NCURSES_LIBRARIES} -lpthread)
+		set(NCURSES_LIBRARIES "tui_ncurses" ${NCURSES_LIBRARIES})
 	endif(NCURSES_FOUND)
 endif(WITH_NCURSES)
 
@@ -122,12 +122,6 @@ if(NOT WITH_LIBSYSTEM OR (NOT LIBPROCPS_FOUND AND NOT LIBSTATGRAB_FOUND))
 	add_definitions(-DHAS_LIBSYSTEM=0)
 endif(NOT WITH_LIBSYSTEM OR (NOT LIBPROCPS_FOUND AND NOT LIBSTATGRAB_FOUND))
 
-# Various needed librairies
-set(ADDITIONNAL_LIBRARIES "-lm -lpthread")
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set(ADDITIONNAL_LIBRARIES "${ADDITIONNAL_LIBRARIES} -lexecinfo -lintl")
-endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
 
 ### FINAL CONFIG
 
@@ -180,15 +174,19 @@ endif(PORTABLE_BINARY)
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
 
 target_link_libraries(cpu-x
-	${GUI_GTK_LIBRARY}
-	${TUI_NCURSES_LIBRARY}
+	${GTK3_LIBRARIES}
+	${NCURSES_LIBRARIES}
 	${LIBCPUID_LIBRARIES}
 	${DMIDECODE_LIBRARY}
 	${BANDWIDTH_LIBRARY}
 	${LIBPCI_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}
-	${ADDITIONNAL_LIBRARIES}
+
+	${Intl_LIBRARIES}
+	${CMAKE_THREAD_LIBS_INIT}
+	${Backtrace_LIBRARIES}
+	m
 )
 
 

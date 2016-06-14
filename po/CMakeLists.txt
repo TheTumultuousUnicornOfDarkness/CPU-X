@@ -11,7 +11,6 @@ FILE(GLOB absPoFiles ${CMAKE_SOURCE_DIR}/po/*.po)
 
 ### INTERNATIONALIZATION TARGETS
 
-find_package(Gettext)
 if(GETTEXT_FOUND)
 	# Target: genpot
 	# Generate a new cpu-x.pot file
