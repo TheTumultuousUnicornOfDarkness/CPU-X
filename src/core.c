@@ -765,6 +765,13 @@ static int find_devices(Labels *data)
 
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
+#ifdef __FreeBSD__
+	if(access(pci_get_param(pacc, "fbsd.path"), W_OK))
+	{
+		MSG_WARNING(_("Skip devices search (need to be root)"));
+		return 1;
+	}
+#endif /* __FreeBSD__ */
 	pci_init(pacc);	    /* Initialize the PCI library */
 	pci_scan_bus(pacc); /* We want to get the list of devices */
 

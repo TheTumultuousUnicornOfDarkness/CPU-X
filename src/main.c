@@ -627,7 +627,7 @@ static int set_locales(void)
 	/* Write .mo files in temporary directory */
 	for(i = 0; ptrlen[i] != NULL; i++)
 	{
-		asprintf(&command, "mkdir --parents %s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]);
+		asprintf(&command, "mkdir -p %s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]);
 		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
 		err    = system(command);
 		mofile = NULL;
