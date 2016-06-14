@@ -1037,16 +1037,26 @@ static int benchmark_status(Labels *data)
 	if(b_data->run)
 		asprintf(&data->tab_bench[VALUE][ind + 1], _("Active"));
 
-	if(b_data->run && b_data->duration * 60 - b_data->elapsed >= 60)
-		asprintf(&buff, _("(%u minutes left)"), b_data->duration - b_data->elapsed / 60);
-	else if(b_data->run)
-		asprintf(&buff, _("(%u seconds left)"), b_data->duration * 60 - b_data->elapsed);
-	else if(!b_data->run && b_data->elapsed >= 60)
-		asprintf(&buff, _("in %u minutes"), b_data->elapsed / 60);
+	if(b_data->run)
+	{
+		if(b_data->duration * 60 - b_data->elapsed > 60 * 59)
+			asprintf(&buff, _("(%u hours left)"), (b_data->duration - b_data->elapsed / 60) / 60);
+		else if(b_data->duration * 60 - b_data->elapsed >= 60)
+			asprintf(&buff, _("(%u minutes left)"), b_data->duration - b_data->elapsed / 60);
+		else
+			asprintf(&buff, _("(%u seconds left)"), b_data->duration * 60 - b_data->elapsed);
+	}
 	else
-		asprintf(&buff, _("in %u seconds"), b_data->elapsed);
+	{
+		if(b_data->elapsed >= 60 * 60)
+			asprintf(&buff, _("in %u hours"),   b_data->elapsed / 60 / 60);
+		else if(b_data->elapsed >= 60)
+			asprintf(&buff, _("in %u minutes"), b_data->elapsed / 60);
+		else
+			asprintf(&buff, _("in %u seconds"), b_data->elapsed);
+	}
 
-	asprintf(&data->tab_bench[VALUE][ind], _("%'u prime numbers calculated %s"), b_data->primes, buff);
+	asprintf(&data->tab_bench[VALUE][ind], "%'u %s", b_data->primes, buff);
 	return 0;
 }
 
