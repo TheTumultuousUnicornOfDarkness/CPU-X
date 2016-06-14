@@ -62,7 +62,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		MSG_ERROR(_("failed to import UI in GtkBuilder"));
 		exit(EXIT_FAILURE);
 	}
-	g_print(_("Use UI file %s.\n"), ui_files[i]);
 
 	get_widgets(builder, &glab);
 	g_object_unref(G_OBJECT(builder));
@@ -299,6 +298,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->activetest  = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
 	glab->logoprg     = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol      = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
+	gtk_widget_set_name(glab->mainwindow, "mainwindow");
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
