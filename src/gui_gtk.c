@@ -233,9 +233,10 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 	if(data->b_data->run)
 	{
 		skip = false;
-#if GTK_CHECK_VERSION(3, 15, 0)
-		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
-#endif
+#if GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY
+		if(gtk_check_version(3, 15, 0) == NULL)
+			gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
+#endif /* GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY */
 		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(glab->gtktab_bench[VALUE][indP]),
 			(double) data->b_data->elapsed / (data->b_data->duration * 60));
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],         false);
@@ -244,9 +245,10 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 	else if(!data->b_data->run && !skip)
 	{
 		skip = true;
-#if GTK_CHECK_VERSION(3, 15, 0)
-		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]),  false);
-#endif
+#if GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY
+		if(gtk_check_version(3, 15, 0) == NULL)
+			gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]),  false);
+#endif /* GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY */
 		gtk_switch_set_active(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],          true);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS],  true);
