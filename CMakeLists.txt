@@ -91,29 +91,32 @@ endmacro(print_config)
 
 # Macro: add_embedded_library(lib)
 # Include a library (satic or not) for building, needed for portable version.
+# @LIBRARIES:	variable name where to put librairies name
 # @lib:		the name of the library to add
-macro(add_embedded_library lib)
+macro(add_embedded_library LIBRARIES lib)
 	if(PORTABLE_BINARY)
-		set(EMBEDDED_LIBRARIES ${EMBEDDED_LIBRARIES} ${lib})
+		set(${LIBRARIES} ${lib})
 	endif(PORTABLE_BINARY)
 endmacro(add_embedded_library)
 
 # Macro: add_embedded_library_linux(linux_lib)
-# Call add_embedded_library macro if target is Linux, else do nothing
+# Same as add_embedded_library macro, but only if target is Linux
+# @LIBRARIES:	variable name where to put librairies name
 # @linux_lib:	the name of the library to add (Linux OS)
-macro(add_embedded_library_linux linux_lib)
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-		add_embedded_library(${linux_lib})
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+macro(add_embedded_library_linux LIBRARIES linux_lib)
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY)
+		set(${LIBRARIES} ${linux_lib})
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY)
 endmacro(add_embedded_library_linux)
 
 # Macro: add_embedded_library_others(others_lib)
-# Call add_embedded_library macro if target is NOT Linux, else do nothing
+# Same as add_embedded_library macro, but only if target is NOT Linux
+# @LIBRARIES:	variable name where to put librairies name
 # @others_lib:	the name of the library to add (NON-Linux OS)
-macro(add_embedded_library_others others_lib)
-	if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-		add_embedded_library(${others_lib})
-	endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+macro(add_embedded_library_others LIBRARIES others_lib)
+	if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY)
+		set(${LIBRARIES} ${others_lib})
+	endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY)
 endmacro(add_embedded_library_others)
 
 
