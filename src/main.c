@@ -301,12 +301,20 @@ static bool check_new_version(void)
 	MSG_VERBOSE(_("Checking on Internet for a new version..."));
 	if(!command_exists("curl"))
 	{
-		MSG_WARNING(_("Curl is missing on your system, can't check for a new version"));
-		return false;
+		if(!command_exists("wget"))
+		{
+			MSG_WARNING(_("Curl/Wget are missing on your system, can't check for a new version"));
+			return false;
+		}
+		else
+			opts->use_wget = true;
 	}
 
 	/* Retrieve the last tag on Git repo */
-	popen_to_str("curl --max-time 1 -s  http://x0rg.github.io/CPU-X/version.txt", &new_version);
+	if(opts->use_wget)
+		popen_to_str("wget --timeout=1 -O- -q http://x0rg.github.io/CPU-X/version.txt", &new_version);
+	else
+		popen_to_str("curl --max-time 1 -s http://x0rg.github.io/CPU-X/version.txt", &new_version);
 
 	/* Compare Git tag with running version */
 	if(strcmp(new_version, PRGVER))
@@ -354,9 +362,19 @@ static int update_prg(void)
 
 	/* Download archive */
 	MSG_VERBOSE(_("Downloading new version..."));
-	opt = opts->verbose ? strdup("") : strdup("s");
-	asprintf(&tmp, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz ",
-	         opt, PRGAUTH, PRGNAME, new_version, file, file);
+
+	if(opts->use_wget)
+	{
+		opt = opts->verbose ? "" : "-q";
+		asprintf(&tmp, "wget %s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz",
+			 opt, PRGAUTH, PRGNAME, new_version, file);
+	}
+	else
+	{
+		opt = opts->verbose ? "" : "s";
+		asprintf(&tmp, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz",
+			 opt, PRGAUTH, PRGNAME, new_version, file, file);
+	}
 	system(tmp);
 	free(new_version);
 
@@ -682,7 +700,7 @@ int main(int argc, char *argv[])
 
 	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
 	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
-	                    .update      = false, .use_network    = 1 };
+	                    .update      = false, .use_network    = 1,          .use_wget        = false };
 
 	set_locales();
 	signal(SIGSEGV, sighandler);

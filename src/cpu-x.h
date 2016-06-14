@@ -225,6 +225,7 @@ typedef struct
 	bool         verbose;
 	bool         color;
 	bool         update;
+	bool         use_wget;
 } Options;
 
 extern Options *opts;
