@@ -226,8 +226,9 @@ static void change_benchparam(GtkSpinButton *spinbutton, Labels *data)
 static void change_benchsensitive(GtkLabels *glab, Labels *data)
 {
 	static bool skip = false;
-	enum EnTabBench indS = data->b_data->fast_mode ? PRIMESLOWRUN : PRIMEFASTRUN;
-	enum EnTabBench indA = data->b_data->fast_mode ? PRIMEFASTRUN : PRIMESLOWRUN;
+	const enum EnTabBench indP = data->b_data->fast_mode ? PRIMEFASTSCORE : PRIMESLOWSCORE;
+	const enum EnTabBench indS = data->b_data->fast_mode ? PRIMESLOWRUN   : PRIMEFASTRUN;
+	const enum EnTabBench indA = data->b_data->fast_mode ? PRIMEFASTRUN   : PRIMESLOWRUN;
 
 	if(data->b_data->run)
 	{
@@ -235,6 +236,8 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 #if GTK_CHECK_VERSION(3, 15, 0)
 		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
 #endif
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(glab->gtktab_bench[VALUE][indP]),
+			(double) data->b_data->elapsed / (data->b_data->duration * 60));
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],         false);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS], false);
 	}
@@ -242,7 +245,7 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 	{
 		skip = true;
 #if GTK_CHECK_VERSION(3, 15, 0)
-		gtk_switch_set_state (GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
+		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]),  false);
 #endif
 		gtk_switch_set_active(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],          true);
@@ -411,7 +414,7 @@ static void set_logos(GtkLabels *glab, Labels *data)
 	GError *error = NULL;
 
 	width  = gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][SPECIFICATION]) -
-	         gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][VENDOR]);
+	         gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][VENDOR]) - 6;
 	height = (gtk_widget_get_allocated_height(glab->gtktab_cpu[VALUE][VENDOR]) + 4) * 4;
 
 	if(PORTABLE_BINARY)
@@ -438,8 +441,8 @@ static void set_logos(GtkLabels *glab, Labels *data)
 static void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
-	const gint width = gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][COMPILER]) -
-	                   gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][USED]) - 6;
+	const gint width1 = gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][COMPILER]);
+	const gint width2 = width1 - gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][USED]) - 6;
 	GtkRequisition requisition;
 
 	/* Footer label */
@@ -494,7 +497,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	for(i = BARUSED; i < LASTBAR; i++)
 	{
 		gtk_widget_get_preferred_size(glab->gtktab_system[VALUE][USED], NULL, &requisition);
-		gtk_widget_set_size_request(glab->bar[i], width, requisition.height);
+		gtk_widget_set_size_request(glab->bar[i], width2, requisition.height);
 	}
 
 	/* Tab Graphics */
@@ -510,7 +513,11 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	for(i = PRIMESLOWSCORE; i < LASTBENCH; i++)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_bench[NAME][i]), data->tab_bench[NAME][i]);
 	for(i = PRIMESLOWSCORE; i <= PRIMEFASTSCORE; i += BENCHFIELDS)
+	{
 		gtk_progress_bar_set_text(GTK_PROGRESS_BAR(glab->gtktab_bench[VALUE][i]), data->tab_bench[VALUE][i]);
+		gtk_widget_set_size_request(glab->gtktab_bench[VALUE][i], width1, -1);
+	}
+
 	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60);
 	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, 1);
 	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60 * 24);
