@@ -95,6 +95,9 @@ typedef struct
 /* Clean window */
 static void wclrscr(WINDOW *pwin);
 
+/* Clean line */
+static void wclrline(WINDOW *pwin, enum EnColors line, unsigned start, unsigned end);
+
 /* Similar to mvwprintw, but specify a color pair */
 static int mvwprintwc(WINDOW *win, int y, int x, enum EnColors pair, const char *fmt, ...);
 
@@ -120,7 +123,7 @@ static void print_activecore(WINDOW *win);
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data);
 
 /* Display active Test in Caches tab */
-static void print_activetest(WINDOW *win, Labels *data);
+static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data);
 
 /* Caches tab */
 static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data);

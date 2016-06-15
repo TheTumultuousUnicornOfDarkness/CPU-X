@@ -134,7 +134,7 @@ void start_tui_ncurses(Labels *data)
 				else if(page == NO_CACHES && opts->bw_test > 0)
 				{
 					opts->bw_test--;
-					print_activetest(win, data);
+					print_activetest(win, info, data);
 				}
 				else if(page == NO_BENCH && data->b_data->duration > 1)
 				{
@@ -158,7 +158,7 @@ void start_tui_ncurses(Labels *data)
 				else if(page == NO_CACHES && (int) opts->bw_test < data->w_data->test_count - 1)
 				{
 					opts->bw_test++;
-					print_activetest(win, data);
+					print_activetest(win, info, data);
 				}
 				else if(page == NO_BENCH && data->b_data->duration < 60 * 24)
 				{
@@ -238,6 +238,16 @@ static void wclrscr(WINDOW *pwin)
 			mvwaddch(pwin, y, x, ' ');
 	}
 }
+
+/* Clean line */
+static void wclrline(WINDOW *pwin, enum EnColors line, unsigned start, unsigned end)
+{
+	unsigned x;
+
+	for(x = start; x < end; x++)
+		mvwprintwc(pwin, line, x, DEFAULT_COLOR, " ");
+}
+
 
 /* Similar to mvwprintw, but specify a color pair */
 static int mvwprintwc(WINDOW *win, int y, int x, enum EnColors pair, const char *fmt, ...)
@@ -345,8 +355,12 @@ static void nrefresh(NThrd *refr)
 			}
 			break;
 		case NO_BENCH:
+			for(i = LINE_1; i < LINE_3; i++)
+				wclrline(win, i, info.tb, info.te);
 			mvwprintw2c(win, LINE_1, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMESLOWSCORE], data->tab_bench[VALUE][PRIMESLOWSCORE]);
 			mvwprintw2c(win, LINE_2, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMESLOWRUN],   data->tab_bench[VALUE][PRIMESLOWRUN]);
+			for(i = LINE_5; i < LINE_7; i++)
+				wclrline(win, i, info.tb, info.te);
 			mvwprintw2c(win, LINE_5, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMEFASTSCORE], data->tab_bench[VALUE][PRIMEFASTSCORE]);
 			mvwprintw2c(win, LINE_6, info.tb, "%13s: %s", data->tab_bench[NAME][PRIMEFASTRUN],   data->tab_bench[VALUE][PRIMEFASTRUN]);
 			break;
@@ -519,10 +533,13 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 }
 
 /* Display active Test in Caches tab */
-static void print_activetest(WINDOW *win, Labels *data)
+static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	if(HAS_BANDWIDTH)
+	{
+		wclrline(win, LINE_16, info.tb, info.width - 2);
 		mvwprintwc(win, LINE_16, 12, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
+	}
 }
 
 /* Caches tab */
@@ -550,7 +567,7 @@ static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 
 	/* Test frame */
 	frame(win, LINE_15, info.start , LINE_17, info.width - 1, data->objects[FRAMTEST]);
-	print_activetest(win, data);
+	print_activetest(win, info, data);
 
 	wrefresh(win);
 }
@@ -646,8 +663,7 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 	mvwprintwc(win, line, end,   DEFAULT_COLOR, "]");
 
 	/* Clean existing bar */
-	for(i = 0; i < size - 1; i++)
-		mvwprintwc(win, line, start + 1 + i, DEFAULT_COLOR, " ");
+		wclrline(win, line, start + 1, end);
 
 	/* Draw bar */
 	for(i = 0; i < bar_count; i++)
@@ -687,6 +703,7 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display Duration parameter in Bench tab */
 static void print_paramduration(WINDOW *win, const SizeInfo info, Labels *data)
 {
+	wclrline(win, LINE_9, info.tb, info.tm);
 	iasprintf(&data->tab_bench[VALUE][PARAMDURATION], _("%u mins"), data->b_data->duration);
 	mvwprintw2c(win, LINE_9, info.tb, "%13s: %s", data->tab_bench[NAME][PARAMDURATION], data->tab_bench[VALUE][PARAMDURATION]);
 	wrefresh(win);
