@@ -1,3 +1,28 @@
+v3.0.0 (06.15.2016):
+	* More CMake improvements, allow to build with CMake 2.8
+	* Full core rewrite
+	* Improve options parsing
+	* Drop support for Darwin/Mac OS X
+	* Report total CPU usage instead of BogoMIPS
+	* Add --nocolor option
+	* Add a signal handler to provide backtrace on crash
+	* Rewrite update module for portable version + add --update option
+	* Rewrite NCurses UI + add color support + add help
+	* CPU-X logo redesign
+	* Patch dmidecode with latest source code (commit cff11af)
+	* Rebase bandwidth on v1.1
+	* Add --cachetest option
+	* Add --bandwidth option
+	* Add --core option
+	* Recognize more CPUs for the "Technology" label in CPU tab
+	* Print some values > 9 in hexadecimal in CPU tab
+	* More fallback support
+	* Add a Bench tab
+	* More strings in --verbose mode
+	* A lot of GTK UI tweaks
+	* Run bandwith in a separate thread to avoid UI slowdown
+
+
 v2.2.2 (12.02.2015):
 	* Add technology report for some Clarksfield & Richland CPUs
 	* Fixes:

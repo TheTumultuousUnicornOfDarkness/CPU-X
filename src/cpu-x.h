@@ -32,7 +32,7 @@
 /* Software definition */
 #define PRGNAME	              "CPU-X"
 #define PRGAUTH	              "X0rg"
-#define PRGURL                "https://github.com/X0rg/CPU-X"
+#define PRGURL                "http://X0rg.github.io/CPU-X/"
 #define PRGCPYR               "Copyright © 2014-2016 Xorg"
 
 /* Colors definition */
