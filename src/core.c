@@ -601,7 +601,7 @@ static long **allocate_2d_array(int rows, int columns)
 
 	return array;
 error:
-	MSG_ERROR(_("failed to allocate memory for CPU usage calculation (rows)"));
+	MSG_ERROR(_("failed to allocate memory for CPU usage calculation"));
 	return NULL;
 }
 
