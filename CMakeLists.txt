@@ -25,7 +25,7 @@ else(PORTABLE_BINARY)
 endif(PORTABLE_BINARY)
 set(CPU_X_FLAGS           "-Wno-format-security -Wno-unused-result -Wno-unused-parameter")
 set(CPU_X_DEBUG_FLAGS     "-Wall -Wextra -Wuninitialized -Wstrict-prototypes ${CPU_X_FLAGS}")
-set(CMAKE_C_FLAGS         "${CPU_X_FLAGS}")
+set(CMAKE_C_FLAGS         "-Wno-deprecated-declarations ${CPU_X_FLAGS}")
 set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${CPU_X_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${CPU_X_DEBUG_FLAGS}")
 
