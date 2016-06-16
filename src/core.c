@@ -232,6 +232,7 @@ static int cpu_technology(Labels *data)
 		{  1,          -1,          20,          40 }, // Bobcat
 		{  2,          -1,          20,          40 }, // Bobcat
 		{  3,          13,          -1,          32 }, // Piledriver (Richland)
+		{  3,          35,          15,          90 }, // Toledo
 		{ -1,          -1,          -1,           0 }
 	};
 
@@ -1107,10 +1108,11 @@ static int cpu_package_fallback(Labels *data)
 	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
 	const struct Package { char *name, *socket; } package[] =
 	{
-		{ "Pentium D (SmithField)",         "LGA775" },
-		{ "Pentium D (Presler)",            "LGA775" },
-		{ "Atom (Diamondville)",            "BGA437" },
-		{ NULL,                             ""       }
+		{ "Pentium D (SmithField)",         "LGA775"     },
+		{ "Pentium D (Presler)",            "LGA775"     },
+		{ "Atom (Diamondville)",            "BGA437"     },
+		{ "Athlon 64 FX X2 (Toledo)",       "Socket 939" },
+		{ NULL,                             ""           }
 	};
 
 	if(data->tab_cpu[VALUE][CODENAME] == NULL)
