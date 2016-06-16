@@ -202,7 +202,7 @@ void print (wchar_t *s)
 
 void newline ()
 {
-	if(!BANDWIDTH_MODE && !opts->verbose)
+	if(!BANDWIDTH_MODE)
 		return;
 
 	wcsncat (msg, L"\n", MSGLEN-1);
@@ -232,7 +232,7 @@ void println_int (int d)
 
 void print_result (long double result)
 {
-	if(!BANDWIDTH_MODE && !opts->verbose)
+	if(!BANDWIDTH_MODE)
 		return;
 
 	swprintf (msg + wcslen (msg), MSGLEN, L"%.1Lf MB/s", result);
@@ -397,7 +397,7 @@ do_write (unsigned long size, int mode, bool random)
 	}
 
 	//-------------------------------------------------
-	if(!BANDWIDTH_MODE && !opts->verbose)
+	if(!BANDWIDTH_MODE)
 		goto skip_print_write;
 
 	if (random)
@@ -488,7 +488,7 @@ skip_print_write:
 		diff = mytime () - t0;
 	}
 
-	if(BANDWIDTH_MODE && !opts->verbose)
+	if(BANDWIDTH_MODE)
 	{
 		print (L"loops = ");
 		print_uint (total_count);
@@ -577,7 +577,7 @@ do_read (unsigned long size, int mode, bool random)
 	}
 
 	//-------------------------------------------------
-	if(!BANDWIDTH_MODE && !opts->verbose)
+	if(!BANDWIDTH_MODE)
 		goto skip_print_read;
 
 	if (random)
@@ -702,7 +702,7 @@ skip_print_read:
 		diff = mytime () - t0;
 	}
 
-	if(BANDWIDTH_MODE && !opts->verbose)
+	if(BANDWIDTH_MODE)
 	{
 		print (L"loops = ");
 		print_uint (total_count);
@@ -768,7 +768,7 @@ do_copy (unsigned long size, int mode)
 	}
 
 	//-------------------------------------------------
-	if(!BANDWIDTH_MODE && !opts->verbose)
+	if(!BANDWIDTH_MODE)
 		goto skip_print_copy;
 
 	print (L"Sequential copy ");
@@ -820,7 +820,7 @@ skip_print_copy:
 		diff = mytime () - t0;
 	}
 
-	if(BANDWIDTH_MODE && !opts->verbose)
+	if(BANDWIDTH_MODE)
 	{
 		print (L"loops = ");
 		print_uint (total_count);
@@ -1838,7 +1838,7 @@ int bandwidth(void *p_data)
 		chunk_sizes_log2[i] = log2 (chunk_sizes[i]);
 	}
 
-	if(opts->verbose && first)
+	if(BANDWIDTH_MODE)
 	{
 		printf ("This is bandwidth (built-in with CPU-X) version %s.\n", RELEASE);
 		printf ("Copyright (C) 2005-2014 by Zack T Smith.\n\n");
