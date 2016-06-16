@@ -1274,16 +1274,26 @@ static int fallback_mode_static(Labels *data)
 /* Retrieve dynamic data if other functions failed */
 static int fallback_mode_dynamic(Labels *data)
 {
+	static bool use_fallback[3] = { false };
 	int err = 0;
 
-	if(data->tab_cpu[VALUE][TEMPERATURE] == NULL)
+	if(data->tab_cpu[VALUE][TEMPERATURE] == NULL || use_fallback[0])
+	{
+		use_fallback[0] = true;
 		err += err_func(cputab_temp_fallback,     data);
+	}
 
-	if(data->tab_cpu[VALUE][VOLTAGE] == NULL)
+	if(data->tab_cpu[VALUE][VOLTAGE] == NULL     || use_fallback[1])
+	{
+		use_fallback[1] = true;
 		err += err_func(cputab_volt_fallback,     data);
+	}
 
-	if(data->tab_cpu[VALUE][MULTIPLIER] == NULL)
+	if(data->tab_cpu[VALUE][MULTIPLIER] == NULL  || use_fallback[2])
+	{
+		use_fallback[2] = true;
 		err += err_func(cpu_multipliers_fallback, data);
+	}
 
 	return err;
 }
