@@ -1,13 +1,3 @@
-** CPU-X INFORMATIONS **
-This sofware has been patched to be used with CPU-X.
-The official web page is here:
-https://zsmith.co/bandwidth.html
-
-This software is used to retrieve following data:
-- Caches tab -> cache speed
-You can reproduce the output of 'bandwidth' command with 'cpu-x -B'.
-
-
 This is the README file for my program, "bandwidth".
 
 Bandwidth is a benchmark that attempts to measure
