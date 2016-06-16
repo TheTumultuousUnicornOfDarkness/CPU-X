@@ -533,7 +533,7 @@ int run_dmidecode(void)
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data)
 {
-	int i, err = 0;
+	int i, err;
 
 	/* Dmidecode options */
 	opt.type  = NULL;
@@ -554,26 +554,25 @@ static int call_dmidecode(Labels *data)
 	}
 
 	/* Tab CPU */
-	dmidata[PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
-	dmidata[PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
-	opt.type[4]           = 1;
-	err                  += dmidecode();
+	dmidata[DMI_CPU][PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
+	dmidata[DMI_CPU][PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
+	opt.type[4] = 1;
 	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
 		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
-		dmidata[i]    = &data->tab_motherboard[VALUE][i];
-	opt.type[0]           = 1;
-	opt.type[2]           = 1;
-	err                  += dmidecode();
+		dmidata[DMI_MB][i] = &data->tab_motherboard[VALUE][i];
+	opt.type[0] = 1;
+	opt.type[2] = 1;
 
 	/* Tab RAM */
 	for(i = BANK0_0; i < LASTMEMORY; i++)
-		dmidata[i]    = &data->tab_memory[VALUE][i];
-	opt.type[17]          = 1;
-	err                  += dmidecode();
+		dmidata[DMI_RAM][i] = &data->tab_memory[VALUE][i];
+	opt.type[17] = 1;
 
+	/* Call built-in dmidecode in CPU-X mode */
+	err = dmidecode();
 	while(data->tab_memory[VALUE][data->dimms_count] != NULL)
 		data->dimms_count++;
 

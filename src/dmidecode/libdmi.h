@@ -27,10 +27,15 @@
 #include "../cpu-x.h"
 
 #define PROC_PACKAGE 0
-#define PROC_BUS 1
-#define LASTPROC 2
+#define PROC_BUS     1
 
-extern char **dmidata[16];
+
+enum EnDmidecode
+{
+	DMI_CPU, DMI_MB, DMI_RAM, LASTDMI
+};
+
+extern char **dmidata[LASTDMI][16];
 
 int dmidecode(void);
 
