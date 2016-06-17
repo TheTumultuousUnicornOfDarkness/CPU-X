@@ -1103,23 +1103,31 @@ void start_benchmarks(Labels *data)
 static int cpu_package_fallback(Labels *data)
 {
 	int i;
+	bool found = false;
 
 	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
-	const struct Package { char *name, *socket; } package[] =
+	const struct Package { char *name, *socket, *model; } package[] =
 	{
-		{ "Pentium D (SmithField)",         "LGA775"     },
-		{ "Pentium D (Presler)",            "LGA775"     },
-		{ "Bloomfield (Core i7)",           "LGA1366"    },
-		{ "Atom (Diamondville)",            "BGA437"     },
-		{ "Athlon 64 FX X2 (Toledo)",       "Socket 939" },
-		{ NULL,                             ""           }
+		{ "Pentium D (SmithField)",         "LGA775",        NULL      },
+		{ "Pentium D (Presler)",            "LGA775",        NULL      },
+		{ "Bloomfield (Core i7)",           "LGA1366",       NULL      },
+		{ "Atom (Diamondville)",            "BGA437",        NULL      },
+		{ "Athlon 64 FX X2 (Toledo)",       "Socket 939",    NULL      },
+		{ "Kabini X4",                      "Socket AM1",    "Athlon"  },
+		{ "Kabini X4",                      "Socket AM1",    "Sempron" },
+		{ NULL,                             "",              NULL      }
 	};
 
 	if(data->tab_cpu[VALUE][CODENAME] == NULL)
 		return 1;
-	for(i = 0; package[i].name != NULL && strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]); i++);
+	for(i = 0; (!found) && (package[i].name != NULL); i++)
+	{
+		found = strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]);
+		if(package[i].model != NULL)
+			found &= (strstr(data->tab_cpu[VALUE][SPECIFICATION], package[i].model) != NULL) ? true : false;
+	}
 
-	if(package[i].name != NULL)
+	if(found)
 	{
 		iasprintf(&data->tab_cpu[VALUE][PACKAGE], package[i].socket);
 		return 0;
