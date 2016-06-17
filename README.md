@@ -54,15 +54,14 @@ These dependencies are needed to **manually build** and **run** CPU-X (e.g you c
 
 ### Download packages
 
-You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, click on your distro logo and follow instruction:  
-[![Arch Linux](http://i.stack.imgur.com/ymaLV.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Arch-Linux)
-[![Debian](https://phrozensoft.com/uploads/2014/11/debian_logo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Debian)
-[![Fedora](http://kivy.org/images/os_fedora.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Fedora)
+You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, click on your distro logo:
+[![Arch Linux](http://i.stack.imgur.com/ymaLV.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_ArchLinux.tar.gz)
+[![Debian](https://phrozensoft.com/uploads/2014/11/debian_logo.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_Debian.tar.gz)
+[![Fedora](http://kivy.org/images/os_fedora.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_Fedora.tar.gz)
 [![Gentoo](http://www.ltsp.org/images/distro/gentoo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Gentoo)
-[![OpenSUSE](https://harmonyseq.files.wordpress.com/2010/10/opensuse-logo_design_mini.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-OpenSUSE)
-[![Ubuntu](http://computriks.com/img/icon/ubuntu24.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Ubuntu)
-
-**Note: these packages are not yet updated for v3.0.0, wait for it. :)**
+[![OpenSUSE](https://harmonyseq.files.wordpress.com/2010/10/opensuse-logo_design_mini.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_OpenSUSE.tar.gz)
+[![SUSE Linux Enterprise](http://i.i.cbsi.com/cnwk.1d/i/tim//2010/06/03/Foreman_11426063_9959_100px-Suse_logo.svg_32x20.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_SLE.tar.gz)
+[![Ubuntu](http://computriks.com/img/icon/ubuntu24.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_Ubuntu.tar.gz)
 
 
 ### Manual build
@@ -102,9 +101,12 @@ Note: portable binary is *accomplished/bin/cpu-x*, in directory *pbuild*. Don't 
 ### Portable version
 
 CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32/64-bit), like CPU-Z.  
-Latest release is [HERE](https://github.com/X0rg/CPU-X/releases/latest), all releases are [here](https://github.com/X0rg/CPU-X/releases).  
-Download file *CPU-X_vX.X.X_portable.tar.gz* or file *CPU-X_vX.X.X_portable_noGTK.tar.gz*, extract archive, and you can now run CPU-X portable.  
-You can put these files on a USB stick for example.
+You can find the last release which depends on GTK [**here**](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_portable.tar.gz). All others needed librairies are included in the binary.    
+Also, if GTK librairies are not present on your system, you can use [**this**](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_portable_noGTK.tar.gz) instead.  
+You can find all downloads on [this page](https://github.com/X0rg/CPU-X/releases).  
+
+After downloading tarball, you need to extract his content to be able to run CPU-X portable.  
+You can use this portable version on a lot of system, so you can leave a binary on a USB stick for instance.
 
 
 ## Usage
