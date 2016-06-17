@@ -504,15 +504,21 @@ static int call_libcpuid_msr(Labels *data)
 
 #ifdef HAVE_LIBCPUID_0_3_0
 	int min_mult, max_mult;
+	double cur_mult = data->cpu_freq / data->bus_freq;
 
 	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
 
 	/* Multipliers (min-max) */
-	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE)
-		iasprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)",
-		         data->cpu_freq / data->bus_freq,
-			 (double) min_mult / 100, (double) max_mult / 100);
+	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE && cur_mult > 0.0)
+	{
+		if(max_mult / 100 < 10)
+			iasprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.1f-%.1f)",
+			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
+		else
+			iasprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)",
+			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
+	}
 #endif /* HAVE_LIBCPUID_0_3_0 */
 	cpu_msr_driver_close(msr);
 #endif /* HAVE_LIBCPUID_0_2_2 */
