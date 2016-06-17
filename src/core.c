@@ -1250,22 +1250,34 @@ static int motherboardtab_fallback(Labels *data)
 	return err;
 }
 
+static bool string_is_empty(char *str)
+{
+	int i;
+
+	if(str == NULL)
+		return true;
+
+	for(i = 0; (!isalnum(str[i])) && (str[i] != '\0'); i++);
+
+	return (str[i] == '\0');
+}
+
 /* Retrieve static data if other functions failed */
 static int fallback_mode_static(Labels *data)
 {
 	int err = 0;
 
-	if(data->tab_cpu[VALUE][PACKAGE]                           == NULL ||
+	if(string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
 	   strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
 	   strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL)
 		err += cpu_package_fallback(data);
 
-	if(data->tab_motherboard[VALUE][MANUFACTURER] == NULL ||
-	   data->tab_motherboard[VALUE][MBMODEL]      == NULL ||
-	   data->tab_motherboard[VALUE][REVISION]     == NULL ||
-	   data->tab_motherboard[VALUE][BRAND]        == NULL ||
-	   data->tab_motherboard[VALUE][BIOSVERSION]  == NULL ||
-	   data->tab_motherboard[VALUE][DATE]         == NULL)
+	if(string_is_empty(data->tab_motherboard[VALUE][MANUFACTURER]) ||
+	   string_is_empty(data->tab_motherboard[VALUE][MBMODEL])      ||
+	   string_is_empty(data->tab_motherboard[VALUE][REVISION])     ||
+	   string_is_empty(data->tab_motherboard[VALUE][BRAND])        ||
+	   string_is_empty(data->tab_motherboard[VALUE][BIOSVERSION])  ||
+	   string_is_empty(data->tab_motherboard[VALUE][DATE]))
 		err += motherboardtab_fallback(data);
 
 	return err;
@@ -1277,19 +1289,19 @@ static int fallback_mode_dynamic(Labels *data)
 	static bool use_fallback[3] = { false };
 	int err = 0;
 
-	if(data->tab_cpu[VALUE][TEMPERATURE] == NULL || use_fallback[0])
+	if(string_is_empty(data->tab_cpu[VALUE][TEMPERATURE]) || use_fallback[0])
 	{
 		use_fallback[0] = true;
 		err += err_func(cputab_temp_fallback,     data);
 	}
 
-	if(data->tab_cpu[VALUE][VOLTAGE] == NULL     || use_fallback[1])
+	if(string_is_empty(data->tab_cpu[VALUE][VOLTAGE])     || use_fallback[1])
 	{
 		use_fallback[1] = true;
 		err += err_func(cputab_volt_fallback,     data);
 	}
 
-	if(data->tab_cpu[VALUE][MULTIPLIER] == NULL  || use_fallback[2])
+	if(string_is_empty(data->tab_cpu[VALUE][MULTIPLIER])  || use_fallback[2])
 	{
 		use_fallback[2] = true;
 		err += err_func(cpu_multipliers_fallback, data);
