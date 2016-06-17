@@ -1109,6 +1109,7 @@ static int cpu_package_fallback(Labels *data)
 	{
 		{ "Pentium D (SmithField)",         "LGA775"     },
 		{ "Pentium D (Presler)",            "LGA775"     },
+		{ "Bloomfield (Core i7)",           "LGA1366"    },
 		{ "Atom (Diamondville)",            "BGA437"     },
 		{ "Athlon 64 FX X2 (Toledo)",       "Socket 939" },
 		{ NULL,                             ""           }
