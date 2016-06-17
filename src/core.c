@@ -835,7 +835,7 @@ static int gpu_temperature(Labels *data)
 	struct dirent *dir;
 
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
-	if(!popen_to_str("nvidia-settings -q GPUCoreTemp", &buff) || /* NVIDIA closed source driver */
+	if(!popen_to_str("nvidia-settings -q GPUCoreTemp -t", &buff) || /* NVIDIA closed source driver */
 	   !popen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff)) /* AMD closed source driver */
 		temp = atof(buff);
 	else /* Open source drivers */
