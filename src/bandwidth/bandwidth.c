@@ -1825,7 +1825,6 @@ int bandwidth(void *p_data)
 	char graph_title [512] = {0};
 
 	/* Used by CPU-X */
-	static bool first   = true;
 	char cache_level    = LEVEL1I;
 	int count           = 0;
 	uint32_t cache_size = 0;
@@ -1846,7 +1845,6 @@ int bandwidth(void *p_data)
 		printf ("It is provided AS-IS, use at your own risk.\n");
 		printf ("See the file COPYING for more information.\n\n");
 		fflush (stdout);
-		first = false;
 	}
 
 	uint32_t ecx = get_cpuid1_ecx ();
