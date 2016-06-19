@@ -43,14 +43,6 @@
 # endif
 #endif
 
-#if defined(__clang__)
-# define CC "Clang"
-#elif defined(__GNUC__) || defined(__GNUG__)
-# define CC "GCC"
-#else
-# define CC "Unknown"
-#endif
-
 #if (defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)) && defined (__LP64__)
 # define OS "bsd64"
 #elif (defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)) && !defined (__LP64__)
