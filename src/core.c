@@ -1121,6 +1121,7 @@ static int cpu_package_fallback(Labels *data)
 		{ "Athlon 64 FX X2 (Toledo)",       "Socket 939",    NULL      },
 		{ "Kabini X4",                      "Socket AM1",    "Athlon"  },
 		{ "Kabini X4",                      "Socket AM1",    "Sempron" },
+		{ "Trinity X4",                     "Socket FM2",    NULL      },
 		{ NULL,                             "",              NULL      }
 	};
 
@@ -1128,7 +1129,7 @@ static int cpu_package_fallback(Labels *data)
 		return 1;
 	for(i = 0; (!found) && (package[i].name != NULL); i++)
 	{
-		found = strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]);
+		found = !strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]);
 		if(package[i].model != NULL)
 			found &= (strstr(data->tab_cpu[VALUE][SPECIFICATION], package[i].model) != NULL) ? true : false;
 	}
