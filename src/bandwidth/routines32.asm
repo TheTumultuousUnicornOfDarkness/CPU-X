@@ -19,6 +19,10 @@
 ;  The author may be reached at veritas@comcast.net.
 ;=============================================================================
 
+%ifidn __OUTPUT_FORMAT__,elf32
+section .note.GNU-stack noalloc noexec nowrite progbits
+%endif
+
 bits	32
 cpu	ia64
 
