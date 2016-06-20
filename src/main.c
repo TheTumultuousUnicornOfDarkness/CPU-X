@@ -336,7 +336,7 @@ static int update_prg(void)
 	if(opts->use_network <= 0)
 	{
 		MSG_WARNING(_("Network access is disabled by environment variable"
-		            " (set CPUX_NETWORK with a positive to enable it)"));
+		            " (set CPUX_NETWORK with a positive value to enable it)"));
 		return 1;
 	}
 
