@@ -564,8 +564,6 @@ static int call_dmidecode(Labels *data)
 	dmidata[DMI_CPU][PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
 	dmidata[DMI_CPU][PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
 	opt.type[4] = 1;
-	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
-		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
@@ -580,6 +578,10 @@ static int call_dmidecode(Labels *data)
 
 	/* Call built-in dmidecode in CPU-X mode */
 	err = dmidecode();
+
+	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
+		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
+
 	while(data->tab_memory[VALUE][data->dimms_count] != NULL)
 		data->dimms_count++;
 
