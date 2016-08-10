@@ -505,7 +505,7 @@ static void version(void)
 	MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
 	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
 	MSG_STDOUT(_("See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"));
-	MSG_STDOUT(_("Built on %s, %s (with %s %s)."), __DATE__, __TIME__, CC, __VERSION__);
+	MSG_STDOUT(_("Built on %s, %s (with %s %s on %s)."), __DATE__, __TIME__, CC, __VERSION__, OS);
 
 	/* Print features version */
 	for(i = 0; v[i].lib != NULL; i++)
