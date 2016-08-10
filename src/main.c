@@ -290,37 +290,53 @@ static void dump_data(Labels *data)
 /* Check if running version is latest */
 static bool check_new_version(void)
 {
+	int err;
+	bool with_curl = false;
+	bool with_wget = false;
+
+	if(opts->use_network <= 0)
+		return false;
+
 	MSG_VERBOSE(_("Checking on Internet for a new version..."));
-	if(!command_exists("curl"))
+	if(command_exists("curl"))
+		with_curl = true;
+
+	if(command_exists("wget"))
+		with_wget = true;
+
+	if(!with_curl && !with_wget)
 	{
-		if(!command_exists("wget"))
-		{
-			MSG_WARNING(_("Curl/Wget are missing on your system, can't check for a new version"));
-			return false;
-		}
-		else
-			opts->use_wget = true;
+		MSG_WARNING(_("Curl/Wget are missing on your system, can't check for a new version"));
+		return false;
 	}
 
 	/* Retrieve the last tag on Git repo */
-	if(opts->use_wget)
-		popen_to_str("wget --timeout=1 -O- -q http://x0rg.github.io/CPU-X/version.txt", &new_version);
-	else
-		popen_to_str("curl --max-time 1 -s http://x0rg.github.io/CPU-X/version.txt", &new_version);
+	if(with_curl)
+		err = popen_to_str("curl --max-time 1 -s http://x0rg.github.io/CPU-X/version.txt", &new_version);
+
+	if(err && with_wget)
+	{
+		opts->use_wget = true;
+		err = popen_to_str("wget --timeout=1 -O- -q http://x0rg.github.io/CPU-X/version.txt", &new_version);
+	}
 
 	/* Compare Git tag with running version */
-	if(strcmp(new_version, PRGVER))
+	if(err)
+	{
+		MSG_WARNING(_("Can not reach Internet"));
+		opts->use_network = 0;
+	}
+	else if(strcmp(new_version, PRGVER))
 	{
 		MSG_VERBOSE(_("A new version of %s is available!"), PRGNAME);
 		return true;
 	}
 	else
-	{
 		MSG_VERBOSE(_("No new version available"));
-		free(new_version);
-		new_version = NULL;
-		return false;
-	}
+
+	free(new_version);
+	new_version = NULL;
+	return false;
 }
 
 /* Apply new portable version if available */
@@ -476,14 +492,11 @@ static void version(void)
 		{ false,           NULL,          NULL                }
 	};
 
-	if(opts->use_network > 0)
-	{
-		check_new_version();
-		if(new_version != NULL)
-			asprintf(&strver, _("(version %s is available)"), new_version);
-		else
-			asprintf(&strver, _("(up-to-date)"));
-	}
+	check_new_version();
+	if(opts->use_network > 0 && new_version != NULL)
+		asprintf(&strver, _("(version %s is available)"), new_version);
+	else if(opts->use_network > 0)
+		asprintf(&strver, _("(up-to-date)"));
 	else
 		strver = "";
 
@@ -711,7 +724,6 @@ int main(int argc, char *argv[])
 	fill_labels    (data);
 	remove_null_ptr(data);
 	check_new_version();
-
 
 	/* Show data */
 	switch(opts->output_type)
