@@ -71,6 +71,8 @@
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"
 #define SYS_DRM               "/sys/class/drm/card"
+#define SYS_TEMP_AMD          "/sys/devices/pci0000:00/0000:00:18.3"
+#define SYS_TEMP_INTEL        "/sys/devices/platform/coretemp.0"
 
 
 enum EnTabNumber
@@ -257,6 +259,9 @@ int fopen_to_str(char *file, char **buffer);
 
 /* Open a pipe and put its content in buffer */
 int popen_to_str(char *command, char **buffer);
+
+/* Load a kernel module */
+bool load_module(char *module);
 
 /* Free memory after display labels */
 void labels_free(Labels *data);

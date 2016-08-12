@@ -1153,15 +1153,46 @@ static int cpu_package_fallback(Labels *data)
 /* Retrieve CPU temperature if run as regular user */
 static int cputab_temp_fallback(Labels *data)
 {
+	bool module_loaded;
+	static bool use_sysfs = false;
 	double val = 0.0;
-	char *command, *buff;
+	char *command, *file, *buff;
 
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
-	setlocale(LC_ALL, "C");
-	asprintf(&command, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core);
-	if(!popen_to_str(command, &buff))
-		val = atof(buff);
-	setlocale(LC_ALL, "");
+
+	/* First, try by reading 'sensors' output */
+	if(!use_sysfs)
+	{
+		setlocale(LC_ALL, "C");
+		asprintf(&command, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core);
+		if(!popen_to_str(command, &buff))
+			val = atof(buff);
+		setlocale(LC_ALL, "");
+
+		if(val <= 0)
+			use_sysfs = true;
+	}
+
+	/* If 'sensors' is not configured, try by using sysfs */
+	if(use_sysfs)
+	{
+		switch(data->l_data->cpu_vendor_id)
+		{
+			case VENDOR_INTEL:
+				module_loaded = load_module("coretemp");
+				asprintf(&file, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
+				break;
+			case VENDOR_AMD:
+				module_loaded = load_module("k8temp") | load_module("k10temp");
+				asprintf(&file, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
+				break;
+			default:
+				break;
+		}
+
+		if(module_loaded && !fopen_to_str(file, &buff))
+			val = atof(buff) / 1000;
+	}
 
 	if(val > 0)
 	{

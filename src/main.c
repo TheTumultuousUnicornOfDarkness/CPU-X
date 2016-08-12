@@ -940,6 +940,32 @@ error:
 	return (p == NULL) ? 1 : 2 + pclose(p);
 }
 
+/* Load a kernel module */
+bool load_module(char *module)
+{
+	static bool loaded = false;
+	char *cmd_check, *cmd_load = NULL;
+
+	if(loaded)
+		return true;
+
+#if defined (__linux__)
+	asprintf(&cmd_check, "lsmod | grep %s > /dev/null", module);
+	if(system(cmd_check))
+		asprintf(&cmd_load, "modprobe %s 2> /dev/null", module);
+#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	asprintf(&cmd_check, "kldstat | grep %s > /dev/null", module);
+	if(system(cmd_check))
+		asprintf(&cmd_load, "kldload -n %s 2> /dev/null", module);
+#endif
+	if(cmd_load == NULL)
+		return ((loaded = true));
+	else if(getuid())
+		return false;
+	else
+		return !system(cmd_load);
+}
+
 /* Free memory after display labels */
 void labels_free(Labels *data)
 {
