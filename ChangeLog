@@ -1,3 +1,14 @@
+v3.0.1 (08.23.2016):
+	* Add more CPU and sockets in database
+	* Decrease verbosity in Dmidecode and Bandwidth
+	* Improve fallback mode
+	** Fixes:
+		* Refresh in fallback mode
+		* Detection of GPU temperature with NVIDIA proprietary driver
+		* Check for a new version when network is unreachable
+		* Various minor fixes
+
+
 v3.0.0 (06.15.2016):
 	* More CMake improvements, allow to build with CMake 2.8
 	* Full core rewrite

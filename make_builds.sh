@@ -192,8 +192,7 @@ case "$choice" in
 	package)
 		DESTDIR="$(dirname $0)/packages/"
 		CPUXVER="${VER//v}"
-		#LCPUIDVER=$(cd `dirname $0`/../libcpuid && git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')
-		LCPUIDVER="0.2.2.r84.612d213"
+		LCPUIDVER=$(cd `dirname $0`/../libcpuid && git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')
 		COMPRESS="tar -zcvf"
 		mkdir -p "$DESTDIR" && cd "$DESTDIR"
 
@@ -206,16 +205,16 @@ case "$choice" in
 		$COMPRESS CPU-X_${VER}_Debian.tar.gz Debian*
 
 		# Fedora
-		make_packages "Fedora_21" "CPU-X-${CPUXVER}-15.1." "libcpuid13-${LCPUIDVER}-32.2." "libcpuid-devel-${LCPUIDVER}-32.2."
-		make_packages "Fedora_22" "CPU-X-${CPUXVER}-15.1." "libcpuid13-${LCPUIDVER}-32.2." "libcpuid-devel-${LCPUIDVER}-32.2."
-		make_packages "Fedora_23" "CPU-X-${CPUXVER}-15.1." "libcpuid13-${LCPUIDVER}-32.2." "libcpuid-devel-${LCPUIDVER}-32.2."
+		make_packages "Fedora_21" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_22" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_23" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
 		$COMPRESS CPU-X_${VER}_Fedora.tar.gz Fedora*
 
 		# openSUSE
-		make_packages "openSUSE_13.1"       "CPU-X-${CPUXVER}-15.1." "libcpuid13-${LCPUIDVER}-32.1." "libcpuid-devel-${LCPUIDVER}-32.1."
-		make_packages "openSUSE_13.2"       "CPU-X-${CPUXVER}-15.1." "libcpuid13-${LCPUIDVER}-32.1." "libcpuid-devel-${LCPUIDVER}-32.1."
-		make_packages "openSUSE_Leap_42.1"  "CPU-X-${CPUXVER}-15.1." "libcpuid13-${LCPUIDVER}-32.1." "libcpuid-devel-${LCPUIDVER}-32.1."
-		make_packages "openSUSE_Tumbleweed" "CPU-X-${CPUXVER}-15.2." "libcpuid13-${LCPUIDVER}-32.3." "libcpuid-devel-${LCPUIDVER}-32.3."
+		make_packages "openSUSE_13.1"       "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_13.2"       "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_Leap_42.1"  "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_Tumbleweed" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
 		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz openSUSE*
 
 		# Ubuntu

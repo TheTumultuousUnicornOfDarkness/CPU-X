@@ -54,14 +54,7 @@ These dependencies are needed to **manually build** and **run** CPU-X (e.g you c
 
 ### Download packages
 
-You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, click on your distro logo:
-[![Arch Linux](http://i.stack.imgur.com/ymaLV.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_ArchLinux.tar.gz)
-[![Debian](https://phrozensoft.com/uploads/2014/11/debian_logo.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_Debian.tar.gz)
-[![Fedora](http://kivy.org/images/os_fedora.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_Fedora.tar.gz)
-[![Gentoo](http://www.ltsp.org/images/distro/gentoo.png)](https://github.com/X0rg/CPU-X/wiki/%5BPackage%5D-Gentoo)
-[![OpenSUSE](https://harmonyseq.files.wordpress.com/2010/10/opensuse-logo_design_mini.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_OpenSUSE.tar.gz)
-[![SUSE Linux Enterprise](http://i.i.cbsi.com/cnwk.1d/i/tim//2010/06/03/Foreman_11426063_9959_100px-Suse_logo.svg_32x20.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_SLE.tar.gz)
-[![Ubuntu](http://computriks.com/img/icon/ubuntu24.png)](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_Ubuntu.tar.gz)
+You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, see the [download section](https://github.com/X0rg/CPU-X/releases/latest) or the wiki page about [GNU/Linux packages](https://github.com/X0rg/CPU-X/wiki/GNU-Linux-Packages).  
 
 
 ### Manual build
