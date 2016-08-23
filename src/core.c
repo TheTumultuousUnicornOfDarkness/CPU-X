@@ -1173,6 +1173,7 @@ static int cputab_temp_fallback(Labels *data)
 			use_sysfs = true;
 	}
 
+#if HAS_LIBCPUID
 	/* If 'sensors' is not configured, try by using sysfs */
 	if(use_sysfs)
 	{
@@ -1193,6 +1194,7 @@ static int cputab_temp_fallback(Labels *data)
 		if(module_loaded && !fopen_to_str(file, &buff))
 			val = atof(buff) / 1000;
 	}
+#endif /* HAS_LIBCPUID */
 
 	if(val > 0)
 	{
