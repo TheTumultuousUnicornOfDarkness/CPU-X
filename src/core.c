@@ -1173,7 +1173,7 @@ static int cputab_temp_fallback(Labels *data)
 	}
 
 #if HAS_LIBCPUID
-	bool module_loaded;
+	bool module_loaded = false;
 	char *file;
 
 	/* If 'sensors' is not configured, try by using sysfs */

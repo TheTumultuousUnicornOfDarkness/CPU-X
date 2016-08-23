@@ -290,7 +290,7 @@ static void dump_data(Labels *data)
 /* Check if running version is latest */
 static bool check_new_version(void)
 {
-	int err;
+	int err = 1;
 	bool with_curl = false;
 	bool with_wget = false;
 
