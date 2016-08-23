@@ -12,7 +12,7 @@ else(${CMAKE_VERSION} VERSION_GREATER "2.9")
 endif(${CMAKE_VERSION} VERSION_GREATER "2.9")
 
 # Config (bandwidth)
-set(BANDWIDTH_DEBUG_FLAGS "-Wall -Wextra -Wuninitialized -Wno-strict-prototypes -Wno-unused-parameter -Wno-sign-compare")
+set(BANDWIDTH_DEBUG_FLAGS "-Wall -Wextra -Wuninitialized -Wno-strict-prototypes -Wno-unused-parameter -Wno-sign-compare -Wno-format-security")
 set(CMAKE_C_FLAGS_DEBUG	  "${CMAKE_C_FLAGS_DEBUG}   ${BANDWIDTH_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${BANDWIDTH_DEBUG_FLAGS}")
 message("-- Checking for submodule '${PROJECT_NAME}'")
