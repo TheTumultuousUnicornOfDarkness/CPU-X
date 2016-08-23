@@ -1153,10 +1153,9 @@ static int cpu_package_fallback(Labels *data)
 /* Retrieve CPU temperature if run as regular user */
 static int cputab_temp_fallback(Labels *data)
 {
-	bool module_loaded;
 	static bool use_sysfs = false;
 	double val = 0.0;
-	char *command, *file, *buff;
+	char *command, *buff;
 
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
 
@@ -1174,6 +1173,9 @@ static int cputab_temp_fallback(Labels *data)
 	}
 
 #if HAS_LIBCPUID
+	bool module_loaded;
+	char *file;
+
 	/* If 'sensors' is not configured, try by using sysfs */
 	if(use_sysfs)
 	{
