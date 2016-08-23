@@ -1,6 +1,8 @@
 
-[![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X)
-[![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X)
+[![](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](http://x0rg.github.io/CPU-X/)
+[![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/tags)
+[![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X/releases/latest)
+[![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
@@ -32,8 +34,8 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 
 ### Build-only dependencies
 
-These dependencies are needed to **manually build** CPU-X (e.g you can safely remove them after build):
-* A C compiler, like [GCC](https://gcc.gnu.org/) or [Clang](http://clang.llvm.org/)
+These dependencies are needed to **build** CPU-X:
+* A C compiler ([GCC](https://gcc.gnu.org/) or [Clang](http://clang.llvm.org/))
 * [CMake](http://www.cmake.org/)
 * [Pkg-Config](http://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
 * [NASM](http://www.nasm.us/)
@@ -41,13 +43,14 @@ These dependencies are needed to **manually build** CPU-X (e.g you can safely re
 
 ### Build and run dependencies
 
-These dependencies are needed to **manually build** and **run** CPU-X (e.g you can't remove a dependency if CPU-X was built with):
+These dependencies are needed to **build¹** and **run** CPU-X:
 * [GTK3+](http://www.gtk.org/) (minimum supported version is 3.8, version 3.16 or newer recommended)  
 * [NCurses](http://www.gnu.org/software/ncurses/)  
 * [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.2.2 or newer is recommended)  
 * [Libpci](http://mj.ucw.cz/sw/pciutils/)  
 * [Procps-ng](http://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](http://www.i-scream.org/libstatgrab/) (*BSD)  
-* [Curl](http://curl.haxx.se/) / [Wget](https://www.gnu.org/software/wget/) (optionnal)
+* [Curl](http://curl.haxx.se/) / [Wget](https://www.gnu.org/software/wget/) (optionnal)  
+**¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 
 ## Download/Install
@@ -59,46 +62,27 @@ You can download binary packages to easily install CPU-X on your system. A lot o
 
 ### Manual build
 
-For step-by-step guide, you can see the [wiki page](https://github.com/X0rg/CPU-X/wiki) (GNU/Linux or *BSD).  
-On some GNU/Linux distributions, you need to install the appropriate **-dev** package.  
-You can disable components in CPU-X before build by passing argument `-D<var>=0` when running CMake:  
-`-DWITH_GTK=0` will disable support of GUI in GTK3+  
-`-DWITH_NCURSES=0` will disable support of TUI in NCurses  
-`-DWITH_LIBCPUID=0` will avoid calls to Libcpuid (not recommended)  
-`-DWITH_LIBPCI=0` will avoid calls to Libpci (not recommended)  
-`-DWITH_LIBSYSTEM=0` will avoid calls to Libprocps/Libstatgrab (not recommended)  
-`-DWITH_DMIDECODE=0` will not compile built-in [Dmidecode](http://www.nongnu.org/dmidecode/) (not recommended)  
-`-DWITH_BANDWIDTH=0` will not compile built-in [Bandwidth](https://zsmith.co/bandwidth.html) (not recommended)  
+For step-by-step guide, you can see this [wiki page](https://github.com/X0rg/CPU-X/wiki/Manual-build).  
+If you need to disable some parts of CPU-X, you can read [this page](https://github.com/X0rg/CPU-X/wiki/Modular-components).
 
-
-
-* If you want to install CPU-X on your system, do:
+To build and install CPU-X on your system, do (in CPU-X directory) :
 ```
-mkdir build && cd build
-cmake ..
-make
-make install
+$ mkdir build && cd build
+$ cmake ..
+$ make
+# make install
 ```
 By default, CPU-X will be installed in */usr/local*. If you want to change it, add option `cmake -DCMAKE_INSTALL_PREFIX=<absolute_path> ..` on CMake invocation.
-
-* If you want to build a portable binary, do:
-```
-mkdir pbuild && cd pbuild
-cmake -DPORTABLE_BINARY=1 ..
-make
-```
-
-Note: portable binary is *accomplished/bin/cpu-x*, in directory *pbuild*. Don't do `make install` after.You can move this runnable file where you want.
 
 
 ### Portable version
 
 CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32/64-bit), like CPU-Z.  
-You can find the last release which depends on GTK [**here**](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_portable.tar.gz). All others needed librairies are included in the binary.    
-Also, if GTK librairies are not present on your system, you can use [**this**](https://github.com/X0rg/CPU-X/releases/download/v3.0.0/CPU-X_v3.0.0_portable_noGTK.tar.gz) instead.  
-You can find all downloads on [this page](https://github.com/X0rg/CPU-X/releases).  
+You can find the lastest release [**here**](https://github.com/X0rg/CPU-X/releases/latest).  
+The CPU-X_vx.x.x_portable.tar.gz tarball requires GTK is installed on your system.  
+The CPU-X_vx.x.x_portable_noGTK.tar.gz tarball requires to start CPU-X from a terminal.  
 
-After downloading tarball, you need to extract his content to be able to run CPU-X portable.  
+After downloading tarball, you need to extract his content to be able to run CPU-X portable. Check if binary has executable bit set.  
 You can use this portable version on a lot of system, so you can leave a binary on a USB stick for instance.
 
 
@@ -113,15 +97,13 @@ Use `cpu-x --help` for other commands and help.
 
 ## Screenshots
 
-You can see how CPU-X looks here:
-https://github.com/X0rg/CPU-X/wiki/Screenshots
+You can find screenshots in [gallery](https://github.com/X0rg/CPU-X/wiki/Screenshots).
 
 
 ## Translate/Contributions
 
-You want to have CPU-X in a foreign language but no translation exists? See the following wiki page:
-https://github.com/X0rg/CPU-X/wiki/Translate  
-You want to contribute to CPU-X? In the top-right corner of the page, click **Fork**.
+You want to have CPU-X in a foreign language but no translation exists? See this [wiki page](https://github.com/X0rg/CPU-X/wiki/Translate).  
+Or you want to contribute to CPU-X? In the top-right corner of the page, click on the **Fork** button.
 
 
 ## Troubleshooting
