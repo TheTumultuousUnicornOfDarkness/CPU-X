@@ -240,7 +240,7 @@ static void wclrscr(WINDOW *pwin)
 }
 
 /* Clean line */
-static void wclrline(WINDOW *pwin, enum EnColors line, unsigned start, unsigned end)
+static void wclrline(WINDOW *pwin, enum EnLines line, unsigned start, unsigned end)
 {
 	unsigned x;
 
