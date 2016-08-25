@@ -2441,7 +2441,7 @@ static void dmi_memory_device_type_detail(u16 code)
 		"LRDIMM"  /* 15 */
 	};
 
-	if ((code & 0x7FFE) == 0)
+	if ((code & 0xFFFE) == 0)
 		printf(" None");
 	else
 	{
@@ -3007,7 +3007,8 @@ static void dmi_fixup_type_34(struct dmi_header *h, int display)
 	 && is_printable(p + 0x0B, 0x10 - 0x0B))
 	{
 		if (!(opt.flags & FLAG_QUIET) && display)
-			printf("Invalid entry length (%u). Fixed up to %u.\n",
+			fprintf(stderr,
+				"Invalid entry length (%u). Fixed up to %u.\n",
 				0x10, 0x0B);
 		h->length = 0x0B;
 	}
@@ -4531,9 +4532,14 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 		 */
 		if (h.length < 4)
 		{
-			printf("Invalid entry length (%u). DMI table is "
-			       "broken! Stop.\n\n", (unsigned int)h.length);
-			opt.flags |= FLAG_QUIET;
+			if (!(opt.flags & FLAG_QUIET))
+			{
+				fprintf(stderr,
+					"Invalid entry length (%u). DMI table "
+					"is broken! Stop.\n\n",
+					(unsigned int)h.length);
+				opt.flags |= FLAG_QUIET;
+			}
 			break;
 		}
 
@@ -4594,11 +4600,11 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 	if (!(opt.flags & FLAG_QUIET))
 	{
 		if (num && i != num)
-			printf("Wrong DMI structures count: %d announced, "
+			fprintf(stderr, "Wrong DMI structures count: %d announced, "
 				"only %d decoded.\n", num, i);
 		if ((unsigned long)(data - buf) > len
 		 || (num && (unsigned long)(data - buf) < len))
-			printf("Wrong DMI structures length: %u bytes "
+			fprintf(stderr, "Wrong DMI structures length: %u bytes "
 				"announced, structures occupy %lu bytes.\n",
 				len, (unsigned long)(data - buf));
 	}
@@ -4643,7 +4649,7 @@ static void dmi_table(off_t base, u32 len, u16 num, u16 ver, const char *devmem,
 		buf = read_file(&size, devmem);
 		if (!(opt.flags & FLAG_QUIET) && num && size != (size_t)len)
 		{
-			printf("Wrong DMI structures length: %u bytes "
+			fprintf(stderr, "Wrong DMI structures length: %u bytes "
 				"announced, only %lu bytes available.\n",
 				len, (unsigned long)size);
 		}
@@ -4654,11 +4660,12 @@ static void dmi_table(off_t base, u32 len, u16 num, u16 ver, const char *devmem,
 
 	if (buf == NULL)
 	{
-		fprintf(stderr, "Table is unreachable, sorry."
+		fprintf(stderr, "Failed to read table, sorry.\n");
 #ifndef USE_MMAP
-			" Try compiling dmidecode with -DUSE_MMAP."
+		if (!(flags & FLAG_NO_FILE_OFFSET))
+			fprintf(stderr,
+				"Try compiling dmidecode with -DUSE_MMAP.\n");
 #endif
-			"\n");
 		return;
 	}
 
@@ -4755,14 +4762,16 @@ static int smbios_decode(u8 *buf, const char *devmem, u32 flags)
 		case 0x021F:
 		case 0x0221:
 			if (!(opt.flags & FLAG_QUIET))
-				printf("SMBIOS version fixup (2.%d -> 2.%d).\n",
-				       ver & 0xFF, 3);
+				fprintf(stderr,
+					"SMBIOS version fixup (2.%d -> 2.%d).\n",
+					ver & 0xFF, 3);
 			ver = 0x0203;
 			break;
 		case 0x0233:
 			if (!(opt.flags & FLAG_QUIET))
-				printf("SMBIOS version fixup (2.%d -> 2.%d).\n",
-				       51, 6);
+				fprintf(stderr,
+					"SMBIOS version fixup (2.%d -> 2.%d).\n",
+					51, 6);
 			ver = 0x0206;
 			break;
 	}
@@ -4874,6 +4883,13 @@ int dmidecode(void)
 	int efi;
 	u8 *buf;
 	char *argv[] = { "dmidecode (built-in with CPU-X)", NULL };
+
+	/*
+	 * We don't want stdout and stderr to be mixed up if both are
+	 * redirected to the same file.
+	 */
+	setlinebuf(stdout);
+	setlinebuf(stderr);
 
 	if (sizeof(u8) != 1 || sizeof(u16) != 2 || sizeof(u32) != 4 || '\0' != 0)
 	{
