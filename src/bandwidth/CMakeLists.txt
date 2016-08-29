@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "1.1")
+set(LOCALVERSION "1.3.1")
 if(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	cmake_policy(SET CMP0048 NEW)
 	project(bandwidth
@@ -28,18 +28,24 @@ if(CMAKE_ASM_NASM_INFOMATION_LOADED)
 	message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
 	if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86") # 32-bit build
-		add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/routines32.o
-			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf routines32.asm -o ${CMAKE_CURRENT_BINARY_DIR}/routines32.o
+		set(ROUTINES "routines-x86-32bit")
+		add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
+			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf ${ROUTINES}.asm -o ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
 			WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		)
-		set(ROUTINES "routines32.o")
 	else("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86") # 64-bit build
-		add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/routines64.o
-			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf64 routines64.asm -o ${CMAKE_CURRENT_BINARY_DIR}/routines64.o
+		set(ROUTINES "routines-x86-64bit")
+		add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
+			COMMAND ${CMAKE_ASM_NASM_COMPILER} -f elf64 ${ROUTINES}.asm -o ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
 			WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		)
-		set(ROUTINES "routines64.o")
 	endif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+
+	if(${LIBCPUID_FOUND} AND ${WITH_LIBCPUID})
+		add_definitions(-DHAS_LIBCPUID=1)
+	else(${LIBCPUID_FOUND} AND ${WITH_LIBCPUID})
+		add_definitions(-DHAS_LIBCPUID=0)
+	endif(${LIBCPUID_FOUND} AND ${WITH_LIBCPUID})
 
 	add_library(bandwidth
 		STATIC
@@ -49,7 +55,7 @@ if(CMAKE_ASM_NASM_INFOMATION_LOADED)
 		font.c
 		minifont.c
 		libbandwidth.h
-		${ROUTINES}
+		${ROUTINES}.o
 	)
 
 	target_link_libraries(bandwidth)

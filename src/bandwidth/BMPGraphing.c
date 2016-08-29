@@ -60,13 +60,13 @@ BMPGraphing_draw_labels_log2 (BMPGraph* graph)
 
 	for (i = graph->min_x; i <= graph->max_x; i++) {
 		char str [200];
-		int x = graph->left_margin +
-			((i-graph->min_x) * graph->x_span) /
+		int x = graph->left_margin + 
+			((i-graph->min_x) * graph->x_span) / 
 			(graph->max_x - graph->min_x);
 		int y = graph->height - graph->margin + 10;
 
 		unsigned long y2 = 1 << i;
-		if (y2 < 1536)
+		if (y2 < 1536) 
 			snprintf (str, 199, "%ld B", y2);
 		else if (y2 < (1<<20)) {
 			snprintf (str, 199, "%ld kB", y2 >> 10);
@@ -74,10 +74,10 @@ BMPGraphing_draw_labels_log2 (BMPGraph* graph)
 		else {
 			Value j = y2 >> 20;
 			switch ((y2 >> 18) & 3) {
-			case 0: snprintf (str, 199, "%lld MB", j); break;
-			case 1: snprintf (str, 199, "%lld.25 MB", j); break;
-			case 2: snprintf (str, 199, "%lld.5 MB", j); break;
-			case 3: snprintf (str, 199, "%lld.75 MB", j); break;
+			case 0: snprintf (str, 199, "%lu MB", j); break;
+			case 1: snprintf (str, 199, "%lu.25 MB", j); break;
+			case 2: snprintf (str, 199, "%lu.5 MB", j); break;
+			case 3: snprintf (str, 199, "%lu.75 MB", j); break;
 			}
 		}
 
@@ -182,19 +182,19 @@ void BMPGraphing_set_title (BMPGraph* graph, const char *title)
 }
 
 void
-BMPGraphing_new_line (BMPGraph *graph, char *str, RGB color)
+BMPGraphing_new_line (BMPGraph *graph, const char *str, RGB color)
 {
 	if (!graph || !graph->image)
 		return;
 
-	BMP_draw_string (graph->image, str, graph->width - graph->margin - 320, graph->legend_y, 0xffffff & color);
-
+	BMP_draw_string (graph->image, str, graph->width - graph->margin - 370, graph->legend_y, 0xffffff & color);
+	
 	graph->legend_y += 17;
 
 	graph->fg = 0;
 	graph->last_x = graph->last_y = -1;
 
-	if (graph->data_index >= MAX_GRAPH_DATA-2)
+	if (graph->data_index >= MAX_GRAPH_DATA-2) 
 		return; // error ("Too many graph data.");
 
 	graph->data [graph->data_index++] = DATUM_COLOR;
@@ -211,7 +211,7 @@ BMPGraphing_add_point (BMPGraph *graph, Value x, Value y)
 	if (!graph || !graph->image)
 		return;
 
-	if (graph->data_index >= MAX_GRAPH_DATA-4)
+	if (graph->data_index >= MAX_GRAPH_DATA-4) 
 		return; // error ("Too many graph data.");
 
 	graph->data [graph->data_index++] = DATUM_X;
@@ -232,7 +232,7 @@ BMPGraphing_plot_log2 (BMPGraph *graph, Value x, Value y)
 		return;
 
 	//----------------------------------------
-	// Plot the point. The x axis is
+	// Plot the point. The x axis is 
 	// logarithmic, base 2.
 	//
 	double tmp = log2 (x);
@@ -244,7 +244,7 @@ BMPGraphing_plot_log2 (BMPGraph *graph, Value x, Value y)
 	int y2 = graph->height - graph->margin - (y * graph->y_span) / graph->max_y;
 
 	if (graph->last_x != -1 && graph->last_y != -1) {
-		if (graph->fg & DASHED)
+		if (graph->fg & DASHED) 
 			BMP_line_dashed (graph->image, graph->last_x, graph->last_y, x2, y2, graph->fg & 0xffffff);
 		else
 			BMP_line (graph->image, graph->last_x, graph->last_y, x2, y2, graph->fg);
@@ -266,7 +266,7 @@ BMPGraphing_plot_linear (BMPGraph *graph, Value x, Value y, Value max_y)
 		return;
 
 	//----------------------------------------
-	// Plot the point. The x axis is
+	// Plot the point. The x axis is 
 	// logarithmic, base 2. The units of the
 	// y value is kB.
 	//
@@ -280,7 +280,7 @@ BMPGraphing_plot_linear (BMPGraph *graph, Value x, Value y, Value max_y)
 //printf ("\tx=%d, y=%d\n",x,y); fflush(stdout);
 
 	if (graph->last_x != -1 && graph->last_y != -1) {
-		if (graph->fg & DASHED)
+		if (graph->fg & DASHED) 
 			BMP_line_dashed (graph->image, graph->last_x, graph->last_y, x2, y2, graph->fg & 0xffffff);
 		else
 			BMP_line (graph->image, graph->last_x, graph->last_y, x2, y2, graph->fg);
@@ -308,7 +308,7 @@ BMPGraphing_make_log2 (BMPGraph *graph)
 	//
 	int i;
 	int x = -1, y = -1;
-	for (i = 0; i < graph->data_index; i += 2)
+	for (i = 0; i < graph->data_index; i += 2) 
 	{
 		Value type = graph->data[i];
 		Value value = graph->data[i+1];
@@ -316,8 +316,8 @@ BMPGraphing_make_log2 (BMPGraph *graph)
 		switch (type) {
 		case DATUM_Y:	y = value; break;
 		case DATUM_X:	x = value; break;
-		case DATUM_COLOR:
-			graph->fg = (unsigned long) value;
+		case DATUM_COLOR:	
+			graph->fg = (unsigned long) value; 
 			graph->last_x = -1;
 			graph->last_y = -1;
 			break;
@@ -368,14 +368,14 @@ BMPGraphing_make_linear (BMPGraph *graph)
 		y_spacing = 10000;
 		break;
 	case 1:
-		// Round up to the next 10.00 MB/sec.
+		// Round up to the next 10.00 MB/sec. 
 		y_spacing = 1000;
 		break;
 	case 0:
-		// Round up to the next 1.00 MB/sec.
+		// Round up to the next 1.00 MB/sec. 
 		y_spacing = 100;
 		break;
-	}
+	} 
 	max_y /= y_spacing;
 	max_y *= y_spacing;
 	max_y += y_spacing;
@@ -397,7 +397,7 @@ BMPGraphing_make_linear (BMPGraph *graph)
 
 		int x = graph->left_margin + ((i - XVALUE_MIN) * graph->x_span) / (XVALUE_MAX - XVALUE_MIN);
 		int y = graph->height - graph->margin + 10;
-
+		
 		BMP_vline (graph->image, x, y, y-10, RGB_BLACK);
 		BMP_draw_mini_string (graph->image, str, x - 10, y+8, RGB_BLACK);
 	}
@@ -424,7 +424,7 @@ BMPGraphing_make_linear (BMPGraph *graph)
 	int x = -1, y = -1;
 	graph->last_x = -1;
 	graph->last_y = -1;
-	for (i = 0; i < graph->data_index; i += 2)
+	for (i = 0; i < graph->data_index; i += 2) 
 	{
 		int type = graph->data[i];
 		long value = graph->data[i+1];
@@ -432,8 +432,8 @@ BMPGraphing_make_linear (BMPGraph *graph)
 		switch (type) {
 		case DATUM_Y:	y = value; break;
 		case DATUM_X:	x = value; break;
-		case DATUM_COLOR:
-			graph->fg = (unsigned long) value;
+		case DATUM_COLOR:	
+			graph->fg = (unsigned long) value; 
 			graph->last_x = -1;
 			graph->last_y = -1;
 			break;

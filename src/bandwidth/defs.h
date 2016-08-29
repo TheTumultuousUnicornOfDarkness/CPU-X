@@ -1,6 +1,6 @@
 /*============================================================================
   bandwidth, a benchmark to estimate memory transfer bandwidth.
-  Copyright (C) 2005-2014 by Zack T Smith.
+  Copyright (C) 2005-2016 by Zack T Smith.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,12 +38,14 @@
 // 0.32 Added AVX support.
 // 1.0	Moved graphing logic into BMPGraphing. Added LODS support.
 // 1.1	Switched to larger font in graphing module.
+// 1.2	Re-added ARM 32 support.
+// 1.3	Added CSV output support. Added 32-bit Raspberry π 3 support.
 //---------------------------------------------------------------------------
 
 #ifndef _DEFS_H
 #define _DEFS_H
 
-#define RELEASE "1.1"
+#define RELEASE "1.3.1"
 
 #ifndef bool
 typedef char bool;
@@ -55,7 +57,9 @@ enum { true = 1, false = 0 };
 #define NETSIZE_MAX (28)
 #define NETWORK_CHUNK_SIZE (1<<NETSIZE_MIN)
 
-#define DOING_LODS // lodsq and lodsd
+#ifndef __arm__
+#define DOING_LODS // lodsq and lodsd (amusement purposes only)
+#endif
 
 extern int Reader (void *ptr, unsigned long size, unsigned long loops);
 

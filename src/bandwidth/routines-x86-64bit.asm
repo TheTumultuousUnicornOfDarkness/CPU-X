@@ -19,10 +19,6 @@
 ;  The author may be reached at veritas@comcast.net.
 ;=============================================================================
 
-%ifidn __OUTPUT_FORMAT__,elf64
-section .note.GNU-stack noalloc noexec nowrite progbits
-%endif
-
 bits	64
 cpu	ia64
 
@@ -629,9 +625,13 @@ _RandomReaderSSE2_bypass:
 	mov	r10, [rdi + 8*r11]
 
 	; SSE 4.1 required
+	prefetchnta	[r10+192]
 	movntdqa	xmm0, [240+r10]
+	prefetchnta	[r10]
 	movntdqa	xmm0, [r10]
+	prefetchnta	[r10+128]
 	movntdqa	xmm0, [128+r10]
+	prefetchnta	[r10+64]
 	movntdqa	xmm0, [64+r10]
 	movntdqa	xmm0, [208+r10]
 	movntdqa	xmm0, [112+r10]
@@ -970,6 +970,9 @@ _ReaderSSE2_bypass:
 	mov	r10, rdi
 
 .L2:
+	prefetchnta	[r10]
+	prefetchnta	[r10+64]
+
 	movntdqa	xmm0, [r10]	; Read aligned to 16-byte boundary.
 	movntdqa	xmm0, [16+r10]
 	movntdqa	xmm0, [32+r10]
@@ -978,6 +981,9 @@ _ReaderSSE2_bypass:
 	movntdqa	xmm0, [80+r10]
 	movntdqa	xmm0, [96+r10]
 	movntdqa	xmm0, [112+r10]
+
+	prefetchnta	[r10+128]
+	prefetchnta	[r10+192]
 
 	movntdqa	xmm0, [128+r10]
 	movntdqa	xmm0, [144+r10]
@@ -1017,10 +1023,12 @@ _ReaderSSE2_128bytes_bypass:
 	mov	r10, rdi
 
 .L2:
+	prefetchnta	[r10]
 	movntdqa	xmm0, [r10]	; Read aligned to 16-byte boundary.
 	movntdqa	xmm0, [16+r10]
 	movntdqa	xmm0, [32+r10]
 	movntdqa	xmm0, [48+r10]
+	prefetchnta	[r10+64]
 	movntdqa	xmm0, [64+r10]
 	movntdqa	xmm0, [80+r10]
 	movntdqa	xmm0, [96+r10]

@@ -682,26 +682,6 @@ static int call_bandwidth(Labels *data)
 		return 1;
 
 	MSG_VERBOSE(_("Calling bandwidth"));
-	/* Check if selectionned test is valid */
-	if(opts->bw_test >= LASTTEST)
-	{
-		MSG_WARNING(_("Invalid bandwidth test selectionned!"));
-		MSG_STDERR(_("List of available tests:"));
-		for(i = SEQ_128_R; i < LASTTEST; i++)
-			MSG_STDERR("\t%i: %s", i, tests[i].name);
-		opts->bw_test = 0;
-		MSG_STDERR(_("%s will use test #%i (%s)"), PRGNAME, opts->bw_test, tests[opts->bw_test].name);
-	}
-
-	/* Set test names */
-	if(data->w_data->test_count == 0)
-	{
-		data->w_data->test_count = LASTTEST;
-		data->w_data->test_name  = malloc(LASTTEST * sizeof(char *));
-		for(i = SEQ_128_R; i < LASTTEST; i++)
-			asprintf(&data->w_data->test_name[i], "#%2i: %s", i, tests[i].name);
-	}
-
 	/* Run bandwidth in a separated thread */
 	err = pthread_create(&tid, NULL, (void *)bandwidth, data);
 	if(first)

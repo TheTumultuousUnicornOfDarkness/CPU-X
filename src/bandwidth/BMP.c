@@ -4,7 +4,7 @@
   Copyright (C) 2009-2014 by Zack T Smith.
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 2
+  it under the terms of the GNU General Public License version 2 
   as published by the Free Software Foundation.
 
   This program is distributed in the hope that it will be useful,
@@ -34,7 +34,7 @@
 #include "minifont.h"
 
 // Narrowest possible numbers.
-static char* narrow_nums [] =
+static char* narrow_nums [] = 
 {
 	" # ",
 	"# #",
@@ -131,7 +131,7 @@ static char* narrow_nums [] =
  * Name:	BMP_new
  * Purpose:	Creates new image.
  *-------------------------------------------------------------------------*/
-BMP*
+BMP* 
 BMP_new (int w, int h)
 {
 	unsigned long size;
@@ -140,9 +140,9 @@ BMP_new (int w, int h)
 		return NULL;
 	//----------
 
-	if (w & 3)
+	if (w & 3) 
 		w += 4 - (w & 3);
-	if (h & 3)
+	if (h & 3) 
 		h += 4 - (h & 3);
 
 	nu = (BMP*) malloc (sizeof (BMP));
@@ -165,7 +165,7 @@ BMP_new (int w, int h)
  * Name:	BMP_destroy
  * Purpose:	Deallocates image.
  *-------------------------------------------------------------------------*/
-void
+void 
 BMP_destroy (BMP* bmp)
 {
 	if (!bmp)
@@ -208,7 +208,7 @@ BMP_line_core (BMP *bmp, int x0, int y0, int x1, int y1, RGB rgb,
 
 	int dot_counter = 0;
 
-	if (!dashed && x0 == x1 && y0 == y1)
+	if (!dashed && x0 == x1 && y0 == y1) 
 		BMP_point (bmp, x0, y0, rgb);
 	else if (!dashed && x0 == x1)
 		BMP_vline (bmp, x0, y0, y1, rgb);
@@ -252,9 +252,9 @@ BMP_line_core (BMP *bmp, int x0, int y0, int x1, int y1, RGB rgb,
 			j++;
 
 			int draw = 1;
-			if (dashed && (1 & (dot_counter >> 2)))
+			if (dashed && (1 & (dot_counter >> 2))) 
 				draw = 0;
-
+			
 			if (draw)
 				BMP_point (bmp, x, y, rgb);
 
@@ -267,7 +267,7 @@ BMP_line_core (BMP *bmp, int x0, int y0, int x1, int y1, RGB rgb,
 					y += s2;
 				e -= (dx << 1);
 			}
-			if (xchange)
+			if (xchange) 
 				y += s2;
 			else
 				x += s1;
@@ -345,7 +345,7 @@ BMP_hline (BMP *bmp, int x0, int x1, int y, RGB rgb)
 		x1=x0;
 		x0=tmp;
 	}
-
+	
 	while (x0 <= x1) {
 		BMP_point (bmp, x0++, y, rgb);
 	}
@@ -363,7 +363,7 @@ BMP_vline (BMP *bmp, int x, int y0, int y1, RGB rgb)
 		y1=y0;
 		y0=tmp;
 	}
-
+	
 	while (y0 <= y1) {
 		BMP_point (bmp, x, y0++, rgb);
 	}
@@ -378,8 +378,6 @@ BMP_draw_string (BMP *bmp, const char *string, int x, int y, RGB color)
 {
 	char ch;
 	const char *s;
-	RGB r,g,b;
-	//RGB light, dark;
 
 	if (!bmp || !string)
 		return 0;
@@ -387,6 +385,10 @@ BMP_draw_string (BMP *bmp, const char *string, int x, int y, RGB color)
 		return 0;
 	//----------
 
+#if 0
+	RGB r,g,b;
+	RGB light;
+	RGB dark;
 	r = 0xff & (color >> 16);
 	g = 0xff & (color >> 8);
 	b = 0xff & color;
@@ -396,7 +398,7 @@ BMP_draw_string (BMP *bmp, const char *string, int x, int y, RGB color)
 	r /= 4;
 	g /= 4;
 	b /= 4;
-	//light = b | (g << 8) | (r << 16);
+	light = b | (g << 8) | (r << 16);
 
 	r = 0xff & (color >> 16);
 	g = 0xff & (color >> 8);
@@ -407,7 +409,8 @@ BMP_draw_string (BMP *bmp, const char *string, int x, int y, RGB color)
 	r /= 2;
 	g /= 2;
 	b /= 2;
-	//dark = b | (g << 8) | (r << 16);
+	dark = b | (g << 8) | (r << 16);
+#endif
 
 	const char **chars = get_font_chars ();
 
@@ -422,7 +425,7 @@ BMP_draw_string (BMP *bmp, const char *string, int x, int y, RGB color)
 			continue;
 		if (ch > ' ' && ch <= 'z')
 			ix = FONT_HEIGHT * (ch - 33);
-
+		
 		if (ix >= 0) {
 			int i;
 			int width = 0;
@@ -485,7 +488,7 @@ BMP_string_width (const char *string)
 			continue;
 		if (ch > ' ' && ch <= 'z')
 			ix = FONT_HEIGHT * (ch - 33);
-
+		
 		if (ix >= 0) {
 			int j;
 			int max_w = 0;
@@ -511,8 +514,6 @@ BMP_draw_mini_string (BMP *bmp, const char *string, int x, int y, RGB color)
 {
 	char ch;
 	const char *s;
-	unsigned long r,g,b;
-	//unsigned long light, dark;
 
 	if (!bmp || !string)
 		return 0;
@@ -520,6 +521,9 @@ BMP_draw_mini_string (BMP *bmp, const char *string, int x, int y, RGB color)
 		return 0;
 	//----------
 
+#if 0
+	unsigned long r,g,b;
+	unsigned long light, dark;
 	r = 0xff & (color >> 16);
 	g = 0xff & (color >> 8);
 	b = 0xff & color;
@@ -529,7 +533,7 @@ BMP_draw_mini_string (BMP *bmp, const char *string, int x, int y, RGB color)
 	r /= 4;
 	g /= 4;
 	b /= 4;
-	//light = b | (g << 8) | (r << 16);
+	light = b | (g << 8) | (r << 16);
 
 	r = 0xff & (color >> 16);
 	g = 0xff & (color >> 8);
@@ -540,7 +544,8 @@ BMP_draw_mini_string (BMP *bmp, const char *string, int x, int y, RGB color)
 	r /= 2;
 	g /= 2;
 	b /= 2;
-	//dark = b | (g << 8) | (r << 16);
+	dark = b | (g << 8) | (r << 16);
+#endif
 
 	const char **mini_chars = get_minifont_chars ();
 
@@ -556,7 +561,7 @@ BMP_draw_mini_string (BMP *bmp, const char *string, int x, int y, RGB color)
 			continue;
 		if (ch > ' ' && ch <= 'z')
 			ix = MINI_HEIGHT * (ch - 33);
-
+		
 		if (ix >= 0) {
 			int i;
 
@@ -619,7 +624,7 @@ BMP_mini_string_width (const char *string)
 			continue;
 		if (ch > ' ' && ch <= 'z')
 			ix = MINI_HEIGHT * (ch - 33);
-
+		
 		if (ix >= 0) {
 			int max_w = 0;
 			int j;
@@ -665,9 +670,9 @@ BMP_draw_narrow_numbers (BMP *bmp, const char *string, int x, int y, RGB color)
 		else
 		if (ch == '.')
 			ix = 10;
-
+		
 		ix *= NARROW_HEIGHT;
-
+		
 		if (ix >= 0) {
 			int i;
 			int width = strlen (narrow_nums [ix]);
@@ -678,7 +683,7 @@ BMP_draw_narrow_numbers (BMP *bmp, const char *string, int x, int y, RGB color)
 				const char *s2 = narrow_nums [ix + i];
 				while ((ch2 = *s2++)) {
 					if (ch2 == '#') {
-						BMP_point (bmp,
+						BMP_point (bmp, 
 							x+j, y+i, color);
 					}
 					j++;
@@ -714,7 +719,7 @@ BMP_getpixel (BMP *bmp, int x, int y)
  * Name:	BMP_write
  * Purpose:	Writes image to BMP file.
  *-------------------------------------------------------------------------*/
-int
+int 
 BMP_write (const BMP* bmp, const char *path)
 {
 	FILE *f;

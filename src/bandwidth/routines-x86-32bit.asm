@@ -1,6 +1,6 @@
 ;============================================================================
-;  bandwidth 0.32, a benchmark to estimate memory transfer bandwidth.
-;  Copyright (C) 2005-2014 by Zack T Smith.
+;  bandwidth, a benchmark to estimate memory transfer bandwidth.
+;  Copyright (C) 2005-2015 by Zack T Smith.
 ;
 ;  This program is free software; you can redistribute it and/or modify
 ;  it under the terms of the GNU General Public License as published by
@@ -18,10 +18,6 @@
 ;
 ;  The author may be reached at veritas@comcast.net.
 ;=============================================================================
-
-%ifidn __OUTPUT_FORMAT__,elf32
-section .note.GNU-stack noalloc noexec nowrite progbits
-%endif
 
 bits	32
 cpu	ia64
@@ -882,19 +878,25 @@ _ReaderSSE2_bypass:
 	mov	eax, [esp+4+8]
 
 .L2:
+        prefetchnta     [eax]
 	movntdqa	xmm0, [eax]	; Read aligned @ 16-byte boundary.
 	movntdqa	xmm0, [16+eax]
 	movntdqa	xmm0, [32+eax]
 	movntdqa	xmm0, [48+eax]
+
+        prefetchnta     [eax+64]
 	movntdqa	xmm0, [64+eax]
 	movntdqa	xmm0, [80+eax]
 	movntdqa	xmm0, [96+eax]
 	movntdqa	xmm0, [112+eax]
 
+        prefetchnta     [eax+128]
 	movntdqa	xmm0, [128+eax]
 	movntdqa	xmm0, [144+eax]
 	movntdqa	xmm0, [160+eax]
 	movntdqa	xmm0, [176+eax]
+
+        prefetchnta     [eax+192]
 	movntdqa	xmm0, [192+eax]
 	movntdqa	xmm0, [208+eax]
 	movntdqa	xmm0, [224+eax]
@@ -934,10 +936,12 @@ _ReaderSSE2_128bytes_bypass:
 	mov	eax, [esp+4+8]
 
 .L2:
+        prefetchnta     [eax]
 	movntdqa	xmm0, [eax]	; Read aligned @ 16-byte boundary.
 	movntdqa	xmm0, [16+eax]
 	movntdqa	xmm0, [32+eax]
 	movntdqa	xmm0, [48+eax]
+        prefetchnta     [eax+64]
 	movntdqa	xmm0, [64+eax]
 	movntdqa	xmm0, [80+eax]
 	movntdqa	xmm0, [96+eax]
@@ -1547,9 +1551,13 @@ _RandomReaderSSE2_bypass:
 	mov	edx, [edx + 4*ebx]
 
 ; Read aligned @ 16-byte boundary.
+        prefetchnta     [edx+192]
 	movntdqa	xmm0, [240+edx]
+        prefetchnta     [edx]
 	movntdqa	xmm0, [edx]
+        prefetchnta     [edx+128]
 	movntdqa	xmm0, [128+edx]
+        prefetchnta     [edx+64]
 	movntdqa	xmm0, [64+edx]
 	movntdqa	xmm0, [208+edx]
 	movntdqa	xmm0, [112+edx]
@@ -2823,7 +2831,6 @@ _CopyAVX:
 
 .L1:
 	mov	eax, edx
-	prefetchnta	[esi]
 
 .L2:
 	vmovdqa	ymm0, [esi]
@@ -2904,7 +2911,6 @@ _CopySSE:
 	mov	eax, edx
 
 .L2:
-	prefetchnta	[esi]
 	movdqa	xmm0, [esi]
 	movdqa	xmm1, [16+esi]
 	movdqa	xmm2, [32+esi]

@@ -19,12 +19,13 @@
   The author may be reached at veritas@comcast.net.
  *===========================================================================*/
 
-#ifndef _SUPERSIMPLEGRAPHING_H
-#define _SUPERSIMPLEGRAPHING_H
+#ifndef _BMPGRAPHING_H
+#define _BMPGRAPHING_H
 
 #include <stdbool.h>
+#include <stdint.h>
 
-#define SSG_RELEASE "0.2"
+#define BMPGRAPHING_RELEASE "0.3"
 
 #define XVALUE_MIN (15)
 #define XVALUE_MAX (28)
@@ -35,8 +36,8 @@ enum {
 	DATUM_COLOR=2,
 };
 
-typedef long Coordinate;
-typedef long long Value;
+typedef uint32_t Coordinate;
+typedef uint64_t Value;
 
 enum {
 	MODE_X_AXIS_LINEAR = 0,
@@ -77,7 +78,7 @@ typedef struct {
 extern void BMPGraphing_set_title (BMPGraph*, const char *);
 extern void BMPGraphing_draw_labels_log2 (BMPGraph*);
 extern BMPGraph *BMPGraphing_new (int w, int h, int x_axis_mode);
-extern void BMPGraphing_new_line (BMPGraph *, char *str, RGB color);
+extern void BMPGraphing_new_line (BMPGraph *, const char *str, RGB color);
 extern void BMPGraphing_add_point (BMPGraph *, Value x, Value y);
 extern void BMPGraphing_plot_log2 (BMPGraph *, Value x, Value y);
 extern void BMPGraphing_plot_linear (BMPGraph *, Value x, Value y, Value max_amt);
