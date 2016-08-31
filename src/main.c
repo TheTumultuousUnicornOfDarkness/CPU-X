@@ -232,7 +232,8 @@ static int remove_null_ptr(Labels *data)
 static void dump_data(Labels *data)
 {
 	int i, j, k = 0;
-	const char *col = opts->color ? BOLD_BLUE : "";
+	const char *col_start = opts->color ? BOLD_BLUE : "";
+	const char *col_end   = opts->color ? DEFAULT   : "";
 	const struct Arrays { char **array_name, **array_value; int last; } a[] =
 	{
 		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                     },
@@ -267,13 +268,13 @@ static void dump_data(Labels *data)
 	MSG_VERBOSE(_("Dumping data..."));
 	for(i = 0; a[i].array_name != NULL; i++)
 	{
-		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col, data->objects[i], DEFAULT);
+		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col_start, data->objects[i], col_end);
 		for(j = 0; j < a[i].last; j++)
 		{
 			if(f[k].tab_nb == i && f[k].lab_nb == j)
 			{
-				MSG_STDOUT("\n\t%s***** %s *****%s", col, (f[k].frame_nb >= 0) ?
-				                                 data->objects[f[k].frame_nb] : "*", DEFAULT);
+				MSG_STDOUT("\n\t%s***** %s *****%s", col_start, (f[k].frame_nb >= 0) ?
+				                                 data->objects[f[k].frame_nb] : "*", col_end);
 				k++;
 			}
 			MSG_STDOUT("%16s: %s", a[i].array_name[j], a[i].array_value[j]);
@@ -755,7 +756,10 @@ char *msg_newline(char *color, char *str)
 {
 	static char *buff;
 
-	asprintf(&buff, "%s%s%s\n", opts->color ? color : DEFAULT, str, DEFAULT);
+	if(opts->color)
+		asprintf(&buff, "%s%s%s\n", color, str, DEFAULT);
+	else
+		asprintf(&buff, "%s\n",     str);
 
 	return buff;
 }
