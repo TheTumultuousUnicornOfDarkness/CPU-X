@@ -46,7 +46,7 @@
 #define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define MSG_STDOUT(fmt, ...)  fprintf(stdout, msg_newline(DEFAULT, fmt),     ##__VA_ARGS__)
 #define MSG_STDERR(fmt, ...)  fprintf(stderr, msg_newline(DEFAULT, fmt),     ##__VA_ARGS__)
-#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, msg_newline(BOLD_GREEN, fmt),  ##__VA_ARGS__) : fprintf(stdout, "%c", '\0')
+#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, msg_newline(BOLD_GREEN, fmt),  ##__VA_ARGS__) : 0
 #define MSG_WARNING(fmt, ...) fprintf(stdout, msg_newline(BOLD_YELLOW, fmt), ##__VA_ARGS__)
 #define MSG_ERROR(fmt, ...)   fprintf(stderr, msg_error(BOLD_RED, BASEFILE, __LINE__, fmt), ##__VA_ARGS__)
 #define _(msg)                gettext(msg)
