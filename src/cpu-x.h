@@ -251,6 +251,9 @@ char *msg_error(char *color, char *file, int line, char *str);
 	   iasprintf(&buff, "foo %s %s", NULL, "bar") will allocate "foo bar" */
 int iasprintf(char **str, const char *fmt, ...);
 
+/* Try to free given variables */
+void free_multi(void *var, ...);
+
 /* Check if a command exists */
 bool command_exists(char *in);
 

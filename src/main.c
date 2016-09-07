@@ -392,7 +392,6 @@ static int update_prg(void)
 	opt = opts->verbose ? strdup("v") : strdup("");
 	asprintf(&tmp, "tar -zx%sf %s.tar.gz", opt, file);
 	system(tmp);
-	free(opt);
 
 	/* Rename new binary */
 	MSG_VERBOSE(_("Applying new version..."));
@@ -425,8 +424,7 @@ static int update_prg(void)
 	if(err > 1)
 		MSG_ERROR(_("an error occurred while deleting temporary files"));
 
-	free(file);
-	free(tmp);
+	free_multi(file, tmp, opt);
 #endif /* PORTABLE_BINARY */
 	return err;
 }
@@ -532,6 +530,7 @@ static void menu(int argc, char *argv[])
 		asprintf(&shortopts, "%s%c%s", shortopts, o[i].short_opt, o[i].need_arg ? ":" : "" );
 		j++;
 	}
+	free(shortopts);
 
 	/* Set the default mode */
 	if(HAS_GTK && (getenv("DISPLAY") != NULL || getenv("WAYLAND_DISPLAY") != NULL))
@@ -631,9 +630,7 @@ void sighandler(int signum)
 	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
 
 	/* Stop program */
-	free(bt_syms);
-	free(cmd);
-	free(buff);
+	free_multi(bt_syms, cmd, buff, bt);
 	signal(signum, SIG_DFL);
 	kill(getpid(), signum);
 }
@@ -874,12 +871,30 @@ int iasprintf(char **str, const char *fmt, ...)
 		else if(print)
 			ret = asprintf(str, "%s%c", *str, fmt[i]);
 	}
-	va_end(aptr);
 
-	if(tmp_fmt != NULL)
-		free(tmp_fmt);
+	va_end(aptr);
+	free(tmp_fmt);
 
 	return ret;
+}
+
+/* Try to free given variables */
+void free_multi(void *var, ...)
+{
+	void *ptr, *sentinel = NULL;
+	va_list aptr;
+
+	va_start(aptr, var);
+	free(var);
+
+	while((ptr = va_arg(aptr, void *)) != NULL && ptr != sentinel)
+	{
+		if(sentinel == NULL)
+			sentinel = ptr;
+		free(ptr);
+	}
+
+	va_end(aptr);
 }
 
 /* Check if a command exists */
@@ -987,6 +1002,9 @@ void labels_free(Labels *data)
 	};
 
 	MSG_VERBOSE(_("Freeing memory"));
+	for(i = 0; i < LASTOBJ; i++)
+		free(data->objects[i]);
+
 	for(i = 0; a[i].array_name != NULL; i++)
 	{
 		for(j = 0; j < a[i].last; j++)
@@ -997,4 +1015,7 @@ void labels_free(Labels *data)
 			a[i].array_value[j] = NULL;
 		}
 	}
+
+	for(i = 0; i < LASTABOUT; i++)
+		free(data->tab_about[i]);
 }

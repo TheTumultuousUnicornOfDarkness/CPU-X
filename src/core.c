@@ -803,8 +803,7 @@ static int find_devices(Labels *data)
 	/* Close everything */
 	data->gpu_count = nbgpu;
 	pci_cleanup(pacc);
-	free(vendor);
-	free(product);
+	free_multi(vendor, product, gpu_vendors[CURRENT]);
 
 	if(!chipset)
 		MSG_ERROR(_("failed to find chipset vendor and model"));
@@ -845,6 +844,8 @@ static int gpu_temperature(Labels *data)
 			closedir(dp);
 		}
 	}
+
+	free_multi(buff, drm_hwmon, drm_temp);
 
 	if(temp)
 	{
@@ -896,6 +897,7 @@ static int system_static(Labels *data)
 	iasprintf(&data->tab_system[VALUE][DISTRIBUTION], tmp);
 #endif /* __linux__ */
 
+	free(buff);
 	return err;
 }
 
@@ -1151,10 +1153,9 @@ static int cputab_temp_fallback(Labels *data)
 		if(val <= 0)
 			use_sysfs = true;
 	}
-
 #if HAS_LIBCPUID
 	bool module_loaded = false;
-	char *file;
+	char *file = NULL;
 
 	/* If 'sensors' is not configured, try by using sysfs */
 	if(use_sysfs)
@@ -1176,7 +1177,10 @@ static int cputab_temp_fallback(Labels *data)
 		if(module_loaded && !fopen_to_str(file, &buff))
 			val = atof(buff) / 1000;
 	}
+
+	free(file);
 #endif /* HAS_LIBCPUID */
+	free_multi(command, buff);
 
 	if(val > 0)
 	{
@@ -1245,6 +1249,7 @@ static int cpu_multipliers_fallback(Labels *data)
 		min_mult = round(min_freq / data->bus_freq);
 		max_mult = round(max_freq / data->bus_freq);
 		init     = true;
+		free_multi(min_freq_str, max_freq_str, cpuinfo_min_file, cpuinfo_max_file);
 	}
 #endif /* __linux__ */
 	if(min_mult <= 0 || max_mult <= 0)
@@ -1277,6 +1282,7 @@ static int motherboardtab_fallback(Labels *data)
 		err += fopen_to_str(file, &buff);
 		iasprintf(&data->tab_motherboard[VALUE][i], buff);
 	}
+	free_multi(file, buff);
 #endif /* __linux__ */
 	if(err)
 		MSG_ERROR(_("failed to retrieve motherboard informations (fallback mode)"));
