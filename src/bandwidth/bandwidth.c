@@ -2105,8 +2105,10 @@ int bandwidth(void *p_data)
 		{ -1,                NULL,                                  0x0,                false,       false, NULL,     0,           false }
 	};
 
-	if(!BANDWIDTH_MODE && HAS_LIBCPUID)
+#if HAS_LIBCPUID
+	if(!BANDWIDTH_MODE)
 		goto fast_initialization;
+#endif /* HAS_LIBCPUID */
 
 	static char family [17];
 	get_cpuid_family (family);
