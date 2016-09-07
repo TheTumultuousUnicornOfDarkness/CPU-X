@@ -913,18 +913,18 @@ bool command_exists(char *in)
 /* Open a file and put its content in buffer */
 int fopen_to_str(char *file, char **buffer)
 {
+	char tmp[MAXSTR];
 	FILE *f = NULL;
-
-	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
-		goto error;
 
 	if((f = fopen(file, "r")) == NULL)
 		goto error;
 
-	if(fgets(*buffer, MAXSTR, f) == NULL)
+	if(fgets(tmp, MAXSTR, f) == NULL)
 		goto error;
 
-	(*buffer)[strlen(*buffer) - 1] = '\0';
+	tmp[strlen(tmp) - 1] = '\0';
+	asprintf(buffer, tmp);
+
 	return fclose(f);
 
 error:
@@ -935,23 +935,25 @@ error:
 /* Open a pipe and put its content in buffer */
 int popen_to_str(char *command, char **buffer)
 {
-	char *test_command;
+	bool command_ok;
+	char tmp[MAXSTR];
+	char *test_command = strdup(command);
 	FILE *p = NULL;
 
-	if((*buffer = malloc(MAXSTR * sizeof(char))) == NULL)
-		goto error;
-
-	asprintf(&test_command, "%s", command);
-	if(!command_exists(strtok(test_command, " ")))
+	command_ok = command_exists(strtok(test_command, " "));
+	free(test_command);
+	if(!command_ok)
 		return -1;
 
 	if((p = popen(command, "r")) == NULL)
 		goto error;
 
-	if(fgets(*buffer, MAXSTR, p) == NULL)
+	if(fgets(tmp, MAXSTR, p) == NULL)
 		goto error;
 
-	(*buffer)[strlen(*buffer) - 1] = '\0';
+	tmp[strlen(tmp) - 1] = '\0';
+	asprintf(buffer, tmp);
+
 	return pclose(p);
 
 error:
