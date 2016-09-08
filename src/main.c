@@ -173,7 +173,6 @@ static void labels_setname(Labels *data)
 	for(i = PRIMESLOWSCORE; i < PARAMDURATION; i += BENCHFIELDS)
 	{
 		asprintf(&data->tab_bench[NAME][PRIMESLOWSCORE  + i], _("Score"));
-		asprintf(&data->tab_bench[VALUE][PRIMESLOWSCORE + i], _("Not started"));
 		asprintf(&data->tab_bench[NAME][PRIMESLOWRUN    + i], _("Run"));
 	}
 
@@ -519,7 +518,8 @@ static void version(void)
 static void menu(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_arg = -1;
-	char *shortopts = { "" };
+	char *tmp_opt      = NULL;
+	char shortopts[32] = "";
 	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
 
 	/* Filling longopts structure */
@@ -528,10 +528,11 @@ static void menu(int argc, char *argv[])
 		while(!o[i].has_mod)
 			i++;
 		longopts[j] = (struct option) { .name = o[i].long_opt, .has_arg = o[i].need_arg, .flag = 0, .val = o[i].short_opt };
-		asprintf(&shortopts, "%s%c%s", shortopts, o[i].short_opt, o[i].need_arg ? ":" : "" );
+		asprintf(&tmp_opt, "%c%s", o[i].short_opt, o[i].need_arg ? ":" : "");
+		strcat(shortopts, tmp_opt);
+		free(tmp_opt);
 		j++;
 	}
-	free(shortopts);
 
 	/* Set the default mode */
 	if(HAS_GTK && (getenv("DISPLAY") != NULL || getenv("WAYLAND_DISPLAY") != NULL))
@@ -957,6 +958,10 @@ void labels_free(Labels *data)
 			a[i].array_value[j] = NULL;
 		}
 	}
+
+	for(i = 0; i < data->w_data->test_count; i++)
+		free(data->w_data->test_name[i]);
+	free(data->w_data->test_name);
 
 	for(i = 0; i < LASTABOUT; i++)
 		free(data->tab_about[i]);

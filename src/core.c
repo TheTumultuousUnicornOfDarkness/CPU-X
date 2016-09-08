@@ -279,6 +279,7 @@ static void print_hex(char **string, int32_t value)
 static int call_libcpuid_static(Labels *data)
 {
 	int i, j = 0;
+	char tmp[MAXSTR] = "";
 	const char *fmt = { _("%2d-way set associative, %2d-byte line size") };
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
@@ -341,10 +342,7 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Cache level 1 (data) */
 	if(datanr.l1_data_cache > 0)
-	{
-		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
-		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, "%s, %2d-way", data->tab_cpu[VALUE][LEVEL1D], datanr.l1_assoc);
-	}
+		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_data_cache, datanr.l1_assoc);
 
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
@@ -401,12 +399,12 @@ static int call_libcpuid_static(Labels *data)
 	for(i = 0; intructions[i].flag != NUM_CPU_FEATURES; i++)
 	{
 		if(datanr.flags[intructions[i].flag])
-			casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s%s", data->tab_cpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
+			strncat(tmp, intructions[i].intrstr, MAXSTR);
 	}
 
 	/* Add string "HT" in CPU Intructions label (if enabled) */
 	if(datanr.num_cores < datanr.num_logical_cpus)
-		casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, HT", data->tab_cpu[VALUE][INSTRUCTIONS]);
+		strncat(tmp, ", HT", MAXSTR);
 
 	/* Add string "64-bit" in CPU Intructions label (if supported) */
 	if(datanr.flags[CPU_FEATURE_LM])
@@ -414,15 +412,16 @@ static int call_libcpuid_static(Labels *data)
 		switch(data->l_data->cpu_vendor_id)
 		{
 			case VENDOR_INTEL:
-				casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, Intel 64", data->tab_cpu[VALUE][INSTRUCTIONS]);
+				strncat(tmp, ", Intel64", MAXSTR);
 				break;
 			case VENDOR_AMD:
-				casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, AMD64", data->tab_cpu[VALUE][INSTRUCTIONS]);
+				strncat(tmp, ", AMD64",   MAXSTR);
 				break;
 			default:
-				casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, 64-bit", data->tab_cpu[VALUE][INSTRUCTIONS]);
+				strncat(tmp, ", 64-bit",  MAXSTR);
 		}
 	}
+	casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, tmp);
 
 	return 0;
 }
@@ -499,6 +498,7 @@ static int call_libcpuid_msr(Labels *data)
 	/* Base clock */
 	if(bclk != CPU_INVALID_VALUE)
 	{
+		free(data->tab_cpu[VALUE][BUSSPEED]);
 		data->bus_freq = (double) bclk / 100;
 		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
@@ -747,9 +747,10 @@ static int find_devices(Labels *data)
 	int i, nbgpu = 0, chipset = 0;
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	char namebuf[MAXSTR], *vendor, *product, *drivername;
+	char namebuf[MAXSTR];
+	char *vendor = NULL, *product = NULL, *drivername = NULL;
 	enum Vendors { CURRENT = 3, LASTVENDOR };
-	char *gpu_vendors[LASTVENDOR] = { "AMD", "Intel", "NVIDIA" };
+	char *gpu_vendors[LASTVENDOR] = { "AMD", "Intel", "NVIDIA", NULL };
 
 
 	MSG_VERBOSE(_("Finding devices"));
@@ -767,6 +768,7 @@ static int find_devices(Labels *data)
 	/* Iterate over all devices */
 	for(dev = pacc->devices; dev; dev = dev->next)
 	{
+		free_multi(vendor, product, gpu_vendors[CURRENT]);
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
 		asprintf(&vendor,  "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
 		asprintf(&product, "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
@@ -834,6 +836,7 @@ static int gpu_temperature(Labels *data)
 		{
 			while((dir = readdir(dp)) != NULL)
 			{
+				free(drm_temp);
 				asprintf(&drm_temp, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name);
 				if(!access(drm_temp, R_OK) && !fopen_to_str(drm_temp, &buff))
 				{
@@ -863,7 +866,6 @@ static int gpu_temperature(Labels *data)
 static int system_static(Labels *data)
 {
 	int err = 0;
-	char *buff = NULL;
 	struct utsname name;
 
 	MSG_VERBOSE(_("Identifying running system"));
@@ -877,13 +879,12 @@ static int system_static(Labels *data)
 	}
 
 	/* Compiler label */
-	err += popen_to_str("cc --version", &buff);
-	casprintf(&data->tab_system[VALUE][COMPILER], false, buff);
+	err += popen_to_str("cc --version", &data->tab_system[VALUE][COMPILER]);
 
 #ifdef __linux__
 	/* Distribution label */
-	err += popen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &buff);
-	casprintf(&data->tab_system[VALUE][DISTRIBUTION], false, buff);
+	err += popen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &data->tab_system[VALUE][DISTRIBUTION]);
+
 #else
 	char tmp[MAXSTR];
 	size_t len = sizeof(tmp);
@@ -897,7 +898,6 @@ static int system_static(Labels *data)
 	casprintf(&data->tab_system[VALUE][DISTRIBUTION], false, tmp);
 #endif /* __linux__ */
 
-	free(buff);
 	return err;
 }
 

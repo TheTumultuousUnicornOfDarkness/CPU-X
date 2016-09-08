@@ -1152,19 +1152,6 @@ static void dmi_processor_frequency(const u8 *p)
 		printf("Unknown");
 }
 
-static char *dmi_processor_frequency_str(const u8 *p)
-{
-	u16 code = WORD(p);
-	static char freq[10];
-
-	if (code)
-		sprintf(freq, "%u MHz", code);
-	else
-		printf(freq, "Unknown");
-
-	return freq;
-}
-
 /* code is assumed to be a 3-bit value */
 static const char *dmi_processor_status(u8 code)
 {
@@ -3453,7 +3440,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			{
 				casprintf(dmidata[DMI_CPU][PROC_PACKAGE], false, "%s", dmi_string(h, data[0x04]));
 				if(*dmidata[DMI_CPU][PROC_BUS] == NULL)
-					casprintf(dmidata[DMI_CPU][PROC_BUS], false, "%s", dmi_processor_frequency_str(data + 0x12));
+					casprintf(dmidata[DMI_CPU][PROC_BUS], true, "%u MHz", WORD(data + 0x12));
 			}
 			else
 			{
