@@ -753,8 +753,9 @@ int main(int argc, char *argv[])
 /* Add a newline for given string (used by MSG_XXX macros) */
 char *msg_newline(char *color, char *str)
 {
-	static char *buff;
+	static char *buff = NULL;
 
+	free(buff);
 	if(opts->color)
 		asprintf(&buff, "%s%s%s\n", color, str, DEFAULT);
 	else
@@ -766,8 +767,9 @@ char *msg_newline(char *color, char *str)
 /* Add a newline and more informations for given string (used by MSG_ERROR macro) */
 char *msg_error(char *color, char *file, int line, char *str)
 {
-	static char *buff;
+	static char *buff = NULL;
 
+	free(buff);
 	if(errno)
 		asprintf(&buff, "%s%s:%s:%i: %s (%s)%s\n", opts->color ? color : DEFAULT, PRGNAME, file, line, str, strerror(errno), DEFAULT);
 	else

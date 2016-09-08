@@ -659,7 +659,10 @@ static int cpu_usage(Labels *data)
 		asprintf(&data->tab_cpu[VALUE][USAGE], "%6.2f %%", loadavg * 100);
 
 	for(i = 0; i <= data->cpu_count; i++)
+	{
 		memcpy(pre[i], new[i], LASTSTAT * sizeof(long));
+		free(new[i]);
+	}
 	free(new);
 	return 0;
 }
@@ -1198,13 +1201,14 @@ static int cputab_temp_fallback(Labels *data)
 static int cputab_volt_fallback(Labels *data)
 {
 	double val = 0.0;
-	char *command, *buff;
+	char *command, *buff = NULL;
 
 	MSG_VERBOSE(_("Retrieving CPU voltage in fallback mode"));
 	setlocale(LC_ALL, "C");
 	asprintf(&command, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'");
 	if(!popen_to_str(command, &buff))
 		val = atof(buff);
+	free_multi(command, buff);
 	setlocale(LC_ALL, "");
 
 	if(val > 0)
@@ -1271,18 +1275,18 @@ static int motherboardtab_fallback(Labels *data)
 	int err = 0;
 #ifdef __linux__
 	int i;
-	char *file, *buff;
+	char *file = NULL;
 	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 
 	MSG_VERBOSE(_("Retrieving motherboard informations in fallback mode"));
 	/* Tab Motherboard */
 	for(i = 0; id[i] != NULL; i++)
 	{
+		free(file);
 		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
-		err += fopen_to_str(file, &buff);
-		casprintf(&data->tab_motherboard[VALUE][i], false, buff);
+		err += fopen_to_str(file, &data->tab_motherboard[VALUE][i]);
 	}
-	free_multi(file, buff);
+	free(file);
 #endif /* __linux__ */
 	if(err)
 		MSG_ERROR(_("failed to retrieve motherboard informations (fallback mode)"));
