@@ -300,15 +300,15 @@ static int call_libcpuid_static(Labels *data)
 		opts->selected_core = 0;
 
 	/* Basically fill CPU tab */
-	iasprintf(&data->tab_cpu[VALUE][CODENAME],      datanr.cpu_codename);
-	iasprintf(&data->tab_cpu[VALUE][SPECIFICATION], datanr.brand_str);
+	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, datanr.cpu_codename);
+	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, datanr.brand_str);
 	print_hex(&data->tab_cpu[VALUE][FAMILY],        datanr.family);
 	print_hex(&data->tab_cpu[VALUE][EXTFAMILY],     datanr.ext_family);
 	print_hex(&data->tab_cpu[VALUE][MODEL],         datanr.model);
 	print_hex(&data->tab_cpu[VALUE][EXTMODEL],      datanr.ext_model);
 	print_hex(&data->tab_cpu[VALUE][STEPPING],      datanr.stepping);
-	iasprintf(&data->tab_cpu[VALUE][CORES],         "%d", datanr.num_cores);
-	iasprintf(&data->tab_cpu[VALUE][THREADS],       "%d", datanr.num_logical_cpus);
+	casprintf(&data->tab_cpu[VALUE][CORES],         true, "%d", datanr.num_cores);
+	casprintf(&data->tab_cpu[VALUE][THREADS],       true, "%d", datanr.num_logical_cpus);
 
 	/* Improve the CPU Vendor label */
 	const struct CpuVendor { char *standard; char *improved; cpu_vendor_t id; } cpuvendors[] =
@@ -326,10 +326,10 @@ static int call_libcpuid_static(Labels *data)
 		{ datanr.vendor_str, datanr.vendor_str,     VENDOR_UNKNOWN   }
 	};
 	for(i = 0; strcmp(cpuvendors[i].standard, datanr.vendor_str); i++);
-	iasprintf(&data->tab_cpu[VALUE][VENDOR], cpuvendors[i].improved);
+	casprintf(&data->tab_cpu[VALUE][VENDOR], false, cpuvendors[i].improved);
 	data->l_data->cpu_vendor_id = cpuvendors[i].id;
 
-	iasprintf(&data->tab_cpu[VALUE][TECHNOLOGY], "%i nm", cpu_technology(data));
+	casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], true, "%i nm", cpu_technology(data));
 
 	/* Remove training spaces in Specification label */
 	for(i = 1; datanr.brand_str[i] != '\0'; i++)
@@ -342,39 +342,39 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 1 (data) */
 	if(datanr.l1_data_cache > 0)
 	{
-		iasprintf(&data->tab_cpu[VALUE][LEVEL1D], "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
-		iasprintf(&data->tab_cpu[VALUE][LEVEL1D], "%s, %2d-way", data->tab_cpu[VALUE][LEVEL1D], datanr.l1_assoc);
+		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, "%d x %4d KB", datanr.num_cores, datanr.l1_data_cache);
+		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, "%s, %2d-way", data->tab_cpu[VALUE][LEVEL1D], datanr.l1_assoc);
 	}
 
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
 	{
 		data->w_data->l1_size = datanr.l1_instruction_cache;
-		iasprintf(&data->tab_cpu[VALUE][LEVEL1I], "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
-		iasprintf(&data->tab_caches[VALUE][L1SIZE], data->tab_cpu[VALUE][LEVEL1I]);
-		iasprintf(&data->tab_caches[VALUE][L1DESCRIPTOR], fmt, datanr.l1_assoc, datanr.l1_cacheline);
+		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
+		casprintf(&data->tab_caches[VALUE][L1SIZE], false, data->tab_cpu[VALUE][LEVEL1I]);
+		casprintf(&data->tab_caches[VALUE][L1DESCRIPTOR], true, fmt, datanr.l1_assoc, datanr.l1_cacheline);
 	}
 
 	/* Cache level 2 */
 	if(datanr.l2_cache > 0)
 	{
 		data->w_data->l2_size = datanr.l2_cache;
-		iasprintf(&data->tab_cpu[VALUE][LEVEL2], "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
-		iasprintf(&data->tab_caches[VALUE][L2SIZE], data->tab_cpu[VALUE][LEVEL2]);
-		iasprintf(&data->tab_caches[VALUE][L2DESCRIPTOR], fmt, datanr.l2_assoc, datanr.l2_cacheline);
+		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
+		casprintf(&data->tab_caches[VALUE][L2SIZE], false, data->tab_cpu[VALUE][LEVEL2]);
+		casprintf(&data->tab_caches[VALUE][L2DESCRIPTOR], true, fmt, datanr.l2_assoc, datanr.l2_cacheline);
 	}
 
 	/* Cache level 3 */
 	if(datanr.l3_cache > 0)
 	{
 		data->w_data->l3_size = datanr.l3_cache;
-		iasprintf(&data->tab_cpu[VALUE][LEVEL3], "%9d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
-		iasprintf(&data->tab_caches[VALUE][L3SIZE], data->tab_cpu[VALUE][LEVEL3]);
-		iasprintf(&data->tab_caches[VALUE][L3DESCRIPTOR], fmt, datanr.l3_assoc, datanr.l3_cacheline);
+		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, "%9d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
+		casprintf(&data->tab_caches[VALUE][L3SIZE], false, data->tab_cpu[VALUE][LEVEL3]);
+		casprintf(&data->tab_caches[VALUE][L3DESCRIPTOR], true, fmt, datanr.l3_assoc, datanr.l3_cacheline);
 	}
 
 	if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
-		iasprintf(&data->tab_cpu[VALUE][SOCKETS], "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
+		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
 	/* Fill CPU Intructions label */
 	const struct CpuFlags { const cpu_feature_t flag; const char *intrstr; } intructions[] =
@@ -401,12 +401,12 @@ static int call_libcpuid_static(Labels *data)
 	for(i = 0; intructions[i].flag != NUM_CPU_FEATURES; i++)
 	{
 		if(datanr.flags[intructions[i].flag])
-			iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s%s", data->tab_cpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
+			casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s%s", data->tab_cpu[VALUE][INSTRUCTIONS], intructions[i].intrstr);
 	}
 
 	/* Add string "HT" in CPU Intructions label (if enabled) */
 	if(datanr.num_cores < datanr.num_logical_cpus)
-		iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s, HT", data->tab_cpu[VALUE][INSTRUCTIONS]);
+		casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, HT", data->tab_cpu[VALUE][INSTRUCTIONS]);
 
 	/* Add string "64-bit" in CPU Intructions label (if supported) */
 	if(datanr.flags[CPU_FEATURE_LM])
@@ -414,13 +414,13 @@ static int call_libcpuid_static(Labels *data)
 		switch(data->l_data->cpu_vendor_id)
 		{
 			case VENDOR_INTEL:
-				iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s, Intel 64", data->tab_cpu[VALUE][INSTRUCTIONS]);
+				casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, Intel 64", data->tab_cpu[VALUE][INSTRUCTIONS]);
 				break;
 			case VENDOR_AMD:
-				iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s, AMD64", data->tab_cpu[VALUE][INSTRUCTIONS]);
+				casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, AMD64", data->tab_cpu[VALUE][INSTRUCTIONS]);
 				break;
 			default:
-				iasprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], "%s, 64-bit", data->tab_cpu[VALUE][INSTRUCTIONS]);
+				casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, "%s, 64-bit", data->tab_cpu[VALUE][INSTRUCTIONS]);
 		}
 	}
 
@@ -433,7 +433,7 @@ static int call_libcpuid_cpuclock(Labels *data)
 	/* CPU frequency */
 	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU clock"));
 	data->cpu_freq = cpu_clock();
-	iasprintf(&data->tab_cpu[VALUE][CORESPEED], "%d MHz", data->cpu_freq);
+	casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
 
 	return (data->cpu_freq <= 0);
 }
@@ -490,17 +490,17 @@ static int call_libcpuid_msr(Labels *data)
 
 	/* CPU Voltage */
 	if(voltage != CPU_INVALID_VALUE)
-		iasprintf(&data->tab_cpu[VALUE][VOLTAGE],     "%.3f V", (double) voltage / 100);
+		casprintf(&data->tab_cpu[VALUE][VOLTAGE],     true, "%.3f V", (double) voltage / 100);
 
 	/* CPU Temperature */
 	if(temp != CPU_INVALID_VALUE)
-		iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%i°C", temp);
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%i°C", temp);
 
 	/* Base clock */
 	if(bclk != CPU_INVALID_VALUE)
 	{
 		data->bus_freq = (double) bclk / 100;
-		iasprintf(&data->tab_cpu[VALUE][BUSSPEED],    "%.2f MHz", data->bus_freq);
+		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
 
 #ifdef HAVE_LIBCPUID_0_3_0
@@ -514,10 +514,10 @@ static int call_libcpuid_msr(Labels *data)
 	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE && cur_mult > 0.0)
 	{
 		if(max_mult / 100 < 10)
-			iasprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.1f-%.1f)",
+			casprintf(&data->tab_cpu[VALUE][MULTIPLIER], true, "x%.1f (%.1f-%.1f)",
 			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
 		else
-			iasprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)",
+			casprintf(&data->tab_cpu[VALUE][MULTIPLIER], true, "x%.1f (%.0f-%.0f)",
 			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
 	}
 #endif /* HAVE_LIBCPUID_0_3_0 */
@@ -692,7 +692,7 @@ static int call_bandwidth(Labels *data)
 
 	/* Speed labels */
 	for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
-		iasprintf(&data->tab_caches[VALUE][i], "%.2f MB/s", (double) data->w_data->speed[(i - L1SPEED) / CACHEFIELDS] / 10);
+		casprintf(&data->tab_caches[VALUE][i], true, "%.2f MB/s", (double) data->w_data->speed[(i - L1SPEED) / CACHEFIELDS] / 10);
 
 	return err;
 }
@@ -775,8 +775,8 @@ static int find_devices(Labels *data)
 		/* Looking for chipset */
 		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)
 		{
-			iasprintf(&data->tab_motherboard[VALUE][CHIPVENDOR], vendor);
-			iasprintf(&data->tab_motherboard[VALUE][CHIPMODEL],  product);
+			casprintf(&data->tab_motherboard[VALUE][CHIPVENDOR], false, vendor);
+			casprintf(&data->tab_motherboard[VALUE][CHIPMODEL],  false, product);
 			chipset++;
 		}
 
@@ -792,10 +792,10 @@ static int find_devices(Labels *data)
 
 			drivername = find_driver(dev, namebuf);
 			if(drivername != NULL)
-				iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], _("%s (%s driver)"), gpu_vendors[i], drivername);
+				casprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], false, _("%s (%s driver)"), gpu_vendors[i], drivername);
 			else
-				iasprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], "%s", gpu_vendors[i]);
-			iasprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], "%s", product);
+				casprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], false, "%s", gpu_vendors[i]);
+			casprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], false, "%s", product);
 			nbgpu++;
 		}
 	}
@@ -849,7 +849,7 @@ static int gpu_temperature(Labels *data)
 
 	if(temp)
 	{
-		iasprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE], "%.2f°C", temp);
+		casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE], true, "%.2f°C", temp);
 		return 0;
 	}
 	else
@@ -872,29 +872,29 @@ static int system_static(Labels *data)
 		MSG_ERROR(_("failed to identify running system"));
 	else
 	{
-		iasprintf(&data->tab_system[VALUE][KERNEL],   "%s %s", name.sysname, name.release); /* Kernel label */
-		iasprintf(&data->tab_system[VALUE][HOSTNAME], "%s",    name.nodename); /* Hostname label */
+		casprintf(&data->tab_system[VALUE][KERNEL],   false, "%s %s", name.sysname, name.release); /* Kernel label */
+		casprintf(&data->tab_system[VALUE][HOSTNAME], false, "%s",    name.nodename); /* Hostname label */
 	}
 
 	/* Compiler label */
 	err += popen_to_str("cc --version", &buff);
-	iasprintf(&data->tab_system[VALUE][COMPILER], buff);
+	casprintf(&data->tab_system[VALUE][COMPILER], false, buff);
 
 #ifdef __linux__
 	/* Distribution label */
 	err += popen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &buff);
-	iasprintf(&data->tab_system[VALUE][DISTRIBUTION], buff);
+	casprintf(&data->tab_system[VALUE][DISTRIBUTION], false, buff);
 #else
 	char tmp[MAXSTR];
 	size_t len = sizeof(tmp);
 
 	/* Overwrite Kernel label */
 	err += sysctlbyname("kern.osrelease", &tmp, &len, NULL, 0);
-	iasprintf(&data->tab_system[VALUE][KERNEL], tmp);
+	casprintf(&data->tab_system[VALUE][KERNEL], false, tmp);
 
 	/* Distribution label */
 	err += sysctlbyname("kern.ostype", &tmp, &len, NULL, 0);
-	iasprintf(&data->tab_system[VALUE][DISTRIBUTION], tmp);
+	casprintf(&data->tab_system[VALUE][DISTRIBUTION], false, tmp);
 #endif /* __linux__ */
 
 	free(buff);
@@ -1121,7 +1121,7 @@ static int cpu_package_fallback(Labels *data)
 
 	if(found)
 	{
-		iasprintf(&data->tab_cpu[VALUE][PACKAGE], package[i].socket);
+		casprintf(&data->tab_cpu[VALUE][PACKAGE], false, package[i].socket);
 		return 0;
 	}
 	else
@@ -1184,7 +1184,7 @@ static int cputab_temp_fallback(Labels *data)
 
 	if(val > 0)
 	{
-		iasprintf(&data->tab_cpu[VALUE][TEMPERATURE], "%.2f°C", val);
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", val);
 		return 0;
 	}
 	else
@@ -1209,7 +1209,7 @@ static int cputab_volt_fallback(Labels *data)
 
 	if(val > 0)
 	{
-		iasprintf(&data->tab_cpu[VALUE][VOLTAGE], "%.3f V", val);
+		casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", val);
 		return 0;
 	}
 	else
@@ -1280,7 +1280,7 @@ static int motherboardtab_fallback(Labels *data)
 	{
 		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
 		err += fopen_to_str(file, &buff);
-		iasprintf(&data->tab_motherboard[VALUE][i], buff);
+		casprintf(&data->tab_motherboard[VALUE][i], false, buff);
 	}
 	free_multi(file, buff);
 #endif /* __linux__ */

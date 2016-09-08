@@ -242,14 +242,14 @@ char *msg_newline(char *color, char *str);
 /* Add a newline and more informations for given string (used by MSG_ERROR macro) */
 char *msg_error(char *color, char *file, int line, char *str);
 
-/* The improved asprintf:
- * - allocate an empty string if input string is null
- * - only call asprintf if there is no format in input string
- * - print "valid" args if input string is formatted, or skip them until next arg
-     E.g.: iasprintf(&buff, "%i nm", 32) will allocate "32 nm" string
-           iasprintf(&buff, "%i nm", 0) will allocate an empty string
-	   iasprintf(&buff, "foo %s %s", NULL, "bar") will allocate "foo bar" */
-int iasprintf(char **str, const char *fmt, ...);
+/* An asprintf-like function, but which can clean some parts of 'str' if 'clean_str' is true
+ * - It calls vasprintf if 'fmt' is a valid string
+ * - If 'clean_str' is true, it removes "unvalid args" from 'str' until next "valid arg"
+     E.g.: casprintf(&str, false, "%i nm", 0): str = "0 nm"
+           casprintf(&str, true,  "%i nm", 0): str = ""
+	   casprintf(&str, true,  "%i nm", 32): str = "32 nm"
+	   casprintf(&str, true,  "%i KB %i-way", -1, 12): str = "12-way" */
+int casprintf(char **str, bool clean_str, const char *fmt, ...);
 
 /* Try to free given variables */
 void free_multi(void *var, ...);

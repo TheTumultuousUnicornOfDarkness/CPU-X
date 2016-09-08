@@ -704,7 +704,7 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 static void print_paramduration(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	wclrline(win, LINE_9, info.tb, info.tm);
-	iasprintf(&data->tab_bench[VALUE][PARAMDURATION], _("%u mins"), data->b_data->duration);
+	casprintf(&data->tab_bench[VALUE][PARAMDURATION], true, _("%u mins"), data->b_data->duration);
 	mvwprintw2c(win, LINE_9, info.tb, "%13s: %s", data->tab_bench[NAME][PARAMDURATION], data->tab_bench[VALUE][PARAMDURATION]);
 	wrefresh(win);
 }
@@ -712,7 +712,7 @@ static void print_paramduration(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display Threads parameter in Bench tab */
 static void print_paramthreads(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	iasprintf(&data->tab_bench[VALUE][PARAMTHREADS], "%u", data->b_data->threads);
+	casprintf(&data->tab_bench[VALUE][PARAMTHREADS], true, "%u", data->b_data->threads);
 	mvwprintw2c(win, LINE_9, info.tm, "%13s: %s", data->tab_bench[NAME][PARAMTHREADS],  data->tab_bench[VALUE][PARAMTHREADS]);
 	wrefresh(win);
 }

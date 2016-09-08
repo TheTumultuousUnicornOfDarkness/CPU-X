@@ -28,6 +28,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
+#include <ctype.h>
 #include <errno.h>
 #include <signal.h>
 #include <execinfo.h>
@@ -221,7 +222,7 @@ static int remove_null_ptr(Labels *data)
 		for(j = 0; j < a[i].last; j++)
 		{
 			if(a[i].array[j] == NULL)
-				ret += iasprintf(&a[i].array[j], NULL);
+				ret += casprintf(&a[i].array[j], false, " ");
 		}
 	}
 
@@ -775,107 +776,46 @@ char *msg_error(char *color, char *file, int line, char *str)
 	return buff;
 }
 
-/* The improved asprintf:
- * - allocate an empty string if input string is null
- * - only call asprintf if there is no format in input string
- * - print "valid" args if input string is formatted, or skip them until next arg
-     E.g.: iasprintf(&buff, "%i nm", 32) will allocate "32 nm" string
-           iasprintf(&buff, "%i nm", 0) will allocate an empty string
-	   iasprintf(&buff, "foo %s %s", NULL, "bar") will allocate "foo bar" */
-int iasprintf(char **str, const char *fmt, ...)
+/* An asprintf-like function, but which can clean some parts of 'str' if 'clean_str' is true
+ * - It calls vasprintf if 'fmt' is a valid string
+ * - If 'clean_str' is true, it removes "unvalid args" from 'str' until next "valid arg"
+     E.g.: casprintf(&str, false, "%i nm", 0): str = "0 nm"
+           casprintf(&str, true,  "%i nm", 0): str = ""
+	   casprintf(&str, true,  "%i nm", 32): str = "32 nm"
+	   casprintf(&str, true,  "%i KB %i-way", -1, 12): str = "12-way" */
+int casprintf(char **str, bool clean_str, const char *fmt, ...)
 {
-	bool is_format = false, print = true;
-	int arg_int, i, ret = 0;
-	unsigned int arg_uint;
-	double arg_double;
-	char *arg_string, *tmp_fmt = NULL;
+	bool remove;
+	int i, j, ret;
 	va_list aptr;
 
-	/* Allocate an empty string */
-	*str    = malloc(1 * sizeof(char));
-	*str[0] = '\0';
-
-	/* Exit if input is null or without format */
 	if(fmt == NULL)
 		return 0;
-	else if(strchr(fmt, '%') == NULL)
-		return asprintf(str, "%s", fmt);
 
-	/* Read format, character by character */
 	va_start(aptr, fmt);
-	for(i = 0; fmt[i] != '\0'; i++)
+	ret = vasprintf(str, fmt, aptr);
+	va_end(aptr);
+
+	if(!clean_str)
+		return ret;
+
+	remove = (((*str)[0] == '0') && (atof(*str) == 0.0)) || (atoi(*str) < 0);
+	j      = remove ? -1 : 0;
+
+	for(i = 1; (*str)[i] != '\0'; i++)
 	{
-		is_format = fmt[i] == '%' || is_format;
-		if(is_format)
-		{
-			print = true;
-
-			/* Construct the new temporary format */
-			if(fmt[i] == '%')
-				asprintf(&tmp_fmt, "%%s%%");
-			else
-				asprintf(&tmp_fmt, "%s%c", tmp_fmt, fmt[i]);
-
-			/* Extract arg */
-			switch(fmt[i])
-			{
-				case '%':
-					break;
-				case '.':
-				case '0' ... '9':
-				case 'l':
-				case 'L':
-					break;
-				case 'x':
-				case 'X':
-				case 'd':
-				case 'i':
-					is_format = false;
-					arg_int = va_arg(aptr, int);
-					if(arg_int > 0)
-						ret = asprintf(str, tmp_fmt, *str, arg_int);
-					else
-						print = false;
-					break;
-				case 'u':
-					is_format = false;
-					arg_uint = va_arg(aptr, unsigned int);
-					if(arg_uint > 0)
-						ret = asprintf(str, tmp_fmt, *str, arg_uint);
-					else
-						print = false;
-					break;
-				case 'f':
-					is_format = false;
-					arg_double = va_arg(aptr, double);
-					if(arg_double > 0.0)
-						ret = asprintf(str, tmp_fmt, *str,  arg_double);
-					else
-						print = false;
-					break;
-				case 's':
-					is_format = false;
-					arg_string = va_arg(aptr, char *);
-					if(arg_string != NULL)
-						ret = asprintf(str, tmp_fmt, *str, arg_string);
-					else
-						print = false;
-					break;
-				default:
-					is_format = false;
-					asprintf(&tmp_fmt, "unknown format for iasprintf() '%%%c' (need to be implemented)", fmt[i]);
-					MSG_ERROR(tmp_fmt);
-					break;
-			}
-		}
-		else if(print)
-			ret = asprintf(str, "%s%c", *str, fmt[i]);
+		if(((((*str)[i] == '0') && (atof(*str + i) == 0.0)) || (atoi(*str + i) < 0)) && (isspace((*str)[i - 1])))
+			remove = true;
+		if(!remove)
+			(*str)[++j] = (*str)[i];
+		if((isspace((*str)[i])) && !(isdigit((*str)[i - 1])))
+			remove = false;
 	}
 
-	va_end(aptr);
-	free(tmp_fmt);
+	(*str)[++j] = '\0';
+	*str = realloc(*str, j + 1);
 
-	return ret;
+	return j;
 }
 
 /* Try to free given variables */

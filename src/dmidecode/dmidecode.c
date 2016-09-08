@@ -3294,10 +3294,10 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		case 0: /* 7.1 BIOS Information */
 			if(opt.flags & FLAG_CPU_X)
 			{
-				iasprintf(dmidata[DMI_MB][BRAND],       "%s", dmi_string(h, data[0x04]));
-				iasprintf(dmidata[DMI_MB][BIOSVERSION], "%s", dmi_string(h, data[0x05]));
-				iasprintf(dmidata[DMI_MB][DATE],        "%s", dmi_string(h, data[0x08]));
-				iasprintf(dmidata[DMI_MB][ROMSIZE],     "%s / %u kB",
+				casprintf(dmidata[DMI_MB][BRAND],       false, "%s", dmi_string(h, data[0x04]));
+				casprintf(dmidata[DMI_MB][BIOSVERSION], false, "%s", dmi_string(h, data[0x05]));
+				casprintf(dmidata[DMI_MB][DATE],        false, "%s", dmi_string(h, data[0x08]));
+				casprintf(dmidata[DMI_MB][ROMSIZE],     true,  "%s / %u kB",
 				          dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
 				          (data[0x09] + 1) << 6);
 			}
@@ -3369,9 +3369,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		case 2: /* 7.3 Base Board Information */
 			if(opt.flags & FLAG_CPU_X)
 			{
-				iasprintf(dmidata[DMI_MB][MANUFACTURER], "%s", dmi_string(h, data[0x04]));
-				iasprintf(dmidata[DMI_MB][MBMODEL],      "%s", dmi_string(h, data[0x05]));
-				iasprintf(dmidata[DMI_MB][REVISION],     "%s", dmi_string(h, data[0x06]));
+				casprintf(dmidata[DMI_MB][MANUFACTURER], false, "%s", dmi_string(h, data[0x04]));
+				casprintf(dmidata[DMI_MB][MBMODEL],      false, "%s", dmi_string(h, data[0x05]));
+				casprintf(dmidata[DMI_MB][REVISION],     false, "%s", dmi_string(h, data[0x06]));
 			}
 			else
 			{
@@ -3451,9 +3451,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		case 4: /* 7.5 Processor Information */
 			if(opt.flags & FLAG_CPU_X)
 			{
-				iasprintf(dmidata[DMI_CPU][PROC_PACKAGE], "%s", dmi_string(h, data[0x04]));
+				casprintf(dmidata[DMI_CPU][PROC_PACKAGE], false, "%s", dmi_string(h, data[0x04]));
 				if(*dmidata[DMI_CPU][PROC_BUS] == NULL)
-					iasprintf(dmidata[DMI_CPU][PROC_BUS], "%s", dmi_processor_frequency_str(data + 0x12));
+					casprintf(dmidata[DMI_CPU][PROC_BUS], false, "%s", dmi_processor_frequency_str(data + 0x12));
 			}
 			else
 			{
@@ -3768,15 +3768,15 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			{
 				if(strstr(dmi_string(h, data[0x17]), "Empty") != NULL)
 				{
-					iasprintf(dmidata[DMI_RAM][bank],   "- - - - - -");
-					iasprintf(dmidata[DMI_RAM][++bank], "- - - - - -");
+					casprintf(dmidata[DMI_RAM][bank],   false, "- - - - - -");
+					casprintf(dmidata[DMI_RAM][++bank], false, "- - - - - -");
 				}
 				else
 				{
-					iasprintf(dmidata[DMI_RAM][bank], "%s %s",
+					casprintf(dmidata[DMI_RAM][bank], false, "%s %s",
 					          dmi_string(h, data[0x17]),
 					          dmi_string(h, data[0x1A]));
-					iasprintf(dmidata[DMI_RAM][++bank], "%s @ %uMHz (%s %s)",
+					casprintf(dmidata[DMI_RAM][++bank], true, "%s @ %uMHz (%s %s)",
 					          dmi_memory_device_size_str(WORD(data + 0x0C)),
 					          (WORD(data + 0x15)),
 					          dmi_memory_device_form_factor(data[0x0E]),
