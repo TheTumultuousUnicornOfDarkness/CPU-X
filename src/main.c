@@ -621,11 +621,12 @@ void sighandler(int signum)
 	MSG_STDERR("========================= Backtrace =========================");
         for(i = 1; i < bt_size; i++)
 	{
-		MSG_STDERR("#%2i %s", i, bt_syms[i]);
 		asprintf(&cmd, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
 		popen_to_str(cmd, &buff);
 		if(strstr(buff, "??") == NULL)
-			MSG_STDERR(" ==> %s", strrchr(buff, '/') + 1);
+			MSG_STDERR("#%2i %s %s", i, strrchr(buff, '/') + 1, bt_syms[i]);
+		else
+			MSG_STDERR("#%2i %s", i, bt_syms[i]);
 		free_multi(cmd, buff);
         }
 	MSG_STDERR("======================== End Backtrace =======================\n");
