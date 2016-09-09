@@ -609,7 +609,7 @@ static void menu(int argc, char *argv[])
 void sighandler(int signum)
 {
 	int bt_size, i;
-	char **bt_syms, *cmd, *buff = NULL;
+	char **bt_syms, *cmd = NULL, *buff = NULL;
 	void *bt[16];
 
 	/* Get the backtrace */
@@ -626,13 +626,14 @@ void sighandler(int signum)
 		popen_to_str(cmd, &buff);
 		if(strstr(buff, "??") == NULL)
 			MSG_STDERR(" ==> %s", strrchr(buff, '/') + 1);
+		free_multi(cmd, buff);
         }
 	MSG_STDERR("======================== End Backtrace =======================\n");
 	MSG_STDERR(_("You can paste this backtrace by opening a new issue here:"));
 	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
 
 	/* Stop program */
-	free_multi(bt_syms, cmd, buff, bt);
+	free_multi(bt_syms, bt);
 	signal(signum, SIG_DFL);
 	kill(getpid(), signum);
 }
@@ -644,7 +645,7 @@ static int set_locales(void)
 
 #if PORTABLE_BINARY && HAS_GETTEXT
 	int i;
-	char *command, *path;
+	char *command = NULL, *path = NULL;
 	FILE *mofile;
 
 	/* Write .mo files in temporary directory */
@@ -655,6 +656,7 @@ static int set_locales(void)
 		err    = system(command);
 		mofile = NULL;
 		mofile = fopen(path, "w");
+		free_multi(command, path);
 
 		if(mofile != NULL)
 		{

@@ -247,7 +247,6 @@ static int cpu_technology(Labels *data)
 			break;
 		default:
 			vendor = unknown;
-			break;
 	}
 
 	for(i = 0; !found && (vendor[i].cpu_model != -1); i++)
@@ -620,7 +619,7 @@ static int cpu_usage(Labels *data)
 	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
 	int i, ind, core = -1;
 	static long **pre = NULL;
-	long **new;
+	long **new = NULL;
 	double loadavg;
 
 	MSG_VERBOSE(_("Calculating CPU usage"));
@@ -707,7 +706,7 @@ static char *find_driver(struct pci_dev *dev, char *buff)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
-	char name[MAXSTR], *drv, *base;
+	char name[MAXSTR], *drv = NULL, *base;
 
 	MSG_VERBOSE(_("Finding graphic card driver"));
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
@@ -771,7 +770,6 @@ static int find_devices(Labels *data)
 	/* Iterate over all devices */
 	for(dev = pacc->devices; dev; dev = dev->next)
 	{
-		free_multi(vendor, product, gpu_vendors[CURRENT]);
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
 		asprintf(&vendor,  "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
 		asprintf(&product, "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
@@ -803,12 +801,12 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], false, "%s", product);
 			nbgpu++;
 		}
+		free_multi(vendor, product, gpu_vendors[CURRENT]);
 	}
 
 	/* Close everything */
 	data->gpu_count = nbgpu;
 	pci_cleanup(pacc);
-	free_multi(vendor, product, gpu_vendors[CURRENT]);
 
 	if(!chipset)
 		MSG_ERROR(_("failed to find chipset vendor and model"));
@@ -823,7 +821,7 @@ static int find_devices(Labels *data)
 static int gpu_temperature(Labels *data)
 {
 	double temp = 0.0;
-	char *buff, *drm_hwmon, *drm_temp = NULL;
+	char *buff, *drm_hwmon = NULL, *drm_temp = NULL;
 	DIR *dp = NULL;
 	struct dirent *dir;
 
@@ -1140,7 +1138,7 @@ static int cputab_temp_fallback(Labels *data)
 {
 	static bool use_sysfs = false;
 	double val = 0.0;
-	char *command, *buff;
+	char *command = NULL, *buff;
 
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
 
@@ -1174,7 +1172,7 @@ static int cputab_temp_fallback(Labels *data)
 				asprintf(&file, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
 				break;
 			default:
-				break;
+				return 0;
 		}
 
 		if(module_loaded && !fopen_to_str(file, &buff))
