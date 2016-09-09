@@ -675,58 +675,58 @@ static int call_bandwidth(Labels *data)
 
 #if HAS_LIBPCI
 /* Find driver name for a device */
-static char *find_driver(struct pci_dev *dev, char *buff)
+static int find_driver(struct pci_dev *dev, char *buff)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
-	char name[MAXSTR], *drv = NULL, *base;
+	char name[MAXSTR];
+	char *base = NULL, *drv = NULL;
 
 	MSG_VERBOSE(_("Finding graphic card driver"));
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
-	{
-		MSG_ERROR(_("failed to find graphic card driver (access is not by PCI bus)"));
-		return NULL;
-	}
+		goto error;
 
 	base = pci_get_param(dev->access, "sysfs.path");
-	if(!base || !base[0])
-	{
-		MSG_ERROR(_("failed to find graphic card driver (failed to get parameter)"));
-		return NULL;
-	}
+	if(base == NULL)
+		goto error;
 
-	n = snprintf(name, sizeof(name), "%s/devices/%04x:%02x:%02x.%d/driver",
+	snprintf(name, MAXSTR, "%s/devices/%04x:%02x:%02x.%d/driver",
 		base, dev->domain, dev->bus, dev->dev, dev->func);
 
 	n = readlink(name, buff, MAXSTR);
-	if(n < 0)
-	{
-		MSG_ERROR(_("failed to find graphic card driver (driver name is empty)"));
-		return NULL;
-	}
-	else if(n >= MAXSTR)
-		buff[MAXSTR - 1] = '\0';
-	else
-		buff[n] = '\0';
+	if(n <= 0)
+		goto error;
+
+	if(n >= MAXSTR)
+		n = MAXSTR - 1;
+	buff[n] = '\0';
 
 	if((drv = strrchr(buff, '/')))
-		return drv+1;
-	else
-		return buff;
+		strcpy(buff, drv + 1);
+	snprintf(name, MAXSTR, _("(%s driver)"), buff);
+	strcpy(buff, name);
+
+	return 0;
+
+error:
+	MSG_ERROR(_("failed to find graphic card driver"));
+	return 1;
 }
 
+#define DEVICE_VENDOR  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id)
+#define DEVICE_PRODUCT pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id)
+#define PCI_CLASS_DISP (dev->device_class == PCI_BASE_CLASS_DISPLAY) || (PCI_CLASS_DISPLAY_VGA <= dev->device_class && dev->device_class <= PCI_CLASS_DISPLAY_OTHER)
 /* Find some PCI devices, like chipset and GPU */
 static int find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
-	int i, nbgpu = 0, chipset = 0;
+	bool chipset_found = false;
+	int i;
+	char buff[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	char namebuf[MAXSTR];
-	char *vendor = NULL, *product = NULL, *drivername = NULL;
 	enum Vendors { CURRENT = 3, LASTVENDOR };
 	char *gpu_vendors[LASTVENDOR] = { "AMD", "Intel", "NVIDIA", NULL };
-
 
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
@@ -744,49 +744,36 @@ static int find_devices(Labels *data)
 	for(dev = pacc->devices; dev; dev = dev->next)
 	{
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
-		asprintf(&vendor,  "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id));
-		asprintf(&product, "%s", pci_lookup_name(pacc, namebuf, sizeof(namebuf), PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id));
-		asprintf(&gpu_vendors[CURRENT], vendor);
 
 		/* Looking for chipset */
-		if(dev->device_class == PCI_CLASS_BRIDGE_ISA)
+		if(!chipset_found && dev->device_class == PCI_CLASS_BRIDGE_ISA)
 		{
-			casprintf(&data->tab_motherboard[VALUE][CHIPVENDOR], false, vendor);
-			casprintf(&data->tab_motherboard[VALUE][CHIPMODEL],  false, product);
-			chipset++;
+			casprintf(&data->tab_motherboard[VALUE][CHIPVENDOR], false, DEVICE_VENDOR);
+			casprintf(&data->tab_motherboard[VALUE][CHIPMODEL],  false, DEVICE_PRODUCT);
+			chipset_found = true;
 		}
 
 		/* Looking for GPU */
-		if(nbgpu < LASTGRAPHICS / GPUFIELDS &&
-		  (dev->device_class == PCI_BASE_CLASS_DISPLAY	||
-		  dev->device_class == PCI_CLASS_DISPLAY_VGA	||
-		  dev->device_class == PCI_CLASS_DISPLAY_XGA	||
-		  dev->device_class == PCI_CLASS_DISPLAY_3D	||
-		  dev->device_class == PCI_CLASS_DISPLAY_OTHER))
+		if((data->gpu_count < LASTGRAPHICS / GPUFIELDS) && (PCI_CLASS_DISP))
 		{
-			for(i = 0; (i < CURRENT) && (strstr(vendor, gpu_vendors[i]) == NULL); i++);
+			asprintf(&gpu_vendors[CURRENT], DEVICE_VENDOR);
+			find_driver(dev, buff);
+			for(i = 0; (i < CURRENT) && (strstr(gpu_vendors[CURRENT], gpu_vendors[i]) == NULL); i++);
 
-			drivername = find_driver(dev, namebuf);
-			if(drivername != NULL)
-				casprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], false, _("%s (%s driver)"), gpu_vendors[i], drivername);
-			else
-				casprintf(&data->tab_graphics[VALUE][GPU1VENDOR	+ nbgpu * GPUFIELDS], false, "%s", gpu_vendors[i]);
-			casprintf(&data->tab_graphics[VALUE][GPU1MODEL	+ nbgpu * GPUFIELDS], false, "%s", product);
-			nbgpu++;
+			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendors[i], buff);
+			casprintf(&data->tab_graphics[VALUE][GPU1MODEL +  data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT);
+			data->gpu_count++;
+			free(gpu_vendors[CURRENT]);
 		}
-		free_multi(vendor, product, gpu_vendors[CURRENT]);
 	}
 
-	/* Close everything */
-	data->gpu_count = nbgpu;
 	pci_cleanup(pacc);
-
-	if(!chipset)
+	if(!chipset_found)
 		MSG_ERROR(_("failed to find chipset vendor and model"));
-	if(!nbgpu)
+	if(!data->gpu_count)
 		MSG_ERROR(_("failed to find graphic card vendor and model"));
 
-	return !chipset + !nbgpu;
+	return !chipset_found + !data->gpu_count;
 }
 #endif /* HAS_LIBPCI */
 
