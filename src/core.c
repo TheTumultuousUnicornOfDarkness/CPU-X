@@ -516,7 +516,7 @@ static int call_dmidecode(Labels *data)
 
 	/* Dmidecode options */
 	opt.type  = NULL;
-	opt.flags = (opts->verbose) ? FLAG_CPU_X : FLAG_CPU_X | FLAG_QUIET;
+	opt.flags = FLAG_CPU_X | FLAG_QUIET;
 
 	if(getuid())
 	{
