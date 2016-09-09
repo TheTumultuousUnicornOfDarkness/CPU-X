@@ -257,11 +257,11 @@ void free_multi(void *var, ...);
 /* Check if a command exists */
 bool command_exists(char *in);
 
-/* Open a file and put its content in buffer */
-int fopen_to_str(char *file, char **buffer);
+/* Open a file and put its content in a variable ('str' accept printf-like format) */
+int fopen_to_str(char **buffer, char *str, ...);
 
-/* Open a pipe and put its content in buffer */
-int popen_to_str(char *command, char **buffer);
+/* Run a command and put output in a variable ('str' accept printf-like format) */
+int popen_to_str(char **buffer, char *str, ...);
 
 /* Load a kernel module */
 bool load_module(char *module);

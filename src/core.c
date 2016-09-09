@@ -781,13 +781,13 @@ static int find_devices(Labels *data)
 static int gpu_temperature(Labels *data)
 {
 	double temp = 0.0;
-	char *buff, *drm_hwmon = NULL, *drm_temp = NULL;
+	char *buff = NULL, *drm_hwmon = NULL;
 	DIR *dp = NULL;
 	struct dirent *dir;
 
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
-	if(!popen_to_str("nvidia-settings -q GPUCoreTemp -t", &buff) || /* NVIDIA closed source driver */
-	   !popen_to_str("aticonfig --odgt | grep Sensor | awk '{ print $5 }'", &buff)) /* AMD closed source driver */
+	if(!popen_to_str(&buff, "nvidia-settings -q GPUCoreTemp -t") || /* NVIDIA closed source driver */
+	   !popen_to_str(&buff, "aticonfig --odgt | grep Sensor | awk '{ print $5 }'")) /* AMD closed source driver */
 		temp = atof(buff);
 	else /* Open source drivers */
 	{
@@ -797,9 +797,7 @@ static int gpu_temperature(Labels *data)
 		{
 			while((dir = readdir(dp)) != NULL)
 			{
-				free(drm_temp);
-				asprintf(&drm_temp, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name);
-				if(!access(drm_temp, R_OK) && !fopen_to_str(drm_temp, &buff))
+				if(!fopen_to_str(&buff, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name))
 				{
 					temp = atof(buff) / 1000.0;
 					break;
@@ -809,7 +807,7 @@ static int gpu_temperature(Labels *data)
 		}
 	}
 
-	free_multi(buff, drm_hwmon, drm_temp);
+	free_multi(buff, drm_hwmon);
 
 	if(temp)
 	{
@@ -840,11 +838,11 @@ static int system_static(Labels *data)
 	}
 
 	/* Compiler label */
-	err += popen_to_str("cc --version", &data->tab_system[VALUE][COMPILER]);
+	err += popen_to_str(&data->tab_system[VALUE][COMPILER], "cc --version");
 
 #ifdef __linux__
 	/* Distribution label */
-	err += popen_to_str("grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'", &data->tab_system[VALUE][DISTRIBUTION]);
+	err += popen_to_str(&data->tab_system[VALUE][DISTRIBUTION], "grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'");
 
 #else
 	char tmp[MAXSTR];
@@ -1098,7 +1096,7 @@ static int cputab_temp_fallback(Labels *data)
 {
 	static bool use_sysfs = false;
 	double val = 0.0;
-	char *command = NULL, *buff;
+	char *buff = NULL;
 
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
 
@@ -1106,8 +1104,7 @@ static int cputab_temp_fallback(Labels *data)
 	if(!use_sysfs)
 	{
 		setlocale(LC_ALL, "C");
-		asprintf(&command, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core);
-		if(!popen_to_str(command, &buff))
+		if(!popen_to_str(&buff, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core))
 			val = atof(buff);
 		setlocale(LC_ALL, "");
 
@@ -1116,6 +1113,7 @@ static int cputab_temp_fallback(Labels *data)
 	}
 #if HAS_LIBCPUID
 	bool module_loaded = false;
+	int  file_error = -1;
 	char *file = NULL;
 
 	/* If 'sensors' is not configured, try by using sysfs */
@@ -1125,23 +1123,23 @@ static int cputab_temp_fallback(Labels *data)
 		{
 			case VENDOR_INTEL:
 				module_loaded = load_module("coretemp");
-				asprintf(&file, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
+				file_error    = fopen_to_str(&file, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
 				break;
 			case VENDOR_AMD:
 				module_loaded = load_module("k8temp") | load_module("k10temp");
-				asprintf(&file, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
+				file_error    = fopen_to_str(&file, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
 				break;
 			default:
 				return 0;
 		}
 
-		if(module_loaded && !fopen_to_str(file, &buff))
+		if(module_loaded && !file_error)
 			val = atof(buff) / 1000;
 	}
 
 	free(file);
 #endif /* HAS_LIBCPUID */
-	free_multi(command, buff);
+	free(buff);
 
 	if(val > 0)
 	{
@@ -1159,14 +1157,13 @@ static int cputab_temp_fallback(Labels *data)
 static int cputab_volt_fallback(Labels *data)
 {
 	double val = 0.0;
-	char *command, *buff = NULL;
+	char *buff = NULL;
 
 	MSG_VERBOSE(_("Retrieving CPU voltage in fallback mode"));
 	setlocale(LC_ALL, "C");
-	asprintf(&command, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'");
-	if(!popen_to_str(command, &buff))
+	if(!popen_to_str(&buff, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'"))
 		val = atof(buff);
-	free_multi(command, buff);
+	free(buff);
 	setlocale(LC_ALL, "");
 
 	if(val > 0)
@@ -1193,17 +1190,14 @@ static int cpu_multipliers_fallback(Labels *data)
 #ifdef __linux__
 	static bool init = false;
 	char *min_freq_str, *max_freq_str;
-	char *cpuinfo_min_file, *cpuinfo_max_file;
 	double min_freq, max_freq;
 
 	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
 	if(!init)
 	{
 		/* Open files */
-		asprintf(&cpuinfo_min_file, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
-		asprintf(&cpuinfo_max_file, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
-		fopen_to_str(cpuinfo_min_file, &min_freq_str);
-		fopen_to_str(cpuinfo_max_file, &max_freq_str);
+		fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
+		fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
 
 		/* Convert to get min and max values */
 		min_freq = strtod(min_freq_str, NULL) / 1000;
@@ -1211,7 +1205,7 @@ static int cpu_multipliers_fallback(Labels *data)
 		min_mult = round(min_freq / data->bus_freq);
 		max_mult = round(max_freq / data->bus_freq);
 		init     = true;
-		free_multi(min_freq_str, max_freq_str, cpuinfo_min_file, cpuinfo_max_file);
+		free_multi(min_freq_str, max_freq_str);
 	}
 #endif /* __linux__ */
 	if(min_mult <= 0 || max_mult <= 0)
@@ -1233,18 +1227,13 @@ static int motherboardtab_fallback(Labels *data)
 	int err = 0;
 #ifdef __linux__
 	int i;
-	char *file = NULL;
 	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 
 	MSG_VERBOSE(_("Retrieving motherboard informations in fallback mode"));
 	/* Tab Motherboard */
 	for(i = 0; id[i] != NULL; i++)
-	{
-		free(file);
-		asprintf(&file, "%s/%s", SYS_DMI, id[i]);
-		err += fopen_to_str(file, &data->tab_motherboard[VALUE][i]);
-	}
-	free(file);
+		err += fopen_to_str(&data->tab_motherboard[VALUE][i], "%s/%s", SYS_DMI, id[i]);
+
 #endif /* __linux__ */
 	if(err)
 		MSG_ERROR(_("failed to retrieve motherboard informations (fallback mode)"));

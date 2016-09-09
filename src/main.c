@@ -313,12 +313,12 @@ static bool check_new_version(void)
 
 	/* Retrieve the last tag on Git repo */
 	if(with_curl)
-		err = popen_to_str("curl --max-time 1 -s http://x0rg.github.io/CPU-X/version.txt", &new_version);
+		err = popen_to_str(&new_version, "curl --max-time 1 -s http://x0rg.github.io/CPU-X/version.txt");
 
 	if(err && with_wget)
 	{
 		opts->use_wget = true;
-		err = popen_to_str("wget --timeout=1 -O- -q http://x0rg.github.io/CPU-X/version.txt", &new_version);
+		err = popen_to_str(&new_version, "wget --timeout=1 -O- -q http://x0rg.github.io/CPU-X/version.txt");
 	}
 
 	/* Compare Git tag with running version */
@@ -609,7 +609,7 @@ static void menu(int argc, char *argv[])
 void sighandler(int signum)
 {
 	int bt_size, i;
-	char **bt_syms, *cmd = NULL, *buff = NULL;
+	char **bt_syms, *buff = NULL;
 	void *bt[16];
 
 	/* Get the backtrace */
@@ -621,13 +621,12 @@ void sighandler(int signum)
 	MSG_STDERR("========================= Backtrace =========================");
         for(i = 1; i < bt_size; i++)
 	{
-		asprintf(&cmd, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
-		popen_to_str(cmd, &buff);
+		popen_to_str(&buff, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
 		if(strstr(buff, "??") == NULL)
 			MSG_STDERR("#%2i %s %s", i, strrchr(buff, '/') + 1, bt_syms[i]);
 		else
 			MSG_STDERR("#%2i %s", i, bt_syms[i]);
-		free_multi(cmd, buff);
+		free(buff);
         }
 	MSG_STDERR("======================== End Backtrace =======================\n");
 	MSG_STDERR(_("You can paste this backtrace by opening a new issue here:"));
@@ -856,55 +855,80 @@ bool command_exists(char *in)
 	return !ret;
 }
 
-/* Open a file and put its content in buffer */
-int fopen_to_str(char *file, char **buffer)
+/* Open a file and put its content in a variable ('str' accept printf-like format) */
+int fopen_to_str(char **buffer, char *str, ...)
 {
 	char tmp[MAXSTR];
-	FILE *f = NULL;
+	char *file_str = NULL;
+	FILE *file_descr = NULL;
+	va_list aptr;
 
-	if((f = fopen(file, "r")) == NULL)
+	va_start(aptr, str);
+	vasprintf(&file_str, str, aptr);
+	va_end(aptr);
+
+	if(access(file_str, R_OK))
+	{
+		free(file_str);
+		return -1;
+	}
+
+	if((file_descr = fopen(file_str, "r")) == NULL)
 		goto error;
 
-	if(fgets(tmp, MAXSTR, f) == NULL)
+	if(fgets(tmp, MAXSTR, file_descr) == NULL)
 		goto error;
 
 	tmp[strlen(tmp) - 1] = '\0';
 	asprintf(buffer, tmp);
+	free(file_str);
 
-	return fclose(f);
+	return fclose(file_descr);
 
 error:
-	MSG_ERROR(_("an error occurred while opening file '%s'"), file);
-	return (f == NULL) ? 1 : 2 + fclose(f);
+	MSG_ERROR(_("an error occurred while opening file '%s'"), file_str);
+	free(file_str);
+	return (file_descr == NULL) ? 1 : 2 + fclose(file_descr);
 }
 
-/* Open a pipe and put its content in buffer */
-int popen_to_str(char *command, char **buffer)
+/* Run a command and put output in a variable ('str' accept printf-like format) */
+int popen_to_str(char **buffer, char *str, ...)
 {
 	bool command_ok;
 	char tmp[MAXSTR];
-	char *test_command = strdup(command);
-	FILE *p = NULL;
+	char *cmd_str = NULL, *test_command  = NULL;
+	FILE *pipe_descr = NULL;
+	va_list aptr;
 
+	va_start(aptr, str);
+	vasprintf(&cmd_str, str, aptr);
+	va_end(aptr);
+
+	test_command = strdup(cmd_str);
 	command_ok = command_exists(strtok(test_command, " "));
 	free(test_command);
 	if(!command_ok)
+	{
+		free(cmd_str);
 		return -1;
+	}
 
-	if((p = popen(command, "r")) == NULL)
+	if((pipe_descr = popen(cmd_str, "r")) == NULL)
 		goto error;
 
-	if(fgets(tmp, MAXSTR, p) == NULL)
+	if(fgets(tmp, MAXSTR, pipe_descr) == NULL)
 		goto error;
 
 	tmp[strlen(tmp) - 1] = '\0';
 	asprintf(buffer, tmp);
+	free(cmd_str);
 
-	return pclose(p);
+	return pclose(pipe_descr);
 
 error:
-	MSG_ERROR(_("an error occurred while running command '%s'"), command);
-	return (p == NULL) ? 1 : 2 + pclose(p);
+	MSG_ERROR(_("an error occurred while running command '%s'"), cmd_str);
+	free(cmd_str);
+	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }
 
 /* Load a kernel module */
