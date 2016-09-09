@@ -375,23 +375,21 @@ static int update_prg(void)
 	if(opts->use_wget)
 	{
 		opt = opts->verbose ? "" : "-q";
-		asprintf(&tmp, "wget %s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz",
-			 opt, PRGAUTH, PRGNAME, new_version, file);
+		system(format("wget %s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz",
+			 opt, PRGAUTH, PRGNAME, new_version, file));
 	}
 	else
 	{
 		opt = opts->verbose ? "" : "s";
-		asprintf(&tmp, "curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz",
-			 opt, PRGAUTH, PRGNAME, new_version, file, file);
+		system(format("curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz",
+			 opt, PRGAUTH, PRGNAME, new_version, file, file));
 	}
-	system(tmp);
 	free(new_version);
 
 	/* Extract archive */
 	MSG_VERBOSE(_("Extracting new version..."));
 	opt = opts->verbose ? strdup("v") : strdup("");
-	asprintf(&tmp, "tar -zx%sf %s.tar.gz", opt, file);
-	system(tmp);
+	system(format("tar -zx%sf %s.tar.gz", opt, file));
 
 	/* Rename new binary */
 	MSG_VERBOSE(_("Applying new version..."));
@@ -645,18 +643,17 @@ static int set_locales(void)
 
 #if PORTABLE_BINARY && HAS_GETTEXT
 	int i;
-	char *command = NULL, *path = NULL;
+	char *path = NULL;
 	FILE *mofile;
 
 	/* Write .mo files in temporary directory */
 	for(i = 0; ptrlen[i] != NULL; i++)
 	{
-		asprintf(&command, "mkdir -p %s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]);
 		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
-		err    = system(command);
+		err    = system(format("mkdir -p %s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]));
 		mofile = NULL;
 		mofile = fopen(path, "w");
-		free_multi(command, path);
+		free(path);
 
 		if(mofile != NULL)
 		{
@@ -842,17 +839,29 @@ void free_multi(void *var, ...)
 	va_end(aptr);
 }
 
+/* Return a formatted string */
+char *format(char *str, ...)
+{
+	static char *buff = NULL;
+	va_list aptr;
+
+	va_start(aptr, str);
+	vasprintf(&buff, str, aptr);
+	va_end(aptr);
+
+	return buff;
+}
+
 /* Check if a command exists */
-bool command_exists(char *in)
+bool command_exists(char *command)
 {
 	bool ret;
-	char *cmd;
+	char *buff = format("which %s >/dev/null 2>&1", command);
 
-	asprintf(&cmd, "which %s >/dev/null 2>&1", in);
-	ret = system(cmd);
-	free(cmd);
+	ret = !system(buff);
+	free(buff);
 
-	return !ret;
+	return ret;
 }
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
@@ -934,27 +943,26 @@ error:
 /* Load a kernel module */
 bool load_module(char *module)
 {
-	static bool loaded = false;
-	char *cmd_check, *cmd_load = NULL;
+	bool loaded = false;
+
+#if defined (__linux__)
+	loaded = !system(format("lsmod | grep %s > /dev/null", module));
+#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	loaded = !system(format("kldstat | grep %s > /dev/null", module));
+#endif
 
 	if(loaded)
 		return true;
-
-#if defined (__linux__)
-	asprintf(&cmd_check, "lsmod | grep %s > /dev/null", module);
-	if(system(cmd_check))
-		asprintf(&cmd_load, "modprobe %s 2> /dev/null", module);
-#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	asprintf(&cmd_check, "kldstat | grep %s > /dev/null", module);
-	if(system(cmd_check))
-		asprintf(&cmd_load, "kldload -n %s 2> /dev/null", module);
-#endif
-	if(cmd_load == NULL)
-		return ((loaded = true));
 	else if(getuid())
 		return false;
 	else
-		return !system(cmd_load);
+#if defined (__linux__)
+		return !system(format("modprobe %s 2> /dev/null", module));
+#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+		return !system(format("kldload -n %s 2> /dev/null", module));
+#else
+		return false;
+#endif
 }
 
 /* Free memory after display labels */

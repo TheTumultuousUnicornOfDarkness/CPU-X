@@ -254,8 +254,11 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...);
 /* Try to free given variables */
 void free_multi(void *var, ...);
 
+/* Return a formatted string */
+char *format(char *str, ...);
+
 /* Check if a command exists */
-bool command_exists(char *in);
+bool command_exists(char *command);
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(char **buffer, char *str, ...);
