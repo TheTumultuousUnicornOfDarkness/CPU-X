@@ -436,27 +436,9 @@ static int call_libcpuid_cpuclock(Labels *data)
 	return (data->cpu_freq <= 0);
 }
 
-/* Load CPU MSR kernel module */
-static bool load_msr_driver(void)
-{
-	static bool loaded = false;
-#ifdef __linux__
-	if(!loaded && !getuid())
-	{
-		MSG_VERBOSE(_("Loading 'msr' kernel module"));
-		loaded = !system("modprobe msr 2> /dev/null");
-		if(!loaded)
-			MSG_ERROR(_("failed to load 'msr' kernel module"));
-	}
-#endif /* __linux__ */
-	return loaded;
-}
-
 /* MSRs values provided by libcpuid */
 static int call_libcpuid_msr(Labels *data)
 {
-#ifdef HAVE_LIBCPUID_0_2_2
-	static bool load_module = true;
 	int voltage, temp, bclk;
 	struct msr_driver_t *msr = NULL;
 
@@ -468,12 +450,6 @@ static int call_libcpuid_msr(Labels *data)
 
 	/* MSR stuff */
 	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR values"));
-	if(load_module)
-	{
-		load_msr_driver();
-		load_module = false;
-	}
-
 	msr = cpu_msr_driver_open_core(opts->selected_core);
 	if(msr == NULL)
 	{
@@ -502,7 +478,6 @@ static int call_libcpuid_msr(Labels *data)
 		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
 
-#ifdef HAVE_LIBCPUID_0_3_0
 	int min_mult, max_mult;
 	double cur_mult = data->cpu_freq / data->bus_freq;
 
@@ -519,9 +494,7 @@ static int call_libcpuid_msr(Labels *data)
 			casprintf(&data->tab_cpu[VALUE][MULTIPLIER], true, "x%.1f (%.0f-%.0f)",
 			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
 	}
-#endif /* HAVE_LIBCPUID_0_3_0 */
 	cpu_msr_driver_close(msr);
-#endif /* HAVE_LIBCPUID_0_2_2 */
 
 	return 0;
 }
