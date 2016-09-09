@@ -19,7 +19,7 @@ script:
 - make
 after_success:
 - sudo make install
-- sudo cpu-x --dump
+- sudo cpu-x --dump --verbose
 
 notifications:
   slack:
