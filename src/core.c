@@ -439,7 +439,8 @@ static int call_libcpuid_cpuclock(Labels *data)
 /* MSRs values provided by libcpuid */
 static int call_libcpuid_msr(Labels *data)
 {
-	int voltage, temp, bclk;
+	int voltage, temp, min_mult, max_mult, bclk;
+	double cur_mult;
 	struct msr_driver_t *msr = NULL;
 
 	if(getuid())
@@ -478,11 +479,9 @@ static int call_libcpuid_msr(Labels *data)
 		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
 
-	int min_mult, max_mult;
-	double cur_mult = data->cpu_freq / data->bus_freq;
-
 	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
+	cur_mult = data->cpu_freq / data->bus_freq;
 
 	/* Multipliers (min-max) */
 	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE && cur_mult > 0.0)
@@ -780,8 +779,9 @@ static int find_devices(Labels *data)
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
 {
+	int ret = -1;
 	double temp = 0.0;
-	char *buff = NULL, *drm_hwmon = NULL;
+	char *buff = NULL;
 	DIR *dp = NULL;
 	struct dirent *dir;
 
@@ -791,23 +791,19 @@ static int gpu_temperature(Labels *data)
 		temp = atof(buff);
 	else /* Open source drivers */
 	{
-		asprintf(&drm_hwmon, "%s%i/device/hwmon/", SYS_DRM, 0);
-		dp = opendir(drm_hwmon);
+		dp = opendir(format("%s%i/device/hwmon/", SYS_DRM, 0));
 		if(dp)
 		{
-			while((dir = readdir(dp)) != NULL)
+			while(((dir = readdir(dp)) != NULL) && (ret))
 			{
-				if(!fopen_to_str(&buff, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name))
-				{
+				ret = fopen_to_str(&buff, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name);
+				if(!ret)
 					temp = atof(buff) / 1000.0;
-					break;
-				}
 			}
 			closedir(dp);
 		}
 	}
-
-	free_multi(buff, drm_hwmon);
+	free(buff);
 
 	if(temp)
 	{

@@ -131,6 +131,7 @@ char *format(char *str, ...)
 	static char *buff = NULL;
 	va_list aptr;
 
+	free(buff);
 	va_start(aptr, str);
 	vasprintf(&buff, str, aptr);
 	va_end(aptr);
@@ -141,13 +142,7 @@ char *format(char *str, ...)
 /* Check if a command exists */
 bool command_exists(char *command)
 {
-	bool ret;
-	char *buff = format("which %s >/dev/null 2>&1", command);
-
-	ret = !system(buff);
-	free(buff);
-
-	return ret;
+	return !system(format("which %s >/dev/null 2>&1", command));
 }
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */

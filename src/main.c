@@ -449,13 +449,11 @@ static int update_prg(void)
 		MSG_VERBOSE(_("Update successful!"));
 
 	/* Delete temporary files */
-	asprintf(&tmp, "%s.tar.gz", file);
-	err = remove(tmp);
+	err = remove(format("%s.tar.gz", file));
 	for(i = 0; ext[i] != NULL; i++)
 	{
-		asprintf(&tmp, "%s.%s", file, ext[i]);
 		if(strcmp(ext[i], OS) != 0 || delete)
-			err += remove(tmp);
+			err += remove(format("%s.%s", file, ext[i]));
 	}
 
 	if(err > 1)
@@ -542,6 +540,7 @@ static void version(void)
 	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
 	MSG_STDOUT(_("See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"));
 	MSG_STDOUT(_("Built on %s, %s (with %s %s on %s)."), __DATE__, __TIME__, CC, __VERSION__, OS);
+	free(strver);
 
 	/* Print features version */
 	for(i = 0; v[i].lib != NULL; i++)
@@ -656,6 +655,7 @@ void sighandler(int signum)
 	/* Print the backtrace */
 	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"), BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
 	MSG_STDERR("========================= Backtrace =========================");
+	MSG_STDERR("%s %s (%s, %s)", PRGNAME, PRGVER, CC, OS);
         for(i = 1; i < bt_size; i++)
 	{
 		popen_to_str(&buff, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
