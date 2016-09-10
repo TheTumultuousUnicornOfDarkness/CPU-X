@@ -2313,10 +2313,13 @@ static void dmi_memory_device_extended_size(u32 code)
 {
 	code &= 0x7FFFFFFFUL;
 
-	/* Use the most suitable unit depending on size */
+	/*
+	 * Use the greatest unit for which the exact value can be displayed
+	 * as an integer without rounding
+	 */
 	if (code & 0x3FFUL)
 		printf(" %lu MB", (unsigned long)code);
-	else if (code & 0xFFFFFUL)
+	else if (code & 0xFFC00UL)
 		printf(" %lu GB", (unsigned long)code >> 10);
 	else
 		printf(" %lu TB", (unsigned long)code >> 20);
