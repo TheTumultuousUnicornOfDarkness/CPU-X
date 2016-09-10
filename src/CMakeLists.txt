@@ -145,6 +145,7 @@ print_config("BANDWIDTH" "${BANDWIDTH_VERSION}" BANDWIDTH_FOUND WITH_BANDWIDTH)
 
 add_executable(cpu-x
 	main.c
+	util.c
 	cpu-x.h
 	core.c
 	core.h
