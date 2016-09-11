@@ -115,6 +115,18 @@ if(NOT WITH_LIBSYSTEM OR (NOT LIBPROCPS_FOUND AND NOT LIBSTATGRAB_FOUND))
 	add_definitions(-DHAS_LIBSYSTEM=0)
 endif(NOT WITH_LIBSYSTEM OR (NOT LIBPROCPS_FOUND AND NOT LIBSTATGRAB_FOUND))
 
+# Libcurl
+if(WITH_LIBCURL)
+	pkg_check_modules(LIBCURL libcurl)
+	if(LIBCURL_FOUND)
+		include_directories(${LIBCURL_INCLUDE_DIRS})
+		link_directories(${LIBCURL_LIBRARY_DIRS})
+		add_definitions(${LIBCURL_CFLAGS_OTHER})
+		add_embedded_library(LIBCURL_LIBRARIES "-l:libcurl.a")
+		add_embedded_library_linux(LIBCURL_LIBRARIES "${LIBCURL_LIBRARIES} -lidn -lssl -lssh2 -lcrypto -lgssapi_krb5 -lrtmp -lz")
+	endif(LIBCURL_FOUND)
+endif(WITH_LIBCURL)
+
 
 ### FINAL CONFIG
 
@@ -135,6 +147,7 @@ elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB)
 	print_config("LIBSTATGRAB" "${LIBSTATGRAB_VERSION}" LIBSTATGRAB_FOUND WITH_LIBSYSTEM)
 	add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
 endif()
+print_config("LIBCURL" "${LIBCURL_VERSION}" LIBCURL_FOUND WITH_LIBCURL)
 
 # Subprojects
 print_config("DMIDECODE" "${DMIDECODE_VERSION}" 1 WITH_DMIDECODE)
@@ -175,6 +188,7 @@ target_link_libraries(cpu-x
 	${LIBPCI_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}
+	${LIBCURL_LIBRARIES}
 
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}

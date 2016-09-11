@@ -85,7 +85,7 @@ void start_tui_ncurses(Labels *data)
 		opts->color &= has_colors();
 	}
 
-	if(PORTABLE_BINARY && new_version != NULL)
+	if(PORTABLE_BINARY && new_version[0] != NULL)
 	{
 		print_new_version();
 		erase();
@@ -419,7 +419,7 @@ static void print_new_version()
 	printw("\n\n");
 	printw(_("Do you want to update %s to version %s after exit?\n"
 		"It will erase this binary file (%s) by the new version."),
-		PRGNAME, new_version, binary_name);
+		PRGNAME, new_version[0], binary_name);
 	printw("\n");
 	printw(_("If you want to update, press 'u' key, or anything else to skip.\n"), PRGNAME);
 	refresh();

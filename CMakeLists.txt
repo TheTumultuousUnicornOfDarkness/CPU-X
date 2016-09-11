@@ -43,6 +43,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 else(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	option(WITH_LIBSYSTEM	"Allow use of library Libstatgrab"			ON)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+option(WITH_LIBCURL		"Allow use of library Libcurl"				ON)
 option(PORTABLE_BINARY		"Do a all-in-one binary, useful for a portable version"	OFF)
 
 # Colours

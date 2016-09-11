@@ -30,9 +30,11 @@
 #define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
-#define PRGNAME	              "CPU-X"
-#define PRGAUTH	              "X0rg"
-#define PRGURL                "http://X0rg.github.io/CPU-X/"
+#define PRGNAME               "CPU-X"
+#define PRGAUTH               "X0rg"
+#define PRGURL                "http://X0rg.github.io/CPU-X"
+#define UPDURL                "http://x0rg.github.io/CPU-X/version.txt"
+#define TARBALL               "https://github.com/"PRGAUTH"/"PRGNAME"/releases/download"
 #define PRGCPYR               "Copyright © 2014-2016 Xorg"
 
 /* Colors definition */
@@ -227,11 +229,10 @@ typedef struct
 	bool         verbose;
 	bool         color;
 	bool         update;
-	bool         use_wget;
 } Options;
 
 extern Options *opts;
-extern char    *binary_name, *new_version;
+extern char    *binary_name, *new_version[2];
 
 
 /***************************** Defined in main.c *****************************/

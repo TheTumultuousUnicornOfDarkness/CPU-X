@@ -74,7 +74,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	if(getuid())
 		warning_window(glab.mainwindow);
 
-	if(PORTABLE_BINARY && new_version != NULL)
+	if(PORTABLE_BINARY && new_version[0] != NULL)
 		new_version_window(glab.mainwindow);
 
 	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
@@ -121,7 +121,7 @@ static void new_version_window(GtkWidget *mainwindow)
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
 		_("Do you want to update %s to version %s after exit?\n"
 		"It will erase this binary file (%s) by the new version."),
-		PRGNAME, new_version, binary_name);
+		PRGNAME, new_version[0], binary_name);
 	gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Not now"), GTK_RESPONSE_REJECT, _("Update"), GTK_RESPONSE_ACCEPT, NULL);
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)

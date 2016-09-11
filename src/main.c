@@ -37,6 +37,10 @@
 #include <libintl.h>
 #include "cpu-x.h"
 
+#if HAS_LIBCURL
+# include <curl/curl.h>
+#endif
+
 #if PORTABLE_BINARY
 # include <sys/stat.h>
 # if HAS_GETTEXT
@@ -55,7 +59,7 @@
 #endif
 
 
-char *binary_name, *new_version = NULL;
+char *binary_name, *new_version[2] = { NULL, NULL };
 Options *opts;
 
 
@@ -327,103 +331,116 @@ void labels_free(Labels *data)
 
 /************************* Update-related functions *************************/
 
+#if HAS_LIBCURL
+/* Write function for Curl */
+size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
+{
+	char **buff = (char **) stream;
+
+	asprintf(buff, ptr);
+	(*buff)[nmemb - 1] = '\0';
+
+	return size * nmemb;
+}
+
 /* Check if running version is latest */
 static bool check_new_version(void)
 {
-	int err = 1;
-	bool with_curl = false;
-	bool with_wget = false;
-
-	if(opts->use_network <= 0)
-		return false;
+	int err;
+	CURL *curl;
 
 	MSG_VERBOSE(_("Checking on Internet for a new version..."));
-	if(command_exists("curl"))
-		with_curl = true;
-
-	if(command_exists("wget"))
-		with_wget = true;
-
-	if(!with_curl && !with_wget)
+	curl = curl_easy_init();
+	if(!curl)
 	{
-		MSG_WARNING(_("Curl/Wget are missing on your system, can't check for a new version"));
-		return false;
+		MSG_ERROR(_("failed to open a Curl session"));
+		return 1;
 	}
 
-	/* Retrieve the last tag on Git repo */
-	if(with_curl)
-		err = popen_to_str(&new_version, "curl --max-time 1 -s http://x0rg.github.io/CPU-X/version.txt");
+	curl_easy_setopt(curl, CURLOPT_URL, UPDURL);
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &new_version[0]);
+	err = curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
 
-	if(err && with_wget)
-	{
-		opts->use_wget = true;
-		err = popen_to_str(&new_version, "wget --timeout=1 -O- -q http://x0rg.github.io/CPU-X/version.txt");
-	}
-
-	/* Compare Git tag with running version */
 	if(err)
 	{
-		MSG_WARNING(_("Can not reach Internet"));
+		MSG_ERROR(_("failed to perform the Curl transfer"));
 		opts->use_network = 0;
+		new_version[1] = "";
 	}
-	else if(strcmp(new_version, PRGVER))
+	else if(strcmp(new_version[0], PRGVER))
 	{
 		MSG_VERBOSE(_("A new version of %s is available!"), PRGNAME);
+		asprintf(&new_version[1], _("(version %s is available)"), new_version[0]);
 		return true;
 	}
 	else
+	{
 		MSG_VERBOSE(_("No new version available"));
+		asprintf(&new_version[1], _("(up-to-date)"));
+	}
 
-	free(new_version);
-	new_version = NULL;
+	free(new_version[0]);
 	return false;
 }
 
+# if PORTABLE_BINARY
 /* Apply new portable version if available */
 static int update_prg(void)
 {
-	int err = 0;
-#if PORTABLE_BINARY
+	int err;
 	bool delete = true;
 	int i;
 	char *file, *tmp, *opt;
 	const char *ext[] = { "bsd64", "bsd32", "linux32", "linux64", NULL };
+	CURL *curl;
+	FILE *file_descr = NULL;
 
 	if(opts->use_network <= 0)
 	{
 		MSG_WARNING(_("Network access is disabled by environment variable"
-		            " (set CPUX_NETWORK with a positive value to enable it)"));
+		              " (set CPUX_NETWORK with a positive value to enable it)"));
 		return 1;
 	}
 
-	if(new_version == NULL)
+	if(new_version[0] == NULL)
 	{
 		MSG_WARNING(_("No new version available"));
 		return 2;
 	}
 
-	/* Find what archive we need to download */
-	if(HAS_GTK)
-		asprintf(&file, "%s_v%s_portable",       PRGNAME, new_version);
-	else
-		asprintf(&file, "%s_v%s_portable_noGTK", PRGNAME, new_version);
-
-	/* Download archive */
-	MSG_VERBOSE(_("Downloading new version..."));
-
-	if(opts->use_wget)
+	curl = curl_easy_init();
+	if(!curl)
 	{
-		opt = opts->verbose ? "" : "-q";
-		system(format("wget %s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz",
-			 opt, PRGAUTH, PRGNAME, new_version, file));
+		MSG_ERROR(_("failed to open a Curl session"));
+		return 3;
 	}
-	else
+
+	asprintf(&file, "%s_v%s_portable%s", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK");
+	file_descr = fopen(format("%s.tar.gz", file), "wb");
+	if(file_descr == NULL)
 	{
-		opt = opts->verbose ? "" : "s";
-		system(format("curl -L%s https://github.com/%s/%s/releases/download/v%s/%s.tar.gz -o %s.tar.gz",
-			 opt, PRGAUTH, PRGNAME, new_version, file, file));
+		MSG_ERROR(_("failed to open %s.tar.gz file for writing"), file);
+		free(file);
+		return 4;
 	}
-	free(new_version);
+
+	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s.tar.gz", TARBALL, new_version[0], file));
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
+	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 2 * 60L);
+	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3L);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file_descr);
+        err = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+        fclose(file_descr);
+	if(err)
+	{
+		MSG_ERROR(_("failed to download %s.tar.gz file"), file);
+		free(file);
+		return 5;
+	}
 
 	/* Extract archive */
 	MSG_VERBOSE(_("Extracting new version..."));
@@ -449,7 +466,7 @@ static int update_prg(void)
 		MSG_VERBOSE(_("Update successful!"));
 
 	/* Delete temporary files */
-	err = remove(format("%s.tar.gz", file));
+	err += remove(format("%s.tar.gz", file));
 	for(i = 0; ext[i] != NULL; i++)
 	{
 		if(strcmp(ext[i], OS) != 0 || delete)
@@ -460,9 +477,11 @@ static int update_prg(void)
 		MSG_ERROR(_("an error occurred while deleting temporary files"));
 
 	free_multi(file, tmp, opt);
-#endif /* PORTABLE_BINARY */
+
 	return err;
 }
+# endif /* PORTABLE_BINARY */
+#endif /* HAS_LIBCURL */
 
 
 /************************* Options-related functions *************************/
@@ -512,7 +531,6 @@ static void help(void)
 static void version(void)
 {
 	int i;
-	char *strver;
 	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
 	{
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
@@ -521,26 +539,22 @@ static void version(void)
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
 		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
 		{ HAS_LIBSTATGRAB, "LIBSTATGRAB", LIBSTATGRAB_VERSION },
+		{ HAS_LIBCURL,     "LIBCURL",     LIBCURL_VERSION     },
 		{ HAS_DMIDECODE,   "DMIDECODE",   DMIDECODE_VERSION   },
 		{ HAS_BANDWIDTH,   "BANDWIDTH",   BANDWIDTH_VERSION   },
 		{ false,           NULL,          NULL                }
 	};
 
-	check_new_version();
-	if(opts->use_network > 0 && new_version != NULL)
-		asprintf(&strver, _("(version %s is available)"), new_version);
-	else if(opts->use_network > 0)
-		asprintf(&strver, _("(up-to-date)"));
-	else
-		strver = "";
+	if(HAS_LIBCURL)
+		check_new_version();
 
-	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, strver);
+	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, new_version[1]);
 	MSG_STDOUT("%s\n", PRGCPYR);
 	MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
 	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
 	MSG_STDOUT(_("See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"));
 	MSG_STDOUT(_("Built on %s, %s (with %s %s on %s)."), __DATE__, __TIME__, CC, __VERSION__, OS);
-	free(strver);
+	free(new_version[1]);
 
 	/* Print features version */
 	for(i = 0; v[i].lib != NULL; i++)
@@ -743,7 +757,7 @@ int main(int argc, char *argv[])
 
 	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
 	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
-	                    .update      = false, .use_network    = 1,          .use_wget        = false };
+	                    .update      = false, .use_network    = 1 };
 
 	set_locales();
 	signal(SIGSEGV, sighandler);
@@ -761,7 +775,9 @@ int main(int argc, char *argv[])
 	labels_setname (data);
 	fill_labels    (data);
 	remove_null_ptr(data);
-	check_new_version();
+
+	if(HAS_LIBCURL)
+		check_new_version();
 
 	/* Show data */
 	switch(opts->output_type)
@@ -779,7 +795,7 @@ int main(int argc, char *argv[])
 			break;
 	}
 
-	if(PORTABLE_BINARY && opts->update)
+	if(PORTABLE_BINARY && HAS_LIBCURL && opts->update)
 		update_prg();
 
 	return EXIT_SUCCESS;
