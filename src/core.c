@@ -564,40 +564,18 @@ static int call_dmidecode(Labels *data)
 }
 #endif /* HAS_DMIDECODE */
 
-static long **allocate_2d_array(int rows, int columns)
-{
-	int i;
-	long **array = NULL;
-
-	array = calloc(rows, sizeof(long *));
-	if(array == NULL)
-		goto error;
-	for(i = 0; i < rows; i++)
-	{
-		array[i] = calloc(columns, sizeof(long));
-		if(array[i] == NULL)
-			goto error;
-	}
-
-	return array;
-error:
-	MSG_ERROR(_("failed to allocate memory for CPU usage calculation"));
-	return NULL;
-}
-
 /* Calculate total CPU usage */
 static int cpu_usage(Labels *data)
 {
-	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
-	int i, ind, core = -1;
-	static long **pre = NULL;
-	long **new = NULL;
+	static long *pre = NULL;
+	long        *new = NULL;
 	double loadavg;
+	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
 
 	MSG_VERBOSE(_("Calculating CPU usage"));
 	if(pre == NULL)
-		pre = allocate_2d_array(data->cpu_count + 1, LASTSTAT);
-	new = allocate_2d_array(data->cpu_count + 1, LASTSTAT);
+		pre = calloc(LASTSTAT, sizeof(long));
+	new = calloc(LASTSTAT, sizeof(long));
 
 	if(new == NULL || pre == NULL)
 		return 1;
@@ -605,36 +583,27 @@ static int cpu_usage(Labels *data)
 #ifdef __linux__
 	FILE *fp;
 
-	ind = (core < 0) ? 0 : core + 1;
 	fp = fopen("/proc/stat","r");
-	for(i = 0; i <= data->cpu_count; i++)
-		fscanf(fp,"%*s %li %li %li %li %*s %*s %*s %*s %*s %*s", &new[i][USER], &new[i][NICE], &new[i][SYSTEM], &new[i][IDLE]);
+	fscanf(fp,"%*s %li %li %li %li %*s %*s %*s %*s %*s %*s", &new[USER], &new[NICE], &new[SYSTEM], &new[IDLE]);
 	fclose(fp);
 #else
-	long cp_time[LASTSTAT * 8];
+	long cp_time[LASTSTAT];
 	size_t len = sizeof(cp_time);
-	const char *sysctlvarname = (core < 0) ? "kern.cp_time" : "kern.cp_times";
 
-	ind = (core < 0) ? 0 : core;
-	if(sysctlbyname(sysctlvarname, &cp_time, &len, NULL, 0))
+	if(sysctlbyname("kern.cp_time", &cp_time, &len, NULL, 0))
 		return 1;
-	for(i = 0; i <= data->cpu_count * LASTSTAT; i++)
-		new[i / LASTSTAT][i % LASTSTAT] = cp_time[i];
+
+	memcpy(new, cp_time, LASTSTAT * sizeof(long));
 #endif /* __linux__ */
-	loadavg = (double)((new[ind][USER] + new[ind][NICE] + new[ind][SYSTEM] + new[ind][INTR]) -
-	                   (pre[ind][USER] + pre[ind][NICE] + pre[ind][SYSTEM] + pre[ind][INTR])) /
-	                  ((new[ind][USER] + new[ind][NICE] + new[ind][SYSTEM] + new[ind][INTR] + new[ind][IDLE]) -
-	                   (pre[ind][USER] + pre[ind][NICE] + pre[ind][SYSTEM] + pre[ind][INTR] + pre[ind][IDLE]));
+	loadavg = (double)((new[USER] + new[NICE] + new[SYSTEM] + new[INTR]) -
+	                   (pre[USER] + pre[NICE] + pre[SYSTEM] + pre[INTR])) /
+	                  ((new[USER] + new[NICE] + new[SYSTEM] + new[INTR] + new[IDLE]) -
+	                   (pre[USER] + pre[NICE] + pre[SYSTEM] + pre[INTR] + pre[IDLE]));
 
-	if(loadavg > 0.0 && ind == 0)
-		asprintf(&data->tab_cpu[VALUE][USAGE], "%6.2f %%", loadavg * 100);
-
-	for(i = 0; i <= data->cpu_count; i++)
-	{
-		memcpy(pre[i], new[i], LASTSTAT * sizeof(long));
-		free(new[i]);
-	}
+	casprintf(&data->tab_cpu[VALUE][USAGE], true, "%6.2f %%", loadavg * 100);
+	memcpy(pre, new, LASTSTAT * sizeof(long));
 	free(new);
+
 	return 0;
 }
 
