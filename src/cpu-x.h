@@ -64,7 +64,7 @@
 #define NAME                  0
 #define VALUE                 1
 #define MAXSTR                60       /* Max string */
-#define CACHEFIELDS           3        /* Nb of fields by cache frame */
+#define CACHEFIELDS           2        /* Nb of fields by cache frame */
 #define RAMFIELDS             2        /* Nb of fields by bank */
 #define GPUFIELDS             3        /* Nb of fields by GPU frame */
 #define BENCHFIELDS           2        /* Nb of fields by bench frame */
@@ -107,9 +107,9 @@ enum EnTabCpu
 
 enum EnTabCaches
 {
-	L1SIZE, L1DESCRIPTOR, L1SPEED,
-	L2SIZE, L2DESCRIPTOR, L2SPEED,
-	L3SIZE, L3DESCRIPTOR, L3SPEED,
+	L1SIZE, L1SPEED,
+	L2SIZE, L2SPEED,
+	L3SIZE, L3SPEED,
 	LASTCACHES
 };
 
@@ -176,7 +176,7 @@ typedef struct
 {
 	uint8_t  test_count;
 	uint32_t l1_size, l2_size, l3_size;
-	uint32_t speed[LASTCACHES / GPUFIELDS];
+	uint32_t speed[LASTCACHES / CACHEFIELDS];
 	char     **test_name;
 } BandwidthData;
 

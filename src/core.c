@@ -279,7 +279,7 @@ static int call_libcpuid_static(Labels *data)
 {
 	int i, j = 0;
 	char tmp[MAXSTR] = "";
-	const char *fmt = { _("%2d-way set associative, %2d-byte line size") };
+	const char *fmt = { _("%d x %d KB, %d-way associative, %d-byte line size") };
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
@@ -348,8 +348,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->w_data->l1_size = datanr.l1_instruction_cache;
 		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
-		casprintf(&data->tab_caches[VALUE][L1SIZE], false, data->tab_cpu[VALUE][LEVEL1I]);
-		casprintf(&data->tab_caches[VALUE][L1DESCRIPTOR], true, fmt, datanr.l1_assoc, datanr.l1_cacheline);
+		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt, datanr.num_cores, datanr.l1_instruction_cache,
+			datanr.l1_assoc, datanr.l1_cacheline);
 	}
 
 	/* Cache level 2 */
@@ -357,8 +357,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->w_data->l2_size = datanr.l2_cache;
 		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
-		casprintf(&data->tab_caches[VALUE][L2SIZE], false, data->tab_cpu[VALUE][LEVEL2]);
-		casprintf(&data->tab_caches[VALUE][L2DESCRIPTOR], true, fmt, datanr.l2_assoc, datanr.l2_cacheline);
+		casprintf(&data->tab_caches[VALUE][L2SIZE], true, fmt, datanr.num_cores, datanr.l2_cache,
+			datanr.l2_assoc, datanr.l2_cacheline);
 	}
 
 	/* Cache level 3 */
@@ -366,8 +366,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->w_data->l3_size = datanr.l3_cache;
 		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, "%9d KB, %2d-way", datanr.l3_cache, datanr.l3_assoc);
-		casprintf(&data->tab_caches[VALUE][L3SIZE], false, data->tab_cpu[VALUE][LEVEL3]);
-		casprintf(&data->tab_caches[VALUE][L3DESCRIPTOR], true, fmt, datanr.l3_assoc, datanr.l3_cacheline);
+		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt, 0, datanr.l3_cache,
+			datanr.l3_assoc, datanr.l3_cacheline);
 	}
 
 	if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */

@@ -51,9 +51,9 @@ static const char *objectcpu[LASTCPU] =
 /* Tab Caches */
 static const char *objectcache[LASTCACHES] =
 {
-	"l1cache_size", "l1cache_descr", "l1cache_speed",
-	"l2cache_size", "l2cache_descr", "l2cache_speed",
-	"l3cache_size", "l3cache_descr", "l3cache_speed"
+	"l1cache_size", "l1cache_speed",
+	"l2cache_size", "l2cache_speed",
+	"l3cache_size", "l3cache_speed"
 };
 
 /* Tab Motherboard */

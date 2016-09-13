@@ -112,7 +112,6 @@ static void labels_setname(Labels *data)
 		j = i / CACHEFIELDS;
 		asprintf(&data->objects[FRAML1CACHE + j],           _("L%i Cache"), j + 1); // Frame label
 		asprintf(&data->tab_caches[NAME][L1SIZE       + i], _("Size"));
-		asprintf(&data->tab_caches[NAME][L1DESCRIPTOR + i], _("Descriptor"));
 		asprintf(&data->tab_caches[NAME][L1SPEED      + i], _("Speed"));
 	}
 	asprintf(&data->objects[FRAMTEST], _("Test"));
