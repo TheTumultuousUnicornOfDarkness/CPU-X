@@ -2296,7 +2296,11 @@ end_initialization:
 			}
 		}
 		else
+		{
+			for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
+				w_data->speed[i] = 0;
 			return 1;
+		}
 
 		if(!BANDWIDTH_MODE)
 			return 0;
