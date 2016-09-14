@@ -540,6 +540,9 @@ static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	const int line = LINE_1 + (CACHEFIELDS + 2) * data->w_data->level_count;
 
+	if(!data->w_data->level_count)
+		return;
+
 	if(HAS_BANDWIDTH)
 	{
 		wclrline(win, line, info.tb, info.width - 2);
@@ -551,6 +554,9 @@ static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	int i, line = LINE_1, start = LINE_0, end = LINE_3;
+
+	if(!data->w_data->level_count)
+		return;
 
 	/* Cache frames */
 	for(i = L1SIZE; i < data->w_data->level_count * CACHEFIELDS; i++)
@@ -567,7 +573,7 @@ static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 	}
 
 	/* Test frame */
-	line = (line != LINE_1) ? line + 1 : LINE_0;
+	line++;
 	frame(win, line, info.start , line + 2, info.width - 1, data->objects[FRAMTEST]);
 	print_activetest(win, info, data);
 
@@ -604,6 +610,9 @@ static void ntab_motherboard(WINDOW *win, const SizeInfo info, Labels *data)
 static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	int i, line;
+
+	if(!data->dimms_count)
+		return;
 
 	/* Banks frame */
 	frame(win, LINE_0, info.start, LINE_0 + data->dimms_count + 1, info.width - 1, data->objects[FRAMBANKS]);
@@ -683,6 +692,9 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	int i, line, start = LINE_0, end = LINE_4;
+
+	if(!data->gpu_count)
+		return;
 
 	/* Card frames */
 	line = LINE_1;
