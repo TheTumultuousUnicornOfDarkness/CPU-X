@@ -95,11 +95,11 @@ int fill_labels(Labels *data)
 }
 
 /* Refresh some labels */
-int do_refresh(Labels *data, enum EnTabNumber page)
+int do_refresh(Labels *data)
 {
 	int err = 0;
 
-	switch(page)
+	switch(opts->selected_page)
 	{
 		case NO_CPU:
 			if(HAS_LIBCPUID) err += err_func(call_libcpuid_cpuclock, data);

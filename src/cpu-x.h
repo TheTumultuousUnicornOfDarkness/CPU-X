@@ -224,8 +224,9 @@ typedef struct
 {
 	int          use_network;
 	unsigned int output_type;
-	unsigned int selected_core;
 	unsigned int refr_time;
+	unsigned int selected_page;
+	unsigned int selected_core;
 	unsigned int bw_test;
 	bool         verbose;
 	bool         color;
@@ -281,7 +282,7 @@ void labels_free(Labels *data);
 int fill_labels(Labels *data);
 
 /* Refresh some labels */
-int do_refresh(Labels *data, enum EnTabNumber page);
+int do_refresh(Labels *data);
 
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void);

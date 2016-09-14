@@ -30,7 +30,6 @@
 #include "cpu-x.h"
 #include "tui_ncurses.h"
 
-static int  page = NO_CPU;
 static void (*func_ptr[])(WINDOW*, const SizeInfo, Labels*) =
 {
 	ntab_cpu,
@@ -98,7 +97,7 @@ void start_tui_ncurses(Labels *data)
 
 	refresh();
 	main_win(win, info, data);
-	ntab_cpu(win, info, data);
+	(*func_ptr[opts->selected_page])(win, info, data);
 	timeout(opts->refr_time * 1000);
 	printw(_("Press 'h' to see help.\n"));
 
@@ -109,86 +108,86 @@ void start_tui_ncurses(Labels *data)
 		{
 			case KEY_LEFT:
 				/* Switch to left tab */
-				if(page > NO_CPU)
+				if(opts->selected_page > NO_CPU)
 				{
-					page--;
+					opts->selected_page--;
 					main_win(win, info, data);
-					(*func_ptr[page])(win, info, data);
+					(*func_ptr[opts->selected_page])(win, info, data);
 				}
 				break;
 			case KEY_RIGHT:
 				/* Switch to right tab */
-				if(page < NO_ABOUT)
+				if(opts->selected_page < NO_ABOUT)
 				{
-					page++;
+					opts->selected_page++;
 					main_win(win, info, data);
-					(*func_ptr[page])(win, info, data);
+					(*func_ptr[opts->selected_page])(win, info, data);
 				}
 				break;
 			case KEY_DOWN:
-				if(page == NO_CPU && opts->selected_core > 0)
+				if(opts->selected_page == NO_CPU && opts->selected_core > 0)
 				{
 					opts->selected_core--;
 					print_activecore(win);
 				}
-				else if(page == NO_CACHES && opts->bw_test > 0)
+				else if(opts->selected_page == NO_CACHES && opts->bw_test > 0)
 				{
 					opts->bw_test--;
 					print_activetest(win, info, data);
 				}
-				else if(page == NO_BENCH && data->b_data->duration > 1)
+				else if(opts->selected_page == NO_BENCH && data->b_data->duration > 1)
 				{
 					data->b_data->duration--;
 					print_paramduration(win, info, data);
 				}
 				break;
 			case KEY_NPAGE:
-				if(page == NO_BENCH && data->b_data->threads > 1 && !data->b_data->run)
+				if(opts->selected_page == NO_BENCH && data->b_data->threads > 1 && !data->b_data->run)
 				{
 					data->b_data->threads--;
 					print_paramthreads(win, info, data);
 				}
 				break;
 			case KEY_UP:
-				if(page == NO_CPU && (int) opts->selected_core < data->cpu_count - 1)
+				if(opts->selected_page == NO_CPU && (int) opts->selected_core < data->cpu_count - 1)
 				{
 					opts->selected_core++;
 					print_activecore(win);
 				}
-				else if(page == NO_CACHES && (int) opts->bw_test < data->w_data->test_count - 1)
+				else if(opts->selected_page == NO_CACHES && (int) opts->bw_test < data->w_data->test_count - 1)
 				{
 					opts->bw_test++;
 					print_activetest(win, info, data);
 				}
-				else if(page == NO_BENCH && data->b_data->duration < 60 * 24)
+				else if(opts->selected_page == NO_BENCH && data->b_data->duration < 60 * 24)
 				{
 					data->b_data->duration++;
 					print_paramduration(win, info, data);
 				}
 				break;
 			case KEY_PPAGE:
-				if(page == NO_BENCH && data->b_data->threads < data->cpu_count && !data->b_data->run)
+				if(opts->selected_page == NO_BENCH && data->b_data->threads < data->cpu_count && !data->b_data->run)
 				{
 					data->b_data->threads++;
 					print_paramthreads(win, info, data);
 				}
 				break;
 			case 'f':
-				if(page == NO_BENCH && !data->b_data->run)
+				if(opts->selected_page == NO_BENCH && !data->b_data->run)
 				{
 					data->b_data->fast_mode = true;
 					start_benchmarks(data);
 				}
-				else if(page == NO_BENCH && data->b_data->run)
+				else if(opts->selected_page == NO_BENCH && data->b_data->run)
 					data->b_data->run = false;
 				break;
 			case 's':
-				if(page == NO_BENCH && !data->b_data->run)
+				if(opts->selected_page == NO_BENCH && !data->b_data->run)
 				{
 					data->b_data->fast_mode = false;
 					start_benchmarks(data);
 				}
-				else if(page == NO_BENCH && data->b_data->run)
+				else if(opts->selected_page == NO_BENCH && data->b_data->run)
 					data->b_data->run = false;
 				break;
 			case 'h':
@@ -197,11 +196,11 @@ void start_tui_ncurses(Labels *data)
 				erase();
 				refresh();
 				main_win(win, info, data);
-				(*func_ptr[page])(win, info, data);
+				(*func_ptr[opts->selected_page])(win, info, data);
 				break;
 			case ERR:
 				/* Refresh dynamic labels */
-				if(page == NO_CPU || page == NO_CACHES || page == NO_SYSTEM || page == NO_GRAPHICS || page == NO_BENCH)
+				if(opts->selected_page == NO_CPU || opts->selected_page == NO_CACHES || opts->selected_page == NO_SYSTEM || opts->selected_page == NO_GRAPHICS || opts->selected_page == NO_BENCH)
 					nrefresh(&refr);
 				break;
 			case KEY_RESIZE:
@@ -212,7 +211,7 @@ void start_tui_ncurses(Labels *data)
 				mvwin(win, starty, startx);
 				refresh();
 				main_win(win, info, data);
-				(*func_ptr[page])(win, info, data);
+				(*func_ptr[opts->selected_page])(win, info, data);
 				break;
 			default:
 				break;
@@ -322,9 +321,9 @@ static void nrefresh(NThrd *refr)
 	Labels *(data) = refr->data;
 	SizeInfo info  = refr->info;
 
-	do_refresh(data, page);
+	do_refresh(data);
 
-	switch(page)
+	switch(opts->selected_page)
 	{
 		case NO_CPU:
 			mvwprintw2c(win, LINE_4,  info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
@@ -459,9 +458,9 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 		mvwprintwc(win, TABS_LINE, i, INACTIVE_TAB_COLOR, " ");
 	for(i = NO_CPU; i <= NO_ABOUT; i++)
 	{
-		if(i == page && opts->color)
+		if(i == (int) opts->selected_page && opts->color)
 			mvwprintwc(win, TABS_LINE, cpt, ACTIVE_TAB_COLOR, data->objects[i]);
-		else if(i == page && !opts->color)
+		else if(i == (int) opts->selected_page && !opts->color)
 			mvwprintw(win, TABS_LINE, cpt++, "[%s]", data->objects[i]);
 		else
 			mvwprintwc(win, TABS_LINE, cpt, INACTIVE_TAB_COLOR, data->objects[i]);

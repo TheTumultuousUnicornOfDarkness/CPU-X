@@ -499,8 +499,9 @@ static const struct AvailableOpts
 	{ HAS_GTK,         'g', "gtk",       no_argument,       N_("Start graphical user interface (GUI) (default)")           },
 	{ HAS_NCURSES,     'n', "ncurses",   no_argument,       N_("Start text-based user interface (TUI)")                    },
 	{ true,            'd', "dump",      no_argument,       N_("Dump all data on standard output and exit")                },
-	{ true,            'c', "core",      required_argument, N_("Select CPU core to monitor (integer)")                     },
 	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
+	{ true,            'a', "tab",       required_argument, N_("Set default tab (integer)")                                },
+	{ true,            'c', "core",      required_argument, N_("Select CPU core to monitor (integer)")                     },
 	{ HAS_BANDWIDTH,   't', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
 	{ HAS_DMIDECODE,   'D', "dmidecode", no_argument,       N_("Run embedded command dmidecode and exit")                  },
 	{ HAS_BANDWIDTH,   'B', "bandwidth", no_argument,       N_("Run embedded command bandwidth and exit")                  },
@@ -606,15 +607,20 @@ static void menu(int argc, char *argv[])
 			case 'd':
 				opts->output_type = OUT_DUMP;
 				break;
-			case 'c':
-				tmp_arg = atoi(optarg);
-				if(tmp_arg >= 0)
-					opts->selected_core = tmp_arg;
-				break;
 			case 'r':
 				tmp_arg = atoi(optarg);
 				if(tmp_arg >= 1)
 					opts->refr_time = tmp_arg;
+				break;
+			case 'a':
+				tmp_arg = atoi(optarg);
+				if(NO_CPU < tmp_arg && tmp_arg <= NO_ABOUT)
+					opts->selected_page = tmp_arg;
+				break;
+			case 'c':
+				tmp_arg = atoi(optarg);
+				if(tmp_arg >= 0)
+					opts->selected_core = tmp_arg;
 				break;
 			case 't':
 				tmp_arg = atoi(optarg);
@@ -755,9 +761,9 @@ int main(int argc, char *argv[])
 
 	data->b_data = &(BenchData) { .run = false, .duration = 1, .threads = 1, .primes = 0 };
 
-	opts = &(Options) { .output_type = 0,     .selected_core  = 0,          .refr_time       = 1,
-	                    .bw_test     = 0,     .verbose        = false,      .color           = true,
-	                    .update      = false, .use_network    = 1 };
+	opts = &(Options) { .output_type   = 0,     .refr_time      = 1,          .selected_page  = 0,
+	                    .selected_core = 0,     .bw_test        = 0,          .verbose        = false,
+			    .color         = true,  .update         = false,      .use_network    = 1 };
 
 	set_locales();
 	signal(SIGSEGV, sighandler);

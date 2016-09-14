@@ -134,14 +134,13 @@ static void new_version_window(GtkWidget *mainwindow)
 static gboolean grefresh(GThrd *refr)
 {
 	int i;
-	enum EnTabNumber page;
 	Labels    *(data) = refr->data;
 	GtkLabels *(glab) = refr->glab;
 
-	page = gtk_notebook_get_current_page(GTK_NOTEBOOK(glab->notebook));
-	do_refresh(data, page);
+	opts->selected_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(glab->notebook));
+	do_refresh(data);
 
-	switch(page)
+	switch(opts->selected_page)
 	{
 		case NO_CPU:
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][VOLTAGE]),      data->tab_cpu[VALUE][VOLTAGE]);
@@ -299,6 +298,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->logoprg     = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol      = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
 	gtk_widget_set_name(glab->mainwindow, "mainwindow");
+	gtk_notebook_set_current_page(GTK_NOTEBOOK(glab->notebook), opts->selected_page);
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
