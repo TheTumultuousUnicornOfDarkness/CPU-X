@@ -151,7 +151,7 @@ static gboolean grefresh(GThrd *refr)
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][USAGE]),        data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
-			for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
+			for(i = L1SPEED; i < data->w_data->level_count * CACHEFIELDS; i += CACHEFIELDS)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 			break;
 		case NO_SYSTEM:
@@ -317,6 +317,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_caches[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcache[i], "lab")));
 		glab->gtktab_caches[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcache[i], "val")));
 	}
+	glab->gridcaches = GTK_WIDGET(gtk_builder_get_object(builder, "caches_grid"));
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
@@ -470,6 +471,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]),  data->tab_caches[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 	}
+	for(i = LASTCACHES / CACHEFIELDS; i > data->w_data->level_count; i--)
+		gtk_grid_remove_row(GTK_GRID(glab->gridcaches), i - 1);
 	for(i = 0; i < data->w_data->test_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetest), data->w_data->test_name[i]);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activetest), opts->bw_test);

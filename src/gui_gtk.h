@@ -48,6 +48,7 @@ typedef struct
 	GtkWidget *activecore;
 
 	/* Tab Caches */
+	GtkWidget *gridcaches;
 	GtkWidget *gtktab_caches[2][LASTCACHES];
 	GtkWidget *activetest;
 

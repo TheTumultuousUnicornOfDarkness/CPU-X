@@ -1443,10 +1443,9 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="cachesbox">
+              <object class="GtkGrid" id="caches_grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkFrame" id="l1cache_fram">
                     <property name="visible">True</property>
@@ -1461,6 +1460,8 @@
                       <object class="GtkAlignment" id="l1cache_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
                         <property name="margin_bottom">6</property>
@@ -1536,6 +1537,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
                                 <property name="margin_end">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
@@ -1552,6 +1554,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
                                 <property name="margin_end">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
@@ -1576,9 +1579,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -1595,6 +1597,8 @@
                       <object class="GtkAlignment" id="l2cache_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
                         <property name="margin_bottom">6</property>
@@ -1670,6 +1674,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
                                 <property name="margin_end">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
@@ -1686,6 +1691,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
                                 <property name="margin_end">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
@@ -1710,9 +1716,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -1729,6 +1734,8 @@
                       <object class="GtkAlignment" id="l3cache_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
                         <property name="margin_bottom">6</property>
@@ -1804,6 +1811,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
                                 <property name="margin_end">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
@@ -1820,6 +1828,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">end</property>
+                                <property name="margin_right">4</property>
                                 <property name="margin_end">4</property>
                                 <property name="margin_top">1</property>
                                 <property name="margin_bottom">1</property>
@@ -1844,9 +1853,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -1863,6 +1871,8 @@
                       <object class="GtkAlignment" id="l4cache_align">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="margin_start">6</property>
                         <property name="margin_end">6</property>
                         <property name="margin_bottom">6</property>
@@ -1980,9 +1990,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">3</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -2021,9 +2030,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">4</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
                   </packing>
                 </child>
               </object>
