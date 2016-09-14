@@ -476,6 +476,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	for(i = 0; i < data->w_data->test_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetest), data->w_data->test_name[i]);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activetest), opts->bw_test);
+	if(!data->w_data->level_count)
+		gtk_widget_hide(GTK_WIDGET(glab->gridcaches));
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
@@ -492,6 +494,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	}
 	for(i = BANK7_1; i >= data->dimms_count; i--)
 		gtk_grid_remove_row(GTK_GRID(glab->gridbanks), i);
+	if(!data->dimms_count)
+		gtk_widget_hide(GTK_WIDGET(glab->gridbanks));
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYSTEM; i++)
@@ -513,6 +517,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	}
 	for(i = LASTGRAPHICS; i >= data->gpu_count; i -= GPUFIELDS)
 		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i / GPUFIELDS);
+	if(!data->gpu_count)
+		gtk_widget_hide(GTK_WIDGET(glab->gridcards));
 
 	/* Tab Bench */
 	for(i = PRIMESLOWSCORE; i < LASTBENCH; i++)
