@@ -53,7 +53,8 @@ static const char *objectcache[LASTCACHES] =
 {
 	"l1cache_size", "l1cache_speed",
 	"l2cache_size", "l2cache_speed",
-	"l3cache_size", "l3cache_speed"
+	"l3cache_size", "l3cache_speed",
+	"l4cache_size", "l4cache_speed"
 };
 
 /* Tab Motherboard */

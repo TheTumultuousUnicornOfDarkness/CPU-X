@@ -239,13 +239,13 @@ static void dump_data(Labels *data)
 	const char *col_end   = opts->color ? DEFAULT   : "";
 	const struct Arrays { char **array_name, **array_value; int last; } a[] =
 	{
-		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                     },
-		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      LASTCACHES                  },
-		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD             },
-		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimms_count           },
-		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM                  },
-		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    data->gpu_count * GPUFIELDS },
-		{ NULL,                        NULL,                         0                           }
+		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                                 },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      data->w_data->level_count * CACHEFIELDS },
+		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD                         },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimms_count                       },
+		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM                              },
+		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    data->gpu_count * GPUFIELDS             },
+		{ NULL,                        NULL,                         0                                       }
 	};
 	const struct Frames { int tab_nb, lab_nb, frame_nb; } f[] =
 	{
@@ -256,6 +256,7 @@ static void dump_data(Labels *data)
 		{ NO_CACHES,      L1SIZE,       FRAML1CACHE         },
 		{ NO_CACHES,      L2SIZE,       FRAML2CACHE         },
 		{ NO_CACHES,      L3SIZE,       FRAML3CACHE         },
+		{ NO_CACHES,      L4SIZE,       FRAML4CACHE         },
 		{ NO_MOTHERBOARD, MANUFACTURER, FRAMMOTHERBOARD     },
 		{ NO_MOTHERBOARD, BRAND,        FRAMBIOS            },
 		{ NO_MOTHERBOARD, CHIPVENDOR,   FRAMCHIPSET         },
@@ -748,7 +749,7 @@ int main(int argc, char *argv[])
 
 	data->l_data = &(LibcpuidData) { .cpu_vendor_id = -1, .cpu_model = -1, .cpu_ext_model = -1, .cpu_ext_family = -1 };
 
-	data->w_data = &(BandwidthData) { .l1_size = 0, .test_count = 0, .test_name = NULL, .speed = { 0 } };
+	data->w_data = &(BandwidthData) { .test_count = 0, .level_count = 0, .test_name = NULL, .speed = { 0 } };
 
 	data->m_data = &(MemoryData) { .mem_total = 0, .swap_total = 0 };
 

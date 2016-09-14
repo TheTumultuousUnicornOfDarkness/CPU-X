@@ -334,9 +334,12 @@ static void nrefresh(NThrd *refr)
 			mvwprintw2c(win, LINE_14, info.tb, "%14s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
-			mvwprintw2c(win, LINE_2,  info.tb, "%13s: %s", data->tab_caches[NAME][L1SPEED],  data->tab_caches[VALUE][L1SPEED]);
-			mvwprintw2c(win, LINE_6,  info.tb, "%13s: %s", data->tab_caches[NAME][L2SPEED],  data->tab_caches[VALUE][L2SPEED]);
-			mvwprintw2c(win, LINE_10, info.tb, "%13s: %s", data->tab_caches[NAME][L3SPEED],  data->tab_caches[VALUE][L3SPEED]);
+			line = LINE_2;
+			for(i = L1SPEED; i < data->w_data->level_count * CACHEFIELDS; i += CACHEFIELDS)
+			{
+				mvwprintw2c(win, line,  info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
+				line += CACHEFIELDS + 2;
+			}
 			break;
 		case NO_SYSTEM:
 			mvwprintw2c(win, LINE_4,  info.tb, "%13s: %s", data->tab_system[NAME][UPTIME],   data->tab_system[VALUE][UPTIME]);
@@ -535,38 +538,37 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display active Test in Caches tab */
 static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 {
+	const int line = LINE_1 + (CACHEFIELDS + 2) * data->w_data->level_count;
+
 	if(HAS_BANDWIDTH)
 	{
-		wclrline(win, LINE_13, info.tb, info.width - 2);
-		mvwprintwc(win, LINE_13, 12, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
+		wclrline(win, line, info.tb, info.width - 2);
+		mvwprintwc(win, line, 12, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
 	}
 }
 
 /* Caches tab */
 static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line;
+	int i, line = LINE_1, start = LINE_0, end = LINE_3;
 
-	/* L1 Cache frame */
-	frame(win, LINE_0, info.start , LINE_3, info.width - 1, data->objects[FRAML1CACHE]);
-	line = LINE_1;
-	for(i = L1SIZE; i < L2SIZE; i++)
-		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
-
-	/* L2 Cache frame */
-	frame(win, LINE_4, info.start , LINE_7, info.width - 1, data->objects[FRAML2CACHE]);
-	line = LINE_5;
-	for(i = L1SIZE; i < L2SIZE; i++)
-		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
-
-	/* L3 Cache frame */
-	frame(win, LINE_8, info.start , LINE_11, info.width - 1, data->objects[FRAML3CACHE]);
-	line = LINE_9;
-	for(i = L3SIZE; i < LASTCACHES; i++)
-		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
+	/* Cache frames */
+	for(i = L1SIZE; i < data->w_data->level_count * CACHEFIELDS; i++)
+	{
+		if(i % CACHEFIELDS == 0)
+		{
+			frame(win, start, info.start, end, info.width - 1, data->objects[FRAML1CACHE + i / CACHEFIELDS]);
+			start = end + 1;
+			end += 4;
+			if(i > 0)
+				line += 2;
+		}
+		mvwprintw2c(win, line++, 2, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
+	}
 
 	/* Test frame */
-	frame(win, LINE_12, info.start , LINE_14, info.width - 1, data->objects[FRAMTEST]);
+	line = (line != LINE_1) ? line + 1 : LINE_0;
+	frame(win, line, info.start , line + 2, info.width - 1, data->objects[FRAMTEST]);
 	print_activetest(win, info, data);
 
 	wrefresh(win);
