@@ -373,7 +373,7 @@ static bool check_new_version(void)
 	err = curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 
-	if(err)
+	if(err || new_version[0] == NULL)
 	{
 		MSG_ERROR(_("failed to perform the Curl transfer"));
 		opts->use_network = 0;
