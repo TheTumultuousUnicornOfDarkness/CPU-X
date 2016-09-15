@@ -44,12 +44,12 @@ These dependencies are needed to **build** CPU-X:
 ### Build and run dependencies
 
 These dependencies are needed to **build¹** and **run** CPU-X:
-* [GTK3+](http://www.gtk.org/) (minimum supported version is 3.8, version 3.16 or newer recommended)  
+* [GTK3+](http://www.gtk.org/) (version 3.8 or newer is needed)  
 * [NCurses](http://www.gnu.org/software/ncurses/)  
-* [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.2.2 or newer is recommended)  
-* [Libpci](http://mj.ucw.cz/sw/pciutils/)  
+* [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.3.0 or newer is needed)  
+* [Pciutils](http://mj.ucw.cz/sw/pciutils/)  
 * [Procps-ng](http://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](http://www.i-scream.org/libstatgrab/) (*BSD)  
-* [Curl](http://curl.haxx.se/) / [Wget](https://www.gnu.org/software/wget/) (optionnal)  
+* [Curl](http://curl.haxx.se/)  
 **¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 
