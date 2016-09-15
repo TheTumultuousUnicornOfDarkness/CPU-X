@@ -359,6 +359,7 @@ static bool check_new_version(void)
 
 	curl_easy_setopt(curl, CURLOPT_URL, UPDURL);
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 1L);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &new_version[0]);
 	err = curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
@@ -367,7 +368,7 @@ static bool check_new_version(void)
 	{
 		MSG_ERROR(_("failed to perform the Curl transfer"));
 		opts->use_network = 0;
-		new_version[1] = "";
+		asprintf(&new_version[1], " ");
 	}
 	else if(strcmp(new_version[0], PRGVER))
 	{
