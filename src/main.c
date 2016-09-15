@@ -279,6 +279,9 @@ static void dump_data(Labels *data)
 	for(i = 0; a[i].array_name != NULL; i++)
 	{
 		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col_start, data->objects[i], col_end);
+		while(f[k].tab_nb != i)
+			k++;
+
 		for(j = 0; j < a[i].last; j++)
 		{
 			if(f[k].tab_nb == i && f[k].lab_nb == j)
