@@ -608,16 +608,19 @@ static void ntab_motherboard(WINDOW *win, const SizeInfo info, Labels *data)
 /* Memory tab */
 static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line;
+	int i, line = LINE_0;
 
 	if(!data->dimms_count)
 		return;
 
 	/* Banks frame */
-	frame(win, LINE_0, info.start, LINE_0 + data->dimms_count + 1, info.width - 1, data->objects[FRAMBANKS]);
-	line = LINE_1;
-	for(i = BANK0_0; i < data->dimms_count; i++)
-		mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
+	for(i = BANK0; i < data->dimms_count; i++)
+	{
+		frame(win, line, info.start, line + 2, info.width - 1, data->objects[FRAMBANK0 + i]);
+		line++;
+		mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
+		line += 2;
+	}
 
 	wrefresh(win);
 }

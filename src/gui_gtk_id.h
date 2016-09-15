@@ -32,7 +32,7 @@ static const char *trad[LASTOBJ] =
 	"proc_lab", "clock_lab", "cache_lab",
 	"l1cache_lab", "l2cache_lab", "l3cache_lab", "l4cache_lab", "test_lab",
 	"motherboard_lab", "bios_lab", "chip_lab",
-	"banks_lab",
+	"bank0_lab", "bank1_lab", "bank2_lab", "bank3_lab", "bank4_lab", "bank5_lab", "bank6_lab", "bank7_lab",
 	"os_lab", "mem_lab",
 	"card0_lab", "card1_lab", "card2_lab", "card3_lab",
 	"primeslow_lab", "primefast_lab", "param_lab",
@@ -68,8 +68,8 @@ static const char *objectmb[LASTMOTHERBOARD] =
 /* Tab RAM */
 static const char *objectram[LASTMEMORY] =
 {
-	"banks_bank0_0", "banks_bank0_1", "banks_bank1_0", "banks_bank1_1", "banks_bank2_0", "banks_bank2_1", "banks_bank3_0", "banks_bank3_1",
-	"banks_bank4_0", "banks_bank4_1", "banks_bank5_0", "banks_bank5_1", "banks_bank6_0", "banks_bank6_1", "banks_bank7_0", "banks_bank7_1"
+	"bank0_ref", "bank1_ref", "bank2_ref", "bank3_ref",
+	"bank4_ref", "bank5_ref", "bank6_ref", "bank7_ref"
 };
 
 /* Tab System */

@@ -555,7 +555,7 @@ static int call_dmidecode(Labels *data)
 	opt.type[2] = 1;
 
 	/* Tab RAM */
-	for(i = BANK0_0; i < LASTMEMORY; i++)
+	for(i = BANK0; i < LASTMEMORY; i++)
 		dmidata[DMI_RAM][i] = &data->tab_memory[VALUE][i];
 	opt.type[17] = 1;
 

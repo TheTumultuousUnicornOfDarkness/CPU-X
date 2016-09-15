@@ -135,11 +135,10 @@ static void labels_setname(Labels *data)
 
 	/* Memory tab */
 	asprintf(&data->objects[TABMEMORY], _("Memory")); // Tab label
-	asprintf(&data->objects[FRAMBANKS], _("Banks")); // Frame label
-	for(i = BANK0_0; i < LASTMEMORY; i += RAMFIELDS)
+	for(i = BANK0; i < LASTMEMORY; i++)
 	{
-		asprintf(&data->tab_memory[NAME][BANK0_0 + i], _("Bank %i Ref."), i / RAMFIELDS);
-		asprintf(&data->tab_memory[NAME][BANK0_1 + i], _("Bank %i Type"), i / RAMFIELDS);
+		asprintf(&data->objects[FRAMBANK0 + i], _("Bank %i"), i);
+		asprintf(&data->tab_memory[NAME][i],    _("Reference"));
 	}
 
 	/* System tab */
@@ -260,7 +259,14 @@ static void dump_data(Labels *data)
 		{ NO_MOTHERBOARD, MANUFACTURER, FRAMMOTHERBOARD     },
 		{ NO_MOTHERBOARD, BRAND,        FRAMBIOS            },
 		{ NO_MOTHERBOARD, CHIPVENDOR,   FRAMCHIPSET         },
-		{ NO_MEMORY,      BANK0_0,      FRAMBANKS           },
+		{ NO_MEMORY,      BANK0,        FRAMBANK0           },
+		{ NO_MEMORY,      BANK1,        FRAMBANK1           },
+		{ NO_MEMORY,      BANK2,        FRAMBANK2           },
+		{ NO_MEMORY,      BANK3,        FRAMBANK3           },
+		{ NO_MEMORY,      BANK4,        FRAMBANK4           },
+		{ NO_MEMORY,      BANK5,        FRAMBANK5           },
+		{ NO_MEMORY,      BANK6,        FRAMBANK6           },
+		{ NO_MEMORY,      BANK7,        FRAMBANK7           },
 		{ NO_SYSTEM,      KERNEL,       FRAMOPERATINGSYSTEM },
 		{ NO_SYSTEM,      USED,         FRAMMEMORY          },
 		{ NO_GRAPHICS,    GPU1VENDOR,   FRAMGPU1            },
