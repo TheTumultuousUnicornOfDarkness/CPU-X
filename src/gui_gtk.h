@@ -56,6 +56,7 @@ typedef struct
 	GtkWidget *gtktab_motherboard[2][LASTMOTHERBOARD];
 
 	/* Tab RAM */
+	GtkWidget *scrollbanks;
 	GtkWidget *gridbanks;
 	GtkWidget *gtktab_memory[2][LASTMEMORY];
 

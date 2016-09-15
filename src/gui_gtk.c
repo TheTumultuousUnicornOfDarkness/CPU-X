@@ -332,7 +332,8 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_memory[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectram[i], "lab")));
 		glab->gtktab_memory[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectram[i], "val")));
 	}
-	glab->gridbanks = GTK_WIDGET(gtk_builder_get_object(builder, "memory_grid"));
+	glab->gridbanks   = GTK_WIDGET(gtk_builder_get_object(builder, "memory_grid"));
+	glab->scrollbanks = GTK_WIDGET(gtk_builder_get_object(builder, "memory_scrolledwindow"));
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYSTEM; i++)
@@ -496,7 +497,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	for(i = BANK7; i >= data->dimms_count; i--)
 		gtk_grid_remove_row(GTK_GRID(glab->gridbanks), i);
 	if(!data->dimms_count)
-		gtk_widget_hide(GTK_WIDGET(glab->gridbanks));
+		gtk_widget_hide(GTK_WIDGET(glab->scrollbanks));
 
 	/* Tab System */
 	for(i = KERNEL; i < LASTSYSTEM; i++)
