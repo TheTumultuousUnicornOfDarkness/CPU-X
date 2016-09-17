@@ -256,9 +256,10 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 /* Get label ID ('type' must be "lab" or "val") */
 static char *get_id(const char *objectstr, char *type)
 {
-	static char *buff;
+	static gchar *buff = NULL;
 	gchar **split;
 
+	free(buff);
 	split = g_strsplit(objectstr, "_", 2);
 	buff  = g_strconcat(split[0], "_", type, split[1], NULL);
 	g_strfreev(split);
@@ -270,17 +271,19 @@ static char *get_id(const char *objectstr, char *type)
 static char *data_path(const char *file)
 {
 	int i;
+	bool file_exists = false;
+	static gchar *path = NULL;
 	const char *prgname = g_get_prgname();
 	const gchar *const *paths = g_get_system_data_dirs();
 
-	for(i = 0; paths[i] != NULL; i++)
+	for(i = 0; (!file_exists) && (paths[i] != NULL); i++)
 	{
-		gchar *path = g_build_filename(paths[i], prgname, file, NULL);
-		if(g_file_test(path, G_FILE_TEST_EXISTS))
-			return g_strdup(path);
+		free(path);
+		path = g_build_filename(paths[i], prgname, file, NULL);
+		file_exists = g_file_test(path, G_FILE_TEST_EXISTS);
 	}
 
-	return strdup(" ");
+	return path;
 }
 
 /* Retrieve widgets from GtkBuilder */
@@ -344,7 +347,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	for(i = BARUSED; i < LASTBAR; i++)
 	{
 		glab->bar[i] = GTK_WIDGET(gtk_builder_get_object(builder, objectsys_bar[i]));
-		gtk_widget_set_name(GTK_WIDGET(glab->bar[i]), g_strdup_printf("%i", i));
+		gtk_widget_set_name(GTK_WIDGET(glab->bar[i]), format("%i", i));
 	}
 
 	/* Tab Graphics */
@@ -377,9 +380,9 @@ static void set_colors(GtkLabels *glab)
 		GtkCssProvider *provider = gtk_css_provider_new();
 
 		if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
-			filename = g_strdup("cpu-x-gtk-3.20.css");
+			casprintf(&filename, false, "cpu-x-gtk-3.20.css");
 		else // GTK 3.16 or 3.18
-			filename = g_strdup("cpu-x-gtk-3.16.css");
+			casprintf(&filename, false, "cpu-x-gtk-3.16.css");
 
 		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
@@ -388,6 +391,7 @@ static void set_colors(GtkLabels *glab)
 		else
 			gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
 
+		free(filename);
 		g_object_unref(provider);
 	}
 #if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
@@ -423,13 +427,13 @@ static void set_logos(GtkLabels *glab, Labels *data)
 
 	if(PORTABLE_BINARY)
 	{
-		cpu_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(g_strdup_printf(GRESOURCE_LOGOS("%s.png"), data->tab_cpu[VALUE][VENDOR]), width, height, TRUE, &error);
+		cpu_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(format(GRESOURCE_LOGOS("%s.png"), data->tab_cpu[VALUE][VENDOR]), width, height, TRUE, &error);
 		unknown_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("Unknown.png"), width, height, TRUE, NULL);
 		prg_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
 	}
 	else
 	{
-		cpu_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path(g_strdup_printf("%s.png", data->tab_cpu[VALUE][VENDOR])), width, height, TRUE, &error);
+		cpu_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path(format("%s.png", data->tab_cpu[VALUE][VENDOR])), width, height, TRUE, &error);
 		unknown_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path("Unknown.png"), width, height, TRUE, NULL);
 		prg_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
 	}
@@ -463,7 +467,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
 	for(i = 0; i < data->cpu_count; i++)
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), g_strdup_printf(_("Core #%i"), i));
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format(_("Core #%i"), i));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
 	/* Tab Caches */
@@ -628,7 +632,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 
 	cairo_set_source_rgb(cr, 0.0, 0.0, 0.8081); /* Print percentage */
 	cairo_move_to(cr, -40, 0);
-	pango_layout_set_text(newlayout, g_strdup_printf("%.2f%%", percent), -1);
+	pango_layout_set_text(newlayout, format("%.2f%%", percent), -1);
 	pango_cairo_show_layout(cr, newlayout);
 	cairo_fill(cr);
 	g_object_unref(newlayout);
