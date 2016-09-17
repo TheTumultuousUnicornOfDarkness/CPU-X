@@ -150,7 +150,7 @@ static gboolean grefresh(GThrd *refr)
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][USAGE]),        data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
-			for(i = L1SPEED; i < data->w_data->level_count * CACHEFIELDS; i += CACHEFIELDS)
+			for(i = L1SPEED; i < data->cache_count * CACHEFIELDS; i += CACHEFIELDS)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 			break;
 		case NO_SYSTEM:
@@ -455,12 +455,12 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[NAME][i]),  data->tab_caches[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 	}
-	for(i = LASTCACHES / CACHEFIELDS; i > data->w_data->level_count; i--)
+	for(i = LASTCACHES / CACHEFIELDS; i > data->cache_count; i--)
 		gtk_grid_remove_row(GTK_GRID(glab->gridcaches), i - 1);
 	for(i = 0; i < data->w_data->test_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetest), data->w_data->test_name[i]);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activetest), opts->bw_test);
-	if(!data->w_data->level_count)
+	if(!data->cache_count)
 		gtk_widget_hide(GTK_WIDGET(glab->gridcaches));
 
 	/* Tab Motherboard */
@@ -471,15 +471,15 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	}
 
 	/* Tab RAM */
-	for(i = BANK0; i < data->dimms_count; i++)
+	for(i = BANK0; i < data->dimm_count; i++)
 	{
 		g_strdelimit(data->tab_memory[VALUE][i], ",", '\n');
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[NAME][i]),  data->tab_memory[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_memory[VALUE][i]), data->tab_memory[VALUE][i]);
 	}
-	for(i = BANK7; i >= data->dimms_count; i--)
+	for(i = BANK7; i >= data->dimm_count; i--)
 		gtk_grid_remove_row(GTK_GRID(glab->gridbanks), i);
-	if(!data->dimms_count)
+	if(!data->dimm_count)
 		gtk_widget_hide(GTK_WIDGET(glab->scrollbanks));
 
 	/* Tab System */

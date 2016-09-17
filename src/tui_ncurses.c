@@ -334,7 +334,7 @@ static void nrefresh(NThrd *refr)
 			break;
 		case NO_CACHES:
 			line = LINE_2;
-			for(i = L1SPEED; i < data->w_data->level_count * CACHEFIELDS; i += CACHEFIELDS)
+			for(i = L1SPEED; i < data->cache_count * CACHEFIELDS; i += CACHEFIELDS)
 			{
 				mvwprintw2c(win, line,  info.tb, "%13s: %s", data->tab_caches[NAME][i], data->tab_caches[VALUE][i]);
 				line += CACHEFIELDS + 2;
@@ -537,9 +537,9 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display active Test in Caches tab */
 static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	const int line = LINE_1 + (CACHEFIELDS + 2) * data->w_data->level_count;
+	const int line = LINE_1 + (CACHEFIELDS + 2) * data->cache_count;
 
-	if(!data->w_data->level_count)
+	if(!data->cache_count)
 		return;
 
 	if(HAS_BANDWIDTH)
@@ -554,11 +554,11 @@ static void ntab_caches(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	int i, line = LINE_1, start = LINE_0, end = LINE_3;
 
-	if(!data->w_data->level_count)
+	if(!data->cache_count)
 		return;
 
 	/* Cache frames */
-	for(i = L1SIZE; i < data->w_data->level_count * CACHEFIELDS; i++)
+	for(i = L1SIZE; i < data->cache_count * CACHEFIELDS; i++)
 	{
 		if(i % CACHEFIELDS == 0)
 		{
@@ -610,11 +610,11 @@ static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data)
 {
 	int i, line = LINE_0;
 
-	if(!data->dimms_count)
+	if(!data->dimm_count)
 		return;
 
 	/* Banks frame */
-	for(i = BANK0; i < data->dimms_count; i++)
+	for(i = BANK0; i < data->dimm_count; i++)
 	{
 		frame(win, line, info.start, line + 2, info.width - 1, data->objects[FRAMBANK0 + i]);
 		line++;

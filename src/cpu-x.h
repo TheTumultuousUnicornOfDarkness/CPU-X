@@ -175,7 +175,7 @@ typedef struct
 
 typedef struct
 {
-	uint8_t  test_count, level_count;
+	uint8_t  test_count;
 	uint32_t size[LASTCACHES / CACHEFIELDS];
 	uint32_t speed[LASTCACHES / CACHEFIELDS];
 	char     **test_name;
@@ -211,7 +211,7 @@ typedef struct
 	char *tab_about[LASTABOUT];
 
 	int      cpu_freq;
-	uint8_t  cpu_count, gpu_count, dimms_count;
+	uint8_t  cpu_count, cache_count, dimm_count, gpu_count;
 	double   bus_freq;
 
 	LibcpuidData  *l_data;

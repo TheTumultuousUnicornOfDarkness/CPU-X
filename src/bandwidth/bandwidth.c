@@ -2278,7 +2278,7 @@ end_initialization:
 						total_amount = 0;
 						cache_level++;
 
-						if(cache_level >= w_data->level_count || w_data->size[cache_level] < 1)
+						if(cache_level >= data->cache_count || w_data->size[cache_level] < 1)
 							return 0;
 					}
 

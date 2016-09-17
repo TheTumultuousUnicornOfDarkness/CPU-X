@@ -239,9 +239,9 @@ static void dump_data(Labels *data)
 	const struct Arrays { char **array_name, **array_value; int last; } a[] =
 	{
 		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                                 },
-		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      data->w_data->level_count * CACHEFIELDS },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      data->cache_count * CACHEFIELDS         },
 		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD                         },
-		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimms_count                       },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimm_count                        },
 		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM                              },
 		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    data->gpu_count * GPUFIELDS             },
 		{ NULL,                        NULL,                         0                                       }
@@ -758,14 +758,14 @@ int main(int argc, char *argv[])
 	/* Parse options */
 	binary_name = argv[0];
 	Labels *data = &(Labels) {
-	                .tab_cpu    = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
-	                .tab_memory = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
-	                .cpu_freq   = 0,          .bus_freq       = 0.0,
-	                .cpu_count  = 0,          .gpu_count      = 0,          .dimms_count     = 0 };
+	                .tab_cpu     = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
+	                .tab_memory  = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
+	                .cpu_freq    = 0,          .bus_freq       = 0.0,        .cpu_count       = 0,
+			.cache_count = 0,          .dimm_count     = 0,          .gpu_count       = 0        };
 
 	data->l_data = &(LibcpuidData) { .cpu_vendor_id = -1, .cpu_model = -1, .cpu_ext_model = -1, .cpu_ext_family = -1 };
 
-	data->w_data = &(BandwidthData) { .test_count = 0, .level_count = 0, .test_name = NULL, .speed = { 0 } };
+	data->w_data = &(BandwidthData) { .test_count = 0, .test_name = NULL, .speed = { 0 } };
 
 	data->m_data = &(MemoryData) { .mem_total = 0, .swap_total = 0 };
 

@@ -347,7 +347,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
 	{
-		data->w_data->level_count++;
+		data->cache_count++;
 		data->w_data->size[0] = datanr.l1_instruction_cache;
 		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
 		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_kb, datanr.num_cores, datanr.l1_instruction_cache,
@@ -357,7 +357,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 2 */
 	if(datanr.l2_cache > 0)
 	{
-		data->w_data->level_count++;
+		data->cache_count++;
 		data->w_data->size[1] = datanr.l2_cache;
 		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, "%d x %4d KB, %2d-way", datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
 		casprintf(&data->tab_caches[VALUE][L2SIZE], true, fmt_kb, datanr.num_cores, datanr.l2_cache,
@@ -367,7 +367,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 3 */
 	if(datanr.l3_cache > 0)
 	{
-		data->w_data->level_count++;
+		data->cache_count++;
 		data->w_data->size[2] = datanr.l3_cache;
 		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, "%4d MB, %2d-way", datanr.l3_cache / (2 << 9), datanr.l3_assoc);
 		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_mb, datanr.l3_cache  / (2 << 9),
@@ -377,7 +377,7 @@ static int call_libcpuid_static(Labels *data)
 	/* Cache level 4 */
 	if(datanr.l4_cache > 0)
 	{
-		data->w_data->level_count++;
+		data->cache_count++;
 		data->w_data->size[3] = datanr.l4_cache;
 		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_mb, datanr.l4_cache  / (2 << 9),
 			datanr.l4_assoc, datanr.l4_cacheline);
@@ -566,8 +566,8 @@ static int call_dmidecode(Labels *data)
 	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
 		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
 
-	while(data->tab_memory[VALUE][data->dimms_count] != NULL)
-		data->dimms_count++;
+	while(data->tab_memory[VALUE][data->dimm_count] != NULL)
+		data->dimm_count++;
 
 	if(err)
 		MSG_ERROR(_("failed to call dmidecode"));
