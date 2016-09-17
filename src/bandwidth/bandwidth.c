@@ -19,7 +19,6 @@
   The author may be reached at veritas@comcast.net.
  *===========================================================================*/
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -2250,7 +2249,7 @@ end_initialization:
 			w_data->test_count = LASTTEST;
 			w_data->test_name  = malloc(LASTTEST * sizeof(char *));
 			for(i = 0; i < LASTTEST; i++)
-				asprintf(&w_data->test_name[i], "#%2i: %s", i, tests[i].name);
+				casprintf(&w_data->test_name[i], false, "#%2i: %s", i, tests[i].name);
 		}
 	}
 
