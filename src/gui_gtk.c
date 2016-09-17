@@ -44,7 +44,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	GtkLabels  glab;
 	GThrd      refr     = { &glab, data };
 	GtkBuilder *builder = gtk_builder_new();
-	const char *ui_files[] = { "cpu-x-gtk-3.16.ui", "cpu-x-gtk-3.8.ui", NULL };
+	const char *ui_files[] = { "cpu-x-gtk-3.12.ui", NULL };
 
 	MSG_VERBOSE(_("Starting GTK GUI..."));
 	gtk_init(argc, argv);
@@ -374,44 +374,23 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 /* Set custom GTK theme */
 static void set_colors(GtkLabels *glab)
 {
-	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
-	{
-		char *filename;
-		GtkCssProvider *provider = gtk_css_provider_new();
+	char *filename;
+	GtkCssProvider *provider = gtk_css_provider_new();
 
-		if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
-			casprintf(&filename, false, "cpu-x-gtk-3.20.css");
-		else // GTK 3.16 or 3.18
-			casprintf(&filename, false, "cpu-x-gtk-3.16.css");
+	if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
+		casprintf(&filename, false, "cpu-x-gtk-3.20.css");
+	else // GTK 3.12 to 3.18
+		casprintf(&filename, false, "cpu-x-gtk-3.12.css");
 
-		gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-		if(PORTABLE_BINARY)
-			gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
-		else
-			gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
+	if(PORTABLE_BINARY && gtk_check_version(3, 15, 0) == NULL)
+		gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
+	else if(!PORTABLE_BINARY)
+		gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
 
-		free(filename);
-		g_object_unref(provider);
-	}
-#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
-	else
-	{
-		GdkRGBA window_colors = { 0.3, 0.6, 0.9, 0.95 };
-		gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &window_colors);
-		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(glab->butcol), &window_colors);
-	}
-#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
-}
-
-/* Allow user to choose a new color theme (until GTK 3.14) */
-static void change_color(GtkWidget *button, GtkLabels *glab)
-{
-#if PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0)
-	GdkRGBA color;
-	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(button), &color);
-	gtk_widget_override_background_color(glab->mainwindow, GTK_STATE_FLAG_NORMAL, &color);
-#endif /* PORTABLE_BINARY || !GTK_CHECK_VERSION(3, 15, 0) */
+	free(filename);
+	g_object_unref(provider);
 }
 
 /* Set CPU vendor logo and program logo */
@@ -559,9 +538,6 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	g_signal_connect(glab->gtktab_bench[VALUE][PRIMEFASTRUN],  "button-press-event", G_CALLBACK(start_benchmark_bg), refr);
 	g_signal_connect(glab->gtktab_bench[VALUE][PARAMDURATION], "value-changed",      G_CALLBACK(change_benchparam),  data);
 	g_signal_connect(glab->gtktab_bench[VALUE][PARAMTHREADS],  "value-changed",      G_CALLBACK(change_benchparam),  data);
-
-	if(gtk_check_version(3, 15, 0) != NULL) // Only for GTK 3.14 or older
-		g_signal_connect(glab->butcol, "color-set", G_CALLBACK(change_color), glab);
 
 	for(i = BARUSED; i < LASTBAR; i++)
 		g_signal_connect(G_OBJECT(glab->bar[i]),  "draw", G_CALLBACK(fill_frame), refr);

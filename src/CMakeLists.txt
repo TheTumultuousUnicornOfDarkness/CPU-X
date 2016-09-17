@@ -9,7 +9,7 @@ project(binary)
 
 # GTK3+
 if(WITH_GTK)
-	pkg_check_modules(GTK3 gtk+-3.0>=3.8.0)
+	pkg_check_modules(GTK3 gtk+-3.0>=3.12.0)
 	if(GTK3_FOUND)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})

@@ -126,9 +126,6 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab);
 /* Set custom GTK theme */
 static void set_colors(GtkLabels *glab);
 
-/* Allow user to choose a new color theme (until GTK 3.14) */
-static void change_color(GtkWidget *button, GtkLabels *glab);
-
 /* Set CPU vendor logo and program logo */
 static void set_logos(GtkLabels *glab, Labels *data);
 
