@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "3.0")
+set(LOCALVERSION "3.0.20160907")
 if(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	cmake_policy(SET CMP0048 NEW)
 	project(dmidecode
@@ -15,13 +15,12 @@ endif(${CMAKE_VERSION} VERSION_GREATER "2.9")
 set(DMIDECODE_DEBUG_FLAGS "-Wall -Wextra -Wuninitialized -Wno-shift-count-overflow")
 set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${DMIDECODE_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DMIDECODE_DEBUG_FLAGS}")
-message("-- Checking for submodule '${PROJECT_NAME}'")
-message("--   Found ${PROJECT_NAME}, version ${PROJECT_VERSION}")
+message(STATUS "Using built-in ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
 
 # Build (dmidecode)
 add_library(dmidecode
-        STATIC
+	STATIC
 	types.h
 	util.c
 	util.h
