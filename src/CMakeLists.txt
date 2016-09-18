@@ -163,6 +163,21 @@ add_executable(cpu-x
 	core.h
 )
 
+if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+	set(BITNESS "32")
+else("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+	set(BITNESS "64")
+endif("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	add_definitions(-DOS="linux${BITNESS}")
+elseif(${CMAKE_SYSTEM_NAME} MATCHES FreeBSD OR ${CMAKE_SYSTEM_NAME} MATCHES DragonFly)
+	add_definitions(-DOS="bsd${BITNESS}")
+else()
+	message("${BoldYellow}Unknown operating system: ${CMAKE_SYSTEM_NAME}${ColourReset}")
+	add_definitions(-DOS="unknown${BITNESS}")
+endif()
+
 if(PORTABLE_BINARY)
 	message("${BoldBlue}${CMAKE_PROJECT_NAME} will be compiled as portable binary.${ColourReset}")
 	add_definitions(-DPORTABLE_BINARY=1)

@@ -48,17 +48,6 @@
 # endif
 #endif
 
-#if (defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)) && defined (__LP64__)
-# define OS "bsd64"
-#elif (defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)) && !defined (__LP64__)
-# define OS "bsd32"
-#elif defined (__linux__) && defined (__LP64__)
-# define OS "linux64"
-#elif defined (__linux__) && !defined (__LP64__)
-# define OS "linux32"
-#endif
-
-
 char *binary_name, *new_version[2] = { NULL, NULL };
 Options *opts;
 
