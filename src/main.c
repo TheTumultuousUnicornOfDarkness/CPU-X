@@ -684,12 +684,10 @@ static void menu(int argc, char *argv[])
 				break;
 			case 'D':
 				opts->output_type = OUT_DMIDECODE;
-				if(HAS_DMIDECODE)
-					exit(run_dmidecode());
+				break;
 			case 'B':
 				opts->output_type = OUT_BANDWIDTH;
-				if(HAS_BANDWIDTH)
-					exit(run_bandwidth());
+				break;
 			case 'o':
 				opts->color = false;
 				break;
@@ -825,17 +823,20 @@ int main(int argc, char *argv[])
 		opts->use_network = atoi(getenv("CPUX_NETWORK"));
 
 	menu(argc, argv);
-	if(getuid())
+	if(opts->output_type < OUT_NO_CPUX)
 	{
-		MSG_WARNING(_("Root privileges are required to work properly"));
-		MSG_WARNING(_("Some informations will not be retrievable"));
-	}
-	labels_setname (data);
-	fill_labels    (data);
-	remove_null_ptr(data);
+		if(getuid())
+		{
+			MSG_WARNING(_("Root privileges are required to work properly"));
+			MSG_WARNING(_("Some informations will not be retrievable"));
+		}
+		labels_setname (data);
+		fill_labels    (data);
+		remove_null_ptr(data);
 
-	if(HAS_LIBCURL)
-		check_new_version();
+		if(HAS_LIBCURL)
+			check_new_version();
+	}
 
 	/* Show data */
 	switch(opts->output_type)
@@ -850,6 +851,14 @@ int main(int argc, char *argv[])
 			break;
 		case OUT_DUMP:
 			dump_data(data);
+			break;
+		case OUT_DMIDECODE:
+			if(HAS_DMIDECODE)
+				exit(run_dmidecode());
+			break;
+		case OUT_BANDWIDTH:
+			if(HAS_BANDWIDTH)
+				exit(run_bandwidth());
 			break;
 	}
 

@@ -57,8 +57,9 @@
 #define OUT_GTK               (1 << 0)
 #define OUT_NCURSES           (1 << 1)
 #define OUT_DUMP              (1 << 2)
-#define OUT_DMIDECODE         (1 << 3)
-#define OUT_BANDWIDTH         (1 << 4)
+#define OUT_NO_CPUX           (1 << 10)
+#define OUT_DMIDECODE         (1 << 11)
+#define OUT_BANDWIDTH         (1 << 12)
 
 /* Arrays definition */
 #define NAME                  0
@@ -223,7 +224,7 @@ typedef struct
 typedef struct
 {
 	int          use_network;
-	unsigned int output_type;
+	uint16_t output_type;
 	unsigned int refr_time;
 	unsigned int selected_page;
 	unsigned int selected_core;
