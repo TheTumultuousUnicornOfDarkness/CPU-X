@@ -43,6 +43,8 @@
 
 #if PORTABLE_BINARY
 # include <sys/stat.h>
+# include <archive.h>
+# include <archive_entry.h>
 # if HAS_GETTEXT
 #  include "../po/mo.h"
 # endif
@@ -331,7 +333,7 @@ void labels_free(Labels *data)
 
 #if HAS_LIBCURL
 /* Write function for Curl */
-size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
+static size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
 {
 	char **buff = (char **) stream;
 
@@ -380,19 +382,81 @@ static bool check_new_version(void)
 		asprintf(&new_version[1], _("(up-to-date)"));
 	}
 
-	free(new_version[0]);
 	return false;
 }
 
 # if PORTABLE_BINARY
+static int copy_data(struct archive *ar, struct archive *aw)
+{
+	int ret;
+	const void *buff;
+	size_t size;
+	off_t offset;
+
+	while(true)
+	{
+		ret = archive_read_data_block(ar, &buff, &size, &offset);
+		if(ret == ARCHIVE_EOF)
+			return ARCHIVE_OK;
+		if(ret < ARCHIVE_OK)
+			return ret;
+
+		if((ret = archive_write_data_block(aw, buff, size, offset) < ARCHIVE_OK))
+			return ret;
+	}
+}
+
+static int extract_archive(const char *filename, const char *needed)
+{
+	int ret;
+	const int flags = ARCHIVE_EXTRACT_TIME | ARCHIVE_EXTRACT_PERM;
+	struct archive *archive;
+	struct archive *ext;
+	struct archive_entry *entry;
+
+	archive = archive_read_new();
+	archive_read_support_format_tar(archive);
+	archive_read_support_filter_gzip(archive);
+
+	ext = archive_write_disk_new();
+	archive_write_disk_set_options(ext, flags);
+	archive_write_disk_set_standard_lookup(ext);
+
+	if((ret = archive_read_open_filename(archive, filename, 10240)))
+		goto error;
+
+	do {
+		if((ret = archive_read_next_header(archive, &entry) != ARCHIVE_OK))
+			goto error;
+	} while(strcmp(archive_entry_pathname(entry), needed));
+
+	if((ret = archive_write_header(ext, entry) != ARCHIVE_OK))
+		goto error;
+	if((ret = copy_data(archive, ext) != ARCHIVE_OK))
+		goto error;
+		if((ret = archive_write_finish_entry(ext) != ARCHIVE_OK))
+		goto error;
+
+	archive_read_close(archive);
+	archive_read_free(archive);
+	archive_write_close(ext);
+	archive_write_free(ext);
+	return 0;
+
+error:
+	if(ret < ARCHIVE_OK)
+		MSG_ERROR(_("following error occurred while extracting %s file: %s"), filename, archive_error_string(ext));
+	else
+		MSG_ERROR(_("an error occurred while extracting %s file"), filename);
+
+	return 1;
+}
+
 /* Apply new portable version if available */
 static int update_prg(void)
 {
 	int err;
-	bool delete = true;
-	int i;
-	char *file, *tmp, *opt;
-	const char *ext[] = { "bsd64", "bsd32", "linux32", "linux64", NULL };
+	char *archive = NULL, *new_binary = NULL;
 	CURL *curl;
 	FILE *file_descr = NULL;
 
@@ -416,67 +480,59 @@ static int update_prg(void)
 		return 3;
 	}
 
-	asprintf(&file, "%s_v%s_portable%s", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK");
-	file_descr = fopen(format("%s.tar.gz", file), "wb");
+	asprintf(&archive, "%s_v%s_portable%s.tar.gz", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK");
+	file_descr = fopen(archive, "wb");
 	if(file_descr == NULL)
 	{
-		MSG_ERROR(_("failed to open %s.tar.gz file for writing"), file);
-		free(file);
+		MSG_ERROR(_("failed to open %s archive for writing"), archive);
+		free(archive);
 		return 4;
 	}
 
-	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s.tar.gz", TARBALL, new_version[0], file));
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
+	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s", TARBALL, new_version[0], archive));
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 2 * 60L);
 	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3L);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file_descr);
-        err = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-        fclose(file_descr);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, file_descr);
+	err = curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
+	fclose(file_descr);
 	if(err)
 	{
-		MSG_ERROR(_("failed to download %s.tar.gz file"), file);
-		free(file);
+		MSG_ERROR(_("failed to download %s archive"), archive);
+		free(archive);
 		return 5;
 	}
 
 	/* Extract archive */
 	MSG_VERBOSE(_("Extracting new version..."));
-	opt = opts->verbose ? strdup("v") : strdup("");
-	system(format("tar -zx%sf %s.tar.gz", opt, file));
+	asprintf(&new_binary, "%s_v%s_portable%s.%s", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK", OS);
+	err = extract_archive(archive, new_binary);
+	if(err)
+	{
+		remove(archive);
+		free_multi(archive, new_binary);
+		return err;
+	}
 
 	/* Rename new binary */
 	MSG_VERBOSE(_("Applying new version..."));
-	if(strstr(binary_name, PRGVER) != NULL)
+	if(strstr(binary_name, PRGVER) != NULL) // If binary name contains version
 	{
-		err    = remove(binary_name);
-		delete = false;
+		err  = remove(binary_name); // Delete old version and keep new version
+		err += rename(new_binary, format("%s_v%s", PRGNAME, new_version[0]));
 	}
 	else
-	{
-		asprintf(&tmp, "%s.%s", file, OS);
-		err = rename(tmp, binary_name);
-	}
+		err = rename(new_binary, binary_name); // Erase old version by new version
 
+	err += remove(archive);
 	if(err)
-		MSG_ERROR(_("an error occurred while renaming files"));
+		MSG_ERROR(_("an error occurred while removing/renaming files"));
 	else
 		MSG_VERBOSE(_("Update successful!"));
 
-	/* Delete temporary files */
-	err += remove(format("%s.tar.gz", file));
-	for(i = 0; ext[i] != NULL; i++)
-	{
-		if(strcmp(ext[i], OS) != 0 || delete)
-			err += remove(format("%s.%s", file, ext[i]));
-	}
-
-	if(err > 1)
-		MSG_ERROR(_("an error occurred while deleting temporary files"));
-
-	free_multi(file, tmp, opt);
-
+	free_multi(archive, new_binary);
 	return err;
 }
 # endif /* PORTABLE_BINARY */
@@ -800,8 +856,10 @@ int main(int argc, char *argv[])
 			break;
 	}
 
-	if(PORTABLE_BINARY && HAS_LIBCURL && opts->update)
+#if PORTABLE_BINARY
+	if(HAS_LIBCURL && opts->update)
 		update_prg();
+#endif /* PORTABLE_BINARY */
 
 	return EXIT_SUCCESS;
 }

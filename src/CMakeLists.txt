@@ -127,6 +127,17 @@ if(WITH_LIBCURL)
 	endif(LIBCURL_FOUND)
 endif(WITH_LIBCURL)
 
+# Libarchive
+if(PORTABLE_BINARY)
+	pkg_check_modules(LIBARCHIVE libarchive REQUIRED)
+	if(LIBARCHIVE_FOUND)
+		include_directories(${LIBARCHIVE_INCLUDE_DIRS})
+		link_directories(${LIBARCHIVE_LIBRARY_DIRS})
+		add_definitions(${LIBARCHIVE_CFLAGS_OTHER})
+		add_embedded_library(LIBARCHIVE_LIBRARIES "-l:libarchive.a")
+	endif(LIBARCHIVE_FOUND)
+endif(PORTABLE_BINARY)
+
 
 ### FINAL CONFIG
 
@@ -204,6 +215,7 @@ target_link_libraries(cpu-x
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}
 	${LIBCURL_LIBRARIES}
+	${LIBARCHIVE_LIBRARIES}
 
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}

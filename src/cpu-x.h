@@ -275,9 +275,6 @@ bool load_module(char *module);
 /* Free memory after display labels */
 void labels_free(Labels *data);
 
-/* Apply new portable version if available */
-int update_prg(void);
-
 
 /***************************** External headers *****************************/
 
