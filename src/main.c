@@ -401,7 +401,7 @@ static int copy_data(struct archive *ar, struct archive *aw)
 		if(ret < ARCHIVE_OK)
 			return ret;
 
-		if((ret = archive_write_data_block(aw, buff, size, offset) < ARCHIVE_OK))
+		if((ret = archive_write_data_block(aw, buff, size, offset)) < ARCHIVE_OK)
 			return ret;
 	}
 }
@@ -426,15 +426,15 @@ static int extract_archive(const char *filename, const char *needed)
 		goto error;
 
 	do {
-		if((ret = archive_read_next_header(archive, &entry) != ARCHIVE_OK))
+		if((ret = archive_read_next_header(archive, &entry)) != ARCHIVE_OK)
 			goto error;
 	} while(strcmp(archive_entry_pathname(entry), needed));
 
-	if((ret = archive_write_header(ext, entry) != ARCHIVE_OK))
+	if((ret = archive_write_header(ext, entry)) != ARCHIVE_OK)
 		goto error;
-	if((ret = copy_data(archive, ext) != ARCHIVE_OK))
+	if((ret = copy_data(archive, ext)) != ARCHIVE_OK)
 		goto error;
-		if((ret = archive_write_finish_entry(ext) != ARCHIVE_OK))
+	if((ret = archive_write_finish_entry(ext)) != ARCHIVE_OK)
 		goto error;
 
 	archive_read_close(archive);
