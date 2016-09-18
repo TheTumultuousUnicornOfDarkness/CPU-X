@@ -753,26 +753,23 @@ void sighandler(int signum)
  /* Enable internationalization support */
 static int set_locales(void)
 {
-	int err = 0;
-
+	int err;
 #if PORTABLE_BINARY && HAS_GETTEXT
 	int i;
-	char *path = NULL;
-	FILE *mofile;
+	FILE *mofile = NULL;
 
 	/* Write .mo files in temporary directory */
+	err = mkdir(LOCALEDIR, ACCESSPERMS);
 	for(i = 0; ptrlen[i] != NULL; i++)
 	{
-		asprintf(&path, "%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE);
-		err    = system(format("mkdir -p %s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]));
-		mofile = NULL;
-		mofile = fopen(path, "w");
-		free(path);
+		err   += mkdir(format("%s/%s/",             LOCALEDIR, lang[i]), ACCESSPERMS);
+		err   += mkdir(format("%s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]), ACCESSPERMS);
+		mofile = fopen(format("%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE), "w");
 
 		if(mofile != NULL)
 		{
-			fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile);
-			fclose(mofile);
+			err += fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile) > 0 ? 0 : 1;
+			err += fclose(mofile);
 		}
 		else
 			err++;
