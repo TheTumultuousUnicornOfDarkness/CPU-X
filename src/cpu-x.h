@@ -211,9 +211,9 @@ typedef struct
 	char *tab_bench[2][LASTBENCH];
 	char *tab_about[LASTABOUT];
 
-	int      cpu_freq;
-	uint8_t  cpu_count, cache_count, dimm_count, gpu_count;
-	double   bus_freq;
+	int     cpu_freq;
+	uint8_t cpu_count, cache_count, dimm_count, gpu_count;
+	double  bus_freq;
 
 	LibcpuidData  *l_data;
 	BandwidthData *w_data;
@@ -223,15 +223,9 @@ typedef struct
 
 typedef struct
 {
-	int          use_network;
-	uint16_t output_type;
-	unsigned int refr_time;
-	unsigned int selected_page;
-	unsigned int selected_core;
-	unsigned int bw_test;
-	bool         verbose;
-	bool         color;
-	bool         update;
+	bool     color, verbose, use_network, update;
+	uint8_t  selected_page, selected_core, bw_test;
+	uint16_t output_type, refr_time;
 } Options;
 
 extern Options *opts;
@@ -239,6 +233,13 @@ extern char    *binary_name, *new_version[2];
 
 
 /***************************** Defined in main.c *****************************/
+
+/* Free memory after display labels */
+void labels_free(Labels *data);
+
+
+/***************************** Defined in util.c *****************************/
+
 
 /* Add a newline for given string (used by MSG_XXX macros) */
 char *msg_newline(char *color, char *str);
@@ -272,9 +273,6 @@ int popen_to_str(char **buffer, char *str, ...);
 
 /* Load a kernel module */
 bool load_module(char *module);
-
-/* Free memory after display labels */
-void labels_free(Labels *data);
 
 
 /***************************** External headers *****************************/

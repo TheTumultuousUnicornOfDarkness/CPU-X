@@ -101,9 +101,9 @@ static void labels_setname(Labels *data)
 	for(i = L1SIZE; i < LASTCACHES; i += CACHEFIELDS)
 	{
 		j = i / CACHEFIELDS;
-		asprintf(&data->objects[FRAML1CACHE + j],           _("L%i Cache"), j + 1); // Frame label
-		asprintf(&data->tab_caches[NAME][L1SIZE       + i], _("Size"));
-		asprintf(&data->tab_caches[NAME][L1SPEED      + i], _("Speed"));
+		asprintf(&data->objects[FRAML1CACHE + j],      _("L%i Cache"), j + 1); // Frame label
+		asprintf(&data->tab_caches[NAME][L1SIZE  + i], _("Size"));
+		asprintf(&data->tab_caches[NAME][L1SPEED + i], _("Speed"));
 	}
 	asprintf(&data->objects[FRAMTEST], _("Test"));
 
@@ -165,8 +165,8 @@ static void labels_setname(Labels *data)
 	asprintf(&data->objects[FRAMPRIMEFAST],         _("Prime numbers (fast)")); // Frame label
 	for(i = PRIMESLOWSCORE; i < PARAMDURATION; i += BENCHFIELDS)
 	{
-		asprintf(&data->tab_bench[NAME][PRIMESLOWSCORE  + i], _("Score"));
-		asprintf(&data->tab_bench[NAME][PRIMESLOWRUN    + i], _("Run"));
+		asprintf(&data->tab_bench[NAME][PRIMESLOWSCORE + i], _("Score"));
+		asprintf(&data->tab_bench[NAME][PRIMESLOWRUN   + i], _("Run"));
 	}
 
 	asprintf(&data->objects[FRAMPARAM],             _("Parameters")); // Frame label
@@ -214,7 +214,7 @@ static int remove_null_ptr(Labels *data)
 		for(j = 0; j < a[i].last; j++)
 		{
 			if(a[i].array[j] == NULL)
-				ret += casprintf(&a[i].array[j], false, " ");
+				ret += casprintf(&a[i].array[j], false, "%c", '\0');
 		}
 	}
 
@@ -349,6 +349,12 @@ static bool check_new_version(void)
 	int err;
 	CURL *curl;
 
+	if(!opts->use_network)
+	{
+		asprintf(&new_version[1], "%c", '\0');
+		return false;
+	}
+
 	MSG_VERBOSE(_("Checking on Internet for a new version..."));
 	curl = curl_easy_init();
 	if(!curl)
@@ -367,8 +373,8 @@ static bool check_new_version(void)
 	if(err || new_version[0] == NULL)
 	{
 		MSG_ERROR(_("failed to perform the Curl transfer"));
-		opts->use_network = 0;
-		asprintf(&new_version[1], " ");
+		opts->use_network = false;
+		asprintf(&new_version[1], "%c", '\0');
 	}
 	else if(strcmp(new_version[0], PRGVER))
 	{
@@ -386,6 +392,7 @@ static bool check_new_version(void)
 }
 
 # if PORTABLE_BINARY
+/* Copy function for libarchive */
 static int copy_data(struct archive *ar, struct archive *aw)
 {
 	int ret;
@@ -406,12 +413,12 @@ static int copy_data(struct archive *ar, struct archive *aw)
 	}
 }
 
+/* Extract a .tar.gz archive */
 static int extract_archive(const char *filename, const char *needed)
 {
 	int ret;
 	const int flags = ARCHIVE_EXTRACT_TIME | ARCHIVE_EXTRACT_PERM;
-	struct archive *archive;
-	struct archive *ext;
+	struct archive *archive, *ext;
 	struct archive_entry *entry;
 
 	archive = archive_read_new();
@@ -445,9 +452,9 @@ static int extract_archive(const char *filename, const char *needed)
 
 error:
 	if(ret < ARCHIVE_OK)
-		MSG_ERROR(_("following error occurred while extracting %s file: %s"), filename, archive_error_string(ext));
+		MSG_ERROR(_("following error occurred while extracting %s archive: %s"), filename, archive_error_string(ext));
 	else
-		MSG_ERROR(_("an error occurred while extracting %s file"), filename);
+		MSG_ERROR(_("an error occurred while extracting %s archive"), filename);
 
 	return 1;
 }
@@ -460,7 +467,7 @@ static int update_prg(void)
 	CURL *curl;
 	FILE *file_descr = NULL;
 
-	if(opts->use_network <= 0)
+	if(!opts->use_network)
 	{
 		MSG_WARNING(_("Network access is disabled by environment variable"
 		              " (set CPUX_NETWORK with a positive value to enable it)"));
@@ -489,6 +496,7 @@ static int update_prg(void)
 		return 4;
 	}
 
+	/* Download archive */
 	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s", TARBALL, new_version[0], archive));
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -591,11 +599,11 @@ static void version(void)
 	{
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
 		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
+		{ HAS_LIBCURL,     "LIBCURL",     LIBCURL_VERSION     },
 		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
 		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
 		{ HAS_LIBSTATGRAB, "LIBSTATGRAB", LIBSTATGRAB_VERSION },
-		{ HAS_LIBCURL,     "LIBCURL",     LIBCURL_VERSION     },
 		{ HAS_DMIDECODE,   "DMIDECODE",   DMIDECODE_VERSION   },
 		{ HAS_BANDWIDTH,   "BANDWIDTH",   BANDWIDTH_VERSION   },
 		{ false,           NULL,          NULL                }
@@ -624,8 +632,7 @@ static void version(void)
 static void menu(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_arg = -1;
-	char *tmp_opt      = NULL;
-	char shortopts[32] = "";
+	char shortopts[(sizeof(o)/sizeof(o[0]) - 1) * 2] = "";
 	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
 
 	/* Filling longopts structure */
@@ -633,11 +640,8 @@ static void menu(int argc, char *argv[])
 	{
 		while(!o[i].has_mod)
 			i++;
-		longopts[j] = (struct option) { .name = o[i].long_opt, .has_arg = o[i].need_arg, .flag = 0, .val = o[i].short_opt };
-		asprintf(&tmp_opt, "%c%s", o[i].short_opt, o[i].need_arg ? ":" : "");
-		strcat(shortopts, tmp_opt);
-		free(tmp_opt);
-		j++;
+		longopts[j++] = (struct option) { .name = o[i].long_opt, .has_arg = o[i].need_arg, .flag = 0, .val = o[i].short_opt };
+		strcat(shortopts, format("%c%s", o[i].short_opt, o[i].need_arg ? ":" : ""));
 	}
 
 	/* Set the default mode */
@@ -647,6 +651,9 @@ static void menu(int argc, char *argv[])
 		opts->output_type = OUT_NCURSES;
 	else
 		opts->output_type = OUT_DUMP;
+
+	if(getenv("CPUX_NETWORK"))
+		opts->use_network = ((atoi(getenv("CPUX_NETWORK"))) > 0);
 
 	/* Parse options */
 	while((c = getopt_long(argc, argv, shortopts, longopts, NULL)) != -1)
@@ -715,7 +722,7 @@ static void menu(int argc, char *argv[])
 /************************* Main-related functions *************************/
 
 /* Action on SIGSEV/SIGFPE */
-void sighandler(int signum)
+static void sighandler(int signum)
 {
 	int bt_size, i;
 	char **bt_syms, *buff = NULL;
@@ -726,10 +733,11 @@ void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"), BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
+	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"),
+	           BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
 	MSG_STDERR("========================= Backtrace =========================");
 	MSG_STDERR("%s %s (%s, %s)", PRGNAME, PRGVER, CC, OS);
-        for(i = 1; i < bt_size; i++)
+	for(i = 1; i < bt_size; i++)
 	{
 		popen_to_str(&buff, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
 		if(strstr(buff, "??") == NULL)
@@ -737,7 +745,7 @@ void sighandler(int signum)
 		else
 			MSG_STDERR("#%2i %s", i, bt_syms[i]);
 		free(buff);
-        }
+	}
 	MSG_STDERR("======================== End Backtrace =======================\n");
 	MSG_STDERR(_("You can paste this backtrace by opening a new issue here:"));
 	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
@@ -796,31 +804,68 @@ static int set_locales(void)
 int main(int argc, char *argv[])
 {
 	/* Parse options */
-	binary_name = argv[0];
-	Labels *data = &(Labels) {
-	                .tab_cpu     = {{ NULL }}, .tab_caches     = {{ NULL }}, .tab_motherboard = {{ NULL }},
-	                .tab_memory  = {{ NULL }}, .tab_system     = {{ NULL }}, .tab_graphics    = {{ NULL }},
-	                .cpu_freq    = 0,          .bus_freq       = 0.0,        .cpu_count       = 0,
-			.cache_count = 0,          .dimm_count     = 0,          .gpu_count       = 0        };
-
-	data->l_data = &(LibcpuidData) { .cpu_vendor_id = -1, .cpu_model = -1, .cpu_ext_model = -1, .cpu_ext_family = -1 };
-
-	data->w_data = &(BandwidthData) { .test_count = 0, .test_name = NULL, .speed = { 0 } };
-
-	data->m_data = &(MemoryData) { .mem_total = 0, .swap_total = 0 };
-
-	data->b_data = &(BenchData) { .run = false, .duration = 1, .threads = 1, .primes = 0 };
-
-	opts = &(Options) { .output_type   = 0,     .refr_time      = 1,          .selected_page  = 0,
-	                    .selected_core = 0,     .bw_test        = 0,          .verbose        = false,
-			    .color         = true,  .update         = false,      .use_network    = 1 };
+	binary_name  = argv[0];
+	Labels *data = &(Labels)
+	{
+		.tab_cpu         = { { NULL } },
+		.tab_caches      = { { NULL } },
+		.tab_motherboard = { { NULL } },
+		.tab_memory      = { { NULL } },
+		.tab_system      = { { NULL } },
+		.tab_graphics    = { { NULL } },
+		.tab_bench       = { { NULL } },
+		.cpu_freq        = 0,
+		.cpu_count       = 0,
+		.cache_count     = 0,
+		.dimm_count      = 0,
+		.gpu_count       = 0,
+		.bus_freq        = 0.0
+	};
+	data->l_data = &(LibcpuidData)
+	{
+		.cpu_vendor_id  = -1,
+		.cpu_model      = -1,
+		.cpu_ext_model  = -1,
+		.cpu_ext_family = -1
+	};
+	data->w_data = &(BandwidthData)
+	{
+		.test_count = 0,
+		.size       = { 0 },
+		.speed      = { 0 },
+		.test_name  = NULL
+	};
+	data->m_data = &(MemoryData)
+	{
+		.mem_usage  = { 0 },
+		.mem_total  = 0,
+		.swap_total = 0
+	};
+	data->b_data = &(BenchData)
+	{
+		.run      = false,
+		.duration = 1,
+		.threads  = 1,
+		.primes   = 0,
+		.start    = 0,
+		.elapsed  = 0,
+		.num      = 0
+	};
+	opts = &(Options)
+	{
+		.color         = true,
+		.verbose       = false,
+		.use_network   = true,
+		.update        = false,
+		.selected_page = 0,
+		.selected_core = 0,
+		.bw_test       = 0,
+		.refr_time     = 1
+	};
 
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
-
-	if(getenv("CPUX_NETWORK"))
-		opts->use_network = atoi(getenv("CPUX_NETWORK"));
 
 	menu(argc, argv);
 	if(opts->output_type < OUT_NO_CPUX)
