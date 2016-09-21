@@ -38,7 +38,6 @@
 #include "cpu-x.h"
 
 #ifndef __linux__
-# include <sys/types.h>
 # include <sys/sysctl.h>
 #endif
 

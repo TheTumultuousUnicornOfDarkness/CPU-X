@@ -23,7 +23,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <ncurses.h>
 #include <math.h>
 #include <libintl.h>
@@ -431,7 +430,7 @@ static void print_new_version()
 		opts->update = true;
 		printw(_("\n\n%s will be updated."), PRGNAME);
 		refresh();
-		sleep(1);
+		napms(1000);
 	}
 
 	nodelay(stdscr, TRUE);

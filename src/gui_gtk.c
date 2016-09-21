@@ -24,7 +24,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include <libintl.h>
 #include "cpu-x.h"
 #include "gui_gtk.h"

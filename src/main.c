@@ -28,8 +28,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
-#include <ctype.h>
-#include <errno.h>
 #include <signal.h>
 #include <execinfo.h>
 #include <getopt.h>
