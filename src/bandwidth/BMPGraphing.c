@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <inttypes.h>
 
 #include "BMP.h"
 #include "BMPGraphing.h"
@@ -74,10 +75,10 @@ BMPGraphing_draw_labels_log2 (BMPGraph* graph)
 		else {
 			Value j = y2 >> 20;
 			switch ((y2 >> 18) & 3) {
-			case 0: snprintf (str, 199, "%lu MB", j); break;
-			case 1: snprintf (str, 199, "%lu.25 MB", j); break;
-			case 2: snprintf (str, 199, "%lu.5 MB", j); break;
-			case 3: snprintf (str, 199, "%lu.75 MB", j); break;
+			case 0: snprintf (str, 199, "%" PRIu64 "MB", j); break;
+			case 1: snprintf (str, 199, "%" PRIu64 ".25 MB", j); break;
+			case 2: snprintf (str, 199, "%" PRIu64 ".5 MB", j); break;
+			case 3: snprintf (str, 199, "%" PRIu64 ".75 MB", j); break;
 			}
 		}
 
