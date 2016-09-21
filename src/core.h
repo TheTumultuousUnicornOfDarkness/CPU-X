@@ -47,7 +47,8 @@ static int call_libcpuid_msr(Labels *data);
 
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data);
-/* Required: HAS_DMIDECODE && root privileges */
+/* Required: HAS_DMIDECODE && root privileges
+Provides data->tab_cpu[VALUE][BUSSPEED], need to be called before call_libcpuid_msr() */
 
 /* Compute CPU cache speed */
 static int call_bandwidth(Labels *data);

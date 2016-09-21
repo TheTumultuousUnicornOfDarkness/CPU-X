@@ -73,23 +73,23 @@
 /* Fill labels by calling below functions */
 int fill_labels(Labels *data)
 {
-	int err = 0;
+	int i, err = 0;
+	const uint8_t selected_page = opts->selected_page;
 
-	if(HAS_DMIDECODE)   err +=          call_dmidecode         (data);
-	if(HAS_LIBCPUID)    err +=          call_libcpuid_static   (data);
-	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_cpuclock, data);
-	if(HAS_LIBCPUID)    err += err_func(call_libcpuid_msr,      data);
-	if(HAS_LIBSYSTEM)   err += err_func(system_dynamic,         data);
-	if(HAS_BANDWIDTH)   err += err_func(call_bandwidth,         data);
-	if(HAS_LIBPCI)      err +=          find_devices           (data);
+	if(HAS_DMIDECODE) err += call_dmidecode      (data);
+	if(HAS_LIBCPUID)  err += call_libcpuid_static(data);
+	if(HAS_LIBPCI)    err += find_devices        (data);
 
-	err += err_func(cpu_usage,        data);
-	err +=          system_static    (data);
-	err += err_func(gpu_temperature,  data);
-	err += err_func(benchmark_status, data);
-
+	err += system_static       (data);
 	err += fallback_mode_static(data);
-	err += fallback_mode_dynamic(data);
+
+	/* Call do_refresh() once to get dynamic values */
+	for(i = NO_CPU; i < NO_ABOUT; i++)
+	{
+		opts->selected_page = i;
+		err += do_refresh(data);
+	}
+	opts->selected_page = selected_page;
 
 	return err;
 }
@@ -119,8 +119,6 @@ int do_refresh(Labels *data)
 		case NO_BENCH:
 			err += err_func(benchmark_status, data);
 			break;
-		default:
-			err = -1;
 	}
 
 	return err;
@@ -132,27 +130,30 @@ int do_refresh(Labels *data)
 /* Avoid to re-run a function if an error was occurred in previous call */
 static int err_func(int (*func)(Labels *), Labels *data)
 {
-	int err = 0;
 	unsigned i = 0;
 	static unsigned last = 0;
-	static struct Functions { void *func; bool skip_func; } f[16];
+	struct Functions { void *func; int skip_func; } *tmp = NULL;
+	static struct Functions *registered = NULL;
 
-	for(i = 0; (i < last) && (func != f[i].func); i++);
+	for(i = 0; (i < last) && (func != registered[i].func); i++);
 
 	if(i == last)
 	{
-		f[last].func = func;
-		f[last].skip_func = false;
+		if((tmp = realloc(registered, sizeof(struct Functions) * (i + 1))) == NULL)
+		{
+			MSG_ERROR(_("could not reallocate memory, exiting %s"), PRGNAME);
+			exit(255);
+		}
+		registered                 = tmp;
+		registered[last].func      = func;
+		registered[last].skip_func = 0;
 		last++;
 	}
 
-	if(!f[i].skip_func)
-		err = func(data);
+	if(!registered[i].skip_func)
+		registered[i].skip_func = func(data);
 
-	if(err)
-		f[i].skip_func = true;
-
-	return err;
+	return registered[i].skip_func;
 }
 
 #if HAS_LIBCPUID
@@ -472,9 +473,11 @@ static int call_libcpuid_msr(Labels *data)
 	}
 
 	/* Get values from MSR */
-	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
-	temp    = cpu_msrinfo(msr, INFO_TEMPERATURE);
-	bclk    = cpu_msrinfo(msr, INFO_BCLK);
+	voltage  = cpu_msrinfo(msr, INFO_VOLTAGE);
+	temp     = cpu_msrinfo(msr, INFO_TEMPERATURE);
+	bclk     = cpu_msrinfo(msr, INFO_BCLK);
+	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
+	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
 
 	/* CPU Voltage */
 	if(voltage != CPU_INVALID_VALUE)
@@ -487,13 +490,12 @@ static int call_libcpuid_msr(Labels *data)
 	/* Base clock */
 	if(bclk != CPU_INVALID_VALUE)
 	{
-		free(data->tab_cpu[VALUE][BUSSPEED]);
 		data->bus_freq = (double) bclk / 100;
+		free(data->tab_cpu[VALUE][BUSSPEED]);
 		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
 
-	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
-	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
+	/* Base clock is firstly provided by Dmidecode: we override this value if Libcpuid can provides it */
 	cur_mult = data->cpu_freq / data->bus_freq;
 
 	/* Multipliers (min-max) */
@@ -600,20 +602,17 @@ static int cpu_usage(Labels *data)
 	fscanf(fp,"%*s %li %li %li %li %*s %*s %*s %*s %*s %*s", &new[USER], &new[NICE], &new[SYSTEM], &new[IDLE]);
 	fclose(fp);
 #else
-	long cp_time[LASTSTAT];
-	size_t len = sizeof(cp_time);
+	size_t len = sizeof(new) * LASTSTAT;
 
-	if(sysctlbyname("kern.cp_time", &cp_time, &len, NULL, 0))
+	if(sysctlbyname("kern.cp_time", new, &len, NULL, 0))
 		return 1;
-
-	memcpy(new, cp_time, LASTSTAT * sizeof(long));
 #endif /* __linux__ */
 	loadavg = (double)((new[USER] + new[NICE] + new[SYSTEM] + new[INTR]) -
 	                   (pre[USER] + pre[NICE] + pre[SYSTEM] + pre[INTR])) /
 	                  ((new[USER] + new[NICE] + new[SYSTEM] + new[INTR] + new[IDLE]) -
 	                   (pre[USER] + pre[NICE] + pre[SYSTEM] + pre[INTR] + pre[IDLE]));
 
-	casprintf(&data->tab_cpu[VALUE][USAGE], true, "%6.2f %%", loadavg * 100);
+	casprintf(&data->tab_cpu[VALUE][USAGE], false, "%6.2f %%", loadavg * 100);
 	memcpy(pre, new, LASTSTAT * sizeof(long));
 	free(new);
 
@@ -647,8 +646,8 @@ static int call_bandwidth(Labels *data)
 	}
 
 	/* Speed labels */
-	for(i = L1SPEED; i < LASTCACHES; i += CACHEFIELDS)
-		casprintf(&data->tab_caches[VALUE][i], true, "%.2f MB/s", (double) data->w_data->speed[(i - L1SPEED) / CACHEFIELDS] / 10);
+	for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
+		casprintf(&data->tab_caches[VALUE][i * CACHEFIELDS + L1SPEED], true, "%.2f MB/s", (double) data->w_data->speed[i] / 10);
 
 	return err;
 }
@@ -773,13 +772,11 @@ static int gpu_temperature(Labels *data)
 		temp = atof(buff);
 	else /* Open source drivers */
 	{
-		dp = opendir(format("%s%i/device/hwmon/", SYS_DRM, 0));
-		if(dp)
+		if((dp = opendir(format("%s%i/device/hwmon/", SYS_DRM, 0))))
 		{
 			while(((dir = readdir(dp)) != NULL) && (ret))
 			{
-				ret = fopen_to_str(&buff, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name);
-				if(!ret)
+				if(!(ret = fopen_to_str(&buff, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name)))
 					temp = atof(buff) / 1000.0;
 			}
 			closedir(dp);
@@ -952,7 +949,7 @@ static void *primes_bench(void *p_data)
 /* Report score of benchmarks */
 static int benchmark_status(Labels *data)
 {
-	char *buff;
+	char *buff = NULL;
 	BenchData *b_data   = data->b_data;
 	enum EnTabBench ind = b_data->fast_mode ? PRIMEFASTSCORE : PRIMESLOWSCORE;
 
@@ -992,6 +989,7 @@ static int benchmark_status(Labels *data)
 	}
 
 	asprintf(&data->tab_bench[VALUE][ind], "%'u %s", b_data->primes, buff);
+	free(buff);
 	return 0;
 }
 
@@ -1092,7 +1090,6 @@ static int cputab_temp_fallback(Labels *data)
 #if HAS_LIBCPUID
 	bool module_loaded = false;
 	int  file_error = -1;
-	char *file = NULL;
 
 	/* If 'sensors' is not configured, try by using sysfs */
 	if(use_sysfs)
@@ -1101,11 +1098,11 @@ static int cputab_temp_fallback(Labels *data)
 		{
 			case VENDOR_INTEL:
 				module_loaded = load_module("coretemp");
-				file_error    = fopen_to_str(&file, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
+				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
 				break;
 			case VENDOR_AMD:
 				module_loaded = load_module("k8temp") | load_module("k10temp");
-				file_error    = fopen_to_str(&file, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
+				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
 				break;
 			default:
 				return 0;
@@ -1114,8 +1111,6 @@ static int cputab_temp_fallback(Labels *data)
 		if(module_loaded && !file_error)
 			val = atof(buff) / 1000;
 	}
-
-	free(file);
 #endif /* HAS_LIBCPUID */
 	free(buff);
 
@@ -1168,7 +1163,6 @@ static int cpu_multipliers_fallback(Labels *data)
 #ifdef __linux__
 	static bool init = false;
 	char *min_freq_str, *max_freq_str;
-	double min_freq, max_freq;
 
 	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
 	if(!init)
@@ -1178,10 +1172,8 @@ static int cpu_multipliers_fallback(Labels *data)
 		fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
 
 		/* Convert to get min and max values */
-		min_freq = strtod(min_freq_str, NULL) / 1000;
-		max_freq = strtod(max_freq_str, NULL) / 1000;
-		min_mult = round(min_freq / data->bus_freq);
-		max_mult = round(max_freq / data->bus_freq);
+		min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
+		max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
 		init     = true;
 		free_multi(min_freq_str, max_freq_str);
 	}
