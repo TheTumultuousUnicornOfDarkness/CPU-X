@@ -202,9 +202,10 @@ else()
 endif()
 
 # Libsystem extra-definitions
-if(${LIBSYSTEM} EQUAL 1)
+if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1)
 	add_definitions(-DHAS_LIBSTATGRAB=0 -DLIBSTATGRAB_VERSION=NULL)
-elseif(${LIBSYSTEM} EQUAL 2)
+endif()
+if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2)
 	add_definitions(-DHAS_LIBPROCPS=0   -DLIBPROCPS_VERSION=NULL)
 endif()
 
