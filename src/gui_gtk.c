@@ -370,6 +370,29 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_about[i] = GTK_WIDGET(gtk_builder_get_object(builder, objectabout[i]));
 }
 
+#if PORTABLE_BINARY
+/* Backport gtk_css_provider_load_from_resource() for GTK < 3.16
+https://github.com/GNOME/gtk/blob/master/gtk/gtkcssprovider.c#L1943 */
+void __builtin_gtk_css_provider_load_from_resource(GtkCssProvider *css_provider, const gchar *resource_path)
+{
+	GFile *file;
+	gchar *uri, *escaped;
+
+	g_return_if_fail (GTK_IS_CSS_PROVIDER (css_provider));
+	g_return_if_fail (resource_path != NULL);
+
+	escaped = g_uri_escape_string (resource_path, G_URI_RESERVED_CHARS_ALLOWED_IN_PATH, FALSE);
+	uri = g_strconcat ("resource://", escaped, NULL);
+	g_free (escaped);
+
+	file = g_file_new_for_uri (uri);
+	g_free (uri);
+
+	gtk_css_provider_load_from_file (css_provider, file, NULL);
+	g_object_unref (file);
+}
+#endif /* PORTABLE_BINARY */
+
 /* Set custom GTK theme */
 static void set_colors(GtkLabels *glab)
 {
@@ -383,10 +406,14 @@ static void set_colors(GtkLabels *glab)
 
 	gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-	if(PORTABLE_BINARY && gtk_check_version(3, 15, 0) == NULL)
+#if PORTABLE_BINARY
+	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
 		gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
-	else if(!PORTABLE_BINARY)
-		gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
+	else // GTK 3.12 to 3.14
+		__builtin_gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
+#else
+	gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
+#endif /* PORTABLE_BINARY */
 
 	free(filename);
 	g_object_unref(provider);
