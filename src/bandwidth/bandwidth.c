@@ -57,7 +57,7 @@
 #endif
 
 #ifdef __linux__
-#include <stropts.h>
+#include <sys/ioctl.h>
 #include <linux/fb.h>
 #include <sys/mman.h>
 #endif
