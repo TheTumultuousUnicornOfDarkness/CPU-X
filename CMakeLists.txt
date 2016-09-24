@@ -31,7 +31,7 @@ else(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i.86")
 endif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i.86")
 set(CPU_X_FLAGS           "-Wno-unused-parameter -Wno-format-security")
 set(CPU_X_DEBUG_FLAGS     "-Wall -Wextra -Wuninitialized -Wstrict-prototypes ${CPU_X_FLAGS}")
-set(CMAKE_C_FLAGS         "-Wno-deprecated-declarations ${CPU_X_FLAGS}")
+set(CMAKE_C_FLAGS         "${CMAKE_C_FLAGS} -Wno-deprecated-declarations ${CPU_X_FLAGS}")
 set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${CPU_X_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${CPU_X_DEBUG_FLAGS}")
 
