@@ -1,3 +1,28 @@
+v3.1.0 (09.24.2016):
+	- Removed features:
+	  * Support for libcpuid < 0.3.0
+	  * Support for GTK 3.8 & 3.10
+	- Changes:
+	  * Patch Dmidecode to 3.0.20160907
+	  * Rebase Bandwidth on v1.3.1
+	  * Decrease Dmidecode verbosity with --verbose
+	  * Merge Descriptor label in Size label in Caches tab
+	  * Hide absent cache levels in Caches tab in GTK GUI
+	  * Hide empty pages in GTK GUI
+	  * Refactor Memory tab
+	  * Various minor core enhancements
+	- New features:
+	  * Libcurl support
+	  * Libarchive support in portable version
+	  * Add support for L4 cache in Caches tab
+	  * Add --tab option
+	- Fixes:
+	  * Broken redirection with --dump
+	  * Memory leaks
+	  * Bandwidth build with -DWITH_LIBCPUID=0
+	  * Set speed to 0 for unavailable Bandwidth tests
+
+
 v3.0.1 (08.23.2016):
 	- Changes:
 	  * Add more CPU and sockets in database
