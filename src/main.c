@@ -518,7 +518,6 @@ static int update_prg(void)
 	if(err)
 	{
 		remove(archive);
-		free_multi(archive, new_binary);
 		return err;
 	}
 
@@ -538,7 +537,6 @@ static int update_prg(void)
 	else
 		MSG_VERBOSE(_("Update successful!"));
 
-	free_multi(archive, new_binary);
 	return err;
 }
 # endif /* PORTABLE_BINARY */
