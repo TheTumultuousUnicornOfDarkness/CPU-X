@@ -13,15 +13,26 @@ EXT=("linux32" "linux64" "bsd32" "bsd64")
 #			FUNCTIONS			#
 #########################################################
 
-make_build() {
+wait_for_vm_up() {
 	while ! $(ssh -q $1 exit); do
 		sleep 1
 	done
+}
 
-	[[ $1 == "Arch"* ]] && (ssh $1 ls /usr/lib/{libncursesw.a,libcpuid.a,libpci.a,libprocps.a} || exit 2)
+check_deps() {
+	if [[ "$1" == "Arch"* ]]; then
+		LIBS="/usr/lib/{libncursesw.a,libcurl.a,libssl.a,libcrypto.a,libarchive.a,libcpuid.a,libpci.a,libprocps.a}"
+		wait_for_vm_up $1
+		if ! ssh $1 ls $LIBS > /dev/null; then
+			exit 255
+		fi
+	fi
+}
+
+make_build() {
+	wait_for_vm_up $1
 	ssh $1 << EOF
-
-makeopts() {
+_makeopts() {
 	if make $JOBS; then
 		echo -e "\n\t\033[1;42m*** Build passed for $1 ***\033[0m\n\n"
 		sleep 2
@@ -35,39 +46,34 @@ makeopts() {
 mkdir -pv $SRCDIR/{,e}build{1..9}
 
 echo -e "\n\n\033[1;44m*** Start normal build for $1\033[0m\n"
-cd $SRCDIR/build1 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr                    .. && makeopts
-cd $SRCDIR/build2 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0       .. && makeopts
-cd $SRCDIR/build3 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_NCURSES=0   .. && makeopts
-cd $SRCDIR/build4 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GETTEXT=0   .. && makeopts
-cd $SRCDIR/build5 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBCPUID=0  .. && makeopts
-cd $SRCDIR/build6 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBPCI=0    .. && makeopts
-cd $SRCDIR/build7 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBSYSTEM=0 .. && makeopts
-cd $SRCDIR/build8 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_DMIDECODE=0 .. && makeopts
-cd $SRCDIR/build9 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_BANDWIDTH=0 .. && makeopts
+cd $SRCDIR/build1 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr                    .. && _makeopts
+cd $SRCDIR/build2 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0       .. && _makeopts
+cd $SRCDIR/build3 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_NCURSES=0   .. && _makeopts
+cd $SRCDIR/build4 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GETTEXT=0   .. && _makeopts
+cd $SRCDIR/build5 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBCPUID=0  .. && _makeopts
+cd $SRCDIR/build6 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBPCI=0    .. && _makeopts
+cd $SRCDIR/build7 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBPROCPS=0 -DWITH_LIBSTATGRAB=0 .. && _makeopts
+cd $SRCDIR/build8 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_DMIDECODE=0 .. && _makeopts
+cd $SRCDIR/build9 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_BANDWIDTH=0 .. && _makeopts
 
 sleep 5
 echo -e "\n\n\033[1;44m*** Start portable build for $1\033[0m\n"
-cd $SRCDIR/ebuild1 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1                    .. && makeopts
-cd $SRCDIR/ebuild2 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_GTK=0       .. && makeopts
-cd $SRCDIR/ebuild3 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_NCURSES=0   .. && makeopts
-cd $SRCDIR/ebuild4 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_GETTEXT=0   .. && makeopts
-cd $SRCDIR/ebuild5 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBCPUID=0  .. && makeopts
-cd $SRCDIR/ebuild6 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBPCI=0    .. && makeopts
-cd $SRCDIR/ebuild7 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBSYSTEM=0 .. && makeopts
-cd $SRCDIR/ebuild8 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_DMIDECODE=0 .. && makeopts
-cd $SRCDIR/ebuild9 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_BANDWIDTH=0 .. && makeopts
+cd $SRCDIR/ebuild1 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1                    .. && _makeopts
+cd $SRCDIR/ebuild2 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_GTK=0       .. && _makeopts
+cd $SRCDIR/ebuild3 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_NCURSES=0   .. && _makeopts
+cd $SRCDIR/ebuild4 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_GETTEXT=0   .. && _makeopts
+cd $SRCDIR/ebuild5 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBCPUID=0  .. && _makeopts
+cd $SRCDIR/ebuild6 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBPCI=0    .. && _makeopts
+cd $SRCDIR/ebuild7 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBPROCPS=0 -DWITH_LIBSTATGRAB=0 .. && _makeopts
+cd $SRCDIR/ebuild8 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_DMIDECODE=0 .. && _makeopts
+cd $SRCDIR/ebuild9 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_BANDWIDTH=0 .. && _makeopts
 EOF
 }
 
 make_release() {
-	while ! $(ssh -q $1 exit); do
-		sleep 1
-	done
-
-	[[ $1 == "Arch"* ]] && (ssh $1 ls /usr/lib/{libncursesw.a,libcpuid.a,libpci.a,libprocps.a} || exit 2)
+	wait_for_vm_up $1
 	ssh $1 << EOF
-
-makeopts() {
+_makeopts() {
 	if make $JOBS > /dev/null ; then
 		echo -e "\n\t\033[1;42m*** Build passed for $1 ***\033[0m\n\n"
 	else
@@ -79,8 +85,8 @@ makeopts() {
 [[ ! -d $SRCDIR ]] && git clone https://github.com/X0rg/CPU-X $SRCDIR || (cd $SRCDIR && git pull)
 mkdir -pv $SRCDIR/{,g}n_build
 
-cd $SRCDIR/gn_build && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1              .. > /dev/null && makeopts
-cd $SRCDIR/n_build  && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1 -DWITH_GTK=0 .. > /dev/null && makeopts
+cd $SRCDIR/gn_build && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1              .. > /dev/null && _makeopts
+cd $SRCDIR/n_build  && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1 -DWITH_GTK=0 .. > /dev/null && _makeopts
 EOF
 }
 
@@ -125,6 +131,7 @@ help() {
 	echo -e "\t-b, --build\tStart multiples builds to find build troubles"
 	echo -e "\t-r, --release\tBuild portable versions when a new version is tagged"
 	echo -e "\t-p, --package\tMake tarballs which contain packages"
+	echo -e "\t-s, --shutdown\tStop all virtual machines"
 	echo -e "\t-h, --help\tDisplay this help and exit"
 }
 
@@ -142,6 +149,7 @@ case "$1" in
 	-b|--build)	choice="build";;
 	-r|--release)	choice="release";;
 	-p|--package)   choice="package";;
+	-s|--shutdown)  stop_vms; exit 0;;
 	-h|--help)	help; exit 0;;
 	- |--)		help; exit 1;;
 	*)		help; exit 1;;
@@ -155,6 +163,7 @@ case "$choice" in
 		sleep 1
 
 		# Start build
+		check_deps Arch32
 		make_build Arch32
 		echo "Press a key to continue..." ; read
 		make_build BSD32
@@ -174,6 +183,7 @@ case "$choice" in
 		[[ -d "$DESTDIR" ]] && rm -rf "$DESTDIR"
 		mkdir -pv "$DESTDIR/sshfs"
 		for i in {0..3}; do
+			check_deps ${VMs[i]}
 			make_release ${VMs[i]}
 			sshfs ${VMs[i]}:$SRCDIR "$DESTDIR/sshfs"
 			cp -v "$DESTDIR/sshfs/gn_build/cpu-x" "$DESTDIR/CPU-X_${VER}_portable.${EXT[i]}"
@@ -205,16 +215,18 @@ case "$choice" in
 		$COMPRESS CPU-X_${VER}_Debian.tar.gz Debian*
 
 		# Fedora
-		make_packages "Fedora_21" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "Fedora_22" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "Fedora_23" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_21" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_22" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_23" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_24" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
 		$COMPRESS CPU-X_${VER}_Fedora.tar.gz Fedora*
 
 		# openSUSE
-		make_packages "openSUSE_13.1"       "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_13.2"       "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_Leap_42.1"  "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_Tumbleweed" "CPU-X-${CPUXVER}-1.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_13.1"       "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_13.2"       "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_Leap_42.1"  "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_Leap_42.2"  "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_Tumbleweed" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
 		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz openSUSE*
 
 		# Ubuntu
@@ -225,4 +237,3 @@ case "$choice" in
 		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz xUbuntu*
 		;;
 esac
-
