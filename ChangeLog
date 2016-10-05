@@ -1,3 +1,10 @@
+v3.1.1 (XX.XX.2016):
+	- Fixes:
+	  * Bandwidth build on system without stropts.h
+	  * Segfault in cpu_multipliers_fallback()
+	  * Asking for update when already up-to-date in portable version
+
+
 v3.1.0 (09.24.2016):
 	- Removed features:
 	  * Support for libcpuid < 0.3.0

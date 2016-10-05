@@ -386,6 +386,8 @@ static bool check_new_version(void)
 		asprintf(&new_version[1], _("(up-to-date)"));
 	}
 
+	free(new_version[0]);
+	new_version[0] = NULL;
 	return false;
 }
 
