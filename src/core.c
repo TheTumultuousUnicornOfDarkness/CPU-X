@@ -997,7 +997,7 @@ void start_benchmarks(Labels *data)
 {
 	int err = 0;
 	unsigned i;
-	pthread_t *t_id;
+	pthread_t *t_id = NULL;
 	BenchData *b_data = data->b_data;
 
 	MSG_VERBOSE(_("Starting benchmark"));
@@ -1007,6 +1007,11 @@ void start_benchmarks(Labels *data)
 	b_data->primes  = 1;
 	b_data->start   = clock();
 	t_id            = malloc(sizeof(pthread_t) * b_data->threads);
+	if(t_id == NULL)
+	{
+		MSG_ERROR(_("failed to allocate memory for benchmark"));
+		return;
+	}
 
 	err += pthread_mutex_init(&b_data->mutex_num,    NULL);
 	err += pthread_mutex_init(&b_data->mutex_primes, NULL);

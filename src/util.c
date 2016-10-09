@@ -91,6 +91,7 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 {
 	bool remove;
 	int i, j, ret;
+	char *tmp = NULL;
 	va_list aptr;
 
 	if(fmt == NULL)
@@ -117,7 +118,8 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 	}
 
 	(*str)[++j] = '\0';
-	*str = realloc(*str, j + 1);
+	if((tmp = realloc(*str, j + 1)) != NULL)
+		*str = tmp;
 
 	return j;
 }
