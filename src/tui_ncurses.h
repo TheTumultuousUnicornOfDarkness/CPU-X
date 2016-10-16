@@ -69,11 +69,13 @@ enum EnColors
 	RED_BAR_COLOR,
 	GREEN_BAR_COLOR,
 	MAGENTA_BAR_COLOR,
+	LAST_COLOR
 };
 
 typedef struct
 {
-	const short pair, f, b;
+	const short pair, foreground, background;
+	const int attrs;
 } Colors;
 
 typedef struct

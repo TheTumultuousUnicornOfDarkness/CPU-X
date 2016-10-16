@@ -42,18 +42,18 @@ static void (*func_ptr[])(WINDOW*, const SizeInfo, Labels*) =
 };
 static const Colors color[] =
 {
-	{ 0,                  0,             0             },
-	{ DEFAULT_COLOR,      COLOR_BLACK,   COLOR_WHITE   },
-	{ TITLE_COLOR,        COLOR_BLUE,    COLOR_WHITE   },
-	{ ACTIVE_TAB_COLOR,   COLOR_WHITE,   COLOR_BLUE    },
-	{ INACTIVE_TAB_COLOR, COLOR_WHITE,   COLOR_BLUE    },
-	{ LABEL_NAME_COLOR,   COLOR_BLACK,   COLOR_WHITE   },
-	{ LABEL_VALUE_COLOR,  COLOR_BLUE,    COLOR_WHITE   },
-	{ YELLOW_BAR_COLOR,   COLOR_YELLOW,  COLOR_YELLOW  },
-	{ BLUE_BAR_COLOR,     COLOR_BLUE,    COLOR_BLUE    },
-	{ RED_BAR_COLOR,      COLOR_RED,     COLOR_RED     },
-	{ GREEN_BAR_COLOR,    COLOR_GREEN,   COLOR_GREEN   },
-	{ MAGENTA_BAR_COLOR,  COLOR_MAGENTA, COLOR_MAGENTA }
+	{ 0,                  0,        0,             0             },
+	{ DEFAULT_COLOR,      COLOR_BLACK,   COLOR_WHITE,   A_NORMAL },
+	{ TITLE_COLOR,        COLOR_BLUE,    COLOR_WHITE,   A_BOLD   },
+	{ ACTIVE_TAB_COLOR,   COLOR_WHITE,   COLOR_BLUE,    A_BOLD   },
+	{ INACTIVE_TAB_COLOR, COLOR_WHITE,   COLOR_BLUE,    A_NORMAL },
+	{ LABEL_NAME_COLOR,   COLOR_BLACK,   COLOR_WHITE,   A_NORMAL },
+	{ LABEL_VALUE_COLOR,  COLOR_BLUE,    COLOR_WHITE,   A_NORMAL },
+	{ YELLOW_BAR_COLOR,   COLOR_YELLOW,  COLOR_YELLOW,  A_NORMAL },
+	{ BLUE_BAR_COLOR,     COLOR_BLUE,    COLOR_BLUE,    A_NORMAL },
+	{ RED_BAR_COLOR,      COLOR_RED,     COLOR_RED,     A_NORMAL },
+	{ GREEN_BAR_COLOR,    COLOR_GREEN,   COLOR_GREEN,   A_NORMAL },
+	{ MAGENTA_BAR_COLOR,  COLOR_MAGENTA, COLOR_MAGENTA, A_NORMAL }
 };
 
 
@@ -80,7 +80,13 @@ void start_tui_ncurses(Labels *data)
 	if(opts->color)
 	{
 		start_color();
-		opts->color &= has_colors();
+		opts->color = has_colors();
+	}
+	if(opts->color)
+	{
+		enum EnColors pair;
+		for(pair = DEFAULT_COLOR; pair < LAST_COLOR; pair++)
+			init_pair(pair, color[pair].foreground, color[pair].background);
 	}
 
 	if(PORTABLE_BINARY && new_version[0] != NULL)
@@ -246,30 +252,22 @@ static void wclrline(WINDOW *pwin, enum EnLines line, unsigned start, unsigned e
 		mvwprintwc(pwin, line, x, DEFAULT_COLOR, " ");
 }
 
-
 /* Similar to mvwprintw, but specify a color pair */
 static int mvwprintwc(WINDOW *win, int y, int x, enum EnColors pair, const char *fmt, ...)
 {
-	int ret, attrs = A_NORMAL;
+	int ret;
 	va_list args;
 
 	va_start(args, fmt);
 	wmove(win, y, x);
-	if(opts->color)
-	{
-		if(pair == TITLE_COLOR || pair == ACTIVE_TAB_COLOR)
-			attrs = A_BOLD;
-		init_pair(pair, color[pair].f, color[pair].b);
-		wattron(win, COLOR_PAIR(pair) | attrs);
-	}
 
+	if(opts->color)
+		wattron(win, COLOR_PAIR(pair) | color[pair].attrs);
 	ret = vwprintw(win, fmt, args);
-
 	if(opts->color)
-		wattroff(win, COLOR_PAIR(pair) | attrs);
-	va_end(args);
-	wrefresh(win);
+		wattroff(win, COLOR_PAIR(pair) | color[pair].attrs);
 
+	va_end(args);
 	return ret;
 }
 
@@ -278,6 +276,7 @@ static int mvwprintw2c(WINDOW *win, int y, int x, const char *fmt, ...)
 {
 	int ret = 0;
 	char *s1, *s2, *f1, *f2, *ptr = strdup(fmt);
+	enum EnColors pair;
 	va_list args;
 
 	/* Retrive args */
@@ -287,28 +286,25 @@ static int mvwprintw2c(WINDOW *win, int y, int x, const char *fmt, ...)
 	s1 = va_arg(args, char *);
 	s2 = va_arg(args, char *);
 
-	/* Init colors */
-	wmove(win, y, x);
-	if(opts->color)
-	{
-		init_pair(LABEL_NAME_COLOR,  color[LABEL_NAME_COLOR].f,  color[LABEL_NAME_COLOR].b);
-		init_pair(LABEL_VALUE_COLOR, color[LABEL_VALUE_COLOR].f, color[LABEL_VALUE_COLOR].b);
-	}
-
 	/* Print label name */
+	wmove(win, y, x);
+	pair = LABEL_NAME_COLOR;
 	if(opts->color)
-		wattron(win, COLOR_PAIR(LABEL_NAME_COLOR));
+		wattron(win, COLOR_PAIR(pair) | color[pair].attrs);
 	ret += wprintw(win, f1, s1);
+	free(f1);
 	if(opts->color)
-		wattroff(win, COLOR_PAIR(LABEL_NAME_COLOR));
+		wattroff(win, COLOR_PAIR(pair) | color[pair].attrs);
 
 	/* Print label value */
+	pair = LABEL_VALUE_COLOR;
 	if(opts->color)
-		wattron(win, COLOR_PAIR(LABEL_VALUE_COLOR));
+		wattron(win, COLOR_PAIR(pair) | color[pair].attrs);
 	ret += wprintw(win, f2, s2);
 	if(opts->color)
-		wattroff(win, COLOR_PAIR(LABEL_VALUE_COLOR));
+		wattroff(win, COLOR_PAIR(pair) | color[pair].attrs);
 
+	va_end(args);
 	return ret;
 }
 
@@ -546,6 +542,8 @@ static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 		wclrline(win, line, info.tb, info.width - 2);
 		mvwprintwc(win, line, 12, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
 	}
+
+	wrefresh(win);
 }
 
 /* Caches tab */
