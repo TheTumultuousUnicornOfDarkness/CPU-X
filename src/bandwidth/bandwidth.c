@@ -2248,8 +2248,14 @@ end_initialization:
 		{
 			w_data->test_count = LASTTEST;
 			w_data->test_name  = malloc(LASTTEST * sizeof(char *));
-			for(i = 0; i < LASTTEST; i++)
+			if(w_data->test_name == NULL)
+				w_data->test_count = 0;
+
+			for(i = 0; i < w_data->test_count; i++)
+			{
+				w_data->test_name[i] = NULL;
 				casprintf(&w_data->test_name[i], false, "#%2i: %s", i, tests[i].name);
+			}
 		}
 	}
 

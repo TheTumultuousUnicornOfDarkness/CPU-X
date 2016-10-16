@@ -491,6 +491,7 @@ static int call_libcpuid_msr(Labels *data)
 	{
 		data->bus_freq = (double) bclk / 100;
 		free(data->tab_cpu[VALUE][BUSSPEED]);
+		data->tab_cpu[VALUE][BUSSPEED] = NULL;
 		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
 
@@ -643,6 +644,8 @@ static int call_bandwidth(Labels *data)
 		err += pthread_join(tid, NULL);
 		first = false;
 	}
+	else
+		err += pthread_detach(tid);
 
 	/* Speed labels */
 	for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
@@ -892,12 +895,12 @@ static int system_dynamic(Labels *data)
 #endif /* HAS_LIBSTATGRAB */
 	/* Memory labels */
 	for(i = USED; i < SWAP; i++)
-		asprintf(&data->tab_system[VALUE][i], "%5u MB / %5u MB", m_data->mem_usage[j++], m_data->mem_total);
-	asprintf(&data->tab_system[VALUE][SWAP], "%5u MB / %5u MB", m_data->mem_usage[j], m_data->swap_total);
+		casprintf(&data->tab_system[VALUE][i], false, "%5u MB / %5u MB", m_data->mem_usage[j++], m_data->mem_total);
+	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u MB / %5u MB", m_data->mem_usage[j], m_data->swap_total);
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
-	asprintf(&data->tab_system[VALUE][UPTIME], _("%i days, %i hours, %i minutes, %i seconds"),
+	casprintf(&data->tab_system[VALUE][UPTIME], false, _("%i days, %i hours, %i minutes, %i seconds"),
 	          tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec);
 
 	return err;

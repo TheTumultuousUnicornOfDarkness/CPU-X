@@ -94,6 +94,12 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 	char *tmp = NULL;
 	va_list aptr;
 
+	if(*str != NULL)
+	{
+		free(*str);
+		*str = NULL;
+	}
+
 	if(fmt == NULL)
 		return 0;
 
