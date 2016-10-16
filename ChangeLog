@@ -1,8 +1,10 @@
-v3.1.1 (XX.XX.2016):
+v3.1.1 (10.16.2016):
 	- Fixes:
 	  * Bandwidth build on system without stropts.h
 	  * Segfault in cpu_multipliers_fallback()
 	  * Asking for update when already up-to-date in portable version
+	  * dynamic allocation checking
+	  * Memory leaks
 
 
 v3.1.0 (09.24.2016):
