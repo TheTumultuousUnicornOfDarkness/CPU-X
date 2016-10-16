@@ -43,11 +43,13 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	GtkLabels  glab;
 	GThrd      refr     = { &glab, data };
 	GtkBuilder *builder = gtk_builder_new();
-	const char *ui_files[] = { "cpu-x-gtk-3.12.ui", NULL };
+	gchar *prgname      = g_ascii_strdown(PRGNAME, -1);
+	const gchar *ui_files[] = { "cpu-x-gtk-3.12.ui", NULL };
 
 	MSG_VERBOSE(_("Starting GTK GUI..."));
 	gtk_init(argc, argv);
-	g_set_prgname(g_ascii_strdown(PRGNAME, -1));
+	g_set_prgname(prgname);
+	g_free(prgname);
 
 	/* Build UI from Glade file */
 #if PORTABLE_BINARY
@@ -222,7 +224,7 @@ static void change_benchparam(GtkSpinButton *spinbutton, Labels *data)
 /* Set/Unset widgets sensitive when a benchmark start/stop */
 static void change_benchsensitive(GtkLabels *glab, Labels *data)
 {
-	static bool skip = false;
+	static gboolean skip = false;
 	const enum EnTabBench indP = data->b_data->fast_mode ? PRIMEFASTSCORE : PRIMESLOWSCORE;
 	const enum EnTabBench indS = data->b_data->fast_mode ? PRIMESLOWRUN   : PRIMEFASTRUN;
 	const enum EnTabBench indA = data->b_data->fast_mode ? PRIMEFASTRUN   : PRIMESLOWRUN;
@@ -253,12 +255,12 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 }
 
 /* Get label ID ('type' must be "lab" or "val") */
-static char *get_id(const char *objectstr, char *type)
+static gchar *get_id(const gchar *objectstr, gchar *type)
 {
 	static gchar *buff = NULL;
 	gchar **split;
 
-	free(buff);
+	g_free(buff);
 	split = g_strsplit(objectstr, "_", 2);
 	buff  = g_strconcat(split[0], "_", type, split[1], NULL);
 	g_strfreev(split);
@@ -267,17 +269,17 @@ static char *get_id(const char *objectstr, char *type)
 }
 
 /* Search file location in standard paths */
-static char *data_path(const char *file)
+static gchar *data_path(const gchar *file)
 {
 	int i;
-	bool file_exists = false;
+	gboolean file_exists = false;
 	static gchar *path = NULL;
-	const char *prgname = g_get_prgname();
+	const gchar *prgname = g_get_prgname();
 	const gchar *const *paths = g_get_system_data_dirs();
 
 	for(i = 0; (!file_exists) && (paths[i] != NULL); i++)
 	{
-		free(path);
+		g_free(path);
 		path = g_build_filename(paths[i], prgname, file, NULL);
 		file_exists = g_file_test(path, G_FILE_TEST_EXISTS);
 	}
@@ -396,7 +398,7 @@ void __builtin_gtk_css_provider_load_from_resource(GtkCssProvider *css_provider,
 /* Set custom GTK theme */
 static void set_colors(GtkLabels *glab)
 {
-	char *filename;
+	gchar *filename = NULL;
 	GtkCssProvider *provider = gtk_css_provider_new();
 
 	if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
@@ -415,7 +417,7 @@ static void set_colors(GtkLabels *glab)
 	gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
 #endif /* PORTABLE_BINARY */
 
-	free(filename);
+	g_free(filename);
 	g_object_unref(provider);
 }
 
@@ -423,7 +425,7 @@ static void set_colors(GtkLabels *glab)
 static void set_logos(GtkLabels *glab, Labels *data)
 {
 	int width, height, prg_size = 72;
-	GdkPixbuf *cpu_pixbuf, *unknown_pixbuf, *prg_pixbuf;
+	GdkPixbuf *cpu_pixbuf = NULL, *unknown_pixbuf = NULL, *prg_pixbuf = NULL;
 	GError *error = NULL;
 
 	width  = gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][SPECIFICATION]) -
@@ -445,9 +447,12 @@ static void set_logos(GtkLabels *glab, Labels *data)
 
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
+	g_object_unref(cpu_pixbuf);
+	g_object_unref(prg_pixbuf);
 
 	if(error != NULL)
 		gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), unknown_pixbuf);
+	g_object_unref(unknown_pixbuf);
 }
 
 /* Filling all labels */
@@ -575,7 +580,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	int i = USED, page;
 	guint width, height;
 	double before = 0, percent = 0;
-	const char *widget_name;
+	const gchar *widget_name;
 	cairo_pattern_t *pat;
 	PangoLayout *reflayout, *newlayout;
 

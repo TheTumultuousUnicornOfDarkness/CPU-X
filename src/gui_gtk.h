@@ -115,10 +115,10 @@ static void change_benchparam(GtkSpinButton *spinbutton, Labels *data);
 static void change_benchsensitive(GtkLabels *glab, Labels *data);
 
 /* Get label ID ('type' must be "lab" or "val") */
-static char *get_id(const char *objectstr, char *type);
+static gchar *get_id(const gchar *objectstr, gchar *type);
 
 /* Search file location in standard paths */
-static char *data_path(const char *file);
+static gchar *data_path(const gchar *file);
 
 /* Retrieve widgets from GtkBuilder */
 static void get_widgets(GtkBuilder *builder, GtkLabels *glab);
