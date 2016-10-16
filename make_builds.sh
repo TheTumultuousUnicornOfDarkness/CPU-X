@@ -201,39 +201,45 @@ case "$choice" in
 
 	package)
 		DESTDIR="$(dirname $0)/packages/"
+		PKGNAME="cpu-x"
 		CPUXVER="${VER//v}"
+		CPUXREV=$(wget -qO- http://download.opensuse.org/repositories/home:/X0rg/Fedora_24/x86_64/ | grep $PKGNAME-$CPUXVER | awk -v FS="($PKGNAME-$CPUXVER-|.x86_64.rpm)" '{print $2}')
+		LCPUIDNAME="libcpuid"
+		LCPUIDABI="14"
 		LCPUIDVER=$(cd `dirname $0`/../libcpuid && git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')
+		LCPUIDREV=$(wget -qO- http://download.opensuse.org/repositories/home:/X0rg/Fedora_24/x86_64/ | grep $LCPUIDNAME$LCPUIDABI-$LCPUIDVER | awk -v FS="($LCPUIDNAME$LCPUIDABI-$LCPUIDVER-|.x86_64.rpm)" '{print $2}')
 		COMPRESS="tar -zcvf"
 		mkdir -p "$DESTDIR" && cd "$DESTDIR"
 
 		# Arch Linux
-		make_packages "Arch_Extra" "cpu-x-${CPUXVER}-1-" "libcpuid-git-2:${LCPUIDVER}-1-"
+		make_packages "Arch_Extra" "${PKGNAME}-${CPUXVER}-1-" "${LCPUIDNAME}-git-2:${LCPUIDVER}-1-"
 		$COMPRESS CPU-X_${VER}_ArchLinux.tar.gz Arch*
 
 		# Debian
-		make_packages "Debian_8.0" "cpu-x_${CPUXVER}_" "libcpuid13_${LCPUIDVER}_" "libcpuid13-dev_${LCPUIDVER}_"
+		make_packages "Debian_8.0" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
 		$COMPRESS CPU-X_${VER}_Debian.tar.gz Debian*
 
 		# Fedora
-		make_packages "Fedora_21" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "Fedora_22" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "Fedora_23" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "Fedora_24" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "Fedora_21" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "Fedora_22" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "Fedora_23" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "Fedora_24" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
 		$COMPRESS CPU-X_${VER}_Fedora.tar.gz Fedora*
 
 		# openSUSE
-		make_packages "openSUSE_13.1"       "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_13.2"       "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_Leap_42.1"  "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_Leap_42.2"  "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
-		make_packages "openSUSE_Tumbleweed" "cpu-x-${CPUXVER}-3.1." "libcpuid13-${LCPUIDVER}-1.1." "libcpuid-devel-${LCPUIDVER}-1.1."
+		make_packages "openSUSE_13.1"       "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "openSUSE_13.2"       "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "openSUSE_Leap_42.1"  "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "openSUSE_Leap_42.2"  "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		make_packages "openSUSE_Tumbleweed" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
+		find . -type d -empty -exec rmdir {} \;
 		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz openSUSE*
 
 		# Ubuntu
-		make_packages "xUbuntu_14.04" "cpu-x_${CPUXVER}_" "libcpuid13_${LCPUIDVER}_" "libcpuid13-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_15.04" "cpu-x_${CPUXVER}_" "libcpuid13_${LCPUIDVER}_" "libcpuid13-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_15.10" "cpu-x_${CPUXVER}_" "libcpuid13_${LCPUIDVER}_" "libcpuid13-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_16.04" "cpu-x_${CPUXVER}_" "libcpuid13_${LCPUIDVER}_" "libcpuid13-dev_${LCPUIDVER}_"
+		make_packages "xUbuntu_14.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
+		make_packages "xUbuntu_15.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
+		make_packages "xUbuntu_15.10" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
+		make_packages "xUbuntu_16.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
 		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz xUbuntu*
 		;;
 esac
