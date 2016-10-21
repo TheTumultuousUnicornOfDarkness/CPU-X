@@ -1169,24 +1169,22 @@ static int cpu_multipliers_fallback(Labels *data)
 
 #ifdef __linux__
 	static bool init = false;
-	int err = 0;
 	char *min_freq_str = NULL, *max_freq_str = NULL;
 
 	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
 	if(!init)
 	{
-		/* Open files */
-		err += fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core);
-		err += fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core);
-
-		/* Convert to get min and max values */
-		if(!err)
-		{
+		/* Minimum multiplier */
+		if(!fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core))
 			min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
+		free(min_freq_str);
+
+		/* Maximum multiplier */
+		if(!fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core))
 			max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
-		}
+		free(max_freq_str);
+
 		init = true;
-		free_multi(min_freq_str, max_freq_str);
 	}
 #endif /* __linux__ */
 	if(min_mult <= 0 || max_mult <= 0)
