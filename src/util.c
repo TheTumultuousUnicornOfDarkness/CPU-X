@@ -130,25 +130,6 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 	return j;
 }
 
-/* Try to free given variables */
-void free_multi(void *var, ...)
-{
-	void *ptr, *sentinel = NULL;
-	va_list aptr;
-
-	va_start(aptr, var);
-	free(var);
-
-	while((ptr = va_arg(aptr, void *)) != NULL && ptr != sentinel)
-	{
-		if(sentinel == NULL)
-			sentinel = ptr;
-		free(ptr);
-	}
-
-	va_end(aptr);
-}
-
 /* Return a formatted string */
 char *format(char *str, ...)
 {

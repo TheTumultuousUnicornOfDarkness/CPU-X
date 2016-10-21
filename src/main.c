@@ -749,7 +749,7 @@ static void sighandler(int signum)
 	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
 
 	/* Stop program */
-	free_multi(bt_syms, bt);
+	free(bt_syms);
 	signal(signum, SIG_DFL);
 	kill(getpid(), signum);
 }

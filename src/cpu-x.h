@@ -256,9 +256,6 @@ char *msg_error(char *color, char *file, int line, char *str);
 	   casprintf(&str, true,  "%i KB %i-way", -1, 12): str = "12-way" */
 int casprintf(char **str, bool clean_str, const char *fmt, ...);
 
-/* Try to free given variables */
-void free_multi(void *var, ...);
-
 /* Return a formatted string */
 char *format(char *str, ...);
 
