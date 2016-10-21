@@ -43,7 +43,12 @@ static int call_libcpuid_cpuclock(Labels *data);
 
 /* MSRs values provided by libcpuid */
 static int call_libcpuid_msr(Labels *data);
-/* Required: HAS_LIBCPUID && root privileges */
+/* Required: HAS_LIBCPUID && root privileges
+Can override data->tab_cpu[VALUE][BUSSPEED] */
+
+/* Fill the Multiplier label with the most appropriate format */
+static void cputab_show_multipliers(Labels *data, double min, double cur, double max);
+/* Required: none */
 
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data);

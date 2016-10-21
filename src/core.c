@@ -495,24 +495,25 @@ static int call_libcpuid_msr(Labels *data)
 		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
 	}
 
-	/* Base clock is firstly provided by Dmidecode: we override this value if Libcpuid can provides it */
-	cur_mult = data->cpu_freq / data->bus_freq;
-
 	/* Multipliers (min-max) */
+	cur_mult = data->cpu_freq / data->bus_freq;
 	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE && cur_mult > 0.0)
-	{
-		if(max_mult / 100 < 10)
-			casprintf(&data->tab_cpu[VALUE][MULTIPLIER], true, "x%.1f (%.1f-%.1f)",
-			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
-		else
-			casprintf(&data->tab_cpu[VALUE][MULTIPLIER], true, "x%.1f (%.0f-%.0f)",
-			          cur_mult, (double) min_mult / 100, (double) max_mult / 100);
-	}
-	cpu_msr_driver_close(msr);
+		cputab_show_multipliers(data, cur_mult, (double) min_mult / 100, (double) max_mult / 100);
 
-	return 0;
+	return cpu_msr_driver_close(msr);
 }
 #endif /* HAS_LIBCPUID */
+
+/* Fill the Multiplier label with the most appropriate format */
+static void cputab_show_multipliers(Labels *data, double cur, double min, double max)
+{
+	if(min <= 0 || max <= 0)
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x %.2f", cur);
+	else if(max < 10)
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (%.1f-%.1f)", cur, min, max);
+	else
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (%.0f-%.0f)", cur, min, max);
+}
 
 #if HAS_DMIDECODE
 /* Call Dmidecode through CPU-X but do nothing else */
@@ -1161,7 +1162,6 @@ static int cputab_volt_fallback(Labels *data)
 /* Get CPU multipliers ("x current (min-max)" label) */
 static int cpu_multipliers_fallback(Labels *data)
 {
-	static bool no_range = false;
 	static double min_mult = 0, max_mult = 0;
 
 	if(data->cpu_freq <= 0 || data->bus_freq <= 0)
@@ -1187,15 +1187,7 @@ static int cpu_multipliers_fallback(Labels *data)
 		init = true;
 	}
 #endif /* __linux__ */
-	if(min_mult <= 0 || max_mult <= 0)
-	{
-		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x %.2f", data->cpu_freq / data->bus_freq);
-		if(!no_range)
-			MSG_WARNING(_("Cannot get minimum and maximum CPU multipliers (fallback mode)"));
-		no_range = true;
-	}
-	else
-		asprintf(&data->tab_cpu[VALUE][MULTIPLIER], "x%.1f (%.0f-%.0f)", data->cpu_freq / data->bus_freq, min_mult, max_mult);
+	cputab_show_multipliers(data, (double) data->cpu_freq / data->bus_freq, min_mult, max_mult);
 
 	return 0;
 }
