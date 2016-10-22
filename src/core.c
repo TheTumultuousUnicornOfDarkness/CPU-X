@@ -1096,14 +1096,14 @@ static int cpu_package_fallback(Labels *data)
 		return 1;
 	for(i = 0; (!found) && (package[i].name != NULL); i++)
 	{
-		found = !strcmp(package[i].name, data->tab_cpu[VALUE][CODENAME]);
+		found = (strstr(data->tab_cpu[VALUE][CODENAME], package[i].name) != NULL) ? true : false;
 		if(package[i].model != NULL)
 			found &= (strstr(data->tab_cpu[VALUE][SPECIFICATION], package[i].model) != NULL) ? true : false;
 	}
 
 	if(found)
 	{
-		casprintf(&data->tab_cpu[VALUE][PACKAGE], false, package[i].socket);
+		casprintf(&data->tab_cpu[VALUE][PACKAGE], false, package[i - 1].socket);
 		return 0;
 	}
 	else
