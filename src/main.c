@@ -870,6 +870,11 @@ int main(int argc, char *argv[])
 	menu(argc, argv);
 	if(opts->output_type < OUT_NO_CPUX)
 	{
+		if(getenv("CPUX_BCLK"))
+		{
+			data->bus_freq = atof(getenv("CPUX_BCLK"));
+			casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
+		}
 		if(getuid())
 		{
 			MSG_WARNING(_("Root privileges are required to work properly"));
