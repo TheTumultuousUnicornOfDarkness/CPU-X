@@ -235,6 +235,7 @@ static int cpu_technology(Labels *data)
 		{  2,          -1,          20,          40 }, // Bobcat
 		{  3,          13,          -1,          32 }, // Piledriver (Richland)
 		{  3,          35,          15,          90 }, // Toledo
+		{  8,          -1,          15,          65 }, // Tyler
 		{  15,         79,          15,          90 }, // Manila
 		{ -1,          -1,          -1,           0 }
 	};
@@ -1086,6 +1087,8 @@ static int cpu_package_fallback(Labels *data)
 		{ "Kabini X4",                      "Socket AM1",    "Athlon"  },
 		{ "Kabini X4",                      "Socket AM1",    "Sempron" },
 		{ "Trinity X4",                     "Socket FM2",    NULL      },
+		{ "Turion X2",                      "S1g1",          "TL"      },
+		{ "Turion X2",                      "S1g1",          "TK"      },
 		{ NULL,                             "",              NULL      }
 	};
 
