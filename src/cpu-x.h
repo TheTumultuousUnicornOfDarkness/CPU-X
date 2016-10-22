@@ -213,7 +213,7 @@ typedef struct
 
 	int     cpu_freq;
 	uint8_t cpu_count, cache_count, dimm_count, gpu_count;
-	double  bus_freq;
+	double  bus_freq, cpu_min_mult, cpu_max_mult;
 
 	LibcpuidData  *l_data;
 	BandwidthData *w_data;

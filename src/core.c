@@ -75,9 +75,10 @@ int fill_labels(Labels *data)
 	int i, err = 0;
 	const uint8_t selected_page = opts->selected_page;
 
-	if(HAS_DMIDECODE) err += call_dmidecode      (data);
-	if(HAS_LIBCPUID)  err += call_libcpuid_static(data);
-	if(HAS_LIBPCI)    err += find_devices        (data);
+	if(HAS_DMIDECODE) err += call_dmidecode          (data);
+	if(HAS_LIBCPUID)  err += call_libcpuid_static    (data);
+	if(HAS_LIBCPUID)  err += call_libcpuid_msr_static(data);
+	if(HAS_LIBPCI)    err += find_devices            (data);
 
 	err += system_static       (data);
 	err += fallback_mode_static(data);
@@ -101,10 +102,11 @@ int do_refresh(Labels *data)
 	switch(opts->selected_page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID) err += err_func(call_libcpuid_cpuclock, data);
-			if(HAS_LIBCPUID) err += err_func(call_libcpuid_msr,      data);
+			if(HAS_LIBCPUID) err += err_func(call_libcpuid_dynamic,     data);
+			if(HAS_LIBCPUID) err += err_func(call_libcpuid_msr_dynamic, data);
 			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
+			err += err_func(cputab_fill_multipliers, data);
 			break;
 		case NO_CACHES:
 			if(HAS_BANDWIDTH) err += err_func(call_bandwidth, data);
@@ -438,81 +440,115 @@ static int call_libcpuid_static(Labels *data)
 	return 0;
 }
 
-/* CPU clock provided by libcpuid */
-static int call_libcpuid_cpuclock(Labels *data)
+/* Dynamic elements provided by libcpuid */
+static int call_libcpuid_dynamic(Labels *data)
 {
 	/* CPU frequency */
-	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU clock"));
+	MSG_VERBOSE(_("Calling libcpuid for retrieving dynamic data"));
 	data->cpu_freq = cpu_clock();
 	casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
 
 	return (data->cpu_freq <= 0);
 }
 
-/* MSRs values provided by libcpuid */
-static int call_libcpuid_msr(Labels *data)
+/* Try to open a CPU MSR */
+static int libcpuid_init_msr(struct msr_driver_t **msr)
 {
-	int voltage, temp, min_mult, max_mult, bclk;
-	double cur_mult;
-	struct msr_driver_t *msr = NULL;
-
 	if(getuid())
 	{
 		MSG_WARNING(_("Skip CPU MSR opening (need to be root)"));
 		return 1;
 	}
 
-	/* MSR stuff */
-	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR values"));
-	msr = cpu_msr_driver_open_core(opts->selected_core);
-	if(msr == NULL)
+	*msr = cpu_msr_driver_open_core(opts->selected_core);
+	if(*msr == NULL)
 	{
 		MSG_ERROR(_("failed to open CPU MSR"));
 		return 2;
 	}
 
-	/* Get values from MSR */
-	voltage  = cpu_msrinfo(msr, INFO_VOLTAGE);
-	temp     = cpu_msrinfo(msr, INFO_TEMPERATURE);
-	bclk     = cpu_msrinfo(msr, INFO_BCLK);
+	return 0;
+}
+
+/* MSRs static values provided by libcpuid */
+static int call_libcpuid_msr_static(Labels *data)
+{
+	int min_mult, max_mult, bclk;
+	struct msr_driver_t *msr = NULL;
+
+	if(libcpuid_init_msr(&msr))
+		return 1;
+
+	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR static values"));
+	/* CPU Multipliers (minimum & maximum) */
 	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
-
-	/* CPU Voltage */
-	if(voltage != CPU_INVALID_VALUE)
-		casprintf(&data->tab_cpu[VALUE][VOLTAGE],     true, "%.3f V", (double) voltage / 100);
-
-	/* CPU Temperature */
-	if(temp != CPU_INVALID_VALUE)
-		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%i°C", temp);
-
-	/* Base clock */
-	if(bclk != CPU_INVALID_VALUE)
+	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE)
 	{
-		data->bus_freq = (double) bclk / 100;
-		free(data->tab_cpu[VALUE][BUSSPEED]);
-		data->tab_cpu[VALUE][BUSSPEED] = NULL;
-		casprintf(&data->tab_cpu[VALUE][BUSSPEED],    true, "%.2f MHz", data->bus_freq);
+		data->cpu_min_mult = (double) min_mult / 100;
+		data->cpu_max_mult = (double) max_mult / 100;
 	}
 
-	/* Multipliers (min-max) */
-	cur_mult = data->cpu_freq / data->bus_freq;
-	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE && cur_mult > 0.0)
-		cputab_show_multipliers(data, cur_mult, (double) min_mult / 100, (double) max_mult / 100);
+	/* Base clock */
+	bclk = cpu_msrinfo(msr, INFO_BCLK);
+	if(bclk != CPU_INVALID_VALUE)
+	{
+		free(data->tab_cpu[VALUE][BUSSPEED]);
+		data->tab_cpu[VALUE][BUSSPEED] = NULL;
+		data->bus_freq = (double) bclk / 100;
+		casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
+	}
+
+	return cpu_msr_driver_close(msr);
+}
+
+/* MSRs dynamic values provided by libcpuid */
+static int call_libcpuid_msr_dynamic(Labels *data)
+{
+	int voltage, temp;
+	struct msr_driver_t *msr = NULL;
+
+	if(libcpuid_init_msr(&msr))
+		return 1;
+
+	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR dynamic values"));
+	/* CPU Voltage */
+	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
+	if(voltage != CPU_INVALID_VALUE)
+		casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", (double) voltage / 100);
+
+	/* CPU Temperature */
+	temp = cpu_msrinfo(msr, INFO_TEMPERATURE);
+	if(temp != CPU_INVALID_VALUE)
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%i°C", temp);
 
 	return cpu_msr_driver_close(msr);
 }
 #endif /* HAS_LIBCPUID */
 
 /* Fill the Multiplier label with the most appropriate format */
-static void cputab_show_multipliers(Labels *data, double cur, double min, double max)
+static int cputab_fill_multipliers(Labels *data)
 {
-	if(min <= 0 || max <= 0)
-		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x %.2f", cur);
-	else if(max < 10)
-		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (%.1f-%.1f)", cur, min, max);
+	if(data->cpu_freq <= 0 || data->bus_freq <= 0.0)
+		return 1;
+
+	MSG_VERBOSE(_("Calculating CPU multipliers"));
+	const int    fmt      = (data->cpu_max_mult < 10) ? 1 : 0;
+	const double cur_mult = (double) data->cpu_freq / data->bus_freq;
+
+	if(data->cpu_min_mult <= 0.0 && data->cpu_max_mult <= 0.0)
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x %.2f", cur_mult);
+	else if(data->cpu_min_mult <= 0.0 && data->cpu_max_mult > 0.0)
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (?-%.*f)",
+		          cur_mult, fmt, data->cpu_max_mult);
+	else if(data->cpu_min_mult > 0.0 && data->cpu_max_mult <= 0.0)
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (%.*f-?)",
+		          cur_mult, fmt, data->cpu_min_mult);
 	else
-		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (%.0f-%.0f)", cur, min, max);
+		casprintf(&data->tab_cpu[VALUE][MULTIPLIER], false, "x%.1f (%.*f-%.*f)",
+		          cur_mult, fmt, data->cpu_min_mult, fmt, data->cpu_max_mult);
+
+	return 0;
 }
 
 #if HAS_DMIDECODE
@@ -1159,35 +1195,27 @@ static int cputab_volt_fallback(Labels *data)
 	}
 }
 
-/* Get CPU multipliers ("x current (min-max)" label) */
+/* Get minimum and maximum CPU multipliers */
 static int cpu_multipliers_fallback(Labels *data)
 {
-	static double min_mult = 0, max_mult = 0;
-
-	if(data->cpu_freq <= 0 || data->bus_freq <= 0)
+	if(data->bus_freq <= 0)
 		return 1;
 
 #ifdef __linux__
-	static bool init = false;
-	char *min_freq_str = NULL, *max_freq_str = NULL;
+	char *min_freq_str = NULL;
+	char *max_freq_str = NULL;
 
 	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
-	if(!init)
-	{
-		/* Minimum multiplier */
-		if(!fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core))
-			min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
-		free(min_freq_str);
+	/* Minimum multiplier */
+	if(!fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core))
+		data->cpu_min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
+	free(min_freq_str);
 
-		/* Maximum multiplier */
-		if(!fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core))
-			max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
-		free(max_freq_str);
-
-		init = true;
-	}
+	/* Maximum multiplier */
+	if(!fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core))
+		data->cpu_max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
+	free(max_freq_str);
 #endif /* __linux__ */
-	cputab_show_multipliers(data, (double) data->cpu_freq / data->bus_freq, min_mult, max_mult);
 
 	return 0;
 }
@@ -1242,6 +1270,9 @@ static int fallback_mode_static(Labels *data)
 	   string_is_empty(data->tab_motherboard[VALUE][DATE]))
 		err += motherboardtab_fallback(data);
 
+	if(data->cpu_min_mult <= 0.0 || data->cpu_max_mult <= 0.0)
+		err += cpu_multipliers_fallback(data);
+
 	return err;
 }
 
@@ -1261,12 +1292,6 @@ static int fallback_mode_dynamic(Labels *data)
 	{
 		use_fallback[1] = true;
 		err += err_func(cputab_volt_fallback,     data);
-	}
-
-	if(string_is_empty(data->tab_cpu[VALUE][MULTIPLIER])  || use_fallback[2])
-	{
-		use_fallback[2] = true;
-		err += err_func(cpu_multipliers_fallback, data);
 	}
 
 	return err;

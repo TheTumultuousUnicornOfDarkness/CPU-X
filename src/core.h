@@ -37,18 +37,23 @@ static int err_func(int (*func)(Labels *), Labels *data);
 static int call_libcpuid_static(Labels *data);
 /* Required: HAS_LIBCPUID */
 
-/* CPU clock provided by libcpuid */
-static int call_libcpuid_cpuclock(Labels *data);
+/* Dynamic elements provided by libcpuid */
+static int call_libcpuid_dynamic(Labels *data);
 /* Required: HAS_LIBCPUID */
 
-/* MSRs values provided by libcpuid */
-static int call_libcpuid_msr(Labels *data);
+/* MSRs static values provided by libcpuid */
+static int call_libcpuid_msr_static(Labels *data);
 /* Required: HAS_LIBCPUID && root privileges
 Can override data->tab_cpu[VALUE][BUSSPEED] */
 
+/* MSRs dynamic values provided by libcpuid */
+static int call_libcpuid_msr_dynamic(Labels *data);
+/* Required: HAS_LIBCPUID && root privileges */
+
 /* Fill the Multiplier label with the most appropriate format */
-static void cputab_show_multipliers(Labels *data, double min, double cur, double max);
-/* Required: none */
+static int cputab_fill_multipliers(Labels *data);
+/* Required: none
+Both normal and fallback mode provide CPU multipliers, need to be call after */
 
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data);

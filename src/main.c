@@ -817,7 +817,9 @@ int main(int argc, char *argv[])
 		.cache_count     = 0,
 		.dimm_count      = 0,
 		.gpu_count       = 0,
-		.bus_freq        = 0.0
+		.bus_freq        = 0.0,
+		.cpu_min_mult    = 0.0,
+		.cpu_max_mult    = 0.0
 	};
 	data->l_data = &(LibcpuidData)
 	{
