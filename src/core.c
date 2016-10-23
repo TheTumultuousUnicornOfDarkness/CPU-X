@@ -1141,6 +1141,8 @@ static int cputab_package_fallback(Labels *data)
 	{
 		MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
 		            data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
+		free(data->tab_cpu[VALUE][PACKAGE]);
+		data->tab_cpu[VALUE][PACKAGE] = NULL;
 		return 2;
 	}
 }
