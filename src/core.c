@@ -1068,10 +1068,10 @@ void start_benchmarks(Labels *data)
 }
 
 
-/************************* Fallback functions *************************/
+/************************* Fallback functions (static) *************************/
 
 /* If dmidecode fails to find CPU package, check in database */
-static int cpu_package_fallback(Labels *data)
+static int cputab_package_fallback(Labels *data)
 {
 	int i;
 	bool found = false;
@@ -1114,92 +1114,8 @@ static int cpu_package_fallback(Labels *data)
 	}
 }
 
-/* Retrieve CPU temperature if run as regular user */
-static int cputab_temp_fallback(Labels *data)
-{
-	static bool use_sysfs = false;
-	double val = 0.0;
-	char *buff = NULL;
-
-	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
-
-	/* First, try by reading 'sensors' output */
-	if(!use_sysfs)
-	{
-		setlocale(LC_ALL, "C");
-		if(!popen_to_str(&buff, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core))
-			val = atof(buff);
-		setlocale(LC_ALL, "");
-
-		if(val <= 0)
-			use_sysfs = true;
-	}
-#if HAS_LIBCPUID
-	bool module_loaded = false;
-	int  file_error = -1;
-
-	/* If 'sensors' is not configured, try by using sysfs */
-	if(use_sysfs)
-	{
-		switch(data->l_data->cpu_vendor_id)
-		{
-			case VENDOR_INTEL:
-				module_loaded = load_module("coretemp");
-				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
-				break;
-			case VENDOR_AMD:
-				module_loaded = load_module("k8temp") | load_module("k10temp");
-				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
-				break;
-			default:
-				return 0;
-		}
-
-		if(module_loaded && !file_error)
-			val = atof(buff) / 1000;
-	}
-#endif /* HAS_LIBCPUID */
-	free(buff);
-
-	if(val > 0)
-	{
-		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", val);
-		return 0;
-	}
-	else
-	{
-		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
-		return 1;
-	}
-}
-
-/* Retrieve CPU voltage if run as regular user */
-static int cputab_volt_fallback(Labels *data)
-{
-	double val = 0.0;
-	char *buff = NULL;
-
-	MSG_VERBOSE(_("Retrieving CPU voltage in fallback mode"));
-	setlocale(LC_ALL, "C");
-	if(!popen_to_str(&buff, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'"))
-		val = atof(buff);
-	free(buff);
-	setlocale(LC_ALL, "");
-
-	if(val > 0)
-	{
-		casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", val);
-		return 0;
-	}
-	else
-	{
-		MSG_ERROR(_("failed to retrieve CPU voltage (fallback mode)"));
-		return 1;
-	}
-}
-
 /* Get minimum and maximum CPU multipliers */
-static int cpu_multipliers_fallback(Labels *data)
+static int cputab_multipliers_fallback(Labels *data)
 {
 	if(data->bus_freq <= 0)
 		return 1;
@@ -1243,6 +1159,7 @@ static int motherboardtab_fallback(Labels *data)
 	return err;
 }
 
+/* Check is string is empty (e.g. contains only non printable characters) */
 static bool string_is_empty(char *str)
 {
 	int i;
@@ -1263,7 +1180,10 @@ static int fallback_mode_static(Labels *data)
 	if(string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
 	   strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
 	   strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL)
-		err += cpu_package_fallback(data);
+		err += cputab_package_fallback(data);
+
+	if(data->cpu_min_mult <= 0.0 || data->cpu_max_mult <= 0.0)
+		err += cputab_multipliers_fallback(data);
 
 	if(string_is_empty(data->tab_motherboard[VALUE][MANUFACTURER]) ||
 	   string_is_empty(data->tab_motherboard[VALUE][MBMODEL])      ||
@@ -1273,28 +1193,114 @@ static int fallback_mode_static(Labels *data)
 	   string_is_empty(data->tab_motherboard[VALUE][DATE]))
 		err += motherboardtab_fallback(data);
 
-	if(data->cpu_min_mult <= 0.0 || data->cpu_max_mult <= 0.0)
-		err += cpu_multipliers_fallback(data);
-
 	return err;
+}
+
+
+/************************* Fallback functions (dynamic) *************************/
+
+/* Retrieve CPU temperature if run as regular user */
+static int cputab_temp_fallback(Labels *data)
+{
+	static bool use_sysfs = false;
+	double val = 0.0;
+	char *buff = NULL;
+
+	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
+
+	/* First, try by reading 'sensors' output */
+	if(!use_sysfs)
+	{
+		setlocale(LC_ALL, "C");
+		if(!popen_to_str(&buff, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core))
+			val = atof(buff);
+		setlocale(LC_ALL, "");
+
+		if(val <= 0)
+			use_sysfs = true;
+	}
+
+#if HAS_LIBCPUID
+	bool module_loaded = false;
+	int  file_error = -1;
+
+	/* If 'sensors' is not configured, try by using sysfs */
+	if(use_sysfs)
+	{
+		switch(data->l_data->cpu_vendor_id)
+		{
+			case VENDOR_INTEL:
+				module_loaded = load_module("coretemp");
+				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
+				break;
+			case VENDOR_AMD:
+				module_loaded = load_module("k8temp") | load_module("k10temp");
+				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
+				break;
+			default:
+				return 0;
+		}
+
+		if(module_loaded && !file_error)
+			val = atof(buff) / 1000;
+	}
+#endif /* HAS_LIBCPUID */
+	free(buff);
+
+	if(val > 0)
+	{
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], false, "%.2f°C", val);
+		return 0;
+	}
+	else
+	{
+		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
+		return 1;
+	}
+}
+
+/* Retrieve CPU voltage if run as regular user */
+static int cputab_volt_fallback(Labels *data)
+{
+	double val = 0.0;
+	char *buff = NULL;
+
+	MSG_VERBOSE(_("Retrieving CPU voltage in fallback mode"));
+	setlocale(LC_ALL, "C");
+	if(!popen_to_str(&buff, "sensors | grep -i 'VCore' | awk -F '[+V]' '{ print $3 }'"))
+		val = atof(buff);
+	free(buff);
+	setlocale(LC_ALL, "");
+
+	if(val > 0)
+	{
+		casprintf(&data->tab_cpu[VALUE][VOLTAGE], false, "%.3f V", val);
+		return 0;
+	}
+	else
+	{
+		MSG_ERROR(_("failed to retrieve CPU voltage (fallback mode)"));
+		return 1;
+	}
 }
 
 /* Retrieve dynamic data if other functions failed */
 static int fallback_mode_dynamic(Labels *data)
 {
-	static bool use_fallback[3] = { false };
+	enum FallbackDynamic { TEMP, VOLT, LASTFALLBACK };
+	static bool use_fallback[LASTFALLBACK] = { false };
 	int err = 0;
 
-	if(string_is_empty(data->tab_cpu[VALUE][TEMPERATURE]) || use_fallback[0])
+	if(string_is_empty(data->tab_cpu[VALUE][TEMPERATURE]) || use_fallback[TEMP])
 	{
-		use_fallback[0] = true;
-		err += err_func(cputab_temp_fallback,     data);
+		use_fallback[TEMP] = true;
+		err += err_func(cputab_temp_fallback, data);
 	}
 
-	if(string_is_empty(data->tab_cpu[VALUE][VOLTAGE])     || use_fallback[1])
+	if(string_is_empty(data->tab_cpu[VALUE][VOLTAGE])     || use_fallback[VOLT])
 	{
-		use_fallback[1] = true;
-		err += err_func(cputab_volt_fallback,     data);
+		use_fallback[VOLT] = true;
+		err += err_func(cputab_volt_fallback, data);
 	}
 
 	return err;
