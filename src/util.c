@@ -34,21 +34,6 @@
 #include "cpu-x.h"
 
 
-/************************* Private functions *************************/
-
-/* Run system() command, depending of running operating system */
-static int system_os_specific(char *cmd_linux, char *cmd_bsd)
-{
-#if defined (__linux__)
-	return system(cmd_linux);
-#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	return system(cmd_bsd);
-#else
-	return -255;
-#endif
-}
-
-
 /************************* Public function *************************/
 
 /* Add a newline for given string (used by MSG_XXX macros) */
@@ -229,12 +214,21 @@ error:
 /* Load a kernel module */
 bool load_module(char *module)
 {
-	if(!system_os_specific(format("lsmod | grep %s > /dev/null", module),
-	                       format("kldstat | grep %s > /dev/null", module)))
+#if defined (__linux__)
+	if(!system(format("lsmod | grep %s > /dev/null", module)))
 		return true;
 	else if(getuid())
 		return false;
 	else
-		return !system_os_specific(format("modprobe %s 2> /dev/null", module),
-		                           format("kldload -n %s 2> /dev/null", module));
+		return !system(format("modprobe %s 2> /dev/null", module));
+#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	if(!system(format("kldstat | grep %s > /dev/null", module)))
+		return true;
+	else if(getuid())
+		return false;
+	else
+		return !system(format("kldload -n %s 2> /dev/null", module));
+#else
+	return false;
+#endif
 }
