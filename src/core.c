@@ -167,10 +167,10 @@ static int cpu_technology(Labels *data)
 	LibcpuidData *l_data = data->l_data;
 
 	if(l_data->cpu_vendor_id < 0 || l_data->cpu_model < 0 || l_data->cpu_ext_model < 0 || l_data->cpu_ext_family < 0)
-		return 0;
+		return 1;
 
 	MSG_VERBOSE(_("Finding CPU technology"));
-	struct Technology unknown[] = { { -1, -1, -1, 0 } };
+	struct Technology unknown[] = { { -1, -1, -1, -1 } };
 
 	/* Intel CPUs */
 	struct Technology intel[] =
@@ -217,7 +217,7 @@ static int cpu_technology(Labels *data)
 		{ 14,          94,          -1,          14 }, // Skylake
 		{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 		{ 15,          63,          -1,          22 }, // Haswell-E
-		{ -1,          -1,          -1,           0 }
+		{ -1,          -1,          -1,          -1 }
 	};
 
 	/* AMD CPUs */
@@ -237,7 +237,7 @@ static int cpu_technology(Labels *data)
 		{  3,          35,          15,          90 }, // Toledo
 		{  8,          -1,          15,          65 }, // Tyler
 		{  15,         79,          15,          90 }, // Manila
-		{ -1,          -1,          -1,           0 }
+		{ -1,          -1,          -1,          -1 }
 	};
 
 	switch(l_data->cpu_vendor_id)
@@ -260,12 +260,16 @@ static int cpu_technology(Labels *data)
 	}
 
 	if(found)
-		i--;
+	{
+		casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", vendor[i - 1].process);
+		return 0;
+	}
 	else
+	{
 		MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
 		            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
-
-	return vendor[i].process;
+		return 2;
+	}
 }
 
 /* If value is > 9, print both in decimal and hexadecimal */
@@ -333,7 +337,8 @@ static int call_libcpuid_static(Labels *data)
 	casprintf(&data->tab_cpu[VALUE][VENDOR], false, cpuvendors[i].improved);
 	data->l_data->cpu_vendor_id = cpuvendors[i].id;
 
-	casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], true, "%i nm", cpu_technology(data));
+	/* Search in DB for CPU technology (depends on data->l_data->cpu_vendor_id) */
+	cpu_technology(data);
 
 	/* Remove training spaces in Specification label */
 	for(i = 1; datanr.brand_str[i] != '\0'; i++)
@@ -1070,40 +1075,66 @@ void start_benchmarks(Labels *data)
 
 /************************* Fallback functions (static) *************************/
 
+#if HAS_LIBCPUID
 /* If dmidecode fails to find CPU package, check in database */
 static int cputab_package_fallback(Labels *data)
 {
 	int i;
 	bool found = false;
+	struct Package { const char *codename, *model, *socket; } *vendor = NULL;
+	LibcpuidData *l_data = data->l_data;
+
+	if(l_data->cpu_vendor_id < 0 || data->tab_cpu[VALUE][CODENAME] == NULL || data->tab_cpu[VALUE][SPECIFICATION] == NULL)
+		return 1;
 
 	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
-	const struct Package { char *name, *socket, *model; } package[] =
+	struct Package unknown[] = { { NULL, "", NULL } };
+
+	/* Intel sockets */
+	struct Package intel[] =
 	{
-		{ "Pentium D (SmithField)",         "LGA775",        NULL      },
-		{ "Pentium D (Presler)",            "LGA775",        NULL      },
-		{ "Bloomfield (Core i7)",           "LGA1366",       NULL      },
-		{ "Atom (Diamondville)",            "BGA437",        NULL      },
-		{ "Athlon 64 FX X2 (Toledo)",       "Socket 939",    NULL      },
-		{ "Kabini X4",                      "Socket AM1",    "Athlon"  },
-		{ "Kabini X4",                      "Socket AM1",    "Sempron" },
-		{ "Trinity X4",                     "Socket FM2",    NULL      },
-		{ "Turion X2",                      "S1g1",          "TL"      },
-		{ "Turion X2",                      "S1g1",          "TK"      },
-		{ NULL,                             "",              NULL      }
+		//Codename                          Model            Socket
+		{ "Atom (Diamondville)",            "",              "BGA 437"        },
+		{ "Pentium D (SmithField)",         "",              "LGA 775"        },
+		{ "Pentium D (Presler)",            "",              "LGA 775"        },
+		{ "Bloomfield (Core i7)",           "",              "LGA 1366"       },
+		{ NULL,                             "",              NULL             }
 	};
 
-	if(data->tab_cpu[VALUE][CODENAME] == NULL)
-		return 1;
-	for(i = 0; (!found) && (package[i].name != NULL); i++)
+	/* AMD sockets */
+	struct Package amd[] =
 	{
-		found = (strstr(data->tab_cpu[VALUE][CODENAME], package[i].name) != NULL) ? true : false;
-		if(package[i].model != NULL)
-			found &= (strstr(data->tab_cpu[VALUE][SPECIFICATION], package[i].model) != NULL) ? true : false;
+		//Codename                          Model            Socket
+		{ "Athlon 64 FX X2 (Toledo)",       "",              "939 (PGA-ZIF)"  },
+		{ "Kabini X4",                      "Athlon",        "AM1 (PGA-ZIF)"  },
+		{ "Kabini X4",                      "Sempron",       "AM1 (PGA-ZIF)"  },
+		{ "Trinity X4",                     "",              "FM2 (PGA-ZIF)"  },
+		{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
+		{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
+		{ NULL,                             "",              NULL             }
+	};
+
+	switch(l_data->cpu_vendor_id)
+	{
+		case VENDOR_INTEL:
+			vendor = intel;
+			break;
+		case VENDOR_AMD:
+			vendor = amd;
+			break;
+		default:
+			vendor = unknown;
+	}
+
+	for(i = 0; !found && (vendor[i].codename != NULL); i++)
+	{
+		found  = (strstr(data->tab_cpu[VALUE][CODENAME],      vendor[i].codename) != NULL);
+		found &= (strstr(data->tab_cpu[VALUE][SPECIFICATION], vendor[i].model)    != NULL);
 	}
 
 	if(found)
 	{
-		casprintf(&data->tab_cpu[VALUE][PACKAGE], false, package[i - 1].socket);
+		casprintf(&data->tab_cpu[VALUE][PACKAGE], false, vendor[i - 1].socket);
 		return 0;
 	}
 	else
@@ -1113,6 +1144,7 @@ static int cputab_package_fallback(Labels *data)
 		return 2;
 	}
 }
+#endif /* HAS_LIBCPUID */
 
 /* Get minimum and maximum CPU multipliers */
 static int cputab_multipliers_fallback(Labels *data)
@@ -1177,9 +1209,10 @@ static int fallback_mode_static(Labels *data)
 {
 	int err = 0;
 
-	if(string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
-	   strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
-	   strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL)
+	if(HAS_LIBCPUID &&
+	   (string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
+	    strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
+	    strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL))
 		err += cputab_package_fallback(data);
 
 	if(data->cpu_min_mult <= 0.0 || data->cpu_max_mult <= 0.0)
