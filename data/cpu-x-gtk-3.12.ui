@@ -847,7 +847,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="clock_labmips">
+                                  <object class="GtkLabel" id="clock_labusage">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">end</property>
@@ -954,7 +954,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkAspectFrame" id="clock_frammips">
+                                  <object class="GtkAspectFrame" id="clock_framusage">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="margin_top">1</property>
@@ -962,7 +962,7 @@
                                     <property name="label_xalign">0</property>
                                     <property name="shadow_type">in</property>
                                     <child>
-                                      <object class="GtkLabel" id="clock_valmips">
+                                      <object class="GtkLabel" id="clock_valusage">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="justify">center</property>
@@ -5409,6 +5409,9 @@
           </packing>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </object>
 </interface>
