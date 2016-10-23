@@ -1,3 +1,17 @@
+v3.1.2 (10.23.2016):
+	- New feature:
+	  * Allow to set Bclk through CPUX_BCLK environment variable
+	- Changes:
+	  * Avoid to refresh Bclk and minimum/maximum CPU multipliers
+	  * Rework CPU multipliers calculation
+	  * Add AMD Tyler CPUs in database
+	  * Reorganize databases
+	- Fixes:
+	  * Segfault caused by free_multi()
+	  * Socket detection in fallback mode
+	  * Kernel module load in fallback mode
+
+
 v3.1.1 (10.16.2016):
 	- Fixes:
 	  * Bandwidth build on system without stropts.h
