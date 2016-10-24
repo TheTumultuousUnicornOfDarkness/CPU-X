@@ -419,12 +419,12 @@ static int call_libcpuid_static(Labels *data)
 	for(i = 0; intructions[i].flag != NUM_CPU_FEATURES; i++)
 	{
 		if(datanr.flags[intructions[i].flag])
-			strncat(tmp, intructions[i].intrstr, MAXSTR);
+			strncat(tmp, intructions[i].intrstr, MAXSTR - strlen(tmp));
 	}
 
 	/* Add string "HT" in CPU Intructions label (if enabled) */
 	if(datanr.num_cores < datanr.num_logical_cpus)
-		strncat(tmp, ", HT", MAXSTR);
+		strncat(tmp, ", HT", MAXSTR - strlen(tmp));
 
 	/* Add string "64-bit" in CPU Intructions label (if supported) */
 	if(datanr.flags[CPU_FEATURE_LM])
@@ -432,13 +432,13 @@ static int call_libcpuid_static(Labels *data)
 		switch(data->l_data->cpu_vendor_id)
 		{
 			case VENDOR_INTEL:
-				strncat(tmp, ", Intel64", MAXSTR);
+				strncat(tmp, ", Intel64", MAXSTR - strlen(tmp));
 				break;
 			case VENDOR_AMD:
-				strncat(tmp, ", AMD64",   MAXSTR);
+				strncat(tmp, ", AMD64",   MAXSTR - strlen(tmp));
 				break;
 			default:
-				strncat(tmp, ", 64-bit",  MAXSTR);
+				strncat(tmp, ", 64-bit",  MAXSTR - strlen(tmp));
 		}
 	}
 	casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, tmp);
