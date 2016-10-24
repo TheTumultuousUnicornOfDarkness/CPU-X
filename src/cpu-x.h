@@ -64,7 +64,7 @@
 /* Arrays definition */
 #define NAME                  0
 #define VALUE                 1
-#define MAXSTR                60       /* Max string */
+#define MAXSTR                80       /* Max string */
 #define CACHEFIELDS           2        /* Nb of fields by cache frame */
 #define RAMFIELDS             2        /* Nb of fields by bank */
 #define GPUFIELDS             3        /* Nb of fields by GPU frame */
