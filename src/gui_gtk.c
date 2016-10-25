@@ -295,13 +295,14 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->mainwindow  = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
 	glab->closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
 	glab->labprgver	  = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
+	glab->footer      = GTK_WIDGET(gtk_builder_get_object(builder, "footer_box"));
 	glab->notebook    = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu     = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->activecore  = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
 	glab->activetest  = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
 	glab->logoprg     = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol      = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
-	gtk_widget_set_name(glab->mainwindow, "mainwindow");
+	gtk_widget_set_name(glab->footer, "footer_box");
 	gtk_notebook_set_current_page(GTK_NOTEBOOK(glab->notebook), opts->selected_page);
 
 	/* Various labels to translate */

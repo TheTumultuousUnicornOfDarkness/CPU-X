@@ -38,6 +38,7 @@ typedef struct
 	/* Common */
 	GtkWidget *mainwindow;
 	GtkWidget *notebook;
+	GtkWidget *footer;
 	GtkWidget *labprgver;
 	GtkWidget *closebutton;
 	GtkWidget *gtktrad[LASTOBJ];
