@@ -217,6 +217,7 @@ case "$choice" in
 
 		# Debian
 		make_packages "Debian_8.0" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
+		make_packages "Debian_9.0" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
 		$COMPRESS CPU-X_${VER}_Debian.tar.gz Debian*
 
 		# Fedora
@@ -240,6 +241,7 @@ case "$choice" in
 		make_packages "xUbuntu_15.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
 		make_packages "xUbuntu_15.10" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
 		make_packages "xUbuntu_16.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
+		make_packages "xUbuntu_16.10" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
 		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz xUbuntu*
 		;;
 esac
