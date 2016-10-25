@@ -285,7 +285,7 @@ static void print_hex(char **string, int32_t value)
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data)
 {
-	int i, j = 0;
+	int err, i, j = 0;
 	char tmp[MAXSTR] = "";
 	const char *fmt_kb = { _("%d x %d KB, %d-way associative, %d-byte line size") };
 	const char *fmt_mb = { _("%d MB, %d-way associative, %d-byte line size") };
@@ -339,7 +339,7 @@ static int call_libcpuid_static(Labels *data)
 	data->l_data->cpu_vendor_id = cpuvendors[i].id;
 
 	/* Search in DB for CPU technology (depends on data->l_data->cpu_vendor_id) */
-	cpu_technology(data);
+	err = cpu_technology(data);
 
 	/* Remove training spaces in Specification label */
 	for(i = 1; datanr.brand_str[i] != '\0'; i++)
@@ -444,7 +444,10 @@ static int call_libcpuid_static(Labels *data)
 	}
 	casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, tmp);
 
-	return 0;
+	if(opts->output_type == OUT_DUMP && opts->verbose)
+		err += cpuid_serialize_raw_data(&raw, "");
+
+	return err;
 }
 
 /* Dynamic elements provided by libcpuid */
