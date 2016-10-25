@@ -405,7 +405,7 @@ static int call_libcpuid_static(Labels *data)
 
 		{ CPU_FEATURE_SSE,      ", SSE (1" },
 		{ CPU_FEATURE_SSE2,     ", 2"      },
-		{ CPU_FEATURE_SSSE3,    ", 3S"     },
+		{ CPU_FEATURE_PNI,      ", 3"      },
 		{ CPU_FEATURE_SSE4_1,   ", 4.1"    },
 		{ CPU_FEATURE_SSE4_2,   ", 4.2"    },
 		{ CPU_FEATURE_SSE4A,    ", 4A"     },
