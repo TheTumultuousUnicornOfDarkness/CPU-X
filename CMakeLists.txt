@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "3.1.2")
+set(LOCALVERSION "3.1.3")
 if(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	cmake_policy(SET CMP0048 NEW)
 	project(cpu-x
