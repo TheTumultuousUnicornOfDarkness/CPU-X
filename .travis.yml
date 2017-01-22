@@ -18,22 +18,11 @@ before_script:
 - mkdir build
 - cd build
 - cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_GTK=0 -DCMAKE_INSTALL_PREFIX=/usr ..
-- mkdir ../pbuild
-- cd ../pbuild
-- cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_GTK=0 -DPORTABLE_BINARY=1 ..
-- cd ..
 script:
-- cd build
 - make -j $(nproc)
-- cd ../pbuild
-- make -j $(nproc)
-- cd ..
 after_success:
-- cd build
 - sudo make install
 - sudo cpu-x --issue-fmt
-- cd ../pbuild
-- sudo ./cpu-x --issue-fmt
 
 notifications:
   slack:
