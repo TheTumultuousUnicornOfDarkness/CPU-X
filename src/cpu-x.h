@@ -172,6 +172,7 @@ typedef struct
 {
 	int8_t  cpu_vendor_id;
 	int32_t cpu_model, cpu_ext_model, cpu_ext_family;
+	char *cpuid_raw_file;
 } LibcpuidData;
 
 typedef struct

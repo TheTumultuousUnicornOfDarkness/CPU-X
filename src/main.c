@@ -670,9 +670,6 @@ static void menu(int argc, char *argv[])
 	else
 		opts->output_type = OUT_DUMP;
 
-	if(getenv("CPUX_NETWORK"))
-		opts->use_network = ((atoi(getenv("CPUX_NETWORK"))) > 0);
-
 	/* Parse options */
 	while((c = getopt_long(argc, argv, shortopts, longopts, NULL)) != -1)
 	{
@@ -734,6 +731,20 @@ static void menu(int argc, char *argv[])
 				exit(EXIT_FAILURE);
 		}
 	}
+}
+
+/* Check for influenceable environment variables */
+static void check_environment_variables(Labels *data)
+{
+	if(getenv("CPUX_NETWORK"))
+		opts->use_network = ((atoi(getenv("CPUX_NETWORK"))) > 0);
+	if(getenv("CPUX_BCLK"))
+	{
+		data->bus_freq = atof(getenv("CPUX_BCLK"));
+		casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
+	}
+	if(getenv("CPUX_CPUID_RAW"))
+		data->l_data->cpuid_raw_file = getenv("CPUX_CPUID_RAW");
 }
 
 
@@ -846,7 +857,8 @@ int main(int argc, char *argv[])
 		.cpu_vendor_id  = -1,
 		.cpu_model      = -1,
 		.cpu_ext_model  = -1,
-		.cpu_ext_family = -1
+		.cpu_ext_family = -1,
+		.cpuid_raw_file = NULL
 	};
 	data->w_data = &(BandwidthData)
 	{
@@ -888,13 +900,9 @@ int main(int argc, char *argv[])
 	signal(SIGFPE,  sighandler);
 
 	menu(argc, argv);
+	check_environment_variables(data);
 	if(opts->output_type < OUT_NO_CPUX)
 	{
-		if(getenv("CPUX_BCLK"))
-		{
-			data->bus_freq = atof(getenv("CPUX_BCLK"));
-			casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
-		}
 		if(getuid())
 		{
 			MSG_WARNING(_("Root privileges are required to work properly"));
