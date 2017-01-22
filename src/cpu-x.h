@@ -35,7 +35,9 @@
 #define PRGURL                "http://X0rg.github.io/CPU-X"
 #define UPDURL                "http://x0rg.github.io/CPU-X/version.txt"
 #define TARBALL               "https://github.com/"PRGAUTH"/"PRGNAME"/releases/download"
-#define PRGCPYR               "Copyright © 2014-2016 Xorg"
+#define PRGCPRGHT             "Copyright © 2014-2016 Xorg"
+#define PRGLCNS               "GNU GPL v3"
+#define LCNSURL               "http://www.gnu.org/licenses/gpl.txt"
 
 /* Colors definition */
 #define DEFAULT               "\x1b[0m"
@@ -52,6 +54,7 @@
 #define MSG_WARNING(fmt, ...) fprintf(stdout, msg_newline(BOLD_YELLOW, fmt), ##__VA_ARGS__)
 #define MSG_ERROR(fmt, ...)   fprintf(stderr, msg_error(BOLD_RED, BASEFILE, __LINE__, fmt), ##__VA_ARGS__)
 #define _(msg)                gettext(msg)
+#define N_(msg)               msg
 
 /* Options definition */
 #define OUT_GTK               (1 << 0)

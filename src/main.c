@@ -34,6 +34,7 @@
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
+#include "label_names.h"
 
 #if HAS_LIBCURL
 # include <curl/curl.h>
@@ -57,166 +58,30 @@ Options *opts;
 /* Set labels name */
 static void labels_setname(Labels *data)
 {
-	int i, j;
-
-	MSG_VERBOSE(_("Setting label names"));
-
-	/* CPU tab */
-	asprintf(&data->objects[TABCPU],                _("CPU")); // Tab label
-	asprintf(&data->objects[FRAMPROCESSOR],         _("Processor")); // Frame label
-	asprintf(&data->tab_cpu[NAME][VENDOR],          _("Vendor"));
-	asprintf(&data->tab_cpu[NAME][CODENAME],        _("Code Name"));
-	asprintf(&data->tab_cpu[NAME][PACKAGE],         _("Package"));
-	asprintf(&data->tab_cpu[NAME][TECHNOLOGY],      _("Technology"));
-	asprintf(&data->tab_cpu[NAME][VOLTAGE],         _("Voltage"));
-	asprintf(&data->tab_cpu[NAME][SPECIFICATION],   _("Specification"));
-	asprintf(&data->tab_cpu[NAME][FAMILY],          _("Family"));
-	asprintf(&data->tab_cpu[NAME][EXTFAMILY],       _("Ext. Family"));
-	asprintf(&data->tab_cpu[NAME][MODEL],           _("Model"));
-	asprintf(&data->tab_cpu[NAME][EXTMODEL],        _("Ext. Model"));
-	asprintf(&data->tab_cpu[NAME][TEMPERATURE],     _("Temp."));
-	asprintf(&data->tab_cpu[NAME][STEPPING],        _("Stepping"));
-	asprintf(&data->tab_cpu[NAME][INSTRUCTIONS],    _("Instructions"));
-
-	asprintf(&data->objects[FRAMCLOCKS],            _("Clocks")); // Frame label
-	asprintf(&data->tab_cpu[NAME][CORESPEED],       _("Core Speed"));
-	asprintf(&data->tab_cpu[NAME][MULTIPLIER],      _("Multiplier"));
-	asprintf(&data->tab_cpu[NAME][BUSSPEED],        _("Bus Speed"));
-	asprintf(&data->tab_cpu[NAME][USAGE],           _("Usage"));
-
-	asprintf(&data->objects[FRAMCACHE],             _("Cache")); // Frame label
-	asprintf(&data->tab_cpu[NAME][LEVEL1D],         _("L1 Data"));
-	asprintf(&data->tab_cpu[NAME][LEVEL1I],         _("L1 Inst."));
-	asprintf(&data->tab_cpu[NAME][LEVEL2],          _("Level 2"));
-	asprintf(&data->tab_cpu[NAME][LEVEL3],          _("Level 3"));
-
-	asprintf(&data->tab_cpu[NAME][SOCKETS],         _("Socket(s)"));
-	asprintf(&data->tab_cpu[NAME][CORES],           _("Core(s)"));
-	asprintf(&data->tab_cpu[NAME][THREADS],         _("Thread(s)"));
-
-	/* Caches tab */
-	asprintf(&data->objects[TABCACHES], _("Caches")); // Tab label
-	for(i = L1SIZE; i < LASTCACHES; i += CACHEFIELDS)
+	Arrays arrays[] =
 	{
-		j = i / CACHEFIELDS;
-		asprintf(&data->objects[FRAML1CACHE + j],      _("L%i Cache"), j + 1); // Frame label
-		asprintf(&data->tab_caches[NAME][L1SIZE  + i], _("Size"));
-		asprintf(&data->tab_caches[NAME][L1SPEED + i], _("Speed"));
-	}
-	asprintf(&data->objects[FRAMTEST], _("Test"));
-
-	/* Motherboard tab */
-	asprintf(&data->objects[TABMOTHERBOARD],              _("Motherboard")); // Tab label
-	asprintf(&data->objects[FRAMMOTHERBOARD],             _("Motherboard")); // Frame label
-	asprintf(&data->tab_motherboard[NAME][MANUFACTURER],  _("Manufacturer"));
-	asprintf(&data->tab_motherboard[NAME][MBMODEL],       _("Model"));
-	asprintf(&data->tab_motherboard[NAME][REVISION],      _("Revision"));
-
-	asprintf(&data->objects[FRAMBIOS],                    _("BIOS")); // Frame label
-	asprintf(&data->tab_motherboard[NAME][BRAND],         _("Brand"));
-	asprintf(&data->tab_motherboard[NAME][BIOSVERSION],   _("Version"));
-	asprintf(&data->tab_motherboard[NAME][DATE],          _("Date"));
-	asprintf(&data->tab_motherboard[NAME][ROMSIZE],       _("ROM Size"));
-
-	asprintf(&data->objects[FRAMCHIPSET],                 _("Chipset")); // Frame label
-	asprintf(&data->tab_motherboard[NAME][CHIPVENDOR],    _("Vendor"));
-	asprintf(&data->tab_motherboard[NAME][CHIPMODEL],     _("Model"));
-
-	/* Memory tab */
-	asprintf(&data->objects[TABMEMORY], _("Memory")); // Tab label
-	for(i = BANK0; i < LASTMEMORY; i++)
-	{
-		asprintf(&data->objects[FRAMBANK0 + i], _("Bank %i"), i);
-		asprintf(&data->tab_memory[NAME][i],    _("Reference"));
-	}
-
-	/* System tab */
-	asprintf(&data->objects[TABSYSTEM],                   _("System")); // Tab label
-	asprintf(&data->objects[FRAMOPERATINGSYSTEM],         _("Operating System")); // Frame label
-	asprintf(&data->tab_system[NAME][KERNEL],             _("Kernel"));
-	asprintf(&data->tab_system[NAME][DISTRIBUTION],       _("Distribution"));
-	asprintf(&data->tab_system[NAME][HOSTNAME],           _("Hostname"));
-	asprintf(&data->tab_system[NAME][UPTIME],             _("Uptime"));
-	asprintf(&data->tab_system[NAME][COMPILER],           _("Compiler"));
-
-	asprintf(&data->objects[FRAMMEMORY],                  _("Memory")); // Frame label
-	asprintf(&data->tab_system[NAME][USED],               _("Used"));
-	asprintf(&data->tab_system[NAME][BUFFERS],            _("Buffers"));
-	asprintf(&data->tab_system[NAME][CACHED],             _("Cached"));
-	asprintf(&data->tab_system[NAME][FREE],               _("Free"));
-	asprintf(&data->tab_system[NAME][SWAP],               _("Swap"));
-
-	/* Graphics tab */
-	asprintf(&data->objects[TABGRAPHICS], _("Graphics")); // Tab label
-	for(i = GPU1VENDOR; i < LASTGRAPHICS; i += GPUFIELDS)
-	{
-		j = i / GPUFIELDS;
-		asprintf(&data->objects[FRAMGPU1 + j],                   _("Card %i"), j); // Frame label
-		asprintf(&data->tab_graphics[NAME][GPU1VENDOR      + i], _("Vendor"));
-		asprintf(&data->tab_graphics[NAME][GPU1MODEL       + i], _("Model"));
-		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));
-	}
-
-	/* Bench tab */
-	asprintf(&data->objects[TABBENCH],              _("Bench")); // Tab label
-	asprintf(&data->objects[FRAMPRIMESLOW],         _("Prime numbers (slow)")); // Frame label
-	asprintf(&data->objects[FRAMPRIMEFAST],         _("Prime numbers (fast)")); // Frame label
-	for(i = PRIMESLOWSCORE; i < PARAMDURATION; i += BENCHFIELDS)
-	{
-		asprintf(&data->tab_bench[NAME][PRIMESLOWSCORE + i], _("Score"));
-		asprintf(&data->tab_bench[NAME][PRIMESLOWRUN   + i], _("Run"));
-	}
-
-	asprintf(&data->objects[FRAMPARAM],             _("Parameters")); // Frame label
-	asprintf(&data->tab_bench[NAME][PARAMDURATION], _("Duration"));
-	asprintf(&data->tab_bench[NAME][PARAMTHREADS],  _("Threads"));
-
-	/* About tab */
-	asprintf(&data->objects[TABABOUT],              _("About")); // Tab label
-	asprintf(&data->tab_about[DESCRIPTION],         _(
-		"%s is a Free software that gathers information\n"
-		"on CPU, motherboard and more."), PRGNAME);
-
-	asprintf(&data->objects[FRAMABOUT],             _("About")); // Frame label
-	asprintf(&data->tab_about[VERSIONSTR],          _("Version %s"), PRGVER);
-	asprintf(&data->tab_about[AUTHOR],              _("Author: %s"), PRGAUTH);
-	asprintf(&data->tab_about[SITE],                _("Site: %s"),   PRGURL);
-
-	asprintf(&data->objects[FRAMLICENSE],           _("License")); // Frame label
-	asprintf(&data->tab_about[COPYRIGHT],           PRGCPYR);
-	asprintf(&data->tab_about[LICENSE],             _(
-		"This software is distributed under the terms of GNU GPL v3"));
-	asprintf(&data->tab_about[NOWARRANTY],            _(
-		"This program comes with ABSOLUTELY NO WARRANTY"));
-}
-
-/* Replace null pointers by character '\0' */
-static int remove_null_ptr(Labels *data)
-{
-	int i, j, ret = 0;
-	const struct Arrays { char **array; const int last; } a[] =
-	{
-		{ data->tab_cpu[VALUE],         LASTCPU         },
-		{ data->tab_caches[VALUE],      LASTCACHES      },
-		{ data->tab_motherboard[VALUE], LASTMOTHERBOARD },
-		{ data->tab_memory[VALUE],      LASTMEMORY      },
-		{ data->tab_system[VALUE],      LASTSYSTEM      },
-		{ data->tab_graphics[VALUE],    LASTGRAPHICS    },
-		{ data->tab_bench[VALUE],       LASTBENCH       },
-		{ NULL,                         0               }
+		{ data->objects,               NULL,                         objects_names,         LASTOBJ         },
+		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         tab_cpu_names,         LASTCPU         },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      tab_caches_names,      LASTCACHES      },
+		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], tab_motherboard_names, LASTMOTHERBOARD },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      tab_memory_names,      LASTMEMORY      },
+		{ data->tab_system[NAME],      data->tab_system[VALUE],      tab_system_names,      LASTSYSTEM      },
+		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    tab_graphics_names,    LASTGRAPHICS    },
+		{ data->tab_bench[NAME],       data->tab_bench[VALUE],       tab_bench_names,       LASTBENCH       },
+		{ data->tab_about,             NULL,                         tab_about_names,       LASTABOUT       },
+		{ NULL,                        NULL,                         NULL,                  0               }
 	};
 
-	MSG_VERBOSE(_("Replacing undefined labels by an empty string"));
-	for(i = 0; a[i].array != NULL; i++)
+	MSG_VERBOSE(_("Setting label names"));
+	for(int a = 0; arrays[a].dim_names != NULL; a++)
 	{
-		for(j = 0; j < a[i].last; j++)
+		for(int n = 0; n < arrays[a].last; n++)
 		{
-			if(a[i].array[j] == NULL)
-				ret += casprintf(&a[i].array[j], false, "%c", '\0');
+			asprintf(&arrays[a].dim_names[arrays[a].names[n].index], _(arrays[a].names[n].name));
+			if(arrays[a].dim_values != NULL)
+				casprintf(&arrays[a].dim_values[n], false, "%c", '\0');
 		}
 	}
-
-	return ret;
 }
 
 /* Dump all data in stdout */
@@ -547,7 +412,6 @@ static int update_prg(void)
 
 /************************* Options-related functions *************************/
 
-#define N_(x) x
 static const struct
 {
 	const bool has_mod;
@@ -586,7 +450,6 @@ static const struct
 	{ HAS_LIBCPUID, "CPUX_CPUID_RAW", N_("Read CPUID raw data from a given file") },
 	{ true,         NULL,             NULL                                        }
 };
-#undef N_
 
 /* This is help display with --help option */
 static void help(void)
@@ -633,10 +496,10 @@ static void version(void)
 		check_new_version();
 
 	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, new_version[1]);
-	MSG_STDOUT("%s\n", PRGCPYR);
+	MSG_STDOUT("%s\n", PRGCPRGHT);
 	MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
 	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
-	MSG_STDOUT(_("See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"));
+	MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
 	MSG_STDOUT(_("Built on %s, %s (with %s %s on %s)."), __DATE__, __TIME__, CC, __VERSION__, OS);
 	free(new_version[1]);
 
@@ -913,7 +776,6 @@ int main(int argc, char *argv[])
 		}
 		labels_setname (data);
 		fill_labels    (data);
-		remove_null_ptr(data);
 
 		if(HAS_LIBCURL)
 			check_new_version();

@@ -621,8 +621,8 @@ static int call_dmidecode(Labels *data)
 	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
 		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
 
-	while(data->tab_memory[VALUE][data->dimm_count] != NULL)
-		data->dimm_count++;
+	//while(data->tab_memory[VALUE][data->dimm_count] != NULL) //FIXME
+	//	data->dimm_count++;
 
 	if(err)
 		MSG_ERROR(_("failed to call dmidecode"));
