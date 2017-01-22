@@ -261,7 +261,7 @@ static int copy_data(struct archive *ar, struct archive *aw)
 	int ret;
 	const void *buff;
 	size_t size;
-	la_int64_t offset;
+	off_t offset;
 
 	while(true)
 	{
