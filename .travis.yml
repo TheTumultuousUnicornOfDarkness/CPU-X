@@ -4,22 +4,36 @@ language: c
 compiler:
 - clang
 - gcc
+cache: ccache
+env:
+- CPUX_BCLK=100
 
 before_install:
 - curl http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_14.04/Release.key | sudo apt-key add -
 - echo "deb http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_14.04/ /" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
 install:
-- sudo apt-get install -y -qq nasm gettext libgtk-3-dev libncursesw5-dev libcpuid14-dev libpci-dev libprocps-dev libgtk-3-0 libncursesw5 libcpuid14 libprocps3 libpci3
+- sudo apt-get install -y -qq nasm gettext libncursesw5-dev libcpuid14-dev libpci-dev libprocps-dev libarchive-dev libncursesw5 libcpuid14 libpci3 libprocps3
 before_script:
 - mkdir build
 - cd build
-- cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr ..
+- cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_GTK=0 -DCMAKE_INSTALL_PREFIX=/usr ..
+- mkdir ../pbuild
+- cd ../pbuild
+- cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_GTK=0 -DPORTABLE_BINARY=1 ..
+- cd ..
 script:
-- make
+- cd build
+- make -j $(nproc)
+- cd ../pbuild
+- make -j $(nproc)
+- cd ..
 after_success:
+- cd build
 - sudo make install
-- sudo cpu-x --dump --verbose
+- sudo cpu-x --issue-fmt
+- cd ../pbuild
+- sudo ./cpu-x --issue-fmt
 
 notifications:
   slack:
