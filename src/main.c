@@ -573,6 +573,19 @@ static const struct AvailableOpts
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
 	{ true,            '0', NULL,        0,                 NULL                                                           }
 };
+
+static const struct AvailableEnvVars
+{
+	const bool has_mod;
+	const char *var_name;
+	char       *description;
+} e[] =
+{
+	{ HAS_LIBCURL,  "CPUX_NETWORK",   N_("Temporarily disable network support")   },
+	{ true,         "CPUX_BCLK",      N_("Set the bus clock (can be overridden)") },
+	{ HAS_LIBCPUID, "CPUX_CPUID_RAW", N_("Read CPUID raw data from a given file") },
+	{ true,         NULL,             NULL                                        }
+};
 #undef N_
 
 /* This is help display with --help option */
@@ -586,6 +599,13 @@ static void help(void)
 	{
 		if(o[i].has_mod)
 			MSG_STDOUT("  -%c, --%-10s %s", o[i].short_opt, o[i].long_opt, _(o[i].description));
+	}
+
+	MSG_STDOUT(_("\nInfluenceable environment variables:"));
+	for(i = 0; e[i].var_name != NULL; i++)
+	{
+		if(e[i].has_mod)
+			MSG_STDOUT("  %-16s %s", e[i].var_name, _(e[i].description));
 	}
 }
 
