@@ -429,6 +429,7 @@ static const struct
 	{ HAS_BANDWIDTH,   't', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
 	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
 	{ true,            'o', "nocolor",   no_argument,       N_("Disable colored output")                                   },
+	{ true,            'i', "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
 	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
 	{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
@@ -576,6 +577,14 @@ static void parse_arguments(int argc, char *argv[])
 				break;
 			case 'o':
 				opts->color = false;
+				break;
+			case 'i':
+				opts->color       = false;
+				opts->verbose     = true;
+				opts->use_network = 0;
+				opts->output_type = OUT_DUMP;
+				setlocale(LC_ALL, "C");
+				version();
 				break;
 			case 'v':
 				opts->verbose = true;
