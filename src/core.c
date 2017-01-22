@@ -384,8 +384,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->cache_count++;
 		data->w_data->size[2] = datanr.l3_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, "%4d MB, %2d-way", datanr.l3_cache / (2 << 9), datanr.l3_assoc);
-		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_mb, datanr.l3_cache  / (2 << 9),
+		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, "%4d MB, %2d-way", datanr.l3_cache / (1 << 10), datanr.l3_assoc);
+		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_mb, datanr.l3_cache  / (1 << 10),
 			datanr.l3_assoc, datanr.l3_cacheline);
 	}
 
@@ -394,11 +394,13 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->cache_count++;
 		data->w_data->size[3] = datanr.l4_cache;
-		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_mb, datanr.l4_cache  / (2 << 9),
+		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_mb, datanr.l4_cache  / (1 << 10),
 			datanr.l4_assoc, datanr.l4_cacheline);
 	}
 
-	if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
+	if(datanr.total_logical_cpus < datanr.num_logical_cpus)
+		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", 1);
+	else if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
 		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
 	/* Fill CPU Intructions label */
