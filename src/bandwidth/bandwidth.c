@@ -2024,7 +2024,7 @@ int bandwidth(void *p_data)
 	uint8_t cache_level   = 0;
 	double total_amount   = 0;
 	Labels *data          = p_data;
-	BandwidthData *w_data = data->w_data;
+	BandwidthData *w_data = (p_data != NULL) ? data->w_data : NULL;
 
 	for (i = 0; chunk_sizes[i] && i < sizeof(chunk_sizes)/sizeof(int); i++) {
 		chunk_sizes_log2[i] = log2 (chunk_sizes[i]);

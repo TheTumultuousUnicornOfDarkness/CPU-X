@@ -58,6 +58,8 @@ Options *opts;
 /* Set labels name */
 static void labels_setname(Labels *data)
 {
+	int i, j;
+
 	Arrays arrays[] =
 	{
 		{ data->objects,               NULL,                         objects_names,         LASTOBJ         },
@@ -73,13 +75,13 @@ static void labels_setname(Labels *data)
 	};
 
 	MSG_VERBOSE(_("Setting label names"));
-	for(int a = 0; arrays[a].dim_names != NULL; a++)
+	for(i = 0; arrays[i].dim_names != NULL; i++)
 	{
-		for(int n = 0; n < arrays[a].last; n++)
+		for(j = 0; j < arrays[i].last; j++)
 		{
-			asprintf(&arrays[a].dim_names[arrays[a].names[n].index], _(arrays[a].names[n].name));
-			if(arrays[a].dim_values != NULL)
-				casprintf(&arrays[a].dim_values[n], false, "%c", '\0');
+			asprintf(&arrays[i].dim_names[arrays[i].names[j].index], _(arrays[i].names[j].name));
+			if(arrays[i].dim_values != NULL)
+				casprintf(&arrays[i].dim_values[j], false, "%c", '\0');
 		}
 	}
 }
@@ -90,17 +92,17 @@ static void dump_data(Labels *data)
 	int i, j, k = 0;
 	const char *col_start = opts->color ? BOLD_BLUE : "";
 	const char *col_end   = opts->color ? DEFAULT   : "";
-	const struct Arrays { char **array_name, **array_value; int last; } a[] =
+	const Arrays arrays[] =
 	{
-		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                                 },
-		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      data->cache_count * CACHEFIELDS         },
-		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD                         },
-		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimm_count                        },
-		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM                              },
-		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    data->gpu_count * GPUFIELDS             },
-		{ NULL,                        NULL,                         0                                       }
+		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         NULL, LASTCPU                                 },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      NULL, data->cache_count * CACHEFIELDS         },
+		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], NULL, LASTMOTHERBOARD                         },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      NULL, data->dimm_count                        },
+		{ data->tab_system[NAME],      data->tab_system[VALUE],      NULL, LASTSYSTEM                              },
+		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    NULL, data->gpu_count * GPUFIELDS             },
+		{ NULL,                        NULL,                         NULL, 0                                       }
 	};
-	const struct Frames { int tab_nb, lab_nb, frame_nb; } f[] =
+	const struct { int tab_nb, lab_nb, frame_nb; } frames[] =
 	{
 		{ NO_CPU,         VENDOR,       FRAMPROCESSOR       },
 		{ NO_CPU,         CORESPEED,    FRAMCLOCKS          },
@@ -130,21 +132,21 @@ static void dump_data(Labels *data)
 	};
 
 	MSG_VERBOSE(_("Dumping data..."));
-	for(i = 0; a[i].array_name != NULL; i++)
+	for(i = 0; arrays[i].dim_names != NULL; i++)
 	{
 		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col_start, data->objects[i], col_end);
-		while(f[k].tab_nb != i)
+		while(frames[k].tab_nb != i)
 			k++;
 
-		for(j = 0; j < a[i].last; j++)
+		for(j = 0; j < arrays[i].last; j++)
 		{
-			if(f[k].tab_nb == i && f[k].lab_nb == j)
+			if(frames[k].tab_nb == i && frames[k].lab_nb == j)
 			{
-				MSG_STDOUT("\n\t%s***** %s *****%s", col_start, (f[k].frame_nb >= 0) ?
-				                                 data->objects[f[k].frame_nb] : "*", col_end);
+				MSG_STDOUT("\n\t%s***** %s *****%s", col_start,
+					(frames[k].frame_nb >= 0) ? data->objects[frames[k].frame_nb] : "*", col_end);
 				k++;
 			}
-			MSG_STDOUT("%16s: %s", a[i].array_name[j], a[i].array_value[j]);
+			MSG_STDOUT("%16s: %s", arrays[i].dim_names[j], arrays[i].dim_values[j]);
 		}
 		MSG_STDOUT("\n");
 	}
@@ -156,39 +158,35 @@ static void dump_data(Labels *data)
 void labels_free(Labels *data)
 {
 	int i, j;
-	const struct Arrays { char **array_name, **array_value; const int last; } a[] =
+	Arrays arrays[] =
 	{
-		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU         },
-		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      LASTCACHES      },
-		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD },
-		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      LASTMEMORY      },
-		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM      },
-		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    LASTGRAPHICS    },
-		{ data->tab_bench[NAME],       data->tab_bench[VALUE],       LASTBENCH       },
-		{ NULL,                        NULL,                         0               }
+		{ data->objects,               NULL,                         NULL, LASTOBJ                         },
+		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         NULL, LASTCPU                         },
+		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      NULL, data->cache_count * CACHEFIELDS },
+		{ data->w_data->test_name,     NULL,                         NULL, data->w_data->test_count        },
+		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], NULL, LASTMOTHERBOARD                 },
+		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      NULL, data->dimm_count                },
+		{ data->tab_system[NAME],      data->tab_system[VALUE],      NULL, LASTSYSTEM                      },
+		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    NULL, data->gpu_count * GPUFIELDS     },
+		{ data->tab_bench[NAME],       data->tab_bench[VALUE],       NULL, LASTBENCH                       },
+		{ data->tab_about,             NULL,                         NULL, LASTABOUT                       },
+		{ NULL,                        NULL,                         NULL, 0                               }
 	};
 
 	MSG_VERBOSE(_("Freeing memory"));
-	for(i = 0; i < LASTOBJ; i++)
-		free(data->objects[i]);
-
-	for(i = 0; a[i].array_name != NULL; i++)
+	for(i = 0; arrays[i].dim_names != NULL; i++)
 	{
-		for(j = 0; j < a[i].last; j++)
+		for(j = 0; j < arrays[i].last; j++)
 		{
-			free(a[i].array_name[j]);
-			free(a[i].array_value[j]);
-			a[i].array_name[j] = NULL;
-			a[i].array_value[j] = NULL;
+			free(arrays[i].dim_names[j]);
+			arrays[i].dim_names[j] = NULL;
+			if(arrays[i].dim_values != NULL)
+			{
+				free(arrays[i].dim_values[j]);
+				arrays[i].dim_values[j] = NULL;
+			}
 		}
 	}
-
-	for(i = 0; i < data->w_data->test_count; i++)
-		free(data->w_data->test_name[i]);
-	free(data->w_data->test_name);
-
-	for(i = 0; i < LASTABOUT; i++)
-		free(data->tab_about[i]);
 }
 
 
@@ -511,9 +509,9 @@ static void version(void)
 	}
 }
 
-/* Parse options given in arg */
+/* Parse arguments and set some flags */
 #define OPTIONS_COUNT (sizeof(cpux_options) / sizeof(cpux_options[0]) - 1)
-static void menu(int argc, char *argv[])
+static void parse_arguments(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_arg = -1;
 	char shortopts[OPTIONS_COUNT * 2] = "";
@@ -698,7 +696,7 @@ static int set_locales(void)
 
 int main(int argc, char *argv[])
 {
-	/* Parse options */
+	/* Init variables */
 	binary_name  = argv[0];
 	Labels *data = &(Labels)
 	{
@@ -765,48 +763,39 @@ int main(int argc, char *argv[])
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
 
-	menu(argc, argv);
+	/* Parse options */
+	parse_arguments(argc, argv);
 	check_environment_variables(data);
-	if(opts->output_type < OUT_NO_CPUX)
-	{
-		if(getuid())
-		{
-			MSG_WARNING(_("Root privileges are required to work properly"));
-			MSG_WARNING(_("Some informations will not be retrievable"));
-		}
-		labels_setname (data);
-		fill_labels    (data);
+	if(opts->output_type > OUT_NO_CPUX)
+		goto skip_init;
 
-		if(HAS_LIBCURL)
-			check_new_version();
+	/* Retrieve data */
+	if(getuid())
+	{
+		MSG_WARNING(_("Root privileges are required to work properly"));
+		MSG_WARNING(_("Some informations will not be retrievable"));
 	}
+	labels_setname(data);
+	fill_labels   (data);
+
+	if(HAS_LIBCURL)
+		check_new_version();
 
 	/* Show data */
-	switch(opts->output_type)
-	{
-		case OUT_GTK:
-			if(HAS_GTK)
-				start_gui_gtk(&argc, &argv, data);
-			break;
-		case OUT_NCURSES:
-			if(HAS_NCURSES)
-				start_tui_ncurses(data);
-			break;
-		case OUT_DUMP:
-			dump_data(data);
-			break;
-		case OUT_DMIDECODE:
-			if(HAS_DMIDECODE)
-				exit(run_dmidecode());
-			break;
-		case OUT_BANDWIDTH:
-			if(HAS_BANDWIDTH)
-				exit(run_bandwidth());
-			break;
-	}
+	if(HAS_GTK && (opts->output_type == OUT_GTK))
+		start_gui_gtk(&argc, &argv, data);
+	if(HAS_NCURSES && (opts->output_type == OUT_NCURSES))
+		start_tui_ncurses(data);
+	if(opts->output_type == OUT_DUMP)
+		dump_data(data);
+skip_init:
+	if(HAS_DMIDECODE && (opts->output_type == OUT_DMIDECODE))
+		return run_dmidecode();
+	if(HAS_BANDWIDTH && (opts->output_type == OUT_BANDWIDTH))
+		return run_bandwidth();
 
 #if PORTABLE_BINARY
-	if(HAS_LIBCURL && opts->update)
+	if(PORTABLE_BINARY && HAS_LIBCURL && opts->update)
 		update_prg();
 #endif /* PORTABLE_BINARY */
 
