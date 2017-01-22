@@ -548,14 +548,14 @@ static int update_prg(void)
 /************************* Options-related functions *************************/
 
 #define N_(x) x
-static const struct AvailableOpts
+static const struct
 {
 	const bool has_mod;
 	const char short_opt;
 	const char *long_opt;
 	const int  need_arg;
 	char       *description;
-} o[] =
+} cpux_options[] =
 {
 	{ HAS_GTK,         'g', "gtk",       no_argument,       N_("Start graphical user interface (GUI) (default)")           },
 	{ HAS_NCURSES,     'n', "ncurses",   no_argument,       N_("Start text-based user interface (TUI)")                    },
@@ -574,12 +574,12 @@ static const struct AvailableOpts
 	{ true,            '0', NULL,        0,                 NULL                                                           }
 };
 
-static const struct AvailableEnvVars
+static const struct
 {
 	const bool has_mod;
 	const char *var_name;
 	char       *description;
-} e[] =
+} cpux_env_vars[] =
 {
 	{ HAS_LIBCURL,  "CPUX_NETWORK",   N_("Temporarily disable network support")   },
 	{ true,         "CPUX_BCLK",      N_("Set the bus clock (can be overridden)") },
@@ -593,19 +593,21 @@ static void help(void)
 {
 	int i;
 
-	MSG_STDOUT(_("Usage: %s [OPTIONS]\n"), binary_name);
-	MSG_STDOUT(_("Available OPTIONS:"));
-	for(i = 0; o[i].long_opt != NULL; i++)
+	MSG_STDOUT(_("Usage: %s DISPLAY [OPTIONS]\n"), binary_name);
+	MSG_STDOUT(_("Available DISPLAY:"));
+	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
-		if(o[i].has_mod)
-			MSG_STDOUT("  -%c, --%-10s %s", o[i].short_opt, o[i].long_opt, _(o[i].description));
+		if(cpux_options[i].short_opt == 'a')
+			MSG_STDOUT(_("\nAvailable OPTIONS:"));
+		if(cpux_options[i].has_mod)
+			MSG_STDOUT("  -%c, --%-10s %s", cpux_options[i].short_opt, cpux_options[i].long_opt, _(cpux_options[i].description));
 	}
 
 	MSG_STDOUT(_("\nInfluenceable environment variables:"));
-	for(i = 0; e[i].var_name != NULL; i++)
+	for(i = 0; cpux_env_vars[i].var_name != NULL; i++)
 	{
-		if(e[i].has_mod)
-			MSG_STDOUT("  %-16s %s", e[i].var_name, _(e[i].description));
+		if(cpux_env_vars[i].has_mod)
+			MSG_STDOUT("  %-16s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
 	}
 }
 
@@ -613,7 +615,7 @@ static void help(void)
 static void version(void)
 {
 	int i;
-	const struct LibsVer { const bool has_mod; const char *lib, *version; } v[] =
+	const struct { const bool has_mod; const char *lib, *version; } libs_ver[] =
 	{
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
 		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
@@ -639,27 +641,28 @@ static void version(void)
 	free(new_version[1]);
 
 	/* Print features version */
-	for(i = 0; v[i].lib != NULL; i++)
+	for(i = 0; libs_ver[i].lib != NULL; i++)
 	{
-		if(v[i].has_mod)
-			MSG_STDOUT(_("-- %-9s version: %s"), v[i].lib, v[i].version);
+		if(libs_ver[i].has_mod)
+			MSG_STDOUT(_("-- %-9s version: %s"), libs_ver[i].lib, libs_ver[i].version);
 	}
 }
 
 /* Parse options given in arg */
+#define OPTIONS_COUNT (sizeof(cpux_options) / sizeof(cpux_options[0]) - 1)
 static void menu(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_arg = -1;
-	char shortopts[(sizeof(o)/sizeof(o[0]) - 1) * 2] = "";
-	struct option longopts[sizeof(o)/sizeof(o[0]) - 1];
+	char shortopts[OPTIONS_COUNT * 2] = "";
+	struct option longopts[OPTIONS_COUNT];
 
 	/* Filling longopts structure */
-	for(i = 0; o[i].long_opt != NULL; i++)
+	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
-		while(!o[i].has_mod)
+		while(!cpux_options[i].has_mod)
 			i++;
-		longopts[j++] = (struct option) { .name = o[i].long_opt, .has_arg = o[i].need_arg, .flag = 0, .val = o[i].short_opt };
-		strcat(shortopts, format("%c%s", o[i].short_opt, o[i].need_arg ? ":" : ""));
+		longopts[j++] = (struct option) { .name = cpux_options[i].long_opt, .has_arg = cpux_options[i].need_arg, .flag = 0, .val = cpux_options[i].short_opt };
+		strcat(shortopts, format("%c%s", cpux_options[i].short_opt, cpux_options[i].need_arg ? ":" : ""));
 	}
 
 	/* Set the default mode */
