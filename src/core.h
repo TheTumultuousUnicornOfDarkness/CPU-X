@@ -1,5 +1,5 @@
 /****************************************************************************
-*    Copyright © 2014-2016 Xorg
+*    Copyright © 2014-2017 Xorg
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
