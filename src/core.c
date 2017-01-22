@@ -295,7 +295,12 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Call libcpuid */
 	MSG_VERBOSE(_("Calling libcpuid for retrieving static data"));
-	if(cpuid_get_raw_data(&raw) || cpu_identify(&raw, &datanr))
+	if(getenv("CPUX_CPUID_RAW"))
+		err = cpuid_deserialize_raw_data(&raw, getenv("CPUX_CPUID_RAW"));
+	else
+		err = cpuid_get_raw_data(&raw);
+
+	if(err || cpu_identify(&raw, &datanr))
 	{
 		MSG_ERROR(_("failed to call libcpuid"));
 		return 1;
