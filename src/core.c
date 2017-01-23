@@ -275,15 +275,6 @@ static int cpu_technology(Labels *data)
 	}
 }
 
-/* If value is > 9, print both in decimal and hexadecimal */
-static void print_hex(char **string, int32_t value)
-{
-	if(value > 9)
-		asprintf(string, "%d (%X)", value, value);
-	else
-		asprintf(string, "%d", value);
-}
-
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data)
 {
@@ -316,15 +307,15 @@ static int call_libcpuid_static(Labels *data)
 		opts->selected_core = 0;
 
 	/* Basically fill CPU tab */
-	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, datanr.cpu_codename);
-	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, datanr.brand_str);
-	print_hex(&data->tab_cpu[VALUE][FAMILY],        datanr.family);
-	print_hex(&data->tab_cpu[VALUE][EXTFAMILY],     datanr.ext_family);
-	print_hex(&data->tab_cpu[VALUE][MODEL],         datanr.model);
-	print_hex(&data->tab_cpu[VALUE][EXTMODEL],      datanr.ext_model);
-	print_hex(&data->tab_cpu[VALUE][STEPPING],      datanr.stepping);
-	casprintf(&data->tab_cpu[VALUE][CORES],         true, "%d", datanr.num_cores);
-	casprintf(&data->tab_cpu[VALUE][THREADS],       true, "%d", datanr.num_logical_cpus);
+	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",  datanr.cpu_codename);
+	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",  datanr.brand_str);
+	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, "%#X", datanr.family);
+	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, "%#X", datanr.ext_family);
+	casprintf(&data->tab_cpu[VALUE][MODEL],         false, "%#X", datanr.model);
+	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, "%#X", datanr.ext_model);
+	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",  datanr.stepping);
+	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",  datanr.num_cores);
+	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",  datanr.num_logical_cpus);
 
 	/* Improve the CPU Vendor label */
 	const struct CpuVendor { char *standard; char *improved; cpu_vendor_t id; } cpuvendors[] =
