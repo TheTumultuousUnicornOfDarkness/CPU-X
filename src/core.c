@@ -615,6 +615,7 @@ static int call_dmidecode(Labels *data)
 	/* Tab RAM */
 	for(i = BANK0; i < LASTMEMORY; i++)
 		dmidata[DMI_RAM][i] = &data->tab_memory[VALUE][i];
+	bank = (unsigned*) &data->dimm_count;
 	opt.type[17] = 1;
 
 	/* Call built-in dmidecode in CPU-X mode */
@@ -622,9 +623,6 @@ static int call_dmidecode(Labels *data)
 
 	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
 		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
-
-	//while(data->tab_memory[VALUE][data->dimm_count] != NULL) //FIXME
-	//	data->dimm_count++;
 
 	if(err)
 		MSG_ERROR(_("failed to call dmidecode"));
@@ -1153,8 +1151,7 @@ static int cputab_package_fallback(Labels *data)
 	{
 		MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
 		            data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
-		free(data->tab_cpu[VALUE][PACKAGE]);
-		data->tab_cpu[VALUE][PACKAGE] = NULL;
+		data->tab_cpu[VALUE][PACKAGE][0] = '\0';
 		return 2;
 	}
 }

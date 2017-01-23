@@ -35,6 +35,7 @@ enum EnDmidecode
 	DMI_CPU, DMI_MB, DMI_RAM, LASTDMI
 };
 
+extern unsigned *bank;
 extern char **dmidata[LASTDMI][16];
 
 int dmidecode(void);

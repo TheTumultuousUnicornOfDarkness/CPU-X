@@ -81,6 +81,7 @@ static const char *bad_index = "<BAD INDEX>";
 
 /* Options are global */
 struct opt opt;
+unsigned *bank;
 char **dmidata[LASTDMI][16];
 
 /*
@@ -3274,7 +3275,6 @@ static const char *dmi_management_controller_host_type(u8 code)
 static void dmi_decode(const struct dmi_header *h, u16 ver)
 {
 	const u8 *data = h->data;
-	static int bank = BANK0;
 
 	/*
 	 * Note: DMI types 37 and 42 are untested
@@ -3754,13 +3754,13 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			break;
 
 		case 17: /* 7.18 Memory Device */
-			if((opt.flags & FLAG_CPU_X) && bank < LASTMEMORY)
+			if((opt.flags & FLAG_CPU_X) && *bank < LASTMEMORY)
 			{
 				if(strstr(dmi_string(h, data[0x17]), "Empty") != NULL)
-					casprintf(dmidata[DMI_RAM][bank],   false, "- - - - - - - - - - - - - - - - - - -");
+					casprintf(dmidata[DMI_RAM][*bank], false, "- - - - - - - - - - - - - - - - - - -");
 				else
 				{
-					casprintf(dmidata[DMI_RAM][bank], true, "%s %s, %s @ %uMHz (%s %s)",
+					casprintf(dmidata[DMI_RAM][*bank], true, "%s %s, %s @ %uMHz (%s %s)",
 					          dmi_string(h, data[0x17]),
 					          dmi_string(h, data[0x1A]),
 						  dmi_memory_device_size_str(WORD(data + 0x0C)),
@@ -3768,7 +3768,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 					          dmi_memory_device_form_factor(data[0x0E]),
 					          dmi_memory_device_type(data[0x12]));
 				}
-				bank++;
+				(*bank)++;
 			}
 			else
 			{
