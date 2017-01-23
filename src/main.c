@@ -445,7 +445,7 @@ static const struct
 } cpux_env_vars[] =
 {
 	{ HAS_LIBCURL,  "CPUX_NETWORK",   N_("Temporarily disable network support")   },
-	{ true,         "CPUX_BCLK",      N_("Set the bus clock (can be overridden)") },
+	{ true,         "CPUX_BCLK",      N_("Enforce the bus clock") },
 	{ HAS_LIBCPUID, "CPUX_CPUID_RAW", N_("Read CPUID raw data from a given file") },
 	{ true,         NULL,             NULL                                        }
 };
@@ -612,10 +612,7 @@ static void check_environment_variables(Labels *data)
 	if(getenv("CPUX_NETWORK"))
 		opts->use_network = ((atoi(getenv("CPUX_NETWORK"))) > 0);
 	if(getenv("CPUX_BCLK"))
-	{
 		data->bus_freq = atof(getenv("CPUX_BCLK"));
-		casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
-	}
 	if(getenv("CPUX_CPUID_RAW"))
 		data->l_data->cpuid_raw_file = getenv("CPUX_CPUID_RAW");
 }

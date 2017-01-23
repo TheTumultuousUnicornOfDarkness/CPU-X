@@ -75,10 +75,11 @@ int fill_labels(Labels *data)
 	int i, err = 0;
 	const uint8_t selected_page = opts->selected_page;
 
-	if(HAS_DMIDECODE) err += call_dmidecode          (data);
 	if(HAS_LIBCPUID)  err += call_libcpuid_static    (data);
 	if(HAS_LIBCPUID)  err += call_libcpuid_msr_static(data);
+	if(HAS_DMIDECODE) err += call_dmidecode          (data);
 	if(HAS_LIBPCI)    err += find_devices            (data);
+	casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
 
 	err += system_static       (data);
 	err += fallback_mode_static(data);
@@ -509,13 +510,8 @@ static int call_libcpuid_msr_static(Labels *data)
 
 	/* Base clock */
 	bclk = cpu_msrinfo(msr, INFO_BCLK);
-	if(bclk != CPU_INVALID_VALUE)
-	{
-		free(data->tab_cpu[VALUE][BUSSPEED]);
-		data->tab_cpu[VALUE][BUSSPEED] = NULL;
+	if(bclk != CPU_INVALID_VALUE && data->bus_freq == 0.0)
 		data->bus_freq = (double) bclk / 100;
-		casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
-	}
 
 	return cpu_msr_driver_close(msr);
 }
@@ -602,8 +598,8 @@ static int call_dmidecode(Labels *data)
 	}
 
 	/* Tab CPU */
-	dmidata[DMI_CPU][PROC_PACKAGE] = &data->tab_cpu[VALUE][PACKAGE];
-	dmidata[DMI_CPU][PROC_BUS]     = &data->tab_cpu[VALUE][BUSSPEED];
+	dmidata[DMI_CPU][0] = &data->tab_cpu[VALUE][PACKAGE];
+	ext_clk = &data->bus_freq;
 	opt.type[4] = 1;
 
 	/* Tab Motherboard */
@@ -615,16 +611,11 @@ static int call_dmidecode(Labels *data)
 	/* Tab RAM */
 	for(i = BANK0; i < LASTMEMORY; i++)
 		dmidata[DMI_RAM][i] = &data->tab_memory[VALUE][i];
-	bank = (unsigned*) &data->dimm_count;
+	bank = &data->dimm_count;
 	opt.type[17] = 1;
 
 	/* Call built-in dmidecode in CPU-X mode */
-	err = dmidecode();
-
-	if(data->tab_cpu[VALUE][BUSSPEED] != NULL)
-		data->bus_freq = strtod(data->tab_cpu[VALUE][BUSSPEED], NULL);
-
-	if(err)
+	if((err = dmidecode()))
 		MSG_ERROR(_("failed to call dmidecode"));
 
 	free(opt.type);

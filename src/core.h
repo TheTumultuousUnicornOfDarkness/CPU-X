@@ -43,8 +43,7 @@ static int call_libcpuid_dynamic(Labels *data);
 
 /* MSRs static values provided by libcpuid */
 static int call_libcpuid_msr_static(Labels *data);
-/* Required: HAS_LIBCPUID && root privileges
-Can override data->tab_cpu[VALUE][BUSSPEED] */
+/* Required: HAS_LIBCPUID && root privileges */
 
 /* MSRs dynamic values provided by libcpuid */
 static int call_libcpuid_msr_dynamic(Labels *data);
@@ -57,8 +56,7 @@ Both normal and fallback mode provide CPU multipliers, need to be call after */
 
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data);
-/* Required: HAS_DMIDECODE && root privileges
-Provides data->tab_cpu[VALUE][BUSSPEED], need to be called before call_libcpuid_msr() */
+/* Required: HAS_DMIDECODE && root privileges */
 
 /* Compute CPU cache speed */
 static int call_bandwidth(Labels *data);

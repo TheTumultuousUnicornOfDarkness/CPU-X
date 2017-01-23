@@ -24,10 +24,8 @@
 #ifndef _LIBDMI_H_
 #define _LIBDMI_H_
 
+#include <stdint.h>
 #include "../cpu-x.h"
-
-#define PROC_PACKAGE 0
-#define PROC_BUS     1
 
 
 enum EnDmidecode
@@ -35,7 +33,8 @@ enum EnDmidecode
 	DMI_CPU, DMI_MB, DMI_RAM, LASTDMI
 };
 
-extern unsigned *bank;
+extern double *ext_clk;
+extern uint8_t *bank;
 extern char **dmidata[LASTDMI][16];
 
 int dmidecode(void);

@@ -81,7 +81,8 @@ static const char *bad_index = "<BAD INDEX>";
 
 /* Options are global */
 struct opt opt;
-unsigned *bank;
+double *ext_clk;
+u8 *bank;
 char **dmidata[LASTDMI][16];
 
 /*
@@ -3441,9 +3442,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		case 4: /* 7.5 Processor Information */
 			if(opt.flags & FLAG_CPU_X)
 			{
-				casprintf(dmidata[DMI_CPU][PROC_PACKAGE], false, "%s", dmi_string(h, data[0x04]));
-				if(*dmidata[DMI_CPU][PROC_BUS] == NULL)
-					casprintf(dmidata[DMI_CPU][PROC_BUS], true, "%u MHz", WORD(data + 0x12));
+				casprintf(dmidata[DMI_CPU][0], false, "%s", dmi_string(h, data[0x04]));
+				if(*ext_clk == 0.0)
+					*ext_clk = (double) WORD(data + 0x12);
 			}
 			else
 			{
