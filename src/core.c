@@ -43,6 +43,7 @@
 
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
+# include "databases.h"
 #endif
 
 #if HAS_DMIDECODE
@@ -162,117 +163,35 @@ static int err_func(int (*func)(Labels *), Labels *data)
 /* Get CPU technology, in nanometre (nm) */
 static int cpu_technology(Labels *data)
 {
-	int i;
-	bool found = false;
-	struct Technology { const int32_t cpu_model, cpu_ext_model, cpu_ext_family; const int process; } *vendor = NULL;
+	int i = -1;
+	const Technology_DB *db;
 	LibcpuidData *l_data = data->l_data;
 
 	if(l_data->cpu_vendor_id < 0 || l_data->cpu_model < 0 || l_data->cpu_ext_model < 0 || l_data->cpu_ext_family < 0)
 		return 1;
 
 	MSG_VERBOSE(_("Finding CPU technology"));
-	struct Technology unknown[] = { { -1, -1, -1, -1 } };
-
-	/* Intel CPUs */
-	struct Technology intel[] =
-	{
-		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_intel.c */
-		//Model        E. Model     E. Family   Process
-		{  0,           0,          -1,         180 }, // P4 Willamette
-		{  1,           1,           6,         350 }, // Pentium Pro
-		{  1,           1,          15,         180 }, // P4 Willamette
-		{  2,           2,          -1,         130 }, // P4 Northwood / Gallatin
-		{  3,           3,           5,         350 }, // PII Overdrive
-		{  3,           3,           6,         350 }, // PII Klamath
-		{  3,           3,          15,          90 }, // P4 Prescott
-		{  4,           4,          -1,          90 }, // P4 Prescott/Irwindale / PD Smithfield
-		{  5,           5,           6,         250 }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
-		{  5,          37,          -1,          32 }, // Westmere
-		{  5,          53,          -1,          32 }, // Atom Cloverview
-		{  5,          69,          -1,          22 }, // Haswell
-		{  6,           6,           6,         250 }, // PII Dixon / Celeron Mendocino
-		{  6,           6,          15,          65 }, // P4 Cedar Mill / PD Presler
-		{  6,          22,          -1,          65 }, // C2 Conroe-L
-		{  6,          54,          -1,          32 }, // Atom Cedarview
-		{  7,           7,          -1,         250 }, // PIII Katmai
-		{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
-		{  7,          55,          -1,          22 }, // Atom Bay Trail
-		{  7,          71,          -1,          14 }, // Broadwell
-		{  8,           0,           0,         180 }, // PIII Coppermine-T
-		{  8,           8,          -1,         180 }, // PIII Coppermine
-		{  9,           9,          -1,         130 }, // Pentium M Banias
-		{ 10,          26,          -1,          45 }, // Nehalem
-		{ 10,          30,          -1,          45 }, // Nehalem
-		{ 10,          42,          -1,          32 }, // Sandy Bridge
-		{ 10,          58,          -1,          22 }, // Ivy Bridge
-		{ 11,          11,          -1,         130 }, // PIII Tualatine
-		{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
-		{ 12,          44,          -1,          32 }, // Westmere
-		{ 12,          60,          -1,          22 }, // Haswell
-		{ 12,          76,          -1,          14 }, // Atom Cherry Trail
-		{ 13,          13,          -1,          90 }, // Pentium M Dothan
-		{ 13,          45,          -1,          32 }, // Sandy Bridge-E
-		{ 13,          61,          -1,          14 }, // Broadwell
-		{ 14,          14,          -1,          65 }, // Yonah (Core Solo)
-		{ 14,          62,          -1,          22 }, // Ivy Bridge-E
-		{ 14,          94,          -1,          14 }, // Skylake
-		{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
-		{ 15,          63,          -1,          22 }, // Haswell-E
-		{ -1,          -1,          -1,          -1 }
-	};
-
-	/* AMD CPUs */
-	struct Technology amd[] =
-	{
-		/* https://raw.githubusercontent.com/anrieff/libcpuid/master/libcpuid/recog_amd.c */
-		//Model        E. Model     E. Family   Process
-		{  0,           0,          -1,          28 }, // Jaguar (Kabini)
-		{  0,          10,          -1,          32 }, // Piledriver (Trinity)
-		{  0,          -1,          21,          28 }, // Steamroller (Kaveri)
-		{  0,          -1,          22,          28 }, // Puma (Mullins)
-		{  1,           1,          -1,          32 }, // K10 (Llano)
-		{  1,          60,          -1,          28 }, // Excavator (Carrizo)
-		{  1,          -1,          20,          40 }, // Bobcat
-		{  2,          -1,          20,          40 }, // Bobcat
-		{  3,          13,          -1,          32 }, // Piledriver (Richland)
-		{  3,          35,          15,          90 }, // Toledo
-		{  4,           4,          -1,          45 }, // Deneb
-		{  8,          -1,          15,          65 }, // Tyler
-		{  8,          -1,          21,          28 }, // Steamroller (Kaveri)
-		{  15,         79,          15,          90 }, // Manila
-		{ -1,          -1,          -1,          -1 }
-	};
-
-	switch(l_data->cpu_vendor_id)
-	{
-		case VENDOR_INTEL:
-			vendor = intel;
-			break;
-		case VENDOR_AMD:
-			vendor = amd;
-			break;
-		default:
-			vendor = unknown;
-	}
-
-	for(i = 0; !found && (vendor[i].cpu_model != -1); i++)
-	{
-		found  = vendor[i].cpu_model == l_data->cpu_model;
-		found &= ((vendor[i].cpu_ext_model  < 0) || (vendor[i].cpu_ext_model  == l_data->cpu_ext_model));
-		found &= ((vendor[i].cpu_ext_family < 0) || (vendor[i].cpu_ext_family == l_data->cpu_ext_family));
-	}
-
-	if(found)
-	{
-		casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", vendor[i - 1].process);
-		return 0;
-	}
+	if(l_data->cpu_vendor_id == VENDOR_INTEL)
+		db = technology_intel;
+	else if(l_data->cpu_vendor_id == VENDOR_AMD)
+		db = technology_amd;
 	else
+		db = technology_unknown;
+
+	while(db[++i].cpu_model != -1)
 	{
-		MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
-		            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
-		return 2;
+		if((db[i].cpu_model == l_data->cpu_model) &&
+		  ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == l_data->cpu_ext_model)) &&
+		  ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == l_data->cpu_ext_family)))
+		{
+			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", db[i].process);
+			return 0;
+		}
 	}
+
+	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
+	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
+	return 2;
 }
 
 /* Static elements provided by libcpuid */
@@ -1071,71 +990,35 @@ void start_benchmarks(Labels *data)
 /* If dmidecode fails to find CPU package, check in database */
 static int cputab_package_fallback(Labels *data)
 {
-	int i;
-	bool found = false;
-	struct Package { const char *codename, *model, *socket; } *vendor = NULL;
+	int i = -1;
+	const Package_DB *db;
 	LibcpuidData *l_data = data->l_data;
 
 	if(l_data->cpu_vendor_id < 0 || data->tab_cpu[VALUE][CODENAME] == NULL || data->tab_cpu[VALUE][SPECIFICATION] == NULL)
 		return 1;
 
 	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
-	struct Package unknown[] = { { NULL, "", NULL } };
-
-	/* Intel sockets */
-	struct Package intel[] =
-	{
-		//Codename                          Model            Socket
-		{ "Atom (Diamondville)",            "",              "BGA 437"        },
-		{ "Pentium D (SmithField)",         "",              "LGA 775"        },
-		{ "Pentium D (Presler)",            "",              "LGA 775"        },
-		{ "Bloomfield (Core i7)",           "",              "LGA 1366"       },
-		{ NULL,                             "",              NULL             }
-	};
-
-	/* AMD sockets */
-	struct Package amd[] =
-	{
-		//Codename                          Model            Socket
-		{ "Athlon 64 FX X2 (Toledo)",       "",              "939 (PGA-ZIF)"  },
-		{ "Kabini X4",                      "Athlon",        "AM1 (PGA-ZIF)"  },
-		{ "Kabini X4",                      "Sempron",       "AM1 (PGA-ZIF)"  },
-		{ "Trinity X4",                     "",              "FM2 (PGA-ZIF)"  },
-		{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
-		{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
-		{ NULL,                             "",              NULL             }
-	};
-
-	switch(l_data->cpu_vendor_id)
-	{
-		case VENDOR_INTEL:
-			vendor = intel;
-			break;
-		case VENDOR_AMD:
-			vendor = amd;
-			break;
-		default:
-			vendor = unknown;
-	}
-
-	for(i = 0; !found && (vendor[i].codename != NULL); i++)
-	{
-		found  = (strstr(data->tab_cpu[VALUE][CODENAME],      vendor[i].codename) != NULL);
-		found &= (strstr(data->tab_cpu[VALUE][SPECIFICATION], vendor[i].model)    != NULL);
-	}
-
-	if(found)
-	{
-		casprintf(&data->tab_cpu[VALUE][PACKAGE], false, vendor[i - 1].socket);
-		return 0;
-	}
+	if(l_data->cpu_vendor_id == VENDOR_INTEL)
+		db = package_intel;
+	else if(l_data->cpu_vendor_id == VENDOR_AMD)
+		db = package_amd;
 	else
+		db = package_unknown;
+
+	while(db[++i].codename != NULL)
 	{
-		MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
-		            data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
-		data->tab_cpu[VALUE][PACKAGE][0] = '\0';
-		return 2;
+		if((strstr(data->tab_cpu[VALUE][CODENAME], db[i].codename) != NULL) &&
+		  ((db[i].model == NULL) || (strstr(data->tab_cpu[VALUE][SPECIFICATION], db[i].model) != NULL)))
+		{
+			casprintf(&data->tab_cpu[VALUE][PACKAGE], false, db[i].socket);
+			return 0;
+		}
 	}
+
+	MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
+		    data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
+	data->tab_cpu[VALUE][PACKAGE][0] = '\0';
+	return 2;
 }
 #endif /* HAS_LIBCPUID */
 
