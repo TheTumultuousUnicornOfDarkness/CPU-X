@@ -22,7 +22,9 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 	install(FILES
 		cpu-x-gtk-3.12.ui
 		cpu-x-gtk-3.12.css
+		cpu-x-gtk-3.12-dark.css
 		cpu-x-gtk-3.20.css
+		cpu-x-gtk-3.20-dark.css
 		DESTINATION ${CPU_X_DATA_DIRECTORY}/
 	)
 

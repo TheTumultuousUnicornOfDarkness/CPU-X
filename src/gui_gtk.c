@@ -314,13 +314,16 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	{
 		glab->gtktab_cpu[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcpu[i], "lab")));
 		glab->gtktab_cpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcpu[i], "val")));
+		gtk_widget_set_name(glab->gtktab_cpu[VALUE][i], "value");
 	}
+
 
 	/* Tab Caches */
 	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
 		glab->gtktab_caches[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcache[i], "lab")));
 		glab->gtktab_caches[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcache[i], "val")));
+		gtk_widget_set_name(glab->gtktab_caches[VALUE][i], "value");
 	}
 	glab->gridcaches = GTK_WIDGET(gtk_builder_get_object(builder, "caches_grid"));
 
@@ -329,6 +332,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	{
 		glab->gtktab_motherboard[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectmb[i], "lab")));
 		glab->gtktab_motherboard[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectmb[i], "val")));
+		gtk_widget_set_name(glab->gtktab_motherboard[VALUE][i], "value");
 	}
 
 	/* Tab RAM */
@@ -336,6 +340,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	{
 		glab->gtktab_memory[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectram[i], "lab")));
 		glab->gtktab_memory[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectram[i], "val")));
+		gtk_widget_set_name(glab->gtktab_memory[VALUE][i], "value");
 	}
 	glab->gridbanks   = GTK_WIDGET(gtk_builder_get_object(builder, "memory_grid"));
 	glab->scrollbanks = GTK_WIDGET(gtk_builder_get_object(builder, "memory_scrolledwindow"));
@@ -345,6 +350,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	{
 		glab->gtktab_system[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "lab")));
 		glab->gtktab_system[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectsys[i], "val")));
+		gtk_widget_set_name(glab->gtktab_system[VALUE][i], "value");
 	}
 	for(i = BARUSED; i < LASTBAR; i++)
 	{
@@ -357,6 +363,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	{
 		glab->gtktab_graphics[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "lab")));
 		glab->gtktab_graphics[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "val")));
+		gtk_widget_set_name(glab->gtktab_graphics[VALUE][i], "value");
 	}
 	glab->gridcards = GTK_WIDGET(gtk_builder_get_object(builder, "graphics_box"));
 
@@ -421,9 +428,9 @@ static void set_colors(GtkLabels *glab)
 	GtkCssProvider *provider = gtk_css_provider_new();
 
 	if(gtk_check_version(3, 19, 2) == NULL) // GTK 3.20 or newer
-		casprintf(&filename, false, "cpu-x-gtk-3.20.css");
+		filename = is_dark_theme(glab) ? g_strdup("cpu-x-gtk-3.20-dark.css") : g_strdup("cpu-x-gtk-3.20.css");
 	else // GTK 3.12 to 3.18
-		casprintf(&filename, false, "cpu-x-gtk-3.12.css");
+		filename = is_dark_theme(glab) ? g_strdup("cpu-x-gtk-3.12-dark.css") : g_strdup("cpu-x-gtk-3.12.css");
 
 	gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
@@ -656,7 +663,12 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 	cairo_fill(cr);
 	cairo_pattern_destroy(pat);
 
-	cairo_set_source_rgb(cr, 0.0, 0.0, 0.8081); /* Print percentage */
+	/* Print percentage */
+	if(is_dark_theme(glab))
+		cairo_set_source_rgb(cr, 0.8080, 0.8080, 0.0);
+	else
+		cairo_set_source_rgb(cr, 0.0, 0.0, 0.8080);
+
 	cairo_move_to(cr, -40, 0);
 	pango_layout_set_text(newlayout, format("%.2f%%", percent), -1);
 	pango_cairo_show_layout(cr, newlayout);
