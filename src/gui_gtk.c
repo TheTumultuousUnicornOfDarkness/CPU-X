@@ -396,6 +396,24 @@ void __builtin_gtk_css_provider_load_from_resource(GtkCssProvider *css_provider,
 }
 #endif /* PORTABLE_BINARY */
 
+static gboolean is_dark_theme(GtkLabels *glab)
+{
+	gdouble contrast;
+	GdkRGBA *fg, *bg;
+	GtkStyleContext *context;
+
+	context = gtk_widget_get_style_context(GTK_WIDGET(glab->mainwindow));
+	gtk_style_context_get(context, GTK_STATE_FLAG_NORMAL,
+		GTK_STYLE_PROPERTY_COLOR, &fg,
+		GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &bg,
+		NULL);
+	contrast = bg->red - fg->red + bg->green - fg->green + bg->blue - fg->blue;
+	gdk_rgba_free(fg);
+	gdk_rgba_free(bg);
+
+	return (contrast < -1);
+}
+
 /* Set custom GTK theme */
 static void set_colors(GtkLabels *glab)
 {
