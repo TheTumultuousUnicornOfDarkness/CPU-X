@@ -1120,7 +1120,7 @@ static int cputab_temp_fallback(Labels *data)
 	if(!use_sysfs)
 	{
 		setlocale(LC_ALL, "C");
-		if(!popen_to_str(&buff, "sensors | grep -i 'Core[[:space:]]*%u' | awk -F '[+°]' '{ print $2 }'", opts->selected_core))
+		if(!popen_to_str(&buff, "sensors | grep -Ei 'Core[[:space:]]*%u|CPU' | awk -F '[+°]' '{ print $2 }' | sed '/^$/d'", opts->selected_core))
 			val = atof(buff);
 		setlocale(LC_ALL, "");
 
@@ -1135,19 +1135,18 @@ static int cputab_temp_fallback(Labels *data)
 	/* If 'sensors' is not configured, try by using sysfs */
 	if(use_sysfs)
 	{
-		switch(data->l_data->cpu_vendor_id)
+		if(data->l_data->cpu_vendor_id == VENDOR_INTEL)
 		{
-			case VENDOR_INTEL:
-				module_loaded = load_module("coretemp");
-				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
-				break;
-			case VENDOR_AMD:
-				module_loaded = load_module("k8temp") | load_module("k10temp");
-				file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
-				break;
-			default:
-				return 0;
+			module_loaded = load_module("coretemp");
+			file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
 		}
+		else if(data->l_data->cpu_vendor_id == VENDOR_AMD)
+		{
+			module_loaded = load_module("k8temp") | load_module("k10temp");
+			file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
+		}
+		else
+			return 0;
 
 		if(module_loaded && !file_error)
 			val = atof(buff) / 1000;
