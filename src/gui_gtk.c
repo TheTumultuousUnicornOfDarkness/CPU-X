@@ -88,6 +88,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 /* Print a window which allows to restart CPU-X as root */
 static void warning_window(GtkWidget *mainwindow)
 {
+	char *const cmd[] = { "cpu-x_polkit", NULL };
 	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
 		GTK_DIALOG_DESTROY_WITH_PARENT,
 		GTK_MESSAGE_WARNING,
@@ -102,10 +103,7 @@ static void warning_window(GtkWidget *mainwindow)
 		gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, NULL);
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
-	{
-		system("cpu-x_polkit &");
-		exit(EXIT_SUCCESS);
-	}
+		execvp(cmd[0], cmd);
 
 	gtk_widget_destroy(dialog);
 }
