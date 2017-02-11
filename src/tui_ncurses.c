@@ -323,9 +323,9 @@ static void nrefresh(NThrd *refr)
 		case NO_CPU:
 			mvwprintw2c(win, LINE_4,  info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
 			mvwprintw2c(win, LINE_6,  info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
-			mvwprintw2c(win, LINE_11, info.tb, "%14s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
-			mvwprintw2c(win, LINE_12, info.tb, "%14s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
-			mvwprintw2c(win, LINE_14, info.tb, "%14s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
+			mvwprintw2c(win, LINE_12, info.tb, "%14s: %s", data->tab_cpu[NAME][CORESPEED],   data->tab_cpu[VALUE][CORESPEED]);
+			mvwprintw2c(win, LINE_13, info.tb, "%14s: %s", data->tab_cpu[NAME][MULTIPLIER],  data->tab_cpu[VALUE][MULTIPLIER]);
+			mvwprintw2c(win, LINE_15, info.tb, "%14s: %s", data->tab_cpu[NAME][USAGE],       data->tab_cpu[VALUE][USAGE]);
 			break;
 		case NO_CACHES:
 			line = LINE_2;
@@ -477,54 +477,65 @@ static void print_activecore(WINDOW *win)
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line;
+	int i, index, line;
+	const int length = info.width - (info.tb + 18);
 	const int middle = info.width - 38;
 
+	/* Split Intructions label in two parts */
+	for(i = 0; i < length; i++)
+		if(data->tab_cpu[VALUE][INSTRUCTIONS][i] == ',')
+			index = i;
+	data->tab_cpu[VALUE][INSTRUCTIONS][index + 1] = '\0';
+
 	/* Processor frame */
-	frame(win, LINE_0, info.start , LINE_9, info.width - 1, data->objects[FRAMPROCESSOR]);
+	frame(win, LINE_0, info.start , LINE_10, info.width - 1, data->objects[FRAMPROCESSOR]);
 	line = LINE_1;
 	for(i = VENDOR; i < CORESPEED; i++)
 	{
 		switch(i)
 		{
 			case VOLTAGE:
-				mvwprintw2c(win, LINE_4, info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],     data->tab_cpu[VALUE][VOLTAGE]);
+				mvwprintw2c(win, LINE_4, info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],      data->tab_cpu[VALUE][VOLTAGE]);
 				break;
 			case MODEL:
-				mvwprintw2c(win, LINE_6, info.tm, "%11s: %s", data->tab_cpu[NAME][MODEL],       data->tab_cpu[VALUE][MODEL]);
+				mvwprintw2c(win, LINE_6, info.tm, "%11s: %s", data->tab_cpu[NAME][MODEL],        data->tab_cpu[VALUE][MODEL]);
 				break;
 			case EXTMODEL:
-				mvwprintw2c(win, LINE_7, info.tm, "%11s: %s", data->tab_cpu[NAME][EXTMODEL],    data->tab_cpu[VALUE][EXTMODEL]);
+				mvwprintw2c(win, LINE_7, info.tm, "%11s: %s", data->tab_cpu[NAME][EXTMODEL],     data->tab_cpu[VALUE][EXTMODEL]);
 				break;
 			case TEMPERATURE:
-				mvwprintw2c(win, LINE_6, info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE], data->tab_cpu[VALUE][TEMPERATURE]);
+				mvwprintw2c(win, LINE_6, info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE],  data->tab_cpu[VALUE][TEMPERATURE]);
 				break;
 			case STEPPING:
-				mvwprintw2c(win, LINE_7, info.te, "%9s: %s",  data->tab_cpu[NAME][STEPPING],    data->tab_cpu[VALUE][STEPPING]);
+				mvwprintw2c(win, LINE_7, info.te, "%9s: %s",  data->tab_cpu[NAME][STEPPING],     data->tab_cpu[VALUE][STEPPING]);
+				break;
+			case INSTRUCTIONS:
+				mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][INSTRUCTIONS], data->tab_cpu[VALUE][INSTRUCTIONS]);
+				mvwprintwc (win, line++, info.tb + 16,        LABEL_VALUE_COLOR,                 &(data->tab_cpu[VALUE][INSTRUCTIONS][index + 2]));
 				break;
 			default:
-				mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][i],           data->tab_cpu[VALUE][i]);
+				mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][i],            data->tab_cpu[VALUE][i]);
 		}
 	}
 
 	/* Clocks frame */
-	frame(win, LINE_10, info.start, LINE_15, middle, data->objects[FRAMCLOCKS]);
-	line = LINE_11;
+	frame(win, LINE_11, info.start, LINE_16, middle, data->objects[FRAMCLOCKS]);
+	line = LINE_12;
 	for(i = CORESPEED; i < LEVEL1D; i++)
 		mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Cache frame */
-	frame(win, LINE_10, middle, LINE_15, info.width - 1, data->objects[FRAMCACHE]);
-	line = LINE_11;
+	frame(win, LINE_11, middle, LINE_16, info.width - 1, data->objects[FRAMCACHE]);
+	line = LINE_12;
 	for(i = LEVEL1D; i < SOCKETS; i++)
 		mvwprintw2c(win, line++, middle + 1, "%12s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Last frame */
-	frame(win, LINE_16, info.start, LINE_18, info.width - 1, "");
+	frame(win, LINE_17, info.start, LINE_19, info.width - 1, "");
 	print_activecore(win);
-	mvwprintw2c(win, LINE_17, 18,  "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
-	mvwprintw2c(win, LINE_17, 36, "%s: %2s", data->tab_cpu[NAME][CORES],   data->tab_cpu[VALUE][CORES]);
-	mvwprintw2c(win, LINE_17, 54, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
+	mvwprintw2c(win, LINE_18, 18,  "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
+	mvwprintw2c(win, LINE_18, 36, "%s: %2s", data->tab_cpu[NAME][CORES],   data->tab_cpu[VALUE][CORES]);
+	mvwprintw2c(win, LINE_18, 54, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
 
 	wrefresh(win);
 }

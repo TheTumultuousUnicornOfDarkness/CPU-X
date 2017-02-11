@@ -198,7 +198,7 @@ static int cpu_technology(Labels *data)
 static int call_libcpuid_static(Labels *data)
 {
 	int err, i, j = 0;
-	char tmp[MAXSTR] = "";
+	char tmp[MAXSTR * 2] = "";
 	const char *fmt_cache_kb = _("%d x %d KB, %d-way");
 	const char *fmt_cache_mb = _("%d MB, %d-way");
 	const char *fmt_lines    = _("%s associative, %d-byte line size");
@@ -313,52 +313,57 @@ static int call_libcpuid_static(Labels *data)
 	else if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
 		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
-	/* Fill CPU Intructions label */
-	const struct CpuFlags { const cpu_feature_t flag; const char *intrstr; } intructions[] =
-	{
-		{ CPU_FEATURE_MMX,      "MMX"      },
-		{ CPU_FEATURE_MMXEXT,   "(+)"      },
-		{ CPU_FEATURE_3DNOW,    ", 3DNOW!" },
-		{ CPU_FEATURE_3DNOWEXT, "(+)"      },
-
-		{ CPU_FEATURE_SSE,      ", SSE (1" },
-		{ CPU_FEATURE_SSE2,     ", 2"      },
-		{ CPU_FEATURE_PNI,      ", 3"      },
-		{ CPU_FEATURE_SSE4_1,   ", 4.1"    },
-		{ CPU_FEATURE_SSE4_2,   ", 4.2"    },
-		{ CPU_FEATURE_SSE4A,    ", 4A"     },
-		{ CPU_FEATURE_SSE,      ")"        },
-
-		{ CPU_FEATURE_AES,      ", AES"    },
-		{ CPU_FEATURE_AVX,      ", AVX"    },
-		{ CPU_FEATURE_VMX,      ", VT-x"   },
-		{ CPU_FEATURE_SVM,      ", AMD-V"  },
-		{ NUM_CPU_FEATURES,	NULL       }
-	};
-	for(i = 0; intructions[i].flag != NUM_CPU_FEATURES; i++)
-	{
-		if(datanr.flags[intructions[i].flag])
-			strncat(tmp, intructions[i].intrstr, MAXSTR - strlen(tmp));
-	}
 
 	/* Add string "HT" in CPU Intructions label (if enabled) */
 	if(datanr.num_cores < datanr.num_logical_cpus)
-		strncat(tmp, ", HT", MAXSTR - strlen(tmp));
+		strncat(tmp, "HT", MAXSTR * 2 - strlen(tmp));
 
-	/* Add string "64-bit" in CPU Intructions label (if supported) */
-	if(datanr.flags[CPU_FEATURE_LM])
+	/* Fill CPU Intructions label */
+	const struct { const cpu_feature_t flag; const char *str; } cpu_flags[] =
 	{
-		switch(data->l_data->cpu_vendor_id)
-		{
-			case VENDOR_INTEL:
-				strncat(tmp, ", Intel64", MAXSTR - strlen(tmp));
-				break;
-			case VENDOR_AMD:
-				strncat(tmp, ", AMD64",   MAXSTR - strlen(tmp));
-				break;
-			default:
-				strncat(tmp, ", 64-bit",  MAXSTR - strlen(tmp));
-		}
+		/* SIMD x86 */
+		{ CPU_FEATURE_MMX,      "MMX"    },
+		{ CPU_FEATURE_MMXEXT,   "(+)"    },
+		{ CPU_FEATURE_3DNOW,    "3DNOW!" },
+		{ CPU_FEATURE_3DNOWEXT, "(+)"    },
+		{ CPU_FEATURE_SSE,      "SSE(1"  },
+		{ CPU_FEATURE_SSE2,     "2"      },
+		{ CPU_FEATURE_PNI,      "3"      },
+		{ CPU_FEATURE_SSSE3,    "3S"     },
+		{ CPU_FEATURE_SSE4_1,   "4.1"    },
+		{ CPU_FEATURE_SSE4_2,   "4.2"    },
+		{ CPU_FEATURE_SSE4A,    "4A"     },
+		{ CPU_FEATURE_SSE,      ")"      },
+		{ CPU_FEATURE_XOP,      "XOP"    },
+		{ CPU_FEATURE_AVX,      "AVX(1"  },
+		{ CPU_FEATURE_AVX2,      "2"     },
+		{ CPU_FEATURE_AVX512F,  "512"    },
+		{ CPU_FEATURE_AVX,      ")"      },
+		{ CPU_FEATURE_FMA3,     "FMA(3"  },
+		{ CPU_FEATURE_FMA4,     "4"      },
+		{ CPU_FEATURE_FMA3,     ")"      },
+		/* Security and Cryptography */
+		{ CPU_FEATURE_AES,      "AES"    },
+		{ CPU_FEATURE_PCLMUL,   "CLMUL"  },
+		{ CPU_FEATURE_RDRAND,   "RdRand" },
+		{ CPU_FEATURE_SHA_NI,   "SHA"    },
+		{ CPU_FEATURE_SGX,      "SGX"    },
+		/* Virtualization */
+		{ CPU_FEATURE_VMX,      "VT-x"   },
+		{ CPU_FEATURE_SVM,      "AMD-V"  },
+		/* Other */
+		{ CPU_FEATURE_LM,       "x86-64" },
+		{ NUM_CPU_FEATURES,	NULL     }
+	};
+	for(i = 0; cpu_flags[i].flag != NUM_CPU_FEATURES; i++)
+	{
+		if(!datanr.flags[cpu_flags[i].flag])
+			continue;
+
+		j = strlen(tmp);
+		if((j > 0) && (cpu_flags[i].str[0] != '(') && (cpu_flags[i].str[0] != ')'))
+			strncat(tmp, ", ", MAXSTR * 2 - j);
+		strncat(tmp, cpu_flags[i].str, MAXSTR * 2 - j);
 	}
 	casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, tmp);
 

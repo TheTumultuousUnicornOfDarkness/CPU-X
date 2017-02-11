@@ -188,6 +188,24 @@
                                     <property name="position">7</property>
                                   </packing>
                                 </child>
+                                <child>
+                                  <object class="GtkLabel" id="proc_labinstr2">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">end</property>
+                                    <property name="margin_right">4</property>
+                                    <property name="margin_end">4</property>
+                                    <property name="margin_top">1</property>
+                                    <property name="margin_bottom">1</property>
+                                    <property name="single_line_mode">True</property>
+                                    <property name="lines">1</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">8</property>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -694,12 +712,14 @@
                                       <object class="GtkLabel" id="proc_valinstr">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">
+</property>
+                                        <property name="wrap">True</property>
                                         <property name="selectable">True</property>
                                         <property name="ellipsize">end</property>
                                         <property name="width_chars">43</property>
-                                        <property name="single_line_mode">True</property>
                                         <property name="max_width_chars">43</property>
-                                        <property name="lines">1</property>
+                                        <property name="lines">2</property>
                                         <attributes>
                                           <attribute name="stretch" value="ultra-condensed"/>
                                         </attributes>
