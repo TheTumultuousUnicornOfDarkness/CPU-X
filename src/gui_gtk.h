@@ -46,7 +46,6 @@ typedef struct
 	/* Tab CPU */
 	GtkWidget *logocpu;
 	GtkWidget *gtktab_cpu[2][LASTCPU];
-	GtkWidget *labinstr2;
 	GtkWidget *activecore;
 
 	/* Tab Caches */
