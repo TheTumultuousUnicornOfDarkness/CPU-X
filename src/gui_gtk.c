@@ -297,6 +297,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->notebook    = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu     = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->activecore  = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
+	glab->labinstr2   = GTK_WIDGET(gtk_builder_get_object(builder, "proc_labinstr2"));
 	glab->activetest  = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
 	glab->logoprg     = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol      = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
@@ -314,7 +315,6 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_cpu[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectcpu[i], "val")));
 		gtk_widget_set_name(glab->gtktab_cpu[VALUE][i], "value");
 	}
-
 
 	/* Tab Caches */
 	for(i = L1SIZE; i < LASTCACHES; i++)
@@ -500,6 +500,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[NAME][i]),  data->tab_cpu[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
+	if(strlen(data->tab_cpu[VALUE][INSTRUCTIONS]) > (size_t) gtk_label_get_width_chars(GTK_LABEL(glab->gtktab_cpu[VALUE][INSTRUCTIONS])) + 1)
+		gtk_widget_show(glab->labinstr2);
 	for(i = 0; i < data->cpu_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format(_("Core #%i"), i));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
