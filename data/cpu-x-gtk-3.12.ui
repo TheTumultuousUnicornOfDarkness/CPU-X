@@ -51,7 +51,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="orientation">vertical</property>
-                                <property name="homogeneous">True</property>
+                                <property name="spacing">2</property>
                                 <child>
                                   <object class="GtkLabel" id="proc_labvendor">
                                     <property name="visible">True</property>
@@ -186,24 +186,6 @@
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="position">7</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="proc_labinstr2">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">end</property>
-                                    <property name="margin_right">4</property>
-                                    <property name="margin_end">4</property>
-                                    <property name="margin_top">1</property>
-                                    <property name="margin_bottom">1</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">8</property>
                                   </packing>
                                 </child>
                               </object>
