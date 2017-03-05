@@ -427,6 +427,11 @@ static int call_libcpuid_msr_static(Labels *data)
 	if(bclk != CPU_INVALID_VALUE && data->bus_freq == 0.0)
 		data->bus_freq = (double) bclk / 100;
 
+#ifdef HAVE_MSR_SERIALIZE_RAW_DATA
+	if(opts->output_type == OUT_DUMP && opts->verbose)
+		msr_serialize_raw_data(msr, "");
+#endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
+
 	return cpu_msr_driver_close(msr);
 }
 
