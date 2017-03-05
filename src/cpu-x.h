@@ -27,6 +27,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <pthread.h>
+#include <errno.h>
 #define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
@@ -47,12 +48,15 @@
 #define BOLD_BLUE             "\x1b[1;34m"
 
 /* Formatted messages definition */
+#define FMT_STD               "%s\n" DEFAULT
+#define FMT_ERR               "%s:%s:%i: "
 #define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define MSG_STDOUT(fmt, ...)  fprintf(stdout, msg_newline(DEFAULT, fmt),     ##__VA_ARGS__)
-#define MSG_STDERR(fmt, ...)  fprintf(stderr, msg_newline(DEFAULT, fmt),     ##__VA_ARGS__)
-#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, msg_newline(BOLD_GREEN, fmt),  ##__VA_ARGS__) : 0
-#define MSG_WARNING(fmt, ...) fprintf(stdout, msg_newline(BOLD_YELLOW, fmt), ##__VA_ARGS__)
-#define MSG_ERROR(fmt, ...)   fprintf(stderr, msg_error(BOLD_RED, BASEFILE, __LINE__, fmt), ##__VA_ARGS__)
+#define MSG_STDOUT(fmt, ...)  fprintf(stdout, format(FMT_STD, fmt),                ##__VA_ARGS__)
+#define MSG_STDERR(fmt, ...)  fprintf(stderr, format(FMT_STD, fmt),                ##__VA_ARGS__)
+#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, format(BOLD_GREEN FMT_STD, fmt),  ##__VA_ARGS__) : 0
+#define MSG_WARNING(fmt, ...) fprintf(stdout, format(BOLD_YELLOW FMT_STD, fmt),    ##__VA_ARGS__)
+#define MSG_ERROR(fmt, ...)   fprintf(stderr, format(BOLD_RED FMT_ERR FMT_STD,     PRGNAME, BASEFILE, __LINE__, fmt), ##__VA_ARGS__)
+#define MSG_ERRNO(fmt, ...)   fprintf(stderr, format(BOLD_RED FMT_ERR "%s (%s)\n", PRGNAME, BASEFILE, __LINE__, fmt, strerror(errno)), ##__VA_ARGS__)
 #define _(msg)                gettext(msg)
 #define N_(msg)               msg
 
@@ -243,13 +247,6 @@ void labels_free(Labels *data);
 
 
 /***************************** Defined in util.c *****************************/
-
-
-/* Add a newline for given string (used by MSG_XXX macros) */
-char *msg_newline(char *color, char *str);
-
-/* Add a newline and more informations for given string (used by MSG_ERROR macro) */
-char *msg_error(char *color, char *file, int line, char *str);
 
 /* An asprintf-like function, but which can clean some parts of 'str' if 'clean_str' is true
  * - It calls vasprintf if 'fmt' is a valid string

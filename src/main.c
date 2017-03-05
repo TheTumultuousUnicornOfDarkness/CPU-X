@@ -207,8 +207,8 @@ static size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
 /* Check if running version is latest */
 static bool check_new_version(void)
 {
-	int err;
 	CURL *curl;
+	CURLcode code;
 
 	if(!opts->use_network)
 	{
@@ -228,12 +228,13 @@ static bool check_new_version(void)
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
 	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 1L);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &new_version[0]);
-	err = curl_easy_perform(curl);
+	code = curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 
-	if(err || new_version[0] == NULL)
+	if((code != CURLE_OK) || (new_version[0] == NULL))
 	{
-		MSG_ERROR(_("failed to perform the Curl transfer"));
+		MSG_ERROR(_("failed to perform the Curl transfer (%s)"),
+			(new_version[0] != NULL) ? curl_easy_strerror(code) : _("wrong write data"));
 		opts->use_network = false;
 		asprintf(&new_version[1], "%c", '\0');
 	}
@@ -293,19 +294,19 @@ static int extract_archive(const char *filename, const char *needed)
 	archive_write_disk_set_standard_lookup(ext);
 
 	if((ret = archive_read_open_filename(archive, filename, 10240)))
-		goto error;
+		goto error_archive;
 
 	do {
 		if((ret = archive_read_next_header(archive, &entry)) != ARCHIVE_OK)
-			goto error;
+			goto error_archive;
 	} while(strcmp(archive_entry_pathname(entry), needed));
 
 	if((ret = archive_write_header(ext, entry)) != ARCHIVE_OK)
-		goto error;
+		goto error_ext;
 	if((ret = copy_data(archive, ext)) != ARCHIVE_OK)
-		goto error;
+		goto error_ext;
 	if((ret = archive_write_finish_entry(ext)) != ARCHIVE_OK)
-		goto error;
+		goto error_ext;
 
 	archive_read_close(archive);
 	archive_read_free(archive);
@@ -313,12 +314,12 @@ static int extract_archive(const char *filename, const char *needed)
 	archive_write_free(ext);
 	return 0;
 
-error:
-	if(ret < ARCHIVE_OK)
-		MSG_ERROR(_("following error occurred while extracting %s archive: %s"), filename, archive_error_string(ext));
-	else
-		MSG_ERROR(_("an error occurred while extracting %s archive"), filename);
+error_archive:
+	MSG_ERROR(_("an error occurred while extracting %s archive (%s)"), filename, archive_error_string(archive));
+	return 1;
 
+error_ext:
+	MSG_ERROR(_("an error occurred while extracting %s archive (%s)"), filename, archive_error_string(ext));
 	return 1;
 }
 
@@ -328,6 +329,7 @@ static int update_prg(void)
 	int err;
 	char *archive = NULL, *new_binary = NULL;
 	CURL *curl;
+	CURLcode code;
 	FILE *file_descr = NULL;
 
 	if(!opts->use_network)
@@ -354,7 +356,7 @@ static int update_prg(void)
 	file_descr = fopen(archive, "wb");
 	if(file_descr == NULL)
 	{
-		MSG_ERROR(_("failed to open %s archive for writing"), archive);
+		MSG_ERRNO(_("failed to open %s archive for writing"), archive);
 		free(archive);
 		return 4;
 	}
@@ -366,12 +368,12 @@ static int update_prg(void)
 	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 2 * 60L);
 	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3L);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, file_descr);
-	err = curl_easy_perform(curl);
+	code = curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 	fclose(file_descr);
-	if(err)
+	if(code != CURLE_OK)
 	{
-		MSG_ERROR(_("failed to download %s archive"), archive);
+		MSG_ERROR(_("failed to download %s archive (%s)"), archive, curl_easy_strerror(code));
 		free(archive);
 		return 5;
 	}

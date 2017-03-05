@@ -144,7 +144,8 @@ static int err_func(int (*func)(Labels *), Labels *data)
 	{
 		if((tmp = realloc(registered, sizeof(struct Functions) * (i + 1))) == NULL)
 		{
-			MSG_ERROR(_("could not reallocate memory, exiting %s"), PRGNAME);
+			MSG_ERRNO(_("could not reallocate memory"));
+			MSG_STDERR(_("Exiting %s"), PRGNAME);
 			exit(255);
 		}
 		registered                 = tmp;
@@ -214,7 +215,7 @@ static int call_libcpuid_static(Labels *data)
 
 	if(err || cpu_identify(&raw, &datanr))
 	{
-		MSG_ERROR(_("failed to call libcpuid"));
+		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
 		return 1;
 	}
 
@@ -313,7 +314,6 @@ static int call_libcpuid_static(Labels *data)
 	else if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
 		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
 
-
 	/* Add string "HT" in CPU Intructions label (if enabled) */
 	if(datanr.num_cores < datanr.num_logical_cpus)
 		strncat(tmp, "HT", MAXSTR * 2 - strlen(tmp));
@@ -396,7 +396,7 @@ static int libcpuid_init_msr(struct msr_driver_t **msr)
 	*msr = cpu_msr_driver_open_core(opts->selected_core);
 	if(*msr == NULL)
 	{
-		MSG_ERROR(_("failed to open CPU MSR"));
+		MSG_ERROR(_("failed to open CPU MSR (%s)"), cpuid_error());
 		return 2;
 	}
 
@@ -512,7 +512,7 @@ static int call_dmidecode(Labels *data)
 	opt.type = calloc(256, sizeof(uint8_t));
 	if(opt.type == NULL)
 	{
-		MSG_ERROR(_("failed to allocate memory for dmidecode"));
+		MSG_ERRNO(_("failed to allocate memory for dmidecode"));
 		return 2;
 	}
 
@@ -770,7 +770,7 @@ static int system_static(Labels *data)
 	MSG_VERBOSE(_("Identifying running system"));
 	err = uname(&name);
 	if(err)
-		MSG_ERROR(_("failed to identify running system"));
+		MSG_ERRNO(_("failed to identify running system"));
 	else
 	{
 		casprintf(&data->tab_system[VALUE][KERNEL],   false, "%s %s", name.sysname, name.release); /* Kernel label */
@@ -975,7 +975,7 @@ void start_benchmarks(Labels *data)
 	t_id            = malloc(sizeof(pthread_t) * b_data->threads);
 	if(t_id == NULL)
 	{
-		MSG_ERROR(_("failed to allocate memory for benchmark"));
+		MSG_ERRNO(_("failed to allocate memory for benchmark"));
 		return;
 	}
 
@@ -1117,7 +1117,6 @@ static int fallback_mode_static(Labels *data)
 
 /************************* Fallback functions (dynamic) *************************/
 
-/* Retrieve CPU temperature if run as regular user */
 static int cputab_temp_fallback(Labels *data)
 {
 	static bool use_sysfs = false;

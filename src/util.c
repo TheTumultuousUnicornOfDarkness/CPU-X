@@ -36,35 +36,6 @@
 
 /************************* Public function *************************/
 
-/* Add a newline for given string (used by MSG_XXX macros) */
-char *msg_newline(char *color, char *str)
-{
-	static char *buff = NULL;
-
-	free(buff);
-	if(opts->color)
-		asprintf(&buff, "%s%s%s\n", color, str, DEFAULT);
-	else
-		asprintf(&buff, "%s\n",     str);
-
-	return buff;
-}
-
-/* Add a newline and more informations for given string (used by MSG_ERROR macro) */
-char *msg_error(char *color, char *file, int line, char *str)
-{
-	static char *buff = NULL;
-
-	free(buff);
-	if(errno)
-		asprintf(&buff, "%s%s:%s:%i: %s (%s)%s\n", opts->color ? color : DEFAULT, PRGNAME, file, line, str, strerror(errno), DEFAULT);
-	else
-		asprintf(&buff, "%s%s:%s:%i: %s%s\n", opts->color ? color : DEFAULT, PRGNAME, file, line, str, DEFAULT);
-
-	errno = 0;
-	return buff;
-}
-
 /* An asprintf-like function, but which can clean some parts of 'str' if 'clean_str' is true
  * - It calls vasprintf if 'fmt' is a valid string
  * - If 'clean_str' is true, it removes "unvalid args" from 'str' until next "valid arg"
