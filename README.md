@@ -109,15 +109,12 @@ Or you want to contribute to CPU-X? In the top-right corner of the page, click o
 
 ## Troubleshooting
 
-* **CPU-X won't start**: check binary permissions (do a `chmod 755` if they are wrong).
-* **CPU-X still won't start**: run it from a shell with `--verbose` argument, and look output.
-* **Some labels are empty**: CPU-X needs root privileges to run fine. If you manually build CPU-X, check dependencies. Or else, if a label is still empty, your hardware isn't recognized by a library.
+Refer to the dedicated [FAQ](https://github.com/X0rg/CPU-X/wiki/FAQ) page.
 
 
 ## Bugs/Improvements/Request features
 
-Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new).  
-For **bugs**, you can attach `cpu-x -V` and `# cpu-x -ovd` outputs to issue.
+Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new) and fill template. You can remove italic text.
 
 
 ## Links
