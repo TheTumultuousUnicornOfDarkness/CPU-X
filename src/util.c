@@ -103,7 +103,16 @@ char *format(char *str, ...)
 /* Check if a command exists */
 bool command_exists(char *command)
 {
-	return !system(format("which %s >/dev/null 2>&1", command));
+	bool exists = false;
+	char *dir;
+	char *save_path = strdup(getenv("PATH"));
+	char *path = save_path;
+
+	while(((dir = strsep(&path, ":")) != NULL) && !exists)
+		exists = !access(format("%s/%s", dir, command), X_OK);
+	free(save_path);
+
+	return exists;
 }
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
