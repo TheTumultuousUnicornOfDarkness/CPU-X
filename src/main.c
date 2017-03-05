@@ -581,6 +581,7 @@ static void parse_arguments(int argc, char *argv[])
 			case 'i':
 				opts->color       = false;
 				opts->verbose     = true;
+				opts->issue       = true;
 				opts->use_network = 0;
 				opts->output_type = OUT_DUMP;
 				setlocale(LC_ALL, "C");
@@ -757,6 +758,7 @@ int main(int argc, char *argv[])
 	{
 		.color         = true,
 		.verbose       = false,
+		.issue         = false,
 		.use_network   = true,
 		.update        = false,
 		.selected_page = 0,

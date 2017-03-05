@@ -367,7 +367,7 @@ static int call_libcpuid_static(Labels *data)
 	}
 	casprintf(&data->tab_cpu[VALUE][INSTRUCTIONS], false, tmp);
 
-	if(opts->output_type == OUT_DUMP && opts->verbose)
+	if(opts->issue)
 		err += cpuid_serialize_raw_data(&raw, "");
 
 	return err;
@@ -428,7 +428,7 @@ static int call_libcpuid_msr_static(Labels *data)
 		data->bus_freq = (double) bclk / 100;
 
 #ifdef HAVE_MSR_SERIALIZE_RAW_DATA
-	if(opts->output_type == OUT_DUMP && opts->verbose)
+	if(opts->issue)
 		msr_serialize_raw_data(msr, "");
 #endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
 
