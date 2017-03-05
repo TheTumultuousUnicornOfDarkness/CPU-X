@@ -31,9 +31,11 @@
 #include <math.h>
 #include <pthread.h>
 #include <dirent.h>
+#include <regex.h>
 #include <locale.h>
 #include <libintl.h>
 #include <sys/utsname.h>
+#include <sys/types.h>
 #include "core.h"
 #include "cpu-x.h"
 
@@ -1117,62 +1119,158 @@ static int fallback_mode_static(Labels *data)
 
 /************************* Fallback functions (dynamic) *************************/
 
-static int cputab_temp_fallback(Labels *data)
+static int browse_sensor_files(char *dir_path, regex_t *regex_filename, regex_t *regex_label, char **cached_path)
 {
-	static bool use_sysfs = false;
-	double val = 0.0;
-	char *buff = NULL;
+	int err     = 1;
+	char *label = NULL;
+	DIR *dp     = NULL;
+	struct dirent *dir;
 
-	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
-
-	/* First, try by reading 'sensors' output */
-	if(!use_sysfs)
+	/* Open given directory */
+	if((dp = opendir(dir_path)) == NULL)
 	{
-		setlocale(LC_ALL, "C");
-		if(!popen_to_str(&buff, "sensors | grep -Ei 'Core[[:space:]]*%u|CPU' | awk -F '[+°]' '{ print $2 }' | sed '/^$/d'", opts->selected_core))
-			val = atof(buff);
-		setlocale(LC_ALL, "");
-
-		if(val <= 0)
-			use_sysfs = true;
-	}
-
-#if HAS_LIBCPUID
-	bool module_loaded = false;
-	int  file_error = -1;
-
-	/* If 'sensors' is not configured, try by using sysfs */
-	if(use_sysfs)
-	{
-		if(data->l_data->cpu_vendor_id == VENDOR_INTEL)
-		{
-			module_loaded = load_module("coretemp");
-			file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_INTEL, opts->selected_core + 1);
-		}
-		else if(data->l_data->cpu_vendor_id == VENDOR_AMD)
-		{
-			module_loaded = load_module("k8temp") | load_module("k10temp");
-			file_error    = fopen_to_str(&buff, "%s/temp%i_input", SYS_TEMP_AMD, opts->selected_core + 1);
-		}
-		else
-			return 0;
-
-		if(module_loaded && !file_error)
-			val = atof(buff) / 1000;
-	}
-#endif /* HAS_LIBCPUID */
-	free(buff);
-
-	if(val > 0)
-	{
-		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], false, "%.2f°C", val);
-		return 0;
-	}
-	else
-	{
-		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
+		MSG_ERROR(_("failed to open %s directory"), dir_path);
 		return 1;
 	}
+
+	while(((dir = readdir(dp)) != NULL) && err)
+	{
+		/* Ignore hidden files and files not mathing pattern */
+		if((dir->d_name[0] == '.') || regexec(regex_filename, dir->d_name, 0, NULL, 0))
+			continue;
+
+		if(regex_label != NULL)
+		{
+			/* Open the label file */
+			if(fopen_to_str(&label, "%s/%s", dir_path, dir->d_name))
+				continue;
+
+			/* Check if label matchs with pattern */
+			if(regexec(regex_label, label, 0, NULL, 0))
+				continue;
+		}
+
+		/* Try to open the corresponding file */
+		strtok(dir->d_name, "_");
+		casprintf(cached_path, false, "%s/%s_input", dir_path, dir->d_name);
+		err = access(*cached_path, R_OK);
+	}
+
+	closedir(dp);
+	free(label);
+
+	return err;
+}
+
+static int browse_hwmon_directory(char **cached_path, bool look_other_sensors)
+{
+	int err      = 1;
+	char *sensor = NULL;
+	char *path   = NULL;
+	DIR *dp      = NULL;
+	struct dirent *dir;
+	regex_t regex_filename_input, regex_filename_label;
+	regex_t regex_label_coreN, regex_label_other;
+
+	if((dp = opendir(SYS_HWMON)) == NULL)
+	{
+		MSG_ERROR(_("failed to open %s directory"), SYS_HWMON);
+		return 1;
+	}
+
+	if(regcomp(&regex_filename_input, "temp1_input",                                     REG_NOSUB)             ||
+	   regcomp(&regex_filename_label, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
+	   regcomp(&regex_label_coreN,    format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
+	   regcomp(&regex_label_other,    "CPU",                                             REG_NOSUB | REG_ICASE))
+	{
+		MSG_ERROR(_("an error occurred while compiling regex"));
+		return 2;
+	}
+
+	while(((dir = readdir(dp)) != NULL) && err)
+	{
+		/* Ignore hidden files */
+		if(dir->d_name[0] == '.')
+			continue;
+
+		/* Find sensor name */
+		if(fopen_to_str(&sensor, "%s/%s/name", SYS_HWMON, dir->d_name))
+			continue;
+
+		/* Browse files in directory */
+		casprintf(&path, false, "%s/%s", SYS_HWMON, dir->d_name);
+		if(strstr(sensor, "coretemp") != NULL)
+			/* 'sensors' output:
+			Package id 0:  +37.0°C  (high = +80.0°C, crit = +98.0°C)
+			Core 0:        +33.0°C  (high = +80.0°C, crit = +98.0°C)
+			Core 1:        +34.0°C  (high = +80.0°C, crit = +98.0°C)
+			Core 2:        +36.0°C  (high = +80.0°C, crit = +98.0°C)
+			Core 3:        +37.0°C  (high = +80.0°C, crit = +98.0°C) */
+			err = browse_sensor_files(path, &regex_filename_label, &regex_label_coreN, cached_path);
+		else if(strstr(sensor, "k8temp") != NULL)
+			/* 'sensors' output:
+			Core0 Temp:    +64.0°C
+			Core0 Temp:    +63.0°C
+			Core1 Temp:    +64.0°C
+			Core1 Temp:    +64.0°C */
+			err = browse_sensor_files(path, &regex_filename_label, &regex_label_coreN, cached_path);
+		else if(strstr(sensor, "k10temp") != NULL)
+			/* 'sensors' output:
+			temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
+			err = browse_sensor_files(path, &regex_filename_input, NULL,               cached_path);
+		else if(look_other_sensors)
+			err = browse_sensor_files(path, &regex_filename_label, &regex_label_other, cached_path);
+	}
+
+	closedir(dp);
+	free(sensor);
+	free(path);
+	regfree(&regex_filename_input);
+	regfree(&regex_filename_label);
+	regfree(&regex_label_coreN);
+	regfree(&regex_label_other);
+
+	return err;
+}
+
+/* Retrieve CPU temperature if run as regular user */
+static int cputab_temp_fallback(Labels *data)
+{
+	int err = 0;
+#ifdef __linux__
+	char *temp;
+	static bool module_loaded  = false;
+	static char **cached_paths = NULL;
+
+# if HAS_LIBCPUID
+	/* Load kernel modules */
+	if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_INTEL))
+		module_loaded = load_module("coretemp");
+	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family <= 0x8))
+		module_loaded = load_module("k8temp");
+	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family >= 0x10))
+		module_loaded = load_module("k10temp");
+# endif /* HAS_LIBCPUID */
+
+	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
+	/* Filenames are cached */
+	if(cached_paths == NULL)
+		cached_paths = calloc(data->cpu_count, sizeof(char *));
+	if(!cached_paths[opts->selected_core])
+		if((err = browse_hwmon_directory(&cached_paths[opts->selected_core], false)))
+			err = browse_hwmon_directory(&cached_paths[opts->selected_core], true);
+
+	if(!err && cached_paths[opts->selected_core])
+	{
+		fopen_to_str(&temp, cached_paths[opts->selected_core]);
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", atof(temp) / 1000.0);
+		free(temp);
+	}
+	else
+		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
+#endif /* __linux__ */
+
+	return err;
 }
 
 /* Retrieve CPU voltage if run as regular user */

@@ -81,8 +81,7 @@
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"
 #define SYS_DRM               "/sys/class/drm/card"
-#define SYS_TEMP_AMD          "/sys/devices/pci0000:00/0000:00:18.3"
-#define SYS_TEMP_INTEL        "/sys/devices/platform/coretemp.0/hwmon/hwmon1"
+#define SYS_HWMON             "/sys/class/hwmon"
 
 
 enum EnTabNumber
