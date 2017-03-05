@@ -477,9 +477,10 @@ static void print_activecore(WINDOW *win)
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, index, line;
+	int i, line;
 	const int length = info.width - (info.tb + 18);
 	const int middle = info.width - 38;
+	int index = length - 1;
 
 	/* Split Intructions label in two parts */
 	for(i = 0; i < length; i++)
