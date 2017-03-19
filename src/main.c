@@ -746,6 +746,11 @@ int main(int argc, char *argv[])
 		.mem_total  = 0,
 		.swap_total = 0
 	};
+	data->g_data = &(GraphicsData)
+	{
+		.gpu_driver  = { GPUDRV_UNKNOWN },
+		.device_path = { NULL },
+	};
 	data->b_data = &(BenchData)
 	{
 		.run      = false,

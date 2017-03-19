@@ -621,35 +621,43 @@ static int call_bandwidth(Labels *data)
 #endif /* HAS_BANDWIDTH */
 
 #if HAS_LIBPCI
+#define DRIVER_IS(str) strstr(buff, str) != NULL
 /* Find driver name for a device */
-static int find_driver(struct pci_dev *dev, char *buff)
+static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
 	char name[MAXSTR];
 	char *base = NULL, *drv = NULL;
+	enum EnGpuDrv *gpu_driver = &data->g_data->gpu_driver[data->gpu_count];
 
 	MSG_VERBOSE(_("Finding graphic card driver"));
+	*gpu_driver = GPUDRV_UNKNOWN;
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
 		goto error;
 
-	base = pci_get_param(dev->access, "sysfs.path");
-	if(base == NULL)
+	if((base = pci_get_param(dev->access, "sysfs.path")) == NULL)
 		goto error;
 
-	snprintf(name, MAXSTR, "%s/devices/%04x:%02x:%02x.%d/driver",
+	casprintf(&data->g_data->device_path[data->gpu_count], false, "%s/devices/%04x:%02x:%02x.%d",
 		base, dev->domain, dev->bus, dev->dev, dev->func);
+	snprintf(name, MAXSTR, "%s/driver", data->g_data->device_path[data->gpu_count]);
 
-	n = readlink(name, buff, MAXSTR);
-	if(n <= 0)
+	if((n = readlink(name, buff, MAXSTR)) <= 0)
 		goto error;
-
-	if(n >= MAXSTR)
-		n = MAXSTR - 1;
 	buff[n] = '\0';
 
-	if((drv = strrchr(buff, '/')))
+	if((drv = strrchr(buff, '/')) != NULL)
 		strcpy(buff, drv + 1);
+
+	if(DRIVER_IS("fglrx"))        *gpu_driver = GPUDRV_FGLRX;
+	else if(DRIVER_IS("amdgpu"))  *gpu_driver = GPUDRV_AMDGPU;
+	else if(DRIVER_IS("radeon"))  *gpu_driver = GPUDRV_RADEON;
+	else if(DRIVER_IS("i915"))    *gpu_driver = GPUDRV_INTEL;
+	else if(DRIVER_IS("nvidia"))  *gpu_driver = GPUDRV_NVIDIA;
+	else if(DRIVER_IS("nouveau")) *gpu_driver = GPUDRV_NOUVEAU;
+	else MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
+
 	snprintf(name, MAXSTR, _("(%s driver)"), buff);
 	strcpy(buff, name);
 
@@ -660,20 +668,18 @@ error:
 	return 1;
 }
 
-#define DEVICE_VENDOR  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, dev->vendor_id, dev->device_id)
-#define DEVICE_PRODUCT pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, dev->vendor_id, dev->device_id)
-#define PCI_CLASS_DISP (dev->device_class == PCI_BASE_CLASS_DISPLAY) || (PCI_CLASS_DISPLAY_VGA <= dev->device_class && dev->device_class <= PCI_CLASS_DISPLAY_OTHER)
+#define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
+#define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
 /* Find some PCI devices, like chipset and GPU */
 static int find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
-	int i;
+	char *gpu_vendor;
 	char buff[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	enum Vendors { CURRENT = 3, LASTVENDOR };
-	char *gpu_vendors[LASTVENDOR] = { "AMD", "Intel", "NVIDIA", NULL };
+
 
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
@@ -688,29 +694,34 @@ static int find_devices(Labels *data)
 	pci_scan_bus(pacc); /* We want to get the list of devices */
 
 	/* Iterate over all devices */
-	for(dev = pacc->devices; dev; dev = dev->next)
+	for(dev = pacc->devices; dev != NULL; dev = dev->next)
 	{
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
 
 		/* Looking for chipset */
-		if(!chipset_found && dev->device_class == PCI_CLASS_BRIDGE_ISA)
+		if(!chipset_found && (dev->device_class == PCI_CLASS_BRIDGE_ISA))
 		{
-			casprintf(&data->tab_motherboard[VALUE][CHIPVENDOR], false, DEVICE_VENDOR);
-			casprintf(&data->tab_motherboard[VALUE][CHIPMODEL],  false, DEVICE_PRODUCT);
+			casprintf(&data->tab_motherboard[VALUE][CHIPVENDOR], false, DEVICE_VENDOR_STR(dev));
+			casprintf(&data->tab_motherboard[VALUE][CHIPMODEL],  false, DEVICE_PRODUCT_STR(dev));
 			chipset_found = true;
 		}
 
 		/* Looking for GPU */
-		if((data->gpu_count < LASTGRAPHICS / GPUFIELDS) && (PCI_CLASS_DISP))
+		if((data->gpu_count < LASTGRAPHICS / GPUFIELDS) && ((dev->device_class >> 8) == PCI_BASE_CLASS_DISPLAY))
 		{
-			asprintf(&gpu_vendors[CURRENT], DEVICE_VENDOR);
-			find_driver(dev, buff);
-			for(i = 0; (i < CURRENT) && (strstr(gpu_vendors[CURRENT], gpu_vendors[i]) == NULL); i++);
+			switch(dev->vendor_id)
+			{
+				case 0x1002: gpu_vendor = "AMD";    break;
+				case 0x8086: gpu_vendor = "Intel";  break;
+				case 0x10DE: gpu_vendor = "NVIDIA"; break;
+				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
+				             MSG_WARNING(_("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
+			}
 
-			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendors[i], buff);
-			casprintf(&data->tab_graphics[VALUE][GPU1MODEL +  data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT);
+			find_driver(dev, buff, data);
+			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendor, buff);
+			casprintf(&data->tab_graphics[VALUE][GPU1MODEL +  data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
-			free(gpu_vendors[CURRENT]);
 		}
 	}
 
@@ -727,40 +738,44 @@ static int find_devices(Labels *data)
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
 {
-	int ret = -1;
-	double temp = 0.0;
+	int err = 0, ret;
+	double divisor = 1.0;
+	uint8_t i, fglrx_count = 0, nvidia_count = 0;
 	char *buff = NULL;
-	DIR *dp = NULL;
-	struct dirent *dir;
+	//DIR *dp = NULL;
+	//struct dirent *dir;
 
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
-	if(!popen_to_str(&buff, "nvidia-settings -q GPUCoreTemp -t") || /* NVIDIA closed source driver */
-	   !popen_to_str(&buff, "aticonfig --odgt | grep Sensor | awk '{ print $5 }'")) /* AMD closed source driver */
-		temp = atof(buff);
-	else /* Open source drivers */
+	for(i = 0; i < data->gpu_count; i++)
 	{
-		if((dp = opendir(format("%s%i/device/hwmon/", SYS_DRM, 0))))
+		if(data->g_data->gpu_driver[i] == GPUDRV_FGLRX)
+			ret = popen_to_str(&buff, "aticonfig --adapter=%u --odgt | grep Sensor | awk '{ print $5 }'", fglrx_count++);
+		else if(data->g_data->gpu_driver[i] == GPUDRV_NVIDIA)
+			ret = popen_to_str(&buff, "nvidia-settings -q [gpu:%u]/GPUCoreTemp -t", nvidia_count++);
+		else if((data->g_data->gpu_driver[i] == GPUDRV_AMDGPU) ||
+		        (data->g_data->gpu_driver[i] == GPUDRV_RADEON) ||
+		        (data->g_data->gpu_driver[i] == GPUDRV_NOUVEAU))
 		{
-			while(((dir = readdir(dp)) != NULL) && (ret))
-			{
-				if(!(ret = fopen_to_str(&buff, "%s%i/device/hwmon/%s/temp1_input", SYS_DRM, 0, dir->d_name)))
-					temp = atof(buff) / 1000.0;
-			}
-			closedir(dp);
+			//TODO: iterate over hwmonN (use get_sensor_path()?)
+			ret = fopen_to_str(&buff, "%s/hwmon/hwmon0/temp1_input", data->g_data->device_path[i]);
+			divisor = 1000.0;
 		}
-	}
-	free(buff);
+		else
+			continue; // Unsupported feature, like GPUDRV_INTEL
 
-	if(temp)
-	{
-		casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE], true, "%.2f°C", temp);
-		return 0;
+		if(!ret)
+			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2f°C", atof(buff) / divisor);
+		else
+			err++;
+
+		free(buff);
+		buff = NULL;
 	}
-	else
-	{
+
+	if(err)
 		MSG_ERROR(_("failed to retrieve GPU temperature"));
-		return 1;
-	}
+
+	return err;
 }
 
 /* Satic elements for System tab, OS specific */

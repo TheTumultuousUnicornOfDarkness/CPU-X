@@ -158,6 +158,14 @@ enum EnTabGraphics
 	LASTGRAPHICS
 };
 
+enum EnGpuDrv
+{
+	GPUDRV_FGLRX, GPUDRV_AMDGPU, GPUDRV_RADEON, // AMD
+	GPUDRV_INTEL,                               // Intel
+	GPUDRV_NVIDIA, GPUDRV_NOUVEAU,              // NVIDIA
+	GPUDRV_UNKNOWN
+};
+
 enum EnTabBench
 {
 	PRIMESLOWSCORE, PRIMESLOWRUN,
@@ -198,6 +206,12 @@ typedef struct
 
 typedef struct
 {
+	enum EnGpuDrv gpu_driver[LASTGRAPHICS / GPUFIELDS];
+	char *device_path[LASTGRAPHICS / GPUFIELDS];
+} GraphicsData;
+
+typedef struct
+{
 	bool     run, fast_mode;
 	unsigned duration, threads;
 	uint32_t primes, start, elapsed;
@@ -225,6 +239,7 @@ typedef struct
 	LibcpuidData  *l_data;
 	BandwidthData *w_data;
 	MemoryData    *m_data;
+	GraphicsData  *g_data;
 	BenchData     *b_data;
 } Labels;
 
