@@ -56,6 +56,7 @@ const Technology_DB technology_intel[] =
 	{  6,           6,          15,          65 }, // P4 Cedar Mill / PD Presler
 	{  6,          22,          -1,          65 }, // C2 Conroe-L
 	{  6,          54,          -1,          32 }, // Atom Cedarview
+	{  6,          70,          -1,          22 }, // Haswell (Crystalwell, L4 cache)
 	{  7,           7,          -1,         250 }, // PIII Katmai
 	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          22 }, // Atom Bay Trail
@@ -74,12 +75,16 @@ const Technology_DB technology_intel[] =
 	{ 12,          76,          -1,          14 }, // Atom Cherry Trail
 	{ 13,          13,          -1,          90 }, // Pentium M Dothan
 	{ 13,          45,          -1,          32 }, // Sandy Bridge-E
-	{ 13,          61,          -1,          14 }, // Broadwell
+	{ 13,          61,          -1,          14 }, // Broadwell-U
 	{ 14,          14,          -1,          65 }, // Yonah (Core Solo)
+	{ 14,          30,          -1,          45 }, // Nehalem (Lynnfield)
 	{ 14,          62,          -1,          22 }, // Ivy Bridge-E
+	{ 14,          78,          -1,          14 }, // Skylake
 	{ 14,          94,          -1,          14 }, // Skylake
+	{ 14,         158,          -1,          14 }, // Kaby Lake
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          22 }, // Haswell-E
+	{ 15,          79,          -1,          14 }, // Broadwell-E
 	{ -1,          -1,          -1,          -1 }
 	//Model        E. Model     E. Family   Process
 };
@@ -87,20 +92,35 @@ const Technology_DB technology_intel[] =
 const Technology_DB technology_amd[] =
 {
 	//Model        E. Model     E. Family   Process
-	{  0,           0,          -1,          28 }, // Jaguar (Kabini)
-	{  0,          10,          -1,          32 }, // Piledriver (Trinity)
-	{  0,          -1,          21,          28 }, // Steamroller (Kaveri)
-	{  0,          -1,          22,          28 }, // Puma (Mullins)
-	{  1,           1,          -1,          32 }, // K10 (Llano)
-	{  1,          60,          -1,          28 }, // Excavator (Carrizo)
-	{  1,          -1,          20,          40 }, // Bobcat
-	{  2,          -1,          20,          40 }, // Bobcat
-	{  3,          13,          -1,          32 }, // Piledriver (Richland)
-	{  3,          35,          15,          90 }, // Toledo
-	{  4,           4,          -1,          45 }, // Deneb
-	{  8,          -1,          15,          65 }, // Tyler
-	{  8,          -1,          21,          28 }, // Steamroller (Kaveri)
-	{  15,         79,          15,          90 }, // Manila
+	{  0,          16,          21,          32 }, // Bulldozer (Piledriver: Trinity)
+	{  0,          48,          21,          28 }, // Bulldozer (Steamroller: Kaveri)
+	{  0,         112,          21,          28 }, // Bulldozer (Excavator: Stoney Ridge)
+	{  0,          -1,          22,          28 }, // Jaguar (Kabini/Mullins)
+	{  1,          -1,          18,          32 }, // K10 (Llano)
+	{  1,          -1,          20,          40 }, // Bobcat (Brazos Zacate)
+	{  1,           1,          21,          32 }, // Bulldozer
+	{  1,          96,          21,          28 }, // Bulldozer (Excavator: Carrizo)
+	{  1,          -1,          23,          14 }, // Zen (Summit Ridge)
+	{  2,          -1,          16,          65 }, // K10 (Kuma/Agena)
+	{  2,          -1,          20,          40 }, // Bobcat (Brazos Desna/Ontario)
+	{  2,          -1,          21,          32 }, // Bulldozer (Piledriver: Vishera)
+	{  3,          -1,          15,          90 }, // K8 (Toledo)
+	{  3,          -1,          21,          32 }, // Bulldozer (Piledriver: Richland)
+	{  4,          -1,          15,          90 }, // K8 (Lancaster)
+	{  4,          -1,          16,          45 }, // K10 (Deneb/Heka)
+	{  5,          -1,          16,          45 }, // K10 (Propus)
+	{  5,          -1,          21,          28 }, // Bulldozer (Excavator: Bristol Ridge)
+	{  6,          -1,          16,          45 }, // K10 (Champlain/Sargas/Regor)
+	{  8,          -1,           6,         130 }, // K7 (Thoroughbred/Applebred)
+	{  8,          -1,          15,          65 }, // K8 (Tyler)
+	{  8,          -1,          21,          28 }, // Bulldozer (Steamroller: Godavari)
+	{  9,          -1,          16,          45 }, // Magny-Cours (Opteron)
+	{ 10,          -1,           6,         130 }, // K7 (Barton)
+	{ 10,          -1,          16,          45 }, // K10 (Thuban)
+	{ 11,          -1,          15,          65 }, // K8 (Brisbane)
+	{ 12,          -1,          15,          90 }, // K8 (Venice/Sonora)
+	{ 15,          79,          15,          90 }, // K8 (Manila)
+	{ 15,         127,          15,          65 }, // K8 (Sparta)
 	{ -1,          -1,          -1,          -1 }
 	//Model        E. Model     E. Family   Process
 };
