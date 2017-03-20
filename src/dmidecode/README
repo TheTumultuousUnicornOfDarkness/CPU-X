@@ -28,7 +28,7 @@ and other interesting material, such as a list of related projects and
 articles.
 
 This program was first written for Linux, and has since been reported to work
-on FreeBSD, NetBSD, OpenBSD, BeOS, Cygwin and Solaris as well.
+on FreeBSD, NetBSD, OpenBSD, BeOS and Solaris as well.
 
 There's no configure script, so simply run "make" to build dmidecode, and
 "make install" to install it. You also can use "make uninstall" to remove
@@ -83,9 +83,8 @@ successfully run.
 
 CYGWIN
 
-Dmidecode was reported to work under Cygwin. It seems that /dev/mem doesn't
-work properly before version 1.5.10 though, so you will need to use at least
-this version.
+Dmidecode used to work under Cygwin. However the /dev/mem interface was
+removed at some point in time so it no longer works.
 
 
 ** MISCELLANEOUS TOOLS **

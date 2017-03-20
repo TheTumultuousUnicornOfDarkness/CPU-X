@@ -1,3 +1,18 @@
+2017-01-20  Jean Delvare  <jdelvare@suse.de>
+
+	* biosdecode.c: Decode the entry point defined in the Intel
+	  Multiprocessor specification.
+
+2017-01-20  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Only decode one DMI table.
+	  This fixes Savannah bug #50022:
+	  https://savannah.nongnu.org/bugs/?50022
+
+2016-09-22  Jean Delvare  <jdelvare@suse.de>
+
+	* README: Explain that we can no longer support Cygwin.
+
 2016-06-30  Petr Oros  <poros@redhat.com>
 
 	* dmidecode.c: Unmask LRDIMM in memory type detail (DMI type 17).

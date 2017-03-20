@@ -5015,28 +5015,37 @@ memory_scan:
 		goto exit_free;
 	}
 
-	for (fp = 0; fp <= 0xFFF0; fp += 16)
+	/* Look for a 64-bit entry point first */
+	for (fp = 0; fp <= 0xFFE0; fp += 16)
 	{
-		if (memcmp(buf + fp, "_SM3_", 5) == 0 && fp <= 0xFFE0)
+		if (memcmp(buf + fp, "_SM3_", 5) == 0)
 		{
 			if (smbios3_decode(buf + fp, opt.devmem, 0))
 			{
 				found++;
-				fp += 16;
+				goto done;
 			}
 		}
-		else if (memcmp(buf + fp, "_SM_", 4) == 0 && fp <= 0xFFE0)
+	}
+
+	/* If none found, look for a 32-bit entry point */
+	for (fp = 0; fp <= 0xFFF0; fp += 16)
+	{
+		if (memcmp(buf + fp, "_SM_", 4) == 0 && fp <= 0xFFE0)
 		{
 			if (smbios_decode(buf + fp, opt.devmem, 0))
 			{
 				found++;
-				fp += 16;
+				goto done;
 			}
 		}
 		else if (memcmp(buf + fp, "_DMI_", 5) == 0)
 		{
 			if (legacy_decode(buf + fp, opt.devmem, 0))
+			{
 				found++;
+				goto done;
+			}
 		}
 	}
 
