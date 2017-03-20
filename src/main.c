@@ -446,10 +446,11 @@ static const struct
 	char       *description;
 } cpux_env_vars[] =
 {
-	{ HAS_LIBCURL,  "CPUX_NETWORK",   N_("Temporarily disable network support")   },
-	{ true,         "CPUX_BCLK",      N_("Enforce the bus clock") },
-	{ HAS_LIBCPUID, "CPUX_CPUID_RAW", N_("Read CPUID raw data from a given file") },
-	{ true,         NULL,             NULL                                        }
+	{ HAS_LIBCURL,  "CPUX_NETWORK",        N_("Temporarily disable network support")                     },
+	{ true,         "CPUX_BCLK",           N_("Enforce the bus clock")                                   },
+	{ HAS_LIBCPUID, "CPUX_CPUID_RAW",      N_("Read CPUID raw data from a given file")                   },
+	{ HAS_LIBCPUID, "CPUX_DEBUG_DATABASE", N_("Only print a message if CPU does not belong in database") },
+	{ true,         NULL,                  NULL                                                               }
 };
 
 /* This is help display with --help option */
@@ -471,7 +472,7 @@ static void help(void)
 	for(i = 0; cpux_env_vars[i].var_name != NULL; i++)
 	{
 		if(cpux_env_vars[i].has_mod)
-			MSG_STDOUT("  %-16s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
+			MSG_STDOUT("  %-20s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
 	}
 }
 
@@ -618,6 +619,8 @@ static void check_environment_variables(Labels *data)
 		data->bus_freq = atof(getenv("CPUX_BCLK"));
 	if(getenv("CPUX_CPUID_RAW"))
 		data->l_data->cpuid_raw_file = getenv("CPUX_CPUID_RAW");
+	if(getenv("CPUX_DEBUG_DATABASE"))
+		opts->debug_database = ((atoi(getenv("CPUX_DEBUG_DATABASE"))) > 0);
 }
 
 
@@ -763,15 +766,16 @@ int main(int argc, char *argv[])
 	};
 	opts = &(Options)
 	{
-		.color         = true,
-		.verbose       = false,
-		.issue         = false,
-		.use_network   = true,
-		.update        = false,
-		.selected_page = 0,
-		.selected_core = 0,
-		.bw_test       = 0,
-		.refr_time     = 1
+		.color          = true,
+		.verbose        = false,
+		.issue          = false,
+		.use_network    = true,
+		.update         = false,
+		.debug_database = false,
+		.selected_page  = 0,
+		.selected_core  = 0,
+		.bw_test        = 0,
+		.refr_time      = 1
 	};
 
 	set_locales();

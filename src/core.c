@@ -163,6 +163,7 @@ static int err_func(int (*func)(Labels *), Labels *data)
 }
 
 #if HAS_LIBCPUID
+#define RETURN_OR_EXIT(e) { if(opts->debug_database) exit(e); else return e; }
 /* Get CPU technology, in nanometre (nm) */
 static int cpu_technology(Labels *data)
 {
@@ -171,7 +172,7 @@ static int cpu_technology(Labels *data)
 	LibcpuidData *l_data = data->l_data;
 
 	if(l_data->cpu_vendor_id < 0 || l_data->cpu_model < 0 || l_data->cpu_ext_model < 0 || l_data->cpu_ext_family < 0)
-		return 1;
+		RETURN_OR_EXIT(1);
 
 	MSG_VERBOSE(_("Finding CPU technology"));
 	if(l_data->cpu_vendor_id == VENDOR_INTEL)
@@ -188,13 +189,13 @@ static int cpu_technology(Labels *data)
 		  ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == l_data->cpu_ext_family)))
 		{
 			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", db[i].process);
-			return 0;
+			RETURN_OR_EXIT(0);
 		}
 	}
 
 	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
 	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
-	return 2;
+	RETURN_OR_EXIT(2);
 }
 
 /* Static elements provided by libcpuid */
