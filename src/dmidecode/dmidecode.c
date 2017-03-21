@@ -58,7 +58,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "version.h"
 #include "config.h"
 #include "types.h"
 #include "util.h"

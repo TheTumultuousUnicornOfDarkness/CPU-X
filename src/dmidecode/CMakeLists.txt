@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "3.0.20160907")
+set(LOCALVERSION "3.0.20170120")
 if(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	cmake_policy(SET CMP0048 NEW)
 	project(dmidecode
@@ -19,6 +19,7 @@ message(STATUS "Using built-in ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
 
 # Build (dmidecode)
+add_definitions(-DVERSION="${PROJECT_VERSION}")
 add_library(dmidecode
 	STATIC
 	types.h
