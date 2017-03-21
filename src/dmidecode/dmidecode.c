@@ -67,7 +67,7 @@
 #include "libdmi.h"
 
 #define out_of_spec "<OUT OF SPEC>"
-static const char *bad_index = "<BAD INDEX>";
+static const char *bad_index = "";
 
 #define SUPPORTED_SMBIOS_VER 0x0300
 
