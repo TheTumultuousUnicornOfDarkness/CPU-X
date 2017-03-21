@@ -90,17 +90,23 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 }
 
 /* Return a formatted string */
+#define BUFFER_COUNT 5
 char *format(char *str, ...)
 {
-	static char *buff = NULL;
+	static unsigned count = 0;
+	static char *buff[BUFFER_COUNT] = { NULL };
 	va_list aptr;
 
-	free(buff);
+	count++;
+	const unsigned index = count % BUFFER_COUNT;
+	if(count >= BUFFER_COUNT)
+		free(buff[index]);
+
 	va_start(aptr, str);
-	vasprintf(&buff, str, aptr);
+	vasprintf(&buff[index], str, aptr);
 	va_end(aptr);
 
-	return buff;
+	return buff[index];
 }
 
 /* Check if a command exists */
