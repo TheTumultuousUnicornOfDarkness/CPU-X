@@ -286,6 +286,10 @@ int popen_to_str(char **buffer, char *str, ...);
 /* Load a kernel module */
 bool load_module(char *module);
 
+/* Get a filename located in a directory corresponding to given request */
+enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE };
+int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
+
 
 /***************************** External headers *****************************/
 

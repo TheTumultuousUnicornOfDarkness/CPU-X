@@ -30,7 +30,10 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <errno.h>
+#include <dirent.h>
+#include <regex.h>
 #include <libintl.h>
+#include <sys/types.h>
 #include "cpu-x.h"
 
 
@@ -211,4 +214,131 @@ bool load_module(char *module)
 #else
 	return false;
 #endif
+}
+
+/* Search a sensor filename in a given directory corresponding to regex */
+static int get_sensor_path(char *dir_path, regex_t *regex_filename, regex_t *regex_label, char **cached_path)
+{
+	int err     = 1;
+	char *label = NULL;
+	DIR *dp     = NULL;
+	struct dirent *dir;
+
+	/* Open given directory */
+	if((dp = opendir(dir_path)) == NULL)
+	{
+		MSG_ERROR(_("failed to open %s directory"), dir_path);
+		return 1;
+	}
+
+	while(((dir = readdir(dp)) != NULL) && err)
+	{
+		/* Ignore hidden files and files not mathing pattern */
+		if((dir->d_name[0] == '.') || regexec(regex_filename, dir->d_name, 0, NULL, 0))
+			continue;
+
+		if(regex_label != NULL)
+		{
+			/* Open the label file */
+			if(fopen_to_str(&label, "%s/%s", dir_path, dir->d_name))
+				continue;
+
+			/* Check if label matchs with pattern */
+			if(regexec(regex_label, label, 0, NULL, 0))
+				continue;
+		}
+
+		/* Try to open the corresponding file */
+		strtok(dir->d_name, "_");
+		casprintf(cached_path, false, "%s/%s_input", dir_path, dir->d_name);
+		err = access(*cached_path, R_OK);
+	}
+
+	closedir(dp);
+	free(label);
+
+	return err;
+}
+
+/* Get a filename located in a directory corresponding to given request */
+int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which)
+{
+	int err      = 1;
+	char *sensor = NULL;
+	char *path   = NULL;
+	DIR *dp      = NULL;
+	struct dirent *dir;
+	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in;
+	regex_t regex_label_coreN, regex_label_other;
+
+	if((dp = opendir(base_dir)) == NULL)
+	{
+		MSG_ERROR(_("failed to open %s directory"), base_dir);
+		return 1;
+	}
+
+	if(regcomp(&regex_filename_temp_in,  "temp1_input",                                     REG_NOSUB)             ||
+	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
+	   regcomp(&regex_filename_in_in,    "in0_input",                                       REG_NOSUB)             ||
+	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
+	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
+	{
+		MSG_ERROR(_("an error occurred while compiling regex"));
+		return 2;
+	}
+
+	while(((dir = readdir(dp)) != NULL) && err)
+	{
+		/* Ignore hidden files */
+		if(dir->d_name[0] == '.')
+			continue;
+
+		/* Find sensor name */
+		if(fopen_to_str(&sensor, "%s/%s/name", base_dir, dir->d_name))
+			continue;
+
+		/* Browse files in directory */
+		casprintf(&path, false, "%s/%s", base_dir, dir->d_name);
+		if(which == RQT_CPU_TEMPERATURE)
+		{
+			if(strstr(sensor, "coretemp") != NULL)
+				/* 'sensors' output:
+				Package id 0:  +37.0°C  (high = +80.0°C, crit = +98.0°C)
+				Core 0:        +33.0°C  (high = +80.0°C, crit = +98.0°C)
+				Core 1:        +34.0°C  (high = +80.0°C, crit = +98.0°C)
+				Core 2:        +36.0°C  (high = +80.0°C, crit = +98.0°C)
+				Core 3:        +37.0°C  (high = +80.0°C, crit = +98.0°C) */
+				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
+			else if(strstr(sensor, "k8temp") != NULL)
+				/* 'sensors' output:
+				Core0 Temp:    +64.0°C
+				Core0 Temp:    +63.0°C
+				Core1 Temp:    +64.0°C
+				Core1 Temp:    +64.0°C */
+				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
+			else if(strstr(sensor, "k10temp") != NULL)
+				/* 'sensors' output:
+				temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
+				err = get_sensor_path(path, &regex_filename_temp_in,  NULL,               cached_path);
+		}
+		else if(which == RQT_CPU_TEMPERATURE_OTHERS)
+			err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_other, cached_path);
+		else if(which == RQT_CPU_VOLTAGE)
+			/* 'sensors' output:
+			Vcore:         +0.88 V  (min =  +0.80 V, max =  +1.38 V) */
+			err = get_sensor_path(path, &regex_filename_in_in,    NULL,               cached_path);
+		else if(which == RQT_GPU_TEMPERATURE)
+			err = get_sensor_path(path, &regex_filename_temp_in,  NULL,               cached_path);
+	}
+
+	closedir(dp);
+	free(sensor);
+	free(path);
+	regfree(&regex_filename_temp_in);
+	regfree(&regex_filename_temp_lab);
+	regfree(&regex_filename_in_in);
+	regfree(&regex_label_coreN);
+	regfree(&regex_label_other);
+
+	return err;
 }

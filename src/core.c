@@ -30,12 +30,9 @@
 #include <time.h>
 #include <math.h>
 #include <pthread.h>
-#include <dirent.h>
-#include <regex.h>
 #include <locale.h>
 #include <libintl.h>
 #include <sys/utsname.h>
-#include <sys/types.h>
 #include "core.h"
 #include "cpu-x.h"
 
@@ -743,12 +740,12 @@ static int gpu_temperature(Labels *data)
 	double divisor = 1.0;
 	uint8_t i, fglrx_count = 0, nvidia_count = 0;
 	char *buff = NULL;
-	//DIR *dp = NULL;
-	//struct dirent *dir;
+	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
+		ret = 0;
 		if(data->g_data->gpu_driver[i] == GPUDRV_FGLRX)
 			ret = popen_to_str(&buff, "aticonfig --adapter=%u --odgt | grep Sensor | awk '{ print $5 }'", fglrx_count++);
 		else if(data->g_data->gpu_driver[i] == GPUDRV_NVIDIA)
@@ -757,9 +754,12 @@ static int gpu_temperature(Labels *data)
 		        (data->g_data->gpu_driver[i] == GPUDRV_RADEON) ||
 		        (data->g_data->gpu_driver[i] == GPUDRV_NOUVEAU))
 		{
-			//TODO: iterate over hwmonN (use get_sensor_path()?)
-			ret = fopen_to_str(&buff, "%s/hwmon/hwmon0/temp1_input", data->g_data->device_path[i]);
 			divisor = 1000.0;
+			if(cached_paths[i] == NULL)
+				ret = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_TEMPERATURE);
+
+			if(!ret && (cached_paths[i] != NULL))
+				fopen_to_str(&buff, cached_paths[i]);
 		}
 		else
 			continue; // Unsupported feature, like GPUDRV_INTEL
@@ -1135,131 +1135,6 @@ static int fallback_mode_static(Labels *data)
 
 /************************* Fallback functions (dynamic) *************************/
 
-enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE };
-
-static int get_sensor_path(char *dir_path, regex_t *regex_filename, regex_t *regex_label, char **cached_path)
-{
-	int err     = 1;
-	char *label = NULL;
-	DIR *dp     = NULL;
-	struct dirent *dir;
-
-	/* Open given directory */
-	if((dp = opendir(dir_path)) == NULL)
-	{
-		MSG_ERROR(_("failed to open %s directory"), dir_path);
-		return 1;
-	}
-
-	while(((dir = readdir(dp)) != NULL) && err)
-	{
-		/* Ignore hidden files and files not mathing pattern */
-		if((dir->d_name[0] == '.') || regexec(regex_filename, dir->d_name, 0, NULL, 0))
-			continue;
-
-		if(regex_label != NULL)
-		{
-			/* Open the label file */
-			if(fopen_to_str(&label, "%s/%s", dir_path, dir->d_name))
-				continue;
-
-			/* Check if label matchs with pattern */
-			if(regexec(regex_label, label, 0, NULL, 0))
-				continue;
-		}
-
-		/* Try to open the corresponding file */
-		strtok(dir->d_name, "_");
-		casprintf(cached_path, false, "%s/%s_input", dir_path, dir->d_name);
-		err = access(*cached_path, R_OK);
-	}
-
-	closedir(dp);
-	free(label);
-
-	return err;
-}
-
-static int request_sensor_path(char **cached_path, enum RequestSensor which)
-{
-	int err      = 1;
-	char *sensor = NULL;
-	char *path   = NULL;
-	DIR *dp      = NULL;
-	struct dirent *dir;
-	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in;
-	regex_t regex_label_coreN, regex_label_other;
-
-	if((dp = opendir(SYS_HWMON)) == NULL)
-	{
-		MSG_ERROR(_("failed to open %s directory"), SYS_HWMON);
-		return 1;
-	}
-
-	if(regcomp(&regex_filename_temp_in,  "temp1_input",                                     REG_NOSUB)             ||
-	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
-	   regcomp(&regex_filename_in_in,    "in0_input",                                       REG_NOSUB)             ||
-	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
-	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
-	{
-		MSG_ERROR(_("an error occurred while compiling regex"));
-		return 2;
-	}
-
-	while(((dir = readdir(dp)) != NULL) && err)
-	{
-		/* Ignore hidden files */
-		if(dir->d_name[0] == '.')
-			continue;
-
-		/* Find sensor name */
-		if(fopen_to_str(&sensor, "%s/%s/name", SYS_HWMON, dir->d_name))
-			continue;
-
-		/* Browse files in directory */
-		casprintf(&path, false, "%s/%s", SYS_HWMON, dir->d_name);
-		if(which == RQT_CPU_TEMPERATURE)
-		{
-			if(strstr(sensor, "coretemp") != NULL)
-				/* 'sensors' output:
-				Package id 0:  +37.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 0:        +33.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 1:        +34.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 2:        +36.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 3:        +37.0°C  (high = +80.0°C, crit = +98.0°C) */
-				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
-			else if(strstr(sensor, "k8temp") != NULL)
-				/* 'sensors' output:
-				Core0 Temp:    +64.0°C
-				Core0 Temp:    +63.0°C
-				Core1 Temp:    +64.0°C
-				Core1 Temp:    +64.0°C */
-				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
-			else if(strstr(sensor, "k10temp") != NULL)
-				/* 'sensors' output:
-				temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
-				err = get_sensor_path(path, &regex_filename_temp_in,  NULL,               cached_path);
-		}
-		else if(which == RQT_CPU_TEMPERATURE_OTHERS)
-			err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_other, cached_path);
-		else if(which == RQT_CPU_VOLTAGE)
-			/* 'sensors' output:
-			Vcore:         +0.88 V  (min =  +0.80 V, max =  +1.38 V) */
-			err = get_sensor_path(path, &regex_filename_in_in,    NULL,               cached_path);
-	}
-
-	closedir(dp);
-	free(sensor);
-	free(path);
-	regfree(&regex_filename_temp_in);
-	regfree(&regex_filename_temp_lab);
-	regfree(&regex_filename_in_in);
-	regfree(&regex_label_coreN);
-	regfree(&regex_label_other);
-
-	return err;
-}
-
 /* Retrieve CPU temperature if run as regular user */
 static int cputab_temp_fallback(Labels *data)
 {
@@ -1284,8 +1159,8 @@ static int cputab_temp_fallback(Labels *data)
 	if(cached_paths == NULL)
 		cached_paths = calloc(data->cpu_count, sizeof(char *));
 	if(!cached_paths[opts->selected_core])
-		if((err = request_sensor_path(&cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE)))
-			err = request_sensor_path(&cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE_OTHERS);
+		if((err = request_sensor_path(SYS_HWMON, &cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE)))
+			err = request_sensor_path(SYS_HWMON, &cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE_OTHERS);
 
 	if(!err && cached_paths[opts->selected_core])
 	{
@@ -1310,7 +1185,7 @@ static int cputab_volt_fallback(Labels *data)
 
 	MSG_VERBOSE(_("Retrieving CPU voltage in fallback mode"));
 	if(cached_path == NULL)
-		err = request_sensor_path(&cached_path, RQT_CPU_VOLTAGE);
+		err = request_sensor_path(SYS_HWMON, &cached_path, RQT_CPU_VOLTAGE);
 
 	if(!err && (cached_path != NULL))
 	{
