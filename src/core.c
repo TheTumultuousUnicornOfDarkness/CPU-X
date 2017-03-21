@@ -736,10 +736,12 @@ static int find_devices(Labels *data)
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
 {
-	int err = 0, ret;
+	int ret;
+	unsigned failed_count = 0;
 	double divisor = 1.0;
 	uint8_t i, fglrx_count = 0, nvidia_count = 0;
 	char *buff = NULL;
+	static bool once_error = true;
 	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
@@ -767,16 +769,17 @@ static int gpu_temperature(Labels *data)
 		if(!ret)
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2f°C", atof(buff) / divisor);
 		else
-			err++;
+			failed_count++;
 
 		free(buff);
 		buff = NULL;
 	}
 
-	if(err)
+	if(once_error && failed_count)
 		MSG_ERROR(_("failed to retrieve GPU temperature"));
+	once_error = false;
 
-	return err;
+	return (failed_count == data->gpu_count);
 }
 
 /* Satic elements for System tab, OS specific */
