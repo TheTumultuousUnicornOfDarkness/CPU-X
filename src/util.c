@@ -109,6 +109,20 @@ char *format(char *str, ...)
 	return buff[index];
 }
 
+/* Similar to format(), but string can be colorized */
+char *colorized_msg(const char *color, const char *str, ...)
+{
+	static char *buff;
+	va_list aptr;
+
+	free(buff);
+	va_start(aptr, str);
+	vasprintf(&buff, format("%s%s%s\n", opts->color ? color : DEFAULT, str, DEFAULT), aptr);
+	va_end(aptr);
+
+	return buff;
+}
+
 /* Check if a command exists */
 bool command_exists(char *command)
 {

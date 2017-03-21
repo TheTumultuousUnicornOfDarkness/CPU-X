@@ -48,15 +48,13 @@
 #define BOLD_BLUE             "\x1b[1;34m"
 
 /* Formatted messages definition */
-#define FMT_STD               "%s\n" DEFAULT
-#define FMT_ERR               "%s:%s:%i: "
-#define BASEFILE              (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define MSG_STDOUT(fmt, ...)  fprintf(stdout, format(FMT_STD, fmt),                ##__VA_ARGS__)
-#define MSG_STDERR(fmt, ...)  fprintf(stderr, format(FMT_STD, fmt),                ##__VA_ARGS__)
-#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, format(BOLD_GREEN FMT_STD, fmt),  ##__VA_ARGS__) : 0
-#define MSG_WARNING(fmt, ...) fprintf(stdout, format(BOLD_YELLOW FMT_STD, fmt),    ##__VA_ARGS__)
-#define MSG_ERROR(fmt, ...)   fprintf(stderr, format(BOLD_RED FMT_ERR FMT_STD,     PRGNAME, BASEFILE, __LINE__, fmt), ##__VA_ARGS__)
-#define MSG_ERRNO(fmt, ...)   fprintf(stderr, format(BOLD_RED FMT_ERR "%s (%s)\n", PRGNAME, BASEFILE, __LINE__, fmt, strerror(errno)), ##__VA_ARGS__)
+#define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
+#define MSG_STDOUT(fmt, ...)  fprintf(stdout, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
+#define MSG_STDERR(fmt, ...)  fprintf(stderr, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
+#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, colorized_msg(BOLD_GREEN, "%s", fmt), ##__VA_ARGS__) : 0
+#define MSG_WARNING(fmt, ...) fprintf(stdout, colorized_msg(BOLD_YELLOW, "%s", fmt), ##__VA_ARGS__)
+#define MSG_ERROR(fmt, ...)   fprintf(stderr, colorized_msg(BOLD_RED, "%s:%s:%i: %s",      LOCATION, fmt), ##__VA_ARGS__)
+#define MSG_ERRNO(fmt, ...)   fprintf(stderr, colorized_msg(BOLD_RED, "%s:%s:%i: %s (%s)", LOCATION, fmt, strerror(errno)), ##__VA_ARGS__)
 #define _(msg)                gettext(msg)
 #define N_(msg)               msg
 
@@ -273,6 +271,9 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...);
 
 /* Return a formatted string */
 char *format(char *str, ...);
+
+/* Similar to format(), but string can be colorized */
+char *colorized_msg(const char *color, const char *str, ...);
 
 /* Check if a command exists */
 bool command_exists(char *command);
