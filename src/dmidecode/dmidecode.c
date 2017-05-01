@@ -2,7 +2,7 @@
  * DMI Decode
  *
  *   Copyright (C) 2000-2002 Alan Cox <alan@redhat.com>
- *   Copyright (C) 2002-2015 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2002-2017 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
  *   are deemed to be part of the source code.
  *
  * Unless specified otherwise, all references are aimed at the "System
- * Management BIOS Reference Specification, Version 3.0.0" document,
+ * Management BIOS Reference Specification, Version 3.1.1" document,
  * available from http://www.dmtf.org/standards/smbios.
  *
  * Note to contributors:
@@ -50,6 +50,12 @@
  *  - DMTF DSP0239 version 1.1.0
  *    "Management Component Transport Protocol (MCTP) IDs and Codes"
  *    http://www.dmtf.org/standards/pmci
+ *  - "TPM Main, Part 2 TPM Structures"
+ *    Specification version 1.2, level 2, revision 116
+ *    https://trustedcomputinggroup.org/tpm-main-specification/
+ *  - "PC Client Platform TPM Profile (PTP) Specification"
+ *    Family "2.0", Level 00, Revision 00.43, January 26, 2015
+ *    https://trustedcomputinggroup.org/pc-client-platform-tpm-profile-ptp-specification/
  */
 
 #include <stdio.h>
@@ -69,7 +75,7 @@
 #define out_of_spec "<OUT OF SPEC>"
 static const char *bad_index = "";
 
-#define SUPPORTED_SMBIOS_VER 0x0300
+#define SUPPORTED_SMBIOS_VER 0x030101
 
 #define FLAG_NO_FILE_OFFSET     (1 << 0)
 #define FLAG_STOP_AT_EOT        (1 << 1)
@@ -176,12 +182,13 @@ static const char *dmi_smbios_structure_type(u8 code)
 		"Power Supply",
 		"Additional Information",
 		"Onboard Device",
-		"Management Controller Host Interface", /* 42 */
+		"Management Controller Host Interface",
+		"TPM Device", /* 43 */
 	};
 
 	if (code >= 128)
 		return "OEM-specific";
-	if (code <= 42)
+	if (code <= 43)
 		return type[code];
 	return out_of_spec;
 }
@@ -309,6 +316,33 @@ static char *dmi_bios_runtime_size_str(u32 code)
 		sprintf(size, " %u bytes", code);
 	else
 		sprintf(size, " %u kB", code >> 10);
+
+	return size;
+}
+
+static void dmi_bios_rom_size(u8 code1, u16 code2)
+{
+	static const char *unit[4] = {
+		"MB", "GB", out_of_spec, out_of_spec
+	};
+
+	if (code1 != 0xFF)
+		printf(" %u kB", (code1 + 1) << 6);
+	else
+		printf(" %u %s", code2 & 0x3FFF, unit[code2 >> 14]);
+}
+
+static char *dmi_bios_rom_size_str(u8 code1, u16 code2)
+{
+	static char size[8];
+	static const char *unit[4] = {
+		"MB", "GB", out_of_spec, out_of_spec
+	};
+
+	if (code1 != 0xFF)
+		sprintf(size, " %u kB", (code1 + 1) << 6);
+	else
+		sprintf(size, " %u %s", code2 & 0x3FFF, unit[code2 >> 14]);
 
 	return size;
 }
@@ -571,12 +605,16 @@ static const char *dmi_chassis_type(u8 code)
 		"Blade Enclosing",
 		"Tablet",
 		"Convertible",
-		"Detachable" /* 0x20 */
+		"Detachable",
+		"IoT Gateway",
+		"Embedded PC",
+		"Mini PC",
+		"Stick PC" /* 0x24 */
 	};
 
 	code &= 0x7F; /* bits 6:0 are chassis type, 7th bit is the lock bit */
 
-	if (code >= 0x01 && code <= 0x20)
+	if (code >= 0x01 && code <= 0x24)
 		return type[code - 0x01];
 	return out_of_spec;
 }
@@ -738,7 +776,9 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x2A, "Core Solo Mobile" },
 		{ 0x2B, "Atom" },
 		{ 0x2C, "Core M" },
-
+		{ 0x2D, "Core m3" },
+		{ 0x2E, "Core m5" },
+		{ 0x2F, "Core m7" },
 		{ 0x30, "Alpha" },
 		{ 0x31, "Alpha 21064" },
 		{ 0x32, "Alpha 21066" },
@@ -790,6 +830,9 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x66, "Athlon X4" },
 		{ 0x67, "Opteron X1000" },
 		{ 0x68, "Opteron X2000" },
+		{ 0x69, "Opteron A-Series" },
+		{ 0x6A, "Opteron X3000" },
+		{ 0x6B, "Zen" },
 
 		{ 0x70, "Hobbit" },
 
@@ -901,6 +944,8 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0xFA, "i860" },
 		{ 0xFB, "i960" },
 
+		{ 0x100, "ARMv7" },
+		{ 0x101, "ARMv8" },
 		{ 0x104, "SH-3" },
 		{ 0x105, "SH-4" },
 		{ 0x118, "ARM" },
@@ -912,6 +957,10 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x15E, "DSP" },
 		{ 0x1F4, "Video Processor" },
 	};
+	/*
+	 * Note to developers: when adding entries to this list, check if
+	 * function dmi_processor_id below needs updating too.
+	 */
 
 	/* Special case for ambiguous value 0x30 (SMBIOS 2.0 only) */
 	if (ver == 0x0200 && data[0x06] == 0x30 && h->length >= 0x08)
@@ -964,7 +1013,7 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 	}
 }
 
-static void dmi_processor_id(u8 type, const u8 *p, const char *version, const char *prefix)
+static void dmi_processor_id(const struct dmi_header *h, const char *prefix)
 {
 	/* Intel AP-485 revision 36, table 2-4 */
 	static const char *flags[32] = {
@@ -1001,13 +1050,14 @@ static void dmi_processor_id(u8 type, const u8 *p, const char *version, const ch
 		NULL, /* 30 */
 		"PBE (Pending break enabled)" /* 31 */
 	};
-	/*
-	 * Extra flags are now returned in the ECX register when one calls
-	 * the CPUID instruction. Their meaning is explained in table 3-5, but
-	 * DMI doesn't support this yet.
-	 */
+	const u8 *data = h->data;
+	const u8 *p = data + 0x08;
 	u32 eax, edx;
 	int sig = 0;
+	u16 type;
+
+	type = (data[0x06] == 0xFE && h->length >= 0x2A) ?
+		WORD(data + 0x28) : data[0x06];
 
 	/*
 	 * This might help learn about new processors supporting the
@@ -1047,8 +1097,24 @@ static void dmi_processor_id(u8 type, const u8 *p, const char *version, const ch
 			return;
 		}
 	}
+	else if ((type >= 0x100 && type <= 0x101) /* ARM */
+	      || (type >= 0x118 && type <= 0x119)) /* ARM */
+	{
+		u32 midr = DWORD(p);
+		/*
+		 * The format of this field was not defined for ARM processors
+		 * before version 3.1.0 of the SMBIOS specification, so we
+		 * silently skip it if it reads all zeroes.
+		 */
+		if (midr == 0)
+			return;
+		printf("%sSignature: Implementor 0x%02x, Variant 0x%x, Architecture %u, Part 0x%03x, Revision %u\n",
+			prefix, midr >> 24, (midr >> 20) & 0xF,
+			(midr >> 16) & 0xF, (midr >> 4) & 0xFFF, midr & 0xF);
+		return;
+	}
 	else if ((type >= 0x0B && type <= 0x15) /* Intel, Cyrix */
-	      || (type >= 0x28 && type <= 0x2B) /* Intel */
+	      || (type >= 0x28 && type <= 0x2F) /* Intel */
 	      || (type >= 0xA1 && type <= 0xB3) /* Intel */
 	      || type == 0xB5 /* Intel */
 	      || (type >= 0xB9 && type <= 0xC7) /* Intel */
@@ -1060,12 +1126,14 @@ static void dmi_processor_id(u8 type, const u8 *p, const char *version, const ch
 	      || type == 0x1F /* AMD */
 	      || (type >= 0x38 && type <= 0x3F) /* AMD */
 	      || (type >= 0x46 && type <= 0x4F) /* AMD */
+	      || (type >= 0x66 && type <= 0x6B) /* AMD */
 	      || (type >= 0x83 && type <= 0x8F) /* AMD */
 	      || (type >= 0xB6 && type <= 0xB7) /* AMD */
 	      || (type >= 0xE4 && type <= 0xEF)) /* AMD */
 		sig = 2;
 	else if (type == 0x01 || type == 0x02)
 	{
+		const char *version = dmi_string(h, data[0x10]);
 		/*
 		 * Some X86-class CPU have family "Other" or "Unknown". In this case,
 		 * we use the version string to determine if they are known to
@@ -1083,9 +1151,14 @@ static void dmi_processor_id(u8 type, const u8 *p, const char *version, const ch
 		else
 			return;
 	}
-	else /* not X86-class */
+	else /* neither X86 nor ARM */
 		return;
 
+	/*
+	 * Extra flags are now returned in the ECX register when one calls
+	 * the CPUID instruction. Their meaning is explained in table 3-5, but
+	 * DMI doesn't support this yet.
+	 */
 	eax = DWORD(p);
 	edx = DWORD(p + 4);
 	switch (sig)
@@ -1221,10 +1294,18 @@ static const char *dmi_processor_upgrade(u8 code)
 		"Socket LGA1150",
 		"Socket BGA1168",
 		"Socket BGA1234",
-		"Socket BGA1364" /* 0x30 */
+		"Socket BGA1364",
+		"Socket AM4",
+		"Socket LGA1151",
+		"Socket BGA1356",
+		"Socket BGA1440",
+		"Socket BGA1515",
+		"Socket LGA3647-1",
+		"Socket SP3",
+		"Socket SP3r2" /* 0x38 */
 	};
 
-	if (code >= 0x01 && code <= 0x30)
+	if (code >= 0x01 && code <= 0x38)
 		return upgrade[code - 0x01];
 	return out_of_spec;
 }
@@ -1497,6 +1578,21 @@ static void dmi_cache_size(u16 code)
 		printf(" %u kB", code);
 }
 
+static void dmi_cache_size_2(u32 code)
+{
+	if (code & 0x80000000)
+	{
+		code &= 0x7FFFFFFFLU;
+		/* Use a more convenient unit for large cache size */
+		if (code >= 0x8000)
+			printf(" %u MB", code >> 4);
+		else
+			printf(" %u kB", code << 6);
+	}
+	else
+		printf(" %u kB", code);
+}
+
 static void dmi_cache_types(u16 code, const char *sep)
 {
 	/* 7.8.2 */
@@ -1733,7 +1829,10 @@ static const char *dmi_slot_type(u8 code)
 		"MXM 3.0 Type A",
 		"MXM 3.0 Type B",
 		"PCI Express 2 SFF-8639",
-		"PCI Express 3 SFF-8639" /* 0x20 */
+		"PCI Express 3 SFF-8639",
+		"PCI Express Mini 52-pin with bottom-side keep-outs",
+		"PCI Express Mini 52-pin without bottom-side keep-outs",
+		"PCI Express Mini 76-pin" /* 0x23 */
 	};
 	static const char *type_0xA0[] = {
 		"PC-98/C20", /* 0xA0 */
@@ -1765,7 +1864,7 @@ static const char *dmi_slot_type(u8 code)
 	 * function dmi_slot_id below needs updating too.
 	 */
 
-	if (code >= 0x01 && code <= 0x20)
+	if (code >= 0x01 && code <= 0x23)
 		return type[code - 0x01];
 	if (code >= 0xA0 && code <= 0xB6)
 		return type_0xA0[code - 0xA0];
@@ -1847,6 +1946,9 @@ static void dmi_slot_id(u8 code1, u8 code2, u8 type, const char *prefix)
 		case 0x13: /* AGP */
 		case 0x1F: /* PCI Express 2 */
 		case 0x20: /* PCI Express 3 */
+		case 0x21: /* PCI Express Mini */
+		case 0x22: /* PCI Express Mini */
+		case 0x23: /* PCI Express Mini */
 		case 0xA5: /* PCI Express */
 		case 0xA6: /* PCI Express */
 		case 0xA7: /* PCI Express */
@@ -2449,7 +2551,7 @@ static void dmi_memory_device_speed(u16 code)
 	if (code == 0)
 		printf(" Unknown");
 	else
-		printf(" %u MHz", code);
+		printf(" %u MT/s", code);
 }
 
 /*
@@ -3269,6 +3371,57 @@ static const char *dmi_management_controller_host_type(u8 code)
 }
 
 /*
+ * 7.44 TPM Device (Type 43)
+ */
+
+static void dmi_tpm_vendor_id(const u8 *p)
+{
+	char vendor_id[5];
+	int i;
+
+	/* ASCII filtering */
+	for (i = 0; i < 4 && p[i] != 0; i++)
+	{
+		if (p[i] < 32 || p[i] >= 127)
+			vendor_id[i] = '.';
+		else
+			vendor_id[i] = p[i];
+	}
+
+	/* Terminate the string */
+	vendor_id[i] = '\0';
+
+	printf(" %s", vendor_id);
+}
+
+static void dmi_tpm_characteristics(u64 code, const char *prefix)
+{
+	/* 7.1.1 */
+	static const char *characteristics[] = {
+		"TPM Device characteristics not supported", /* 2 */
+		"Family configurable via firmware update",
+		"Family configurable via platform software support",
+		"Family configurable via OEM proprietary mechanism" /* 5 */
+	};
+	int i;
+
+	/*
+	 * This isn't very clear what this bit is supposed to mean
+	 */
+	if (code.l & (1 << 2))
+	{
+		printf("%s%s\n",
+			prefix, characteristics[0]);
+		return;
+	}
+
+	for (i = 3; i <= 5; i++)
+		if (code.l & (1 << i))
+			printf("%s%s\n",
+				prefix, characteristics[i - 2]);
+}
+
+/*
  * Main
  */
 
@@ -3287,9 +3440,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				casprintf(dmidata[DMI_MB][BRAND],       false, "%s", dmi_string(h, data[0x04]));
 				casprintf(dmidata[DMI_MB][BIOSVERSION], false, "%s", dmi_string(h, data[0x05]));
 				casprintf(dmidata[DMI_MB][DATE],        false, "%s", dmi_string(h, data[0x08]));
-				casprintf(dmidata[DMI_MB][ROMSIZE],     true,  "%s / %u kB",
+				casprintf(dmidata[DMI_MB][ROMSIZE],     true,  "%s / %s",
 				          dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
-				          (data[0x09] + 1) << 6);
+				          dmi_bios_rom_size_str(data[0x09], h->length < 0x1A ? 16 : WORD(data + 0x18)));
 			}
 			else
 			{
@@ -3314,8 +3467,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 					dmi_bios_runtime_size((0x10000 - WORD(data + 0x06)) << 4);
 					printf("\n");
 				}
-				printf("\tROM Size: %u kB\n",
-					(data[0x09] + 1) << 6);
+				printf("\tROM Size:");
+				dmi_bios_rom_size(data[0x09], h->length < 0x1A ? 16 : WORD(data + 0x18));
+				printf("\n");
 				printf("\tCharacteristics:\n");
 				dmi_bios_characteristics(QWORD(data + 0x0A), "\t\t");
 				if (h->length < 0x13) break;
@@ -3457,7 +3611,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 					dmi_processor_family(h, ver));
 				printf("\tManufacturer: %s\n",
 					dmi_string(h, data[0x07]));
-				dmi_processor_id(data[0x06], data + 0x08, dmi_string(h, data[0x10]), "\t");
+				dmi_processor_id(h, "\t");
 				printf("\tVersion: %s\n",
 					dmi_string(h, data[0x10]));
 				printf("\tVoltage:");
@@ -3585,10 +3739,16 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			printf("\tLocation: %s\n",
 				dmi_cache_location((WORD(data + 0x05) >> 5) & 0x0003));
 			printf("\tInstalled Size:");
-			dmi_cache_size(WORD(data + 0x09));
+			if (h->length >= 0x1B)
+				dmi_cache_size_2(DWORD(data + 0x17));
+			else
+				dmi_cache_size(WORD(data + 0x09));
 			printf("\n");
 			printf("\tMaximum Size:");
-			dmi_cache_size(WORD(data + 0x07));
+			if (h->length >= 0x17)
+				dmi_cache_size_2(DWORD(data + 0x13));
+			else
+				dmi_cache_size(WORD(data + 0x07));
 			printf("\n");
 			printf("\tSupported SRAM Types:");
 			dmi_cache_types(WORD(data + 0x0B), "\n\t\t");
@@ -4329,7 +4489,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			}
 			if (data[0x11] != 0x00)
 			{
-				printf("\tInterrupt Number: %x\n",
+				printf("\tInterrupt Number: %u\n",
 					data[0x11]);
 			}
 			break;
@@ -4424,6 +4584,43 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 					data[0x05], data[0x06], data[0x07],
 					data[0x08]);
 			}
+			break;
+
+		case 43: /* 7.44 TPM Device */
+			printf("TPM Device\n");
+			if (h->length < 0x1B) break;
+			printf("\tVendor ID:");
+			dmi_tpm_vendor_id(data + 0x04);
+			printf("\n");
+			printf("\tSpecification Version: %d.%d", data[0x08], data[0x09]);
+			switch (data[0x08])
+			{
+				case 0x01:
+					/*
+					 * We skip the first 2 bytes, which are
+					 * redundant with the above, and uncoded
+					 * in a silly way.
+					 */
+					printf("\tFirmware Revision: %u.%u\n",
+						data[0x0C], data[0x0D]);
+					break;
+				case 0x02:
+					printf("\tFirmware Revision: %u.%u\n",
+						DWORD(data + 0x0A) >> 16,
+						DWORD(data + 0x0A) && 0xFF);
+					/*
+					 * We skip the next 4 bytes, as their
+					 * format is not standardized and their
+					 * usefulness seems limited anyway.
+					 */
+					break;
+			}
+			printf("\tDescription: %s", dmi_string(h, data[0x12]));
+			printf("\tCharacteristics:\n");
+			dmi_tpm_characteristics(QWORD(data + 0x13), "\t\t");
+			if (h->length < 0x1F) break;
+			printf("\tOEM-specific Information: 0x%08X\n",
+				DWORD(data + 0x1B));
 			break;
 
 		case 126: /* 7.44 Inactive */
@@ -4596,16 +4793,18 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 	}
 }
 
-static void dmi_table(off_t base, u32 len, u16 num, u16 ver, const char *devmem,
+static void dmi_table(off_t base, u32 len, u16 num, u32 ver, const char *devmem,
 		      u32 flags)
 {
 	u8 *buf;
 
 	if (ver > SUPPORTED_SMBIOS_VER && !(opt.flags & FLAG_QUIET))
 	{
-		printf("# SMBIOS implementations newer than version %u.%u are not\n"
+		printf("# SMBIOS implementations newer than version %u.%u.%u are not\n"
 		       "# fully supported by this version of dmidecode.\n",
-		       SUPPORTED_SMBIOS_VER >> 8, SUPPORTED_SMBIOS_VER & 0xFF);
+		       SUPPORTED_SMBIOS_VER >> 16,
+		       (SUPPORTED_SMBIOS_VER >> 8) & 0xFF,
+		       SUPPORTED_SMBIOS_VER & 0xFF);
 	}
 
 	if (!(opt.flags & FLAG_QUIET))
@@ -4622,17 +4821,19 @@ static void dmi_table(off_t base, u32 len, u16 num, u16 ver, const char *devmem,
 		printf("\n");
 	}
 
-	if (flags & FLAG_NO_FILE_OFFSET)
+	if ((flags & FLAG_NO_FILE_OFFSET) || (opt.flags & FLAG_FROM_DUMP))
 	{
 		/*
-		 * When reading from sysfs, the file may be shorter than
-		 * announced. For SMBIOS v3 this is expcted, as we only know
-		 * the maximum table size, not the actual table size. For older
-		 * implementations (and for SMBIOS v3 too), this would be the
-		 * result of the kernel truncating the table on parse error.
+		 * When reading from sysfs or from a dump file, the file may be
+		 * shorter than announced. For SMBIOS v3 this is expcted, as we
+		 * only know the maximum table size, not the actual table size.
+		 * For older implementations (and for SMBIOS v3 too), this
+		 * would be the result of the kernel truncating the table on
+		 * parse error.
 		 */
 		size_t size = len;
-		buf = read_file(&size, devmem);
+		buf = read_file(flags & FLAG_NO_FILE_OFFSET ? 0 : base,
+			&size, devmem);
 		if (!(opt.flags & FLAG_QUIET) && num && size != (size_t)len)
 		{
 			fprintf(stderr, "Wrong DMI structures length: %u bytes "
@@ -4658,7 +4859,7 @@ static void dmi_table(off_t base, u32 len, u16 num, u16 ver, const char *devmem,
 	if (opt.flags & FLAG_DUMP_BIN)
 		dmi_table_dump(buf, len);
 	else
-		dmi_table_decode(buf, len, num, ver, flags);
+		dmi_table_decode(buf, len, num, ver >> 8, flags);
 
 	free(buf);
 }
@@ -4695,13 +4896,13 @@ static void overwrite_smbios3_address(u8 *buf)
 
 static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
 {
-	u16 ver;
+	u32 ver;
 	u64 offset;
 
 	if (!checksum(buf, buf[0x06]))
 		return 0;
 
-	ver = (buf[0x07] << 8) + buf[0x08];
+	ver = (buf[0x07] << 16) + (buf[0x08] << 8) + buf[0x09];
 	if (!(opt.flags & FLAG_QUIET))
 		printf("SMBIOS %u.%u.%u present.\n",
 		       buf[0x07], buf[0x08], buf[0x09]);
@@ -4714,7 +4915,7 @@ static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
 	}
 
 	dmi_table(((off_t)offset.h << 32) | offset.l,
-		  WORD(buf + 0x0C), 0, ver, devmem, flags | FLAG_STOP_AT_EOT);
+		  DWORD(buf + 0x0C), 0, ver, devmem, flags | FLAG_STOP_AT_EOT);
 
 	if (opt.flags & FLAG_DUMP_BIN)
 	{
@@ -4766,7 +4967,7 @@ static int smbios_decode(u8 *buf, const char *devmem, u32 flags)
 			ver >> 8, ver & 0xFF);
 
 	dmi_table(DWORD(buf + 0x18), WORD(buf + 0x16), WORD(buf + 0x1C),
-		ver, devmem, flags);
+		ver << 8, devmem, flags);
 
 	if (opt.flags & FLAG_DUMP_BIN)
 	{
@@ -4794,7 +4995,8 @@ static int legacy_decode(u8 *buf, const char *devmem, u32 flags)
 			buf[0x0E] >> 4, buf[0x0E] & 0x0F);
 
 	dmi_table(DWORD(buf + 0x08), WORD(buf + 0x06), WORD(buf + 0x0C),
-		((buf[0x0E] & 0xF0) << 4) + (buf[0x0E] & 0x0F), devmem, flags);
+		((buf[0x0E] & 0xF0) << 12) + ((buf[0x0E] & 0x0F) << 8),
+		devmem, flags);
 
 	if (opt.flags & FLAG_DUMP_BIN)
 	{
@@ -4946,7 +5148,7 @@ int dmidecode(void)
 	 */
 	size = 0x20;
 	if (!(opt.flags & FLAG_NO_SYSFS)
-	 && (buf = read_file(&size, SYS_ENTRY_FILE)) != NULL)
+	 && (buf = read_file(0, &size, SYS_ENTRY_FILE)) != NULL)
 	{
 		if (!(opt.flags & FLAG_QUIET))
 			printf("Getting SMBIOS data from sysfs.\n");

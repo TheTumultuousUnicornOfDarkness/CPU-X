@@ -1,3 +1,43 @@
+2017-04-27  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 3.1.1.
+
+	* dmidecode.c: Add support for 3-digit versions.
+	* dmidecode.c: Add new enumerated values for processors (DMI type 4).
+
+2017-04-27  Jean Delvare  <jdelvare@suse.de>
+
+	Update to support SMBIOS specification version 3.1.0.
+
+	* dmidecode.c: Add support for extended BIOS ROM size (DMI type 0).
+	* dmidecode.c: Add new enumerated values for chassis types
+	  (DMI type 3).
+	* dmidecode.c: Add new enumerated values for processors (DMI type 4).
+	* dmidecode.c: Don't assume 8-bit processor family in dmi_processor_id
+	  (DMI type 4).
+	* dmidecode.c: Decode the MIDR register on ARM processors
+	  (DMI type 4).
+	* dmidecode.c: Add support for large cache sizes (DMI type 7).
+	* dmidecode.c: Add Mini PCIe system slot enumerated values
+	  (DMI type 9).
+	* dmidecode.c: Clarify the memory speed unit (DMI type 17).
+	* dmidecode.c: Add support for structure type 43 (TPM Device).
+
+2017-04-11  Jean Delvare  <jdelvare@suse.de>
+
+	* util.c: Don't leak a file descriptor in function read_file.
+	* util.c, util.c, dmidecode.c: Let callers pass an offset to function
+	  read_file.
+	* dmidecode.c: Fix reading from SMBIOS 3 dump files using a 64-bit
+	  entry point.
+
+2017-04-10  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c: Decode the processor ID of the Intel Core M, AMD
+	  Athlon X4 and AMD Opteron X1000/X2000 processors (DMI type 4).
+	* dmidecode.c: Display the IPMI interrupt number as a decimal
+	  number (DMI type 38).
+
 2017-01-20  Jean Delvare  <jdelvare@suse.de>
 
 	* biosdecode.c: Decode the entry point defined in the Intel

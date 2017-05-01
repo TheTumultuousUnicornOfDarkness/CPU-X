@@ -2,7 +2,7 @@
  * Common "util" functions
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2002-2015 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2002-2017 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ int checksum(const u8 *buf, size_t len)
 }
 
 /*
- * Reads all of file, up to max_len bytes.
+ * Reads all of file from given offset, up to max_len bytes.
  * A buffer of max_len bytes is allocated by this function, and
  * needs to be freed by the caller.
  * This provides a similar usage model to mem_chunk()
@@ -98,7 +98,7 @@ int checksum(const u8 *buf, size_t len)
  * sets max_len to the length actually read.
  *
  */
-void *read_file(size_t *max_len, const char *filename)
+void *read_file(off_t base, size_t *max_len, const char *filename)
 {
 	int fd;
 	size_t r2 = 0;
@@ -113,13 +113,21 @@ void *read_file(size_t *max_len, const char *filename)
 	{
 		if (errno != ENOENT)
 			perror(filename);
-		return(NULL);
+		return NULL;
+	}
+
+	if (lseek(fd, base, SEEK_SET) == -1)
+	{
+		fprintf(stderr, "%s: ", filename);
+		perror("lseek");
+		p = NULL;
+		goto out;
 	}
 
 	if ((p = malloc(*max_len)) == NULL)
 	{
 		perror("malloc");
-		return NULL;
+		goto out;
 	}
 
 	do
@@ -129,10 +137,10 @@ void *read_file(size_t *max_len, const char *filename)
 		{
 			if (errno != EINTR)
 			{
-				close(fd);
 				perror(filename);
 				free(p);
-				return NULL;
+				p = NULL;
+				goto out;
 			}
 		}
 		else
@@ -140,8 +148,9 @@ void *read_file(size_t *max_len, const char *filename)
 	}
 	while (r != 0);
 
-	close(fd);
 	*max_len = r2;
+out:
+	close(fd);
 
 	return p;
 }
