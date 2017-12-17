@@ -90,30 +90,6 @@ cd $SRCDIR/n_build  && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1 -DWI
 EOF
 }
 
-make_packages() {
-	GPKG="wget -q --show-progress -c"
-	REPO="http://download.opensuse.org/repositories/home:/X0rg"
-	DISTRO="$1"
-	PKG1="$2"
-	PKG2="$3"
-	PKG3="$4"
-
-	case $DISTRO in
-		Arch*)             BIT32="i686"; BIT64="x86_64"; EXT="pkg.tar.xz";;
-		Debian*|xUbuntu*)  BIT32="i386"; BIT64="amd64" ; EXT="deb";;
-		Fedora*)           BIT32="i686"; BIT64="x86_64"; EXT="rpm";;
-		openSUSE*)         BIT32="i586"; BIT64="x86_64"; EXT="rpm";;
-	esac
-
-	for arch in "$BIT32" "$BIT64"; do
-		mkdir -p "$DISTRO/$arch" && cd "$DISTRO/$arch"
-		for pkg in "$PKG1" "$PKG2" "$PKG3"; do
-			$GPKG "$REPO/$DISTRO/$arch/$pkg$arch.$EXT"
-		done
-		cd ../..
-	done
-}
-
 stop_vms() {
 	echo "Shutdown VMs (y/N)?"
 	read -n1 s
@@ -201,47 +177,20 @@ case "$choice" in
 
 	package)
 		DESTDIR="$(dirname $0)/packages/"
-		PKGNAME="cpu-x"
-		CPUXVER="${VER//v}"
-		CPUXREV=$(wget -qO- http://download.opensuse.org/repositories/home:/X0rg/Fedora_24/x86_64/ | grep $PKGNAME-$CPUXVER | awk -v FS="($PKGNAME-$CPUXVER-|.x86_64.rpm)" '{print $2}')
-		LCPUIDNAME="libcpuid"
-		LCPUIDABI="14"
-		LCPUIDVER=$(cd `dirname $0`/../libcpuid && git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')
-		LCPUIDREV=$(wget -qO- http://download.opensuse.org/repositories/home:/X0rg/Fedora_24/x86_64/ | grep $LCPUIDNAME$LCPUIDABI-$LCPUIDVER | awk -v FS="($LCPUIDNAME$LCPUIDABI-$LCPUIDVER-|.x86_64.rpm)" '{print $2}')
+		REPOURL="https://download.opensuse.org/repositories/home:/X0rg/"
 		COMPRESS="tar -zcvf"
+
 		mkdir -p "$DESTDIR" && cd "$DESTDIR"
+		wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
+			--accept "*.pkg.tar.xz","*.rpm","*.deb" \
+			--reject "*.src.rpm","ncurses-devel-openSUSE-Leap-workaround*" \
+			--recursive "$REPOURL"
+		find . -type d -empty -delete
 
-		# Arch Linux
-		make_packages "Arch_Extra" "${PKGNAME}-${CPUXVER}-1-" "${LCPUIDNAME}-git-2:${LCPUIDVER}-1-"
 		$COMPRESS CPU-X_${VER}_ArchLinux.tar.gz Arch*
-
-		# Debian
-		make_packages "Debian_8.0" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		make_packages "Debian_9.0" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		$COMPRESS CPU-X_${VER}_Debian.tar.gz Debian*
-
-		# Fedora
-		make_packages "Fedora_21" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "Fedora_22" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "Fedora_23" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "Fedora_24" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		$COMPRESS CPU-X_${VER}_Fedora.tar.gz Fedora*
-
-		# openSUSE
-		make_packages "openSUSE_13.1"       "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "openSUSE_13.2"       "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "openSUSE_Leap_42.1"  "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "openSUSE_Leap_42.2"  "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		make_packages "openSUSE_Tumbleweed" "${PKGNAME}-${CPUXVER}-${CPUXREV}." "${LCPUIDNAME}${LCPUIDABI}-${LCPUIDVER}-${LCPUIDREV}." "${LCPUIDNAME}-devel-${LCPUIDVER}-${LCPUIDREV}."
-		find . -type d -empty -exec rmdir {} \;
-		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz openSUSE*
-
-		# Ubuntu
-		make_packages "xUbuntu_14.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_15.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_15.10" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_16.04" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		make_packages "xUbuntu_16.10" "${PKGNAME}_${CPUXVER}_" "${LCPUIDNAME}${LCPUIDABI}_${LCPUIDVER}_" "${LCPUIDNAME}${LCPUIDABI}-dev_${LCPUIDVER}_"
-		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz xUbuntu*
+		$COMPRESS CPU-X_${VER}_Debian.tar.gz    Debian*
+		$COMPRESS CPU-X_${VER}_Fedora.tar.gz    Fedora*
+		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz  openSUSE*
+		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz    xUbuntu*
 		;;
 esac
