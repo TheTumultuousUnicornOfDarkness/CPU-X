@@ -469,6 +469,7 @@ static void set_logos(GtkLabels *glab, Labels *data)
 		prg_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
 	}
 
+	gtk_window_set_icon(GTK_WINDOW(glab->mainwindow),   prg_pixbuf);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logoprg), prg_pixbuf);
 	g_object_unref(cpu_pixbuf);
