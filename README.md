@@ -6,10 +6,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 [![Build Status](https://travis-ci.org/X0rg/CPU-X.svg?branch=master)](https://travis-ci.org/X0rg/CPU-X)
 
-CPU-X is a Free software that gathers information on CPU, motherboard and more.  
-CPU-X is similar to [CPU-Z (Windows)](http://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.  
-This software is written in C and built with [CMake](http://www.cmake.org/) tool.  
-It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
+CPU-X is a Free software that gathers information on CPU, motherboard and more.
+CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.
+This software is written in C and built with [CMake](https://www.cmake.org/) tool.
+It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.
 
 
 ***
@@ -36,21 +36,21 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 ### Build-only dependencies
 
 These dependencies are needed to **build** CPU-X:
-* A C compiler ([GCC](https://gcc.gnu.org/) or [Clang](http://clang.llvm.org/))
-* [CMake](http://www.cmake.org/)
-* [Pkg-Config](http://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
+* A C compiler ([GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/))
+* [CMake](https://www.cmake.org/)
+* [Pkg-Config](https://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
 * [NASM](http://www.nasm.us/)
 
 
 ### Build and run dependencies
 
 These dependencies are needed to **build¹** and **run** CPU-X:
-* [GTK3+](http://www.gtk.org/) (version 3.12 or newer is needed)  
-* [NCurses](http://www.gnu.org/software/ncurses/)  
+* [GTK3+](https://www.gtk.org/) (version 3.12 or newer is needed)  
+* [NCurses](https://www.gnu.org/software/ncurses/)  
 * [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.3.0 or newer is needed)  
-* [Pciutils](http://mj.ucw.cz/sw/pciutils/)  
-* [Procps-ng](http://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](http://www.i-scream.org/libstatgrab/) (*BSD)  
-* [Curl](http://curl.haxx.se/)  
+* [Pciutils](https://mj.ucw.cz/sw/pciutils/)  
+* [Procps-ng](https://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](https://www.i-scream.org/libstatgrab/) (*BSD)  
+* [Curl](https://curl.haxx.se/)  
 **¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 
