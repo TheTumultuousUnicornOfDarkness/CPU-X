@@ -1,6 +1,17 @@
 #!/bin/sh
+
 if [ $(which pkexec) ]; then
+	XHOST_LOCAL=false
+	if [ $XDG_SESSION_TYPE == "wayland" ] && [ $(which xhost) ] && [ -z $(xhost | grep "LOCAL:") ]; then
+		xhost +local:
+		XHOST_LOCAL=true
+	fi
+
 	pkexec --disable-internal-agent "@EXEC@" "$@"
+
+	if $XHOST_LOCAL; then
+		xhost -local:
+	fi
 else
 	@EXEC@ "$@"
 fi
