@@ -6,10 +6,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 [![Build Status](https://travis-ci.org/X0rg/CPU-X.svg?branch=master)](https://travis-ci.org/X0rg/CPU-X)
 
-CPU-X is a Free software that gathers information on CPU, motherboard and more.
-CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.
-This software is written in C and built with [CMake](https://www.cmake.org/) tool.
-It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.
+CPU-X is a Free software that gathers information on CPU, motherboard and more.  
+CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.  
+This software is written in C and built with [CMake](https://www.cmake.org/) tool.  
+It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
 
 
 ***
@@ -118,5 +118,5 @@ Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new) and fill tem
 
 
 ## Links
-Official [webpage](http://x0rg.github.io/CPU-X/) made by GitHub Pages.  
+Official [webpage](https://x0rg.github.io/CPU-X/) made by GitHub Pages.  
 Official [wiki](https://github.com/X0rg/CPU-X/wiki), still on GitHub.
