@@ -22,6 +22,11 @@
 bits	32
 cpu	ia64
 
+global  IncrementRegisters
+global  _IncrementRegisters
+global  IncrementStack
+global  _IncrementStack
+
 global	ReaderLODSQ
 global	_ReaderLODSQ
 
@@ -783,14 +788,14 @@ _ReaderAVX:
 	mov	eax, [esp+4+8]
 
 .L2:
-	vmovdqa	xmm0, [eax]	; Read aligned @ 16-byte boundary.
-	vmovdqa	xmm0, [32+eax]
-	vmovdqa	xmm0, [64+eax]
-	vmovdqa	xmm0, [96+eax]
-	vmovdqa	xmm0, [128+eax]
-	vmovdqa	xmm0, [160+eax]
-	vmovdqa	xmm0, [192+eax]
-	vmovdqa	xmm0, [224+eax]
+	vmovdqa	ymm0, [eax]	; Read aligned @ 16-byte boundary.
+	vmovdqa	ymm0, [32+eax]
+	vmovdqa	ymm0, [64+eax]
+	vmovdqa	ymm0, [96+eax]
+	vmovdqa	ymm0, [128+eax]
+	vmovdqa	ymm0, [160+eax]
+	vmovdqa	ymm0, [192+eax]
+	vmovdqa	ymm0, [224+eax]
 
 	add	eax, 256
 	cmp	eax, ebx
@@ -1039,14 +1044,14 @@ _WriterAVX:
 	mov	eax, [esp+4+8]
 
 .L2:
-	vmovdqa	[eax], xmm0	
-	vmovdqa	[32+eax], xmm0
-	vmovdqa	[64+eax], xmm0
-	vmovdqa	[96+eax], xmm0
-	vmovdqa	[128+eax], xmm0
-	vmovdqa	[160+eax], xmm0
-	vmovdqa	[192+eax], xmm0
-	vmovdqa	[224+eax], xmm0
+	vmovdqa	[eax], ymm0	
+	vmovdqa	[32+eax], ymm0
+	vmovdqa	[64+eax], ymm0
+	vmovdqa	[96+eax], ymm0
+	vmovdqa	[128+eax], ymm0
+	vmovdqa	[160+eax], ymm0
+	vmovdqa	[192+eax], ymm0
+	vmovdqa	[224+eax], ymm0
 
 	add	eax, 256
 	cmp	eax, ebx
@@ -1220,14 +1225,14 @@ _WriterAVX_bypass:
 	mov	eax, [esp+4+8]
 
 .L2:
-	vmovntdq	[eax], xmm0	; Write bypassing cache.
-	vmovntdq	[32+eax], xmm0
-	vmovntdq	[64+eax], xmm0
-	vmovntdq	[96+eax], xmm0
-	vmovntdq	[128+eax], xmm0
-	vmovntdq	[160+eax], xmm0
-	vmovntdq	[192+eax], xmm0
-	vmovntdq	[224+eax], xmm0
+	vmovntdq	[eax], ymm0	; Write bypassing cache.
+	vmovntdq	[32+eax], ymm0
+	vmovntdq	[64+eax], ymm0
+	vmovntdq	[96+eax], ymm0
+	vmovntdq	[128+eax], ymm0
+	vmovntdq	[160+eax], ymm0
+	vmovntdq	[192+eax], ymm0
+	vmovntdq	[224+eax], ymm0
 
 	add	eax, 256
 	cmp	eax, ebx
@@ -2967,4 +2972,110 @@ _CopySSE:
 CopySSE_128bytes:
 _CopySSE_128bytes:
 	jmp	CopySSE
+
+;------------------------------------------------------------------------------
+; Name:		IncrementRegisters
+; Purpose:	Increments 32-bit values in registers.
+; Params:	[esp + 4]	= loops
+;------------------------------------------------------------------------------
+	align 64
+IncrementRegisters:
+_IncrementRegisters:
+	push	ebp
+	mov	ebp, [esp+4]
+.L1:
+	inc	eax
+	inc	ebx
+	inc	ecx
+	inc	edx
+	inc	esi
+	inc	edi
+	inc	ebp
+	inc	esp
+
+	dec	eax
+	dec	ebx
+	dec	ecx
+	dec	edx
+	dec	esi
+	dec	edi
+	dec	ebp
+	dec	esp
+
+	inc	eax
+	inc	ebx
+	inc	ecx
+	inc	edx
+	inc	esi
+	inc	edi
+	inc	ebp
+	inc	esp
+
+	dec	eax
+	dec	ebx
+	dec	ecx
+	dec	edx
+	dec	esi
+	dec	edi
+	dec	ebp
+	dec	esp
+
+	dec	ebp
+	jnz	.L1
+	pop	ebp
+	ret
+
+
+;------------------------------------------------------------------------------
+; Name:		IncrementStack
+; Purpose:	Increments 32-bit values on stack.
+; Params:	[esp + 4]	= loops
+;------------------------------------------------------------------------------
+	align 64
+IncrementStack:
+_IncrementStack:
+	push	ebp
+	mov	ebp, [esp+4]
+	sub	esp, 64
+.L1:
+	inc	dword [esp]
+	inc	dword [esp+4]
+	inc	dword [esp+8]
+	inc	dword [esp+12]
+	inc	dword [esp+16]
+	inc	dword [esp+20]
+	inc	dword [esp+24]
+	inc	dword [esp+28]
+	inc	dword [esp+32]
+	inc	dword [esp+36]
+	inc	dword [esp+40]
+	inc	dword [esp+44]
+	inc	dword [esp+48]
+	inc	dword [esp+52]
+	inc	dword [esp+56]
+	inc	dword [esp+60]
+
+	inc	dword [esp]
+	inc	dword [esp+4]
+	inc	dword [esp+8]
+	inc	dword [esp+12]
+	inc	dword [esp+16]
+	inc	dword [esp+20]
+	inc	dword [esp+24]
+	inc	dword [esp+28]
+	inc	dword [esp+32]
+	inc	dword [esp+36]
+	inc	dword [esp+40]
+	inc	dword [esp+44]
+	inc	dword [esp+48]
+	inc	dword [esp+52]
+	inc	dword [esp+56]
+	inc	dword [esp+60]
+
+	dec	ebp
+	jnz	.L1
+
+	add	esp, 64
+	pop	ebp
+	ret
 

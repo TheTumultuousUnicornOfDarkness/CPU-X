@@ -1,6 +1,6 @@
 ;============================================================================
 ;  bandwidth, a benchmark to estimate memory transfer bandwidth.
-;  Copyright (C) 2005-2014 by Zack T Smith.
+;  Copyright (C) 2005-2017 by Zack T Smith.
 ;
 ;  This program is free software; you can redistribute it and/or modify
 ;  it under the terms of the GNU General Public License as published by
@@ -40,6 +40,11 @@ global	_ReaderLODSW
 global	ReaderLODSB
 global	_ReaderLODSB
 
+global	IncrementRegisters
+global	_IncrementRegisters
+global	IncrementStack
+global	_IncrementStack
+
 global	RandomReader
 global	RandomReaderSSE2
 global	RandomReaderSSE2_bypass
@@ -49,6 +54,7 @@ global	RandomWriterSSE2_bypass
 global	Reader
 global	Reader_128bytes
 global	ReaderAVX
+global	RandomReaderAVX
 global	ReaderSSE2
 global	ReaderSSE2_128bytes
 global	ReaderSSE2_bypass
@@ -71,6 +77,7 @@ global	VectorToVectorAVX
 global	Writer
 global	Writer_128bytes
 global	WriterAVX
+global	RandomWriterAVX
 global	WriterSSE2
 global	WriterSSE2_128bytes
 global	WriterSSE2_bypass
@@ -87,6 +94,7 @@ global	_RandomWriterSSE2
 global	_RandomWriterSSE2_bypass
 global	_Reader
 global	_ReaderAVX
+global	_RandomReaderAVX
 global	_Reader_128bytes
 global	_ReaderSSE2
 global	_ReaderSSE2_bypass
@@ -111,6 +119,7 @@ global	_Writer
 global	_Writer_128bytes
 global	_WriterSSE2
 global	_WriterAVX
+global	_RandomWriterAVX
 global	_WriterSSE2_128bytes
 global	_WriterSSE2_bypass
 global	_WriterSSE2_128bytes_bypass
@@ -603,6 +612,8 @@ _RandomReaderSSE2:
 
 	pop	r11
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -655,6 +666,8 @@ _RandomReaderSSE2_bypass:
 
 	pop	r11
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -772,6 +785,8 @@ _RandomWriterSSE2:
 
 	pop	r11
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -825,6 +840,8 @@ _RandomWriterSSE2_bypass:
 
 	pop	r11
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -862,6 +879,8 @@ _ReaderSSE2_128bytes:
 	jnz	.L1
 	
 	pop	r10
+
+	vzeroall
 	ret
 
 
@@ -909,8 +928,9 @@ _ReaderSSE2:
 	jnz	.L1
 	
 	pop	r10
-	ret
 
+	vzeroall
+	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		ReaderAVX
@@ -922,7 +942,15 @@ _ReaderSSE2:
 	align 64
 ReaderAVX:
 _ReaderAVX:
-	vzeroupper
+	; vzeroupper
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm0
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm1
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm2
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm3
 
 	push	r10
 
@@ -933,13 +961,13 @@ _ReaderAVX:
 
 .L2:
 	vmovdqa	ymm0, [r10]	; Read aligned to 32-byte boundary.
-	vmovdqa	ymm0, [32+r10]
-	vmovdqa	ymm0, [64+r10]
-	vmovdqa	ymm0, [96+r10]
+	vmovdqa	ymm1, [32+r10]
+	vmovdqa	ymm2, [64+r10]
+	vmovdqa	ymm3, [96+r10]
 	vmovdqa	ymm0, [128+r10]
-	vmovdqa	ymm0, [160+r10]
-	vmovdqa	ymm0, [192+r10]
-	vmovdqa	ymm0, [224+r10]
+	vmovdqa	ymm1, [160+r10]
+	vmovdqa	ymm2, [192+r10]
+	vmovdqa	ymm3, [224+r10]
 
 	add	r10, 256
 	cmp	r10, rsi
@@ -949,8 +977,74 @@ _ReaderAVX:
 	jnz	.L1
 	
 	pop	r10
+	vmovdqu	ymm3, [rsp]
+	add	rsp, 32
+	vmovdqu	ymm2, [rsp]
+	add	rsp, 32
+	vmovdqu	ymm1, [rsp]
+	add	rsp, 32
+	vmovdqu	ymm0, [rsp]
+	add	rsp, 32
 	ret
 
+;------------------------------------------------------------------------------
+; Name:		RandomReaderAVX
+; Purpose:	Reads 256-bit values in somewhat random order from RAM.
+; Params:	rdi = ptr to chunk pointers 
+; 		rsi = # chunks
+; 		rdx = loops
+;------------------------------------------------------------------------------
+	align 64
+RandomReaderAVX:
+_RandomReaderAVX:
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm0
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm1
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm2
+	sub	rsp, 32
+	vmovdqu	[rsp], ymm3
+
+	push	r10
+	push	r11
+
+.L1:
+	xor	r11, r11
+.L2:
+        mov     r10, [rdi + 8*r11]
+
+	; Read aligned to 32-byte boundary.
+	vmovdqa	ymm0, [96+r10]
+	vmovdqa	ymm1, [192+r10]
+	vmovdqa	ymm2, [64+r10]
+	vmovdqa	ymm3, [224+r10]
+	vpaddq ymm0, ymm1
+	vmovdqa	ymm0, [r10]	
+	vmovdqa	ymm1, [160+r10]
+	vmovdqa	ymm2, [128+r10]
+	vmovdqa	ymm3, [32+r10]
+	vpaddq ymm2, ymm3
+
+	inc	r11
+	cmp	r11, rsi
+	jb	.L2
+
+	dec	rdx
+	jnz	.L1
+	
+	pop	r11
+	pop	r10
+
+	vmovdqu	ymm3, [rsp]
+	add	rsp, 32
+	vmovdqu	ymm2, [rsp]
+	add	rsp, 32
+	vmovdqu	ymm1, [rsp]
+	add	rsp, 32
+	vmovdqu	ymm0, [rsp]
+	add	rsp, 32
+	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		ReaderSSE2_bypass
@@ -1002,6 +1096,8 @@ _ReaderSSE2_bypass:
 	jnz	.L1
 	
 	pop	r10
+
+	vzeroall
 	ret
 
 
@@ -1042,6 +1138,8 @@ _ReaderSSE2_128bytes_bypass:
 	jnz	.L1
 	
 	pop	r10
+
+	vzeroall
 	ret
 
 
@@ -1105,6 +1203,8 @@ _Writer:
 	jnz	.L1
 
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1151,6 +1251,8 @@ _Writer_128bytes:
 	jnz	.L1
 
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1200,6 +1302,8 @@ _WriterSSE2:
 	jnz	.L1
 
 	pop	r10
+
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1243,6 +1347,56 @@ _WriterAVX:
 	jnz	.L1
 
 	pop	r10
+	vzeroall
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		RandomWriterAVX
+; Purpose:	Writes 256-bit value in somewhat random order to RAM.
+; Params:	rdi = ptr to array of chunk pointers
+; 		rsi = # of chunks
+; 		rdx = loops
+; 		rcx = datum to write
+;------------------------------------------------------------------------------
+	align 64
+RandomWriterAVX:
+_RandomWriterAVX:
+	push	r10
+	push	r11
+
+	sub	rsp, 32
+	mov	[rsp], rcx
+	mov	[rsp+8], rcx
+	mov	[rsp+16], rcx
+	mov	[rsp+24], rcx
+	vmovdqu	ymm0, [rsp]
+	add	rsp, 32
+
+.L1:
+	xor	r11, r11
+
+.L2:
+	mov	r10, [rdi + 8*r11]	; Note, 64-bit pointers.
+
+	vmovdqa	[192+r10], ymm0
+	vmovdqa	[224+r10], ymm0
+	vmovdqa	[64+r10], ymm0
+	vmovdqa	[128+r10], ymm0
+	vmovdqa	[r10], ymm0
+	vmovdqa	[96+r10], ymm0
+	vmovdqa	[160+r10], ymm0
+	vmovdqa	[32+r10], ymm0
+
+	inc	r11
+	cmp	r11, rsi
+	jb	.L2
+
+	dec	rdx
+	jnz	.L1
+
+	pop	r11
+	pop	r10
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1284,6 +1438,7 @@ _WriterSSE2_128bytes:
 	jnz	.L1
 
 	pop	r10
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1333,6 +1488,7 @@ _WriterSSE2_bypass:
 	jnz	.L1
 
 	pop	r10
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1358,14 +1514,14 @@ _WriterAVX_bypass:
 	mov	r10, rdi
 
 .L2:
-	vmovntdq	[r10], xmm0	; Write bypassing cache.
-	vmovntdq	[32+r10], xmm0
-	vmovntdq	[64+r10], xmm0
-	vmovntdq	[96+r10], xmm0
-	vmovntdq	[128+r10], xmm0
-	vmovntdq	[160+r10], xmm0
-	vmovntdq	[192+r10], xmm0
-	vmovntdq	[224+r10], xmm0
+	vmovntdq	[r10], ymm0	; Write bypassing cache.
+	vmovntdq	[32+r10], ymm0
+	vmovntdq	[64+r10], ymm0
+	vmovntdq	[96+r10], ymm0
+	vmovntdq	[128+r10], ymm0
+	vmovntdq	[160+r10], ymm0
+	vmovntdq	[192+r10], ymm0
+	vmovntdq	[224+r10], ymm0
 
 	add	r10, 256
 	cmp	r10, rsi
@@ -1375,6 +1531,7 @@ _WriterAVX_bypass:
 	jnz	.L1
 
 	pop	r10
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1415,6 +1572,7 @@ _WriterSSE2_128bytes_bypass:
 	jnz	.L1
 
 	pop	r10
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1593,25 +1751,26 @@ VectorToVector:
 _VectorToVector:
 .L1:
 	movq	xmm0, xmm1	; Each move moves 16 bytes, so we need 16
-	movq	xmm0, xmm2	; moves to transfer a 256 byte chunk.
-	movq	xmm0, xmm3
-	movq	xmm2, xmm0
-	movq	xmm1, xmm2
-	movq	xmm2, xmm1
-	movq	xmm0, xmm3
+	movq	xmm14, xmm2	; moves to transfer a 256 byte chunk.
+	movq	xmm0, xmm4
+	movq	xmm9, xmm0
+	movq	xmm1, xmm12
+	movq	xmm7, xmm1
+	movq	xmm8, xmm3
 	movq	xmm3, xmm1
 
-	movq	xmm3, xmm2
-	movq	xmm1, xmm3
-	movq	xmm2, xmm1
-	movq	xmm0, xmm1
+	movq	xmm13, xmm2
+	movq	xmm11, xmm3
+	movq	xmm2, xmm10
+	movq	xmm6, xmm1
 	movq	xmm1, xmm2
-	movq	xmm0, xmm1
+	movq	xmm15, xmm1
 	movq	xmm0, xmm3
-	movq	xmm3, xmm0
+	movq	xmm3, xmm14
 
 	sub	rdi, 1
 	jnz	.L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1637,6 +1796,7 @@ _VectorToVectorAVX:
 
 	sub	rdi, 1
 	jnz	.L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1687,6 +1847,7 @@ _RegisterToVector:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1737,6 +1898,7 @@ _VectorToRegister:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1824,6 +1986,7 @@ _Register8ToVector:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1911,6 +2074,7 @@ _Register16ToVector:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1997,6 +2161,7 @@ _Register32ToVector:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -2048,6 +2213,7 @@ _Register64ToVector:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 
@@ -2135,6 +2301,7 @@ _Vector8ToRegister:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -2221,6 +2388,7 @@ _Vector16ToRegister:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -2307,6 +2475,7 @@ _Vector32ToRegister:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -2357,6 +2526,7 @@ _Vector64ToRegister:
 
 	dec	rdi
 	jnz .L1
+	vzeroall
 	ret
 
 ;------------------------------------------------------------------------------
@@ -2417,6 +2587,7 @@ _CopyAVX:
 
 	pop	r10
 
+	vzeroall
 	ret
 
 
@@ -2525,6 +2696,7 @@ _CopySSE:
 
 	pop	r10
 
+	vzeroall
 	ret
 
 
@@ -2597,6 +2769,104 @@ _CopySSE_128bytes:
 
 	pop	r10
 
+	vzeroall
 	ret
 
+;------------------------------------------------------------------------------
+; Name:		IncrementRegisters
+; Purpose:	Increments 64-bit values in registers.
+; Params:	rdi = loops
+;------------------------------------------------------------------------------
+	align 64
+IncrementRegisters:
+_IncrementRegisters:
+.L1:
+	inc	rax
+	inc	rbx
+	inc	rcx
+	inc	rdx
+	inc	rsi
+	inc	rdi
+	inc	rbp
+	inc	rsp
+	inc	r8
+	inc	r9
+	inc	r10
+	inc	r11
+	inc	r12
+	inc	r13
+	inc	r14
+	inc	r15
+
+	dec	rax
+	dec	rbx
+	dec	rcx
+	dec	rdx
+	dec	rsi
+	dec	rdi
+	dec	rbp
+	dec	rsp
+	dec	r8
+	dec	r9
+	dec	r10
+	dec	r11
+	dec	r12
+	dec	r13
+	dec	r14
+	dec	r15
+
+	dec	rdi
+	jnz	.L1
+	ret
+
+
+;------------------------------------------------------------------------------
+; Name:		IncrementStack
+; Purpose:	Increments 64-bit values on stack.
+; Params:	rdi = loops
+;------------------------------------------------------------------------------
+	align 64
+IncrementStack:
+_IncrementStack:
+	sub	rsp, 128
+.L1:
+	inc	qword [rsp]
+	inc	qword [rsp+8]
+	inc	qword [rsp+16]
+	inc	qword [rsp+24]
+	inc	qword [rsp+32]
+	inc	qword [rsp+40]
+	inc	qword [rsp+48]
+	inc	qword [rsp+56]
+	inc	qword [rsp+64]
+	inc	qword [rsp+72]
+	inc	qword [rsp+80]
+	inc	qword [rsp+88]
+	inc	qword [rsp+96]
+	inc	qword [rsp+104]
+	inc	qword [rsp+112]
+	inc	qword [rsp+120]
+
+	dec	qword [rsp]
+	dec	qword [rsp+8]
+	dec	qword [rsp+16]
+	dec	qword [rsp+24]
+	dec	qword [rsp+32]
+	dec	qword [rsp+40]
+	dec	qword [rsp+48]
+	dec	qword [rsp+56]
+	dec	qword [rsp+64]
+	dec	qword [rsp+72]
+	dec	qword [rsp+80]
+	dec	qword [rsp+88]
+	dec	qword [rsp+96]
+	dec	qword [rsp+104]
+	dec	qword [rsp+112]
+	dec	qword [rsp+120]
+
+	dec	rdi
+	jnz	.L1
+
+	add	rsp, 128
+	ret
 

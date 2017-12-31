@@ -1,6 +1,6 @@
 /*============================================================================
   BMPGraphing, a library for graphing.
-  Copyright (C) 2005-2014 by Zack T Smith.
+  Copyright (C) 2005-2017 by Zack T Smith.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,14 +16,13 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-  The author may be reached at veritas@comcast.net.
+  The author may be reached at 1@zsmith.co.
  *===========================================================================*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <inttypes.h>
 
 #include "BMP.h"
 #include "BMPGraphing.h"
@@ -75,10 +74,10 @@ BMPGraphing_draw_labels_log2 (BMPGraph* graph)
 		else {
 			Value j = y2 >> 20;
 			switch ((y2 >> 18) & 3) {
-			case 0: snprintf (str, 199, "%" PRIu64 "MB", j); break;
-			case 1: snprintf (str, 199, "%" PRIu64 ".25 MB", j); break;
-			case 2: snprintf (str, 199, "%" PRIu64 ".5 MB", j); break;
-			case 3: snprintf (str, 199, "%" PRIu64 ".75 MB", j); break;
+			case 0: snprintf (str, 199, "%lld MB", (unsigned long long) j); break;
+			case 1: snprintf (str, 199, "%lld.25 MB", (unsigned long long) j); break;
+			case 2: snprintf (str, 199, "%lld.5 MB", (unsigned long long) j); break;
+			case 3: snprintf (str, 199, "%lld.75 MB", (unsigned long long) j); break;
 			}
 		}
 

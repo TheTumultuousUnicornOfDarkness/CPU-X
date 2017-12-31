@@ -38,6 +38,10 @@ It also tells you the best-case scenario e.g.
 the maximum bandwidth achieved using sequential,
 128-bit memory accesses.
 
+Release 1.5:
+	- Fixed AVX bug. Added --nice mode and CPU temperature monitoring (OS/X only).
+Release 1.4:
+        - Added randomized 256-bit AVX reader & writer tests (Intel64 only).
 Release 1.3:
         - Added CSV output. Updated ARM code for Raspberry π 3.
 Release 1.2:
@@ -122,6 +126,8 @@ has 5 seconds per test, is about 35 minutes.
 
 --------------------------------------------------
 NETWORK BANDWIDTH (beginning with release 0.24)
+
+[Update: This feature may no longer be working.]
 
 In mid-December 2010, I extended bandwidth to measure
 network bandwidth, which is useful for testing

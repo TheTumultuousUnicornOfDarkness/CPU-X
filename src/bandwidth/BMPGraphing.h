@@ -1,6 +1,6 @@
 /*============================================================================
   BMPGraphing, a library for graphing.
-  Copyright (C) 2005-2014 by Zack T Smith.
+  Copyright (C) 2005-2017 by Zack T Smith.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,13 +16,21 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-  The author may be reached at veritas@comcast.net.
+  The author may be reached at 1@zsmith.co.
  *===========================================================================*/
 
 #ifndef _BMPGRAPHING_H
 #define _BMPGRAPHING_H
 
+#ifdef __WIN32__
+typedef char bool;
+enum {
+	true=1,
+	false=0
+};
+#else
 #include <stdbool.h>
+#endif
 #include <stdint.h>
 
 #define BMPGRAPHING_RELEASE "0.3"

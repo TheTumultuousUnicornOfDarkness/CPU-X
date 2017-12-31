@@ -1,6 +1,6 @@
 /*============================================================================
   bandwidth, a benchmark to estimate memory transfer bandwidth.
-  Copyright (C) 2005-2016 by Zack T Smith.
+  Copyright (C) 2005-2017 by Zack T Smith.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,16 +40,25 @@
 // 1.1	Switched to larger font in graphing module.
 // 1.2	Re-added ARM 32 support.
 // 1.3	Added CSV output support. Added 32-bit Raspberry π 3 support.
+// 1.4	Added 256-bit routines RandomReaderAVX, RandomWriterAVX.
+// 1.4.1 Added --limit parameter.
+// 1.4.2 Fixed compiler warnings.
+// 1.5 Fixed AVX writer bug that gave inaccurate results. Added nice mode.
 //---------------------------------------------------------------------------
 
 #ifndef _DEFS_H
 #define _DEFS_H
 
-#define RELEASE "1.3.1"
+#define RELEASE "1.5"
 
-#ifndef bool
-typedef char bool;
-enum { true = 1, false = 0 };
+#ifdef __WIN32__
+typedef char bool; 
+enum {
+        true=1,
+        false=0
+};
+#else
+#include <stdbool.h>
 #endif
 
 #define NETWORK_DEFAULT_PORTNUM (49000)
@@ -102,12 +111,16 @@ extern int CopyAVX (void*, void*, unsigned long, unsigned long);
 extern int CopySSE_128bytes (void*, void*, unsigned long, unsigned long);
 
 extern int ReaderAVX (void *ptr, unsigned long, unsigned long);
+extern int RandomReaderAVX (void *ptr, unsigned long, unsigned long);
+
 extern int ReaderSSE2 (void *ptr, unsigned long, unsigned long);
 extern int ReaderSSE2_bypass (void *ptr, unsigned long, unsigned long);
 extern int RandomReaderSSE2 (unsigned long **ptr, unsigned long, unsigned long);
 extern int RandomReaderSSE2_bypass (unsigned long **ptr, unsigned long, unsigned long);
 
 extern int WriterAVX (void *ptr, unsigned long, unsigned long, unsigned long);
+extern int RandomWriterAVX (void *ptr, unsigned long, unsigned long, unsigned long);
+
 extern int WriterSSE2 (void *ptr, unsigned long, unsigned long, unsigned long);
 extern int RandomWriterSSE2(unsigned long **ptr, unsigned long, unsigned long, unsigned long);
 
@@ -120,6 +133,9 @@ extern int WriterSSE2_128bytes_bypass (void *ptr, unsigned long, unsigned long, 
 extern int WriterAVX_bypass (void *ptr, unsigned long, unsigned long, unsigned long);
 extern int WriterSSE2_bypass (void *ptr, unsigned long, unsigned long, unsigned long);
 extern int RandomWriterSSE2_bypass (unsigned long **ptr, unsigned long, unsigned long, unsigned long);
+
+extern void IncrementRegisters (unsigned long count);
+extern void IncrementStack (unsigned long count);
 
 extern void get_cpuid_family (char *family_return);
 extern void get_cpuid_cache_info (uint32_t *array, int index);
