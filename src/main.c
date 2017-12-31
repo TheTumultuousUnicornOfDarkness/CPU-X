@@ -530,6 +530,11 @@ static void parse_arguments(int argc, char *argv[])
 		strcat(shortopts, format("%c%s", cpux_options[i].short_opt, cpux_options[i].need_arg ? ":" : ""));
 	}
 
+	/* Avoid uninitialized members */
+	c = OPTIONS_COUNT - 1;
+	for(i = j; i < (int) OPTIONS_COUNT; i++)
+		longopts[i] = (struct option) { .name = cpux_options[c].long_opt, .has_arg = cpux_options[c].need_arg, .flag = 0, .val = cpux_options[c].short_opt };
+
 	/* Set the default mode */
 	if(HAS_GTK && (getenv("DISPLAY") != NULL || getenv("WAYLAND_DISPLAY") != NULL))
 		opts->output_type = OUT_GTK;
