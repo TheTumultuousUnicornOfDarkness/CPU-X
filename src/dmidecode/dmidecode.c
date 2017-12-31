@@ -2400,7 +2400,7 @@ static void dmi_memory_device_size(u16 code)
 
 static char *dmi_memory_device_size_str(u16 code)
 {
-	static char size[8];
+	static char size[16];
 
 	if (code == 0)
 		strcpy(size, "Empty");
