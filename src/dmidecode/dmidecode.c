@@ -318,9 +318,9 @@ static char *dmi_bios_runtime_size_str(u32 code)
 	static char size[24];
 
 	if (code & 0x000003FF)
-		sprintf(size, " %u bytes", code);
+		sprintf(size, "%u bytes", code);
 	else
-		sprintf(size, " %u kB", code >> 10);
+		sprintf(size, "%u kB", code >> 10);
 
 	return size;
 }
@@ -339,15 +339,15 @@ static void dmi_bios_rom_size(u8 code1, u16 code2)
 
 static char *dmi_bios_rom_size_str(u8 code1, u16 code2)
 {
-	static char size[8];
+	static char size[16];
 	static const char *unit[4] = {
 		"MB", "GB", out_of_spec, out_of_spec
 	};
 
 	if (code1 != 0xFF)
-		sprintf(size, " %u kB", (code1 + 1) << 6);
+		sprintf(size, "%u kB", (code1 + 1) << 6);
 	else
-		sprintf(size, " %u %s", code2 & 0x3FFF, unit[code2 >> 14]);
+		sprintf(size, "%u %s", code2 & 0x3FFF, unit[code2 >> 14]);
 
 	return size;
 }
