@@ -7,7 +7,7 @@ Distributed under the terms of the [GNU GPL v2](https://github.com/X0rg/CPU-X/bl
 
 This sofware has been patched to be used within CPU-X.  
 You can find the official web page of this project here: http://savannah.nongnu.org/projects/dmidecode/  
-This is based on dmidecode 3.1[r0.913b1f5](http://git.savannah.gnu.org/cgit/dmidecode.git/commit/?id=913b1f5f2faf5a52c5dc0977f058f8d2af2aec0a).
+This is based on dmidecode 3.1+[r12.97d23fb](http://git.savannah.gnu.org/cgit/dmidecode.git/commit/?id=97d23fb9a642574ef4415e71e4a01387d06744d6).
 
 This software is used to retrieve following data:
 * CPU tab
