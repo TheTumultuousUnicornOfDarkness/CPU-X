@@ -4657,6 +4657,21 @@ static void dmi_table_string(const struct dmi_header *h, const u8 *data, u16 ver
 	int key;
 	u8 offset = opt.string->offset;
 
+	if (opt.string->type == 11) /* OEM strings */
+	{
+		if (h->length < 5 || offset > data[4])
+		{
+			fprintf(stderr, "No OEM string number %u\n", offset);
+			return;
+		}
+
+		if (offset)
+			printf("%s\n", dmi_string(h, offset));
+		else
+			printf("%u\n", data[4]);	/* count */
+		return;
+	}
+
 	if (offset >= h->length)
 		return;
 

@@ -1,3 +1,13 @@
+2015-09-03  Jean Delvare  <jdelvare@suse.de>
+
+	* version.h: Set version to 3.1.
+
+2017-05-23  Jean Delvare  <jdelvare@suse.de>
+
+	* dmidecode.c, dmiopt.c: Add a new option to extract OEM strings, like
+	  we already have for many other strings.
+	* dmidecode.8: Document the new option.
+
 2017-04-27  Jean Delvare  <jdelvare@suse.de>
 
 	Update to support SMBIOS specification version 3.1.1.

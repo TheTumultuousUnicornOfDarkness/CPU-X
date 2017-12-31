@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "3.0.20170427")
+set(LOCALVERSION "3.1.20170523")
 if(${CMAKE_VERSION} VERSION_GREATER "2.9")
 	cmake_policy(SET CMP0048 NEW)
 	project(dmidecode

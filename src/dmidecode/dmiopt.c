@@ -20,6 +20,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <strings.h>
 #include <stdlib.h>
 #include <getopt.h>
@@ -171,6 +172,10 @@ static const struct string_keyword opt_string_keyword[] = {
 	{ "processor-frequency", 4, 0x16 },     /* dmi_processor_frequency() */
 };
 
+/* This is a template, 3rd field is set at runtime. */
+static struct string_keyword opt_oem_string_keyword =
+	{ NULL, 11, 0x00 };
+
 static void print_opt_string_list(void)
 {
 	unsigned int i;
@@ -206,6 +211,34 @@ static int parse_opt_string(const char *arg)
 	return -1;
 }
 
+static int parse_opt_oem_string(const char *arg)
+{
+	unsigned long val;
+	char *next;
+
+	if (opt.string)
+	{
+		fprintf(stderr, "Only one string can be specified\n");
+		return -1;
+	}
+
+	/* Return the number of OEM strings */
+	if (strcmp(arg, "count") == 0)
+		goto done;
+
+	val = strtoul(arg, &next, 10);
+	if (next == arg || val == 0x00 || val > 0xff)
+	{
+		fprintf(stderr, "Invalid OEM string number: %s\n", arg);
+		return -1;
+	}
+
+	opt_oem_string_keyword.offset = val;
+done:
+	opt.string = &opt_oem_string_keyword;
+	return 0;
+}
+
 
 /*
  * Command line options handling
@@ -225,6 +258,7 @@ int parse_command_line(int argc, char * const argv[])
 		{ "dump", no_argument, NULL, 'u' },
 		{ "dump-bin", required_argument, NULL, 'B' },
 		{ "from-dump", required_argument, NULL, 'F' },
+		{ "oem-string", required_argument, NULL, 'O' },
 		{ "no-sysfs", no_argument, NULL, 'S' },
 		{ "version", no_argument, NULL, 'V' },
 		{ NULL, 0, NULL, 0 }
@@ -252,6 +286,11 @@ int parse_command_line(int argc, char * const argv[])
 				break;
 			case 's':
 				if (parse_opt_string(optarg) < 0)
+					return -1;
+				opt.flags |= FLAG_QUIET;
+				break;
+			case 'O':
+				if (parse_opt_oem_string(optarg) < 0)
 					return -1;
 				opt.flags |= FLAG_QUIET;
 				break;
@@ -315,6 +354,7 @@ void print_help(void)
 		"     --dump-bin FILE    Dump the DMI data to a binary file\n"
 		"     --from-dump FILE   Read the DMI data from a binary file\n"
 		"     --no-sysfs         Do not attempt to read DMI data from sysfs files\n"
+		"     --oem-string N     Only display the value of the given OEM string\n"
 		" -V, --version          Display the version and exit\n";
 
 	printf("%s", help);
