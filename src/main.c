@@ -644,7 +644,8 @@ static void sighandler(int signum)
 	MSG_STDERR("%s %s (%s, %s)", PRGNAME, PRGVER, CC, OS);
 	for(i = 1; i < bt_size; i++)
 	{
-		popen_to_str(&buff, "addr2line %s -e /proc/%d/exe", strtok(strrchr(bt_syms[i], '[') + 1, "]"), getpid());
+		char *address = strtok(strrchr(strdup(bt_syms[i]), '[') + 1, "]");
+		popen_to_str(&buff, "addr2line %s -e /proc/%d/exe", address, getpid());
 		if(strstr(buff, "??") == NULL)
 			MSG_STDERR("#%2i %s %s", i, strrchr(buff, '/') + 1, bt_syms[i]);
 		else
@@ -781,6 +782,7 @@ int main(int argc, char *argv[])
 	set_locales();
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
+	signal(SIGABRT, sighandler);
 
 	/* Parse options */
 	parse_arguments(argc, argv);
