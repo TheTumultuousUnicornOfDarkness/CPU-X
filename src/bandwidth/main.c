@@ -16,7 +16,7 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-  The author may be reached at veritas@comcast.net.
+  The author may be reached at 1@zsmith.co.
  *===========================================================================*/
 
 #include <stdio.h>
@@ -27,6 +27,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/stat.h>
+#include <ctype.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <math.h>
@@ -53,11 +54,11 @@
 #define TITLE_MEMORY_GRAPH "Memory benchmark results from bandwidth " RELEASE " by Zack Smith, http://zsmith.co"
 
 #ifdef __WIN32__
-#include <windows.h>
+// #include <windows.h>
 #endif
 
 #ifdef __linux__
-#include <sys/ioctl.h>
+#include <stropts.h>
 #include <linux/fb.h>
 #include <sys/mman.h>
 #endif
@@ -74,9 +75,14 @@
 #endif
 
 static enum {
-	OUTPUT_MODE_GRAPH=0,
-	OUTPUT_MODE_CSV=1,
+	OUTPUT_MODE_GRAPH=1,
+	OUTPUT_MODE_CSV=2,
 } outputMode;
+
+// Mode to be nice and to keep CPU temperature low.
+static bool nice_mode = false;
+#define NICE_DURATION (2)
+#define MAX_CPU_TEMP (50)
 
 static int network_port = NETWORK_DEFAULT_PORTNUM;
 
@@ -110,6 +116,8 @@ static bool use_sse4 = false;
 static bool is_intel = false;
 static bool is_amd = false;
 
+static bool limit_below_100MB = false;
+
 static FILE *csv_output_file = NULL;
 static char *csv_file_path = NULL;
 
@@ -131,7 +139,7 @@ static uint32_t cpu_has_xd = 0;
 // Parameters for the tests.
 //
 
-static long usec_per_test = 5000;	// 5 ms per memory test.
+static long usec_per_test = 5000000;	// 5 seconds per memory test.
 
 static int chunk_sizes[] = {
 #ifdef x86
@@ -256,16 +264,20 @@ void error (char *s)
 
 void dataBegins (char *title)
 {
-	switch (outputMode) {
-	case OUTPUT_MODE_GRAPH:
+	if (!outputMode) {
+		internal ("Bad output mode.");
+	}
+	//==========
+
+	if (outputMode & OUTPUT_MODE_GRAPH) {
 		if (graph)
 			internal ("Graphing already initialized.");
 
 		graph = BMPGraphing_new (GRAPH_WIDTH, GRAPH_HEIGHT, MODE_X_AXIS_LOG2);
 		BMPGraphing_set_title (graph, title? title : TITLE_MEMORY_GRAPH);
-		break;
+	}
 
-	case OUTPUT_MODE_CSV:
+	if (outputMode & OUTPUT_MODE_CSV) {
 		if (csv_output_file)
 			internal ("CSV file already initialized.");
 
@@ -275,42 +287,81 @@ void dataBegins (char *title)
 		}
 		if (title)
 			fprintf (csv_output_file, "%s\n", title);
-		break;
-
-	default:
-		internal ("Bad output mode.");
 	}
+
 }
 
 void dataBeginSection (const char *name, uint32_t parameter)
 {
-	if (!name)
+	if (!outputMode) {
+		internal ("Bad output mode.");
+	}
+	if (!name) {
 		internal ("dataBeginSection: NULL name.");
+	}
+	//==========
 
-	switch (outputMode) {
-	case OUTPUT_MODE_GRAPH:
+	if (nice_mode) {
+		sleep (NICE_DURATION);
+
+#ifdef __APPLE__
+#define POPEN_BUFSIZE (256)
+		// Keep CPU temperature below 50 C.
+		//
+		int cpu_temperature = 0;
+		bool done = true;
+		do {
+			FILE *f = popen ("sysctl machdep.xcpm.cpu_thermal_level | sed '\''s/machdep.xcpm.cpu_thermal_level/CPU temperature/'\''", "r");
+			if (f) {
+				char buffer [POPEN_BUFSIZE] = {0};
+				if (0 < fread (buffer, 1, POPEN_BUFSIZE-1, f)) {
+					int i;
+					for (i=0; i < POPEN_BUFSIZE && buffer[i]; i++) {
+						if (isdigit (buffer[i]))
+							break;
+					}
+					if (i < POPEN_BUFSIZE) {
+						cpu_temperature = atoi (buffer + i);
+						printf ("CPU temperature is %d C.\n", cpu_temperature);
+					} else {
+						break;
+					}
+				}
+				pclose (f);
+			} else {
+				break;
+			}
+
+			done = (cpu_temperature < MAX_CPU_TEMP);
+			if (!done)
+				sleep (10);
+		} while (!done);
+#endif
+	}
+
+	if (outputMode & OUTPUT_MODE_GRAPH) {
 		if (!graph)
 			internal ("Graphing not initialized.");
 
 		BMPGraphing_new_line (graph, name, parameter);
-		break;
+	}
 
-	case OUTPUT_MODE_CSV:
+	if (outputMode & OUTPUT_MODE_CSV) {
 		if (!csv_output_file)
 			internal ("CSV output not initialized.");
 
 		fprintf (csv_output_file, "%s\n", name);
-		break;
-
-	default:
-		internal ("Bad output mode.");
 	}
 }
 
 void dataEnds (const char *parameter)
 {
-	switch (outputMode) {
-	case OUTPUT_MODE_GRAPH:
+	if (!outputMode) {
+		internal ("Bad output mode.");
+	}
+	//==========
+
+	if (outputMode & OUTPUT_MODE_GRAPH) {
 		if (!graph)
 			internal ("Graphing not initialized.");
 		if (!parameter)
@@ -320,41 +371,38 @@ void dataEnds (const char *parameter)
 		BMP_write (graph->image, parameter);
 		BMPGraphing_destroy (graph);
 		graph= NULL;
-		puts ("Wrote graph to bandwidth.bmp.");
-		break;
+		puts ("Wrote graph to: bandwidth.bmp");
+	}
 
-	case OUTPUT_MODE_CSV:
+	if (outputMode & OUTPUT_MODE_CSV) {
 		if (!csv_output_file)
 			internal ("CSV output not initialized.");
 		fclose (csv_output_file);
 		printf ("Wrote %s.\n", csv_file_path);
-		break;
-
-	default:
-		internal ("Bad output mode.");
 	}
 }
 
-void dataAddDatum (Value x, Value y)
+void
+dataAddDatum (Value x, Value y)
 {
-	switch (outputMode) {
-	case OUTPUT_MODE_GRAPH:
+	if (!outputMode) {
+		internal ("Bad output mode.");
+	}
+	//==========
+
+	if (outputMode & OUTPUT_MODE_GRAPH) {
 		if (!graph)
 			internal ("Graphing not initialized.");
 
 		BMPGraphing_add_point (graph, x, y);
-		break;
+	}
 
-	case OUTPUT_MODE_CSV:
+	if (outputMode & OUTPUT_MODE_CSV) {
 		if (!csv_output_file)
 			internal ("CSV output not initialized.");
 
 		fprintf (csv_output_file, "%lld, %.1Lf\n", (long long)x, (long double)y/10.);
 		fflush (csv_output_file);
-		break;
-
-	default:
-		internal ("Bad output mode.");
 	}
 }
 
@@ -539,7 +587,7 @@ do_write (unsigned long size, int mode, bool random)
 		//----------------------------------------
 		// Randomize the array of chunk pointers.
 		//
-		int k = 100;
+		int k = 200;
 		while (k--) {
 			for (i = 0; i < tmp; i++) {
 				int j = rand() % tmp;
@@ -635,6 +683,10 @@ do_write (unsigned long size, int mode, bool random)
 		case AVX:
 			if (!random) {
 				WriterAVX (chunk, size, loops, value);
+			} else {
+#ifdef IS_64BIT
+				RandomWriterAVX (chunk_ptrs, size/256, loops, value);
+#endif
 			}
 			break;
 
@@ -733,7 +785,7 @@ do_read (unsigned long size, int mode, bool random)
 		//----------------------------------------
 		// Randomize the array of chunk pointers.
 		//
-		int k = 100;
+		int k = 200;
 		while (k--) {
 			for (i = 0; i < tmp; i++) {
 				int j = rand() % tmp;
@@ -851,6 +903,10 @@ do_read (unsigned long size, int mode, bool random)
 		case AVX:
 			if (!random) {
 				ReaderAVX (chunk, size, loops);
+			} else {
+#ifdef IS_64BIT
+				RandomReaderAVX (chunk_ptrs, size/256, loops);
+#endif
 			}
 			break;
 
@@ -919,7 +975,7 @@ do_read (unsigned long size, int mode, bool random)
 // Purpose:	Performs sequential memory copy.
 //----------------------------------------------------------------------------
 int
-do_copy (unsigned long size, int mode, bool random)
+do_copy (unsigned long size, int mode)
 {
 #ifdef x86
 	unsigned long loops;
@@ -1023,6 +1079,12 @@ do_copy (unsigned long size, int mode, bool random)
 #else
 	return 0;
 #endif
+}
+
+int
+do_copy2 (unsigned long size, int mode, bool __unused)
+{
+	return do_copy(size, mode);
 }
 
 
@@ -2003,7 +2065,7 @@ network_test (char **destinations, int n_destinations)
 void
 usage ()
 {
-	printf ("Usage: bandwidth [--slow] [--fast] [--faster] [--fastest] [--title string] [--csv file]\n");
+	printf ("Usage: bandwidth [--slow] [--fast] [--faster] [--fastest] [--limit] [--title string] [--csv file] [--nice]\n");
         //printf ("Usage for starting network tests: bandwidth --network <ipaddr1> [<ipaddr2...] [--port <port#>]\n");
         //printf ("Usage for receiving network tests: bandwidth --transponder [--port <port#>]\n");
 
@@ -2013,10 +2075,820 @@ usage ()
 //----------------------------------------------------------------------------
 // Name:	main
 //----------------------------------------------------------------------------
-int bandwidth(void *p_data)
+int
+bandwidth_main (int argc, char **argv)
 {
-	int t, i, chunk_size;
+	int i, chunk_size;
+
 	outputMode = OUTPUT_MODE_GRAPH;
+
+	--argc;
+	++argv;
+
+        bool network_mode = false;
+        bool network_leader = false; // false => transponder
+        // int network_destinations_size = 0;
+        int n_network_destinations = 0;
+        char **network_destinations = NULL;
+	char graph_title [512] = {0};
+
+	i = 0;
+	while (i < argc) {
+		char *s = argv [i++];
+
+#if NETWORK_MODE // unsure if it still works
+		if (!strcmp ("--network", s)) {
+			network_mode = true;
+			network_leader = true;
+			network_destinations_size = 20;
+			network_destinations = (char**) malloc (network_destinations_size * sizeof (char*));
+		}
+		else
+		if (!strcmp ("--transponder", s)) {
+			network_mode = true;
+		}
+		else
+		if (!strcmp ("--port", s)) {
+			if (i != argc)
+				network_port = atoi (argv[i++]);
+		}
+		else
+#endif
+		if (!strcmp ("--nice", s)) {
+			nice_mode = true;
+		}
+		else if (!strcmp ("--slow", s)) {
+			usec_per_test=20000000;	// 20 seconds per test.
+		}
+		else
+		if (!strcmp ("--limit", s)) {
+			limit_below_100MB= true;
+		}
+		else
+		if (!strcmp ("--fast", s)) {
+			usec_per_test = 500000;	// 0.5 seconds per test.
+		}
+		else
+		if (!strcmp ("--faster", s)) {
+			usec_per_test = 50000;	// 0.05 seconds per test.
+		}
+		else
+		if (!strcmp ("--fastest", s)) {
+			usec_per_test = 5000;	// 0.005 seconds per test.
+		}
+		else
+		if (!strcmp ("--nosse2", s)) {
+			use_sse2 = false;
+			use_sse4 = false;
+		}
+		else
+		if (!strcmp ("--nosse4", s)) {
+			use_sse4 = false;
+		}
+		else
+		if (!strcmp ("--help", s)) {
+			usage ();
+		}
+		else
+		if (!strcmp ("--nograph", s)) {
+			outputMode &= ~OUTPUT_MODE_GRAPH;
+		}
+		else
+		if (!strcmp ("--csv", s) && i != argc) {
+			outputMode |= OUTPUT_MODE_CSV;
+			if (i < argc)
+				csv_file_path = strdup (argv[i++]);
+			else
+				usage ();
+		}
+		else
+		if (!strcmp ("--title", s) && i != argc) {
+			snprintf (graph_title, 511, "%s", argv[i++]);
+		}
+		else {
+			if ('-' == *s)
+				usage ();
+		}
+	}
+
+	for (i = 0; chunk_sizes[i] && i < sizeof(chunk_sizes)/sizeof(int); i++) {
+		chunk_sizes_log2[i] = log2 (chunk_sizes[i]);
+	}
+
+	printf ("This is bandwidth version %s.\n", RELEASE);
+	printf ("Copyright (C) 2005-2017 by Zack T Smith.\n\n");
+	printf ("This software is covered by the GNU Public License.\n");
+	printf ("It is provided AS-IS, use at your own risk.\n");
+	printf ("See the file COPYING for more information.\n\n");
+	fflush (stdout);
+
+	//----------------------------------------
+	// If network mode selected, enter it now.
+	// Currently cannot combine memory tests
+	// & network tests.
+	//
+	if (network_mode) {
+		if (network_leader) {
+		        graph = BMPGraphing_new (GRAPH_WIDTH, GRAPH_HEIGHT, MODE_X_AXIS_LINEAR);
+			strcpy (graph_title, TITLE_MEMORY_NET);
+			BMPGraphing_set_title (graph, graph_title);
+
+			network_test (network_destinations, n_network_destinations);
+
+		        BMPGraphing_make (graph);
+
+			BMP_write (graph->image, "network_bandwidth.bmp");
+
+#if defined(__linux__) || defined(__CYGWIN__) || defined(__APPLE__)
+			puts ("Wrote graph to network_bandwidth.bmp.");
+			newline ();
+			puts ("Done.");
+#endif
+			BMPGraphing_destroy (graph);
+		} else {
+			network_transponder ();
+		}
+
+		return 0;
+	}
+
+#ifdef x86
+	uint32_t ecx = get_cpuid1_ecx ();
+	uint32_t edx = get_cpuid1_edx ();
+	cpu_has_mmx = edx & CPUID_EDX_MMX;
+	cpu_has_sse = edx & CPUID_EDX_SSE;
+	cpu_has_sse2 = edx & CPUID_EDX_SSE2;
+	cpu_has_sse3 = ecx & CPUID_ECX_SSE3;
+	cpu_has_ssse3 = ecx & CPUID_ECX_SSSE3;
+	cpu_has_sse41 = ecx & CPUID_ECX_SSE41;
+	cpu_has_sse42 = ecx & CPUID_ECX_SSE42;
+	cpu_has_aes = ecx & CPUID_ECX_AES;
+	cpu_has_avx = ecx & CPUID_ECX_AVX;
+	cpu_has_avx2 = 0;
+
+	if (cpu_has_avx) {
+		cpu_has_avx2 = get_cpuid7_ebx ();
+		cpu_has_avx2 &= CPUID_EBX_AVX2;
+	}
+
+	use_sse2 = true;
+	use_sse4 = true;
+
+	cpu_has_sse4a = 0;
+	cpu_has_64bit = 0;
+	cpu_has_xd = 0;
+
+	static char family [17];
+	get_cpuid_family (family);
+	family [16] = 0;
+	printf ("CPU family: %s\n", family);
+
+	uint32_t ecx2 = get_cpuid_80000001_ecx ();
+	uint32_t edx2 = get_cpuid_80000001_edx ();
+
+	if (!strcmp ("AuthenticAMD", family)) {
+		is_amd = true;
+		cpu_has_sse4a = ecx2 & CPUID_ECX_SSE4A;
+	}
+	else
+	if (!strcmp ("GenuineIntel", family)) {
+		is_intel = true;
+	}
+
+	cpu_has_xd = edx2 & CPUID_EDX_XD;
+	cpu_has_64bit = edx2 & CPUID_EDX_INTEL64;
+
+	printf ("CPU features: ");
+	if (cpu_has_mmx) printf ("MMX ");
+	if (cpu_has_sse) printf ("SSE ");
+	if (cpu_has_sse2) printf ("SSE2 ");
+	if (cpu_has_sse3) printf ("SSE3 ");
+	if (cpu_has_ssse3) printf ("SSSE3 ");
+	if (cpu_has_sse4a) printf ("SSE4A ");
+	if (cpu_has_sse41) printf ("SSE4.1 ");
+	if (cpu_has_sse42) printf ("SSE4.2 ");
+	if (cpu_has_aes) printf ("AES ");
+	if (cpu_has_avx) printf ("AVX ");
+	if (cpu_has_avx2) printf ("AVX2 ");
+	if (cpu_has_xd) printf ("XD ");
+	if (cpu_has_64bit) {
+		if (!is_amd)
+			printf ("Intel64 ");
+		else
+			printf ("LongMode ");
+	}
+	puts ("\n");
+
+	if (is_intel) {
+		uint32_t cache_info[4];
+		i = 0;
+		while (1) {
+			get_cpuid_cache_info (cache_info, i);
+			if (!(cache_info[0] & 31))
+				break;
+
+#if 0
+			printf ("Cache info %d = 0x%08x, 0x%08x, 0x%08x, 0x%08x\n", i,
+				cache_info [0],
+				cache_info [1],
+				cache_info [2],
+				cache_info [3]);
+#endif
+			printf ("Cache %d: ", i);
+			switch ((cache_info[0] >> 5) & 7) {
+			case 1: printf ("L1 "); break;
+			case 2: printf ("L2 "); break;
+			case 3: printf ("L3 "); break;
+			}
+			switch (cache_info[0] & 31) {
+			case 1: printf ("data cache,        "); break;
+			case 2: printf ("instruction cache, "); break;
+			case 3: printf ("unified cache,     "); break;
+			}
+			uint32_t n_ways = 1 + (cache_info[1] >> 22);
+			uint32_t line_size = 1 + (cache_info[1] & 2047);
+			uint32_t n_sets = 1 + cache_info[2];
+			printf ("line size %d, ", line_size);
+			printf ("%2d-way%s, ", n_ways, n_ways>1 ? "s" : "");
+			printf ("%5d sets, ", n_sets);
+			unsigned size = (n_ways * line_size * n_sets) >> 10;
+			printf ("size %dk ", size);
+			newline ();
+			i++;
+		}
+	}
+
+	if (!cpu_has_sse41)
+		use_sse4 = false;
+	if (!cpu_has_sse2)
+		use_sse2 = false;
+	newline ();
+#endif
+
+	println ("Notation: B = byte, kB = 1024 B, MB = 1048576 B.");
+
+	flush ();
+
+	//------------------------------------------------------------
+	// Attempt to obtain information about the CPU.
+	//
+#ifdef __linux__
+	struct stat st;
+	if (!stat ("/proc/cpuinfo", &st)) {
+#define TMPFILE "/tmp/bandw_tmp"
+		unlink (TMPFILE);
+		if (-1 == system ("grep MHz /proc/cpuinfo | uniq | sed \"s/[\\t\\n: a-zA-Z]//g\" > "TMPFILE))
+			perror ("system");
+
+		FILE *f = fopen (TMPFILE, "r");
+		if (f) {
+			float cpu_speed = 0.0;
+
+			if (1 == fscanf (f, "%g", &cpu_speed)) {
+				newline ();
+				printf ("CPU speed is %g MHz.\n", cpu_speed);
+			}
+			fclose (f);
+		}
+	} else {
+		printf ("CPU information is not available (/proc/cpuinfo).\n");
+	}
+	fflush (stdout);
+#endif
+
+	unsigned long chunk_limit = limit_below_100MB ?  100 << 20 : 1<<31;
+
+	dataBegins (graph_title);
+
+	//------------------------------------------------------------
+	// Sequential non-vector reads.
+	//
+	newline ();
+#ifdef IS_64BIT
+	dataBeginSection ( "Sequential 64-bit reads", RGB_BLUE);
+#else
+	dataBeginSection ( "Sequential 32-bit reads", RGB_BLUE);
+#endif
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, NO_SSE2, false);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// Random non-vector reads.
+	//
+	newline ();
+#ifdef IS_64BIT
+	dataBeginSection ( "Random 64-bit reads", RGB_CYAN);
+#else
+	dataBeginSection ( "Random 32-bit reads", RGB_CYAN);
+#endif
+	srand (time (NULL));
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		if (!(chunk_size & 128)) {
+			int amount = do_read (chunk_size, NO_SSE2, true);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+	//------------------------------------------------------------
+	// Sequential non-vector writes.
+	//
+#ifdef IS_64BIT
+	dataBeginSection ( "Sequential 64-bit writes", RGB_DARKGREEN);
+#else
+	dataBeginSection ( "Sequential 32-bit writes", RGB_DARKGREEN);
+#endif
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_write (chunk_size, NO_SSE2, false);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// Random non-vector writes.
+	//
+#ifdef IS_64BIT
+	dataBeginSection ( "Random 64-bit writes", RGB_GREEN);
+#else
+	dataBeginSection ( "Random 32-bit writes", RGB_GREEN);
+#endif
+
+	newline ();
+	srand (time (NULL));
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		if (!(chunk_size & 128)) {
+			int amount = do_write (chunk_size, NO_SSE2, true);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+#ifdef __arm__
+	//------------------------------------------------------------
+	// NEON 128 bit sequential reads.
+	//
+	dataBeginSection ("Sequential 128-bit reads", RGB_RED);
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, NEON_128BIT, false);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// NEON 128 bit sequential writes.
+	//
+	dataBeginSection ("Sequential 128-bit writes", 0xA04040);
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_write (chunk_size, NEON_128BIT, false);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// NEON 64bit random writes.
+	//
+	dataBeginSection ( "Random 64-bit writes", RGB_NAVYBLUE);
+
+	newline ();
+	srand (time (NULL));
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_write (chunk_size, NEON_64BIT, true);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// NEON 64bit random reads.
+	//
+	dataBeginSection ( "Random 64-bit reads", RGB_MAROON);
+
+	newline ();
+	srand (time (NULL));
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, NEON_64BIT, true);
+		dataAddDatum (chunk_size, amount);
+	}
+#endif
+
+#ifdef x86
+	//------------------------------------------------------------
+	// SSE2 sequential reads.
+	//
+	if (use_sse2) {
+		dataBeginSection ("Sequential 128-bit reads", RGB_RED);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			int amount = do_read (chunk_size, SSE2, false);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+	//------------------------------------------------------------
+	// AVX sequential reads.
+	//
+	if (cpu_has_avx) {
+		dataBeginSection ( "Sequential 256-bit reads", RGB_TURQUOISE);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_read (chunk_size, AVX, false);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// AVX random reads.
+	//
+#ifdef IS_64BIT
+	if (cpu_has_avx) {
+		dataBeginSection ( "Random 256-bit reads", RGB_BROWN );
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_read (chunk_size, AVX, true);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+#endif
+
+	//------------------------------------------------------------
+	// SSE2 random reads.
+	//
+	if (use_sse2) {
+		dataBeginSection ( "Random 128-bit reads", RGB_MAROON);
+
+		newline ();
+		srand (time (NULL));
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_read (chunk_size, SSE2, true);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// SSE2 sequential writes that do not bypass the caches.
+	//
+	if (use_sse2) {
+		dataBeginSection ( "Sequential 128-bit cache writes", RGB_PURPLE);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			int amount = do_write (chunk_size, SSE2, false);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+	//------------------------------------------------------------
+	// AVX sequential writes that do not bypass the caches.
+	//
+	if (cpu_has_avx) {
+		dataBeginSection ( "Sequential 256-bit cache writes", RGB_PINK);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_write (chunk_size, AVX, false);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// AVX randomized writes that do not bypass the caches.
+	//
+#ifdef IS_64BIT
+	if (cpu_has_avx) {
+		dataBeginSection ( "Random 256-bit cache writes", RGB_RED);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_write (chunk_size, AVX, true);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+#endif
+
+	//------------------------------------------------------------
+	// SSE2 random writes that do not bypass the caches.
+	//
+	if (use_sse2) {
+		dataBeginSection ( "Random 128-bit cache writes", RGB_NAVYBLUE);
+
+		newline ();
+		srand (time (NULL));
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_write (chunk_size, SSE2, true);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// SSE4 sequential reads that do bypass the caches.
+	//
+	if (use_sse4) {
+		dataBeginSection ( "Sequential 128-bit non-temporal reads", 0xA04040);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			int amount = do_read (chunk_size, SSE2_BYPASS, false);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+	//------------------------------------------------------------
+	// SSE4 random reads that do bypass the caches.
+	//
+	if (use_sse4) {
+		dataBeginSection ( "Random 128-bit non-temporal reads", 0x301934 /* dark purple */);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_read (chunk_size, SSE2_BYPASS, true);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// SSE4 sequential writes that do bypass the caches.
+	//
+	if (use_sse4) {
+		dataBeginSection ( "Sequential 128-bit non-temporal writes", RGB_DARKORANGE);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			int amount = do_write (chunk_size, SSE2_BYPASS, false);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+	//------------------------------------------------------------
+	// AVX sequential writes that do bypass the caches.
+	//
+	if (cpu_has_avx) {
+		dataBeginSection ( "Sequential 256-bit non-temporal writes", RGB_DARKOLIVEGREEN);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_write (chunk_size, AVX_BYPASS, false);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// SSE4 random writes that bypass the caches.
+	//
+	if (use_sse4) {
+		dataBeginSection ( "Random 128-bit non-temporal writes", RGB_LEMONYELLOW);
+
+		newline ();
+		srand (time (NULL));
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_write (chunk_size, SSE2_BYPASS, true);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+	//------------------------------------------------------------
+	// SSE2 sequential copy.
+	//
+	if (use_sse2) {
+		dataBeginSection ( "Sequential 128-bit copy", 0x8f8844);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			int amount = do_copy (chunk_size, SSE2);
+			dataAddDatum (chunk_size, amount);
+		}
+	}
+
+	//------------------------------------------------------------
+	// AVX sequential copy.
+	//
+	if (cpu_has_avx) {
+		dataBeginSection ( "Sequential 256-bit copy", RGB_CHARTREUSE);
+
+		newline ();
+
+		i = 0;
+		while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+			if (!(chunk_size & 128)) {
+				int amount = do_copy (chunk_size, AVX);
+				dataAddDatum (chunk_size, amount);
+			}
+		}
+	}
+
+#ifdef DOING_LODS
+#ifdef IS_64BIT
+	//------------------------------------------------------------
+	// LODSQ 64-bit sequential reads.
+	//
+	dataBeginSection ( "Sequential 64-bit LODSQ reads", RGB_GRAY6);
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, LODSQ, false);
+		dataAddDatum (chunk_size, amount);
+	}
+#endif
+
+	//------------------------------------------------------------
+	// LODSD 32-bit sequential reads.
+	//
+	dataBeginSection ( "Sequential 32-bit LODSD reads", RGB_GRAY8);
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, LODSD, false);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// LODSW 16-bit sequential reads.
+	//
+	dataBeginSection ( "Sequential 16-bit LODSW reads", RGB_GRAY10);
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, LODSW, false);
+		dataAddDatum (chunk_size, amount);
+	}
+
+	//------------------------------------------------------------
+	// LODSB 64-bit sequential reads.
+	//
+	dataBeginSection ( "Sequential 8-bit LODSB reads", RGB_GRAY12);
+
+	newline ();
+
+	i = 0;
+	while ((chunk_size = chunk_sizes [i++]) && chunk_size < chunk_limit) {
+		int amount = do_read (chunk_size, LODSB, false);
+		dataAddDatum (chunk_size, amount);
+	}
+#endif // lods
+#endif // x86
+
+	//------------------------------------------------------------
+	// Register to register.
+	//
+	newline ();
+	register_test ();
+
+	//------------------------------------------------------------
+	// Stack to/from register.
+	//
+	newline ();
+	stack_test ();
+
+#ifndef __arm__
+	//------------------------------------------------------------
+	// Register vs stack.
+	//
+	newline ();
+	time_t t0 = mytime ();
+#ifdef IS_64BIT
+#define N_INC_OUTER_LOOPS 65537L
+#define N_INC_INNER_LOOPS 32767L
+#else
+#define N_INC_OUTER_LOOPS 9997L
+#define N_INC_INNER_LOOPS 3337L
+#endif
+	for (i=0; i<N_INC_INNER_LOOPS; i++) {
+		IncrementRegisters (N_INC_INNER_LOOPS);
+	}
+	time_t diff = mytime () - t0;
+	if (diff > 0) {
+		long double d = N_INC_OUTER_LOOPS * 32;
+		d *= N_INC_INNER_LOOPS;
+		d /= diff;
+		d *= 1000000; // usec->sec
+		d /= 1000000000; // billions/sec
+#ifdef IS_64BIT
+		printf ("64-bit register increments per second: %.2Lf billion\n", d);
+#else
+		printf ("32-bit register increments per second: %.2Lf billion\n", d);
+#endif
+	}
+
+	t0 = mytime ();
+	for (i=0; i < N_INC_INNER_LOOPS; i++) {
+		IncrementStack (N_INC_INNER_LOOPS);
+	}
+	diff = mytime () - t0;
+	if (diff > 0) {
+		long double d = N_INC_OUTER_LOOPS * 32;
+		d *= N_INC_INNER_LOOPS;
+		d /= diff;
+		d *= 1000000; // usec->sec
+		d /= 1000000000; // billions/sec
+#ifdef IS_64BIT
+		printf ("64-bit stack value increments per second: %.2Lf billion\n", d);
+#else
+		printf ("32-bit stack value increments per second: %.2Lf billion\n", d);
+#endif
+	}
+#endif
+
+	//------------------------------------------------------------
+	// C library performance.
+	//
+	newline ();
+	library_test ();
+
+	//------------------------------------------------------------
+	// Framebuffer read & write.
+	//
+#if defined(__linux__) && defined(FBIOGET_FSCREENINFO)
+	newline ();
+	fb_readwrite (true);
+#endif
+
+	flush ();
+
+	newline ();
+	dataEnds ("bandwidth.bmp");
+
+	newline ();
+	puts ("Done.");
+
+	return 0;
+}
+
+int bandwidth_cpux(void *p_data)
+{
+	int i, chunk_size;
+	outputMode = OUTPUT_MODE_GRAPH;
+	usec_per_test = 5000;
 	char graph_title [512] = {0};
 
 	/* Needed by CPU-X */
@@ -2024,20 +2896,10 @@ int bandwidth(void *p_data)
 	uint8_t cache_level   = 0;
 	double total_amount   = 0;
 	Labels *data          = p_data;
-	BandwidthData *w_data = (p_data != NULL) ? data->w_data : NULL;
+	BandwidthData *w_data = data->w_data;
 
 	for (i = 0; chunk_sizes[i] && i < sizeof(chunk_sizes)/sizeof(int); i++) {
 		chunk_sizes_log2[i] = log2 (chunk_sizes[i]);
-	}
-
-	if(BANDWIDTH_MODE)
-	{
-		printf ("This is bandwidth version %s (built-in with %s).\n", RELEASE, PRGNAME);
-		printf ("Copyright (C) 2005-2016 by Zack T Smith.\n\n");
-		printf ("This software is covered by the GNU Public License.\n");
-		printf ("It is provided AS-IS, use at your own risk.\n");
-		printf ("See the file COPYING for more information.\n\n");
-		fflush (stdout);
 	}
 
 	uint32_t ecx = get_cpuid1_ecx ();
@@ -2071,42 +2933,54 @@ int bandwidth(void *p_data)
 
 	const struct Tests tests[] =
 	{
-		/* Test              Name                                   Color               Flag         Mask   Func      Mode         Rand */
-		{ SEQ_128_R,         "Sequential 128-bit reads",            RGB_RED,            use_sse2,    false, do_read,  SSE2,        false },
-		{ SEQ_256_R,         "Sequential 256-bit reads",            RGB_TURQUOISE,      cpu_has_avx, true,  do_read,  AVX,         false },
-		{ RAND_128_R,        "Random 128-bit reads",                RGB_MAROON,         use_sse2,    true,  do_read,  SSE2,        true  },
-		{ SEQ_128_CACHE_W,   "Sequential 128-bit cache writes",     RGB_PURPLE,         use_sse2,    false, do_write, SSE2,        false },
-		{ SEQ_256_CACHE_W,   "Sequential 256-bit cache writes",     RGB_PINK,           cpu_has_avx, true,  do_write, AVX,         false },
-		{ RAND_128_CACHE_W,  "Random 128-bit cache writes",         RGB_NAVYBLUE,       use_sse2,    true,  do_write, SSE2,        true  },
-		{ SEQ_128_BYPASS_R,  "Sequential 128-bit bypassing reads",  0xA04040,           use_sse4,    false, do_read,  SSE2_BYPASS, false },
-		{ RAND_128_BYPASS_R, "Random 128-bit bypassing reads",      0x301934,           use_sse4,    true,  do_read,  SSE2_BYPASS, true  },
-		{ SEQ_128_BYPASS_W,  "Sequential 128-bit bypassing writes", RGB_DARKORANGE,     use_sse4,    false, do_write, SSE2_BYPASS, false },
-		{ SEQ_256_BYPASS_W,  "Sequential 256-bit bypassing writes", RGB_DARKOLIVEGREEN, cpu_has_avx, true,  do_write, AVX_BYPASS,  false },
-		{ RAND_128_BYPASS_W, "Random 128-bit bypassing writes",     RGB_LEMONYELLOW,    use_sse4,    true,  do_write, SSE2_BYPASS, true  },
-		{ SEQ_128_C,         "Sequential 128-bit copy",             0x8f8844,           use_sse2,    false, do_copy,  SSE2,        false },
-		{ SEQ_256_C,         "Sequential 256-bit copy",             RGB_CHARTREUSE,     cpu_has_avx, true,  do_copy,  AVX,         false },
-		{ SEQ_32_LR,         "Sequential 32-bit LODSD reads",       RGB_GRAY8,          true,        false, do_read,  LODSD,       false },
-		{ SEQ_16_LR,         "Sequential 16-bit LODSW reads",       RGB_GRAY10,         true,        false, do_read,  LODSW,       false },
-		{ SEQ_8_LR,          "Sequential 8-bit LODSB reads",        RGB_GRAY12,         true,        false, do_read,  LODSB,       false },
+		/* Test              Name                                      Color               Flag         Mask   Func      Mode         Rand */
+		{ SEQ_128_R,         "Sequential 128-bit reads",               RGB_RED,            use_sse2,    false, do_read,  SSE2,        false },
+		{ SEQ_256_R,         "Sequential 256-bit reads",               RGB_TURQUOISE,      cpu_has_avx, true,  do_read,  AVX,         false },
+		{ RAND_128_R,        "Random 128-bit reads",                   RGB_MAROON,         use_sse2,    true,  do_read,  SSE2,        true  },
+		{ SEQ_128_CACHE_W,   "Sequential 128-bit cache writes",        RGB_PURPLE,         use_sse2,    false, do_write, SSE2,        false },
+		{ SEQ_256_CACHE_W,   "Sequential 256-bit cache writes",        RGB_PINK,           cpu_has_avx, true,  do_write, AVX,         false },
+		{ RAND_128_CACHE_W,  "Random 128-bit cache writes",            RGB_NAVYBLUE,       use_sse2,    true,  do_write, SSE2,        true  },
+		{ SEQ_128_BYPASS_R,  "Sequential 128-bit non-temporal reads",  0xA04040,           use_sse4,    false, do_read,  SSE2_BYPASS, false },
+		{ RAND_128_BYPASS_R, "Random 128-bit non-temporal reads",      0x301934,           use_sse4,    true,  do_read,  SSE2_BYPASS, true  },
+		{ SEQ_128_BYPASS_W,  "Sequential 128-bit non-temporal writes", RGB_DARKORANGE,     use_sse4,    false, do_write, SSE2_BYPASS, false },
+		{ SEQ_256_BYPASS_W,  "Sequential 256-bit non-temporal writes", RGB_DARKOLIVEGREEN, cpu_has_avx, true,  do_write, AVX_BYPASS,  false },
+		{ RAND_128_BYPASS_W, "Random 128-bit non-temporal writes",     RGB_LEMONYELLOW,    use_sse4,    true,  do_write, SSE2_BYPASS, true  },
+		{ SEQ_128_C,         "Sequential 128-bit copy",                0x8f8844,           use_sse2,    false, do_copy2, SSE2,        false },
+		{ SEQ_256_C,         "Sequential 256-bit copy",                RGB_CHARTREUSE,     cpu_has_avx, true,  do_copy2, AVX,         false },
+		{ SEQ_32_LR,         "Sequential 32-bit LODSD reads",          RGB_GRAY8,          true,        false, do_read,  LODSD,       false },
+		{ SEQ_16_LR,         "Sequential 16-bit LODSW reads",          RGB_GRAY10,         true,        false, do_read,  LODSW,       false },
+		{ SEQ_8_LR,          "Sequential 8-bit LODSB reads",           RGB_GRAY12,         true,        false, do_read,  LODSB,       false },
 #ifdef __x86_64__
-		{ SEQ_64_LR,         "Sequential 64-bit LODSQ reads",       RGB_GRAY6,          true,        false, do_read,  LODSQ,       false },
-		{ SEQ_64_R,          "Sequential 64-bit reads",             RGB_BLUE,           true,        false, do_read,  NO_SSE2,     false },
-		{ RAND_64_R,         "Random 64-bit reads",                 RGB_CYAN,           true,        true,  do_read,  NO_SSE2,     true  },
-		{ SEQ_64_W,          "Sequential 64-bit writes",            RGB_DARKGREEN,      true,        false, do_write, NO_SSE2,     false },
-		{ RAND_64_W,         "Random 64-bit writes",                RGB_GREEN,          true,        true,  do_write, NO_SSE2,     true  },
-
+		{ SEQ_64_LR,         "Sequential 64-bit LODSQ reads",          RGB_GRAY6,          true,        false, do_read,  LODSQ,       false },
+		{ SEQ_64_R,          "Sequential 64-bit reads",                RGB_BLUE,           true,        false, do_read,  NO_SSE2,     false },
+		{ RAND_64_R,         "Random 64-bit reads",                    RGB_CYAN,           true,        true,  do_read,  NO_SSE2,     true  },
+		{ SEQ_64_W,          "Sequential 64-bit writes",               RGB_DARKGREEN,      true,        false, do_write, NO_SSE2,     false },
+		{ RAND_64_W,         "Random 64-bit writes",                   RGB_GREEN,          true,        true,  do_write, NO_SSE2,     true  },
+		{ RAND_256_R,        "Random 256-bit reads",                   RGB_BROWN,          cpu_has_avx, true,  do_read,  AVX,         true  },
+		{ RAND_256_W,        "Random 256-bit cache writes",            RGB_RED,            cpu_has_avx, true,  do_write, AVX,         true  },
 #else
-		{ SEQ_32_R,          "Sequential 32-bit reads",             RGB_BLUE,           true,        false, do_read,  NO_SSE2,     false },
-		{ RAND_32_R,         "Random 32-bit reads",                 RGB_CYAN,           true,        true,  do_read,  NO_SSE2,     true  },
-		{ SEQ_32_W,          "Sequential 32-bit writes",            RGB_DARKGREEN,      true,        false, do_write, NO_SSE2,     false },
-		{ RAND_32_W,         "Random 32-bit writes",                RGB_GREEN,          true,        true,  do_write, NO_SSE2,     true  },
+		{ SEQ_32_R,          "Sequential 32-bit reads",                RGB_BLUE,           true,        false, do_read,  NO_SSE2,     false },
+		{ RAND_32_R,         "Random 32-bit reads",                    RGB_CYAN,           true,        true,  do_read,  NO_SSE2,     true  },
+		{ SEQ_32_W,          "Sequential 32-bit writes",               RGB_DARKGREEN,      true,        false, do_write, NO_SSE2,     false },
+		{ RAND_32_W,         "Random 32-bit writes",                   RGB_GREEN,          true,        true,  do_write, NO_SSE2,     true  },
 #endif
-		{ -1,                NULL,                                  0x0,                false,       false, NULL,     0,           false }
+		{ -1,                NULL,                                     0x0,                false,       false, NULL,     0,           false }
 	};
 
 #if HAS_LIBCPUID
-	if(!BANDWIDTH_MODE)
-		goto fast_initialization;
+	/* Fast initialization by using libcpuid */
+	switch(data->l_data->cpu_vendor_id)
+	{
+		case VENDOR_INTEL:
+			is_intel = true;
+			goto end_initialization;
+		case VENDOR_AMD:
+			is_amd = true;
+			cpu_has_sse4a = ecx2 & CPUID_ECX_SSE4A;
+			goto end_initialization;
+		default:
+			break;
+	}
 #endif /* HAS_LIBCPUID */
 
 	static char family [17];
@@ -2217,133 +3091,59 @@ int bandwidth(void *p_data)
 #endif
 
 	dataBegins (graph_title);
-	goto end_initialization;
-
-#if HAS_LIBCPUID
-fast_initialization:
-	switch(data->l_data->cpu_vendor_id)
-	{
-		case VENDOR_INTEL:
-			is_intel = true;
-			break;
-		case VENDOR_AMD:
-			is_amd = true;
-			cpu_has_sse4a = ecx2 & CPUID_ECX_SSE4A;
-			break;
-		default:
-			break;
-	}
-#endif /* HAS_LIBCPUID */
 
 end_initialization:
+	/* Check if selectionned test is valid */
+	if(opts->bw_test >= LASTTEST)
+		opts->bw_test = 0;
 
-	if(!BANDWIDTH_MODE)
+	/* Set test names */
+	if(w_data->test_count == 0)
 	{
-		/* Check if selectionned test is valid */
-		if(opts->bw_test >= LASTTEST)
-			opts->bw_test = 0;
+		w_data->test_name  = malloc(LASTTEST * sizeof(char *));
+		w_data->test_count = (w_data->test_name == NULL) ? 0 : LASTTEST;
 
-		/* Set test names */
-		if(w_data->test_count == 0)
+		for(i = 0; i < w_data->test_count; i++)
 		{
-			w_data->test_count = LASTTEST;
-			w_data->test_name  = malloc(LASTTEST * sizeof(char *));
-			if(w_data->test_name == NULL)
-				w_data->test_count = 0;
-
-			for(i = 0; i < w_data->test_count; i++)
-			{
-				w_data->test_name[i] = NULL;
-				casprintf(&w_data->test_name[i], false, "#%2i: %s", i, tests[i].name);
-			}
+			w_data->test_name[i] = NULL;
+			casprintf(&w_data->test_name[i], false, "#%2i: %s", i, tests[i].name);
 		}
 	}
 
-	for(t = (BANDWIDTH_MODE) ? 0 : opts->bw_test; tests[t].name != NULL; t++)
+	if(tests[opts->bw_test].need_flag)
 	{
-		if(tests[t].need_flag)
+		if(tests[opts->bw_test].random)
+			srand(time (NULL));
+
+		i = 0;
+		while((chunk_size = chunk_sizes [i++]))
 		{
-			if(BANDWIDTH_MODE)
+			if(!tests[opts->bw_test].need_mask || (tests[opts->bw_test].need_mask && !(chunk_size & 128)))
 			{
-				dataBeginSection(tests[t].name, tests[t].color);
-				newline ();
-			}
-
-			if(tests[t].random)
-				srand(time (NULL));
-
-			i = 0;
-			while((chunk_size = chunk_sizes [i++]))
-			{
-				if(!tests[t].need_mask || (tests[t].need_mask && !(chunk_size & 128)))
+				if(chunk_size > w_data->size[cache_level] * 1024)
 				{
-					if(!BANDWIDTH_MODE && chunk_size > w_data->size[cache_level] * 1024)
-					{
-						w_data->speed[cache_level] = total_amount / count;
-						count        = 0;
-						total_amount = 0;
-						cache_level++;
+					w_data->speed[cache_level] = total_amount / count;
+					count        = 0;
+					total_amount = 0;
+					cache_level++;
 
-						if(cache_level >= data->cache_count || w_data->size[cache_level] < 1)
-							return 0;
-					}
-
-					int amount = (*tests[t].func_ptr)(chunk_size, tests[t].mode, tests[t].random);
-
-					if(BANDWIDTH_MODE)
-						dataAddDatum (chunk_size, amount);
-					else
-					{
-						total_amount += amount;
-						count++;
-					}
+					if(cache_level >= data->cache_count || w_data->size[cache_level] < 1)
+						return 0;
 				}
+
+				int amount = (*tests[opts->bw_test].func_ptr)(chunk_size, tests[opts->bw_test].mode, tests[opts->bw_test].random);
+				total_amount += amount;
+				count++;
 			}
 		}
-		else
-		{
-			for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
-				w_data->speed[i] = 0;
-			return 1;
-		}
-
-		if(!BANDWIDTH_MODE)
-			return 0;
 	}
+	else
+	{
+		for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
+			w_data->speed[i] = 0;
 
-	//------------------------------------------------------------
-	// Register to register.
-	//
-	newline ();
-	register_test ();
-
-	//------------------------------------------------------------
-	// Stack to/from register.
-	//
-	newline ();
-	stack_test ();
-
-	//------------------------------------------------------------
-	// C library performance.
-	//
-	newline ();
-	library_test ();
-
-	//------------------------------------------------------------
-	// Framebuffer read & write.
-	//
-#if defined(__linux__) && defined(FBIOGET_FSCREENINFO)
-	newline ();
-	fb_readwrite (true);
-#endif
-
-	flush ();
-
-	newline ();
-	dataEnds ("bandwidth.bmp");
-
-	newline ();
-	puts ("Done.");
+		return 1;
+	}
 
 	return 0;
 }

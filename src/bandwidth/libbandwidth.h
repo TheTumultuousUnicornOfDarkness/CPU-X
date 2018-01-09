@@ -51,6 +51,8 @@ enum EnTests
 	SEQ_64_W,
 	RAND_64_W,
 	SEQ_64_LR,
+	RAND_256_R,
+	RAND_256_W,
 #else
 	SEQ_32_R,
 	RAND_32_R,
@@ -72,7 +74,8 @@ struct Tests
 	bool     random;
 };
 
-int bandwidth(void *p_data);
+int bandwidth_main(int argc, char **argv);
+int bandwidth_cpux(void *p_data);
 
 
 #endif

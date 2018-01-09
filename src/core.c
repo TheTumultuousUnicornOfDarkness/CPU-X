@@ -586,7 +586,8 @@ static int cpu_usage(Labels *data)
 /* Call Bandwidth through CPU-X but do nothing else */
 int run_bandwidth(void)
 {
-	return bandwidth(NULL);
+	char *argv[] = { NULL, "--fastest", NULL };
+	return bandwidth_main(2, argv);
 }
 
 /* Compute CPU cache speed */
@@ -601,7 +602,7 @@ static int call_bandwidth(Labels *data)
 
 	MSG_VERBOSE(_("Calling bandwidth"));
 	/* Run bandwidth in a separated thread */
-	err = pthread_create(&tid, NULL, (void *)bandwidth, data);
+	err = pthread_create(&tid, NULL, (void *)bandwidth_cpux, data);
 	if(first)
 	{
 		err += pthread_join(tid, NULL);

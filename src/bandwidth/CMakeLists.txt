@@ -48,10 +48,10 @@ if(CMAKE_ASM_NASM_INFOMATION_LOADED)
 
 	add_library(bandwidth
 		STATIC
-		bandwidth.c
 		BMP.c
 		BMPGraphing.c
 		font.c
+		main.c
 		minifont.c
 		libbandwidth.h
 		${ROUTINES}.o
