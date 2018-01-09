@@ -1203,10 +1203,33 @@ static int cputab_volt_fallback(Labels *data)
 	return err;
 }
 
+/* Retrieve CPU frequency if Libcpuid is missing */
+static int cputab_freq_fallback(Labels *data)
+{
+	int err = 0;
+#ifdef __linux__
+	char *freq;
+
+	MSG_VERBOSE(_("Retrieving CPU frequency in fallback mode"));
+	err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, opts->selected_core);
+	if(!err)
+	{
+		data->cpu_freq = (int) round(strtod(freq, NULL) / 1000.0);
+		casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
+		free(freq);
+	}
+	else
+		MSG_ERROR(_("failed to retrieve CPU frequency (fallback mode)"));
+
+#endif /* __linux__ */
+
+	return err;
+}
+
 /* Retrieve dynamic data if other functions failed */
 static int fallback_mode_dynamic(Labels *data)
 {
-	enum FallbackDynamic { TEMP, VOLT, LASTFALLBACK };
+	enum FallbackDynamic { TEMP, VOLT, FREQ, LASTFALLBACK };
 	static bool use_fallback[LASTFALLBACK] = { false };
 	int err = 0;
 
@@ -1220,6 +1243,12 @@ static int fallback_mode_dynamic(Labels *data)
 	{
 		use_fallback[VOLT] = true;
 		err += err_func(cputab_volt_fallback, data);
+	}
+
+	if(string_is_empty(data->tab_cpu[VALUE][CORESPEED])   || use_fallback[FREQ] || opts->freq_fallback)
+	{
+		use_fallback[FREQ] = true;
+		err += err_func(cputab_freq_fallback, data);
 	}
 
 	return err;

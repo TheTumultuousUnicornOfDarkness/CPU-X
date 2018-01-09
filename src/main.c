@@ -626,6 +626,8 @@ static void check_environment_variables(Labels *data)
 		data->l_data->cpuid_raw_file = getenv("CPUX_CPUID_RAW");
 	if(getenv("CPUX_DEBUG_DATABASE"))
 		opts->debug_database = ((atoi(getenv("CPUX_DEBUG_DATABASE"))) > 0);
+	if(getenv("CPUX_FORCE_FREQ_FALLBACK"))
+		opts->freq_fallback = ((atoi(getenv("CPUX_FORCE_FREQ_FALLBACK"))) > 0);
 }
 
 
@@ -778,6 +780,7 @@ int main(int argc, char *argv[])
 		.use_network    = true,
 		.update         = false,
 		.debug_database = false,
+		.freq_fallback  = false,
 		.selected_page  = 0,
 		.selected_core  = 0,
 		.bw_test        = 0,
