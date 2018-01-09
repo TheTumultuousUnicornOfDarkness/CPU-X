@@ -1,5 +1,5 @@
 /****************************************************************************
-*    Copyright © 2014-2017 Xorg
+*    Copyright © 2014-2018 Xorg
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@
 #define PRGURL                "http://X0rg.github.io/CPU-X"
 #define UPDURL                "http://x0rg.github.io/CPU-X/version.txt"
 #define TARBALL               "https://github.com/"PRGAUTH"/"PRGNAME"/releases/download"
-#define PRGCPRGHT             "Copyright © 2014-2017 Xorg"
+#define PRGCPRGHT             "Copyright © 2014-2018 Xorg"
 #define PRGLCNS               "GNU GPL v3"
 #define LCNSURL               "http://www.gnu.org/licenses/gpl.txt"
 
