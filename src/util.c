@@ -334,38 +334,44 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 
 		/* Browse files in directory */
 		casprintf(&path, false, "%s/%s", base_dir, dir->d_name);
-		if(which == RQT_CPU_TEMPERATURE)
+		switch(which)
 		{
-			if(strstr(sensor, "coretemp") != NULL)
+			case RQT_CPU_TEMPERATURE:
+				if(strstr(sensor, "coretemp") != NULL)
+					/* 'sensors' output:
+					Package id 0:  +37.0°C  (high = +80.0°C, crit = +98.0°C)
+					Core 0:        +33.0°C  (high = +80.0°C, crit = +98.0°C)
+					Core 1:        +34.0°C  (high = +80.0°C, crit = +98.0°C)
+					Core 2:        +36.0°C  (high = +80.0°C, crit = +98.0°C)
+					Core 3:        +37.0°C  (high = +80.0°C, crit = +98.0°C) */
+					err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
+				else if(strstr(sensor, "k8temp") != NULL)
+					/* 'sensors' output:
+					Core0 Temp:    +64.0°C
+					Core0 Temp:    +63.0°C
+					Core1 Temp:    +64.0°C
+					Core1 Temp:    +64.0°C */
+					err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
+				else if(strstr(sensor, "k10temp") != NULL)
+					/* 'sensors' output:
+					temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
+					err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
+				break;
+			case RQT_CPU_TEMPERATURE_OTHERS:
+				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_other, cached_path);
+				break;
+			case RQT_CPU_VOLTAGE:
 				/* 'sensors' output:
-				Package id 0:  +37.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 0:        +33.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 1:        +34.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 2:        +36.0°C  (high = +80.0°C, crit = +98.0°C)
-				Core 3:        +37.0°C  (high = +80.0°C, crit = +98.0°C) */
-				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
-			else if(strstr(sensor, "k8temp") != NULL)
-				/* 'sensors' output:
-				Core0 Temp:    +64.0°C
-				Core0 Temp:    +63.0°C
-				Core1 Temp:    +64.0°C
-				Core1 Temp:    +64.0°C */
-				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
-			else if(strstr(sensor, "k10temp") != NULL)
-				/* 'sensors' output:
-				temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
-				err = get_sensor_path(path, &regex_filename_temp_in,  NULL,               cached_path);
+				Vcore:         +0.88 V  (min =  +0.80 V, max =  +1.38 V) */
+				err = get_sensor_path(path, &regex_filename_in_in, NULL, cached_path);
+				break;
+			case RQT_GPU_TEMPERATURE:
+				err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
+				break;
+			case RQT_GPU_DRM:
+				err = get_directory_path(path, &regex_dirname_cardN, cached_path);
+				break;
 		}
-		else if(which == RQT_CPU_TEMPERATURE_OTHERS)
-			err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_other, cached_path);
-		else if(which == RQT_CPU_VOLTAGE)
-			/* 'sensors' output:
-			Vcore:         +0.88 V  (min =  +0.80 V, max =  +1.38 V) */
-			err = get_sensor_path(path, &regex_filename_in_in,    NULL,               cached_path);
-		else if(which == RQT_GPU_TEMPERATURE)
-			err = get_sensor_path(path, &regex_filename_temp_in,  NULL,               cached_path);
-		else if(which == RQT_GPU_DRM)
-			err = get_directory_path(path, &regex_dirname_cardN, cached_path);
 	}
 
 	closedir(dp);

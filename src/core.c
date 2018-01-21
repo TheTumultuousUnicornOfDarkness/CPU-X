@@ -680,7 +680,6 @@ static int find_devices(Labels *data)
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 
-
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
 #ifdef __FreeBSD__
@@ -739,9 +738,8 @@ static int find_devices(Labels *data)
 static int gpu_temperature(Labels *data)
 {
 	int ret;
-	unsigned failed_count = 0;
 	double divisor = 1.0;
-	uint8_t i, fglrx_count = 0, nvidia_count = 0;
+	uint8_t i, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
 	char *buff = NULL;
 	static bool once_error = true;
 	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
@@ -750,23 +748,27 @@ static int gpu_temperature(Labels *data)
 	for(i = 0; i < data->gpu_count; i++)
 	{
 		ret = 0;
-		if(data->g_data->gpu_driver[i] == GPUDRV_FGLRX)
-			ret = popen_to_str(&buff, "aticonfig --adapter=%u --odgt | grep Sensor | awk '{ print $5 }'", fglrx_count++);
-		else if(data->g_data->gpu_driver[i] == GPUDRV_NVIDIA)
-			ret = popen_to_str(&buff, "nvidia-settings -q [gpu:%u]/GPUCoreTemp -t", nvidia_count++);
-		else if((data->g_data->gpu_driver[i] == GPUDRV_AMDGPU) ||
-		        (data->g_data->gpu_driver[i] == GPUDRV_RADEON) ||
-		        (data->g_data->gpu_driver[i] == GPUDRV_NOUVEAU))
+		switch(data->g_data->gpu_driver[i])
 		{
-			divisor = 1000.0;
-			if(cached_paths[i] == NULL)
-				ret = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_TEMPERATURE);
-
-			if(!ret && (cached_paths[i] != NULL))
-				fopen_to_str(&buff, cached_paths[i]);
+			case GPUDRV_FGLRX:
+				ret = popen_to_str(&buff, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'", fglrx_count++);
+				break;
+			case GPUDRV_NVIDIA:
+				ret = popen_to_str(&buff, "nvidia-settings -q [gpu:%1u]/GPUCoreTemp -t", nvidia_count++);
+				break;
+			case GPUDRV_AMDGPU:
+			case GPUDRV_RADEON:
+			case GPUDRV_NOUVEAU:
+				divisor = 1000.0;
+				if(cached_paths[i] == NULL)
+					ret = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_TEMPERATURE);
+				if(!ret && (cached_paths[i] != NULL))
+					fopen_to_str(&buff, cached_paths[i]);
+				break;
+			default:
+				// Unsupported feature, like GPUDRV_INTEL
+				continue;
 		}
-		else
-			continue; // Unsupported feature, like GPUDRV_INTEL
 
 		if(!ret)
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2f°C", atof(buff) / divisor);
