@@ -1019,12 +1019,10 @@ _RandomReaderAVX:
 	vmovdqa	ymm1, [192+r10]
 	vmovdqa	ymm2, [64+r10]
 	vmovdqa	ymm3, [224+r10]
-	vpaddq ymm0, ymm1
-	vmovdqa	ymm0, [r10]	
+	vmovdqa	ymm0, [r10]
 	vmovdqa	ymm1, [160+r10]
 	vmovdqa	ymm2, [128+r10]
 	vmovdqa	ymm3, [32+r10]
-	vpaddq ymm2, ymm3
 
 	inc	r11
 	cmp	r11, rsi

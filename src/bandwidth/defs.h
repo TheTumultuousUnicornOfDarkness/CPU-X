@@ -44,12 +44,13 @@
 // 1.4.1 Added --limit parameter.
 // 1.4.2 Fixed compiler warnings.
 // 1.5 Fixed AVX writer bug that gave inaccurate results. Added nice mode.
+// 1.5.1 Fixed crashing bug.
 //---------------------------------------------------------------------------
 
 #ifndef _DEFS_H
 #define _DEFS_H
 
-#define RELEASE "1.5"
+#define RELEASE "1.5.1"
 
 #ifdef __WIN32__
 typedef char bool; 
