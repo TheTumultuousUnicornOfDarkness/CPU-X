@@ -72,7 +72,7 @@
 #define MAXSTR                80       /* Max string */
 #define CACHEFIELDS           2        /* Nb of fields by cache frame */
 #define RAMFIELDS             2        /* Nb of fields by bank */
-#define GPUFIELDS             3        /* Nb of fields by GPU frame */
+#define GPUFIELDS             6        /* Nb of fields by GPU frame */
 #define BENCHFIELDS           2        /* Nb of fields by bench frame */
 
 /* Linux-specific paths definition */
@@ -80,6 +80,7 @@
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"
 #define SYS_DRM               "/sys/class/drm/card"
 #define SYS_HWMON             "/sys/class/hwmon"
+#define SYS_DRI               "/sys/kernel/debug/dri"
 
 
 enum EnTabNumber
@@ -149,10 +150,10 @@ enum EnTabSystemExtra
 
 enum EnTabGraphics
 {
-	GPU1VENDOR, GPU1MODEL, GPU1TEMPERATURE,
-	GPU2VENDOR, GPU2MODEL, GPU2TEMPERATURE,
-	GPU3VENDOR, GPU3MODEL, GPU3TEMPERATURE,
-	GPU4VENDOR, GPU4MODEL, GPU4TEMPERATURE,
+	GPU1VENDOR, GPU1MODEL, GPU1TEMPERATURE, GPU1USAGE, GPU1CORECLOCK, GPU1MEMCLOCK,
+	GPU2VENDOR, GPU2MODEL, GPU2TEMPERATURE, GPU2USAGE, GPU2CORECLOCK, GPU2MEMCLOCK,
+	GPU3VENDOR, GPU3MODEL, GPU3TEMPERATURE, GPU3USAGE, GPU3CORECLOCK, GPU3MEMCLOCK,
+	GPU4VENDOR, GPU4MODEL, GPU4TEMPERATURE, GPU4USAGE, GPU4CORECLOCK, GPU4MEMCLOCK,
 	LASTGRAPHICS
 };
 
@@ -288,7 +289,7 @@ int popen_to_str(char **buffer, char *str, ...);
 bool load_module(char *module);
 
 /* Get a filename located in a directory corresponding to given request */
-enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE };
+enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM };
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
 
 

@@ -201,24 +201,36 @@ const LabelNames tab_system_names[] =
 const LabelNames tab_graphics_names[] =
 {
 	// Card 1 frame
-	{ GPU1VENDOR,      N_("Vendor")      },
-	{ GPU1MODEL,       N_("Model")       },
-	{ GPU1TEMPERATURE, N_("Temperature") },
+	{ GPU1VENDOR,      N_("Vendor")       },
+	{ GPU1MODEL,       N_("Model")        },
+	{ GPU1TEMPERATURE, N_("Temperature")  },
+	{ GPU1USAGE,       N_("Usage")        },
+	{ GPU1CORECLOCK,   N_("GPU clock")    },
+	{ GPU1MEMCLOCK,    N_("Memory clock") },
 
 	// Card 2 frame
-	{ GPU2VENDOR,      N_("Vendor")      },
-	{ GPU2MODEL,       N_("Model")       },
-	{ GPU2TEMPERATURE, N_("Temperature") },
+	{ GPU2VENDOR,      N_("Vendor")       },
+	{ GPU2MODEL,       N_("Model")        },
+	{ GPU2TEMPERATURE, N_("Temperature")  },
+	{ GPU2USAGE,       N_("Usage")        },
+	{ GPU2CORECLOCK,   N_("GPU clock")    },
+	{ GPU2MEMCLOCK,    N_("Memory clock") },
 
 	// Card 3 frame
-	{ GPU3VENDOR,      N_("Vendor")      },
-	{ GPU3MODEL,       N_("Model")       },
-	{ GPU3TEMPERATURE, N_("Temperature") },
+	{ GPU3VENDOR,      N_("Vendor")       },
+	{ GPU3MODEL,       N_("Model")        },
+	{ GPU3TEMPERATURE, N_("Temperature")  },
+	{ GPU3USAGE,       N_("Usage")        },
+	{ GPU3CORECLOCK,   N_("GPU clock")    },
+	{ GPU3MEMCLOCK,    N_("Memory clock") },
 
 	// Card 4 frame
-	{ GPU4VENDOR,      N_("Vendor")      },
-	{ GPU4MODEL,       N_("Model")       },
-	{ GPU4TEMPERATURE, N_("Temperature") },
+	{ GPU4VENDOR,      N_("Vendor")       },
+	{ GPU4MODEL,       N_("Model")        },
+	{ GPU4TEMPERATURE, N_("Temperature")  },
+	{ GPU4USAGE,       N_("Usage")        },
+	{ GPU4CORECLOCK,   N_("GPU clock")    },
+	{ GPU4MEMCLOCK,    N_("Memory clock") },
 };
 
 const LabelNames tab_bench_names[] =

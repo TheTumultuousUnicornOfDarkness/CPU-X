@@ -159,7 +159,12 @@ static gboolean grefresh(GThrd *refr)
 			break;
 		case NO_GRAPHICS:
 			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
+			{
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE + i]), data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE       + i]), data->tab_graphics[VALUE][GPU1USAGE       + i]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK   + i]), data->tab_graphics[VALUE][GPU1CORECLOCK   + i]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK    + i]), data->tab_graphics[VALUE][GPU1MEMCLOCK    + i]);
+			}
 			break;
 		case NO_BENCH:
 			for(i = PRIMESLOWSCORE; i <= PRIMEFASTSCORE; i += BENCHFIELDS)

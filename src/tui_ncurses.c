@@ -345,10 +345,14 @@ static void nrefresh(NThrd *refr)
 			break;
 		case NO_GRAPHICS:
 			line = LINE_3;
-			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
+			for(i = 0; i < data->gpu_count * GPUFIELDS; i += GPUFIELDS)
 			{
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
-				line += GPUFIELDS + 2;
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1USAGE       + i], data->tab_graphics[VALUE][GPU1USAGE       + i]);
+				line++;
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK + i], data->tab_graphics[VALUE][GPU1CORECLOCK     + i]);
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK  + i], data->tab_graphics[VALUE][GPU1MEMCLOCK      + i]);
+				line += GPUFIELDS - 1;
 			}
 			break;
 		case NO_BENCH:
@@ -702,7 +706,7 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line, start = LINE_0, end = LINE_4;
+	int i, line, start = LINE_0, end = LINE_5;
 
 	if(!data->gpu_count)
 		return;
@@ -715,11 +719,26 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 		{
 			frame(win, start, info.start, end, info.width - 1, data->objects[FRAMGPU1 + i / GPUFIELDS]);
 			start = end + 1;
-			end += 5;
+			end += 6;
 			if(i > 0)
 				line += 2;
 		}
-		mvwprintw2c(win, line++, 2, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
+
+		switch(i)
+		{
+			case GPU1USAGE:
+			case GPU2USAGE:
+			case GPU3USAGE:
+			case GPU4USAGE:
+			case GPU1MEMCLOCK:
+			case GPU2MEMCLOCK:
+			case GPU3MEMCLOCK:
+			case GPU4MEMCLOCK:
+				mvwprintw2c(win, line - 1, info.tm, "%18s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
+				break;
+			default:
+				mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
+		}
 	}
 
 	wrefresh(win);

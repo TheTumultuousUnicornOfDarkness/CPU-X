@@ -280,6 +280,20 @@ static int get_sensor_path(char *dir_path, regex_t *regex_filename, regex_t *reg
 	return err;
 }
 
+/* Search a directory path corresponding to regex */
+static int get_directory_path(char *dir_path, regex_t *regex_dirname, char **cached_path)
+{
+	int err = regexec(regex_dirname, dir_path, 0, NULL, 0);
+
+	if(!err)
+	{
+		casprintf(cached_path, false, "%s", dir_path);
+		err = access(*cached_path, R_OK);
+	}
+
+	return err;
+}
+
 /* Get a filename located in a directory corresponding to given request */
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which)
 {
@@ -288,7 +302,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	char *path   = NULL;
 	DIR *dp      = NULL;
 	struct dirent *dir;
-	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in;
+	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in, regex_dirname_cardN;
 	regex_t regex_label_coreN, regex_label_other;
 
 	if((dp = opendir(base_dir)) == NULL)
@@ -300,6 +314,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	if(regcomp(&regex_filename_temp_in,  "temp1_input",                                     REG_NOSUB)             ||
 	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
 	   regcomp(&regex_filename_in_in,    "in0_input",                                       REG_NOSUB)             ||
+	   regcomp(&regex_dirname_cardN,     "card[[:digit:]]",                                 REG_NOSUB)             ||
 	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
 	{
@@ -314,7 +329,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 			continue;
 
 		/* Find sensor name */
-		if(fopen_to_str(&sensor, "%s/%s/name", base_dir, dir->d_name))
+		if((which != RQT_GPU_DRM) && fopen_to_str(&sensor, "%s/%s/name", base_dir, dir->d_name))
 			continue;
 
 		/* Browse files in directory */
@@ -349,6 +364,8 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 			err = get_sensor_path(path, &regex_filename_in_in,    NULL,               cached_path);
 		else if(which == RQT_GPU_TEMPERATURE)
 			err = get_sensor_path(path, &regex_filename_temp_in,  NULL,               cached_path);
+		else if(which == RQT_GPU_DRM)
+			err = get_directory_path(path, &regex_dirname_cardN, cached_path);
 	}
 
 	closedir(dp);
@@ -357,6 +374,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_filename_temp_in);
 	regfree(&regex_filename_temp_lab);
 	regfree(&regex_filename_in_in);
+	regfree(&regex_dirname_cardN);
 	regfree(&regex_label_coreN);
 	regfree(&regex_label_other);
 

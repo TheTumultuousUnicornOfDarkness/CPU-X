@@ -117,6 +117,7 @@ int do_refresh(Labels *data)
 			break;
 		case NO_GRAPHICS:
 			err += err_func(gpu_temperature, data);
+			err += err_func(gpu_clocks,      data);
 			break;
 		case NO_BENCH:
 			err += err_func(benchmark_status, data);
@@ -778,6 +779,99 @@ static int gpu_temperature(Labels *data)
 
 	if(once_error && failed_count)
 		MSG_ERROR(_("failed to retrieve GPU temperature"));
+	once_error = false;
+
+	return (failed_count == data->gpu_count);
+}
+
+/* Retrieve GPU clocks */
+static int gpu_clocks(Labels *data)
+{
+	int ret, ret_load, ret_gclk, ret_mclk;
+	uint8_t i, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
+	char card_number;
+	char *gclk = NULL, *mclk = NULL, *load = NULL;
+	static bool once_error = true;
+	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
+
+	MSG_VERBOSE(_("Retrieving GPU clocks"));
+	for(i = 0; i < data->gpu_count; i++)
+	{
+		ret_load = 0;
+		ret_gclk = 0;
+		ret_mclk = 0;
+
+		switch(data->g_data->gpu_driver[i])
+		{
+			case GPUDRV_AMDGPU:
+			case GPUDRV_INTEL:
+			case GPUDRV_RADEON:
+				if(cached_paths[i] == NULL)
+					ret = request_sensor_path(format("%s/drm", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_DRM);
+				if(ret || (cached_paths[i] == NULL))
+					continue;
+				break;
+			default:
+				break;
+		}
+
+		switch(data->g_data->gpu_driver[i])
+		{
+			case GPUDRV_AMDGPU:
+				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
+				ret_load = popen_to_str(&load, "awk '/GPU Load/           { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number);
+				ret_gclk = popen_to_str(&gclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/pp_dpm_sclk", cached_paths[i]);
+				ret_mclk = popen_to_str(&mclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/pp_dpm_mclk", cached_paths[i]);
+				break;
+			case GPUDRV_FGLRX:
+				ret_load = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/       { print $4 }'", fglrx_count);
+				ret_gclk = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'", fglrx_count);
+				ret_mclk = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'", fglrx_count++);
+				break;
+			case GPUDRV_INTEL:
+				ret_load = -1;
+				ret_gclk = fopen_to_str(&gclk, "%s/gt_cur_freq_mhz", cached_paths[i]);
+				ret_mclk = -1;
+				break;
+			case GPUDRV_RADEON:
+				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
+				ret_load = -1;
+				ret_gclk = popen_to_str(&gclk, "awk -v FS='(sclk: | mclk:)' 'NR==2{print $2}' %s/%c/radeon_pm_info", SYS_DRI, card_number);
+				ret_mclk = popen_to_str(&mclk, "awk -v FS='(mclk: | vddc:)' 'NR==2{print $2}' %s/%c/radeon_pm_info", SYS_DRI, card_number);
+				if(strlen(gclk) >= 2) gclk[strlen(gclk) - 2] = '\0';
+				if(strlen(mclk) >= 2) mclk[strlen(mclk) - 2] = '\0';
+				break;
+			case GPUDRV_NVIDIA:
+				ret_load = popen_to_str(&load, "nvidia-settings -tq [gpu:%1u]/GPUUtilization       | awk -F '[,= ]' '{ print $2 }'", nvidia_count);
+				ret_gclk = popen_to_str(&gclk, "nvidia-settings -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $1 }'", nvidia_count);
+				ret_mclk = popen_to_str(&mclk, "nvidia-settings -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $2 }'", nvidia_count++);
+				break;
+			default:
+				if(once_error)
+					MSG_WARNING(_("Driver for GPU %i doesn't report frequencies"));
+				continue;
+		}
+
+		if(!ret_load)
+			casprintf(&data->tab_graphics[VALUE][GPU1USAGE    + i * GPUFIELDS], false, "%s%%",   load);
+		if(!ret_gclk)
+			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS], true, "%s MHz", gclk);
+		if(!ret_mclk)
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK  + i * GPUFIELDS], true, "%s MHz", mclk);
+
+		if(ret_load && ret_gclk && ret_mclk)
+			failed_count++;
+
+		free(load);
+		free(gclk);
+		free(mclk);
+		load = NULL;
+		gclk = NULL;
+		mclk = NULL;
+	}
+
+	if(once_error && failed_count)
+		MSG_ERROR(_("failed to retrieve GPU clocks"));
 	once_error = false;
 
 	return (failed_count == data->gpu_count);

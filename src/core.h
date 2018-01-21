@@ -74,6 +74,10 @@ static int find_devices(Labels *data);
 static int gpu_temperature(Labels *data);
 /* Required: none */
 
+/* Retrieve GPU clocks */
+static int gpu_clocks(Labels *data);
+/* Required: none */
+
 /* Satic elements for System tab, OS specific */
 static int system_static(Labels *data);
 /* Required: none */

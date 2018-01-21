@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.20.2 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkWindow" id="mainwindow">
@@ -3849,704 +3849,1389 @@
               </packing>
             </child>
             <child>
-              <object class="GtkGrid" id="graphics_box">
+              <object class="GtkScrolledWindow" id="graphics_scrolledwindow">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkFrame" id="card3_fram">
+                  <object class="GtkViewport" id="graphics_viewport">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_start">6</property>
-                    <property name="margin_end">6</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="label_xalign">0</property>
-                    <property name="shadow_type">out</property>
                     <child>
-                      <object class="GtkAlignment" id="card3_align">
+                      <object class="GtkGrid" id="graphics_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_start">6</property>
-                        <property name="margin_end">6</property>
-                        <property name="margin_bottom">6</property>
                         <child>
-                          <object class="GtkGrid" id="card3_grid">
+                          <object class="GtkFrame" id="card3_fram">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="halign">end</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
+                            <property name="margin_start">6</property>
+                            <property name="margin_end">6</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">6</property>
+                            <property name="label_xalign">0</property>
+                            <property name="shadow_type">out</property>
                             <child>
-                              <object class="GtkAspectFrame" id="card3_framvend">
+                              <object class="GtkAlignment" id="card3_align">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
+                                <property name="margin_left">6</property>
+                                <property name="margin_right">6</property>
+                                <property name="margin_start">6</property>
+                                <property name="margin_end">6</property>
+                                <property name="margin_bottom">6</property>
                                 <child>
-                                  <object class="GtkLabel" id="card3_valvend">
+                                  <object class="GtkGrid" id="card3_grid">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
+                                    <property name="halign">end</property>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card3_framvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card3_valvend">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card3_frammod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card3_valmod">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card3_labvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card3_labmod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card3_labtemp">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card3_labgclk">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card3_box1">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card3_framtemp">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card3_valtemp">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card3_framusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card3_valusage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card3_labusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card3_box2">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card3_framgclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card3_valgclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card3_frammclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card3_valmclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card3_labmclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">0</property>
-                              </packing>
                             </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card3_frammod">
+                            <child type="label">
+                              <object class="GtkLabel" id="card3_lab">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card3_valmod">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                    <attributes>
-                                      <attribute name="stretch" value="ultra-condensed"/>
-                                    </attributes>
-                                  </object>
-                                </child>
+                                <property name="label" translatable="yes">Card 3</property>
                               </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card3_framdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card3_valdrv">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card3_labvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card3_labmod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card3_labdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">2</property>
-                              </packing>
                             </child>
                           </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFrame" id="card2_fram">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
+                            <property name="margin_start">6</property>
+                            <property name="margin_end">6</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">6</property>
+                            <property name="label_xalign">0</property>
+                            <property name="shadow_type">out</property>
+                            <child>
+                              <object class="GtkAlignment" id="card2_align">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_left">6</property>
+                                <property name="margin_right">6</property>
+                                <property name="margin_start">6</property>
+                                <property name="margin_end">6</property>
+                                <property name="margin_bottom">6</property>
+                                <child>
+                                  <object class="GtkGrid" id="card2_grid">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">end</property>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card2_framvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card2_valvend">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card2_frammod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card2_valmod">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card2_labvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card2_labmod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card2_labtemp">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card2_labgclk">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card2_box1">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card2_framtemp">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card2_valtemp">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card2_framusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card2_valusage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card2_labusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card2_box2">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card2_framgclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card2_valgclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card2_frammclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card2_valmclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card2_labmclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child type="label">
+                              <object class="GtkLabel" id="card2_lab">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Card 2</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFrame" id="card1_fram">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
+                            <property name="margin_start">6</property>
+                            <property name="margin_end">6</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">6</property>
+                            <property name="label_xalign">0</property>
+                            <property name="shadow_type">out</property>
+                            <child>
+                              <object class="GtkAlignment" id="card1_align">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_left">6</property>
+                                <property name="margin_right">6</property>
+                                <property name="margin_start">6</property>
+                                <property name="margin_end">6</property>
+                                <property name="margin_bottom">6</property>
+                                <child>
+                                  <object class="GtkGrid" id="card1_grid">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">end</property>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card1_framvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card1_valvend">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card1_frammod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card1_valmod">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card1_labvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card1_labmod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card1_labtemp">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card1_labgclk">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card1_box1">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card1_framtemp">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card1_valtemp">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card1_framusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card1_valusage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card1_labusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card1_box2">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card1_framgclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card1_valgclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card1_frammclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card1_valmclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card1_labmclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child type="label">
+                              <object class="GtkLabel" id="card1_lab">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Card 1</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFrame" id="card0_fram">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
+                            <property name="margin_start">6</property>
+                            <property name="margin_end">6</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">6</property>
+                            <property name="label_xalign">0</property>
+                            <property name="shadow_type">out</property>
+                            <child>
+                              <object class="GtkAlignment" id="card0_align">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_left">6</property>
+                                <property name="margin_right">6</property>
+                                <property name="margin_start">6</property>
+                                <property name="margin_end">6</property>
+                                <property name="margin_bottom">6</property>
+                                <child>
+                                  <object class="GtkGrid" id="card0_grid">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">end</property>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card0_framvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card0_valvend">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="card0_frammod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="label_xalign">0</property>
+                                        <property name="shadow_type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="card0_valmod">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width_chars">40</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card0_labvend">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card0_labmod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card0_labtemp">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card0_labgclk">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin_right">4</property>
+                                        <property name="margin_end">4</property>
+                                        <property name="margin_top">1</property>
+                                        <property name="margin_bottom">1</property>
+                                        <property name="single_line_mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">0</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card0_box1">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card0_framtemp">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card0_valtemp">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card0_framusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card0_valusage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card0_labusage">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card0_box2">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card0_framgclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card0_valgclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card0_frammclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="label_xalign">0</property>
+                                            <property name="shadow_type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card0_valmclk">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width_chars">12</property>
+                                                <property name="single_line_mode">True</property>
+                                                <property name="max_width_chars">12</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="card0_labmclk">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="margin_top">1</property>
+                                            <property name="margin_bottom">1</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single_line_mode">True</property>
+                                            <property name="max_width_chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack_type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="top_attach">3</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child type="label">
+                              <object class="GtkLabel" id="card0_lab">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Card 0</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
                         </child>
                       </object>
                     </child>
-                    <child type="label">
-                      <object class="GtkLabel" id="card3_lab">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Card 3</property>
-                      </object>
-                    </child>
                   </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkFrame" id="card2_fram">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_start">6</property>
-                    <property name="margin_end">6</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="label_xalign">0</property>
-                    <property name="shadow_type">out</property>
-                    <child>
-                      <object class="GtkAlignment" id="card2_align">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_start">6</property>
-                        <property name="margin_end">6</property>
-                        <property name="margin_bottom">6</property>
-                        <child>
-                          <object class="GtkGrid" id="card2_grid">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <child>
-                              <object class="GtkAspectFrame" id="card2_framvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card2_valvend">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card2_frammod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card2_valmod">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                    <attributes>
-                                      <attribute name="stretch" value="ultra-condensed"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card2_framdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card2_valdrv">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card2_labvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card2_labmod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card2_labdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel" id="card2_lab">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Card 2</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkFrame" id="card1_fram">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_start">6</property>
-                    <property name="margin_end">6</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="label_xalign">0</property>
-                    <property name="shadow_type">out</property>
-                    <child>
-                      <object class="GtkAlignment" id="card1_align">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_start">6</property>
-                        <property name="margin_end">6</property>
-                        <property name="margin_bottom">6</property>
-                        <child>
-                          <object class="GtkGrid" id="card1_grid">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <child>
-                              <object class="GtkAspectFrame" id="card1_framvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card1_valvend">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card1_frammod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card1_valmod">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                    <attributes>
-                                      <attribute name="stretch" value="ultra-condensed"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card1_framdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card1_valdrv">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card1_labvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card1_labmod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card1_labdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel" id="card1_lab">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Card 1</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkFrame" id="card0_fram">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_start">6</property>
-                    <property name="margin_end">6</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="label_xalign">0</property>
-                    <property name="shadow_type">out</property>
-                    <child>
-                      <object class="GtkAlignment" id="card0_align">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_start">6</property>
-                        <property name="margin_end">6</property>
-                        <property name="margin_bottom">6</property>
-                        <child>
-                          <object class="GtkGrid" id="card0_grid">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <child>
-                              <object class="GtkAspectFrame" id="card0_framvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card0_valvend">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card0_frammod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card0_valmod">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                    <attributes>
-                                      <attribute name="stretch" value="ultra-condensed"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="card0_framdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="card0_valdrv">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width_chars">40</property>
-                                    <property name="single_line_mode">True</property>
-                                    <property name="max_width_chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card0_labvend">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card0_labmod">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card0_labdrv">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin_end">4</property>
-                                <property name="margin_top">1</property>
-                                <property name="margin_bottom">1</property>
-                                <property name="single_line_mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">0</property>
-                                <property name="top_attach">2</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel" id="card0_lab">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Card 0</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
                 </child>
               </object>
               <packing>
