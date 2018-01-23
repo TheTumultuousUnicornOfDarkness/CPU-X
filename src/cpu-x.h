@@ -252,6 +252,13 @@ typedef struct
 	uint16_t output_type, refr_time;
 } Options;
 
+typedef struct
+{
+	char **dim_names;
+	char **dim_values;
+	int  last;
+} Arrays;
+
 extern Options *opts;
 extern char    *binary_name, *new_version[2];
 
