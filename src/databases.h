@@ -81,7 +81,7 @@ const Technology_DB technology_intel[] =
 	{ 14,          62,          -1,          22 }, // Ivy Bridge-E
 	{ 14,          78,          -1,          14 }, // Skylake
 	{ 14,          94,          -1,          14 }, // Skylake
-	{ 14,         158,          -1,          14 }, // Kaby Lake
+	{ 14,         158,          -1,          14 }, // Kaby Lake / Coffee Lake
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          22 }, // Haswell-E
 	{ 15,          79,          -1,          14 }, // Broadwell-E
