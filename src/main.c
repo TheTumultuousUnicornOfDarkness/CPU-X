@@ -677,6 +677,9 @@ static int set_locales(void)
 	int i;
 	FILE *mofile = NULL;
 
+	if(!access(LOCALEDIR, R_OK))
+		goto end_extraction;
+
 	/* Write .mo files in temporary directory */
 	err = mkdir(LOCALEDIR, ACCESSPERMS);
 	for(i = 0; ptrlen[i] != NULL; i++)
@@ -696,6 +699,7 @@ static int set_locales(void)
 
 	if(err)
 		MSG_ERROR("an error occurred while extracting translations");
+end_extraction:
 #endif /* PORTABLE_BINARY && HAS_GETTEXT */
 
 	/* Apply locale */
