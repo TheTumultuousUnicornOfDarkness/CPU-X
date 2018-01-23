@@ -30,7 +30,7 @@
 #include "gui_gtk_id.h"
 
 #if PORTABLE_BINARY
-# include "gtk-resources.h"
+# include "gtk_resources.h"
 #endif
 
 
