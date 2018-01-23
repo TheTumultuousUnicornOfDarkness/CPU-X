@@ -627,24 +627,24 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
-	char name[MAXSTR];
+	char name[MAXSTR], error_str[MAXSTR] = "unknown";
 	char *base = NULL, *drv = NULL;
 	enum EnGpuDrv *gpu_driver = &data->g_data->gpu_driver[data->gpu_count];
 
 	MSG_VERBOSE(_("Finding graphic card driver"));
 	*gpu_driver = GPUDRV_UNKNOWN;
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
-		goto error;
+		GOTO_ERROR("dev->access->method");
 
 	if((base = pci_get_param(dev->access, "sysfs.path")) == NULL)
-		goto error;
+		GOTO_ERROR("pci_get_param");
 
 	casprintf(&data->g_data->device_path[data->gpu_count], false, "%s/devices/%04x:%02x:%02x.%d",
 		base, dev->domain, dev->bus, dev->dev, dev->func);
 	snprintf(name, MAXSTR, "%s/driver", data->g_data->device_path[data->gpu_count]);
 
 	if((n = readlink(name, buff, MAXSTR)) <= 0)
-		goto error;
+		GOTO_ERROR("readlink");
 	buff[n] = '\0';
 
 	if((drv = strrchr(buff, '/')) != NULL)
@@ -664,7 +664,7 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 	return 0;
 
 error:
-	MSG_ERROR(_("failed to find graphic card driver"));
+	MSG_ERROR(_("failed to find graphic card driver (%s)"), error_str);
 	return 1;
 }
 

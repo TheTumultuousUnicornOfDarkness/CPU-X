@@ -282,7 +282,7 @@ static int extract_archive(const char *filename, const char *needed)
 {
 	int ret;
 	const int flags = ARCHIVE_EXTRACT_TIME | ARCHIVE_EXTRACT_PERM;
-	struct archive *archive, *ext;
+	struct archive *archive, *ext, *archive_ptr;
 	struct archive_entry *entry;
 
 	archive = archive_read_new();
@@ -293,20 +293,22 @@ static int extract_archive(const char *filename, const char *needed)
 	archive_write_disk_set_options(ext, flags);
 	archive_write_disk_set_standard_lookup(ext);
 
+	archive_ptr = archive;
 	if((ret = archive_read_open_filename(archive, filename, 10240)))
-		goto error_archive;
+		goto error;
 
 	do {
 		if((ret = archive_read_next_header(archive, &entry)) != ARCHIVE_OK)
-			goto error_archive;
+			goto error;
 	} while(strcmp(archive_entry_pathname(entry), needed));
 
+	archive_ptr = ext;
 	if((ret = archive_write_header(ext, entry)) != ARCHIVE_OK)
-		goto error_ext;
+		goto error;
 	if((ret = copy_data(archive, ext)) != ARCHIVE_OK)
-		goto error_ext;
+		goto error;
 	if((ret = archive_write_finish_entry(ext)) != ARCHIVE_OK)
-		goto error_ext;
+		goto error;
 
 	archive_read_close(archive);
 	archive_read_free(archive);
@@ -314,12 +316,8 @@ static int extract_archive(const char *filename, const char *needed)
 	archive_write_free(ext);
 	return 0;
 
-error_archive:
-	MSG_ERROR(_("an error occurred while extracting %s archive (%s)"), filename, archive_error_string(archive));
-	return 1;
-
-error_ext:
-	MSG_ERROR(_("an error occurred while extracting %s archive (%s)"), filename, archive_error_string(ext));
+error:
+	MSG_ERROR(_("an error occurred while extracting %s archive (%s)"), filename, archive_error_string(archive_ptr));
 	return 1;
 }
 

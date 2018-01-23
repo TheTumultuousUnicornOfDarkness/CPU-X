@@ -141,7 +141,7 @@ bool command_exists(char *command)
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(char **buffer, char *str, ...)
 {
-	char tmp[MAXSTR];
+	char tmp[MAXSTR], error_str[MAXSTR] = "unknown";
 	char *file_str = NULL;
 	FILE *file_descr = NULL;
 	va_list aptr;
@@ -157,10 +157,10 @@ int fopen_to_str(char **buffer, char *str, ...)
 	}
 
 	if((file_descr = fopen(file_str, "r")) == NULL)
-		goto error;
+		GOTO_ERROR("fopen");
 
 	if(fgets(tmp, MAXSTR, file_descr) == NULL)
-		goto error;
+		GOTO_ERROR("fgets");
 
 	tmp[strlen(tmp) - 1] = '\0';
 	asprintf(buffer, tmp);
@@ -169,7 +169,7 @@ int fopen_to_str(char **buffer, char *str, ...)
 	return fclose(file_descr);
 
 error:
-	MSG_ERROR(_("an error occurred while opening file '%s'"), file_str);
+	MSG_ERROR(_("an error occurred while opening file '%s' (%s)"), file_str, error_str);
 	free(file_str);
 	return (file_descr == NULL) ? 1 : 2 + fclose(file_descr);
 }
@@ -178,7 +178,7 @@ error:
 int popen_to_str(char **buffer, char *str, ...)
 {
 	bool command_ok;
-	char tmp[MAXSTR];
+	char tmp[MAXSTR], error_str[MAXSTR] = "unknown";
 	char *cmd_str = NULL, *test_command  = NULL;
 	FILE *pipe_descr = NULL;
 	va_list aptr;
@@ -197,10 +197,10 @@ int popen_to_str(char **buffer, char *str, ...)
 	}
 
 	if((pipe_descr = popen(cmd_str, "r")) == NULL)
-		goto error;
+		GOTO_ERROR("popen");
 
 	if(fgets(tmp, MAXSTR, pipe_descr) == NULL)
-		goto error;
+		GOTO_ERROR("fgets");
 
 	tmp[strlen(tmp) - 1] = '\0';
 	asprintf(buffer, tmp);
@@ -209,7 +209,7 @@ int popen_to_str(char **buffer, char *str, ...)
 	return pclose(pipe_descr);
 
 error:
-	MSG_ERROR(_("an error occurred while running command '%s'"), cmd_str);
+	MSG_ERROR(_("an error occurred while running command '%s' (%s)"), cmd_str, error_str);
 	free(cmd_str);
 	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }

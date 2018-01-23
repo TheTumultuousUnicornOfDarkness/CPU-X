@@ -47,8 +47,11 @@
 #define BOLD_YELLOW           "\x1b[1;33m"
 #define BOLD_BLUE             "\x1b[1;34m"
 
-/* Formatted messages definition */
+/* Utilities macro */
 #define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
+#define GOTO_ERROR(str)       { snprintf(error_str, MAXSTR, str); goto error; }
+
+/* Formatted messages definition */
 #define MSG_STDOUT(fmt, ...)  fprintf(stdout, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_STDERR(fmt, ...)  fprintf(stderr, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, colorized_msg(BOLD_GREEN, "%s", fmt), ##__VA_ARGS__) : 0
