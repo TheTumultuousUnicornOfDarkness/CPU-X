@@ -27,7 +27,7 @@ for file in $(find $TESTS_DIR -name *.test); do
 
 	# Display test status
 	if [[ $? -gt 0 ]]; then
-		printf "${CBR}${output#*"==> "}${CR}"
+		printf "${CBR}${output#*"==> "}${CR}\n"
 		((count++))
 	else
 		printf "${CBG}OK${CR}\n"

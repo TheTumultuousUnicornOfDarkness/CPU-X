@@ -52,6 +52,7 @@ const Technology_DB technology_intel[] =
 	{  5,          37,          -1,          32 }, // Westmere
 	{  5,          53,          -1,          32 }, // Atom Cloverview
 	{  5,          69,          -1,          22 }, // Haswell
+	{  5,          85,          -1,          14 }, // Skylake (Xeon Scalable)
 	{  6,           6,           6,         250 }, // PII Dixon / Celeron Mendocino
 	{  6,           6,          15,          65 }, // P4 Cedar Mill / PD Presler
 	{  6,          22,          -1,          65 }, // C2 Conroe-L
