@@ -1082,7 +1082,7 @@ do_copy (unsigned long size, int mode)
 }
 
 int
-do_copy2 (unsigned long size, int mode, bool __unused)
+do_copy2 (unsigned long size, int mode, bool unused __attribute__((unused)))
 {
 	return do_copy(size, mode);
 }
@@ -3092,7 +3092,9 @@ int bandwidth_cpux(void *p_data)
 
 	dataBegins (graph_title);
 
+#if HAS_LIBCPUID
 end_initialization:
+#endif /* HAS_LIBCPUID */
 	/* Check if selectionned test is valid */
 	if(opts->bw_test >= LASTTEST)
 		opts->bw_test = 0;
