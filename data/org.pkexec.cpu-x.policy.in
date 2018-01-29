@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE policyconfig PUBLIC
- "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
 
- <action id="org.pkexec.cpu-x">
-   <description>Run CPU-X as root</description>
-   <message>Authentication is required to run CPU-X as root</message>
-   <icon_name>cpu-x</icon_name>
-   <defaults>
-      <allow_any>auth_admin</allow_any>
-      <allow_inactive>auth_admin</allow_inactive>
-      <allow_active>auth_admin</allow_active>
-   </defaults>
-    <annotate key="org.freedesktop.policykit.exec.path">@EXEC@</annotate>
-    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
- </action>
+	<icon_name>cpu-x</icon_name>
+	<vendor>The CPU-X Project</vendor>
+	<vendor_url>https://x0rg.github.io/CPU-X/</vendor_url>
+	<action id="org.pkexec.cpu-x">
+
+		<description>Run CPU-X as root</description>
+		<description xml:lang="cs">Spouštět CPU-X pod uživatelem root</description>
+		<description xml:lang="cs_CZ">Spustit CPU-X s právy správce systému (root)</description>
+		<description xml:lang="de">CPU-X als Root-Benutzer ausführen</description>
+		<description xml:lang="es">Ejecutar CPU-X como root</description>
+		<description xml:lang="fr">Lancer CPU-X en tant que super-utilisateur</description>
+		<description xml:lang="hr">Pokreni CPU-X kao korijenskog korisnika</description>
+		<description xml:lang="hu">CPU-X futtatása rendszergazdaként</description>
+		<description xml:lang="id">Jalankan CPU-X sebagai root</description>
+		<description xml:lang="lv">Palaist CPU-X kā root</description>
+		<description xml:lang="pl">Uruchomienie programu CPU-X jako administrator</description>
+		<description xml:lang="pt_BR">Rodar CPU-X como root</description>
+		<description xml:lang="ro">Rulează CPU-X ca root</description>
+		<description xml:lang="ru">Запустить CPU-X с правами администратора</description>
+		<description xml:lang="sk">Spustiť CPU-X ako správca</description>
+		<description xml:lang="sv">Kör CPU-X som root</description>
+		<description xml:lang="vi">Chạy CPU-X dưới tư cách siêu quản trị.</description>
+		<description xml:lang="zh">以 root 权限运行 CPU-X</description>
+
+		<message>Authentication is required to run CPU-X as root.</message>
+		<message xml:lang="cs_CZ">Pro spuštění CPU-X s právy správce je třeba ověření.</message>
+		<message xml:lang="fr">Il est nécessaire de s’authentifier pour lancer CPU-X en tant que super-utilisateur.</message>
+		<message xml:lang="pt_BR">Autenticação é necessária para rodar CPU-X como root.</message>
+		<message xml:lang="ru">Для запуска CPU-X с правами администратора требуется аутентификация.</message>
+		<message xml:lang="zh">以 root 权限运行 CPU-X 需要身份验证.</message>
+
+		<defaults>
+			<allow_any>auth_admin</allow_any>
+			<allow_inactive>auth_admin</allow_inactive>
+			<allow_active>auth_admin</allow_active>
+		</defaults>
+		<annotate key="org.freedesktop.policykit.exec.path">@EXEC@</annotate>
+		<annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+
+	</action>
 
 </policyconfig>

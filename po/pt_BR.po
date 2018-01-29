@@ -1,15 +1,15 @@
-# Brazilian Portuguese translation.
+# Portuguese (Brazil) translation.
 # Copyright © 2014-2018 Xorg
 # This file is distributed under the same license as the CPU-X package.
 #
 # Translators:
-# Lara Maia <dev@lara.click>, 2015-2016
+# Lara Maia <dev@lara.click>, 2015-2016,2018
 msgid ""
 msgstr ""
-"Project-Id-Version: CPU-X 3.1.0\n"
+"Project-Id-Version: CPU-X 3.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2016-09-19 18:37+0200\n"
-"PO-Revision-Date: 2016-09-19 16:45+0000\n"
+"POT-Creation-Date: 2018-01-23 19:49+0100\n"
+"PO-Revision-Date: 2018-01-29 15:26+0000\n"
 "Last-Translator: Lara Maia <dev@lara.click>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/xorg/cpu-x/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -18,528 +18,596 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: core.c:170
+#: core.c:147
+msgid "could not reallocate memory"
+msgstr "não pode realocar memória"
+
+#: core.c:148
+#, c-format
+msgid "Exiting %s"
+msgstr "Saindo %s"
+
+#: core.c:175
 msgid "Finding CPU technology"
 msgstr "Encontrando tecnologia da CPU"
 
-#: core.c:262
+#: core.c:194
 #, c-format
 msgid ""
 "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext."
 " family: %i"
 msgstr "Sua CPU não existe no banco de dados ==> %s, modelo: %i, ext. modelo: %i, ext. família: %i"
 
-#: core.c:282
+#: core.c:204
 #, c-format
-msgid "%d x %d KB, %d-way associative, %d-byte line size"
-msgstr "%d x %d KB, %d-maneiras do conjunto associativo, %d-byte tamanho da linha"
+msgid "%d x %d KB, %d-way"
+msgstr "%d x %d KB, %d-way"
 
-#: core.c:283
+#: core.c:205
 #, c-format
-msgid "%d MB, %d-way associative, %d-byte line size"
-msgstr "%d MB, %d-maneiras do conjunto associativo, %d-byte tamanho da linha"
+msgid "%d MB, %d-way"
+msgstr "%d MB, %d-way"
 
-#: core.c:288
+#: core.c:206
+#, c-format
+msgid "%s associative, %d-byte line size"
+msgstr "%s associativa, %d-byte tamanho de linha"
+
+#: core.c:211
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Chamando libcpuid para recuperar dados estáticos"
 
-#: core.c:291
-msgid "failed to call libcpuid"
-msgstr "falhou ao chamar libcpuid"
+#: core.c:219
+#, c-format
+msgid "failed to call libcpuid (%s)"
+msgstr "Falhou ao chamar libcpuid (%s)"
 
-#: core.c:445
-msgid "Calling libcpuid for retrieving CPU clock"
-msgstr "Chamando libcpuid para recuperar o clock da CPU"
+#: core.c:381
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr "Chamando libcpuid para recuperar dados dinâmicos"
 
-#: core.c:461
+#: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
 msgstr "Pulando abertura do CPU MSR (precisa ser root)"
 
-#: core.c:466
-msgid "Calling libcpuid for retrieving CPU MSR values"
-msgstr "Chamando libcpuid para recuperar valores da CPU MSR"
+#: core.c:400
+#, c-format
+msgid "failed to open CPU MSR (%s)"
+msgstr "Falhou ao abrir CPU MSR (%s)"
 
-#: core.c:470
-msgid "failed to open CPU MSR"
-msgstr "falhou ao abrir a CPU MSR"
+#: core.c:416
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr "Chamando libcpuid para recuperar valores estáticos da CPU MSR"
 
-#: core.c:535
+#: core.c:448
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr "Chamando libcpuid para recuperar valores dinâmicos da CPU MSR"
+
+#: core.c:469
+msgid "Calculating CPU multipliers"
+msgstr "Calculando multiplicadores da CPU"
+
+#: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
 msgstr "Pulando chamada ao dmidecode (precisa ser root)"
 
-#: core.c:539
+#: core.c:512
 msgid "Calling dmidecode"
 msgstr "Chamando dmidecode"
 
-#: core.c:543
+#: core.c:516
 msgid "failed to allocate memory for dmidecode"
 msgstr "falhou ao alocar memória para o dmidecode"
 
-#: core.c:573
+#: core.c:539
 msgid "failed to call dmidecode"
 msgstr "falhou ao chamar o dmidecode"
 
-#: core.c:588
+#: core.c:554
 msgid "Calculating CPU usage"
 msgstr "Calculando uso da CPU"
 
-#: core.c:640
+#: core.c:604
 msgid "Calling bandwidth"
 msgstr "Chamando bandwidth"
 
-#: core.c:666
+#: core.c:634
 msgid "Finding graphic card driver"
 msgstr "Encontrando driver da placa gráfica"
 
-#: core.c:687
+#: core.c:659
+#, c-format
+msgid "Your GPU driver is unknown: %s"
+msgstr "Seu driver de GPU é desconhecido: %s"
+
+#: core.c:661
 #, c-format
 msgid "(%s driver)"
 msgstr "(%s driver)"
 
-#: core.c:693
-msgid "failed to find graphic card driver"
-msgstr "falhou ao encontrar o driver da placa gráfica"
+#: core.c:667
+#, c-format
+msgid "failed to find graphic card driver (%s)"
+msgstr "Falhou ao encontrar o driver da placa de vídeo (%s)"
 
-#: core.c:712
+#: core.c:683
 msgid "Finding devices"
 msgstr "Encontrando dispositivos"
 
-#: core.c:717
+#: core.c:688
 msgid "Skip devices search (need to be root)"
 msgstr "Pular pesquisa de dispositivos (precisa ser root)"
 
-#: core.c:753
+#: core.c:717
+#, c-format
+msgid "Your GPU vendor is unknown: %s (%#X)"
+msgstr "Seu fabricante de GPU é desconhecido: %s (%#X)"
+
+#: core.c:729
 msgid "failed to find chipset vendor and model"
-msgstr "falhou ao encontrar fabricante e modelo do chipset"
+msgstr "falhou ao encontrar o fabricante e o modelo do chipset"
 
-#: core.c:755
+#: core.c:731
 msgid "failed to find graphic card vendor and model"
-msgstr "falhou ao encontrar fabricante e modelo da placa gráfica"
+msgstr "falhou ao encontrar o fabricante e o modelo da placa gráfica"
 
-#: core.c:770
+#: core.c:747
 msgid "Retrieving GPU temperature"
-msgstr "Recuperando temperatura da GPU"
+msgstr "Recuperando a temperatura da GPU"
 
-#: core.c:797
+#: core.c:783
 msgid "failed to retrieve GPU temperature"
-msgstr "falhou ao recuperar temperatura da GPU"
+msgstr "falhou ao recuperar a temperatura da GPU"
 
-#: core.c:808
+#: core.c:796
+msgid "Skip some GPU values (need to be root)"
+msgstr "Ignorar alguns valores da GPU (precisa ser root)"
+
+#: core.c:812
+msgid "Retrieving GPU clocks"
+msgstr "Recuperando clock da GPU"
+
+#: core.c:866
+#, c-format
+msgid "Driver for GPU %i doesn't report frequencies"
+msgstr "O driver para a GPU %i não reporta frequências"
+
+#: core.c:889
+msgid "failed to retrieve GPU clocks"
+msgstr "Falhou ao recuperar o clock da GPU"
+
+#: core.c:901
 msgid "Identifying running system"
-msgstr "Identificando sistema em uso"
+msgstr "Identificando o sistema em uso"
 
-#: core.c:811
+#: core.c:904
 msgid "failed to identify running system"
 msgstr "falhou ao identificar o sistema em uso"
 
-#: core.c:852
+#: core.c:945
 msgid "Calling libprocps"
 msgstr "Chamando libprocps"
 
-#: core.c:874
+#: core.c:967
 msgid "Calling libstatgrab"
 msgstr "Chamando libstatgrab"
 
-#: core.c:904
+#: core.c:997
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dias, %i horas, %i minutos, %i segundos"
 
-#: core.c:959
+#: core.c:1052
 msgid "Updating benchmark status"
 msgstr "Atualizando status do benchmark"
 
-#: core.c:960 tui_ncurses.c:723
+#: core.c:1053 tui_ncurses.c:751
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
 
-#: core.c:962 core.c:963
+#: core.c:1055 core.c:1056
 msgid "Inactive"
 msgstr "Inativo"
 
-#: core.c:967 core.c:968
+#: core.c:1060 core.c:1061
 msgid "Not started"
 msgstr "Não iniciado"
 
-#: core.c:973
+#: core.c:1066
 msgid "Active"
 msgstr "Ativo"
 
-#: core.c:978
+#: core.c:1071
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u horas restantes)"
 
-#: core.c:980
+#: core.c:1073
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutos restantes)"
 
-#: core.c:982
+#: core.c:1075
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u segundos restantes)"
 
-#: core.c:987
+#: core.c:1080
 #, c-format
 msgid "in %u hours"
 msgstr "em %u horas"
 
-#: core.c:989
+#: core.c:1082
 #, c-format
 msgid "in %u minutes"
 msgstr "em %u minutos"
 
-#: core.c:991
+#: core.c:1084
 #, c-format
 msgid "in %u seconds"
 msgstr "em %u segundos"
 
-#: core.c:1006
+#: core.c:1100
 msgid "Starting benchmark"
 msgstr "Iniciando benchmark"
 
-#: core.c:1024
+#: core.c:1109
+msgid "failed to allocate memory for benchmark"
+msgstr "falhou ao alocar memória para o benchmark"
+
+#: core.c:1123
 msgid "an error occurred while starting benchmark"
 msgstr "um erro ocorreu enquanto iniciava o benchmark"
 
-#: core.c:1036
+#: core.c:1140
 msgid "Finding CPU package in fallback mode"
 msgstr "Encontrando o pacote da CPU em modo fallback"
 
-#: core.c:1066
+#: core.c:1158
 #, c-format
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgstr "Seu socket de CPU não existe no banco de dados ==> %s, codinome: %s"
 
-#: core.c:1079
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Recuperando temperatura da CPU em modo fallback"
-
-#: core.c:1129
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "falhou ao recuperar a temperatura da CPU (modo fallback)"
-
-#: core.c:1140
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Recuperando voltagem da CPU em modo fallback"
-
-#: core.c:1154
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "falhou ao recuperar voltagem da CPU (modo fallback)"
-
-#: core.c:1173
+#: core.c:1175
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Calculando multiplicadores da CPU em modo fallback"
 
-#: core.c:1193
-msgid "Cannot get minimum and maximum CPU multipliers (fallback mode)"
-msgstr "Não foi possível obter os multiplicadores minímos e máximos da CPU (modo fallback)"
-
-#: core.c:1210
+#: core.c:1198
 msgid "Retrieving motherboard informations in fallback mode"
 msgstr "Recuperando informações da placa-mãe em modo fallback"
 
-#: core.c:1217
+#: core.c:1205
 msgid "failed to retrieve motherboard informations (fallback mode)"
 msgstr "falhou ao recuperar informações da placa-mãe (modo fallback)"
+
+#: core.c:1270
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr "Recuperando a temperatura da CPU em modo fallback"
+
+#: core.c:1285
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr "falhou ao recuperar a temperatura da CPU (modo fallback)"
+
+#: core.c:1299
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr "Recuperando a voltagem da CPU em modo fallback"
+
+#: core.c:1310
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr "falhou ao recuperar a voltagem da CPU (modo fallback)"
+
+#: core.c:1323
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr "Recuperando a frequência da CPU em modo fallback"
+
+#: core.c:1332
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 
 #: gui_gtk.c:49
 msgid "Starting GTK GUI..."
 msgstr "Iniciando a interface gráfica GTK..."
 
-#: gui_gtk.c:62
+#: gui_gtk.c:63
 msgid "failed to import UI in GtkBuilder"
 msgstr "Falhou ao importar UI no GtkBuilder"
 
-#: gui_gtk.c:94 main.c:875
+#: gui_gtk.c:96 main.c:931
 msgid "Root privileges are required to work properly"
 msgstr "É necessário privilégios de root para funcionar corretamente"
 
-#: gui_gtk.c:97 main.c:876
+#: gui_gtk.c:99 main.c:932
 msgid "Some informations will not be retrievable"
 msgstr "Algumas informações não serão recuperáveis"
 
-#: gui_gtk.c:99
+#: gui_gtk.c:101
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: gui_gtk.c:101
+#: gui_gtk.c:103
 msgid "Run as root"
 msgstr "Executar como root"
 
-#: gui_gtk.c:119 main.c:381 tui_ncurses.c:420
+#: gui_gtk.c:118 main.c:368 tui_ncurses.c:419
 #, c-format
 msgid "A new version of %s is available!"
 msgstr "Uma nova versão do %s está disponível!"
 
-#: gui_gtk.c:122 tui_ncurses.c:422
+#: gui_gtk.c:121 tui_ncurses.c:421
 #, c-format
 msgid ""
 "Do you want to update %s to version %s after exit?\n"
 "It will erase this binary file (%s) by the new version."
 msgstr "Você quer atualizar %s para a versão %s depois de sair?\nIsso vai substituir o arquivo binário (%s) com a nova versão."
 
-#: gui_gtk.c:125
+#: gui_gtk.c:124
 msgid "Not now"
 msgstr "Não agora"
 
-#: gui_gtk.c:125
+#: gui_gtk.c:124
 msgid "Update"
 msgstr "Atualizar"
 
-#: gui_gtk.c:449 tui_ncurses.c:478
+#: gui_gtk.c:510 tui_ncurses.c:477
 #, c-format
 msgid "Core #%i"
 msgstr "Núcleo #%i"
 
-#: main.c:64
+#: main.c:62
 msgid "Setting label names"
-msgstr "Configuração de nome do rótulo"
+msgstr "Configurando nome dos rótulos"
 
-#: main.c:67
+#: main.c:64
 msgid "CPU"
 msgstr "CPU"
 
-#: main.c:68
+#: main.c:65
 msgid "Processor"
 msgstr "Processador"
 
-#: main.c:69 main.c:124 main.c:157
+#: main.c:66 main.c:121 main.c:154
 msgid "Vendor"
 msgstr "Fornecedor"
 
-#: main.c:70
+#: main.c:67
 msgid "Code Name"
 msgstr "Codinome"
 
-#: main.c:71
+#: main.c:68
 msgid "Package"
 msgstr "Pacote"
 
-#: main.c:72
+#: main.c:69
 msgid "Technology"
 msgstr "Tecnologia"
 
-#: main.c:73
+#: main.c:70
 msgid "Voltage"
 msgstr "Voltagem"
 
-#: main.c:74
+#: main.c:71
 msgid "Specification"
 msgstr "Especificação"
 
-#: main.c:75
+#: main.c:72
 msgid "Family"
 msgstr "Família"
 
-#: main.c:76
+#: main.c:73
 msgid "Ext. Family"
 msgstr "Ext. Família"
 
-#: main.c:77 main.c:114 main.c:125 main.c:158
+#: main.c:74 main.c:111 main.c:122 main.c:155
 msgid "Model"
 msgstr "Modelo"
 
-#: main.c:78
+#: main.c:75
 msgid "Ext. Model"
 msgstr "Ext. Modelo"
 
-#: main.c:79
+#: main.c:76
 msgid "Temp."
 msgstr "Temp."
 
-#: main.c:80
+#: main.c:77
 msgid "Stepping"
 msgstr "Stepping"
 
-#: main.c:81
+#: main.c:78
 msgid "Instructions"
 msgstr "Instruções"
 
-#: main.c:83
+#: main.c:80
 msgid "Clocks"
 msgstr "Frequências"
 
-#: main.c:84
+#: main.c:81
 msgid "Core Speed"
 msgstr "Velocidade do Núcleo"
 
-#: main.c:85
+#: main.c:82
 msgid "Multiplier"
 msgstr "Multiplicador"
 
-#: main.c:86
+#: main.c:83
 msgid "Bus Speed"
 msgstr "Velocidade do Bus"
 
-#: main.c:87
+#: main.c:84 main.c:157
 msgid "Usage"
 msgstr "Uso"
 
-#: main.c:89
+#: main.c:86
 msgid "Cache"
 msgstr "Cache"
 
-#: main.c:90
+#: main.c:87
 msgid "L1 Data"
 msgstr "L1 Data"
 
-#: main.c:91
+#: main.c:88
 msgid "L1 Inst."
 msgstr "L1 Inst."
 
-#: main.c:92
+#: main.c:89
 msgid "Level 2"
 msgstr "Level 2"
 
-#: main.c:93
+#: main.c:90
 msgid "Level 3"
 msgstr "Level 3"
 
-#: main.c:95
+#: main.c:92
 msgid "Socket(s)"
 msgstr "Socket(s)"
 
-#: main.c:96
+#: main.c:93
 msgid "Core(s)"
 msgstr "Núcleo(s)"
 
-#: main.c:97
+#: main.c:94
 msgid "Thread(s)"
 msgstr "Thread(s)"
 
-#: main.c:100
+#: main.c:97
 msgid "Caches"
 msgstr "Caches"
 
-#: main.c:104
+#: main.c:101
 #, c-format
 msgid "L%i Cache"
 msgstr "L%i Cache"
 
-#: main.c:105
+#: main.c:102
 msgid "Size"
 msgstr "Tamanho"
 
-#: main.c:106
+#: main.c:103
 msgid "Speed"
 msgstr "Velocidade"
 
-#: main.c:108
+#: main.c:105
 msgid "Test"
 msgstr "Teste"
 
-#: main.c:111 main.c:112
+#: main.c:108 main.c:109
 msgid "Motherboard"
 msgstr "Placa-mãe"
 
-#: main.c:113
+#: main.c:110
 msgid "Manufacturer"
 msgstr "Fabricante"
 
-#: main.c:115
+#: main.c:112
 msgid "Revision"
 msgstr "Revisão"
 
-#: main.c:117
+#: main.c:114
 msgid "BIOS"
 msgstr "BIOS"
 
-#: main.c:118
+#: main.c:115
 msgid "Brand"
 msgstr "Marca"
 
-#: main.c:119
+#: main.c:116
 msgid "Version"
 msgstr "Versão"
 
-#: main.c:120
+#: main.c:117
 msgid "Date"
 msgstr "Data"
 
-#: main.c:121
+#: main.c:118
 msgid "ROM Size"
 msgstr "Tamanho da ROM"
 
-#: main.c:123
+#: main.c:120
 msgid "Chipset"
 msgstr "Chipset"
 
-#: main.c:128 main.c:144
+#: main.c:125 main.c:141
 msgid "Memory"
 msgstr "Memória"
 
-#: main.c:131
+#: main.c:128
 #, c-format
 msgid "Bank %i"
 msgstr "Banco %i"
 
-#: main.c:132
+#: main.c:129
 msgid "Reference"
 msgstr "Referência"
 
-#: main.c:136
+#: main.c:133
 msgid "System"
 msgstr "Sistema"
 
-#: main.c:137
+#: main.c:134
 msgid "Operating System"
 msgstr "Sistema Operacional"
 
-#: main.c:138
+#: main.c:135
 msgid "Kernel"
 msgstr "Kernel"
 
-#: main.c:139
+#: main.c:136
 msgid "Distribution"
 msgstr "Distribuição"
 
-#: main.c:140
+#: main.c:137
 msgid "Hostname"
 msgstr "Nome do Host"
 
-#: main.c:141
+#: main.c:138
 msgid "Uptime"
 msgstr "Tempo ligado"
 
-#: main.c:142
+#: main.c:139
 msgid "Compiler"
 msgstr "Compilador"
 
-#: main.c:145
+#: main.c:142
 msgid "Used"
 msgstr "Utilizado"
 
-#: main.c:146
+#: main.c:143
 msgid "Buffers"
 msgstr "Buffers"
 
-#: main.c:147
+#: main.c:144
 msgid "Cached"
 msgstr "Em Cache"
 
-#: main.c:148
+#: main.c:145
 msgid "Free"
 msgstr "Livre"
 
-#: main.c:149
+#: main.c:146
 msgid "Swap"
 msgstr "Swap"
 
-#: main.c:152
+#: main.c:149
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: main.c:156
+#: main.c:153
 #, c-format
 msgid "Card %i"
 msgstr "Placa %i"
 
-#: main.c:159
+#: main.c:156
 msgid "Temperature"
 msgstr "Temperatura"
+
+#: main.c:158
+msgid "GPU clock"
+msgstr "Clock da GPU"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "Clock da memória"
 
 #: main.c:163
 msgid "Bench"
@@ -582,7 +650,7 @@ msgstr "Sobre"
 msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
-msgstr "%s é um software Livre que coleta informações sobre\nsua CPU, placa-mãe and mais."
+msgstr "%s é um software Livre que coleta informações sobre\na sua CPU, placa-mãe e mais."
 
 #: main.c:183
 #, c-format
@@ -604,298 +672,328 @@ msgid "License"
 msgstr "Licença"
 
 #: main.c:190
-msgid "This software is distributed under the terms of GNU GPL v3"
-msgstr "Este software é distribuido nos termos da GNU GPL v3"
+#, c-format
+msgid "This software is distributed under the terms of %s"
+msgstr "Esse programa é distribuído nos termos da %s"
 
-#: main.c:192 main.c:618
+#: main.c:192 main.c:626
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Esse programa vem com ABSOLUTAMENTE NENHUMA GARANTIA"
 
-#: main.c:211
-msgid "Replacing undefined labels by an empty string"
-msgstr "Substituir rótulo não definido por uma string vazia"
-
-#: main.c:269
+#: main.c:259
 msgid "Dumping data..."
 msgstr "Dados de despejo..."
 
-#: main.c:308
+#: main.c:301
 msgid "Freeing memory"
 msgstr "Liberando memória"
 
-#: main.c:358
+#: main.c:344
 msgid "Checking on Internet for a new version..."
 msgstr "Checando na internet por uma nova versão"
 
-#: main.c:362 main.c:486
+#: main.c:348 main.c:474
 msgid "failed to open a Curl session"
 msgstr "falhou ao abrir uma sessão do Curl"
 
-#: main.c:375
-msgid "failed to perform the Curl transfer"
-msgstr "falhou ao realizar a transferência do curl"
+#: main.c:361
+#, c-format
+msgid "failed to perform the Curl transfer (%s)"
+msgstr "falhou ao realizar a transferência Curl (%s)"
 
-#: main.c:382
+#: main.c:362
+msgid "wrong write data"
+msgstr "dados de escrita incorretos"
+
+#: main.c:369
 #, c-format
 msgid "(version %s is available)"
 msgstr "(versão %s está disponível)"
 
-#: main.c:387 main.c:479
+#: main.c:374 main.c:467
 msgid "No new version available"
 msgstr "Nenhuma nova versão disponível"
 
-#: main.c:388
+#: main.c:375
 msgid "(up-to-date)"
 msgstr "(atualizado)"
 
-#: main.c:455
+#: main.c:445
 #, c-format
-msgid "following error occurred while extracting %s archive: %s"
-msgstr "o seguinte erro ocorreu enquanto extraia %s arquivo: %s"
+msgid "an error occurred while extracting %s archive (%s)"
+msgstr "um erro ocorreu enquanto extraía o arquivo %s (%s)"
 
-#: main.c:457
-#, c-format
-msgid "an error occurred while extracting %s archive"
-msgstr "um erro ocorreu enquanto extraia %s arquivo"
-
-#: main.c:472
+#: main.c:460
 msgid ""
 "Network access is disabled by environment variable (set CPUX_NETWORK with a "
 "positive value to enable it)"
 msgstr "O acesso a rede está desabilitado por uma variável de ambiente (defina CPUX_NETWORK com um valor positivo para habilitar)"
 
-#: main.c:494
+#: main.c:482
 #, c-format
 msgid "failed to open %s archive for writing"
-msgstr "falha ao abrir o arquivo %s para escrita"
+msgstr "falhou ao abrir o arquivo %s para escrita"
 
-#: main.c:511
+#: main.c:499
 #, c-format
-msgid "failed to download %s archive"
-msgstr "falha ao baixar o arquivo %s"
+msgid "failed to download %s archive (%s)"
+msgstr "falhou ao baixar o arquivo %s (%s)"
 
-#: main.c:517
+#: main.c:505
 msgid "Extracting new version..."
 msgstr "Extraindo nova versão..."
 
-#: main.c:528
+#: main.c:515
 msgid "Applying new version..."
 msgstr "Aplicando nova versão..."
 
-#: main.c:539
+#: main.c:526
 msgid "an error occurred while removing/renaming files"
 msgstr "um erro ocorreu enquanto deletava/renomeava arquivos"
 
-#: main.c:541
+#: main.c:528
 msgid "Update successful!"
 msgstr "Atualização bem sucedida!"
 
-#: main.c:562
+#: main.c:547
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Inicia a interface de usuário em modo gráfico (GUI) (padrão)"
 
-#: main.c:563
+#: main.c:548
 msgid "Start text-based user interface (TUI)"
 msgstr "Inicia a interface de usuário em modo de texto (TUI)"
 
-#: main.c:564
+#: main.c:549
 msgid "Dump all data on standard output and exit"
 msgstr "Despeja todos os dados na saída padrão e sai"
 
-#: main.c:565
-msgid "Set custom time between two refreshes (in seconds)"
-msgstr "Definir um intervalo personalizado entre duas atualizações (em segundos)"
-
-#: main.c:566
-msgid "Set default tab (integer)"
-msgstr "Define a aba padrão (inteiro)"
-
-#: main.c:567
-msgid "Select CPU core to monitor (integer)"
-msgstr "Selecione um núcleo de CPU para monitorar (inteiro)"
-
-#: main.c:568
-msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr "Definir um teste de bandwidth personalizado para a velocidade de cache da CPU (inteiro)"
-
-#: main.c:569
+#: main.c:550
 msgid "Run embedded command dmidecode and exit"
 msgstr "Executa o comando dmidecode embutido e sai"
 
-#: main.c:570
+#: main.c:551
 msgid "Run embedded command bandwidth and exit"
 msgstr "Executa o comando bandwidth embutido e sai"
 
-#: main.c:571
+#: main.c:552
+msgid "Set default tab (integer)"
+msgstr "Define a aba padrão (inteiro)"
+
+#: main.c:553
+msgid "Select CPU core to monitor (integer)"
+msgstr "Selecione um núcleo de CPU para monitorar (inteiro)"
+
+#: main.c:554
+msgid "Set custom bandwidth test for CPU caches speed (integer)"
+msgstr "Definir um teste de bandwidth personalizado para a velocidade de cache da CPU (inteiro)"
+
+#: main.c:555
+msgid "Set custom time between two refreshes (in seconds)"
+msgstr "Definir um intervalo personalizado entre duas atualizações (em segundos)"
+
+#: main.c:556
 msgid "Disable colored output"
 msgstr "Desabilita a saída colorida"
 
-#: main.c:572
+#: main.c:557
+msgid "Print required informations to paste in an issue"
+msgstr "Imprimir informações necessárias para colar em uma questão"
+
+#: main.c:558
 msgid "Verbose output"
 msgstr "Saída verbosa"
 
-#: main.c:573
+#: main.c:559
 msgid "Update portable version if a new version is available"
 msgstr "Atualizar a versão portátil se uma nova versão estiver disponível"
 
-#: main.c:574
+#: main.c:560
 msgid "Print help and exit"
 msgstr "Imprime a ajuda e sai"
 
-#: main.c:575
+#: main.c:561
 msgid "Print version and exit"
 msgstr "Imprime a versão e sai"
 
-#: main.c:585
+#: main.c:572
+msgid "Temporarily disable network support"
+msgstr "Desabilitar temporariamente o suporte à rede"
+
+#: main.c:573
+msgid "Enforce the bus clock"
+msgstr "Forçar o bus clock"
+
+#: main.c:574
+msgid "Read CPUID raw data from a given file"
+msgstr "Ler dados crus do CPUID de um determinado arquivo"
+
+#: main.c:575
+msgid "Only print a message if CPU does not belong in database"
+msgstr "Somente mostrar uma mensagem se a CPU não estiver no banco de dados"
+
+#: main.c:584
 #, c-format
-msgid "Usage: %s [OPTIONS]\n"
-msgstr "Utilzação : %s [OPÇÕES]\n"
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "Uso: %s TELA [OPÇÕES]\n"
 
-#: main.c:586
-msgid "Available OPTIONS:"
-msgstr "OPÇÕES Disponíveis:"
+#: main.c:585
+msgid "Available DISPLAY:"
+msgstr "Tela disponível:"
 
-#: main.c:617
+#: main.c:589
+msgid ""
+"\n"
+"Available OPTIONS:"
+msgstr "\nOpções disponíveis:"
+
+#: main.c:594
+msgid ""
+"\n"
+"Influenceable environment variables:"
+msgstr "\nVariáveis de ambiente influenciáveis:"
+
+#: main.c:625
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Este é um programa livre : você é livre para modificá-lo eredistribuí-lo."
 
-#: main.c:619
-msgid "See the GPLv3 license: <http://www.gnu.org/licenses/gpl.txt>\n"
-msgstr "Veja a licença GPLv3: <http://www.gnu.org/licenses/gpl.txt>\n"
+#: main.c:627
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr "Veja a %s licença: <%s>\n"
 
-#: main.c:620
+#: main.c:628
 #, c-format
 msgid "Built on %s, %s (with %s %s on %s)."
 msgstr "Compilado em %s, %s (com %s %s em %s)."
 
-#: main.c:627
+#: main.c:635
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s versão: %s"
 
-#: main.c:736
+#: main.c:771
 #, c-format
 msgid ""
 "\n"
 "%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"
 msgstr "\n%sOops, alguma coisa está errada! %s recebeu o sinal %d (%s) e saiu.%s"
 
-#: main.c:750
+#: main.c:786
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "Você pode colar esse backtrace abrindo uma nova issue aqui:"
 
-#: main.c:797
+#: main.c:837
 msgid "an error occurred while setting locale"
 msgstr "um erro ocorreu enquanto definia a localização"
 
-#: tui_ncurses.c:71
+#: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
 msgstr "Iniciando a interface de texto NCurses..."
 
-#: tui_ncurses.c:102
+#: tui_ncurses.c:107
 msgid "Press 'h' to see help.\n"
 msgstr "Pressione 'h' para ver a ajuda.\n"
 
-#: tui_ncurses.c:382
+#: tui_ncurses.c:381
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Bem vindo a ajuda do %s Ncurses!\n"
 
-#: tui_ncurses.c:383
+#: tui_ncurses.c:382
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr "Essa ajuda descreve como usar a interface de usuário baseada em texto.\n"
 
-#: tui_ncurses.c:385
+#: tui_ncurses.c:384
 msgid ""
 "\n"
 "Global keys:\n"
 msgstr "\nChaves globais:\n"
 
-#: tui_ncurses.c:386
+#: tui_ncurses.c:385
 msgid "\tPress 'left' key to switch in left tab.\n"
 msgstr "\tPressione a tecla 'esquerda' para alternar a aba esquerda.\n"
 
-#: tui_ncurses.c:387
+#: tui_ncurses.c:386
 msgid "\tPress 'right' key to switch in right tab.\n"
 msgstr "\tPressione a tecla 'direita' para alternar a aba direita.\n"
 
-#: tui_ncurses.c:388
+#: tui_ncurses.c:387
 msgid "\tPress 'h' key to see this help.\n"
 msgstr "\tPressione 'h' para ver essa ajuda.\n"
 
-#: tui_ncurses.c:389
+#: tui_ncurses.c:388
 msgid "\tPress 'q' key to exit.\n"
 msgstr "\tPressione a tecla 'q' para sair.\n"
 
-#: tui_ncurses.c:391
+#: tui_ncurses.c:390
 msgid ""
 "\n"
 "CPU tab:\n"
 msgstr "\nAba da CPU:\n"
 
-#: tui_ncurses.c:392
+#: tui_ncurses.c:391
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr "\tPressione a tecla 'abaixo' para diminutir o número de núcleos à monitorar.\n"
 
-#: tui_ncurses.c:393
+#: tui_ncurses.c:392
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr "\tPressione a tecla 'acima' para aumentar o número de núcleos à monitorar.\n"
 
-#: tui_ncurses.c:395
+#: tui_ncurses.c:394
 msgid ""
 "\n"
 "Caches tab:\n"
 msgstr "\nAba Caches:\n"
 
-#: tui_ncurses.c:396
+#: tui_ncurses.c:395
 msgid "\tPress 'down' key to switch to previous test.\n"
 msgstr "\tPressione a tecla 'abaixo' para alternar para o teste anterior.\n"
 
-#: tui_ncurses.c:397
+#: tui_ncurses.c:396
 msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr "\tPressione a tecla 'acima' para alternar para o próximo teste.\n"
 
-#: tui_ncurses.c:399
+#: tui_ncurses.c:398
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr "\nAba Bench:\n"
 
-#: tui_ncurses.c:400
+#: tui_ncurses.c:399
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgstr "\tPressione a tecla 'abaixo' para decrementar a duração do benchmark.\n"
 
-#: tui_ncurses.c:401
+#: tui_ncurses.c:400
 msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgstr "\tPressione a tecla 'acima' para incrementar a duração do benchmark.\n"
 
-#: tui_ncurses.c:402
+#: tui_ncurses.c:401
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr "\tPressione a tecla 'próxima página' para decrementar o número de threads\n"
 
-#: tui_ncurses.c:403
+#: tui_ncurses.c:402
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr "\tPressione a tecla 'página anterior' para incrementar o número de threads\n"
 
-#: tui_ncurses.c:404
+#: tui_ncurses.c:403
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr "\tPressione a tecla 's' para iniciar/parar o benchmark de números primos (lento).\n"
 
-#: tui_ncurses.c:405
+#: tui_ncurses.c:404
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr "\tPressione a tecla 'f' para iniciar/parar o benchmark de números primos (rápido).\n"
 
-#: tui_ncurses.c:407
+#: tui_ncurses.c:406
 msgid ""
 "\n"
 "Press any key to exit this help.\n"
 msgstr "\nPressione qualquer tecla para sair desta ajuda.\n"
 
-#: tui_ncurses.c:426
+#: tui_ncurses.c:425
 msgid "If you want to update, press 'u' key, or anything else to skip.\n"
 msgstr "se você quiser atualizar, pressione a tecla 'u', ou qualquer outra para pular.\n"
 
-#: tui_ncurses.c:432
+#: tui_ncurses.c:431
 #, c-format
 msgid ""
 "\n"
@@ -903,12 +1001,21 @@ msgid ""
 "%s will be updated."
 msgstr "\n\n%s vai ser atualizado."
 
-#: util.c:196
+#: util.c:172
 #, c-format
-msgid "an error occurred while opening file '%s'"
-msgstr "um erro ocorreu enquanto abria o arquivo '%s'"
+msgid "an error occurred while opening file '%s' (%s)"
+msgstr "um erro ocorreu enquanto abria o arquivo '%s' (%s)"
 
-#: util.c:236
+#: util.c:212
 #, c-format
-msgid "an error occurred while running command '%s'"
-msgstr "um erro occoreu enquanto rodava o comando '%s'"
+msgid "an error occurred while running command '%s' (%s)"
+msgstr "um erro ocorreu enquanto rodava o comando '%s' (%s)"
+
+#: util.c:250 util.c:310
+#, c-format
+msgid "failed to open %s directory"
+msgstr "falhou ao abrir o diretório %s"
+
+#: util.c:321
+msgid "an error occurred while compiling regex"
+msgstr "um erro ocorreu enquanto compilava o regex"
