@@ -75,7 +75,7 @@ if(GETTEXT_FOUND)
 		# Convert .gmo files in a C header file
 		add_custom_target(convertgmo ALL)
 		set(vars)
-		set(moHeader "${CMAKE_SOURCE_DIR}/po/mo.h")
+		set(moHeader "${CMAKE_BINARY_DIR}/po/mo.h")
 		add_custom_command(TARGET convertgmo
 			COMMAND ${CMAKE_COMMAND} -E remove ${moHeader}
 		)
