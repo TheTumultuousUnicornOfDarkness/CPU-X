@@ -863,7 +863,7 @@ static int gpu_clocks(Labels *data)
 				break;
 			default:
 				if(once_error)
-					MSG_WARNING(_("Driver for GPU %i doesn't report frequencies"));
+					MSG_WARNING(_("Driver for GPU %i doesn't report frequencies"), i);
 				continue;
 		}
 
