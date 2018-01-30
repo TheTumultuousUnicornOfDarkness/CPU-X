@@ -55,6 +55,7 @@ endif(WITH_NCURSES)
 # Gettext
 if(Intl_FOUND)
 	add_embedded_library_others(Intl_LIBRARIES "-l:libintl.a")
+	include_directories(${CMAKE_BINARY_DIR}/po)
 endif(Intl_FOUND)
 
 # Libcurl
