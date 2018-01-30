@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: cpu-x 3.2.0\n"
         "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-        "POT-Creation-Date: 2018-01-23 19:49+0100\n"
+        "POT-Creation-Date: 2018-01-30 19:09+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,11 +310,11 @@ msgstr  ""
 msgid   "failed to import UI in GtkBuilder"
 msgstr  ""
 
-#: gui_gtk.c:96 main.c:931
+#: gui_gtk.c:96 main.c:932
 msgid   "Root privileges are required to work properly"
 msgstr  ""
 
-#: gui_gtk.c:99 main.c:932
+#: gui_gtk.c:99 main.c:933
 msgid   "Some informations will not be retrievable"
 msgstr  ""
 
@@ -671,7 +671,7 @@ msgstr  ""
 msgid   "This software is distributed under the terms of %s"
 msgstr  ""
 
-#: main.c:192 main.c:626
+#: main.c:192 main.c:627
 msgid   "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr  ""
 
@@ -728,153 +728,157 @@ msgstr  ""
 msgid   "failed to open %s archive for writing"
 msgstr  ""
 
-#: main.c:499
+#: main.c:488
+msgid   "Downloading new version..."
+msgstr  ""
+
+#: main.c:500
 #, c-format
 msgid   "failed to download %s archive (%s)"
 msgstr  ""
 
-#: main.c:505
+#: main.c:506
 msgid   "Extracting new version..."
 msgstr  ""
 
-#: main.c:515
+#: main.c:516
 msgid   "Applying new version..."
 msgstr  ""
 
-#: main.c:526
+#: main.c:527
 msgid   "an error occurred while removing/renaming files"
 msgstr  ""
 
-#: main.c:528
+#: main.c:529
 msgid   "Update successful!"
 msgstr  ""
 
-#: main.c:547
+#: main.c:548
 msgid   "Start graphical user interface (GUI) (default)"
 msgstr  ""
 
-#: main.c:548
+#: main.c:549
 msgid   "Start text-based user interface (TUI)"
 msgstr  ""
 
-#: main.c:549
+#: main.c:550
 msgid   "Dump all data on standard output and exit"
 msgstr  ""
 
-#: main.c:550
+#: main.c:551
 msgid   "Run embedded command dmidecode and exit"
 msgstr  ""
 
-#: main.c:551
+#: main.c:552
 msgid   "Run embedded command bandwidth and exit"
 msgstr  ""
 
-#: main.c:552
+#: main.c:553
 msgid   "Set default tab (integer)"
 msgstr  ""
 
-#: main.c:553
+#: main.c:554
 msgid   "Select CPU core to monitor (integer)"
 msgstr  ""
 
-#: main.c:554
+#: main.c:555
 msgid   "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr  ""
 
-#: main.c:555
+#: main.c:556
 msgid   "Set custom time between two refreshes (in seconds)"
 msgstr  ""
 
-#: main.c:556
+#: main.c:557
 msgid   "Disable colored output"
 msgstr  ""
 
-#: main.c:557
+#: main.c:558
 msgid   "Print required informations to paste in an issue"
 msgstr  ""
 
-#: main.c:558
+#: main.c:559
 msgid   "Verbose output"
 msgstr  ""
 
-#: main.c:559
+#: main.c:560
 msgid   "Update portable version if a new version is available"
 msgstr  ""
 
-#: main.c:560
+#: main.c:561
 msgid   "Print help and exit"
 msgstr  ""
 
-#: main.c:561
+#: main.c:562
 msgid   "Print version and exit"
 msgstr  ""
 
-#: main.c:572
+#: main.c:573
 msgid   "Temporarily disable network support"
 msgstr  ""
 
-#: main.c:573
+#: main.c:574
 msgid   "Enforce the bus clock"
 msgstr  ""
 
-#: main.c:574
+#: main.c:575
 msgid   "Read CPUID raw data from a given file"
 msgstr  ""
 
-#: main.c:575
+#: main.c:576
 msgid   "Only print a message if CPU does not belong in database"
 msgstr  ""
 
-#: main.c:584
+#: main.c:585
 #, c-format
 msgid   "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr  ""
 
-#: main.c:585
+#: main.c:586
 msgid   "Available DISPLAY:"
 msgstr  ""
 
-#: main.c:589
+#: main.c:590
 msgid   "\n"
         "Available OPTIONS:"
 msgstr  ""
 
-#: main.c:594
+#: main.c:595
 msgid   "\n"
         "Influenceable environment variables:"
 msgstr  ""
 
-#: main.c:625
+#: main.c:626
 msgid   "This is free software: you are free to change and redistribute it."
-msgstr  ""
-
-#: main.c:627
-#, c-format
-msgid   "See the %s license: <%s>\n"
 msgstr  ""
 
 #: main.c:628
 #, c-format
+msgid   "See the %s license: <%s>\n"
+msgstr  ""
+
+#: main.c:629
+#, c-format
 msgid   "Built on %s, %s (with %s %s on %s)."
 msgstr  ""
 
-#: main.c:635
+#: main.c:636
 #, c-format
 msgid   "-- %-9s version: %s"
 msgstr  ""
 
-#: main.c:771
+#: main.c:772
 #, c-format
 msgid   "\n"
         "%sOops, something was wrong! %s has received signal %d (%s) and has "
         "crashed.%s"
 msgstr  ""
 
-#: main.c:786
+#: main.c:787
 msgid   "You can paste this backtrace by opening a new issue here:"
 msgstr  ""
 
-#: main.c:837
+#: main.c:838
 msgid   "an error occurred while setting locale"
 msgstr  ""
 

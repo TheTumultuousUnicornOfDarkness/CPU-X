@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X 3.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2018-01-23 19:49+0100\n"
-"PO-Revision-Date: 2018-01-29 15:26+0000\n"
+"POT-Creation-Date: 2018-01-30 19:09+0100\n"
+"PO-Revision-Date: 2018-01-30 18:12+0000\n"
 "Last-Translator: Lara Maia <dev@lara.click>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/xorg/cpu-x/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -313,11 +313,11 @@ msgstr "Iniciando a interface gráfica GTK..."
 msgid "failed to import UI in GtkBuilder"
 msgstr "Falhou ao importar UI no GtkBuilder"
 
-#: gui_gtk.c:96 main.c:931
+#: gui_gtk.c:96 main.c:932
 msgid "Root privileges are required to work properly"
 msgstr "É necessário privilégios de root para funcionar corretamente"
 
-#: gui_gtk.c:99 main.c:932
+#: gui_gtk.c:99 main.c:933
 msgid "Some informations will not be retrievable"
 msgstr "Algumas informações não serão recuperáveis"
 
@@ -676,7 +676,7 @@ msgstr "Licença"
 msgid "This software is distributed under the terms of %s"
 msgstr "Esse programa é distribuído nos termos da %s"
 
-#: main.c:192 main.c:626
+#: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Esse programa vem com ABSOLUTAMENTE NENHUMA GARANTIA"
 
@@ -734,155 +734,159 @@ msgstr "O acesso a rede está desabilitado por uma variável de ambiente (defina
 msgid "failed to open %s archive for writing"
 msgstr "falhou ao abrir o arquivo %s para escrita"
 
-#: main.c:499
+#: main.c:488
+msgid "Downloading new version..."
+msgstr "Baixando nova versão..."
+
+#: main.c:500
 #, c-format
 msgid "failed to download %s archive (%s)"
 msgstr "falhou ao baixar o arquivo %s (%s)"
 
-#: main.c:505
+#: main.c:506
 msgid "Extracting new version..."
 msgstr "Extraindo nova versão..."
 
-#: main.c:515
+#: main.c:516
 msgid "Applying new version..."
 msgstr "Aplicando nova versão..."
 
-#: main.c:526
+#: main.c:527
 msgid "an error occurred while removing/renaming files"
 msgstr "um erro ocorreu enquanto deletava/renomeava arquivos"
 
-#: main.c:528
+#: main.c:529
 msgid "Update successful!"
 msgstr "Atualização bem sucedida!"
 
-#: main.c:547
+#: main.c:548
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Inicia a interface de usuário em modo gráfico (GUI) (padrão)"
 
-#: main.c:548
+#: main.c:549
 msgid "Start text-based user interface (TUI)"
 msgstr "Inicia a interface de usuário em modo de texto (TUI)"
 
-#: main.c:549
+#: main.c:550
 msgid "Dump all data on standard output and exit"
 msgstr "Despeja todos os dados na saída padrão e sai"
 
-#: main.c:550
+#: main.c:551
 msgid "Run embedded command dmidecode and exit"
 msgstr "Executa o comando dmidecode embutido e sai"
 
-#: main.c:551
+#: main.c:552
 msgid "Run embedded command bandwidth and exit"
 msgstr "Executa o comando bandwidth embutido e sai"
 
-#: main.c:552
+#: main.c:553
 msgid "Set default tab (integer)"
 msgstr "Define a aba padrão (inteiro)"
 
-#: main.c:553
+#: main.c:554
 msgid "Select CPU core to monitor (integer)"
 msgstr "Selecione um núcleo de CPU para monitorar (inteiro)"
 
-#: main.c:554
+#: main.c:555
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Definir um teste de bandwidth personalizado para a velocidade de cache da CPU (inteiro)"
 
-#: main.c:555
+#: main.c:556
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Definir um intervalo personalizado entre duas atualizações (em segundos)"
 
-#: main.c:556
+#: main.c:557
 msgid "Disable colored output"
 msgstr "Desabilita a saída colorida"
 
-#: main.c:557
+#: main.c:558
 msgid "Print required informations to paste in an issue"
 msgstr "Imprimir informações necessárias para colar em uma questão"
 
-#: main.c:558
+#: main.c:559
 msgid "Verbose output"
 msgstr "Saída verbosa"
 
-#: main.c:559
+#: main.c:560
 msgid "Update portable version if a new version is available"
 msgstr "Atualizar a versão portátil se uma nova versão estiver disponível"
 
-#: main.c:560
+#: main.c:561
 msgid "Print help and exit"
 msgstr "Imprime a ajuda e sai"
 
-#: main.c:561
+#: main.c:562
 msgid "Print version and exit"
 msgstr "Imprime a versão e sai"
 
-#: main.c:572
+#: main.c:573
 msgid "Temporarily disable network support"
 msgstr "Desabilitar temporariamente o suporte à rede"
 
-#: main.c:573
+#: main.c:574
 msgid "Enforce the bus clock"
 msgstr "Forçar o bus clock"
 
-#: main.c:574
+#: main.c:575
 msgid "Read CPUID raw data from a given file"
 msgstr "Ler dados crus do CPUID de um determinado arquivo"
 
-#: main.c:575
+#: main.c:576
 msgid "Only print a message if CPU does not belong in database"
 msgstr "Somente mostrar uma mensagem se a CPU não estiver no banco de dados"
 
-#: main.c:584
+#: main.c:585
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Uso: %s TELA [OPÇÕES]\n"
 
-#: main.c:585
+#: main.c:586
 msgid "Available DISPLAY:"
 msgstr "Tela disponível:"
 
-#: main.c:589
+#: main.c:590
 msgid ""
 "\n"
 "Available OPTIONS:"
 msgstr "\nOpções disponíveis:"
 
-#: main.c:594
+#: main.c:595
 msgid ""
 "\n"
 "Influenceable environment variables:"
 msgstr "\nVariáveis de ambiente influenciáveis:"
 
-#: main.c:625
+#: main.c:626
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Este é um programa livre : você é livre para modificá-lo eredistribuí-lo."
 
-#: main.c:627
+#: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Veja a %s licença: <%s>\n"
 
-#: main.c:628
+#: main.c:629
 #, c-format
 msgid "Built on %s, %s (with %s %s on %s)."
 msgstr "Compilado em %s, %s (com %s %s em %s)."
 
-#: main.c:635
+#: main.c:636
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s versão: %s"
 
-#: main.c:771
+#: main.c:772
 #, c-format
 msgid ""
 "\n"
 "%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"
 msgstr "\n%sOops, alguma coisa está errada! %s recebeu o sinal %d (%s) e saiu.%s"
 
-#: main.c:786
+#: main.c:787
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "Você pode colar esse backtrace abrindo uma nova issue aqui:"
 
-#: main.c:837
+#: main.c:838
 msgid "an error occurred while setting locale"
 msgstr "um erro ocorreu enquanto definia a localização"
 

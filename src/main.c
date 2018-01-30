@@ -485,6 +485,7 @@ static int update_prg(void)
 	}
 
 	/* Download archive */
+	MSG_VERBOSE(_("Downloading new version..."));
 	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s", TARBALL, new_version[0], archive));
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
