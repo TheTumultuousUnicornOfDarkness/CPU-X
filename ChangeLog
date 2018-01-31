@@ -1,3 +1,37 @@
+v3.2.0 (01.31.2018):
+	- Translations:
+	  * Add Polish translation (thanks to eloaders)
+	  * Add Russian translation (thanks to TotalCaesar659)
+	  * Add Czech translation (thanks to pavelb)
+	  * Add Chinese translation (thanks to 高垚鑫)
+	- Removed feature:
+	  * Support for libcpuid < 0.4.0
+	- New features:
+	  * Add ability to read CPUID raw file (CPUX_CPUID_RAW environment variable)
+	  * Add --issue-fmt argument
+	  * Allow to enforce BCLK (CPUX_BCLK environment variable)
+	  * New GTK theme for Dark themes
+	  * Retrive CPU frequency in fallback mode
+	  * Add GPU usage and GPU clocks in Graphics tab
+	- Changes:
+	  * Update CPU database
+	  * Display influenceable environment variables in help
+	  * Display CPU family/model in hex only
+	  * Add a second line for Instructions label
+	  * Improve CPU temperature and voltage retrieval in fallback mode
+	  * Improve GPU temperature retrieval
+	  * Rework GPU detection and improve multi-GPU support
+	  * Patch Dmidecode to v3.1.20180131
+	  * Patch Bandwidth to v1.5.1
+	- Fixes:
+	  * SSE3 feature detection
+	  * Cache labels format
+	  * --nocolor option
+	  * Set window icon in GTK GUI
+	  * cpu-x_polkit command on Wayland (used by cpu-x-root.desktop)
+	  * Buffer overflow in some cases when Dmidecode is called
+
+
 v3.1.3 (10.25.2016):
 	- Translations:
 	  * Add Russian translation to shortcuts (thanks to TotalCaesar659)
