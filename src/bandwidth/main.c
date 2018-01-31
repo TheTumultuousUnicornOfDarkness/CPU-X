@@ -58,9 +58,9 @@
 #endif
 
 #ifdef __linux__
-#include <stropts.h>
 #include <linux/fb.h>
 #include <sys/mman.h>
+#include <sys/ioctl.h>
 #endif
 
 /* Needed by CPU-X */
