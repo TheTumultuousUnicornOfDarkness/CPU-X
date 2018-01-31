@@ -4612,7 +4612,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				case 0x02:
 					printf("\tFirmware Revision: %u.%u\n",
 						DWORD(data + 0x0A) >> 16,
-						DWORD(data + 0x0A) && 0xFF);
+						DWORD(data + 0x0A) & 0xFFFF);
 					/*
 					 * We skip the next 4 bytes, as their
 					 * format is not standardized and their
