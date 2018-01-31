@@ -737,6 +737,7 @@ static int find_devices(Labels *data)
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
 {
+#ifdef __linux__
 	int ret;
 	double divisor = 1.0;
 	uint8_t i, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
@@ -744,7 +745,6 @@ static int gpu_temperature(Labels *data)
 	static bool once_error = true;
 	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
-#ifdef __linux__
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
@@ -783,11 +783,14 @@ static int gpu_temperature(Labels *data)
 	if(once_error && failed_count)
 		MSG_ERROR(_("failed to retrieve GPU temperature"));
 	once_error = false;
-#endif /* __linux__ */
 
 	return (failed_count == data->gpu_count);
+#else
+	return 0;
+#endif /* __linux__ */
 }
 
+#ifdef __linux__
 /* Perform functions if run as root, else print warning message once */
 static bool gpu_do_if_root(void)
 {
@@ -800,10 +803,12 @@ static bool gpu_do_if_root(void)
 
 	return is_root;
 }
+#endif /* __linux__ */
 
 /* Retrieve GPU clocks */
 static int gpu_clocks(Labels *data)
 {
+#ifdef __linux__
 	int ret, ret_load, ret_gclk, ret_mclk;
 	uint8_t i, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
 	char card_number;
@@ -811,7 +816,6 @@ static int gpu_clocks(Labels *data)
 	static bool once_error = true;
 	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
-#ifdef __linux__
 	MSG_VERBOSE(_("Retrieving GPU clocks"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
@@ -891,9 +895,11 @@ static int gpu_clocks(Labels *data)
 	if(once_error && failed_count)
 		MSG_ERROR(_("failed to retrieve GPU clocks"));
 	once_error = false;
-#endif /* __linux__ */
 
 	return (failed_count == data->gpu_count);
+#else
+	return 0;
+#endif /* __linux__ */
 }
 
 /* Satic elements for System tab, OS specific */
