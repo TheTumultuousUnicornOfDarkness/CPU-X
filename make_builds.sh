@@ -4,7 +4,6 @@
 VER=$(git tag | tail -n1)
 SRCDIR=/tmp/CPU-X
 DESTDIR="$(dirname $0)/portable"
-JOBS=-j2
 VMs=("Arch32"  "Arch64"  "BSD32" "BSD64")
 EXT=("linux32" "linux64" "bsd32" "bsd64")
 
@@ -24,6 +23,7 @@ check_deps() {
 		LIBS="/usr/lib/{libncursesw.a,libcurl.a,libssl.a,libcrypto.a,libarchive.a,libcpuid.a,libpci.a,libprocps.a}"
 		wait_for_vm_up $1
 		if ! ssh $1 ls $LIBS > /dev/null; then
+			echo -e "\033[1;31mMissing static librairies. Aborted."
 			exit 255
 		fi
 	fi
@@ -32,8 +32,16 @@ check_deps() {
 make_build() {
 	wait_for_vm_up $1
 	ssh $1 << EOF
+_cmakeopts_install() {
+	cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -GNinja \$@ .. > /dev/null
+}
+
+_cmakeopts_portable() {
+	cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -GNinja \$@ .. > /dev/null
+}
+
 _makeopts() {
-	if make $JOBS; then
+	if ninja; then
 		echo -e "\n\t\033[1;42m*** Build passed for $1 ***\033[0m\n\n"
 		sleep 2
 	else
@@ -43,38 +51,44 @@ _makeopts() {
 }
 
 [[ ! -d $SRCDIR ]] && git clone https://github.com/X0rg/CPU-X $SRCDIR || (cd $SRCDIR && git pull)
-mkdir -pv $SRCDIR/{,e}build{1..9}
+mkdir -pv $SRCDIR/{,e}build{0..9}
 
 echo -e "\n\n\033[1;44m*** Start normal build for $1\033[0m\n"
-cd $SRCDIR/build1 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr                    .. && _makeopts
-cd $SRCDIR/build2 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0       .. && _makeopts
-cd $SRCDIR/build3 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_NCURSES=0   .. && _makeopts
-cd $SRCDIR/build4 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GETTEXT=0   .. && _makeopts
-cd $SRCDIR/build5 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBCPUID=0  .. && _makeopts
-cd $SRCDIR/build6 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBPCI=0    .. && _makeopts
-cd $SRCDIR/build7 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBPROCPS=0 -DWITH_LIBSTATGRAB=0 .. && _makeopts
-cd $SRCDIR/build8 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_DMIDECODE=0 .. && _makeopts
-cd $SRCDIR/build9 && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_BANDWIDTH=0 .. && _makeopts
+cd $SRCDIR/build0 && _cmakeopts_install                    && _makeopts
+cd $SRCDIR/build1 && _cmakeopts_install -DWITH_GTK=0       && _makeopts
+cd $SRCDIR/build2 && _cmakeopts_install -DWITH_NCURSES=0   && _makeopts
+cd $SRCDIR/build3 && _cmakeopts_install -DWITH_GETTEXT=0   && _makeopts
+cd $SRCDIR/build4 && _cmakeopts_install -DWITH_LIBCURL=0   && _makeopts
+cd $SRCDIR/build5 && _cmakeopts_install -DWITH_LIBCPUID=0  && _makeopts
+cd $SRCDIR/build6 && _cmakeopts_install -DWITH_LIBPCI=0    && _makeopts
+cd $SRCDIR/build7 && _cmakeopts_install -DWITH_LIBPROCPS=0 -DWITH_LIBSTATGRAB=0 .. && _makeopts
+cd $SRCDIR/build8 && _cmakeopts_install -DWITH_DMIDECODE=0 && _makeopts
+cd $SRCDIR/build9 && _cmakeopts_install -DWITH_BANDWIDTH=0 && _makeopts
 
 sleep 5
 echo -e "\n\n\033[1;44m*** Start portable build for $1\033[0m\n"
-cd $SRCDIR/ebuild1 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1                    .. && _makeopts
-cd $SRCDIR/ebuild2 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_GTK=0       .. && _makeopts
-cd $SRCDIR/ebuild3 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_NCURSES=0   .. && _makeopts
-cd $SRCDIR/ebuild4 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_GETTEXT=0   .. && _makeopts
-cd $SRCDIR/ebuild5 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBCPUID=0  .. && _makeopts
-cd $SRCDIR/ebuild6 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBPCI=0    .. && _makeopts
-cd $SRCDIR/ebuild7 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_LIBPROCPS=0 -DWITH_LIBSTATGRAB=0 .. && _makeopts
-cd $SRCDIR/ebuild8 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_DMIDECODE=0 .. && _makeopts
-cd $SRCDIR/ebuild9 && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE_BINARY=1 -DWITH_BANDWIDTH=0 .. && _makeopts
+cd $SRCDIR/ebuild0 && _cmakeopts_portable                    .. && _makeopts
+cd $SRCDIR/ebuild1 && _cmakeopts_portable -DWITH_GTK=0       .. && _makeopts
+cd $SRCDIR/ebuild2 && _cmakeopts_portable -DWITH_NCURSES=0   .. && _makeopts
+cd $SRCDIR/ebuild3 && _cmakeopts_portable -DWITH_GETTEXT=0   .. && _makeopts
+cd $SRCDIR/ebuild4 && _cmakeopts_portable -DWITH_LIBCURL=0   .. && _makeopts
+cd $SRCDIR/ebuild5 && _cmakeopts_portable -DWITH_LIBCPUID=0  .. && _makeopts
+cd $SRCDIR/ebuild6 && _cmakeopts_portable -DWITH_LIBPCI=0    .. && _makeopts
+cd $SRCDIR/ebuild7 && _cmakeopts_portable -DWITH_LIBPROCPS=0 -DWITH_LIBSTATGRAB=0 .. && _makeopts
+cd $SRCDIR/ebuild8 && _cmakeopts_portable -DWITH_DMIDECODE=0 .. && _makeopts
+cd $SRCDIR/ebuild9 && _cmakeopts_portable -DWITH_BANDWIDTH=0 .. && _makeopts
 EOF
 }
 
 make_release() {
 	wait_for_vm_up $1
 	ssh $1 << EOF
+_cmakeopts_portable() {
+	cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1 -GNinja \$@ .. > /dev/null
+}
+
 _makeopts() {
-	if make $JOBS > /dev/null ; then
+	if ninja; then
 		echo -e "\n\t\033[1;42m*** Build passed for $1 ***\033[0m\n\n"
 	else
 		echo -e "\n\t\033[1;41m*** Build failed for $1 ***\033[0m\n\n"
@@ -85,8 +99,8 @@ _makeopts() {
 [[ ! -d $SRCDIR ]] && git clone https://github.com/X0rg/CPU-X $SRCDIR || (cd $SRCDIR && git pull)
 mkdir -pv $SRCDIR/{,g}n_build
 
-cd $SRCDIR/gn_build && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1              .. > /dev/null && _makeopts
-cd $SRCDIR/n_build  && cmake -DCMAKE_BUILD_TYPE=Release -DPORTABLE_BINARY=1 -DWITH_GTK=0 .. > /dev/null && _makeopts
+cd $SRCDIR/gn_build && _cmakeopts_portable              .. && _makeopts
+cd $SRCDIR/n_build  && _cmakeopts_portable -DWITH_GTK=0 .. && _makeopts
 EOF
 }
 
@@ -136,7 +150,6 @@ case "$choice" in
 		# Start VMs
 		VBoxManage list runningvms | grep -q "Arch Linux i686"   || (echo "Start 32-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux i686" &)
 		VBoxManage list runningvms | grep -q "GhostBSD i386"     || (echo "Start 32-bit BSD VM"   ; VBoxHeadless --startvm "GhostBSD i386" &)
-		sleep 1
 
 		# Start build
 		check_deps Arch32
@@ -153,7 +166,6 @@ case "$choice" in
 		VBoxManage list runningvms | grep -q "Arch Linux x86_64" || (echo "Start 64-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux x86_64" &)
 		VBoxManage list runningvms | grep -q "GhostBSD i386"     || (echo "Start 32-bit BSD VM"   ; VBoxHeadless --startvm "GhostBSD i386" &)
 		VBoxManage list runningvms | grep -q "GhostBSD x86_64"   || (echo "Start 64-bit BSD VM"   ; VBoxHeadless --startvm "GhostBSD x86_64" &)
-		sleep 1
 
 		# Start build
 		[[ -d "$DESTDIR" ]] && rm -rf "$DESTDIR"
