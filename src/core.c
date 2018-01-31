@@ -744,6 +744,7 @@ static int gpu_temperature(Labels *data)
 	static bool once_error = true;
 	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
+#ifdef __linux__
 	MSG_VERBOSE(_("Retrieving GPU temperature"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
@@ -782,6 +783,7 @@ static int gpu_temperature(Labels *data)
 	if(once_error && failed_count)
 		MSG_ERROR(_("failed to retrieve GPU temperature"));
 	once_error = false;
+#endif /* __linux__ */
 
 	return (failed_count == data->gpu_count);
 }
@@ -809,6 +811,7 @@ static int gpu_clocks(Labels *data)
 	static bool once_error = true;
 	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
+#ifdef __linux__
 	MSG_VERBOSE(_("Retrieving GPU clocks"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
@@ -888,6 +891,7 @@ static int gpu_clocks(Labels *data)
 	if(once_error && failed_count)
 		MSG_ERROR(_("failed to retrieve GPU clocks"));
 	once_error = false;
+#endif /* __linux__ */
 
 	return (failed_count == data->gpu_count);
 }
