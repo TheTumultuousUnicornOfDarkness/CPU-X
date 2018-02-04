@@ -674,7 +674,7 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 
 	line      = bar - USED + LINE_8;
 	color     = YELLOW_BAR_COLOR + bar - USED;
-	before    = (bar == USED) ? 0 : before;
+	before    = ((bar == USED) || (bar == SWAP)) ? 0 : before;
 	percent   = (double) data->m_data->mem_usage[bar - USED] / ((bar == SWAP) ? data->m_data->swap_total : data->m_data->mem_total);
 	bar_count = (int) roundf(percent * (size - 1));
 	if(0.0 < percent && bar_count < 1)
