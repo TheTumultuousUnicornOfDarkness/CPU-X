@@ -819,6 +819,7 @@ static int gpu_clocks(Labels *data)
 	MSG_VERBOSE(_("Retrieving GPU clocks"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
+		ret      = 0;
 		ret_load = 0;
 		ret_gclk = 0;
 		ret_mclk = 0;
