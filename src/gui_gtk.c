@@ -75,8 +75,10 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	if(getuid())
 		warning_window(glab.mainwindow);
 
+#ifdef __x86_64__
 	if(PORTABLE_BINARY && new_version[0] != NULL)
 		new_version_window(glab.mainwindow);
+#endif /* __x86_64__ */
 
 	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();

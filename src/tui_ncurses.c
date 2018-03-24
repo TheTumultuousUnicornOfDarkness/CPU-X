@@ -89,11 +89,13 @@ void start_tui_ncurses(Labels *data)
 			init_pair(pair, color[pair].foreground, color[pair].background);
 	}
 
+#ifdef __x86_64__
 	if(PORTABLE_BINARY && new_version[0] != NULL)
 	{
 		print_new_version();
 		erase();
 	}
+#endif /* __x86_64__ */
 
 	starty   = (LINES - info.height) / 2; /* Calculating for a center placement of the window */
 	startx   = (COLS  - info.width)  / 2;
