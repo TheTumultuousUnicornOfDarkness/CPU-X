@@ -952,8 +952,14 @@ skip_init:
 		return run_bandwidth();
 
 #if PORTABLE_BINARY
-	if(PORTABLE_BINARY && HAS_LIBCURL && opts->update)
+	/* Only 64-bit portable binary can be updated since v3.2.1 */
+	if(PORTABLE_BINARY && HAS_LIBCURL && opts->update) {
+# ifdef __x86_64__
 		update_prg();
+# else
+		MSG_ERROR(_("Sorry, you cannot update %s: 32-bit portable version is no more supported."), PRGNAME);
+# endif
+	}
 #endif /* PORTABLE_BINARY */
 
 	return EXIT_SUCCESS;
