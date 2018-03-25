@@ -4,8 +4,8 @@
 VER=$(git tag | tail -n1)
 SRCDIR=/tmp/CPU-X
 DESTDIR="$(dirname $0)/portable"
-VMs=("Arch32"  "Arch64"  "BSD32" "BSD64")
-EXT=("linux32" "linux64" "bsd32" "bsd64")
+VMs=("Arch" "BSD")
+EXT=("linux64" "bsd64")
 
 
 #########################################################
@@ -148,24 +148,22 @@ esac
 case "$choice" in
 	build)
 		# Start VMs
-		VBoxManage list runningvms | grep -q "Arch Linux i686"   || (echo "Start 32-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux i686" &)
-		VBoxManage list runningvms | grep -q "GhostBSD i386"     || (echo "Start 32-bit BSD VM"   ; VBoxHeadless --startvm "GhostBSD i386" &)
+		VBoxManage list runningvms | grep -q "Arch Linux" || (echo "Start 64-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux" &)
+		VBoxManage list runningvms | grep -q "FreeBSD"    || (echo "Start 64-bit BSD VM"   ; VBoxHeadless --startvm "FreeBSD" &)
 
 		# Start build
-		check_deps Arch32
-		make_build Arch32
+		check_deps Arch
+		make_build Arch
 		echo "Press a key to continue..." ; read
-		make_build BSD32
+		make_build BSD
 
 		stop_vms
 		;;
 
 	release)
 		# Start VMs
-		VBoxManage list runningvms | grep -q "Arch Linux i686"   || (echo "Start 32-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux i686" &)
-		VBoxManage list runningvms | grep -q "Arch Linux x86_64" || (echo "Start 64-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux x86_64" &)
-		VBoxManage list runningvms | grep -q "GhostBSD i386"     || (echo "Start 32-bit BSD VM"   ; VBoxHeadless --startvm "GhostBSD i386" &)
-		VBoxManage list runningvms | grep -q "GhostBSD x86_64"   || (echo "Start 64-bit BSD VM"   ; VBoxHeadless --startvm "GhostBSD x86_64" &)
+		VBoxManage list runningvms | grep -q "Arch Linux" || (echo "Start 64-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux" &)
+		VBoxManage list runningvms | grep -q "FreeBSD"    || (echo "Start 64-bit BSD VM"   ; VBoxHeadless --startvm "FreeBSD" &)
 
 		# Start build
 		[[ -d "$DESTDIR" ]] && rm -rf "$DESTDIR"
