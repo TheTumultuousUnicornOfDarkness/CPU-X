@@ -764,7 +764,7 @@ static int gpu_temperature(Labels *data)
 				if(cached_paths[i] == NULL)
 					ret = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_TEMPERATURE);
 				if(!ret && (cached_paths[i] != NULL))
-					fopen_to_str(&buff, cached_paths[i]);
+					ret = fopen_to_str(&buff, cached_paths[i]);
 				break;
 			default:
 				// Unsupported feature, like GPUDRV_INTEL
@@ -1180,22 +1180,28 @@ static int cputab_multipliers_fallback(Labels *data)
 		return 1;
 
 #ifdef __linux__
+	int err_min_freq = 0;
+	int err_max_freq = 0;
 	char *min_freq_str = NULL;
 	char *max_freq_str = NULL;
 
 	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
 	/* Minimum multiplier */
-	if(!fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core))
+	if(!(err_min_freq = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core)))
+	{
 		data->cpu_min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
-	free(min_freq_str);
+		free(min_freq_str);
+	}
 
 	/* Maximum multiplier */
-	if(!fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core))
+	if(!(err_max_freq = fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core)))
+	{
 		data->cpu_max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
-	free(max_freq_str);
+		free(max_freq_str);
+	}
 #endif /* __linux__ */
 
-	return 0;
+	return err_min_freq + err_max_freq;
 }
 
 /* Retrieve missing Motherboard data if run as regular user */
@@ -1288,9 +1294,11 @@ static int cputab_temp_fallback(Labels *data)
 
 	if(!err && cached_paths[opts->selected_core])
 	{
-		fopen_to_str(&temp, cached_paths[opts->selected_core]);
-		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", atof(temp) / 1000.0);
-		free(temp);
+		if(!(err = fopen_to_str(&temp, cached_paths[opts->selected_core])))
+		{
+			casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", atof(temp) / 1000.0);
+			free(temp);
+		}
 	}
 	else
 		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
@@ -1313,9 +1321,11 @@ static int cputab_volt_fallback(Labels *data)
 
 	if(!err && (cached_path != NULL))
 	{
-		fopen_to_str(&voltage, cached_path);
-		casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", atof(voltage) / 1000.0);
-		free(voltage);
+		if(!(err = fopen_to_str(&voltage, cached_path)))
+		{
+			casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", atof(voltage) / 1000.0);
+			free(voltage);
+		}
 	}
 	else
 		MSG_ERROR(_("failed to retrieve CPU voltage (fallback mode)"));
@@ -1332,8 +1342,7 @@ static int cputab_freq_fallback(Labels *data)
 	char *freq;
 
 	MSG_VERBOSE(_("Retrieving CPU frequency in fallback mode"));
-	err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, opts->selected_core);
-	if(!err)
+	if(!(err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, opts->selected_core)))
 	{
 		data->cpu_freq = (int) round(strtod(freq, NULL) / 1000.0);
 		casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
