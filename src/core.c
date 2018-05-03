@@ -1176,32 +1176,32 @@ static int cputab_package_fallback(Labels *data)
 /* Get minimum and maximum CPU multipliers */
 static int cputab_multipliers_fallback(Labels *data)
 {
+	int err = 0;
+
 	if(data->bus_freq <= 0)
 		return 1;
 
 #ifdef __linux__
-	int err_min_freq = 0;
-	int err_max_freq = 0;
 	char *min_freq_str = NULL;
 	char *max_freq_str = NULL;
 
 	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
 	/* Minimum multiplier */
-	if(!(err_min_freq = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core)))
+	if(!(err = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core)))
 	{
 		data->cpu_min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
 		free(min_freq_str);
 	}
 
 	/* Maximum multiplier */
-	if(!(err_max_freq = fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core)))
+	if(!(err = fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core)))
 	{
 		data->cpu_max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
 		free(max_freq_str);
 	}
 #endif /* __linux__ */
 
-	return err_min_freq + err_max_freq;
+	return err;
 }
 
 /* Retrieve missing Motherboard data if run as regular user */
