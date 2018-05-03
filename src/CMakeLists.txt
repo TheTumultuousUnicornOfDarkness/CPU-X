@@ -46,7 +46,7 @@ if(WITH_NCURSES)
 			tui_ncurses.c
 			tui_ncurses.h
 		)
-		add_embedded_library(NCURSES_LIBRARIES "-l:libncursesw.a")
+		add_embedded_library(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libncursesw.a")
 		add_embedded_library_others(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libtinfo.a")
 		set(NCURSES_LIBRARIES "tui_ncurses" ${NCURSES_LIBRARIES})
 	endif(NCURSES_FOUND)
@@ -232,6 +232,9 @@ endif()
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DCC="${CMAKE_C_COMPILER_ID}" -DHAS_LIBSYSTEM="${LIBSYSTEM}")
 add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
 
+# Various libraries
+add_embedded_library_others(OTHER_LIBRARIES "-lelf -l:libnghttp2.a")
+
 # Link libraries
 target_link_libraries(cpu-x
 	m
@@ -249,6 +252,7 @@ target_link_libraries(cpu-x
 	${LIBSTATGRAB_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
+	${OTHER_LIBRARIES}
 )
 
 
