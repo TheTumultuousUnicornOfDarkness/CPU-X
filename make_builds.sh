@@ -166,9 +166,10 @@ case "$choice" in
 		VBoxManage list runningvms | grep -q "FreeBSD"    || (echo "Start 64-bit BSD VM"   ; VBoxHeadless --startvm "FreeBSD" &)
 
 		# Start build
+		VMs_len=${#VMs[@]}
 		[[ -d "$DESTDIR" ]] && rm -rf "$DESTDIR"
 		mkdir -pv "$DESTDIR/sshfs"
-		for i in {0..3}; do
+		for ((i = 0; i < ${VMs_len}; i++)); do
 			check_deps ${VMs[i]}
 			make_release ${VMs[i]}
 			sshfs ${VMs[i]}:$SRCDIR "$DESTDIR/sshfs"
