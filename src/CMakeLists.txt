@@ -46,8 +46,8 @@ if(WITH_NCURSES)
 			tui_ncurses.c
 			tui_ncurses.h
 		)
-		add_embedded_library(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libncursesw.a")
-		add_embedded_library_others(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libtinfo.a")
+		add_embedded_library_linux(NCURSES_LIBRARIES "-l:libncursesw.a")
+		add_embedded_library_others(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libncursesw.a -l:libtinfo.a")
 		set(NCURSES_LIBRARIES "tui_ncurses" ${NCURSES_LIBRARIES})
 	endif(NCURSES_FOUND)
 endif(WITH_NCURSES)
