@@ -109,8 +109,8 @@ stop_vms() {
 	read -n1 s
 
 	if [[ $s == "y" ]]; then
-		for i in {0..3}; do
-			ssh ${VMs[i]} sudo poweroff
+		for i in "${VMs[@]}"; do
+			ssh $i sudo poweroff
 		done
 	fi
 }
