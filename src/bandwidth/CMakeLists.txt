@@ -1,15 +1,7 @@
-cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "1.5.1")
-if(${CMAKE_VERSION} VERSION_GREATER "2.9")
-	cmake_policy(SET CMP0048 NEW)
-	project(bandwidth
-		VERSION ${LOCALVERSION}
-		LANGUAGES C
-	)
-else(${CMAKE_VERSION} VERSION_GREATER "2.9")
-	project(bandwidth)
-	set(PROJECT_VERSION ${LOCALVERSION})
-endif(${CMAKE_VERSION} VERSION_GREATER "2.9")
+project(bandwidth
+	VERSION "1.5.1"
+	LANGUAGES C
+)
 
 # Config (bandwidth)
 set(BANDWIDTH_DEBUG_FLAGS "-Wall -Wextra -Wuninitialized -Wno-strict-prototypes -Wno-unused-parameter -Wno-sign-compare -Wno-format-security")

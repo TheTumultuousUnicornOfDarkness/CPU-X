@@ -1,15 +1,9 @@
-cmake_minimum_required(VERSION 2.8)
-set(LOCALVERSION "3.2.2")
-if(${CMAKE_VERSION} VERSION_GREATER "2.9")
-	cmake_policy(SET CMP0048 NEW)
-	project(cpu-x
-		VERSION ${LOCALVERSION}
-		LANGUAGES C
-	)
-else(${CMAKE_VERSION} VERSION_GREATER "2.9")
-	project(cpu-x)
-	set(PROJECT_VERSION ${LOCALVERSION})
-endif(${CMAKE_VERSION} VERSION_GREATER "2.9")
+cmake_minimum_required(VERSION 3.0)
+cmake_policy(SET CMP0048 NEW)
+project(cpu-x
+	VERSION "3.2.2"
+	LANGUAGES C
+)
 
 
 ### DEFAULT CONFIG
