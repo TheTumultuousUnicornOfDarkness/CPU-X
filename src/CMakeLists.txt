@@ -1,6 +1,3 @@
-project(binary)
-
-
 ### FIND NEEDED LIBRAIRIES
 
 # GTK3+
