@@ -797,6 +797,11 @@ static void sighandler(int signum)
 static int set_locales(void)
 {
 	int err;
+
+	char *TEXTDOMAINDIR = getenv("TEXTDOMAINDIR");
+	if(TEXTDOMAINDIR == NULL || TEXTDOMAINDIR[0] == '\0')
+		TEXTDOMAINDIR = LOCALEDIR;
+
 #if PORTABLE_BINARY && HAS_GETTEXT
 	int i;
 	FILE *mofile = NULL;
@@ -821,6 +826,9 @@ static int set_locales(void)
 			err++;
 	}
 
+	/* Override TEXTDOMAINDIR in portable binary */
+	TEXTDOMAINDIR = LOCALEDIR;
+
 	if(err)
 		MSG_ERROR("an error occurred while extracting translations");
 end_extraction:
@@ -828,7 +836,7 @@ end_extraction:
 
 	/* Apply locale */
 	setlocale(LC_ALL, "");
-	err  = bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR)        ? 0 : 1;
+	err  = bindtextdomain(GETTEXT_PACKAGE, TEXTDOMAINDIR)    ? 0 : 1;
 	err += bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8") ? 0 : 1;
 	err += textdomain(GETTEXT_PACKAGE)                       ? 0 : 1;
 
