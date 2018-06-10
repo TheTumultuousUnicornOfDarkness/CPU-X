@@ -24,6 +24,12 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 		DESTINATION ${CPU_X_DATA_DIRECTORY}/
 	)
 
+	# AppData metainfo file
+	install(FILES
+		cpu-x.appdata.xml
+		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/metainfo/
+	)
+
 	# Install launchers
 	install(FILES
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop

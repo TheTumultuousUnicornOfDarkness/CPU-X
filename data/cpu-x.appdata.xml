@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>cpu-x</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0+</project_license>
+	<name>CPU-X</name>
+	<summary>Gathers information on CPU, motherboard and more</summary>
+	<description>
+		<p>CPU-X is a Free software that gathers information on CPU, motherboard and more.
+		CPU-X is similar to CPU-Z (Windows), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.
+		This software is written in C and built with CMake tool.
+		It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.</p>
+	</description>
+	<launchable type="desktop-id">cpu-x.desktop</launchable>
+	<url type="homepage">https://x0rg.github.io/CPU-X/</url>
+	<url type="bugtracker">https://github.com/X0rg/CPU-X/issues</url>
+	<url type="translate">https://www.transifex.com/xorg/cpu-x/translate/</url>
+	<screenshots>
+		<screenshot type="default">
+			<image>https://camo.githubusercontent.com/9913692497ac88976d457f559f0283f3b82763dd/687474703a2f2f692e696d6775722e636f6d2f77695465656a332e706e67</image>
+		</screenshot>
+	</screenshots>
+	<provides>
+		<id>cpu-x.desktop</id>
+	</provides>
+</component>
