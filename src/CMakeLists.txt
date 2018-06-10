@@ -223,7 +223,7 @@ endif()
 
 # Various definitions
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DCC="${CMAKE_C_COMPILER_ID}" -DHAS_LIBSYSTEM="${LIBSYSTEM}")
-add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}")
+add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}" -DTERMINFODIR="/lib/terminfo")
 
 # Various libraries
 add_embedded_library_others(OTHER_LIBRARIES "-lelf -l:libnghttp2.a")

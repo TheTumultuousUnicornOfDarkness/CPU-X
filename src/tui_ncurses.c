@@ -68,7 +68,8 @@ void start_tui_ncurses(Labels *data)
 	WINDOW *win;
 
 	MSG_VERBOSE(_("Starting NCurses TUI..."));
-	setenv("TERMINFO", "/lib/terminfo", 0);
+	if(!getenv("TERMINFO"))
+		setenv("TERMINFO", TERMINFODIR, 0);
 	freopen("/dev/null", "a", stderr);
 	initscr();
 	cbreak();
