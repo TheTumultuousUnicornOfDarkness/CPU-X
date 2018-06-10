@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: xenial
 language: c
 compiler:
 - clang
@@ -9,22 +9,22 @@ env:
 - CPUX_BCLK=100
 
 before_install:
-- curl http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_14.04/Release.key | sudo apt-key add -
-- echo "deb http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_14.04/ /" | sudo tee -a /etc/apt/sources.list
+- curl http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_16.04/Release.key | sudo apt-key add -
+- echo "deb http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_16.04/ /" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
 install:
-- sudo apt-get install -y -qq nasm gettext libncursesw5-dev libcpuid-dev libpci-dev libprocps-dev libarchive-dev libncursesw5 libcpuid14 libpci3 libprocps3
+- sudo apt-get install -y -qq nasm gettext libncursesw5-dev libcpuid-dev libpci-dev libprocps-dev libarchive-dev libncursesw5 libcpuid14 libpci3 libprocps4
 before_script:
 - mkdir build
 - cd build
 - cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_GTK=0 -DCMAKE_INSTALL_PREFIX=/usr ..
 script:
-- make -j $(nproc)
+- make -j$(nproc)
 after_success:
-- sudo make install
+- sudo make -j$(nproc) install
 - sudo cpu-x --issue-fmt
 
 notifications:
   slack:
-    on_success: never
-    on_failure: change
+    on_success: change
+    on_failure: always
