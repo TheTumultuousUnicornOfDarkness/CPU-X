@@ -628,7 +628,7 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
 	char name[MAXSTR], error_str[MAXSTR] = "unknown";
-	char *base = NULL, *drv = NULL;
+	char *base = NULL, *drv = NULL, *tmp = NULL;
 	enum EnGpuDrv *gpu_driver = &data->g_data->gpu_driver[data->gpu_count];
 
 	MSG_VERBOSE(_("Finding graphic card driver"));
@@ -661,6 +661,18 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 	snprintf(name, MAXSTR, _("(%s driver)"), buff);
 	strcpy(buff, name);
 
+	/* Check for discrete GPU */
+	switch(*gpu_driver)
+	{
+		case GPUDRV_NVIDIA:
+			if(!popen_to_str(&tmp, "optirun --status") && (strstr(tmp, "Bumblebee status: Ready") != NULL))
+				*gpu_driver = GPUDRV_NVIDIA_BUMBLEBEE;
+			break;
+		default:
+			break;
+	}
+
+	free(tmp);
 	return 0;
 
 error:
@@ -719,7 +731,7 @@ static int find_devices(Labels *data)
 
 			find_driver(dev, buff, data);
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendor, buff);
-			casprintf(&data->tab_graphics[VALUE][GPU1MODEL +  data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT_STR(dev));
+			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
 		}
 	}
@@ -733,6 +745,25 @@ static int find_devices(Labels *data)
 	return !chipset_found + !data->gpu_count;
 }
 #endif /* HAS_LIBPCI */
+
+/* Check is GPU is enabled */
+static bool gpu_is_on(enum EnGpuDrv gpu_driver)
+{
+	bool ret = false;
+	char *buff = NULL;
+	
+	switch(gpu_driver)
+	{
+		case GPUDRV_NVIDIA_BUMBLEBEE:
+			ret = !popen_to_str(&buff, "optirun --status") && (strstr(buff, "Discrete video card is on") != NULL);
+			break;
+		default:
+			ret = true;
+	}
+
+	free(buff);
+	return ret;
+}
 
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
@@ -749,13 +780,23 @@ static int gpu_temperature(Labels *data)
 	for(i = 0; i < data->gpu_count; i++)
 	{
 		ret = 0;
+
+		if(!gpu_is_on(data->g_data->gpu_driver[i]))
+		{
+			asprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], _("Off"));
+			continue;
+		}
+
 		switch(data->g_data->gpu_driver[i])
 		{
 			case GPUDRV_FGLRX:
 				ret = popen_to_str(&buff, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'", fglrx_count++);
 				break;
 			case GPUDRV_NVIDIA:
-				ret = popen_to_str(&buff, "nvidia-settings -q [gpu:%1u]/GPUCoreTemp -t", nvidia_count++);
+				ret = popen_to_str(&buff, "nvidia-settings -tq [gpu:%1u]/GPUCoreTemp", nvidia_count++);
+				break;
+			case GPUDRV_NVIDIA_BUMBLEBEE:
+				ret = popen_to_str(&buff, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUCoreTemp", nvidia_count++);
 				break;
 			case GPUDRV_AMDGPU:
 			case GPUDRV_RADEON:
@@ -824,6 +865,17 @@ static int gpu_clocks(Labels *data)
 		ret_gclk = 0;
 		ret_mclk = 0;
 
+		if(!gpu_is_on(data->g_data->gpu_driver[i]))
+		{
+			free(data->tab_graphics[VALUE][GPU1USAGE     + i * GPUFIELDS]);
+			free(data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS]);
+			free(data->tab_graphics[VALUE][GPU1MEMCLOCK  + i * GPUFIELDS]);
+			data->tab_graphics[VALUE][GPU1USAGE     + i * GPUFIELDS] = NULL;
+			data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS] = NULL;
+			data->tab_graphics[VALUE][GPU1MEMCLOCK  + i * GPUFIELDS] = NULL;
+			continue;
+		}
+
 		switch(data->g_data->gpu_driver[i])
 		{
 			case GPUDRV_AMDGPU:
@@ -869,6 +921,11 @@ static int gpu_clocks(Labels *data)
 				ret_gclk = popen_to_str(&gclk, "nvidia-settings -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $1 }'", nvidia_count);
 				ret_mclk = popen_to_str(&mclk, "nvidia-settings -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $2 }'", nvidia_count++);
 				break;
+			case GPUDRV_NVIDIA_BUMBLEBEE:
+				ret_load = popen_to_str(&load, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUUtilization       | awk -F '[,= ]' '{ print $2 }'", nvidia_count);
+				ret_gclk = popen_to_str(&gclk, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $1 }'", nvidia_count);
+				ret_mclk = popen_to_str(&mclk, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $2 }'", nvidia_count++);
+				break;
 			default:
 				if(once_error)
 					MSG_WARNING(_("Driver for GPU %i doesn't report frequencies"), i);
@@ -876,7 +933,7 @@ static int gpu_clocks(Labels *data)
 		}
 
 		if(!ret_load)
-			casprintf(&data->tab_graphics[VALUE][GPU1USAGE    + i * GPUFIELDS], false, "%s%%",   load);
+			casprintf(&data->tab_graphics[VALUE][GPU1USAGE     + i * GPUFIELDS], false, "%s%%",  load);
 		if(!ret_gclk)
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS], true, "%s MHz", gclk);
 		if(!ret_mclk)

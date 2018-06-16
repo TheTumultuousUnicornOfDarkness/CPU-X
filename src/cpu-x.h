@@ -162,9 +162,9 @@ enum EnTabGraphics
 
 enum EnGpuDrv
 {
-	GPUDRV_FGLRX, GPUDRV_AMDGPU, GPUDRV_RADEON, // AMD
-	GPUDRV_INTEL,                               // Intel
-	GPUDRV_NVIDIA, GPUDRV_NOUVEAU,              // NVIDIA
+	GPUDRV_FGLRX, GPUDRV_AMDGPU, GPUDRV_RADEON,             // AMD
+	GPUDRV_INTEL,                                           // Intel
+	GPUDRV_NVIDIA, GPUDRV_NVIDIA_BUMBLEBEE, GPUDRV_NOUVEAU, // NVIDIA
 	GPUDRV_UNKNOWN
 };
 
