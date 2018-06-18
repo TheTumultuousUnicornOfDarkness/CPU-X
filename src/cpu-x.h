@@ -33,12 +33,12 @@
 /* Software definition */
 #define PRGNAME               "CPU-X"
 #define PRGAUTH               "X0rg"
-#define PRGURL                "http://X0rg.github.io/CPU-X"
-#define UPDURL                "http://x0rg.github.io/CPU-X/version.txt"
+#define PRGURL                "https://X0rg.github.io/CPU-X"
+#define UPDURL                "https://x0rg.github.io/CPU-X/version.txt"
 #define TARBALL               "https://github.com/"PRGAUTH"/"PRGNAME"/releases/download"
 #define PRGCPRGHT             "Copyright © 2014-2018 Xorg"
 #define PRGLCNS               "GNU GPL v3"
-#define LCNSURL               "http://www.gnu.org/licenses/gpl.txt"
+#define LCNSURL               "https://www.gnu.org/licenses/gpl.txt"
 
 /* Colors definition */
 #define DEFAULT               "\x1b[0m"
