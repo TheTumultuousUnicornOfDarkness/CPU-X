@@ -1,5 +1,5 @@
 
-[![](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](http://x0rg.github.io/CPU-X/)
+[![](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://x0rg.github.io/CPU-X/)
 [![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/tags)
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X/releases/latest)
 [![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
