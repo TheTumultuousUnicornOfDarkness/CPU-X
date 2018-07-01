@@ -1,8 +1,20 @@
+v3.2.3 (01.07.2018):
+	- Removed feature:
+	  * Support for CMake < 3.0
+	- New features:
+	  * `TEXTDOMAINDIR`/`TERMINFO` support
+		* Add AppData metainfo file
+		* NVIDIA Bumblebee support
+	- Changes:
+	  * Patch Dmidecode to v3.1.20180620
+
+
 v3.2.2 (05.03.2018):
 	- Changes:
 	  * Update CPU database
 	- Fix:
 	  * Segfault when retrieving AMD GPU temperature
+
 
 v3.2.1 (03.24.2018):
 	- Removed feature:
