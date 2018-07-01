@@ -268,7 +268,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			feat = DWORD(data + 0x10);
 			printf("\tMisc. Features: 0x%08x\n", feat);
 			printf("\t\tiCRU: %s\n", feat & 0x0001 ? "Yes" : "No");
-			printf("\t\tUEFI: %s\n", feat & 0x0408 ? "Yes" : "No");
+			printf("\t\tUEFI: %s\n", feat & 0x1400 ? "Yes" : "No");
 			break;
 
 		default:

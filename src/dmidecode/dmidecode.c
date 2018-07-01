@@ -478,11 +478,11 @@ static void dmi_system_uuid(const u8 *p, u16 ver)
 	 * for older versions.
 	 */
 	if (ver >= 0x0206)
-		printf("%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X",
+		printf("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
 			p[3], p[2], p[1], p[0], p[5], p[4], p[7], p[6],
 			p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
 	else
-		printf("%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X",
+		printf("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
 			p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7],
 			p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
 }
@@ -2559,6 +2559,79 @@ static void dmi_memory_device_speed(u16 code)
 		printf(" %u MT/s", code);
 }
 
+static void dmi_memory_technology(u8 code)
+{
+	/* 7.18.6 */
+	static const char * const technology[] = {
+		"Other", /* 0x01 */
+		"Unknown",
+		"DRAM",
+		"NVDIMM-N",
+		"NVDIMM-F",
+		"NVDIMM-P",
+		"Intel persistent memory" /* 0x07 */
+	};
+	if (code >= 0x01 && code <= 0x07)
+		printf(" %s", technology[code - 0x01]);
+	else
+		printf(" %s", out_of_spec);
+}
+
+static void dmi_memory_operating_mode_capability(u16 code)
+{
+	/* 7.18.7 */
+	static const char * const mode[] = {
+		"Other", /* 1 */
+		"Unknown",
+		"Volatile memory",
+		"Byte-accessible persistent memory",
+		"Block-accessible persistent memory" /* 5 */
+	};
+
+	if ((code & 0xFFFE) == 0)
+		printf(" None");
+	else {
+		int i;
+
+		for (i = 1; i <= 5; i++)
+			if (code & (1 << i))
+				printf(" %s", mode[i - 1]);
+	}
+}
+
+static void dmi_memory_manufacturer_id(u16 code)
+{
+	/* 7.18.8 */
+	/* 7.18.10 */
+	/* LSB is 7-bit Odd Parity number of continuation codes */
+	if (code == 0)
+		printf(" Unknown");
+	else
+		printf(" Bank %d, Hex 0x%02X", (code & 0x7F) + 1, code >> 8);
+}
+
+static void dmi_memory_product_id(u16 code)
+{
+	/* 7.18.9 */
+	/* 7.18.11 */
+	if (code == 0)
+		printf(" Unknown");
+	else
+		printf(" 0x%04X", code);
+}
+
+static void dmi_memory_size(u64 code)
+{
+	/* 7.18.12 */
+	/* 7.18.13 */
+	if (code.h == 0xFFFFFFFF && code.l == 0xFFFFFFFF)
+		printf(" Unknown");
+	else if (code.h == 0x0 && code.l == 0x0)
+		printf(" None");
+	else
+		dmi_print_memory_size(code, 0);
+}
+
 /*
  * 7.19 32-bit Memory Error Information (Type 18)
  */
@@ -4030,6 +4103,43 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			printf("\n");
 			printf("\tResolution:");
 			dmi_32bit_memory_error_address(DWORD(data + 0x13));
+			printf("\n");
+			if (h->length < 0x34) break;
+			printf("\tMemory Technology:");
+			dmi_memory_technology(data[0x28]);
+			printf("\n");
+			printf("\tMemory Operating Mode Capability:");
+			dmi_memory_operating_mode_capability(WORD(data + 0x29));
+			printf("\n");
+			printf("\tFirmware Version: %s\n",
+				dmi_string(h, data[0x2B]));
+			printf("\tModule Manufacturer ID:");
+			dmi_memory_manufacturer_id(WORD(data + 0x2C));
+			printf("\n");
+			printf("\tModule Product ID:");
+			dmi_memory_product_id(WORD(data + 0x2E));
+			printf("\n");
+			printf("\tMemory Subsystem Controller Manufacturer ID:");
+			dmi_memory_manufacturer_id(WORD(data + 0x30));
+			printf("\n");
+			printf("\tMemory Subsystem Controller Product ID:");
+			dmi_memory_product_id(WORD(data + 0x32));
+			printf("\n");
+			if (h->length < 0x3C) break;
+			printf("\tNon-Volatile Size:");
+			dmi_memory_size(QWORD(data + 0x34));
+			printf("\n");
+			if (h->length < 0x44) break;
+			printf("\tVolatile Size:");
+			dmi_memory_size(QWORD(data + 0x3C));
+			printf("\n");
+			if (h->length < 0x4C) break;
+			printf("\tCache Size:");
+			dmi_memory_size(QWORD(data + 0x44));
+			printf("\n");
+			if (h->length < 0x54) break;
+			printf("\tLogical Size:");
+			dmi_memory_size(QWORD(data + 0x4C));
 			printf("\n");
 			break;
 
