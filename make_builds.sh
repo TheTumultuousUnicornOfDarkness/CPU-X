@@ -193,8 +193,8 @@ case "$choice" in
 
 		mkdir -p "$DESTDIR" && cd "$DESTDIR"
 		wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
-			--accept "*.pkg.tar.xz","*.rpm","*.deb" \
-			--reject "*.src.rpm","ncurses-devel-openSUSE-Leap-workaround*" \
+			--accept "*.pkg.tar.xz","*.rpm","*.deb","*.AppImage" \
+			--reject "*.src.rpm" \
 			--recursive "$REPOURL"
 		find . -type d -empty -delete
 
@@ -203,5 +203,7 @@ case "$choice" in
 		$COMPRESS CPU-X_${VER}_Fedora.tar.gz    Fedora*
 		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz  openSUSE*
 		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz    xUbuntu*
+
+		mv -v AppImage/CPU-X-latest-x86_64.AppImage CPU-X_${VER}.AppImage
 		;;
 esac
