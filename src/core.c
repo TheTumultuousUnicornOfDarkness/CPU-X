@@ -895,8 +895,8 @@ static int gpu_clocks(Labels *data)
 			case GPUDRV_AMDGPU:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
 				ret_load = gpu_do_if_root() ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) : -1;
-				ret_gclk = popen_to_str(&gclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/pp_dpm_sclk", cached_paths[i]);
-				ret_mclk = popen_to_str(&mclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/pp_dpm_mclk", cached_paths[i]);
+				ret_gclk = popen_to_str(&gclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
+				ret_mclk = popen_to_str(&mclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
 				break;
 			case GPUDRV_FGLRX:
 				ret_load = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/       { print $4 }'", fglrx_count);
