@@ -205,6 +205,6 @@ case "$choice" in
 		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz  openSUSE*
 		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz    xUbuntu*
 
-		mv -v AppImage/CPU-X-latest-x86_64.AppImage CPU-X_${VER}.AppImage
+		mv -v AppImage/CPU-X-latest-x86_64.AppImage CPU-X_${VER}_x86_64.AppImage
 		;;
 esac
