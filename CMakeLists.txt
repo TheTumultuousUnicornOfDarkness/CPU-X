@@ -29,7 +29,11 @@ set(CMAKE_C_FLAGS         "${CMAKE_C_FLAGS} -Wno-deprecated-declarations ${CPU_X
 set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}   ${CPU_X_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${CPU_X_DEBUG_FLAGS}")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -no-pie")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
+
+if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
+endif("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 
 # Options
 option(WITH_GTK           "Build support for GUI in GTK3+"                                    ON)
