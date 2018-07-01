@@ -90,6 +90,7 @@ _cmakeopts_portable() {
 _makeopts() {
 	if ninja; then
 		echo -e "\n\t\033[1;42m*** Build passed for $1 ***\033[0m\n\n"
+		strip cpu-x
 	else
 		echo -e "\n\t\033[1;41m*** Build failed for $1 ***\033[0m\n\n"
 		exit
