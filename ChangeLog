@@ -1,10 +1,10 @@
-v3.2.3 (01.07.2018):
+v3.2.3 (07.01.2018):
 	- Removed feature:
 	  * Support for CMake < 3.0
 	- New features:
 	  * `TEXTDOMAINDIR`/`TERMINFO` support
-		* Add AppData metainfo file
-		* NVIDIA Bumblebee support
+	  * Add AppData metainfo file
+	  * NVIDIA Bumblebee support
 	- Changes:
 	  * Patch Dmidecode to v3.1.20180620
 
@@ -18,12 +18,12 @@ v3.2.2 (05.03.2018):
 
 v3.2.1 (03.24.2018):
 	- Removed feature:
-		* Drop 32-bit portable version for future releases 
+	  * Drop 32-bit portable version for future releases
 	- Changes:
-		* Switch Cache and Swap colors in System tab 
+	  * Switch Cache and Swap colors in System tab
 	- Fixes:
-		* Swap bar in NCurses TUI
-		* Bug in Bandwidth related to AVX instructions
+	  * Swap bar in NCurses TUI
+	  * Bug in Bandwidth related to AVX instructions
 
 
 v3.2.0 (01.31.2018):
@@ -269,7 +269,7 @@ v2.0.2 (02.08.2015):
 
 
 v2.0.1 (11.23.2014):
-	-Build:
+	- Build:
 	  * Add more static libraries in portable binary
 	- New feature:
 	  * Add possibility to resize terminal with NCurses TUI
@@ -310,7 +310,7 @@ v1.2.2 (11.05.2014):
 	  * Add argument --verbose (set Dmidecode verbose)
 	- Change:
 	  * Print nothing on impossible values (Caches section)
-	* Fixes:
+	- Fixes:
 	  * Stop distort GTK GUI when label length is large
 	  * Stop spam errors (about CPU frequencies)
 	  * Typos (BogoMIPS, CPU Vendor, label Manufacturer)
