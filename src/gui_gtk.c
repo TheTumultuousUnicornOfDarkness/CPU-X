@@ -100,9 +100,12 @@ static void warning_window(GtkWidget *mainwindow)
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
 		_("Some informations will not be retrievable"));
 
-	gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT, NULL);
-	if(command_exists("pkexec") && command_exists("cpu-x_polkit"))
-		gtk_dialog_add_buttons(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT, NULL);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT);
+
+#if !(PORTABLE_BINARY)
+	if(!getenv("APPIMAGE") && command_exists("pkexec") && command_exists("cpu-x_polkit"))
+		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT);
+#endif /* !(PORTABLE_BINARY) */
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
 		execvp(cmd[0], cmd);
