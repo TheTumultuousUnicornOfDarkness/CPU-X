@@ -1,17 +1,28 @@
 #!/bin/sh
 
-if [ $(which pkexec) ]; then
-	XHOST_LOCAL=false
-	if [ $XDG_SESSION_TYPE == "wayland" ] && [ $(which xhost) ] && [ -z $(xhost | grep "LOCAL:") ]; then
-		xhost +local:
-		XHOST_LOCAL=true
+if [ -n "$(command -v pkexec)" ]; then
+	xhost_set=false
+	if [ "$XDG_SESSION_TYPE" = "wayland" ] && [ -n "$(command -v xhost)" ] && ! xhost | grep -q 'SI:localuser:root\|LOCAL:'; then
+		xhost si:localuser:root
+		xhost_set=true
 	fi
 
-	pkexec --disable-internal-agent "@EXEC@" "$@"
+	if pkaction --action-id org.pkexec.cpu-x > /dev/null 2>&1 && command -v cpu-x | grep -qv "/tmp/.mount_CPU-X" ; then
+		# CPU-X is installed on system
+		pkexec --disable-internal-agent "@EXEC@" "$@"
+	else
+		# CPU-X is executed from AppImage
+		pkexec --disable-internal-agent env DISPLAY="$DISPLAY" XAUTHORITY="$XAUTHORITY" "@EXEC@" "$@"
+	fi
 
-	if $XHOST_LOCAL; then
-		xhost -local:
+	status=$?
+	if [ $status -eq 126 ] || [ $status -eq 127 ]; then
+		"@EXEC@" "$@"
+	fi
+
+	if $xhost_set; then
+		xhost -si:localuser:root
 	fi
 else
-	@EXEC@ "$@"
+	"@EXEC@" "$@"
 fi
