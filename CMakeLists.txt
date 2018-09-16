@@ -31,9 +31,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${CPU_X_DEBUG_FLAGS}")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
 
-if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+include(CheckCCompilerFlag)
+check_c_compiler_flag("-no-pie" HAS_NO_PIE)
+if(HAS_NO_PIE)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
-endif("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+endif(HAS_NO_PIE)
 
 # Options
 option(WITH_GTK           "Build support for GUI in GTK3+"                                    ON)
