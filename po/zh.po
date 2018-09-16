@@ -1,16 +1,17 @@
 # Chinese translation.
 # Copyright © 2014-2018 Xorg
 # This file is distributed under the same license as the CPU-X package.
-#
+# 
 # Translators:
-# 高垚鑫, 2017
+# Xorg, 2018
+# 高垚鑫, 2017-2018
 msgid ""
 msgstr ""
-"Project-Id-Version: CPU-X 3.2.0\n"
+"Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2018-01-23 19:49+0100\n"
-"PO-Revision-Date: 2018-01-29 15:26+0000\n"
-"Last-Translator: 高垚鑫\n"
+"POT-Creation-Date: 2018-09-16 13:53+0200\n"
+"PO-Revision-Date: 2018-09-16 11:59+0000\n"
+"Last-Translator: Xorg\n"
 "Language-Team: Chinese (http://www.transifex.com/xorg/cpu-x/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,12 +21,12 @@ msgstr ""
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "无法重新分配内存"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "正在退出 %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
@@ -41,17 +42,17 @@ msgstr "数据库中没有您的 CPU ==> %s，型号： %i，扩展型号： %i�
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-路"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-路"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s 关联, %d-byte 最小缓存单元大小"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
@@ -118,192 +119,196 @@ msgstr "正在查找显卡驱动程序"
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "您的 GPU 驱动未知: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
 msgstr "(%s 驱动)"
 
-#: core.c:667
+#: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
 msgstr "未找到显卡驱动程序 (%s)"
 
-#: core.c:683
+#: core.c:695
 msgid "Finding devices"
 msgstr "正在搜索设备"
 
-#: core.c:688
+#: core.c:700
 msgid "Skip devices search (need to be root)"
 msgstr "跳过设备搜索 (需要 root)"
 
-#: core.c:717
+#: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "您的 GPU 供应商未知: %s (%#X)"
 
-#: core.c:729
+#: core.c:741
 msgid "failed to find chipset vendor and model"
 msgstr "未找到芯片组供应商和型号"
 
-#: core.c:731
+#: core.c:743
 msgid "failed to find graphic card vendor and model"
 msgstr "未找到显卡供应商和型号"
 
-#: core.c:747
+#: core.c:779
 msgid "Retrieving GPU temperature"
 msgstr "正在检索 GPU 温度"
 
-#: core.c:783
+#: core.c:786
+msgid "Off"
+msgstr ""
+
+#: core.c:825
 msgid "failed to retrieve GPU temperature"
 msgstr "无法检索 GPU 温度"
 
-#: core.c:796
+#: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "跳过某些 GPU 值 (需要 root)"
 
-#: core.c:812
+#: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "正在检索 GPU 时钟"
 
-#: core.c:866
+#: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "GPU 驱动 %i 无法报告频率"
 
-#: core.c:889
+#: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "无法检索 GPU 时钟"
 
-#: core.c:901
+#: core.c:969
 msgid "Identifying running system"
 msgstr "正在识别本系统"
 
-#: core.c:904
+#: core.c:972
 msgid "failed to identify running system"
 msgstr "未识别本系统"
 
-#: core.c:945
+#: core.c:1013
 msgid "Calling libprocps"
 msgstr "正在调用 libprocps"
 
-#: core.c:967
+#: core.c:1035
 msgid "Calling libstatgrab"
 msgstr "正在调用 libstatgrab"
 
-#: core.c:997
+#: core.c:1065
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天，%i 小时，%i 分钟，%i 秒"
 
-#: core.c:1052
+#: core.c:1120
 msgid "Updating benchmark status"
 msgstr "正在更新基准测试状态"
 
-#: core.c:1053 tui_ncurses.c:751
+#: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
 msgstr "%u 分钟"
 
-#: core.c:1055 core.c:1056
+#: core.c:1123 core.c:1124
 msgid "Inactive"
 msgstr "待用"
 
-#: core.c:1060 core.c:1061
+#: core.c:1128 core.c:1129
 msgid "Not started"
 msgstr "未启动"
 
-#: core.c:1066
+#: core.c:1134
 msgid "Active"
 msgstr "启用"
 
-#: core.c:1071
+#: core.c:1139
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩余 %u 小时)"
 
-#: core.c:1073
+#: core.c:1141
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩余 %u 分钟)"
 
-#: core.c:1075
+#: core.c:1143
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩余 %u 秒)"
 
-#: core.c:1080
+#: core.c:1148
 #, c-format
 msgid "in %u hours"
 msgstr "%u 小时后"
 
-#: core.c:1082
+#: core.c:1150
 #, c-format
 msgid "in %u minutes"
 msgstr "%u 分钟后"
 
-#: core.c:1084
+#: core.c:1152
 #, c-format
 msgid "in %u seconds"
 msgstr "%u 秒后"
 
-#: core.c:1100
+#: core.c:1168
 msgid "Starting benchmark"
 msgstr "正在启动基准测试"
 
-#: core.c:1109
+#: core.c:1177
 msgid "failed to allocate memory for benchmark"
 msgstr "无法为基准测试分配内存"
 
-#: core.c:1123
+#: core.c:1191
 msgid "an error occurred while starting benchmark"
 msgstr "启动基准测试时出错"
 
-#: core.c:1140
+#: core.c:1208
 msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
-#: core.c:1158
+#: core.c:1226
 #, c-format
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
-#: core.c:1175
+#: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "正在应急模式下计算 CPU 倍频"
 
-#: core.c:1198
+#: core.c:1272
 msgid "Retrieving motherboard informations in fallback mode"
 msgstr "正在应急模式下检索主板信息"
 
-#: core.c:1205
+#: core.c:1279
 msgid "failed to retrieve motherboard informations (fallback mode)"
 msgstr "无法检索主板信息 (应急模式)"
 
-#: core.c:1270
+#: core.c:1344
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "正在应急模式下检索 CPU 温度"
 
-#: core.c:1285
+#: core.c:1361
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "未能检索 CPU 温度 (应急模式)"
 
-#: core.c:1299
+#: core.c:1375
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "正在应急模式下检索 CPU 电压"
 
-#: core.c:1310
+#: core.c:1388
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "未能检索 CPU 电压 (应急模式)"
 
-#: core.c:1323
+#: core.c:1401
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "正在应急模式下检索 CPU 频率"
 
-#: core.c:1332
+#: core.c:1409
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "未能检索 CPU 频率 (应急模式)"
 
 #: gui_gtk.c:49
 msgid "Starting GTK GUI..."
@@ -313,43 +318,43 @@ msgstr "正在启动 GTK 图形用户界面..."
 msgid "failed to import UI in GtkBuilder"
 msgstr "无法在 GtkBuilder 中导入用户界面"
 
-#: gui_gtk.c:96 main.c:931
+#: gui_gtk.c:98 main.c:940
 msgid "Root privileges are required to work properly"
 msgstr "需要 root 权限以正常工作"
 
-#: gui_gtk.c:99 main.c:932
+#: gui_gtk.c:101 main.c:941
 msgid "Some informations will not be retrievable"
 msgstr "某些信息无法检索"
 
-#: gui_gtk.c:101
+#: gui_gtk.c:103
 msgid "Ignore"
 msgstr "忽略"
 
-#: gui_gtk.c:103
+#: gui_gtk.c:107
 msgid "Run as root"
 msgstr "以 root 权限运行"
 
-#: gui_gtk.c:118 main.c:368 tui_ncurses.c:419
+#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
 msgid "A new version of %s is available!"
 msgstr "新版本 %s 可用！"
 
-#: gui_gtk.c:121 tui_ncurses.c:421
+#: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
 msgid ""
 "Do you want to update %s to version %s after exit?\n"
 "It will erase this binary file (%s) by the new version."
 msgstr "您想在退出后将版本 %s 更新至版本 %s 吗？\n将会用新版本替换该二进制文件 (%s) 。"
 
-#: gui_gtk.c:124
+#: gui_gtk.c:129
 msgid "Not now"
 msgstr "现在不要"
 
-#: gui_gtk.c:124
+#: gui_gtk.c:129
 msgid "Update"
 msgstr "更新"
 
-#: gui_gtk.c:510 tui_ncurses.c:477
+#: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
 msgid "Core #%i"
 msgstr "核心 #%i"
@@ -603,11 +608,11 @@ msgstr "温度"
 
 #: main.c:158
 msgid "GPU clock"
-msgstr ""
+msgstr "GPU 时钟"
 
 #: main.c:159
 msgid "Memory clock"
-msgstr ""
+msgstr "内存时钟"
 
 #: main.c:163
 msgid "Bench"
@@ -676,7 +681,7 @@ msgstr "许可证"
 msgid "This software is distributed under the terms of %s"
 msgstr "本软件依照 %s 条款分发"
 
-#: main.c:192 main.c:626
+#: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "本软件不作任何保修"
 
@@ -703,7 +708,7 @@ msgstr "无法执行 Curl 传输 (%s)"
 
 #: main.c:362
 msgid "wrong write data"
-msgstr ""
+msgstr "写入数据出错"
 
 #: main.c:369
 #, c-format
@@ -734,266 +739,276 @@ msgstr "网络访问被环境变量禁用 (将 CPUX_NETWORK 设置为正值以�
 msgid "failed to open %s archive for writing"
 msgstr "无法写入 %s 存档"
 
-#: main.c:499
+#: main.c:488
+msgid "Downloading new version..."
+msgstr "正在下载新版本..."
+
+#: main.c:500
 #, c-format
 msgid "failed to download %s archive (%s)"
 msgstr "无法下载 %s 存档 (%s)"
 
-#: main.c:505
+#: main.c:506
 msgid "Extracting new version..."
 msgstr "正在提取新版本..."
 
-#: main.c:515
+#: main.c:516
 msgid "Applying new version..."
 msgstr "正在应用新版本..."
 
-#: main.c:526
+#: main.c:527
 msgid "an error occurred while removing/renaming files"
 msgstr "移动/重命名文件时出错"
 
-#: main.c:528
+#: main.c:529
 msgid "Update successful!"
 msgstr "更新成功！"
 
-#: main.c:547
+#: main.c:548
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "启动图形用户界面 (GUI) (默认)"
 
-#: main.c:548
+#: main.c:549
 msgid "Start text-based user interface (TUI)"
 msgstr "启动文本用户界面 (TUI)"
 
-#: main.c:549
+#: main.c:550
 msgid "Dump all data on standard output and exit"
 msgstr "将所有数据转储到标准输出并退出"
 
-#: main.c:550
+#: main.c:551
 msgid "Run embedded command dmidecode and exit"
 msgstr "运行嵌入式命令 dmidecode 并退出"
 
-#: main.c:551
+#: main.c:552
 msgid "Run embedded command bandwidth and exit"
 msgstr "运行嵌入的命令 bandwidth 并退出"
 
-#: main.c:552
+#: main.c:553
 msgid "Set default tab (integer)"
 msgstr "设置默认选项卡 (整型)"
 
-#: main.c:553
+#: main.c:554
 msgid "Select CPU core to monitor (integer)"
 msgstr "选择要监视的 CPU 核心 (整型)"
 
-#: main.c:554
+#: main.c:555
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "为 CPU 缓存速度设置自定义 bandwidth 测试 (整型)"
 
-#: main.c:555
+#: main.c:556
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "设置两次刷新之间的自定义时间 (以秒为单位)"
 
-#: main.c:556
+#: main.c:557
 msgid "Disable colored output"
 msgstr "禁用彩色输出"
 
-#: main.c:557
-msgid "Print required informations to paste in an issue"
-msgstr ""
-
 #: main.c:558
+msgid "Print required informations to paste in an issue"
+msgstr "输出粘贴在问题反馈中的所需信息"
+
+#: main.c:559
 msgid "Verbose output"
 msgstr "详细输出"
 
-#: main.c:559
+#: main.c:560
 msgid "Update portable version if a new version is available"
 msgstr "新版本可用时，更新便携式版本"
 
-#: main.c:560
+#: main.c:561
 msgid "Print help and exit"
 msgstr "打印帮助并退出。"
 
-#: main.c:561
+#: main.c:562
 msgid "Print version and exit"
 msgstr "打印版本并退出。"
 
-#: main.c:572
-msgid "Temporarily disable network support"
-msgstr ""
-
 #: main.c:573
-msgid "Enforce the bus clock"
-msgstr ""
+msgid "Temporarily disable network support"
+msgstr "暂时禁用网络支持"
 
 #: main.c:574
-msgid "Read CPUID raw data from a given file"
-msgstr ""
+msgid "Enforce the bus clock"
+msgstr "强制执行总线计时器"
 
 #: main.c:575
-msgid "Only print a message if CPU does not belong in database"
-msgstr ""
+msgid "Read CPUID raw data from a given file"
+msgstr "从指定文件中读取 CPUID 源数据"
 
-#: main.c:584
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
+#: main.c:576
+msgid "Only print a message if CPU does not belong in database"
+msgstr "CPU 不在数据库时，仅输出消息"
 
 #: main.c:585
-msgid "Available DISPLAY:"
-msgstr ""
+#, c-format
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "用法: %s 显示 [选项]\n"
 
-#: main.c:589
+#: main.c:586
+msgid "Available DISPLAY:"
+msgstr "可用显示:"
+
+#: main.c:590
 msgid ""
 "\n"
 "Available OPTIONS:"
-msgstr ""
+msgstr "\n可用选项:"
 
-#: main.c:594
+#: main.c:595
 msgid ""
 "\n"
 "Influenceable environment variables:"
-msgstr ""
+msgstr "\n可影响的环境变量:"
 
-#: main.c:625
+#: main.c:626
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "这是一个自由软件：您可以自由更改和重新分发。"
 
-#: main.c:627
+#: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "查看 %s 许可协议: <%s>\n"
 
-#: main.c:628
+#: main.c:629
 #, c-format
 msgid "Built on %s, %s (with %s %s on %s)."
 msgstr "基于 %s，%s (使用 %s %s 在 %s 上)."
 
-#: main.c:635
+#: main.c:636
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s 版本：%s"
 
-#: main.c:771
+#: main.c:772
 #, c-format
 msgid ""
 "\n"
 "%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"
 msgstr "\n%s遇到了错误！ %s 获得信号 %d (%s) 并崩溃。%s"
 
-#: main.c:786
+#: main.c:787
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "您可以在这里打开一个新的问题来粘贴该回馈："
 
-#: main.c:837
+#: main.c:846
 msgid "an error occurred while setting locale"
 msgstr "本地化设置时出错"
+
+#: main.c:968
+#, c-format
+msgid ""
+"Sorry, you cannot update %s: 32-bit portable version is no more supported."
+msgstr ""
 
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
 msgstr "Starting NCurses TUI..."
 
-#: tui_ncurses.c:107
+#: tui_ncurses.c:110
 msgid "Press 'h' to see help.\n"
 msgstr "按 'h' 键查看帮助。\n"
 
-#: tui_ncurses.c:381
+#: tui_ncurses.c:384
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "欢迎来到 %s NCurses 帮助！\n"
 
-#: tui_ncurses.c:382
+#: tui_ncurses.c:385
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr "此帮助介绍如何使用该文本用户界面\n"
 
-#: tui_ncurses.c:384
+#: tui_ncurses.c:387
 msgid ""
 "\n"
 "Global keys:\n"
 msgstr "\n全局按键：\n"
 
-#: tui_ncurses.c:385
+#: tui_ncurses.c:388
 msgid "\tPress 'left' key to switch in left tab.\n"
 msgstr "\t按 '左' 键切换至左选项卡。\n"
 
-#: tui_ncurses.c:386
+#: tui_ncurses.c:389
 msgid "\tPress 'right' key to switch in right tab.\n"
 msgstr "\t按 '右' 键切换至右选项卡。\n"
 
-#: tui_ncurses.c:387
+#: tui_ncurses.c:390
 msgid "\tPress 'h' key to see this help.\n"
 msgstr "\t按 'h' 键查看此帮助。\n"
 
-#: tui_ncurses.c:388
+#: tui_ncurses.c:391
 msgid "\tPress 'q' key to exit.\n"
 msgstr "\t按 'q' 键退出。\n"
 
-#: tui_ncurses.c:390
+#: tui_ncurses.c:393
 msgid ""
 "\n"
 "CPU tab:\n"
 msgstr "\nCPU 选项卡：\n"
 
-#: tui_ncurses.c:391
+#: tui_ncurses.c:394
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr "\t按 '下' 键减小要监视的核心数值。\n"
 
-#: tui_ncurses.c:392
+#: tui_ncurses.c:395
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr "\t按 '上' 键增加要监视的核心数值。\n"
 
-#: tui_ncurses.c:394
+#: tui_ncurses.c:397
 msgid ""
 "\n"
 "Caches tab:\n"
 msgstr "\n缓存选项卡：\n"
 
-#: tui_ncurses.c:395
+#: tui_ncurses.c:398
 msgid "\tPress 'down' key to switch to previous test.\n"
 msgstr "\t按 '下' 键切换至上一项测试。\n"
 
-#: tui_ncurses.c:396
+#: tui_ncurses.c:399
 msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr "\t按 '上' 键切换至下一项测试。\n"
 
-#: tui_ncurses.c:398
+#: tui_ncurses.c:401
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr "\n基准测试选项卡：\n"
 
-#: tui_ncurses.c:399
+#: tui_ncurses.c:402
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgstr "\t按 '下' 键减少基准测试持续时间。\n"
 
-#: tui_ncurses.c:400
+#: tui_ncurses.c:403
 msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgstr "\t按 '上' 键增加基准测试持续时间。\n"
 
-#: tui_ncurses.c:401
+#: tui_ncurses.c:404
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr "\t按 '下一页' 减少要使用的线程数。\n"
 
-#: tui_ncurses.c:402
+#: tui_ncurses.c:405
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr "\t按 '上一页' 增加要使用的线程数。\n"
 
-#: tui_ncurses.c:403
+#: tui_ncurses.c:406
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr "\t按 's' 键开始/停止素数 (慢速) 基准测试。\n"
 
-#: tui_ncurses.c:404
+#: tui_ncurses.c:407
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr "\t按 'f' 键开始/停止素数 (快速) 基准测试。\n"
 
-#: tui_ncurses.c:406
+#: tui_ncurses.c:409
 msgid ""
 "\n"
 "Press any key to exit this help.\n"
 msgstr "\n按任意键退出帮助。\n"
 
-#: tui_ncurses.c:425
+#: tui_ncurses.c:428
 msgid "If you want to update, press 'u' key, or anything else to skip.\n"
 msgstr "如果您想要更新，请按 'u' 键，否则请按其他按键跳过更新。\n"
 
-#: tui_ncurses.c:431
+#: tui_ncurses.c:434
 #, c-format
 msgid ""
 "\n"
@@ -1014,8 +1029,8 @@ msgstr "运行命令 '%s' 时发生错误 (%s)"
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
-msgstr ""
+msgstr "无法打开 %s 目录"
 
 #: util.c:321
 msgid "an error occurred while compiling regex"
-msgstr ""
+msgstr "编译正则表达式时出错"
