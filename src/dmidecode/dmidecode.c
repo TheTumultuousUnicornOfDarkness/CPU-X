@@ -3994,7 +3994,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 		case 17: /* 7.18 Memory Device */
 			if((opt.flags & FLAG_CPU_X) && *bank < LASTMEMORY)
 			{
-				if((strstr(dmi_string(h, data[0x17]), "Empty") != NULL) || (strstr(dmi_string(h, data[0x17]), "Not Specified") != NULL))
+				if((strstr(dmi_string(h, data[0x17]), "Empty") != NULL) || (strstr(dmi_string(h, data[0x17]), "Not Specified") != NULL) || (WORD(data + 0x0C) == 0))
 					casprintf(dmidata[DMI_RAM][*bank], false, "- - - - - - - - - - - - - - - - - - -");
 				else
 				{
