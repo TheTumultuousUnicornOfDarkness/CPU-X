@@ -218,7 +218,7 @@ error:
 bool load_module(char *module)
 {
 #if defined (__linux__)
-	if(!system(format("lsmod | grep %s > /dev/null", module)))
+	if(!system(format("grep -wq %s /proc/modules 2> /dev/null", module)))
 		return true;
 	else if(getuid())
 		return false;
