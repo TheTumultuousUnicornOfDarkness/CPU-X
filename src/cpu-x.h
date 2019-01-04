@@ -34,7 +34,7 @@
 #define PRGNAME               "CPU-X"
 #define PRGAUTH               "X0rg"
 #define PRGURL                "https://X0rg.github.io/CPU-X"
-#define UPDURL                "https://x0rg.github.io/CPU-X/version.txt"
+#define UPDURL                "https://api.github.com/repos/"PRGAUTH"/"PRGNAME"/releases/latest"
 #define TARBALL               "https://github.com/"PRGAUTH"/"PRGNAME"/releases/download"
 #define PRGCPRGHT             "Copyright © 2014-2018 Xorg"
 #define PRGLCNS               "GNU GPL v3"

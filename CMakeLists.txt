@@ -42,6 +42,7 @@ option(WITH_GTK           "Build support for GUI in GTK3+"                      
 option(WITH_NCURSES       "Build support for TUI in NCurses"                                  ON)
 option(WITH_GETTEXT       "Build support for internationalization"                            ON)
 option(WITH_LIBCURL       "Use Libcurl library"                                               ON)
+option(WITH_LIBJSONC      "Use Libjson-c library"                                             ON)
 option(WITH_LIBCPUID      "Use Libcpuid library"                                              ON)
 option(WITH_LIBPCI        "Use Libpci library"                                                ON)
 option(WITH_LIBPROCPS     "Use Libprocps library"                                             ON)

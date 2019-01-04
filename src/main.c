@@ -35,8 +35,10 @@
 #include <libintl.h>
 #include "cpu-x.h"
 
-#if HAS_LIBCURL
+#define HAS_WEB_SUPPORT (HAS_LIBCURL && HAS_LIBJSONC)
+#if HAS_WEB_SUPPORT
 # include <curl/curl.h>
+# include <json-c/json.h>
 #endif
 
 #if PORTABLE_BINARY
@@ -317,23 +319,38 @@ void labels_free(Labels *data)
 
 /************************* Update-related functions *************************/
 
-#if HAS_LIBCURL
+#if HAS_WEB_SUPPORT
 /* Write function for Curl */
 static size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
 {
-	char **buff = (char **) stream;
+	char **buff    = (char**) stream;
+	char *old_buff = *buff;
+	char *tmp      = NULL;
+	const size_t len     = size * nmemb;
+	const size_t old_len = (old_buff == NULL) ? 0 : strlen(old_buff);
+	const size_t new_len = old_len + len;
 
-	asprintf(buff, ptr);
-	(*buff)[nmemb - 1] = '\0';
+	if((tmp = realloc(old_buff, new_len + 1)) == NULL)
+	{
+		MSG_ERRNO(_("could not reallocate memory"));
+		MSG_STDERR(_("Exiting %s"), PRGNAME);
+		exit(255);
+	}
 
-	return size * nmemb;
+	*buff = tmp;
+	memcpy(&((*buff)[old_len]), ptr, len);
+	(*buff)[new_len] = '\0';
+
+	return len;
 }
 
 /* Check if running version is latest */
 static bool check_new_version(void)
 {
+	char *json = NULL;
 	CURL *curl;
 	CURLcode code;
+	json_object *jobj;
 
 	if(!opts->use_network)
 	{
@@ -351,12 +368,23 @@ static bool check_new_version(void)
 
 	curl_easy_setopt(curl, CURLOPT_URL, UPDURL);
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
-	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 1L);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &new_version[0]);
+	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3L);
+	curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/" LIBCURL_VERSION);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &json);
 	code = curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 
-	if((code != CURLE_OK) || (new_version[0] == NULL))
+	if(code == CURLE_OK)
+	{
+		jobj = json_tokener_parse(json);
+		const char *tag_name = json_object_get_string(json_object_object_get(jobj, "tag_name"));
+		if((tag_name != NULL) && (strlen(tag_name) > 1))
+			asprintf(&new_version[0], &(tag_name[1])); // Remove the 'v' at beginning
+		json_object_put(jobj);
+	}
+	free(json);
+
+	if(new_version[0] == NULL)
 	{
 		MSG_ERROR(_("failed to perform the Curl transfer (%s)"),
 			(new_version[0] != NULL) ? curl_easy_strerror(code) : _("wrong write data"));
@@ -531,7 +559,7 @@ static int update_prg(void)
 	return err;
 }
 # endif /* PORTABLE_BINARY */
-#endif /* HAS_LIBCURL */
+#endif /* HAS_WEB_SUPPORT */
 
 
 /************************* Options-related functions *************************/
@@ -570,11 +598,11 @@ static const struct
 	char       *description;
 } cpux_env_vars[] =
 {
-	{ HAS_LIBCURL,  "CPUX_NETWORK",        N_("Temporarily disable network support")                     },
-	{ true,         "CPUX_BCLK",           N_("Enforce the bus clock")                                   },
-	{ HAS_LIBCPUID, "CPUX_CPUID_RAW",      N_("Read CPUID raw data from a given file")                   },
-	{ HAS_LIBCPUID, "CPUX_DEBUG_DATABASE", N_("Only print a message if CPU does not belong in database") },
-	{ true,         NULL,                  NULL                                                               }
+	{ HAS_WEB_SUPPORT, "CPUX_NETWORK",        N_("Temporarily disable network support")                     },
+	{ true,            "CPUX_BCLK",           N_("Enforce the bus clock")                                   },
+	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",      N_("Read CPUID raw data from a given file")                   },
+	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE", N_("Only print a message if CPU does not belong in database") },
+	{ true,            NULL,                  NULL                                                          }
 };
 
 /* This is help display with --help option */
@@ -609,6 +637,7 @@ static void version(void)
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
 		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
 		{ HAS_LIBCURL,     "LIBCURL",     LIBCURL_VERSION     },
+		{ HAS_LIBJSONC,    "LIBJSONC",    LIBJSONC_VERSION    },
 		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
 		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
@@ -618,7 +647,7 @@ static void version(void)
 		{ false,           NULL,          NULL                }
 	};
 
-	if(HAS_LIBCURL)
+	if(HAS_WEB_SUPPORT)
 		check_new_version();
 
 	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, new_version[1]);
@@ -943,7 +972,7 @@ int main(int argc, char *argv[])
 	labels_setname(data);
 	fill_labels   (data);
 
-	if(HAS_LIBCURL)
+	if(HAS_WEB_SUPPORT)
 		check_new_version();
 
 	/* Show data */
@@ -961,7 +990,7 @@ skip_init:
 
 #if PORTABLE_BINARY
 	/* Only 64-bit portable binary can be updated since v3.2.1 */
-	if(PORTABLE_BINARY && HAS_LIBCURL && opts->update) {
+	if(PORTABLE_BINARY && HAS_WEB_SUPPORT && opts->update) {
 # ifdef __x86_64__
 		update_prg();
 # else

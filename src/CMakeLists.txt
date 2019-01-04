@@ -64,6 +64,17 @@ if(WITH_LIBCURL)
 	endif(LIBCURL_FOUND)
 endif(WITH_LIBCURL)
 
+# Libjson-c
+if(WITH_LIBJSONC)
+	pkg_check_modules(LIBJSONC json-c)
+	if(LIBJSONC_FOUND)
+		include_directories(${LIBJSONC_INCLUDE_DIRS})
+		link_directories(${LIBJSONC_LIBRARY_DIRS})
+		add_definitions(${LIBJSONC_CFLAGS_OTHER})
+		add_embedded_library(LIBJSONC_LIBRARIES "-l:libjson-c.a")
+	endif(LIBJSONC_FOUND)
+endif(WITH_LIBJSONC)
+
 # Libarchive
 if(PORTABLE_BINARY)
 	pkg_check_modules(LIBARCHIVE libarchive REQUIRED)
@@ -160,6 +171,7 @@ print_config("NCURSES"             "${NCURSES_VERSION}"     NCURSES_FOUND     WI
 # Other libraries
 print_config("GETTEXT"             0                        GETTEXT_FOUND     WITH_GETTEXT)
 print_config("LIBCURL"             "${LIBCURL_VERSION}"     LIBCURL_FOUND     WITH_LIBCURL)
+print_config("LIBJSONC"            "${LIBJSONC_VERSION}"    LIBJSONC_FOUND    WITH_LIBJSONC)
 print_config("LIBCPUID"            "${LIBCPUID_VERSION}"    LIBCPUID_FOUND    WITH_LIBCPUID)
 print_config("LIBPCI"              "${LIBPCI_VERSION}"      LIBPCI_FOUND      WITH_LIBPCI)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
@@ -238,6 +250,7 @@ target_link_libraries(cpu-x
 	${GTK3_LIBRARIES}
 	${NCURSES_LIBRARIES}
 	${LIBCURL_LIBRARIES}
+	${LIBJSONC_LIBRARIES}
 	${LIBARCHIVE_LIBRARIES}
 	${LIBCPUID_LIBRARIES}
 	${LIBPCI_LIBRARIES}
