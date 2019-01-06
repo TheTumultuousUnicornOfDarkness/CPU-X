@@ -1,4 +1,6 @@
-project(icons)
+project(icons
+	LANGUAGES NONE
+)
 
 
 # Icons

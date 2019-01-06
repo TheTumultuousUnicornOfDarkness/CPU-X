@@ -1,4 +1,6 @@
-project(data)
+project(data
+	LANGUAGES NONE
+)
 
 
 # Files needed by GTK GUI

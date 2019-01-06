@@ -1,4 +1,6 @@
-project(logos)
+project(logos
+	LANGUAGES NONE
+)
 
 
 # Logos

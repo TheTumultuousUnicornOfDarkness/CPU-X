@@ -1,4 +1,6 @@
-project(po)
+project(po
+	LANGUAGES NONE
+)
 
 # Config (po)
 set(absPotFile "${CMAKE_SOURCE_DIR}/po/cpu-x.pot")
