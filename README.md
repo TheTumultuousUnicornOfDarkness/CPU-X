@@ -4,7 +4,7 @@
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X/releases/latest)
 [![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
-[![Build Status](https://travis-ci.org/X0rg/CPU-X.svg?branch=master)](https://travis-ci.org/X0rg/CPU-X)
+[![Build Status](https://travis-ci.com/X0rg/CPU-X.svg?branch=master)](https://travis-ci.com/X0rg/CPU-X)
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.  
