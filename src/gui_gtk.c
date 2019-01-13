@@ -76,7 +76,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		warning_window(glab.mainwindow);
 
 #ifdef __x86_64__
-	if(PORTABLE_BINARY && new_version[0] != NULL)
+	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
 		new_version_window(glab.mainwindow);
 #endif /* __x86_64__ */
 

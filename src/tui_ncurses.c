@@ -91,7 +91,7 @@ void start_tui_ncurses(Labels *data)
 	}
 
 #ifdef __x86_64__
-	if(PORTABLE_BINARY && new_version[0] != NULL)
+	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
 	{
 		print_new_version();
 		erase();
