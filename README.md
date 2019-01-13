@@ -51,6 +51,7 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 * [Pciutils](https://mj.ucw.cz/sw/pciutils/)  
 * [Procps-ng](https://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](https://www.i-scream.org/libstatgrab/) (*BSD)  
 * [Curl](https://curl.haxx.se/)  
+* [JSON-C](https://github.com/json-c/json-c)  
 **¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 
