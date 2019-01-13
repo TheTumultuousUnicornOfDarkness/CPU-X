@@ -121,7 +121,7 @@ static void new_version_window(GtkWidget *mainwindow)
 		GTK_MESSAGE_INFO,
 		GTK_BUTTONS_NONE,
 		_("A new version of %s is available!"), PRGNAME);
-
+#if 0
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
 		_("Do you want to update %s to version %s after exit?\n"
 		"It will erase this binary file (%s) by the new version."),
@@ -130,6 +130,18 @@ static void new_version_window(GtkWidget *mainwindow)
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
 		opts->update = true;
+#else
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
+		_("Version %s is available. Unfortunately, this portable format is now deprecated in favor of AppImage.\n"
+		"You can download %s AppImage on the official download page.\n"),
+		new_version[0], PRGNAME);
+	GtkWidget *link = gtk_link_button_new_with_label(DOWNLOAD, _("Download page"));
+	gtk_widget_show(link);
+	gtk_dialog_add_action_widget(GTK_DIALOG(dialog), GTK_WIDGET(link), GTK_RESPONSE_OK);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Ok"), GTK_RESPONSE_CLOSE);
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(link);
+#endif
 
 	gtk_widget_destroy(dialog);
 }

@@ -408,7 +408,7 @@ static bool check_new_version(void)
 	return false;
 }
 
-# if PORTABLE_BINARY
+# if 0 //PORTABLE_BINARY
 /* Copy function for libarchive */
 static int copy_data(struct archive *ar, struct archive *aw)
 {
@@ -988,7 +988,7 @@ skip_init:
 	if(HAS_BANDWIDTH && (opts->output_type == OUT_BANDWIDTH))
 		return run_bandwidth();
 
-#if PORTABLE_BINARY
+#if 0 //PORTABLE_BINARY
 	/* Only 64-bit portable binary can be updated since v3.2.1 */
 	if(PORTABLE_BINARY && HAS_WEB_SUPPORT && opts->update) {
 # ifdef __x86_64__
