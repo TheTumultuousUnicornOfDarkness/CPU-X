@@ -1,3 +1,15 @@
+v3.2.4 (01.13.2019):
+	- Changes:
+	  * Build portable binary without PIE
+	  * Improve AppImage experience
+	  * Use GitHub API to check new version (libjson-c)
+	  * Deprecate the portable version
+	- Fixes:
+	  * Wrong GPU clocks with AMDGPU driver
+	  * Empty memory bank label
+	  * Build without gettext
+
+
 v3.2.3 (07.01.2018):
 	- Removed feature:
 	  * Support for CMake < 3.0

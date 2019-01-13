@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 cmake_policy(SET CMP0048 NEW)
 project(cpu-x
-	VERSION "3.2.3"
+	VERSION "3.2.4"
 	LANGUAGES C
 )
 
