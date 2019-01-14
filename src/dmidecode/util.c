@@ -2,7 +2,7 @@
  * Common "util" functions
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2002-2017 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2002-2018 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -59,7 +59,6 @@ static int myread(int fd, u8 *buf, size_t count, const char *prefix)
 		{
 			if (errno != EINTR)
 			{
-				close(fd);
 				perror(prefix);
 				return -1;
 			}
@@ -70,7 +69,6 @@ static int myread(int fd, u8 *buf, size_t count, const char *prefix)
 
 	if (r2 != count)
 	{
-		close(fd);
 		fprintf(stderr, "%s: Unexpected end of file\n", prefix);
 		return -1;
 	}
@@ -90,19 +88,17 @@ int checksum(const u8 *buf, size_t len)
 
 /*
  * Reads all of file from given offset, up to max_len bytes.
- * A buffer of max_len bytes is allocated by this function, and
+ * A buffer of at most max_len bytes is allocated by this function, and
  * needs to be freed by the caller.
  * This provides a similar usage model to mem_chunk()
  *
- * Returns pointer to buffer of max_len bytes, or NULL on error, and
+ * Returns a pointer to the allocated buffer, or NULL on error, and
  * sets max_len to the length actually read.
- *
  */
 void *read_file(off_t base, size_t *max_len, const char *filename)
 {
+	struct stat statbuf;
 	int fd;
-	size_t r2 = 0;
-	ssize_t r;
 	u8 *p;
 
 	/*
@@ -116,12 +112,20 @@ void *read_file(off_t base, size_t *max_len, const char *filename)
 		return NULL;
 	}
 
-	if (lseek(fd, base, SEEK_SET) == -1)
+	/*
+	 * Check file size, don't allocate more than can be read.
+	 */
+	if (fstat(fd, &statbuf) == 0)
 	{
-		fprintf(stderr, "%s: ", filename);
-		perror("lseek");
-		p = NULL;
-		goto out;
+		if (base >= statbuf.st_size)
+		{
+			fprintf(stderr, "%s: Can't read data beyond EOF\n",
+				filename);
+			p = NULL;
+			goto out;
+		}
+		if (*max_len > (size_t)statbuf.st_size - base)
+			*max_len = statbuf.st_size - base;
 	}
 
 	if ((p = malloc(*max_len)) == NULL)
@@ -130,29 +134,37 @@ void *read_file(off_t base, size_t *max_len, const char *filename)
 		goto out;
 	}
 
-	do
+	if (lseek(fd, base, SEEK_SET) == -1)
 	{
-		r = read(fd, p + r2, *max_len - r2);
-		if (r == -1)
-		{
-			if (errno != EINTR)
-			{
-				perror(filename);
-				free(p);
-				p = NULL;
-				goto out;
-			}
-		}
-		else
-			r2 += r;
+		fprintf(stderr, "%s: ", filename);
+		perror("lseek");
+		goto err_free;
 	}
-	while (r != 0);
 
-	*max_len = r2;
+	if (myread(fd, p, *max_len, filename) == 0)
+		goto out;
+
+err_free:
+	free(p);
+	p = NULL;
+
 out:
-	close(fd);
+	if (close(fd) == -1)
+		perror(filename);
 
 	return p;
+}
+
+static void safe_memcpy(void *dest, const void *src, size_t n)
+{
+#ifdef USE_SLOW_MEMCPY
+	size_t i;
+
+	for (i = 0; i < n; i++)
+		*((u8 *)dest + i) = *((const u8 *)src + i);
+#else
+	memcpy(dest, src, n);
+#endif
 }
 
 /*
@@ -214,7 +226,7 @@ void *mem_chunk(off_t base, size_t len, const char *devmem)
 	if (mmp == MAP_FAILED)
 		goto try_read;
 
-	memcpy(p, (u8 *)mmp + mmoffset, len);
+	safe_memcpy(p, (u8 *)mmp + mmoffset, len);
 
 	if (munmap(mmp, mmoffset + len) == -1)
 	{
