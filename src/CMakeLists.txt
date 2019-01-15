@@ -8,14 +8,6 @@ if(WITH_GTK)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER})
-		if(PORTABLE_BINARY)
-			execute_process(COMMAND glib-compile-resources --target=${CMAKE_BINARY_DIR}/src/gtk_resources.c --generate-source cpu-x.gresource.xml
-					COMMAND	glib-compile-resources --target=${CMAKE_BINARY_DIR}/src/gtk_resources.h --generate-header cpu-x.gresource.xml
-					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/data
-			)
-			set(GRESOURCES "gtk_resources.c")
-			include_directories(${CMAKE_BINARY_DIR}/src)
-		endif(PORTABLE_BINARY)
 		add_library(gui_gtk
 			gui_gtk.c
 			gui_gtk.h
@@ -39,15 +31,12 @@ if(WITH_NCURSES)
 			tui_ncurses.c
 			tui_ncurses.h
 		)
-		add_embedded_library_linux(NCURSES_LIBRARIES "-l:libncursesw.a")
-		add_embedded_library_others(NCURSES_LIBRARIES "${NCURSES_LIBRARIES} -l:libncursesw.a -l:libtinfo.a")
 		set(NCURSES_LIBRARIES "tui_ncurses" ${NCURSES_LIBRARIES})
 	endif(NCURSES_FOUND)
 endif(WITH_NCURSES)
 
 # Gettext
 if(Intl_FOUND)
-	add_embedded_library_others(Intl_LIBRARIES "-l:libintl.a")
 	include_directories(${CMAKE_BINARY_DIR}/po)
 endif(Intl_FOUND)
 
@@ -58,9 +47,6 @@ if(WITH_LIBCURL)
 		include_directories(${LIBCURL_INCLUDE_DIRS})
 		link_directories(${LIBCURL_LIBRARY_DIRS})
 		add_definitions(${LIBCURL_CFLAGS_OTHER})
-		add_embedded_library(LIBCURL_LIBRARIES "-l:libcurl.a")
-		add_embedded_library_linux(LIBCURL_LIBRARIES "${LIBCURL_LIBRARIES} -l:libssl.a -l:libcrypto.a -lz -ldl -lgssapi_krb5")
-		add_embedded_library_others(LIBCURL_LIBRARIES "${LIBCURL_LIBRARIES} -l:libz.a")
 	endif(LIBCURL_FOUND)
 endif(WITH_LIBCURL)
 
@@ -71,22 +57,8 @@ if(WITH_LIBJSONC)
 		include_directories(${LIBJSONC_INCLUDE_DIRS})
 		link_directories(${LIBJSONC_LIBRARY_DIRS})
 		add_definitions(${LIBJSONC_CFLAGS_OTHER})
-		add_embedded_library(LIBJSONC_LIBRARIES "-l:libjson-c.a")
 	endif(LIBJSONC_FOUND)
 endif(WITH_LIBJSONC)
-
-# Libarchive
-if(PORTABLE_BINARY)
-	pkg_check_modules(LIBARCHIVE libarchive REQUIRED)
-	if(LIBARCHIVE_FOUND)
-		include_directories(${LIBARCHIVE_INCLUDE_DIRS})
-		link_directories(${LIBARCHIVE_LIBRARY_DIRS})
-		add_definitions(${LIBARCHIVE_CFLAGS_OTHER})
-		add_embedded_library(LIBARCHIVE_LIBRARIES "-l:libarchive.a")
-		add_embedded_library_linux(LIBARCHIVE_LIBRARIES "${LIBARCHIVE_LIBRARIES} -ldl")
-		add_embedded_library_others(LIBARCHIVE_LIBRARIES "${LIBARCHIVE_LIBRARIES} -l:libssl.a -l:libcrypto.a -l:libgssapi.a -l:libbz2.a")
-	endif(LIBARCHIVE_FOUND)
-endif(PORTABLE_BINARY)
 
 # Libcpuid
 if(WITH_LIBCPUID)
@@ -95,7 +67,6 @@ if(WITH_LIBCPUID)
 		include_directories(${LIBCPUID_INCLUDE_DIRS})
 		link_directories(${LIBCPUID_LIBRARY_DIRS})
 		add_definitions(${LIBCPUID_CFLAGS_OTHER})
-		add_embedded_library(LIBCPUID_LIBRARIES "-l:libcpuid.a")
 		set(CMAKE_REQUIRED_LIBRARIES ${LIBCPUID_LIBRARIES})
 		check_symbol_exists(msr_serialize_raw_data "libcpuid/libcpuid.h" HAVE_MSR_SERIALIZE_RAW_DATA)
 		if(HAVE_MSR_SERIALIZE_RAW_DATA)
@@ -111,9 +82,6 @@ if(WITH_LIBPCI)
 		include_directories(${LIBPCI_INCLUDE_DIRS})
 		link_directories(${LIBPCI_LIBRARY_DIRS})
 		add_definitions(${LIBPCI_CFLAGS_OTHER})
-		add_embedded_library(LIBPCI_LIBRARIES "-l:libpci.a")
-		add_embedded_library_linux(LIBPCI_LIBRARIES "${LIBPCI_LIBRARIES} -lresolv -ludev")
-		add_embedded_library_others(LIBPCI_LIBRARIES "${LIBPCI_LIBRARIES} -l:libz.a")
 	endif(LIBPCI_FOUND)
 endif(WITH_LIBPCI)
 
@@ -125,7 +93,6 @@ if(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTAT
 		include_directories(${LIBPROCPS_INCLUDE_DIRS})
 		link_directories(${LIBPROCPS_LIBRARY_DIRS})
 		add_definitions(${LIBPROCPS_CFLAGS_OTHER})
-		add_embedded_library(LIBPROCPS_LIBRARIES "-l:libprocps.a")
 		set(LIBSYSTEM 1)
 	endif(LIBPROCPS_FOUND)
 endif(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
@@ -137,8 +104,6 @@ if(WITH_LIBSTATGRAB AND (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBST
 		include_directories(${LIBSTATGRAB_INCLUDE_DIRS})
 		link_directories(${LIBSTATGRAB_LIBRARY_DIRS})
 		add_definitions(${LIBSTATGRAB_CFLAGS_OTHER})
-		add_embedded_library(LIBSTATGRAB_LIBRARIES "-l:libstatgrab.a")
-		add_embedded_library_others(LIBSTATGRAB_LIBRARIES "${LIBSTATGRAB_LIBRARIES} -l:libdevstat.a -l:libkvm.a")
 		set(LIBSYSTEM 2)
 	endif(LIBSTATGRAB_FOUND)
 endif(WITH_LIBSTATGRAB AND (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB))
@@ -196,24 +161,10 @@ add_executable(cpu-x
 	core.h
 )
 
-# Portable binary & Gettext stuff
-if(PORTABLE_BINARY)
-	message("${BoldBlue}${CMAKE_PROJECT_NAME} will be compiled as portable binary.${ColourReset}")
-	add_definitions(-DPORTABLE_BINARY=1)
-	find_path(XXD xxd)
-	if(NOT XXD)
-		message(FATAL_ERROR "${BoldRed}'xxd' command not found, can't perform build!${ColourReset}")
-	endif(NOT XXD)
-	if(WITH_GETTEXT)
-		set(CMAKE_INSTALL_FULL_LOCALEDIR "/tmp/.cpu-x")
-		add_dependencies(cpu-x convertgmo)
-	endif(WITH_GETTEXT)
-else(PORTABLE_BINARY)
-	add_definitions(-DPORTABLE_BINARY=0)
-	if(GETTEXT_FOUND)
-		add_dependencies(cpu-x potfiles)
-	endif(GETTEXT_FOUND)
-endif(PORTABLE_BINARY)
+# Gettext
+if(GETTEXT_FOUND)
+	add_dependencies(cpu-x potfiles)
+endif(GETTEXT_FOUND)
 
 # OS macro definition
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -237,9 +188,6 @@ endif()
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DCC="${CMAKE_C_COMPILER_ID}" -DHAS_LIBSYSTEM="${LIBSYSTEM}")
 add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}" -DTERMINFODIR="/lib/terminfo")
 
-# Various libraries
-add_embedded_library_others(OTHER_LIBRARIES "-lelf -l:libnghttp2.a")
-
 # Link libraries
 target_link_libraries(cpu-x
 	m
@@ -251,7 +199,6 @@ target_link_libraries(cpu-x
 	${NCURSES_LIBRARIES}
 	${LIBCURL_LIBRARIES}
 	${LIBJSONC_LIBRARIES}
-	${LIBARCHIVE_LIBRARIES}
 	${LIBCPUID_LIBRARIES}
 	${LIBPCI_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}

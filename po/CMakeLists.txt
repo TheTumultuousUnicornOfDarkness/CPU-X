@@ -67,46 +67,6 @@ if(GETTEXT_FOUND)
 	add_custom_command(TARGET potfiles_1
 		DEPENDS ${poFiles}
 	)
-
-	if(PORTABLE_BINARY)
-		# Target: convertgmo
-		# Convert .gmo files in a C header file
-		add_custom_target(convertgmo ALL)
-		set(vars)
-		set(moHeader "${CMAKE_BINARY_DIR}/po/mo.h")
-		add_custom_command(TARGET convertgmo
-			COMMAND ${CMAKE_COMMAND} -E remove ${moHeader}
-		)
-		foreach(poFile ${poFiles})
-			add_custom_command(TARGET convertgmo
-				COMMAND xxd -i "${poFile}.gmo" >> ${moHeader}
-				WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-				COMMENT "Convert file ${poFile}.gmo in header"
-				DEPENDS ${poFiles}
-			)
-			set(vars ${vars} "${poFile}_gmo")
-		endforeach(poFile)
-
-		# Add variables 'lang', 'ptrlang' and 'ptrlen' in header
-		set(lang	'char *lang[] = { ')
-		set(ptrlang	'unsigned char *ptrlang[] = { ')
-		set(ptrlen	'unsigned int *ptrlen[] = { ')
-		foreach(poFile ${poFiles})
-			set(lang	${lang}		'\"${poFile}\", ')
-			set(ptrlang	${ptrlang}	'${poFile}_gmo, ')
-			set(ptrlen	${ptrlen}	'&${poFile}_gmo_len, ')
-		endforeach(poFile)
-		set(lang	${lang}		'\"\" }\\\;')
-		set(ptrlang	${ptrlang}	'NULL }\\\;')
-		set(ptrlen	${ptrlen}	'NULL }\\\;')
-		add_custom_command(TARGET convertgmo
-			COMMAND ${CMAKE_COMMAND} -E echo ${lang} >> ${moHeader}
-			COMMAND ${CMAKE_COMMAND} -E echo ${ptrlang} >> ${moHeader}
-			COMMAND ${CMAKE_COMMAND} -E echo ${ptrlen} >> ${moHeader}
-			DEPENDS ${lang} ${ptrlang} ${ptrlen})
-		add_dependencies(convertgmo potfiles)
-	endif(PORTABLE_BINARY)
-
 else(GETTEXT_FOUND)
 	set(GETTEXT_FOUND OFF PARENT_SCOPE)
 endif(GETTEXT_FOUND)

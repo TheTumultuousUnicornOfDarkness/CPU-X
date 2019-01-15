@@ -114,7 +114,7 @@ static void nrefresh(NThrd *refr);
 static void print_help(void);
 
 /* Ask for update when a new version is available (portable version only) */
-static void print_new_version(void);
+//static void print_new_version(void);
 
 /* The main window (title, tabs, footer) */
 static void main_win(WINDOW *win, const SizeInfo info, Labels *data);
