@@ -751,7 +751,7 @@ static bool gpu_is_on(enum EnGpuDrv gpu_driver)
 {
 	bool ret = false;
 	char *buff = NULL;
-	
+
 	switch(gpu_driver)
 	{
 		case GPUDRV_NVIDIA_BUMBLEBEE:
@@ -894,7 +894,8 @@ static int gpu_clocks(Labels *data)
 		{
 			case GPUDRV_AMDGPU:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				ret_load = gpu_do_if_root() ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) : -1;
+				ret_load = gpu_do_if_root() ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
+				                              fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
 				ret_gclk = popen_to_str(&gclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
 				ret_mclk = popen_to_str(&mclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
 				break;
