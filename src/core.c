@@ -896,11 +896,11 @@ static int gpu_clocks(Labels *data)
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
 				ret_load = gpu_do_if_root() ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
 				                              fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
-				ret_gclk = popen_to_str(&gclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
-				ret_mclk = popen_to_str(&mclk, "awk -v FS='(: |Mhz)' '/*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
+				ret_gclk = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
+				ret_mclk = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
 				break;
 			case GPUDRV_FGLRX:
-				ret_load = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/       { print $4 }'", fglrx_count);
+				ret_load = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
 				ret_gclk = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'", fglrx_count);
 				ret_mclk = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'", fglrx_count++);
 				break;
@@ -912,8 +912,8 @@ static int gpu_clocks(Labels *data)
 			case GPUDRV_RADEON:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
 				ret_load = -1;
-				ret_gclk = gpu_do_if_root() ? popen_to_str(&gclk, "awk -v FS='(sclk: | mclk:)' 'NR==2{print $2}' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
-				ret_mclk = gpu_do_if_root() ? popen_to_str(&mclk, "awk -v FS='(mclk: | vddc:)' 'NR==2{print $2}' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_gclk = gpu_do_if_root() ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_mclk = gpu_do_if_root() ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
 				if((gclk != NULL) && (strlen(gclk) >= 2)) gclk[strlen(gclk) - 2] = '\0';
 				if((mclk != NULL) && (strlen(mclk) >= 2)) mclk[strlen(mclk) - 2] = '\0';
 				break;
@@ -982,7 +982,7 @@ static int system_static(Labels *data)
 
 #ifdef __linux__
 	/* Distribution label */
-	err += popen_to_str(&data->tab_system[VALUE][DISTRIBUTION], "grep PRETTY_NAME= /etc/os-release | awk -F '\"|\"' '{print $2}'");
+	err += popen_to_str(&data->tab_system[VALUE][DISTRIBUTION], ". /etc/os-release && echo $PRETTY_NAME");
 
 #else
 	char tmp[MAXSTR];
