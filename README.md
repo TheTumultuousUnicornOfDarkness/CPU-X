@@ -5,6 +5,7 @@
 [![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
 [![Build Status](https://travis-ci.com/X0rg/CPU-X.svg?branch=master)](https://travis-ci.com/X0rg/CPU-X)
+[![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/svg-badge.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)
 
 CPU-X is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.  
@@ -104,7 +105,8 @@ You can find screenshots in [gallery](https://github.com/X0rg/CPU-X/wiki/Screens
 
 ## Translate/Contributions
 
-You want to have CPU-X in a foreign language but no translation exists? See this [wiki page](https://github.com/X0rg/CPU-X/wiki/Translate).  
+Translation status:  
+[![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/multi-blue.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)  
 Or you want to contribute to CPU-X? In the top-right corner of the page, click on the **Fork** button.
 
 
