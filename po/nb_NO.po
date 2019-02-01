@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-02 16:09+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
+"translations/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -436,7 +439,7 @@ msgstr ""
 
 #: main.c:84 main.c:157
 msgid "Usage"
-msgstr ""
+msgstr "Bruk"
 
 #: main.c:86
 msgid "Cache"
@@ -485,15 +488,15 @@ msgstr ""
 
 #: main.c:103
 msgid "Speed"
-msgstr ""
+msgstr "Hastighet"
 
 #: main.c:105
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
-msgstr ""
+msgstr "Hovedkort"
 
 #: main.c:110
 msgid "Manufacturer"
@@ -505,31 +508,31 @@ msgstr ""
 
 #: main.c:114
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:115
 msgid "Brand"
-msgstr ""
+msgstr "Merke"
 
 #: main.c:116
 msgid "Version"
-msgstr ""
+msgstr "Versjon"
 
 #: main.c:117
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: main.c:118
 msgid "ROM Size"
-msgstr ""
+msgstr "ROM-størrelse"
 
 #: main.c:120
 msgid "Chipset"
-msgstr ""
+msgstr "Brikkesett"
 
 #: main.c:125 main.c:141
 msgid "Memory"
-msgstr ""
+msgstr "Minne"
 
 #: main.c:128
 #, c-format
@@ -550,27 +553,27 @@ msgstr ""
 
 #: main.c:135
 msgid "Kernel"
-msgstr ""
+msgstr "Kjerne"
 
 #: main.c:136
 msgid "Distribution"
-msgstr ""
+msgstr "Distro"
 
 #: main.c:137
 msgid "Hostname"
-msgstr ""
+msgstr "Vertsnavn"
 
 #: main.c:138
 msgid "Uptime"
-msgstr ""
+msgstr "Oppetid"
 
 #: main.c:139
 msgid "Compiler"
-msgstr ""
+msgstr "Kompilator"
 
 #: main.c:142
 msgid "Used"
-msgstr ""
+msgstr "Brukt"
 
 #: main.c:143
 msgid "Buffers"
@@ -582,32 +585,33 @@ msgstr ""
 
 #: main.c:145
 msgid "Free"
-msgstr ""
+msgstr "Ledig"
 
 #: main.c:146
 msgid "Swap"
-msgstr ""
+msgstr "Sidevekslingsfil"
 
 #: main.c:149
 msgid "Graphics"
-msgstr ""
+msgstr "Grafikk"
 
 #: main.c:153
 #, c-format
 msgid "Card %i"
-msgstr ""
+msgstr "Kort %i"
 
 #: main.c:156
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
 #: main.c:158
 msgid "GPU clock"
-msgstr ""
+msgstr "CPU-klokke"
 
 #: main.c:159
+#, fuzzy
 msgid "Memory clock"
-msgstr ""
+msgstr "Minne-klokke"
 
 #: main.c:163
 msgid "Bench"
@@ -615,35 +619,35 @@ msgstr ""
 
 #: main.c:164
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "Primtall (tregt)"
 
 #: main.c:165
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "Primtall (raskt)"
 
 #: main.c:168
 msgid "Score"
-msgstr ""
+msgstr "Poengsum"
 
 #: main.c:169
 msgid "Run"
-msgstr ""
+msgstr "Kjør"
 
 #: main.c:172
 msgid "Parameters"
-msgstr ""
+msgstr "Parameter"
 
 #: main.c:173
 msgid "Duration"
-msgstr ""
+msgstr "Varighet"
 
 #: main.c:174
 msgid "Threads"
-msgstr ""
+msgstr "Tråder"
 
 #: main.c:177 main.c:182
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 #: main.c:179
 #, c-format
@@ -654,51 +658,55 @@ msgstr ""
 #: main.c:183
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Versjon %s"
 
 #: main.c:184
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "Utvikler: %s"
 
 #: main.c:185
-#, c-format
+#, c-format, fuzzy
 msgid "Site: %s"
-msgstr ""
+msgstr "Nettside: %s"
 
 #: main.c:187
+#, fuzzy
 msgid "License"
-msgstr ""
+msgstr "Lisens"
 
 #: main.c:190
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "Denne programvaren utgis i henhold til vilkårene i %s"
 
 #: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "Dette programmet kommer deg i hende UTEN NOEN FORM FOR GARANTI"
 
 #: main.c:259
+#, fuzzy
 msgid "Dumping data..."
-msgstr ""
+msgstr "Dumper data…"
 
 #: main.c:301
 msgid "Freeing memory"
-msgstr ""
+msgstr "Frigjør minne"
 
 #: main.c:344
+#, fuzzy
 msgid "Checking on Internet for a new version..."
-msgstr ""
+msgstr "Ser etter ny versjon…"
 
 #: main.c:348 main.c:474
+#, fuzzy
 msgid "failed to open a Curl session"
-msgstr ""
+msgstr "Klarte ikke å åpne Curl-økt"
 
 #: main.c:361
-#, c-format
+#, c-format, fuzzy
 msgid "failed to perform the Curl transfer (%s)"
-msgstr ""
+msgstr "Klarte ikke å utføre Curl-overføring (%s)"
 
 #: main.c:362
 msgid "wrong write data"
@@ -707,7 +715,7 @@ msgstr ""
 #: main.c:369
 #, c-format
 msgid "(version %s is available)"
-msgstr ""
+msgstr "(versjon %s er tilgjengelig)"
 
 #: main.c:374 main.c:467
 msgid "No new version available"
@@ -734,7 +742,7 @@ msgstr ""
 
 #: main.c:488
 msgid "Downloading new version..."
-msgstr ""
+msgstr "Laster ned ny versjon…"
 
 #: main.c:500
 #, c-format
@@ -743,7 +751,7 @@ msgstr ""
 
 #: main.c:506
 msgid "Extracting new version..."
-msgstr ""
+msgstr "Pakker ut ny versjon…"
 
 #: main.c:516
 msgid "Applying new version..."
@@ -859,7 +867,7 @@ msgstr ""
 #: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "Vis %s-linsensen: <%s>\n"
 
 #: main.c:629
 #, c-format
@@ -869,7 +877,7 @@ msgstr ""
 #: main.c:636
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr ""
+msgstr "-- %-9s versjon: %s"
 
 #: main.c:772
 #, c-format
