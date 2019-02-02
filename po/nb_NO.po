@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-02 16:09+0000\n"
+"PO-Revision-Date: 2019-02-03 18:09+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -26,27 +26,29 @@ msgstr ""
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "Avslutter %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Finner CPU-teknologi"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"Prosessoren din tilhører ikke i databasen → %s, modell: %i, ekst. modell: %"
+"i, ekst. familie: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-veis"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-veis"
 
 #: core.c:206
 #, c-format
@@ -55,16 +57,16 @@ msgstr ""
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Kaller libcpuid for innhenting av statisk data"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "Klarte ikke å kalle libcpuid (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Kaller libcpuid for innhenting av dynamisk data"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
@@ -885,6 +887,8 @@ msgid "\n"
 "%sOops, something was wrong! %s has received signal %d (%s) and has "
 "crashed.%s"
 msgstr ""
+"\n"
+"%s! %s has received signal %d (%s) and has crashed.%s"
 
 #: main.c:787
 msgid "You can paste this backtrace by opening a new issue here:"
