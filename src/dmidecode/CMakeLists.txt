@@ -1,5 +1,5 @@
 project(dmidecode
-	VERSION "3.2.20181116"
+	VERSION "3.2.20190129"
 	LANGUAGES C
 )
 

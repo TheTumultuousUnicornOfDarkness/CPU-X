@@ -1583,27 +1583,29 @@ static const char *dmi_cache_location(u8 code)
 	return location[code];
 }
 
-static void dmi_cache_size(u16 code)
-{
-	if (code & 0x8000)
-		printf(" %u kB", (code & 0x7FFF) << 6);
-	else
-		printf(" %u kB", code);
-}
-
 static void dmi_cache_size_2(u32 code)
 {
+	u64 size;
+
 	if (code & 0x80000000)
 	{
 		code &= 0x7FFFFFFFLU;
-		/* Use a more convenient unit for large cache size */
-		if (code >= 0x8000)
-			printf(" %u MB", code >> 4);
-		else
-			printf(" %u kB", code << 6);
+		size.l = code << 6;
+		size.h = code >> 26;
 	}
 	else
-		printf(" %u kB", code);
+	{
+		size.l = code;
+		size.h = 0;
+	}
+
+	/* Use a more convenient unit for large cache size */
+	dmi_print_memory_size(size, 1);
+}
+
+static void dmi_cache_size(u16 code)
+{
+	dmi_cache_size_2((((u32)code & 0x8000LU) << 16) | (code & 0x7FFFLU));
 }
 
 static void dmi_cache_types(u16 code, const char *sep)
@@ -2521,10 +2523,11 @@ static const char *dmi_memory_device_type(u8 code)
 		"LPDDR",
 		"LPDDR2",
 		"LPDDR3",
-		"LPDDR4" /* 0x1E */
+		"LPDDR4",
+		"Logical non-volatile device" /* 0x1F */
 	};
 
-	if (code >= 0x01 && code <= 0x1E)
+	if (code >= 0x01 && code <= 0x1F)
 		return type[code - 0x01];
 	return out_of_spec;
 }

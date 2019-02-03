@@ -6,7 +6,7 @@ Distributed under the terms of the [GNU GPL v2](https://github.com/X0rg/CPU-X/bl
 
 This sofware has been patched to be used within CPU-X.  
 You can find the official web page of this project here: https://savannah.nongnu.org/projects/dmidecode/  
-This is based on dmidecode 3.2+[82497fa](https://git.savannah.gnu.org/cgit/dmidecode.git/commit/?id=82497fa02d60757c2cfa645cf89a79abb1435273).
+This is based on dmidecode 3.2+[ae28cbb](https://git.savannah.gnu.org/cgit/dmidecode.git/commit/?id=ae28cbb12fc80f62230ad06cb44ad0aaaa9e2048).
 
 This software is used to retrieve following data:
 
