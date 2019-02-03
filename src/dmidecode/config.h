@@ -26,4 +26,9 @@
 #define ALIGNMENT_WORKAROUND
 #endif
 
+/* Avoid unaligned memcpy on /dev/mem */
+#ifdef __aarch64__
+#define USE_SLOW_MEMCPY
+#endif
+
 #endif

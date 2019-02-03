@@ -1,3 +1,22 @@
+Version 3.2 (Wed Sep 14 2018)
+  - [COMPATIBILITY] The UUID is now displayed using lowercase letters, per
+    RFC 4122 (#53569). You must ensure that any code parsing it is
+    case-insensitive.
+  - Support for SMBIOS 3.2.0. This includes new processor names, new socket
+    and port connector types, new system slot state and property, and support
+    for non-volatile memory (NVDIMM).
+  - Support for Redfish management controllers.
+  - A new command line option to query a specific structure by its handle.
+  - A new command line option to query the system family string.
+  - Support for 3 ThinkPad-specific structures (patch #9642).
+  - Support for HPE's new company name.
+  - Support UEFI on FreeBSD.
+  - Important bug fixes:
+    Fix firmware version of TPM device
+    Fix the HPE UEFI feature flag check
+  - (biosdecode) A new command line option to fully decode PIR information
+    (support request #109339).
+
 Version 3.1 (Tue May 23 2017)
   - Support for SMBIOS 3.1.0 and 3.1.1. This includes new chassis types, new
     processor family names, new processor family upgrade names, and new slot
