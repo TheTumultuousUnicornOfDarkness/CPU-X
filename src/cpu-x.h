@@ -28,6 +28,7 @@
 #include <stdbool.h>
 #include <pthread.h>
 #include <errno.h>
+#include <libintl.h>
 #define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
@@ -234,7 +235,7 @@ typedef struct
 	char *tab_bench[2][LASTBENCH];
 	char *tab_about[LASTABOUT];
 
-	int     cpu_freq;
+	int     cpu_freq, socket_fd;
 	uint8_t cpu_count, cache_count, dimm_count, gpu_count;
 	double  bus_freq, cpu_min_mult, cpu_max_mult;
 
@@ -295,6 +296,9 @@ int fopen_to_str(char **buffer, char *str, ...);
 /* Run a command and put output in a variable ('str' accept printf-like format) */
 int popen_to_str(char **buffer, char *str, ...);
 
+/* Run popen_to_str() throught daemon */
+int privileged_popen_to_str(char **buffer, int fd, char *str, ...);
+
 /* Load a kernel module */
 bool load_module(char *module);
 
@@ -310,6 +314,9 @@ int fill_labels(Labels *data);
 
 /* Refresh some labels */
 int do_refresh(Labels *data);
+
+/* Establish connection to daemon */
+int connect_to_daemon(Labels *data);
 
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void);

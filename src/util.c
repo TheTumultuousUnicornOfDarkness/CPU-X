@@ -35,6 +35,7 @@
 #include <libintl.h>
 #include <sys/types.h>
 #include "cpu-x.h"
+#include "ipc.h"
 
 
 /************************* Public function *************************/
@@ -214,26 +215,43 @@ error:
 	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }
 
+int privileged_popen_to_str(char **buffer, int fd, char *str, ...)
+{
+	char *cmd_str = NULL;
+	const DaemonCommand cmd = POPEN_TO_STR;
+	va_list aptr;
+
+	va_start(aptr, str);
+	size_t len = vasprintf(&cmd_str, str, aptr);
+	va_end(aptr);
+	len++;
+
+	/* Send command to daemon */
+	write(fd, &cmd, sizeof(DaemonCommand));
+	write(fd, &len, sizeof(size_t));
+	write(fd, cmd_str, len);
+
+	/* Receive string from daemon */
+	read(fd, &len, sizeof(size_t));
+	*buffer = calloc(len, sizeof(char));
+	read(fd, *buffer, len);
+
+	return 0;
+}
+
 /* Load a kernel module */
 bool load_module(char *module)
 {
-#if defined (__linux__)
-	if(!system(format("grep -wq %s /proc/modules 2> /dev/null", module)))
-		return true;
-	else if(getuid())
-		return false;
-	else
-		return !system(format("modprobe %s 2> /dev/null", module));
-#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	if(!system(format("kldstat | grep %s > /dev/null", module)))
-		return true;
-	else if(getuid())
-		return false;
-	else
-		return !system(format("kldload -n %s 2> /dev/null", module));
-#else
-	return false;
+#if 0 //TODO
+	const size_t len = strlen(module);
+	const DaemonCommand cmd = LOAD_MODULE;
+
+	write(fd, &cmd, sizeof(DaemonCommand));
+	write(fd, &len, sizeof(size_t));
+	write(fd, module, len);
+	read(fd, &ret, sizeof(bool));
 #endif
+	return false;
 }
 
 /* Search a sensor filename in a given directory corresponding to regex */

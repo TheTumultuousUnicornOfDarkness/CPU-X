@@ -893,6 +893,7 @@ int main(int argc, char *argv[])
 		.tab_graphics    = { { NULL } },
 		.tab_bench       = { { NULL } },
 		.cpu_freq        = 0,
+		.socket_fd       = -1,
 		.cpu_count       = 0,
 		.cache_count     = 0,
 		.dimm_count      = 0,
@@ -964,11 +965,13 @@ int main(int argc, char *argv[])
 		goto skip_init;
 
 	/* Retrieve data */
+#if 0 //FIXME
 	if(getuid())
 	{
 		MSG_WARNING(_("Root privileges are required to work properly"));
 		MSG_WARNING(_("Some informations will not be retrievable"));
 	}
+#endif
 	labels_setname(data);
 	fill_labels   (data);
 

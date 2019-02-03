@@ -16,6 +16,9 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 	set(EXEC ${EXEC}_polkit)
 	configure_file(cpu-x-root.desktop.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x-root.desktop)
 
+	set(EXEC ${CMAKE_INSTALL_FULL_LIBEXECDIR}/${CMAKE_PROJECT_NAME}-daemon)
+	configure_file(org.pkexec.cpu-x-daemon.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x-daemon.policy)
+
 	# Install UIs
 	install(FILES
 		cpu-x-gtk-3.12.ui
@@ -42,6 +45,7 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 	# Install policy rule
 	install(FILES
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x.policy
+		${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x-daemon.policy
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions/
 	)
 

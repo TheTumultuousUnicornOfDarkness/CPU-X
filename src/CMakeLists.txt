@@ -194,6 +194,14 @@ add_executable(cpu-x
 	cpu-x.h
 	core.c
 	core.h
+	ipc.h
+)
+
+add_executable(cpu-x-daemon
+	daemon.c
+	daemon.h
+	ipc.h
+	cpu-x.h
 )
 
 # Portable binary & Gettext stuff
@@ -261,7 +269,14 @@ target_link_libraries(cpu-x
 	${OTHER_LIBRARIES}
 )
 
+target_link_libraries(cpu-x-daemon
+	${CMAKE_THREAD_LIBS_INIT}
+
+	${LIBCPUID_LIBRARIES}
+	${DMIDECODE_LIBRARIES}
+)
+
 
 ### INSTALLATION
-
-install(TARGETS cpu-x DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)
+install(TARGETS cpu-x        DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)
+install(TARGETS cpu-x-daemon DESTINATION ${CMAKE_INSTALL_FULL_LIBEXECDIR}/)

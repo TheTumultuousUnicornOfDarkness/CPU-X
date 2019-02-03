@@ -72,8 +72,10 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	set_signals(&glab, data, &refr);
 	labels_free(data);
 
+#if 0 //FIXME
 	if(getuid())
 		warning_window(glab.mainwindow);
+#endif
 
 #ifdef __x86_64__
 	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
@@ -87,6 +89,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 /************************* Private functions *************************/
 
+#if 0 //FIXME
 /* Print a window which allows to restart CPU-X as root */
 static void warning_window(GtkWidget *mainwindow)
 {
@@ -112,6 +115,7 @@ static void warning_window(GtkWidget *mainwindow)
 
 	gtk_widget_destroy(dialog);
 }
+#endif
 
 /* In portable version, inform when a new version is available and ask for update */
 static void new_version_window(GtkWidget *mainwindow)
