@@ -27,6 +27,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include <poll.h>
 #include <pthread.h>
 #include <sys/socket.h>
@@ -38,6 +39,7 @@
 #include "daemon.h"
 #include "ipc.h"
 
+static bool quit_loop  = false;
 static ThreadsInfo *ti = &(ThreadsInfo)
 {
 	.count     = 0,
@@ -247,9 +249,13 @@ found:
 	pthread_detach(ti->thread[i].id);
 }
 
+static void sighandler(int signum)
+{
+	quit_loop = true;
+}
+
 int main(void)
 {
-	bool quit_loop = false;
 	int listen_socket, data_socket, ret, err = EXIT_SUCCESS;
 	uint8_t i;
 	char error_str[MAXSTR] = "unknown";
@@ -259,6 +265,8 @@ int main(void)
 	/* Pre-initialization */
 	umask(0);
 	unlink(SOCKET_NAME);
+	signal(SIGINT,  sighandler);
+	signal(SIGTERM, sighandler);
 
 	/* Initialize mutex */
 	if(pthread_mutex_init(&ti->mutex, NULL) < 0)
@@ -321,6 +329,8 @@ error:
 	err = EXIT_FAILURE;
 
 clean:
+	for(i = 0; i < ti->count; i++)
+		pthread_join(ti->thread[i].id, NULL);
 	unlink(SOCKET_NAME);
 	close(listen_socket);
 	free(ti->thread);
