@@ -241,18 +241,21 @@ int privileged_popen_to_str(char **buffer, int *fd, char *str, ...)
 }
 
 /* Load a kernel module */
-bool load_module(char *module)
+int load_module(char *module, int *fd)
 {
-#if 0 //TODO
-	const size_t len = strlen(module);
+	int ret = -1;
+	const ssize_t len = strlen(module) + 1;
 	const DaemonCommand cmd = LOAD_MODULE;
 
-	write(fd, &cmd, sizeof(DaemonCommand));
-	write(fd, &len, sizeof(size_t));
-	write(fd, module, len);
-	read(fd, &ret, sizeof(bool));
-#endif
-	return false;
+	/* Send module name to daemon */
+	SEND_DATA(fd, &cmd, sizeof(DaemonCommand));
+	SEND_DATA(fd, &len, sizeof(ssize_t));
+	SEND_DATA(fd, module, len);
+
+	/* Receive return value */
+	RECEIVE_DATA(fd, &ret, sizeof(int));
+
+	return ret;
 }
 
 /* Search a sensor filename in a given directory corresponding to regex */

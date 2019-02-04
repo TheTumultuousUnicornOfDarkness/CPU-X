@@ -299,8 +299,8 @@ int popen_to_str(char **buffer, char *str, ...);
 /* Run popen_to_str() throught daemon */
 int privileged_popen_to_str(char **buffer, int *fd, char *str, ...);
 
-/* Load a kernel module */
-bool load_module(char *module);
+/* Load a kernel module (return 0 on success) */
+int load_module(char *module, int *fd);
 
 /* Get a filename located in a directory corresponding to given request */
 enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM };

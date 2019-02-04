@@ -1340,11 +1340,11 @@ static int cputab_temp_fallback(Labels *data)
 # if HAS_LIBCPUID
 	/* Load kernel modules */
 	if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_INTEL))
-		module_loaded = load_module("coretemp");
+		module_loaded = !load_module("coretemp", &data->socket_fd);
 	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family <= 0x8))
-		module_loaded = load_module("k8temp");
+		module_loaded = !load_module("k8temp", &data->socket_fd);
 	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family >= 0x10))
-		module_loaded = load_module("k10temp");
+		module_loaded = !load_module("k10temp", &data->socket_fd);
 # endif /* HAS_LIBCPUID */
 
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));

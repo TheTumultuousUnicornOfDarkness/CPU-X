@@ -152,31 +152,35 @@ static int __popen_to_str(int *fd)
 }
 
 /* Load a kernel module */
-static bool __load_module(int *fd)
+static int __load_module(int *fd)
 {
-	//TODO
-	(void) fd;
-#if 0
-	char *module = "";
+	int ret = -1;
+	ssize_t len;
+	char *module, cmd[MAXSTR];
+
+	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
+	module = malloc(len);
+	RECEIVE_DATA(fd, module, len);
+
 #if defined (__linux__)
-	if(!system(format("grep -wq %s /proc/modules 2> /dev/null", module)))
-		return true;
-	else if(getuid())
-		return false;
-	else
-		return !system(format("modprobe %s 2> /dev/null", module));
+	snprintf(cmd, MAXSTR, "grep -wq %s /proc/modules 2> /dev/null", module);
+	if((ret = system(cmd)))
+	{
+		snprintf(cmd, MAXSTR, "modprobe %s 2> /dev/null", module);
+		ret = system(cmd);
+	}
 #elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	if(!system(format("kldstat | grep %s > /dev/null", module)))
-		return true;
-	else if(getuid())
-		return false;
-	else
-		return !system(format("kldload -n %s 2> /dev/null", module));
-#else
-	return false;
+	snprintf(cmd, MAXSTR, "kldstat | grep %s > /dev/null", module);
+	if((ret = system(cmd)))
+	{
+		snprintf(cmd, MAXSTR, "kldload -n %s 2> /dev/null", module);
+		ret = system(cmd);
+	}
 #endif
-#endif
-	return false;
+
+	SEND_DATA(fd, &ret, sizeof(int));
+
+	return 0;
 }
 
 static void cleanup_thread(void *p_data)
