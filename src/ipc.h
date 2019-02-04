@@ -27,6 +27,9 @@
 #define SOCKET_NAME "/tmp/cpu-x.sock"
 #define DAEMON_UP   (data->socket_fd >= 0)
 
+#define SEND_DATA(pfd, pdata, size)    if(write(*pfd, pdata, size) != size) { MSG_ERRNO("write"); *pfd = -1; return 1; }
+#define RECEIVE_DATA(pfd, pdata, size) if(read (*pfd, pdata, size) != size) { MSG_ERRNO("read");  *pfd = -1; return 1; }
+
 typedef enum
 {
 	LIBCPUID_MSR_STATIC,

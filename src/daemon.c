@@ -69,12 +69,12 @@ static int libcpuid_init_msr(int fd, struct msr_driver_t **msr)
 	return 0;
 }
 
-static void __call_libcpuid_msr_static(int fd)
+static int __call_libcpuid_msr_static(int *fd)
 {
 	struct msr_driver_t *msr = NULL;
 	MsrStaticData msg = { CPU_INVALID_VALUE, CPU_INVALID_VALUE, CPU_INVALID_VALUE };
 
-	if(!libcpuid_init_msr(fd, &msr))
+	if(!libcpuid_init_msr(*fd, &msr))
 	{
 		msg.min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 		msg.max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
@@ -90,15 +90,17 @@ static void __call_libcpuid_msr_static(int fd)
 		cpu_msr_driver_close(msr);
 	}
 
-	write(fd, &msg, sizeof(MsrStaticData));
+	SEND_DATA(fd, &msg, sizeof(MsrStaticData));
+
+	return 0;
 }
 
-static void __call_libcpuid_msr_dynamic(int fd)
+static int __call_libcpuid_msr_dynamic(int *fd)
 {
 	struct msr_driver_t *msr = NULL;
 	MsrDynamicData msg = { CPU_INVALID_VALUE, CPU_INVALID_VALUE };
 
-	if(!libcpuid_init_msr(fd, &msr))
+	if(!libcpuid_init_msr(*fd, &msr))
 	{
 		msg.voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
 		msg.temp    = cpu_msrinfo(msr, INFO_TEMPERATURE);
@@ -106,28 +108,30 @@ static void __call_libcpuid_msr_dynamic(int fd)
 		cpu_msr_driver_close(msr);
 	}
 
-	write(fd, &msg, sizeof(MsrDynamicData));
+	SEND_DATA(fd, &msg, sizeof(MsrDynamicData));
+
+	return 0;
 }
 #endif /* HAS_LIBCPUID */
 
 #if HAS_DMIDECODE
-static int __call_dmidecode(int fd)
+static int __call_dmidecode(int *fd)
 {
 	//TODO
 	return 0;
 }
 #endif /* HAS_DMIDECODE */
 
-static void __popen_to_str(int fd)
+static int __popen_to_str(int *fd)
 {
-	size_t len;
+	ssize_t len;
 	char *cmd_str = NULL, tmp[MAXSTR] = "";
 	FILE *pipe_descr = NULL;
 
 	/* Get command from client */
-	read(fd, &len, sizeof(size_t));
+	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
 	cmd_str = malloc(len);
-	read(fd, cmd_str, len);
+	RECEIVE_DATA(fd, cmd_str, len);
 
 	if((pipe_descr = popen(cmd_str, "r")) == NULL)
 		perror("popen");
@@ -141,12 +145,14 @@ static void __popen_to_str(int fd)
 	len = strlen(tmp);
 	tmp[len - 1] = '\0';
 	len++;
-	write(fd, &len, sizeof(size_t));
-	write(fd, tmp, len);
+	SEND_DATA(fd, &len, sizeof(ssize_t));
+	SEND_DATA(fd, tmp, len);
+
+	return 0;
 }
 
 /* Load a kernel module */
-static bool __load_module(int fd)
+static bool __load_module(int *fd)
 {
 	//TODO
 	(void) fd;
@@ -198,11 +204,11 @@ static void *request_handler(void *p_data)
 
 		switch(cmd)
 		{
-			case LIBCPUID_MSR_STATIC:  if(HAS_LIBCPUID)  __call_libcpuid_msr_static(td->fd);  break;
-			case LIBCPUID_MSR_DYNAMIC: if(HAS_LIBCPUID)  __call_libcpuid_msr_dynamic(td->fd); break;
-			case DMIDECODE:            if(HAS_DMIDECODE) __call_dmidecode(td->fd);            break;
-			case POPEN_TO_STR:                           __popen_to_str(td->fd);              break;
-			case LOAD_MODULE:                            __load_module(td->fd);               break;
+			case LIBCPUID_MSR_STATIC:  if(HAS_LIBCPUID)  __call_libcpuid_msr_static(&td->fd);  break;
+			case LIBCPUID_MSR_DYNAMIC: if(HAS_LIBCPUID)  __call_libcpuid_msr_dynamic(&td->fd); break;
+			case DMIDECODE:            if(HAS_DMIDECODE) __call_dmidecode(&td->fd);            break;
+			case POPEN_TO_STR:                           __popen_to_str(&td->fd);              break;
+			case LOAD_MODULE:                            __load_module(&td->fd);               break;
 		}
 	}
 

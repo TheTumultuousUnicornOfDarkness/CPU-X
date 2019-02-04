@@ -216,26 +216,26 @@ error:
 	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }
 
-int privileged_popen_to_str(char **buffer, int fd, char *str, ...)
+int privileged_popen_to_str(char **buffer, int *fd, char *str, ...)
 {
 	char *cmd_str = NULL;
 	const DaemonCommand cmd = POPEN_TO_STR;
 	va_list aptr;
 
 	va_start(aptr, str);
-	size_t len = vasprintf(&cmd_str, str, aptr);
+	ssize_t len = vasprintf(&cmd_str, str, aptr);
 	va_end(aptr);
 	len++;
 
 	/* Send command to daemon */
-	write(fd, &cmd, sizeof(DaemonCommand));
-	write(fd, &len, sizeof(size_t));
-	write(fd, cmd_str, len);
+	SEND_DATA(fd, &cmd, sizeof(DaemonCommand));
+	SEND_DATA(fd, &len, sizeof(ssize_t));
+	SEND_DATA(fd, cmd_str, len);
 
 	/* Receive string from daemon */
-	read(fd, &len, sizeof(size_t));
+	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
 	*buffer = calloc(len, sizeof(char));
-	read(fd, *buffer, len);
+	RECEIVE_DATA(fd, *buffer, len);
 
 	return 0;
 }

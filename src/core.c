@@ -435,9 +435,9 @@ static int call_libcpuid_msr_static(Labels *data)
 	MsrStaticData msg;
 
 	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR static values"));
-	write(data->socket_fd, &cmd, sizeof(DaemonCommand));
-	write(data->socket_fd, &opts->selected_core, sizeof(uint8_t));
-	read(data->socket_fd, &msg, sizeof(MsrStaticData));
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(uint8_t));
+	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrStaticData));
 
 	/* CPU Multipliers (minimum & maximum) */
 	if(msg.min_mult != CPU_INVALID_VALUE && msg.max_mult != CPU_INVALID_VALUE)
@@ -460,9 +460,9 @@ static int call_libcpuid_msr_dynamic(Labels *data)
 	MsrDynamicData msg;
 
 	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR dynamic values"));
-	write(data->socket_fd, &cmd, sizeof(DaemonCommand));
-	write(data->socket_fd, &opts->selected_core, sizeof(unsigned));
-	read(data->socket_fd, &msg, sizeof(MsrDynamicData));
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(unsigned));
+	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrDynamicData));
 
 	/* CPU Voltage */
 	if(msg.voltage != CPU_INVALID_VALUE)
@@ -899,7 +899,7 @@ static int gpu_clocks(Labels *data)
 		{
 			case GPUDRV_AMDGPU:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				ret_load = DAEMON_UP ? privileged_popen_to_str(&load, data->socket_fd, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
+				ret_load = DAEMON_UP ? privileged_popen_to_str(&load, &data->socket_fd, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
 				                       fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
 				ret_gclk = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
 				ret_mclk = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
@@ -917,8 +917,8 @@ static int gpu_clocks(Labels *data)
 			case GPUDRV_RADEON:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
 				ret_load = -1;
-				ret_gclk = DAEMON_UP ? privileged_popen_to_str(&gclk, data->socket_fd, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
-				ret_mclk = DAEMON_UP ? privileged_popen_to_str(&mclk, data->socket_fd, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_gclk = DAEMON_UP ? privileged_popen_to_str(&gclk, &data->socket_fd, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_mclk = DAEMON_UP ? privileged_popen_to_str(&mclk, &data->socket_fd, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
 				if((gclk != NULL) && (strlen(gclk) >= 2)) gclk[strlen(gclk) - 2] = '\0';
 				if((mclk != NULL) && (strlen(mclk) >= 2)) mclk[strlen(mclk) - 2] = '\0';
 				break;

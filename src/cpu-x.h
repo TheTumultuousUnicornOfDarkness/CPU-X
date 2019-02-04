@@ -297,7 +297,7 @@ int fopen_to_str(char **buffer, char *str, ...);
 int popen_to_str(char **buffer, char *str, ...);
 
 /* Run popen_to_str() throught daemon */
-int privileged_popen_to_str(char **buffer, int fd, char *str, ...);
+int privileged_popen_to_str(char **buffer, int *fd, char *str, ...);
 
 /* Load a kernel module */
 bool load_module(char *module);
