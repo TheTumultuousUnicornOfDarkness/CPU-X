@@ -306,6 +306,9 @@ bool load_module(char *module);
 enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM };
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
 
+/* Check if daemon is running */
+bool daemon_is_alive(void);
+
 
 /***************************** External headers *****************************/
 

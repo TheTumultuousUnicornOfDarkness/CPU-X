@@ -972,6 +972,8 @@ int main(int argc, char *argv[])
 		MSG_WARNING(_("Some informations will not be retrievable"));
 	}
 #endif
+	if(daemon_is_alive())
+		connect_to_daemon(data);
 	labels_setname(data);
 	fill_labels   (data);
 

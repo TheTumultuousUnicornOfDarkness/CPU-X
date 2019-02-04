@@ -34,6 +34,7 @@
 #include <regex.h>
 #include <libintl.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include "cpu-x.h"
 #include "ipc.h"
 
@@ -403,4 +404,13 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_label_other);
 
 	return err;
+}
+
+bool daemon_is_alive()
+{
+	struct stat statbuf;
+
+	int ret = stat(SOCKET_NAME, &statbuf);
+
+	return !ret && (statbuf.st_uid == 0) && S_ISSOCK(statbuf.st_mode) && (statbuf.st_mode & ACCESSPERMS);
 }
