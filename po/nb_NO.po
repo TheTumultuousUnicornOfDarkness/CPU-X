@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-03 18:09+0000\n"
+"PO-Revision-Date: 2019-02-07 21:09+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -120,25 +120,25 @@ msgstr ""
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "Ukjent sjermkortdriver: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(%s-driver)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "klarte ikke å finne grafikkortdriver (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "Finner enheter"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "Hopp over søk etter enheter (root-tilgang kreves)"
 
 #: core.c:729
 #, c-format
@@ -159,7 +159,7 @@ msgstr ""
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "Av"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
@@ -188,7 +188,7 @@ msgstr ""
 
 #: core.c:972
 msgid "failed to identify running system"
-msgstr ""
+msgstr "klarte ikke å identifisere kjørende system"
 
 #: core.c:1013
 msgid "Calling libprocps"
@@ -201,7 +201,7 @@ msgstr ""
 #: core.c:1065
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i dager, %i timer, %i minutter, %i sekunder"
 
 #: core.c:1120
 msgid "Updating benchmark status"
@@ -210,49 +210,49 @@ msgstr ""
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u minutter"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktiv"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr ""
+msgstr "Ikke startet"
 
 #: core.c:1134
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: core.c:1139
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u timer gjenstår)"
 
 #: core.c:1141
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u minutter gjenstår)"
 
 #: core.c:1143
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u sekunder gjenstår)"
 
 #: core.c:1148
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "om %u timer"
 
 #: core.c:1150
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "in %u minutter"
 
 #: core.c:1152
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "om %u sekunder"
 
 #: core.c:1168
 msgid "Starting benchmark"
