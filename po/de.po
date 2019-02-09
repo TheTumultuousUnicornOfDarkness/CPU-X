@@ -8,73 +8,78 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-10 14:59+0000\n"
+"Last-Translator: HenRy <helge1o1o1@gmail.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
+"translations/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "konnte den Speicher nicht neu zuweisen"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "%s beenden"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "CPU-Technologie finden"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"Deine CPU gehört nicht in die Datenbank ==> %s, Model: %i, ext. Model: %i, "
+"ext. Familie: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-Art"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-Art"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s assoziativ, %d-byte Zeilengröße"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Aufruf von libcpuid zum Abrufen statischer Daten"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "konnte libcpuid nicht aufrufen (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Aufruf von libcpuid zum Abrufen dynamischer Daten"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "CPU MSR öffnen überspringen (muss root sein)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "CPU MSR konnte nicht geöffnet werden (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "Aufruf von libcpuid zum Abrufen von statischen CPU MSR-Werten"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
