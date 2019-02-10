@@ -245,16 +245,30 @@ int privileged_popen_to_str(char **buffer, int *fd, char *str, ...)
 int load_module(char *module, int *fd)
 {
 	int ret = -1;
+	char *check_cmd = NULL;
 	const ssize_t len = strlen(module) + 1;
 	const DaemonCommand cmd = LOAD_MODULE;
 
-	/* Send module name to daemon */
-	SEND_DATA(fd, &cmd, sizeof(DaemonCommand));
-	SEND_DATA(fd, &len, sizeof(ssize_t));
-	SEND_DATA(fd, module, len);
+#if defined (__linux__)
+	asprintf(&check_cmd, "grep -wq %s /proc/modules 2> /dev/null", module);
+#elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
+	asprintf(&check_cmd, "kldstat | grep %s > /dev/null", module);
+#else
+# error "Unsupported operating system"
+#endif
 
-	/* Receive return value */
-	RECEIVE_DATA(fd, &ret, sizeof(int));
+	ret = system(check_cmd);
+	free(check_cmd);
+	if((ret != 0) && (*fd >= 0))
+	{
+		/* Send module name to daemon */
+		SEND_DATA(fd, &cmd, sizeof(DaemonCommand));
+		SEND_DATA(fd, &len, sizeof(ssize_t));
+		SEND_DATA(fd, module, len);
+
+		/* Receive return value */
+		RECEIVE_DATA(fd, &ret, sizeof(int));
+	}
 
 	return ret;
 }

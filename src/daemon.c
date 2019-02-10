@@ -21,6 +21,7 @@
 * FILE daemon.c
 */
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -156,28 +157,24 @@ static int __load_module(int *fd)
 {
 	int ret = -1;
 	ssize_t len;
-	char *module, cmd[MAXSTR];
+	char *module = NULL, *load_cmd = NULL;
 
 	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
-	module = malloc(len);
+	if((module = malloc(len)) == NULL)
+		MSG_ERRNO("malloc");
 	RECEIVE_DATA(fd, module, len);
 
 #if defined (__linux__)
-	snprintf(cmd, MAXSTR, "grep -wq %s /proc/modules 2> /dev/null", module);
-	if((ret = system(cmd)))
-	{
-		snprintf(cmd, MAXSTR, "modprobe %s 2> /dev/null", module);
-		ret = system(cmd);
-	}
+	asprintf(&load_cmd, "modprobe %s 2> /dev/null", module);
 #elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	snprintf(cmd, MAXSTR, "kldstat | grep %s > /dev/null", module);
-	if((ret = system(cmd)))
-	{
-		snprintf(cmd, MAXSTR, "kldload -n %s 2> /dev/null", module);
-		ret = system(cmd);
-	}
+	asprintf(&load_cmd, "kldload -n %s 2> /dev/null", module);
+#else
+# error "Unsupported operating system"
 #endif
 
+	ret = system(load_cmd);
+	free(module);
+	free(load_cmd);
 	SEND_DATA(fd, &ret, sizeof(int));
 
 	return 0;
