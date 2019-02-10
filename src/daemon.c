@@ -268,6 +268,7 @@ int main(void)
 {
 	int listen_socket, data_socket, ret, err = EXIT_SUCCESS;
 	uint8_t i;
+	pid_t pid;
 	char error_str[MAXSTR] = "unknown";
 	struct sockaddr_un name;
 	struct pollfd fds[NFDS];
@@ -314,6 +315,13 @@ int main(void)
 	memset(fds, 0 , sizeof(fds));
 	fds[0].fd     = listen_socket;
 	fds[0].events = POLLIN;
+
+	/* Fork daemon in background */
+	pid = fork();
+	if(pid > 0)
+		return 0;
+	else if(pid < 0)
+		GOTO_ERROR("fork");
 
 	/* This is the main loop for handling connections */
 	while(!quit_loop)

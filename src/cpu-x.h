@@ -51,6 +51,7 @@
 /* Utilities macro */
 #define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
 #define GOTO_ERROR(str)       { snprintf(error_str, MAXSTR, str); goto error; }
+#define IS_ROOT               (getuid() == 0)
 
 /* Formatted messages definition */
 #define MSG_STDOUT(fmt, ...)  fprintf(stdout, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
@@ -305,6 +306,9 @@ int load_module(char *module, int *fd);
 /* Get a filename located in a directory corresponding to given request */
 enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM };
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
+
+/* Start daemon in background */
+bool start_daemon(bool use_pkexec);
 
 /* Check if daemon is running */
 bool daemon_is_alive(void);

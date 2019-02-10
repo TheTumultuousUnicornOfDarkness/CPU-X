@@ -964,16 +964,13 @@ int main(int argc, char *argv[])
 	if(opts->output_type > OUT_NO_CPUX)
 		goto skip_init;
 
-	/* Retrieve data */
-#if 0 //FIXME
-	if(getuid())
-	{
-		MSG_WARNING(_("Root privileges are required to work properly"));
-		MSG_WARNING(_("Some informations will not be retrievable"));
-	}
-#endif
+	/* Connect to daemon */
+	if(IS_ROOT)
+		start_daemon(false);
 	if(daemon_is_alive())
 		connect_to_daemon(data);
+
+	/* Retrieve data */
 	labels_setname(data);
 	fill_labels   (data);
 

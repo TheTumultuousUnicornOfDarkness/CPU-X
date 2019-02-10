@@ -35,6 +35,7 @@
 #include <libintl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include "cpu-x.h"
 #include "ipc.h"
 
@@ -407,6 +408,25 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_label_other);
 
 	return err;
+}
+
+bool start_daemon(bool use_pkexec)
+{
+	int wstatus = -1;
+	pid_t pid;
+	char *const cmd1[] = { DAEMON_PATH, NULL };
+	char *const cmd2[] = { "pkexec", DAEMON_PATH, NULL };
+	char *const *cmd   = use_pkexec ? cmd2 : cmd1;
+
+	pid = fork();
+	if(pid < 0)
+		MSG_ERRNO("fork");
+	else if(pid == 0)
+		execvp(cmd[0], cmd);
+	else
+		waitpid(pid, &wstatus, 0);
+
+	return (wstatus == 0);
 }
 
 bool daemon_is_alive()

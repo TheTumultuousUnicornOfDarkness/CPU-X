@@ -135,19 +135,6 @@ int connect_to_daemon(Labels *data)
 	int socket_fd;
 	struct sockaddr_un addr;
 
-#if 0 //FIXME
-	int wstatus;
-	pid_t pid;
-	char *const cmd[] = { "pkexec", "/usr/lib/cpu-x/cpu-x-daemon", NULL };
-
-	if((pid = fork()) == 0)
-		execvp(cmd[0], cmd);
-
-	waitpid(pid, &wstatus, 0);
-	if(wstatus)
-		return 1;
-#endif
-
 	/* Create local socket */
 	if((socket_fd = socket(AF_UNIX, SOCK_SEQPACKET, 0)) < 0)
 	{
