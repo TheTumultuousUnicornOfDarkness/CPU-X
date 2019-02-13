@@ -6,47 +6,53 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-13 06:09+0000\n"
+"Last-Translator: Hatem Ghouthi <hatemghouthi@yahoo.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
+"translations/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "لا يمكن تحديد الذاكرة"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "الخروج %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "ايجاد معلومات المعالج"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
+"ext. family: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d س%d كب ، %d -مسار"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d مب ، %d -مسار"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s ترابطي ،%d-بايت حجم المسار"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
