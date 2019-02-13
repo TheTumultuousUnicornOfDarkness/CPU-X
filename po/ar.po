@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-13 06:09+0000\n"
+"PO-Revision-Date: 2019-02-14 06:09+0000\n"
 "Last-Translator: Hatem Ghouthi <hatemghouthi@yahoo.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
@@ -56,80 +56,80 @@ msgstr "%s ترابطي ،%d-بايت حجم المسار"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "استدعاء libcpuid لاسترجاع البيانات الثابتة"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "تعذر استدعاء (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "استدعاء libcpuid لاسترجاع البيانات الديناميكية"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "تجاهل فتح CPU msr (يحتاج روت)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "فشل في فتح وحدة المعالجة المركزية MSR (% s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "استدعاء ليبكبويد لاسترداد قيم ثابتة MSR وحدة المعالجة المركزية"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "استدعاء ليبكبويد لاسترداد قيم ديناميكية MSR وحدة المعالجة المركزية"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "حساب مضاعفات وحدة المعالجة المركزية"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "تخطي الدعوة إلى دميديكودي (تحتاج إلى أن يكون الجذر)"
 
 #: core.c:512
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "استدعاء دميديكودي"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "فشل في تخصيص الذاكرة دميديكودي"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "فشل استدعاء دميديكودي"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "حساب استخدام وحدة المعالجة المركزية"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "عرض النطاق الترددي الاتصال"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "العثور على برنامج تشغيل بطاقة الرسومات"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "تشغيل الجرافيك غير معروف: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(برنامج %s)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "فشل في العثور على برنامج تشغيل بطاقة الرسومات (% s)"
 
 #: core.c:695
 msgid "Finding devices"
