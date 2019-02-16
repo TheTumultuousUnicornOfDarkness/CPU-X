@@ -90,13 +90,13 @@ void start_tui_ncurses(Labels *data)
 			init_pair(pair, color[pair].foreground, color[pair].background);
 	}
 
-#ifdef __x86_64__
+#if 0 //PORTABLE_BINARY
 	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
 	{
 		print_new_version();
 		erase();
 	}
-#endif /* __x86_64__ */
+#endif /* PORTABLE_BINARY */
 
 	starty   = (LINES - info.height) / 2; /* Calculating for a center placement of the window */
 	startx   = (COLS  - info.width)  / 2;
@@ -414,6 +414,7 @@ static void print_help()
 	timeout(opts->refr_time * 1000);
 }
 
+#if 0 //PORTABLE_BINARY
 /* Ask for update when a new version is available (portable version only) */
 static void print_new_version()
 {
@@ -421,7 +422,7 @@ static void print_new_version()
 
 	printw(_("A new version of %s is available!"), PRGNAME);
 	printw("\n\n");
-#if 0
+
 	printw(_("Do you want to update %s to version %s after exit?\n"
 		"It will erase this binary file (%s) by the new version."),
 		PRGNAME, new_version[0], binary_name);
@@ -436,18 +437,10 @@ static void print_new_version()
 		refresh();
 		napms(1000);
 	}
-#else
-	printw(_("Version %s is available. Unfortunately, this portable format is now deprecated in favor of AppImage.\n"
-		"You can download %s AppImage on the official download page.\n"),
-		new_version[0], PRGNAME);
-	printw("\n");
-	printw(_("Download page: %s\n"), DOWNLOAD);
-	refresh();
-	getch();
-#endif
 
 	nodelay(stdscr, TRUE);
 }
+#endif /* PORTABLE_BINARY */
 
 /* The main window (title, tabs, footer) */
 static void main_win(WINDOW *win, const SizeInfo info, Labels *data)

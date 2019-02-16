@@ -29,10 +29,6 @@
 #include <cairo.h>
 #include <glib.h>
 
-#define GRESOURCE_UI(file)    g_strconcat("/cpu-x/ui/",    file, NULL)
-#define GRESOURCE_CSS(file)   g_strconcat("/cpu-x/css/",   file, NULL)
-#define GRESOURCE_LOGOS(file) g_strconcat("/cpu-x/logos/", file, NULL)
-
 typedef struct
 {
 	/* Common */
@@ -95,7 +91,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data);
 static void warning_window(GtkWidget *mainwindow);
 
 /* In portable version, inform when a new version is available and ask for update */
-static void new_version_window(GtkWidget *mainwindow);
+//static void new_version_window(GtkWidget *mainwindow);
 
 /* Refresh dynamic values */
 static gboolean grefresh(GThrd *refr);
