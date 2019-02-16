@@ -4,7 +4,7 @@ project(data
 
 
 # Files needed by GTK GUI
-if(WITH_GTK AND NOT PORTABLE_BINARY)
+if(WITH_GTK)
 	# Set config
 	file(MAKE_DIRECTORY ${CMAKE_DATA_OUTPUT_DIRECTORY})
 	set(EXEC    ${CMAKE_INSTALL_FULL_BINDIR}/${CMAKE_PROJECT_NAME})
@@ -58,4 +58,4 @@ if(WITH_GTK AND NOT PORTABLE_BINARY)
 
 	add_subdirectory(icons)
 	add_subdirectory(logos)
-endif(WITH_GTK AND NOT PORTABLE_BINARY)
+endif(WITH_GTK)

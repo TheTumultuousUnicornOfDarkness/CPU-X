@@ -36,6 +36,8 @@ enum DMI_VENDORS
 	VENDOR_ACER,
 	VENDOR_HP,
 	VENDOR_HPE,
+	VENDOR_IBM,
+	VENDOR_LENOVO,
 };
 
 static enum DMI_VENDORS dmi_vendor = VENDOR_UNKNOWN;
@@ -63,6 +65,10 @@ void dmi_set_vendor(const char *s)
 		dmi_vendor = VENDOR_HP;
 	else if (strncmp(s, "HPE", len) == 0 || strncmp(s, "Hewlett Packard Enterprise", len) == 0)
 		dmi_vendor = VENDOR_HPE;
+	else if (strncmp(s, "IBM", len) == 0)
+		dmi_vendor = VENDOR_IBM;
+	else if (strncmp(s, "LENOVO", len) == 0)
+		dmi_vendor = VENDOR_LENOVO;
 }
 
 /*
@@ -277,6 +283,124 @@ static int dmi_decode_hp(const struct dmi_header *h)
 	return 1;
 }
 
+static int dmi_decode_ibm_lenovo(const struct dmi_header *h)
+{
+	u8 *data = h->data;
+
+	switch (h->type)
+	{
+		case 131:
+			/*
+			 * Vendor Specific: ThinkVantage Technologies feature bits
+			 *
+			 * Source: Compal hel81 Service Manual Software Specification,
+			 *         documented under "System Management BIOS(SM BIOS)
+			 *         version 2.4 or greater"
+			 *
+			 * Offset |  Name         | Width   | Description
+			 * ----------------------------------------------
+			 *  0x00  | Type          | BYTE    | 0x83
+			 *  0x01  | Length        | BYTE    | 0x16
+			 *  0x02  | Handle        | WORD    | Varies
+			 *  0x04  | Version       | BYTE    | 0x01
+			 *  0x05  | TVT Structure | BYTEx16 | Each of the 128 bits represents a TVT feature:
+			 *        |               |         |  - bit 127 means diagnostics (PC Doctor) is available
+			 *        |               |         |    (http://www.pc-doctor.com/company/pr-articles/45-lenovo-introduces-thinkvantage-toolbox)
+			 *        |               |         |  - the rest (126-0) are reserved/unknown
+			 *
+			 * It must also be followed by a string containing
+			 * "TVT-Enablement". There exist other type 131 records
+			 * with different length and a different string, for
+			 * other purposes.
+			 */
+
+			if (h->length != 0x16
+			 || strcmp(dmi_string(h, 1), "TVT-Enablement") != 0)
+				return 0;
+
+			printf("ThinkVantage Technologies\n");
+			printf("\tVersion: %u\n", data[0x04]);
+			printf("\tDiagnostics: %s\n",
+				data[0x14] & 0x80 ? "Available" : "No");
+			break;
+
+		case 135:
+			/*
+			 * Vendor Specific: Device Presence Detection bits
+			 *
+			 * Source: Compal hel81 Service Manual Software Specification,
+			 *         documented as "SMBIOS Type 135: Bulk for Lenovo
+			 *         Mobile PC Unique OEM Data" under appendix D.
+			 *
+			 * Offset |  Name                | Width | Description
+			 * ---------------------------------------------------
+			 *  0x00  | Type                 | BYTE  | 0x87
+			 *  0x01  | Length               | BYTE  | 0x0A
+			 *  0x02  | Handle               | WORD  | Varies
+			 *  0x04  | Signature            | WORD  | 0x5054 (ASCII for "TP")
+			 *  0x06  | OEM struct offset    | BYTE  | 0x07
+			 *  0x07  | OEM struct number    | BYTE  | 0x03, for this structure
+			 *  0x08  | OEM struct revision  | BYTE  | 0x01, for this format
+			 *  0x09  | Device presence bits | BYTE  | Each of the 8 bits indicates device presence:
+			 *        |                      |       |  - bit 0 indicates the presence of a fingerprint reader
+			 *        |                      |       |  - the rest (7-1) are reserved/unknown
+			 *
+			 * Other OEM struct number+rev combinations have been
+			 * seen in the wild but we don't know how to decode
+			 * them.
+			 */
+
+			if (h->length < 0x0A || data[0x04] != 'T' || data[0x05] != 'P')
+				return 0;
+
+			/* Bail out if not the expected format */
+			if (data[0x06] != 0x07 || data[0x07] != 0x03 || data[0x08] != 0x01)
+				return 0;
+
+			printf("ThinkPad Device Presence Detection\n");
+			printf("\tFingerprint Reader: %s\n",
+				data[0x09] & 0x01 ? "Present" : "No");
+			break;
+
+		case 140:
+			/*
+			 * Vendor Specific: ThinkPad Embedded Controller Program
+			 *
+			 * Source: some guesswork, and publicly available information;
+			 *         Lenovo's BIOS update READMEs often contain the ECP IDs
+			 *         which match the first string in this type.
+			 *
+			 * Offset |  Name                | Width  | Description
+			 * ----------------------------------------------------
+			 *  0x00  | Type                 | BYTE   | 0x8C
+			 *  0x01  | Length               | BYTE   |
+			 *  0x02  | Handle               | WORD   | Varies
+			 *  0x04  | Signature            | BYTEx6 | ASCII for "LENOVO"
+			 *  0x0A  | OEM struct offset    | BYTE   | 0x0B
+			 *  0x0B  | OEM struct number    | BYTE   | 0x07, for this structure
+			 *  0x0C  | OEM struct revision  | BYTE   | 0x01, for this format
+			 *  0x0D  | ECP version ID       | STRING |
+			 *  0x0E  | ECP release date     | STRING |
+			 */
+
+			if (h->length < 0x0F || memcmp(data + 4, "LENOVO", 6) != 0)
+				return 0;
+
+			/* Bail out if not the expected format */
+			if (data[0x0A] != 0x0B || data[0x0B] != 0x07 || data[0x0C] != 0x01)
+				return 0;
+
+			printf("ThinkPad Embedded Controller Program\n");
+			printf("\tVersion ID: %s\n", dmi_string(h, 1));
+			printf("\tRelease Date: %s\n", dmi_string(h, 2));
+			break;
+
+		default:
+			return 0;
+	}
+	return 1;
+}
+
 /*
  * Dispatch vendor-specific entries decoding
  * Return 1 if decoding was successful, 0 otherwise
@@ -290,6 +414,9 @@ int dmi_decode_oem(const struct dmi_header *h)
 			return dmi_decode_hp(h);
 		case VENDOR_ACER:
 			return dmi_decode_acer(h);
+		case VENDOR_IBM:
+		case VENDOR_LENOVO:
+			return dmi_decode_ibm_lenovo(h);
 		default:
 			return 0;
 	}

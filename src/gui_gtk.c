@@ -29,10 +29,6 @@
 #include "gui_gtk.h"
 #include "gui_gtk_id.h"
 
-#if PORTABLE_BINARY
-# include "gtk_resources.h"
-#endif
-
 
 /************************* Public function *************************/
 
@@ -52,12 +48,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_free(prgname);
 
 	/* Build UI from Glade file */
-#if PORTABLE_BINARY
-	g_resources_register(cpu_x_get_resource());
-	for(i = 0; (ui_files[i] != NULL) && (!gtk_builder_add_from_resource(builder, GRESOURCE_UI(ui_files[i]), NULL)); i++);
-#else
 	for(i = 0; (ui_files[i] != NULL) && (!gtk_builder_add_from_file(builder, data_path(ui_files[i]), NULL)); i++);
-#endif /* PORTABLE_BINARY */
 	if(ui_files[i] == NULL)
 	{
 		MSG_ERROR(_("failed to import UI in GtkBuilder"));
@@ -77,10 +68,10 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		warning_window(glab.mainwindow);
 #endif
 
-#ifdef __x86_64__
+#if 0 //PORTABLE_BINARY
 	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
 		new_version_window(glab.mainwindow);
-#endif /* __x86_64__ */
+#endif /* PORTABLE_BINARY */
 
 	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();
@@ -105,10 +96,8 @@ static void warning_window(GtkWidget *mainwindow)
 
 	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT);
 
-#if !(PORTABLE_BINARY)
 	if(!getenv("APPIMAGE") && command_exists("pkexec") && command_exists("cpu-x_polkit"))
 		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT);
-#endif /* !(PORTABLE_BINARY) */
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
 		execvp(cmd[0], cmd);
@@ -117,6 +106,7 @@ static void warning_window(GtkWidget *mainwindow)
 }
 #endif
 
+#if 0 //PORTABLE_BINARY
 /* In portable version, inform when a new version is available and ask for update */
 static void new_version_window(GtkWidget *mainwindow)
 {
@@ -125,7 +115,7 @@ static void new_version_window(GtkWidget *mainwindow)
 		GTK_MESSAGE_INFO,
 		GTK_BUTTONS_NONE,
 		_("A new version of %s is available!"), PRGNAME);
-#if 0
+
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
 		_("Do you want to update %s to version %s after exit?\n"
 		"It will erase this binary file (%s) by the new version."),
@@ -134,21 +124,10 @@ static void new_version_window(GtkWidget *mainwindow)
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
 		opts->update = true;
-#else
-	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
-		_("Version %s is available. Unfortunately, this portable format is now deprecated in favor of AppImage.\n"
-		"You can download %s AppImage on the official download page.\n"),
-		new_version[0], PRGNAME);
-	GtkWidget *link = gtk_link_button_new_with_label(DOWNLOAD, _("Download page"));
-	gtk_widget_show(link);
-	gtk_dialog_add_action_widget(GTK_DIALOG(dialog), GTK_WIDGET(link), GTK_RESPONSE_OK);
-	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Ok"), GTK_RESPONSE_CLOSE);
-	gtk_dialog_run(GTK_DIALOG(dialog));
-	gtk_widget_destroy(link);
-#endif
 
 	gtk_widget_destroy(dialog);
 }
+#endif /* PORTABLE_BINARY */
 
 /* Refresh dynamic values */
 static gboolean grefresh(GThrd *refr)
@@ -256,10 +235,9 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 	if(data->b_data->run)
 	{
 		skip = false;
-#if GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY
-		if(gtk_check_version(3, 15, 0) == NULL)
-			gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
-#endif /* GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY */
+#if GTK_CHECK_VERSION(3, 15, 0)
+		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), true);
+#endif /* GTK_CHECK_VERSION(3, 15, 0) */
 		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(glab->gtktab_bench[VALUE][indP]),
 			(double) data->b_data->elapsed / (data->b_data->duration * 60));
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],         false);
@@ -268,10 +246,9 @@ static void change_benchsensitive(GtkLabels *glab, Labels *data)
 	else if(!data->b_data->run && !skip)
 	{
 		skip = true;
-#if GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY
-		if(gtk_check_version(3, 15, 0) == NULL)
-			gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]),  false);
-#endif /* GTK_CHECK_VERSION(3, 15, 0) || PORTABLE_BINARY */
+#if GTK_CHECK_VERSION(3, 15, 0)
+		gtk_switch_set_state(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]),  false);
+#endif /* GTK_CHECK_VERSION(3, 15, 0) */
 		gtk_switch_set_active(GTK_SWITCH(glab->gtktab_bench[VALUE][indA]), false);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][indS],          true);
 		gtk_widget_set_sensitive(glab->gtktab_bench[VALUE][PARAMTHREADS],  true);
@@ -404,29 +381,6 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 		glab->gtktab_about[i] = GTK_WIDGET(gtk_builder_get_object(builder, objectabout[i]));
 }
 
-#if PORTABLE_BINARY
-/* Backport gtk_css_provider_load_from_resource() for GTK < 3.16
-https://github.com/GNOME/gtk/blob/master/gtk/gtkcssprovider.c#L1943 */
-void __builtin_gtk_css_provider_load_from_resource(GtkCssProvider *css_provider, const gchar *resource_path)
-{
-	GFile *file;
-	gchar *uri, *escaped;
-
-	g_return_if_fail (GTK_IS_CSS_PROVIDER (css_provider));
-	g_return_if_fail (resource_path != NULL);
-
-	escaped = g_uri_escape_string (resource_path, G_URI_RESERVED_CHARS_ALLOWED_IN_PATH, FALSE);
-	uri = g_strconcat ("resource://", escaped, NULL);
-	g_free (escaped);
-
-	file = g_file_new_for_uri (uri);
-	g_free (uri);
-
-	gtk_css_provider_load_from_file (css_provider, file, NULL);
-	g_object_unref (file);
-}
-#endif /* PORTABLE_BINARY */
-
 static gboolean is_dark_theme(GtkLabels *glab)
 {
 	gdouble contrast;
@@ -457,15 +411,7 @@ static void set_colors(GtkLabels *glab)
 		filename = is_dark_theme(glab) ? g_strdup("cpu-x-gtk-3.12-dark.css") : g_strdup("cpu-x-gtk-3.12.css");
 
 	gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-#if PORTABLE_BINARY
-	if(gtk_check_version(3, 15, 0) == NULL) // GTK 3.16 or newer
-		gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
-	else // GTK 3.12 to 3.14
-		__builtin_gtk_css_provider_load_from_resource(provider, GRESOURCE_CSS(filename));
-#else
 	gtk_css_provider_load_from_path(provider, data_path(filename), NULL);
-#endif /* PORTABLE_BINARY */
 
 	g_free(filename);
 	g_object_unref(provider);
@@ -482,18 +428,10 @@ static void set_logos(GtkLabels *glab, Labels *data)
 	         gtk_widget_get_allocated_width(glab->gtktab_cpu[VALUE][VENDOR]) - 6;
 	height = (gtk_widget_get_allocated_height(glab->gtktab_cpu[VALUE][VENDOR]) + 4) * 4;
 
-	if(PORTABLE_BINARY)
-	{
-		cpu_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(format(GRESOURCE_LOGOS("%s.png"), data->tab_cpu[VALUE][VENDOR]), width, height, TRUE, &error);
-		unknown_pixbuf = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("Unknown.png"), width, height, TRUE, NULL);
-		prg_pixbuf     = gdk_pixbuf_new_from_resource_at_scale(GRESOURCE_LOGOS("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
-	}
-	else
-	{
-		cpu_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path(format("%s.png", data->tab_cpu[VALUE][VENDOR])), width, height, TRUE, &error);
-		unknown_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path("Unknown.png"), width, height, TRUE, NULL);
-		prg_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
-	}
+	cpu_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path(format("%s.png", data->tab_cpu[VALUE][VENDOR])), width, height, TRUE, &error);
+	unknown_pixbuf = gdk_pixbuf_new_from_file_at_scale(data_path("Unknown.png"), width, height, TRUE, NULL);
+	prg_pixbuf     = gdk_pixbuf_new_from_file_at_scale(data_path("CPU-X.png"), prg_size, prg_size, TRUE, NULL);
+
 
 	gtk_window_set_icon(GTK_WINDOW(glab->mainwindow),   prg_pixbuf);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(glab->logocpu), cpu_pixbuf);

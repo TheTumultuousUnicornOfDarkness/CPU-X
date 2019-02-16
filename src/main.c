@@ -41,15 +41,6 @@
 # include <json-c/json.h>
 #endif
 
-#if PORTABLE_BINARY
-# include <sys/stat.h>
-# include <archive.h>
-# include <archive_entry.h>
-# if HAS_GETTEXT
-#  include "../po/mo.h"
-# endif
-#endif
-
 char *binary_name, *new_version[2] = { NULL, NULL };
 Options *opts;
 
@@ -409,71 +400,6 @@ static bool check_new_version(void)
 }
 
 # if 0 //PORTABLE_BINARY
-/* Copy function for libarchive */
-static int copy_data(struct archive *ar, struct archive *aw)
-{
-	int ret;
-	const void *buff;
-	size_t size;
-	la_int64_t offset;
-
-	while(true)
-	{
-		ret = archive_read_data_block(ar, &buff, &size, &offset);
-		if(ret == ARCHIVE_EOF)
-			return ARCHIVE_OK;
-		if(ret < ARCHIVE_OK)
-			return ret;
-
-		if((ret = archive_write_data_block(aw, buff, size, offset)) < ARCHIVE_OK)
-			return ret;
-	}
-}
-
-/* Extract a .tar.gz archive */
-static int extract_archive(const char *filename, const char *needed)
-{
-	int ret;
-	const int flags = ARCHIVE_EXTRACT_TIME | ARCHIVE_EXTRACT_PERM;
-	struct archive *archive, *ext, *archive_ptr;
-	struct archive_entry *entry;
-
-	archive = archive_read_new();
-	archive_read_support_format_tar(archive);
-	archive_read_support_filter_gzip(archive);
-
-	ext = archive_write_disk_new();
-	archive_write_disk_set_options(ext, flags);
-	archive_write_disk_set_standard_lookup(ext);
-
-	archive_ptr = archive;
-	if((ret = archive_read_open_filename(archive, filename, 10240)))
-		goto error;
-
-	do {
-		if((ret = archive_read_next_header(archive, &entry)) != ARCHIVE_OK)
-			goto error;
-	} while(strcmp(archive_entry_pathname(entry), needed));
-
-	archive_ptr = ext;
-	if((ret = archive_write_header(ext, entry)) != ARCHIVE_OK)
-		goto error;
-	if((ret = copy_data(archive, ext)) != ARCHIVE_OK)
-		goto error;
-	if((ret = archive_write_finish_entry(ext)) != ARCHIVE_OK)
-		goto error;
-
-	archive_read_close(archive);
-	archive_read_free(archive);
-	archive_write_close(ext);
-	archive_write_free(ext);
-	return 0;
-
-error:
-	MSG_ERROR(_("an error occurred while extracting %s archive (%s)"), filename, archive_error_string(archive_ptr));
-	return 1;
-}
-
 /* Apply new portable version if available */
 static int update_prg(void)
 {
@@ -585,7 +511,7 @@ static const struct
 	{ true,            'o', "nocolor",   no_argument,       N_("Disable colored output")                                   },
 	{ true,            'i', "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
 	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
-	{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
+	//{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
 	{ true,            '0', NULL,        0,                 NULL                                                           }
@@ -830,38 +756,6 @@ static int set_locales(void)
 	char *TEXTDOMAINDIR = getenv("TEXTDOMAINDIR");
 	if(TEXTDOMAINDIR == NULL || TEXTDOMAINDIR[0] == '\0')
 		TEXTDOMAINDIR = LOCALEDIR;
-
-#if PORTABLE_BINARY && HAS_GETTEXT
-	int i;
-	FILE *mofile = NULL;
-
-	if(!access(LOCALEDIR, R_OK))
-		goto end_extraction;
-
-	/* Write .mo files in temporary directory */
-	err = mkdir(LOCALEDIR, ACCESSPERMS);
-	for(i = 0; ptrlen[i] != NULL; i++)
-	{
-		err   += mkdir(format("%s/%s/",             LOCALEDIR, lang[i]), ACCESSPERMS);
-		err   += mkdir(format("%s/%s/LC_MESSAGES/", LOCALEDIR, lang[i]), ACCESSPERMS);
-		mofile = fopen(format("%s/%s/LC_MESSAGES/%s.mo", LOCALEDIR, lang[i], GETTEXT_PACKAGE), "w");
-
-		if(mofile != NULL)
-		{
-			err += fwrite(ptrlang[i], sizeof(unsigned char), *(ptrlen)[i], mofile) > 0 ? 0 : 1;
-			err += fclose(mofile);
-		}
-		else
-			err++;
-	}
-
-	/* Override TEXTDOMAINDIR in portable binary */
-	TEXTDOMAINDIR = LOCALEDIR;
-
-	if(err)
-		MSG_ERROR("an error occurred while extracting translations");
-end_extraction:
-#endif /* PORTABLE_BINARY && HAS_GETTEXT */
 
 	/* Apply locale */
 	setlocale(LC_ALL, "");

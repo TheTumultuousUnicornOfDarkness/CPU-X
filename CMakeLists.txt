@@ -9,15 +9,11 @@ project(cpu-x
 ### DEFAULT CONFIG
 
 # Global variables
-if(PORTABLE_BINARY)
-	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-else(PORTABLE_BINARY)
-	include(GNUInstallDirs)
-	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/bin/)
-	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib/)
-	set(CMAKE_DATA_OUTPUT_DIRECTORY    ${CMAKE_BINARY_DIR}/output/data/)
-	set(CPU_X_DATA_DIRECTORY           ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
-endif(PORTABLE_BINARY)
+include(GNUInstallDirs)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/bin/)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib/)
+set(CMAKE_DATA_OUTPUT_DIRECTORY    ${CMAKE_BINARY_DIR}/output/data/)
+set(CPU_X_DATA_DIRECTORY           ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT_NAME}/)
 if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i.86")
 	set(BITNESS "32")
 else(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i.86")
@@ -50,8 +46,6 @@ option(WITH_LIBSTATGRAB   "Use Libstatgrab library"                             
 option(WITH_DMIDECODE     "Built-in Dmidecode"                                                ON)
 option(WITH_BANDWIDTH     "Built-in Bandwidth"                                                ON)
 option(FORCE_LIBSTATGRAB  "Force use of Libstatgrab instead of Libprocps (GNU/Linux system)"  OFF)
-option(PORTABLE_BINARY    "Build a all-in-one binary (portable version)"                      OFF)
-option(IGNORE_STATICLIBS  "Build portable binary without static libraries"                    OFF)
 
 # Colours
 string(ASCII 27 Esc)
@@ -94,36 +88,6 @@ macro(print_config libname libver foundstate withstate)
 		add_definitions(-DHAS_${libname}=0 -D${libname}_VERSION=NULL)
 	endif(${foundstate} AND ${withstate})
 endmacro(print_config)
-
-# Macro: add_embedded_library(lib)
-# Include a library (satic or not) for building, needed for portable version.
-# @LIBRARIES: variable name where to put libraries name
-# @lib:	      library to add
-macro(add_embedded_library LIBRARIES lib)
-	if(PORTABLE_BINARY AND NOT IGNORE_STATICLIBS)
-		set(${LIBRARIES} ${lib})
-	endif(PORTABLE_BINARY AND NOT IGNORE_STATICLIBS)
-endmacro(add_embedded_library)
-
-# Macro: add_embedded_library_linux(linux_lib)
-# Same as add_embedded_library macro, but only if target is Linux
-# @LIBRARIES: variable name where to put libraries name
-# @linux_lib: Linux library to add
-macro(add_embedded_library_linux LIBRARIES linux_lib)
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY AND NOT IGNORE_STATICLIBS)
-		set(${LIBRARIES} ${linux_lib})
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY AND NOT IGNORE_STATICLIBS)
-endmacro(add_embedded_library_linux)
-
-# Macro: add_embedded_library_others(others_lib)
-# Same as add_embedded_library macro, but only if target is NOT Linux
-# @LIBRARIES:  variable name where to put libraries name
-# @others_lib: NON-Linux library name
-macro(add_embedded_library_others LIBRARIES others_lib)
-	if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY AND NOT IGNORE_STATICLIBS)
-		set(${LIBRARIES} ${others_lib})
-	endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND PORTABLE_BINARY AND NOT IGNORE_STATICLIBS)
-endmacro(add_embedded_library_others)
 
 
 ### HELPERS / SUBDIRECTORIES

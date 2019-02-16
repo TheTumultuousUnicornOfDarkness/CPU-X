@@ -38,6 +38,7 @@ struct opt
 	u8 *type;
 	const struct string_keyword *string;
 	char *dumpfile;
+	u32 handle;
 };
 extern struct opt opt;
 
