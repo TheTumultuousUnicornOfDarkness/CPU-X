@@ -24,6 +24,8 @@
 #ifndef _IPC_H_
 #define _IPC_H_
 
+#include "cpu-x.h"
+
 #define SOCKET_NAME "/tmp/cpu-x.sock"
 #define DAEMON_UP   (data->socket_fd >= 0)
 
@@ -48,5 +50,15 @@ typedef struct
 {
 	int voltage, temp;
 } MsrDynamicData;
+
+typedef struct
+{
+	int ret;
+	uint8_t dimm_count;
+	double bus_freq;
+	char cpu_package[MAXSTR];
+	char motherboard[CHIPVENDOR][MAXSTR];
+	char memory[LASTMEMORY][MAXSTR];
+} DmidecodeData;
 
 #endif /* _IPC_H_ */

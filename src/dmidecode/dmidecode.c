@@ -78,12 +78,14 @@
 #include "dmidecode.h"
 #include "dmiopt.h"
 #include "dmioem.h"
-#include "libdmi.h"
+
+#include "../ipc.h"
 
 #define out_of_spec "<OUT OF SPEC>"
 static const char *bad_index = "";
 
 #define SUPPORTED_SMBIOS_VER 0x030200
+#define STR_LEN              24
 
 #define FLAG_NO_FILE_OFFSET     (1 << 0)
 #define FLAG_STOP_AT_EOT        (1 << 1)
@@ -93,10 +95,8 @@ static const char *bad_index = "";
 #define SYS_TABLE_FILE SYS_FIRMWARE_DIR "/DMI"
 
 /* Options are global */
-struct opt opt;
-double *ext_clk;
-u8 *bank;
-char **dmidata[LASTDMI][16];
+static struct opt opt = { .type = NULL };
+static DmidecodeData *cpux_data;
 
 /*
  * Type-independant Stuff
@@ -318,12 +318,12 @@ static void dmi_bios_runtime_size(u32 code)
 
 static char *dmi_bios_runtime_size_str(u32 code)
 {
-	static char size[24];
+	static char size[STR_LEN] = "";
 
 	if (code & 0x000003FF)
-		sprintf(size, "%u bytes", code);
+		snprintf(size, STR_LEN, "%u bytes", code);
 	else
-		sprintf(size, "%u kB", code >> 10);
+		snprintf(size, STR_LEN, "%u kB", code >> 10);
 
 	return size;
 }
@@ -342,15 +342,15 @@ static void dmi_bios_rom_size(u8 code1, u16 code2)
 
 static char *dmi_bios_rom_size_str(u8 code1, u16 code2)
 {
-	static char size[16];
+	static char size[STR_LEN] = "";
 	static const char *unit[4] = {
 		"MB", "GB", out_of_spec, out_of_spec
 	};
 
 	if (code1 != 0xFF)
-		sprintf(size, "%u kB", (code1 + 1) << 6);
+		snprintf(size, STR_LEN, "%u kB", (code1 + 1) << 6);
 	else
-		sprintf(size, "%u %s", code2 & 0x3FFF, unit[code2 >> 14]);
+		snprintf(size, STR_LEN, "%u %s", code2 & 0x3FFF, unit[code2 >> 14]);
 
 	return size;
 }
@@ -2413,18 +2413,18 @@ static void dmi_memory_device_size(u16 code)
 
 static char *dmi_memory_device_size_str(u16 code)
 {
-	static char size[16];
+	static char size[STR_LEN] = "";
 
 	if (code == 0)
-		strcpy(size, "Empty");
+		strncpy(size, "Empty", STR_LEN);
 	else if (code == 0xFFFF)
-		strcpy(size, "Unknown");
+		strncpy(size, "Unknown", STR_LEN);
 	else
 	{
 		if (code & 0x8000)
-			sprintf(size, "%u kB", code & 0x7FFF);
+			snprintf(size, STR_LEN, "%u kB", code & 0x7FFF);
 		else
-			sprintf(size, "%u MB", code);
+			snprintf(size, STR_LEN, "%u MB", code);
 	}
 
 	return size;
@@ -2444,6 +2444,26 @@ static void dmi_memory_device_extended_size(u32 code)
 		printf(" %lu GB", (unsigned long)code >> 10);
 	else
 		printf(" %lu TB", (unsigned long)code >> 20);
+}
+
+static char *dmi_memory_device_extended_size_str(u32 code)
+{
+	static char size[STR_LEN] = "";
+
+	code &= 0x7FFFFFFFUL;
+
+	/*
+	 * Use the greatest unit for which the exact value can be displayed
+	 * as an integer without rounding
+	 */
+	if (code & 0x3FFUL)
+		snprintf(size, STR_LEN, "%lu MB", (unsigned long)code);
+	else if (code & 0xFFC00UL)
+		snprintf(size, STR_LEN, "%lu GB", (unsigned long)code >> 10);
+	else
+		snprintf(size, STR_LEN, "%lu TB", (unsigned long)code >> 20);
+
+	return size;
 }
 
 static void dmi_memory_voltage_value(u16 code)
@@ -5100,45 +5120,50 @@ static void dmi_decode_cpux(const struct dmi_header *h, u16 ver)
 {
 	const u8 *data = h->data;
 
-	/*
-	 * Note: DMI types 37 and 42 are untested
-	 */
 	switch (h->type)
 	{
 		case 0: /* 7.1 BIOS Information */
-			casprintf(dmidata[DMI_MB][BRAND],       false, "%s", dmi_string(h, data[0x04]));
-			casprintf(dmidata[DMI_MB][BIOSVERSION], false, "%s", dmi_string(h, data[0x05]));
-			casprintf(dmidata[DMI_MB][DATE],        false, "%s", dmi_string(h, data[0x08]));
-			casprintf(dmidata[DMI_MB][ROMSIZE],     true,  "%s / %s",
-			          dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
-			          dmi_bios_rom_size_str(data[0x09], h->length < 0x1A ? 16 : WORD(data + 0x18)));
+			snprintf(cpux_data->motherboard[BRAND],       MAXSTR, "%s", dmi_string(h, data[0x04]));
+			snprintf(cpux_data->motherboard[BIOSVERSION], MAXSTR, "%s", dmi_string(h, data[0x05]));
+			snprintf(cpux_data->motherboard[DATE],        MAXSTR, "%s", dmi_string(h, data[0x08]));
+			snprintf(cpux_data->motherboard[ROMSIZE],     MAXSTR, "%s / %s",
+			         dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
+			         dmi_bios_rom_size_str(data[0x09], h->length < 0x1A ? 16 : WORD(data + 0x18)));
 			break;
 		case 2: /* 7.3 Base Board Information */
-			casprintf(dmidata[DMI_MB][MANUFACTURER], false, "%s", dmi_string(h, data[0x04]));
-			casprintf(dmidata[DMI_MB][MBMODEL],      false, "%s", dmi_string(h, data[0x05]));
-			casprintf(dmidata[DMI_MB][REVISION],     false, "%s", dmi_string(h, data[0x06]));
+			snprintf(cpux_data->motherboard[MANUFACTURER], MAXSTR, "%s", dmi_string(h, data[0x04]));
+			snprintf(cpux_data->motherboard[MBMODEL],      MAXSTR, "%s", dmi_string(h, data[0x05]));
+			snprintf(cpux_data->motherboard[REVISION],     MAXSTR, "%s", dmi_string(h, data[0x06]));
 			break;
 		case 4: /* 7.5 Processor Information */
-			casprintf(dmidata[DMI_CPU][0], false, "%s", dmi_string(h, data[0x04]));
-			if(*ext_clk == 0.0)
-				*ext_clk = (double) WORD(data + 0x12);
+			cpux_data->bus_freq = (double) WORD(data + 0x12);
+			snprintf(cpux_data->cpu_package, MAXSTR, "%s", dmi_string(h, data[0x04]));
 			break;
 		case 17: /* 7.18 Memory Device */
-			if(*bank < LASTMEMORY)
+			if(cpux_data->dimm_count < LASTMEMORY)
 			{
 				if((strstr(dmi_string(h, data[0x17]), "Empty") != NULL) || (strstr(dmi_string(h, data[0x17]), "Not Specified") != NULL) || (WORD(data + 0x0C) == 0))
-					casprintf(dmidata[DMI_RAM][*bank], false, "- - - - - - - - - - - - - - - - - - -");
+					snprintf(cpux_data->memory[cpux_data->dimm_count], MAXSTR, "- - - - - - - - - - - - - - - - - - -");
 				else
 				{
-					casprintf(dmidata[DMI_RAM][*bank], true, "%s %s, %s @ %uMHz (%s %s)",
-					          dmi_string(h, data[0x17]),
-					          dmi_string(h, data[0x1A]),
-						  dmi_memory_device_size_str(WORD(data + 0x0C)),
-					          (WORD(data + 0x15)),
-					          dmi_memory_device_form_factor(data[0x0E]),
-					          dmi_memory_device_type(data[0x12]));
+					memset(cpux_data->memory[cpux_data->dimm_count], '\0', MAXSTR);
+					if(h->length >= 0x1B)
+					{
+						const char *manufacturer = dmi_string(h, data[0x17]);
+						const char *part_number  = dmi_string(h, data[0x1A]);
+						if((strlen(manufacturer) > 0) || (strlen(part_number) > 0))
+							snprintf(cpux_data->memory[cpux_data->dimm_count], MAXSTR, "%s %s, ", manufacturer, part_number);
+					}
+					char specs[MAXSTR];
+					char *size = (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C));
+					snprintf(specs, MAXSTR, "%s @ %uMHz (%s %s)",
+					         size,
+					         (WORD(data + 0x15)),
+					         dmi_memory_device_form_factor(data[0x0E]),
+					         dmi_memory_device_type(data[0x12]));
+					strncat(cpux_data->memory[cpux_data->dimm_count], specs, MAXSTR);
 				}
-				(*bank)++;
+				cpux_data->dimm_count++;
 			}
 			break;
 		default:
@@ -5288,7 +5313,7 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 			}
 			else
 			{
-				if(opt.flags & FLAG_CPU_X)
+				if(cpux_data != NULL)
 					dmi_decode_cpux(&h, ver);
 				else
 					dmi_decode(&h, ver);
@@ -5638,7 +5663,7 @@ static int address_from_efi(off_t *address)
 	return ret;
 }
 
-int dmidecode(void)
+int dmidecode(int quiet, void *cpux_pdata)
 {
 	int ret = 0;                /* Returned value */
 	int found = 0;
@@ -5647,6 +5672,22 @@ int dmidecode(void)
 	int efi;
 	u8 *buf;
 	char *argv[] = { "dmidecode (built-in with CPU-X)", NULL };
+	cpux_data = (DmidecodeData *)cpux_pdata;
+
+	if(cpux_pdata != NULL)
+	{
+		opt.type = (u8 *)calloc(256, sizeof(u8));
+		if (opt.type == NULL)
+		{
+			perror("calloc");
+			return 255;
+		}
+
+		opt.type[0]  = 1;
+		opt.type[2]  = 1;
+		opt.type[4]  = 1;
+		opt.type[17] = 1;
+	}
 
 	/*
 	 * We don't want stdout and stderr to be mixed up if both are
@@ -5658,15 +5699,18 @@ int dmidecode(void)
 	if (sizeof(u8) != 1 || sizeof(u16) != 2 || sizeof(u32) != 4 || '\0' != 0)
 	{
 		fprintf(stderr, "%s: compiler incompatibility\n", argv[0]);
-		exit(255);
+		return 255;
 	}
 
 	/* Set default option values */
 	opt.devmem = DEFAULT_MEM_DEV;
-	opt.handle = ~0U;
-#if 0
 	opt.flags = 0;
+	opt.handle = ~0U;
 
+	if(quiet)
+		opt.flags |= FLAG_QUIET;
+
+#if 0
 	if (parse_command_line(argc, argv)<0)
 	{
 		ret = 2;
@@ -5685,7 +5729,7 @@ int dmidecode(void)
 		goto exit_free;
 	}
 #endif
-	if (!(opt.flags & FLAG_CPU_X))
+	if (cpux_data == NULL)
 		printf("# %s %s\n", argv[0], VERSION);
 
 	/* Read from dump if so instructed */

@@ -325,6 +325,9 @@ int do_refresh(Labels *data);
 /* Establish connection to daemon */
 int connect_to_daemon(Labels *data);
 
+/* Dmidecode main function */
+int dmidecode(int quiet, void *cpux_pdata);
+
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void);
 

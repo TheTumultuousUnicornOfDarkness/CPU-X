@@ -48,11 +48,6 @@
 # include "databases.h"
 #endif
 
-#if HAS_DMIDECODE
-# include "dmidecode/libdmi.h"
-# include "dmidecode/dmiopt.h"
-#endif
-
 #if HAS_BANDWIDTH
 # include "bandwidth/libbandwidth.h"
 #endif
@@ -492,61 +487,38 @@ static int cputab_fill_multipliers(Labels *data)
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void)
 {
-	opt.type  = NULL;
-	opt.flags = (opts->verbose) ? 0 : FLAG_QUIET;
-	return dmidecode();
+	return dmidecode(!opts->verbose, NULL);
 }
 
 /* Elements provided by dmidecode (need root privileges) */
 static int call_dmidecode(Labels *data)
 {
-	int i, err;
-
-	/* Dmidecode options */
-	opt.type  = NULL;
-	opt.flags = FLAG_CPU_X | FLAG_QUIET;
-
-#if 0 //FIXME
-	if(getuid())
-	{
-		MSG_WARNING(_("Skip call to dmidecode (need to be root)"));
-		return 1;
-	}
-#else
-	return 1;
-#endif
+	int i;
+	const DaemonCommand cmd = DMIDECODE;
+	DmidecodeData msg;
 
 	MSG_VERBOSE(_("Calling dmidecode"));
-	opt.type = calloc(256, sizeof(uint8_t));
-	if(opt.type == NULL)
-	{
-		MSG_ERRNO(_("failed to allocate memory for dmidecode"));
-		return 2;
-	}
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+
+	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(DmidecodeData));
+	if(msg.ret)
+		return 1;
 
 	/* Tab CPU */
-	dmidata[DMI_CPU][0] = &data->tab_cpu[VALUE][PACKAGE];
-	ext_clk = &data->bus_freq;
-	opt.type[4] = 1;
+	data->tab_cpu[VALUE][PACKAGE] = strdup(msg.cpu_package);
+	if(data->bus_freq == 0.0)
+		data->bus_freq = msg.bus_freq;
 
 	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
-		dmidata[DMI_MB][i] = &data->tab_motherboard[VALUE][i];
-	opt.type[0] = 1;
-	opt.type[2] = 1;
+	for(i = MANUFACTURER; i < CHIPVENDOR; i++)
+		data->tab_motherboard[VALUE][i] = strdup(msg.motherboard[i]);
 
 	/* Tab RAM */
-	for(i = BANK0; i < LASTMEMORY; i++)
-		dmidata[DMI_RAM][i] = &data->tab_memory[VALUE][i];
-	bank = &data->dimm_count;
-	opt.type[17] = 1;
+	data->dimm_count = msg.dimm_count;
+	for(i = BANK0; i < (int) data->dimm_count; i++)
+		data->tab_memory[VALUE][i] = strdup(msg.memory[i]);
 
-	/* Call built-in dmidecode in CPU-X mode */
-	if((err = dmidecode()))
-		MSG_ERROR(_("failed to call dmidecode"));
-
-	free(opt.type);
-	return err;
+	return 0;
 }
 #endif /* HAS_DMIDECODE */
 

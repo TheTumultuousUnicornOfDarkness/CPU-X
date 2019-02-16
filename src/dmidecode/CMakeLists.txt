@@ -22,7 +22,6 @@ add_library(dmidecode
 	dmioem.h
 	dmidecode.c
 	dmidecode.h
-	libdmi.h
 )
 
 target_link_libraries(dmidecode)

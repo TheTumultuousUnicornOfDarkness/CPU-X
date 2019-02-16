@@ -118,8 +118,12 @@ static int __call_libcpuid_msr_dynamic(int *fd)
 #if HAS_DMIDECODE
 static int __call_dmidecode(int *fd)
 {
-	//TODO
-	return 0;
+	DmidecodeData msg = { .ret = -1, .dimm_count = 0, .bus_freq = 0.0 };
+
+	msg.ret = dmidecode(1, &msg);
+	SEND_DATA(fd, &msg, sizeof(DmidecodeData));
+
+	return msg.ret;
 }
 #endif /* HAS_DMIDECODE */
 
