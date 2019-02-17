@@ -514,7 +514,7 @@ static const struct
 	//{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
-	{ true,            '0', NULL,        0,                 NULL                                                           }
+	{ true,              0, NULL,        0,                 NULL                                                           }
 };
 
 static const struct
@@ -593,11 +593,13 @@ static void version(void)
 }
 
 /* Parse arguments and set some flags */
-#define OPTIONS_COUNT (sizeof(cpux_options) / sizeof(cpux_options[0]) - 1)
+#define OPTIONS_COUNT  (sizeof(cpux_options) / sizeof(cpux_options[0]))
+#define SHORT_OPT_LEN  3
+#define SHORT_OPTS_LEN (OPTIONS_COUNT * 2)
 static void parse_arguments(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_arg = -1;
-	char shortopts[OPTIONS_COUNT * 2] = "";
+	char shortopt[SHORT_OPT_LEN], shortopts[SHORT_OPTS_LEN] = "";
 	struct option longopts[OPTIONS_COUNT];
 
 	/* Filling longopts structure */
@@ -606,13 +608,10 @@ static void parse_arguments(int argc, char *argv[])
 		while(!cpux_options[i].has_mod)
 			i++;
 		longopts[j++] = (struct option) { .name = cpux_options[i].long_opt, .has_arg = cpux_options[i].need_arg, .flag = 0, .val = cpux_options[i].short_opt };
-		strcat(shortopts, format("%c%s", cpux_options[i].short_opt, cpux_options[i].need_arg ? ":" : ""));
+		snprintf(shortopt, SHORT_OPT_LEN, "%c%c", cpux_options[i].short_opt, cpux_options[i].need_arg ? ':' : '\0');
+		strncat(shortopts, shortopt, SHORT_OPTS_LEN - 1);
 	}
-
-	/* Avoid uninitialized members */
-	c = OPTIONS_COUNT - 1;
-	for(i = j; i < (int) OPTIONS_COUNT; i++)
-		longopts[i] = (struct option) { .name = cpux_options[c].long_opt, .has_arg = cpux_options[c].need_arg, .flag = 0, .val = cpux_options[c].short_opt };
+	longopts[j] = (struct option) { 0, 0, 0, 0 };
 
 	/* Set the default mode */
 	if(HAS_GTK && (getenv("DISPLAY") != NULL || getenv("WAYLAND_DISPLAY") != NULL))
