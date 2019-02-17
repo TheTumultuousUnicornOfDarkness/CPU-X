@@ -674,9 +674,17 @@ static int find_devices(Labels *data)
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
 #ifdef __FreeBSD__
-	if(access(pci_get_param(pacc, "fbsd.path"), W_OK))
+	int ret = -1;
+	const DaemonCommand cmd = LIBPCI;
+	const char *param_path = pci_get_param(pacc, "fbsd.path");
+	if(DAEMON_UP && access(param_path, W_OK))
 	{
-		MSG_WARNING(_("Skip devices search (need to be root)"));
+		SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+		RECEIVE_DATA(&data->socket_fd, &ret, sizeof(int));
+	}
+	if(ret && access(param_path, W_OK))
+	{
+		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)", param_path));
 		return 1;
 	}
 #endif /* __FreeBSD__ */

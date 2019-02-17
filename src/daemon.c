@@ -125,6 +125,20 @@ static int __call_dmidecode(int *fd)
 }
 #endif /* HAS_DMIDECODE */
 
+#if HAS_LIBPCI
+static int __find_devices(int *fd)
+{
+	int ret = -1;
+
+#ifdef __FreeBSD__
+	ret = chmod("/dev/pci", DEFFILEMODE);
+#endif /* __FreeBSD__ */
+	SEND_DATA(fd, &ret, sizeof(int));
+
+	return ret;
+}
+#endif /* HAS_LIBPCI */
+
 static int __popen_to_str(int *fd)
 {
 	ssize_t len;
@@ -210,6 +224,7 @@ static void *request_handler(void *p_data)
 			case LIBCPUID_MSR_STATIC:  if(HAS_LIBCPUID)  __call_libcpuid_msr_static(&td->fd);  break;
 			case LIBCPUID_MSR_DYNAMIC: if(HAS_LIBCPUID)  __call_libcpuid_msr_dynamic(&td->fd); break;
 			case DMIDECODE:            if(HAS_DMIDECODE) __call_dmidecode(&td->fd);            break;
+			case LIBPCI:               if(HAS_LIBPCI)    __find_devices(&td->fd);              break;
 			case POPEN_TO_STR:                           __popen_to_str(&td->fd);              break;
 			case LOAD_MODULE:                            __load_module(&td->fd);               break;
 		}
