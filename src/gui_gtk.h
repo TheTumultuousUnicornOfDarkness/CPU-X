@@ -36,7 +36,7 @@ typedef struct
 	GtkWidget *notebook;
 	GtkWidget *footer;
 	GtkWidget *labprgver;
-	GtkWidget *closebutton;
+	GtkWidget *daemonbutton;
 	GtkWidget *gtktrad[LASTOBJ];
 
 	/* Tab CPU */

@@ -26,6 +26,7 @@
 #include <string.h>
 #include <libintl.h>
 #include "cpu-x.h"
+#include "ipc.h"
 #include "gui_gtk.h"
 #include "gui_gtk_id.h"
 
@@ -75,6 +76,9 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();
+
+	if(data->reload)
+		execvp((*argv)[0], *argv);
 }
 
 
@@ -176,6 +180,17 @@ static gboolean grefresh(GThrd *refr)
 	}
 
 	return G_SOURCE_CONTINUE;
+}
+
+static void reload_with_daemon(GtkWidget *button, Labels *data)
+{
+	gtk_widget_set_sensitive(button, false);
+	data->reload = start_daemon(true);
+
+	if(data->reload)
+		gtk_main_quit();
+	else
+		gtk_widget_set_sensitive(button, true);
 }
 
 /* Event in CPU tab when Core number is changed */
@@ -294,7 +309,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	int i;
 
 	glab->mainwindow  = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
-	glab->closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
+	glab->daemonbutton = GTK_WIDGET(gtk_builder_get_object(builder, "daemonbutton"));
 	glab->labprgver	  = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
 	glab->footer      = GTK_WIDGET(gtk_builder_get_object(builder, "footer_box"));
 	glab->notebook    = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
@@ -454,6 +469,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 
 	/* Footer label */
 	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->tab_about[VERSIONSTR]);
+	gtk_widget_set_sensitive(glab->daemonbutton, !DAEMON_UP);
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
@@ -550,7 +566,7 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	int i;
 
 	g_signal_connect(glab->mainwindow,  "destroy", G_CALLBACK(gtk_main_quit),     NULL);
-	g_signal_connect(glab->closebutton, "clicked", G_CALLBACK(gtk_main_quit),     NULL);
+	g_signal_connect(glab->daemonbutton, "clicked", G_CALLBACK(reload_with_daemon), data);
 	g_signal_connect(glab->activecore,  "changed", G_CALLBACK(change_activecore), data);
 	g_signal_connect(glab->activetest,  "changed", G_CALLBACK(change_activetest), data);
 
