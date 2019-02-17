@@ -10,13 +10,8 @@ if(WITH_GTK)
 	set(EXEC    ${CMAKE_INSTALL_FULL_BINDIR}/${CMAKE_PROJECT_NAME})
 	set(TRYEXEC ${EXEC})
 	configure_file(cpu-x.desktop.in           ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop)
-	configure_file(org.pkexec.cpu-x.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x.policy)
-	configure_file(cpu-x_polkit.in            ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x_polkit)
 
-	set(EXEC ${EXEC}_polkit)
-	configure_file(cpu-x-root.desktop.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x-root.desktop)
-
-	set(EXEC ${CMAKE_INSTALL_FULL_LIBEXECDIR}/${CMAKE_PROJECT_NAME}-daemon)
+	set(EXEC ${CMAKE_INSTALL_FULL_LIBEXECDIR}/cpu-x-daemon)
 	configure_file(org.pkexec.cpu-x-daemon.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x-daemon.policy)
 
 	# Install UIs
@@ -35,25 +30,16 @@ if(WITH_GTK)
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/metainfo/
 	)
 
-	# Install launchers
+	# Install launcher
 	install(FILES
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop
-		${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x-root.desktop
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/applications/
 	)
 
 	# Install policy rule
 	install(FILES
-		${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x.policy
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x-daemon.policy
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions/
-	)
-
-	# Install binary which can run CPU-X as root via Polkit
-	install(FILES
-		${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x_polkit
-		DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/
-		PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
 	)
 
 	add_subdirectory(icons)
