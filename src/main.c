@@ -510,6 +510,7 @@ static const struct
 	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
 	{ true,            'o', "nocolor",   no_argument,       N_("Disable colored output")                                   },
 	{ true,            'i', "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
+	{ true,            's', "start-daemon", no_argument,    N_("Start and connect to daemon")                              },
 	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
 	//{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
@@ -680,6 +681,9 @@ static void parse_arguments(int argc, char *argv[])
 			case 'u':
 				opts->update = true;
 				break;
+			case 's':
+				opts->with_daemon = true;
+				break;
 			case 'h':
 				help();
 				exit(EXIT_SUCCESS);
@@ -840,6 +844,7 @@ int main(int argc, char *argv[])
 		.issue          = false,
 		.use_network    = true,
 		.update         = false,
+		.with_daemon    = false,
 		.debug_database = false,
 		.freq_fallback  = false,
 		.selected_page  = 0,
@@ -860,8 +865,8 @@ int main(int argc, char *argv[])
 		goto skip_init;
 
 	/* Connect to daemon */
-	if(IS_ROOT)
-		start_daemon(false);
+	if(IS_ROOT || opts->with_daemon)
+		start_daemon(!IS_ROOT);
 	if(daemon_is_alive())
 		connect_to_daemon(data);
 

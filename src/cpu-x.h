@@ -250,7 +250,7 @@ typedef struct
 
 typedef struct
 {
-	bool     color, verbose, issue, use_network, update, debug_database, freq_fallback;
+	bool     color, verbose, issue, use_network, update, with_daemon, debug_database, freq_fallback;
 	uint8_t  selected_page, selected_core, bw_test;
 	uint16_t output_type, refr_time;
 } Options;
