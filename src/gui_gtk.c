@@ -64,11 +64,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	set_signals(&glab, data, &refr);
 	labels_free(data);
 
-#if 0 //FIXME
-	if(getuid())
-		warning_window(glab.mainwindow);
-#endif
-
 #if 0 //PORTABLE_BINARY
 	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
 		new_version_window(glab.mainwindow);
@@ -83,32 +78,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 
 /************************* Private functions *************************/
-
-#if 0 //FIXME
-/* Print a window which allows to restart CPU-X as root */
-static void warning_window(GtkWidget *mainwindow)
-{
-	char *const cmd[] = { "cpu-x_polkit", NULL };
-	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
-		GTK_DIALOG_DESTROY_WITH_PARENT,
-		GTK_MESSAGE_WARNING,
-		GTK_BUTTONS_NONE,
-		_("Root privileges are required to work properly"));
-
-	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
-		_("Some informations will not be retrievable"));
-
-	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT);
-
-	if(!getenv("APPIMAGE") && command_exists("pkexec") && command_exists("cpu-x_polkit"))
-		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT);
-
-	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
-		execvp(cmd[0], cmd);
-
-	gtk_widget_destroy(dialog);
-}
-#endif
 
 #if 0 //PORTABLE_BINARY
 /* In portable version, inform when a new version is available and ask for update */

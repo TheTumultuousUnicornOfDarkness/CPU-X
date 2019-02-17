@@ -490,7 +490,7 @@ int run_dmidecode(void)
 	return dmidecode(!opts->verbose, NULL);
 }
 
-/* Elements provided by dmidecode (need root privileges) */
+/* Elements provided by dmidecode */
 static int call_dmidecode(Labels *data)
 {
 	int i;

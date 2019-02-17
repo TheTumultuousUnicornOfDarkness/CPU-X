@@ -43,20 +43,20 @@ static int call_libcpuid_dynamic(Labels *data);
 
 /* MSRs static values provided by libcpuid */
 static int call_libcpuid_msr_static(Labels *data);
-/* Required: HAS_LIBCPUID && root privileges */
+/* Required: HAS_LIBCPUID && DAEMON_UP */
 
 /* MSRs dynamic values provided by libcpuid */
 static int call_libcpuid_msr_dynamic(Labels *data);
-/* Required: HAS_LIBCPUID && root privileges */
+/* Required: HAS_LIBCPUID && DAEMON_UP */
 
 /* Fill the Multiplier label with the most appropriate format */
 static int cputab_fill_multipliers(Labels *data);
 /* Required: none
 Both normal and fallback mode provide CPU multipliers, need to be call after */
 
-/* Elements provided by dmidecode (need root privileges) */
+/* Elements provided by dmidecode */
 static int call_dmidecode(Labels *data);
-/* Required: HAS_DMIDECODE && root privileges */
+/* Required: HAS_DMIDECODE && DAEMON_UP */
 
 /* Compute CPU cache speed */
 static int call_bandwidth(Labels *data);

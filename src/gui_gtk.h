@@ -87,9 +87,6 @@ typedef struct
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
-/* Print a window which allows to restart CPU-X as root */
-//static void warning_window(GtkWidget *mainwindow);
-
 /* In portable version, inform when a new version is available and ask for update */
 //static void new_version_window(GtkWidget *mainwindow);
 
