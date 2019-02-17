@@ -195,7 +195,7 @@ endif()
 # Various definitions
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DCC="${CMAKE_C_COMPILER_ID}" -DHAS_LIBSYSTEM="${LIBSYSTEM}")
 add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}" -DTERMINFODIR="/lib/terminfo")
-add_definitions(-DDAEMON_PATH="${CMAKE_INSTALL_FULL_LIBEXECDIR}/${DAEMON_EXEC}")
+add_definitions(-DDAEMON_PATH="${DAEMON_PATH}")
 
 # Link libraries
 target_link_libraries(${APP_EXEC}

@@ -7,11 +7,7 @@ project(data
 if(WITH_GTK)
 	# Set config
 	file(MAKE_DIRECTORY ${CMAKE_DATA_OUTPUT_DIRECTORY})
-	set(EXEC    ${CMAKE_INSTALL_FULL_BINDIR}/${CMAKE_PROJECT_NAME})
-	set(TRYEXEC ${EXEC})
-	configure_file(cpu-x.desktop.in           ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop)
-
-	set(EXEC ${CMAKE_INSTALL_FULL_LIBEXECDIR}/cpu-x-daemon)
+	configure_file(cpu-x.desktop.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop)
 	configure_file(org.pkexec.cpu-x-daemon.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x-daemon.policy)
 
 	# Install UIs
