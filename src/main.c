@@ -673,6 +673,7 @@ static void parse_arguments(int argc, char *argv[])
 				opts->use_network = 0;
 				opts->output_type = OUT_DUMP;
 				setlocale(LC_ALL, "C");
+				setenv("CPUX_DAEMON_DEBUG", "1", 1);
 				version();
 				break;
 			case 'v':

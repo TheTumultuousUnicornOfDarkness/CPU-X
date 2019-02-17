@@ -26,6 +26,7 @@
 
 #define POLL_TIMEOUT (5 * 1000) // 5 seconds
 #define NFDS         1
+#define LOG_FILE     "/tmp/cpu-x-daemon.log"
 
 typedef struct
 {

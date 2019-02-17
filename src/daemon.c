@@ -81,12 +81,10 @@ static int __call_libcpuid_msr_static(int *fd)
 		msg.max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
 		msg.bclk     = cpu_msrinfo(msr, INFO_BCLK);
 
-#if 0 //TODO
 #ifdef HAVE_MSR_SERIALIZE_RAW_DATA
-		if(opts->issue)
-			msr_serialize_raw_data(msr, "");
+		if(getenv("CPUX_DAEMON_DEBUG"))
+			msr_serialize_raw_data(msr, LOG_FILE);
 #endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
-#endif
 
 		cpu_msr_driver_close(msr);
 	}
