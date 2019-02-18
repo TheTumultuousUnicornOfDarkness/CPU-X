@@ -217,30 +217,6 @@ error:
 	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }
 
-int privileged_popen_to_str(char **buffer, int *fd, char *str, ...)
-{
-	char *cmd_str = NULL;
-	const DaemonCommand cmd = POPEN_TO_STR;
-	va_list aptr;
-
-	va_start(aptr, str);
-	ssize_t len = vasprintf(&cmd_str, str, aptr);
-	va_end(aptr);
-	len++;
-
-	/* Send command to daemon */
-	SEND_DATA(fd, &cmd, sizeof(DaemonCommand));
-	SEND_DATA(fd, &len, sizeof(ssize_t));
-	SEND_DATA(fd, cmd_str, len);
-
-	/* Receive string from daemon */
-	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
-	*buffer = calloc(len, sizeof(char));
-	RECEIVE_DATA(fd, *buffer, len);
-
-	return 0;
-}
-
 /* Load a kernel module */
 int load_module(char *module, int *fd)
 {

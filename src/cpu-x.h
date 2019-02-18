@@ -85,7 +85,11 @@
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"
 #define SYS_DRM               "/sys/class/drm/card"
 #define SYS_HWMON             "/sys/class/hwmon"
-#define SYS_DRI               "/sys/kernel/debug/dri"
+#define SYS_DEBUG             "/sys/kernel/debug"
+#define SYS_DRI               SYS_DEBUG"/dri"
+
+/* FreeBSD-specific paths definition */
+#define DEV_PCI               "/dev/pci"
 
 
 enum EnTabNumber
@@ -297,9 +301,6 @@ int fopen_to_str(char **buffer, char *str, ...);
 
 /* Run a command and put output in a variable ('str' accept printf-like format) */
 int popen_to_str(char **buffer, char *str, ...);
-
-/* Run popen_to_str() throught daemon */
-int privileged_popen_to_str(char **buffer, int *fd, char *str, ...);
 
 /* Load a kernel module (return 0 on success) */
 int load_module(char *module, int *fd);

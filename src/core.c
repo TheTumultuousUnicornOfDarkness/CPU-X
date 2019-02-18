@@ -675,16 +675,15 @@ static int find_devices(Labels *data)
 	pacc = pci_alloc(); /* Get the pci_access structure */
 #ifdef __FreeBSD__
 	int ret = -1;
-	const DaemonCommand cmd = LIBPCI;
-	const char *param_path = pci_get_param(pacc, "fbsd.path");
-	if(DAEMON_UP && access(param_path, W_OK))
+	const DaemonCommand cmd = ACCESS_DEV_PCI;
+	if(DAEMON_UP && access(DEV_PCI, W_OK))
 	{
 		SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
 		RECEIVE_DATA(&data->socket_fd, &ret, sizeof(int));
 	}
-	if(ret && access(param_path, W_OK))
+	if(ret && access(DEV_PCI, W_OK))
 	{
-		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)", param_path));
+		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)", DEV_PCI));
 		return 1;
 	}
 #endif /* __FreeBSD__ */
@@ -818,6 +817,29 @@ static int gpu_temperature(Labels *data)
 #endif /* __linux__ */
 }
 
+#ifdef __linux__
+static bool sys_debug_ok(Labels *data)
+{
+	static int ret = 1;
+	const DaemonCommand cmd = ACCESS_SYS_DEBUG;
+
+	if(ret == 1)
+	{
+		if(!access(SYS_DEBUG, X_OK))
+			ret = 0;
+		else if(DAEMON_UP)
+		{
+			SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+			RECEIVE_DATA(&data->socket_fd, &ret, sizeof(int));
+		}
+		else
+			ret = -2;
+	}
+
+	return !ret;
+}
+#endif /* __linux__ */
+
 /* Retrieve GPU clocks */
 static int gpu_clocks(Labels *data)
 {
@@ -866,8 +888,8 @@ static int gpu_clocks(Labels *data)
 		{
 			case GPUDRV_AMDGPU:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				ret_load = DAEMON_UP ? privileged_popen_to_str(&load, &data->socket_fd, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
-				                       fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
+				ret_load = sys_debug_ok(data) ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
+				                                fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
 				ret_gclk = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
 				ret_mclk = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
 				break;
@@ -884,8 +906,8 @@ static int gpu_clocks(Labels *data)
 			case GPUDRV_RADEON:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
 				ret_load = -1;
-				ret_gclk = DAEMON_UP ? privileged_popen_to_str(&gclk, &data->socket_fd, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
-				ret_mclk = DAEMON_UP ? privileged_popen_to_str(&mclk, &data->socket_fd, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_gclk = sys_debug_ok(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_mclk = sys_debug_ok(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
 				if((gclk != NULL) && (strlen(gclk) >= 2)) gclk[strlen(gclk) - 2] = '\0';
 				if((mclk != NULL) && (strlen(mclk) >= 2)) mclk[strlen(mclk) - 2] = '\0';
 				break;

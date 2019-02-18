@@ -131,7 +131,7 @@ static int __find_devices(int *fd)
 	int ret = -1;
 
 #ifdef __FreeBSD__
-	ret = chmod("/dev/pci", DEFFILEMODE);
+	ret = chmod(DEV_PCI, DEFFILEMODE); // 0666
 #endif /* __FreeBSD__ */
 	SEND_DATA(fd, &ret, sizeof(int));
 
@@ -139,33 +139,16 @@ static int __find_devices(int *fd)
 }
 #endif /* HAS_LIBPCI */
 
-static int __popen_to_str(int *fd)
+static int __sys_debug_ok(int *fd)
 {
-	ssize_t len;
-	char *cmd_str = NULL, tmp[MAXSTR] = "";
-	FILE *pipe_descr = NULL;
+	int ret = -1;
 
-	/* Get command from client */
-	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
-	cmd_str = malloc(len);
-	RECEIVE_DATA(fd, cmd_str, len);
+#ifdef __linux__
+	ret = chmod(SYS_DEBUG, S_IRWXU|S_IXGRP|S_IXOTH); // 0711
+#endif /* __linux__ */
+	SEND_DATA(fd, &ret, sizeof(int));
 
-	if((pipe_descr = popen(cmd_str, "r")) == NULL)
-		perror("popen");
-	free(cmd_str);
-
-	if(fgets(tmp, MAXSTR, pipe_descr) == NULL)
-		perror("fgets");
-	fclose(pipe_descr);
-
-	/* Send string to client */
-	len = strlen(tmp);
-	tmp[len - 1] = '\0';
-	len++;
-	SEND_DATA(fd, &len, sizeof(ssize_t));
-	SEND_DATA(fd, tmp, len);
-
-	return 0;
+	return ret;
 }
 
 /* Load a kernel module */
@@ -224,8 +207,8 @@ static void *request_handler(void *p_data)
 			case LIBCPUID_MSR_STATIC:  if(HAS_LIBCPUID)  __call_libcpuid_msr_static(&td->fd);  break;
 			case LIBCPUID_MSR_DYNAMIC: if(HAS_LIBCPUID)  __call_libcpuid_msr_dynamic(&td->fd); break;
 			case DMIDECODE:            if(HAS_DMIDECODE) __call_dmidecode(&td->fd);            break;
-			case LIBPCI:               if(HAS_LIBPCI)    __find_devices(&td->fd);              break;
-			case POPEN_TO_STR:                           __popen_to_str(&td->fd);              break;
+			case ACCESS_DEV_PCI:       if(HAS_LIBPCI)    __find_devices(&td->fd);              break;
+			case ACCESS_SYS_DEBUG:                       __sys_debug_ok(&td->fd);              break;
 			case LOAD_MODULE:                            __load_module(&td->fd);               break;
 		}
 	}
