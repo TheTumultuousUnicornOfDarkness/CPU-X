@@ -115,12 +115,16 @@ char *format(char *str, ...)
 /* Similar to format(), but string can be colorized */
 char *colorized_msg(const char *color, const char *str, ...)
 {
-	static char *buff;
+	char fmt[MSG_BUFF_LEN];
+	static char buff[MSG_BUFF_LEN];
 	va_list aptr;
 
-	free(buff);
 	va_start(aptr, str);
-	vasprintf(&buff, format("%s%s%s\n", opts->color ? color : DEFAULT, str, DEFAULT), aptr);
+	if(opts->color)
+		snprintf(fmt, MSG_BUFF_LEN, "%s%s%s\n", color, str, DEFAULT);
+	else
+		snprintf(fmt, MSG_BUFF_LEN, "%s\n", str);
+	vsnprintf(buff, MSG_BUFF_LEN, fmt, aptr);
 	va_end(aptr);
 
 	return buff;

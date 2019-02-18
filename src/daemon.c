@@ -49,16 +49,15 @@ static ThreadsInfo *ti = &(ThreadsInfo)
 	.thread    = NULL,
 };
 
-#define BUFF_LEN 256
 char *colorized_msg(const char *color, const char *str, ...)
 {
-	char fmt[BUFF_LEN];
-	static char buff[BUFF_LEN];
+	char fmt[MSG_BUFF_LEN];
+	static char buff[MSG_BUFF_LEN];
 	va_list aptr;
 
 	va_start(aptr, str);
-	snprintf(fmt, BUFF_LEN, "%s\n", str);
-	vsnprintf(buff, BUFF_LEN, fmt, aptr);
+	snprintf(fmt, MSG_BUFF_LEN, "%s\n", str);
+	vsnprintf(buff, MSG_BUFF_LEN, fmt, aptr);
 	va_end(aptr);
 
 	return buff;
