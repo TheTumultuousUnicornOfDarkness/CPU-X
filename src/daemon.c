@@ -24,6 +24,7 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
@@ -48,13 +49,35 @@ static ThreadsInfo *ti = &(ThreadsInfo)
 	.thread    = NULL,
 };
 
+#define BUFF_LEN 256
 char *colorized_msg(const char *color, const char *str, ...)
 {
-	//STUB
-	return NULL;
+	char fmt[BUFF_LEN];
+	static char buff[BUFF_LEN];
+	va_list aptr;
+
+	va_start(aptr, str);
+	snprintf(fmt, BUFF_LEN, "%s\n", str);
+	vsnprintf(buff, BUFF_LEN, fmt, aptr);
+	va_end(aptr);
+
+	return buff;
 }
 
 #if HAS_LIBCPUID
+static void libcpuid_msr_serialize(void)
+{
+#ifdef HAVE_MSR_SERIALIZE_RAW_DATA
+	struct msr_driver_t *msr = cpu_msr_driver_open_core(0);
+
+	if(msr != NULL)
+	{
+		msr_serialize_raw_data(msr, LOG_FILE);
+		cpu_msr_driver_close(msr);
+	}
+#endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
+}
+
 /* Try to open a CPU MSR */
 static int libcpuid_init_msr(int fd, struct msr_driver_t **msr)
 {
@@ -63,7 +86,7 @@ static int libcpuid_init_msr(int fd, struct msr_driver_t **msr)
 	read(fd, &selected_core, sizeof(uint8_t)); // Core 0 on failure
 	if((*msr = cpu_msr_driver_open_core(selected_core)) == NULL)
 	{
-		MSG_ERROR(_("failed to open CPU#%u MSR (%s)"), selected_core, cpuid_error());
+		MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", selected_core, cpuid_error());
 		return 2;
 	}
 
@@ -80,12 +103,6 @@ static int __call_libcpuid_msr_static(int *fd)
 		msg.min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 		msg.max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
 		msg.bclk     = cpu_msrinfo(msr, INFO_BCLK);
-
-#ifdef HAVE_MSR_SERIALIZE_RAW_DATA
-		if(getenv("CPUX_DAEMON_DEBUG"))
-			msr_serialize_raw_data(msr, LOG_FILE);
-#endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
-
 		cpu_msr_driver_close(msr);
 	}
 
@@ -276,17 +293,26 @@ int main(void)
 	signal(SIGINT,  sighandler);
 	signal(SIGTERM, sighandler);
 
+	/* Logs */
+	unlink(LOG_FILE);
+	if(HAS_LIBCPUID && getenv("CPUX_DAEMON_DEBUG"))
+		libcpuid_msr_serialize();
+	freopen(LOG_FILE, "a", stdout);
+	setvbuf(stdout, NULL, _IONBF, 0);
+	dup2(STDOUT_FILENO, STDERR_FILENO);
+	MSG_STDOUT("%s %s (%s %s)", PRGNAME, PRGVER, __DATE__, __TIME__);
+
 	/* Initialize mutex */
 	if(pthread_mutex_init(&ti->mutex, NULL) < 0)
 	{
-		MSG_ERRNO(_("failed to initialize mutex"));
+		MSG_ERRNO("pthread_mutex_init");
 		return EXIT_FAILURE;
 	}
 
 	/* Initialize threads array */
 	if((ti->thread = malloc(ti->allocated * sizeof(Thread))) == NULL)
 	{
-		MSG_ERRNO(_("failed to allocate memory"));
+		MSG_ERRNO("malloc");
 		pthread_mutex_destroy(&ti->mutex);
 		return EXIT_FAILURE;
 	}
@@ -340,12 +366,13 @@ int main(void)
 	goto clean;
 
 error:
-	MSG_ERRNO(_("an error occurred while starting daemon: %s"), error_str);
+	MSG_ERRNO(error_str);
 	err = EXIT_FAILURE;
 
 clean:
 	for(i = 0; i < ti->count; i++)
 		pthread_join(ti->thread[i].id, NULL);
+	fclose(stdout);
 	unlink(SOCKET_NAME);
 	close(listen_socket);
 	free(ti->thread);
