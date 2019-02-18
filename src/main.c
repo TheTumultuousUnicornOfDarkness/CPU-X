@@ -593,13 +593,13 @@ static void version(void)
 }
 
 /* Parse arguments and set some flags */
-#define OPTIONS_COUNT  (sizeof(cpux_options) / sizeof(cpux_options[0]))
-#define SHORT_OPT_LEN  3
-#define SHORT_OPTS_LEN (OPTIONS_COUNT * 2)
+#define OPTIONS_COUNT   (sizeof(cpux_options) / sizeof(cpux_options[0]))
+#define SHORT_OPT_SIZE  3
+#define SHORT_OPTS_SIZE (OPTIONS_COUNT * 2)
 static void parse_arguments(int argc, char *argv[])
 {
 	int i, j = 0, c, tmp_arg = -1;
-	char shortopt[SHORT_OPT_LEN], shortopts[SHORT_OPTS_LEN] = "";
+	char shortopt[SHORT_OPT_SIZE], shortopts[SHORT_OPTS_SIZE] = "";
 	struct option longopts[OPTIONS_COUNT];
 
 	/* Filling longopts structure */
@@ -608,8 +608,8 @@ static void parse_arguments(int argc, char *argv[])
 		while(!cpux_options[i].has_mod)
 			i++;
 		longopts[j++] = (struct option) { .name = cpux_options[i].long_opt, .has_arg = cpux_options[i].need_arg, .flag = 0, .val = cpux_options[i].short_opt };
-		snprintf(shortopt, SHORT_OPT_LEN, "%c%c", cpux_options[i].short_opt, cpux_options[i].need_arg ? ':' : '\0');
-		strncat(shortopts, shortopt, SHORT_OPTS_LEN - 1);
+		snprintf(shortopt, SHORT_OPT_SIZE, "%c%c", cpux_options[i].short_opt, cpux_options[i].need_arg ? ':' : '\0');
+		strncat(shortopts, shortopt, SHORT_OPTS_SIZE - 1);
 	}
 	longopts[j] = (struct option) { 0, 0, 0, 0 };
 
@@ -692,6 +692,9 @@ static void parse_arguments(int argc, char *argv[])
 		}
 	}
 }
+#undef OPTIONS_COUNT
+#undef SHORT_OPT_SIZE
+#undef SHORT_OPTS_SIZE
 
 /* Check for influenceable environment variables */
 static void check_environment_variables(Labels *data)

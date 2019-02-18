@@ -108,6 +108,7 @@ char *format(char *str, ...)
 
 	return buff[index];
 }
+#undef BUFFER_COUNT
 
 /* Similar to format(), but string can be colorized */
 char *colorized_msg(const char *color, const char *str, ...)

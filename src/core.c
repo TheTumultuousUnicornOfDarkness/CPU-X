@@ -195,6 +195,7 @@ static int cpu_technology(Labels *data)
 	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 	RETURN_OR_EXIT(2);
 }
+#undef RETURN_OR_EXIT
 
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data)
@@ -679,6 +680,7 @@ error:
 	MSG_ERROR(_("failed to find graphic card driver (%s)"), error_str);
 	return 1;
 }
+#undef DRIVER_IS
 
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
@@ -744,6 +746,8 @@ static int find_devices(Labels *data)
 
 	return !chipset_found + !data->gpu_count;
 }
+#undef DEVICE_VENDOR_STR
+#undef DEVICE_PRODUCT_STR
 #endif /* HAS_LIBPCI */
 
 /* Check is GPU is enabled */
