@@ -281,11 +281,12 @@ static int mvwprintw2c(WINDOW *win, int y, int x, const char *fmt, ...)
 	char *s1, *s2, *f1, *f2, *ptr = strdup(fmt);
 	enum EnColors pair;
 	va_list args;
+	const size_t ptr_len = strlen(ptr) + 1;
 
 	/* Retrive args */
 	va_start(args, fmt);
 	f2 = strstr(fmt, ": ") + 1;
-	f1 = strcat(strtok(ptr, ": "), ":");
+	f1 = strncat(strtok(ptr, ": "), ":", ptr_len);
 	s1 = va_arg(args, char *);
 	s2 = va_arg(args, char *);
 
@@ -477,12 +478,14 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 }
 
 /* Display active Core in CPU tab */
+#define BUFF_SIZE 16
 static void print_activecore(WINDOW *win)
 {
-	char buff[16];
-	sprintf(buff, _("Core #%i"), opts->selected_core);
+	char buff[BUFF_SIZE];
+	snprintf(buff, BUFF_SIZE, _("Core #%i"), opts->selected_core);
 	mvwprintwc(win, LINE_17, 4, DEFAULT_COLOR, buff);
 }
+#undef BUFF_SIZE
 
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)

@@ -648,7 +648,7 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 	buff[n] = '\0';
 
 	if((drv = strrchr(buff, '/')) != NULL)
-		strcpy(buff, drv + 1);
+		strncpy(buff, drv + 1, MAXSTR);
 
 	if(DRIVER_IS("fglrx"))        *gpu_driver = GPUDRV_FGLRX;
 	else if(DRIVER_IS("amdgpu"))  *gpu_driver = GPUDRV_AMDGPU;
@@ -659,7 +659,7 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 	else MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
 
 	snprintf(name, MAXSTR, _("(%s driver)"), buff);
-	strcpy(buff, name);
+	strncpy(buff, name, MAXSTR);
 
 	/* Check for discrete GPU */
 	switch(*gpu_driver)
