@@ -6,42 +6,47 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-19 21:55+0000\n"
+"Last-Translator: Brsn <bkzspam@outlook.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
+"translations/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "Hafıza tekrardan tahsis edilemiyor"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "Çıkılıyor %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "İşlemci teknolojisi bulunuyor"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"CPU'nuz veritabanında bulunmamaktadır ==> %s, model: %i, harici model: %i, "
+"aile: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-yol"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-yol"
 
 #: core.c:206
 #, c-format
@@ -55,7 +60,7 @@ msgstr ""
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "libcpuid çağrılamadı (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -80,40 +85,40 @@ msgstr ""
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "CPU çarpanları hesaplanıyor"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "dmidecall çağrılması es geç (root olmalı)"
 
 #: core.c:512
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "dmidecode çağrılıyor"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "dmidecode için hafıza tahsis edilemedi"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "dmidecode çağırılamadı"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "CPU kullanımı hesaplanıyor"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Bant genişliği çağırılıyor"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "Grafik kartı sürücüsü aranıyor"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "GPU sürücünüz bilinmiyor: %s"
 
 #: core.c:661
 #, c-format
