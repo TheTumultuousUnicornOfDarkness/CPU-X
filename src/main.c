@@ -510,6 +510,7 @@ static const struct
 	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
 	{ true,            'o', "nocolor",   no_argument,       N_("Disable colored output")                                   },
 	{ true,            'i', "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
+	{ true,            's', "start-daemon", no_argument,    N_("Start and connect to daemon")                              },
 	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
 	//{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
@@ -671,6 +672,7 @@ static void parse_arguments(int argc, char *argv[])
 				opts->use_network = 0;
 				opts->output_type = OUT_DUMP;
 				setlocale(LC_ALL, "C");
+				setenv("CPUX_DAEMON_DEBUG", "1", 1);
 				version();
 				break;
 			case 'v':
@@ -678,6 +680,9 @@ static void parse_arguments(int argc, char *argv[])
 				break;
 			case 'u':
 				opts->update = true;
+				break;
+			case 's':
+				opts->with_daemon = true;
 				break;
 			case 'h':
 				help();
@@ -789,13 +794,15 @@ int main(int argc, char *argv[])
 		.tab_graphics    = { { NULL } },
 		.tab_bench       = { { NULL } },
 		.cpu_freq        = 0,
+		.socket_fd       = -1,
 		.cpu_count       = 0,
 		.cache_count     = 0,
 		.dimm_count      = 0,
 		.gpu_count       = 0,
 		.bus_freq        = 0.0,
 		.cpu_min_mult    = 0.0,
-		.cpu_max_mult    = 0.0
+		.cpu_max_mult    = 0.0,
+		.reload          = false
 	};
 	data->l_data = &(LibcpuidData)
 	{
@@ -840,6 +847,7 @@ int main(int argc, char *argv[])
 		.issue          = false,
 		.use_network    = true,
 		.update         = false,
+		.with_daemon    = false,
 		.debug_database = false,
 		.freq_fallback  = false,
 		.selected_page  = 0,
@@ -859,12 +867,13 @@ int main(int argc, char *argv[])
 	if(opts->output_type > OUT_NO_CPUX)
 		goto skip_init;
 
+	/* Connect to daemon */
+	if(IS_ROOT || opts->with_daemon)
+		start_daemon(false);
+	if(daemon_is_alive())
+		connect_to_daemon(data);
+
 	/* Retrieve data */
-	if(getuid())
-	{
-		MSG_WARNING(_("Root privileges are required to work properly"));
-		MSG_WARNING(_("Some informations will not be retrievable"));
-	}
 	labels_setname(data);
 	fill_labels   (data);
 

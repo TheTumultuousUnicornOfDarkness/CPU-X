@@ -18,26 +18,28 @@
 
 /*
 * PROJECT CPU-X
-* FILE libdmi.h
+* FILE daemon.h
 */
 
-#ifndef _LIBDMI_H_
-#define _LIBDMI_H_
+#ifndef _DAEMON_H_
+#define _DAEMON_H_
 
-#include <stdint.h>
-#include "../cpu-x.h"
+#define POLL_TIMEOUT (5 * 1000) // 5 seconds
+#define NFDS         1
+#define LOG_FILE     "/tmp/cpu-x-daemon.log"
 
-
-enum EnDmidecode
+typedef struct
 {
-	DMI_CPU, DMI_MB, DMI_RAM, LASTDMI
-};
+	pthread_t id;
+	int       fd;
+} Thread;
 
-extern double *ext_clk;
-extern uint8_t *bank;
-extern char **dmidata[LASTDMI][16];
+typedef struct
+{
+	pthread_mutex_t mutex;
+	uint8_t count;
+	uint8_t allocated;
+	Thread *thread;
+} ThreadsInfo;
 
-int dmidecode(void);
-
-
-#endif
+#endif /* _DAEMON_H_ */

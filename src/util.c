@@ -34,7 +34,10 @@
 #include <regex.h>
 #include <libintl.h>
 #include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
 #include "cpu-x.h"
+#include "ipc.h"
 
 
 /************************* Public function *************************/
@@ -113,12 +116,16 @@ char *format(char *str, ...)
 /* Similar to format(), but string can be colorized */
 char *colorized_msg(const char *color, const char *str, ...)
 {
-	static char *buff;
+	char fmt[MSG_BUFF_LEN];
+	static char buff[MSG_BUFF_LEN];
 	va_list aptr;
 
-	free(buff);
 	va_start(aptr, str);
-	vasprintf(&buff, format("%s%s%s\n", opts->color ? color : DEFAULT, str, DEFAULT), aptr);
+	if(opts->color)
+		snprintf(fmt, MSG_BUFF_LEN, "%s%s%s\n", color, str, DEFAULT);
+	else
+		snprintf(fmt, MSG_BUFF_LEN, "%s\n", str);
+	vsnprintf(buff, MSG_BUFF_LEN, fmt, aptr);
 	va_end(aptr);
 
 	return buff;
@@ -216,25 +223,35 @@ error:
 }
 
 /* Load a kernel module */
-bool load_module(char *module)
+int load_module(char *module, int *fd)
 {
+	int ret = -1;
+	char *check_cmd = NULL;
+	const ssize_t len = strlen(module) + 1;
+	const DaemonCommand cmd = LOAD_MODULE;
+
 #if defined (__linux__)
-	if(!system(format("grep -wq %s /proc/modules 2> /dev/null", module)))
-		return true;
-	else if(getuid())
-		return false;
-	else
-		return !system(format("modprobe %s 2> /dev/null", module));
+	asprintf(&check_cmd, "grep -wq %s /proc/modules 2> /dev/null", module);
 #elif defined (__DragonFly__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__OpenBSD__)
-	if(!system(format("kldstat | grep %s > /dev/null", module)))
-		return true;
-	else if(getuid())
-		return false;
-	else
-		return !system(format("kldload -n %s 2> /dev/null", module));
+	asprintf(&check_cmd, "kldstat | grep %s > /dev/null", module);
 #else
-	return false;
+# error "Unsupported operating system"
 #endif
+
+	ret = system(check_cmd);
+	free(check_cmd);
+	if((ret != 0) && (*fd >= 0))
+	{
+		/* Send module name to daemon */
+		SEND_DATA(fd, &cmd, sizeof(DaemonCommand));
+		SEND_DATA(fd, &len, sizeof(ssize_t));
+		SEND_DATA(fd, module, len);
+
+		/* Receive return value */
+		RECEIVE_DATA(fd, &ret, sizeof(int));
+	}
+
+	return ret;
 }
 
 /* Search a sensor filename in a given directory corresponding to regex */
@@ -386,4 +403,38 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_label_other);
 
 	return err;
+}
+
+bool start_daemon(bool graphical)
+{
+	int wstatus = -1;
+	pid_t pid;
+	char *const cmd1[] = { DAEMON_PATH, NULL };
+	char *const cmd2[] = { "pkexec", DAEMON_PATH, NULL };
+	char *const cmd3[] = { "pkexec", "--disable-internal-agent", DAEMON_PATH, NULL };
+	char *const *cmd   = cmd2;
+
+	if(graphical)
+		cmd = cmd3;
+	else if(IS_ROOT)
+		cmd = cmd1;
+
+	pid = fork();
+	if(pid < 0)
+		MSG_ERRNO("fork");
+	else if(pid == 0)
+		execvp(cmd[0], cmd);
+	else
+		waitpid(pid, &wstatus, 0);
+
+	return (wstatus == 0);
+}
+
+bool daemon_is_alive()
+{
+	struct stat statbuf;
+
+	int ret = stat(SOCKET_NAME, &statbuf);
+
+	return !ret && (statbuf.st_uid == 0) && S_ISSOCK(statbuf.st_mode) && (statbuf.st_mode & ACCESSPERMS);
 }

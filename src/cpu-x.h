@@ -28,7 +28,7 @@
 #include <stdbool.h>
 #include <pthread.h>
 #include <errno.h>
-#define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
+#include <libintl.h>
 
 /* Software definition */
 #define PRGNAME               "CPU-X"
@@ -50,8 +50,10 @@
 /* Utilities macro */
 #define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
 #define GOTO_ERROR(str)       { snprintf(error_str, MAXSTR, str); goto error; }
+#define IS_ROOT               (getuid() == 0)
 
 /* Formatted messages definition */
+#define MSG_BUFF_LEN          128
 #define MSG_STDOUT(fmt, ...)  fprintf(stdout, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_STDERR(fmt, ...)  fprintf(stderr, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, colorized_msg(BOLD_GREEN, "%s", fmt), ##__VA_ARGS__) : 0
@@ -83,7 +85,11 @@
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"
 #define SYS_DRM               "/sys/class/drm/card"
 #define SYS_HWMON             "/sys/class/hwmon"
-#define SYS_DRI               "/sys/kernel/debug/dri"
+#define SYS_DEBUG             "/sys/kernel/debug"
+#define SYS_DRI               SYS_DEBUG"/dri"
+
+/* FreeBSD-specific paths definition */
+#define DEV_PCI               "/dev/pci"
 
 
 enum EnTabNumber
@@ -234,9 +240,10 @@ typedef struct
 	char *tab_bench[2][LASTBENCH];
 	char *tab_about[LASTABOUT];
 
-	int     cpu_freq;
+	int     cpu_freq, socket_fd;
 	uint8_t cpu_count, cache_count, dimm_count, gpu_count;
 	double  bus_freq, cpu_min_mult, cpu_max_mult;
+	bool    reload;
 
 	LibcpuidData  *l_data;
 	BandwidthData *w_data;
@@ -247,7 +254,7 @@ typedef struct
 
 typedef struct
 {
-	bool     color, verbose, issue, use_network, update, debug_database, freq_fallback;
+	bool     color, verbose, issue, use_network, update, with_daemon, debug_database, freq_fallback;
 	uint8_t  selected_page, selected_core, bw_test;
 	uint16_t output_type, refr_time;
 } Options;
@@ -295,12 +302,18 @@ int fopen_to_str(char **buffer, char *str, ...);
 /* Run a command and put output in a variable ('str' accept printf-like format) */
 int popen_to_str(char **buffer, char *str, ...);
 
-/* Load a kernel module */
-bool load_module(char *module);
+/* Load a kernel module (return 0 on success) */
+int load_module(char *module, int *fd);
 
 /* Get a filename located in a directory corresponding to given request */
 enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM };
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
+
+/* Start daemon in background */
+bool start_daemon(bool graphical);
+
+/* Check if daemon is running */
+bool daemon_is_alive(void);
 
 
 /***************************** External headers *****************************/
@@ -310,6 +323,12 @@ int fill_labels(Labels *data);
 
 /* Refresh some labels */
 int do_refresh(Labels *data);
+
+/* Establish connection to daemon */
+int connect_to_daemon(Labels *data);
+
+/* Dmidecode main function */
+int dmidecode(int quiet, void *cpux_pdata);
 
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void);

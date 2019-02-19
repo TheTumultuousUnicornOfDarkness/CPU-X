@@ -72,6 +72,10 @@ if(WITH_LIBCPUID)
 		if(HAVE_MSR_SERIALIZE_RAW_DATA)
 			add_definitions(-DHAVE_MSR_SERIALIZE_RAW_DATA)
 		endif(HAVE_MSR_SERIALIZE_RAW_DATA)
+		check_include_file(stdint.h HAVE_STDINT_H)
+		if(HAVE_STDINT_H)
+			add_definitions(-DHAVE_STDINT_H)
+		endif(HAVE_STDINT_H)
 	endif(LIBCPUID_FOUND)
 endif(WITH_LIBCPUID)
 
@@ -153,17 +157,25 @@ print_config("BANDWIDTH"           "${BANDWIDTH_VERSION}"   BANDWIDTH_FOUND   WI
 ### MAIN BINARY
 
 # Executable
-add_executable(cpu-x
+add_executable(${APP_EXEC}
 	main.c
 	util.c
 	cpu-x.h
 	core.c
 	core.h
+	ipc.h
+)
+
+add_executable(${DAEMON_EXEC}
+	daemon.c
+	daemon.h
+	ipc.h
+	cpu-x.h
 )
 
 # Gettext
 if(GETTEXT_FOUND)
-	add_dependencies(cpu-x potfiles)
+	add_dependencies(${APP_EXEC} potfiles)
 endif(GETTEXT_FOUND)
 
 # OS macro definition
@@ -187,9 +199,10 @@ endif()
 # Various definitions
 add_definitions(-DPRGVER="${PROJECT_VERSION}" -DCC="${CMAKE_C_COMPILER_ID}" -DHAS_LIBSYSTEM="${LIBSYSTEM}")
 add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}" -DTERMINFODIR="/lib/terminfo")
+add_definitions(-DDAEMON_PATH="${DAEMON_PATH}")
 
 # Link libraries
-target_link_libraries(cpu-x
+target_link_libraries(${APP_EXEC}
 	m
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
@@ -208,7 +221,14 @@ target_link_libraries(cpu-x
 	${OTHER_LIBRARIES}
 )
 
+target_link_libraries(${DAEMON_EXEC}
+	${CMAKE_THREAD_LIBS_INIT}
+
+	${LIBCPUID_LIBRARIES}
+	${DMIDECODE_LIBRARIES}
+)
+
 
 ### INSTALLATION
-
-install(TARGETS cpu-x DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)
+install(TARGETS ${APP_EXEC}    DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)
+install(TARGETS ${DAEMON_EXEC} DESTINATION ${CMAKE_INSTALL_FULL_LIBEXECDIR}/)

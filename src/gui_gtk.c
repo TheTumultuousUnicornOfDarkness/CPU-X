@@ -26,6 +26,7 @@
 #include <string.h>
 #include <libintl.h>
 #include "cpu-x.h"
+#include "ipc.h"
 #include "gui_gtk.h"
 #include "gui_gtk_id.h"
 
@@ -63,9 +64,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	set_signals(&glab, data, &refr);
 	labels_free(data);
 
-	if(getuid())
-		warning_window(glab.mainwindow);
-
 #if 0 //PORTABLE_BINARY
 	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
 		new_version_window(glab.mainwindow);
@@ -73,34 +71,13 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 
 	g_timeout_add_seconds(opts->refr_time, (gpointer)grefresh, &refr);
 	gtk_main();
+
+	if(data->reload)
+		execvp((*argv)[0], *argv);
 }
 
 
 /************************* Private functions *************************/
-
-/* Print a window which allows to restart CPU-X as root */
-static void warning_window(GtkWidget *mainwindow)
-{
-	char *const cmd[] = { "cpu-x_polkit", NULL };
-	GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(mainwindow),
-		GTK_DIALOG_DESTROY_WITH_PARENT,
-		GTK_MESSAGE_WARNING,
-		GTK_BUTTONS_NONE,
-		_("Root privileges are required to work properly"));
-
-	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),
-		_("Some informations will not be retrievable"));
-
-	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Ignore"), GTK_RESPONSE_REJECT);
-
-	if(!getenv("APPIMAGE") && command_exists("pkexec") && command_exists("cpu-x_polkit"))
-		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Run as root"), GTK_RESPONSE_ACCEPT);
-
-	if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
-		execvp(cmd[0], cmd);
-
-	gtk_widget_destroy(dialog);
-}
 
 #if 0 //PORTABLE_BINARY
 /* In portable version, inform when a new version is available and ask for update */
@@ -172,6 +149,17 @@ static gboolean grefresh(GThrd *refr)
 	}
 
 	return G_SOURCE_CONTINUE;
+}
+
+static void reload_with_daemon(GtkWidget *button, Labels *data)
+{
+	gtk_widget_set_sensitive(button, false);
+	data->reload = start_daemon(true);
+
+	if(data->reload)
+		gtk_main_quit();
+	else
+		gtk_widget_set_sensitive(button, true);
 }
 
 /* Event in CPU tab when Core number is changed */
@@ -290,7 +278,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	int i;
 
 	glab->mainwindow  = GTK_WIDGET(gtk_builder_get_object(builder, "mainwindow"));
-	glab->closebutton = GTK_WIDGET(gtk_builder_get_object(builder, "closebutton"));
+	glab->daemonbutton = GTK_WIDGET(gtk_builder_get_object(builder, "daemonbutton"));
 	glab->labprgver	  = GTK_WIDGET(gtk_builder_get_object(builder, "labprgver"));
 	glab->footer      = GTK_WIDGET(gtk_builder_get_object(builder, "footer_box"));
 	glab->notebook    = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
@@ -444,12 +432,20 @@ static void set_logos(GtkLabels *glab, Labels *data)
 static void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
+	const int pkcheck = system("pkcheck --list-temp > /dev/null 2>&1");
 	const gint width1 = gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][COMPILER]);
 	const gint width2 = width1 - gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][USED]) - 6;
 	GtkRequisition requisition;
 
 	/* Footer label */
 	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->tab_about[VERSIONSTR]);
+	gtk_widget_set_sensitive(glab->daemonbutton, !DAEMON_UP && !pkcheck);
+	if(DAEMON_UP)
+		gtk_widget_set_tooltip_text(glab->daemonbutton, _("Connected to daemon"));
+	else if(pkcheck)
+		gtk_widget_set_tooltip_text(glab->daemonbutton, _("No polkit authentication agent found"));
+	else
+		gtk_widget_set_tooltip_text(glab->daemonbutton, _("Ask password to start daemon in background"));
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
@@ -546,7 +542,7 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	int i;
 
 	g_signal_connect(glab->mainwindow,  "destroy", G_CALLBACK(gtk_main_quit),     NULL);
-	g_signal_connect(glab->closebutton, "clicked", G_CALLBACK(gtk_main_quit),     NULL);
+	g_signal_connect(glab->daemonbutton, "clicked", G_CALLBACK(reload_with_daemon), data);
 	g_signal_connect(glab->activecore,  "changed", G_CALLBACK(change_activecore), data);
 	g_signal_connect(glab->activetest,  "changed", G_CALLBACK(change_activetest), data);
 

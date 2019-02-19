@@ -40,7 +40,6 @@ struct opt
 	char *dumpfile;
 	u32 handle;
 };
-extern struct opt opt;
 
 #define FLAG_VERSION            (1 << 0)
 #define FLAG_HELP               (1 << 1)
@@ -49,7 +48,6 @@ extern struct opt opt;
 #define FLAG_DUMP_BIN           (1 << 4)
 #define FLAG_FROM_DUMP          (1 << 5)
 #define FLAG_NO_SYSFS           (1 << 6)
-#define FLAG_CPU_X              (1 << 10)
 
 int parse_command_line(int argc, char * const argv[]);
 void print_help(void);

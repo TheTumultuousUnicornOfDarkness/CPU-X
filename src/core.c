@@ -33,8 +33,11 @@
 #include <locale.h>
 #include <libintl.h>
 #include <sys/utsname.h>
+#include <sys/socket.h>
+#include <sys/un.h>
 #include "core.h"
 #include "cpu-x.h"
+#include "ipc.h"
 
 #ifndef __linux__
 # include <sys/sysctl.h>
@@ -43,11 +46,6 @@
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
 # include "databases.h"
-#endif
-
-#if HAS_DMIDECODE
-# include "dmidecode/libdmi.h"
-# include "dmidecode/dmiopt.h"
 #endif
 
 #if HAS_BANDWIDTH
@@ -75,10 +73,10 @@ int fill_labels(Labels *data)
 	int i, err = 0;
 	const uint8_t selected_page = opts->selected_page;
 
-	if(HAS_LIBCPUID)  err += call_libcpuid_static    (data);
-	if(HAS_LIBCPUID)  err += call_libcpuid_msr_static(data);
-	if(HAS_DMIDECODE) err += call_dmidecode          (data);
-	if(HAS_LIBPCI)    err += find_devices            (data);
+	if(HAS_LIBCPUID)               err += call_libcpuid_static    (data);
+	if(HAS_LIBCPUID  && DAEMON_UP) err += call_libcpuid_msr_static(data);
+	if(HAS_DMIDECODE && DAEMON_UP) err += call_dmidecode          (data);
+	if(HAS_LIBPCI)                 err += find_devices            (data);
 	casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
 
 	err += system_static       (data);
@@ -103,8 +101,8 @@ int do_refresh(Labels *data)
 	switch(opts->selected_page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID) err += err_func(call_libcpuid_dynamic,     data);
-			if(HAS_LIBCPUID) err += err_func(call_libcpuid_msr_dynamic, data);
+			if(HAS_LIBCPUID)              err += err_func(call_libcpuid_dynamic,     data);
+			if(HAS_LIBCPUID && DAEMON_UP) err += err_func(call_libcpuid_msr_dynamic, data);
 			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
 			err += err_func(cputab_fill_multipliers, data);
@@ -125,6 +123,33 @@ int do_refresh(Labels *data)
 	}
 
 	return err;
+}
+
+int connect_to_daemon(Labels *data)
+{
+	int socket_fd;
+	struct sockaddr_un addr;
+
+	/* Create local socket */
+	if((socket_fd = socket(AF_UNIX, SOCK_SEQPACKET, 0)) < 0)
+	{
+		MSG_ERRNO("socket");
+		return 1;
+	}
+
+	/* Connect socket to socket address */
+	memset(&addr, 0, sizeof(struct sockaddr_un));
+	addr.sun_family = AF_UNIX;
+	strncpy(addr.sun_path, SOCKET_NAME, sizeof(addr.sun_path) - 1);
+	if(connect(socket_fd, (const struct sockaddr*) &addr, sizeof(struct sockaddr_un)) < 0)
+	{
+		MSG_ERRNO("connect");
+		close(socket_fd);
+		return 1;
+	}
+
+	data->socket_fd = socket_fd;
+	return 0;
 }
 
 
@@ -386,78 +411,51 @@ static int call_libcpuid_dynamic(Labels *data)
 	return (data->cpu_freq <= 0);
 }
 
-/* Try to open a CPU MSR */
-static int libcpuid_init_msr(struct msr_driver_t **msr)
-{
-	if(getuid())
-	{
-		MSG_WARNING(_("Skip CPU MSR opening (need to be root)"));
-		return 1;
-	}
-
-	*msr = cpu_msr_driver_open_core(opts->selected_core);
-	if(*msr == NULL)
-	{
-		MSG_ERROR(_("failed to open CPU MSR (%s)"), cpuid_error());
-		return 2;
-	}
-
-	return 0;
-}
-
 /* MSRs static values provided by libcpuid */
 static int call_libcpuid_msr_static(Labels *data)
 {
-	int min_mult, max_mult, bclk;
-	struct msr_driver_t *msr = NULL;
-
-	if(libcpuid_init_msr(&msr))
-		return 1;
+	const DaemonCommand cmd = LIBCPUID_MSR_STATIC;
+	MsrStaticData msg;
 
 	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR static values"));
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(uint8_t));
+	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrStaticData));
+
 	/* CPU Multipliers (minimum & maximum) */
-	min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
-	max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
-	if(min_mult != CPU_INVALID_VALUE && max_mult != CPU_INVALID_VALUE)
+	if(msg.min_mult != CPU_INVALID_VALUE && msg.max_mult != CPU_INVALID_VALUE)
 	{
-		data->cpu_min_mult = (double) min_mult / 100;
-		data->cpu_max_mult = (double) max_mult / 100;
+		data->cpu_min_mult = (double) msg.min_mult / 100;
+		data->cpu_max_mult = (double) msg.max_mult / 100;
 	}
 
 	/* Base clock */
-	bclk = cpu_msrinfo(msr, INFO_BCLK);
-	if(bclk != CPU_INVALID_VALUE && data->bus_freq == 0.0)
-		data->bus_freq = (double) bclk / 100;
+	if(msg.bclk != CPU_INVALID_VALUE && data->bus_freq == 0.0)
+		data->bus_freq = (double) msg.bclk / 100;
 
-#ifdef HAVE_MSR_SERIALIZE_RAW_DATA
-	if(opts->issue)
-		msr_serialize_raw_data(msr, "");
-#endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
-
-	return cpu_msr_driver_close(msr);
+	return 0;
 }
 
 /* MSRs dynamic values provided by libcpuid */
 static int call_libcpuid_msr_dynamic(Labels *data)
 {
-	int voltage, temp;
-	struct msr_driver_t *msr = NULL;
-
-	if(libcpuid_init_msr(&msr))
-		return 1;
+	const DaemonCommand cmd = LIBCPUID_MSR_DYNAMIC;
+	MsrDynamicData msg;
 
 	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR dynamic values"));
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(unsigned));
+	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrDynamicData));
+
 	/* CPU Voltage */
-	voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
-	if(voltage != CPU_INVALID_VALUE)
-		casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", (double) voltage / 100);
+	if(msg.voltage != CPU_INVALID_VALUE)
+		casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", (double) msg.voltage / 100);
 
 	/* CPU Temperature */
-	temp = cpu_msrinfo(msr, INFO_TEMPERATURE);
-	if(temp != CPU_INVALID_VALUE)
-		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%i°C", temp);
+	if(msg.temp != CPU_INVALID_VALUE)
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%i°C", msg.temp);
 
-	return cpu_msr_driver_close(msr);
+	return 0;
 }
 #endif /* HAS_LIBCPUID */
 
@@ -490,57 +488,38 @@ static int cputab_fill_multipliers(Labels *data)
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void)
 {
-	opt.type  = NULL;
-	opt.flags = (opts->verbose) ? 0 : FLAG_QUIET;
-	return dmidecode();
+	return dmidecode(!opts->verbose, NULL);
 }
 
-/* Elements provided by dmidecode (need root privileges) */
+/* Elements provided by dmidecode */
 static int call_dmidecode(Labels *data)
 {
-	int i, err;
-
-	/* Dmidecode options */
-	opt.type  = NULL;
-	opt.flags = FLAG_CPU_X | FLAG_QUIET;
-
-	if(getuid())
-	{
-		MSG_WARNING(_("Skip call to dmidecode (need to be root)"));
-		return 1;
-	}
+	int i;
+	const DaemonCommand cmd = DMIDECODE;
+	DmidecodeData msg;
 
 	MSG_VERBOSE(_("Calling dmidecode"));
-	opt.type = calloc(256, sizeof(uint8_t));
-	if(opt.type == NULL)
-	{
-		MSG_ERRNO(_("failed to allocate memory for dmidecode"));
-		return 2;
-	}
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+
+	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(DmidecodeData));
+	if(msg.ret)
+		return 1;
 
 	/* Tab CPU */
-	dmidata[DMI_CPU][0] = &data->tab_cpu[VALUE][PACKAGE];
-	ext_clk = &data->bus_freq;
-	opt.type[4] = 1;
+	data->tab_cpu[VALUE][PACKAGE] = strdup(msg.cpu_package);
+	if(data->bus_freq == 0.0)
+		data->bus_freq = msg.bus_freq;
 
 	/* Tab Motherboard */
-	for(i = MANUFACTURER; i < LASTMOTHERBOARD; i++)
-		dmidata[DMI_MB][i] = &data->tab_motherboard[VALUE][i];
-	opt.type[0] = 1;
-	opt.type[2] = 1;
+	for(i = MANUFACTURER; i < CHIPVENDOR; i++)
+		data->tab_motherboard[VALUE][i] = strdup(msg.motherboard[i]);
 
 	/* Tab RAM */
-	for(i = BANK0; i < LASTMEMORY; i++)
-		dmidata[DMI_RAM][i] = &data->tab_memory[VALUE][i];
-	bank = &data->dimm_count;
-	opt.type[17] = 1;
+	data->dimm_count = msg.dimm_count;
+	for(i = BANK0; i < (int) data->dimm_count; i++)
+		data->tab_memory[VALUE][i] = strdup(msg.memory[i]);
 
-	/* Call built-in dmidecode in CPU-X mode */
-	if((err = dmidecode()))
-		MSG_ERROR(_("failed to call dmidecode"));
-
-	free(opt.type);
-	return err;
+	return 0;
 }
 #endif /* HAS_DMIDECODE */
 
@@ -697,9 +676,16 @@ static int find_devices(Labels *data)
 	MSG_VERBOSE(_("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
 #ifdef __FreeBSD__
-	if(access(pci_get_param(pacc, "fbsd.path"), W_OK))
+	int ret = -1;
+	const DaemonCommand cmd = ACCESS_DEV_PCI;
+	if(DAEMON_UP && access(DEV_PCI, W_OK))
 	{
-		MSG_WARNING(_("Skip devices search (need to be root)"));
+		SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+		RECEIVE_DATA(&data->socket_fd, &ret, sizeof(int));
+	}
+	if(ret && access(DEV_PCI, W_OK))
+	{
+		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
 		return 1;
 	}
 #endif /* __FreeBSD__ */
@@ -836,17 +822,25 @@ static int gpu_temperature(Labels *data)
 }
 
 #ifdef __linux__
-/* Perform functions if run as root, else print warning message once */
-static bool gpu_do_if_root(void)
+static bool sys_debug_ok(Labels *data)
 {
-	const  bool is_root = !getuid();
-	static bool init = false;
+	static int ret = 1;
+	const DaemonCommand cmd = ACCESS_SYS_DEBUG;
 
-	if(!is_root && !init)
-		MSG_WARNING(_("Skip some GPU values (need to be root)"));
-	init = true;
+	if(ret == 1)
+	{
+		if(!access(SYS_DEBUG, X_OK))
+			ret = 0;
+		else if(DAEMON_UP)
+		{
+			SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+			RECEIVE_DATA(&data->socket_fd, &ret, sizeof(int));
+		}
+		else
+			ret = -2;
+	}
 
-	return is_root;
+	return !ret;
 }
 #endif /* __linux__ */
 
@@ -898,8 +892,8 @@ static int gpu_clocks(Labels *data)
 		{
 			case GPUDRV_AMDGPU:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				ret_load = gpu_do_if_root() ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
-				                              fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
+				ret_load = sys_debug_ok(data) ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
+				                                fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
 				ret_gclk = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
 				ret_mclk = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
 				break;
@@ -916,8 +910,8 @@ static int gpu_clocks(Labels *data)
 			case GPUDRV_RADEON:
 				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
 				ret_load = -1;
-				ret_gclk = gpu_do_if_root() ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
-				ret_mclk = gpu_do_if_root() ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_gclk = sys_debug_ok(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_mclk = sys_debug_ok(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
 				if((gclk != NULL) && (strlen(gclk) >= 2)) gclk[strlen(gclk) - 2] = '\0';
 				if((mclk != NULL) && (strlen(mclk) >= 2)) mclk[strlen(mclk) - 2] = '\0';
 				break;
@@ -1339,11 +1333,11 @@ static int cputab_temp_fallback(Labels *data)
 # if HAS_LIBCPUID
 	/* Load kernel modules */
 	if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_INTEL))
-		module_loaded = load_module("coretemp");
+		module_loaded = !load_module("coretemp", &data->socket_fd);
 	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family <= 0x8))
-		module_loaded = load_module("k8temp");
+		module_loaded = !load_module("k8temp", &data->socket_fd);
 	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family >= 0x10))
-		module_loaded = load_module("k10temp");
+		module_loaded = !load_module("k10temp", &data->socket_fd);
 # endif /* HAS_LIBCPUID */
 
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.2 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkWindow" id="mainwindow">
@@ -8,6 +8,9 @@
     <property name="title" translatable="yes">CPU-X</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="mainbox">
         <property name="visible">True</property>
@@ -5874,8 +5877,8 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="closebutton">
-                <property name="label">OK</property>
+              <object class="GtkButton" id="daemonbutton">
+                <property name="label">Start daemon</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -5895,9 +5898,6 @@
           </packing>
         </child>
       </object>
-    </child>
-    <child type="titlebar">
-      <placeholder/>
     </child>
   </object>
 </interface>
