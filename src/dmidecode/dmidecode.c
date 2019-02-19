@@ -5116,7 +5116,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 	printf("\n");
 }
 
-static void dmi_decode_cpux(const struct dmi_header *h, u16 ver)
+static void dmi_decode_cpux(const struct dmi_header *h)
 {
 	const u8 *data = h->data;
 
@@ -5314,7 +5314,7 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 			else
 			{
 				if(cpux_data != NULL)
-					dmi_decode_cpux(&h, ver);
+					dmi_decode_cpux(&h);
 				else
 					dmi_decode(&h, ver);
 			}
