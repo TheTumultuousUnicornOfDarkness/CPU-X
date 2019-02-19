@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 cmake_policy(SET CMP0048 NEW)
+if(POLICY CMP0075)
+	cmake_policy(SET CMP0075 NEW)
+endif()
 project(cpu-x
 	VERSION "3.2.4"
 	LANGUAGES C
@@ -105,6 +108,7 @@ if(WITH_GETTEXT)
 	endif(${CMAKE_VERSION} VERSION_GREATER "3.1")
 endif(WITH_GETTEXT)
 include(CheckSymbolExists)
+include(CheckIncludeFile)
 add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(data)

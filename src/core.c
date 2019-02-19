@@ -683,7 +683,7 @@ static int find_devices(Labels *data)
 	}
 	if(ret && access(DEV_PCI, W_OK))
 	{
-		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)", DEV_PCI));
+		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
 		return 1;
 	}
 #endif /* __FreeBSD__ */

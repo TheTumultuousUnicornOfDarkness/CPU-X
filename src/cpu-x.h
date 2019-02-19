@@ -29,7 +29,6 @@
 #include <pthread.h>
 #include <errno.h>
 #include <libintl.h>
-#define HAVE_STDINT_H         /* Skip conflicts with <libcpuid/libcpuid_types.h> */
 
 /* Software definition */
 #define PRGNAME               "CPU-X"
