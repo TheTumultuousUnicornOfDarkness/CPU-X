@@ -711,8 +711,7 @@ static void parse_arguments(int argc, char *argv[])
 					version();
 					break;
 				}
-				else
-					__attribute__((fallthrough));
+				/* Fall through */
 			case '?':
 			default:
 				help();
