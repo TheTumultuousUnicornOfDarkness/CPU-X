@@ -867,7 +867,7 @@ int main(int argc, char *argv[])
 
 	/* Connect to daemon */
 	if(IS_ROOT || opts->with_daemon)
-		start_daemon(!IS_ROOT);
+		start_daemon(false);
 	if(daemon_is_alive())
 		connect_to_daemon(data);
 

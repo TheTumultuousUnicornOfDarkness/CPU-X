@@ -432,13 +432,20 @@ static void set_logos(GtkLabels *glab, Labels *data)
 static void set_labels(GtkLabels *glab, Labels *data)
 {
 	int i;
+	const int pkcheck = system("pkcheck --list-temp > /dev/null 2>&1");
 	const gint width1 = gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][COMPILER]);
 	const gint width2 = width1 - gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][USED]) - 6;
 	GtkRequisition requisition;
 
 	/* Footer label */
 	gtk_label_set_text(GTK_LABEL(glab->labprgver), data->tab_about[VERSIONSTR]);
-	gtk_widget_set_sensitive(glab->daemonbutton, !DAEMON_UP);
+	gtk_widget_set_sensitive(glab->daemonbutton, !DAEMON_UP && !pkcheck);
+	if(DAEMON_UP)
+		gtk_widget_set_tooltip_text(glab->daemonbutton, _("Connected to daemon"));
+	else if(pkcheck)
+		gtk_widget_set_tooltip_text(glab->daemonbutton, _("No polkit authentication agent found"));
+	else
+		gtk_widget_set_tooltip_text(glab->daemonbutton, _("Ask password to start daemon in background"));
 
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)

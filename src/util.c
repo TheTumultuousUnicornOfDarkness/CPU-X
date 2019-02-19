@@ -404,13 +404,19 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	return err;
 }
 
-bool start_daemon(bool use_pkexec)
+bool start_daemon(bool graphical)
 {
 	int wstatus = -1;
 	pid_t pid;
 	char *const cmd1[] = { DAEMON_PATH, NULL };
 	char *const cmd2[] = { "pkexec", DAEMON_PATH, NULL };
-	char *const *cmd   = use_pkexec ? cmd2 : cmd1;
+	char *const cmd3[] = { "pkexec", "--disable-internal-agent", DAEMON_PATH, NULL };
+	char *const *cmd   = cmd2;
+
+	if(graphical)
+		cmd = cmd3;
+	else if(IS_ROOT)
+		cmd = cmd1;
 
 	pid = fork();
 	if(pid < 0)
