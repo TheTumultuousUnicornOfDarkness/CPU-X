@@ -27,6 +27,7 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <ctype.h>
 #include <string.h>
 #include <signal.h>
 #include <execinfo.h>
@@ -499,22 +500,22 @@ static const struct
 	char       *description;
 } cpux_options[] =
 {
-	{ HAS_GTK,         'g', "gtk",       no_argument,       N_("Start graphical user interface (GUI) (default)")           },
-	{ HAS_NCURSES,     'n', "ncurses",   no_argument,       N_("Start text-based user interface (TUI)")                    },
-	{ true,            'd', "dump",      no_argument,       N_("Dump all data on standard output and exit")                },
-	{ HAS_DMIDECODE,   'D', "dmidecode", no_argument,       N_("Run embedded command dmidecode and exit")                  },
+	{ HAS_GTK,         'G', "gtk",       no_argument,       N_("Start graphical user interface (GUI) (default)")           },
+	{ HAS_NCURSES,     'N', "ncurses",   no_argument,       N_("Start text-based user interface (TUI)")                    },
+	{ true,            'D', "dump",      no_argument,       N_("Dump all data on standard output and exit")                },
+	{ HAS_DMIDECODE,   'M', "dmidecode", no_argument,       N_("Run embedded command dmidecode and exit")                  },
 	{ HAS_BANDWIDTH,   'B', "bandwidth", no_argument,       N_("Run embedded command bandwidth and exit")                  },
-	{ true,            'a', "tab",       required_argument, N_("Set default tab (integer)")                                },
-	{ HAS_LIBCPUID,    'c', "core",      required_argument, N_("Select CPU core to monitor (integer)")                     },
-	{ HAS_BANDWIDTH,   't', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
 	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
-	{ true,            'o', "nocolor",   no_argument,       N_("Disable colored output")                                   },
-	{ true,            'i', "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
-	{ true,            's', "start-daemon", no_argument,    N_("Start and connect to daemon")                              },
+	{ true,            't', "tab",       required_argument, N_("Set default tab (integer)")                                },
+	{ HAS_LIBCPUID,    'c', "core",      required_argument, N_("Select CPU core to monitor (integer)")                     },
+	{ HAS_BANDWIDTH,   'b', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
+	{ true,            'd', "daemon",    no_argument,       N_("Start and connect to daemon")                              },
 	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
 	//{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
+	{ true,              0, "nocolor",   no_argument,       N_("Disable colored output")                                   },
+	{ true,              0, "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
 	{ true,              0, NULL,        0,                 NULL                                                           }
 };
 
@@ -536,22 +537,33 @@ static const struct
 static void help(void)
 {
 	int i;
+	bool options_header = false;
+	char buff[MAXSTR];
 
 	MSG_STDOUT(_("Usage: %s DISPLAY [OPTIONS]\n"), binary_name);
 	MSG_STDOUT(_("Available DISPLAY:"));
 	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
-		if(cpux_options[i].short_opt == 'a')
+		if(!cpux_options[i].has_mod)
+			continue;
+
+		if(!options_header && islower(cpux_options[i].short_opt))
+		{
+			options_header = true;
 			MSG_STDOUT(_("\nAvailable OPTIONS:"));
-		if(cpux_options[i].has_mod)
-			MSG_STDOUT("  -%c, --%-10s %s", cpux_options[i].short_opt, cpux_options[i].long_opt, _(cpux_options[i].description));
+		}
+
+		if(cpux_options[i].short_opt) snprintf(buff, MAXSTR, "  -%c,", cpux_options[i].short_opt);
+		else                          snprintf(buff, MAXSTR, "     ");
+		MSG_STDOUT("%s --%-10s %s", buff, cpux_options[i].long_opt, _(cpux_options[i].description));
 	}
 
 	MSG_STDOUT(_("\nInfluenceable environment variables:"));
 	for(i = 0; cpux_env_vars[i].var_name != NULL; i++)
 	{
-		if(cpux_env_vars[i].has_mod)
-			MSG_STDOUT("  %-20s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
+		if(!cpux_options[i].has_mod)
+			continue;
+		MSG_STDOUT("  %-20s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
 	}
 }
 
@@ -599,7 +611,7 @@ static void version(void)
 #define SHORT_OPTS_SIZE (OPTIONS_COUNT * 2)
 static void parse_arguments(int argc, char *argv[])
 {
-	int i, j = 0, c, tmp_arg = -1;
+	int i, j = 0, c, longindex, tmp_arg = -1;
 	char shortopt[SHORT_OPT_SIZE], shortopts[SHORT_OPTS_SIZE] = "";
 	struct option longopts[OPTIONS_COUNT];
 
@@ -623,25 +635,31 @@ static void parse_arguments(int argc, char *argv[])
 		opts->output_type = OUT_DUMP;
 
 	/* Parse options */
-	while((c = getopt_long(argc, argv, shortopts, longopts, NULL)) != -1)
+	while((c = getopt_long(argc, argv, shortopts, longopts, &longindex)) != -1)
 	{
 		switch(c)
 		{
-			case 'g':
+			case 'G':
 				opts->output_type = OUT_GTK;
 				break;
-			case 'n':
+			case 'N':
 				opts->output_type = OUT_NCURSES;
 				break;
-			case 'd':
+			case 'D':
 				opts->output_type = OUT_DUMP;
+				break;
+			case 'M':
+				opts->output_type = OUT_DMIDECODE;
+				break;
+			case 'B':
+				opts->output_type = OUT_BANDWIDTH;
 				break;
 			case 'r':
 				tmp_arg = atoi(optarg);
 				if(tmp_arg >= 1)
 					opts->refr_time = tmp_arg;
 				break;
-			case 'a':
+			case 't':
 				tmp_arg = atoi(optarg);
 				if(NO_CPU < tmp_arg && tmp_arg <= NO_ABOUT)
 					opts->selected_page = tmp_arg;
@@ -651,45 +669,50 @@ static void parse_arguments(int argc, char *argv[])
 				if(tmp_arg >= 0)
 					opts->selected_core = tmp_arg;
 				break;
-			case 't':
+			case 'b':
 				tmp_arg = atoi(optarg);
 				if(tmp_arg >= 0)
 					opts->bw_test = atoi(optarg);
 				break;
-			case 'D':
-				opts->output_type = OUT_DMIDECODE;
-				break;
-			case 'B':
-				opts->output_type = OUT_BANDWIDTH;
-				break;
-			case 'o':
-				opts->color = false;
-				break;
-			case 'i':
-				opts->color       = false;
-				opts->verbose     = true;
-				opts->issue       = true;
-				opts->use_network = 0;
-				opts->output_type = OUT_DUMP;
-				setlocale(LC_ALL, "C");
-				setenv("CPUX_DAEMON_DEBUG", "1", 1);
-				version();
+			case 'd':
+				opts->with_daemon = true;
 				break;
 			case 'v':
 				opts->verbose = true;
 				break;
+#if 0
 			case 'u':
 				opts->update = true;
 				break;
-			case 's':
-				opts->with_daemon = true;
-				break;
+#endif
 			case 'h':
 				help();
 				exit(EXIT_SUCCESS);
+				break;
 			case 'V':
 				version();
 				exit(EXIT_SUCCESS);
+				break;
+			case 0:
+				if(!strcmp(longopts[longindex].name, "nocolor"))
+				{
+					opts->color = false;
+					break;
+				}
+				else if(!strcmp(longopts[longindex].name, "issue-fmt"))
+				{
+					opts->color       = false;
+					opts->verbose     = true;
+					opts->issue       = true;
+					opts->use_network = 0;
+					opts->output_type = OUT_DUMP;
+					setlocale(LC_ALL, "C");
+					setenv("CPUX_DAEMON_DEBUG", "1", 1);
+					version();
+					break;
+				}
+				else
+					__attribute__((fallthrough));
 			case '?':
 			default:
 				help();
