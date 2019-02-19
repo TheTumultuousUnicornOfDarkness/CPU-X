@@ -3,6 +3,8 @@ project(data
 )
 
 
+add_subdirectory(completions)
+
 # Files needed by GTK GUI
 if(WITH_GTK)
 	# Set config

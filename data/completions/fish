@@ -1,0 +1,21 @@
+set -l progname cpu-x
+complete -c $progname -f
+
+set -l noopt 'not __fish_contains_opt -s G -s N -s D -s M -s B V gtk ncurses dump dmidecode bandwidth'
+
+complete -c $progname -s G -l gtk -n $noopt -d 'Start graphical user interface (GUI)'
+complete -c $progname -s N -l ncurses -n $noopt -d 'Start text-based user interface (TUI)'
+complete -c $progname -s D -l dump -n $noopt -d 'Dump all data on standard output and exit'
+complete -c $progname -s M -l dmidecode -n $noopt -d 'Run embedded command dmidecode and exit'
+complete -c $progname -s B -l bandwidth -n $noopt -d 'Run embedded command bandwidth and exit'
+complete -c $progname -s h -l help -n $noopt -d 'Print help and exit'
+complete -c $progname -s V -l version -n $noopt -d 'Print version and exit'
+
+complete -c $progname -s r -l refresh -x -d 'Set custom time between two refreshes (in seconds)'
+complete -c $progname -s t -l tab -x -d 'Set default tab (integer)'
+complete -c $progname -s c -l core -x -d 'Select CPU core to monitor (integer)'
+complete -c $progname -s b -l cachetest -x -d 'Set custom bandwidth test for CPU caches speed (integer)'
+complete -c $progname -s d -l daemon -d 'Start and connect to daemon'
+complete -c $progname -s v -l verbose -d 'Verbose output'
+complete -c $progname -l nocolor -d 'Disable colored output'
+complete -c $progname -l issue-fmt -d 'Print required informations to paste in an issue'

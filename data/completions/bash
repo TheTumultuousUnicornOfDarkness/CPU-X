@@ -1,0 +1,25 @@
+_cpu_x() {
+	local cur prev display opts
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	display=(-G --gtk -N --ncurses -D --dump -M --dmidecode -B --bandwidth -h --help -V --version)
+	opts=(-r --refresh -t --tab -c --core -b --cachetest -d --daemon -v --verbose --nocolor --issue-fmt)
+
+	case $prev in
+		-G|--gtk|-N|--ncurses|-D|dump|-M|--dmidecode|-B|--bandwidth)
+			COMPREPLY=($(compgen -W "${opts[*]}" -- "$cur"))
+			;;
+		-h|--help|-V|--version)
+			return 0
+			;;
+		-r|--refresh|-t|--tab|-c|--core|-b|--cachetest|-d|--daemon|-v|--verbose|--nocolor|--issue-fmt)
+			COMPREPLY=($(compgen -W "${opts[*]}" -- "$cur"))
+			;;
+		*)
+			COMPREPLY=($(compgen -W "${display[*]} ${opts[*]}" -- "$cur"))
+			;;
+	esac
+}
+
+complete -F _cpu_x cpu-x
