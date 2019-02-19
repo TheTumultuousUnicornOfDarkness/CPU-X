@@ -603,11 +603,11 @@ static int call_bandwidth(Labels *data)
 #if HAS_LIBPCI
 #define DRIVER_IS(str) strstr(buff, str) != NULL
 /* Find driver name for a device */
-static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
+static int find_driver(struct pci_dev *dev, char *driver_name, Labels *data)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
-	char name[MAXSTR], error_str[MAXSTR] = "unknown";
+	char driver_path[MAXSTR], buff[MAXSTR], error_str[MAXSTR] = "unknown";
 	char *base = NULL, *drv = NULL, *tmp = NULL;
 	enum EnGpuDrv *gpu_driver = &data->g_data->gpu_driver[data->gpu_count];
 
@@ -621,14 +621,15 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 
 	casprintf(&data->g_data->device_path[data->gpu_count], false, "%s/devices/%04x:%02x:%02x.%d",
 		base, dev->domain, dev->bus, dev->dev, dev->func);
-	snprintf(name, MAXSTR, "%s/driver", data->g_data->device_path[data->gpu_count]);
+	snprintf(driver_path, MAXSTR, "%s/driver", data->g_data->device_path[data->gpu_count]);
 
-	if((n = readlink(name, buff, MAXSTR)) <= 0)
+	if((n = readlink(driver_path, buff, MAXSTR)) <= 0)
 		GOTO_ERROR("readlink");
 	buff[n] = '\0';
 
 	if((drv = strrchr(buff, '/')) != NULL)
-		strncpy(buff, drv + 1, MAXSTR);
+		strncpy(buff, drv + 1, MAXSTR - 1);
+	snprintf(driver_name, MAXSTR, _("(%s driver)"), buff);
 
 	if(DRIVER_IS("fglrx"))        *gpu_driver = GPUDRV_FGLRX;
 	else if(DRIVER_IS("amdgpu"))  *gpu_driver = GPUDRV_AMDGPU;
@@ -637,9 +638,6 @@ static int find_driver(struct pci_dev *dev, char *buff, Labels *data)
 	else if(DRIVER_IS("nvidia"))  *gpu_driver = GPUDRV_NVIDIA;
 	else if(DRIVER_IS("nouveau")) *gpu_driver = GPUDRV_NOUVEAU;
 	else MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
-
-	snprintf(name, MAXSTR, _("(%s driver)"), buff);
-	strncpy(buff, name, MAXSTR);
 
 	/* Check for discrete GPU */
 	switch(*gpu_driver)
