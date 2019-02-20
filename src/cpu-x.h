@@ -80,6 +80,18 @@
 #define GPUFIELDS             6        /* Nb of fields by GPU frame */
 #define BENCHFIELDS           2        /* Nb of fields by bench frame */
 
+/* SI unit prefixes */
+#define UNIT_B                _("bytes")
+// TRANSLATORS: kilo-Byte
+#define UNIT_KB               _("kB")
+// TRANSLATORS: Mega-Byte
+#define UNIT_MB               _("MB")
+// TRANSLATORS: Giga-Byte
+#define UNIT_GB               _("GB")
+// TRANSLATORS: Tera-Byte
+#define UNIT_TB               _("TB")
+
+
 /* Linux-specific paths definition */
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"

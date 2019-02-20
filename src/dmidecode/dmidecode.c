@@ -322,9 +322,9 @@ static char *dmi_bios_runtime_size_str(u32 code)
 	static char size[STR_LEN] = "";
 
 	if (code & 0x000003FF)
-		snprintf(size, STR_LEN, "%u bytes", code);
+		snprintf(size, STR_LEN, "%u @0B@", code);
 	else
-		snprintf(size, STR_LEN, "%u kB", code >> 10);
+		snprintf(size, STR_LEN, "%u @KB@", code >> 10);
 
 	return size;
 }
@@ -345,11 +345,11 @@ static char *dmi_bios_rom_size_str(u8 code1, u16 code2)
 {
 	static char size[STR_LEN] = "";
 	static const char *unit[4] = {
-		"MB", "GB", out_of_spec, out_of_spec
+		"@MB@", "@GB@", "?B", "?B"
 	};
 
 	if (code1 != 0xFF)
-		snprintf(size, STR_LEN, "%u kB", (code1 + 1) << 6);
+		snprintf(size, STR_LEN, "%u @KB@", (code1 + 1) << 6);
 	else
 		snprintf(size, STR_LEN, "%u %s", code2 & 0x3FFF, unit[code2 >> 14]);
 
@@ -2423,9 +2423,9 @@ static char *dmi_memory_device_size_str(u16 code)
 	else
 	{
 		if (code & 0x8000)
-			snprintf(size, STR_LEN, "%u kB", code & 0x7FFF);
+			snprintf(size, STR_LEN, "%u @KB@", code & 0x7FFF);
 		else
-			snprintf(size, STR_LEN, "%u MB", code);
+			snprintf(size, STR_LEN, "%u @MB@", code);
 	}
 
 	return size;
@@ -2458,11 +2458,11 @@ static char *dmi_memory_device_extended_size_str(u32 code)
 	 * as an integer without rounding
 	 */
 	if (code & 0x3FFUL)
-		snprintf(size, STR_LEN, "%lu MB", (unsigned long)code);
+		snprintf(size, STR_LEN, "%lu @MB@", (unsigned long)code);
 	else if (code & 0xFFC00UL)
-		snprintf(size, STR_LEN, "%lu GB", (unsigned long)code >> 10);
+		snprintf(size, STR_LEN, "%lu @GB@", (unsigned long)code >> 10);
 	else
-		snprintf(size, STR_LEN, "%lu TB", (unsigned long)code >> 20);
+		snprintf(size, STR_LEN, "%lu @TB@", (unsigned long)code >> 20);
 
 	return size;
 }

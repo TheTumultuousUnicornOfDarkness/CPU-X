@@ -227,9 +227,9 @@ static int call_libcpuid_static(Labels *data)
 {
 	int err, i, j = 0;
 	char tmp[MAXSTR * 2] = "";
-	const char *fmt_cache_kb = _("%d x %d KB, %d-way");
-	const char *fmt_cache_mb = _("%d MB, %d-way");
-	const char *fmt_lines    = _("%s associative, %d-byte line size");
+	const char *fmt_cache_kb = _("%d x %d %s, %d-way");
+	const char *fmt_cache_mb = _("%d %s, %d-way");
+	const char *fmt_lines    = _("%s associative, %d-%s line size");
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
 
@@ -297,15 +297,15 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Cache level 1 (data) */
 	if(datanr.l1_data_cache > 0)
-		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, fmt_cache_kb, datanr.num_cores, datanr.l1_data_cache, datanr.l1_assoc);
+		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, fmt_cache_kb, datanr.num_cores, datanr.l1_data_cache, UNIT_KB, datanr.l1_assoc);
 
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
 	{
 		data->cache_count++;
 		data->w_data->size[0] = datanr.l1_instruction_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, fmt_cache_kb, datanr.num_cores, datanr.l1_instruction_cache, datanr.l1_assoc);
-		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL1I], datanr.l1_cacheline);
+		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, fmt_cache_kb, datanr.num_cores, datanr.l1_instruction_cache, UNIT_KB, datanr.l1_assoc);
+		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL1I], datanr.l1_cacheline, UNIT_B);
 	}
 
 	/* Cache level 2 */
@@ -313,8 +313,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->cache_count++;
 		data->w_data->size[1] = datanr.l2_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, fmt_cache_kb, datanr.num_cores, datanr.l2_cache, datanr.l2_assoc);
-		casprintf(&data->tab_caches[VALUE][L2SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL2], datanr.l2_cacheline);
+		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, fmt_cache_kb, datanr.num_cores, datanr.l2_cache, UNIT_KB, datanr.l2_assoc);
+		casprintf(&data->tab_caches[VALUE][L2SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL2], datanr.l2_cacheline, UNIT_B);
 	}
 
 	/* Cache level 3 */
@@ -322,8 +322,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->cache_count++;
 		data->w_data->size[2] = datanr.l3_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, fmt_cache_mb, datanr.l3_cache >> 10, datanr.l3_assoc);
-		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL3], datanr.l3_cacheline);
+		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, fmt_cache_mb, datanr.l3_cache >> 10, UNIT_MB, datanr.l3_assoc);
+		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL3], datanr.l3_cacheline, UNIT_B);
 	}
 
 	/* Cache level 4 */
@@ -331,8 +331,8 @@ static int call_libcpuid_static(Labels *data)
 	{
 		data->cache_count++;
 		data->w_data->size[3] = datanr.l4_cache;
-		snprintf(tmp, MAXSTR, fmt_cache_mb, datanr.l4_cache >> 10, datanr.l4_assoc);
-		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_lines, tmp, datanr.l4_cacheline);
+		snprintf(tmp, MAXSTR, fmt_cache_mb, datanr.l4_cache >> 10, UNIT_MB, datanr.l4_assoc);
+		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_lines, tmp, datanr.l4_cacheline, UNIT_B);
 		memset(tmp, 0, MAXSTR);
 	}
 
@@ -485,6 +485,50 @@ static int cputab_fill_multipliers(Labels *data)
 }
 
 #if HAS_DMIDECODE
+#define TOKEN_LEN 4
+/* Duplicate a string and set unit */
+static char *strdup_and_set_unit(char *str)
+{
+	const ssize_t len = strlen(str) + 1;
+	int i = 0, j = 0;
+	char *ptr = malloc(len);
+
+	if(str == NULL)
+		return NULL;
+
+	while(str[i] != '\0')
+	{
+		if((str[i] == '@') && (i + TOKEN_LEN - 1 < len) && (str[i + TOKEN_LEN - 1] == '@'))
+		{
+			/* Set unit in destination string */
+			if(!strncmp(&str[i], "@0B@", TOKEN_LEN))
+				j += snprintf(&ptr[j], len, "%s", UNIT_B);
+			else if(!strncmp(&str[i], "@KB@", TOKEN_LEN))
+				j += snprintf(&ptr[j], len, "%s", UNIT_KB);
+			else if(!strncmp(&str[i], "@MB@", TOKEN_LEN))
+				j += snprintf(&ptr[j], len, "%s", UNIT_MB);
+			else if(!strncmp(&str[i], "@GB@", TOKEN_LEN))
+				j += snprintf(&ptr[j], len, "%s", UNIT_GB);
+			else if(!strncmp(&str[i], "@TB@", TOKEN_LEN))
+				j += snprintf(&ptr[j], len, "%s", UNIT_TB);
+			else
+				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str, i);
+			i += TOKEN_LEN;
+		}
+		else
+		{
+			/* Copy one character */
+			ptr[j] = str[i];
+			i++;
+			j++;
+		}
+	}
+	ptr[j] = '\0';
+
+	return ptr;
+}
+#undef TOKEN_LEN
+
 /* Call Dmidecode through CPU-X but do nothing else */
 int run_dmidecode(void)
 {
@@ -512,12 +556,12 @@ static int call_dmidecode(Labels *data)
 
 	/* Tab Motherboard */
 	for(i = MANUFACTURER; i < CHIPVENDOR; i++)
-		data->tab_motherboard[VALUE][i] = strdup(msg.motherboard[i]);
+		data->tab_motherboard[VALUE][i] = strdup_and_set_unit(msg.motherboard[i]);
 
 	/* Tab RAM */
 	data->dimm_count = msg.dimm_count;
 	for(i = BANK0; i < (int) data->dimm_count; i++)
-		data->tab_memory[VALUE][i] = strdup(msg.memory[i]);
+		data->tab_memory[VALUE][i] = strdup_and_set_unit(msg.memory[i]);
 
 	return 0;
 }
@@ -594,7 +638,7 @@ static int call_bandwidth(Labels *data)
 
 	/* Speed labels */
 	for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
-		casprintf(&data->tab_caches[VALUE][i * CACHEFIELDS + L1SPEED], true, "%.2f MB/s", (double) data->w_data->speed[i] / 10);
+		casprintf(&data->tab_caches[VALUE][i * CACHEFIELDS + L1SPEED], true, "%.2f %s/s", (double) data->w_data->speed[i] / 10, UNIT_MB);
 
 	return err;
 }
@@ -1054,8 +1098,8 @@ static int system_dynamic(Labels *data)
 #endif /* HAS_LIBSTATGRAB */
 	/* Memory labels */
 	for(i = USED; i < SWAP; i++)
-		casprintf(&data->tab_system[VALUE][i], false, "%5u MB / %5u MB", m_data->mem_usage[j++], m_data->mem_total);
-	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u MB / %5u MB", m_data->mem_usage[j], m_data->swap_total);
+		casprintf(&data->tab_system[VALUE][i], false, "%5u %s / %5u %s", m_data->mem_usage[j++], UNIT_MB, m_data->mem_total, UNIT_MB);
+	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u %s / %5u %s", m_data->mem_usage[j], UNIT_MB, m_data->swap_total, UNIT_MB);
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
