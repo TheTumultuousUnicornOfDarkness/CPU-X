@@ -496,7 +496,7 @@ static char *strdup_and_set_unit(char *str)
 	if(str == NULL)
 		return NULL;
 
-	while(str[i] != '\0')
+	while(i < len)
 	{
 		if((str[i] == '@') && (i + TOKEN_LEN - 1 < len) && (str[i + TOKEN_LEN - 1] == '@'))
 		{
