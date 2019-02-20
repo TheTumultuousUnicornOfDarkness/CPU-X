@@ -778,6 +778,7 @@ static int find_devices(Labels *data)
 #undef DEVICE_PRODUCT_STR
 #endif /* HAS_LIBPCI */
 
+#ifdef __linux__
 /* Check is GPU is enabled */
 static bool gpu_is_on(enum EnGpuDrv gpu_driver)
 {
@@ -796,6 +797,7 @@ static bool gpu_is_on(enum EnGpuDrv gpu_driver)
 	free(buff);
 	return ret;
 }
+#endif /* __linux__ */
 
 /* Retrieve GPU temperature */
 static int gpu_temperature(Labels *data)
