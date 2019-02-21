@@ -299,7 +299,7 @@ int main(void)
 	freopen(LOG_FILE, "a", stdout);
 	setvbuf(stdout, NULL, _IONBF, 0);
 	dup2(STDOUT_FILENO, STDERR_FILENO);
-	MSG_STDOUT("%s %s (%s %s)", PRGNAME, PRGVER, __DATE__, __TIME__);
+	PRGINFO(stdout);
 
 	/* Initialize mutex */
 	if(pthread_mutex_init(&ti->mutex, NULL) < 0)

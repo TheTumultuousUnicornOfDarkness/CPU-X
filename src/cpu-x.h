@@ -51,6 +51,7 @@
 #define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
 #define GOTO_ERROR(str)       { snprintf(error_str, MAXSTR, str); goto error; }
 #define IS_ROOT               (getuid() == 0)
+#define PRGINFO(out)          fprintf(out, "%s %s (%s %s, %s %s, %s %s)\n", PRGNAME, PRGVER, __DATE__, __TIME__, SYSTEM_NAME, SYSTEM_PROCESSOR, C_COMPILER_ID, __VERSION__)
 
 /* Formatted messages definition */
 #define MSG_BUFF_LEN          128

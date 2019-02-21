@@ -589,12 +589,11 @@ static void version(void)
 	if(HAS_WEB_SUPPORT)
 		check_new_version();
 
-	MSG_STDOUT("%s %s %s", PRGNAME, PRGVER, new_version[1]);
+	PRGINFO(stdout);
 	MSG_STDOUT("%s\n", PRGCPRGHT);
 	MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
 	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
 	MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
-	MSG_STDOUT(_("Built on %s, %s (with %s %s on %s)."), __DATE__, __TIME__, CC, __VERSION__, OS);
 	free(new_version[1]);
 
 	/* Print features version */
@@ -756,7 +755,7 @@ static void sighandler(int signum)
 	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"),
 	           BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
 	MSG_STDERR("========================= Backtrace =========================");
-	MSG_STDERR("%s %s (%s, %s)", PRGNAME, PRGVER, CC, OS);
+	PRGINFO(stderr);
 	for(i = 1; i < bt_size; i++)
 	{
 		char *address = strtok(strrchr(strdup(bt_syms[i]), '[') + 1, "]");

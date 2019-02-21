@@ -177,16 +177,6 @@ if(GETTEXT_FOUND)
 	add_dependencies(${APP_EXEC} potfiles)
 endif(GETTEXT_FOUND)
 
-# OS macro definition
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	add_definitions(-DOS="linux${BITNESS}")
-elseif(${CMAKE_SYSTEM_NAME} MATCHES FreeBSD OR ${CMAKE_SYSTEM_NAME} MATCHES DragonFly)
-	add_definitions(-DOS="bsd${BITNESS}")
-else()
-	message("${BoldYellow}Unknown operating system: ${CMAKE_SYSTEM_NAME}${ColourReset}")
-	add_definitions(-DOS="unknown${BITNESS}")
-endif()
-
 # Libsystem extra-definitions
 if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1)
 	add_definitions(-DHAS_LIBSTATGRAB=0 -DLIBSTATGRAB_VERSION=NULL)
@@ -196,9 +186,16 @@ if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2)
 endif()
 
 # Various definitions
-add_definitions(-DPRGVER="${PROJECT_VERSION}" -DCC="${CMAKE_C_COMPILER_ID}" -DHAS_LIBSYSTEM="${LIBSYSTEM}")
-add_definitions(-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}" -DTERMINFODIR="/lib/terminfo")
-add_definitions(-DDAEMON_PATH="${DAEMON_PATH}")
+add_definitions(-DPRGVER="${PROJECT_VERSION}"
+	-DSYSTEM_NAME="${CMAKE_SYSTEM_NAME}"
+	-DSYSTEM_PROCESSOR="${CMAKE_SYSTEM_PROCESSOR}"
+	-DC_COMPILER_ID="${CMAKE_C_COMPILER_ID}"
+	-DHAS_LIBSYSTEM="${LIBSYSTEM}"
+	-DGETTEXT_PACKAGE="${CMAKE_PROJECT_NAME}"
+	-DLOCALEDIR="${CMAKE_INSTALL_FULL_LOCALEDIR}"
+	-DTERMINFODIR="/lib/terminfo"
+	-DDAEMON_PATH="${DAEMON_PATH}"
+)
 
 # Link libraries
 target_link_libraries(${APP_EXEC}
