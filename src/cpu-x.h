@@ -50,6 +50,7 @@
 /* Utilities macro */
 #define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
 #define GOTO_ERROR(str)       { snprintf(error_str, MAXSTR, str); goto error; }
+#define ALLOC_CHECK(ptr)      if(ptr == NULL) { MSG_ERRNO(_("FATAL ERROR: could not allocate memory")); exit(255); }
 #define IS_ROOT               (getuid() == 0)
 #define PRGINFO(out)          fprintf(out, "%s %s (%s %s, %s %s, %s %s)\n", PRGNAME, PRGVER, __DATE__, __TIME__, SYSTEM_NAME, SYSTEM_PROCESSOR, C_COMPILER_ID, __VERSION__)
 

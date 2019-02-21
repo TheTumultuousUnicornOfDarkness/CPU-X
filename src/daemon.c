@@ -176,7 +176,12 @@ static int __load_module(int *fd)
 
 	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
 	if((module = malloc(len)) == NULL)
+	{
 		MSG_ERRNO("malloc");
+		close(*fd);
+		*fd = -1;
+		return 1;
+	}
 	RECEIVE_DATA(fd, module, len);
 
 #if defined (__linux__)

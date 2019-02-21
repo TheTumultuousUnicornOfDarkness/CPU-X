@@ -324,13 +324,8 @@ static size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
 	const size_t old_len = (old_buff == NULL) ? 0 : strlen(old_buff);
 	const size_t new_len = old_len + len;
 
-	if((tmp = realloc(old_buff, new_len + 1)) == NULL)
-	{
-		MSG_ERRNO(_("could not reallocate memory"));
-		MSG_STDERR(_("Exiting %s"), PRGNAME);
-		exit(255);
-	}
-
+	tmp = realloc(old_buff, new_len + 1);
+	ALLOC_CHECK(tmp);
 	*buff = tmp;
 	memcpy(&((*buff)[old_len]), ptr, len);
 	(*buff)[new_len] = '\0';

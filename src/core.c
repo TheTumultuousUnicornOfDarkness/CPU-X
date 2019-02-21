@@ -166,12 +166,8 @@ static int err_func(int (*func)(Labels *), Labels *data)
 
 	if(i == last)
 	{
-		if((tmp = realloc(registered, sizeof(struct Functions) * (i + 1))) == NULL)
-		{
-			MSG_ERRNO(_("could not reallocate memory"));
-			MSG_STDERR(_("Exiting %s"), PRGNAME);
-			exit(255);
-		}
+		tmp = realloc(registered, sizeof(struct Functions) * (i + 1));
+		ALLOC_CHECK(tmp);
 		registered                 = tmp;
 		registered[last].func      = func;
 		registered[last].skip_func = 0;
@@ -488,12 +484,13 @@ static int cputab_fill_multipliers(Labels *data)
 /* Duplicate a string and set unit */
 static char *strdup_and_set_unit(char *str)
 {
+	if(str == NULL)
+		return NULL;
+
 	const ssize_t len = strlen(str) + 1;
 	int i = 0, j = 0;
 	char *ptr = malloc(len);
-
-	if(str == NULL)
-		return NULL;
+	ALLOC_CHECK(ptr);
 
 	while(i < len)
 	{
@@ -576,11 +573,12 @@ static int cpu_usage(Labels *data)
 
 	MSG_VERBOSE(_("Calculating CPU usage"));
 	if(pre == NULL)
+	{
 		pre = calloc(LASTSTAT, sizeof(long));
+		ALLOC_CHECK(pre);
+	}
 	new = calloc(LASTSTAT, sizeof(long));
-
-	if(new == NULL || pre == NULL)
-		return 1;
+	ALLOC_CHECK(new);
 
 #ifdef __linux__
 	FILE *fp;
@@ -1214,12 +1212,8 @@ void start_benchmarks(Labels *data)
 	b_data->primes  = 1;
 	b_data->start   = clock();
 	t_id            = malloc(sizeof(pthread_t) * b_data->threads);
-	if(t_id == NULL)
-	{
-		MSG_ERRNO(_("failed to allocate memory for benchmark"));
-		return;
-	}
 
+	ALLOC_CHECK(t_id);
 	err += pthread_mutex_init(&b_data->mutex_num,    NULL);
 	err += pthread_mutex_init(&b_data->mutex_primes, NULL);
 
@@ -1386,7 +1380,10 @@ static int cputab_temp_fallback(Labels *data)
 	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
 	/* Filenames are cached */
 	if(cached_paths == NULL)
+	{
 		cached_paths = calloc(data->cpu_count, sizeof(char *));
+		ALLOC_CHECK(cached_paths);
+	}
 	if(!cached_paths[opts->selected_core])
 		if((err = request_sensor_path(SYS_HWMON, &cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE)))
 			err = request_sensor_path(SYS_HWMON, &cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE_OTHERS);

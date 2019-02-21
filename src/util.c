@@ -86,8 +86,9 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 	}
 
 	(*str)[++j] = '\0';
-	if((tmp = realloc(*str, j + 1)) != NULL)
-		*str = tmp;
+	tmp = realloc(*str, j + 1);
+	ALLOC_CHECK(tmp);
+	*str = tmp;
 
 	return j;
 }
