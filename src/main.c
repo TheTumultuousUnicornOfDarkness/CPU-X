@@ -42,6 +42,8 @@
 # include <json-c/json.h>
 #endif
 
+#define LOG_FILE "/tmp/cpu-x.log"
+
 char *binary_name, *new_version[2] = { NULL, NULL };
 Options *opts;
 
@@ -568,7 +570,7 @@ static void help(void)
 }
 
 /* This is the --version option */
-static void version(void)
+static void version(bool full_header)
 {
 	int i;
 	const struct { const bool has_mod; const char *lib, *version; } libs_ver[] =
@@ -590,10 +592,13 @@ static void version(void)
 		check_new_version();
 
 	PRGINFO(stdout);
-	MSG_STDOUT("%s\n", PRGCPRGHT);
-	MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
-	MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
-	MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
+	if(full_header)
+	{
+		MSG_STDOUT("%s\n", PRGCPRGHT);
+		MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
+		MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
+		MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
+	}
 	free(new_version[1]);
 
 	/* Print features version */
@@ -689,7 +694,7 @@ static void parse_arguments(int argc, char *argv[])
 				exit(EXIT_SUCCESS);
 				break;
 			case 'V':
-				version();
+				version(true);
 				exit(EXIT_SUCCESS);
 				break;
 			case 0:
@@ -707,7 +712,11 @@ static void parse_arguments(int argc, char *argv[])
 					opts->output_type = OUT_DUMP;
 					setlocale(LC_ALL, "C");
 					setenv("CPUX_DAEMON_DEBUG", "1", 1);
-					version();
+					unlink(LOG_FILE);
+					freopen(LOG_FILE, "a", stdout);
+					setvbuf(stdout, NULL, _IONBF, 0);
+					dup2(STDOUT_FILENO, STDERR_FILENO);
+					version(false);
 					break;
 				}
 				/* Fall through */
