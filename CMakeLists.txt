@@ -99,6 +99,7 @@ endmacro(print_config)
 
 ### HELPERS / SUBDIRECTORIES
 
+enable_testing()
 find_package(PkgConfig REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Backtrace REQUIRED)
@@ -111,9 +112,10 @@ if(WITH_GETTEXT)
 endif(WITH_GETTEXT)
 include(CheckSymbolExists)
 include(CheckIncludeFile)
+add_subdirectory(data)
 add_subdirectory(po)
 add_subdirectory(src)
-add_subdirectory(data)
+add_subdirectory(tests)
 
 
 ### UNINSTALL TARGET
