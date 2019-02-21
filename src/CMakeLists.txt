@@ -174,7 +174,7 @@ add_executable(${DAEMON_EXEC}
 
 # Gettext
 if(GETTEXT_FOUND)
-	add_dependencies(${APP_EXEC} potfiles)
+	add_dependencies(${APP_EXEC} update-gmo)
 endif(GETTEXT_FOUND)
 
 # Libsystem extra-definitions
