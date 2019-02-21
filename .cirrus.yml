@@ -15,8 +15,10 @@ task:
   build_script:
     - cd build
     - make -j$(sysctl -n hw.ncpu)
+    - sudo make -j$(sysctl -n hw.ncpu) install
 
   check_script:
     - cd build
-    - sudo make -j$(sysctl -n hw.ncpu) install
     - sudo CPUX_BCLK=100 cpu-x --issue-fmt
+    - cat /tmp/cpu-x.log
+    - cat /tmp/cpu-x-daemon.log
