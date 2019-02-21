@@ -127,29 +127,28 @@ int do_refresh(Labels *data)
 
 int connect_to_daemon(Labels *data)
 {
-	int socket_fd;
+	int socket_fd = -1;
+	char error_str[MAXSTR];
 	struct sockaddr_un addr;
 
 	/* Create local socket */
 	if((socket_fd = socket(AF_UNIX, SOCK_SEQPACKET, 0)) < 0)
-	{
-		MSG_ERRNO("socket");
-		return 1;
-	}
+		GOTO_ERROR("socket");
 
 	/* Connect socket to socket address */
 	memset(&addr, 0, sizeof(struct sockaddr_un));
 	addr.sun_family = AF_UNIX;
 	strncpy(addr.sun_path, SOCKET_NAME, sizeof(addr.sun_path) - 1);
 	if(connect(socket_fd, (const struct sockaddr*) &addr, sizeof(struct sockaddr_un)) < 0)
-	{
-		MSG_ERRNO("connect");
-		close(socket_fd);
-		return 1;
-	}
+		GOTO_ERROR("connect");
 
 	data->socket_fd = socket_fd;
 	return 0;
+
+error:
+	MSG_ERRNO("failed to connect to daemon: %s", error_str);
+	if(socket_fd >= 0) close(socket_fd);
+	return 1;
 }
 
 
