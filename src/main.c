@@ -44,7 +44,6 @@
 
 #define LOG_FILE "/tmp/cpu-x.log"
 
-char *binary_name, *new_version[2] = { NULL, NULL };
 Options *opts;
 
 
@@ -313,6 +312,7 @@ void labels_free(Labels *data)
 
 /************************* Update-related functions *************************/
 
+#if 0 //FIXME: AppImage update
 #if HAS_WEB_SUPPORT
 /* Write function for Curl */
 static size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
@@ -402,7 +402,6 @@ static bool check_new_version(void)
 	return false;
 }
 
-# if 0 //PORTABLE_BINARY
 /* Apply new portable version if available */
 static int update_prg(void)
 {
@@ -487,8 +486,8 @@ static int update_prg(void)
 
 	return err;
 }
-# endif /* PORTABLE_BINARY */
 #endif /* HAS_WEB_SUPPORT */
+#endif
 
 
 /************************* Options-related functions *************************/
@@ -536,7 +535,7 @@ static const struct
 };
 
 /* This is help display with --help option */
-static void help(void)
+static void help(char *binary_name)
 {
 	int i;
 	bool options_header = false;
@@ -588,8 +587,10 @@ static void version(bool full_header)
 		{ false,           NULL,          NULL                }
 	};
 
+#if 0 //FIXME: AppImage update
 	if(HAS_WEB_SUPPORT)
 		check_new_version();
+#endif
 
 	PRGINFO(stdout);
 	if(full_header)
@@ -599,7 +600,6 @@ static void version(bool full_header)
 		MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
 		MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
 	}
-	free(new_version[1]);
 
 	/* Print features version */
 	for(i = 0; libs_ver[i].lib != NULL; i++)
@@ -690,7 +690,7 @@ static void parse_arguments(int argc, char *argv[])
 				break;
 #endif
 			case 'h':
-				help();
+				help(argv[0]);
 				exit(EXIT_SUCCESS);
 				break;
 			case 'V':
@@ -722,7 +722,7 @@ static void parse_arguments(int argc, char *argv[])
 				/* Fall through */
 			case '?':
 			default:
-				help();
+				help(argv[0]);
 				exit(EXIT_FAILURE);
 		}
 	}
@@ -813,7 +813,6 @@ static int set_locales(void)
 int main(int argc, char *argv[])
 {
 	/* Init variables */
-	binary_name  = argv[0];
 	Labels *data = &(Labels)
 	{
 		.tab_cpu         = { { NULL } },
@@ -907,8 +906,10 @@ int main(int argc, char *argv[])
 	labels_setname(data);
 	fill_labels   (data);
 
+#if 0 //FIXME: AppImage update
 	if(HAS_WEB_SUPPORT)
 		check_new_version();
+#endif
 
 	/* Show data */
 	if(HAS_GTK && (opts->output_type == OUT_GTK))
