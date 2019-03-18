@@ -1,6 +1,5 @@
 # Copyright © 2014-2019 Xorg
 # This file is distributed under the same license as the CPU-X package.
-#
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2019
 msgid ""
@@ -8,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-07 21:09+0000\n"
+"PO-Revision-Date: 2019-03-19 01:03+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -17,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "kunne ikke omfordele minne"
 
 #: core.c:148
 #, c-format
@@ -87,11 +86,11 @@ msgstr ""
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "Regner ut CPU-multiplikatorer"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "Hopp over kall til dmidecode (root-rettigheter behøves)"
 
 #: core.c:512
 msgid "Calling dmidecode"
@@ -99,23 +98,24 @@ msgstr ""
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "klarte ikke å tildele minne til dmidecode"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "kall til dmidecode mislyktes"
 
 #: core.c:554
+#, fuzzy
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Regner ut CPU-bruk"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Kaller båndbredde"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "Finner grafikkortdriver"
 
 #: core.c:659
 #, c-format
@@ -143,19 +143,19 @@ msgstr "Hopp over søk etter enheter (root-tilgang kreves)"
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "Din GPU-tilvirker er ukjent: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "klarte ikke å finne brikkesetttilverker eller modell"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "klarte ikke å finne grafikkorttilvirker eller modell"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "Henter GPU-temperatur"
 
 #: core.c:786
 msgid "Off"
@@ -163,28 +163,28 @@ msgstr "Av"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "Klarte ikke å hente GPU-temperatur"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "Hopp over noen GPU-verdier (root-tilgang behøves)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "Henter GPU-klokker"
 
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "Driver for GPU %i rapprterer ikke frekvenser"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "klarte ikke å hente GPU-klokker"
 
 #: core.c:969
 msgid "Identifying running system"
-msgstr ""
+msgstr "Identifiserer kjørende system"
 
 #: core.c:972
 msgid "failed to identify running system"
@@ -192,11 +192,11 @@ msgstr "klarte ikke å identifisere kjørende system"
 
 #: core.c:1013
 msgid "Calling libprocps"
-msgstr ""
+msgstr "Kaller libprocps"
 
 #: core.c:1035
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "Kaller libstatgrab"
 
 #: core.c:1065
 #, c-format
