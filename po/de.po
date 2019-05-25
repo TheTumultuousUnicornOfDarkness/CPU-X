@@ -3,13 +3,15 @@
 # Translators:
 # Torge Matthies <openglfreak@googlemail.com>, 2019.
 # Andreas Kleinert <Andy.Kleinert@gmail.com>, 2019.
+# CurlingTongs <o11577482@nwytg.net>, 2019.
+# ssantos <ssantos@web.de>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-03-19 01:03+0000\n"
-"Last-Translator: Andreas Kleinert <Andy.Kleinert@gmail.com>\n"
+"PO-Revision-Date: 2019-05-06 15:47+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -17,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr "Speicher konnte nicht neu zuweisen werden"
+msgstr "Speicher konnte nicht neu zugewiesen werden"
 
 #: core.c:148
 #, c-format
@@ -66,24 +68,24 @@ msgstr "libcpuid konnte nicht aufrufen werden (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Aufruf von libcpuid zum Abrufen dynamischer Daten"
+msgstr "Aufruf von libcpuid zum Abruf dynamischer Daten"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr "Öffnen eines CPU MSRs überspringen (Benötigt root-Rechte)"
+msgstr "Öffnen eines CPU-MSRs überspringen (Benötigt root-Rechte)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr "CPU MSR konnte nicht geöffnet werden (%s)"
+msgstr "CPU-MSR konnte nicht geöffnet werden (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Aufruf von libcpuid zum Abrufen von statischen CPU MSR-Werten"
+msgstr "Aufruf von libcpuid zum Abrufen von statischen CPU-MSR-Werten"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Aufruf von libcpuid zum Abrufen von dynamischer CPU MSR-Werten"
+msgstr "Aufruf von libcpuid zum Abrufen von dynamischer CPU-MSR-Werten"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
@@ -111,7 +113,7 @@ msgstr "CPU-Auslastung wird berechnet"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Aufruf von Bandbreite"
 
 #: core.c:634
 msgid "Finding graphic card driver"
@@ -147,11 +149,11 @@ msgstr "Unbekannter GPU-Hersteller: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr "Chipsatzhersteller und Model konnte nicht ermittelt werden"
+msgstr "Chipsatzhersteller und Modell konnte nicht ermittelt werden"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr "Grafikkartenhersteller und Model konnten nicht ermittelt werden"
+msgstr "Grafikkartenhersteller und Modell konnten nicht ermittelt werden"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
@@ -171,7 +173,7 @@ msgstr "Einige GPU-Werte überspringen (Benötigt root-Rechte)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr "GPU-Taktgebern abrufen"
+msgstr "GPU-Taktgeber abrufen"
 
 #: core.c:931
 #, c-format
@@ -277,7 +279,7 @@ msgstr "Ihr CPU-Socket gehört nicht in die Datenbank ➜ %s, Codename: %s"
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "CPU-Multiplikatoren wird in alternativem Modus ermittelt"
+msgstr "CPU-Multiplikatoren werden in alternativem Modus ermittelt"
 
 #: core.c:1272
 msgid "Retrieving motherboard informations in fallback mode"
@@ -313,7 +315,7 @@ msgstr "Fehler beim Abrufen der CPU-Frequenz (alternativer Modus)"
 
 #: gui_gtk.c:49
 msgid "Starting GTK GUI..."
-msgstr "GTK GUI wird gestartet ..."
+msgstr "GTK-GUI wird gestartet …"
 
 #: gui_gtk.c:63
 msgid "failed to import UI in GtkBuilder"
@@ -500,7 +502,7 @@ msgstr "Test"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
-msgstr "Motherboard"
+msgstr "Mutterplatine"
 
 #: main.c:110
 msgid "Manufacturer"
@@ -711,7 +713,7 @@ msgstr "Ausführung der Curl-Übertragung fehlgeschlagen (%s)"
 
 #: main.c:362
 msgid "wrong write data"
-msgstr ""
+msgstr "Falsche Schreibdaten"
 
 #: main.c:369
 #, c-format
@@ -741,11 +743,11 @@ msgstr ""
 #: main.c:482
 #, c-format
 msgid "failed to open %s archive for writing"
-msgstr "%s Archiv konnte nicht zum Schreiben geöffnet werden"
+msgstr "Archiv %s konnte nicht zum Schreiben geöffnet werden"
 
 #: main.c:488
 msgid "Downloading new version..."
-msgstr "Neue Version wird heruntergeladen ..."
+msgstr "Neue Version wird heruntergeladen …"
 
 #: main.c:500
 #, c-format
@@ -754,15 +756,15 @@ msgstr "Fehler beim Herunterladen des Archivs %s (%s)"
 
 #: main.c:506
 msgid "Extracting new version..."
-msgstr "Neue Version wird entpackt ..."
+msgstr "Neue Version wird entpackt …"
 
 #: main.c:516
 msgid "Applying new version..."
-msgstr "Neue Version anwenden ..."
+msgstr "Neue Version anwenden …"
 
 #: main.c:527
 msgid "an error occurred while removing/renaming files"
-msgstr "Ein Fehler trat auf beim entfernen/umbenennen von Dateien"
+msgstr "Beim Entfernen/Umbenennen von Dateien trat ein Fehler auf"
 
 #: main.c:529
 msgid "Update successful!"
@@ -810,7 +812,7 @@ msgstr "Farbige Ausgabe deaktivieren"
 
 #: main.c:558
 msgid "Print required informations to paste in an issue"
-msgstr "Benötigten Informationen zum Einfügen in einen Problembericht ausgeben"
+msgstr "Benötigte Informationen zum Einfügen in einen Problembericht ausgeben"
 
 #: main.c:559
 msgid "Verbose output"
@@ -838,7 +840,7 @@ msgstr "Bustaktung erzwingen"
 
 #: main.c:575
 msgid "Read CPUID raw data from a given file"
-msgstr "CPUID-Rohdaten von einer gegebenen Datei auslesen"
+msgstr "CPUID-Rohdaten aus einer gegebenen Datei lesen"
 
 #: main.c:576
 msgid "Only print a message if CPU does not belong in database"
@@ -874,7 +876,7 @@ msgstr "Dies ist freie Software: Sie dürfen sie frei verändern und verbreiten.
 #: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr "Siehe die %s Lizenz: %s\n"
+msgstr "Siehe %s Lizenz: %s\n"
 
 #: main.c:629
 #, c-format
@@ -916,16 +918,16 @@ msgstr ""
 
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
-msgstr "NCurses TUI wird gestartet ..."
+msgstr "NCurses-TUI wird gestartet …"
 
 #: tui_ncurses.c:110
 msgid "Press 'h' to see help.\n"
-msgstr "„h” drücken, um die Hilfe anzuzeigen\n"
+msgstr "Taste »H« drücken, um die Hilfe anzuzeigen\n"
 
 #: tui_ncurses.c:384
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr "Willkommen in der %s NCurses Hilfe!\n"
+msgstr "Willkommen in der %s NCurses-Hilfe!\n"
 
 #: tui_ncurses.c:385
 msgid "This help describes how to use this Text-based User Interface.\n"
@@ -942,19 +944,19 @@ msgstr ""
 
 #: tui_ncurses.c:388
 msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr "\tTast „Pfeil nach Links” drücken, um zum linken Tab zu wechseln.\n"
+msgstr "\tPfeiltaste »Links« drücken, um zum linken Tab zu wechseln.\n"
 
 #: tui_ncurses.c:389
 msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr "\tTast „Pfeil nach Rechts” drücken, um zum linken Tab zu wechseln.\n"
+msgstr "\tPfeiltaste »Rechts« drücken, um zum linken Tab zu wechseln.\n"
 
 #: tui_ncurses.c:390
 msgid "\tPress 'h' key to see this help.\n"
-msgstr "\tTaste „h” drücken, um diese Hilfe anzuzeigen.\n"
+msgstr "\tTaste »H« drücken, um diese Hilfe anzuzeigen.\n"
 
 #: tui_ncurses.c:391
 msgid "\tPress 'q' key to exit.\n"
-msgstr "\tZum Beenden die Taste „q” drücken.\n"
+msgstr "\tTaste »Q« drücken, um zu beenden.\n"
 
 #: tui_ncurses.c:393
 msgid "\n"
@@ -966,14 +968,14 @@ msgstr ""
 #: tui_ncurses.c:394
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr ""
-"\tTaste „Pfeil abwärts” drücken, um die Anzahl der zu überwachenden Kerne zu "
+"\tPfeiltaste »Abwärts« drücken, um die Anzahl der zu überwachenden Kerne zu "
 "verringern.\n"
 
 #: tui_ncurses.c:395
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
-"\tTaste „Pfeil aufwärts” drücken, um die Anzahl der zu überwachenden Kerne "
-"zu erhöhen.\n"
+"\tPfeiltaste »Aufwärts« drücken, um die Anzahl der zu überwachenden Kerne zu "
+"erhöhen.\n"
 
 #: tui_ncurses.c:397
 msgid "\n"
@@ -984,11 +986,11 @@ msgstr ""
 
 #: tui_ncurses.c:398
 msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr "\tTaste „Pfeil abwärts” drücken, um zum vorigen Test zu wechseln\n"
+msgstr "\tPfeiltaste »Abwärts« drücken, um zum vorigen Test zu wechseln\n"
 
 #: tui_ncurses.c:399
 msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr "\tTaste „Pfeil aufwärts” drücken, um zum nächsten Test zu wechseln\n"
+msgstr "\tPfeiltaste »Aufwärts« drücken, um zum nächsten Test zu wechseln\n"
 
 #: tui_ncurses.c:401
 msgid "\n"
@@ -1000,35 +1002,35 @@ msgstr ""
 #: tui_ncurses.c:402
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgstr ""
-"\tTaste „Pfeil abwärts” drücken, um die Dauer des Benchmarks zu verringern.\n"
+"\tTaste »Pfeil abwärts« drücken, um die Dauer des Benchmarks zu verringern.\n"
 
 #: tui_ncurses.c:403
 msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgstr ""
-"\tTaste „Pfeil aufwärts” drücken, um die Dauer des Benchmarks zu erhöhen.\n"
+"\tTaste »Pfeil aufwärts« drücken, um die Dauer des Benchmarks zu erhöhen.\n"
 
 #: tui_ncurses.c:404
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr ""
-"\tDrücke die 'nächste Seite' Taste um die Anzahl der zu benutzenden Threads "
-"zu verringern.\n"
+"\tTaste »Bild abwärts« drücken, um die Anzahl der zu verwendeten Threads zu "
+"verringern.\n"
 
 #: tui_ncurses.c:405
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr ""
-"\tDrücke die 'vorherige Seite' Taste um die Anzahl der zu benutzenden "
-"Threads zu erhöhen.\n"
+"\tTaste »Bild aufwärts« drücken, um die Anzahl der zu verwendeten Threads zu "
+"erhöhen.\n"
 
 #: tui_ncurses.c:406
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
-"\tTaste „s” drücken, um den Primzahlen (langsam) Benchmarks zu starten/"
+"\tTaste »S« drücken, um den »Primzahlen (langsam)«-Benchmark zu starten/"
 "anzuhalten.\n"
 
 #: tui_ncurses.c:407
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
-"\tTaste „f” drücken, um den Primzahlen (schnell) Benchmarks zu starten/"
+"\tTaste »F« drücken, um den »Primzahlen (schnell)«-Benchmark zu starten/"
 "anzuhalten.\n"
 
 #: tui_ncurses.c:409
@@ -1041,8 +1043,8 @@ msgstr ""
 #: tui_ncurses.c:428
 msgid "If you want to update, press 'u' key, or anything else to skip.\n"
 msgstr ""
-"Taste „u” drücken, um zu aktualisieren, oder eine beliebige andere Taste zum "
-"überspringen.\n"
+"Taste »U« drücken, um zu aktualisieren, oder eine beliebige andere Taste zum "
+"Überspringen.\n"
 
 #: tui_ncurses.c:434
 #, c-format
@@ -1057,18 +1059,18 @@ msgstr ""
 #: util.c:172
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr "Ein Fehler trat auf beim Öffnen der Datei %s (%s)"
+msgstr "Ein Fehler trat auf beim Öffnen der Datei »%s« (%s)"
 
 #: util.c:212
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr "Ein Fehler trat auf beim Ausführen des Befehls „%s” (%s)"
+msgstr "Ein Fehler trat auf beim Ausführen des Befehls »%s« (%s)"
 
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
-msgstr "Ordner „%s” konnte nicht geöffnet werden"
+msgstr "Ordner »%s« konnte nicht geöffnet werden"
 
 #: util.c:321
 msgid "an error occurred while compiling regex"
-msgstr "Ein Fehler trat auf beim Kompilieren eines Regexes"
+msgstr "Beim Kompilieren eines Regulären Ausdrucks trat ein Fehler auf"
