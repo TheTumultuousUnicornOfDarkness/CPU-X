@@ -648,11 +648,11 @@ static int find_driver(struct pci_dev *dev, char *driver_name, Labels *data)
 {
 	/* Taken from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	int n;
-	char driver_path[MAXSTR], buff[MAXSTR], error_str[MAXSTR] = "unknown";
+	char driver_path[MAXSTR] = "", buff[MAXSTR] = "", error_str[MAXSTR] = "unknown";
 	char *base = NULL, *drv = NULL, *tmp = NULL;
 	enum EnGpuDrv *gpu_driver = &data->g_data->gpu_driver[data->gpu_count];
 
-	MSG_VERBOSE(_("Finding graphic card driver"));
+	MSG_VERBOSE(_("Finding graphic card driver (card %u)"), data->gpu_count);
 	*gpu_driver = GPUDRV_UNKNOWN;
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
 		GOTO_ERROR("dev->access->method");
@@ -664,13 +664,15 @@ static int find_driver(struct pci_dev *dev, char *driver_name, Labels *data)
 		base, dev->domain, dev->bus, dev->dev, dev->func);
 	snprintf(driver_path, MAXSTR, "%s/driver", data->g_data->device_path[data->gpu_count]);
 
-	if((n = readlink(driver_path, buff, MAXSTR)) <= 0)
-		GOTO_ERROR("readlink");
+	if((n = readlink(driver_path, buff, MAXSTR)) < 0)
+	{
+		MSG_ERRNO("[driver_path=%s] readlink", driver_path);
+		return 1;
+	}
 	buff[n] = '\0';
 
-	if((drv = strrchr(buff, '/')) != NULL)
-		strncpy(buff, drv + 1, MAXSTR - 1);
-	snprintf(driver_name, MAXSTR, _("(%s driver)"), buff);
+	drv = strrchr(buff, '/');
+	snprintf(driver_name, MAXSTR, _("(%s driver)"), drv == NULL ? buff : drv + 1);
 
 	if(DRIVER_IS("fglrx"))        *gpu_driver = GPUDRV_FGLRX;
 	else if(DRIVER_IS("amdgpu"))  *gpu_driver = GPUDRV_AMDGPU;
@@ -707,8 +709,8 @@ static int find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
-	char *gpu_vendor;
-	char buff[MAXSTR] = "";
+	char *gpu_vendor = NULL;
+	char gpu_driver[MAXSTR] = "", buff[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 
@@ -756,8 +758,10 @@ static int find_devices(Labels *data)
 				             MSG_WARNING(_("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
 			}
 
-			find_driver(dev, buff, data);
-			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendor, buff);
+			memset(gpu_driver, 0, MAXSTR);
+			memset(buff,       0, MAXSTR);
+			find_driver(dev, gpu_driver, data);
+			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendor, gpu_driver);
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
 		}
