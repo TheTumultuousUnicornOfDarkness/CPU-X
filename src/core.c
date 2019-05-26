@@ -519,7 +519,7 @@ static char *strdup_and_set_unit(char *str)
 			j++;
 		}
 	}
-	ptr[j] = '\0';
+	ptr[j - 1] = '\0';
 
 	return ptr;
 }
