@@ -131,12 +131,12 @@ static gboolean grefresh(GThrd *refr)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 			break;
 		case NO_GRAPHICS:
-			for(i = 0; i < data->gpu_count; i += GPUFIELDS)
+			for(i = 0; i < data->gpu_count; i++)
 			{
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE + i]), data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE       + i]), data->tab_graphics[VALUE][GPU1USAGE       + i]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK   + i]), data->tab_graphics[VALUE][GPU1CORECLOCK   + i]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK    + i]), data->tab_graphics[VALUE][GPU1MEMCLOCK    + i]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS]);
 			}
 			break;
 		case NO_BENCH:
