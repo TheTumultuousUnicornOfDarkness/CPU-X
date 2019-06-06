@@ -158,6 +158,8 @@ const Package_DB package_amd[] =
 	{ "Trinity X4",                     NULL,            "FM2 (PGA-ZIF)"  },
 	{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
 	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
+	{ "Zambezi",                        NULL,            "AM3+ (PGA-ZIF)" },
+	{ "Vishera",                        NULL,            "AM3+ (PGA-ZIF)" },
 	{ NULL,                             NULL,            NULL             }
 	//Codename                          Model            Socket
 };
