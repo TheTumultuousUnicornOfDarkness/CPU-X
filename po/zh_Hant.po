@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the CPU-X package.
 # Louies <louies0623@gmail.com>, 2019.
 # byStarTW <pan93412@gmail.com>, 2019.
+# Jeff Huang <s8321414@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-04-26 04:47+0000\n"
-"Last-Translator: byStarTW <pan93412@gmail.com>\n"
+"PO-Revision-Date: 2019-06-05 22:13+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -29,7 +30,7 @@ msgstr "退出 %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "正在尋找 CPU 技術"
 
 #: core.c:194
 #, c-format
@@ -50,41 +51,41 @@ msgstr "%d MB, %d 路"
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s 組合，%d-位元行大小"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "正在呼叫 libcpuid 以取得靜態資料"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "呼叫 libcpuid 失敗 (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "正在呼叫 libcpuid 以取得動態資料"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "跳過 CPU MSR 開啟（必須為 root）"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "開啟 CPU MSR 失敗 (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "正在呼叫 libcpuid 以取得 CPU MSR 靜態值"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "正在計算 CPU 乘數"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
