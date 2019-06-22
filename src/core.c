@@ -662,7 +662,9 @@ static int find_driver(struct pci_dev *dev, char *driver_name, Labels *data)
 	casprintf(&data->g_data->device_path[data->gpu_count], false, "%s/devices/%04x:%02x:%02x.%d",
 		base, dev->domain, dev->bus, dev->dev, dev->func);
 
-	if(popen_to_str(&buff, "modinfo --field name %s", dev->module_alias))
+	/* remove the trailing newline on module_alias */
+	dev->module_alias[strcspn(dev->module_alias, "\n")] = 0;
+	if(popen_to_str(&buff, "modinfo --field name %s | xargs -d '\n'", dev->module_alias))
 		GOTO_ERROR("modinfo");
 
 	snprintf(driver_name, MAXSTR, _("(%s driver)"), buff);
