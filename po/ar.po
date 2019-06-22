@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the CPU-X package.
 # Hatem Ghouthi <hatemghouthi@yahoo.com>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2019.
+# mohammadA <mohammadAbdulhadi1@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-23 08:17+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-06-23 08:26+0000\n"
+"Last-Translator: mohammadA <mohammadAbdulhadi1@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.7\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -62,7 +63,7 @@ msgstr "استدعاء libcpuid لاسترجاع البيانات الثابتة
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr "تعذر استدعاء (%s)"
+msgstr "تعذر استدعاء libcpuid (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -115,26 +116,26 @@ msgstr "عرض النطاق الترددي الاتصال"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr "العثور على برنامج تشغيل بطاقة الرسومات"
+msgstr "يبحث عن تعريف بطاقة الرسومات"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr "تشغيل الجرافيك غير معروف: %s"
+msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr "(برنامج %s)"
+msgstr "(تعريف %s)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr "فشل في العثور على برنامج تشغيل بطاقة الرسومات (%s)"
+msgstr "تعذر العثور على تعريف بطاقة الرسومات (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "يبحث عن الأجهزة"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
@@ -143,27 +144,27 @@ msgstr ""
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "بائع وحدة معالجة الرسوميات غير معروف: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "تعذر إيجاد بائع الرقائق ونوعها"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "تعذر إيجاد بائع بطاقة الرسوميات ونوعها"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "يجلب درجة حرارة وحدة معالجة الرسوميات"
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "مُطفأ"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "تعذر جلب درجة حرارة وحدة معالجة الرسوميات"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
@@ -176,7 +177,7 @@ msgstr ""
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "تعريف وحدة معالجة الرسوميات %i لا يبلغ عن الترددات"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
@@ -184,19 +185,19 @@ msgstr ""
 
 #: core.c:969
 msgid "Identifying running system"
-msgstr ""
+msgstr "يتعرف على النظام الشغَّال"
 
 #: core.c:972
 msgid "failed to identify running system"
-msgstr ""
+msgstr "تعذر التعرف على النظام الشغَّال"
 
 #: core.c:1013
 msgid "Calling libprocps"
-msgstr ""
+msgstr "يستدعي libprocps"
 
 #: core.c:1035
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "يستدعي libstatgrab"
 
 #: core.c:1065
 #, c-format
@@ -218,11 +219,11 @@ msgstr ""
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr ""
+msgstr "لم يبدأ"
 
 #: core.c:1134
 msgid "Active"
-msgstr ""
+msgstr "نشط"
 
 #: core.c:1139
 #, c-format
@@ -313,51 +314,53 @@ msgstr ""
 
 #: gui_gtk.c:49
 msgid "Starting GTK GUI..."
-msgstr ""
+msgstr "يبدأ الواجهة الرسومية GTK..."
 
 #: gui_gtk.c:63
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "تعذَّر استيراد الواجهة الرسومية في GtkBuilder"
 
 #: gui_gtk.c:98 main.c:940
 msgid "Root privileges are required to work properly"
-msgstr ""
+msgstr "تحتاج امتيازات الجذر للعمل كما ينبغي"
 
 #: gui_gtk.c:101 main.c:941
 msgid "Some informations will not be retrievable"
-msgstr ""
+msgstr "قد لا تستطيع جلب بعض المعلومات"
 
 #: gui_gtk.c:103
 msgid "Ignore"
-msgstr ""
+msgstr "تجاهل"
 
 #: gui_gtk.c:107
 msgid "Run as root"
-msgstr ""
+msgstr "شغَّل بحساب الجذر"
 
 #: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
 msgid "A new version of %s is available!"
-msgstr ""
+msgstr "النسخة الجديدة %s متاحة!"
 
 #: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
 msgid "Do you want to update %s to version %s after exit?\n"
 "It will erase this binary file (%s) by the new version."
 msgstr ""
+"أتريد تحديث %s إلى الإصدارة %s بعد الخروج؟\n"
+"النسخة الجديدة قد تمحو هذا الملف الثنائي (%s)."
 
 #: gui_gtk.c:129
 msgid "Not now"
-msgstr ""
+msgstr "ليس الآن"
 
 #: gui_gtk.c:129
 msgid "Update"
-msgstr ""
+msgstr "حدِّث"
 
 #: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "النواة %i"
 
 #: main.c:62
 msgid "Setting label names"
@@ -373,7 +376,7 @@ msgstr ""
 
 #: main.c:66 main.c:121 main.c:154
 msgid "Vendor"
-msgstr ""
+msgstr "البائع"
 
 #: main.c:67
 msgid "Code Name"
@@ -389,7 +392,7 @@ msgstr ""
 
 #: main.c:70
 msgid "Voltage"
-msgstr ""
+msgstr "الفولتية"
 
 #: main.c:71
 msgid "Specification"
@@ -397,7 +400,7 @@ msgstr ""
 
 #: main.c:72
 msgid "Family"
-msgstr ""
+msgstr "العائلة"
 
 #: main.c:73
 msgid "Ext. Family"
@@ -405,7 +408,7 @@ msgstr ""
 
 #: main.c:74 main.c:111 main.c:122 main.c:155
 msgid "Model"
-msgstr ""
+msgstr "الطراز"
 
 #: main.c:75
 msgid "Ext. Model"
@@ -413,7 +416,7 @@ msgstr ""
 
 #: main.c:76
 msgid "Temp."
-msgstr ""
+msgstr "الحرارة"
 
 #: main.c:77
 msgid "Stepping"
@@ -429,7 +432,7 @@ msgstr ""
 
 #: main.c:81
 msgid "Core Speed"
-msgstr ""
+msgstr "سرعة النواة"
 
 #: main.c:82
 msgid "Multiplier"
@@ -437,15 +440,15 @@ msgstr ""
 
 #: main.c:83
 msgid "Bus Speed"
-msgstr ""
+msgstr "سرعة الناقل"
 
 #: main.c:84 main.c:157
 msgid "Usage"
-msgstr ""
+msgstr "الاستخدام"
 
 #: main.c:86
 msgid "Cache"
-msgstr ""
+msgstr "الخبيئة"
 
 #: main.c:87
 msgid "L1 Data"
@@ -498,11 +501,11 @@ msgstr ""
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
-msgstr ""
+msgstr "اللوحة الأم"
 
 #: main.c:110
 msgid "Manufacturer"
-msgstr ""
+msgstr "الصانع"
 
 #: main.c:112
 msgid "Revision"
@@ -510,15 +513,15 @@ msgstr ""
 
 #: main.c:114
 msgid "BIOS"
-msgstr ""
+msgstr "البيوس"
 
 #: main.c:115
 msgid "Brand"
-msgstr ""
+msgstr "العلامة"
 
 #: main.c:116
 msgid "Version"
-msgstr ""
+msgstr "الإصدار"
 
 #: main.c:117
 msgid "Date"
@@ -526,7 +529,7 @@ msgstr ""
 
 #: main.c:118
 msgid "ROM Size"
-msgstr ""
+msgstr "حجم الروم"
 
 #: main.c:120
 msgid "Chipset"
@@ -534,7 +537,7 @@ msgstr ""
 
 #: main.c:125 main.c:141
 msgid "Memory"
-msgstr ""
+msgstr "الذاكرة"
 
 #: main.c:128
 #, c-format
@@ -547,11 +550,11 @@ msgstr ""
 
 #: main.c:133
 msgid "System"
-msgstr ""
+msgstr "النظام"
 
 #: main.c:134
 msgid "Operating System"
-msgstr ""
+msgstr "نظام التشغيل"
 
 #: main.c:135
 msgid "Kernel"
@@ -559,11 +562,11 @@ msgstr ""
 
 #: main.c:136
 msgid "Distribution"
-msgstr ""
+msgstr "التوزيعة"
 
 #: main.c:137
 msgid "Hostname"
-msgstr ""
+msgstr "اسم المضيف"
 
 #: main.c:138
 msgid "Uptime"
@@ -571,7 +574,7 @@ msgstr ""
 
 #: main.c:139
 msgid "Compiler"
-msgstr ""
+msgstr "المصرِّف"
 
 #: main.c:142
 msgid "Used"
@@ -591,7 +594,7 @@ msgstr ""
 
 #: main.c:146
 msgid "Swap"
-msgstr ""
+msgstr "الإبدال"
 
 #: main.c:149
 msgid "Graphics"
@@ -604,7 +607,7 @@ msgstr ""
 
 #: main.c:156
 msgid "Temperature"
-msgstr ""
+msgstr "درجة الحرارة"
 
 #: main.c:158
 msgid "GPU clock"
@@ -640,7 +643,7 @@ msgstr ""
 
 #: main.c:173
 msgid "Duration"
-msgstr ""
+msgstr "المدة"
 
 #: main.c:174
 msgid "Threads"
@@ -655,50 +658,52 @@ msgstr ""
 msgid "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s هو برمجية حرَّة تجمع معلومات عن وحدة\n"
+"المعالجة المركزية واللوحة الأم وغيرها."
 
 #: main.c:183
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "إصدار %s"
 
 #: main.c:184
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "المؤلف: %s"
 
 #: main.c:185
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "الموقع: %s"
 
 #: main.c:187
 msgid "License"
-msgstr ""
+msgstr "الرخصة"
 
 #: main.c:190
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "توزع هذه البرمجية وفق بنود %s"
 
 #: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "لا يأتي هذا البرنامج بأي ضمان مطلقًا"
 
 #: main.c:259
 msgid "Dumping data..."
-msgstr ""
+msgstr "يطرح البيانات..."
 
 #: main.c:301
 msgid "Freeing memory"
-msgstr ""
+msgstr "يحرر الذاكرة"
 
 #: main.c:344
 msgid "Checking on Internet for a new version..."
-msgstr ""
+msgstr "يلتمس نسخة جديدة في الشابكة..."
 
 #: main.c:348 main.c:474
 msgid "failed to open a Curl session"
-msgstr ""
+msgstr "تعذر فتح جلسة Curl"
 
 #: main.c:361
 #, c-format
@@ -712,11 +717,11 @@ msgstr ""
 #: main.c:369
 #, c-format
 msgid "(version %s is available)"
-msgstr ""
+msgstr "(الإصدار %s متاح)"
 
 #: main.c:374 main.c:467
 msgid "No new version available"
-msgstr ""
+msgstr "لا إصدار جديد متاح"
 
 #: main.c:375
 msgid "(up-to-date)"
@@ -725,54 +730,55 @@ msgstr ""
 #: main.c:445
 #, c-format
 msgid "an error occurred while extracting %s archive (%s)"
-msgstr ""
+msgstr "حدث خطأ أثناء استخراج الأرشيف %s (%s)"
 
 #: main.c:460
 msgid "Network access is disabled by environment variable (set CPUX_NETWORK "
 "with a positive value to enable it)"
 msgstr ""
+"النفاذ إلى الشبكة معطل بمتغير بيئة (أسند قيمة موجبة إلى CPUX_NETWORK لتفعيله)"
 
 #: main.c:482
 #, c-format
 msgid "failed to open %s archive for writing"
-msgstr ""
+msgstr "تعذر فتح الأرشيف %s للكتابة"
 
 #: main.c:488
 msgid "Downloading new version..."
-msgstr ""
+msgstr "ينزل الإصدار الجديد..."
 
 #: main.c:500
 #, c-format
 msgid "failed to download %s archive (%s)"
-msgstr ""
+msgstr "تعذر تنزيل الأرشيف %s (%s)"
 
 #: main.c:506
 msgid "Extracting new version..."
-msgstr ""
+msgstr "يستخرج الإصدار الجديد..."
 
 #: main.c:516
 msgid "Applying new version..."
-msgstr ""
+msgstr "يطبق الإصدار الجديد..."
 
 #: main.c:527
 msgid "an error occurred while removing/renaming files"
-msgstr ""
+msgstr "حدث خطأ أثناء حذف الملفات وتغيير اسمها"
 
 #: main.c:529
 msgid "Update successful!"
-msgstr ""
+msgstr "نجح التحديث!"
 
 #: main.c:548
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "ابدأ واجهة رسومية (GUI) (المبدئي)"
 
 #: main.c:549
 msgid "Start text-based user interface (TUI)"
-msgstr ""
+msgstr "ابدأ واجهة نصية (TUI)"
 
 #: main.c:550
 msgid "Dump all data on standard output and exit"
-msgstr ""
+msgstr "اطرح كل البيانات في الخرج القياسي واخرج"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
@@ -800,15 +806,15 @@ msgstr ""
 
 #: main.c:557
 msgid "Disable colored output"
-msgstr ""
+msgstr "عطِّل الخرج الملون"
 
 #: main.c:558
 msgid "Print required informations to paste in an issue"
-msgstr ""
+msgstr "اطبع البيانات لنسخها في قضية"
 
 #: main.c:559
 msgid "Verbose output"
-msgstr ""
+msgstr "خرج تشخيصي"
 
 #: main.c:560
 msgid "Update portable version if a new version is available"
@@ -816,15 +822,15 @@ msgstr ""
 
 #: main.c:561
 msgid "Print help and exit"
-msgstr ""
+msgstr "اطبع المساعدة واخرج"
 
 #: main.c:562
 msgid "Print version and exit"
-msgstr ""
+msgstr "اطبع النسخة واخرج"
 
 #: main.c:573
 msgid "Temporarily disable network support"
-msgstr ""
+msgstr "عطِّل دعم الشبكة مؤقتا"
 
 #: main.c:574
 msgid "Enforce the bus clock"
@@ -841,7 +847,7 @@ msgstr ""
 #: main.c:585
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
+msgstr "الاستخدام: %s DISPLAY [OPTIONS]\n"
 
 #: main.c:586
 msgid "Available DISPLAY:"
@@ -856,20 +862,22 @@ msgstr ""
 msgid "\n"
 "Influenceable environment variables:"
 msgstr ""
+"\n"
+"متغيرات البيئة المؤثرة:"
 
 #: main.c:626
 msgid "This is free software: you are free to change and redistribute it."
-msgstr ""
+msgstr "هذه البرمجية حرة: لك الحق في تغييرها وتوزيعها."
 
 #: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "انظر رخصة%s : <%s>\n"
 
 #: main.c:629
 #, c-format
 msgid "Built on %s, %s (with %s %s on %s)."
-msgstr ""
+msgstr "مبني على %s، %s (مع %s %s على %s)."
 
 #: main.c:636
 #, c-format
@@ -895,15 +903,15 @@ msgstr ""
 #, c-format
 msgid "Sorry, you cannot update %s: 32-bit portable version is no more "
 "supported."
-msgstr ""
+msgstr "عذرًا، فلا يمكننا تحديث %s: نسخة 32 بتة المحمولة لم تعد مدعومة."
 
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
-msgstr ""
+msgstr "يبدأ NCurses TUI..."
 
 #: tui_ncurses.c:110
 msgid "Press 'h' to see help.\n"
-msgstr ""
+msgstr "اضغط 'h' لرؤية المساعدة.\n"
 
 #: tui_ncurses.c:384
 #, c-format
