@@ -871,6 +871,7 @@ static int gpu_monitoring(Labels *data)
 		else if(!gpu_ok)
 		{
 			//TODO: Put "None" in 'Driver' label
+			data->g_data->gpu_driver[i] = GPUDRV_UNKNOWN;
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], false, "---");
