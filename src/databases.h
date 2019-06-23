@@ -160,7 +160,19 @@ const Package_DB package_amd[] =
 	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
 	{ "Zambezi",                        NULL,            "AM3+ (PGA-ZIF)" },
 	{ "Vishera",                        NULL,            "AM3+ (PGA-ZIF)" },
-	{ NULL,                             NULL,            NULL             }
+	/* Zen */
+	{ "Summit Ridge",                   NULL,            "AM4 (PGA-1331)"   },
+	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
+	{ "Naples",                         NULL,            "SP3 (LGA-4094)"   },
+	/* Zen+ */
+	{ "Picasso",                        NULL,            "FP5 (BGA)"        },
+	{ "Pinnacle Ridge",                 NULL,            "AM4 (PGA-1331)"   },
+	{ "Colfax",                         NULL,            "SP3r2 (LGA-4094)" },
+	/* Zen 2 */
+	{ "Matisse",                        NULL,            "AM4 (PGA-1331)"   },
+	{ "Castle Peak",                    NULL,            "SP3r2 (LGA-4094)" },
+	{ "Rome",                           NULL,            "SP3 (LGA-4094)"   },
+	{ NULL,                             NULL,            NULL               }
 	//Codename                          Model            Socket
 };
 
