@@ -70,12 +70,8 @@ static int cpu_usage(Labels *data);
 static int find_devices(Labels *data);
 /* Required: HAS_LIBPCI */
 
-/* Retrieve GPU temperature */
-static int gpu_temperature(Labels *data);
-/* Required: none */
-
-/* Retrieve GPU clocks */
-static int gpu_clocks(Labels *data);
+/* Retrieve GPU temperature and clocks */
+static int gpu_monitoring(Labels *data);
 /* Required: none */
 
 /* Satic elements for System tab, OS specific */

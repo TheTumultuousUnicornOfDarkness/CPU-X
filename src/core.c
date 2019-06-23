@@ -114,8 +114,7 @@ int do_refresh(Labels *data)
 			if(HAS_LIBSYSTEM) err += err_func(system_dynamic, data);
 			break;
 		case NO_GRAPHICS:
-			err += err_func(gpu_temperature, data);
-			err += err_func(gpu_clocks,      data);
+			err += err_func(gpu_monitoring, data);
 			break;
 		case NO_BENCH:
 			err += err_func(benchmark_status, data);
@@ -642,64 +641,100 @@ static int call_bandwidth(Labels *data)
 #endif /* HAS_BANDWIDTH */
 
 #if HAS_LIBPCI
-#define DRIVER_IS(str) strstr(buff, str) != NULL
+/* Check is GPU is enabled */
+static bool gpu_is_on(char *device_path)
+{
+#ifdef __linux__
+	return !access(format("%s/driver", device_path), F_OK);
+#else
+	return false;
+#endif /* __linux__ */
+}
+
 /* Find driver name for a device */
-static int find_driver(struct pci_dev *dev, char *driver_name, Labels *data)
+static int find_gpu_device_path(struct pci_dev *dev, char **device_path)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
-	char *base = NULL, *buff = NULL;
-	char error_str[MAXSTR] = "unknown";
-	enum EnGpuDrv *gpu_driver = &data->g_data->gpu_driver[data->gpu_count];
+	char *base = NULL;
 
-	MSG_VERBOSE(_("Finding graphic card driver (card %u)"), data->gpu_count);
-	*gpu_driver = GPUDRV_UNKNOWN;
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
-		GOTO_ERROR("dev->access->method");
+	{
+		MSG_ERROR("dev->access->method=%u", dev->access->method);
+		return 1;
+	}
 
 	if((base = pci_get_param(dev->access, "sysfs.path")) == NULL)
-		GOTO_ERROR("pci_get_param");
+	{
+		MSG_ERROR("pci_get_param (sysfs.path)");
+		return 1;
+	}
 
-	casprintf(&data->g_data->device_path[data->gpu_count], false, "%s/devices/%04x:%02x:%02x.%d",
-		base, dev->domain, dev->bus, dev->dev, dev->func);
+	casprintf(device_path, false, "%s/devices/%04x:%02x:%02x.%d", base, dev->domain, dev->bus, dev->dev, dev->func);
+	return 0;
+}
 
-	if(popen_to_str(&buff, "modinfo --field name %s", dev->module_alias))
-		GOTO_ERROR("modinfo");
+static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *gpu_driver)
+{
+	int i;
+	ssize_t n;
+	char buff[MAXSTR] = "";
+	char *drv = NULL, *cmd = NULL;
+	*gpu_driver = GPUDRV_UNKNOWN;
+	const struct { const char *str; const enum EnGpuDrv val; } gpu_drivers[] =
+	{
+		{ "fglrx",   GPUDRV_FGLRX   },
+		{ "radeon",  GPUDRV_RADEON  },
+		{ "amdgpu",  GPUDRV_AMDGPU  },
+		{ "i915",    GPUDRV_INTEL   },
+		{ "nvidia",  GPUDRV_NVIDIA  },
+		{ "nouveau", GPUDRV_NOUVEAU },
+		{ buff,      GPUDRV_UNKNOWN }
+	};
 
-	snprintf(driver_name, MAXSTR, _("(%s driver)"), buff);
+	/* Check GPU state */
+	if(!gpu_is_on(device_path))
+	{
+		MSG_WARNING(_("No kernel driver in use for graphic card at path %s"), device_path);
+		return 1;
+	}
 
-	if(DRIVER_IS("fglrx"))        *gpu_driver = GPUDRV_FGLRX;
-	else if(DRIVER_IS("amdgpu"))  *gpu_driver = GPUDRV_AMDGPU;
-	else if(DRIVER_IS("radeon"))  *gpu_driver = GPUDRV_RADEON;
-	else if(DRIVER_IS("i915"))    *gpu_driver = GPUDRV_INTEL;
-	else if(DRIVER_IS("nvidia"))  *gpu_driver = GPUDRV_NVIDIA;
-	else if(DRIVER_IS("nouveau")) *gpu_driver = GPUDRV_NOUVEAU;
-	else MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
+	/* Get driver name (as string) */
+	if((n = readlink(format("%s/driver", device_path), buff, MAXSTR)) < 0)
+	{
+		MSG_ERRNO("readlink(%s)", device_path);
+		return 1;
+	}
+	buff[n] = '\0';
+	drv = strrchr(buff, '/');
+	strncpy(driver_name, (drv == NULL) ? buff : drv + 1, MAXSTR);
+
+	/* Find driver type */
+	for(i = 0; strstr(gpu_drivers[i].str, driver_name) == NULL; i++);
+	*gpu_driver = gpu_drivers[i].val;
+	if(*gpu_driver == GPUDRV_UNKNOWN)
+	{
+		MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
+		return 1;
+	}
 
 	/* Check for discrete GPU */
-	free(buff);
-	buff = NULL;
 	switch(*gpu_driver)
 	{
 		case GPUDRV_NVIDIA:
-			if(!popen_to_str(&buff, "optirun --status") && (strstr(buff, "Bumblebee status: Ready") != NULL))
+			if(!popen_to_str(&cmd, "optirun --status") && (strstr(cmd, "Bumblebee status: Ready") != NULL))
 				*gpu_driver = GPUDRV_NVIDIA_BUMBLEBEE;
 			break;
 		case GPUDRV_NOUVEAU:
-			if(!popen_to_str(&buff, "optirun --status") && (strstr(buff, "Bumblebee status: Ready") != NULL))
+			if(!popen_to_str(&cmd, "optirun --status") && (strstr(cmd, "Bumblebee status: Ready") != NULL))
 				*gpu_driver = GPUDRV_NOUVEAU_BUMBLEBEE;
 			break;
 		default:
 			break;
 	}
 
-	free(buff);
+	free(cmd);
 	return 0;
-
-error:
-	MSG_ERROR(_("failed to find graphic card driver (%s)"), error_str);
-	return 1;
 }
-#undef DRIVER_IS
 
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
@@ -735,7 +770,7 @@ static int find_devices(Labels *data)
 	/* Iterate over all devices */
 	for(dev = pacc->devices; dev != NULL; dev = dev->next)
 	{
-		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS | PCI_FILL_MODULE_ALIAS);
+		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
 
 		/* Looking for chipset */
 		if(!chipset_found && (dev->device_class == PCI_CLASS_BRIDGE_ISA))
@@ -759,9 +794,11 @@ static int find_devices(Labels *data)
 
 			memset(gpu_driver, 0, MAXSTR);
 			memset(buff,       0, MAXSTR);
-			find_driver(dev, gpu_driver, data);
-			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s %s", gpu_vendor, gpu_driver);
-			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, DEVICE_PRODUCT_STR(dev));
+			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
+			find_gpu_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
+			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
+			//TODO: Add a new 'Driver' label with gpu_driver as value
+			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
 		}
 	}
@@ -777,81 +814,6 @@ static int find_devices(Labels *data)
 #undef DEVICE_VENDOR_STR
 #undef DEVICE_PRODUCT_STR
 #endif /* HAS_LIBPCI */
-
-#ifdef __linux__
-/* Check is GPU is enabled */
-static bool gpu_is_on(char *device_path)
-{
-	return !access(format("%s/driver", device_path), F_OK);
-}
-#endif /* __linux__ */
-
-/* Retrieve GPU temperature */
-static int gpu_temperature(Labels *data)
-{
-#ifdef __linux__
-	int ret;
-	double divisor = 1.0;
-	uint8_t i, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
-	char *buff = NULL;
-	static bool once_error = true;
-	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
-
-	MSG_VERBOSE(_("Retrieving GPU temperature"));
-	for(i = 0; i < data->gpu_count; i++)
-	{
-		ret = 0;
-
-		if(!gpu_is_on(data->g_data->device_path[i]))
-		{
-			asprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], _("Off"));
-			continue;
-		}
-
-		switch(data->g_data->gpu_driver[i])
-		{
-			case GPUDRV_FGLRX:
-				ret = popen_to_str(&buff, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'", fglrx_count++);
-				break;
-			case GPUDRV_NVIDIA:
-				ret = popen_to_str(&buff, "nvidia-settings -tq [gpu:%1u]/GPUCoreTemp", nvidia_count++);
-				break;
-			case GPUDRV_NVIDIA_BUMBLEBEE:
-				ret = popen_to_str(&buff, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUCoreTemp", nvidia_count++);
-				break;
-			case GPUDRV_AMDGPU:
-			case GPUDRV_RADEON:
-			case GPUDRV_NOUVEAU:
-			case GPUDRV_NOUVEAU_BUMBLEBEE:
-				divisor = 1000.0;
-				if(cached_paths[i] == NULL)
-					ret = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_TEMPERATURE);
-				if(!ret && (cached_paths[i] != NULL))
-					ret = fopen_to_str(&buff, cached_paths[i]);
-				break;
-			default:
-				// Unsupported feature, like GPUDRV_INTEL
-				continue;
-		}
-
-		if(!ret)
-			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2f°C", atof(buff) / divisor);
-		else
-			failed_count++;
-
-		free(buff);
-		buff = NULL;
-	}
-
-	if(once_error && failed_count)
-		MSG_ERROR(_("failed to retrieve GPU temperature"));
-	once_error = false;
-
-	return (failed_count == data->gpu_count);
-#else
-	return 0;
-#endif /* __linux__ */
-}
 
 #ifdef __linux__
 static bool sys_debug_ok(Labels *data)
@@ -876,33 +838,43 @@ static bool sys_debug_ok(Labels *data)
 }
 #endif /* __linux__ */
 
-/* Retrieve GPU clocks */
-static int gpu_clocks(Labels *data)
+/* Retrieve GPU temperature and clocks */
+static int gpu_monitoring(Labels *data)
 {
 #ifdef __linux__
-	int ret, ret_load, ret_gclk, ret_mclk;
-	uint8_t i, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
-	char card_number;
-	char *gclk = NULL, *mclk = NULL, *load = NULL;
+	bool gpu_ok;
+	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk;
+	uint8_t i, card_number, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
+	double divisor;
+	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL;
 	static bool once_error = true;
-	static char *cached_paths[LASTGRAPHICS / GPUFIELDS] = { NULL };
+	static char *cached_paths_drm[LASTGRAPHICS / GPUFIELDS] = { NULL };
+	static char *cached_paths_hwmon[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
 	MSG_VERBOSE(_("Retrieving GPU clocks"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
-		ret      = 0;
-		ret_load = 0;
-		ret_gclk = 0;
-		ret_mclk = 0;
+		gpu_ok    = gpu_is_on(data->g_data->device_path[i]);
+		ret_drm   = 0;
+		ret_hwmon = 0;
+		ret_temp  = -1;
+		ret_load  = -1;
+		ret_gclk  = -1;
+		ret_mclk  = -1;
+		divisor   = 1.0;
 
-		if(!gpu_is_on(data->g_data->device_path[i]))
+		if(gpu_ok && (data->g_data->gpu_driver[i] == GPUDRV_UNKNOWN))
 		{
-			free(data->tab_graphics[VALUE][GPU1USAGE     + i * GPUFIELDS]);
-			free(data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS]);
-			free(data->tab_graphics[VALUE][GPU1MEMCLOCK  + i * GPUFIELDS]);
-			data->tab_graphics[VALUE][GPU1USAGE     + i * GPUFIELDS] = NULL;
-			data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS] = NULL;
-			data->tab_graphics[VALUE][GPU1MEMCLOCK  + i * GPUFIELDS] = NULL;
+			find_gpu_driver(data->g_data->device_path[i], NULL, &data->g_data->gpu_driver[i]);
+			//TODO: Set 'Driver' label
+		}
+		else if(!gpu_ok)
+		{
+			//TODO: Put "None" in 'Driver' label
+			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], false, "---");
 			continue;
 		}
 
@@ -913,10 +885,18 @@ static int gpu_clocks(Labels *data)
 			case GPUDRV_RADEON:
 			case GPUDRV_NOUVEAU:
 			case GPUDRV_NOUVEAU_BUMBLEBEE:
-				if(cached_paths[i] == NULL)
-					ret = request_sensor_path(format("%s/drm", data->g_data->device_path[i]), &cached_paths[i], RQT_GPU_DRM);
-				if(ret || (cached_paths[i] == NULL))
-					continue;
+				/* HWmon */
+				divisor = 1000.0;
+				if((cached_paths_hwmon[i] == NULL) && (data->g_data->gpu_driver[i] != GPUDRV_INTEL))
+					ret_hwmon = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_TEMPERATURE);
+				if(!ret_hwmon && (cached_paths_hwmon[i] != NULL))
+					ret_temp = fopen_to_str(&temp, cached_paths_hwmon[i]);
+
+				/* DRM */
+				if(cached_paths_drm[i] == NULL)
+					ret_drm = request_sensor_path(format("%s/drm", data->g_data->device_path[i]), &cached_paths_drm[i], RQT_GPU_DRM);
+				if(ret_drm || (cached_paths_drm[i] == NULL) || (sscanf(cached_paths_drm[i], "/sys/bus/pci/devices/%*x:%*x:%*x.%*d/drm/card%hhu", &card_number) != 1))
+					goto skip_clocks;
 				break;
 			default:
 				break;
@@ -925,77 +905,80 @@ static int gpu_clocks(Labels *data)
 		switch(data->g_data->gpu_driver[i])
 		{
 			case GPUDRV_AMDGPU:
-				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				ret_load = sys_debug_ok(data) ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%c/amdgpu_pm_info", SYS_DRI, card_number) :
-				                                fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths[i]); // Linux 4.19+
-				ret_gclk = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths[i]);
-				ret_mclk = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths[i]);
+				// ret_temp obtained above
+				ret_load  = sys_debug_ok(data) ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DRI, card_number) :
+				                                 fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths_drm[i]); // Linux 4.19+
+				ret_gclk  = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths_drm[i]);
+				ret_mclk  = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths_drm[i]);
 				break;
 			case GPUDRV_FGLRX:
-				ret_load = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
-				ret_gclk = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'", fglrx_count);
-				ret_mclk = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'", fglrx_count++);
+				ret_temp  = popen_to_str(&temp, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'",                       fglrx_count);
+				ret_load  = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
+				ret_gclk  = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'",               fglrx_count);
+				ret_mclk  = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'",               fglrx_count);
+				fglrx_count++;
 				break;
 			case GPUDRV_INTEL:
-				ret_load = -1;
-				ret_gclk = fopen_to_str(&gclk, "%s/gt_cur_freq_mhz", cached_paths[i]);
-				ret_mclk = -1;
+				ret_temp  = -1;
+				ret_load  = -1;
+				ret_gclk  = fopen_to_str(&gclk, "%s/gt_cur_freq_mhz", cached_paths_drm[i]);
+				ret_mclk  = -1;
 				break;
 			case GPUDRV_RADEON:
-				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				ret_load = -1;
-				ret_gclk = sys_debug_ok(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
-				ret_mclk = sys_debug_ok(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%c/radeon_pm_info", SYS_DRI, card_number) : -1;
+				// ret_temp obtained above
+				ret_load  = -1;
+				ret_gclk  = sys_debug_ok(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_mclk  = sys_debug_ok(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DRI, card_number) : -1;
 				if((gclk != NULL) && (strlen(gclk) >= 2)) gclk[strlen(gclk) - 2] = '\0';
 				if((mclk != NULL) && (strlen(mclk) >= 2)) mclk[strlen(mclk) - 2] = '\0';
 				break;
 			case GPUDRV_NVIDIA:
-				ret_load = popen_to_str(&load, "nvidia-settings -tq [gpu:%1u]/GPUUtilization       | awk -F '[,= ]' '{ print $2 }'", nvidia_count);
-				ret_gclk = popen_to_str(&gclk, "nvidia-settings -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $1 }'", nvidia_count);
-				ret_mclk = popen_to_str(&mclk, "nvidia-settings -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $2 }'", nvidia_count++);
-				break;
 			case GPUDRV_NVIDIA_BUMBLEBEE:
-				ret_load = popen_to_str(&load, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUUtilization       | awk -F '[,= ]' '{ print $2 }'", nvidia_count);
-				ret_gclk = popen_to_str(&gclk, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $1 }'", nvidia_count);
-				ret_mclk = popen_to_str(&mclk, "optirun -b none nvidia-settings -c :8 -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $2 }'", nvidia_count++);
+			{
+				const char *nvidia_cmd = (data->g_data->gpu_driver[i] == GPUDRV_NVIDIA_BUMBLEBEE) ? "optirun -b none nvidia-settings -c :8" : "nvidia-settings";
+				ret_temp  = popen_to_str(&temp, "%s -tq [gpu:%1u]/GPUCoreTemp",                                          nvidia_cmd, nvidia_count);
+				ret_load  = popen_to_str(&load, "%s -tq [gpu:%1u]/GPUUtilization       | awk -F '[,= ]' '{ print $2 }'", nvidia_cmd, nvidia_count);
+				ret_gclk  = popen_to_str(&gclk, "%s -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $1 }'", nvidia_cmd, nvidia_count);
+				ret_mclk  = popen_to_str(&mclk, "%s -tq [gpu:%1u]/GPUCurrentClockFreqs | awk -F '[,]'   '{ print $2 }'", nvidia_cmd, nvidia_count);
+				nvidia_count++;
 				break;
+			}
 			case GPUDRV_NOUVEAU:
 			case GPUDRV_NOUVEAU_BUMBLEBEE:
 			{
 				char *pstate = NULL;
-				card_number = cached_paths[i][strlen(cached_paths[i]) - 1];
-				if(!system(format("grep --quiet '*' %s/%c/pstate", SYS_DRI, card_number)))
-					popen_to_str(&pstate, "grep '*' %s/%c/pstate", SYS_DRI, card_number);
-				else
-					popen_to_str(&pstate, "sed -n 1p %s/%c/pstate", SYS_DRI, card_number);
-				ret_load = -1;
-				ret_gclk = sys_debug_ok(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
-				ret_mclk = sys_debug_ok(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
-				free(pstate);
+				int ret_pstate = !system(format("grep --quiet '*' %s/%u/pstate", SYS_DRI, card_number)) ? popen_to_str(&pstate, "grep '*' %s/%u/pstate",  SYS_DRI, card_number) :
+				                                                                                          popen_to_str(&pstate, "sed -n 1p %s/%u/pstate", SYS_DRI, card_number);
+				// ret_temp obtained above
+				ret_load  = -1;
+				ret_gclk  = !ret_pstate && sys_debug_ok(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
+				ret_mclk  = !ret_pstate && sys_debug_ok(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
+				FREE(pstate);
 				break;
 			}
 			default:
 				if(once_error)
-					MSG_WARNING(_("Driver for GPU %i doesn't report frequencies"), i);
+					MSG_WARNING(_("Driver for GPU %u doesn't report frequencies"), i);
 				continue;
 		}
 
 		if(!ret_load)
-			casprintf(&data->tab_graphics[VALUE][GPU1USAGE     + i * GPUFIELDS], false, "%s%%",  load);
+			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "%s%%",  load);
 		if(!ret_gclk)
-			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK + i * GPUFIELDS], true, "%s MHz", gclk);
+			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], true, "%s MHz", gclk);
 		if(!ret_mclk)
-			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK  + i * GPUFIELDS], true, "%s MHz", mclk);
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%s MHz", mclk);
+skip_clocks:
+		if(!ret_temp)
+			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2f°C", atof(temp) / divisor);
 
-		if(ret_load && ret_gclk && ret_mclk)
+		if(ret_temp && ret_load && ret_gclk && ret_mclk)
 			failed_count++;
 
-		free(load);
-		free(gclk);
-		free(mclk);
-		load = NULL;
-		gclk = NULL;
-		mclk = NULL;
+		FREE(temp);
+		FREE(load);
+		FREE(gclk);
+		FREE(mclk);
 	}
 
 	if(once_error && failed_count)
