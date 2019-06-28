@@ -8,7 +8,7 @@ if(WITH_GTK)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER})
-		add_library(gui_gtk
+		add_library(gui_gtk STATIC
 			gui_gtk.c
 			gui_gtk.h
 			gui_gtk_id.h
@@ -27,7 +27,7 @@ if(WITH_NCURSES)
 	if(NCURSES_FOUND)
 		include_directories(${NCURSES_INCLUDE_DIRS})
 		link_directories(${NCURSES_LIBRARY_DIRS})
-		add_library(tui_ncurses
+		add_library(tui_ncurses STATIC
 			tui_ncurses.c
 			tui_ncurses.h
 		)
