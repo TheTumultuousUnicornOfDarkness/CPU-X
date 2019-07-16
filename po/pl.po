@@ -1,22 +1,25 @@
 # Copyright © 2014-2019 Xorg
 # This file is distributed under the same license as the CPU-X package.
-#
 # Translators:
 # Michał Głowienka <eloaders@linux.pl>, 2016
+# WaldiS <admin@sto.ugu.pl>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-10 20:19+0000\n"
-"Last-Translator: Michał Głowienka <eloaders@linux.pl>\n"
+"PO-Revision-Date: 2019-07-17 20:06+0000\n"
+"Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<"
+"12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) ||"
+" (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -118,7 +121,7 @@ msgstr "Szukam sterownika karty graficznej"
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "Twój sterownik GPU jest nieznany: %s"
 
 #: core.c:661
 #, c-format
@@ -141,7 +144,7 @@ msgstr "Pomijam wyszukiwanie urządzeń (musisz być użytkownikiem root)"
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "Dostawca procesora GPU jest nieznany: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
@@ -157,7 +160,7 @@ msgstr "Pobieranie temperatury GPU"
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "Wyłączone"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
@@ -169,7 +172,7 @@ msgstr ""
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "Pobieranie zegarów GPU"
 
 #: core.c:931
 #, c-format
