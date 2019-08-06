@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-02-20 13:43+0000\n"
+"PO-Revision-Date: 2019-08-07 13:24+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -52,7 +52,7 @@ msgstr "%d MB, %d-yol"
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s ilişkilendirilebilir, %d-bayt satır boyutu"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
@@ -74,15 +74,15 @@ msgstr "CPU MSR açılışını atla (rootlu olması gerek)"
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "CPU MSR açılamadı (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "CPU MSR statik değerlerini almak için libcpuid çağrısı"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "CPU MSR dinamik değerlerini almak için libcpuid çağrısı"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
@@ -124,25 +124,25 @@ msgstr "GPU sürücünüz bilinmiyor: %s"
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(%s sürücüsü)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "grafik kartı sürücüsünü bulamadı (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "Cihazları bulma"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "Cihaz aramayı atla (root olmanız gerekir)"
 
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "GPU satıcınız bilinmiyor:%s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
