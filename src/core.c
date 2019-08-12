@@ -73,10 +73,16 @@ int fill_labels(Labels *data)
 	int i, err = 0;
 	const uint8_t selected_page = opts->selected_page;
 
+#if HAS_LIBCPUID
 	if(HAS_LIBCPUID)               err += call_libcpuid_static    (data);
 	if(HAS_LIBCPUID  && DAEMON_UP) err += call_libcpuid_msr_static(data);
+#endif
+#if HAS_DMIDECODE
 	if(HAS_DMIDECODE && DAEMON_UP) err += call_dmidecode          (data);
+#endif
+#if HAS_LIBPCI
 	if(HAS_LIBPCI)                 err += find_devices            (data);
+#endif
 	casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
 
 	err += system_static       (data);
@@ -101,21 +107,29 @@ int do_refresh(Labels *data)
 	switch(opts->selected_page)
 	{
 		case NO_CPU:
+#if HAS_LIBCPUID
 			if(HAS_LIBCPUID)              err += err_func(call_libcpuid_dynamic,     data);
 			if(HAS_LIBCPUID && DAEMON_UP) err += err_func(call_libcpuid_msr_dynamic, data);
+#endif
 			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
 			err += err_func(cputab_fill_multipliers, data);
 			break;
+#if HAS_BANDWIDTH
 		case NO_CACHES:
 			if(HAS_BANDWIDTH) err += err_func(call_bandwidth, data);
 			break;
+#endif
+#if HAS_LIBSYSTEM
 		case NO_SYSTEM:
 			if(HAS_LIBSYSTEM) err += err_func(system_dynamic, data);
 			break;
+#endif
+#if HAS_LIBPCI
 		case NO_GRAPHICS:
 			err += err_func(gpu_monitoring, data);
 			break;
+#endif
 		case NO_BENCH:
 			err += err_func(benchmark_status, data);
 			break;
@@ -838,6 +852,7 @@ static bool sys_debug_ok(Labels *data)
 }
 #endif /* __linux__ */
 
+#if HAS_LIBPCI
 /* Retrieve GPU temperature and clocks */
 static int gpu_monitoring(Labels *data)
 {
@@ -991,6 +1006,7 @@ skip_clocks:
 	return 0;
 #endif /* __linux__ */
 }
+#endif /* HAS_LIBPCI */
 
 /* Satic elements for System tab, OS specific */
 static int system_static(Labels *data)
@@ -1327,11 +1343,13 @@ static int fallback_mode_static(Labels *data)
 {
 	int err = 0;
 
+#if HAS_LIBCPUID
 	if(HAS_LIBCPUID &&
 	   (string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
 	    strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
 	    strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL))
 		err += cputab_package_fallback(data);
+#endif
 
 	if(data->cpu_min_mult <= 0.0 || data->cpu_max_mult <= 0.0)
 		err += cputab_multipliers_fallback(data);

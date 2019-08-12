@@ -540,7 +540,7 @@ static void help(char *binary_name)
 	MSG_STDOUT(_("Available DISPLAY:"));
 	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
-		if(!cpux_options[i].has_mod)
+		if(!cpux_env_vars[i].has_mod)
 			continue;
 
 		if(!options_header && islower(cpux_options[i].short_opt))

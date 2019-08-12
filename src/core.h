@@ -33,6 +33,7 @@
 /* Avoid to re-run a function if an error was occurred in previous call */
 static int err_func(int (*func)(Labels *), Labels *data);
 
+#if HAS_LIBCPUID
 /* Static elements provided by libcpuid */
 static int call_libcpuid_static(Labels *data);
 /* Required: HAS_LIBCPUID */
@@ -48,39 +49,50 @@ static int call_libcpuid_msr_static(Labels *data);
 /* MSRs dynamic values provided by libcpuid */
 static int call_libcpuid_msr_dynamic(Labels *data);
 /* Required: HAS_LIBCPUID && DAEMON_UP */
+#endif
 
 /* Fill the Multiplier label with the most appropriate format */
 static int cputab_fill_multipliers(Labels *data);
 /* Required: none
 Both normal and fallback mode provide CPU multipliers, need to be call after */
 
+#if HAS_DMIDECODE
 /* Elements provided by dmidecode */
 static int call_dmidecode(Labels *data);
 /* Required: HAS_DMIDECODE && DAEMON_UP */
+#endif
 
+#if HAS_BANDWIDTH
 /* Compute CPU cache speed */
 static int call_bandwidth(Labels *data);
 /* Required: HAS_BANDWIDTH */
+#endif
 
 /* Calculate total CPU usage */
 static int cpu_usage(Labels *data);
 /* Required: none */
 
+#if HAS_LIBPCI
 /* Find some PCI devices, like chipset and GPU */
 static int find_devices(Labels *data);
 /* Required: HAS_LIBPCI */
+#endif
 
+#if HAS_LIBPCI
 /* Retrieve GPU temperature and clocks */
 static int gpu_monitoring(Labels *data);
-/* Required: none */
+/* Required: HAS_LIBPCI */
+#endif
 
 /* Satic elements for System tab, OS specific */
 static int system_static(Labels *data);
 /* Required: none */
 
+#if (HAS_LIBPROCPS || HAS_LIBSTATGRAB)
 /* Dynamic elements for System tab, provided by libprocps/libstatgrab */
 static int system_dynamic(Labels *data);
 /* Required: HAS_LIBPROCPS || HAS_LIBSTATGRAB */
+#endif
 
 /* Report score of benchmarks */
 static int benchmark_status(Labels *data);
