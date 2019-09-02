@@ -251,7 +251,7 @@ static void dump_data(Labels *data)
 		{ NO_GRAPHICS,    GPU4VENDOR,   FRAMGPU4            }
 	};
 
-	MSG_VERBOSE(_("Dumping data..."));
+	MSG_VERBOSE(_("Dumping data…"));
 	for(i = 0; arrays[i].dim_names != NULL; i++)
 	{
 		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col_start, data->objects[i], col_end);
@@ -347,7 +347,7 @@ static bool check_new_version(void)
 		return false;
 	}
 
-	MSG_VERBOSE(_("Checking on Internet for a new version..."));
+	MSG_VERBOSE(_("Checking on Internet for a new version…"));
 	curl = curl_easy_init();
 	if(!curl)
 	{
@@ -436,7 +436,7 @@ static int update_prg(void)
 	}
 
 	/* Download archive */
-	MSG_VERBOSE(_("Downloading new version..."));
+	MSG_VERBOSE(_("Downloading new version…"));
 	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s", TARBALL, new_version[0], archive));
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -454,7 +454,7 @@ static int update_prg(void)
 	}
 
 	/* Extract archive */
-	MSG_VERBOSE(_("Extracting new version..."));
+	MSG_VERBOSE(_("Extracting new version…"));
 	asprintf(&new_binary, "%s_v%s_portable%s.%s", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK", OS);
 	err = extract_archive(archive, new_binary);
 	if(err)
@@ -464,7 +464,7 @@ static int update_prg(void)
 	}
 
 	/* Rename new binary */
-	MSG_VERBOSE(_("Applying new version..."));
+	MSG_VERBOSE(_("Applying new version…"));
 	if(strstr(binary_name, PRGVER) != NULL) // If binary name contains version
 	{
 		err  = remove(binary_name); // Delete old version and keep new version
