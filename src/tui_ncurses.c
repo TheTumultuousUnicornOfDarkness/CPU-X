@@ -67,7 +67,7 @@ void start_tui_ncurses(Labels *data)
 	NThrd refr = { .data = data, .info = info };
 	WINDOW *win;
 
-	MSG_VERBOSE(_("Starting NCurses TUI..."));
+	MSG_VERBOSE(_("Starting NCurses TUI…"));
 	if(!getenv("TERMINFO"))
 		setenv("TERMINFO", TERMINFODIR, 0);
 	freopen("/dev/null", "a", stderr);

@@ -43,7 +43,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	gchar *prgname      = g_ascii_strdown(PRGNAME, -1);
 	const gchar *ui_files[] = { "cpu-x-gtk-3.12.ui", NULL };
 
-	MSG_VERBOSE(_("Starting GTK GUI..."));
+	MSG_VERBOSE(_("Starting GTK GUI…"));
 	gtk_init(argc, argv);
 	g_set_prgname(prgname);
 	g_free(prgname);
