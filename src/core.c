@@ -865,7 +865,8 @@ static int gpu_monitoring(Labels *data)
 
 		if(gpu_ok && (data->g_data->gpu_driver[i] == GPUDRV_UNKNOWN))
 		{
-			find_gpu_driver(data->g_data->device_path[i], NULL, &data->g_data->gpu_driver[i]);
+			char fixme[MAXSTR];
+			find_gpu_driver(data->g_data->device_path[i], fixme, &data->g_data->gpu_driver[i]);
 			//TODO: Set 'Driver' label
 		}
 		else if(!gpu_ok)
