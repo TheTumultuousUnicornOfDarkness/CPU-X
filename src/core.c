@@ -682,13 +682,14 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	*gpu_driver = GPUDRV_UNKNOWN;
 	const struct { const char *str; const enum EnGpuDrv val; } gpu_drivers[] =
 	{
-		{ "fglrx",   GPUDRV_FGLRX   },
-		{ "radeon",  GPUDRV_RADEON  },
-		{ "amdgpu",  GPUDRV_AMDGPU  },
-		{ "i915",    GPUDRV_INTEL   },
-		{ "nvidia",  GPUDRV_NVIDIA  },
-		{ "nouveau", GPUDRV_NOUVEAU },
-		{ buff,      GPUDRV_UNKNOWN }
+		{ "fglrx",    GPUDRV_FGLRX   },
+		{ "radeon",   GPUDRV_RADEON  },
+		{ "amdgpu",   GPUDRV_AMDGPU  },
+		{ "i915",     GPUDRV_INTEL   },
+		{ "nvidia",   GPUDRV_NVIDIA  },
+		{ "nouveau",  GPUDRV_NOUVEAU },
+		{ "vfio-pci", GPUDRV_VFIO    },
+		{ buff,       GPUDRV_UNKNOWN }
 	};
 
 	/* Check GPU state */
