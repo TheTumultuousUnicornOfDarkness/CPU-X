@@ -3,13 +3,14 @@
 # Translators:
 # Michał Głowienka <eloaders@linux.pl>, 2016
 # WaldiS <admin@sto.ugu.pl>, 2019.
+# Mr Talon63 <pantalon63@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-07-17 20:06+0000\n"
-"Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
+"PO-Revision-Date: 2019-09-21 20:28+0000\n"
+"Last-Translator: Mr Talon63 <pantalon63@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
@@ -19,20 +20,20 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<"
 "12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) ||"
 " (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "nie można zrelokować pamięci"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "istniejące %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Wyszukiwanie technologi procesora"
 
 #: core.c:194
 #, c-format
@@ -169,6 +170,8 @@ msgstr "nie udało się pobrać temperatury GPU"
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
 msgstr ""
+"Pomijanie kilku wartości o procesorze graficznym (musisz mieć uprawnienia "
+"root'a)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
@@ -177,11 +180,11 @@ msgstr "Pobieranie zegarów GPU"
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "Sterownik procesora graficznego %i nie raportuje częstotliwości"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "nie udało się znaleść zegarów procesora graficznego"
 
 #: core.c:969
 msgid "Identifying running system"
@@ -383,7 +386,7 @@ msgstr "Nazwa kodowa"
 
 #: main.c:68
 msgid "Package"
-msgstr ""
+msgstr "Paczka"
 
 #: main.c:69
 msgid "Technology"
@@ -403,7 +406,7 @@ msgstr "Rodzina"
 
 #: main.c:73
 msgid "Ext. Family"
-msgstr ""
+msgstr "Zewnętrzna Rodzina"
 
 #: main.c:74 main.c:111 main.c:122 main.c:155
 msgid "Model"
@@ -411,7 +414,7 @@ msgstr "Model"
 
 #: main.c:75
 msgid "Ext. Model"
-msgstr ""
+msgstr "Zewnętrzny Model"
 
 #: main.c:76
 msgid "Temp."
@@ -419,7 +422,7 @@ msgstr "Temperatura."
 
 #: main.c:77
 msgid "Stepping"
-msgstr ""
+msgstr "Stepping"
 
 #: main.c:78
 msgid "Instructions"
@@ -431,72 +434,72 @@ msgstr "Zegar"
 
 #: main.c:81
 msgid "Core Speed"
-msgstr ""
+msgstr "Prędkość procesora"
 
 #: main.c:82
 msgid "Multiplier"
-msgstr ""
+msgstr "Mnożnik"
 
 #: main.c:83
 msgid "Bus Speed"
-msgstr ""
+msgstr "Prędkość Szyny"
 
 #: main.c:84 main.c:157
 msgid "Usage"
-msgstr ""
+msgstr "Wykorzystanie"
 
 #: main.c:86
 msgid "Cache"
-msgstr ""
+msgstr "Pamięć Podręczna"
 
 #: main.c:87
 msgid "L1 Data"
-msgstr ""
+msgstr "Dane L1"
 
 #: main.c:88
 msgid "L1 Inst."
-msgstr ""
+msgstr "Instrukcje L1."
 
 #: main.c:89
 msgid "Level 2"
-msgstr ""
+msgstr "2 poziom"
 
 #: main.c:90
 msgid "Level 3"
-msgstr ""
+msgstr "3 poziom"
 
 #: main.c:92
 msgid "Socket(s)"
-msgstr ""
+msgstr "Gniazda"
 
 #: main.c:93
 msgid "Core(s)"
-msgstr ""
+msgstr "Rdzenie"
 
 #: main.c:94
 msgid "Thread(s)"
-msgstr ""
+msgstr "Wątki"
 
 #: main.c:97
 msgid "Caches"
-msgstr ""
+msgstr "Pamięci Podręczne"
 
 #: main.c:101
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "Pamięc Podręczna L%i"
 
 #: main.c:102
 msgid "Size"
-msgstr ""
+msgstr "Wielkość"
 
 #: main.c:103
 msgid "Speed"
-msgstr ""
+msgstr "Prędkość"
 
 #: main.c:105
 msgid "Test"
-msgstr ""
+msgstr "Testy"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
@@ -504,7 +507,7 @@ msgstr "Płyta główna"
 
 #: main.c:110
 msgid "Manufacturer"
-msgstr ""
+msgstr "Producent"
 
 #: main.c:112
 msgid "Revision"
@@ -516,19 +519,19 @@ msgstr "BIOS"
 
 #: main.c:115
 msgid "Brand"
-msgstr ""
+msgstr "Marka"
 
 #: main.c:116
 msgid "Version"
-msgstr ""
+msgstr "Wersja"
 
 #: main.c:117
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: main.c:118
 msgid "ROM Size"
-msgstr ""
+msgstr "Wielkość ROM'u"
 
 #: main.c:120
 msgid "Chipset"
@@ -536,16 +539,16 @@ msgstr ""
 
 #: main.c:125 main.c:141
 msgid "Memory"
-msgstr ""
+msgstr "Pamięć"
 
 #: main.c:128
 #, c-format
 msgid "Bank %i"
-msgstr ""
+msgstr "Slot %i"
 
 #: main.c:129
 msgid "Reference"
-msgstr ""
+msgstr "Referencja"
 
 #: main.c:133
 msgid "System"
@@ -569,11 +572,11 @@ msgstr "Nazwa hosta"
 
 #: main.c:138
 msgid "Uptime"
-msgstr ""
+msgstr "Czas aktywności"
 
 #: main.c:139
 msgid "Compiler"
-msgstr ""
+msgstr "Kompilator"
 
 #: main.c:142
 msgid "Used"
@@ -585,7 +588,7 @@ msgstr "Zbuforowane"
 
 #: main.c:144
 msgid "Cached"
-msgstr ""
+msgstr "Zbuforowane"
 
 #: main.c:145
 msgid "Free"
@@ -602,7 +605,7 @@ msgstr "Grafika"
 #: main.c:153
 #, c-format
 msgid "Card %i"
-msgstr ""
+msgstr "Karta %i"
 
 #: main.c:156
 msgid "Temperature"
@@ -610,11 +613,11 @@ msgstr "Temperatura"
 
 #: main.c:158
 msgid "GPU clock"
-msgstr ""
+msgstr "Zegar procesora graficznego"
 
 #: main.c:159
 msgid "Memory clock"
-msgstr ""
+msgstr "Zegar pamięci"
 
 #: main.c:163
 msgid "Bench"
@@ -681,54 +684,54 @@ msgstr "Licencja"
 #: main.c:190
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "To oprogramowanie jest udostęopniane z zasadami %s"
 
 #: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "Program nie ma żadnej gwarancji"
 
 #: main.c:259
 msgid "Dumping data..."
-msgstr ""
+msgstr "Czyszczenie danych..."
 
 #: main.c:301
 msgid "Freeing memory"
-msgstr ""
+msgstr "Zwalnianie pamięci"
 
 #: main.c:344
 msgid "Checking on Internet for a new version..."
-msgstr ""
+msgstr "Sprawdzanie dostępności nowej wersji..."
 
 #: main.c:348 main.c:474
 msgid "failed to open a Curl session"
-msgstr ""
+msgstr "Nie udało się otworzyć sesji Curl"
 
 #: main.c:361
 #, c-format
 msgid "failed to perform the Curl transfer (%s)"
-msgstr ""
+msgstr "Nie udało się przesłać Curl'em (%s)"
 
 #: main.c:362
 msgid "wrong write data"
-msgstr ""
+msgstr "złe wpisane dane"
 
 #: main.c:369
 #, c-format
 msgid "(version %s is available)"
-msgstr ""
+msgstr "(wersja %s jest dostępna)"
 
 #: main.c:374 main.c:467
 msgid "No new version available"
-msgstr ""
+msgstr "Nie ma nowej wersji"
 
 #: main.c:375
 msgid "(up-to-date)"
-msgstr ""
+msgstr "(zaktualizowane)"
 
 #: main.c:445
 #, c-format
 msgid "an error occurred while extracting %s archive (%s)"
-msgstr ""
+msgstr "nastał błąd podczas wypakowywania archiwum %s (%s)"
 
 #: main.c:460
 msgid ""
@@ -756,7 +759,7 @@ msgstr ""
 
 #: main.c:516
 msgid "Applying new version..."
-msgstr ""
+msgstr "Stosowanie nowej wersji..."
 
 #: main.c:527
 msgid "an error occurred while removing/renaming files"
@@ -870,17 +873,17 @@ msgstr ""
 #: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "Zobacz licencje %s: <%s>\n"
 
 #: main.c:629
 #, c-format
 msgid "Built on %s, %s (with %s %s on %s)."
-msgstr ""
+msgstr "Zbudowane na %s i %s (z użyciem %s%s na %s)."
 
 #: main.c:636
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr ""
+msgstr "-- %-9s wersja: %s"
 
 #: main.c:772
 #, c-format
@@ -909,7 +912,7 @@ msgstr ""
 
 #: tui_ncurses.c:110
 msgid "Press 'h' to see help.\n"
-msgstr ""
+msgstr "Naciśnij 'h' żeby zobaczyć pomoc\n"
 
 #: tui_ncurses.c:384
 #, c-format
@@ -1031,7 +1034,7 @@ msgstr "wystąpił błąd podczas uruchamiania polecenia '%s' (%s)"
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
-msgstr ""
+msgstr "Nie udało się otworzyć pliku %s"
 
 #: util.c:321
 msgid "an error occurred while compiling regex"
