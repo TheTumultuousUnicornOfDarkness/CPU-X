@@ -1,0 +1,85 @@
+.TH CPU-X 1 "Oct 01, 2019"
+.SH NAME
+cpu-x \- X11 Tool that gathers Information on CPU, Motherboard and more...
+.SH SYNOPSIS
+.B cpu\-x
+[
+.I <DISPLAY>
+]
+[
+.I <OPTIONS>
+]
+.B cpu\-x_polkit
+[
+.I <DISPLAY>
+]
+[
+.I <OPTIONS>
+]
+
+.SH DESCRIPTION
+.B CPU\-X
+is similar to CPU\-Z (for MS Windows). It can be used in graphical
+mode by using GTK or in text\-based mode by using NCurses. A dump mode is
+present from the command line.
+.PP
+Parts of
+.B CPU\-X
+require root privileges. If your desktop session has PolicyKit support,
+you can launch \fIcpu\-x_polkit\fR. After admin authentication,
+\fBCPU\-X\fR will present to you its full feature set.
+
+.SH OPTIONS
+
+Available options to be used as \fI<DISPLAY>\fR:
+.TP 8
+.B  \-g, \-\-gtk
+Start graphical user interface (GUI) (default).
+.TP 8
+.B  \-n, \-\-ncurses
+Start text-based user interface (TUI).
+.TP 8
+.B  \-d, \-\-dump
+Dump all data on standard output and exit.
+.TP 8
+.B  \-D, \-\-dmidecode
+Run embedded command dmidecode and exit.
+
+.PP
+Available options to be used as \fI<OPTIONS>\fR:
+.TP 8
+.B  \-a, \-\-tab
+Set default tab (integer).
+.TP 8
+.B  \-r, \-\-refresh
+Set custom time between two refreshes (in seconds).
+.TP 8
+.B  \-o, \-\-nocolor
+Disable colored output.
+.TP 8
+.B  \-i, \-\-issue-fmt
+Print required information to paste in an issue.
+.TP 8
+.B  \-v, \-\-verbose
+Verbose output.
+.TP 8
+.B  \-h, \-\-help
+Print help and exit.
+.TP 8
+.B  \-V, \-\-version
+Print version and exit.
+
+.PP
+Environment variables with influence on runtime functionality:
+.TP 8
+.B  CPUX_NETWORK
+Temporarily disable network support.
+.TP 8
+.B  CPUX_BCLK
+Enforce the bus clock.
+
+.SH AUTHOR
+
+This man page has been written by Mike Gabriel
+<mike.gabriel@das-netzwerkteam.de> for the Debian project but maybe used
+by others.
