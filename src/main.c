@@ -511,7 +511,7 @@ static const struct
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
 	{ true,              0, "nocolor",   no_argument,       N_("Disable colored output")                                   },
-	{ true,              0, "issue-fmt", no_argument,       N_("Print required informations to paste in an issue")         },
+	{ true,              0, "issue-fmt", no_argument,       N_("Print required information to paste in an issue")         },
 	{ true,              0, NULL,        0,                 NULL                                                           }
 };
 

@@ -1299,14 +1299,14 @@ static int motherboardtab_fallback(Labels *data)
 	int i;
 	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 
-	MSG_VERBOSE(_("Retrieving motherboard informations in fallback mode"));
+	MSG_VERBOSE(_("Retrieving motherboard information in fallback mode"));
 	/* Tab Motherboard */
 	for(i = 0; id[i] != NULL; i++)
 		err += fopen_to_str(&data->tab_motherboard[VALUE][i], "%s/%s", SYS_DMI, id[i]);
 
 #endif /* __linux__ */
 	if(err)
-		MSG_ERROR(_("failed to retrieve motherboard informations (fallback mode)"));
+		MSG_ERROR(_("failed to retrieve motherboard information (fallback mode)"));
 
 	return err;
 }

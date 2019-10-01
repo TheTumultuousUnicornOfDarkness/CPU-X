@@ -2177,7 +2177,7 @@ bandwidth_main (int argc, char **argv)
 
 	printf ("This is bandwidth version %s.\n", RELEASE);
 	printf ("Copyright (C) 2005-2017 by Zack T Smith.\n\n");
-	printf ("This software is covered by the GNU Public License.\n");
+	printf ("This software is covered by the GNU General Public License.\n");
 	printf ("It is provided AS-IS, use at your own risk.\n");
 	printf ("See the file COPYING for more information.\n\n");
 	fflush (stdout);
