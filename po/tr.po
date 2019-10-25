@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the CPU-X package.
 # Brsn <bkzspam@outlook.com>, 2019.
 # Mesut Akcan <makcan@gmail.com>, 2019.
+# illaki <merdemcaner@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-08-07 13:24+0000\n"
-"Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
+"PO-Revision-Date: 2019-10-26 11:53+0000\n"
+"Last-Translator: illaki <merdemcaner@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 3.9.1-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -150,129 +151,141 @@ msgstr ""
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "Ekran kartı marka ve modeli bulunamadı"
 
 #: core.c:779
+#, fuzzy
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "GPU sıcaklığı alınıyor"
 
 #: core.c:786
+#, fuzzy
 msgid "Off"
-msgstr ""
+msgstr "Kapalı"
 
 #: core.c:825
+#, fuzzy
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "GPU sıcaklığı alınamadı"
 
 #: core.c:842
+#, fuzzy
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "Bazı GPU değerlerini atla(yeniden başlatılmalı)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "GPU saatleri alınıyor"
 
 #: core.c:931
-#, c-format
+#, c-format, fuzzy
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "GPU %i için sürücü. frekans aralıklarını belirtmiyor"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "GPU saatleri alınamadı"
 
 #: core.c:969
+#, fuzzy
 msgid "Identifying running system"
-msgstr ""
+msgstr "İşletim sistemi tanımlanıyor"
 
 #: core.c:972
+#, fuzzy
 msgid "failed to identify running system"
-msgstr ""
+msgstr "işletim sistemi tanımlanamadı"
 
 #: core.c:1013
+#, fuzzy
 msgid "Calling libprocps"
-msgstr ""
+msgstr "libprocps çağrılıyor"
 
 #: core.c:1035
+#, fuzzy
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "libstatgrab çağrılıyor"
 
 #: core.c:1065
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i gün, %i saat, %i dakika, %i saniye"
 
 #: core.c:1120
+#, fuzzy
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "Benchmark değerleri güncelleniyor"
 
 #: core.c:1121 tui_ncurses.c:754
-#, c-format
+#, c-format, fuzzy
 msgid "%u mins"
-msgstr ""
+msgstr "%u dk"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr ""
+msgstr "Pasif"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr ""
+msgstr "Başlamadı"
 
 #: core.c:1134
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
 #: core.c:1139
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u saat kaldı)"
 
 #: core.c:1141
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u dakika kaldı)"
 
 #: core.c:1143
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u saniye kaldı)"
 
 #: core.c:1148
-#, c-format
+#, c-format, fuzzy
 msgid "in %u hours"
-msgstr ""
+msgstr "%u saat içinde"
 
 #: core.c:1150
-#, c-format
+#, c-format, fuzzy
 msgid "in %u minutes"
-msgstr ""
+msgstr "%u dakika içinde"
 
 #: core.c:1152
-#, c-format
+#, c-format, fuzzy
 msgid "in %u seconds"
-msgstr ""
+msgstr "%u saniye içinde"
 
 #: core.c:1168
 msgid "Starting benchmark"
-msgstr ""
+msgstr "Benchmark başlatılıyor"
 
 #: core.c:1177
+#, fuzzy
 msgid "failed to allocate memory for benchmark"
-msgstr ""
+msgstr "Benchmark için bellek ayrılamadı"
 
 #: core.c:1191
+#, fuzzy
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "benchmark başlatılırken hata oluştu"
 
 #: core.c:1208
+#, fuzzy
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "fallback modunda CPU paketi bulunuyor"
 
 #: core.c:1226
-#, c-format
+#, c-format, fuzzy
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr ""
+msgstr "CPU soketiniz veritabanında eşleşmedi ==> %s, kodadı: %s"
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
