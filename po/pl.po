@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-09-21 20:28+0000\n"
-"Last-Translator: Mr Talon63 <pantalon63@gmail.com>\n"
+"PO-Revision-Date: 2019-11-01 20:03+0000\n"
+"Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<"
 "12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) ||"
 " (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -308,8 +308,9 @@ msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nie udało się pozyskać napięcia CPU (tryb awaryjny)"
 
 #: core.c:1401
+#, fuzzy
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "Pobieranie częstotliwości procesora w trybie awaryjnym"
 
 #: core.c:1409
 msgid "failed to retrieve CPU frequency (fallback mode)"
