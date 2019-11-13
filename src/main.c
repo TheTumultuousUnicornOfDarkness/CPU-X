@@ -54,7 +54,7 @@ static void labels_setname(Labels *data)
 {
 	int i, j;
 
-	MSG_VERBOSE(_("Setting label names"));
+	MSG_VERBOSE("%s", _("Setting label names"));
 	/* CPU tab */
 	asprintf(&data->objects[TABCPU],                _("CPU")); // Tab label
 	asprintf(&data->objects[FRAMPROCESSOR],         _("Processor")); // Frame label
@@ -251,7 +251,7 @@ static void dump_data(Labels *data)
 		{ NO_GRAPHICS,    GPU4VENDOR,   FRAMGPU4            }
 	};
 
-	MSG_VERBOSE(_("Dumping data…"));
+	MSG_VERBOSE("%s", _("Dumping data…"));
 	for(i = 0; arrays[i].dim_names != NULL; i++)
 	{
 		MSG_STDOUT("  %s>>>>>>>>>> %s <<<<<<<<<<%s", col_start, data->objects[i], col_end);
@@ -268,7 +268,7 @@ static void dump_data(Labels *data)
 			}
 			MSG_STDOUT("%16s: %s", arrays[i].dim_names[j], arrays[i].dim_values[j]);
 		}
-		MSG_STDOUT("\n");
+		MSG_STDOUT("%s", "\n");
 	}
 
 	labels_free(data);
@@ -293,7 +293,7 @@ void labels_free(Labels *data)
 		{ NULL,                        NULL,                         0                               }
 	};
 
-	MSG_VERBOSE(_("Freeing memory"));
+	MSG_VERBOSE("%s", _("Freeing memory"));
 	for(i = 0; arrays[i].dim_names != NULL; i++)
 	{
 		for(j = 0; j < arrays[i].last; j++)
@@ -347,11 +347,11 @@ static bool check_new_version(void)
 		return false;
 	}
 
-	MSG_VERBOSE(_("Checking on Internet for a new version…"));
+	MSG_VERBOSE("%s", _("Checking on Internet for a new version…"));
 	curl = curl_easy_init();
 	if(!curl)
 	{
-		MSG_ERROR(_("failed to open a Curl session"));
+		MSG_ERROR("%s", _("failed to open a Curl session"));
 		return 1;
 	}
 
@@ -375,20 +375,20 @@ static bool check_new_version(void)
 
 	if(new_version[0] == NULL)
 	{
-		MSG_ERROR(_("failed to perform the Curl transfer (%s)"),
+		MSG_ERROR("%s", _("failed to perform the Curl transfer (%s)"),
 			(new_version[0] != NULL) ? curl_easy_strerror(code) : _("wrong write data"));
 		opts->use_network = false;
 		asprintf(&new_version[1], "%c", '\0');
 	}
 	else if(strcmp(new_version[0], PRGVER))
 	{
-		MSG_VERBOSE(_("A new version of %s is available!"), PRGNAME);
+		MSG_VERBOSE("%s", _("A new version of %s is available!"), PRGNAME);
 		asprintf(&new_version[1], _("(version %s is available)"), new_version[0]);
 		return true;
 	}
 	else
 	{
-		MSG_VERBOSE(_("No new version available"));
+		MSG_VERBOSE("%s", _("No new version available"));
 		asprintf(&new_version[1], _("(up-to-date)"));
 	}
 
@@ -408,21 +408,21 @@ static int update_prg(void)
 
 	if(!opts->use_network)
 	{
-		MSG_WARNING(_("Network access is disabled by environment variable"
+		MSG_WARNING("%s", _("Network access is disabled by environment variable"
 		              " (set CPUX_NETWORK with a positive value to enable it)"));
 		return 1;
 	}
 
 	if(new_version[0] == NULL)
 	{
-		MSG_WARNING(_("No new version available"));
+		MSG_WARNING("%s", _("No new version available"));
 		return 2;
 	}
 
 	curl = curl_easy_init();
 	if(!curl)
 	{
-		MSG_ERROR(_("failed to open a Curl session"));
+		MSG_ERROR("%s", _("failed to open a Curl session"));
 		return 3;
 	}
 
@@ -430,13 +430,13 @@ static int update_prg(void)
 	file_descr = fopen(archive, "wb");
 	if(file_descr == NULL)
 	{
-		MSG_ERRNO(_("failed to open %s archive for writing"), archive);
+		MSG_ERRNO("%s", _("failed to open %s archive for writing"), archive);
 		free(archive);
 		return 4;
 	}
 
 	/* Download archive */
-	MSG_VERBOSE(_("Downloading new version…"));
+	MSG_VERBOSE("%s", _("Downloading new version…"));
 	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s", TARBALL, new_version[0], archive));
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -448,13 +448,13 @@ static int update_prg(void)
 	fclose(file_descr);
 	if(code != CURLE_OK)
 	{
-		MSG_ERROR(_("failed to download %s archive (%s)"), archive, curl_easy_strerror(code));
+		MSG_ERROR("%s", _("failed to download %s archive (%s)"), archive, curl_easy_strerror(code));
 		free(archive);
 		return 5;
 	}
 
 	/* Extract archive */
-	MSG_VERBOSE(_("Extracting new version…"));
+	MSG_VERBOSE("%s", _("Extracting new version…"));
 	asprintf(&new_binary, "%s_v%s_portable%s.%s", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK", OS);
 	err = extract_archive(archive, new_binary);
 	if(err)
@@ -464,7 +464,7 @@ static int update_prg(void)
 	}
 
 	/* Rename new binary */
-	MSG_VERBOSE(_("Applying new version…"));
+	MSG_VERBOSE("%s", _("Applying new version…"));
 	if(strstr(binary_name, PRGVER) != NULL) // If binary name contains version
 	{
 		err  = remove(binary_name); // Delete old version and keep new version
@@ -475,9 +475,9 @@ static int update_prg(void)
 
 	err += remove(archive);
 	if(err)
-		MSG_ERROR(_("an error occurred while removing/renaming files"));
+		MSG_ERROR("%s", _("an error occurred while removing/renaming files"));
 	else
-		MSG_VERBOSE(_("Update successful!"));
+		MSG_VERBOSE("%s", _("Update successful!"));
 
 	return err;
 }
@@ -536,8 +536,8 @@ static void help(char *binary_name)
 	bool options_header = false;
 	char buff[MAXSTR];
 
-	MSG_STDOUT(_("Usage: %s DISPLAY [OPTIONS]\n"), binary_name);
-	MSG_STDOUT(_("Available DISPLAY:"));
+	MSG_STDOUT("%s", _("Usage: %s DISPLAY [OPTIONS]\n"), binary_name);
+	MSG_STDOUT("%s", _("Available DISPLAY:"));
 	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
 		if(!cpux_options[i].has_mod)
@@ -546,7 +546,7 @@ static void help(char *binary_name)
 		if(!options_header && islower(cpux_options[i].short_opt))
 		{
 			options_header = true;
-			MSG_STDOUT(_("\nAvailable OPTIONS:"));
+			MSG_STDOUT("%s", _("\nAvailable OPTIONS:"));
 		}
 
 		if(cpux_options[i].short_opt) snprintf(buff, MAXSTR, "  -%c,", cpux_options[i].short_opt);
@@ -554,7 +554,7 @@ static void help(char *binary_name)
 		MSG_STDOUT("%s --%-10s %s", buff, cpux_options[i].long_opt, _(cpux_options[i].description));
 	}
 
-	MSG_STDOUT(_("\nInfluenceable environment variables:"));
+	MSG_STDOUT("%s", _("\nInfluenceable environment variables:"));
 	for(i = 0; cpux_env_vars[i].var_name != NULL; i++)
 	{
 		if(!cpux_options[i].has_mod)
@@ -591,16 +591,16 @@ static void version(bool full_header)
 	if(full_header)
 	{
 		MSG_STDOUT("%s\n", PRGCPRGHT);
-		MSG_STDOUT(_("This is free software: you are free to change and redistribute it."));
-		MSG_STDOUT(_("This program comes with ABSOLUTELY NO WARRANTY"));
-		MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
+		MSG_STDOUT("%s", _("This is free software: you are free to change and redistribute it."));
+		MSG_STDOUT("%s", _("This program comes with ABSOLUTELY NO WARRANTY"));
+		MSG_STDOUT("%s", _("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
 	}
 
 	/* Print features version */
 	for(i = 0; libs_ver[i].lib != NULL; i++)
 	{
 		if(libs_ver[i].has_mod)
-			MSG_STDOUT(_("-- %-9s version: %s"), libs_ver[i].lib, libs_ver[i].version);
+			MSG_STDOUT("%s", _("-- %-9s version: %s"), libs_ver[i].lib, libs_ver[i].version);
 	}
 }
 
@@ -756,9 +756,9 @@ static void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"),
+	MSG_STDERR("%s", _("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"),
 	           BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
-	MSG_STDERR("========================= Backtrace =========================");
+	MSG_STDERR("%s", "========================= Backtrace =========================");
 	PRGINFO(stderr);
 	for(i = 1; i < bt_size; i++)
 	{
@@ -770,9 +770,9 @@ static void sighandler(int signum)
 			MSG_STDERR("#%2i %s", i, bt_syms[i]);
 		free(buff);
 	}
-	MSG_STDERR("======================== End Backtrace =======================\n");
-	MSG_STDERR(_("You can paste this backtrace by opening a new issue here:"));
-	MSG_STDERR("https://github.com/X0rg/CPU-X/issues/new\n");
+	MSG_STDERR("%s", "======================== End Backtrace =======================\n");
+	MSG_STDERR("%s", _("You can paste this backtrace by opening a new issue here:"));
+	MSG_STDERR("%s", "https://github.com/X0rg/CPU-X/issues/new\n");
 
 	/* Stop program */
 	free(bt_syms);
@@ -798,7 +798,7 @@ static int set_locales(void)
 	/* Check if something is wrong */
 	if(err)
 	{
-		MSG_ERROR(_("an error occurred while setting locale"));
+		MSG_ERROR("%s", _("an error occurred while setting locale"));
 		return 1;
 	}
 	else
@@ -925,7 +925,7 @@ skip_init:
 # ifdef __x86_64__
 		update_prg();
 # else
-		MSG_ERROR(_("Sorry, you cannot update %s: 32-bit portable version is no more supported."), PRGNAME);
+		MSG_ERROR("%s", _("Sorry, you cannot update %s: 32-bit portable version is no more supported."), PRGNAME);
 # endif
 	}
 #endif /* PORTABLE_BINARY */

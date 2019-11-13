@@ -43,7 +43,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	gchar *prgname      = g_ascii_strdown(PRGNAME, -1);
 	const gchar *ui_files[] = { "cpu-x-gtk-3.12.ui", NULL };
 
-	MSG_VERBOSE(_("Starting GTK GUI…"));
+	MSG_VERBOSE("%s", _("Starting GTK GUI…"));
 	gtk_init(argc, argv);
 	g_set_prgname(prgname);
 	g_free(prgname);
@@ -52,7 +52,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	for(i = 0; (ui_files[i] != NULL) && (!gtk_builder_add_from_file(builder, data_path(ui_files[i]), NULL)); i++);
 	if(ui_files[i] == NULL)
 	{
-		MSG_ERROR(_("failed to import UI in GtkBuilder"));
+		MSG_ERROR("%s", _("failed to import UI in GtkBuilder"));
 		exit(EXIT_FAILURE);
 	}
 
@@ -181,8 +181,9 @@ static void change_activetest(GtkComboBox *box, Labels *data)
 }
 
 /* Events in Bench tab when a benchmark start/stop */
-static void start_benchmark_bg(GtkSwitch *gswitch, GdkEvent *event, GThrd *refr)
+static void start_benchmark_bg(GtkSwitch *gswitch, GdkEvent *__event, GThrd *refr)
 {
+	UNUSED(__event);
 	Labels *data = refr->data;
 
 	if(!data->b_data->run)
@@ -458,7 +459,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
 	for(i = 0; i < data->cpu_count; i++)
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format(_("Core #%i"), i));
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format("%s", _("Core #%i"), i));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
 	/* Tab Caches */

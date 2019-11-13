@@ -49,8 +49,9 @@ static ThreadsInfo *ti = &(ThreadsInfo)
 	.thread    = NULL,
 };
 
-char *colorized_msg(const char *color, const char *str, ...)
+char *colorized_msg(const char *__color, const char *str, ...)
 {
+	UNUSED(__color);
 	char fmt[MSG_BUFF_LEN];
 	static char buff[MSG_BUFF_LEN];
 	va_list aptr;
@@ -177,7 +178,7 @@ static int __load_module(int *fd)
 	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
 	if((module = malloc(len)) == NULL)
 	{
-		MSG_ERRNO("malloc");
+		MSG_ERRNO("%s", "malloc");
 		close(*fd);
 		*fd = -1;
 		return 1;
@@ -246,7 +247,7 @@ static void create_thread(int fd)
 	/* Search available index */
 	if(pthread_mutex_lock(&ti->mutex) < 0)
 	{
-		MSG_ERRNO("pthread_mutex_lock");
+		MSG_ERRNO("%s", "pthread_mutex_lock");
 		close(fd);
 	}
 	for(i = 0; i < ti->allocated; i++)
@@ -256,7 +257,7 @@ static void create_thread(int fd)
 	/* Extend array if no available index */
 	if((tmp = realloc(ti->thread, (ti->allocated * 2) * sizeof(Thread))) == NULL)
 	{
-		MSG_ERRNO("realloc");
+		MSG_ERRNO("%s", "realloc");
 		close(fd);
 		pthread_mutex_unlock(&ti->mutex);
 		return;
@@ -277,8 +278,9 @@ found:
 	pthread_detach(ti->thread[i].id);
 }
 
-static void sighandler(int signum)
+static void sighandler(int __signum)
 {
+	UNUSED(__signum);
 	quit_loop = true;
 }
 
@@ -309,14 +311,14 @@ int main(void)
 	/* Initialize mutex */
 	if(pthread_mutex_init(&ti->mutex, NULL) < 0)
 	{
-		MSG_ERRNO("pthread_mutex_init");
+		MSG_ERRNO("%s", "pthread_mutex_init");
 		return EXIT_FAILURE;
 	}
 
 	/* Initialize threads array */
 	if((ti->thread = malloc(ti->allocated * sizeof(Thread))) == NULL)
 	{
-		MSG_ERRNO("malloc");
+		MSG_ERRNO("%s", "malloc");
 		pthread_mutex_destroy(&ti->mutex);
 		return EXIT_FAILURE;
 	}
@@ -356,13 +358,13 @@ int main(void)
 		/* Wait for incoming connection */
 		ret = poll(fds, NFDS, POLL_TIMEOUT);
 		if(ret < 0)
-			MSG_ERRNO("poll");
+			MSG_ERRNO("%s", "poll");
 		else if(ret == 0) // Timeout
 			quit_loop = ti->count == 0;
 		else if(fds[0].revents & POLLIN)
 		{
 			if((data_socket = accept(listen_socket, NULL, NULL)) < 0)
-				MSG_ERRNO("accept");
+				MSG_ERRNO("%s", "accept");
 			else
 				create_thread(data_socket);
 		}
@@ -370,7 +372,7 @@ int main(void)
 	goto clean;
 
 error:
-	MSG_ERRNO(error_str);
+	MSG_ERRNO("%s", error_str);
 	err = EXIT_FAILURE;
 
 clean:

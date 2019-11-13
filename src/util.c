@@ -172,13 +172,13 @@ int fopen_to_str(char **buffer, char *str, ...)
 		GOTO_ERROR("fgets");
 
 	tmp[strlen(tmp) - 1] = '\0';
-	asprintf(buffer, tmp);
+	asprintf(buffer, "%s", tmp);
 	free(file_str);
 
 	return fclose(file_descr);
 
 error:
-	MSG_ERROR(_("an error occurred while opening file '%s' (%s)"), file_str, error_str);
+	MSG_ERROR("%s", _("an error occurred while opening file '%s' (%s)"), file_str, error_str);
 	free(file_str);
 	return (file_descr == NULL) ? 1 : 2 + fclose(file_descr);
 }
@@ -212,13 +212,13 @@ int popen_to_str(char **buffer, char *str, ...)
 		GOTO_ERROR("fgets");
 
 	tmp[strlen(tmp) - 1] = '\0';
-	asprintf(buffer, tmp);
+	asprintf(buffer, "%s", tmp);
 	free(cmd_str);
 
 	return pclose(pipe_descr);
 
 error:
-	MSG_ERROR(_("an error occurred while running command '%s' (%s)"), cmd_str, error_str);
+	MSG_ERROR("%s", _("an error occurred while running command '%s' (%s)"), cmd_str, error_str);
 	free(cmd_str);
 	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }
@@ -266,7 +266,7 @@ static int get_sensor_path(char *dir_path, regex_t *regex_filename, regex_t *reg
 	/* Open given directory */
 	if((dp = opendir(dir_path)) == NULL)
 	{
-		MSG_ERROR(_("failed to open %s directory"), dir_path);
+		MSG_ERROR("%s", _("failed to open %s directory"), dir_path);
 		return 1;
 	}
 
@@ -326,7 +326,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 
 	if((dp = opendir(base_dir)) == NULL)
 	{
-		MSG_ERROR(_("failed to open %s directory"), base_dir);
+		MSG_ERROR("%s", _("failed to open %s directory"), base_dir);
 		return 1;
 	}
 
@@ -337,7 +337,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
 	{
-		MSG_ERROR(_("an error occurred while compiling regex"));
+		MSG_ERROR("%s", _("an error occurred while compiling regex"));
 		return 2;
 	}
 
@@ -422,7 +422,7 @@ bool start_daemon(bool graphical)
 
 	pid = fork();
 	if(pid < 0)
-		MSG_ERRNO("fork");
+		MSG_ERRNO("%s", "fork");
 	else if(pid == 0)
 		execvp(cmd[0], cmd);
 	else

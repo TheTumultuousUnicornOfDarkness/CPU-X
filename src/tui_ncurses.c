@@ -67,7 +67,7 @@ void start_tui_ncurses(Labels *data)
 	NThrd refr = { .data = data, .info = info };
 	WINDOW *win;
 
-	MSG_VERBOSE(_("Starting NCurses TUI…"));
+	MSG_VERBOSE("%s", _("Starting NCurses TUI…"));
 	if(!getenv("TERMINFO"))
 		setenv("TERMINFO", TERMINFODIR, 0);
 	freopen("/dev/null", "a", stderr);
@@ -107,7 +107,7 @@ void start_tui_ncurses(Labels *data)
 	main_win(win, info, data);
 	(*func_ptr[opts->selected_page])(win, info, data);
 	timeout(opts->refr_time * 1000);
-	printw(_("Press 'h' to see help.\n"));
+	printw("%s", _("Press 'h' to see help.\n"));
 
 	while(ch != 'q')
 	{
@@ -382,32 +382,32 @@ static void print_help()
 	nodelay(stdscr, FALSE);
 	timeout(99999);
 
-	printw(_("Welcome in %s NCurses help!\n"), PRGNAME);
-	printw(_("This help describes how to use this Text-based User Interface.\n"));
+	printw("%s", _("Welcome in %s NCurses help!\n"), PRGNAME);
+	printw("%s", _("This help describes how to use this Text-based User Interface.\n"));
 
-	printw(_("\nGlobal keys:\n"));
-	printw(_("\tPress 'left' key to switch in left tab.\n"));
-	printw(_("\tPress 'right' key to switch in right tab.\n"));
-	printw(_("\tPress 'h' key to see this help.\n"));
-	printw(_("\tPress 'q' key to exit.\n"));
+	printw("%s", _("\nGlobal keys:\n"));
+	printw("%s", _("\tPress 'left' key to switch in left tab.\n"));
+	printw("%s", _("\tPress 'right' key to switch in right tab.\n"));
+	printw("%s", _("\tPress 'h' key to see this help.\n"));
+	printw("%s", _("\tPress 'q' key to exit.\n"));
 
-	printw(_("\nCPU tab:\n"));
-	printw(_("\tPress 'down' key to decrease core number to monitor.\n"));
-	printw(_("\tPress 'up' key to increase core number to monitor.\n"));
+	printw("%s", _("\nCPU tab:\n"));
+	printw("%s", _("\tPress 'down' key to decrease core number to monitor.\n"));
+	printw("%s", _("\tPress 'up' key to increase core number to monitor.\n"));
 
-	printw(_("\nCaches tab:\n"));
-	printw(_("\tPress 'down' key to switch to previous test.\n"));
-	printw(_("\tPress 'up' key' to switch to next test.\n"));
+	printw("%s", _("\nCaches tab:\n"));
+	printw("%s", _("\tPress 'down' key to switch to previous test.\n"));
+	printw("%s", _("\tPress 'up' key' to switch to next test.\n"));
 
-	printw(_("\nBench tab:\n"));
-	printw(_("\tPress 'down' key to decrement benchmark duration.\n"));
-	printw(_("\tPress 'up' key to increment benchmark duration.\n"));
-	printw(_("\tPress 'next page' key to decrement number of threads to use.\n"));
-	printw(_("\tPress 'previous page' key to increment number of threads to use.\n"));
-	printw(_("\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"));
-	printw(_("\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"));
+	printw("%s", _("\nBench tab:\n"));
+	printw("%s", _("\tPress 'down' key to decrement benchmark duration.\n"));
+	printw("%s", _("\tPress 'up' key to increment benchmark duration.\n"));
+	printw("%s", _("\tPress 'next page' key to decrement number of threads to use.\n"));
+	printw("%s", _("\tPress 'previous page' key to increment number of threads to use.\n"));
+	printw("%s", _("\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"));
+	printw("%s", _("\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"));
 
-	printw(_("\nPress any key to exit this help.\n"));
+	printw("%s", _("\nPress any key to exit this help.\n"));
 
 	refresh();
 	getch();
@@ -421,20 +421,20 @@ static void print_new_version()
 {
 	nodelay(stdscr, FALSE);
 
-	printw(_("A new version of %s is available!"), PRGNAME);
+	printw("%s", _("A new version of %s is available!"), PRGNAME);
 	printw("\n\n");
 
-	printw(_("Do you want to update %s to version %s after exit?\n"
+	printw("%s", _("Do you want to update %s to version %s after exit?\n"
 		"It will erase this binary file (%s) by the new version."),
 		PRGNAME, new_version[0], binary_name);
 	printw("\n");
-	printw(_("If you want to update, press 'u' key, or anything else to skip.\n"), PRGNAME);
+	printw("%s", _("If you want to update, press 'u' key, or anything else to skip.\n"), PRGNAME);
 	refresh();
 
 	if(getch() == 'u')
 	{
 		opts->update = true;
-		printw(_("\n\n%s will be updated."), PRGNAME);
+		printw("%s", _("\n\n%s will be updated."), PRGNAME);
 		refresh();
 		napms(1000);
 	}

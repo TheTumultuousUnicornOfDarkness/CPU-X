@@ -191,7 +191,7 @@ static int cpu_technology(Labels *data)
 	if(l_data->cpu_vendor_id < 0 || l_data->cpu_model < 0 || l_data->cpu_ext_model < 0 || l_data->cpu_ext_family < 0)
 		RETURN_OR_EXIT(1);
 
-	MSG_VERBOSE(_("Finding CPU technology"));
+	MSG_VERBOSE("%s", _("Finding CPU technology"));
 	if(l_data->cpu_vendor_id == VENDOR_INTEL)
 		db = technology_intel;
 	else if(l_data->cpu_vendor_id == VENDOR_AMD)
@@ -210,7 +210,7 @@ static int cpu_technology(Labels *data)
 		}
 	}
 
-	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
+	MSG_WARNING("%s", _("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
 	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 	RETURN_OR_EXIT(2);
 }
@@ -228,7 +228,7 @@ static int call_libcpuid_static(Labels *data)
 	struct cpu_id_t datanr;
 
 	/* Call libcpuid */
-	MSG_VERBOSE(_("Calling libcpuid for retrieving static data"));
+	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving static data"));
 	if(data->l_data->cpuid_raw_file == NULL)
 		err = cpuid_get_raw_data(&raw);
 	else
@@ -236,7 +236,7 @@ static int call_libcpuid_static(Labels *data)
 
 	if(err || cpu_identify(&raw, &datanr))
 	{
-		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
+		MSG_ERROR("%s", _("failed to call libcpuid (%s)"), cpuid_error());
 		return 1;
 	}
 
@@ -398,7 +398,7 @@ static int call_libcpuid_static(Labels *data)
 static int call_libcpuid_dynamic(Labels *data)
 {
 	/* CPU frequency */
-	MSG_VERBOSE(_("Calling libcpuid for retrieving dynamic data"));
+	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving dynamic data"));
 	data->cpu_freq = cpu_clock();
 	casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
 
@@ -411,7 +411,7 @@ static int call_libcpuid_msr_static(Labels *data)
 	const DaemonCommand cmd = LIBCPUID_MSR_STATIC;
 	MsrStaticData msg;
 
-	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR static values"));
+	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR static values"));
 	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
 	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(uint8_t));
 	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrStaticData));
@@ -436,7 +436,7 @@ static int call_libcpuid_msr_dynamic(Labels *data)
 	const DaemonCommand cmd = LIBCPUID_MSR_DYNAMIC;
 	MsrDynamicData msg;
 
-	MSG_VERBOSE(_("Calling libcpuid for retrieving CPU MSR dynamic values"));
+	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR dynamic values"));
 	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
 	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(unsigned));
 	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrDynamicData));
@@ -459,7 +459,7 @@ static int cputab_fill_multipliers(Labels *data)
 	if(data->cpu_freq <= 0 || data->bus_freq <= 0.0)
 		return 1;
 
-	MSG_VERBOSE(_("Calculating CPU multipliers"));
+	MSG_VERBOSE("%s", _("Calculating CPU multipliers"));
 	const int    fmt      = (data->cpu_max_mult < 10) ? 1 : 0;
 	const double cur_mult = (double) data->cpu_freq / data->bus_freq;
 
@@ -507,7 +507,7 @@ static char *strdup_and_set_unit(char *str)
 			else if(!strncmp(&str[i], "@TB@", TOKEN_LEN))
 				j += snprintf(&ptr[j], len, "%s", UNIT_TB);
 			else
-				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str, i);
+				MSG_ERROR("%s", _("cannot find unit in '%s' string at position %i"), str, i);
 			i += TOKEN_LEN;
 		}
 		else
@@ -537,7 +537,7 @@ static int call_dmidecode(Labels *data)
 	const DaemonCommand cmd = DMIDECODE;
 	DmidecodeData msg;
 
-	MSG_VERBOSE(_("Calling dmidecode"));
+	MSG_VERBOSE("%s", _("Calling dmidecode"));
 	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
 
 	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(DmidecodeData));
@@ -570,7 +570,7 @@ static int cpu_usage(Labels *data)
 	double loadavg;
 	enum StatType { USER, NICE, SYSTEM, INTR, IDLE, LASTSTAT };
 
-	MSG_VERBOSE(_("Calculating CPU usage"));
+	MSG_VERBOSE("%s", _("Calculating CPU usage"));
 	if(pre == NULL)
 	{
 		pre = calloc(LASTSTAT, sizeof(long));
@@ -621,7 +621,7 @@ static int call_bandwidth(Labels *data)
 	if(data->w_data->size[0] < 1)
 		return 1;
 
-	MSG_VERBOSE(_("Calling bandwidth"));
+	MSG_VERBOSE("%s", _("Calling bandwidth"));
 	/* Run bandwidth in a separated thread */
 	err = pthread_create(&tid, NULL, (void *)bandwidth_cpux, data);
 	if(first)
@@ -665,7 +665,7 @@ static int find_gpu_device_path(struct pci_dev *dev, char **device_path)
 
 	if((base = pci_get_param(dev->access, "sysfs.path")) == NULL)
 	{
-		MSG_ERROR("pci_get_param (sysfs.path)");
+		MSG_ERROR("%s", "pci_get_param (sysfs.path)");
 		return 1;
 	}
 
@@ -695,7 +695,7 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	/* Check GPU state */
 	if(!gpu_is_on(device_path))
 	{
-		MSG_WARNING(_("No kernel driver in use for graphic card at path %s"), device_path);
+		MSG_WARNING("%s", _("No kernel driver in use for graphic card at path %s"), device_path);
 		return 1;
 	}
 
@@ -714,7 +714,7 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	*gpu_driver = gpu_drivers[i].val;
 	if(*gpu_driver == GPUDRV_UNKNOWN)
 	{
-		MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
+		MSG_WARNING("%s", _("Your GPU driver is unknown: %s"), buff);
 		return 1;
 	}
 
@@ -749,7 +749,7 @@ static int find_devices(Labels *data)
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 
-	MSG_VERBOSE(_("Finding devices"));
+	MSG_VERBOSE("%s", _("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
 #ifdef __FreeBSD__
 	int ret = -1;
@@ -761,7 +761,7 @@ static int find_devices(Labels *data)
 	}
 	if(ret && access(DEV_PCI, W_OK))
 	{
-		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
+		MSG_WARNING("%s", _("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
 		return 1;
 	}
 #endif /* __FreeBSD__ */
@@ -790,7 +790,7 @@ static int find_devices(Labels *data)
 				case 0x8086: gpu_vendor = "Intel";  break;
 				case 0x10DE: gpu_vendor = "NVIDIA"; break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
-				             MSG_WARNING(_("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
+				             MSG_WARNING("%s", _("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
 			}
 
 			memset(gpu_driver, 0, MAXSTR);
@@ -806,9 +806,9 @@ static int find_devices(Labels *data)
 
 	pci_cleanup(pacc);
 	if(!chipset_found)
-		MSG_ERROR(_("failed to find chipset vendor and model"));
+		MSG_ERROR("%s", _("failed to find chipset vendor and model"));
 	if(!data->gpu_count)
-		MSG_ERROR(_("failed to find graphic card vendor and model"));
+		MSG_ERROR("%s", _("failed to find graphic card vendor and model"));
 
 	return !chipset_found + !data->gpu_count;
 }
@@ -852,7 +852,7 @@ static int gpu_monitoring(Labels *data)
 	static char *cached_paths_drm[LASTGRAPHICS / GPUFIELDS] = { NULL };
 	static char *cached_paths_hwmon[LASTGRAPHICS / GPUFIELDS] = { NULL };
 
-	MSG_VERBOSE(_("Retrieving GPU clocks"));
+	MSG_VERBOSE("%s", _("Retrieving GPU clocks"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
 		gpu_ok    = gpu_is_on(data->g_data->device_path[i]);
@@ -961,7 +961,7 @@ static int gpu_monitoring(Labels *data)
 			}
 			default:
 				if(once_error)
-					MSG_WARNING(_("Driver for GPU %u doesn't report frequencies"), i);
+					MSG_WARNING("%s", _("Driver for GPU %u doesn't report frequencies"), i);
 				continue;
 		}
 
@@ -985,7 +985,7 @@ skip_clocks:
 	}
 
 	if(once_error && failed_count)
-		MSG_ERROR(_("failed to retrieve GPU clocks"));
+		MSG_ERROR("%s", _("failed to retrieve GPU clocks"));
 	once_error = false;
 
 	return (failed_count == data->gpu_count);
@@ -1000,10 +1000,10 @@ static int system_static(Labels *data)
 	int err = 0;
 	struct utsname name;
 
-	MSG_VERBOSE(_("Identifying running system"));
+	MSG_VERBOSE("%s", _("Identifying running system"));
 	err = uname(&name);
 	if(err)
-		MSG_ERRNO(_("failed to identify running system"));
+		MSG_ERRNO("%s", _("failed to identify running system"));
 	else
 	{
 		casprintf(&data->tab_system[VALUE][KERNEL],   false, "%s %s", name.sysname, name.release); /* Kernel label */
@@ -1044,7 +1044,7 @@ static int system_dynamic(Labels *data)
 #if HAS_LIBPROCPS
 	const int div = 1e3;
 
-	MSG_VERBOSE(_("Calling libprocps"));
+	MSG_VERBOSE("%s", _("Calling libprocps"));
 	/* System uptime */
 	uptime_s = (time_t) uptime(NULL, NULL);
 
@@ -1066,7 +1066,7 @@ static int system_dynamic(Labels *data)
 	sg_swap_stats *swap;
 	sg_host_info *info;
 
-	MSG_VERBOSE(_("Calling libstatgrab"));
+	MSG_VERBOSE("%s", _("Calling libstatgrab"));
 	/* Libstatgrab initialization */
 	if(!called)
 	{
@@ -1151,7 +1151,7 @@ static int benchmark_status(Labels *data)
 	BenchData *b_data   = data->b_data;
 	enum EnTabBench ind = b_data->fast_mode ? PRIMEFASTSCORE : PRIMESLOWSCORE;
 
-	MSG_VERBOSE(_("Updating benchmark status"));
+	MSG_VERBOSE("%s", _("Updating benchmark status"));
 	asprintf(&data->tab_bench[VALUE][PARAMDURATION], _("%u mins"), data->b_data->duration);
 	asprintf(&data->tab_bench[VALUE][PARAMTHREADS],    "%u",       data->b_data->threads);
 	asprintf(&data->tab_bench[VALUE][PRIMESLOWRUN],  _("Inactive"));
@@ -1199,7 +1199,7 @@ void start_benchmarks(Labels *data)
 	pthread_t *t_id = NULL;
 	BenchData *b_data = data->b_data;
 
-	MSG_VERBOSE(_("Starting benchmark"));
+	MSG_VERBOSE("%s", _("Starting benchmark"));
 	b_data->run     = true;
 	b_data->elapsed = 0;
 	b_data->num     = 2;
@@ -1218,7 +1218,7 @@ void start_benchmarks(Labels *data)
 	free(t_id);
 
 	if(err)
-		MSG_ERROR(_("an error occurred while starting benchmark"));
+		MSG_ERROR("%s", _("an error occurred while starting benchmark"));
 }
 
 
@@ -1235,7 +1235,7 @@ static int cputab_package_fallback(Labels *data)
 	if(l_data->cpu_vendor_id < 0 || data->tab_cpu[VALUE][CODENAME] == NULL || data->tab_cpu[VALUE][SPECIFICATION] == NULL)
 		return 1;
 
-	MSG_VERBOSE(_("Finding CPU package in fallback mode"));
+	MSG_VERBOSE("%s", _("Finding CPU package in fallback mode"));
 	if(l_data->cpu_vendor_id == VENDOR_INTEL)
 		db = package_intel;
 	else if(l_data->cpu_vendor_id == VENDOR_AMD)
@@ -1253,7 +1253,7 @@ static int cputab_package_fallback(Labels *data)
 		}
 	}
 
-	MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
+	MSG_WARNING("%s", _("Your CPU socket does not belong in database ==> %s, codename: %s"),
 		    data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
 	data->tab_cpu[VALUE][PACKAGE][0] = '\0';
 	return 2;
@@ -1272,7 +1272,7 @@ static int cputab_multipliers_fallback(Labels *data)
 	char *min_freq_str = NULL;
 	char *max_freq_str = NULL;
 
-	MSG_VERBOSE(_("Calculating CPU multipliers in fallback mode"));
+	MSG_VERBOSE("%s", _("Calculating CPU multipliers in fallback mode"));
 	/* Minimum multiplier */
 	if(!(err = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core)))
 	{
@@ -1299,14 +1299,14 @@ static int motherboardtab_fallback(Labels *data)
 	int i;
 	const char *id[] = { "board_vendor", "board_name", "board_version", "bios_vendor", "bios_version", "bios_date", NULL };
 
-	MSG_VERBOSE(_("Retrieving motherboard information in fallback mode"));
+	MSG_VERBOSE("%s", _("Retrieving motherboard information in fallback mode"));
 	/* Tab Motherboard */
 	for(i = 0; id[i] != NULL; i++)
 		err += fopen_to_str(&data->tab_motherboard[VALUE][i], "%s/%s", SYS_DMI, id[i]);
 
 #endif /* __linux__ */
 	if(err)
-		MSG_ERROR(_("failed to retrieve motherboard information (fallback mode)"));
+		MSG_ERROR("%s", _("failed to retrieve motherboard information (fallback mode)"));
 
 	return err;
 }
@@ -1371,7 +1371,7 @@ static int cputab_temp_fallback(Labels *data)
 		module_loaded = !load_module("k10temp", &data->socket_fd);
 # endif /* HAS_LIBCPUID */
 
-	MSG_VERBOSE(_("Retrieving CPU temperature in fallback mode"));
+	MSG_VERBOSE("%s", _("Retrieving CPU temperature in fallback mode"));
 	/* Filenames are cached */
 	if(cached_paths == NULL)
 	{
@@ -1391,7 +1391,7 @@ static int cputab_temp_fallback(Labels *data)
 		}
 	}
 	else
-		MSG_ERROR(_("failed to retrieve CPU temperature (fallback mode)"));
+		MSG_ERROR("%s", _("failed to retrieve CPU temperature (fallback mode)"));
 #endif /* __linux__ */
 
 	return err;
@@ -1405,7 +1405,7 @@ static int cputab_volt_fallback(Labels *data)
 	char *voltage;
 	static char *cached_path = NULL;
 
-	MSG_VERBOSE(_("Retrieving CPU voltage in fallback mode"));
+	MSG_VERBOSE("%s", _("Retrieving CPU voltage in fallback mode"));
 	if(cached_path == NULL)
 		err = request_sensor_path(SYS_HWMON, &cached_path, RQT_CPU_VOLTAGE);
 
@@ -1418,7 +1418,7 @@ static int cputab_volt_fallback(Labels *data)
 		}
 	}
 	else
-		MSG_ERROR(_("failed to retrieve CPU voltage (fallback mode)"));
+		MSG_ERROR("%s", _("failed to retrieve CPU voltage (fallback mode)"));
 #endif /* __linux__ */
 
 	return err;
@@ -1431,7 +1431,7 @@ static int cputab_freq_fallback(Labels *data)
 #ifdef __linux__
 	char *freq;
 
-	MSG_VERBOSE(_("Retrieving CPU frequency in fallback mode"));
+	MSG_VERBOSE("%s", _("Retrieving CPU frequency in fallback mode"));
 	if(!(err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, opts->selected_core)))
 	{
 		data->cpu_freq = (int) round(strtod(freq, NULL) / 1000.0);
@@ -1439,7 +1439,7 @@ static int cputab_freq_fallback(Labels *data)
 		free(freq);
 	}
 	else
-		MSG_ERROR(_("failed to retrieve CPU frequency (fallback mode)"));
+		MSG_ERROR("%s", _("failed to retrieve CPU frequency (fallback mode)"));
 
 #endif /* __linux__ */
 
