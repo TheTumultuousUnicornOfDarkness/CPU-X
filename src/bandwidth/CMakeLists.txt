@@ -4,9 +4,7 @@ project(bandwidth
 )
 
 # Config (bandwidth)
-set(BANDWIDTH_DEBUG_FLAGS "-Wall -Wextra -Wuninitialized -Wno-strict-prototypes -Wno-unused-parameter -Wno-sign-compare -Wno-format-security")
-set(CMAKE_C_FLAGS_DEBUG	  "${CMAKE_C_FLAGS_DEBUG}   ${BANDWIDTH_DEBUG_FLAGS}")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${BANDWIDTH_DEBUG_FLAGS}")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-strict-prototypes -Wno-sign-compare")
 
 find_program(NASM_FOUND nasm)
 if(NASM_FOUND)
@@ -57,5 +55,5 @@ if(CMAKE_ASM_NASM_INFOMATION_LOADED)
 	set(BANDWIDTH_VERSION ${PROJECT_VERSION} PARENT_SCOPE)
 
 else(CMAKE_ASM_NASM_INFOMATION_LOADED)
-	 set(BANDWIDTH_FOUND OFF PARENT_SCOPE)
+	set(BANDWIDTH_FOUND OFF PARENT_SCOPE)
 endif(CMAKE_ASM_NASM_INFOMATION_LOADED)
