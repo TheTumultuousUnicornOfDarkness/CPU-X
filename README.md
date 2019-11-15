@@ -62,6 +62,9 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 
 You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, see the [download section](https://github.com/X0rg/CPU-X/releases/latest) or the wiki page about [GNU/Linux packages](https://github.com/X0rg/CPU-X/wiki/GNU-Linux-Packages).  
 
+#### Official repositories
+
+[Fedora](https://apps.fedoraproject.org/packages/cpu-x): `sudo dnf install cpu-x`
 
 ### Manual build
 
