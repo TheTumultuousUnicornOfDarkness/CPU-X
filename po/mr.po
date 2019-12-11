@@ -6,26 +6,29 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-12-13 17:06+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
+"translations/mr/>\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "मेमरी रीलोकॉट करू शकलो नाही"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "%s बाहेर पडत आहे"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "CPU तंत्रज्ञान शोधत आहे"
 
 #: core.c:194
 #, c-format
@@ -36,7 +39,7 @@ msgstr ""
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-way"
 
 #: core.c:205
 #, c-format
@@ -50,16 +53,16 @@ msgstr ""
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
@@ -68,7 +71,7 @@ msgstr ""
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "सीपीयू एमएसआर (%s) उघडण्यात अयशस्वी"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
@@ -92,15 +95,15 @@ msgstr ""
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "डीमिडेकोडसाठी मेमरी वाटप करण्यात अयशस्वी"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "सीपीयू वापराची गणना करत आहे"
 
 #: core.c:604
 msgid "Calling bandwidth"
@@ -113,7 +116,7 @@ msgstr ""
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "आपला GPU ड्राइव्हर अज्ञात आहे: %s"
 
 #: core.c:661
 #, c-format
@@ -123,7 +126,7 @@ msgstr ""
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
 
 #: core.c:695
 msgid "Finding devices"
@@ -152,7 +155,7 @@ msgstr ""
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "बंद"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
