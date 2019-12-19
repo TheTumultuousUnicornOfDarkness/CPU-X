@@ -6,13 +6,14 @@
 # Ömer Çakmak <faruk.omer.cakmak@gmail.com>, 2019.
 # Ferit Etem <ferit.etem@gmail.com>, 2019.
 # Ali A. <thisisanaltacc@protonmail.com>, 2019.
+# mahmut özcan <mahmutozcan65@yahoo.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-12-19 16:29+0000\n"
-"Last-Translator: Ali A. <thisisanaltacc@protonmail.com>\n"
+"PO-Revision-Date: 2019-12-20 20:21+0000\n"
+"Last-Translator: mahmut özcan <mahmutozcan65@yahoo.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 3.10\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -279,9 +280,8 @@ msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgstr "CPU soketiniz veritabanında eşleşmedi ==> %s, kodadı: %s"
 
 #: core.c:1245
-#, fuzzy
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Yedek modunda CPU Çoğaltıcısı hesaplanıyor"
+msgstr "Yedek kipde CPU çarpanlarını hesaplama"
 
 #: core.c:1272
 msgid "Retrieving motherboard information in fallback mode"
@@ -292,34 +292,28 @@ msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Anakart bilgisi alınamadı (yedek modu)"
 
 #: core.c:1344
-#, fuzzy
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Yedek modda CPU sıcaklığı alınıyor"
+msgstr "Yedek kipinde CPU sıcaklığı alınıyor"
 
 #: core.c:1361
-#, fuzzy
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "CPU sıcaklığı alınamadı (yedek mod)"
+msgstr "CPU sıcaklığı alınamadı (yedek kip)"
 
 #: core.c:1375
-#, fuzzy
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Yedek modda CPU Voltajı alınıyor"
+msgstr "Yedek kipinde CPU Voltajı alınıyor"
 
 #: core.c:1388
-#, fuzzy
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "CPU Voltajı alınamadı (yedek mod)"
+msgstr "CPU Voltajı alınamadı (yedek kip)"
 
 #: core.c:1401
-#, fuzzy
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Yedek modda CPU frekansı alınıyor"
+msgstr "Yedek kipinde CPU frekansı alınıyor"
 
 #: core.c:1409
-#, fuzzy
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "CPU Frekansı alınamadı (yedek mod)"
+msgstr "CPU Frekansı alınamadı (yedek kip)"
 
 #: gui_gtk.c:49
 msgid "Starting GTK GUI..."
@@ -335,7 +329,7 @@ msgstr "Düzgün çalışması için Root (kök) yetki gerekiyor"
 
 #: gui_gtk.c:101 main.c:941
 msgid "Some information will not be retrievable"
-msgstr ""
+msgstr "Bazı bilgiler geri alınamayacak"
 
 #: gui_gtk.c:103
 msgid "Ignore"
