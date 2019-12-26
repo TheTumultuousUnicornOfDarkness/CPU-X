@@ -1,166 +1,174 @@
 # Copyright © 2014-2019 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019.
+# J <joaquinfc@protonmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-12-27 16:49+0000\n"
+"Last-Translator: J <joaquinfc@protonmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
+"translations/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "No se logró reasignar la memoria"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "Saliendo %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Encontrando tecnología de la CPU"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"Su CPU no pertenece a la base de datos ==> %s, modelo: %i, modelo externo: %"
+"i, familia externa: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-way"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-way"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s asociativo, %d tamaño de línea de byte"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Llamado a libcpuid para recuperar datos estáticos"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "No se pudo llamar a libcpuid (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Llamando a libcpuid para recuperar datos dinámicos"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "Omitir apertura de CPU MSR (necesita ser root)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "no se pudo abrir CPU MSR (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "Llamando a libcpuid para recuperar valores estáticos de CPU MSR"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "Llamando a libcpuid para recuperar valores dinámicos de CPU MSR"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "Calculando multiplicadores de CPU"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "Omitir llamada a dmidecode (necesita ser root)"
 
 #: core.c:512
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Llamando a dmidecode"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "No se pudo asignar memoria para el dmidecode"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "no se pudo llamar a dmidecode"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Calculando el uso de la CPU"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Llamando al ancho de banda"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "Encontrando el controlador de la tarjeta gráfica"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "El controlador de GPU es desconocido: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(controlador %s)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "No se encontró el controlador de la tarjeta gráfica (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "Búsqueda de dispositivos"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "Omitir búsqueda de dispositivos (es necesario ser root)"
 
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "Su proveedor de GPU es desconocido: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "No se encontró el proveedor y el modelo del hipset"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "no se pudo encontrar el proveedor de la tarjeta gráfica y el modelo"
 
 #: core.c:779
+#, fuzzy
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "Recuperación de la temperatura de la GPU"
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "Apagado"
 
 #: core.c:825
+#, fuzzy
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "no se pudo recuperar la temperatura de la GPU"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "Omitir algunos valores de la GPU (debe ser root)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
@@ -169,7 +177,7 @@ msgstr ""
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "El controlador para la GPU %i no informa de las frecuencias"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
