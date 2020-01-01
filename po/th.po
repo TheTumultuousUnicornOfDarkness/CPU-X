@@ -6,868 +6,877 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-01-03 04:21+0000\n"
+"Last-Translator: Thanachart Monpassorn <nunf_2539@hotmail.com>\n"
+"Language-Team: Thai <https://hosted.weblate.org/projects/cpu-x/translations/"
+"th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.10\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "ไม่สามารถจัดสรรหน่วยความจำได้"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "กำลังออก %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "กำลังหาเทคโนโลยีของ CPU"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"CPU ของคุณไม่ได้อยู่ในฐานข้อมูล  ==> %s, โมเดล: %i, ext. โมเดล: %i, ext. "
+"แฟมิลี่: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-way"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-way"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s associative, %d-byte line size"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "กำลังใช้ libcpuid  เพื่อรับข้อมูล"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "ล้มเหลวในการใช้ libcpuid (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "กำลังใช้ libcpuid เพื่อรับข้อมูล"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "ข้ามการเปิด CPU MSR (จำเป็นต้องรูท)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "ล้มเหลวในการเปิด CPU MSR (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "กำลังใช้ libcpuid เพื่อรับข้อมูล static ของ CPU MSR"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "กำลังใช้ libcpuid เพื่อรับข้อมูล dynamic ของ CPU MSR"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "กำลังคำนวณ CPU multipliers"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "ข้ามการเรียกใช้ dmidecode  (จำเป็นต้องรูท)"
 
 #: core.c:512
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "เรียกใช้ dmidecode"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "ล้มเหลวในการจัดสรรหน่วยความจำของ dmidecode"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "ล้มเหลวในการเรียกใช้ dmidecode"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "กำลังคำนวณการใช้ CPU"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "เรียกใช้ bandwidth"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "หาไดรเวอร์การ์ดจอ"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "ไม่รู้จักไดรเวอร์การ์ดจอของคุณ: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(%s ไดรเวอร์)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "ล้มเหลวในการหาไดรเวอร์การ์ดจอ"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "กำลังหาอุปกรณ์"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "ข้ามการหาอุปกรณ์ (จำเป็นต้องรูท)"
 
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "ไม่รู้จักผู้จำหน่ายการ์ดจอของคุณ: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "ล้มเหลวในการหายี่ห้อและรุ่นชิปเซ็ต"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "ล้มเหลวในการหายี่ห้อและรุ่นการ์ดจอ"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "รับข้อมูลอุณหภูมิการ์ดจอ"
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "ปิด"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "ล้มเหลวในการรับอุณหภูมิการ์ดจอ"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "ข้ามค่าการ์ดจอบางค่า (จำเป็นต้องรูท)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "รับค่าคล็อกการ์ดจอ"
 
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "ไดรเวอร์การ์ดจอ  %i ไม่แสดงค่าความถี่"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "ล้มเหลวในการรับค่าคล็อกการ์ดจอ"
 
 #: core.c:969
 msgid "Identifying running system"
-msgstr ""
+msgstr "กำลังระบุระบบที่ทำงานอยู่"
 
 #: core.c:972
 msgid "failed to identify running system"
-msgstr ""
+msgstr "ล้มเหลวในการระบุระบบที่ทำงานอยู่"
 
 #: core.c:1013
 msgid "Calling libprocps"
-msgstr ""
+msgstr "เรียกใช้ libprocps"
 
 #: core.c:1035
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "เรียกใช้ libstatgrab"
 
 #: core.c:1065
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i วัน, %i ชั่วโมง, %i นาที, %i วินาที"
 
 #: core.c:1120
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "กำลังอัพเดตสถานะ benchmark "
 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u นาที"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr ""
+msgstr "ไม่ใช้งาน"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr ""
+msgstr "ยังไม่เริ่ม"
 
 #: core.c:1134
 msgid "Active"
-msgstr ""
+msgstr "ตอบสนอง"
 
 #: core.c:1139
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u ชั่วโมงที่เหลือ)"
 
 #: core.c:1141
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u นาทีที่เหลือ)"
 
 #: core.c:1143
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u วินาทีที่เหลือ)"
 
 #: core.c:1148
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "ใน %u ชั่วโมง"
 
 #: core.c:1150
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "ใน %u นาที"
 
 #: core.c:1152
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "ใน %u วินาที"
 
 #: core.c:1168
 msgid "Starting benchmark"
-msgstr ""
+msgstr "ทดสอบสมรรถภาพ"
 
 #: core.c:1177
 msgid "failed to allocate memory for benchmark"
-msgstr ""
+msgstr "ล้มเหลวในการจักสรรหน่วยความจำสำหรับทดสอบสมรรถภาพ"
 
 #: core.c:1191
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะทดสอบสมรรถภาพ"
 
 #: core.c:1208
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "กำลังหา CPU package ใน fallback mode"
 
 #: core.c:1226
 #, c-format
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr ""
+msgstr "CPU socket ของคุณไม่อยู่ในฐานข้อมูล ==> %s, codename: %s"
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
+msgstr "กำลังคำนวณตัวคูณ CPU ใน fallback mode"
 
 #: core.c:1272
 msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
+msgstr "รับข้อมูลเมนบอร์ดในโหมด fallback "
 
 #: core.c:1279
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
+msgstr "ล้มเหลวในการรับข้อมูลเมนบอร์ด (โหมด fallback)"
 
 #: core.c:1344
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "รับค่าอุณหภูมิ CPU ในโหมด fallback "
 
 #: core.c:1361
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
+msgstr "ล้มเหลวในการรับค่าอุณหภูมิ CPU (โหมด fallback)"
 
 #: core.c:1375
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "รับค่า CPU voltage ในโหมด fallback"
 
 #: core.c:1388
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
+msgstr "ล้มเหลวในการรับค่า CPU voltage (โหมด fallback)"
 
 #: core.c:1401
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "รับค่าความถี่ CPU ในโหมด fallback "
 
 #: core.c:1409
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "ล้มเหลวในการรับค่าความถี่ CPU ในโหมด fallback "
 
 #: gui_gtk.c:49
 msgid "Starting GTK GUI..."
-msgstr ""
+msgstr "เริ่มต้น GTK GUI..."
 
 #: gui_gtk.c:63
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "ล้มเหลวในการนำเข้า UI ใน GtkBuilder"
 
 #: gui_gtk.c:98 main.c:940
 msgid "Root privileges are required to work properly"
-msgstr ""
+msgstr "จำเป็นต้องใช้สิทธในการรูธเพื่อให้สามารถทำงานได้อย่างราบรื่น"
 
 #: gui_gtk.c:101 main.c:941
 msgid "Some information will not be retrievable"
-msgstr ""
+msgstr "ข้อมูลบางอย่างไม่สามารถรับค่าได้"
 
 #: gui_gtk.c:103
 msgid "Ignore"
-msgstr ""
+msgstr "เพิกเฉย"
 
 #: gui_gtk.c:107
 msgid "Run as root"
-msgstr ""
+msgstr "เริ่มแบบการรูท"
 
 #: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
 msgid "A new version of %s is available!"
-msgstr ""
+msgstr "มีเวอร์ชันใหม่ของ %s"
 
 #: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
 msgid "Do you want to update %s to version %s after exit?\n"
 "It will erase this binary file (%s) by the new version."
 msgstr ""
+"ต้องการอัพเดท %s ไปยังเวอร์ชัน %s หลังจากออกหรือไม่?\n"
+"ข้อมูล  binary file (%s) จะหายไปหลังจากเวอร์ชันใหม่"
 
 #: gui_gtk.c:129
 msgid "Not now"
-msgstr ""
+msgstr "ไม่ใช่ตอนนี้"
 
 #: gui_gtk.c:129
 msgid "Update"
-msgstr ""
+msgstr "อัพเดท"
 
 #: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "Core #%i"
 
 #: main.c:62
 msgid "Setting label names"
-msgstr ""
+msgstr "ตั้งค่า label names"
 
 #: main.c:64
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: main.c:65
 msgid "Processor"
-msgstr ""
+msgstr "หน่วยประมวลผล"
 
 #: main.c:66 main.c:121 main.c:154
 msgid "Vendor"
-msgstr ""
+msgstr "ยี่ห้อ (Vendor)"
 
 #: main.c:67
 msgid "Code Name"
-msgstr ""
+msgstr "Code Name"
 
 #: main.c:68
 msgid "Package"
-msgstr ""
+msgstr "แพ็กเกจ"
 
 #: main.c:69
 msgid "Technology"
-msgstr ""
+msgstr "เทคโนโลยี"
 
 #: main.c:70
 msgid "Voltage"
-msgstr ""
+msgstr "Voltage"
 
 #: main.c:71
 msgid "Specification"
-msgstr ""
+msgstr "สเปค"
 
 #: main.c:72
 msgid "Family"
-msgstr ""
+msgstr "Family"
 
 #: main.c:73
 msgid "Ext. Family"
-msgstr ""
+msgstr "Ext. Family"
 
 #: main.c:74 main.c:111 main.c:122 main.c:155
 msgid "Model"
-msgstr ""
+msgstr "โมเดล"
 
 #: main.c:75
 msgid "Ext. Model"
-msgstr ""
+msgstr "Ext. โมเดล"
 
 #: main.c:76
 msgid "Temp."
-msgstr ""
+msgstr "อุณหภูมิ"
 
 #: main.c:77
 msgid "Stepping"
-msgstr ""
+msgstr "สเตป"
 
 #: main.c:78
 msgid "Instructions"
-msgstr ""
+msgstr "คำสั่ง"
 
 #: main.c:80
 msgid "Clocks"
-msgstr ""
+msgstr "คล็อก"
 
 #: main.c:81
 msgid "Core Speed"
-msgstr ""
+msgstr "ความเร็วคอร์"
 
 #: main.c:82
 msgid "Multiplier"
-msgstr ""
+msgstr "ตัวคูณ"
 
 #: main.c:83
 msgid "Bus Speed"
-msgstr ""
+msgstr "ความเร็วบัส"
 
 #: main.c:84 main.c:157
 msgid "Usage"
-msgstr ""
+msgstr "ใช้งาน"
 
 #: main.c:86
 msgid "Cache"
-msgstr ""
+msgstr "แคช"
 
 #: main.c:87
 msgid "L1 Data"
-msgstr ""
+msgstr "ข้อมูล L1 "
 
 #: main.c:88
 msgid "L1 Inst."
-msgstr ""
+msgstr "คำสั่ง L1"
 
 #: main.c:89
 msgid "Level 2"
-msgstr ""
+msgstr "เลเวล 2"
 
 #: main.c:90
 msgid "Level 3"
-msgstr ""
+msgstr "เลเวล 3"
 
 #: main.c:92
 msgid "Socket(s)"
-msgstr ""
+msgstr "ซ็อกเก็ต"
 
 #: main.c:93
 msgid "Core(s)"
-msgstr ""
+msgstr "คอร์"
 
 #: main.c:94
 msgid "Thread(s)"
-msgstr ""
+msgstr "เทรด"
 
 #: main.c:97
 msgid "Caches"
-msgstr ""
+msgstr "แคช"
 
 #: main.c:101
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "L%i แคช"
 
 #: main.c:102
 msgid "Size"
-msgstr ""
+msgstr "ขนาด"
 
 #: main.c:103
 msgid "Speed"
-msgstr ""
+msgstr "ความเร็ว"
 
 #: main.c:105
 msgid "Test"
-msgstr ""
+msgstr "ทดสอบ"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
-msgstr ""
+msgstr "เมนบอร์ด"
 
 #: main.c:110
 msgid "Manufacturer"
-msgstr ""
+msgstr "ผู้ผลิต"
 
 #: main.c:112
 msgid "Revision"
-msgstr ""
+msgstr "การแก้ไข"
 
 #: main.c:114
 msgid "BIOS"
-msgstr ""
+msgstr "ไบออส"
 
 #: main.c:115
 msgid "Brand"
-msgstr ""
+msgstr "แบรนด์"
 
 #: main.c:116
 msgid "Version"
-msgstr ""
+msgstr "เวอร์ชัน"
 
 #: main.c:117
 msgid "Date"
-msgstr ""
+msgstr "วันที่"
 
 #: main.c:118
 msgid "ROM Size"
-msgstr ""
+msgstr "ขนาดรอม"
 
 #: main.c:120
 msgid "Chipset"
-msgstr ""
+msgstr "ชิปเซ็ต"
 
 #: main.c:125 main.c:141
 msgid "Memory"
-msgstr ""
+msgstr "หน่วยความจำ"
 
 #: main.c:128
 #, c-format
 msgid "Bank %i"
-msgstr ""
+msgstr "Bank %i"
 
 #: main.c:129
 msgid "Reference"
-msgstr ""
+msgstr "อ้างอิง"
 
 #: main.c:133
 msgid "System"
-msgstr ""
+msgstr "ระบบ"
 
 #: main.c:134
 msgid "Operating System"
-msgstr ""
+msgstr "ระบบปฏิบัติการ"
 
 #: main.c:135
 msgid "Kernel"
-msgstr ""
+msgstr "เคอร์แนล"
 
 #: main.c:136
 msgid "Distribution"
-msgstr ""
+msgstr "Distribution"
 
 #: main.c:137
 msgid "Hostname"
-msgstr ""
+msgstr "ชื่อโฮสต์"
 
 #: main.c:138
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
 
 #: main.c:139
 msgid "Compiler"
-msgstr ""
+msgstr "คอมไพล์เลอร์"
 
 #: main.c:142
 msgid "Used"
-msgstr ""
+msgstr "ใช้งาน"
 
 #: main.c:143
 msgid "Buffers"
-msgstr ""
+msgstr "บัฟเฟอร์"
 
 #: main.c:144
 msgid "Cached"
-msgstr ""
+msgstr "แคช"
 
 #: main.c:145
 msgid "Free"
-msgstr ""
+msgstr "ว่าง"
 
 #: main.c:146
 msgid "Swap"
-msgstr ""
+msgstr "สลับ"
 
 #: main.c:149
 msgid "Graphics"
-msgstr ""
+msgstr "กราฟฟิค"
 
 #: main.c:153
 #, c-format
 msgid "Card %i"
-msgstr ""
+msgstr "การ์ด %i"
 
 #: main.c:156
 msgid "Temperature"
-msgstr ""
+msgstr "อุณหภูมิ"
 
 #: main.c:158
 msgid "GPU clock"
-msgstr ""
+msgstr "คล็อกการ์ดจอ"
 
 #: main.c:159
 msgid "Memory clock"
-msgstr ""
+msgstr "คล็อกหน่วยความจำ"
 
 #: main.c:163
 msgid "Bench"
-msgstr ""
+msgstr "Bench"
 
 #: main.c:164
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "จำนวนเฉพาะ (ช้า)"
 
 #: main.c:165
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "จำนวนเฉพาะ (เร็ว)"
 
 #: main.c:168
 msgid "Score"
-msgstr ""
+msgstr "คะแนน"
 
 #: main.c:169
 msgid "Run"
-msgstr ""
+msgstr "เริ่ม"
 
 #: main.c:172
 msgid "Parameters"
-msgstr ""
+msgstr "พารามิเตอร์"
 
 #: main.c:173
 msgid "Duration"
-msgstr ""
+msgstr "ระยะเวลา"
 
 #: main.c:174
 msgid "Threads"
-msgstr ""
+msgstr "เธรด"
 
 #: main.c:177 main.c:182
 msgid "About"
-msgstr ""
+msgstr "เกี่ยวกับ"
 
 #: main.c:179
 #, c-format
 msgid "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
-msgstr ""
+msgstr "%s เป็นซอร์ฟแวร์ฟรีที่อ่านข้อมูลของCPU, เมนบอร์ด และอีกมากมาย"
 
 #: main.c:183
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "เวอร์ชัน %s"
 
 #: main.c:184
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "ผู้สร้าง: %s"
 
 #: main.c:185
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "ไซต์: %s"
 
 #: main.c:187
 msgid "License"
-msgstr ""
+msgstr "ใบอนุญาต"
 
 #: main.c:190
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "ซอร์แวร์นี้เผยแพร่ภายใต้ข้อกำหนดของ %s"
 
 #: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "โปรแกรมนี้ไม่มีรับประกันใดๆทั้งสิ้น"
 
 #: main.c:259
 msgid "Dumping data..."
-msgstr ""
+msgstr "Dumping data..."
 
 #: main.c:301
 msgid "Freeing memory"
-msgstr ""
+msgstr "ปลดปล่อยหน่วยความจำ"
 
 #: main.c:344
 msgid "Checking on Internet for a new version..."
-msgstr ""
+msgstr "ตรวจสอบหาเวอร์ชันใหม่"
 
 #: main.c:348 main.c:474
 msgid "failed to open a Curl session"
-msgstr ""
+msgstr "ล้มเหลวในการเปิด Curl session"
 
 #: main.c:361
 #, c-format
 msgid "failed to perform the Curl transfer (%s)"
-msgstr ""
+msgstr "ล้มเหลวในการ  Curl transfer (%s)"
 
 #: main.c:362
 msgid "wrong write data"
-msgstr ""
+msgstr "ข้อมูลการเขียนผิดพลาด"
 
 #: main.c:369
 #, c-format
 msgid "(version %s is available)"
-msgstr ""
+msgstr "(เวอร์ชัน %s พร้อมแล้ว)"
 
 #: main.c:374 main.c:467
 msgid "No new version available"
-msgstr ""
+msgstr "ไม่มีเวอร์ชันใหม่"
 
 #: main.c:375
 msgid "(up-to-date)"
-msgstr ""
+msgstr "(เวอร์ชันล่าสุด)"
 
 #: main.c:445
 #, c-format
 msgid "an error occurred while extracting %s archive (%s)"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะแยก %s"
 
 #: main.c:460
 msgid "Network access is disabled by environment variable (set CPUX_NETWORK "
 "with a positive value to enable it)"
 msgstr ""
+"การเชื่อมต่อเน็ตเวิร์กถูกปิดโดย environment variable (ตั้ง CPUX_NETWORK "
+"ด้วยค่าบวกเพื่อเปิดการทำงาน)"
 
 #: main.c:482
 #, c-format
 msgid "failed to open %s archive for writing"
-msgstr ""
+msgstr "ล้มเหลวในการเปิด %s เพื่อเขียน"
 
 #: main.c:488
 msgid "Downloading new version..."
-msgstr ""
+msgstr "ดาวโหลดเวอร์ชันใหม่"
 
 #: main.c:500
 #, c-format
 msgid "failed to download %s archive (%s)"
-msgstr ""
+msgstr "ล้มเหลวในการดาวโหลด %s"
 
 #: main.c:506
 msgid "Extracting new version..."
-msgstr ""
+msgstr "กำลังแยกไฟล์เวอร์ชันใหม่"
 
 #: main.c:516
 msgid "Applying new version..."
-msgstr ""
+msgstr "กำลังรับเวอร์ชันใหม่"
 
 #: main.c:527
 msgid "an error occurred while removing/renaming files"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะลบ/เปลี่ยนชื่อไฟล์"
 
 #: main.c:529
 msgid "Update successful!"
-msgstr ""
+msgstr "อัพเดทสำเร็จ"
 
 #: main.c:548
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "เริ่มต้น GUI (ค่าเริ่มต้น)"
 
 #: main.c:549
 msgid "Start text-based user interface (TUI)"
-msgstr ""
+msgstr "เริ่มต้น text-based user interface (TUI)"
 
 #: main.c:550
 msgid "Dump all data on standard output and exit"
-msgstr ""
+msgstr "ลบข้อมูลทั้งหมดและออก"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
-msgstr ""
+msgstr "เริ่ม embedded command dmidecode และออก"
 
 #: main.c:552
 msgid "Run embedded command bandwidth and exit"
-msgstr ""
+msgstr "เริ่ม embedded command bandwidth และออก"
 
 #: main.c:553
 msgid "Set default tab (integer)"
-msgstr ""
+msgstr "ตั่งค่าแท็บเริ่มต้น (จำนวนเต็ม)"
 
 #: main.c:554
 msgid "Select CPU core to monitor (integer)"
-msgstr ""
+msgstr "เลือกคอร์ CPU เพื่อติดตาม (จำนวนเต็ม)"
 
 #: main.c:555
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr ""
+msgstr "ตั้งการทดสอบ bandwidth สำหรับความเร็วแคช CPU (จำนวนเต็ม)"
 
 #: main.c:556
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr ""
+msgstr "ตั้งเวลาระหว่างสอง refreshes  (วินาที)"
 
 #: main.c:557
 msgid "Disable colored output"
-msgstr ""
+msgstr "ปิดเอาท์พุตสี"
 
 #: main.c:558
 msgid "Print required information to paste in an issue"
-msgstr ""
+msgstr "พิมพ์ข้อมูลที่จำเป็นและวางในช่องปัญหา"
 
 #: main.c:559
 msgid "Verbose output"
-msgstr ""
+msgstr "เอาท์พุตละเอียด"
 
 #: main.c:560
 msgid "Update portable version if a new version is available"
-msgstr ""
+msgstr "อัพเดตเวอร์ชันพกพาถ้ามีเวอร์ชันใหม่"
 
 #: main.c:561
 msgid "Print help and exit"
-msgstr ""
+msgstr "พิมพ์ข้อช่วยเหลือและออก"
 
 #: main.c:562
 msgid "Print version and exit"
-msgstr ""
+msgstr "พิมพ์เวอร์ชันและออก"
 
 #: main.c:573
 msgid "Temporarily disable network support"
-msgstr ""
+msgstr "ปิดตัวสนับสนุนด้านเน็ตเวิร์กชั่วคราว"
 
 #: main.c:574
 msgid "Enforce the bus clock"
-msgstr ""
+msgstr "บังคับคล็อกของบัส"
 
 #: main.c:575
 msgid "Read CPUID raw data from a given file"
-msgstr ""
+msgstr "อ่านข้อมูลดิบ CPUID  จากไฟล์ที่ให้มา"
 
 #: main.c:576
 msgid "Only print a message if CPU does not belong in database"
-msgstr ""
+msgstr "พิมพ์ข้อความเท่านั้นถ้า CPU ไม่มีในฐานข้อมูล"
 
 #: main.c:585
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
+msgstr "ใช้งาน: %s แสดงผล [ตัวเลือก]"
 
 #: main.c:586
 msgid "Available DISPLAY:"
-msgstr ""
+msgstr "การแสดงผลที่ใช้ได้"
 
 #: main.c:590
 msgid "\n"
 "Available OPTIONS:"
-msgstr ""
+msgstr "การตั้งค่าที่ใช้ได้"
 
 #: main.c:595
 msgid "\n"
 "Influenceable environment variables:"
-msgstr ""
+msgstr "environment variables ที่มีอิทธิพล:"
 
 #: main.c:626
 msgid "This is free software: you are free to change and redistribute it."
-msgstr ""
+msgstr "นี่คือซอร์ฟแวร์ฟรี: คุณสามารถที่จะแก้ไขและแจกจ่ายได้"
 
 #: main.c:628
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "ดูใบอนุญาต %s"
 
 #: main.c:629
 #, c-format
 msgid "Built on %s, %s (with %s %s on %s)."
-msgstr ""
+msgstr "สร้างบน %s , %s (with %s %s on %s)."
 
 #: main.c:636
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr ""
+msgstr "-- %-9s เวอร์ชัน: %s"
 
 #: main.c:772
 #, c-format
@@ -875,145 +884,146 @@ msgid "\n"
 "%sOops, something was wrong! %s has received signal %d (%s) and has "
 "crashed.%s"
 msgstr ""
+"%โอ้ว, มีบางอย่างผิดพลาด! %s กำลังรับสัญญาณ %d (%s) และเกิดข้อผิดพลาด.%s"
 
 #: main.c:787
 msgid "You can paste this backtrace by opening a new issue here:"
-msgstr ""
+msgstr "คุณสามารถวาง backtrace โดยการเปิด issue  ใหม่ "
 
 #: main.c:846
 msgid "an error occurred while setting locale"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะตั้งค่า locale"
 
 #: main.c:968
 #, c-format
 msgid "Sorry, you cannot update %s: 32-bit portable version is no more "
 "supported."
-msgstr ""
+msgstr "โทษที, คุณไม่สามารถอัพเดต %s:เวอร์ชันพกพา 32-bit ไม่รองรับอีกต่อไป"
 
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
-msgstr ""
+msgstr "เริ่ม NCurses TUI..."
 
 #: tui_ncurses.c:110
 msgid "Press 'h' to see help.\n"
-msgstr ""
+msgstr "กด 'h' เพื่อดูตัวช่วย"
 
 #: tui_ncurses.c:384
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "ยินดีต้องรับใน %s NCurses!"
 
 #: tui_ncurses.c:385
 msgid "This help describes how to use this Text-based User Interface.\n"
-msgstr ""
+msgstr "ตัวช่วยนี้อธิบายถึงวิธีการใช้ Text-based User Interface"
 
 #: tui_ncurses.c:387
 msgid "\n"
 "Global keys:\n"
-msgstr ""
+msgstr "Global keys:"
 
 #: tui_ncurses.c:388
 msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ซ้าย'เพื่อสลับไปในแท๊บซ้าย"
 
 #: tui_ncurses.c:389
 msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ขวา'เพื่อสลับไปในแท๊บขวา"
 
 #: tui_ncurses.c:390
 msgid "\tPress 'h' key to see this help.\n"
-msgstr ""
+msgstr "กดปุ่ม 'h' เพื่อดูตัวช่วย"
 
 #: tui_ncurses.c:391
 msgid "\tPress 'q' key to exit.\n"
-msgstr ""
+msgstr "กด 'q' เพื่อออก"
 
 #: tui_ncurses.c:393
 msgid "\n"
 "CPU tab:\n"
-msgstr ""
+msgstr "CPU tab:"
 
 #: tui_ncurses.c:394
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ลง' เพื่อลดจำนวนคอร์ที่จะสังเกตการณ์"
 
 #: tui_ncurses.c:395
 msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
+msgstr "กด 'ขึ้น' เพื่อเพิ่มจำนวนคอร์ที่จะสังเกตการณ์"
 
 #: tui_ncurses.c:397
 msgid "\n"
 "Caches tab:\n"
-msgstr ""
+msgstr "Caches tab:"
 
 #: tui_ncurses.c:398
 msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ลง' เพื่อสลับไปยังการทดสอบก่อนหน้า"
 
 #: tui_ncurses.c:399
 msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ขึ้น' เพื่อสลับไปยังการทดสอบถัดไป"
 
 #: tui_ncurses.c:401
 msgid "\n"
 "Bench tab:\n"
-msgstr ""
+msgstr "Bench tab:"
 
 #: tui_ncurses.c:402
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ลง' เพื่อลดระยะเวลาการทดสอบสมรรถภาพ"
 
 #: tui_ncurses.c:403
 msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
+msgstr "กดปุ่ม 'ขึ้น' เพื่อเพิ่มระยะเวลาการทดสอบสมรรถภาพ"
 
 #: tui_ncurses.c:404
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
+msgstr "กดปุ่ม 'next page' เพื่อลดจำนวนของเธรดที่ใช้"
 
 #: tui_ncurses.c:405
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
+msgstr "กดปุ่ม 'previous page' เพื่อเพิ่มจำนวนของเธรดที่ใช้"
 
 #: tui_ncurses.c:406
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
-msgstr ""
+msgstr "กดปุ่ม 's' เพื่อเริ่ม/หยุด การทดสอบสมรรถภาพจำนวนเฉพาะ(ช้า)"
 
 #: tui_ncurses.c:407
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
-msgstr ""
+msgstr "กดปุ่ม 'f' เพื่อเริ่ม/หยุด การทดสอบสมรรถภาพจำนวนเฉพาะ(เร็ว)"
 
 #: tui_ncurses.c:409
 msgid "\n"
 "Press any key to exit this help.\n"
-msgstr ""
+msgstr "กดปุ่มใดก็ได้เพื่อออกจากตัวช่วย"
 
 #: tui_ncurses.c:428
 msgid "If you want to update, press 'u' key, or anything else to skip.\n"
-msgstr ""
+msgstr "ถ้าคุณต้องการอัพเดต,กดปุ่ม 'u' ,หรือกดปุ่มอะไรก็ได้เพื่อข้าม"
 
 #: tui_ncurses.c:434
 #, c-format
 msgid "\n"
 "\n"
 "%s will be updated."
-msgstr ""
+msgstr "%s กำลังจะอัพเดต"
 
 #: util.c:172
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr ""
+msgstr "เกิดข้อผืดพลาดขณะเปิดไฟล์ '%s' (%s)"
 
 #: util.c:212
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะเริ่มทำงาน  command '%s' (%s)"
 
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
-msgstr ""
+msgstr "ผิดพลาดในการเปิดไดเรคตอรี่ %s"
 
 #: util.c:321
 msgid "an error occurred while compiling regex"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะคอมไพล์ regex"
