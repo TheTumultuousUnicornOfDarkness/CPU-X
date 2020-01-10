@@ -11,7 +11,7 @@ before_install:
   - echo "deb http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_16.04/ /" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -qq
 install:
-  - sudo apt-get install -y -qq nasm gettext libjson-c-dev libncursesw5-dev libcpuid-dev libpci-dev libprocps-dev libarchive-dev libncursesw5 libcpuid14 libpci3 libprocps4
+  - sudo apt-get install -y --allow-unauthenticated -qq nasm gettext libjson-c-dev libncursesw5-dev libcpuid-dev libpci-dev libprocps-dev libarchive-dev libncursesw5 libcpuid14 libpci3 libprocps4
 before_script:
   - mkdir build
   - cd build
