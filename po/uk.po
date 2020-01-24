@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-01-21 18:21+0000\n"
+"PO-Revision-Date: 2020-01-26 14:21+0000\n"
 "Last-Translator: Tymofij Lytvynenko <till.svit@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
@@ -61,108 +61,113 @@ msgstr "Виклик libcpuid для отримання статичних да�
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "не вдалося викликати libcpuid (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Виклик libcpuid для отримання динамічних даних"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
 msgstr ""
+"Пропустити відкриття моделезалежного реєстру процесора (потрібно мати root)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "не вдалося відкрити моделезалежні реєстри процесора (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
+"Виклик libcpuid для отримання статичних значень моделезалежних реєстрів "
+"процесора"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
+"Виклик libcpuid для отримання динамічних значень моделезалежних реєстрів "
+"процесора"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "Розрахунок множників процесора"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "Пропустити виклик до dmidecode (потрібно мати root)"
 
 #: core.c:512
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Виклик dmidecode"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "не вдалося виділити пам'ять для dmidecode"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "не вдалося викликати dmidecode"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Розрахунок завантаження процесора"
 
 #: core.c:604
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Виклик пропускної спроможності"
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "Пошук драйвера графічної карти"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "Невідомий драйвер GPU: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(драйвер %s)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "не вдалося знайти драйвер графічної карти (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "Пошук пристроїв"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "Пропустити пошук пристроїв (потрібно мати root)"
 
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "Постачальник графічного процесора невідомий: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "не вдалося знайти постачальника чи модель чіпсету"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "не вдалося знайти постачальника та модель графічної карти"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "Отримання температури GPU"
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "Вимк."
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "не вдалося отримати температуру GPU"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
