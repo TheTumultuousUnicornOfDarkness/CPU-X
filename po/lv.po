@@ -6,42 +6,48 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-01-29 10:50+0000\n"
+"Last-Translator: Anton Kochubey <anton@kochubey.eu>\n"
+"Language-Team: Latvian <https://hosted.weblate.org/projects/cpu-x/"
+"translations/lv/>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= "
+"19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr ""
+msgstr "nav iespējams izdalīt atmiņu"
 
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr ""
+msgstr "Iziešana no %s"
 
 #: core.c:175
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Procesora tehnoloģijas noteikšana"
 
 #: core.c:194
 #, c-format
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"Jūsu procesors nav atrasts datubāzē ==> %s, modelis: %i, papl. modelis: %i, "
+"papl. ģimene: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
-msgstr ""
+msgstr "%d x %d KB, %d-direkcionāls"
 
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB, %d-direkcionāls"
 
 #: core.c:206
 #, c-format
@@ -50,57 +56,57 @@ msgstr ""
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Izsaucu libcpuid statisko datu saņemšanai"
 
 #: core.c:219
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "libcpuid izsaukšana neveiksmīga (%s)"
 
 #: core.c:381
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Izsaucu libcpuid dinamisko datu saņemšanai"
 
 #: core.c:393
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "Tiek izlaista procesora MSR nolasīšana (nepieciešamas root tiesības)"
 
 #: core.c:400
 #, c-format
 msgid "failed to open CPU MSR (%s)"
-msgstr ""
+msgstr "Nav iespējams nolasīt procesora MSR (%s)"
 
 #: core.c:416
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "Izsaucu libcpuid procesora MSR statisko vērtību nolasīšanai"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "Izsaucu libcpuid procesora MSR dinamisko vērtību nolasīšanai"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "Izrēķinu CPU frekvences reizinātākus"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr ""
+msgstr "Tiek izlaista dmidecode izsaukšana (nepieciešamas root tiesības)"
 
 #: core.c:512
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Izsaucu dmidecode"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr ""
+msgstr "Nav iespējams izdalīt atmiņu priekš dmidecode"
 
 #: core.c:539
 msgid "failed to call dmidecode"
-msgstr ""
+msgstr "Nav iespējams izsaukt dmidecode"
 
 #: core.c:554
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Izrēķinu procesora pielietojumu"
 
 #: core.c:604
 msgid "Calling bandwidth"
@@ -108,144 +114,144 @@ msgstr ""
 
 #: core.c:634
 msgid "Finding graphic card driver"
-msgstr ""
+msgstr "Grafikas akseleratora draivera meklēšana"
 
 #: core.c:659
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "Jūsu GPU draiveris nav zināms: %s"
 
 #: core.c:661
 #, c-format
 msgid "(%s driver)"
-msgstr ""
+msgstr "(%s draiveris)"
 
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr ""
+msgstr "nav atrasts grafiskā akseleratora draiveris (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr ""
+msgstr "Ierīču meklēšana"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "Ierīču meklēšana tiek izlaista (nepieciešamas root tiesības)"
 
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "Jūsu GPU ražōtājs ir nezināms: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "nav iespējams noteikt mikroshēmojuma ražotāju un modeli"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "nav iespējams noteikt grafiskā akseleratora ražotāju un modeli"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
-msgstr ""
+msgstr "GPU temperatūras nolasīšana"
 
 #: core.c:786
 msgid "Off"
-msgstr ""
+msgstr "Izslēgts"
 
 #: core.c:825
 msgid "failed to retrieve GPU temperature"
-msgstr ""
+msgstr "GPU temperatūras noteikšana neveiksmīga"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "Izlaist dažus GPU parametrus (nepieciešamas root tiesības)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "GPU frekvences nolasīšana"
 
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "GPU %i draiveris neatbalsta frekvenču nolasīšanu"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "GPU frekvenču nolasīšana neveiksmīga"
 
 #: core.c:969
 msgid "Identifying running system"
-msgstr ""
+msgstr "Darbojošās sistēmas noteikšana"
 
 #: core.c:972
 msgid "failed to identify running system"
-msgstr ""
+msgstr "Nav iespējams noteikt darbojošo sistēmu"
 
 #: core.c:1013
 msgid "Calling libprocps"
-msgstr ""
+msgstr "Izsauc libprocps"
 
 #: core.c:1035
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "Izsauc libstatgrab"
 
 #: core.c:1065
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i dienas, %i stundas, %i minūtes, %i sekundes"
 
 #: core.c:1120
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "Atjauno darbspējas mērījuma statusu"
 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u minūtes"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr ""
+msgstr "Nav aktīvs"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr ""
+msgstr "Nav palaists"
 
 #: core.c:1134
 msgid "Active"
-msgstr ""
+msgstr "Aktīvs"
 
 #: core.c:1139
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(palika %u stundas)"
 
 #: core.c:1141
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(palika %u minūtes)"
 
 #: core.c:1143
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(palika %u sekundes)"
 
 #: core.c:1148
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "pēc %u stundām"
 
 #: core.c:1150
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "pēc %u minūtēm"
 
 #: core.c:1152
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "pēc %u sekundēm"
 
 #: core.c:1168
 msgid "Starting benchmark"
