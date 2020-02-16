@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-02-09 17:50+0000\n"
+"PO-Revision-Date: 2020-02-17 13:50+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.11-dev\n"
 
 #: core.c:147
@@ -44,12 +44,12 @@ msgstr "%d x %d KB, %d-way"
 #: core.c:205
 #, c-format
 msgid "%d MB, %d-way"
-msgstr ""
+msgstr "%d MB,%d-वे"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr ""
+msgstr "%s सहकारी,%d-बाइट लाइन आकार"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
@@ -65,8 +65,9 @@ msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
 #: core.c:393
+#, fuzzy
 msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
+msgstr "सीपीयू एमएसआर उघडणे वगळा (मूळ असणे आवश्यक आहे)"
 
 #: core.c:400
 #, c-format
@@ -74,8 +75,10 @@ msgid "failed to open CPU MSR (%s)"
 msgstr "सीपीयू एमएसआर (%s) उघडण्यात अयशस्वी"
 
 #: core.c:416
+#, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
+"सीपीयू एमएसआर स्थिर मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
