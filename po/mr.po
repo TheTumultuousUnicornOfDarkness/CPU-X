@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-02-17 13:50+0000\n"
+"PO-Revision-Date: 2020-02-27 17:33+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -35,6 +35,8 @@ msgstr "CPU तंत्रज्ञान शोधत आहे"
 msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
 "%i, ext. family: %i"
 msgstr ""
+"आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये "
+"नाही."
 
 #: core.c:204
 #, c-format
@@ -65,7 +67,6 @@ msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
 #: core.c:393
-#, fuzzy
 msgid "Skip CPU MSR opening (need to be root)"
 msgstr "सीपीयू एमएसआर उघडणे वगळा (मूळ असणे आवश्यक आहे)"
 
@@ -83,6 +84,7 @@ msgstr ""
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
+"सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
 
 #: core.c:469
 msgid "Calculating CPU multipliers"
