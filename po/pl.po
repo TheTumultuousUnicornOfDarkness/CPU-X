@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-02-20 07:39+0000\n"
-"Last-Translator: Michal Biesiada <blade-14@o2.pl>\n"
+"PO-Revision-Date: 2020-02-29 18:33+0000\n"
+"Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<"
 "12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) ||"
 " (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 3.11\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -42,7 +42,9 @@ msgstr "Wyszukiwanie technologi procesora"
 msgid ""
 "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext."
 " family: %i"
-msgstr "Twojego procesora niema w bazie danych ==> %s, model: %i, ext. model: %i, ext. family: %i"
+msgstr ""
+"Twojego procesora nie ma w bazie danych ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 
 #: core.c:204
 #, c-format
@@ -57,7 +59,7 @@ msgstr "%d MB, %d-sposób"
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
-msgstr "%s asocjacyjny, %d-bajtowy rozmiar linii"
+msgstr "%s przemienne, %d-bajtowy rozmiar linii"
 
 #: core.c:211
 msgid "Calling libcpuid for retrieving static data"
@@ -279,7 +281,7 @@ msgstr "Wyszukiwanie podstawki CPU w trybie awaryjnym"
 #: core.c:1226
 #, c-format
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr "Twojego gniazda CPU niema w bazie ==> %s, codename: %s"
+msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
@@ -783,15 +785,15 @@ msgstr "Uruchom tekstowy interfejs użytkownika (TUI)"
 
 #: main.c:550
 msgid "Dump all data on standard output and exit"
-msgstr "Zrzuć wszystkie dane na standardowe wyjście i zakończ"
+msgstr "Zrzuć wszystkie dane na standardowe wyjście i wyjdź"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
-msgstr ""
+msgstr "Uruchom wbudowane polecenie dmidecode i wyjdź"
 
 #: main.c:552
 msgid "Run embedded command bandwidth and exit"
-msgstr ""
+msgstr "Uruchom wbudowane pasmo poleceń i zakończ"
 
 #: main.c:553
 msgid "Set default tab (integer)"
@@ -812,9 +814,8 @@ msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Ustaw niestandardowy czas między dwoma odświeżeniami (w sekundach)"
 
 #: main.c:557
-#, fuzzy
 msgid "Disable colored output"
-msgstr "Wyłącz kolorowy wydruk"
+msgstr "Wyłącz kolorowe wyjście"
 
 #: main.c:558
 #, fuzzy
@@ -853,16 +854,16 @@ msgstr "Odczytaj surowe dane CPUID z danego pliku"
 
 #: main.c:576
 msgid "Only print a message if CPU does not belong in database"
-msgstr ""
+msgstr "Drukuj komunikat tylko, jeśli procesor nie należy do bazy danych"
 
 #: main.c:585
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
+msgstr "Użycie: %s WYŚWIETL [OPCJE]\n"
 
 #: main.c:586
 msgid "Available DISPLAY:"
-msgstr ""
+msgstr "Dostępny WYŚWIETLACZ:"
 
 #: main.c:590
 msgid ""
@@ -873,10 +874,13 @@ msgstr ""
 "Dostępne OPCJE:"
 
 #: main.c:595
+#, fuzzy
 msgid ""
 "\n"
 "Influenceable environment variables:"
 msgstr ""
+"\n"
+"Wpływowe zmienne środowiskowe:"
 
 #: main.c:626
 msgid "This is free software: you are free to change and redistribute it."
@@ -924,8 +928,9 @@ msgstr ""
 "już obsługiwana."
 
 #: tui_ncurses.c:70
+#, fuzzy
 msgid "Starting NCurses TUI..."
-msgstr ""
+msgstr "Uruchamianie NCurses TUI ..."
 
 #: tui_ncurses.c:110
 msgid "Press 'h' to see help.\n"
@@ -1032,12 +1037,18 @@ msgstr ""
 "wątków.\n"
 
 #: tui_ncurses.c:406
+#, fuzzy
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
+"\tNaciśnij klawisz 's', aby rozpocząć/zatrzymać podstawowe liczby (powolny) "
+"punkt odniesienia.\n"
 
 #: tui_ncurses.c:407
+#, fuzzy
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
+"\tNaciśnij klawisz 'f', aby uruchomić/zatrzymać podstawowe numery (szybko) "
+"wzorca odniesienia.\n"
 
 #: tui_ncurses.c:409
 msgid ""
