@@ -172,11 +172,6 @@ add_executable(${DAEMON_EXEC}
 	cpu-x.h
 )
 
-# Gettext
-if(GETTEXT_FOUND)
-	add_dependencies(${APP_EXEC} update-gmo)
-endif(GETTEXT_FOUND)
-
 # Libsystem extra-definitions
 if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1)
 	add_definitions(-DHAS_LIBSTATGRAB=0 -DLIBSTATGRAB_VERSION=NULL)
