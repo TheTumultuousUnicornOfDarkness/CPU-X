@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-03-28 17:09+0000\n"
+"PO-Revision-Date: 2020-04-08 16:02+0000\n"
 "Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -818,9 +818,8 @@ msgid "Disable colored output"
 msgstr "Wyłącz kolorowe wyjście"
 
 #: main.c:558
-#, fuzzy
 msgid "Print required information to paste in an issue"
-msgstr "Wydrukuj wymagane informacje, aby wkleić problem"
+msgstr "Wydrukuj wymagane informacje do wklejenia w śledzeniu problemów"
 
 #: main.c:559
 msgid "Verbose output"
@@ -908,9 +907,8 @@ msgstr ""
 "%s Oops, coś było nie tak! %s otrzymał sygnał %d (%s) i się zawiesił.%s"
 
 #: main.c:787
-#, fuzzy
 msgid "You can paste this backtrace by opening a new issue here:"
-msgstr "Możesz wkleić ten ślad, otwierając nowy problem tutaj:"
+msgstr "Możesz wkleić to śledzenie, otwierając nowy problem tutaj:"
 
 #: main.c:846
 msgid "an error occurred while setting locale"
@@ -1003,10 +1001,13 @@ msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr "\tNaciśnij klawisz „w górę”, aby przejść do następnego testu.\n"
 
 #: tui_ncurses.c:401
+#, fuzzy
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr ""
+"\n"
+"Zakładka stopień:\n"
 
 #: tui_ncurses.c:402
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
@@ -1033,7 +1034,6 @@ msgstr ""
 "wątków.\n"
 
 #: tui_ncurses.c:406
-#, fuzzy
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
 "\tNaciśnij klawisz 's', aby rozpocząć/zatrzymać podstawowe liczby (powolny) "
