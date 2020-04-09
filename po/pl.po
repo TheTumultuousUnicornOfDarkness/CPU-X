@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-04-08 16:02+0000\n"
+"PO-Revision-Date: 2020-04-10 19:09+0000\n"
 "Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr "nie można zrelokować pamięci"
+msgstr "nie można przydzielić pamięci"
 
 #: core.c:148
 #, c-format
@@ -188,7 +188,7 @@ msgstr "Sterownik procesora graficznego %i nie raportuje częstotliwości"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr "nie udało się znaleść zegarów procesora graficznego"
+msgstr "nie udało się znaleźć zegarów GPU"
 
 #: core.c:969
 msgid "Identifying running system"
@@ -226,7 +226,7 @@ msgstr "Nieaktywny"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr "Nie rozpoczął"
+msgstr "Nie uruchomiono"
 
 #: core.c:1134
 msgid "Active"
@@ -245,7 +245,7 @@ msgstr "(%u minut pozostało)"
 #: core.c:1143
 #, c-format
 msgid "(%u seconds left)"
-msgstr "(%u sekund pozostało)"
+msgstr "(pozostało %u sekund)"
 
 #: core.c:1148
 #, c-format
@@ -276,7 +276,7 @@ msgstr "wystąpił błąd podczas uruchamiania benchmarku"
 
 #: core.c:1208
 msgid "Finding CPU package in fallback mode"
-msgstr "Wyszukiwanie podstawki CPU w trybie awaryjnym"
+msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
 
 #: core.c:1226
 #, c-format
@@ -390,7 +390,7 @@ msgstr "Nazwa kodowa"
 
 #: main.c:68
 msgid "Package"
-msgstr "Paczka"
+msgstr "Rodzaj Układu"
 
 #: main.c:69
 msgid "Technology"
@@ -426,7 +426,7 @@ msgstr "Temperatura."
 
 #: main.c:77
 msgid "Stepping"
-msgstr "Stepping"
+msgstr "Krok"
 
 #: main.c:78
 msgid "Instructions"
@@ -434,11 +434,11 @@ msgstr "Instrukcje"
 
 #: main.c:80
 msgid "Clocks"
-msgstr "Zegar"
+msgstr "Zegary"
 
 #: main.c:81
 msgid "Core Speed"
-msgstr "Prędkość procesora"
+msgstr "Częstotliwość rdzenia"
 
 #: main.c:82
 msgid "Multiplier"
@@ -446,31 +446,31 @@ msgstr "Mnożnik"
 
 #: main.c:83
 msgid "Bus Speed"
-msgstr "Prędkość Szyny"
+msgstr "Częstotliwość Szyny"
 
 #: main.c:84 main.c:157
 msgid "Usage"
-msgstr "Wykorzystanie"
+msgstr "Użycie"
 
 #: main.c:86
 msgid "Cache"
-msgstr "Pamięć Podręczna"
+msgstr "Pamięć podręczna"
 
 #: main.c:87
 msgid "L1 Data"
-msgstr "Dane L1"
+msgstr "L1 Dane"
 
 #: main.c:88
 msgid "L1 Inst."
-msgstr "Instrukcje L1."
+msgstr "L1 Instrukcja."
 
 #: main.c:89
 msgid "Level 2"
-msgstr "2 poziom"
+msgstr "Poziom 2"
 
 #: main.c:90
 msgid "Level 3"
-msgstr "3 poziom"
+msgstr "Poziom 3"
 
 #: main.c:92
 msgid "Socket(s)"
@@ -491,11 +491,11 @@ msgstr "Pamięci Podręczne"
 #: main.c:101
 #, c-format
 msgid "L%i Cache"
-msgstr "Pamięc Podręczna L%i"
+msgstr "Pamięć podręczna L%i"
 
 #: main.c:102
 msgid "Size"
-msgstr "Wielkość"
+msgstr "Rozmiar"
 
 #: main.c:103
 msgid "Speed"
@@ -535,7 +535,7 @@ msgstr "Data"
 
 #: main.c:118
 msgid "ROM Size"
-msgstr "Wielkość ROM'u"
+msgstr "ROM Rozmiar"
 
 #: main.c:120
 msgid "Chipset"
@@ -564,7 +564,7 @@ msgstr "System operacyjny"
 
 #: main.c:135
 msgid "Kernel"
-msgstr "Kernel"
+msgstr "Jądro"
 
 #: main.c:136
 msgid "Distribution"
@@ -576,7 +576,7 @@ msgstr "Nazwa hosta"
 
 #: main.c:138
 msgid "Uptime"
-msgstr "Czas aktywności"
+msgstr "Czas pracy"
 
 #: main.c:139
 msgid "Compiler"
@@ -584,23 +584,23 @@ msgstr "Kompilator"
 
 #: main.c:142
 msgid "Used"
-msgstr "Użyte"
+msgstr "Używana"
 
 #: main.c:143
 msgid "Buffers"
-msgstr "Zbuforowane"
+msgstr "Buforowana"
 
 #: main.c:144
 msgid "Cached"
-msgstr "Zbuforowane"
+msgstr "Podręczna"
 
 #: main.c:145
 msgid "Free"
-msgstr "Wolne"
+msgstr "Wolna"
 
 #: main.c:146
 msgid "Swap"
-msgstr "Swap"
+msgstr "Wymiany"
 
 #: main.c:149
 msgid "Graphics"
@@ -617,7 +617,7 @@ msgstr "Temperatura"
 
 #: main.c:158
 msgid "GPU clock"
-msgstr "Zegar procesora graficznego"
+msgstr "Zegar GPU"
 
 #: main.c:159
 msgid "Memory clock"
@@ -629,11 +629,11 @@ msgstr "Bench"
 
 #: main.c:164
 msgid "Prime numbers (slow)"
-msgstr "Liczby pierwsze (Wolno)"
+msgstr "Liczby pierwsze (wolno)"
 
 #: main.c:165
 msgid "Prime numbers (fast)"
-msgstr "Liczby pierwsze (Szybko)"
+msgstr "Liczby pierwsze (szybko)"
 
 #: main.c:168
 msgid "Score"
@@ -688,11 +688,11 @@ msgstr "Licencja"
 #: main.c:190
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr "To oprogramowanie jest udostęopniane z zasadami %s"
+msgstr "To oprogramowanie jest rozpowszechniane na warunkach %s"
 
 #: main.c:192 main.c:627
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "Program nie ma żadnej gwarancji"
+msgstr "To oprogramowanie jest dostarczane bez ŻADNEJ GWARANCJI"
 
 #: main.c:259
 msgid "Dumping data..."
@@ -717,7 +717,7 @@ msgstr "Nie udało się przesłać Curl'em (%s)"
 
 #: main.c:362
 msgid "wrong write data"
-msgstr "złe wpisane dane"
+msgstr "nieprawidłowy zapis danych"
 
 #: main.c:369
 #, c-format
@@ -735,7 +735,7 @@ msgstr "(zaktualizowane)"
 #: main.c:445
 #, c-format
 msgid "an error occurred while extracting %s archive (%s)"
-msgstr "nastał błąd podczas wypakowywania archiwum %s (%s)"
+msgstr "wystąpił błąd podczas wyodrębniania %s archiwum (%s)"
 
 #: main.c:460
 msgid ""
@@ -851,7 +851,7 @@ msgstr "Odczyt danych nieprzetworzonych CPUID z danego pliku"
 
 #: main.c:576
 msgid "Only print a message if CPU does not belong in database"
-msgstr "Drukuj komunikat tylko, jeśli procesor nie należy do bazy danych"
+msgstr "Wydrukuj komunikat tylko wtedy, gdy CPU nie należy do bazy danych"
 
 #: main.c:585
 #, c-format
@@ -990,7 +990,7 @@ msgid ""
 "Caches tab:\n"
 msgstr ""
 "\n"
-"Karta Pamięć podręczna:\n"
+"Karta Pamięć Podręczna:\n"
 
 #: tui_ncurses.c:398
 msgid "\tPress 'down' key to switch to previous test.\n"
@@ -1001,13 +1001,12 @@ msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr "\tNaciśnij klawisz „w górę”, aby przejść do następnego testu.\n"
 
 #: tui_ncurses.c:401
-#, fuzzy
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr ""
 "\n"
-"Zakładka stopień:\n"
+"Karta testy wydajności:\n"
 
 #: tui_ncurses.c:402
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
@@ -1036,15 +1035,14 @@ msgstr ""
 #: tui_ncurses.c:406
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
-"\tNaciśnij klawisz 's', aby rozpocząć/zatrzymać podstawowe liczby (powolny) "
-"punkt odniesienia.\n"
+"\tNaciśnij klawisz 's', aby rozpocząć/zatrzymać test wydajności liczenia "
+"liczb pierwszych (powoli).\n"
 
 #: tui_ncurses.c:407
-#, fuzzy
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
-"\tNaciśnij klawisz 'f', aby uruchomić/zatrzymać podstawowe numery (szybko) "
-"wzorca odniesienia.\n"
+"\tNaciśnij klawisz 'f', aby uruchomić/zatrzymać test wydajności zliczania "
+"liczb pierwszych (szybko).\n"
 
 #: tui_ncurses.c:409
 msgid ""
