@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-04-08 16:02+0000\n"
+"PO-Revision-Date: 2020-04-12 11:11+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
@@ -77,10 +77,8 @@ msgid "failed to open CPU MSR (%s)"
 msgstr "सीपीयू एमएसआर (%s) उघडण्यात अयशस्वी"
 
 #: core.c:416
-#, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
-"सीपीयू एमएसआर स्थिर मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
+msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
 
 #: core.c:448
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
@@ -178,7 +176,7 @@ msgstr "GPU घड्याळे प्राप्त करीत आहे"
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr ""
+msgstr "GPU %i साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
@@ -186,24 +184,24 @@ msgstr "GPU घड्याळे प्राप्त करण्यात �
 
 #: core.c:969
 msgid "Identifying running system"
-msgstr ""
+msgstr "कार्यरत प्रणाली ओळखत आहे"
 
 #: core.c:972
 msgid "failed to identify running system"
-msgstr ""
+msgstr "चालू प्रणाली ओळखण्यात अयशस्वी"
 
 #: core.c:1013
 msgid "Calling libprocps"
-msgstr ""
+msgstr "libprocps ला कॉल करीत आहे"
 
 #: core.c:1035
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "libstatgrab ला कॉल करीत आहे"
 
 #: core.c:1065
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
 
 #: core.c:1120
 msgid "Updating benchmark status"
@@ -212,29 +210,29 @@ msgstr "बेंचमार्क स्थिती अद्यतनित 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u मि"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr ""
+msgstr "निष्क्रीय"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr ""
+msgstr "सुरू झाले नाही"
 
 #: core.c:1134
 msgid "Active"
-msgstr ""
+msgstr "सक्रीय"
 
 #: core.c:1139
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u तास बाकी)"
 
 #: core.c:1141
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u मिनिटे बाकी)"
 
 #: core.c:1143
 #, c-format
