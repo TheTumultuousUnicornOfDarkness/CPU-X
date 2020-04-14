@@ -4,13 +4,14 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2019.
 # mohammadA <mohammadAbdulhadi1@gmail.com>, 2019.
 # anonymous <noreply@weblate.org>, 2020.
+# Rex_sa <asd1234567890m@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
 "PO-Revision-Date: 2020-04-14 03:25+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Last-Translator: Rex_sa <asd1234567890m@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -173,7 +174,7 @@ msgstr "تخطي بعض قيم بطاقة الرسوميات (تحتاج إلى 
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "جارٍ استرداد سرعات GPU"
 
 #: core.c:931
 #, c-format
@@ -182,7 +183,7 @@ msgstr "تعريف وحدة معالجة الرسوميات %i لا يبلغ ع�
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "فشل في استرداد سرعات GPU"
 
 #: core.c:969
 msgid "Identifying running system"
@@ -201,22 +202,22 @@ msgid "Calling libstatgrab"
 msgstr "يستدعي libstatgrab"
 
 #: core.c:1065
-#, c-format
+#, c-format, fuzzy
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i أيام، %i ساعات، %i دقيقة، %i ثانية"
 
 #: core.c:1120
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "تحديث حالة وضع القياس"
 
 #: core.c:1121 tui_ncurses.c:754
-#, c-format
+#, c-format, fuzzy
 msgid "%u mins"
-msgstr ""
+msgstr "%u دقيقة"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr ""
+msgstr "غير نَشِط"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
@@ -229,40 +230,42 @@ msgstr "نشط"
 #: core.c:1139
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u ساعة متبقية)"
 
 #: core.c:1141
-#, c-format
+#, c-format, fuzzy
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u دقيقة متبقية)"
 
 #: core.c:1143
-#, c-format
+#, c-format, fuzzy
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u ثانية متبقية)"
 
 #: core.c:1148
-#, c-format
+#, c-format, fuzzy
 msgid "in %u hours"
-msgstr ""
+msgstr "في %u ساعة"
 
 #: core.c:1150
-#, c-format
+#, c-format, fuzzy
 msgid "in %u minutes"
-msgstr ""
+msgstr "في %u دقيقة"
 
 #: core.c:1152
-#, c-format
+#, c-format, fuzzy
 msgid "in %u seconds"
-msgstr ""
+msgstr "في %u ثانية"
 
 #: core.c:1168
+#, fuzzy
 msgid "Starting benchmark"
-msgstr ""
+msgstr "بدء المعيارة"
 
 #: core.c:1177
+#, fuzzy
 msgid "failed to allocate memory for benchmark"
-msgstr ""
+msgstr "فشل في تخصيص الذاكرة للمعيارة"
 
 #: core.c:1191
 msgid "an error occurred while starting benchmark"
