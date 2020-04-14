@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
 "PO-Revision-Date: 2020-04-14 03:29+0000\n"
-"Last-Translator: Rex_sa <asd1234567890m@gmail.com>\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -146,7 +146,9 @@ msgstr "تخطي البحث عن الأجهزة (تحتاج إلى صلاحيا�
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr "بائع وحدة معالجة الرسوميات غير معروف: %s (%#X)"
+msgstr ""
+"بائع وحدة معالج البيانات غير معروف:\n"
+"no changes to line #2"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
@@ -208,7 +210,7 @@ msgstr "%i أيام، %i ساعات، %i دقيقة، %i ثانية"
 
 #: core.c:1120
 msgid "Updating benchmark status"
-msgstr "تحديث حالة وضع القياس"
+msgstr "تحديث حالة إختبار الأداء"
 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format, fuzzy
@@ -258,14 +260,12 @@ msgid "in %u seconds"
 msgstr "في %u ثانية"
 
 #: core.c:1168
-#, fuzzy
 msgid "Starting benchmark"
-msgstr "بدء المعيارة"
+msgstr "بدء اختبار الأداء"
 
 #: core.c:1177
-#, fuzzy
 msgid "failed to allocate memory for benchmark"
-msgstr "فشل في تخصيص الذاكرة للمعيارة"
+msgstr "فشلت عملية حجز الذاكرة من أجل اختبار الأداء"
 
 #: core.c:1191
 msgid "an error occurred while starting benchmark"
