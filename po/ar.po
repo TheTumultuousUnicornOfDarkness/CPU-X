@@ -3,13 +3,14 @@
 # Hatem Ghouthi <hatemghouthi@yahoo.com>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2019.
 # mohammadA <mohammadAbdulhadi1@gmail.com>, 2019.
+# anonymous <noreply@weblate.org>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-06-23 08:26+0000\n"
-"Last-Translator: mohammadA <mohammadAbdulhadi1@gmail.com>\n"
+"PO-Revision-Date: 2020-04-14 03:25+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.7\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -135,11 +136,11 @@ msgstr "تعذر العثور على تعريف بطاقة الرسومات (%s)
 
 #: core.c:695
 msgid "Finding devices"
-msgstr "يبحث عن الأجهزة"
+msgstr "العثور على الأجهزة"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr ""
+msgstr "تخطي البحث عن الأجهزة (تحتاج إلى صلاحيات الروت)"
 
 #: core.c:729
 #, c-format
@@ -148,7 +149,7 @@ msgstr "بائع وحدة معالجة الرسوميات غير معروف: %s 
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr "تعذر إيجاد بائع الرقائق ونوعها"
+msgstr "لم يعثر على بائع الرقائق والنوع"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
@@ -156,7 +157,7 @@ msgstr "تعذر إيجاد بائع بطاقة الرسوميات ونوعها"
 
 #: core.c:779
 msgid "Retrieving GPU temperature"
-msgstr "يجلب درجة حرارة وحدة معالجة الرسوميات"
+msgstr "إسترجاع شدة معالج وحدة الييانات"
 
 #: core.c:786
 msgid "Off"
@@ -168,7 +169,7 @@ msgstr "تعذر جلب درجة حرارة وحدة معالجة الرسومي
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr ""
+msgstr "تخطي بعض قيم بطاقة الرسوميات (تحتاج إلى صلاحيات الروت)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
@@ -265,7 +266,7 @@ msgstr ""
 
 #: core.c:1191
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "حدث خطأ ما أثناء بدء اختبار الأداء"
 
 #: core.c:1208
 msgid "Finding CPU package in fallback mode"
