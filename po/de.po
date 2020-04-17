@@ -1,7 +1,7 @@
 # Copyright © 2014-2019 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
-# Torge Matthies <openglfreak@googlemail.com>, 2019.
+# Torge Matthies <openglfreak@googlemail.com>, 2019, 2020.
 # Andreas Kleinert <Andy.Kleinert@gmail.com>, 2019.
 # CurlingTongs <o11577482@nwytg.net>, 2019.
 # ssantos <ssantos@web.de>, 2019.
@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2019-05-06 15:47+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2020-04-17 20:15+0000\n"
+"Last-Translator: Torge Matthies <openglfreak@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.0.2-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
-msgstr "Speicher konnte nicht neu zugewiesen werden"
+msgstr "konnte Speicher nicht neu zuweisen"
 
 #: core.c:148
 #, c-format
@@ -101,7 +101,7 @@ msgstr "dmidecode aufrufen"
 
 #: core.c:516
 msgid "failed to allocate memory for dmidecode"
-msgstr "Speicherzuweisung für dmidecode fehlgeschlagen"
+msgstr "Fehler beim anfordern von Speicher für dmidecode"
 
 #: core.c:539
 msgid "failed to call dmidecode"
