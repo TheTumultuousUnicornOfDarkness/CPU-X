@@ -9,13 +9,14 @@
 # mahmut özcan <mahmutozcan65@yahoo.com>, 2019, 2020.
 # Burak <burakidilmek@gmail.com>, 2019.
 # Sabri Ünal <libreajans@gmail.com>, 2020.
+# Çalgan Aygün <calganaygun@hacettepe.edu.tr>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-04-08 16:02+0000\n"
-"Last-Translator: mahmut özcan <mahmutozcan65@yahoo.com>\n"
+"PO-Revision-Date: 2020-04-23 07:11+0000\n"
+"Last-Translator: Çalgan Aygün <calganaygun@hacettepe.edu.tr>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.0.2-dev\n"
 
 #: core.c:147
 msgid "could not reallocate memory"
@@ -425,7 +426,7 @@ msgstr "Sıc."
 
 #: main.c:77
 msgid "Stepping"
-msgstr ""
+msgstr "Basamak Seviyesi"
 
 #: main.c:78
 msgid "Instructions"
@@ -461,7 +462,7 @@ msgstr "L1 Verileri"
 
 #: main.c:88
 msgid "L1 Inst."
-msgstr ""
+msgstr "L1 Yönergesi"
 
 #: main.c:89
 msgid "Level 2"
@@ -502,7 +503,7 @@ msgstr "Hız"
 
 #: main.c:105
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
@@ -608,7 +609,7 @@ msgstr "Grafikler"
 #: main.c:153
 #, c-format
 msgid "Card %i"
-msgstr ""
+msgstr "Kart %i"
 
 #: main.c:156
 msgid "Temperature"
@@ -616,11 +617,11 @@ msgstr "Sıcaklık"
 
 #: main.c:158
 msgid "GPU clock"
-msgstr ""
+msgstr "GPU saati"
 
 #: main.c:159
 msgid "Memory clock"
-msgstr ""
+msgstr "Bellek saati"
 
 #: main.c:163
 msgid "Bench"
@@ -628,11 +629,11 @@ msgstr "Sıra"
 
 #: main.c:164
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "Asal sayılar (yavaş)"
 
 #: main.c:165
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "Asal sayılar (hızlı)"
 
 #: main.c:168
 msgid "Score"
@@ -640,11 +641,11 @@ msgstr "Puan"
 
 #: main.c:169
 msgid "Run"
-msgstr ""
+msgstr "Çalıştır"
 
 #: main.c:172
 msgid "Parameters"
-msgstr ""
+msgstr "Parametreler"
 
 #: main.c:173
 msgid "Duration"
@@ -663,6 +664,8 @@ msgstr "Hakkında"
 msgid "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s CPU, anakart ve daha fazlası hakkında bilgi\n"
+"toplayan özgür bir yazılımdır."
 
 #: main.c:183
 #, c-format
@@ -677,7 +680,7 @@ msgstr "Eser Sahibi: %s"
 #: main.c:185
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Site: %s"
 
 #: main.c:187
 msgid "License"
@@ -711,11 +714,11 @@ msgstr "Curl oturumu açılamadı"
 #: main.c:361
 #, c-format
 msgid "failed to perform the Curl transfer (%s)"
-msgstr ""
+msgstr "Curl aktarımı gerçekleştirilemedi (%s)"
 
 #: main.c:362
 msgid "wrong write data"
-msgstr ""
+msgstr "hatalı yazma verisi"
 
 #: main.c:369
 #, c-format
@@ -728,22 +731,24 @@ msgstr "Yeni bir sürüm yok"
 
 #: main.c:375
 msgid "(up-to-date)"
-msgstr ""
+msgstr "(güncel)"
 
 #: main.c:445
 #, c-format
 msgid "an error occurred while extracting %s archive (%s)"
-msgstr ""
+msgstr "%s arşivi dışarı çıkarılırken bir hatayla karşılaşıldı (%s)"
 
 #: main.c:460
 msgid "Network access is disabled by environment variable (set CPUX_NETWORK "
 "with a positive value to enable it)"
 msgstr ""
+"Ağ erişimi ortam değişkeni tarafından devre dışı bırakıldı (aktifleştirmek "
+"için CPUX_NETWORK değişkenine pozitif bir değer atayın)"
 
 #: main.c:482
 #, c-format
 msgid "failed to open %s archive for writing"
-msgstr ""
+msgstr "%s yazmak için açılamadı"
 
 #: main.c:488
 msgid "Downloading new version..."
@@ -752,7 +757,7 @@ msgstr "Yeni sürüm indiriliyor..."
 #: main.c:500
 #, c-format
 msgid "failed to download %s archive (%s)"
-msgstr ""
+msgstr "%s arşivi indirilemedi (%s)"
 
 #: main.c:506
 msgid "Extracting new version..."
@@ -788,7 +793,7 @@ msgstr "Gömülü komut dmidecode'u çalıştırın ve çıkın"
 
 #: main.c:552
 msgid "Run embedded command bandwidth and exit"
-msgstr ""
+msgstr "Gömülmüş embedded komut bant genişliğini çalıştır ve çık"
 
 #: main.c:553
 msgid "Set default tab (integer)"
