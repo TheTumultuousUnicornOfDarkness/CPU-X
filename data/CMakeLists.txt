@@ -7,6 +7,8 @@ add_subdirectory(completions)
 
 # Files needed by GTK GUI
 if(WITH_GTK)
+	include(GSettings)
+
 	# Set config
 	file(MAKE_DIRECTORY ${CMAKE_DATA_OUTPUT_DIRECTORY})
 	configure_file(cpu-x.desktop.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop)
@@ -39,6 +41,9 @@ if(WITH_GTK)
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/org.pkexec.cpu-x-daemon.policy
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions/
 	)
+
+	# Install schema file
+	add_schema("cpu-x.gschema.xml")
 
 	add_subdirectory(icons)
 	add_subdirectory(logos)

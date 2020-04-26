@@ -25,6 +25,8 @@
 #define _GUI_GTK_ID_H_
 
 
+static GSettings *settings = NULL;
+
 /* Translation */
 static const char *trad[LASTOBJ] =
 {
@@ -107,6 +109,11 @@ static const char *objectabout[LASTABOUT] =
 	"about_descr",
 	"about_version", "about_author", "about_site",
 	"license_labcopyright", "license_lablicense", "license_nowarranty"
+};
+
+static const char *nicktab[NO_ABOUT + 1] =
+{
+	"cpu", "caches", "motherboad", "memory", "system", "graphics", "bench", "about"
 };
 
 

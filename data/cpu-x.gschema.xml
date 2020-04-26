@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+	<enum id="apps.cpu-x.theme">
+		<value value="0" nick="auto"/>
+		<value value="1" nick="light"/>
+		<value value="2" nick="dark"/>
+	</enum>
+	<enum id="apps.cpu-x.tab">
+		<value value="0" nick="cpu"/>
+		<value value="1" nick="caches"/>
+		<value value="2" nick="motherboad"/>
+		<value value="3" nick="memory"/>
+		<value value="4" nick="system"/>
+		<value value="5" nick="graphics"/>
+		<value value="6" nick="bench"/>
+		<value value="7" nick="about"/>
+	</enum>
+
+	<schema id="cpu-x" path="/apps/cpu-x/">
+		<key name="refresh-time" type="u">
+			<default>1</default>
+			<range min="1" max="65535"/>
+			<summary>Refresh time</summary>
+			<description>
+				Set custom time between two refreshes
+			</description>
+		</key>
+		<key name="gui-theme" enum="apps.cpu-x.theme">
+			<default>'auto'</default>
+			<summary>Theme</summary>
+			<description>
+				Change GUI theme color scheme
+			</description>
+		</key>
+		<key name="default-tab" enum="apps.cpu-x.tab">
+			<default>'cpu'</default>
+			<summary>Default tab</summary>
+			<description>
+				Set default tab
+			</description>
+		</key>
+		<key name="default-cpu-core" type="u">
+			<default>0</default>
+			<range min="0"/>
+			<summary>Default CPU core</summary>
+			<description>
+				Select CPU core to monitor
+			</description>
+		</key>
+		<key name="default-cache-test" type="u">
+			<default>0</default>
+			<range min="0"/>
+			<summary>Default cache test</summary>
+			<description>
+				Set custom bandwidth test for CPU caches speed
+			</description>
+		</key>
+		<key name="always-start-daemon" type="b">
+			<default>false</default>
+			<summary>Always start daemon</summary>
+			<description>
+				Start and connect to daemon
+			</description>
+		</key>
+	</schema>
+</schemalist>

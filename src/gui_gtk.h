@@ -24,7 +24,6 @@
 #ifndef _GUI_GTK_H_
 #define _GUI_GTK_H_
 
-
 #include <gtk/gtk.h>
 #include <cairo.h>
 #include <glib.h>
@@ -33,11 +32,23 @@ typedef struct
 {
 	/* Common */
 	GtkWidget *mainwindow;
+	GtkWidget *settingsbutton;
 	GtkWidget *notebook;
 	GtkWidget *footer;
 	GtkWidget *labprgver;
 	GtkWidget *daemonbutton;
 	GtkWidget *gtktrad[LASTOBJ];
+
+	/* Settings */
+	GtkWidget *settingswindow;
+	GtkWidget *validatebutton;
+	GtkWidget *cancelbutton;
+	GtkWidget *refreshtime;
+	GtkWidget *theme;
+	GtkWidget *defaulttab;
+	GtkWidget *defaultcore;
+	GtkWidget *defaultcachetest;
+	GtkWidget *startdaemon;
 
 	/* Tab CPU */
 	GtkWidget *logocpu;
@@ -75,12 +86,17 @@ typedef struct
 
 } GtkLabels; /* Useful GtkWidgets */
 
+static enum {
+	AUTO,
+	LIGHT,
+	DARK
+} theme = AUTO;
+
 typedef struct
 {
 	GtkLabels *glab;
 	Labels *data;
 } GThrd; /* Used to refresh GUI */
-
 
 /********************************** GUI  **********************************/
 
@@ -92,6 +108,21 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data);
 
 /* Refresh dynamic values */
 static gboolean grefresh(GThrd *refr);
+
+/* Create new timeout when old one is destroyed */
+static void modify_refresh_time(gpointer data);
+
+/* Show settings window */
+static void open_settings_window(GtkWidget *button, GtkLabels *glab);
+
+/* Hide settings window and revert changes */
+static void close_settings_window(GtkWidget *button, GtkLabels *glab);
+
+/* Hide settings window and apply changes */
+static void save_settings(GtkWidget *button, GtkLabels *glab);
+
+/* Start daemon and reload CPU-X */
+static void reload_with_daemon(GtkWidget *button, Labels *data);
 
 /* Event in CPU tab when Core number is changed */
 static void change_activecore(GtkComboBox *box, Labels *data);
@@ -131,6 +162,5 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr);
 
 /* Draw bars in Memory tab */
 void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr);
-
 
 #endif /* _GUI_GTK_H_ */
