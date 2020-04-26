@@ -226,12 +226,20 @@ static void *request_handler(void *p_data)
 
 		switch(cmd)
 		{
-			case LIBCPUID_MSR_STATIC:  if(HAS_LIBCPUID)  __call_libcpuid_msr_static(&td->fd);  break;
-			case LIBCPUID_MSR_DYNAMIC: if(HAS_LIBCPUID)  __call_libcpuid_msr_dynamic(&td->fd); break;
-			case DMIDECODE:            if(HAS_DMIDECODE) __call_dmidecode(&td->fd);            break;
-			case ACCESS_DEV_PCI:       if(HAS_LIBPCI)    __find_devices(&td->fd);              break;
-			case ACCESS_SYS_DEBUG:                       __sys_debug_ok(&td->fd);              break;
-			case LOAD_MODULE:                            __load_module(&td->fd);               break;
+#if HAS_LIBCPUID
+			case LIBCPUID_MSR_STATIC:
+			__call_libcpuid_msr_static(&td->fd);  break;
+			case LIBCPUID_MSR_DYNAMIC: __call_libcpuid_msr_dynamic(&td->fd); break;
+#endif /* HAS_LIBCPUID */
+#if HAS_DMIDECODE
+			case DMIDECODE:            __call_dmidecode(&td->fd);            break;
+#endif /* HAS_DMIDECODE */
+#if HAS_LIBPCI
+			case ACCESS_DEV_PCI:       __find_devices(&td->fd);              break;
+#endif /* HAS_LIBPCI */
+			case ACCESS_SYS_DEBUG:     __sys_debug_ok(&td->fd);              break;
+			case LOAD_MODULE:          __load_module(&td->fd);               break;
+			default: MSG_WARNING("%s", _("request_handler: case %i not handled"), cmd);
 		}
 	}
 
@@ -301,8 +309,10 @@ int main(void)
 
 	/* Logs */
 	unlink(LOG_FILE);
-	if(HAS_LIBCPUID && getenv("CPUX_DAEMON_DEBUG"))
+#if HAS_LIBCPUID
+	if(getenv("CPUX_DAEMON_DEBUG"))
 		libcpuid_msr_serialize();
+#endif /* HAS_LIBCPUID */
 	freopen(LOG_FILE, "a", stdout);
 	setvbuf(stdout, NULL, _IONBF, 0);
 	dup2(STDOUT_FILENO, STDERR_FILENO);

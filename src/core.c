@@ -73,10 +73,18 @@ int fill_labels(Labels *data)
 	int i, err = 0;
 	const uint8_t selected_page = opts->selected_page;
 
-	if(HAS_LIBCPUID)               err += call_libcpuid_static    (data);
-	if(HAS_LIBCPUID  && DAEMON_UP) err += call_libcpuid_msr_static(data);
-	if(HAS_DMIDECODE && DAEMON_UP) err += call_dmidecode          (data);
-	if(HAS_LIBPCI)                 err += find_devices            (data);
+#if HAS_LIBCPUID
+	err += call_libcpuid_static(data);
+	if(DAEMON_UP) err += call_libcpuid_msr_static(data);
+#endif
+
+#if HAS_DMIDECODE
+	if(DAEMON_UP) err += call_dmidecode(data);
+#endif
+
+#if HAS_LIBPCI
+	err += find_devices(data);
+#endif
 	casprintf(&data->tab_cpu[VALUE][BUSSPEED], true, "%.2f MHz", data->bus_freq);
 
 	err += system_static       (data);
@@ -101,20 +109,28 @@ int do_refresh(Labels *data)
 	switch(opts->selected_page)
 	{
 		case NO_CPU:
-			if(HAS_LIBCPUID)              err += err_func(call_libcpuid_dynamic,     data);
-			if(HAS_LIBCPUID && DAEMON_UP) err += err_func(call_libcpuid_msr_dynamic, data);
+#if HAS_LIBCPUID
+			err += err_func(call_libcpuid_dynamic, data);
+			if(DAEMON_UP) err += err_func(call_libcpuid_msr_dynamic, data);
+#endif /* HAS_LIBCPUID */
 			err += err_func(cpu_usage, data);
 			err += fallback_mode_dynamic(data);
 			err += err_func(cputab_fill_multipliers, data);
 			break;
 		case NO_CACHES:
-			if(HAS_BANDWIDTH) err += err_func(call_bandwidth, data);
+#if HAS_BANDWIDTH
+			err += err_func(call_bandwidth, data);
+#endif /* HAS_BANDWIDTH */
 			break;
 		case NO_SYSTEM:
-			if(HAS_LIBSYSTEM) err += err_func(system_dynamic, data);
+#if HAS_LIBSYSTEM
+			err += err_func(system_dynamic, data);
+#endif /* HAS_LIBSYSTEM */
 			break;
 		case NO_GRAPHICS:
+#if HAS_LIBPCI
 			err += err_func(gpu_monitoring, data);
+#endif /* HAS_LIBPCI */
 			break;
 		case NO_BENCH:
 			err += err_func(benchmark_status, data);
@@ -814,7 +830,6 @@ static int find_devices(Labels *data)
 }
 #undef DEVICE_VENDOR_STR
 #undef DEVICE_PRODUCT_STR
-#endif /* HAS_LIBPCI */
 
 #ifdef __linux__
 static bool sys_debug_ok(Labels *data)
@@ -993,6 +1008,7 @@ skip_clocks:
 	return 0;
 #endif /* __linux__ */
 }
+#endif /* HAS_LIBPCI */
 
 /* Satic elements for System tab, OS specific */
 static int system_static(Labels *data)
@@ -1033,6 +1049,7 @@ static int system_static(Labels *data)
 	return err;
 }
 
+#if HAS_LIBSYSTEM
 /* Dynamic elements for System tab, provided by libprocps/libstatgrab */
 static int system_dynamic(Labels *data)
 {
@@ -1101,6 +1118,7 @@ static int system_dynamic(Labels *data)
 
 	return err;
 }
+#endif /* HAS_LIBSYSTEM */
 
 /* Compute all prime numbers in 'duration' seconds */
 static void *primes_bench(void *p_data)
@@ -1329,11 +1347,12 @@ static int fallback_mode_static(Labels *data)
 {
 	int err = 0;
 
-	if(HAS_LIBCPUID &&
-	   (string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
-	    strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
-	    strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL))
+#if HAS_LIBCPUID
+	if(string_is_empty(data->tab_cpu[VALUE][PACKAGE])                  ||
+	   strstr(data->tab_cpu[VALUE][PACKAGE], "CPU")            != NULL ||
+	   strstr(data->tab_cpu[VALUE][PACKAGE], "Microprocessor") != NULL)
 		err += cputab_package_fallback(data);
+#endif /* HAS_LIBCPUID */
 
 	if(data->cpu_min_mult <= 0.0 || data->cpu_max_mult <= 0.0)
 		err += cputab_multipliers_fallback(data);
@@ -1358,10 +1377,10 @@ static int cputab_temp_fallback(Labels *data)
 	int err = 0;
 #ifdef __linux__
 	char *temp;
-	static bool module_loaded  = false;
 	static char **cached_paths = NULL;
 
 # if HAS_LIBCPUID
+	static bool module_loaded = false;
 	/* Load kernel modules */
 	if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_INTEL))
 		module_loaded = !load_module("coretemp", &data->socket_fd);

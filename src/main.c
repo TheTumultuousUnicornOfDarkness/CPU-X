@@ -557,7 +557,7 @@ static void help(char *binary_name)
 	MSG_STDOUT("%s", _("\nInfluenceable environment variables:"));
 	for(i = 0; cpux_env_vars[i].var_name != NULL; i++)
 	{
-		if(!cpux_options[i].has_mod)
+		if(!cpux_env_vars[i].has_mod)
 			continue;
 		MSG_STDOUT("  %-20s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
 	}
