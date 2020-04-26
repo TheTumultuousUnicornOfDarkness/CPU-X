@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-	<enum id="apps.cpu-x.theme">
+	<enum id="org.cpu-x.theme">
 		<value value="0" nick="auto"/>
 		<value value="1" nick="light"/>
 		<value value="2" nick="dark"/>
 	</enum>
-	<enum id="apps.cpu-x.tab">
+	<enum id="org.cpu-x.tab">
 		<value value="0" nick="cpu"/>
 		<value value="1" nick="caches"/>
 		<value value="2" nick="motherboad"/>
@@ -16,7 +16,7 @@
 		<value value="7" nick="about"/>
 	</enum>
 
-	<schema id="cpu-x" path="/apps/cpu-x/">
+	<schema id="cpu-x" path="/org/cpu-x/">
 		<key name="refresh-time" type="u">
 			<default>1</default>
 			<range min="1" max="65535"/>
@@ -25,14 +25,14 @@
 				Set custom time between two refreshes
 			</description>
 		</key>
-		<key name="gui-theme" enum="apps.cpu-x.theme">
+		<key name="gui-theme" enum="org.cpu-x.theme">
 			<default>'auto'</default>
 			<summary>Theme</summary>
 			<description>
 				Change GUI theme color scheme
 			</description>
 		</key>
-		<key name="default-tab" enum="apps.cpu-x.tab">
+		<key name="default-tab" enum="org.cpu-x.tab">
 			<default>'cpu'</default>
 			<summary>Default tab</summary>
 			<description>
