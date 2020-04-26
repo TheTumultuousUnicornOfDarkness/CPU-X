@@ -26,7 +26,7 @@
 
 #include "cpu-x.h"
 
-#define SOCKET_NAME "/tmp/cpu-x.sock"
+#define SOCKET_NAME "/run/cpu-x.sock"
 #define DAEMON_UP   (data->socket_fd >= 0)
 
 #define SEND_DATA(pfd, pdata, size)    if(write(*pfd, pdata, size) != size) { MSG_ERRNO("%s", "write"); close(*pfd); *pfd = -1; return 1; }
