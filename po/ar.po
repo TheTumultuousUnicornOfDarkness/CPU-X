@@ -22,160 +22,211 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 4.0-dev\n"
 
-#: tui_ncurses.c:394
-msgid "\tPress 'down' key to decrease core number to monitor.\n"
-msgstr ""
+#: core.c:147
+msgid "could not reallocate memory"
+msgstr "لا يمكن تحديد الذاكرة"
 
-#: tui_ncurses.c:402
-msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
+#: core.c:148
+#, c-format
+msgid "Exiting %s"
+msgstr "الخروج %s"
 
-#: tui_ncurses.c:398
-msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr ""
+#: core.c:175
+msgid "Finding CPU technology"
+msgstr "ايجاد معلومات المعالج"
 
-#: tui_ncurses.c:407
-msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
-msgstr ""
-
-#: tui_ncurses.c:390
-msgid "\tPress 'h' key to see this help.\n"
-msgstr ""
-
-#: tui_ncurses.c:388
-msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr ""
-
-#: tui_ncurses.c:404
-msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
-
-#: tui_ncurses.c:405
-msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
-
-#: tui_ncurses.c:391
-msgid "\tPress 'q' key to exit.\n"
-msgstr ""
-
-#: tui_ncurses.c:389
-msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr ""
-
-#: tui_ncurses.c:406
-msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
-msgstr ""
-
-#: tui_ncurses.c:395
-msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
-
-#: tui_ncurses.c:403
-msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
-
-#: tui_ncurses.c:399
-msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
-
-#: tui_ncurses.c:434
+#: core.c:194
 #, c-format
 msgid ""
-"\n"
-"\n"
-"%s will be updated."
+"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
+"family: %i"
 msgstr ""
-
-#: main.c:772
-#, c-format
-msgid ""
-"\n"
-"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
-"%s"
-msgstr ""
-
-#: main.c:590
-msgid ""
-"\n"
-"Available OPTIONS:"
-msgstr ""
-
-#: tui_ncurses.c:401
-msgid ""
-"\n"
-"Bench tab:\n"
-msgstr ""
-
-#: tui_ncurses.c:393
-msgid ""
-"\n"
-"CPU tab:\n"
-msgstr ""
-
-#: tui_ncurses.c:397
-msgid ""
-"\n"
-"Caches tab:\n"
-msgstr ""
-
-#: tui_ncurses.c:387
-msgid ""
-"\n"
-"Global keys:\n"
-msgstr ""
-
-#: main.c:595
-msgid ""
-"\n"
-"Influenceable environment variables:"
-msgstr ""
-"\n"
-"متغيرات البيئة المؤثرة:"
-
-#: tui_ncurses.c:409
-msgid ""
-"\n"
-"Press any key to exit this help.\n"
-msgstr ""
-
-#: core.c:205
-#, c-format
-msgid "%d MB, %d-way"
-msgstr "%d مب ، %d -مسار"
+"لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
+"ext. family: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
 msgstr "%d س%d كب ، %d -مسار"
 
-#: core.c:1065
-#, fuzzy, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i أيام، %i ساعات، %i دقيقة، %i ثانية"
+#: core.c:205
+#, c-format
+msgid "%d MB, %d-way"
+msgstr "%d مب ، %d -مسار"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
 msgstr "%s ترابطي ،%d-بايت حجم المسار"
 
-#: main.c:179
+#: core.c:211
+msgid "Calling libcpuid for retrieving static data"
+msgstr "استدعاء libcpuid لاسترجاع البيانات الثابتة"
+
+#: core.c:219
 #, c-format
-msgid ""
-"%s is a Free software that gathers information\n"
-"on CPU, motherboard and more."
-msgstr ""
-"%s هو برمجية حرَّة تجمع معلومات عن وحدة\n"
-"المعالجة المركزية واللوحة الأم وغيرها."
+msgid "failed to call libcpuid (%s)"
+msgstr "تعذر استدعاء libcpuid (%s)"
+
+#: core.c:381
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr "استدعاء libcpuid لاسترجاع البيانات الديناميكية"
+
+#: core.c:393
+msgid "Skip CPU MSR opening (need to be root)"
+msgstr "تجاهل فتح CPU msr (يحتاج روت)"
+
+#: core.c:400
+#, c-format
+msgid "failed to open CPU MSR (%s)"
+msgstr "فشل في فتح وحدة المعالجة المركزية MSR (%s)"
+
+#: core.c:416
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr "استدعاء ليبكبويد لاسترداد قيم ثابتة MSR وحدة المعالجة المركزية"
+
+#: core.c:448
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr "استدعاء ليبكبويد لاسترداد قيم ديناميكية MSR وحدة المعالجة المركزية"
+
+#: core.c:469
+msgid "Calculating CPU multipliers"
+msgstr "حساب مضاعفات وحدة المعالجة المركزية"
+
+#: core.c:508
+msgid "Skip call to dmidecode (need to be root)"
+msgstr "تخطي الدعوة إلى دميديكودي (تحتاج إلى أن يكون الجذر)"
+
+#: core.c:512
+msgid "Calling dmidecode"
+msgstr "استدعاء دميديكودي"
+
+#: core.c:516
+msgid "failed to allocate memory for dmidecode"
+msgstr "فشل في تخصيص الذاكرة دميديكودي"
+
+#: core.c:539
+msgid "failed to call dmidecode"
+msgstr "فشل استدعاء دميديكودي"
+
+#: core.c:554
+msgid "Calculating CPU usage"
+msgstr "حساب استخدام وحدة المعالجة المركزية"
+
+#: core.c:604
+msgid "Calling bandwidth"
+msgstr "عرض النطاق الترددي الاتصال"
+
+#: core.c:634
+msgid "Finding graphic card driver"
+msgstr "يبحث عن تعريف بطاقة الرسومات"
+
+#: core.c:659
+#, c-format
+msgid "Your GPU driver is unknown: %s"
+msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
+
+#: core.c:661
+#, c-format
+msgid "(%s driver)"
+msgstr "(تعريف %s)"
+
+#: core.c:679
+#, c-format
+msgid "failed to find graphic card driver (%s)"
+msgstr "تعذر العثور على تعريف بطاقة الرسومات (%s)"
+
+#: core.c:695
+msgid "Finding devices"
+msgstr "العثور على الأجهزة"
+
+#: core.c:700
+msgid "Skip devices search (need to be root)"
+msgstr "تخطي البحث عن الأجهزة (تحتاج إلى صلاحيات الروت)"
+
+#: core.c:729
+#, c-format
+msgid "Your GPU vendor is unknown: %s (%#X)"
+msgstr "بائع وحدة معالج البيانات غير معروف: %s (%#X)"
+
+#: core.c:741
+msgid "failed to find chipset vendor and model"
+msgstr "لم يعثر على بائع الرقائق والنوع"
+
+#: core.c:743
+msgid "failed to find graphic card vendor and model"
+msgstr "تعذر إيجاد بائع بطاقة الرسوميات ونوعها"
+
+#: core.c:779
+msgid "Retrieving GPU temperature"
+msgstr "إسترجاع درجة حرارة المعالج"
+
+#: core.c:786
+msgid "Off"
+msgstr "مُطفأ"
+
+#: core.c:825
+msgid "failed to retrieve GPU temperature"
+msgstr "تعذر جلب درجة حرارة وحدة معالجة الرسوميات"
+
+#: core.c:842
+msgid "Skip some GPU values (need to be root)"
+msgstr "تخطي بعض قيم بطاقة الرسوميات (تحتاج إلى صلاحيات الروت)"
+
+#: core.c:860
+msgid "Retrieving GPU clocks"
+msgstr "جارٍ استرداد سرعات GPU"
+
+#: core.c:931
+#, c-format
+msgid "Driver for GPU %i doesn't report frequencies"
+msgstr "تعريف وحدة معالجة الرسوميات %i لا يبلغ عن الترددات"
+
+#: core.c:954
+msgid "failed to retrieve GPU clocks"
+msgstr "فشل في استرداد سرعات GPU"
+
+#: core.c:969
+msgid "Identifying running system"
+msgstr "يتعرف على النظام الشغَّال"
+
+#: core.c:972
+msgid "failed to identify running system"
+msgstr "تعذر التعرف على النظام الشغَّال"
+
+#: core.c:1013
+msgid "Calling libprocps"
+msgstr "يستدعي libprocps"
+
+#: core.c:1035
+msgid "Calling libstatgrab"
+msgstr "يستدعي libstatgrab"
+
+#: core.c:1065
+#, fuzzy, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr "%i أيام، %i ساعات، %i دقيقة، %i ثانية"
+
+#: core.c:1120
+msgid "Updating benchmark status"
+msgstr "تحديث حالة إختبار الأداء"
 
 #: core.c:1121 tui_ncurses.c:754
 #, fuzzy, c-format
 msgid "%u mins"
 msgstr "%u دقيقة"
 
-#: core.c:661
-#, c-format
-msgid "(%s driver)"
-msgstr "(تعريف %s)"
+#: core.c:1123 core.c:1124
+msgid "Inactive"
+msgstr "غير نَشِط"
+
+#: core.c:1128 core.c:1129
+msgid "Not started"
+msgstr "لم يبدأ"
+
+#: core.c:1134
+msgid "Active"
+msgstr "نشط"
 
 #: core.c:1139
 #, c-format
@@ -192,185 +243,106 @@ msgstr "(%u دقيقة متبقية)"
 msgid "(%u seconds left)"
 msgstr "(%u ثانية متبقية)"
 
-#: main.c:375
-msgid "(up-to-date)"
+#: core.c:1148
+#, fuzzy, c-format
+msgid "in %u hours"
+msgstr "في %u ساعة"
+
+#: core.c:1150
+#, fuzzy, c-format
+msgid "in %u minutes"
+msgstr "في %u دقيقة"
+
+#: core.c:1152
+#, fuzzy, c-format
+msgid "in %u seconds"
+msgstr "في %u ثانية"
+
+#: core.c:1168
+msgid "Starting benchmark"
+msgstr "بدء اختبار الأداء"
+
+#: core.c:1177
+msgid "failed to allocate memory for benchmark"
+msgstr "فشلت عملية حجز الذاكرة من أجل اختبار الأداء"
+
+#: core.c:1191
+msgid "an error occurred while starting benchmark"
+msgstr "حدث خطأ ما أثناء بدء اختبار الأداء"
+
+#: core.c:1208
+msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: main.c:369
+#: core.c:1226
 #, c-format
-msgid "(version %s is available)"
-msgstr "(الإصدار %s متاح)"
-
-#: main.c:636
-#, c-format
-msgid "-- %-9s version: %s"
+msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgstr ""
-
-#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
-#, c-format
-msgid "A new version of %s is available!"
-msgstr "النسخة الجديدة %s متاحة!"
-
-#: main.c:177 main.c:182
-msgid "About"
-msgstr ""
-
-#: core.c:1134
-msgid "Active"
-msgstr "نشط"
-
-#: main.c:516
-msgid "Applying new version..."
-msgstr "يطبق الإصدار الجديد..."
-
-#: main.c:184
-#, c-format
-msgid "Author: %s"
-msgstr "المؤلف: %s"
-
-#: main.c:586
-msgid "Available DISPLAY:"
-msgstr ""
-
-#: main.c:114
-msgid "BIOS"
-msgstr "البيوس"
-
-#: main.c:128
-#, c-format
-msgid "Bank %i"
-msgstr ""
-
-#: main.c:163
-msgid "Bench"
-msgstr ""
-
-#: main.c:115
-msgid "Brand"
-msgstr "العلامة"
-
-#: main.c:143
-msgid "Buffers"
-msgstr ""
-
-#: main.c:629
-#, c-format
-msgid "Built on %s, %s (with %s %s on %s)."
-msgstr "مبني على %s، %s (مع %s %s على %s)."
-
-#: main.c:83
-msgid "Bus Speed"
-msgstr "سرعة الناقل"
-
-#: main.c:64
-msgid "CPU"
-msgstr ""
-
-#: main.c:86
-msgid "Cache"
-msgstr "الخبيئة"
-
-#: main.c:144
-msgid "Cached"
-msgstr ""
-
-#: main.c:97
-msgid "Caches"
-msgstr ""
-
-#: core.c:469
-msgid "Calculating CPU multipliers"
-msgstr "حساب مضاعفات وحدة المعالجة المركزية"
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:554
-msgid "Calculating CPU usage"
-msgstr "حساب استخدام وحدة المعالجة المركزية"
+#: core.c:1272
+msgid "Retrieving motherboard information in fallback mode"
+msgstr ""
 
-#: core.c:604
-msgid "Calling bandwidth"
-msgstr "عرض النطاق الترددي الاتصال"
+#: core.c:1279
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr ""
 
-#: core.c:512
-msgid "Calling dmidecode"
-msgstr "استدعاء دميديكودي"
+#: core.c:1344
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr ""
 
-#: core.c:448
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "استدعاء ليبكبويد لاسترداد قيم ديناميكية MSR وحدة المعالجة المركزية"
+#: core.c:1361
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr ""
 
-#: core.c:416
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "استدعاء ليبكبويد لاسترداد قيم ثابتة MSR وحدة المعالجة المركزية"
+#: core.c:1375
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr ""
 
-#: core.c:381
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "استدعاء libcpuid لاسترجاع البيانات الديناميكية"
+#: core.c:1388
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr ""
 
-#: core.c:211
-msgid "Calling libcpuid for retrieving static data"
-msgstr "استدعاء libcpuid لاسترجاع البيانات الثابتة"
+#: core.c:1401
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr ""
 
-#: core.c:1013
-msgid "Calling libprocps"
-msgstr "يستدعي libprocps"
+#: core.c:1409
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr ""
 
-#: core.c:1035
-msgid "Calling libstatgrab"
-msgstr "يستدعي libstatgrab"
+#: gui_gtk.c:49
+msgid "Starting GTK GUI..."
+msgstr "يبدأ الواجهة الرسومية GTK..."
 
-#: main.c:153
+#: gui_gtk.c:63
+msgid "failed to import UI in GtkBuilder"
+msgstr "تعذَّر استيراد الواجهة الرسومية في GtkBuilder"
+
+#: gui_gtk.c:98 main.c:940
+msgid "Root privileges are required to work properly"
+msgstr "تحتاج امتيازات الجذر للعمل كما ينبغي"
+
+#: gui_gtk.c:101 main.c:941
+msgid "Some information will not be retrievable"
+msgstr "قد لا تستطيع جلب بعض المعلومات"
+
+#: gui_gtk.c:103
+msgid "Ignore"
+msgstr "تجاهل"
+
+#: gui_gtk.c:107
+msgid "Run as root"
+msgstr "شغَّل بحساب الجذر"
+
+#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
-msgid "Card %i"
-msgstr ""
-
-#: main.c:344
-msgid "Checking on Internet for a new version..."
-msgstr "يلتمس نسخة جديدة في الشابكة..."
-
-#: main.c:120
-msgid "Chipset"
-msgstr ""
-
-#: main.c:80
-msgid "Clocks"
-msgstr ""
-
-#: main.c:67
-msgid "Code Name"
-msgstr ""
-
-#: main.c:139
-msgid "Compiler"
-msgstr "المصرِّف"
-
-#: gui_gtk.c:515 tui_ncurses.c:480
-#, c-format
-msgid "Core #%i"
-msgstr "النواة %i"
-
-#: main.c:81
-msgid "Core Speed"
-msgstr "سرعة النواة"
-
-#: main.c:93
-msgid "Core(s)"
-msgstr ""
-
-#: main.c:117
-msgid "Date"
-msgstr ""
-
-#: main.c:557
-msgid "Disable colored output"
-msgstr "عطِّل الخرج الملون"
-
-#: main.c:136
-msgid "Distribution"
-msgstr "التوزيعة"
+msgid "A new version of %s is available!"
+msgstr "النسخة الجديدة %s متاحة!"
 
 #: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
@@ -381,116 +353,106 @@ msgstr ""
 "أتريد تحديث %s إلى الإصدارة %s بعد الخروج؟\n"
 "النسخة الجديدة قد تمحو هذا الملف الثنائي (%s)."
 
-#: main.c:488
-msgid "Downloading new version..."
-msgstr "ينزل الإصدار الجديد..."
+#: gui_gtk.c:129
+msgid "Not now"
+msgstr "ليس الآن"
 
-#: core.c:931
+#: gui_gtk.c:129
+msgid "Update"
+msgstr "حدِّث"
+
+#: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
-msgid "Driver for GPU %i doesn't report frequencies"
-msgstr "تعريف وحدة معالجة الرسوميات %i لا يبلغ عن الترددات"
+msgid "Core #%i"
+msgstr "النواة %i"
 
-#: main.c:550
-msgid "Dump all data on standard output and exit"
-msgstr "اطرح كل البيانات في الخرج القياسي واخرج"
-
-#: main.c:259
-msgid "Dumping data..."
-msgstr "يطرح البيانات..."
-
-#: main.c:173
-msgid "Duration"
-msgstr "المدة"
-
-#: main.c:574
-msgid "Enforce the bus clock"
+#: main.c:62
+msgid "Setting label names"
 msgstr ""
 
-#: core.c:148
-#, c-format
-msgid "Exiting %s"
-msgstr "الخروج %s"
-
-#: main.c:73
-msgid "Ext. Family"
+#: main.c:64
+msgid "CPU"
 msgstr ""
 
-#: main.c:75
-msgid "Ext. Model"
+#: main.c:65
+msgid "Processor"
 msgstr ""
 
-#: main.c:506
-msgid "Extracting new version..."
-msgstr "يستخرج الإصدار الجديد..."
+#: main.c:66 main.c:121 main.c:154
+msgid "Vendor"
+msgstr "البائع"
+
+#: main.c:67
+msgid "Code Name"
+msgstr ""
+
+#: main.c:68
+msgid "Package"
+msgstr ""
+
+#: main.c:69
+msgid "Technology"
+msgstr ""
+
+#: main.c:70
+msgid "Voltage"
+msgstr "الفولتية"
+
+#: main.c:71
+msgid "Specification"
+msgstr ""
 
 #: main.c:72
 msgid "Family"
 msgstr "العائلة"
 
-#: core.c:1208
-msgid "Finding CPU package in fallback mode"
+#: main.c:73
+msgid "Ext. Family"
 msgstr ""
 
-#: core.c:175
-msgid "Finding CPU technology"
-msgstr "ايجاد معلومات المعالج"
+#: main.c:74 main.c:111 main.c:122 main.c:155
+msgid "Model"
+msgstr "الطراز"
 
-#: core.c:695
-msgid "Finding devices"
-msgstr "العثور على الأجهزة"
-
-#: core.c:634
-msgid "Finding graphic card driver"
-msgstr "يبحث عن تعريف بطاقة الرسومات"
-
-#: main.c:145
-msgid "Free"
+#: main.c:75
+msgid "Ext. Model"
 msgstr ""
 
-#: main.c:301
-msgid "Freeing memory"
-msgstr "يحرر الذاكرة"
+#: main.c:76
+msgid "Temp."
+msgstr "الحرارة."
 
-#: main.c:158
-msgid "GPU clock"
+#: main.c:77
+msgid "Stepping"
 msgstr ""
-
-#: main.c:149
-msgid "Graphics"
-msgstr ""
-
-#: main.c:137
-msgid "Hostname"
-msgstr "اسم المضيف"
-
-#: core.c:969
-msgid "Identifying running system"
-msgstr "يتعرف على النظام الشغَّال"
-
-#: tui_ncurses.c:428
-msgid "If you want to update, press 'u' key, or anything else to skip.\n"
-msgstr ""
-
-#: gui_gtk.c:103
-msgid "Ignore"
-msgstr "تجاهل"
-
-#: core.c:1123 core.c:1124
-msgid "Inactive"
-msgstr "غير نَشِط"
 
 #: main.c:78
 msgid "Instructions"
 msgstr ""
 
-#: main.c:135
-msgid "Kernel"
+#: main.c:80
+msgid "Clocks"
 msgstr ""
 
-#: main.c:101
-#, c-format
-msgid "L%i Cache"
+#: main.c:81
+msgid "Core Speed"
+msgstr "سرعة النواة"
+
+#: main.c:82
+msgid "Multiplier"
 msgstr ""
+
+#: main.c:83
+msgid "Bus Speed"
+msgstr "سرعة الناقل"
+
+#: main.c:84 main.c:157
+msgid "Usage"
+msgstr "الاستخدام"
+
+#: main.c:86
+msgid "Cache"
+msgstr "الخبيئة"
 
 #: main.c:87
 msgid "L1 Data"
@@ -508,33 +470,272 @@ msgstr ""
 msgid "Level 3"
 msgstr ""
 
-#: main.c:187
-msgid "License"
-msgstr "الرخصة"
-
-#: main.c:110
-msgid "Manufacturer"
-msgstr "الصانع"
-
-#: main.c:125 main.c:141
-msgid "Memory"
-msgstr "الذاكرة"
-
-#: main.c:159
-msgid "Memory clock"
+#: main.c:92
+msgid "Socket(s)"
 msgstr ""
 
-#: main.c:74 main.c:111 main.c:122 main.c:155
-msgid "Model"
-msgstr "الطراز"
+#: main.c:93
+msgid "Core(s)"
+msgstr ""
+
+#: main.c:94
+msgid "Thread(s)"
+msgstr ""
+
+#: main.c:97
+msgid "Caches"
+msgstr ""
+
+#: main.c:101
+#, c-format
+msgid "L%i Cache"
+msgstr ""
+
+#: main.c:102
+msgid "Size"
+msgstr ""
+
+#: main.c:103
+msgid "Speed"
+msgstr ""
+
+#: main.c:105
+msgid "Test"
+msgstr ""
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
 msgstr "اللوحة الأم"
 
-#: main.c:82
-msgid "Multiplier"
+#: main.c:110
+msgid "Manufacturer"
+msgstr "الصانع"
+
+#: main.c:112
+msgid "Revision"
 msgstr ""
+
+#: main.c:114
+msgid "BIOS"
+msgstr "البيوس"
+
+#: main.c:115
+msgid "Brand"
+msgstr "العلامة"
+
+#: main.c:116
+msgid "Version"
+msgstr "الإصدار"
+
+#: main.c:117
+msgid "Date"
+msgstr ""
+
+#: main.c:118
+msgid "ROM Size"
+msgstr "حجم الروم"
+
+#: main.c:120
+msgid "Chipset"
+msgstr ""
+
+#: main.c:125 main.c:141
+msgid "Memory"
+msgstr "الذاكرة"
+
+#: main.c:128
+#, c-format
+msgid "Bank %i"
+msgstr ""
+
+#: main.c:129
+msgid "Reference"
+msgstr ""
+
+#: main.c:133
+msgid "System"
+msgstr "النظام"
+
+#: main.c:134
+msgid "Operating System"
+msgstr "نظام التشغيل"
+
+#: main.c:135
+msgid "Kernel"
+msgstr ""
+
+#: main.c:136
+msgid "Distribution"
+msgstr "التوزيعة"
+
+#: main.c:137
+msgid "Hostname"
+msgstr "اسم المضيف"
+
+#: main.c:138
+msgid "Uptime"
+msgstr ""
+
+#: main.c:139
+msgid "Compiler"
+msgstr "المصرِّف"
+
+#: main.c:142
+msgid "Used"
+msgstr ""
+
+#: main.c:143
+msgid "Buffers"
+msgstr ""
+
+#: main.c:144
+msgid "Cached"
+msgstr ""
+
+#: main.c:145
+msgid "Free"
+msgstr ""
+
+#: main.c:146
+msgid "Swap"
+msgstr "الإبدال"
+
+#: main.c:149
+msgid "Graphics"
+msgstr ""
+
+#: main.c:153
+#, c-format
+msgid "Card %i"
+msgstr ""
+
+#: main.c:156
+msgid "Temperature"
+msgstr "درجة الحرارة"
+
+#: main.c:158
+msgid "GPU clock"
+msgstr ""
+
+#: main.c:159
+msgid "Memory clock"
+msgstr ""
+
+#: main.c:163
+msgid "Bench"
+msgstr ""
+
+#: main.c:164
+msgid "Prime numbers (slow)"
+msgstr ""
+
+#: main.c:165
+msgid "Prime numbers (fast)"
+msgstr ""
+
+#: main.c:168
+msgid "Score"
+msgstr ""
+
+#: main.c:169
+msgid "Run"
+msgstr ""
+
+#: main.c:172
+msgid "Parameters"
+msgstr ""
+
+#: main.c:173
+msgid "Duration"
+msgstr "المدة"
+
+#: main.c:174
+msgid "Threads"
+msgstr ""
+
+#: main.c:177 main.c:182
+msgid "About"
+msgstr ""
+
+#: main.c:179
+#, c-format
+msgid ""
+"%s is a Free software that gathers information\n"
+"on CPU, motherboard and more."
+msgstr ""
+"%s هو برمجية حرَّة تجمع معلومات عن وحدة\n"
+"المعالجة المركزية واللوحة الأم وغيرها."
+
+#: main.c:183
+#, c-format
+msgid "Version %s"
+msgstr "إصدار %s"
+
+#: main.c:184
+#, c-format
+msgid "Author: %s"
+msgstr "المؤلف: %s"
+
+#: main.c:185
+#, c-format
+msgid "Site: %s"
+msgstr "الموقع: %s"
+
+#: main.c:187
+msgid "License"
+msgstr "الرخصة"
+
+#: main.c:190
+#, c-format
+msgid "This software is distributed under the terms of %s"
+msgstr "توزع هذه البرمجية وفق بنود %s"
+
+#: main.c:192 main.c:627
+msgid "This program comes with ABSOLUTELY NO WARRANTY"
+msgstr "لا يأتي هذا البرنامج بأي ضمان مطلقًا"
+
+#: main.c:259
+msgid "Dumping data..."
+msgstr "يطرح البيانات..."
+
+#: main.c:301
+msgid "Freeing memory"
+msgstr "يحرر الذاكرة"
+
+#: main.c:344
+msgid "Checking on Internet for a new version..."
+msgstr "يلتمس نسخة جديدة في الشابكة..."
+
+#: main.c:348 main.c:474
+msgid "failed to open a Curl session"
+msgstr "تعذر فتح جلسة Curl"
+
+#: main.c:361
+#, c-format
+msgid "failed to perform the Curl transfer (%s)"
+msgstr ""
+
+#: main.c:362
+msgid "wrong write data"
+msgstr ""
+
+#: main.c:369
+#, c-format
+msgid "(version %s is available)"
+msgstr "(الإصدار %s متاح)"
+
+#: main.c:374 main.c:467
+msgid "No new version available"
+msgstr "لا إصدار جديد متاح"
+
+#: main.c:375
+msgid "(up-to-date)"
+msgstr ""
+
+#: main.c:445
+#, c-format
+msgid "an error occurred while extracting %s archive (%s)"
+msgstr "حدث خطأ أثناء استخراج الأرشيف %s (%s)"
 
 #: main.c:460
 msgid ""
@@ -543,134 +744,59 @@ msgid ""
 msgstr ""
 "النفاذ إلى الشبكة معطل بمتغير بيئة (أسند قيمة موجبة إلى CPUX_NETWORK لتفعيله)"
 
-#: main.c:374 main.c:467
-msgid "No new version available"
-msgstr "لا إصدار جديد متاح"
+#: main.c:482
+#, c-format
+msgid "failed to open %s archive for writing"
+msgstr "تعذر فتح الأرشيف %s للكتابة"
 
-#: gui_gtk.c:129
-msgid "Not now"
-msgstr "ليس الآن"
+#: main.c:488
+msgid "Downloading new version..."
+msgstr "ينزل الإصدار الجديد..."
 
-#: core.c:1128 core.c:1129
-msgid "Not started"
-msgstr "لم يبدأ"
+#: main.c:500
+#, c-format
+msgid "failed to download %s archive (%s)"
+msgstr "تعذر تنزيل الأرشيف %s (%s)"
 
-#: core.c:786
-msgid "Off"
-msgstr "مُطفأ"
+#: main.c:506
+msgid "Extracting new version..."
+msgstr "يستخرج الإصدار الجديد..."
 
-#: main.c:576
-msgid "Only print a message if CPU does not belong in database"
-msgstr ""
+#: main.c:516
+msgid "Applying new version..."
+msgstr "يطبق الإصدار الجديد..."
 
-#: main.c:134
-msgid "Operating System"
-msgstr "نظام التشغيل"
+#: main.c:527
+msgid "an error occurred while removing/renaming files"
+msgstr "حدث خطأ أثناء حذف الملفات وتغيير اسمها"
 
-#: main.c:68
-msgid "Package"
-msgstr ""
+#: main.c:529
+msgid "Update successful!"
+msgstr "نجح التحديث!"
 
-#: main.c:172
-msgid "Parameters"
-msgstr ""
+#: main.c:548
+msgid "Start graphical user interface (GUI) (default)"
+msgstr "ابدأ واجهة رسومية (GUI) (المبدئي)"
 
-#: tui_ncurses.c:110
-msgid "Press 'h' to see help.\n"
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+#: main.c:549
+msgid "Start text-based user interface (TUI)"
+msgstr "ابدأ واجهة نصية (TUI)"
 
-#: main.c:165
-msgid "Prime numbers (fast)"
-msgstr ""
-
-#: main.c:164
-msgid "Prime numbers (slow)"
-msgstr ""
-
-#: main.c:561
-msgid "Print help and exit"
-msgstr "اطبع المساعدة واخرج"
-
-#: main.c:558
-msgid "Print required information to paste in an issue"
-msgstr "اطبع البيانات لنسخها في قضية"
-
-#: main.c:562
-msgid "Print version and exit"
-msgstr "اطبع النسخة واخرج"
-
-#: main.c:65
-msgid "Processor"
-msgstr ""
-
-#: main.c:118
-msgid "ROM Size"
-msgstr "حجم الروم"
-
-#: main.c:575
-msgid "Read CPUID raw data from a given file"
-msgstr ""
-
-#: main.c:129
-msgid "Reference"
-msgstr ""
-
-#: core.c:1401
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
-
-#: core.c:1344
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
-
-#: core.c:1375
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
-
-#: core.c:860
-msgid "Retrieving GPU clocks"
-msgstr "جارٍ استرداد سرعات GPU"
-
-#: core.c:779
-msgid "Retrieving GPU temperature"
-msgstr "إسترجاع درجة حرارة المعالج"
-
-#: core.c:1272
-msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
-
-#: main.c:112
-msgid "Revision"
-msgstr ""
-
-#: gui_gtk.c:98 main.c:940
-msgid "Root privileges are required to work properly"
-msgstr "تحتاج امتيازات الجذر للعمل كما ينبغي"
-
-#: main.c:169
-msgid "Run"
-msgstr ""
-
-#: gui_gtk.c:107
-msgid "Run as root"
-msgstr "شغَّل بحساب الجذر"
-
-#: main.c:552
-msgid "Run embedded command bandwidth and exit"
-msgstr ""
+#: main.c:550
+msgid "Dump all data on standard output and exit"
+msgstr "اطرح كل البيانات في الخرج القياسي واخرج"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
 msgstr ""
 
-#: main.c:168
-msgid "Score"
+#: main.c:552
+msgid "Run embedded command bandwidth and exit"
 msgstr ""
 
-#: main.c:628
-#, c-format
-msgid "See the %s license: <%s>\n"
-msgstr "انظر رخصة%s : <%s>\n"
+#: main.c:553
+msgid "Set default tab (integer)"
+msgstr ""
 
 #: main.c:554
 msgid "Select CPU core to monitor (integer)"
@@ -684,46 +810,103 @@ msgstr ""
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr ""
 
-#: main.c:553
-msgid "Set default tab (integer)"
+#: main.c:557
+msgid "Disable colored output"
+msgstr "عطِّل الخرج الملون"
+
+#: main.c:558
+msgid "Print required information to paste in an issue"
+msgstr "اطبع البيانات لنسخها في قضية"
+
+#: main.c:559
+msgid "Verbose output"
+msgstr "خرج تشخيصي"
+
+#: main.c:560
+msgid "Update portable version if a new version is available"
 msgstr ""
 
-#: main.c:62
-msgid "Setting label names"
+#: main.c:561
+msgid "Print help and exit"
+msgstr "اطبع المساعدة واخرج"
+
+#: main.c:562
+msgid "Print version and exit"
+msgstr "اطبع النسخة واخرج"
+
+#: main.c:573
+msgid "Temporarily disable network support"
+msgstr "عطِّل دعم الشبكة مؤقتا"
+
+#: main.c:574
+msgid "Enforce the bus clock"
 msgstr ""
 
-#: main.c:185
+#: main.c:575
+msgid "Read CPUID raw data from a given file"
+msgstr ""
+
+#: main.c:576
+msgid "Only print a message if CPU does not belong in database"
+msgstr ""
+
+#: main.c:585
 #, c-format
-msgid "Site: %s"
-msgstr "الموقع: %s"
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "الاستخدام: %s DISPLAY [OPTIONS]\n"
 
-#: main.c:102
-msgid "Size"
+#: main.c:586
+msgid "Available DISPLAY:"
 msgstr ""
 
-#: core.c:393
-msgid "Skip CPU MSR opening (need to be root)"
-msgstr "تجاهل فتح CPU msr (يحتاج روت)"
-
-#: core.c:508
-msgid "Skip call to dmidecode (need to be root)"
-msgstr "تخطي الدعوة إلى دميديكودي (تحتاج إلى أن يكون الجذر)"
-
-#: core.c:700
-msgid "Skip devices search (need to be root)"
-msgstr "تخطي البحث عن الأجهزة (تحتاج إلى صلاحيات الروت)"
-
-#: core.c:842
-msgid "Skip some GPU values (need to be root)"
-msgstr "تخطي بعض قيم بطاقة الرسوميات (تحتاج إلى صلاحيات الروت)"
-
-#: main.c:92
-msgid "Socket(s)"
+#: main.c:590
+msgid ""
+"\n"
+"Available OPTIONS:"
 msgstr ""
 
-#: gui_gtk.c:101 main.c:941
-msgid "Some information will not be retrievable"
-msgstr "قد لا تستطيع جلب بعض المعلومات"
+#: main.c:595
+msgid ""
+"\n"
+"Influenceable environment variables:"
+msgstr ""
+"\n"
+"متغيرات البيئة المؤثرة:"
+
+#: main.c:626
+msgid "This is free software: you are free to change and redistribute it."
+msgstr "هذه البرمجية حرة: لك الحق في تغييرها وتوزيعها."
+
+#: main.c:628
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr "انظر رخصة%s : <%s>\n"
+
+#: main.c:629
+#, c-format
+msgid "Built on %s, %s (with %s %s on %s)."
+msgstr "مبني على %s، %s (مع %s %s على %s)."
+
+#: main.c:636
+#, c-format
+msgid "-- %-9s version: %s"
+msgstr ""
+
+#: main.c:772
+#, c-format
+msgid ""
+"\n"
+"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
+"%s"
+msgstr ""
+
+#: main.c:787
+msgid "You can paste this backtrace by opening a new issue here:"
+msgstr ""
+
+#: main.c:846
+msgid "an error occurred while setting locale"
+msgstr ""
 
 #: main.c:968
 #, c-format
@@ -731,319 +914,136 @@ msgid ""
 "Sorry, you cannot update %s: 32-bit portable version is no more supported."
 msgstr "عذرًا، فلا يمكننا تحديث %s: نسخة 32 بتة المحمولة لم تعد مدعومة."
 
-#: main.c:71
-msgid "Specification"
-msgstr ""
-
-#: main.c:103
-msgid "Speed"
-msgstr ""
-
-#: main.c:548
-msgid "Start graphical user interface (GUI) (default)"
-msgstr "ابدأ واجهة رسومية (GUI) (المبدئي)"
-
-#: main.c:549
-msgid "Start text-based user interface (TUI)"
-msgstr "ابدأ واجهة نصية (TUI)"
-
-#: gui_gtk.c:49
-msgid "Starting GTK GUI..."
-msgstr "يبدأ الواجهة الرسومية GTK..."
-
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
 msgstr "يبدأ NCurses TUI..."
 
-#: core.c:1168
-msgid "Starting benchmark"
-msgstr "بدء اختبار الأداء"
-
-#: main.c:77
-msgid "Stepping"
-msgstr ""
-
-#: main.c:146
-msgid "Swap"
-msgstr "الإبدال"
-
-#: main.c:133
-msgid "System"
-msgstr "النظام"
-
-#: main.c:69
-msgid "Technology"
-msgstr ""
-
-#: main.c:76
-msgid "Temp."
-msgstr "الحرارة."
-
-#: main.c:156
-msgid "Temperature"
-msgstr "درجة الحرارة"
-
-#: main.c:573
-msgid "Temporarily disable network support"
-msgstr "عطِّل دعم الشبكة مؤقتا"
-
-#: main.c:105
-msgid "Test"
-msgstr ""
-
-#: tui_ncurses.c:385
-msgid "This help describes how to use this Text-based User Interface.\n"
-msgstr ""
-
-#: main.c:626
-msgid "This is free software: you are free to change and redistribute it."
-msgstr "هذه البرمجية حرة: لك الحق في تغييرها وتوزيعها."
-
-#: main.c:192 main.c:627
-msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "لا يأتي هذا البرنامج بأي ضمان مطلقًا"
-
-#: main.c:190
-#, c-format
-msgid "This software is distributed under the terms of %s"
-msgstr "توزع هذه البرمجية وفق بنود %s"
-
-#: main.c:94
-msgid "Thread(s)"
-msgstr ""
-
-#: main.c:174
-msgid "Threads"
-msgstr ""
-
-#: gui_gtk.c:129
-msgid "Update"
-msgstr "حدِّث"
-
-#: main.c:560
-msgid "Update portable version if a new version is available"
-msgstr ""
-
-#: main.c:529
-msgid "Update successful!"
-msgstr "نجح التحديث!"
-
-#: core.c:1120
-msgid "Updating benchmark status"
-msgstr "تحديث حالة إختبار الأداء"
-
-#: main.c:138
-msgid "Uptime"
-msgstr ""
-
-#: main.c:84 main.c:157
-msgid "Usage"
-msgstr "الاستخدام"
-
-#: main.c:585
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "الاستخدام: %s DISPLAY [OPTIONS]\n"
-
-#: main.c:142
-msgid "Used"
-msgstr ""
-
-#: main.c:66 main.c:121 main.c:154
-msgid "Vendor"
-msgstr "البائع"
-
-#: main.c:559
-msgid "Verbose output"
-msgstr "خرج تشخيصي"
-
-#: main.c:116
-msgid "Version"
-msgstr "الإصدار"
-
-#: main.c:183
-#, c-format
-msgid "Version %s"
-msgstr "إصدار %s"
-
-#: main.c:70
-msgid "Voltage"
-msgstr "الفولتية"
+#: tui_ncurses.c:110
+msgid "Press 'h' to see help.\n"
+msgstr "اضغط 'h' لرؤية المساعدة.\n"
 
 #: tui_ncurses.c:384
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr ""
 
-#: main.c:787
-msgid "You can paste this backtrace by opening a new issue here:"
+#: tui_ncurses.c:385
+msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
 
-#: core.c:194
+#: tui_ncurses.c:387
+msgid ""
+"\n"
+"Global keys:\n"
+msgstr ""
+
+#: tui_ncurses.c:388
+msgid "\tPress 'left' key to switch in left tab.\n"
+msgstr ""
+
+#: tui_ncurses.c:389
+msgid "\tPress 'right' key to switch in right tab.\n"
+msgstr ""
+
+#: tui_ncurses.c:390
+msgid "\tPress 'h' key to see this help.\n"
+msgstr ""
+
+#: tui_ncurses.c:391
+msgid "\tPress 'q' key to exit.\n"
+msgstr ""
+
+#: tui_ncurses.c:393
+msgid ""
+"\n"
+"CPU tab:\n"
+msgstr ""
+
+#: tui_ncurses.c:394
+msgid "\tPress 'down' key to decrease core number to monitor.\n"
+msgstr ""
+
+#: tui_ncurses.c:395
+msgid "\tPress 'up' key to increase core number to monitor.\n"
+msgstr ""
+
+#: tui_ncurses.c:397
+msgid ""
+"\n"
+"Caches tab:\n"
+msgstr ""
+
+#: tui_ncurses.c:398
+msgid "\tPress 'down' key to switch to previous test.\n"
+msgstr ""
+
+#: tui_ncurses.c:399
+msgid "\tPress 'up' key' to switch to next test.\n"
+msgstr ""
+
+#: tui_ncurses.c:401
+msgid ""
+"\n"
+"Bench tab:\n"
+msgstr ""
+
+#: tui_ncurses.c:402
+msgid "\tPress 'down' key to decrement benchmark duration.\n"
+msgstr ""
+
+#: tui_ncurses.c:403
+msgid "\tPress 'up' key to increment benchmark duration.\n"
+msgstr ""
+
+#: tui_ncurses.c:404
+msgid "\tPress 'next page' key to decrement number of threads to use.\n"
+msgstr ""
+
+#: tui_ncurses.c:405
+msgid "\tPress 'previous page' key to increment number of threads to use.\n"
+msgstr ""
+
+#: tui_ncurses.c:406
+msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
+msgstr ""
+
+#: tui_ncurses.c:407
+msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
+msgstr ""
+
+#: tui_ncurses.c:409
+msgid ""
+"\n"
+"Press any key to exit this help.\n"
+msgstr ""
+
+#: tui_ncurses.c:428
+msgid "If you want to update, press 'u' key, or anything else to skip.\n"
+msgstr ""
+
+#: tui_ncurses.c:434
 #, c-format
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"\n"
+"\n"
+"%s will be updated."
 msgstr ""
-"لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
-"ext. family: %i"
-
-#: core.c:1226
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr ""
-
-#: core.c:659
-#, c-format
-msgid "Your GPU driver is unknown: %s"
-msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
-
-#: core.c:729
-#, c-format
-msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr "بائع وحدة معالج البيانات غير معروف: %s (%#X)"
-
-#: util.c:321
-msgid "an error occurred while compiling regex"
-msgstr ""
-
-#: main.c:445
-#, c-format
-msgid "an error occurred while extracting %s archive (%s)"
-msgstr "حدث خطأ أثناء استخراج الأرشيف %s (%s)"
 
 #: util.c:172
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr ""
 
-#: main.c:527
-msgid "an error occurred while removing/renaming files"
-msgstr "حدث خطأ أثناء حذف الملفات وتغيير اسمها"
-
 #: util.c:212
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr ""
-
-#: main.c:846
-msgid "an error occurred while setting locale"
-msgstr ""
-
-#: core.c:1191
-msgid "an error occurred while starting benchmark"
-msgstr "حدث خطأ ما أثناء بدء اختبار الأداء"
-
-#: core.c:147
-msgid "could not reallocate memory"
-msgstr "لا يمكن تحديد الذاكرة"
-
-#: core.c:1177
-msgid "failed to allocate memory for benchmark"
-msgstr "فشلت عملية حجز الذاكرة من أجل اختبار الأداء"
-
-#: core.c:516
-msgid "failed to allocate memory for dmidecode"
-msgstr "فشل في تخصيص الذاكرة دميديكودي"
-
-#: core.c:539
-msgid "failed to call dmidecode"
-msgstr "فشل استدعاء دميديكودي"
-
-#: core.c:219
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "تعذر استدعاء libcpuid (%s)"
-
-#: main.c:500
-#, c-format
-msgid "failed to download %s archive (%s)"
-msgstr "تعذر تنزيل الأرشيف %s (%s)"
-
-#: core.c:741
-msgid "failed to find chipset vendor and model"
-msgstr "لم يعثر على بائع الرقائق والنوع"
-
-#: core.c:679
-#, c-format
-msgid "failed to find graphic card driver (%s)"
-msgstr "تعذر العثور على تعريف بطاقة الرسومات (%s)"
-
-#: core.c:743
-msgid "failed to find graphic card vendor and model"
-msgstr "تعذر إيجاد بائع بطاقة الرسوميات ونوعها"
-
-#: core.c:972
-msgid "failed to identify running system"
-msgstr "تعذر التعرف على النظام الشغَّال"
-
-#: gui_gtk.c:63
-msgid "failed to import UI in GtkBuilder"
-msgstr "تعذَّر استيراد الواجهة الرسومية في GtkBuilder"
-
-#: main.c:482
-#, c-format
-msgid "failed to open %s archive for writing"
-msgstr "تعذر فتح الأرشيف %s للكتابة"
 
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
 msgstr ""
 
-#: core.c:400
-#, c-format
-msgid "failed to open CPU MSR (%s)"
-msgstr "فشل في فتح وحدة المعالجة المركزية MSR (%s)"
-
-#: main.c:348 main.c:474
-msgid "failed to open a Curl session"
-msgstr "تعذر فتح جلسة Curl"
-
-#: main.c:361
-#, c-format
-msgid "failed to perform the Curl transfer (%s)"
-msgstr ""
-
-#: core.c:1409
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
-
-#: core.c:1361
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
-
-#: core.c:1388
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
-
-#: core.c:954
-msgid "failed to retrieve GPU clocks"
-msgstr "فشل في استرداد سرعات GPU"
-
-#: core.c:825
-msgid "failed to retrieve GPU temperature"
-msgstr "تعذر جلب درجة حرارة وحدة معالجة الرسوميات"
-
-#: core.c:1279
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
-
-#: core.c:1148
-#, fuzzy, c-format
-msgid "in %u hours"
-msgstr "في %u ساعة"
-
-#: core.c:1150
-#, fuzzy, c-format
-msgid "in %u minutes"
-msgstr "في %u دقيقة"
-
-#: core.c:1152
-#, fuzzy, c-format
-msgid "in %u seconds"
-msgstr "في %u ثانية"
-
-#: main.c:362
-msgid "wrong write data"
+#: util.c:321
+msgid "an error occurred while compiling regex"
 msgstr ""

@@ -20,197 +20,217 @@ msgstr ""
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 "X-Generator: Weblate 3.10-dev\n"
 
-#: tui_ncurses.c:394
-msgid "\tPress 'down' key to decrease core number to monitor.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka dolů“ přejdete na monitorování jádra s nižším "
-"číslem.\n"
+#: core.c:147
+msgid "could not reallocate memory"
+msgstr "nepodařilo se znovupřidělit paměť"
 
-#: tui_ncurses.c:402
-msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka dolů“ snížíte nastavenou dobu trvání výkonnostního "
-"testu .\n"
+#: core.c:148
+#, c-format
+msgid "Exiting %s"
+msgstr "Ukončuje se %s"
 
-#: tui_ncurses.c:398
-msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr "\tStiskem klávesy „Šipka dolů“ přejdete na předchozí test.\n"
+#: core.c:175
+msgid "Finding CPU technology"
+msgstr "Zjišťování technologie procesoru"
 
-#: tui_ncurses.c:407
-msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
-msgstr ""
-"\tStiskem klávesy „F“ spustíte/zastavíte výkonnostní test počítání prvočísel "
-"(zběžnou variantu).\n"
-
-#: tui_ncurses.c:390
-msgid "\tPress 'h' key to see this help.\n"
-msgstr "\tStiskem klávesy „H“ zobrazíte tuto nápovědu.\n"
-
-#: tui_ncurses.c:388
-msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka vlevo“ se přepnete do karty nalevo od stávající.\n"
-
-#: tui_ncurses.c:404
-msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
-"\tStiskem klávesy „následující stránka“ snížíte počet vláken, které test "
-"použije..\n"
-
-#: tui_ncurses.c:405
-msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
-"\tStiskem klávesy „předchozí stránka“ zvýšíte počet vláken, které test "
-"použije.\n"
-
-#: tui_ncurses.c:391
-msgid "\tPress 'q' key to exit.\n"
-msgstr "\tStiskem klávesy „Q“ aplikaci ukončíte.\n"
-
-#: tui_ncurses.c:389
-msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka vpravo“ se přepnete do karty napravo od stávající.\n"
-
-#: tui_ncurses.c:406
-msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
-msgstr ""
-"\tStiskem klávesy „S“ spustíte/zastavíte výkonnostní test počítání prvočísel "
-"(důkladnou variantu).\n"
-
-#: tui_ncurses.c:395
-msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka dolů“ přejdete na monitorování jádra s vyšším "
-"číslem.\n"
-
-#: tui_ncurses.c:403
-msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka dolů“ zvýšíte nastavenou dobu trvání výkonnostního "
-"testu .\n"
-
-#: tui_ncurses.c:399
-msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
-"\tStiskem klávesy „Šipka dolů“ přejdete na následující test.\n"
-"\n"
-
-#: tui_ncurses.c:434
+#: core.c:194
 #, c-format
 msgid ""
-"\n"
-"\n"
-"%s will be updated."
+"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
+"family: %i"
 msgstr ""
-"\n"
-"\n"
-"%s bude aktualizováno."
-
-#: main.c:772
-#, c-format
-msgid ""
-"\n"
-"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
-"%s"
-msgstr ""
-"\n"
-"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a zhavarovalo.%s"
-
-#: main.c:590
-msgid ""
-"\n"
-"Available OPTIONS:"
-msgstr ""
-"\n"
-"PŘEDVOLBY k dispozici:"
-
-#: tui_ncurses.c:401
-msgid ""
-"\n"
-"Bench tab:\n"
-msgstr ""
-"\n"
-"Na kartě výkonnostní testy:\n"
-
-#: tui_ncurses.c:393
-msgid ""
-"\n"
-"CPU tab:\n"
-msgstr ""
-"\n"
-"Na kartě procesor:\n"
-
-#: tui_ncurses.c:397
-msgid ""
-"\n"
-"Caches tab:\n"
-msgstr ""
-"\n"
-"Na kartě mezipaměť:\n"
-
-#: tui_ncurses.c:387
-msgid ""
-"\n"
-"Global keys:\n"
-msgstr ""
-"\n"
-"Všeobecné klávesy:\n"
-
-#: main.c:595
-msgid ""
-"\n"
-"Influenceable environment variables:"
-msgstr ""
-"\n"
-"Ovlivnitelné proměnné prostředí:"
-
-#: tui_ncurses.c:409
-msgid ""
-"\n"
-"Press any key to exit this help.\n"
-msgstr ""
-"\n"
-"Tuto nápovědu uzavřete stiskem libovolné klávesy.\n"
-
-#: core.c:205
-#, c-format
-msgid "%d MB, %d-way"
-msgstr "%d MB, %d-cestná"
+"Váš procesor se nenachází v databázi ==> %s, model: %i, model podrobněji: "
+"%i, řada podrobněji: %i"
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
 msgstr "%d x %d KB, %d-cestná"
 
-#: core.c:1065
+#: core.c:205
 #, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i dnů, %i hodin, %i minut, %i sekund"
+msgid "%d MB, %d-way"
+msgstr "%d MB, %d-cestná"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
 msgstr "%s asociativní, %d-bajtová velikost řádku"
 
-#: main.c:179
+#: core.c:211
+msgid "Calling libcpuid for retrieving static data"
+msgstr "Získávání statických údajů prostřednictvím knihovny libcpuid"
+
+#: core.c:219
 #, c-format
-msgid ""
-"%s is a Free software that gathers information\n"
-"on CPU, motherboard and more."
+msgid "failed to call libcpuid (%s)"
+msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
+
+#: core.c:381
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr "Získávání dynamických údajů prostřednictvím knihovny libcpuid"
+
+#: core.c:393
+msgid "Skip CPU MSR opening (need to be root)"
 msgstr ""
-"%s je svobodný software který pro vás shromažďuje\n"
-"o procesoru, základní desce a další."
+"Přeskočit otevírání MSR registru procesoru (vyžaduje práva správce systému)"
+
+#: core.c:400
+#, c-format
+msgid "failed to open CPU MSR (%s)"
+msgstr "nepodařilo se otevřít MSR registr procesoru (%s)"
+
+#: core.c:416
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr ""
+"Získávání statických hodnot MSR registru procesoru prostřednictvím knihovny "
+"libcpuid"
+
+#: core.c:448
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr ""
+"Získávání dynamických hodnot MSR registru procesoru prostřednictvím knihovny "
+"libcpuid"
+
+#: core.c:469
+msgid "Calculating CPU multipliers"
+msgstr "Výpočet násobičů frekvence procesoru"
+
+#: core.c:508
+msgid "Skip call to dmidecode (need to be root)"
+msgstr "Přeskočit zavolání nástroje dmidecode (vyžaduje práva správce systému)"
+
+#: core.c:512
+msgid "Calling dmidecode"
+msgstr "Získávání údajů prostřednictvím nástroje dmidecode"
+
+#: core.c:516
+msgid "failed to allocate memory for dmidecode"
+msgstr "nepodařilo se přidělit paměť pro nástroj dmidecode"
+
+#: core.c:539
+msgid "failed to call dmidecode"
+msgstr "nepodařilo se zavolat nástroj dmidecode"
+
+#: core.c:554
+msgid "Calculating CPU usage"
+msgstr "Výpočet vytížení procesoru"
+
+#: core.c:604
+msgid "Calling bandwidth"
+msgstr "Zjišťování údajů prostřednictvím nástroje bandwidth"
+
+#: core.c:634
+msgid "Finding graphic card driver"
+msgstr "Zjišťování ovladače grafického čipu"
+
+#: core.c:659
+#, c-format
+msgid "Your GPU driver is unknown: %s"
+msgstr "Neznámý ovladač grafického čipu: %s"
+
+#: core.c:661
+#, c-format
+msgid "(%s driver)"
+msgstr "(ovladač %s)"
+
+#: core.c:679
+#, c-format
+msgid "failed to find graphic card driver (%s)"
+msgstr "nepodařilo se zjistit ovladač grafické karty (%s)"
+
+#: core.c:695
+msgid "Finding devices"
+msgstr "Hledání zařízení"
+
+#: core.c:700
+msgid "Skip devices search (need to be root)"
+msgstr ""
+"Přeskočit vyhledávání zařízení (je třeba mít práva správce systému – root)"
+
+#: core.c:729
+#, c-format
+msgid "Your GPU vendor is unknown: %s (%#X)"
+msgstr "Neznámý výrobce grafického čipu: %s (%#X)"
+
+#: core.c:741
+msgid "failed to find chipset vendor and model"
+msgstr "nepodařilo se určit výrobce a model čipové sady"
+
+#: core.c:743
+msgid "failed to find graphic card vendor and model"
+msgstr "nepodařilo se určit výrobce a model grafického čipu"
+
+#: core.c:779
+msgid "Retrieving GPU temperature"
+msgstr "Zjišťování teploty grafického čipu"
+
+#: core.c:786
+msgid "Off"
+msgstr "Vypnuto"
+
+#: core.c:825
+msgid "failed to retrieve GPU temperature"
+msgstr "nepodařilo se zjistit teplotu grafického čipu"
+
+#: core.c:842
+msgid "Skip some GPU values (need to be root)"
+msgstr "Přeskočit některé hodnoty graf. čipu (vyžaduje práva správce systému)"
+
+#: core.c:860
+msgid "Retrieving GPU clocks"
+msgstr "Zjišťování taktů graf. čipu"
+
+#: core.c:931
+#, c-format
+msgid "Driver for GPU %i doesn't report frequencies"
+msgstr "Ovladač graf. čipu %i nehlásí takty"
+
+#: core.c:954
+msgid "failed to retrieve GPU clocks"
+msgstr "nepodařilo se zjistit takty grafického čipu"
+
+#: core.c:969
+msgid "Identifying running system"
+msgstr "Rozpoznávání operačního systému, ve kterém je spuštěné"
+
+#: core.c:972
+msgid "failed to identify running system"
+msgstr "nepodařilo se rozpoznat operační systém, ve kterém je spuštěné"
+
+#: core.c:1013
+msgid "Calling libprocps"
+msgstr "Zjišťování údajů prostřednictvím knihovny libprocps"
+
+#: core.c:1035
+msgid "Calling libstatgrab"
+msgstr "Zjišťování údajů prostřednictvím knihovny libstatgrab"
+
+#: core.c:1065
+#, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr "%i dnů, %i hodin, %i minut, %i sekund"
+
+#: core.c:1120
+msgid "Updating benchmark status"
+msgstr "Aktualizace stavu výkonostního testu"
 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
 msgstr "%u minut"
 
-#: core.c:661
-#, c-format
-msgid "(%s driver)"
-msgstr "(ovladač %s)"
+#: core.c:1123 core.c:1124
+msgid "Inactive"
+msgstr "Neaktivní"
+
+#: core.c:1128 core.c:1129
+msgid "Not started"
+msgstr "Není spuštěné"
+
+#: core.c:1134
+msgid "Active"
+msgstr "Aktivní"
 
 #: core.c:1139
 #, c-format
@@ -227,189 +247,108 @@ msgstr "(zbývá %u minut)"
 msgid "(%u seconds left)"
 msgstr "(zbývá %u sekund)"
 
-#: main.c:375
-msgid "(up-to-date)"
-msgstr "(už používáte nejnovější dostupnou verzi)"
-
-#: main.c:369
+#: core.c:1148
 #, c-format
-msgid "(version %s is available)"
-msgstr "(je k dispozici verze %s)"
+msgid "in %u hours"
+msgstr "za %u hodin"
 
-#: main.c:636
+#: core.c:1150
 #, c-format
-msgid "-- %-9s version: %s"
-msgstr "-- %-9s verze: %s"
+msgid "in %u minutes"
+msgstr "za %u minut"
 
-#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
+#: core.c:1152
 #, c-format
-msgid "A new version of %s is available!"
-msgstr "Je k dispozici nová verze %s!"
+msgid "in %u seconds"
+msgstr "za %u sekund"
 
-#: main.c:177 main.c:182
-msgid "About"
-msgstr "O aplikaci"
+#: core.c:1168
+msgid "Starting benchmark"
+msgstr "Spouštění výkonnostního testu"
 
-#: core.c:1134
-msgid "Active"
-msgstr "Aktivní"
+#: core.c:1177
+msgid "failed to allocate memory for benchmark"
+msgstr "nepodařilo se přidělit paměť pro výkonnostní test"
 
-#: main.c:516
-msgid "Applying new version..."
-msgstr "Nasazování nové verze…"
+#: core.c:1191
+msgid "an error occurred while starting benchmark"
+msgstr "při spouštění výkonnostního testu se vyskytla chyba"
 
-#: main.c:184
+#: core.c:1208
+msgid "Finding CPU package in fallback mode"
+msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
+
+#: core.c:1226
 #, c-format
-msgid "Author: %s"
-msgstr "Autor: %s"
-
-#: main.c:586
-msgid "Available DISPLAY:"
-msgstr "ZOBRAZENÍ k dispozici:"
-
-#: main.c:114
-msgid "BIOS"
-msgstr "BIOS/(U)EFI"
-
-#: main.c:128
-#, c-format
-msgid "Bank %i"
-msgstr "Banka %i"
-
-#: main.c:163
-msgid "Bench"
-msgstr "Výkon. test"
-
-#: main.c:115
-msgid "Brand"
-msgstr "Značka"
-
-#: main.c:143
-msgid "Buffers"
-msgstr "Vyrovnávací paměť"
-
-#: main.c:629
-#, c-format
-msgid "Built on %s, %s (with %s %s on %s)."
-msgstr "Sestaveno %s, %s (pomocí %s %s na %s)."
-
-#: main.c:83
-msgid "Bus Speed"
-msgstr "Rychlost sběrnice"
-
-#: main.c:64
-msgid "CPU"
-msgstr "Procesor"
-
-#: main.c:86
-msgid "Cache"
-msgstr "Mezipaměť"
-
-#: main.c:144
-msgid "Cached"
-msgstr "Mezipaměť"
-
-#: main.c:97
-msgid "Caches"
-msgstr "Mezipaměti"
-
-#: core.c:469
-msgid "Calculating CPU multipliers"
-msgstr "Výpočet násobičů frekvence procesoru"
+msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+msgstr ""
+"Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Násobiče frekvence procesoru zjišťovány v náhradním režimu"
 
-#: core.c:554
-msgid "Calculating CPU usage"
-msgstr "Výpočet vytížení procesoru"
+#: core.c:1272
+msgid "Retrieving motherboard information in fallback mode"
+msgstr "Informace o základní desce zjišťovány v náhradním režimu"
 
-#: core.c:604
-msgid "Calling bandwidth"
-msgstr "Zjišťování údajů prostřednictvím nástroje bandwidth"
+#: core.c:1279
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr "nepodařilo se získat informace o základní desce (náhradní režim)"
 
-#: core.c:512
-msgid "Calling dmidecode"
-msgstr "Získávání údajů prostřednictvím nástroje dmidecode"
+#: core.c:1344
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr "Teplota procesoru zjišťována v náhradním režimu"
 
-#: core.c:448
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#: core.c:1361
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr "nepodařilo se zjistit teplotu procesoru (náhradní režim)"
+
+#: core.c:1375
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr "Provozní napětí procesoru zjišťováno v náhradním režimu"
+
+#: core.c:1388
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
+
+#: core.c:1401
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
+
+#: core.c:1409
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
+
+#: gui_gtk.c:49
+msgid "Starting GTK GUI..."
+msgstr "Spouštění GTK grafického uživatelského rozhraní…"
+
+#: gui_gtk.c:63
+msgid "failed to import UI in GtkBuilder"
 msgstr ""
-"Získávání dynamických hodnot MSR registru procesoru prostřednictvím knihovny "
-"libcpuid"
+"nepodařilo se importovat definici uživatelské rozhraní ve formátu GtkBuilder"
 
-#: core.c:416
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
-"Získávání statických hodnot MSR registru procesoru prostřednictvím knihovny "
-"libcpuid"
+#: gui_gtk.c:98 main.c:940
+msgid "Root privileges are required to work properly"
+msgstr "Pro správné fungování je třeba oprávnění správce systému"
 
-#: core.c:381
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Získávání dynamických údajů prostřednictvím knihovny libcpuid"
+#: gui_gtk.c:101 main.c:941
+msgid "Some information will not be retrievable"
+msgstr "Některé informace nebude možné získat"
 
-#: core.c:211
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Získávání statických údajů prostřednictvím knihovny libcpuid"
+#: gui_gtk.c:103
+msgid "Ignore"
+msgstr "Ignorovat"
 
-#: core.c:1013
-msgid "Calling libprocps"
-msgstr "Zjišťování údajů prostřednictvím knihovny libprocps"
+#: gui_gtk.c:107
+msgid "Run as root"
+msgstr "Spustit s právy správce systému (root)"
 
-#: core.c:1035
-msgid "Calling libstatgrab"
-msgstr "Zjišťování údajů prostřednictvím knihovny libstatgrab"
-
-#: main.c:153
+#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
-msgid "Card %i"
-msgstr "Adaptér %i"
-
-#: main.c:344
-msgid "Checking on Internet for a new version..."
-msgstr "Zjišťování dostupnosti případné nové verze na Internetu…"
-
-#: main.c:120
-msgid "Chipset"
-msgstr "Čipová sada"
-
-#: main.c:80
-msgid "Clocks"
-msgstr "Takty"
-
-#: main.c:67
-msgid "Code Name"
-msgstr "Krycí název"
-
-#: main.c:139
-msgid "Compiler"
-msgstr "Kompilátor"
-
-#: gui_gtk.c:515 tui_ncurses.c:480
-#, c-format
-msgid "Core #%i"
-msgstr "Jádro č. %i"
-
-#: main.c:81
-msgid "Core Speed"
-msgstr "Rychlost jádra"
-
-#: main.c:93
-msgid "Core(s)"
-msgstr "Jádra"
-
-#: main.c:117
-msgid "Date"
-msgstr "Datum"
-
-#: main.c:557
-msgid "Disable colored output"
-msgstr "Vypnout obarvování výstupu"
-
-#: main.c:136
-msgid "Distribution"
-msgstr "Distribuce"
+msgid "A new version of %s is available!"
+msgstr "Je k dispozici nová verze %s!"
 
 #: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
@@ -420,118 +359,106 @@ msgstr ""
 "Přejete si (po ukončení) aktualizovat %s na verzi %s?\n"
 "Tento binární soubor (%s) bude přepsán novou verzí."
 
-#: main.c:488
-msgid "Downloading new version..."
-msgstr "Stahování nové verze…"
+#: gui_gtk.c:129
+msgid "Not now"
+msgstr "Nyní ne"
 
-#: core.c:931
+#: gui_gtk.c:129
+msgid "Update"
+msgstr "Aktualizovat"
+
+#: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
-msgid "Driver for GPU %i doesn't report frequencies"
-msgstr "Ovladač graf. čipu %i nehlásí takty"
+msgid "Core #%i"
+msgstr "Jádro č. %i"
 
-#: main.c:550
-msgid "Dump all data on standard output and exit"
-msgstr "Vypsat veškeré údaje na standardní výstup a skončit"
+#: main.c:62
+msgid "Setting label names"
+msgstr "Nastavování názvů popisek"
 
-#: main.c:259
-msgid "Dumping data..."
-msgstr "Pořizování výpisu dat…"
+#: main.c:64
+msgid "CPU"
+msgstr "Procesor"
 
-#: main.c:173
-msgid "Duration"
-msgstr "Doba trvání"
+#: main.c:65
+msgid "Processor"
+msgstr "Procesor"
 
-#: main.c:574
-msgid "Enforce the bus clock"
-msgstr "Vynutit takt sběrnice"
+#: main.c:66 main.c:121 main.c:154
+msgid "Vendor"
+msgstr "Výrobce"
 
-#: core.c:148
-#, c-format
-msgid "Exiting %s"
-msgstr "Ukončuje se %s"
+#: main.c:67
+msgid "Code Name"
+msgstr "Krycí název"
 
-#: main.c:73
-msgid "Ext. Family"
-msgstr "Řada podrobně"
+#: main.c:68
+msgid "Package"
+msgstr "Typ pouzdra"
 
-#: main.c:75
-msgid "Ext. Model"
-msgstr "Model podrobně"
+#: main.c:69
+msgid "Technology"
+msgstr "Technologie"
 
-#: main.c:506
-msgid "Extracting new version..."
-msgstr "Rozbalování nové verze…"
+#: main.c:70
+msgid "Voltage"
+msgstr "Provozní napětí"
+
+#: main.c:71
+msgid "Specification"
+msgstr "Specifikace"
 
 #: main.c:72
 msgid "Family"
 msgstr "Řada"
 
-#: core.c:1208
-msgid "Finding CPU package in fallback mode"
-msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
+#: main.c:73
+msgid "Ext. Family"
+msgstr "Řada podrobně"
 
-#: core.c:175
-msgid "Finding CPU technology"
-msgstr "Zjišťování technologie procesoru"
+#: main.c:74 main.c:111 main.c:122 main.c:155
+msgid "Model"
+msgstr "Model"
 
-#: core.c:695
-msgid "Finding devices"
-msgstr "Hledání zařízení"
+#: main.c:75
+msgid "Ext. Model"
+msgstr "Model podrobně"
 
-#: core.c:634
-msgid "Finding graphic card driver"
-msgstr "Zjišťování ovladače grafického čipu"
+#: main.c:76
+msgid "Temp."
+msgstr "Tepl."
 
-#: main.c:145
-msgid "Free"
-msgstr "Volné"
-
-#: main.c:301
-msgid "Freeing memory"
-msgstr "Uvolňování paměti"
-
-#: main.c:158
-msgid "GPU clock"
-msgstr "Takt graf. čipu"
-
-#: main.c:149
-msgid "Graphics"
-msgstr "Grafika"
-
-#: main.c:137
-msgid "Hostname"
-msgstr "Název stroje"
-
-#: core.c:969
-msgid "Identifying running system"
-msgstr "Rozpoznávání operačního systému, ve kterém je spuštěné"
-
-#: tui_ncurses.c:428
-msgid "If you want to update, press 'u' key, or anything else to skip.\n"
-msgstr ""
-"Pokud chcete zaktualizovat, stiskněte klávesu „U“ – v opačném případě "
-"přeskočte stisknutím libovolné jiné klávesy.\n"
-
-#: gui_gtk.c:103
-msgid "Ignore"
-msgstr "Ignorovat"
-
-#: core.c:1123 core.c:1124
-msgid "Inactive"
-msgstr "Neaktivní"
+#: main.c:77
+msgid "Stepping"
+msgstr "Várka"
 
 #: main.c:78
 msgid "Instructions"
 msgstr "Výpočetní instrukce"
 
-#: main.c:135
-msgid "Kernel"
-msgstr "Jádro systému"
+#: main.c:80
+msgid "Clocks"
+msgstr "Takty"
 
-#: main.c:101
-#, c-format
-msgid "L%i Cache"
-msgstr "mezipaměť %i úrovně"
+#: main.c:81
+msgid "Core Speed"
+msgstr "Rychlost jádra"
+
+#: main.c:82
+msgid "Multiplier"
+msgstr "Násobič"
+
+#: main.c:83
+msgid "Bus Speed"
+msgstr "Rychlost sběrnice"
+
+#: main.c:84 main.c:157
+msgid "Usage"
+msgstr "Využití"
+
+#: main.c:86
+msgid "Cache"
+msgstr "Mezipaměť"
 
 #: main.c:87
 msgid "L1 Data"
@@ -549,33 +476,272 @@ msgstr "Druhé úrovně"
 msgid "Level 3"
 msgstr "Třetí úrovně"
 
-#: main.c:187
-msgid "License"
-msgstr "Licence"
+#: main.c:92
+msgid "Socket(s)"
+msgstr "Patice"
 
-#: main.c:110
-msgid "Manufacturer"
-msgstr "Výrobce"
+#: main.c:93
+msgid "Core(s)"
+msgstr "Jádra"
 
-#: main.c:125 main.c:141
-msgid "Memory"
-msgstr "Operační paměť"
+#: main.c:94
+msgid "Thread(s)"
+msgstr "Vlákna"
 
-#: main.c:159
-msgid "Memory clock"
-msgstr "Takt paměti"
+#: main.c:97
+msgid "Caches"
+msgstr "Mezipaměti"
 
-#: main.c:74 main.c:111 main.c:122 main.c:155
-msgid "Model"
-msgstr "Model"
+#: main.c:101
+#, c-format
+msgid "L%i Cache"
+msgstr "mezipaměť %i úrovně"
+
+#: main.c:102
+msgid "Size"
+msgstr "Velikost"
+
+#: main.c:103
+msgid "Speed"
+msgstr "Rychlost"
+
+#: main.c:105
+msgid "Test"
+msgstr "Test"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
 msgstr "Základní deska"
 
-#: main.c:82
-msgid "Multiplier"
-msgstr "Násobič"
+#: main.c:110
+msgid "Manufacturer"
+msgstr "Výrobce"
+
+#: main.c:112
+msgid "Revision"
+msgstr "Revize"
+
+#: main.c:114
+msgid "BIOS"
+msgstr "BIOS/(U)EFI"
+
+#: main.c:115
+msgid "Brand"
+msgstr "Značka"
+
+#: main.c:116
+msgid "Version"
+msgstr "Verze"
+
+#: main.c:117
+msgid "Date"
+msgstr "Datum"
+
+#: main.c:118
+msgid "ROM Size"
+msgstr "Velikost ROM"
+
+#: main.c:120
+msgid "Chipset"
+msgstr "Čipová sada"
+
+#: main.c:125 main.c:141
+msgid "Memory"
+msgstr "Operační paměť"
+
+#: main.c:128
+#, c-format
+msgid "Bank %i"
+msgstr "Banka %i"
+
+#: main.c:129
+msgid "Reference"
+msgstr "Údaje"
+
+#: main.c:133
+msgid "System"
+msgstr "Systém"
+
+#: main.c:134
+msgid "Operating System"
+msgstr "Operační systém"
+
+#: main.c:135
+msgid "Kernel"
+msgstr "Jádro systému"
+
+#: main.c:136
+msgid "Distribution"
+msgstr "Distribuce"
+
+#: main.c:137
+msgid "Hostname"
+msgstr "Název stroje"
+
+#: main.c:138
+msgid "Uptime"
+msgstr "Doba chodu systému (uptime)"
+
+#: main.c:139
+msgid "Compiler"
+msgstr "Kompilátor"
+
+#: main.c:142
+msgid "Used"
+msgstr "Využito"
+
+#: main.c:143
+msgid "Buffers"
+msgstr "Vyrovnávací paměť"
+
+#: main.c:144
+msgid "Cached"
+msgstr "Mezipaměť"
+
+#: main.c:145
+msgid "Free"
+msgstr "Volné"
+
+#: main.c:146
+msgid "Swap"
+msgstr "Odkládací prostor (swap)"
+
+#: main.c:149
+msgid "Graphics"
+msgstr "Grafika"
+
+#: main.c:153
+#, c-format
+msgid "Card %i"
+msgstr "Adaptér %i"
+
+#: main.c:156
+msgid "Temperature"
+msgstr "Teplota"
+
+#: main.c:158
+msgid "GPU clock"
+msgstr "Takt graf. čipu"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "Takt paměti"
+
+#: main.c:163
+msgid "Bench"
+msgstr "Výkon. test"
+
+#: main.c:164
+msgid "Prime numbers (slow)"
+msgstr "Prvočísla (důkladně)"
+
+#: main.c:165
+msgid "Prime numbers (fast)"
+msgstr "Prvočísla (zběžně)"
+
+#: main.c:168
+msgid "Score"
+msgstr "Výsledek"
+
+#: main.c:169
+msgid "Run"
+msgstr "Spustit"
+
+#: main.c:172
+msgid "Parameters"
+msgstr "Parametry"
+
+#: main.c:173
+msgid "Duration"
+msgstr "Doba trvání"
+
+#: main.c:174
+msgid "Threads"
+msgstr "Vláken"
+
+#: main.c:177 main.c:182
+msgid "About"
+msgstr "O aplikaci"
+
+#: main.c:179
+#, c-format
+msgid ""
+"%s is a Free software that gathers information\n"
+"on CPU, motherboard and more."
+msgstr ""
+"%s je svobodný software který pro vás shromažďuje\n"
+"o procesoru, základní desce a další."
+
+#: main.c:183
+#, c-format
+msgid "Version %s"
+msgstr "Verze %s"
+
+#: main.c:184
+#, c-format
+msgid "Author: %s"
+msgstr "Autor: %s"
+
+#: main.c:185
+#, c-format
+msgid "Site: %s"
+msgstr "Webové stránky: %s"
+
+#: main.c:187
+msgid "License"
+msgstr "Licence"
+
+#: main.c:190
+#, c-format
+msgid "This software is distributed under the terms of %s"
+msgstr "Tento software je šířen za podmínek licence %s"
+
+#: main.c:192 main.c:627
+msgid "This program comes with ABSOLUTELY NO WARRANTY"
+msgstr "Na tuto aplikaci nejsou poskytovány VŮBEC ŽÁDNÉ ZÁRUKY"
+
+#: main.c:259
+msgid "Dumping data..."
+msgstr "Pořizování výpisu dat…"
+
+#: main.c:301
+msgid "Freeing memory"
+msgstr "Uvolňování paměti"
+
+#: main.c:344
+msgid "Checking on Internet for a new version..."
+msgstr "Zjišťování dostupnosti případné nové verze na Internetu…"
+
+#: main.c:348 main.c:474
+msgid "failed to open a Curl session"
+msgstr "Nepodařilo se otevřít relaci nástroje Curl"
+
+#: main.c:361
+#, c-format
+msgid "failed to perform the Curl transfer (%s)"
+msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
+
+#: main.c:362
+msgid "wrong write data"
+msgstr "chybná data pro zápis"
+
+#: main.c:369
+#, c-format
+msgid "(version %s is available)"
+msgstr "(je k dispozici verze %s)"
+
+#: main.c:374 main.c:467
+msgid "No new version available"
+msgstr "Není k dispozici žádná novější verze"
+
+#: main.c:375
+msgid "(up-to-date)"
+msgstr "(už používáte nejnovější dostupnou verzi)"
+
+#: main.c:445
+#, c-format
+msgid "an error occurred while extracting %s archive (%s)"
+msgstr "při vybalování archivu s %s se vyskytla chyba (%s)"
 
 #: main.c:460
 msgid ""
@@ -585,134 +751,59 @@ msgstr ""
 "Síťový přístup je vypnutý proměnnou prostředí (zapněte nastavením "
 "CPUX_NETWORK na kladnou hodnotu)"
 
-#: main.c:374 main.c:467
-msgid "No new version available"
-msgstr "Není k dispozici žádná novější verze"
+#: main.c:482
+#, c-format
+msgid "failed to open %s archive for writing"
+msgstr "nepodařilo se zapsat do archivu %s"
 
-#: gui_gtk.c:129
-msgid "Not now"
-msgstr "Nyní ne"
+#: main.c:488
+msgid "Downloading new version..."
+msgstr "Stahování nové verze…"
 
-#: core.c:1128 core.c:1129
-msgid "Not started"
-msgstr "Není spuštěné"
+#: main.c:500
+#, c-format
+msgid "failed to download %s archive (%s)"
+msgstr "nepodařilo se stáhnout archiv %s (%s)"
 
-#: core.c:786
-msgid "Off"
-msgstr "Vypnuto"
+#: main.c:506
+msgid "Extracting new version..."
+msgstr "Rozbalování nové verze…"
 
-#: main.c:576
-msgid "Only print a message if CPU does not belong in database"
-msgstr "Pokud procesor není v databázi, pouze vypsat hlášení"
+#: main.c:516
+msgid "Applying new version..."
+msgstr "Nasazování nové verze…"
 
-#: main.c:134
-msgid "Operating System"
-msgstr "Operační systém"
+#: main.c:527
+msgid "an error occurred while removing/renaming files"
+msgstr "při odebírání/přejmenovávání souborů došlo k chybě"
 
-#: main.c:68
-msgid "Package"
-msgstr "Typ pouzdra"
+#: main.c:529
+msgid "Update successful!"
+msgstr "Aktualizace úspěšná!"
 
-#: main.c:172
-msgid "Parameters"
-msgstr "Parametry"
+#: main.c:548
+msgid "Start graphical user interface (GUI) (default)"
+msgstr "Spustit grafické uživatelské rozhraní (GUI) – výchozí"
 
-#: tui_ncurses.c:110
-msgid "Press 'h' to see help.\n"
-msgstr "Nápovědu zobrazíte stisknutím klávesy „H“.\n"
+#: main.c:549
+msgid "Start text-based user interface (TUI)"
+msgstr "Spustit pseudografické uživatelské rozhraní (TUI)"
 
-#: main.c:165
-msgid "Prime numbers (fast)"
-msgstr "Prvočísla (zběžně)"
-
-#: main.c:164
-msgid "Prime numbers (slow)"
-msgstr "Prvočísla (důkladně)"
-
-#: main.c:561
-msgid "Print help and exit"
-msgstr "Vypsat nápovědu a skončit"
-
-#: main.c:558
-msgid "Print required information to paste in an issue"
-msgstr "Vypsat potřebné informace pro přiložení k hlášení problému"
-
-#: main.c:562
-msgid "Print version and exit"
-msgstr "Vypsat verzi a skončit"
-
-#: main.c:65
-msgid "Processor"
-msgstr "Procesor"
-
-#: main.c:118
-msgid "ROM Size"
-msgstr "Velikost ROM"
-
-#: main.c:575
-msgid "Read CPUID raw data from a given file"
-msgstr "Načíst nezpracovaná CPUID data ze zadaného souboru"
-
-#: main.c:129
-msgid "Reference"
-msgstr "Údaje"
-
-#: core.c:1401
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
-
-#: core.c:1344
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Teplota procesoru zjišťována v náhradním režimu"
-
-#: core.c:1375
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Provozní napětí procesoru zjišťováno v náhradním režimu"
-
-#: core.c:860
-msgid "Retrieving GPU clocks"
-msgstr "Zjišťování taktů graf. čipu"
-
-#: core.c:779
-msgid "Retrieving GPU temperature"
-msgstr "Zjišťování teploty grafického čipu"
-
-#: core.c:1272
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "Informace o základní desce zjišťovány v náhradním režimu"
-
-#: main.c:112
-msgid "Revision"
-msgstr "Revize"
-
-#: gui_gtk.c:98 main.c:940
-msgid "Root privileges are required to work properly"
-msgstr "Pro správné fungování je třeba oprávnění správce systému"
-
-#: main.c:169
-msgid "Run"
-msgstr "Spustit"
-
-#: gui_gtk.c:107
-msgid "Run as root"
-msgstr "Spustit s právy správce systému (root)"
-
-#: main.c:552
-msgid "Run embedded command bandwidth and exit"
-msgstr "Spustit vestavěný příkaz bandwidth a skončit"
+#: main.c:550
+msgid "Dump all data on standard output and exit"
+msgstr "Vypsat veškeré údaje na standardní výstup a skončit"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
 msgstr "Spustit vestavěný příkaz dmidecode a skončit"
 
-#: main.c:168
-msgid "Score"
-msgstr "Výsledek"
+#: main.c:552
+msgid "Run embedded command bandwidth and exit"
+msgstr "Spustit vestavěný příkaz bandwidth a skončit"
 
-#: main.c:628
-#, c-format
-msgid "See the %s license: <%s>\n"
-msgstr "Viz licence %s: <%s>\n"
+#: main.c:553
+msgid "Set default tab (integer)"
+msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 
 #: main.c:554
 msgid "Select CPU core to monitor (integer)"
@@ -727,48 +818,109 @@ msgstr ""
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Nastavit vlastní prodlevu mezi dvěma obnoveními (v sekundách)"
 
-#: main.c:553
-msgid "Set default tab (integer)"
-msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
+#: main.c:557
+msgid "Disable colored output"
+msgstr "Vypnout obarvování výstupu"
 
-#: main.c:62
-msgid "Setting label names"
-msgstr "Nastavování názvů popisek"
+#: main.c:558
+msgid "Print required information to paste in an issue"
+msgstr "Vypsat potřebné informace pro přiložení k hlášení problému"
 
-#: main.c:185
+#: main.c:559
+msgid "Verbose output"
+msgstr "Podrobnější výstup"
+
+#: main.c:560
+msgid "Update portable version if a new version is available"
+msgstr "Aktualizovat přenosnou variantu pokud je k dispozici novější verze"
+
+#: main.c:561
+msgid "Print help and exit"
+msgstr "Vypsat nápovědu a skončit"
+
+#: main.c:562
+msgid "Print version and exit"
+msgstr "Vypsat verzi a skončit"
+
+#: main.c:573
+msgid "Temporarily disable network support"
+msgstr "Dočasně vypnout podporu sítě"
+
+#: main.c:574
+msgid "Enforce the bus clock"
+msgstr "Vynutit takt sběrnice"
+
+#: main.c:575
+msgid "Read CPUID raw data from a given file"
+msgstr "Načíst nezpracovaná CPUID data ze zadaného souboru"
+
+#: main.c:576
+msgid "Only print a message if CPU does not belong in database"
+msgstr "Pokud procesor není v databázi, pouze vypsat hlášení"
+
+#: main.c:585
 #, c-format
-msgid "Site: %s"
-msgstr "Webové stránky: %s"
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "Použití: %s ZOBRAZENÍ [PŘEDVOLBY]\n"
 
-#: main.c:102
-msgid "Size"
-msgstr "Velikost"
+#: main.c:586
+msgid "Available DISPLAY:"
+msgstr "ZOBRAZENÍ k dispozici:"
 
-#: core.c:393
-msgid "Skip CPU MSR opening (need to be root)"
+#: main.c:590
+msgid ""
+"\n"
+"Available OPTIONS:"
 msgstr ""
-"Přeskočit otevírání MSR registru procesoru (vyžaduje práva správce systému)"
+"\n"
+"PŘEDVOLBY k dispozici:"
 
-#: core.c:508
-msgid "Skip call to dmidecode (need to be root)"
-msgstr "Přeskočit zavolání nástroje dmidecode (vyžaduje práva správce systému)"
-
-#: core.c:700
-msgid "Skip devices search (need to be root)"
+#: main.c:595
+msgid ""
+"\n"
+"Influenceable environment variables:"
 msgstr ""
-"Přeskočit vyhledávání zařízení (je třeba mít práva správce systému – root)"
+"\n"
+"Ovlivnitelné proměnné prostředí:"
 
-#: core.c:842
-msgid "Skip some GPU values (need to be root)"
-msgstr "Přeskočit některé hodnoty graf. čipu (vyžaduje práva správce systému)"
+#: main.c:626
+msgid "This is free software: you are free to change and redistribute it."
+msgstr "Toto je svobodný software: můžete ho upravovat a šířit dál."
 
-#: main.c:92
-msgid "Socket(s)"
-msgstr "Patice"
+#: main.c:628
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr "Viz licence %s: <%s>\n"
 
-#: gui_gtk.c:101 main.c:941
-msgid "Some information will not be retrievable"
-msgstr "Některé informace nebude možné získat"
+#: main.c:629
+#, c-format
+msgid "Built on %s, %s (with %s %s on %s)."
+msgstr "Sestaveno %s, %s (pomocí %s %s na %s)."
+
+#: main.c:636
+#, c-format
+msgid "-- %-9s version: %s"
+msgstr "-- %-9s verze: %s"
+
+#: main.c:772
+#, c-format
+msgid ""
+"\n"
+"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
+"%s"
+msgstr ""
+"\n"
+"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a zhavarovalo.%s"
+
+#: main.c:787
+msgid "You can paste this backtrace by opening a new issue here:"
+msgstr ""
+"Tento záznam volání funkcí (backtrace) můžete vložit otevřením nového "
+"hlášení problému zde:"
+
+#: main.c:846
+msgid "an error occurred while setting locale"
+msgstr "při nastavování místních a jazykových nastavení došlo k chybě"
 
 #: main.c:968
 #, c-format
@@ -778,324 +930,172 @@ msgstr ""
 "Omlouváme se, ale %s nemůžete aktualizovat: 32 bitová přenosná verze už není "
 "podporována."
 
-#: main.c:71
-msgid "Specification"
-msgstr "Specifikace"
-
-#: main.c:103
-msgid "Speed"
-msgstr "Rychlost"
-
-#: main.c:548
-msgid "Start graphical user interface (GUI) (default)"
-msgstr "Spustit grafické uživatelské rozhraní (GUI) – výchozí"
-
-#: main.c:549
-msgid "Start text-based user interface (TUI)"
-msgstr "Spustit pseudografické uživatelské rozhraní (TUI)"
-
-#: gui_gtk.c:49
-msgid "Starting GTK GUI..."
-msgstr "Spouštění GTK grafického uživatelského rozhraní…"
-
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
 msgstr "Spouštění pseudografického (TUI) rozhraní…"
 
-#: core.c:1168
-msgid "Starting benchmark"
-msgstr "Spouštění výkonnostního testu"
-
-#: main.c:77
-msgid "Stepping"
-msgstr "Várka"
-
-#: main.c:146
-msgid "Swap"
-msgstr "Odkládací prostor (swap)"
-
-#: main.c:133
-msgid "System"
-msgstr "Systém"
-
-#: main.c:69
-msgid "Technology"
-msgstr "Technologie"
-
-#: main.c:76
-msgid "Temp."
-msgstr "Tepl."
-
-#: main.c:156
-msgid "Temperature"
-msgstr "Teplota"
-
-#: main.c:573
-msgid "Temporarily disable network support"
-msgstr "Dočasně vypnout podporu sítě"
-
-#: main.c:105
-msgid "Test"
-msgstr "Test"
-
-#: tui_ncurses.c:385
-msgid "This help describes how to use this Text-based User Interface.\n"
-msgstr ""
-"Tato nápověda popisuje použití tohoto textového uživatelského rozhraní.\n"
-
-#: main.c:626
-msgid "This is free software: you are free to change and redistribute it."
-msgstr "Toto je svobodný software: můžete ho upravovat a šířit dál."
-
-#: main.c:192 main.c:627
-msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "Na tuto aplikaci nejsou poskytovány VŮBEC ŽÁDNÉ ZÁRUKY"
-
-#: main.c:190
-#, c-format
-msgid "This software is distributed under the terms of %s"
-msgstr "Tento software je šířen za podmínek licence %s"
-
-#: main.c:94
-msgid "Thread(s)"
-msgstr "Vlákna"
-
-#: main.c:174
-msgid "Threads"
-msgstr "Vláken"
-
-#: gui_gtk.c:129
-msgid "Update"
-msgstr "Aktualizovat"
-
-#: main.c:560
-msgid "Update portable version if a new version is available"
-msgstr "Aktualizovat přenosnou variantu pokud je k dispozici novější verze"
-
-#: main.c:529
-msgid "Update successful!"
-msgstr "Aktualizace úspěšná!"
-
-#: core.c:1120
-msgid "Updating benchmark status"
-msgstr "Aktualizace stavu výkonostního testu"
-
-#: main.c:138
-msgid "Uptime"
-msgstr "Doba chodu systému (uptime)"
-
-#: main.c:84 main.c:157
-msgid "Usage"
-msgstr "Využití"
-
-#: main.c:585
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Použití: %s ZOBRAZENÍ [PŘEDVOLBY]\n"
-
-#: main.c:142
-msgid "Used"
-msgstr "Využito"
-
-#: main.c:66 main.c:121 main.c:154
-msgid "Vendor"
-msgstr "Výrobce"
-
-#: main.c:559
-msgid "Verbose output"
-msgstr "Podrobnější výstup"
-
-#: main.c:116
-msgid "Version"
-msgstr "Verze"
-
-#: main.c:183
-#, c-format
-msgid "Version %s"
-msgstr "Verze %s"
-
-#: main.c:70
-msgid "Voltage"
-msgstr "Provozní napětí"
+#: tui_ncurses.c:110
+msgid "Press 'h' to see help.\n"
+msgstr "Nápovědu zobrazíte stisknutím klávesy „H“.\n"
 
 #: tui_ncurses.c:384
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Vítejte v nápovědě pseudografické (NCurses) varianty %s!\n"
 
-#: main.c:787
-msgid "You can paste this backtrace by opening a new issue here:"
+#: tui_ncurses.c:385
+msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
-"Tento záznam volání funkcí (backtrace) můžete vložit otevřením nového "
-"hlášení problému zde:"
+"Tato nápověda popisuje použití tohoto textového uživatelského rozhraní.\n"
 
-#: core.c:194
+#: tui_ncurses.c:387
+msgid ""
+"\n"
+"Global keys:\n"
+msgstr ""
+"\n"
+"Všeobecné klávesy:\n"
+
+#: tui_ncurses.c:388
+msgid "\tPress 'left' key to switch in left tab.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka vlevo“ se přepnete do karty nalevo od stávající.\n"
+
+#: tui_ncurses.c:389
+msgid "\tPress 'right' key to switch in right tab.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka vpravo“ se přepnete do karty napravo od stávající.\n"
+
+#: tui_ncurses.c:390
+msgid "\tPress 'h' key to see this help.\n"
+msgstr "\tStiskem klávesy „H“ zobrazíte tuto nápovědu.\n"
+
+#: tui_ncurses.c:391
+msgid "\tPress 'q' key to exit.\n"
+msgstr "\tStiskem klávesy „Q“ aplikaci ukončíte.\n"
+
+#: tui_ncurses.c:393
+msgid ""
+"\n"
+"CPU tab:\n"
+msgstr ""
+"\n"
+"Na kartě procesor:\n"
+
+#: tui_ncurses.c:394
+msgid "\tPress 'down' key to decrease core number to monitor.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka dolů“ přejdete na monitorování jádra s nižším "
+"číslem.\n"
+
+#: tui_ncurses.c:395
+msgid "\tPress 'up' key to increase core number to monitor.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka dolů“ přejdete na monitorování jádra s vyšším "
+"číslem.\n"
+
+#: tui_ncurses.c:397
+msgid ""
+"\n"
+"Caches tab:\n"
+msgstr ""
+"\n"
+"Na kartě mezipaměť:\n"
+
+#: tui_ncurses.c:398
+msgid "\tPress 'down' key to switch to previous test.\n"
+msgstr "\tStiskem klávesy „Šipka dolů“ přejdete na předchozí test.\n"
+
+#: tui_ncurses.c:399
+msgid "\tPress 'up' key' to switch to next test.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka dolů“ přejdete na následující test.\n"
+"\n"
+
+#: tui_ncurses.c:401
+msgid ""
+"\n"
+"Bench tab:\n"
+msgstr ""
+"\n"
+"Na kartě výkonnostní testy:\n"
+
+#: tui_ncurses.c:402
+msgid "\tPress 'down' key to decrement benchmark duration.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka dolů“ snížíte nastavenou dobu trvání výkonnostního "
+"testu .\n"
+
+#: tui_ncurses.c:403
+msgid "\tPress 'up' key to increment benchmark duration.\n"
+msgstr ""
+"\tStiskem klávesy „Šipka dolů“ zvýšíte nastavenou dobu trvání výkonnostního "
+"testu .\n"
+
+#: tui_ncurses.c:404
+msgid "\tPress 'next page' key to decrement number of threads to use.\n"
+msgstr ""
+"\tStiskem klávesy „následující stránka“ snížíte počet vláken, které test "
+"použije..\n"
+
+#: tui_ncurses.c:405
+msgid "\tPress 'previous page' key to increment number of threads to use.\n"
+msgstr ""
+"\tStiskem klávesy „předchozí stránka“ zvýšíte počet vláken, které test "
+"použije.\n"
+
+#: tui_ncurses.c:406
+msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
+msgstr ""
+"\tStiskem klávesy „S“ spustíte/zastavíte výkonnostní test počítání prvočísel "
+"(důkladnou variantu).\n"
+
+#: tui_ncurses.c:407
+msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
+msgstr ""
+"\tStiskem klávesy „F“ spustíte/zastavíte výkonnostní test počítání prvočísel "
+"(zběžnou variantu).\n"
+
+#: tui_ncurses.c:409
+msgid ""
+"\n"
+"Press any key to exit this help.\n"
+msgstr ""
+"\n"
+"Tuto nápovědu uzavřete stiskem libovolné klávesy.\n"
+
+#: tui_ncurses.c:428
+msgid "If you want to update, press 'u' key, or anything else to skip.\n"
+msgstr ""
+"Pokud chcete zaktualizovat, stiskněte klávesu „U“ – v opačném případě "
+"přeskočte stisknutím libovolné jiné klávesy.\n"
+
+#: tui_ncurses.c:434
 #, c-format
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"\n"
+"\n"
+"%s will be updated."
 msgstr ""
-"Váš procesor se nenachází v databázi ==> %s, model: %i, model podrobněji: "
-"%i, řada podrobněji: %i"
-
-#: core.c:1226
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr ""
-"Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
-
-#: core.c:659
-#, c-format
-msgid "Your GPU driver is unknown: %s"
-msgstr "Neznámý ovladač grafického čipu: %s"
-
-#: core.c:729
-#, c-format
-msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr "Neznámý výrobce grafického čipu: %s (%#X)"
-
-#: util.c:321
-msgid "an error occurred while compiling regex"
-msgstr "došlo k chybě při sestavování regulárního výrazu"
-
-#: main.c:445
-#, c-format
-msgid "an error occurred while extracting %s archive (%s)"
-msgstr "při vybalování archivu s %s se vyskytla chyba (%s)"
+"\n"
+"\n"
+"%s bude aktualizováno."
 
 #: util.c:172
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr "došlo k chybě při otevírání souboru „%s“ (%s)"
 
-#: main.c:527
-msgid "an error occurred while removing/renaming files"
-msgstr "při odebírání/přejmenovávání souborů došlo k chybě"
-
 #: util.c:212
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr "došlo k chybě při vykonávání příkazu „%s“ (%s)"
-
-#: main.c:846
-msgid "an error occurred while setting locale"
-msgstr "při nastavování místních a jazykových nastavení došlo k chybě"
-
-#: core.c:1191
-msgid "an error occurred while starting benchmark"
-msgstr "při spouštění výkonnostního testu se vyskytla chyba"
-
-#: core.c:147
-msgid "could not reallocate memory"
-msgstr "nepodařilo se znovupřidělit paměť"
-
-#: core.c:1177
-msgid "failed to allocate memory for benchmark"
-msgstr "nepodařilo se přidělit paměť pro výkonnostní test"
-
-#: core.c:516
-msgid "failed to allocate memory for dmidecode"
-msgstr "nepodařilo se přidělit paměť pro nástroj dmidecode"
-
-#: core.c:539
-msgid "failed to call dmidecode"
-msgstr "nepodařilo se zavolat nástroj dmidecode"
-
-#: core.c:219
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
-
-#: main.c:500
-#, c-format
-msgid "failed to download %s archive (%s)"
-msgstr "nepodařilo se stáhnout archiv %s (%s)"
-
-#: core.c:741
-msgid "failed to find chipset vendor and model"
-msgstr "nepodařilo se určit výrobce a model čipové sady"
-
-#: core.c:679
-#, c-format
-msgid "failed to find graphic card driver (%s)"
-msgstr "nepodařilo se zjistit ovladač grafické karty (%s)"
-
-#: core.c:743
-msgid "failed to find graphic card vendor and model"
-msgstr "nepodařilo se určit výrobce a model grafického čipu"
-
-#: core.c:972
-msgid "failed to identify running system"
-msgstr "nepodařilo se rozpoznat operační systém, ve kterém je spuštěné"
-
-#: gui_gtk.c:63
-msgid "failed to import UI in GtkBuilder"
-msgstr ""
-"nepodařilo se importovat definici uživatelské rozhraní ve formátu GtkBuilder"
-
-#: main.c:482
-#, c-format
-msgid "failed to open %s archive for writing"
-msgstr "nepodařilo se zapsat do archivu %s"
 
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
 msgstr "nepodařilo se otevřít složku %s"
 
-#: core.c:400
-#, c-format
-msgid "failed to open CPU MSR (%s)"
-msgstr "nepodařilo se otevřít MSR registr procesoru (%s)"
-
-#: main.c:348 main.c:474
-msgid "failed to open a Curl session"
-msgstr "Nepodařilo se otevřít relaci nástroje Curl"
-
-#: main.c:361
-#, c-format
-msgid "failed to perform the Curl transfer (%s)"
-msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
-
-#: core.c:1409
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
-
-#: core.c:1361
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "nepodařilo se zjistit teplotu procesoru (náhradní režim)"
-
-#: core.c:1388
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
-
-#: core.c:954
-msgid "failed to retrieve GPU clocks"
-msgstr "nepodařilo se zjistit takty grafického čipu"
-
-#: core.c:825
-msgid "failed to retrieve GPU temperature"
-msgstr "nepodařilo se zjistit teplotu grafického čipu"
-
-#: core.c:1279
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "nepodařilo se získat informace o základní desce (náhradní režim)"
-
-#: core.c:1148
-#, c-format
-msgid "in %u hours"
-msgstr "za %u hodin"
-
-#: core.c:1150
-#, c-format
-msgid "in %u minutes"
-msgstr "za %u minut"
-
-#: core.c:1152
-#, c-format
-msgid "in %u seconds"
-msgstr "za %u sekund"
-
-#: main.c:362
-msgid "wrong write data"
-msgstr "chybná data pro zápis"
+#: util.c:321
+msgid "an error occurred while compiling regex"
+msgstr "došlo k chybě při sestavování regulárního výrazu"

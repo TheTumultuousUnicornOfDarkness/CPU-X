@@ -18,175 +18,210 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.0-dev\n"
 
-#: tui_ncurses.c:394
-msgid "\tPress 'down' key to decrease core number to monitor.\n"
-msgstr "\tमॉनिटर करण्यासाठी कोर नंबर कमी करण्यासाठी 'डाउन' की दाबा.\n"
+#: core.c:147
+msgid "could not reallocate memory"
+msgstr "मेमरी रीलोकॉट करू शकलो नाही"
 
-#: tui_ncurses.c:402
-msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr "\tघटलेल्या बेंचमार्क कालावधीसाठी 'डाउन' की दाबा.\n"
+#: core.c:148
+#, c-format
+msgid "Exiting %s"
+msgstr "%s बाहेर पडत आहे"
 
-#: tui_ncurses.c:398
-msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr "\tमागील चाचणीवर स्विच करण्यासाठी 'डाउन' की दाबा.\n"
+#: core.c:175
+msgid "Finding CPU technology"
+msgstr "CPU तंत्रज्ञान शोधत आहे"
 
-#: tui_ncurses.c:407
-msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
-msgstr ""
-
-#: tui_ncurses.c:390
-msgid "\tPress 'h' key to see this help.\n"
-msgstr "\tही मदत पाहण्यासाठी 'h' की दाबा.\n"
-
-#: tui_ncurses.c:388
-msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr "\tडाव्या टॅबमध्ये स्विच करण्यासाठी 'डावी' की दाबा.\n"
-
-#: tui_ncurses.c:404
-msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
-
-#: tui_ncurses.c:405
-msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
-
-#: tui_ncurses.c:391
-msgid "\tPress 'q' key to exit.\n"
-msgstr "\tबाहेर पडण्यासाठी 'q' की दाबा.\n"
-
-#: tui_ncurses.c:389
-msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr "\tउजव्या टॅबवर स्विच करण्यासाठी 'उजवी' की दाबा.\n"
-
-#: tui_ncurses.c:406
-msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
-msgstr ""
-
-#: tui_ncurses.c:395
-msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr "\tदेखरेखीसाठी कोअर नंबर वाढविण्यासाठी 'अप' की दाबा.\n"
-
-#: tui_ncurses.c:403
-msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr "\tवाढीव बेंचमार्क कालावधीसाठी 'अप' की दाबा.\n"
-
-#: tui_ncurses.c:399
-msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr "\tपुढील चाचणीवर स्विच करण्यासाठी 'अप' की दाबा.\n"
-
-#: tui_ncurses.c:434
+#: core.c:194
 #, c-format
 msgid ""
-"\n"
-"\n"
-"%s will be updated."
+"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
+"family: %i"
 msgstr ""
-"\n"
-"\n"
-"%s अद्यतनित केले जाईल."
-
-#: main.c:772
-#, c-format
-msgid ""
-"\n"
-"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
-"%s"
-msgstr ""
-
-#: main.c:590
-msgid ""
-"\n"
-"Available OPTIONS:"
-msgstr ""
-"\n"
-"उपलब्ध पर्याय:"
-
-#: tui_ncurses.c:401
-msgid ""
-"\n"
-"Bench tab:\n"
-msgstr ""
-"\n"
-"खंडपीठ टॅब:\n"
-
-#: tui_ncurses.c:393
-msgid ""
-"\n"
-"CPU tab:\n"
-msgstr ""
-"\n"
-"सीपीयू टॅब:\n"
-
-#: tui_ncurses.c:397
-msgid ""
-"\n"
-"Caches tab:\n"
-msgstr ""
-"\n"
-"कॅशे टॅब:\n"
-
-#: tui_ncurses.c:387
-msgid ""
-"\n"
-"Global keys:\n"
-msgstr ""
-"\n"
-"ग्लोबल की:\n"
-
-#: main.c:595
-msgid ""
-"\n"
-"Influenceable environment variables:"
-msgstr ""
-"\n"
-"प्रभावशाली वातावरण बदल:"
-
-#: tui_ncurses.c:409
-msgid ""
-"\n"
-"Press any key to exit this help.\n"
-msgstr ""
-"\n"
-"या मदतीमधून बाहेर पडण्यासाठी कोणतीही की दाबा.\n"
-
-#: core.c:205
-#, c-format
-msgid "%d MB, %d-way"
-msgstr "%d MB,%d-वे"
+"आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये नाही."
 
 #: core.c:204
 #, c-format
 msgid "%d x %d KB, %d-way"
 msgstr "%d x %d KB, %d-way"
 
-#: core.c:1065
+#: core.c:205
 #, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
+msgid "%d MB, %d-way"
+msgstr "%d MB,%d-वे"
 
 #: core.c:206
 #, c-format
 msgid "%s associative, %d-byte line size"
 msgstr "%s सहकारी,%d-बाइट लाइन आकार"
 
-#: main.c:179
+#: core.c:211
+msgid "Calling libcpuid for retrieving static data"
+msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
+
+#: core.c:219
 #, c-format
-msgid ""
-"%s is a Free software that gathers information\n"
-"on CPU, motherboard and more."
-msgstr ""
-"%s हे एक विनामूल्य सॉफ्टवेअर आहे जे\n"
-"सीपीयू, मदरबोर्ड आणि बरेच काहीची माहिती एकत्रित करते."
+msgid "failed to call libcpuid (%s)"
+msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
+
+#: core.c:381
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
+
+#: core.c:393
+msgid "Skip CPU MSR opening (need to be root)"
+msgstr "सीपीयू एमएसआर उघडणे वगळा (मूळ असणे आवश्यक आहे)"
+
+#: core.c:400
+#, c-format
+msgid "failed to open CPU MSR (%s)"
+msgstr "सीपीयू एमएसआर (%s) उघडण्यात अयशस्वी"
+
+#: core.c:416
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
+
+#: core.c:448
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr "सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
+
+#: core.c:469
+msgid "Calculating CPU multipliers"
+msgstr "सीपीयू गुणकांची गणना करत आहे"
+
+#: core.c:508
+msgid "Skip call to dmidecode (need to be root)"
+msgstr "डीमिडेकोडवर कॉल वगळा (रूट असणे आवश्यक आहे)"
+
+#: core.c:512
+msgid "Calling dmidecode"
+msgstr "डीमिडेकोडला कॉल करीत आहे"
+
+#: core.c:516
+msgid "failed to allocate memory for dmidecode"
+msgstr "डीमिडेकोडसाठी मेमरी वाटप करण्यात अयशस्वी"
+
+#: core.c:539
+msgid "failed to call dmidecode"
+msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
+
+#: core.c:554
+msgid "Calculating CPU usage"
+msgstr "सीपीयू वापराची गणना करत आहे"
+
+#: core.c:604
+msgid "Calling bandwidth"
+msgstr "कॉलिंग बँडविड्थ"
+
+#: core.c:634
+msgid "Finding graphic card driver"
+msgstr "ग्राफिक कार्ड ड्रायव्हर शोधत आहे"
+
+#: core.c:659
+#, c-format
+msgid "Your GPU driver is unknown: %s"
+msgstr "आपला GPU ड्राइव्हर अज्ञात आहे: %s"
+
+#: core.c:661
+#, c-format
+msgid "(%s driver)"
+msgstr "(%s ड्राइव्हर)"
+
+#: core.c:679
+#, c-format
+msgid "failed to find graphic card driver (%s)"
+msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
+
+#: core.c:695
+msgid "Finding devices"
+msgstr "उपकरणे शोधत आहे"
+
+#: core.c:700
+msgid "Skip devices search (need to be root)"
+msgstr "डिव्हाइस शोध वगळा (रूट असणे आवश्यक आहे)"
+
+#: core.c:729
+#, c-format
+msgid "Your GPU vendor is unknown: %s (%#X)"
+msgstr "आपला GPU विक्रेता अज्ञात आहे: %s (%#X)"
+
+#: core.c:741
+msgid "failed to find chipset vendor and model"
+msgstr "चिपसेट विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
+
+#: core.c:743
+msgid "failed to find graphic card vendor and model"
+msgstr "ग्राफिक कार्ड विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
+
+#: core.c:779
+msgid "Retrieving GPU temperature"
+msgstr "GPU तापमान मिळवत आहे"
+
+#: core.c:786
+msgid "Off"
+msgstr "बंद"
+
+#: core.c:825
+msgid "failed to retrieve GPU temperature"
+msgstr "GPU तापमान प्राप्त करण्यात अयशस्वी"
+
+#: core.c:842
+msgid "Skip some GPU values (need to be root)"
+msgstr "काही GPU मूल्ये वगळा (रूट असणे आवश्यक आहे)"
+
+#: core.c:860
+msgid "Retrieving GPU clocks"
+msgstr "GPU घड्याळे प्राप्त करीत आहे"
+
+#: core.c:931
+#, c-format
+msgid "Driver for GPU %i doesn't report frequencies"
+msgstr "GPU %i साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
+
+#: core.c:954
+msgid "failed to retrieve GPU clocks"
+msgstr "GPU घड्याळे प्राप्त करण्यात अयशस्वी"
+
+#: core.c:969
+msgid "Identifying running system"
+msgstr "कार्यरत प्रणाली ओळखत आहे"
+
+#: core.c:972
+msgid "failed to identify running system"
+msgstr "चालू प्रणाली ओळखण्यात अयशस्वी"
+
+#: core.c:1013
+msgid "Calling libprocps"
+msgstr "libprocps ला कॉल करीत आहे"
+
+#: core.c:1035
+msgid "Calling libstatgrab"
+msgstr "libstatgrab ला कॉल करीत आहे"
+
+#: core.c:1065
+#, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
+
+#: core.c:1120
+msgid "Updating benchmark status"
+msgstr "बेंचमार्क स्थिती अद्यतनित करीत आहे"
 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
 msgid "%u mins"
 msgstr "%u मि"
 
-#: core.c:661
-#, c-format
-msgid "(%s driver)"
-msgstr "(%s ड्राइव्हर)"
+#: core.c:1123 core.c:1124
+msgid "Inactive"
+msgstr "निष्क्रीय"
+
+#: core.c:1128 core.c:1129
+msgid "Not started"
+msgstr "सुरू झाले नाही"
+
+#: core.c:1134
+msgid "Active"
+msgstr "सक्रीय"
 
 #: core.c:1139
 #, c-format
@@ -203,185 +238,106 @@ msgstr "(%u मिनिटे बाकी)"
 msgid "(%u seconds left)"
 msgstr "(%u सेकंद शिल्लक)"
 
-#: main.c:375
-msgid "(up-to-date)"
-msgstr "(अद्ययावत)"
-
-#: main.c:369
+#: core.c:1148
 #, c-format
-msgid "(version %s is available)"
-msgstr "(आवृत्ती %s उपलब्ध आहे)"
+msgid "in %u hours"
+msgstr "%u तासात"
 
-#: main.c:636
+#: core.c:1150
 #, c-format
-msgid "-- %-9s version: %s"
-msgstr "--%-9s चे आवृत्ती: %s"
+msgid "in %u minutes"
+msgstr "%u मिनिटात"
 
-#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
+#: core.c:1152
 #, c-format
-msgid "A new version of %s is available!"
-msgstr "%s ची नवीन आवृत्ती उपलब्ध आहे!"
+msgid "in %u seconds"
+msgstr "%u सेकंदात"
 
-#: main.c:177 main.c:182
-msgid "About"
-msgstr "बद्दल"
+#: core.c:1168
+msgid "Starting benchmark"
+msgstr "बेंचमार्क सुरू करीत आहे"
 
-#: core.c:1134
-msgid "Active"
-msgstr "सक्रीय"
+#: core.c:1177
+msgid "failed to allocate memory for benchmark"
+msgstr "बेंचमार्कसाठी मेमरी वाटप करण्यात अयशस्वी"
 
-#: main.c:516
-msgid "Applying new version..."
-msgstr "नवीन आवृत्ती लागू करत आहे ..."
+#: core.c:1191
+msgid "an error occurred while starting benchmark"
+msgstr "बेंचमार्क सुरू करताना एक त्रुटी आली"
 
-#: main.c:184
+#: core.c:1208
+msgid "Finding CPU package in fallback mode"
+msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
+
+#: core.c:1226
 #, c-format
-msgid "Author: %s"
-msgstr "लेखक: %s"
-
-#: main.c:586
-msgid "Available DISPLAY:"
-msgstr "उपलब्ध प्रदर्शन:"
-
-#: main.c:114
-msgid "BIOS"
-msgstr "BIOS"
-
-#: main.c:128
-#, c-format
-msgid "Bank %i"
-msgstr "बँक %i"
-
-#: main.c:163
-msgid "Bench"
-msgstr "बेन्च"
-
-#: main.c:115
-msgid "Brand"
-msgstr "ब्रँड"
-
-#: main.c:143
-msgid "Buffers"
-msgstr "बफर"
-
-#: main.c:629
-#, c-format
-msgid "Built on %s, %s (with %s %s on %s)."
-msgstr "%s,%s (%s वर %s %s सह) वर निर्मित."
-
-#: main.c:83
-msgid "Bus Speed"
-msgstr "बस गती"
-
-#: main.c:64
-msgid "CPU"
-msgstr "सीपीयू"
-
-#: main.c:86
-msgid "Cache"
-msgstr "कॅशे"
-
-#: main.c:144
-msgid "Cached"
-msgstr "कॅश"
-
-#: main.c:97
-msgid "Caches"
-msgstr "कॅशे"
-
-#: core.c:469
-msgid "Calculating CPU multipliers"
-msgstr "सीपीयू गुणकांची गणना करत आहे"
+msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+msgstr ""
 
 #: core.c:1245
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू मल्टिप्लायर्सची गणना करत आहे"
 
-#: core.c:554
-msgid "Calculating CPU usage"
-msgstr "सीपीयू वापराची गणना करत आहे"
+#: core.c:1272
+msgid "Retrieving motherboard information in fallback mode"
+msgstr "फॉलबॅक मोडमध्ये मदरबोर्ड माहिती पुनर्प्राप्त करीत आहे"
 
-#: core.c:604
-msgid "Calling bandwidth"
-msgstr "कॉलिंग बँडविड्थ"
+#: core.c:1279
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr "मदरबोर्ड माहिती पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
-#: core.c:512
-msgid "Calling dmidecode"
-msgstr "डीमिडेकोडला कॉल करीत आहे"
+#: core.c:1344
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr "फॉलबॅक मोडमध्ये सीपीयू तापमान प्राप्त करत आहे"
 
-#: core.c:448
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
+#: core.c:1361
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr "सीपीयू तापमान (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.c:416
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
+#: core.c:1375
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr "फॉलबॅक मोडमध्ये सीपीयू व्होल्टेज पुनर्प्राप्त करीत आहे"
 
-#: core.c:381
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
+#: core.c:1388
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr "सीपीयू व्होल्टेज (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.c:211
-msgid "Calling libcpuid for retrieving static data"
-msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
+#: core.c:1401
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr ""
 
-#: core.c:1013
-msgid "Calling libprocps"
-msgstr "libprocps ला कॉल करीत आहे"
+#: core.c:1409
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr ""
 
-#: core.c:1035
-msgid "Calling libstatgrab"
-msgstr "libstatgrab ला कॉल करीत आहे"
+#: gui_gtk.c:49
+msgid "Starting GTK GUI..."
+msgstr ""
 
-#: main.c:153
+#: gui_gtk.c:63
+msgid "failed to import UI in GtkBuilder"
+msgstr ""
+
+#: gui_gtk.c:98 main.c:940
+msgid "Root privileges are required to work properly"
+msgstr ""
+
+#: gui_gtk.c:101 main.c:941
+msgid "Some information will not be retrievable"
+msgstr "काही माहिती पुनर्प्राप्त करण्यायोग्य होणार नाही"
+
+#: gui_gtk.c:103
+msgid "Ignore"
+msgstr "दुर्लक्ष करा"
+
+#: gui_gtk.c:107
+msgid "Run as root"
+msgstr "रूट म्हणून चालवा"
+
+#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
-msgid "Card %i"
-msgstr "कार्ड %i"
-
-#: main.c:344
-msgid "Checking on Internet for a new version..."
-msgstr "नवीन आवृत्तीसाठी इंटरनेटवर तपासत आहे ..."
-
-#: main.c:120
-msgid "Chipset"
-msgstr "चिपसेट"
-
-#: main.c:80
-msgid "Clocks"
-msgstr "घड्याळे"
-
-#: main.c:67
-msgid "Code Name"
-msgstr "सांकेतिक नाव"
-
-#: main.c:139
-msgid "Compiler"
-msgstr "संकलक"
-
-#: gui_gtk.c:515 tui_ncurses.c:480
-#, c-format
-msgid "Core #%i"
-msgstr "कोर #%i"
-
-#: main.c:81
-msgid "Core Speed"
-msgstr "कोर गती"
-
-#: main.c:93
-msgid "Core(s)"
-msgstr "कोअर"
-
-#: main.c:117
-msgid "Date"
-msgstr "तारीख"
-
-#: main.c:557
-msgid "Disable colored output"
-msgstr "रंगीत आउटपुट अक्षम करा"
-
-#: main.c:136
-msgid "Distribution"
-msgstr "वितरण"
+msgid "A new version of %s is available!"
+msgstr "%s ची नवीन आवृत्ती उपलब्ध आहे!"
 
 #: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
@@ -390,116 +346,106 @@ msgid ""
 "It will erase this binary file (%s) by the new version."
 msgstr ""
 
-#: main.c:488
-msgid "Downloading new version..."
-msgstr "नवीन आवृत्ती डाउनलोड करीत आहे ..."
+#: gui_gtk.c:129
+msgid "Not now"
+msgstr "आता नाही"
 
-#: core.c:931
+#: gui_gtk.c:129
+msgid "Update"
+msgstr "अद्यतनित करा"
+
+#: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
-msgid "Driver for GPU %i doesn't report frequencies"
-msgstr "GPU %i साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
+msgid "Core #%i"
+msgstr "कोर #%i"
 
-#: main.c:550
-msgid "Dump all data on standard output and exit"
-msgstr "मानक आउटपुटवरील सर्व डेटा काढून टाका आणि बाहेर पडा"
+#: main.c:62
+msgid "Setting label names"
+msgstr "लेबल नावे सेट करत आहे"
 
-#: main.c:259
-msgid "Dumping data..."
-msgstr "डम्पिंग डेटा ..."
+#: main.c:64
+msgid "CPU"
+msgstr "सीपीयू"
 
-#: main.c:173
-msgid "Duration"
-msgstr "कालावधी"
+#: main.c:65
+msgid "Processor"
+msgstr "प्रोसेसर"
 
-#: main.c:574
-msgid "Enforce the bus clock"
-msgstr "बस घड्याळ लागू करा"
+#: main.c:66 main.c:121 main.c:154
+msgid "Vendor"
+msgstr "विक्रेता"
 
-#: core.c:148
-#, c-format
-msgid "Exiting %s"
-msgstr "%s बाहेर पडत आहे"
+#: main.c:67
+msgid "Code Name"
+msgstr "सांकेतिक नाव"
 
-#: main.c:73
-msgid "Ext. Family"
-msgstr "Ext. परिवार"
+#: main.c:68
+msgid "Package"
+msgstr "पॅकेज"
 
-#: main.c:75
-msgid "Ext. Model"
-msgstr "Ext. मॉडेल"
+#: main.c:69
+msgid "Technology"
+msgstr "तंत्रज्ञान"
 
-#: main.c:506
-msgid "Extracting new version..."
-msgstr "नवीन आवृत्ती काढत आहे ..."
+#: main.c:70
+msgid "Voltage"
+msgstr "विद्युतदाब"
+
+#: main.c:71
+msgid "Specification"
+msgstr "तपशील"
 
 #: main.c:72
 msgid "Family"
 msgstr "परिवार"
 
-#: core.c:1208
-msgid "Finding CPU package in fallback mode"
-msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
+#: main.c:73
+msgid "Ext. Family"
+msgstr "Ext. परिवार"
 
-#: core.c:175
-msgid "Finding CPU technology"
-msgstr "CPU तंत्रज्ञान शोधत आहे"
+#: main.c:74 main.c:111 main.c:122 main.c:155
+msgid "Model"
+msgstr "मॉडेल"
 
-#: core.c:695
-msgid "Finding devices"
-msgstr "उपकरणे शोधत आहे"
+#: main.c:75
+msgid "Ext. Model"
+msgstr "Ext. मॉडेल"
 
-#: core.c:634
-msgid "Finding graphic card driver"
-msgstr "ग्राफिक कार्ड ड्रायव्हर शोधत आहे"
+#: main.c:76
+msgid "Temp."
+msgstr "टेम्प."
 
-#: main.c:145
-msgid "Free"
-msgstr "मॊकळी"
-
-#: main.c:301
-msgid "Freeing memory"
-msgstr "मेमरी रिकामी करीत आहे"
-
-#: main.c:158
-msgid "GPU clock"
-msgstr "GPU घड्याळ"
-
-#: main.c:149
-msgid "Graphics"
-msgstr "ग्राफिक्स"
-
-#: main.c:137
-msgid "Hostname"
-msgstr "होस्टनाव"
-
-#: core.c:969
-msgid "Identifying running system"
-msgstr "कार्यरत प्रणाली ओळखत आहे"
-
-#: tui_ncurses.c:428
-msgid "If you want to update, press 'u' key, or anything else to skip.\n"
-msgstr "आपण अद्यतनित करू इच्छित असल्यास, 'u' की किंवा वगळण्यासाठी काहीही दाबा.\n"
-
-#: gui_gtk.c:103
-msgid "Ignore"
-msgstr "दुर्लक्ष करा"
-
-#: core.c:1123 core.c:1124
-msgid "Inactive"
-msgstr "निष्क्रीय"
+#: main.c:77
+msgid "Stepping"
+msgstr "पायरी"
 
 #: main.c:78
 msgid "Instructions"
 msgstr "सूचना"
 
-#: main.c:135
-msgid "Kernel"
-msgstr "कर्नल"
+#: main.c:80
+msgid "Clocks"
+msgstr "घड्याळे"
 
-#: main.c:101
-#, c-format
-msgid "L%i Cache"
-msgstr "L%i कॅशे"
+#: main.c:81
+msgid "Core Speed"
+msgstr "कोर गती"
+
+#: main.c:82
+msgid "Multiplier"
+msgstr "गुणक"
+
+#: main.c:83
+msgid "Bus Speed"
+msgstr "बस गती"
+
+#: main.c:84 main.c:157
+msgid "Usage"
+msgstr "वापर"
+
+#: main.c:86
+msgid "Cache"
+msgstr "कॅशे"
 
 #: main.c:87
 msgid "L1 Data"
@@ -517,33 +463,272 @@ msgstr "पातळी 2"
 msgid "Level 3"
 msgstr "पातळी 3"
 
-#: main.c:187
-msgid "License"
-msgstr "परवाना"
+#: main.c:92
+msgid "Socket(s)"
+msgstr "सॉकेट"
 
-#: main.c:110
-msgid "Manufacturer"
-msgstr "निर्माता"
+#: main.c:93
+msgid "Core(s)"
+msgstr "कोअर"
 
-#: main.c:125 main.c:141
-msgid "Memory"
-msgstr "स्मृती"
+#: main.c:94
+msgid "Thread(s)"
+msgstr "थ्रेड"
 
-#: main.c:159
-msgid "Memory clock"
-msgstr "स्मृती घड्याळ"
+#: main.c:97
+msgid "Caches"
+msgstr "कॅशे"
 
-#: main.c:74 main.c:111 main.c:122 main.c:155
-msgid "Model"
-msgstr "मॉडेल"
+#: main.c:101
+#, c-format
+msgid "L%i Cache"
+msgstr "L%i कॅशे"
+
+#: main.c:102
+msgid "Size"
+msgstr "आकार"
+
+#: main.c:103
+msgid "Speed"
+msgstr "वेग"
+
+#: main.c:105
+msgid "Test"
+msgstr "चाचणी"
 
 #: main.c:108 main.c:109
 msgid "Motherboard"
 msgstr "मदरबोर्ड"
 
-#: main.c:82
-msgid "Multiplier"
-msgstr "गुणक"
+#: main.c:110
+msgid "Manufacturer"
+msgstr "निर्माता"
+
+#: main.c:112
+msgid "Revision"
+msgstr "पुनरावृत्ती"
+
+#: main.c:114
+msgid "BIOS"
+msgstr "BIOS"
+
+#: main.c:115
+msgid "Brand"
+msgstr "ब्रँड"
+
+#: main.c:116
+msgid "Version"
+msgstr "आवृत्ती"
+
+#: main.c:117
+msgid "Date"
+msgstr "तारीख"
+
+#: main.c:118
+msgid "ROM Size"
+msgstr "रॉम आकार"
+
+#: main.c:120
+msgid "Chipset"
+msgstr "चिपसेट"
+
+#: main.c:125 main.c:141
+msgid "Memory"
+msgstr "स्मृती"
+
+#: main.c:128
+#, c-format
+msgid "Bank %i"
+msgstr "बँक %i"
+
+#: main.c:129
+msgid "Reference"
+msgstr "संदर्भ"
+
+#: main.c:133
+msgid "System"
+msgstr "प्रणाली"
+
+#: main.c:134
+msgid "Operating System"
+msgstr "ऑपरेटिंग सिस्टम"
+
+#: main.c:135
+msgid "Kernel"
+msgstr "कर्नल"
+
+#: main.c:136
+msgid "Distribution"
+msgstr "वितरण"
+
+#: main.c:137
+msgid "Hostname"
+msgstr "होस्टनाव"
+
+#: main.c:138
+msgid "Uptime"
+msgstr "अपटाइम"
+
+#: main.c:139
+msgid "Compiler"
+msgstr "संकलक"
+
+#: main.c:142
+msgid "Used"
+msgstr "वापरलेले"
+
+#: main.c:143
+msgid "Buffers"
+msgstr "बफर"
+
+#: main.c:144
+msgid "Cached"
+msgstr "कॅश"
+
+#: main.c:145
+msgid "Free"
+msgstr "मॊकळी"
+
+#: main.c:146
+msgid "Swap"
+msgstr "स्वॅप"
+
+#: main.c:149
+msgid "Graphics"
+msgstr "ग्राफिक्स"
+
+#: main.c:153
+#, c-format
+msgid "Card %i"
+msgstr "कार्ड %i"
+
+#: main.c:156
+msgid "Temperature"
+msgstr "तापमान"
+
+#: main.c:158
+msgid "GPU clock"
+msgstr "GPU घड्याळ"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "स्मृती घड्याळ"
+
+#: main.c:163
+msgid "Bench"
+msgstr "बेन्च"
+
+#: main.c:164
+msgid "Prime numbers (slow)"
+msgstr "मूळ संख्या(हळु)"
+
+#: main.c:165
+msgid "Prime numbers (fast)"
+msgstr "मूळ संख्या (जलद)"
+
+#: main.c:168
+msgid "Score"
+msgstr "गुण"
+
+#: main.c:169
+msgid "Run"
+msgstr "चालवा"
+
+#: main.c:172
+msgid "Parameters"
+msgstr "घटक"
+
+#: main.c:173
+msgid "Duration"
+msgstr "कालावधी"
+
+#: main.c:174
+msgid "Threads"
+msgstr "थ्रेड"
+
+#: main.c:177 main.c:182
+msgid "About"
+msgstr "बद्दल"
+
+#: main.c:179
+#, c-format
+msgid ""
+"%s is a Free software that gathers information\n"
+"on CPU, motherboard and more."
+msgstr ""
+"%s हे एक विनामूल्य सॉफ्टवेअर आहे जे\n"
+"सीपीयू, मदरबोर्ड आणि बरेच काहीची माहिती एकत्रित करते."
+
+#: main.c:183
+#, c-format
+msgid "Version %s"
+msgstr "आवृत्ती %s"
+
+#: main.c:184
+#, c-format
+msgid "Author: %s"
+msgstr "लेखक: %s"
+
+#: main.c:185
+#, c-format
+msgid "Site: %s"
+msgstr "साइट: %s"
+
+#: main.c:187
+msgid "License"
+msgstr "परवाना"
+
+#: main.c:190
+#, c-format
+msgid "This software is distributed under the terms of %s"
+msgstr "हे सॉफ्टवेअर %s च्या अटी अंतर्गत वितरीत केले गेले आहे"
+
+#: main.c:192 main.c:627
+msgid "This program comes with ABSOLUTELY NO WARRANTY"
+msgstr "हा प्रोग्राम पूर्णपणे कोणतीही हमी देत नाही"
+
+#: main.c:259
+msgid "Dumping data..."
+msgstr "डम्पिंग डेटा ..."
+
+#: main.c:301
+msgid "Freeing memory"
+msgstr "मेमरी रिकामी करीत आहे"
+
+#: main.c:344
+msgid "Checking on Internet for a new version..."
+msgstr "नवीन आवृत्तीसाठी इंटरनेटवर तपासत आहे ..."
+
+#: main.c:348 main.c:474
+msgid "failed to open a Curl session"
+msgstr "कर्ल सत्र उघडण्यात अयशस्वी"
+
+#: main.c:361
+#, c-format
+msgid "failed to perform the Curl transfer (%s)"
+msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
+
+#: main.c:362
+msgid "wrong write data"
+msgstr "चुकीचे डेटा लेखन"
+
+#: main.c:369
+#, c-format
+msgid "(version %s is available)"
+msgstr "(आवृत्ती %s उपलब्ध आहे)"
+
+#: main.c:374 main.c:467
+msgid "No new version available"
+msgstr "कोणतीही नवीन आवृत्ती उपलब्ध नाही"
+
+#: main.c:375
+msgid "(up-to-date)"
+msgstr "(अद्ययावत)"
+
+#: main.c:445
+#, c-format
+msgid "an error occurred while extracting %s archive (%s)"
+msgstr "%s संग्रहण (%s) काढताना त्रुटी आली"
 
 #: main.c:460
 msgid ""
@@ -553,134 +738,59 @@ msgstr ""
 "पर्यावरण प्रवेशाद्वारे नेटवर्क प्रवेश अक्षम केला आहे (ते सक्षम करण्यासाठी सकारात्मक मूल्यासह "
 "CPUX_NETWORK सेट करा)"
 
-#: main.c:374 main.c:467
-msgid "No new version available"
-msgstr "कोणतीही नवीन आवृत्ती उपलब्ध नाही"
+#: main.c:482
+#, c-format
+msgid "failed to open %s archive for writing"
+msgstr "लेखनासाठी %s संग्रह उघडण्यात अयशस्वी"
 
-#: gui_gtk.c:129
-msgid "Not now"
-msgstr "आता नाही"
+#: main.c:488
+msgid "Downloading new version..."
+msgstr "नवीन आवृत्ती डाउनलोड करीत आहे ..."
 
-#: core.c:1128 core.c:1129
-msgid "Not started"
-msgstr "सुरू झाले नाही"
+#: main.c:500
+#, c-format
+msgid "failed to download %s archive (%s)"
+msgstr "%s संग्रहण (%s) डाउनलोड करण्यात अयशस्वी"
 
-#: core.c:786
-msgid "Off"
-msgstr "बंद"
+#: main.c:506
+msgid "Extracting new version..."
+msgstr "नवीन आवृत्ती काढत आहे ..."
 
-#: main.c:576
-msgid "Only print a message if CPU does not belong in database"
-msgstr "जर सीपीयू डेटाबेसमध्ये नसेल तर केवळ संदेश मुद्रित करा"
+#: main.c:516
+msgid "Applying new version..."
+msgstr "नवीन आवृत्ती लागू करत आहे ..."
 
-#: main.c:134
-msgid "Operating System"
-msgstr "ऑपरेटिंग सिस्टम"
+#: main.c:527
+msgid "an error occurred while removing/renaming files"
+msgstr "फायली काढताना / पुनर्नामित करताना त्रुटी आली"
 
-#: main.c:68
-msgid "Package"
-msgstr "पॅकेज"
+#: main.c:529
+msgid "Update successful!"
+msgstr "अद्यतन यशस्वी!"
 
-#: main.c:172
-msgid "Parameters"
-msgstr "घटक"
+#: main.c:548
+msgid "Start graphical user interface (GUI) (default)"
+msgstr "ग्राफिकल यूजर इंटरफेस (जीयूआय) प्रारंभ करा (डीफॉल्ट)"
 
-#: tui_ncurses.c:110
-msgid "Press 'h' to see help.\n"
-msgstr "मदत पाहण्यासाठी 'h' दाबा.\n"
+#: main.c:549
+msgid "Start text-based user interface (TUI)"
+msgstr "मजकूर-आधारित वापरकर्ता इंटरफेस (TUI) प्रारंभ करा"
 
-#: main.c:165
-msgid "Prime numbers (fast)"
-msgstr "मूळ संख्या (जलद)"
-
-#: main.c:164
-msgid "Prime numbers (slow)"
-msgstr "मूळ संख्या(हळु)"
-
-#: main.c:561
-msgid "Print help and exit"
-msgstr "मदत प्रिंट करा आणि बाहेर पडा"
-
-#: main.c:558
-msgid "Print required information to paste in an issue"
-msgstr "समस्येमध्ये पेस्ट करण्यासाठी आवश्यक माहिती मुद्रित करा"
-
-#: main.c:562
-msgid "Print version and exit"
-msgstr "आवृत्ती मुद्रित करा आणि बाहेर पडा"
-
-#: main.c:65
-msgid "Processor"
-msgstr "प्रोसेसर"
-
-#: main.c:118
-msgid "ROM Size"
-msgstr "रॉम आकार"
-
-#: main.c:575
-msgid "Read CPUID raw data from a given file"
-msgstr "दिलेल्या फाईलमधून CPUIDचा कच्चा डेटा वाचा"
-
-#: main.c:129
-msgid "Reference"
-msgstr "संदर्भ"
-
-#: core.c:1401
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
-
-#: core.c:1344
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "फॉलबॅक मोडमध्ये सीपीयू तापमान प्राप्त करत आहे"
-
-#: core.c:1375
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "फॉलबॅक मोडमध्ये सीपीयू व्होल्टेज पुनर्प्राप्त करीत आहे"
-
-#: core.c:860
-msgid "Retrieving GPU clocks"
-msgstr "GPU घड्याळे प्राप्त करीत आहे"
-
-#: core.c:779
-msgid "Retrieving GPU temperature"
-msgstr "GPU तापमान मिळवत आहे"
-
-#: core.c:1272
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "फॉलबॅक मोडमध्ये मदरबोर्ड माहिती पुनर्प्राप्त करीत आहे"
-
-#: main.c:112
-msgid "Revision"
-msgstr "पुनरावृत्ती"
-
-#: gui_gtk.c:98 main.c:940
-msgid "Root privileges are required to work properly"
-msgstr ""
-
-#: main.c:169
-msgid "Run"
-msgstr "चालवा"
-
-#: gui_gtk.c:107
-msgid "Run as root"
-msgstr "रूट म्हणून चालवा"
-
-#: main.c:552
-msgid "Run embedded command bandwidth and exit"
-msgstr "एम्बेडेड कमांड बँडविड्थ चालवा आणि बाहेर पडा"
+#: main.c:550
+msgid "Dump all data on standard output and exit"
+msgstr "मानक आउटपुटवरील सर्व डेटा काढून टाका आणि बाहेर पडा"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
 msgstr "एम्बेडेड कमांड dmidecode चालवा आणि बाहेर पडा"
 
-#: main.c:168
-msgid "Score"
-msgstr "गुण"
+#: main.c:552
+msgid "Run embedded command bandwidth and exit"
+msgstr "एम्बेडेड कमांड बँडविड्थ चालवा आणि बाहेर पडा"
 
-#: main.c:628
-#, c-format
-msgid "See the %s license: <%s>\n"
-msgstr "%s परवाना पहा: <%s>\n"
+#: main.c:553
+msgid "Set default tab (integer)"
+msgstr "डीफॉल्ट टॅब सेट करा (पूर्णांक)"
 
 #: main.c:554
 msgid "Select CPU core to monitor (integer)"
@@ -694,46 +804,105 @@ msgstr "सीपीयू कॅशे वेग (पूर्णांक) स
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "दोन रीफ्रेश दरम्यान सानुकूल वेळ सेट करा (सेकंदात)"
 
-#: main.c:553
-msgid "Set default tab (integer)"
-msgstr "डीफॉल्ट टॅब सेट करा (पूर्णांक)"
+#: main.c:557
+msgid "Disable colored output"
+msgstr "रंगीत आउटपुट अक्षम करा"
 
-#: main.c:62
-msgid "Setting label names"
-msgstr "लेबल नावे सेट करत आहे"
+#: main.c:558
+msgid "Print required information to paste in an issue"
+msgstr "समस्येमध्ये पेस्ट करण्यासाठी आवश्यक माहिती मुद्रित करा"
 
-#: main.c:185
+#: main.c:559
+msgid "Verbose output"
+msgstr "व्हर्बोज आउटपुट"
+
+#: main.c:560
+msgid "Update portable version if a new version is available"
+msgstr "नवीन आवृत्ती उपलब्ध असल्यास पोर्टेबल आवृत्ती अद्यतनित करा"
+
+#: main.c:561
+msgid "Print help and exit"
+msgstr "मदत प्रिंट करा आणि बाहेर पडा"
+
+#: main.c:562
+msgid "Print version and exit"
+msgstr "आवृत्ती मुद्रित करा आणि बाहेर पडा"
+
+#: main.c:573
+msgid "Temporarily disable network support"
+msgstr "नेटवर्क समर्थन तात्पुरते अक्षम करा"
+
+#: main.c:574
+msgid "Enforce the bus clock"
+msgstr "बस घड्याळ लागू करा"
+
+#: main.c:575
+msgid "Read CPUID raw data from a given file"
+msgstr "दिलेल्या फाईलमधून CPUIDचा कच्चा डेटा वाचा"
+
+#: main.c:576
+msgid "Only print a message if CPU does not belong in database"
+msgstr "जर सीपीयू डेटाबेसमध्ये नसेल तर केवळ संदेश मुद्रित करा"
+
+#: main.c:585
 #, c-format
-msgid "Site: %s"
-msgstr "साइट: %s"
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "वापर: %s प्रदर्शन [पर्याय]\n"
 
-#: main.c:102
-msgid "Size"
-msgstr "आकार"
+#: main.c:586
+msgid "Available DISPLAY:"
+msgstr "उपलब्ध प्रदर्शन:"
 
-#: core.c:393
-msgid "Skip CPU MSR opening (need to be root)"
-msgstr "सीपीयू एमएसआर उघडणे वगळा (मूळ असणे आवश्यक आहे)"
+#: main.c:590
+msgid ""
+"\n"
+"Available OPTIONS:"
+msgstr ""
+"\n"
+"उपलब्ध पर्याय:"
 
-#: core.c:508
-msgid "Skip call to dmidecode (need to be root)"
-msgstr "डीमिडेकोडवर कॉल वगळा (रूट असणे आवश्यक आहे)"
+#: main.c:595
+msgid ""
+"\n"
+"Influenceable environment variables:"
+msgstr ""
+"\n"
+"प्रभावशाली वातावरण बदल:"
 
-#: core.c:700
-msgid "Skip devices search (need to be root)"
-msgstr "डिव्हाइस शोध वगळा (रूट असणे आवश्यक आहे)"
+#: main.c:626
+msgid "This is free software: you are free to change and redistribute it."
+msgstr "हे विनामूल्य सॉफ्टवेअर आहे: आपण ते बदलून पुन्हा वितरित करण्यास मोकळे आहात."
 
-#: core.c:842
-msgid "Skip some GPU values (need to be root)"
-msgstr "काही GPU मूल्ये वगळा (रूट असणे आवश्यक आहे)"
+#: main.c:628
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr "%s परवाना पहा: <%s>\n"
 
-#: main.c:92
-msgid "Socket(s)"
-msgstr "सॉकेट"
+#: main.c:629
+#, c-format
+msgid "Built on %s, %s (with %s %s on %s)."
+msgstr "%s,%s (%s वर %s %s सह) वर निर्मित."
 
-#: gui_gtk.c:101 main.c:941
-msgid "Some information will not be retrievable"
-msgstr "काही माहिती पुनर्प्राप्त करण्यायोग्य होणार नाही"
+#: main.c:636
+#, c-format
+msgid "-- %-9s version: %s"
+msgstr "--%-9s चे आवृत्ती: %s"
+
+#: main.c:772
+#, c-format
+msgid ""
+"\n"
+"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
+"%s"
+msgstr ""
+
+#: main.c:787
+msgid "You can paste this backtrace by opening a new issue here:"
+msgstr "आपण येथे नवीन समस्या उघडून हा बॅकट्रॅस पेस्ट करू शकता:"
+
+#: main.c:846
+msgid "an error occurred while setting locale"
+msgstr "लोकॅल सेट करताना एक त्रुटी आली"
 
 #: main.c:968
 #, c-format
@@ -742,318 +911,149 @@ msgid ""
 msgstr ""
 "क्षमस्व, आपण%s अद्यतनित करू शकत नाही: 32-बिट पोर्टेबल आवृत्ती यापुढे समर्थित नाही."
 
-#: main.c:71
-msgid "Specification"
-msgstr "तपशील"
-
-#: main.c:103
-msgid "Speed"
-msgstr "वेग"
-
-#: main.c:548
-msgid "Start graphical user interface (GUI) (default)"
-msgstr "ग्राफिकल यूजर इंटरफेस (जीयूआय) प्रारंभ करा (डीफॉल्ट)"
-
-#: main.c:549
-msgid "Start text-based user interface (TUI)"
-msgstr "मजकूर-आधारित वापरकर्ता इंटरफेस (TUI) प्रारंभ करा"
-
-#: gui_gtk.c:49
-msgid "Starting GTK GUI..."
-msgstr ""
-
 #: tui_ncurses.c:70
 msgid "Starting NCurses TUI..."
 msgstr "एनकर्स टीयूआय प्रारंभ करीत आहे ..."
 
-#: core.c:1168
-msgid "Starting benchmark"
-msgstr "बेंचमार्क सुरू करीत आहे"
-
-#: main.c:77
-msgid "Stepping"
-msgstr "पायरी"
-
-#: main.c:146
-msgid "Swap"
-msgstr "स्वॅप"
-
-#: main.c:133
-msgid "System"
-msgstr "प्रणाली"
-
-#: main.c:69
-msgid "Technology"
-msgstr "तंत्रज्ञान"
-
-#: main.c:76
-msgid "Temp."
-msgstr "टेम्प."
-
-#: main.c:156
-msgid "Temperature"
-msgstr "तापमान"
-
-#: main.c:573
-msgid "Temporarily disable network support"
-msgstr "नेटवर्क समर्थन तात्पुरते अक्षम करा"
-
-#: main.c:105
-msgid "Test"
-msgstr "चाचणी"
-
-#: tui_ncurses.c:385
-msgid "This help describes how to use this Text-based User Interface.\n"
-msgstr "हा मजकूर-आधारित वापरकर्ता इंटरफेस कसे वापरावे याचे वर्णन करते.\n"
-
-#: main.c:626
-msgid "This is free software: you are free to change and redistribute it."
-msgstr "हे विनामूल्य सॉफ्टवेअर आहे: आपण ते बदलून पुन्हा वितरित करण्यास मोकळे आहात."
-
-#: main.c:192 main.c:627
-msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "हा प्रोग्राम पूर्णपणे कोणतीही हमी देत नाही"
-
-#: main.c:190
-#, c-format
-msgid "This software is distributed under the terms of %s"
-msgstr "हे सॉफ्टवेअर %s च्या अटी अंतर्गत वितरीत केले गेले आहे"
-
-#: main.c:94
-msgid "Thread(s)"
-msgstr "थ्रेड"
-
-#: main.c:174
-msgid "Threads"
-msgstr "थ्रेड"
-
-#: gui_gtk.c:129
-msgid "Update"
-msgstr "अद्यतनित करा"
-
-#: main.c:560
-msgid "Update portable version if a new version is available"
-msgstr "नवीन आवृत्ती उपलब्ध असल्यास पोर्टेबल आवृत्ती अद्यतनित करा"
-
-#: main.c:529
-msgid "Update successful!"
-msgstr "अद्यतन यशस्वी!"
-
-#: core.c:1120
-msgid "Updating benchmark status"
-msgstr "बेंचमार्क स्थिती अद्यतनित करीत आहे"
-
-#: main.c:138
-msgid "Uptime"
-msgstr "अपटाइम"
-
-#: main.c:84 main.c:157
-msgid "Usage"
-msgstr "वापर"
-
-#: main.c:585
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "वापर: %s प्रदर्शन [पर्याय]\n"
-
-#: main.c:142
-msgid "Used"
-msgstr "वापरलेले"
-
-#: main.c:66 main.c:121 main.c:154
-msgid "Vendor"
-msgstr "विक्रेता"
-
-#: main.c:559
-msgid "Verbose output"
-msgstr "व्हर्बोज आउटपुट"
-
-#: main.c:116
-msgid "Version"
-msgstr "आवृत्ती"
-
-#: main.c:183
-#, c-format
-msgid "Version %s"
-msgstr "आवृत्ती %s"
-
-#: main.c:70
-msgid "Voltage"
-msgstr "विद्युतदाब"
+#: tui_ncurses.c:110
+msgid "Press 'h' to see help.\n"
+msgstr "मदत पाहण्यासाठी 'h' दाबा.\n"
 
 #: tui_ncurses.c:384
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "%s एनसीर्स मदत मध्ये आपले स्वागत आहे!\n"
 
-#: main.c:787
-msgid "You can paste this backtrace by opening a new issue here:"
-msgstr "आपण येथे नवीन समस्या उघडून हा बॅकट्रॅस पेस्ट करू शकता:"
+#: tui_ncurses.c:385
+msgid "This help describes how to use this Text-based User Interface.\n"
+msgstr "हा मजकूर-आधारित वापरकर्ता इंटरफेस कसे वापरावे याचे वर्णन करते.\n"
 
-#: core.c:194
+#: tui_ncurses.c:387
+msgid ""
+"\n"
+"Global keys:\n"
+msgstr ""
+"\n"
+"ग्लोबल की:\n"
+
+#: tui_ncurses.c:388
+msgid "\tPress 'left' key to switch in left tab.\n"
+msgstr "\tडाव्या टॅबमध्ये स्विच करण्यासाठी 'डावी' की दाबा.\n"
+
+#: tui_ncurses.c:389
+msgid "\tPress 'right' key to switch in right tab.\n"
+msgstr "\tउजव्या टॅबवर स्विच करण्यासाठी 'उजवी' की दाबा.\n"
+
+#: tui_ncurses.c:390
+msgid "\tPress 'h' key to see this help.\n"
+msgstr "\tही मदत पाहण्यासाठी 'h' की दाबा.\n"
+
+#: tui_ncurses.c:391
+msgid "\tPress 'q' key to exit.\n"
+msgstr "\tबाहेर पडण्यासाठी 'q' की दाबा.\n"
+
+#: tui_ncurses.c:393
+msgid ""
+"\n"
+"CPU tab:\n"
+msgstr ""
+"\n"
+"सीपीयू टॅब:\n"
+
+#: tui_ncurses.c:394
+msgid "\tPress 'down' key to decrease core number to monitor.\n"
+msgstr "\tमॉनिटर करण्यासाठी कोर नंबर कमी करण्यासाठी 'डाउन' की दाबा.\n"
+
+#: tui_ncurses.c:395
+msgid "\tPress 'up' key to increase core number to monitor.\n"
+msgstr "\tदेखरेखीसाठी कोअर नंबर वाढविण्यासाठी 'अप' की दाबा.\n"
+
+#: tui_ncurses.c:397
+msgid ""
+"\n"
+"Caches tab:\n"
+msgstr ""
+"\n"
+"कॅशे टॅब:\n"
+
+#: tui_ncurses.c:398
+msgid "\tPress 'down' key to switch to previous test.\n"
+msgstr "\tमागील चाचणीवर स्विच करण्यासाठी 'डाउन' की दाबा.\n"
+
+#: tui_ncurses.c:399
+msgid "\tPress 'up' key' to switch to next test.\n"
+msgstr "\tपुढील चाचणीवर स्विच करण्यासाठी 'अप' की दाबा.\n"
+
+#: tui_ncurses.c:401
+msgid ""
+"\n"
+"Bench tab:\n"
+msgstr ""
+"\n"
+"खंडपीठ टॅब:\n"
+
+#: tui_ncurses.c:402
+msgid "\tPress 'down' key to decrement benchmark duration.\n"
+msgstr "\tघटलेल्या बेंचमार्क कालावधीसाठी 'डाउन' की दाबा.\n"
+
+#: tui_ncurses.c:403
+msgid "\tPress 'up' key to increment benchmark duration.\n"
+msgstr "\tवाढीव बेंचमार्क कालावधीसाठी 'अप' की दाबा.\n"
+
+#: tui_ncurses.c:404
+msgid "\tPress 'next page' key to decrement number of threads to use.\n"
+msgstr ""
+
+#: tui_ncurses.c:405
+msgid "\tPress 'previous page' key to increment number of threads to use.\n"
+msgstr ""
+
+#: tui_ncurses.c:406
+msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
+msgstr ""
+
+#: tui_ncurses.c:407
+msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
+msgstr ""
+
+#: tui_ncurses.c:409
+msgid ""
+"\n"
+"Press any key to exit this help.\n"
+msgstr ""
+"\n"
+"या मदतीमधून बाहेर पडण्यासाठी कोणतीही की दाबा.\n"
+
+#: tui_ncurses.c:428
+msgid "If you want to update, press 'u' key, or anything else to skip.\n"
+msgstr "आपण अद्यतनित करू इच्छित असल्यास, 'u' की किंवा वगळण्यासाठी काहीही दाबा.\n"
+
+#: tui_ncurses.c:434
 #, c-format
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"\n"
+"\n"
+"%s will be updated."
 msgstr ""
-"आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये नाही."
-
-#: core.c:1226
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr ""
-
-#: core.c:659
-#, c-format
-msgid "Your GPU driver is unknown: %s"
-msgstr "आपला GPU ड्राइव्हर अज्ञात आहे: %s"
-
-#: core.c:729
-#, c-format
-msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr "आपला GPU विक्रेता अज्ञात आहे: %s (%#X)"
-
-#: util.c:321
-msgid "an error occurred while compiling regex"
-msgstr "regex कंपाईल करताना त्रुटी आली"
-
-#: main.c:445
-#, c-format
-msgid "an error occurred while extracting %s archive (%s)"
-msgstr "%s संग्रहण (%s) काढताना त्रुटी आली"
+"\n"
+"\n"
+"%s अद्यतनित केले जाईल."
 
 #: util.c:172
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr "फाइल '%s' (%s) उघडताना त्रुटी आली"
 
-#: main.c:527
-msgid "an error occurred while removing/renaming files"
-msgstr "फायली काढताना / पुनर्नामित करताना त्रुटी आली"
-
 #: util.c:212
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr "'%s' (%s) कमांड चालू करताना त्रुटी आली"
-
-#: main.c:846
-msgid "an error occurred while setting locale"
-msgstr "लोकॅल सेट करताना एक त्रुटी आली"
-
-#: core.c:1191
-msgid "an error occurred while starting benchmark"
-msgstr "बेंचमार्क सुरू करताना एक त्रुटी आली"
-
-#: core.c:147
-msgid "could not reallocate memory"
-msgstr "मेमरी रीलोकॉट करू शकलो नाही"
-
-#: core.c:1177
-msgid "failed to allocate memory for benchmark"
-msgstr "बेंचमार्कसाठी मेमरी वाटप करण्यात अयशस्वी"
-
-#: core.c:516
-msgid "failed to allocate memory for dmidecode"
-msgstr "डीमिडेकोडसाठी मेमरी वाटप करण्यात अयशस्वी"
-
-#: core.c:539
-msgid "failed to call dmidecode"
-msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
-
-#: core.c:219
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
-
-#: main.c:500
-#, c-format
-msgid "failed to download %s archive (%s)"
-msgstr "%s संग्रहण (%s) डाउनलोड करण्यात अयशस्वी"
-
-#: core.c:741
-msgid "failed to find chipset vendor and model"
-msgstr "चिपसेट विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
-
-#: core.c:679
-#, c-format
-msgid "failed to find graphic card driver (%s)"
-msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
-
-#: core.c:743
-msgid "failed to find graphic card vendor and model"
-msgstr "ग्राफिक कार्ड विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
-
-#: core.c:972
-msgid "failed to identify running system"
-msgstr "चालू प्रणाली ओळखण्यात अयशस्वी"
-
-#: gui_gtk.c:63
-msgid "failed to import UI in GtkBuilder"
-msgstr ""
-
-#: main.c:482
-#, c-format
-msgid "failed to open %s archive for writing"
-msgstr "लेखनासाठी %s संग्रह उघडण्यात अयशस्वी"
 
 #: util.c:250 util.c:310
 #, c-format
 msgid "failed to open %s directory"
 msgstr "%s निर्देशिका उघडण्यात अयशस्वी"
 
-#: core.c:400
-#, c-format
-msgid "failed to open CPU MSR (%s)"
-msgstr "सीपीयू एमएसआर (%s) उघडण्यात अयशस्वी"
-
-#: main.c:348 main.c:474
-msgid "failed to open a Curl session"
-msgstr "कर्ल सत्र उघडण्यात अयशस्वी"
-
-#: main.c:361
-#, c-format
-msgid "failed to perform the Curl transfer (%s)"
-msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
-
-#: core.c:1409
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
-
-#: core.c:1361
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "सीपीयू तापमान (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
-
-#: core.c:1388
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "सीपीयू व्होल्टेज (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
-
-#: core.c:954
-msgid "failed to retrieve GPU clocks"
-msgstr "GPU घड्याळे प्राप्त करण्यात अयशस्वी"
-
-#: core.c:825
-msgid "failed to retrieve GPU temperature"
-msgstr "GPU तापमान प्राप्त करण्यात अयशस्वी"
-
-#: core.c:1279
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "मदरबोर्ड माहिती पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
-
-#: core.c:1148
-#, c-format
-msgid "in %u hours"
-msgstr "%u तासात"
-
-#: core.c:1150
-#, c-format
-msgid "in %u minutes"
-msgstr "%u मिनिटात"
-
-#: core.c:1152
-#, c-format
-msgid "in %u seconds"
-msgstr "%u सेकंदात"
-
-#: main.c:362
-msgid "wrong write data"
-msgstr "चुकीचे डेटा लेखन"
+#: util.c:321
+msgid "an error occurred while compiling regex"
+msgstr "regex कंपाईल करताना त्रुटी आली"
