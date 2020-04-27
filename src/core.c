@@ -965,8 +965,7 @@ static int gpu_monitoring(Labels *data)
 			case GPUDRV_NOUVEAU_BUMBLEBEE:
 			{
 				char *pstate = NULL;
-				int ret_pstate = !system(format("grep --quiet '*' %s/%u/pstate", SYS_DRI, card_number)) ? popen_to_str(&pstate, "grep '*' %s/%u/pstate",  SYS_DRI, card_number) :
-				                                                                                          popen_to_str(&pstate, "sed -n 1p %s/%u/pstate", SYS_DRI, card_number);
+				int ret_pstate = popen_to_str(&pstate, "grep '\*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ",  SYS_DRI, card_number);
 				// ret_temp obtained above
 				ret_load  = -1;
 				ret_gclk  = !ret_pstate && sys_debug_ok(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
