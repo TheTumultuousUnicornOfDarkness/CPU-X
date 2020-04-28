@@ -213,6 +213,7 @@ target_link_libraries(${APP_EXEC}
 )
 
 target_link_libraries(${DAEMON_EXEC}
+	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
 
 	${LIBCPUID_LIBRARIES}
