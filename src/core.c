@@ -663,6 +663,7 @@ static bool gpu_is_on(char *device_path)
 #ifdef __linux__
 	return !access(format("%s/driver", device_path), F_OK);
 #else
+	UNUSED(device_path);
 	return false;
 #endif /* __linux__ */
 }
@@ -1005,7 +1006,8 @@ skip_clocks:
 	once_error = false;
 
 	return (failed_count == data->gpu_count);
-#else
+#else /* __linux__ */
+	UNUSED(data);
 	return 0;
 #endif /* __linux__ */
 }
@@ -1322,8 +1324,10 @@ static int motherboardtab_fallback(Labels *data)
 	/* Tab Motherboard */
 	for(i = 0; id[i] != NULL; i++)
 		err += fopen_to_str(&data->tab_motherboard[VALUE][i], "%s/%s", SYS_DMI, id[i]);
-
+#else /* __linux__ */
+	UNUSED(data);
 #endif /* __linux__ */
+
 	if(err)
 		MSG_ERROR("%s", _("failed to retrieve motherboard information (fallback mode)"));
 
@@ -1412,6 +1416,8 @@ static int cputab_temp_fallback(Labels *data)
 	}
 	else
 		MSG_ERROR("%s", _("failed to retrieve CPU temperature (fallback mode)"));
+#else /* __linux__ */
+	UNUSED(data);
 #endif /* __linux__ */
 
 	return err;
@@ -1439,6 +1445,8 @@ static int cputab_volt_fallback(Labels *data)
 	}
 	else
 		MSG_ERROR("%s", _("failed to retrieve CPU voltage (fallback mode)"));
+#else /* __linux__ */
+	UNUSED(data);
 #endif /* __linux__ */
 
 	return err;
@@ -1460,7 +1468,8 @@ static int cputab_freq_fallback(Labels *data)
 	}
 	else
 		MSG_ERROR("%s", _("failed to retrieve CPU frequency (fallback mode)"));
-
+#else /* __linux__ */
+	UNUSED(data);
 #endif /* __linux__ */
 
 	return err;
