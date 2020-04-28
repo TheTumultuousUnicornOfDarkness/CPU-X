@@ -1,24 +1,20 @@
 task:
+  name: FreeBSD
   freebsd_instance:
     matrix:
-      image: freebsd-12-0-release-amd64
-      image: freebsd-11-2-release-amd64
+      image_family: freebsd-11-3-snap
+      image_family: freebsd-12-1-snap
+      image_family: freebsd-13-0-snap
 
   install_script:
-    - pkg install -y cmake pkgconf gettext nasm ncurses libcpuid pciutils libstatgrab
-
-  before_script:
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_GTK=0 -DCMAKE_INSTALL_PREFIX=/usr ..
+    - pkg install -y cmake ninja pkgconf gettext nasm ncurses libcpuid pciutils libstatgrab
 
   build_script:
-    - cd build
-    - make -j$(sysctl -n hw.ncpu)
-    - sudo make -j$(sysctl -n hw.ncpu) install
+    - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0
+    - cmake --build build
+    - cmake --install build
 
-  check_script:
-    - cd build
+  run_script:
     - sudo CPUX_BCLK=100 cpu-x --issue-fmt
     - cat /tmp/cpu-x.log
     - cat /tmp/cpu-x-daemon.log
