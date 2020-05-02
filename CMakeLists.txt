@@ -39,7 +39,7 @@ include(CheckCCompilerFlag)
 check_c_compiler_flag("-no-pie" HAS_NO_PIE)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND HAS_NO_PIE)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
-endif(HAS_NO_PIE)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND HAS_NO_PIE)
 
 # Options
 option(WITH_GTK           "Build support for GUI in GTK3+"                                    ON)
