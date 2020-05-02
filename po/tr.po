@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-05-02 06:09+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-05-02 06:57+0000\n"
+"Last-Translator: Yaşar Çiv <yasarciv@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -910,7 +910,7 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"%sHay aksi, birşeyler yanlıştı! %s %d sinyali aldı (%s) ve çöktü.%s"
+"%sHay aksi, birşeyler yanlış gitti! %s %d sinyali aldı (%s) ve çöktü.%s"
 
 #: main.c:787
 msgid "You can paste this backtrace by opening a new issue here:"
@@ -949,18 +949,20 @@ msgid ""
 "\n"
 "Global keys:\n"
 msgstr ""
+"\n"
+"Küresel tuşlar:\n"
 
 #: tui_ncurses.c:388
 msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr ""
+msgstr "\tSol sekmeye geçmek için 'sol' tuşuna basın.\n"
 
 #: tui_ncurses.c:389
 msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr ""
+msgstr "\tSağ sekmeye geçmek için 'sağ' tuşuna basın.\n"
 
 #: tui_ncurses.c:390
 msgid "\tPress 'h' key to see this help.\n"
-msgstr ""
+msgstr "\tBu yardımı görmek için 'h' tuşuna basın.\n"
 
 #: tui_ncurses.c:391
 msgid "\tPress 'q' key to exit.\n"
@@ -971,6 +973,8 @@ msgid ""
 "\n"
 "CPU tab:\n"
 msgstr ""
+"\n"
+"CPU sekmesi:\n"
 
 #: tui_ncurses.c:394
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
@@ -978,51 +982,63 @@ msgstr "\tİzlenecek çekirdek sayısını azaltmak için 'aşağı' tuşuna bas
 
 #: tui_ncurses.c:395
 msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
+msgstr "\tİzlenecek çekirdek sayısını artırmak için 'yukarı' tuşuna basın.\n"
 
 #: tui_ncurses.c:397
 msgid ""
 "\n"
 "Caches tab:\n"
 msgstr ""
+"\n"
+"Önbellek sekmesi:\n"
 
 #: tui_ncurses.c:398
 msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr ""
+msgstr "\tÖnceki teste geçmek için 'aşağı' tuşuna basın.\n"
 
 #: tui_ncurses.c:399
 msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
+msgstr "\tBir sonraki teste geçmek için 'yukarı' tuşuna basın.\n"
 
 #: tui_ncurses.c:401
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr ""
+"\n"
+"Karşılaştırma sekmesi:\n"
 
 #: tui_ncurses.c:402
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
+msgstr "\tKarşılaştırma süresini azaltmak için 'aşağı' tuşuna basın.\n"
 
 #: tui_ncurses.c:403
 msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
+msgstr "\tKarşılaştırma süresini artırmak için 'yukarı' tuşuna basın.\n"
 
 #: tui_ncurses.c:404
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr ""
+"\tKullanılacak iş parçacığı sayısını azaltmak için 'sonraki sayfa' tuşuna "
+"basın.\n"
 
 #: tui_ncurses.c:405
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr ""
+"\tKullanılacak iş parçacığı sayısını artırmak için 'önceki sayfa' tuşuna "
+"basın.\n"
 
 #: tui_ncurses.c:406
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
+"\tAsal sayıları (yavaş) karşılaştırmayı başlatmak/durdurmak için 's' tuşuna "
+"basın.\n"
 
 #: tui_ncurses.c:407
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
+"\tAsal sayıları (hızlı) karşılaştırmayı başlatmak/durdurmak için 'f' tuşuna "
+"basın.\n"
 
 #: tui_ncurses.c:409
 msgid ""
@@ -1035,6 +1051,7 @@ msgstr ""
 #: tui_ncurses.c:428
 msgid "If you want to update, press 'u' key, or anything else to skip.\n"
 msgstr ""
+"Güncellemek isterseniz, 'u' tuşuna veya atlamak için başka bir şeye basın.\n"
 
 #: tui_ncurses.c:434
 #, c-format
@@ -1050,12 +1067,12 @@ msgstr ""
 #: util.c:172
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr ""
+msgstr "'%s' dosyası açılırken bir hata oluştu (%s)"
 
 #: util.c:212
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
+msgstr "'%s' komutu çalıştırılırken bir hata oluştu (%s)"
 
 #: util.c:250 util.c:310
 #, c-format
