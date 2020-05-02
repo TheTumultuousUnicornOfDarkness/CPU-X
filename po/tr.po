@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2018-09-16 13:53+0200\n"
-"PO-Revision-Date: 2020-05-02 06:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-05-02 20:54+0000\n"
+"Last-Translator: Yaşar Çiv <yasarciv@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -36,7 +36,7 @@ msgstr "Hafıza tekrardan tahsis edilemiyor"
 #: core.c:148
 #, c-format
 msgid "Exiting %s"
-msgstr "Çıkılıyor %s"
+msgstr "%s çıkışı yapılıyor"
 
 #: core.c:175
 msgid "Finding CPU technology"
@@ -49,7 +49,7 @@ msgid ""
 "family: %i"
 msgstr ""
 "CPU'nuz veritabanında bulunmamaktadır ==> %s, model: %i, harici model: %i, "
-"aile: %i"
+"harici aile: %i"
 
 #: core.c:204
 #, c-format
@@ -102,7 +102,7 @@ msgstr "CPU çarpanları hesaplanıyor"
 
 #: core.c:508
 msgid "Skip call to dmidecode (need to be root)"
-msgstr "dmidecall çağrılması es geç (root olmalı)"
+msgstr "dmidecall çağrılmasını es geç (root olmalı)"
 
 #: core.c:512
 msgid "Calling dmidecode"
@@ -141,24 +141,24 @@ msgstr "(%s sürücüsü)"
 #: core.c:679
 #, c-format
 msgid "failed to find graphic card driver (%s)"
-msgstr "grafik kartı sürücüsünü bulamadı (%s)"
+msgstr "grafik kartı sürücüsü bulunamadı (%s)"
 
 #: core.c:695
 msgid "Finding devices"
-msgstr "Cihazları bulma"
+msgstr "Aygıtları bulma"
 
 #: core.c:700
 msgid "Skip devices search (need to be root)"
-msgstr "Cihaz aramayı atla (root olmanız gerekir)"
+msgstr "Aygıt aramayı atla (root olmanız gerekir)"
 
 #: core.c:729
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr "GPU satıcınız bilinmiyor:%s (%#X)"
+msgstr "GPU satıcınız bilinmiyor: %s (%#X)"
 
 #: core.c:741
 msgid "failed to find chipset vendor and model"
-msgstr "yonga seti satıcısını ve modelini bulamadı"
+msgstr "yonga seti satıcısı ve model bulunamadı"
 
 #: core.c:743
 msgid "failed to find graphic card vendor and model"
@@ -178,7 +178,7 @@ msgstr "GPU sıcaklığı alınamadı"
 
 #: core.c:842
 msgid "Skip some GPU values (need to be root)"
-msgstr "Bazı GPU değerlerini atla(Root izni gerek)"
+msgstr "Bazı GPU değerlerini atla (Root izni gerek)"
 
 #: core.c:860
 msgid "Retrieving GPU clocks"
@@ -187,7 +187,7 @@ msgstr "GPU saatleri alınıyor"
 #: core.c:931
 #, c-format
 msgid "Driver for GPU %i doesn't report frequencies"
-msgstr "GPU %i için sürücü. frekans aralıklarını belirtmiyor"
+msgstr "%i GPU sürücüsü frekansları bildirmiyor"
 
 #: core.c:954
 msgid "failed to retrieve GPU clocks"
@@ -216,7 +216,7 @@ msgstr "%i gün, %i saat, %i dakika, %i saniye"
 
 #: core.c:1120
 msgid "Updating benchmark status"
-msgstr "Benchmark değerleri güncelleniyor"
+msgstr "Karşılaştırma durumu güncelleniyor"
 
 #: core.c:1121 tui_ncurses.c:754
 #, c-format
@@ -225,15 +225,15 @@ msgstr "%u dk"
 
 #: core.c:1123 core.c:1124
 msgid "Inactive"
-msgstr "Pasif"
+msgstr "Etkisiz"
 
 #: core.c:1128 core.c:1129
 msgid "Not started"
-msgstr "Başlamadı"
+msgstr "Başlatılmadı"
 
 #: core.c:1134
 msgid "Active"
-msgstr "Aktif"
+msgstr "Etkin"
 
 #: core.c:1139
 #, c-format
@@ -267,15 +267,15 @@ msgstr "%u saniye içinde"
 
 #: core.c:1168
 msgid "Starting benchmark"
-msgstr "Benchmark başlatılıyor"
+msgstr "Karşılaştırma başlatılıyor"
 
 #: core.c:1177
 msgid "failed to allocate memory for benchmark"
-msgstr "Benchmark için bellek ayrılamadı"
+msgstr "Karşılaştırma için bellek ayrılamadı"
 
 #: core.c:1191
 msgid "an error occurred while starting benchmark"
-msgstr "benchmark başlatılırken hata oluştu"
+msgstr "karşılaştırma başlatılırken hata oluştu"
 
 #: core.c:1208
 msgid "Finding CPU package in fallback mode"
@@ -349,7 +349,7 @@ msgstr "Root (kök) olarak çalıştır"
 #: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
 #, c-format
 msgid "A new version of %s is available!"
-msgstr "%s için yeni bir versiyon mevcut!"
+msgstr "%s için yeni bir sürüm mevcut!"
 
 #: gui_gtk.c:126 tui_ncurses.c:424
 #, c-format
@@ -357,7 +357,7 @@ msgid ""
 "Do you want to update %s to version %s after exit?\n"
 "It will erase this binary file (%s) by the new version."
 msgstr ""
-"Çıktıktan sonra %s versiyonu, %s versiyonuna yükseltmek ister misiniz?\n"
+"Çıktıktan sonra %s sürümünü, %s sürümüne yükseltmek ister misiniz?\n"
 "Bu işlem ikili dosyayı (%s) yenisiyle değiştirecektir."
 
 #: gui_gtk.c:129
@@ -371,7 +371,7 @@ msgstr "Güncelle"
 #: gui_gtk.c:515 tui_ncurses.c:480
 #, c-format
 msgid "Core #%i"
-msgstr "%i. Çekirdek"
+msgstr "Çekirdek #%i"
 
 #: main.c:62
 msgid "Setting label names"
@@ -415,7 +415,7 @@ msgstr "Aile"
 
 #: main.c:73
 msgid "Ext. Family"
-msgstr "Ext.Aile"
+msgstr "Harici Aile"
 
 #: main.c:74 main.c:111 main.c:122 main.c:155
 msgid "Model"
@@ -423,7 +423,7 @@ msgstr "Model"
 
 #: main.c:75
 msgid "Ext. Model"
-msgstr "Ek Model"
+msgstr "Harici Model"
 
 #: main.c:76
 msgid "Temp."
@@ -451,7 +451,7 @@ msgstr "Katsayı"
 
 #: main.c:83
 msgid "Bus Speed"
-msgstr "Bus Hızı"
+msgstr "Veri yolu Hızı"
 
 #: main.c:84 main.c:157
 msgid "Usage"
@@ -630,7 +630,7 @@ msgstr "Bellek saati"
 
 #: main.c:163
 msgid "Bench"
-msgstr "Sıra"
+msgstr "Karşılaştırma"
 
 #: main.c:164
 msgid "Prime numbers (slow)"
@@ -711,7 +711,7 @@ msgstr "Bellek boşaltma"
 
 #: main.c:344
 msgid "Checking on Internet for a new version..."
-msgstr "Yeni sürümü internetten denetleyin..."
+msgstr "Yeni sürüm internetten denetleniyor..."
 
 #: main.c:348 main.c:474
 msgid "failed to open a Curl session"
@@ -755,7 +755,7 @@ msgstr ""
 #: main.c:482
 #, c-format
 msgid "failed to open %s archive for writing"
-msgstr "%s yazmak için açılamadı"
+msgstr "%s arşivi yazmak için açılamadı"
 
 #: main.c:488
 msgid "Downloading new version..."
@@ -796,11 +796,11 @@ msgstr "Tüm verileri standart çıktıya ve çıkışa dök"
 
 #: main.c:551
 msgid "Run embedded command dmidecode and exit"
-msgstr "Gömülü komut dmidecode'u çalıştırın ve çıkın"
+msgstr "Gömülü dmidecode komutunu çalıştır ve çık"
 
 #: main.c:552
 msgid "Run embedded command bandwidth and exit"
-msgstr "Gömülmüş embedded komut bant genişliğini çalıştır ve çık"
+msgstr "Gömülü bandwidth komutunu çalıştır ve çık"
 
 #: main.c:553
 msgid "Set default tab (integer)"
@@ -812,11 +812,11 @@ msgstr "İzlenecek işlemci çekirdeğini seçin (tamsayı)"
 
 #: main.c:555
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr "İşlemci önbellek hızı için rastgele bantgenişliği kurun (tamsayı)"
+msgstr "İşlemci önbellek hızı için rastgele bantgenişliği ayarla (tamsayı)"
 
 #: main.c:556
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr "İki tazelemede arasında rastgele süre seçin (saniye)"
+msgstr "İki yenileme arasında rastgele süre seç (saniye)"
 
 #: main.c:557
 msgid "Disable colored output"
@@ -840,19 +840,19 @@ msgstr "Yardımı yazdır ve çık"
 
 #: main.c:562
 msgid "Print version and exit"
-msgstr "sürümü yazdır ve çık"
+msgstr "Sürümü yazdır ve çık"
 
 #: main.c:573
 msgid "Temporarily disable network support"
-msgstr "Ağ desteğini geçici olarak devre dışı bırakma"
+msgstr "Ağ desteğini geçici olarak devre dışı bırak"
 
 #: main.c:574
 msgid "Enforce the bus clock"
-msgstr "Yol saatini zorla"
+msgstr "Veri yolu saatini zorla"
 
 #: main.c:575
 msgid "Read CPUID raw data from a given file"
-msgstr "Belirli bir dosyadan İşlemci Kimliği ham verilerini okuma"
+msgstr "Belirli bir dosyadan İşlemci Kimliği ham verilerini oku"
 
 #: main.c:576
 msgid "Only print a message if CPU does not belong in database"
@@ -900,7 +900,7 @@ msgstr "%s üzerinde oluşturuldu, %s (%s ile %s %s üzerinde)."
 #: main.c:636
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr "--%-9s sürüm: %s"
+msgstr "-- %-9s sürüm: %s"
 
 #: main.c:772
 #, c-format
@@ -918,7 +918,7 @@ msgstr "Bu geri izlemeyi buraya yeni bir konu açarak yapıştırabilirsiniz:"
 
 #: main.c:846
 msgid "an error occurred while setting locale"
-msgstr "yerel ayarı yapılırken bir hata oluştu"
+msgstr "yerel ayar yapılırken bir hata oluştu"
 
 #: main.c:968
 #, c-format
@@ -1083,4 +1083,4 @@ msgstr "%s dizini açılamadı"
 
 #: util.c:321
 msgid "an error occurred while compiling regex"
-msgstr "Düzenli ifade derlenirken bir hata oluştu"
+msgstr "düzenli ifade derlenirken bir hata oluştu"
