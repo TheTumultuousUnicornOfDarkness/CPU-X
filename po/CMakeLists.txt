@@ -14,6 +14,7 @@ file(GLOB
 
 if(GETTEXT_FOUND)
 	set(GETTEXT_FOUND ON PARENT_SCOPE)
+	include(gettext_create_translations)
 	add_custom_target(genpot
 		COMMAND xgettext
 			--language=C
@@ -31,7 +32,7 @@ if(GETTEXT_FOUND)
 			"*.c" "cpu-x.h"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 	)
-	GETTEXT_CREATE_TRANSLATIONS(${pot_file} ALL ${po_files})
+	GETTEXT_CONVERT_TRANSLATIONS(${pot_file} ALL ${po_files})
 else(GETTEXT_FOUND)
 	set(GETTEXT_FOUND OFF PARENT_SCOPE)
 endif(GETTEXT_FOUND)
