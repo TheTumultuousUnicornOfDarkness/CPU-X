@@ -7,6 +7,7 @@ task:
       image_family: freebsd-13-0-snap
 
   install_script:
+    - pkg update -f
     - pkg install -y cmake ninja pkgconf gettext nasm ncurses libcpuid pciutils libstatgrab
 
   build_script:
