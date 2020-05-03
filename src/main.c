@@ -537,7 +537,7 @@ static void help(char *binary_name)
 	bool options_header = false;
 	char buff[MAXSTR];
 
-	MSG_STDOUT("%s", _("Usage: %s DISPLAY [OPTIONS]\n"), binary_name);
+	MSG_STDOUT(_("Usage: %s DISPLAY [OPTIONS]\n"), binary_name);
 	MSG_STDOUT("%s", _("Available DISPLAY:"));
 	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
@@ -547,7 +547,7 @@ static void help(char *binary_name)
 		if(!options_header && islower(cpux_options[i].short_opt))
 		{
 			options_header = true;
-			MSG_STDOUT("%s", _("\nAvailable OPTIONS:"));
+			MSG_STDOUT("\n%s", _("Available OPTIONS:"));
 		}
 
 		if(cpux_options[i].short_opt) snprintf(buff, MAXSTR, "  -%c,", cpux_options[i].short_opt);
@@ -555,7 +555,7 @@ static void help(char *binary_name)
 		MSG_STDOUT("%s --%-10s %s", buff, cpux_options[i].long_opt, _(cpux_options[i].description));
 	}
 
-	MSG_STDOUT("%s", _("\nInfluenceable environment variables:"));
+	MSG_STDOUT("\n%s", _("Influenceable environment variables:"));
 	for(i = 0; cpux_env_vars[i].var_name != NULL; i++)
 	{
 		if(!cpux_env_vars[i].has_mod)
@@ -594,14 +594,14 @@ static void version(bool full_header)
 		MSG_STDOUT("%s\n", PRGCPRGHT);
 		MSG_STDOUT("%s", _("This is free software: you are free to change and redistribute it."));
 		MSG_STDOUT("%s", _("This program comes with ABSOLUTELY NO WARRANTY"));
-		MSG_STDOUT("%s", _("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
+		MSG_STDOUT(_("See the %s license: <%s>\n"), PRGLCNS, LCNSURL);
 	}
 
 	/* Print features version */
 	for(i = 0; libs_ver[i].lib != NULL; i++)
 	{
 		if(libs_ver[i].has_mod)
-			MSG_STDOUT("%s", _("-- %-9s version: %s"), libs_ver[i].lib, libs_ver[i].version);
+			MSG_STDOUT(_("-- %-9s version: %s"), libs_ver[i].lib, libs_ver[i].version);
 	}
 }
 
@@ -757,7 +757,7 @@ static void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	MSG_STDERR("%s", _("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"),
+	MSG_STDERR(_("\n%sOops, something was wrong! %s has received signal %d (%s) and has crashed.%s"),
 	           BOLD_RED, PRGNAME, signum, strsignal(signum), DEFAULT);
 	MSG_STDERR("%s", "========================= Backtrace =========================");
 	PRGINFO(stderr);

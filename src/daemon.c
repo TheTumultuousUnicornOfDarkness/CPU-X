@@ -239,7 +239,7 @@ static void *request_handler(void *p_data)
 #endif /* HAS_LIBPCI */
 			case ACCESS_SYS_DEBUG:     __sys_debug_ok(&td->fd);              break;
 			case LOAD_MODULE:          __load_module(&td->fd);               break;
-			default: MSG_WARNING("%s", _("request_handler: case %i not handled"), cmd);
+			default: MSG_WARNING(_("request_handler: case %i not handled"), cmd);
 		}
 	}
 

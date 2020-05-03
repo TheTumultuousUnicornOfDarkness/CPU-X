@@ -226,7 +226,7 @@ static int cpu_technology(Labels *data)
 		}
 	}
 
-	MSG_WARNING("%s", _("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
+	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
 	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 	RETURN_OR_EXIT(2);
 }
@@ -252,7 +252,7 @@ static int call_libcpuid_static(Labels *data)
 
 	if(err || cpu_identify(&raw, &datanr))
 	{
-		MSG_ERROR("%s", _("failed to call libcpuid (%s)"), cpuid_error());
+		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
 		return 1;
 	}
 
@@ -523,7 +523,7 @@ static char *strdup_and_set_unit(char *str)
 			else if(!strncmp(&str[i], "@TB@", TOKEN_LEN))
 				j += snprintf(&ptr[j], len, "%s", UNIT_TB);
 			else
-				MSG_ERROR("%s", _("cannot find unit in '%s' string at position %i"), str, i);
+				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str, i);
 			i += TOKEN_LEN;
 		}
 		else
@@ -712,7 +712,7 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	/* Check GPU state */
 	if(!gpu_is_on(device_path))
 	{
-		MSG_WARNING("%s", _("No kernel driver in use for graphic card at path %s"), device_path);
+		MSG_WARNING(_("No kernel driver in use for graphic card at path %s"), device_path);
 		return 1;
 	}
 
@@ -731,7 +731,7 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	*gpu_driver = gpu_drivers[i].val;
 	if(*gpu_driver == GPUDRV_UNKNOWN)
 	{
-		MSG_WARNING("%s", _("Your GPU driver is unknown: %s"), buff);
+		MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
 		return 1;
 	}
 
@@ -778,7 +778,7 @@ static int find_devices(Labels *data)
 	}
 	if(ret && access(DEV_PCI, W_OK))
 	{
-		MSG_WARNING("%s", _("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
+		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
 		return 1;
 	}
 #endif /* __FreeBSD__ */
@@ -807,7 +807,7 @@ static int find_devices(Labels *data)
 				case 0x8086: gpu_vendor = "Intel";  break;
 				case 0x10DE: gpu_vendor = "NVIDIA"; break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
-				             MSG_WARNING("%s", _("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
+				             MSG_WARNING(_("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
 			}
 
 			memset(gpu_driver, 0, MAXSTR);
@@ -978,7 +978,7 @@ static int gpu_monitoring(Labels *data)
 			}
 			default:
 				if(once_error)
-					MSG_WARNING("%s", _("Driver for GPU %u doesn't report frequencies"), i);
+					MSG_WARNING(_("Driver for GPU %u doesn't report frequencies"), i);
 				continue;
 		}
 
@@ -1274,7 +1274,7 @@ static int cputab_package_fallback(Labels *data)
 		}
 	}
 
-	MSG_WARNING("%s", _("Your CPU socket does not belong in database ==> %s, codename: %s"),
+	MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
 		    data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
 	data->tab_cpu[VALUE][PACKAGE][0] = '\0';
 	return 2;
