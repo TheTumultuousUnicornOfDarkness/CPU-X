@@ -1,7 +1,8 @@
 /*
+ * Generic output functions
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2005-2020 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2020 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,20 +19,16 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  */
 
-#ifndef DMIDECODE_H
-#define DMIDECODE_H
+#include "dmidecode.h"
 
-#include "types.h"
-
-struct dmi_header
-{
-	u8 type;
-	u8 length;
-	u16 handle;
-	u8 *data;
-};
-
-int is_printable(const u8 *data, int len);
-const char *dmi_string(const struct dmi_header *dm, u8 s);
-
-#endif
+void pr_comment(const char *format, ...);
+void pr_info(const char *format, ...);
+void pr_handle(const struct dmi_header *h);
+void pr_handle_name(const char *format, ...);
+void pr_attr(const char *name, const char *format, ...);
+void pr_subattr(const char *name, const char *format, ...);
+void pr_list_start(const char *name, const char *format, ...);
+void pr_list_item(const char *format, ...);
+void pr_list_end(void);
+void pr_sep(void);
+void pr_struct_err(const char *format, ...);
