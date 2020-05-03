@@ -351,9 +351,11 @@ static void nrefresh(NThrd *refr)
 			line = LINE_3;
 			for(i = 0; i < data->gpu_count * GPUFIELDS; i += GPUFIELDS)
 			{
+				wclrline(win, line, info.tb, info.width - 2);
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1USAGE       + i], data->tab_graphics[VALUE][GPU1USAGE       + i]);
 				line++;
+				wclrline(win, line, info.tb, info.width - 2);
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK + i], data->tab_graphics[VALUE][GPU1CORECLOCK     + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK  + i], data->tab_graphics[VALUE][GPU1MEMCLOCK      + i]);
 				line += LINE_3 - 1;
