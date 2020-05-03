@@ -356,7 +356,7 @@ static void nrefresh(NThrd *refr)
 				line++;
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK + i], data->tab_graphics[VALUE][GPU1CORECLOCK     + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK  + i], data->tab_graphics[VALUE][GPU1MEMCLOCK      + i]);
-				line += GPUFIELDS - 1;
+				line += LINE_3 - 1;
 			}
 			break;
 		case NO_BENCH:
@@ -735,6 +735,10 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 
 		switch(i)
 		{
+			case GPU1DRIVER:
+			case GPU2DRIVER:
+			case GPU3DRIVER:
+			case GPU4DRIVER:
 			case GPU1USAGE:
 			case GPU2USAGE:
 			case GPU3USAGE:

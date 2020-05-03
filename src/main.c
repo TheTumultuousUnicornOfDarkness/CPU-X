@@ -147,6 +147,7 @@ static void labels_setname(Labels *data)
 		j = i / GPUFIELDS;
 		asprintf(&data->objects[FRAMGPU1 + j],                   _("Card %i"), j); // Frame label
 		asprintf(&data->tab_graphics[NAME][GPU1VENDOR      + i], _("Vendor"));
+		asprintf(&data->tab_graphics[NAME][GPU1DRIVER      + i], _("Driver"));
 		asprintf(&data->tab_graphics[NAME][GPU1MODEL       + i], _("Model"));
 		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));
 		asprintf(&data->tab_graphics[NAME][GPU1USAGE       + i], _("Usage"));

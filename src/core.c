@@ -815,7 +815,7 @@ static int find_devices(Labels *data)
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
-			//TODO: Add a new 'Driver' label with gpu_driver as value
+			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
 		}
@@ -882,14 +882,14 @@ static int gpu_monitoring(Labels *data)
 
 		if(gpu_ok && (data->g_data->gpu_driver[i] == GPUDRV_UNKNOWN))
 		{
-			char fixme[MAXSTR];
-			find_gpu_driver(data->g_data->device_path[i], fixme, &data->g_data->gpu_driver[i]);
-			//TODO: Set 'Driver' label
+			char gpu_driver[MAXSTR] = "";
+			find_gpu_driver(data->g_data->device_path[i], gpu_driver, &data->g_data->gpu_driver[i]);
+			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + i * GPUFIELDS], false, "%s", gpu_driver);
 		}
 		else if(!gpu_ok)
 		{
-			//TODO: Put "None" in 'Driver' label
 			data->g_data->gpu_driver[i] = GPUDRV_UNKNOWN;
+			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER      + i * GPUFIELDS], false, _("None"));
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], false, "---");

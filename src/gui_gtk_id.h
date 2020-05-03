@@ -89,10 +89,10 @@ static const char *objectsys_bar[LASTBAR] =
 /* Tab Graphics */
 static const char *objectgpu[LASTGRAPHICS] =
 {
-	"card0_vend", "card0_mod", "card0_temp", "card0_usage", "card0_gclk", "card0_mclk",
-	"card1_vend", "card1_mod", "card1_temp", "card1_usage", "card1_gclk", "card1_mclk",
-	"card2_vend", "card2_mod", "card2_temp", "card2_usage", "card2_gclk", "card2_mclk",
-	"card3_vend", "card3_mod", "card3_temp", "card3_usage", "card3_gclk", "card3_mclk"
+	"card0_vend", "card0_driver", "card0_mod", "card0_temp", "card0_usage", "card0_gclk", "card0_mclk",
+	"card1_vend", "card1_driver", "card1_mod", "card1_temp", "card1_usage", "card1_gclk", "card1_mclk",
+	"card2_vend", "card2_driver", "card2_mod", "card2_temp", "card2_usage", "card2_gclk", "card2_mclk",
+	"card3_vend", "card3_driver", "card3_mod", "card3_temp", "card3_usage", "card3_gclk", "card3_mclk"
 };
 
 /* Tab Bench */
