@@ -1380,6 +1380,9 @@ static int fallback_mode_static(Labels *data)
 static int cputab_temp_fallback(Labels *data)
 {
 	int err = 0;
+
+	MSG_VERBOSE("%s", _("Retrieving CPU temperature in fallback mode"));
+
 #ifdef __linux__
 	char *temp;
 	static char **cached_paths = NULL;
@@ -1395,7 +1398,6 @@ static int cputab_temp_fallback(Labels *data)
 		module_loaded = !load_module("k10temp", &data->socket_fd);
 # endif /* HAS_LIBCPUID */
 
-	MSG_VERBOSE("%s", _("Retrieving CPU temperature in fallback mode"));
 	/* Filenames are cached */
 	if(cached_paths == NULL)
 	{
@@ -1414,11 +1416,13 @@ static int cputab_temp_fallback(Labels *data)
 			free(temp);
 		}
 	}
-	else
-		MSG_ERROR("%s", _("failed to retrieve CPU temperature (fallback mode)"));
 #else /* __linux__ */
-	UNUSED(data);
+	/* Tested on FreeBSD 12: https://github.com/X0rg/CPU-X/issues/121#issuecomment-575985765 */
+	err = popen_to_str(&data->tab_cpu[VALUE][TEMPERATURE], "sysctl -n dev.cpu.%i.temperature", opts->selected_core);
 #endif /* __linux__ */
+
+	if(err)
+		MSG_ERROR("%s", _("failed to retrieve CPU temperature (fallback mode)"));
 
 	return err;
 }
