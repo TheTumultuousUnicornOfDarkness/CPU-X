@@ -26,7 +26,7 @@ if(WITH_GTK)
 
 	# AppData metainfo file
 	install(FILES
-		cpu-x.appdata.xml
+		org.cpu-x.appdata.xml
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/metainfo/
 	)
 
