@@ -43,7 +43,7 @@ if(WITH_GTK)
 	)
 
 	# Install schema file
-	add_schema("cpu-x.gschema.xml")
+	add_schema("org.cpu-x.gschema.xml")
 
 	add_subdirectory(icons)
 	add_subdirectory(logos)
