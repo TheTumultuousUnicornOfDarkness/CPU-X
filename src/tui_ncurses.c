@@ -384,7 +384,7 @@ static void print_help()
 	nodelay(stdscr, FALSE);
 	timeout(99999);
 
-	printw("%s", _("Welcome in %s NCurses help!\n"), PRGNAME);
+	printw(_("Welcome in %s NCurses help!\n"), PRGNAME);
 	printw("%s", _("This help describes how to use this Text-based User Interface.\n"));
 
 	printw("%s", _("\nGlobal keys:\n"));

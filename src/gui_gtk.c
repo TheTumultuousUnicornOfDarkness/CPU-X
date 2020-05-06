@@ -525,7 +525,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
 	for(i = 0; i < data->cpu_count; i++)
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format("%s", _("Core #%i"), i));
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format(_("Core #%i"), i));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
 	/* Tab Caches */
