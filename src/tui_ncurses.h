@@ -27,6 +27,8 @@
 
 #include <ncurses.h>
 
+#define DEFAULT_TERM "xterm"
+
 enum EnLines
 {
 	WINDOW_TOP_LINE,

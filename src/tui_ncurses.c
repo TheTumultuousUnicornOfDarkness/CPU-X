@@ -23,7 +23,9 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <ncurses.h>
+#include <term.h>
 #include <math.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -62,7 +64,7 @@ static const Colors color[] =
 /* Start CPU-X in NCurses mode */
 void start_tui_ncurses(Labels *data)
 {
-	int startx, starty, ch = 0;
+	int startx, starty, err = 0, ch = 0;
 	const SizeInfo info = { .height = LINE_COUNT, .width = 70, .start = 1, .tb = 2, .tm = 26, .te = 48 };
 	NThrd refr = { .data = data, .info = info };
 	WINDOW *win;
@@ -71,6 +73,21 @@ void start_tui_ncurses(Labels *data)
 	if(!getenv("TERMINFO"))
 		setenv("TERMINFO", TERMINFODIR, 0);
 	freopen("/dev/null", "a", stderr);
+	if(setupterm(NULL, STDOUT_FILENO, &err))
+	{
+		if(err == -1)
+		{
+			MSG_ERROR("%s", _("FATAL ERROR: terminfo database could not be found (try to set TERMINFO environment variable)"));
+			exit(255);
+		}
+		else
+		{
+			MSG_WARNING(_("Failed to set up %s terminal (err=%i); falling back to %s"), getenv("TERM"), err, DEFAULT_TERM);
+			setenv("TERM", DEFAULT_TERM, 1);
+			setupterm(DEFAULT_TERM, STDOUT_FILENO, &err);
+		}
+	}
+
 	initscr();
 	cbreak();
 	noecho();
