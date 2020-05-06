@@ -502,7 +502,7 @@ static void print_activecore(WINDOW *win)
 {
 	char buff[BUFF_SIZE];
 	snprintf(buff, BUFF_SIZE, _("Core #%i"), opts->selected_core);
-	mvwprintwc(win, LINE_17, 4, DEFAULT_COLOR, buff);
+	mvwprintwc(win, LINE_18, 4, DEFAULT_COLOR, buff);
 }
 #undef BUFF_SIZE
 
