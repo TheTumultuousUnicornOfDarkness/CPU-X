@@ -410,9 +410,11 @@ bool start_daemon(bool graphical)
 {
 	int wstatus = -1;
 	pid_t pid;
-	char *const cmd1[] = { DAEMON_PATH, NULL };
-	char *const cmd2[] = { "pkexec", DAEMON_PATH, NULL };
-	char *const cmd3[] = { "pkexec", "--disable-internal-agent", DAEMON_PATH, NULL };
+	char *const appdir = getenv("APPDIR");
+	char *const daemon = (appdir == NULL) ? DAEMON_PATH : format("%s/%s", appdir, DAEMON_PATH);
+	char *const cmd1[] = { daemon, NULL };
+	char *const cmd2[] = { "pkexec", daemon, NULL };
+	char *const cmd3[] = { "pkexec", "--disable-internal-agent", daemon, NULL };
 	char *const *cmd   = cmd2;
 
 	if(graphical)

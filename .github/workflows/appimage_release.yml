@@ -1,0 +1,42 @@
+name: AppImage Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  linux-appimage-release:
+    name: Linux x64_64 (Release)
+    runs-on: ubuntu-16.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get Git tag
+      run: echo ::set-env name=VERSION::${GITHUB_REF#refs/tags/}
+
+    - name: Build CPU-X
+      run: bash -x ./scripts/build_ubuntu.sh "Release" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+
+    - name: Package CPU-X as an AppImage
+      run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+
+    - name: Create stable release
+      uses: meeDamian/github-release@2.0
+      with:
+        token: "${{ secrets.GITHUB_TOKEN }}"
+        tag: ${{ env.VERSION }}
+        name: ${{ env.VERSION }}
+        draft: true
+        prerelease: false
+        body: |
+          **Version ${{ env.VERSION }}.**
+
+          Portable binary and distro packages are available in following tarballs.
+          *Note: Some extra packages may be included (like libcpuid-devel, cpuidtool or debug symbols), but they are not required to run CPU-X.*
+        files: >
+          AppImage/CPU-X-*.AppImage
+          AppImage/CPU-X-*.AppImage.zsync
+        gzip: false
+        allow_override: true

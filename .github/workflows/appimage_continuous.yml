@@ -1,0 +1,46 @@
+name: AppImage Continuous
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  linux-appimage-continuous:
+    name: Linux x64_64 (Continuous)
+    runs-on: ubuntu-16.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build CPU-X
+      run: bash -x ./scripts/build_ubuntu.sh "RelWithDebInfo" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+
+    - name: Package CPU-X as an AppImage
+      run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: AppImage
+        path: AppImage/*
+
+    - name: Create continuous release
+      uses: meeDamian/github-release@2.0
+      with:
+        token: "${{ secrets.GITHUB_TOKEN }}"
+        tag: continuous
+        name: Continuous build
+        draft: false
+        prerelease: true
+        body: |
+          :warning:  **Known issues:** https://github.com/X0rg/CPU-X/wiki/%5BPortable%5D-AppImage#known-issues
+
+          :heavy_check_mark:CPU-X AppImage built from latest commit ([${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})).
+
+          :scroll: Build log: https://github.com/${{ github.repository }}/commit/${{ github.sha }}/checks?check_suite_id=${{ github.run_id }}
+        files: >
+          AppImage/CPU-X-*.AppImage
+          AppImage/CPU-X-*.AppImage.zsync
+        gzip: false
+        allow_override: true
