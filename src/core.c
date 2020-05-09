@@ -215,9 +215,9 @@ static int cpu_technology(Labels *data)
 	else
 		db = technology_unknown;
 
-	while(db[++i].cpu_model != -1)
+	while(db[++i].cpu_model != -2)
 	{
-		if((db[i].cpu_model == l_data->cpu_model) &&
+		if(((db[i].cpu_model     < 0) || (db[i].cpu_model      == l_data->cpu_model))     &&
 		  ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == l_data->cpu_ext_model)) &&
 		  ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == l_data->cpu_ext_family)))
 		{

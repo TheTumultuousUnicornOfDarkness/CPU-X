@@ -90,7 +90,7 @@ const Technology_DB technology_intel[] =
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          22 }, // Haswell-E
 	{ 15,          79,          -1,          14 }, // Broadwell-E
-	{ -1,          -1,          -1,          -1 }
+	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
 
@@ -105,9 +105,6 @@ const Technology_DB technology_amd[] =
 	{  1,          -1,          20,          40 }, // Bobcat (Brazos Zacate)
 	{  1,           1,          21,          32 }, // Bulldozer
 	{  1,          96,          21,          28 }, // Bulldozer (Excavator: Carrizo)
-	{  1,           1,          23,          14 }, // Zen (Naples/Whitehaven/Summit Ridge)
-	{  1,          17,          23,          14 }, // Zen (Raven Ridge)
-	{  1,         113,          23,           7 }, // Zen 2 (Rome/Matisse)
 	{  2,          -1,          16,          65 }, // K10 (Kuma/Agena)
 	{  2,          -1,          20,          40 }, // Bobcat (Brazos Desna/Ontario)
 	{  2,          -1,          21,          32 }, // Bulldozer (Piledriver: Vishera)
@@ -121,8 +118,6 @@ const Technology_DB technology_amd[] =
 	{  8,          -1,           6,         130 }, // K7 (Thoroughbred/Applebred)
 	{  8,          -1,          15,          65 }, // K8 (Tyler)
 	{  8,          -1,          21,          28 }, // Bulldozer (Steamroller: Godavari)
-	{  8,           8,          23,          12 }, // Zen+ (Colfax/Pinnacle Ridge)
-	{  8,          24,          23,          12 }, // Zen+ (Picasso)
 	{  9,          -1,          16,          45 }, // Magny-Cours (Opteron)
 	{ 10,          -1,           6,         130 }, // K7 (Barton)
 	{ 10,          -1,          16,          45 }, // K10 (Thuban)
@@ -130,7 +125,14 @@ const Technology_DB technology_amd[] =
 	{ 12,          -1,          15,          90 }, // K8 (Venice/Sonora)
 	{ 15,          79,          15,          90 }, // K8 (Manila)
 	{ 15,         127,          15,          65 }, // K8 (Sparta)
-	{ -1,          -1,          -1,          -1 }
+	{ -1,           1,          23,          14 }, // Zen (Summit Ridge/Whitehaven/Naples)
+	{ -1,          17,          23,          14 }, // Zen (Raven Ridge)
+	{ -1,           8,          23,          12 }, // Zen+ (Pinnacle Ridge/Colfax)
+	{ -1,          24,          23,          12 }, // Zen+ (Picasso)
+	{ -1,          49,          23,           7 }, // Zen2 (Rome/Castle Peak)
+	{ -1,          96,          23,           7 }, // Zen2 (Renoir)
+	{ -1,         113,          23,           7 }, // Zen2 (Matisse)
+	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
 
