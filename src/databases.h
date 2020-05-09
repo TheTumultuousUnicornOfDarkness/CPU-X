@@ -58,6 +58,7 @@ const Technology_DB technology_intel[] =
 	{  6,          22,          -1,          65 }, // C2 Conroe-L
 	{  6,          54,          -1,          32 }, // Atom Cedarview
 	{  6,          70,          -1,          22 }, // Haswell (Crystalwell, L4 cache)
+	{  6,         102,          -1,          10 }, // Cannon Lake
 	{  7,           7,          -1,         250 }, // PIII Katmai
 	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          22 }, // Atom Bay Trail
@@ -82,8 +83,10 @@ const Technology_DB technology_intel[] =
 	{ 14,          62,          -1,          22 }, // Ivy Bridge-E
 	{ 14,          78,          -1,          14 }, // Skylake
 	{ 14,          94,          -1,          14 }, // Skylake
-	{ 14,         142,          -1,          14 }, // Skylake
+	{ 14,         126,          -1,          10 }, // Ice Lake
+	{ 14,         142,          -1,          14 }, // Kaby Lake / Coffee Lake
 	{ 14,         158,          -1,          14 }, // Kaby Lake / Coffee Lake
+	{ 14,         165,          -1,          14 }, // Comet Lake
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          22 }, // Haswell-E
 	{ 15,          79,          -1,          14 }, // Broadwell-E
