@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-10 21:00+0200\n"
-"PO-Revision-Date: 2020-04-10 19:09+0000\n"
+"PO-Revision-Date: 2020-05-11 18:31+0000\n"
 "Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -19,10 +19,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.0-dev\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<"
+"12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) ||"
+" (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -38,22 +38,19 @@ msgstr ""
 "ext. family: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-sposób"
+msgstr "%d x %d %s, %d-sposób"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-sposób"
+msgstr "%d %s, %d-sposób"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s przemienne, %d-bajtowy rozmiar linii"
+msgstr "%s przemienne, %d-%s rozmiar linii"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -83,7 +80,7 @@ msgstr "Obliczanie mnożnika CPU"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "nie można odnaleźć jednostki w ciągu '%s' w pozycji %i"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -100,7 +97,7 @@ msgstr "Wywołanie bandwidth"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Brak sterownika jądra dla karty graficznej przy ścieżce %s"
 
 #: core.c:745
 #, c-format
@@ -112,10 +109,9 @@ msgid "Finding devices"
 msgstr "Wyszukiwanie urządzeń"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Pomijam wyszukiwanie urządzeń (musisz być użytkownikiem root)"
+msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
 
 #: core.c:821
 #, c-format
@@ -136,13 +132,12 @@ msgstr "Pobieranie zegarów GPU"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Sterownik procesora graficznego %i nie raportuje częstotliwości"
+msgstr "Sterownik procesora graficznego %u nie raportuje częstotliwości"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -276,13 +271,11 @@ msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
 #: daemon.c:242
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "moduł obsługi żądań: przypadek %i nie obsługiwany"
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "Uruchamianie interfejsu GTK..."
+msgstr "Uruchamianie GTK GUI…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -290,15 +283,15 @@ msgstr "nie udało się zaimportować interfejsu z GtkBuilder"
 
 #: gui_gtk.c:486
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Połączony z demonem"
 
 #: gui_gtk.c:488
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Nie znaleziono agenta uwierzytelniającego polkit"
 
 #: gui_gtk.c:492
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Pytaj o hasło, aby uruchomić demona w tle"
 
 #: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:468
 #, c-format
@@ -308,7 +301,7 @@ msgstr "Rdzeń #%i"
 #: gui_gtk.c:586
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -555,7 +548,7 @@ msgstr "Karta %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Sterownik"
 
 #: main.c:147
 msgid "Temperature"
@@ -643,10 +636,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "To oprogramowanie jest dostarczane bez ŻADNEJ GWARANCJI"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "Czyszczenie danych..."
+msgstr "Przesyłanie danych…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -692,7 +683,7 @@ msgstr ""
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Uruchamianie i łączenie się z demonem"
 
 #: main.c:330
 msgid "Verbose output"
@@ -736,24 +727,12 @@ msgid "Available DISPLAY:"
 msgstr "Dostępny WYŚWIETLACZ:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Dostępne OPCJE:"
+msgstr "Dostępne OPCJE:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Zmienne środowiskowe, na które można wpłynąć:"
+msgstr "Zmienne środowiskowe, na które można wpłynąć:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -788,21 +767,21 @@ msgid "an error occurred while setting locale"
 msgstr "wystąpił błąd podczas ustawiania ustawień regionalnych"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "Uruchamianie NCurses TUI..."
+msgstr "Uruchamianie NCurses TUI…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"Błąd krytyczny: nie można było znaleźć bazy danych terminfo (spróbuj ustawić "
+"zmienną środowiskową TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Nie można skonfigurować terminala %s (err=%i); powrót do %s"
 
 #: tui_ncurses.c:119
 msgid "Press 'h' to see help.\n"
@@ -950,34 +929,32 @@ msgid "an error occurred while compiling regex"
 msgstr "wystąpił błąd podczas kompilacji wyrażenia regularnego"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "nie można przydzielić pamięci"
+msgstr "Błąd krytyczny: nie można przydzielić pamięci"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "bajtów"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Wychodzące %s"
