@@ -107,14 +107,6 @@ void start_tui_ncurses(Labels *data)
 			init_pair(pair, color[pair].foreground, color[pair].background);
 	}
 
-#if 0 //PORTABLE_BINARY
-	if(PORTABLE_BINARY && (new_version[0] != NULL) && !opts->update)
-	{
-		print_new_version();
-		erase();
-	}
-#endif /* PORTABLE_BINARY */
-
 	starty   = (LINES - info.height) / 2; /* Calculating for a center placement of the window */
 	startx   = (COLS  - info.width)  / 2;
 	win      = newwin(info.height, info.width, starty, startx);
@@ -433,34 +425,6 @@ static void print_help()
 	nodelay(stdscr, TRUE);
 	timeout(opts->refr_time * 1000);
 }
-
-#if 0 //PORTABLE_BINARY
-/* Ask for update when a new version is available (portable version only) */
-static void print_new_version()
-{
-	nodelay(stdscr, FALSE);
-
-	printw("%s", _("A new version of %s is available!"), PRGNAME);
-	printw("\n\n");
-
-	printw("%s", _("Do you want to update %s to version %s after exit?\n"
-		"It will erase this binary file (%s) by the new version."),
-		PRGNAME, new_version[0], binary_name);
-	printw("\n");
-	printw("%s", _("If you want to update, press 'u' key, or anything else to skip.\n"), PRGNAME);
-	refresh();
-
-	if(getch() == 'u')
-	{
-		opts->update = true;
-		printw("%s", _("\n\n%s will be updated."), PRGNAME);
-		refresh();
-		napms(1000);
-	}
-
-	nodelay(stdscr, TRUE);
-}
-#endif /* PORTABLE_BINARY */
 
 /* The main window (title, tabs, footer) */
 static void main_win(WINDOW *win, const SizeInfo info, Labels *data)

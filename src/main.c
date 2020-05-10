@@ -36,11 +36,6 @@
 #include <libintl.h>
 #include "cpu-x.h"
 
-#define HAS_WEB_SUPPORT (HAS_LIBCURL && HAS_LIBJSONC)
-#if HAS_WEB_SUPPORT
-# include <curl/curl.h>
-# include <json-c/json.h>
-#endif
 
 #define LOG_FILE "/tmp/cpu-x.log"
 
@@ -311,181 +306,6 @@ void labels_free(Labels *data)
 }
 
 
-/************************* Update-related functions *************************/
-
-#if 0 //FIXME: AppImage update
-#if HAS_WEB_SUPPORT
-/* Write function for Curl */
-static size_t writefunc(void *ptr, size_t size, size_t nmemb, void **stream)
-{
-	char **buff    = (char**) stream;
-	char *old_buff = *buff;
-	char *tmp      = NULL;
-	const size_t len     = size * nmemb;
-	const size_t old_len = (old_buff == NULL) ? 0 : strlen(old_buff);
-	const size_t new_len = old_len + len;
-
-	tmp = realloc(old_buff, new_len + 1);
-	ALLOC_CHECK(tmp);
-	*buff = tmp;
-	memcpy(&((*buff)[old_len]), ptr, len);
-	(*buff)[new_len] = '\0';
-
-	return len;
-}
-
-/* Check if running version is latest */
-static bool check_new_version(void)
-{
-	char *json = NULL;
-	CURL *curl;
-	CURLcode code;
-	json_object *jobj;
-
-	if(!opts->use_network)
-	{
-		asprintf(&new_version[1], "%c", '\0');
-		return false;
-	}
-
-	MSG_VERBOSE("%s", _("Checking on Internet for a new version…"));
-	curl = curl_easy_init();
-	if(!curl)
-	{
-		MSG_ERROR("%s", _("failed to open a Curl session"));
-		return 1;
-	}
-
-	curl_easy_setopt(curl, CURLOPT_URL, UPDURL);
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
-	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3L);
-	curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/" LIBCURL_VERSION);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &json);
-	code = curl_easy_perform(curl);
-	curl_easy_cleanup(curl);
-
-	if(code == CURLE_OK)
-	{
-		jobj = json_tokener_parse(json);
-		const char *tag_name = json_object_get_string(json_object_object_get(jobj, "tag_name"));
-		if((tag_name != NULL) && (strlen(tag_name) > 1))
-			asprintf(&new_version[0], &(tag_name[1])); // Remove the 'v' at beginning
-		json_object_put(jobj);
-	}
-	free(json);
-
-	if(new_version[0] == NULL)
-	{
-		MSG_ERROR("%s", _("failed to perform the Curl transfer (%s)"),
-			(new_version[0] != NULL) ? curl_easy_strerror(code) : _("wrong write data"));
-		opts->use_network = false;
-		asprintf(&new_version[1], "%c", '\0');
-	}
-	else if(strcmp(new_version[0], PRGVER))
-	{
-		MSG_VERBOSE("%s", _("A new version of %s is available!"), PRGNAME);
-		asprintf(&new_version[1], _("(version %s is available)"), new_version[0]);
-		return true;
-	}
-	else
-	{
-		MSG_VERBOSE("%s", _("No new version available"));
-		asprintf(&new_version[1], _("(up-to-date)"));
-	}
-
-	free(new_version[0]);
-	new_version[0] = NULL;
-	return false;
-}
-
-/* Apply new portable version if available */
-static int update_prg(void)
-{
-	int err;
-	char *archive = NULL, *new_binary = NULL;
-	CURL *curl;
-	CURLcode code;
-	FILE *file_descr = NULL;
-
-	if(!opts->use_network)
-	{
-		MSG_WARNING("%s", _("Network access is disabled by environment variable"
-		              " (set CPUX_NETWORK with a positive value to enable it)"));
-		return 1;
-	}
-
-	if(new_version[0] == NULL)
-	{
-		MSG_WARNING("%s", _("No new version available"));
-		return 2;
-	}
-
-	curl = curl_easy_init();
-	if(!curl)
-	{
-		MSG_ERROR("%s", _("failed to open a Curl session"));
-		return 3;
-	}
-
-	asprintf(&archive, "%s_v%s_portable%s.tar.gz", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK");
-	file_descr = fopen(archive, "wb");
-	if(file_descr == NULL)
-	{
-		MSG_ERRNO("%s", _("failed to open %s archive for writing"), archive);
-		free(archive);
-		return 4;
-	}
-
-	/* Download archive */
-	MSG_VERBOSE("%s", _("Downloading new version…"));
-	curl_easy_setopt(curl, CURLOPT_URL, format("%s/v%s/%s", TARBALL, new_version[0], archive));
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
-	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 2 * 60L);
-	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3L);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, file_descr);
-	code = curl_easy_perform(curl);
-	curl_easy_cleanup(curl);
-	fclose(file_descr);
-	if(code != CURLE_OK)
-	{
-		MSG_ERROR("%s", _("failed to download %s archive (%s)"), archive, curl_easy_strerror(code));
-		free(archive);
-		return 5;
-	}
-
-	/* Extract archive */
-	MSG_VERBOSE("%s", _("Extracting new version…"));
-	asprintf(&new_binary, "%s_v%s_portable%s.%s", PRGNAME, new_version[0], HAS_GTK ? "" : "_noGTK", OS);
-	err = extract_archive(archive, new_binary);
-	if(err)
-	{
-		remove(archive);
-		return err;
-	}
-
-	/* Rename new binary */
-	MSG_VERBOSE("%s", _("Applying new version…"));
-	if(strstr(binary_name, PRGVER) != NULL) // If binary name contains version
-	{
-		err  = remove(binary_name); // Delete old version and keep new version
-		err += rename(new_binary, format("%s_v%s", PRGNAME, new_version[0]));
-	}
-	else
-		err = rename(new_binary, binary_name); // Erase old version by new version
-
-	err += remove(archive);
-	if(err)
-		MSG_ERROR("%s", _("an error occurred while removing/renaming files"));
-	else
-		MSG_VERBOSE("%s", _("Update successful!"));
-
-	return err;
-}
-#endif /* HAS_WEB_SUPPORT */
-#endif
-
-
 /************************* Options-related functions *************************/
 
 static const struct
@@ -508,7 +328,6 @@ static const struct
 	{ HAS_BANDWIDTH,   'b', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
 	{ true,            'd', "daemon",    no_argument,       N_("Start and connect to daemon")                              },
 	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
-	//{ PORTABLE_BINARY, 'u', "update",    no_argument,       N_("Update portable version if a new version is available")    },
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
 	{ true,              0, "nocolor",   no_argument,       N_("Disable colored output")                                   },
@@ -523,7 +342,6 @@ static const struct
 	char       *description;
 } cpux_env_vars[] =
 {
-	{ HAS_WEB_SUPPORT, "CPUX_NETWORK",        N_("Temporarily disable network support")                     },
 	{ true,            "CPUX_BCLK",           N_("Enforce the bus clock")                                   },
 	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",      N_("Read CPUID raw data from a given file")                   },
 	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE", N_("Only print a message if CPU does not belong in database") },
@@ -572,8 +390,6 @@ static void version(bool full_header)
 	{
 		{ HAS_GTK,         "GTK",         GTK_VERSION         },
 		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
-		{ HAS_LIBCURL,     "LIBCURL",     LIBCURL_VERSION     },
-		{ HAS_LIBJSONC,    "LIBJSONC",    LIBJSONC_VERSION    },
 		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
 		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
@@ -582,11 +398,6 @@ static void version(bool full_header)
 		{ HAS_BANDWIDTH,   "BANDWIDTH",   BANDWIDTH_VERSION   },
 		{ false,           NULL,          NULL                }
 	};
-
-#if 0 //FIXME: AppImage update
-	if(HAS_WEB_SUPPORT)
-		check_new_version();
-#endif
 
 	PRGINFO(stdout);
 	if(full_header)
@@ -680,11 +491,6 @@ static void parse_arguments(int argc, char *argv[])
 			case 'v':
 				opts->verbose = true;
 				break;
-#if 0
-			case 'u':
-				opts->update = true;
-				break;
-#endif
 			case 'h':
 				help(argv[0]);
 				exit(EXIT_SUCCESS);
@@ -871,7 +677,6 @@ int main(int argc, char *argv[])
 		.verbose        = false,
 		.issue          = false,
 		.use_network    = true,
-		.update         = false,
 		.with_daemon    = false,
 		.debug_database = false,
 		.freq_fallback  = false,
@@ -902,11 +707,6 @@ int main(int argc, char *argv[])
 	labels_setname(data);
 	fill_labels   (data);
 
-#if 0 //FIXME: AppImage update
-	if(HAS_WEB_SUPPORT)
-		check_new_version();
-#endif
-
 	/* Show data */
 	if(HAS_GTK && (opts->output_type == OUT_GTK))
 		start_gui_gtk(&argc, &argv, data);
@@ -919,17 +719,6 @@ skip_init:
 		return run_dmidecode();
 	if(HAS_BANDWIDTH && (opts->output_type == OUT_BANDWIDTH))
 		return run_bandwidth();
-
-#if 0 //PORTABLE_BINARY
-	/* Only 64-bit portable binary can be updated since v3.2.1 */
-	if(PORTABLE_BINARY && HAS_WEB_SUPPORT && opts->update) {
-# ifdef __x86_64__
-		update_prg();
-# else
-		MSG_ERROR("%s", _("Sorry, you cannot update %s: 32-bit portable version is no more supported."), PRGNAME);
-# endif
-	}
-#endif /* PORTABLE_BINARY */
 
 	return EXIT_SUCCESS;
 }
