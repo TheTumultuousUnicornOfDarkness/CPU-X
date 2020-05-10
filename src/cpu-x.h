@@ -34,9 +34,7 @@
 #define PRGNAME               "CPU-X"
 #define PRGNAME_LOW           "cpu-x"
 #define PRGAUTH               "X0rg"
-#define PRGURL                "https://X0rg.github.io/CPU-X"
-#define UPDURL                "https://api.github.com/repos/"PRGAUTH"/"PRGNAME"/releases/latest"
-#define DOWNLOAD              "https://github.com/"PRGAUTH"/"PRGNAME"/releases/latest"
+#define PRGURL                "https://"PRGAUTH".github.io/"PRGNAME
 #define PRGCPRGHT             "Copyright © 2014-2020 Xorg"
 #define PRGLCNS               "GNU GPL v3"
 #define LCNSURL               "https://www.gnu.org/licenses/gpl.txt"

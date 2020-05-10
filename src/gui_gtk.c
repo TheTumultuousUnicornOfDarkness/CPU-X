@@ -54,13 +54,11 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	GtkLabels  glab;
 	GThrd      refr     = { &glab, data };
 	GtkBuilder *builder = gtk_builder_new();
-	gchar *prgname      = g_ascii_strdown(PRGNAME, -1);
 	const gchar *ui_files[] = { "cpu-x-gtk-3.12.ui", NULL };
 
 	MSG_VERBOSE("%s", _("Starting GTK GUI…"));
 	gtk_init(argc, argv);
-	g_set_prgname(prgname);
-	g_free(prgname);
+	g_set_prgname(PRGNAME_LOW);
 
 	/* Build UI from Glade file */
 	for(i = 0; (ui_files[i] != NULL) && (!gtk_builder_add_from_file(builder, data_path(ui_files[i]), NULL)); i++);
