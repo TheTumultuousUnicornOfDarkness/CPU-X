@@ -7,13 +7,14 @@
 # ssantos <ssantos@web.de>, 2019.
 # anonymous <noreply@weblate.org>, 2020.
 # Martin Beer <der_baer@yadim.dismail.de>, 2020.
+# nautilusx <mail.ka@mailbox.org>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-10 21:00+0200\n"
-"PO-Revision-Date: 2020-04-18 21:11+0000\n"
-"Last-Translator: Torge Matthies <openglfreak@googlemail.com>\n"
+"PO-Revision-Date: 2020-05-11 18:31+0000\n"
+"Last-Translator: nautilusx <mail.ka@mailbox.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0.2-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -37,22 +38,19 @@ msgstr ""
 "Familie: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d × %d KB, %d-fach"
+msgstr "%d × %d %s, %d-fach"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-fach"
+msgstr "%d %s, %d-fach"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s assoziativ, %d-byte Zeilengröße"
+msgstr "%s assoziativ, %d-%s Zeilengröße"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -135,13 +133,12 @@ msgstr "GPU-Taktgeber abrufen"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Keine"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Treiber von GPU %i meldet keine Taktfrequenzen"
+msgstr "Treiber von GPU %u meldet keine Taktfrequenzen"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -278,10 +275,8 @@ msgid "request_handler: case %i not handled"
 msgstr ""
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "GTK-GUI wird gestartet …"
+msgstr "GTK-GUI wird gestartet…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -307,7 +302,7 @@ msgstr "Kern %i"
 #: gui_gtk.c:586
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -554,7 +549,7 @@ msgstr "Karte %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Treiber"
 
 #: main.c:147
 msgid "Temperature"
@@ -642,10 +637,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dieses Programm kommt mit ABSOLUT KEINER GARANTIE"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "Daten werden ausgegeben …"
+msgstr "Daten werden ausgegeben…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -735,24 +728,12 @@ msgid "Available DISPLAY:"
 msgstr "Verfügbare ANZEIGE:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Verfügbare OPTIONEN:"
+msgstr "Verfügbare OPTIONEN:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Umgebungsvariablen:"
+msgstr "Umgebungsvariablen:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -790,10 +771,8 @@ msgid "an error occurred while setting locale"
 msgstr "Setzen des Gebietsschemas ist fehlgeschlagen"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "NCurses-TUI wird gestartet …"
+msgstr "NCurses-TUI wird gestartet…"
 
 #: tui_ncurses.c:80
 msgid ""
@@ -958,27 +937,27 @@ msgstr "konnte Speicher nicht neu zuweisen"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "Bytes"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "%s beenden"
