@@ -692,6 +692,9 @@ int main(int argc, char *argv[])
 	signal(SIGABRT, sighandler);
 
 	/* Parse options */
+#if HAS_GTK
+	load_settings();
+#endif /* HAS_GTK */
 	parse_arguments(argc, argv);
 	check_environment_variables(data);
 	if(opts->output_type > OUT_NO_CPUX)

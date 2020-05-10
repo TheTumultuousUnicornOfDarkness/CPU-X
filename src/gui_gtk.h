@@ -100,6 +100,9 @@ typedef struct
 
 /********************************** GUI  **********************************/
 
+/* Load and apply settings from GSettings */
+void load_settings(void);
+
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data);
 

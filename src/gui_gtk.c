@@ -34,6 +34,19 @@
 
 /************************* Public function *************************/
 
+/* Load and apply settings from GSettings */
+void load_settings()
+{
+	settings            = g_settings_new(PRGNAME_LOW);
+	theme               = g_settings_get_enum(settings, "gui-theme");
+	opts->refr_time     = g_settings_get_uint(settings, "refresh-time");
+	opts->selected_page = g_settings_get_enum(settings, "default-tab");
+	opts->selected_core = g_settings_get_uint(settings, "default-cpu-core");
+	opts->bw_test       = g_settings_get_uint(settings, "default-cache-test");
+	opts->with_daemon   = g_settings_get_boolean(settings, "always-start-daemon");
+	g_settings_delay(settings);
+}
+
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data)
 {
@@ -47,7 +60,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	MSG_VERBOSE("%s", _("Starting GTK GUI…"));
 	gtk_init(argc, argv);
 	g_set_prgname(prgname);
-	settings = g_settings_new("cpu-x");
 	g_free(prgname);
 
 	/* Build UI from Glade file */
@@ -57,15 +69,6 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 		MSG_ERROR("%s", _("failed to import UI in GtkBuilder"));
 		exit(EXIT_FAILURE);
 	}
-
-	/* Apply settings */
-	g_settings_delay(settings);
-	theme               = g_settings_get_enum(settings, "gui-theme");
-	opts->refr_time     = g_settings_get_uint(settings, "refresh-time");
-	opts->selected_page = g_settings_get_enum(settings, "default-tab");
-	opts->selected_core = g_settings_get_uint(settings, "default-cpu-core");
-	opts->bw_test       = g_settings_get_uint(settings, "default-cache-test");
-	opts->with_daemon   = g_settings_get_boolean(settings, "always-start-daemon");
 
 	/* Set widgets */
 	get_widgets(builder, &glab);

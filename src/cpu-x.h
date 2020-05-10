@@ -32,6 +32,7 @@
 
 /* Software definition */
 #define PRGNAME               "CPU-X"
+#define PRGNAME_LOW           "cpu-x"
 #define PRGAUTH               "X0rg"
 #define PRGURL                "https://X0rg.github.io/CPU-X"
 #define UPDURL                "https://api.github.com/repos/"PRGAUTH"/"PRGNAME"/releases/latest"
@@ -354,6 +355,9 @@ int run_bandwidth(void);
 
 /* Perform a multithreaded benchmark (compute prime numbers) */
 void start_benchmarks(Labels *data);
+
+/* Load and apply settings from GSettings */
+void load_settings(void);
 
 /* Start CPU-X in GTK mode */
 void start_gui_gtk(int *argc, char **argv[], Labels *data);
