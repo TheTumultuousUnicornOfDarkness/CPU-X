@@ -149,13 +149,17 @@ const Package_DB package_unknown[] = { { NULL, NULL, NULL } };
 
 const Package_DB package_intel[] =
 {
-	//Codename                          Model            Socket
-	{ "Atom (Diamondville)",            NULL,            "BGA 437"        },
-	{ "Pentium D (SmithField)",         NULL,            "LGA 775"        },
-	{ "Pentium D (Presler)",            NULL,            "LGA 775"        },
-	{ "Bloomfield (Core i7)",           NULL,            "LGA 1366"       },
-	{ NULL,                             NULL,            NULL             }
-	//Codename                          Model            Socket
+	//Codename                          Model                               Socket
+	{ "Atom (Diamondville)",            NULL,                               "BGA 437"        },
+	{ "Pentium D (SmithField)",         NULL,                               "LGA 775"        },
+	{ "Pentium D (Presler)",            NULL,                               "LGA 775"        },
+	{ "Bloomfield",                     NULL,                               "LGA 1366"       },
+	{ "Sandy Bridge",                   "Intel(R) Core(TM) i7-2860QM CPU",  "rPGA 988B"      },
+	{ "Ivy Bridge",                     "Intel(R) Core(TM) i7-3740QM CPU",  "rPGA 988B"      },
+	{ "Haswell",                        "Intel(R) Core(TM) i5-4300U CPU",   "BGA 1168"       },
+	{ "Skylake",                        "Intel(R) Core(TM) i7-6560U CPU",   "FCBGA 1356"     },
+	{ NULL,                             NULL,                               NULL             }
+	//Codename                          Model                               Socket
 };
 
 const Package_DB package_amd[] =
@@ -167,8 +171,9 @@ const Package_DB package_amd[] =
 	{ "Trinity X4",                     NULL,            "FM2 (PGA-ZIF)"  },
 	{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
 	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
-	{ "Zambezi",                        NULL,            "AM3+ (PGA-ZIF)" },
-	{ "Vishera",                        NULL,            "AM3+ (PGA-ZIF)" },
+	{ "Deneb",    "AMD Phenom(tm) II X4 945",            "AM3 (PGA-938"   },
+	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
+	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
 	/* Zen */
 	{ "Summit Ridge",                   NULL,            "AM4 (PGA-1331)"   },
 	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
