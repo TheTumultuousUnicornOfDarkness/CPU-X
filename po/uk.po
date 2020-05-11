@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2018-09-16 13:53+0200\n"
+"POT-Creation-Date: 2020-05-10 21:00+0200\n"
 "PO-Revision-Date: 2020-02-04 20:50+0000\n"
 "Last-Translator: Tymofij Lytvynenko <till.svit@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -18,20 +18,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.11-dev\n"
 
-#: core.c:147
-msgid "could not reallocate memory"
-msgstr "Не вдалося перерозподілити пам'ять"
-
-#: core.c:148
-#, c-format
-msgid "Exiting %s"
-msgstr "Вихід з %s"
-
-#: core.c:175
+#: core.c:210
 msgid "Finding CPU technology"
 msgstr "Пошук технології процесора"
 
-#: core.c:194
+#: core.c:229
 #, c-format
 msgid ""
 "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
@@ -40,853 +31,723 @@ msgstr ""
 "Ваш процесор відсутній у базі даних ==> %s, модель: %i, дод. модель: %i, "
 "дод. сімейство: %i"
 
-#: core.c:204
-#, c-format
-msgid "%d x %d KB, %d-way"
+#: core.c:240
+#, fuzzy, c-format
+#| msgid "%d x %d KB, %d-way"
+msgid "%d x %d %s, %d-way"
 msgstr "%d x %d КБ, %d-канальний"
 
-#: core.c:205
-#, c-format
-msgid "%d MB, %d-way"
+#: core.c:241
+#, fuzzy, c-format
+#| msgid "%d MB, %d-way"
+msgid "%d %s, %d-way"
 msgstr "%d Мб, %d-канальний"
 
-#: core.c:206
-#, c-format
-msgid "%s associative, %d-byte line size"
+#: core.c:242
+#, fuzzy, c-format
+#| msgid "%s associative, %d-byte line size"
+msgid "%s associative, %d-%s line size"
 msgstr "%s асоціативний, %d-байтовий розмір кеш-смуги"
 
-#: core.c:211
+#: core.c:247
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Виклик libcpuid для отримання статичних даних"
 
-#: core.c:219
+#: core.c:255
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "не вдалося викликати libcpuid (%s)"
 
-#: core.c:381
+#: core.c:428
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Виклик libcpuid для отримання динамічних даних"
 
-#: core.c:393
-msgid "Skip CPU MSR opening (need to be root)"
-msgstr ""
-"Пропустити відкриття моделезалежного реєстру процесора (потрібно мати root)"
-
-#: core.c:400
-#, c-format
-msgid "failed to open CPU MSR (%s)"
-msgstr "не вдалося відкрити моделезалежні реєстри процесора (%s)"
-
-#: core.c:416
+#: core.c:441
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Виклик libcpuid для отримання статичних значень моделезалежних реєстрів "
 "процесора"
 
-#: core.c:448
+#: core.c:466
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Виклик libcpuid для отримання динамічних значень моделезалежних реєстрів "
 "процесора"
 
-#: core.c:469
+#: core.c:489
 msgid "Calculating CPU multipliers"
 msgstr "Розрахунок множників процесора"
 
-#: core.c:508
-msgid "Skip call to dmidecode (need to be root)"
-msgstr "Пропустити виклик до dmidecode (потрібно мати root)"
+#: core.c:537
+#, c-format
+msgid "cannot find unit in '%s' string at position %i"
+msgstr ""
 
-#: core.c:512
+#: core.c:567
 msgid "Calling dmidecode"
 msgstr "Виклик dmidecode"
 
-#: core.c:516
-msgid "failed to allocate memory for dmidecode"
-msgstr "не вдалося виділити пам'ять для dmidecode"
-
-#: core.c:539
-msgid "failed to call dmidecode"
-msgstr "не вдалося викликати dmidecode"
-
-#: core.c:554
+#: core.c:600
 msgid "Calculating CPU usage"
 msgstr "Розрахунок завантаження процесора"
 
-#: core.c:604
+#: core.c:651
 msgid "Calling bandwidth"
 msgstr "Виклик пропускної спроможності"
 
-#: core.c:634
-msgid "Finding graphic card driver"
-msgstr "Пошук драйвера графічної карти"
+#: core.c:726
+#, c-format
+msgid "No kernel driver in use for graphic card at path %s"
+msgstr ""
 
-#: core.c:659
+#: core.c:745
 #, c-format
 msgid "Your GPU driver is unknown: %s"
 msgstr "Невідомий драйвер GPU: %s"
 
-#: core.c:661
-#, c-format
-msgid "(%s driver)"
-msgstr "(драйвер %s)"
-
-#: core.c:679
-#, c-format
-msgid "failed to find graphic card driver (%s)"
-msgstr "не вдалося знайти драйвер графічної карти (%s)"
-
-#: core.c:695
+#: core.c:780
 msgid "Finding devices"
 msgstr "Пошук пристроїв"
 
-#: core.c:700
-msgid "Skip devices search (need to be root)"
+#: core.c:792
+#, fuzzy, c-format
+#| msgid "Skip devices search (need to be root)"
+msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Пропустити пошук пристроїв (потрібно мати root)"
 
-#: core.c:729
+#: core.c:821
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
 msgstr "Постачальник графічного процесора невідомий: %s (%#X)"
 
-#: core.c:741
+#: core.c:837
 msgid "failed to find chipset vendor and model"
 msgstr "не вдалося знайти постачальника чи модель чіпсету"
 
-#: core.c:743
+#: core.c:839
 msgid "failed to find graphic card vendor and model"
 msgstr "не вдалося знайти постачальника та модель графічної карти"
 
-#: core.c:779
-msgid "Retrieving GPU temperature"
-msgstr "Отримання температури GPU"
-
-#: core.c:786
-msgid "Off"
-msgstr "Вимк."
-
-#: core.c:825
-msgid "failed to retrieve GPU temperature"
-msgstr "не вдалося отримати температуру GPU"
-
-#: core.c:842
-msgid "Skip some GPU values (need to be root)"
-msgstr "Пропустіть деякі значення GPU (потрібно мати root)"
-
-#: core.c:860
+#: core.c:882
 msgid "Retrieving GPU clocks"
 msgstr "Отримання частоти GPU"
 
-#: core.c:931
-#, c-format
-msgid "Driver for GPU %i doesn't report frequencies"
+#: core.c:903
+msgid "None"
+msgstr ""
+
+#: core.c:992
+#, fuzzy, c-format
+#| msgid "Driver for GPU %i doesn't report frequencies"
+msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Драйвер для GPU %i не звітує частоти"
 
-#: core.c:954
+#: core.c:1016
 msgid "failed to retrieve GPU clocks"
 msgstr "не вдалося отримати частоту GPU"
 
-#: core.c:969
+#: core.c:1033
 msgid "Identifying running system"
 msgstr "Виявлення запущеної системи"
 
-#: core.c:972
+#: core.c:1036
 msgid "failed to identify running system"
 msgstr "не вдалося визначити запущену систему"
 
-#: core.c:1013
+#: core.c:1078
 msgid "Calling libprocps"
 msgstr "Виклик libprocps"
 
-#: core.c:1035
+#: core.c:1100
 msgid "Calling libstatgrab"
 msgstr "Виклик libstatgrab"
 
-#: core.c:1065
+#: core.c:1130
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i днів, %i годин, %i хвилин, %i секунд"
 
-#: core.c:1120
+#: core.c:1186
 msgid "Updating benchmark status"
 msgstr "Оновлення стану тестів"
 
-#: core.c:1121 tui_ncurses.c:754
+#: core.c:1187 tui_ncurses.c:747
 #, c-format
 msgid "%u mins"
 msgstr "%u хв."
 
-#: core.c:1123 core.c:1124
+#: core.c:1189 core.c:1190
 msgid "Inactive"
 msgstr "Неактивний"
 
-#: core.c:1128 core.c:1129
+#: core.c:1194 core.c:1195
 msgid "Not started"
 msgstr "Не запущено"
 
-#: core.c:1134
+#: core.c:1200
 msgid "Active"
 msgstr "Активний"
 
-#: core.c:1139
+#: core.c:1205
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u годин лишилось)"
 
-#: core.c:1141
+#: core.c:1207
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u хвилин лишилось)"
 
-#: core.c:1143
+#: core.c:1209
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u секунд лишилося)"
 
-#: core.c:1148
+#: core.c:1214
 #, c-format
 msgid "in %u hours"
 msgstr "за %u годин"
 
-#: core.c:1150
+#: core.c:1216
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u хвилин"
 
-#: core.c:1152
+#: core.c:1218
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u секунд"
 
-#: core.c:1168
+#: core.c:1234
 msgid "Starting benchmark"
 msgstr "Запустити тестування"
 
-#: core.c:1177
-msgid "failed to allocate memory for benchmark"
-msgstr "не вдалося виділити пам'ять для тестів"
-
-#: core.c:1191
+#: core.c:1253
 msgid "an error occurred while starting benchmark"
 msgstr ""
 
-#: core.c:1208
+#: core.c:1270
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:1226
+#: core.c:1288
 #, c-format
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgstr ""
 
-#: core.c:1245
+#: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:1272
+#: core.c:1334
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:1279
+#: core.c:1343
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:1344
+#: core.c:1395
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:1361
+#: core.c:1436
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:1375
+#: core.c:1449
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:1388
+#: core.c:1462
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:1401
+#: core.c:1477
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:1409
+#: core.c:1485
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
-#: gui_gtk.c:49
-msgid "Starting GTK GUI..."
+#: daemon.c:242
+#, c-format
+msgid "request_handler: case %i not handled"
 msgstr ""
 
-#: gui_gtk.c:63
+#: gui_gtk.c:59
+msgid "Starting GTK GUI…"
+msgstr ""
+
+#: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
 msgstr ""
 
-#: gui_gtk.c:98 main.c:940
-msgid "Root privileges are required to work properly"
+#: gui_gtk.c:486
+msgid "Connected to daemon"
 msgstr ""
 
-#: gui_gtk.c:101 main.c:941
-msgid "Some information will not be retrievable"
+#: gui_gtk.c:488
+msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.c:103
-msgid "Ignore"
+#: gui_gtk.c:492
+msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:107
-msgid "Run as root"
-msgstr ""
-
-#: gui_gtk.c:123 main.c:368 tui_ncurses.c:422
-#, c-format
-msgid "A new version of %s is available!"
-msgstr ""
-
-#: gui_gtk.c:126 tui_ncurses.c:424
-#, c-format
-msgid ""
-"Do you want to update %s to version %s after exit?\n"
-"It will erase this binary file (%s) by the new version."
-msgstr ""
-
-#: gui_gtk.c:129
-msgid "Not now"
-msgstr ""
-
-#: gui_gtk.c:129
-msgid "Update"
-msgstr ""
-
-#: gui_gtk.c:515 tui_ncurses.c:480
+#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:468
 #, c-format
 msgid "Core #%i"
 msgstr ""
 
-#: main.c:62
+#: gui_gtk.c:586
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: main.c:52
 msgid "Setting label names"
 msgstr ""
 
-#: main.c:64
+#: main.c:54
 msgid "CPU"
 msgstr ""
 
-#: main.c:65
+#: main.c:55
 msgid "Processor"
 msgstr ""
 
-#: main.c:66 main.c:121 main.c:154
+#: main.c:56 main.c:111 main.c:144
 msgid "Vendor"
 msgstr ""
 
-#: main.c:67
+#: main.c:57
 msgid "Code Name"
 msgstr ""
 
-#: main.c:68
+#: main.c:58
 msgid "Package"
 msgstr ""
 
-#: main.c:69
+#: main.c:59
 msgid "Technology"
 msgstr ""
 
-#: main.c:70
+#: main.c:60
 msgid "Voltage"
 msgstr ""
 
-#: main.c:71
+#: main.c:61
 msgid "Specification"
 msgstr ""
 
-#: main.c:72
+#: main.c:62
 msgid "Family"
 msgstr ""
 
-#: main.c:73
+#: main.c:63
 msgid "Ext. Family"
 msgstr ""
 
-#: main.c:74 main.c:111 main.c:122 main.c:155
+#: main.c:64 main.c:101 main.c:112 main.c:146
 msgid "Model"
 msgstr ""
 
-#: main.c:75
+#: main.c:65
 msgid "Ext. Model"
 msgstr ""
 
-#: main.c:76
+#: main.c:66
 msgid "Temp."
 msgstr ""
 
-#: main.c:77
+#: main.c:67
 msgid "Stepping"
 msgstr ""
 
-#: main.c:78
+#: main.c:68
 msgid "Instructions"
 msgstr ""
 
-#: main.c:80
+#: main.c:70
 msgid "Clocks"
 msgstr ""
 
-#: main.c:81
+#: main.c:71
 msgid "Core Speed"
 msgstr ""
 
-#: main.c:82
+#: main.c:72
 msgid "Multiplier"
 msgstr ""
 
-#: main.c:83
+#: main.c:73
 msgid "Bus Speed"
 msgstr ""
 
-#: main.c:84 main.c:157
+#: main.c:74 main.c:148
 msgid "Usage"
 msgstr ""
 
-#: main.c:86
+#: main.c:76
 msgid "Cache"
 msgstr ""
 
-#: main.c:87
+#: main.c:77
 msgid "L1 Data"
 msgstr ""
 
-#: main.c:88
+#: main.c:78
 msgid "L1 Inst."
 msgstr ""
 
-#: main.c:89
+#: main.c:79
 msgid "Level 2"
 msgstr ""
 
-#: main.c:90
+#: main.c:80
 msgid "Level 3"
 msgstr ""
 
-#: main.c:92
+#: main.c:82
 msgid "Socket(s)"
 msgstr ""
 
-#: main.c:93
+#: main.c:83
 msgid "Core(s)"
 msgstr ""
 
-#: main.c:94
+#: main.c:84
 msgid "Thread(s)"
 msgstr ""
 
-#: main.c:97
+#: main.c:87
 msgid "Caches"
 msgstr ""
 
-#: main.c:101
+#: main.c:91
 #, c-format
 msgid "L%i Cache"
 msgstr ""
 
-#: main.c:102
+#: main.c:92
 msgid "Size"
 msgstr ""
 
-#: main.c:103
+#: main.c:93
 msgid "Speed"
 msgstr ""
 
-#: main.c:105
+#: main.c:95
 msgid "Test"
 msgstr ""
 
-#: main.c:108 main.c:109
+#: main.c:98 main.c:99
 msgid "Motherboard"
 msgstr ""
 
-#: main.c:110
+#: main.c:100
 msgid "Manufacturer"
 msgstr ""
 
-#: main.c:112
+#: main.c:102
 msgid "Revision"
 msgstr ""
 
-#: main.c:114
+#: main.c:104
 msgid "BIOS"
 msgstr ""
 
-#: main.c:115
+#: main.c:105
 msgid "Brand"
 msgstr ""
 
-#: main.c:116
+#: main.c:106
 msgid "Version"
 msgstr ""
 
-#: main.c:117
+#: main.c:107
 msgid "Date"
 msgstr ""
 
-#: main.c:118
+#: main.c:108
 msgid "ROM Size"
 msgstr ""
 
-#: main.c:120
+#: main.c:110
 msgid "Chipset"
 msgstr ""
 
-#: main.c:125 main.c:141
+#: main.c:115 main.c:131
 msgid "Memory"
 msgstr ""
 
-#: main.c:128
+#: main.c:118
 #, c-format
 msgid "Bank %i"
 msgstr ""
 
-#: main.c:129
+#: main.c:119
 msgid "Reference"
 msgstr ""
 
-#: main.c:133
+#: main.c:123
 msgid "System"
 msgstr ""
 
-#: main.c:134
+#: main.c:124
 msgid "Operating System"
 msgstr ""
 
-#: main.c:135
+#: main.c:125
 msgid "Kernel"
 msgstr ""
 
-#: main.c:136
+#: main.c:126
 msgid "Distribution"
 msgstr ""
 
-#: main.c:137
+#: main.c:127
 msgid "Hostname"
 msgstr ""
 
-#: main.c:138
+#: main.c:128
 msgid "Uptime"
 msgstr ""
 
-#: main.c:139
+#: main.c:129
 msgid "Compiler"
 msgstr ""
 
-#: main.c:142
+#: main.c:132
 msgid "Used"
 msgstr ""
 
-#: main.c:143
+#: main.c:133
 msgid "Buffers"
 msgstr ""
 
-#: main.c:144
+#: main.c:134
 msgid "Cached"
 msgstr ""
 
-#: main.c:145
+#: main.c:135
 msgid "Free"
 msgstr ""
 
-#: main.c:146
+#: main.c:136
 msgid "Swap"
 msgstr ""
 
-#: main.c:149
+#: main.c:139
 msgid "Graphics"
 msgstr ""
 
-#: main.c:153
+#: main.c:143
 #, c-format
 msgid "Card %i"
 msgstr ""
 
-#: main.c:156
+#: main.c:145
+msgid "Driver"
+msgstr ""
+
+#: main.c:147
 msgid "Temperature"
 msgstr ""
 
-#: main.c:158
+#: main.c:149
 msgid "GPU clock"
 msgstr ""
 
-#: main.c:159
+#: main.c:150
 msgid "Memory clock"
 msgstr ""
 
-#: main.c:163
+#: main.c:154
 msgid "Bench"
 msgstr ""
 
-#: main.c:164
+#: main.c:155
 msgid "Prime numbers (slow)"
 msgstr ""
 
-#: main.c:165
+#: main.c:156
 msgid "Prime numbers (fast)"
 msgstr ""
 
-#: main.c:168
+#: main.c:159
 msgid "Score"
 msgstr ""
 
-#: main.c:169
+#: main.c:160
 msgid "Run"
 msgstr ""
 
-#: main.c:172
+#: main.c:163
 msgid "Parameters"
 msgstr ""
 
-#: main.c:173
+#: main.c:164
 msgid "Duration"
 msgstr ""
 
-#: main.c:174
+#: main.c:165
 msgid "Threads"
 msgstr ""
 
-#: main.c:177 main.c:182
+#: main.c:168 main.c:173
 msgid "About"
 msgstr ""
 
-#: main.c:179
+#: main.c:170
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
 
-#: main.c:183
+#: main.c:174
 #, c-format
 msgid "Version %s"
 msgstr ""
 
-#: main.c:184
+#: main.c:175
 #, c-format
 msgid "Author: %s"
 msgstr ""
 
-#: main.c:185
+#: main.c:176
 #, c-format
 msgid "Site: %s"
 msgstr ""
 
-#: main.c:187
+#: main.c:178
 msgid "License"
 msgstr ""
 
-#: main.c:190
+#: main.c:181
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr ""
 
-#: main.c:192 main.c:627
+#: main.c:183 main.c:407
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr ""
 
-#: main.c:259
-msgid "Dumping data..."
+#: main.c:250
+msgid "Dumping data…"
 msgstr ""
 
-#: main.c:301
+#: main.c:292
 msgid "Freeing memory"
 msgstr ""
 
-#: main.c:344
-msgid "Checking on Internet for a new version..."
-msgstr ""
-
-#: main.c:348 main.c:474
-msgid "failed to open a Curl session"
-msgstr ""
-
-#: main.c:361
-#, c-format
-msgid "failed to perform the Curl transfer (%s)"
-msgstr ""
-
-#: main.c:362
-msgid "wrong write data"
-msgstr ""
-
-#: main.c:369
-#, c-format
-msgid "(version %s is available)"
-msgstr ""
-
-#: main.c:374 main.c:467
-msgid "No new version available"
-msgstr ""
-
-#: main.c:375
-msgid "(up-to-date)"
-msgstr ""
-
-#: main.c:445
-#, c-format
-msgid "an error occurred while extracting %s archive (%s)"
-msgstr ""
-
-#: main.c:460
-msgid ""
-"Network access is disabled by environment variable (set CPUX_NETWORK with a "
-"positive value to enable it)"
-msgstr ""
-
-#: main.c:482
-#, c-format
-msgid "failed to open %s archive for writing"
-msgstr ""
-
-#: main.c:488
-msgid "Downloading new version..."
-msgstr ""
-
-#: main.c:500
-#, c-format
-msgid "failed to download %s archive (%s)"
-msgstr ""
-
-#: main.c:506
-msgid "Extracting new version..."
-msgstr ""
-
-#: main.c:516
-msgid "Applying new version..."
-msgstr ""
-
-#: main.c:527
-msgid "an error occurred while removing/renaming files"
-msgstr ""
-
-#: main.c:529
-msgid "Update successful!"
-msgstr ""
-
-#: main.c:548
+#: main.c:320
 msgid "Start graphical user interface (GUI) (default)"
 msgstr ""
 
-#: main.c:549
+#: main.c:321
 msgid "Start text-based user interface (TUI)"
 msgstr ""
 
-#: main.c:550
+#: main.c:322
 msgid "Dump all data on standard output and exit"
 msgstr ""
 
-#: main.c:551
+#: main.c:323
 msgid "Run embedded command dmidecode and exit"
 msgstr ""
 
-#: main.c:552
+#: main.c:324
 msgid "Run embedded command bandwidth and exit"
 msgstr ""
 
-#: main.c:553
-msgid "Set default tab (integer)"
-msgstr ""
-
-#: main.c:554
-msgid "Select CPU core to monitor (integer)"
-msgstr ""
-
-#: main.c:555
-msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr ""
-
-#: main.c:556
+#: main.c:325
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr ""
 
-#: main.c:557
-msgid "Disable colored output"
+#: main.c:326
+msgid "Set default tab (integer)"
 msgstr ""
 
-#: main.c:558
-msgid "Print required information to paste in an issue"
+#: main.c:327
+msgid "Select CPU core to monitor (integer)"
 msgstr ""
 
-#: main.c:559
+#: main.c:328
+msgid "Set custom bandwidth test for CPU caches speed (integer)"
+msgstr ""
+
+#: main.c:329
+msgid "Start and connect to daemon"
+msgstr ""
+
+#: main.c:330
 msgid "Verbose output"
 msgstr ""
 
-#: main.c:560
-msgid "Update portable version if a new version is available"
-msgstr ""
-
-#: main.c:561
+#: main.c:331
 msgid "Print help and exit"
 msgstr ""
 
-#: main.c:562
+#: main.c:332
 msgid "Print version and exit"
 msgstr ""
 
-#: main.c:573
-msgid "Temporarily disable network support"
+#: main.c:333
+msgid "Disable colored output"
 msgstr ""
 
-#: main.c:574
+#: main.c:334
+msgid "Print required information to paste in an issue"
+msgstr ""
+
+#: main.c:345
 msgid "Enforce the bus clock"
 msgstr ""
 
-#: main.c:575
+#: main.c:346
 msgid "Read CPUID raw data from a given file"
 msgstr ""
 
-#: main.c:576
+#: main.c:347
 msgid "Only print a message if CPU does not belong in database"
 msgstr ""
 
-#: main.c:585
+#: main.c:358
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr ""
 
-#: main.c:586
+#: main.c:359
 msgid "Available DISPLAY:"
 msgstr ""
 
-#: main.c:590
-msgid ""
-"\n"
-"Available OPTIONS:"
+#: main.c:368
+msgid "Available OPTIONS:"
 msgstr ""
 
-#: main.c:595
-msgid ""
-"\n"
-"Influenceable environment variables:"
+#: main.c:376
+msgid "Influenceable environment variables:"
 msgstr ""
 
-#: main.c:626
+#: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 
-#: main.c:628
+#: main.c:408
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr ""
 
-#: main.c:629
-#, c-format
-msgid "Built on %s, %s (with %s %s on %s)."
-msgstr ""
-
-#: main.c:636
+#: main.c:415
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr ""
 
-#: main.c:772
+#: main.c:566
 #, c-format
 msgid ""
 "\n"
@@ -894,150 +755,217 @@ msgid ""
 "%s"
 msgstr ""
 
-#: main.c:787
+#: main.c:581
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr ""
 
-#: main.c:846
+#: main.c:608
 msgid "an error occurred while setting locale"
 msgstr ""
 
-#: main.c:968
-#, c-format
+#: tui_ncurses.c:72
+msgid "Starting NCurses TUI…"
+msgstr ""
+
+#: tui_ncurses.c:80
 msgid ""
-"Sorry, you cannot update %s: 32-bit portable version is no more supported."
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
 msgstr ""
 
-#: tui_ncurses.c:70
-msgid "Starting NCurses TUI..."
+#: tui_ncurses.c:85
+#, c-format
+msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 
-#: tui_ncurses.c:110
+#: tui_ncurses.c:119
 msgid "Press 'h' to see help.\n"
 msgstr ""
 
-#: tui_ncurses.c:384
+#: tui_ncurses.c:396
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr ""
 
-#: tui_ncurses.c:385
+#: tui_ncurses.c:397
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
 
-#: tui_ncurses.c:387
+#: tui_ncurses.c:399
 msgid ""
 "\n"
 "Global keys:\n"
 msgstr ""
 
-#: tui_ncurses.c:388
+#: tui_ncurses.c:400
 msgid "\tPress 'left' key to switch in left tab.\n"
 msgstr ""
 
-#: tui_ncurses.c:389
+#: tui_ncurses.c:401
 msgid "\tPress 'right' key to switch in right tab.\n"
 msgstr ""
 
-#: tui_ncurses.c:390
+#: tui_ncurses.c:402
 msgid "\tPress 'h' key to see this help.\n"
 msgstr ""
 
-#: tui_ncurses.c:391
+#: tui_ncurses.c:403
 msgid "\tPress 'q' key to exit.\n"
 msgstr ""
 
-#: tui_ncurses.c:393
+#: tui_ncurses.c:405
 msgid ""
 "\n"
 "CPU tab:\n"
 msgstr ""
 
-#: tui_ncurses.c:394
+#: tui_ncurses.c:406
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr ""
 
-#: tui_ncurses.c:395
-msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
-
-#: tui_ncurses.c:397
-msgid ""
-"\n"
-"Caches tab:\n"
-msgstr ""
-
-#: tui_ncurses.c:398
-msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr ""
-
-#: tui_ncurses.c:399
-msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
-
-#: tui_ncurses.c:401
-msgid ""
-"\n"
-"Bench tab:\n"
-msgstr ""
-
-#: tui_ncurses.c:402
-msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
-
-#: tui_ncurses.c:403
-msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
-
-#: tui_ncurses.c:404
-msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
-
-#: tui_ncurses.c:405
-msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
-
-#: tui_ncurses.c:406
-msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
-msgstr ""
-
 #: tui_ncurses.c:407
-msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
+msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
 
 #: tui_ncurses.c:409
 msgid ""
 "\n"
+"Caches tab:\n"
+msgstr ""
+
+#: tui_ncurses.c:410
+msgid "\tPress 'down' key to switch to previous test.\n"
+msgstr ""
+
+#: tui_ncurses.c:411
+msgid "\tPress 'up' key' to switch to next test.\n"
+msgstr ""
+
+#: tui_ncurses.c:413
+msgid ""
+"\n"
+"Bench tab:\n"
+msgstr ""
+
+#: tui_ncurses.c:414
+msgid "\tPress 'down' key to decrement benchmark duration.\n"
+msgstr ""
+
+#: tui_ncurses.c:415
+msgid "\tPress 'up' key to increment benchmark duration.\n"
+msgstr ""
+
+#: tui_ncurses.c:416
+msgid "\tPress 'next page' key to decrement number of threads to use.\n"
+msgstr ""
+
+#: tui_ncurses.c:417
+msgid "\tPress 'previous page' key to increment number of threads to use.\n"
+msgstr ""
+
+#: tui_ncurses.c:418
+msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
+msgstr ""
+
+#: tui_ncurses.c:419
+msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
+msgstr ""
+
+#: tui_ncurses.c:421
+msgid ""
+"\n"
 "Press any key to exit this help.\n"
 msgstr ""
 
-#: tui_ncurses.c:428
-msgid "If you want to update, press 'u' key, or anything else to skip.\n"
-msgstr ""
-
-#: tui_ncurses.c:434
-#, c-format
-msgid ""
-"\n"
-"\n"
-"%s will be updated."
-msgstr ""
-
-#: util.c:172
+#: util.c:181
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr ""
 
-#: util.c:212
+#: util.c:221
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr ""
 
-#: util.c:250 util.c:310
+#: util.c:269 util.c:329
 #, c-format
 msgid "failed to open %s directory"
 msgstr ""
 
-#: util.c:321
+#: util.c:340
 msgid "an error occurred while compiling regex"
 msgstr ""
+
+#: cpu-x.h:52
+#, fuzzy
+#| msgid "could not reallocate memory"
+msgid "FATAL ERROR: could not allocate memory"
+msgstr "Не вдалося перерозподілити пам'ять"
+
+#: cpu-x.h:87
+msgid "bytes"
+msgstr ""
+
+#. TRANSLATORS: kilo-Byte
+#: cpu-x.h:89
+msgid "kB"
+msgstr ""
+
+#. TRANSLATORS: Mega-Byte
+#: cpu-x.h:91
+msgid "MB"
+msgstr ""
+
+#. TRANSLATORS: Giga-Byte
+#: cpu-x.h:93
+msgid "GB"
+msgstr ""
+
+#. TRANSLATORS: Tera-Byte
+#: cpu-x.h:95
+msgid "TB"
+msgstr ""
+
+#~ msgid "Exiting %s"
+#~ msgstr "Вихід з %s"
+
+#~ msgid "Skip CPU MSR opening (need to be root)"
+#~ msgstr ""
+#~ "Пропустити відкриття моделезалежного реєстру процесора (потрібно мати "
+#~ "root)"
+
+#~ msgid "failed to open CPU MSR (%s)"
+#~ msgstr "не вдалося відкрити моделезалежні реєстри процесора (%s)"
+
+#~ msgid "Skip call to dmidecode (need to be root)"
+#~ msgstr "Пропустити виклик до dmidecode (потрібно мати root)"
+
+#~ msgid "failed to allocate memory for dmidecode"
+#~ msgstr "не вдалося виділити пам'ять для dmidecode"
+
+#~ msgid "failed to call dmidecode"
+#~ msgstr "не вдалося викликати dmidecode"
+
+#~ msgid "Finding graphic card driver"
+#~ msgstr "Пошук драйвера графічної карти"
+
+#~ msgid "(%s driver)"
+#~ msgstr "(драйвер %s)"
+
+#~ msgid "failed to find graphic card driver (%s)"
+#~ msgstr "не вдалося знайти драйвер графічної карти (%s)"
+
+#~ msgid "Retrieving GPU temperature"
+#~ msgstr "Отримання температури GPU"
+
+#~ msgid "Off"
+#~ msgstr "Вимк."
+
+#~ msgid "failed to retrieve GPU temperature"
+#~ msgstr "не вдалося отримати температуру GPU"
+
+#~ msgid "Skip some GPU values (need to be root)"
+#~ msgstr "Пропустіть деякі значення GPU (потрібно мати root)"
+
+#~ msgid "failed to allocate memory for benchmark"
+#~ msgstr "не вдалося виділити пам'ять для тестів"
