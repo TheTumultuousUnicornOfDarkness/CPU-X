@@ -4,13 +4,14 @@
 # Xorg, 2015-2018
 # Mattéo Rossillol <beatussum@protonmail.com>, 2019.
 # Xorg <xorgbreaker@gmail.com>, 2019.
+# Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-10 21:00+0200\n"
-"PO-Revision-Date: 2019-12-01 17:05+0000\n"
-"Last-Translator: Xorg <xorgbreaker@gmail.com>\n"
+"PO-Revision-Date: 2020-05-11 18:31+0000\n"
+"Last-Translator: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -34,22 +35,19 @@ msgstr ""
 "modèle ét. : %i, famille ét. : %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d Ko, %d voies"
+msgstr "%d x %d %s, %d voies"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d Mo, %d voies"
+msgstr "%d %s, %d voies"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s associatives, %d octets par ligne"
+msgstr "%s associatives, %d %s par ligne"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -81,7 +79,7 @@ msgstr "Calcule les multiplicateurs du processeur"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "impossible de trouver l'unité dans la chaîne « %s » à la position %i"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -98,7 +96,7 @@ msgstr "Appel bandwidth"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Aucun pilote noyau n'est utilisé par la carte graphique de chemin %s"
 
 #: core.c:745
 #, c-format
@@ -110,10 +108,11 @@ msgid "Finding devices"
 msgstr "Recherche des périphériques"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Saute la recherche des périphériques (besoin d'être super-utilisateur)"
+msgstr ""
+"Saute la recherche des périphériques (mauvaises permissions pour le "
+"périphérique %s)"
 
 #: core.c:821
 #, c-format
@@ -135,13 +134,12 @@ msgstr "Récupère les fréquences de la carte-graphique"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Le pilote de la carte-graphique %i ne rapporte pas les fréquences"
+msgstr "Le pilote de la carte-graphique %u ne rapporte pas les fréquences"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -283,13 +281,11 @@ msgstr ""
 #: daemon.c:242
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler : le cas %i n'est pas géré"
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "Démarrage de l'interface graphique GTK..."
+msgstr "Démarrage de l'interface graphique GTK…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -297,7 +293,7 @@ msgstr "échec lors de l'import de l'interface dans GtkBuilder"
 
 #: gui_gtk.c:486
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Connecté au démon"
 
 #: gui_gtk.c:488
 msgid "No polkit authentication agent found"
@@ -315,7 +311,7 @@ msgstr "Cœur #%i"
 #: gui_gtk.c:586
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -562,7 +558,7 @@ msgstr "Carte %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Pilote"
 
 #: main.c:147
 msgid "Temperature"
@@ -650,10 +646,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Ce programme est distribué SANS AUCUNE GARANTIE"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "Vidage des données..."
+msgstr "Vidage des données…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -701,7 +695,7 @@ msgstr ""
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Démarrer le démon et s'y connecter"
 
 #: main.c:330
 msgid "Verbose output"
@@ -748,24 +742,12 @@ msgid "Available DISPLAY:"
 msgstr "AFFICHAGE disponible :"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"OPTIONS disponibles :"
+msgstr "OPTIONS disponibles :"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Variables d'environnements influençables :"
+msgstr "Variables d'environnements influençables :"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -805,16 +787,16 @@ msgid "an error occurred while setting locale"
 msgstr "une erreur est survenue lors de la définition des locales"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "Démarrage de l'interface texte NCurses..."
+msgstr "Démarrage de l'interface texte NCurses…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"ERREUR FATALE : la base de données terminfo ne peut pas être trouvée ("
+"essayez de spécifier la variable d'environnement TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
@@ -969,34 +951,32 @@ msgstr ""
 "une erreur est survenue lors de la compilation des expressions régulières"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "n'a pas pu réallouer la mémoire"
+msgstr "ERREUR FATALE : n'a pas pu réallouer la mémoire"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "octets"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "ko"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "Mo"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "Go"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "To"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Quitte %s"
