@@ -308,9 +308,6 @@ char *format(char *str, ...);
 /* Similar to format(), but string can be colorized */
 char *colorized_msg(const char *color, const char *str, ...);
 
-/* Check if a command exists */
-bool command_exists(char *command);
-
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(char **buffer, char *str, ...);
 

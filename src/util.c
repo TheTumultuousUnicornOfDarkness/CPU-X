@@ -94,7 +94,7 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...)
 }
 
 /* Return a formatted string */
-#define BUFFER_COUNT 5
+#define BUFFER_COUNT 10
 char *format(char *str, ...)
 {
 	static unsigned count = 0;
@@ -109,7 +109,6 @@ char *format(char *str, ...)
 	va_start(aptr, str);
 	vasprintf(&buff[index], str, aptr);
 	va_end(aptr);
-
 	return buff[index];
 }
 #undef BUFFER_COUNT
@@ -130,21 +129,6 @@ char *colorized_msg(const char *color, const char *str, ...)
 	va_end(aptr);
 
 	return buff;
-}
-
-/* Check if a command exists */
-bool command_exists(char *command)
-{
-	bool exists = false;
-	char *dir;
-	char *save_path = strdup(getenv("PATH"));
-	char *path = save_path;
-
-	while(((dir = strsep(&path, ":")) != NULL) && !exists)
-		exists = !access(format("%s/%s", dir, command), X_OK);
-	free(save_path);
-
-	return exists;
 }
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
@@ -186,24 +170,14 @@ error:
 /* Run a command and put output in a variable ('str' accept printf-like format) */
 int popen_to_str(char **buffer, char *str, ...)
 {
-	bool command_ok;
 	char tmp[MAXSTR], error_str[MAXSTR] = "unknown";
-	char *cmd_str = NULL, *test_command  = NULL;
+	char *cmd_str = NULL;
 	FILE *pipe_descr = NULL;
 	va_list aptr;
 
 	va_start(aptr, str);
 	vasprintf(&cmd_str, str, aptr);
 	va_end(aptr);
-
-	test_command = strdup(cmd_str);
-	command_ok = command_exists(strtok(test_command, " "));
-	free(test_command);
-	if(!command_ok)
-	{
-		free(cmd_str);
-		return -1;
-	}
 
 	if((pipe_descr = popen(cmd_str, "r")) == NULL)
 		GOTO_ERROR("popen");
