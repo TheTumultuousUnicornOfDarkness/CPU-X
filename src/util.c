@@ -349,6 +349,10 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 					/* 'sensors' output:
 					temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
 					err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
+				else if(strstr(sensor, "zenpower") != NULL)
+					/* 'sensors' output:
+					Tdie:         +67.9°C  (high = +95.0°C) */
+					err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
 				break;
 			case RQT_CPU_TEMPERATURE_OTHERS:
 				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_other, cached_path);
