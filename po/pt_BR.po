@@ -5,21 +5,22 @@
 # Rui Mendes <xz9@protonmail.com>, 2019.
 # Seila Oxe <vugiful@freemaillink.com>, 2019.
 # DanielDevBR <ferion11@gmail.com>, 2020.
+# Celio Alves <dreamcelio@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-10 21:00+0200\n"
-"PO-Revision-Date: 2020-02-24 15:33+0000\n"
-"Last-Translator: DanielDevBR <ferion11@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"PO-Revision-Date: 2020-05-14 01:41+0000\n"
+"Last-Translator: Celio Alves <dreamcelio@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -35,16 +36,14 @@ msgstr ""
 "ext. família: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-via"
+msgstr "%d x %d %s, %d-via(s)"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-via"
+msgstr "%d %s, %d-via(s)"
 
 #: core.c:242
 #, fuzzy, c-format
@@ -97,7 +96,7 @@ msgstr "Chamando bandwidth"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Nenhum driver do kernel em uso para a placa de vídeo no caminho %s"
 
 #: core.c:745
 #, c-format
@@ -109,10 +108,9 @@ msgid "Finding devices"
 msgstr "Encontrando dispositivos"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Pular pesquisa de dispositivos (precisa estar em root)"
+msgstr "Pular pesquisa de dispositivos (permissões erradas no dispositivo %s)"
 
 #: core.c:821
 #, c-format
@@ -133,13 +131,12 @@ msgstr "Obtendo clock da GPU"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "O driver para a GPU %i não reporta frequências"
+msgstr "O driver para a GPU %u não reporta frequências"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -276,10 +273,8 @@ msgid "request_handler: case %i not handled"
 msgstr ""
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "Iniciando a interface gráfica GTK..."
+msgstr "Iniciando a interface gráfica GTK…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -287,15 +282,15 @@ msgstr "Falhou ao importar UI no GtkBuilder"
 
 #: gui_gtk.c:486
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Conectado ao daemon"
 
 #: gui_gtk.c:488
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Não foi encontrado nenhum agente de autenticação polkit"
 
 #: gui_gtk.c:492
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Pedir senha para iniciar o daemon em segundo plano"
 
 #: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:468
 #, c-format
@@ -305,7 +300,7 @@ msgstr "Núcleo #%i"
 #: gui_gtk.c:586
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -552,7 +547,7 @@ msgstr "Placa %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Driver"
 
 #: main.c:147
 msgid "Temperature"
@@ -640,10 +635,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Esse programa vem com ABSOLUTAMENTE NENHUMA GARANTIA"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "Dados de despejo..."
+msgstr "Dados de despejo…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -690,7 +683,7 @@ msgstr ""
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Iniciar e conectar ao daemon"
 
 #: main.c:330
 msgid "Verbose output"
@@ -734,24 +727,12 @@ msgid "Available DISPLAY:"
 msgstr "Tela disponível:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Opções disponíveis:"
+msgstr "OPÇÕES disponíveis:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Variáveis de ambiente influenciáveis:"
+msgstr "Variáveis de ambiente influenciáveis:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -801,7 +782,7 @@ msgstr ""
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Falha ao configurar o terminal %s (err=%i); voltando para %s"
 
 #: tui_ncurses.c:119
 msgid "Press 'h' to see help.\n"
@@ -943,14 +924,12 @@ msgid "an error occurred while compiling regex"
 msgstr "um erro ocorreu enquanto compilava o regex"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "Não foi possível realocar a memória"
+msgstr "ERRO FATAL: não foi possível alocar memória"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "bytes"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
