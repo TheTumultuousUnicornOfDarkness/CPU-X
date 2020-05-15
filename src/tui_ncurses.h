@@ -103,9 +103,6 @@ static bool resize_window(WINDOW *pwin, const SizeInfo info);
 /* Clean window */
 static void wclrscr(WINDOW *pwin);
 
-/* Clean line */
-static void wclrline(WINDOW *pwin, enum EnLines line, unsigned start, unsigned end);
-
 /* Similar to mvwprintw, but specify a color pair */
 static int mvwprintwc(WINDOW *win, int y, int x, enum EnColors pair, const char *fmt, ...);
 
