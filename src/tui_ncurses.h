@@ -97,6 +97,9 @@ typedef struct
 
 /********************************** TUI  **********************************/
 
+/* Put window in the center of the screen */
+static bool resize_window(WINDOW *pwin, const SizeInfo info);
+
 /* Clean window */
 static void wclrscr(WINDOW *pwin);
 

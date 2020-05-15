@@ -64,7 +64,7 @@ static const Colors color[] =
 /* Start CPU-X in NCurses mode */
 void start_tui_ncurses(Labels *data)
 {
-	int startx, starty, err = 0, ch = 0;
+	int err = 0, ch = 0;
 	const SizeInfo info = { .height = LINE_COUNT, .width = 70, .start = 1, .tb = 2, .tm = 26, .te = 48 };
 	NThrd refr = { .data = data, .info = info };
 	WINDOW *win;
@@ -107,16 +107,14 @@ void start_tui_ncurses(Labels *data)
 			init_pair(pair, color[pair].foreground, color[pair].background);
 	}
 
-	starty   = (LINES - info.height) / 2; /* Calculating for a center placement of the window */
-	startx   = (COLS  - info.width)  / 2;
-	win      = newwin(info.height, info.width, starty, startx);
+	win      = newwin(info.height, info.width, 0, 0);
 	refr.win = win;
 
-	refresh();
-	main_win(win, info, data);
-	(*func_ptr[opts->selected_page])(win, info, data);
-	timeout(opts->refr_time * 1000);
-	printw("%s", _("Press 'h' to see help.\n"));
+	if(resize_window(win, info))
+	{
+		main_win(win, info, data);
+		(*func_ptr[opts->selected_page])(win, info, data);
+	}
 
 	while(ch != 'q')
 	{
@@ -128,8 +126,11 @@ void start_tui_ncurses(Labels *data)
 				if(opts->selected_page > NO_CPU)
 				{
 					opts->selected_page--;
-					main_win(win, info, data);
-					(*func_ptr[opts->selected_page])(win, info, data);
+					if(resize_window(win, info))
+					{
+						main_win(win, info, data);
+						(*func_ptr[opts->selected_page])(win, info, data);
+					}
 				}
 				break;
 			case KEY_RIGHT:
@@ -137,8 +138,11 @@ void start_tui_ncurses(Labels *data)
 				if(opts->selected_page < NO_ABOUT)
 				{
 					opts->selected_page++;
-					main_win(win, info, data);
-					(*func_ptr[opts->selected_page])(win, info, data);
+					if(resize_window(win, info))
+					{
+						main_win(win, info, data);
+						(*func_ptr[opts->selected_page])(win, info, data);
+					}
 				}
 				break;
 			case KEY_DOWN:
@@ -210,10 +214,11 @@ void start_tui_ncurses(Labels *data)
 			case 'h':
 				erase();
 				print_help();
-				erase();
-				refresh();
-				main_win(win, info, data);
-				(*func_ptr[opts->selected_page])(win, info, data);
+				if(resize_window(win, info))
+				{
+					main_win(win, info, data);
+					(*func_ptr[opts->selected_page])(win, info, data);
+				}
 				break;
 			case ERR:
 				/* Refresh dynamic labels */
@@ -222,13 +227,11 @@ void start_tui_ncurses(Labels *data)
 				break;
 			case KEY_RESIZE:
 				/* Resize window */
-				erase();
-				starty = (LINES - info.height) / 2;
-				startx = (COLS - info.width) / 2;
-				mvwin(win, starty, startx);
-				refresh();
-				main_win(win, info, data);
-				(*func_ptr[opts->selected_page])(win, info, data);
+				if(resize_window(win, info))
+				{
+					main_win(win, info, data);
+					(*func_ptr[opts->selected_page])(win, info, data);
+				}
 				break;
 			default:
 				break;
@@ -241,6 +244,31 @@ void start_tui_ncurses(Labels *data)
 
 
 /************************* Private functions *************************/
+
+/* Put window in the center of the screen */
+static bool resize_window(WINDOW *pwin, const SizeInfo info)
+{
+	bool ret = true;
+	const int starty = (LINES - info.height) / 2;
+	const int startx = (COLS  - info.width)  / 2;
+
+	erase();
+	if((startx < 0) || (starty < 0))
+	{
+		printw("%s", _("Window is too small!\n"));
+		timeout(-1);
+		ret = false;
+	}
+	else
+	{
+		mvwin(pwin, starty, startx);
+		printw("%s", _("Press 'h' to see help.\n"));
+		timeout(opts->refr_time * 1000);
+	}
+	refresh();
+
+	return ret;
+}
 
 /* Clean window */
 static void wclrscr(WINDOW *pwin)
@@ -390,8 +418,8 @@ static void nrefresh(NThrd *refr)
 /* Print how to use this TUI */
 static void print_help()
 {
+	timeout(-1);
 	nodelay(stdscr, FALSE);
-	timeout(99999);
 
 	printw(_("Welcome in %s NCurses help!\n"), PRGNAME);
 	printw("%s", _("This help describes how to use this Text-based User Interface.\n"));
