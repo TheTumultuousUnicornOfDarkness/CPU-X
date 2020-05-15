@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2020-05-10 21:00+0200\n"
+"POT-Creation-Date: 2020-05-15 21:57+0200\n"
 "PO-Revision-Date: 2020-05-12 06:31+0000\n"
 "Last-Translator: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
@@ -170,7 +170,7 @@ msgstr "%i jours, %i heures, %i minutes, %i secondes"
 msgid "Updating benchmark status"
 msgstr "Mise à jour du statut du test de performance"
 
-#: core.c:1187 tui_ncurses.c:747
+#: core.c:1187 tui_ncurses.c:762
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
@@ -303,7 +303,7 @@ msgstr ""
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:468
+#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
 msgstr "Cœur #%i"
@@ -803,20 +803,24 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "La mise en place du terminal %s a échoué (err=%i) ; retour à %s"
 
-#: tui_ncurses.c:119
+#: tui_ncurses.c:262
+msgid "Window is too small!\n"
+msgstr ""
+
+#: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
 msgstr "Appuyer sur 'h' pour voir l'aide.\n"
 
-#: tui_ncurses.c:396
+#: tui_ncurses.c:417
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Bienvenue dans l'aide pour NCurses de %s !\n"
 
-#: tui_ncurses.c:397
+#: tui_ncurses.c:418
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr "Cette aide décrit comment utiliser cette interface en mode texte.\n"
 
-#: tui_ncurses.c:399
+#: tui_ncurses.c:420
 msgid ""
 "\n"
 "Global keys:\n"
@@ -824,25 +828,25 @@ msgstr ""
 "\n"
 "Touches globales :\n"
 
-#: tui_ncurses.c:400
+#: tui_ncurses.c:421
 msgid "\tPress 'left' key to switch in left tab.\n"
 msgstr ""
 "Appuyer sur la touche 'flèche gauche' pour passer dans l'onglet de gauche.\n"
 
-#: tui_ncurses.c:401
+#: tui_ncurses.c:422
 msgid "\tPress 'right' key to switch in right tab.\n"
 msgstr ""
 "Appuyer sur la touche 'flèche droite' pour passer dans l'onglet de droite.\n"
 
-#: tui_ncurses.c:402
+#: tui_ncurses.c:423
 msgid "\tPress 'h' key to see this help.\n"
 msgstr "Appuyer sur la touche 'h' pour voir cette aide.\n"
 
-#: tui_ncurses.c:403
+#: tui_ncurses.c:424
 msgid "\tPress 'q' key to exit.\n"
 msgstr "Appuyer sur la touche 'q' pour quitter.\n"
 
-#: tui_ncurses.c:405
+#: tui_ncurses.c:426
 msgid ""
 "\n"
 "CPU tab:\n"
@@ -850,19 +854,19 @@ msgstr ""
 "\n"
 "Onglet processeur :\n"
 
-#: tui_ncurses.c:406
+#: tui_ncurses.c:427
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr ""
 "Appuyer sur la touche 'flèche bas' pour diminuer la valeur du cœur à "
 "surveiller.\n"
 
-#: tui_ncurses.c:407
+#: tui_ncurses.c:428
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
 "Appuyer sur la touche 'flèche haut' pour augmenter la valeur du cœur à "
 "surveiller.\n"
 
-#: tui_ncurses.c:409
+#: tui_ncurses.c:430
 msgid ""
 "\n"
 "Caches tab:\n"
@@ -870,15 +874,15 @@ msgstr ""
 "\n"
 "Onglet caches :\n"
 
-#: tui_ncurses.c:410
+#: tui_ncurses.c:431
 msgid "\tPress 'down' key to switch to previous test.\n"
 msgstr "Appuyer sur la touche 'flèche bas' pour passer au test précédent.\n"
 
-#: tui_ncurses.c:411
+#: tui_ncurses.c:432
 msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr "Appuyer sur la touche 'flèche haut' pour passer au test suivant.\n"
 
-#: tui_ncurses.c:413
+#: tui_ncurses.c:434
 msgid ""
 "\n"
 "Bench tab:\n"
@@ -886,43 +890,43 @@ msgstr ""
 "\n"
 "Onglet Bench :\n"
 
-#: tui_ncurses.c:414
+#: tui_ncurses.c:435
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgstr ""
 "Appuyer sur la touche 'flèche bas' pour décrémenter la durée du test de "
 "performance.\n"
 
-#: tui_ncurses.c:415
+#: tui_ncurses.c:436
 msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgstr ""
 "Appuyer sur la touche 'flèche haut' pour incrémenter la durée du test de "
 "performance.\n"
 
-#: tui_ncurses.c:416
+#: tui_ncurses.c:437
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr ""
 "Appuyer sur la touche 'page suivante' pour décrémenter le nombre de threads "
 "à utiliser.\n"
 
-#: tui_ncurses.c:417
+#: tui_ncurses.c:438
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr ""
 "Appuyer sur la touche 'page précédente' pour incrémenter le nombre de "
 "threads à utiliser.\n"
 
-#: tui_ncurses.c:418
+#: tui_ncurses.c:439
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
 "Appuyer sur la touche 's' pour démarrer/arrêter le test de performance des "
 "nombres premier (lent).\n"
 
-#: tui_ncurses.c:419
+#: tui_ncurses.c:440
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
 "Appuyer sur la touche 'f' pour démarrer/arrêter le test de performance des "
 "nombres premier (rapide).\n"
 
-#: tui_ncurses.c:421
+#: tui_ncurses.c:442
 msgid ""
 "\n"
 "Press any key to exit this help.\n"
@@ -930,22 +934,22 @@ msgstr ""
 "\n"
 "Appuyer sur n'importe quelle touche pour quitter cette aide.\n"
 
-#: util.c:181
+#: util.c:165
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr "une erreur est survenue lors de l'ouverture du fichier '%s' (%s)"
 
-#: util.c:221
+#: util.c:195
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr "une erreur est survenue lors de l'exécution de la commande '%s' (%s)"
 
-#: util.c:269 util.c:329
+#: util.c:243 util.c:303
 #, c-format
 msgid "failed to open %s directory"
 msgstr "échec lors de l'ouverture du répertoire %s"
 
-#: util.c:340
+#: util.c:314
 msgid "an error occurred while compiling regex"
 msgstr ""
 "une erreur est survenue lors de la compilation des expressions régulières"

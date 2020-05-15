@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2020-05-10 21:00+0200\n"
+"POT-Creation-Date: 2020-05-15 21:57+0200\n"
 "PO-Revision-Date: 2019-04-10 21:39+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -168,7 +168,7 @@ msgstr "%i dager, %i timer, %i minutter, %i sekunder"
 msgid "Updating benchmark status"
 msgstr "Oppdaterer ytelsesteststatus"
 
-#: core.c:1187 tui_ncurses.c:747
+#: core.c:1187 tui_ncurses.c:762
 #, c-format
 msgid "%u mins"
 msgstr "%u minutter"
@@ -300,7 +300,7 @@ msgstr ""
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:468
+#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
 msgstr "Kjerne #%i"
@@ -814,22 +814,26 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 
-#: tui_ncurses.c:119
+#: tui_ncurses.c:262
+msgid "Window is too small!\n"
+msgstr ""
+
+#: tui_ncurses.c:270
 #, fuzzy
 msgid "Press 'h' to see help.\n"
 msgstr "Trykk \"h\" for å vise hjelp.\n"
 
-#: tui_ncurses.c:396
+#: tui_ncurses.c:417
 #, fuzzy, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Velkommen til %s-ncurseshjelpen!\n"
 
-#: tui_ncurses.c:397
+#: tui_ncurses.c:418
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
 "Denne hjelpen beskrives bruken av dette tekstbaserte brukergrensesnittet.\n"
 
-#: tui_ncurses.c:399
+#: tui_ncurses.c:420
 msgid ""
 "\n"
 "Global keys:\n"
@@ -837,25 +841,25 @@ msgstr ""
 "\n"
 "Programvide hurtigtaster:\n"
 
-#: tui_ncurses.c:400
+#: tui_ncurses.c:421
 msgid "\tPress 'left' key to switch in left tab.\n"
 msgstr "\tTrykk \"venstre piltast\" for å veksle i venstre fane.\n"
 
-#: tui_ncurses.c:401
+#: tui_ncurses.c:422
 msgid "\tPress 'right' key to switch in right tab.\n"
 msgstr "\tTrykk \"høyre piltast\" for å veksle i høyre fane.\n"
 
-#: tui_ncurses.c:402
+#: tui_ncurses.c:423
 #, fuzzy
 msgid "\tPress 'h' key to see this help.\n"
 msgstr "\tTrykk \"h\"-tasten for å se denne hjelpen.\n"
 
-#: tui_ncurses.c:403
+#: tui_ncurses.c:424
 #, fuzzy
 msgid "\tPress 'q' key to exit.\n"
 msgstr "\tTrykk \"q\"-tast for å avslutte.\n"
 
-#: tui_ncurses.c:405
+#: tui_ncurses.c:426
 msgid ""
 "\n"
 "CPU tab:\n"
@@ -863,19 +867,19 @@ msgstr ""
 "\n"
 "CPU-fane:\n"
 
-#: tui_ncurses.c:406
+#: tui_ncurses.c:427
 #, fuzzy
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr ""
 "\tTrykk \"nedover-piltast\" ↓ for å senke kjerneantall å holde oppsikt med.\n"
 
-#: tui_ncurses.c:407
+#: tui_ncurses.c:428
 #, fuzzy
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
 "\tTrykk \"oppover-piltast\" ↑ for å øke kjerneantallet å holde oppsyn med.\n"
 
-#: tui_ncurses.c:409
+#: tui_ncurses.c:430
 msgid ""
 "\n"
 "Caches tab:\n"
@@ -883,17 +887,17 @@ msgstr ""
 "\n"
 "Fane for hurtiglagre:\n"
 
-#: tui_ncurses.c:410
+#: tui_ncurses.c:431
 #, fuzzy
 msgid "\tPress 'down' key to switch to previous test.\n"
 msgstr "\tTrykk \"nedovertast\" ↓ for å bytte til forrige test.\n"
 
-#: tui_ncurses.c:411
+#: tui_ncurses.c:432
 #, fuzzy
 msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
 
-#: tui_ncurses.c:413
+#: tui_ncurses.c:434
 msgid ""
 "\n"
 "Bench tab:\n"
@@ -901,34 +905,34 @@ msgstr ""
 "\n"
 "Ytelsestestfane:\n"
 
-#: tui_ncurses.c:414
+#: tui_ncurses.c:435
 #, fuzzy
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgstr "\tTrykk \"nedover-piltast\" ↓ for å senke ytelsestestens varighet.\n"
 
-#: tui_ncurses.c:415
+#: tui_ncurses.c:436
 msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgstr "\tTrykk \"oppovertast\" ↑ for å endre ytelsestestens varighet.\n"
 
-#: tui_ncurses.c:416
+#: tui_ncurses.c:437
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr "\tTrykk \"neste side-tast\" for å senke antall tråder i bruk.\n"
 
-#: tui_ncurses.c:417
+#: tui_ncurses.c:438
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr "\tTrykk \"forrige side-tast\" for å øke antall tråder i bruk.\n"
 
-#: tui_ncurses.c:418
+#: tui_ncurses.c:439
 #, fuzzy
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr "\tTrykk \"s\"-tast for å starte/stoppe primtall (treg) ytelsestest.\n"
 
-#: tui_ncurses.c:419
+#: tui_ncurses.c:440
 #, fuzzy
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr "\tTrykk \"f\"-tast for å starte/stoppe primtall (rask) ytelsestest.\n"
 
-#: tui_ncurses.c:421
+#: tui_ncurses.c:442
 msgid ""
 "\n"
 "Press any key to exit this help.\n"
@@ -936,22 +940,22 @@ msgstr ""
 "\n"
 "Trykk vilkårlig tast for å avslutte denne hjelpen.\n"
 
-#: util.c:181
+#: util.c:165
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr "Kunne ikke åpne fil \"%s\" (%s)"
 
-#: util.c:221
+#: util.c:195
 #, fuzzy, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr "Kunne ikke kjøre kommandoen \"%s\" (%s)"
 
-#: util.c:269 util.c:329
+#: util.c:243 util.c:303
 #, c-format
 msgid "failed to open %s directory"
 msgstr "Klarte ikke ikke å åpne %s-mappe"
 
-#: util.c:340
+#: util.c:314
 msgid "an error occurred while compiling regex"
 msgstr "Feil under kompilering av regulære uttrykk"
 
