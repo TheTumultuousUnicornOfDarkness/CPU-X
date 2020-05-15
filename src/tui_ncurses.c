@@ -265,6 +265,7 @@ static bool resize_window(WINDOW *pwin, const SizeInfo info)
 	}
 	else
 	{
+		wresize(pwin, info.height, info.width);
 		mvwin(pwin, starty, startx);
 		printw("%s", _("Press 'h' to see help.\n"));
 		timeout(opts->refr_time * 1000);
@@ -457,7 +458,7 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 		wattrset(win, COLOR_PAIR(DEFAULT_COLOR));
 	}
 	wclrscr(win);
-	box(win, 0 , 0);
+	box(win, 0, 0);
 
 	mvwprintwc(win, TITLE_LINE, info.width / 2 - strlen(PRGNAME) / 2, TITLE_COLOR, PRGNAME);
 	mvwprintwc(win, HEADER_LINE, 2, DEFAULT_COLOR, PRGNAME);
