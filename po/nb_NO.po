@@ -1,15 +1,15 @@
 # Copyright © 2014-2020 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2019
+# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020.
 # Michal Čihař <michal@cihar.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-15 21:57+0200\n"
-"PO-Revision-Date: 2019-04-10 21:39+0000\n"
-"Last-Translator: Michal Čihař <michal@cihar.com>\n"
+"PO-Revision-Date: 2020-05-16 16:44+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -33,21 +33,19 @@ msgstr ""
 "%i, ekst. familie: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-veis"
+msgstr "%d x %d %s, %d-veis"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-veis"
+msgstr "%d %s, %d-veis"
 
 #: core.c:242
 #, fuzzy, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s-tilknytning, %d-bytelinjestørrelse"
+msgstr "%s-tilknytning, %d-%s-bytelinjestørrelse"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -77,7 +75,7 @@ msgstr "Regner ut CPU-multiplikatorer"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "finner ikke enheten «%s»-streng i posisjon %i"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -95,7 +93,7 @@ msgstr "Kaller båndbredde"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Ingen kjernedriver i bruk for grafikkort på stien %s"
 
 #: core.c:745
 #, c-format
@@ -107,10 +105,9 @@ msgid "Finding devices"
 msgstr "Finner enheter"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Hopp over søk etter enheter (root-tilgang kreves)"
+msgstr "Hopp over søk etter enheter (feil tilganger på %s-enhet)"
 
 #: core.c:821
 #, c-format
@@ -131,13 +128,12 @@ msgstr "Henter GPU-klokker"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Driver for GPU %i rapprterer ikke frekvenser"
+msgstr "Driver for GPU %u rapporterer ikke frekvenser"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -277,7 +273,7 @@ msgstr "Klarte ikke å hente CPU-frekvens (tilbakefallsmodus)"
 #: daemon.c:242
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "forespørselshåndterer: Tilfelle %i ikke håndtert"
 
 #: gui_gtk.c:59
 #, fuzzy
@@ -290,15 +286,15 @@ msgstr "Klarte ikke å importere grensesnitt i GtkBuilder"
 
 #: gui_gtk.c:486
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Tilkoblet nisse"
 
 #: gui_gtk.c:488
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Fant ingen polkit-identitetsbekreftelsesagent"
 
 #: gui_gtk.c:492
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
 #: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:489
 #, c-format
@@ -308,7 +304,7 @@ msgstr "Kjerne #%i"
 #: gui_gtk.c:586
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -560,7 +556,7 @@ msgstr "Kort %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Driver"
 
 #: main.c:147
 msgid "Temperature"
@@ -699,7 +695,7 @@ msgstr ""
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Start og koble til nisse"
 
 #: main.c:330
 msgid "Verbose output"
@@ -743,24 +739,12 @@ msgid "Available DISPLAY:"
 msgstr "Tilgjengelig SKJERM:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Tilgjengelige VALG:"
+msgstr "Tilgjengelige VALG:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Påvirkelige miljøvariabler:"
+msgstr "Påvirkelige miljøvariabler:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -808,15 +792,17 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"FATAL FEIL: Fant ikke terminfo-database. (Prøv å sette TERMINFO-"
+"miljøvariabel.)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Klarte ikke å sette opp %s-terminal (err=%i); faller tilbake til %s"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "Vinduet er for lite!\n"
 
 #: tui_ncurses.c:270
 #, fuzzy
@@ -967,27 +953,27 @@ msgstr "kunne ikke omfordele minne"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "byte"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Avslutter %s"
