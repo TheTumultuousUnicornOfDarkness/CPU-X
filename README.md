@@ -1,14 +1,16 @@
 
 [![Logo](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://x0rg.github.io/CPU-X/)
 [![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/tags)
+[![GitHub commits](https://img.shields.io/github/commits-since/X0rg/CPU-X/latest.svg)](https://github.com/X0rg/CPU-X/commits/master)
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X/releases/latest)
 [![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/X0rg/CPU-X.svg)](https://GitHub.com/X0rg/CPU-X/pull)
 [![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/svg-badge.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)
 
 | Linux | FreeBSD | AppImage |
 | :---: | :---: | :---: |
-| [![Build Status (Linux)](https://travis-ci.com/X0rg/CPU-X.svg?branch=master)]((https://travis-ci.com/X0rg/CPU-X)) | [![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/X0rg/CPU-X.svg)](https://cirrus-ci.com/github/X0rg/CPU-X) | [![AppImage Continuous](https://github.com/X0rg/CPU-X/workflows/AppImage%20Continuous/badge.svg?branch=master)](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22AppImage+Continuous%22) |
+| [![Build Status (Linux)](https://travis-ci.com/X0rg/CPU-X.svg?branch=master)](https://travis-ci.com/github/X0rg/CPU-X) | [![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/X0rg/CPU-X.svg)](https://cirrus-ci.com/github/X0rg/CPU-X) | [![AppImage Continuous](https://github.com/X0rg/CPU-X/workflows/AppImage%20Continuous/badge.svg?branch=master)](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22AppImage+Continuous%22) |
 
 **CPU-X** is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux and FreeBSD.  
