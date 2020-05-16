@@ -59,12 +59,12 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 ### From official repositories
 
 In alphabetical order:
-- [Debian (since Bullseye)](https://packages.debian.org/search?searchon=names&keywords=cpu-x): `sudo apt install cpu-x`
-- [Fedora (since 30)](https://src.fedoraproject.org/rpms/cpu-x): `sudo dnf install cpu-x`
-- [FreeBSD (since 11)](https://www.freshports.org/sysutils/cpu-x): `sudo pkg install cpu-x`
-- OpenMandriva (since Lx 4.1): `sudo dnf install cpu-x`
-- [Solus (since Shannon)](https://packages.getsol.us/shannon/c/cpu-x/): `sudo eopkg install cpu-x`
-- [Ubuntu (since 20.04)](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `sudo apt install cpu-x`
+- [Debian (since version 11 "Bullseye")](https://packages.debian.org/search?searchon=names&keywords=cpu-x): `apt install cpu-x`
+- [Fedora (since version 30)](https://src.fedoraproject.org/rpms/cpu-x): `dnf install cpu-x`
+- [FreeBSD (since version 11)](https://www.freshports.org/sysutils/cpu-x): `pkg install cpu-x`
+- [OpenMandriva Lx (since version 4.0 "Nitrogen")](https://github.com/OpenMandrivaAssociation/cpu-x): `dnf install cpu-x`
+- [Solus](https://packages.getsol.us/shannon/c/cpu-x/): `eopkg install cpu-x`
+- [Ubuntu (since version 20.04 "Focal Fossa")](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `apt install cpu-x`
 
 ### From third-party repositories
 
@@ -97,7 +97,7 @@ More informations are available on Wiki, like screenshots, troubleshooting and t
 
 ## Bugs/Improvements/Request features
 
-Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new) and fill template. You can remove italic text.
+Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new/choose) and fill the appropriate template. Note that text between `<!-- ... -->` is not displayed.
 
 ## Translate CPU-X
 
