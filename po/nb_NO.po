@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2020-05-15 21:57+0200\n"
+"POT-Creation-Date: 2020-05-17 00:31+0200\n"
 "PO-Revision-Date: 2020-05-16 16:44+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -270,7 +270,7 @@ msgstr "Henter CPU-frekvens i tilbakefallsmodus"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Klarte ikke å hente CPU-frekvens (tilbakefallsmodus)"
 
-#: daemon.c:242
+#: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "forespørselshåndterer: Tilfelle %i ikke håndtert"
@@ -284,24 +284,30 @@ msgstr "Starter grafisk GTK-brukergrensesnitt…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "Klarte ikke å importere grensesnitt i GtkBuilder"
 
-#: gui_gtk.c:486
+#: gui_gtk.c:501
 msgid "Connected to daemon"
 msgstr "Tilkoblet nisse"
 
-#: gui_gtk.c:488
+#: gui_gtk.c:503
 msgid "No polkit authentication agent found"
 msgstr "Fant ingen polkit-identitetsbekreftelsesagent"
 
-#: gui_gtk.c:492
+#: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
 msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
-#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:489
+#: gui_gtk.c:513
+#, fuzzy
+#| msgid "Start and connect to daemon"
+msgid "Start daemon"
+msgstr "Start og koble til nisse"
+
+#: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
 msgstr "Kjerne #%i"
 
-#: gui_gtk.c:586
+#: gui_gtk.c:602
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -944,6 +950,22 @@ msgstr "Klarte ikke ikke å åpne %s-mappe"
 #: util.c:314
 msgid "an error occurred while compiling regex"
 msgstr "Feil under kompilering av regulære uttrykk"
+
+#: util.c:418
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: util.c:421
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: util.c:424
+msgid "pkexec: command not found"
+msgstr ""
+
+#: util.c:427
+msgid "pkexec: unexpected error code"
+msgstr ""
 
 #: cpu-x.h:52
 #, fuzzy

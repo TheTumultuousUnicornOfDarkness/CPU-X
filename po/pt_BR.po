@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2020-05-15 21:57+0200\n"
+"POT-Creation-Date: 2020-05-17 00:31+0200\n"
 "PO-Revision-Date: 2020-05-14 01:41+0000\n"
 "Last-Translator: Celio Alves <dreamcelio@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
@@ -267,7 +267,7 @@ msgstr "Recuperando a frequência da CPU em modo fallback"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 
-#: daemon.c:242
+#: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr ""
@@ -280,24 +280,30 @@ msgstr "Iniciando a interface gráfica GTK…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "Falhou ao importar UI no GtkBuilder"
 
-#: gui_gtk.c:486
+#: gui_gtk.c:501
 msgid "Connected to daemon"
 msgstr "Conectado ao daemon"
 
-#: gui_gtk.c:488
+#: gui_gtk.c:503
 msgid "No polkit authentication agent found"
 msgstr "Não foi encontrado nenhum agente de autenticação polkit"
 
-#: gui_gtk.c:492
+#: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
 msgstr "Pedir senha para iniciar o daemon em segundo plano"
 
-#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:489
+#: gui_gtk.c:513
+#, fuzzy
+#| msgid "Start and connect to daemon"
+msgid "Start daemon"
+msgstr "Iniciar e conectar ao daemon"
+
+#: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
 msgstr "Núcleo #%i"
 
-#: gui_gtk.c:586
+#: gui_gtk.c:602
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -926,6 +932,22 @@ msgstr "falhou ao abrir o diretório %s"
 #: util.c:314
 msgid "an error occurred while compiling regex"
 msgstr "um erro ocorreu enquanto compilava o regex"
+
+#: util.c:418
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: util.c:421
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: util.c:424
+msgid "pkexec: command not found"
+msgstr ""
+
+#: util.c:427
+msgid "pkexec: unexpected error code"
+msgstr ""
 
 #: cpu-x.h:52
 msgid "FATAL ERROR: could not allocate memory"

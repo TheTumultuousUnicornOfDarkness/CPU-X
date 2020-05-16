@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2020-05-15 21:57+0200\n"
+"POT-Creation-Date: 2020-05-17 00:31+0200\n"
 "PO-Revision-Date: 2020-02-11 23:38+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
@@ -270,7 +270,7 @@ msgstr ""
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
-#: daemon.c:242
+#: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr ""
@@ -283,24 +283,28 @@ msgstr ""
 msgid "failed to import UI in GtkBuilder"
 msgstr "fallo al importar la IU en GtkBuilder"
 
-#: gui_gtk.c:486
+#: gui_gtk.c:501
 msgid "Connected to daemon"
 msgstr ""
 
-#: gui_gtk.c:488
+#: gui_gtk.c:503
 msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.c:492
+#: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:506 gui_gtk.c:589 tui_ncurses.c:489
+#: gui_gtk.c:513
+msgid "Start daemon"
+msgstr ""
+
+#: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
 msgstr "Núcleo #%i"
 
-#: gui_gtk.c:586
+#: gui_gtk.c:602
 #, c-format
 msgid "%s"
 msgstr ""
@@ -945,6 +949,22 @@ msgstr "fallo al abrir el directorio %s"
 #: util.c:314
 msgid "an error occurred while compiling regex"
 msgstr "se produjo un error al compilar regex"
+
+#: util.c:418
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: util.c:421
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: util.c:424
+msgid "pkexec: command not found"
+msgstr ""
+
+#: util.c:427
+msgid "pkexec: unexpected error code"
+msgstr ""
 
 #: cpu-x.h:52
 #, fuzzy
