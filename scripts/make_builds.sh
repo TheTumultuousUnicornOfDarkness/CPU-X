@@ -1,9 +1,9 @@
 #!/bin/bash
 # This script helps to track build troubles and make portable versions
 
+GIT_DIR="$(git rev-parse --show-toplevel)"
 VER=$(git tag | tail -n1)
-SRCDIR=/tmp/CPU-X
-DESTDIR="$(dirname $0)/portable"
+SRCDIR="/tmp/CPU-X"
 VMs=("Arch" "BSD")
 EXT=("linux64" "bsd64")
 
@@ -137,13 +137,12 @@ if [[ $# < 1 ]]; then
 fi
 
 case "$1" in
-	-b|--build)	choice="build";;
-	-r|--release)	choice="release";;
+	-b|--build)     choice="build";;
 	-p|--package)   choice="package";;
 	-s|--shutdown)  stop_vms; exit 0;;
-	-h|--help)	help; exit 0;;
-	- |--)		help; exit 1;;
-	*)		help; exit 1;;
+	-h|--help)      help; exit 0;;
+	- |--)          help; exit 1;;
+	*)              help; exit 1;;
 esac
 
 case "$choice" in
@@ -161,50 +160,24 @@ case "$choice" in
 		stop_vms
 		;;
 
-	release)
-		# Start VMs
-		VBoxManage list runningvms | grep -q "Arch Linux" || (echo "Start 64-bit Linux VM" ; VBoxHeadless --startvm "Arch Linux" &)
-		VBoxManage list runningvms | grep -q "FreeBSD"    || (echo "Start 64-bit BSD VM"   ; VBoxHeadless --startvm "FreeBSD" &)
-
-		# Start build
-		VMs_len=${#VMs[@]}
-		[[ -d "$DESTDIR" ]] && rm -rf "$DESTDIR"
-		mkdir -pv "$DESTDIR/sshfs"
-		for ((i = 0; i < ${VMs_len}; i++)); do
-			check_deps ${VMs[i]}
-			make_release ${VMs[i]}
-			sshfs ${VMs[i]}:$SRCDIR "$DESTDIR/sshfs"
-			cp -v "$DESTDIR/sshfs/gn_build/cpu-x" "$DESTDIR/CPU-X_${VER}_portable.${EXT[i]}"
-			cp -v "$DESTDIR/sshfs/n_build/cpu-x"  "$DESTDIR/CPU-X_${VER}_portable_noGTK.${EXT[i]}"
-			fusermount -u "$DESTDIR/sshfs"
-		done
-
-		# Make tarball
-		cd "$DESTDIR"
-		tar -zcvf CPU-X_${VER}_portable.tar.gz       CPU-X_${VER}_portable.*
-		tar -zcvf CPU-X_${VER}_portable_noGTK.tar.gz CPU-X_${VER}_portable_noGTK.*
-
-		stop_vms
-		;;
-
 	package)
-		DESTDIR="$(dirname $0)/packages/"
-		REPOURL="https://download.opensuse.org/repositories/home:/X0rg/"
+		OBS_DIR="(realpath "$GIT_DIR/../OBS")"
+		PKGS_DIR="$OBS_DIR/pkgs"
+		ARCHIVES_DIR="$GIT_DIR/packages"
 		COMPRESS="tar -zcvf"
 
-		mkdir -p "$DESTDIR" && cd "$DESTDIR"
-		wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
-			--accept "*.pkg.tar.xz","*.rpm","*.deb","*.AppImage" \
-			--reject "*.src.rpm" \
-			--recursive "$REPOURL"
-		find . -type d -empty -delete
+		if [[ ! -d "$PKGS_DIR" ]]; then
+			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "libcpuid"
+			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "cpu-x"
+		fi
 
-		$COMPRESS CPU-X_${VER}_ArchLinux.tar.gz Arch*
-		$COMPRESS CPU-X_${VER}_Debian.tar.gz    Debian*
-		$COMPRESS CPU-X_${VER}_Fedora.tar.gz    Fedora*
-		$COMPRESS CPU-X_${VER}_openSUSE.tar.gz  openSUSE*
-		$COMPRESS CPU-X_${VER}_Ubuntu.tar.gz    xUbuntu*
+		cd "$PKGS_DIR"
+		find "$PKGS_DIR" -type f -not -name '*.deb' -and -not -name '*.rpm' -and -not -name '*.pkg.tar.*' -delete
+		mkdir -v "$ARCHIVES_DIR"
 
-		mv -v AppImage/CPU-X-latest-x86_64.AppImage CPU-X_${VER}_x86_64.AppImage
+		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_ArchLinux.tar.gz" Arch*
+		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Debian.tar.gz"    Debian*
+		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_openSUSE.tar.gz"  openSUSE*
+		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Ubuntu.tar.gz"    xUbuntu*
 		;;
 esac
