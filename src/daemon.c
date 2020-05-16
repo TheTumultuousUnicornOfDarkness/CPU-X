@@ -36,10 +36,14 @@
 #include <sys/un.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <libcpuid/libcpuid.h>
 #include "cpu-x.h"
 #include "daemon.h"
 #include "ipc.h"
+
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
+
 
 static bool quit_loop  = false;
 static ThreadsInfo *ti = &(ThreadsInfo)
