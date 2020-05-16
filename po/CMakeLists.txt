@@ -30,6 +30,8 @@ if(GETTEXT_FOUND)
 			--directory="../src"
 			--from-code="utf-8"
 			"*.c" "cpu-x.h"
+		COMMAND sed --in-place "s/SOME DESCRIPTIVE TITLE./CPU-X translations template/" "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
+		COMMAND sed --in-place "s/\\(C\\) YEAR/© 2014-2020/"  "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 	)
 	GETTEXT_CONVERT_TRANSLATIONS(${pot_file} ALL ${po_files})
