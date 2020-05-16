@@ -510,6 +510,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	/* Various labels to translate */
 	for(i = TABCPU; i < LASTOBJ; i++)
 		gtk_label_set_text(GTK_LABEL(glab->gtktrad[i]), data->objects[i]);
+	gtk_button_set_label(GTK_BUTTON(glab->daemonbutton), _("Start daemon"));
 
 	/* Tab CPU */
 	for(i = VENDOR; i < LASTCPU; i++)
