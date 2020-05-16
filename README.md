@@ -1,17 +1,19 @@
 
-[![](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://x0rg.github.io/CPU-X/)
+[![Logo](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://x0rg.github.io/CPU-X/)
 [![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/tags)
 [![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X/releases/latest)
 [![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
 [![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
-[![Build Status (Linux)](https://travis-ci.com/X0rg/CPU-X.svg?branch=master)](https://travis-ci.com/X0rg/CPU-X)
-[![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/X0rg/CPU-X.svg)](https://cirrus-ci.com/github/X0rg/CPU-X)
 [![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/svg-badge.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)
-CPU-X is a Free software that gathers information on CPU, motherboard and more.  
-CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux; also, it works on *BSD.  
+
+| Linux | FreeBSD | AppImage |
+| :---: | :---: | :---: |
+| [![Build Status (Linux)](https://travis-ci.com/X0rg/CPU-X.svg?branch=master)]((https://travis-ci.com/X0rg/CPU-X)) | [![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/X0rg/CPU-X.svg)](https://cirrus-ci.com/github/X0rg/CPU-X) | [![AppImage Continuous](https://github.com/X0rg/CPU-X/workflows/AppImage%20Continuous/badge.svg?branch=master)](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22AppImage+Continuous%22) |
+
+**CPU-X** is a Free software that gathers information on CPU, motherboard and more.  
+CPU-X is similar to [CPU-Z (Windows)](https://www.cpuid.com/softwares/cpu-z.html), but CPU-X is a Free and Open Source software designed for GNU/Linux and FreeBSD.  
 This software is written in C and built with [CMake](https://www.cmake.org/) tool.  
 It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
-
 
 ***
 
@@ -19,16 +21,14 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 * [Dependencies](#dependencies)
   * [Build-only dependencies](#build-only-dependencies)
   * [Build and run dependencies](#build-and-run-dependencies)
-* [Download/Install](#downloadinstall)
-  * [Download packages](#download-packages)
-  * [Manual build](#manual-build)
-  * [Portable version](#portable-version)
+* [Download and install](#download-and-install)
+  * [From official repositories](#from-official-repositories)
+  * [From third-party repositories](#from-third-party-repositories)
+  * [Portable/standalone version](#portablestandalone-version)
 * [Usage](#usage)
-* [Screenshots](#screenshots)
-* [Translate/Contributions](#translatecontributions)
-* [Troubleshooting](#troubleshooting)
+* [Wiki](#wiki)
 * [Bugs/Improvements/Request features](#bugsimprovementsrequest-features)
-* [Links](#links)
+* [Translate CPU-X](#translate-cpu-x)
 
 ***
 
@@ -42,7 +42,6 @@ These dependencies are needed to **build** CPU-X:
 * [Pkg-Config](https://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
 * [NASM](http://www.nasm.us/)
 
-
 ### Build and run dependencies
 
 These dependencies are needed to **build¹** and **run** CPU-X:
@@ -53,74 +52,51 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 * [Procps-ng](https://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](https://www.i-scream.org/libstatgrab/) (*BSD)  
 **¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
+## Download and install
 
-## Download/Install
+### From official repositories
 
-### Download packages
+In alphabetical order:
+- [Debian (since Bullseye)](https://packages.debian.org/search?searchon=names&keywords=cpu-x): `sudo apt install cpu-x`
+- [Fedora (since 30)](https://src.fedoraproject.org/rpms/cpu-x): `sudo dnf install cpu-x`
+- [FreeBSD (since 11)](https://www.freshports.org/sysutils/cpu-x): `sudo pkg install cpu-x`
+- OpenMandriva (since Lx 4.1): `sudo dnf install cpu-x`
+- [Solus (since Shannon)](https://packages.getsol.us/shannon/c/cpu-x/): `sudo eopkg install cpu-x`
+- [Ubuntu (since 20.04)](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `sudo apt install cpu-x`
 
-You can download binary packages to easily install CPU-X on your system. A lot of distributions are supported, see the [download section](https://github.com/X0rg/CPU-X/releases/latest) or the wiki page about [GNU/Linux packages](https://github.com/X0rg/CPU-X/wiki/GNU-Linux-Packages).  
+### From third-party repositories
 
-#### Official repositories
+- Arch Linux (AUR): [cpu-x](https://aur.archlinux.org/packages/cpu-x/) / [cpu-x-git](https://aur.archlinux.org/packages/cpu-x-git/)
+- Slackware: on [SlackOnly](https://slackonly.com/)
 
-[Fedora](https://apps.fedoraproject.org/packages/cpu-x): `sudo dnf install cpu-x`
+### Portable/standalone version
+
+- AppImage: [latest stable release](https://github.com/X0rg/CPU-X/releases/latest) / [continuous release](https://github.com/X0rg/CPU-X/releases/tag/continuous)
 
 ### Manual build
 
-For step-by-step guide, you can see this [wiki page](https://github.com/X0rg/CPU-X/wiki/Manual-build).  
-If you need to disable some parts of CPU-X, you can read [this page](https://github.com/X0rg/CPU-X/wiki/Modular-components).
-
-To build and install CPU-X on your system, do (in CPU-X directory) :
-```
-$ mkdir build && cd build
-$ cmake ..
-$ make
-# make install
-```
-By default, CPU-X will be installed in */usr/local*. If you want to change it, add option `cmake -DCMAKE_INSTALL_PREFIX=<absolute_path> ..` on CMake invocation.
-
-
-### Portable version
-
-CPU-X is available in a portable version (Linux 32/64-bit, FreeBSD 32/64-bit), like CPU-Z.  
-You can find the lastest release [**here**](https://github.com/X0rg/CPU-X/releases/latest).  
-The CPU-X_vx.x.x_portable.tar.gz tarball requires GTK is installed on your system.  
-The CPU-X_vx.x.x_portable_noGTK.tar.gz tarball requires to start CPU-X from a terminal.  
-
-After downloading tarball, you need to extract his content to be able to run CPU-X portable. Check if binary has executable bit set.  
-You can use this portable version on a lot of system, so you can leave a binary on a USB stick for instance.
-
+For step-by-step guide, please read [this page](https://github.com/X0rg/CPU-X/wiki/manual-build) on the Wiki.
 
 ## Usage
 
-Start program with **root privileges** allows CPU-X to access some special devices, minimizing empty labels count.  
-Application is put in the desktop menus, in **System Tools** category: entry *CPU-X* run CPU-X as regular user, and entry *CPU-X (Root)* grant root privileges.  
-Else, you can use command `cpu-x`, or double-click on `cpu-x` binary is also possible (if program won't start, check if file has executable bit set).  
-If GTK and NCurses are supported, you can start CPU-X in NCurses mode by taping in a shell (as root) `cpu-x --ncurses`.  
-Use `cpu-x --help` for other commands and help.
+Application is available in menu (**System Tools** category). If you start the daemon, it will allow CPU-X to access some special devices, which provides more information and avoid empty labels.  
+The CPU-X daemon requires root privileges, and it uses Polkit for privileges escalation.
 
+You can use `cpu-x` from command line, some options are available, like:
+- `--gtk`: to start the graphical user interface (default)
+- `--ncurses`: to start the text-based user interface
+- `--dump`: to get a summary of data
 
-## Screenshots
+Use `--help` to see all arguments.
 
-You can find screenshots in [gallery](https://github.com/X0rg/CPU-X/wiki/Screenshots).
+## Wiki
 
-
-## Translate/Contributions
-
-Translation status:  
-[![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/multi-blue.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)  
-Or you want to contribute to CPU-X? In the top-right corner of the page, click on the **Fork** button.
-
-
-## Troubleshooting
-
-Refer to the dedicated [FAQ](https://github.com/X0rg/CPU-X/wiki/FAQ) page.
-
+More informations are available on Wiki, like screenshots, troubleshooting and tips. You can access to the Wiki with [this link](https://github.com/X0rg/CPU-X/wiki).
 
 ## Bugs/Improvements/Request features
 
 Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new) and fill template. You can remove italic text.
 
+## Translate CPU-X
 
-## Links
-Official [webpage](https://x0rg.github.io/CPU-X/) made by GitHub Pages.  
-Official [wiki](https://github.com/X0rg/CPU-X/wiki), still on GitHub.
+If you want to translate CPU-X in your native tongue, please visit the [Weblate page](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget).
