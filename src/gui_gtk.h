@@ -122,7 +122,7 @@ static void close_settings_window(GtkWidget *button, GtkLabels *glab);
 static void save_settings(GtkWidget *button, GtkLabels *glab);
 
 /* Start daemon and reload CPU-X */
-static void reload_with_daemon(GtkWidget *button, Labels *data);
+static void reload_with_daemon(GtkWidget *button, GThrd *refr);
 
 /* Event in CPU tab when Core number is changed */
 static void change_activecore(GtkComboBox *box, Labels *data);

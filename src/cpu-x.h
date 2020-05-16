@@ -322,7 +322,7 @@ enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VO
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
 
 /* Start daemon in background */
-bool start_daemon(bool graphical);
+const char *start_daemon(bool graphical);
 
 /* Check if daemon is running */
 bool daemon_is_alive(void);

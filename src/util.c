@@ -384,10 +384,11 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	return err;
 }
 
-bool start_daemon(bool graphical)
+const char *start_daemon(bool graphical)
 {
 	int wstatus = -1;
 	pid_t pid;
+	char *msg          = NULL;
 	char *const appdir = getenv("APPDIR");
 	char *const daemon = (appdir == NULL) ? DAEMON_PATH : format("%s/%s", appdir, DAEMON_PATH);
 	char *const cmd1[] = { daemon, NULL };
@@ -408,7 +409,29 @@ bool start_daemon(bool graphical)
 	else
 		waitpid(pid, &wstatus, 0);
 
-	return (wstatus == 0);
+	switch(WEXITSTATUS(wstatus))
+	{
+		case 0:
+			msg = NULL; // Normal status code
+			break;
+		case 126:
+			msg = N_("pkexec: authorization could not be obtained (dialog dismissed)");
+			break;
+		case 127:
+			msg = N_("pkexec: authorization could not be obtained (not authorized)");
+			break;
+		case 255:
+			msg = N_("pkexec: command not found");
+			break;
+		default:
+			msg = N_("pkexec: unexpected error code");
+			break;
+	}
+
+	if(msg != NULL)
+		MSG_WARNING("%s", _(msg));
+
+	return msg;
 }
 
 bool daemon_is_alive()

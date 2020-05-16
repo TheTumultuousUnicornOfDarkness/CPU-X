@@ -179,15 +179,30 @@ static void save_settings(GtkWidget *__button, GtkLabels *glab)
 }
 
 /* Start daemon and reload CPU-X */
-static void reload_with_daemon(GtkWidget *button, Labels *data)
+static void reload_with_daemon(GtkWidget *button, GThrd *refr)
 {
-	gtk_widget_set_sensitive(button, false);
-	data->reload = start_daemon(true);
+	Labels    *(data) = refr->data;
+	GtkLabels *(glab) = refr->glab;
 
-	if(data->reload)
+	gtk_widget_set_sensitive(button, false);
+	const char *msg = start_daemon(true);
+
+	if(msg == NULL)
+	{
+		data->reload = true;
 		gtk_main_quit();
+	}
 	else
+	{
+		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(glab->mainwindow),
+			GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_WARNING,
+			GTK_BUTTONS_CLOSE,
+			"%s", _(msg));
+		if(gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_CLOSE)
+			gtk_widget_destroy(GTK_WIDGET(dialog));
 		gtk_widget_set_sensitive(button, true);
+	}
 }
 
 /* Event in CPU tab when Core number is changed */
@@ -601,7 +616,7 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 
 	g_signal_connect(glab->mainwindow,     "destroy", G_CALLBACK(gtk_main_quit),        NULL);
 	g_signal_connect(glab->settingsbutton, "clicked", G_CALLBACK(open_settings_window), glab);
-	g_signal_connect(glab->daemonbutton,   "clicked", G_CALLBACK(reload_with_daemon),   data);
+	g_signal_connect(glab->daemonbutton,   "clicked", G_CALLBACK(reload_with_daemon),   refr);
 	g_signal_connect(glab->activecore,     "changed", G_CALLBACK(change_activecore),    data);
 	g_signal_connect(glab->activetest,     "changed", G_CALLBACK(change_activetest),    data);
 
