@@ -4,22 +4,23 @@
 # TotalCaesar659 <x24cm5b8c54q6szxw@yandex.ru>, 2016,2018
 # Xorg <xorgbreaker@gmail.com>, 2019.
 # Andrei Stepanov <adem4ik@gmail.com>, 2020.
+# Artem <KovalevArtem.ru@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-05-09 14:31+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2020-05-17 22:03+0000\n"
+"Last-Translator: Artem <KovalevArtem.ru@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
@@ -36,22 +37,19 @@ msgstr ""
 "семейство: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d кБ, %d-канальный"
+msgstr "%d x %d %s, %d-канальный"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d Mб, %d-канальный"
+msgstr "%d %s, %d-канальный"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s ассоциативный, %d-байтовый размер кэш-линии"
+msgstr "%s ассоциативный, %d-%s размер кэш-линии"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -141,10 +139,9 @@ msgid "None"
 msgstr ""
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Драйвер ГП %i не отдает значения частоты"
+msgstr "Драйвер ГП %u не отдает значения частоты"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -741,24 +738,12 @@ msgid "Available DISPLAY:"
 msgstr "Доступный ДИСПЛЕЙ:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Доступные ОПЦИИ:"
+msgstr "Доступные ОПЦИИ:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Затрагиваемые переменные окружения:"
+msgstr "Затрагиваемые переменные окружения:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
