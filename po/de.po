@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-05-11 18:31+0000\n"
+"PO-Revision-Date: 2020-05-17 16:13+0000\n"
 "Last-Translator: nautilusx <mail.ka@mailbox.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
@@ -109,10 +109,9 @@ msgid "Finding devices"
 msgstr "Suche Geräte"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Suche nach Geräten überspringen (Benötigt root-Rechte)"
+msgstr "Suche nach Geräten überspringen (falsche Berechtigungen auf %s Gerät)"
 
 #: core.c:821
 #, c-format
@@ -791,7 +790,7 @@ msgstr ""
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "Fenster ist zu klein!\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
