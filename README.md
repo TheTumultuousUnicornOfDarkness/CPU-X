@@ -20,17 +20,19 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 ***
 
 # Table of contents
-* [Dependencies](#dependencies)
-  * [Build-only dependencies](#build-only-dependencies)
-  * [Build and run dependencies](#build-and-run-dependencies)
-* [Download and install](#download-and-install)
-  * [From official repositories](#from-official-repositories)
-  * [From third-party repositories](#from-third-party-repositories)
-  * [Portable/standalone version](#portablestandalone-version)
-* [Usage](#usage)
-* [Wiki](#wiki)
-* [Bugs/Improvements/Request features](#bugsimprovementsrequest-features)
-* [Translate CPU-X](#translate-cpu-x)
+- [Table of contents](#table-of-contents)
+  - [Dependencies](#dependencies)
+    - [Build-only dependencies](#build-only-dependencies)
+    - [Build and run dependencies](#build-and-run-dependencies)
+  - [Download and install](#download-and-install)
+    - [From official repositories](#from-official-repositories)
+    - [From third-party repositories](#from-third-party-repositories)
+    - [From GitHub releases](#from-github-releases)
+    - [Manual build](#manual-build)
+  - [Usage](#usage)
+  - [Wiki](#wiki)
+  - [Bugs/Improvements/Request features](#bugsimprovementsrequest-features)
+  - [Translate CPU-X](#translate-cpu-x)
 
 ***
 
@@ -68,12 +70,13 @@ In alphabetical order:
 
 ### From third-party repositories
 
+- Arch Linux/Debian/openSUSE/Ubuntu (OBS): [cpu-x](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x) / [cpu-x-git](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x-git)
 - Arch Linux (AUR): [cpu-x](https://aur.archlinux.org/packages/cpu-x/) / [cpu-x-git](https://aur.archlinux.org/packages/cpu-x-git/)
 - Slackware: on [SlackOnly](https://slackonly.com/)
 
-### Portable/standalone version
+### From GitHub releases
 
-- AppImage: [latest stable release](https://github.com/X0rg/CPU-X/releases/latest) / [continuous release](https://github.com/X0rg/CPU-X/releases/tag/continuous)
+Look for **Assets** [here ![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/releases/latest) for packages and AppImage.
 
 ### Manual build
 
