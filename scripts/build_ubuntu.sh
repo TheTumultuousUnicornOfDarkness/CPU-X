@@ -9,14 +9,13 @@ BUILD_TYPE="$1"
 SRC_DIR="$2"
 DST_DIR="$3"
 
-# echo "Add OBS repository"
-# curl http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_16.04/Release.key | sudo apt-key add -
-# echo "deb http://download.opensuse.org/repositories/home:/X0rg/xUbuntu_16.04/ /" | sudo tee -a /etc/apt/sources.list
-# sudo apt-get update -qq
+echo "Add OBS repository"
+echo 'deb http://download.opensuse.org/repositories/home:/Xorg/xUbuntu_16.04/ /' | sudo tee /etc/apt/sources.list.d/home:Xorg.list
+curl -sSL https://download.opensuse.org/repositories/home:Xorg/xUbuntu_16.04/Release.key | sudo apt-key add -
+sudo apt-get update -qq
 
 echo "Install packages"
-sudo dpkg -i $GITHUB_WORKSPACE/.github/blobs/*.deb
-sudo apt-get install -y -qq cmake ninja-build nasm gettext libgtk-3-dev libncursesw5-dev libpci-dev libprocps-dev libgtk-3-0 libncursesw5 libpci3 libprocps4 adwaita-icon-theme
+sudo apt-get install -y -qq cmake ninja-build nasm gettext libgtk-3-dev libncursesw5-dev libcpuid-dev-git libpci-dev libprocps-dev libgtk-3-0 libncursesw5 libcpuid14-git libpci3 libprocps4 adwaita-icon-theme
 
 echo "Run CMake"
 cmake -S "$SRC_DIR" -B build -GNinja -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBEXECDIR=/usr/bin
