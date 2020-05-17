@@ -2,7 +2,7 @@
 # This script helps to track build troubles and make portable versions
 
 GIT_DIR="$(git rev-parse --show-toplevel)"
-VER=$(git tag | tail -n1)
+VER=$(git describe --tags --exclude continuous | cut -d- -f1)
 SRCDIR="/tmp/CPU-X"
 VMs=("Arch" "BSD")
 EXT=("linux64" "bsd64")
@@ -120,7 +120,6 @@ help() {
 	echo -e "Usage: $0 OPTION"
 	echo -e "Options:"
 	echo -e "\t-b, --build\tStart multiples builds to find build troubles"
-	echo -e "\t-r, --release\tBuild portable versions when a new version is tagged"
 	echo -e "\t-p, --package\tMake tarballs which contain packages"
 	echo -e "\t-s, --shutdown\tStop all virtual machines"
 	echo -e "\t-h, --help\tDisplay this help and exit"
@@ -161,7 +160,7 @@ case "$choice" in
 		;;
 
 	package)
-		OBS_DIR="(realpath "$GIT_DIR/../OBS")"
+		OBS_DIR="$(realpath "$GIT_DIR/../OBS")"
 		PKGS_DIR="$OBS_DIR/pkgs"
 		ARCHIVES_DIR="$GIT_DIR/packages"
 		COMPRESS="tar -zcvf"
