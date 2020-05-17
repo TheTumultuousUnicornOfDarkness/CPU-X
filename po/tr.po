@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-05-02 20:54+0000\n"
+"PO-Revision-Date: 2020-05-17 16:13+0000\n"
 "Last-Translator: Yaşar Çiv <yasarciv@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -43,22 +43,19 @@ msgstr ""
 "harici aile: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-yol"
+msgstr "%d x %d %s, %d-yol"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-yol"
+msgstr "%d %s, %d-yol"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s ilişkilendirilebilir, %d-bayt satır boyutu"
+msgstr "%s ilişkilendirilebilir, %d-%s satır boyutu"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -88,7 +85,7 @@ msgstr "CPU çarpanları hesaplanıyor"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "%i konumundaki '%s' dizesinde birim bulunamıyor"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -105,7 +102,7 @@ msgstr "Bant genişliği çağırılıyor"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "%s yolundaki grafik kartı için kullanılan çekirdek sürücüsü yok"
 
 #: core.c:745
 #, c-format
@@ -117,10 +114,9 @@ msgid "Finding devices"
 msgstr "Aygıtları bulma"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Aygıt aramayı atla (root olmanız gerekir)"
+msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 
 #: core.c:821
 #, c-format
@@ -141,13 +137,12 @@ msgstr "GPU saatleri alınıyor"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "%i GPU sürücüsü frekansları bildirmiyor"
+msgstr "%u GPU sürücüsü frekansları bildirmiyor"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -281,13 +276,11 @@ msgstr "CPU Frekansı alınamadı (yedek kip)"
 #: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: %i durumu işlemedi"
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "GTK GUI başlatılıyor..."
+msgstr "GTK GUI başlatılıyor…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -295,19 +288,19 @@ msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
 #: gui_gtk.c:501
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Arka plan programına bağlandı"
 
 #: gui_gtk.c:503
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
 #: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Arka plan programı başlatmak için parola sor"
 
 #: gui_gtk.c:513
 msgid "Start daemon"
-msgstr ""
+msgstr "Arka plan programını başlat"
 
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
@@ -317,7 +310,7 @@ msgstr "Çekirdek #%i"
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -564,7 +557,7 @@ msgstr "Kart %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Sürücü"
 
 #: main.c:147
 msgid "Temperature"
@@ -652,10 +645,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Bu programın kesinlikle hiçbir garantisi yoktur"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "Veri azaltma..."
+msgstr "Veri azaltma…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -699,7 +690,7 @@ msgstr "İşlemci önbellek hızı için rastgele bantgenişliği ayarla (tamsay
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Arka plan programını başlat ve bağlan"
 
 #: main.c:330
 msgid "Verbose output"
@@ -743,24 +734,12 @@ msgid "Available DISPLAY:"
 msgstr "Mevcut EKRAN:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Mevcut SEÇENEKLER:"
+msgstr "Mevcut SEÇENEKLER:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Etkilenebilir ortam değişkenleri:"
+msgstr "Etkilenebilir ortam değişkenleri:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -795,25 +774,25 @@ msgid "an error occurred while setting locale"
 msgstr "yerel ayar yapılırken bir hata oluştu"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "NCurses Metin tabanlı arayüzü başlatılıyor..."
+msgstr "NCurses Metin tabanlı arayüzü başlatılıyor…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"ÖNEMLİ HATA: terminfo veritabanı bulunamadı (TERMINFO ortam değişkenini "
+"ayarlamaya çalışın)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "%s terminali kurulamadı (err =%i); %s öğesine geri düşüyor"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "Pencere çok küçük!\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
@@ -954,49 +933,47 @@ msgstr "düzenli ifade derlenirken bir hata oluştu"
 
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: yetkilendirme alınamadı (iletişim kutusu reddedildi)"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: yetki alınamadı (yetkilendirilmedi)"
 
 #: util.c:424
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: komut bulunamadı"
 
 #: util.c:427
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: beklenmedik hata kodu"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "Hafıza tekrardan tahsis edilemiyor"
+msgstr "ÖNEMLİ HATA: bellek ayrılamadı"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "bayt"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "%s çıkışı yapılıyor"
