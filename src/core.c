@@ -967,7 +967,7 @@ static int gpu_monitoring(Labels *data)
 			{
 				/* Doc: https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries */
 				const char *nvidia_cmd_base = (data->g_data->gpu_driver[i] == GPUDRV_NVIDIA_BUMBLEBEE) ? "optirun -b none nvidia-smi -c :8" : "nvidia-smi";
-				const char *nvidia_cmd_args = format("%s --format=csv,noheader --id=%1u", nvidia_cmd_base, nvidia_count);
+				const char *nvidia_cmd_args = format("%s --format=csv,noheader,nounits --id=%1u", nvidia_cmd_base, nvidia_count);
 				ret_temp  = popen_to_str(&temp, "%s --query-gpu=temperature.gpu", nvidia_cmd_args);
 				ret_load  = popen_to_str(&load, "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
 				ret_gclk  = popen_to_str(&gclk, "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
