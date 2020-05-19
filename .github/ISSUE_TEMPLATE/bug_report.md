@@ -20,4 +20,4 @@ INCOMPLETE REPORTS MAY BE CLOSED WITHOUT JUSTIFICATION
 * CPU-X installation type: <!-- e.g. package/portable version/built from source -->
 
 **CPU-X dump**
-<!-- In case of bug, please run the `cpu-x --issue-fmt` as root and attach both /tmp/cpu-x.log and /tmp/cpu-x-daemon.log files here -->
+<!-- In case of bug, please run the `cpu-x --issue-fmt` (or `./CPU-X-v4.0.0-x86_64.AppImage --issue-fmt` for AppImage) as root and attach both /tmp/cpu-x.log and /tmp/cpu-x-daemon.log files here -->
