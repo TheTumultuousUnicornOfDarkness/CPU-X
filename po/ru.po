@@ -5,13 +5,14 @@
 # Xorg <xorgbreaker@gmail.com>, 2019.
 # Andrei Stepanov <adem4ik@gmail.com>, 2020.
 # Artem <KovalevArtem.ru@gmail.com>, 2020.
+# Alex <theavganec@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-05-17 22:03+0000\n"
-"Last-Translator: Artem <KovalevArtem.ru@gmail.com>\n"
+"PO-Revision-Date: 2020-05-23 09:08+0000\n"
+"Last-Translator: Alex <theavganec@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -83,7 +84,7 @@ msgstr "Подсчет множителей ЦП"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "не удается найти элемент в '%s' строке на позиции %i"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -100,7 +101,7 @@ msgstr "Вызов пропускной способности"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "В ядре нет драйвера для видео карты по адресу %s"
 
 #: core.c:745
 #, c-format
@@ -112,10 +113,9 @@ msgid "Finding devices"
 msgstr "Поиск устройств"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Пропустить поиск устройств (требуются права администратора)"
+msgstr "Пропустить поиск устройств (некорректные права на устройстве %s)"
 
 #: core.c:821
 #, c-format
@@ -136,7 +136,7 @@ msgstr "Получение частоты ГП"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Отсутствует"
 
 #: core.c:992
 #, c-format
@@ -275,13 +275,11 @@ msgstr "не удалось получить частоту ЦП (fallback-ре�
 #: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: %i не обрабатывается"
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "Запуск графического интерфейса GTK..."
+msgstr "Запуск графического интерфейса GTK…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -289,19 +287,19 @@ msgstr "не удалось импортировать интерфейс в Gtk
 
 #: gui_gtk.c:501
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Подключение к демону"
 
 #: gui_gtk.c:503
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Не найдена аутентификация агента polkit"
 
 #: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Требуется пароль для запуска демона в фоновом режиме"
 
 #: gui_gtk.c:513
 msgid "Start daemon"
-msgstr ""
+msgstr "Запустить демона"
 
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
@@ -311,7 +309,7 @@ msgstr "Ядро #%i"
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -558,7 +556,7 @@ msgstr "Карта %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Драйвер"
 
 #: main.c:147
 msgid "Temperature"
@@ -646,10 +644,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Данное программное обеспечение предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "Получение дампа данных..."
+msgstr "Получение дампа данных…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -694,7 +690,7 @@ msgstr ""
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Старт и подключение к демону"
 
 #: main.c:330
 msgid "Verbose output"
@@ -780,25 +776,25 @@ msgid "an error occurred while setting locale"
 msgstr "ошибка при установке локализации"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "Запуск текстового интерфейса NCurses..."
+msgstr "Запуск текстового интерфейса NCurses…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"FATAL ERROR: база данных terminfo не найдена (попробуйте установить "
+"переменную окружения TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Ошибка установки %s (err=%i); откат к %s"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "Окно слишком маленькое.\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
@@ -939,49 +935,47 @@ msgstr "ошибка при компиляции регулярных выраж
 
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: не удается получить авторизацию (диалог отключен)"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: не удается получить авторизацию (нет авторизации)"
 
 #: util.c:424
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: команда не найдена"
 
 #: util.c:427
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: непредвиденный код ошибки"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "Не удалось перераспределить память"
+msgstr "FATAL ERROR: Не удалось распределить память"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "байты"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "килобайты"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "мегабайты"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "гигабайты"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "терабайты"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Выход из %s"
