@@ -35,7 +35,6 @@ LIBARCHDIR="lib/x86_64-linux-gnu"
 [[ -z "$VERSION" ]] && cp --recursive --verbose "$WORKSPACE/src" "$APPDIR/usr/" # Debug info
 safeCopy \
 	"/usr/share/"{glib-2.0,terminfo} \
-	"/usr/share/icons/"{Adwaita,hicolor,locolor} \
 	"/usr/$LIBARCHDIR/"{gdk-pixbuf-2.0,gtk-3.0,libgtk-3-0} \
 	"/usr/$LIBARCHDIR/libgdk_pixbuf"* \
 	"/usr/$LIBARCHDIR/libgobject"* \
