@@ -26,11 +26,12 @@ jobs:
         path: AppImage/*
 
     - name: Create continuous release
-      uses: meeDamian/github-release@2.0
+      uses: ncipollo/release-action@v1
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
         tag: continuous
         name: Continuous build
+        commit: ${{ github.sha }}
         draft: false
         prerelease: true
         body: |
@@ -39,8 +40,6 @@ jobs:
           :heavy_check_mark:CPU-X AppImage built from latest commit ([${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})).
 
           :scroll: Build log: https://github.com/${{ github.repository }}/commit/${{ github.sha }}/checks?check_suite_id=${{ github.run_id }}
-        files: >
-          AppImage/CPU-X-*.AppImage
-          AppImage/CPU-X-*.AppImage.zsync
-        gzip: false
-        allow_override: true
+        artifacts: "AppImage/CPU-X-*.AppImage*"
+        allowUpdates: true
+        replacesArtifacts: true
