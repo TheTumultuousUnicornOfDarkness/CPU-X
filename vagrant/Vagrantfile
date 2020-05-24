@@ -1,0 +1,40 @@
+VAGRANTFILE_API_VERSION = "2"
+VM_CPU                  = "2"
+VM_MEMORY               = "2048"
+
+vms = {
+	"ubuntu/xenial64" => { :name => "xenial", :bootstrap => "ubuntu" },
+	"generic/fedora32" => { :name => "fedora", :bootstrap => "fedora" }
+}
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+	if Vagrant.has_plugin?("vagrant-vbguest") then
+		config.vbguest.iso_path    = "/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
+		config.vbguest.auto_update = false
+		config.vbguest.no_remote   = true
+	end
+
+	vms.each_with_index do |(box, info), index|
+		config.vm.define info[:name] do |node|
+			node.vm.box      = box
+			node.vm.hostname = info[:name]
+			node.vm.synced_folder '../', '/home/vagrant/CPU-X'
+			node.vm.provision :shell, reboot: true, env: {"HOST_LANG" => ENV['LANG']}, path: "bootstrap_" + info[:bootstrap] + ".sh"
+
+			if Vagrant.has_plugin?("vagrant-proxyconf")
+				node.proxy.http     = ENV['HTTP_PROXY']  || ENV['http_proxy']  || ""
+				node.proxy.https    = ENV['HTTPS_PROXY'] || ENV['https_proxy'] || ""
+				node.proxy.no_proxy = $no_proxy
+			end
+
+			node.vm.provider :virtualbox do |vb, override|
+				vb.name   = info[:name]
+				vb.cpus   = VM_CPU
+				vb.memory = VM_MEMORY
+				vb.gui    = true
+				vb.customize ["modifyvm", :id, "--vram", "128"]
+				vb.customize ["setextradata", "global", "GUI/Customizations", "noMenuBar"]
+			end
+		end
+	end
+end
