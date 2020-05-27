@@ -5,21 +5,22 @@
 # Huang Zhiyi <hzy980512@126.com>, 2019.
 # chakhee <931489141@qq.com>, 2019.
 # Azurak <Byron0511@outlook.com>, 2019.
+# wdggg <wdggg7@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2019-11-15 20:56+0000\n"
-"Last-Translator: Azurak <Byron0511@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"PO-Revision-Date: 2020-05-29 15:41+0000\n"
+"Last-Translator: wdggg <wdggg7@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -33,22 +34,19 @@ msgid ""
 msgstr "数据库中没有您的 CPU ==> %s，型号： %i，扩展型号： %i，扩展系列： %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-路"
+msgstr "%d x %d %s, %d-路"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-路"
+msgstr "%d %s, %d-路"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s 关联, %d-byte 最小缓存单元大小"
+msgstr "%s 关联, %d-%s 最小缓存单元大小"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -78,7 +76,7 @@ msgstr "正在计算 CPU 倍频"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "无法在位置 %i 的 '%s' 字符串中找到单位"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -95,7 +93,7 @@ msgstr "正在调用 bandwidth"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "路径%s中没有驱动图形卡的内核驱动程序"
 
 #: core.c:745
 #, c-format
@@ -107,10 +105,9 @@ msgid "Finding devices"
 msgstr "正在搜索设备"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "跳过设备搜索 (需要 root)"
+msgstr "跳过设备搜索 (%s设备上的权限错误)"
 
 #: core.c:821
 #, c-format
@@ -131,13 +128,12 @@ msgstr "正在检索 GPU 时钟"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "GPU 驱动 %i 无法报告频率"
+msgstr "GPU 驱动 %u 无法报告频率"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
@@ -271,13 +267,11 @@ msgstr "未能检索 CPU 频率 (应急模式)"
 #: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: 事件 %i 未处理"
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "正在启动 GTK 图形用户界面..."
+msgstr "正在启动 GTK 图形用户界面…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -285,19 +279,19 @@ msgstr "无法在 GtkBuilder 中导入用户界面"
 
 #: gui_gtk.c:501
 msgid "Connected to daemon"
-msgstr ""
+msgstr "连接到守护程序"
 
 #: gui_gtk.c:503
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "找不到polkit身份验证代理"
 
 #: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "询问密码以在后台启动守护进程"
 
 #: gui_gtk.c:513
 msgid "Start daemon"
-msgstr ""
+msgstr "启动守护进程"
 
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
@@ -307,7 +301,7 @@ msgstr "核心 #%i"
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -554,7 +548,7 @@ msgstr "卡 %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "驱动"
 
 #: main.c:147
 msgid "Temperature"
@@ -642,10 +636,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "本软件不作任何保修"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "正在转储数据..."
+msgstr "正在转储数据…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -689,7 +681,7 @@ msgstr "为 CPU 缓存速度设置自定义 bandwidth 测试 (整型)"
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "启动并连接到守护进程"
 
 #: main.c:330
 msgid "Verbose output"
@@ -733,24 +725,12 @@ msgid "Available DISPLAY:"
 msgstr "可用显示:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"可用选项:"
+msgstr "可用选项:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"可影响的环境变量:"
+msgstr "可影响的环境变量:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -785,25 +765,23 @@ msgid "an error occurred while setting locale"
 msgstr "本地化设置时出错"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "正在启动 NCurses TUI..."
+msgstr "正在启动 NCurses TU…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
-msgstr ""
+msgstr "严重错误：找不到terminfo数据库（请尝试将TERMINFO设置为环境变量）"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "无法设置%s终端（err = %i）；退回至%s"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "窗户太小了！\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
@@ -935,49 +913,47 @@ msgstr "编译正则表达式时出错"
 
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec：无法获得授权（对话框被关闭）"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec：无法获得授权（未被授权）"
 
 #: util.c:424
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec：找不到命令"
 
 #: util.c:427
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec：意外的错误代码"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "无法重新分配内存"
+msgstr "严重错误：无法分配内存"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "字节"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "正在退出 %s"
