@@ -11,7 +11,7 @@ before_install:
   - curl -sSL https://download.opensuse.org/repositories/home:Xorg/xUbuntu_16.04/Release.key | sudo apt-key add -
   - sudo apt-get update -qq
 install:
-  - sudo apt-get install -y -qq cmake ninja-build nasm gettext libgtk-3-dev libncursesw5-dev libcpuid-dev-git libpci-dev libprocps-dev libgtk-3-0 libncursesw5 libcpuid14-git libpci3 libprocps4
+  - sudo apt-get install -y -qq cmake ninja-build nasm gettext libgtk-3-dev libncursesw5-dev libcpuid-dev-git libpci-dev libprocps-dev libgtk-3-0 libncursesw5 libcpuid15-git libpci3 libprocps4
 
 before_script:
   - mkdir build
