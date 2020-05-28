@@ -6,15 +6,16 @@
 # Seila Oxe <vugiful@freemaillink.com>, 2019.
 # DanielDevBR <ferion11@gmail.com>, 2020.
 # Celio Alves <dreamcelio@gmail.com>, 2020.
+# Samuel Carvalho de Araújo <samuelnegro12345@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-05-14 01:41+0000\n"
-"Last-Translator: Celio Alves <dreamcelio@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"PO-Revision-Date: 2020-05-29 15:41+0000\n"
+"Last-Translator: Samuel Carvalho de Araújo <samuelnegro12345@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,10 +47,9 @@ msgid "%d %s, %d-way"
 msgstr "%d %s, %d-via(s)"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s associativa, %d-byte tamanho de linha"
+msgstr "%s associativa, %d-tamanho da linha %s"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -79,7 +79,7 @@ msgstr "Calculando multiplicadores da CPU"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "não é possível encontrar a unidade na string '%s' na posição %i"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -270,7 +270,7 @@ msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 #: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: caso %i não tratado"
 
 #: gui_gtk.c:59
 msgid "Starting GTK GUI…"
@@ -293,10 +293,8 @@ msgid "Ask password to start daemon in background"
 msgstr "Pedir senha para iniciar o daemon em segundo plano"
 
 #: gui_gtk.c:513
-#, fuzzy
-#| msgid "Start and connect to daemon"
 msgid "Start daemon"
-msgstr "Iniciar e conectar ao daemon"
+msgstr "Iniciar daemon"
 
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
@@ -774,16 +772,16 @@ msgid "an error occurred while setting locale"
 msgstr "um erro ocorreu enquanto definia a localização"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "Iniciando a interface de texto NCurses..."
+msgstr "Iniciando a interface de texto NCurses…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"ERRO FATAL: não foi possível encontrar o banco de dados terminfo (tente "
+"definir a variável de ambiente TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
@@ -792,7 +790,7 @@ msgstr "Falha ao configurar o terminal %s (err=%i); voltando para %s"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "A janela é muito pequena!\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
@@ -936,18 +934,19 @@ msgstr "um erro ocorreu enquanto compilava o regex"
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr ""
+"pkexec: não foi possível obter a autorização (caixa de diálogo ignorada)"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: não foi possível obter a autorização (não autorizado)"
 
 #: util.c:424
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: comando não encontrado"
 
 #: util.c:427
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: código de erro inesperado"
 
 #: cpu-x.h:52
 msgid "FATAL ERROR: could not allocate memory"
@@ -960,22 +959,22 @@ msgstr "bytes"
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Saindo %s"
