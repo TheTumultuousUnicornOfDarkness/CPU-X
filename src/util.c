@@ -197,6 +197,16 @@ error:
 	return (pipe_descr == NULL) ? 1 : 2 + pclose(pipe_descr);
 }
 
+/* Check if a command exists */
+bool command_exists(char *cmd)
+{
+	char buff[MAXSTR];
+
+	snprintf(buff, MAXSTR, "command -v %s > /dev/null", cmd);
+
+	return !system(buff);
+}
+
 /* Load a kernel module */
 int load_module(char *module, int *fd)
 {

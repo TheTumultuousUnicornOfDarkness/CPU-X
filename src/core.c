@@ -750,12 +750,9 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	switch(*gpu_driver)
 	{
 		case GPUDRV_NVIDIA:
-			if(!popen_to_str(&cmd, "optirun --status") && (strstr(cmd, "Bumblebee status: Ready") != NULL))
-				*gpu_driver = GPUDRV_NVIDIA_BUMBLEBEE;
-			break;
 		case GPUDRV_NOUVEAU:
-			if(!popen_to_str(&cmd, "optirun --status") && (strstr(cmd, "Bumblebee status: Ready") != NULL))
-				*gpu_driver = GPUDRV_NOUVEAU_BUMBLEBEE;
+			if(command_exists("optirun") && !popen_to_str(&cmd, "optirun --status") && (strstr(cmd, "Bumblebee status: Ready") != NULL))
+				*gpu_driver = (*gpu_driver) == GPUDRV_NVIDIA ? GPUDRV_NVIDIA_BUMBLEBEE : GPUDRV_NOUVEAU_BUMBLEBEE;
 			break;
 		default:
 			break;

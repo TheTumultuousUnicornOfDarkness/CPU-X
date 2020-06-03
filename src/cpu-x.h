@@ -314,6 +314,9 @@ int fopen_to_str(char **buffer, char *str, ...);
 /* Run a command and put output in a variable ('str' accept printf-like format) */
 int popen_to_str(char **buffer, char *str, ...);
 
+/* Check if a command exists */
+bool command_exists(char *cmd);
+
 /* Load a kernel module (return 0 on success) */
 int load_module(char *module, int *fd);
 
