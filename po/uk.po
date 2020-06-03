@@ -1,13 +1,14 @@
 # Copyright © 2014-2020 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Tymofij Lytvynenko <till.svit@gmail.com>, 2019, 2020.
+# Oleksii Melnychenko <moymilo@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-02-04 20:50+0000\n"
-"Last-Translator: Tymofij Lytvynenko <till.svit@gmail.com>\n"
+"PO-Revision-Date: 2020-06-03 21:43+0000\n"
+"Last-Translator: Oleksii Melnychenko <moymilo@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -32,22 +33,19 @@ msgstr ""
 "дод. сімейство: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d КБ, %d-канальний"
+msgstr "%d x %d %s, %d-канальний"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d Мб, %d-канальний"
+msgstr "%d %s, %d-канальний"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s асоціативний, %d-байтовий розмір кеш-смуги"
+msgstr "%s асоціативний, %d-%s розмір кеш-смуги"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
