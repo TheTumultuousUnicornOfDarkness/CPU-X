@@ -116,6 +116,9 @@ static void modify_refresh_time(gpointer data);
 static void open_settings_window(GtkWidget *button, GtkLabels *glab);
 
 /* Hide settings window and revert changes */
+static gboolean hide_settings_window(GtkWidget *widget, GdkEvent *event, GtkLabels *glab);
+
+/* Hide settings window and revert changes */
 static void close_settings_window(GtkWidget *button, GtkLabels *glab);
 
 /* Hide settings window and apply changes */

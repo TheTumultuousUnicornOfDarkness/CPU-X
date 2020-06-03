@@ -161,6 +161,16 @@ static void open_settings_window(GtkWidget *__button, GtkLabels *glab)
 }
 
 /* Hide settings window and revert changes */
+static gboolean hide_settings_window(GtkWidget *widget, GdkEvent *event, GtkLabels *glab)
+{
+	UNUSED(event);
+	UNUSED(glab);
+	g_settings_revert(settings);
+	gtk_widget_hide(widget);
+	return TRUE;
+}
+
+/* Hide settings window and revert changes */
 static void close_settings_window(GtkWidget *__button, GtkLabels *glab)
 {
 	UNUSED(__button);
@@ -615,11 +625,12 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 {
 	int i;
 
-	g_signal_connect(glab->mainwindow,     "destroy", G_CALLBACK(gtk_main_quit),        NULL);
-	g_signal_connect(glab->settingsbutton, "clicked", G_CALLBACK(open_settings_window), glab);
-	g_signal_connect(glab->daemonbutton,   "clicked", G_CALLBACK(reload_with_daemon),   refr);
-	g_signal_connect(glab->activecore,     "changed", G_CALLBACK(change_activecore),    data);
-	g_signal_connect(glab->activetest,     "changed", G_CALLBACK(change_activetest),    data);
+	g_signal_connect(glab->mainwindow,     "destroy",      G_CALLBACK(gtk_main_quit),        NULL);
+	g_signal_connect(glab->settingswindow, "delete-event", G_CALLBACK(hide_settings_window), NULL);
+	g_signal_connect(glab->settingsbutton, "clicked",      G_CALLBACK(open_settings_window), glab);
+	g_signal_connect(glab->daemonbutton,   "clicked",      G_CALLBACK(reload_with_daemon),   refr);
+	g_signal_connect(glab->activecore,     "changed",      G_CALLBACK(change_activecore),    data);
+	g_signal_connect(glab->activetest,     "changed",      G_CALLBACK(change_activetest),    data);
 
 	/* Tab Bench */
 	g_signal_connect(glab->gtktab_bench[VALUE][PRIMESLOWRUN],  "button-press-event", G_CALLBACK(start_benchmark_bg), refr);
