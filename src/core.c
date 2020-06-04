@@ -932,12 +932,17 @@ static int gpu_monitoring(Labels *data)
 		switch(data->g_data->gpu_driver[i])
 		{
 			case GPUDRV_AMDGPU:
+			{
+				const char *amdgpu_gpu_busy_file = format( "%s/device/gpu_busy_percent", cached_paths_drm[i]);
 				// ret_temp obtained above
-				ret_load  = sys_debug_ok(data) ? popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DRI, card_number) :
-				                                 fopen_to_str(&load, "%s/device/gpu_busy_percent", cached_paths_drm[i]); // Linux 4.19+
+				if(!access(amdgpu_gpu_busy_file, F_OK)) // Linux 4.19+
+					ret_load = fopen_to_str(&load, "%s", amdgpu_gpu_busy_file);
+				else if(sys_debug_ok(data))
+					ret_load = popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DRI, card_number);
 				ret_gclk  = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths_drm[i]);
 				ret_mclk  = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths_drm[i]);
 				break;
+			}
 			case GPUDRV_FGLRX:
 				ret_temp  = popen_to_str(&temp, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'",                       fglrx_count);
 				ret_load  = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
