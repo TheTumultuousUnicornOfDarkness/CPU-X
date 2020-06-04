@@ -76,7 +76,8 @@ static void libcpuid_msr_serialize(void)
 
 	if(msr != NULL)
 	{
-		msr_serialize_raw_data(msr, LOG_FILE);
+		MSG_STDOUT("libcpuid version %s", cpuid_lib_version());
+		msr_serialize_raw_data(msr, NULL);
 		cpu_msr_driver_close(msr);
 	}
 #endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
@@ -313,14 +314,14 @@ int main(void)
 
 	/* Logs */
 	unlink(LOG_FILE);
-#if HAS_LIBCPUID
-	if(getenv("CPUX_DAEMON_DEBUG"))
-		libcpuid_msr_serialize();
-#endif /* HAS_LIBCPUID */
 	freopen(LOG_FILE, "a", stdout);
 	setvbuf(stdout, NULL, _IONBF, 0);
 	dup2(STDOUT_FILENO, STDERR_FILENO);
 	PRGINFO(stdout);
+#if HAS_LIBCPUID
+	if(getenv("CPUX_DAEMON_DEBUG"))
+		libcpuid_msr_serialize();
+#endif /* HAS_LIBCPUID */
 
 	/* Initialize mutex */
 	if(pthread_mutex_init(&ti->mutex, NULL) < 0)
