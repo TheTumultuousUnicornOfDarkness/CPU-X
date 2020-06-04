@@ -52,7 +52,7 @@
 #define ALLOC_CHECK(ptr)      if(ptr == NULL) { MSG_ERRNO("%s", _("FATAL ERROR: could not allocate memory")); exit(255); }
 #define FREE(ptr)             { free(ptr); ptr = NULL; }
 #define IS_ROOT               (getuid() == 0)
-#define PRGINFO(out)          fprintf(out, "%s %s (%s %s, %s %s, %s %s)\n", PRGNAME, PRGVER, __DATE__, __TIME__, SYSTEM_NAME, SYSTEM_PROCESSOR, C_COMPILER_ID, __VERSION__)
+#define PRGINFO(out)          fprintf(out, "%s %s%s (%s %s, %s %s, %s %s)\n", PRGNAME, PRGVER, GITREV, __DATE__, __TIME__, SYSTEM_NAME, SYSTEM_PROCESSOR, C_COMPILER_ID, __VERSION__)
 #define UNUSED(x)             (void)(x)
 
 /* Formatted messages definition */
