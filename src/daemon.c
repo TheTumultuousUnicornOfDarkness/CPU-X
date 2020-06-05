@@ -40,6 +40,10 @@
 #include "daemon.h"
 #include "ipc.h"
 
+#ifdef __linux__
+# include <sys/mount.h>
+#endif
+
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
 #endif
@@ -161,11 +165,16 @@ static int __find_devices(int *fd)
 }
 #endif /* HAS_LIBPCI */
 
-static int __sys_debug_ok(int *fd)
+static int __can_access_sys_debug_dri(int *fd)
 {
 	int ret = -1;
 
 #ifdef __linux__
+	if(access(SYS_DEBUG_DRI, R_OK))
+	{
+		mkdir(SYS_DEBUG, S_IRWXU|S_IXGRP|S_IXOTH);
+		mount("none", SYS_DEBUG, "debugfs", MS_NOSUID|MS_NODEV|MS_NOEXEC, "");
+	}
 	ret = chmod(SYS_DEBUG, S_IRWXU|S_IXGRP|S_IXOTH); // 0711
 #endif /* __linux__ */
 	SEND_DATA(fd, &ret, sizeof(int));
@@ -242,7 +251,7 @@ static void *request_handler(void *p_data)
 #if HAS_LIBPCI
 			case ACCESS_DEV_PCI:       __find_devices(&td->fd);              break;
 #endif /* HAS_LIBPCI */
-			case ACCESS_SYS_DEBUG:     __sys_debug_ok(&td->fd);              break;
+			case ACCESS_SYS_DEBUG:     __can_access_sys_debug_dri(&td->fd);  break;
 			case LOAD_MODULE:          __load_module(&td->fd);               break;
 			default: MSG_WARNING(_("request_handler: case %i not handled"), cmd);
 		}

@@ -843,14 +843,14 @@ static int find_devices(Labels *data)
 #undef DEVICE_PRODUCT_STR
 
 #ifdef __linux__
-static bool sys_debug_ok(Labels *data)
+static bool can_access_sys_debug_dri(Labels *data)
 {
 	static int ret = 1;
 	const DaemonCommand cmd = ACCESS_SYS_DEBUG;
 
 	if(ret == 1)
 	{
-		if(!access(SYS_DEBUG, X_OK))
+		if(!access(SYS_DEBUG_DRI, X_OK))
 			ret = 0;
 		else if(DAEMON_UP)
 		{
@@ -939,8 +939,8 @@ static int gpu_monitoring(Labels *data)
 				// ret_temp obtained above
 				if(!access(amdgpu_gpu_busy_file, F_OK)) // Linux 4.19+
 					ret_load = fopen_to_str(&load, "%s", amdgpu_gpu_busy_file);
-				else if(sys_debug_ok(data))
-					ret_load = popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DRI, card_number);
+				else if(can_access_sys_debug_dri(data))
+					ret_load = popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DEBUG_DRI, card_number);
 				ret_gclk  = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths_drm[i]);
 				ret_mclk  = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths_drm[i]);
 				break;
@@ -961,8 +961,8 @@ static int gpu_monitoring(Labels *data)
 			case GPUDRV_RADEON:
 				// ret_temp obtained above
 				ret_load  = -1;
-				ret_gclk  = sys_debug_ok(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DRI, card_number) : -1;
-				ret_mclk  = sys_debug_ok(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DRI, card_number) : -1;
+				ret_gclk  = can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
+				ret_mclk  = can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
 				if((gclk != NULL) && (strlen(gclk) >= 2)) gclk[strlen(gclk) - 2] = '\0';
 				if((mclk != NULL) && (strlen(mclk) >= 2)) mclk[strlen(mclk) - 2] = '\0';
 				break;
@@ -983,11 +983,11 @@ static int gpu_monitoring(Labels *data)
 			case GPUDRV_NOUVEAU_BUMBLEBEE:
 			{
 				char *pstate = NULL;
-				int ret_pstate = popen_to_str(&pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ",  SYS_DRI, card_number);
+				int ret_pstate = popen_to_str(&pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ", SYS_DEBUG_DRI, card_number);
 				// ret_temp obtained above
 				ret_load  = -1;
-				ret_gclk  = !ret_pstate && sys_debug_ok(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
-				ret_mclk  = !ret_pstate && sys_debug_ok(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
+				ret_gclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
+				ret_mclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
 				FREE(pstate);
 				break;
 			}

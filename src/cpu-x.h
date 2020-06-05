@@ -101,7 +101,7 @@
 #define SYS_DRM               "/sys/class/drm/card"
 #define SYS_HWMON             "/sys/class/hwmon"
 #define SYS_DEBUG             "/sys/kernel/debug"
-#define SYS_DRI               SYS_DEBUG"/dri"
+#define SYS_DEBUG_DRI         SYS_DEBUG"/dri"
 
 /* FreeBSD-specific paths definition */
 #define DEV_PCI               "/dev/pci"
