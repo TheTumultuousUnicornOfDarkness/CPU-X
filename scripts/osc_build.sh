@@ -33,7 +33,7 @@ fi
 OLD_IFS="$IFS"
 OBS_DIR="$1"
 PACKAGE="$2"
-PKGS_DIR="$OBS_DIR/pkgs"
+PKGS_DIR="$(realpath $OBS_DIR/pkgs)"
 cd "$OBS_DIR/$PACKAGE" || die "failed to change directory to '$PACKAGE'"
 mkdir -pv "$PKGS_DIR"
 
