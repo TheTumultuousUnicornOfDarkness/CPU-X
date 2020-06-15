@@ -4,13 +4,14 @@
 # byStarTW <pan93412@gmail.com>, 2019.
 # Jeff Huang <s8321414@gmail.com>, 2019.
 # mingjieWu <mingjie831214@gmail.com>, 2020.
+# Hung, Chi-Heng <chh56@cs.washington.edu>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-02-24 15:33+0000\n"
-"Last-Translator: mingjieWu <mingjie831214@gmail.com>\n"
+"PO-Revision-Date: 2020-06-16 23:41+0000\n"
+"Last-Translator: Hung, Chi-Heng <chh56@cs.washington.edu>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.1.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -32,22 +33,19 @@ msgid ""
 msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d 路"
+msgstr "%d x %d %s, %d 路"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d 路"
+msgstr "%d %s, %d 路"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s 組合，%d-位元行大小"
+msgstr "%s 組合，%d-%s 行大小"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -72,7 +70,7 @@ msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
 
 #: core.c:489
 msgid "Calculating CPU multipliers"
-msgstr "正在計算 CPU 乘數"
+msgstr "正在計算 CPU 倍頻"
 
 #: core.c:537
 #, c-format
@@ -99,11 +97,11 @@ msgstr ""
 #: core.c:745
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr "您的 GPU 驅動無法得知:%s"
+msgstr "無法得知您的 GPU 驅動程式：%s"
 
 #: core.c:780
 msgid "Finding devices"
-msgstr ""
+msgstr "正在尋找裝置"
 
 #: core.c:792
 #, c-format
@@ -113,23 +111,23 @@ msgstr ""
 #: core.c:821
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "無法得知您的 GPU 供應商：%s (%#X)"
 
 #: core.c:837
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "找不到晶片組供應商及型號"
 
 #: core.c:839
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "找不到顯示卡供應商及型號"
 
 #: core.c:882
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "正在取得 GPU 時脈"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "無"
 
 #: core.c:992
 #, c-format
@@ -176,7 +174,7 @@ msgstr ""
 
 #: core.c:1194 core.c:1195
 msgid "Not started"
-msgstr ""
+msgstr "未開始"
 
 #: core.c:1200
 msgid "Active"
@@ -214,7 +212,7 @@ msgstr ""
 
 #: core.c:1234
 msgid "Starting benchmark"
-msgstr ""
+msgstr "正在開始效能測試"
 
 #: core.c:1253
 msgid "an error occurred while starting benchmark"
@@ -297,12 +295,12 @@ msgstr ""
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "核心 #%i"
 
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -310,124 +308,124 @@ msgstr ""
 
 #: main.c:54
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: main.c:55
 msgid "Processor"
-msgstr ""
+msgstr "處理器"
 
 #: main.c:56 main.c:111 main.c:144
 msgid "Vendor"
-msgstr ""
+msgstr "供應商"
 
 #: main.c:57
 msgid "Code Name"
-msgstr ""
+msgstr "代號"
 
 #: main.c:58
 msgid "Package"
-msgstr ""
+msgstr "封裝"
 
 #: main.c:59
 msgid "Technology"
-msgstr ""
+msgstr "製程"
 
 #: main.c:60
 msgid "Voltage"
-msgstr ""
+msgstr "電壓"
 
 #: main.c:61
 msgid "Specification"
-msgstr ""
+msgstr "規格"
 
 #: main.c:62
 msgid "Family"
-msgstr ""
+msgstr "系列"
 
 #: main.c:63
 msgid "Ext. Family"
-msgstr ""
+msgstr "延伸系列"
 
 #: main.c:64 main.c:101 main.c:112 main.c:146
 msgid "Model"
-msgstr ""
+msgstr "型號"
 
 #: main.c:65
 msgid "Ext. Model"
-msgstr ""
+msgstr "延伸型號"
 
 #: main.c:66
 msgid "Temp."
-msgstr ""
+msgstr "溫度"
 
 #: main.c:67
 msgid "Stepping"
-msgstr ""
+msgstr "步進"
 
 #: main.c:68
 msgid "Instructions"
-msgstr ""
+msgstr "指令集"
 
 #: main.c:70
 msgid "Clocks"
-msgstr ""
+msgstr "時脈"
 
 #: main.c:71
 msgid "Core Speed"
-msgstr ""
+msgstr "核心速度"
 
 #: main.c:72
 msgid "Multiplier"
-msgstr ""
+msgstr "倍頻"
 
 #: main.c:73
 msgid "Bus Speed"
-msgstr ""
+msgstr "匯流排速度"
 
 #: main.c:74 main.c:148
 msgid "Usage"
-msgstr ""
+msgstr "用量"
 
 #: main.c:76
 msgid "Cache"
-msgstr ""
+msgstr "快取"
 
 #: main.c:77
 msgid "L1 Data"
-msgstr ""
+msgstr "L1 資料"
 
 #: main.c:78
 msgid "L1 Inst."
-msgstr ""
+msgstr "L1 指令"
 
 #: main.c:79
 msgid "Level 2"
-msgstr ""
+msgstr "L2 快取"
 
 #: main.c:80
 msgid "Level 3"
-msgstr ""
+msgstr "L3 快取"
 
 #: main.c:82
 msgid "Socket(s)"
-msgstr ""
+msgstr "插槽"
 
 #: main.c:83
 msgid "Core(s)"
-msgstr ""
+msgstr "核心"
 
 #: main.c:84
 msgid "Thread(s)"
-msgstr ""
+msgstr "線程"
 
 #: main.c:87
 msgid "Caches"
-msgstr ""
+msgstr "快取"
 
 #: main.c:91
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "L%i 快取"
 
 #: main.c:92
 msgid "Size"
@@ -435,7 +433,7 @@ msgstr ""
 
 #: main.c:93
 msgid "Speed"
-msgstr ""
+msgstr "速度"
 
 #: main.c:95
 msgid "Test"
@@ -443,31 +441,31 @@ msgstr ""
 
 #: main.c:98 main.c:99
 msgid "Motherboard"
-msgstr ""
+msgstr "主機板"
 
 #: main.c:100
 msgid "Manufacturer"
-msgstr ""
+msgstr "製造商"
 
 #: main.c:102
 msgid "Revision"
-msgstr ""
+msgstr "修訂"
 
 #: main.c:104
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:105
 msgid "Brand"
-msgstr ""
+msgstr "廠牌"
 
 #: main.c:106
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
 #: main.c:107
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: main.c:108
 msgid "ROM Size"
@@ -475,11 +473,11 @@ msgstr ""
 
 #: main.c:110
 msgid "Chipset"
-msgstr ""
+msgstr "晶片組"
 
 #: main.c:115 main.c:131
 msgid "Memory"
-msgstr ""
+msgstr "記憶體"
 
 #: main.c:118
 #, c-format
@@ -496,19 +494,19 @@ msgstr ""
 
 #: main.c:124
 msgid "Operating System"
-msgstr ""
+msgstr "作業系統"
 
 #: main.c:125
 msgid "Kernel"
-msgstr ""
+msgstr "核心"
 
 #: main.c:126
 msgid "Distribution"
-msgstr ""
+msgstr "發行版"
 
 #: main.c:127
 msgid "Hostname"
-msgstr ""
+msgstr "主機名稱"
 
 #: main.c:128
 msgid "Uptime"
@@ -516,7 +514,7 @@ msgstr ""
 
 #: main.c:129
 msgid "Compiler"
-msgstr ""
+msgstr "編譯器"
 
 #: main.c:132
 msgid "Used"
@@ -549,23 +547,23 @@ msgstr ""
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "驅動程式"
 
 #: main.c:147
 msgid "Temperature"
-msgstr ""
+msgstr "溫度"
 
 #: main.c:149
 msgid "GPU clock"
-msgstr ""
+msgstr "GPU 時脈"
 
 #: main.c:150
 msgid "Memory clock"
-msgstr ""
+msgstr "記憶體時脈"
 
 #: main.c:154
 msgid "Bench"
-msgstr ""
+msgstr "效能測試"
 
 #: main.c:155
 msgid "Prime numbers (slow)"
@@ -577,27 +575,27 @@ msgstr ""
 
 #: main.c:159
 msgid "Score"
-msgstr ""
+msgstr "分數"
 
 #: main.c:160
 msgid "Run"
-msgstr ""
+msgstr "執行"
 
 #: main.c:163
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: main.c:164
 msgid "Duration"
-msgstr ""
+msgstr "持續時間"
 
 #: main.c:165
 msgid "Threads"
-msgstr ""
+msgstr "線程"
 
 #: main.c:168 main.c:173
 msgid "About"
-msgstr ""
+msgstr "關於"
 
 #: main.c:170
 #, c-format
@@ -605,25 +603,27 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s 是一款蒐集CPU、主機板等資訊\n"
+"的自由軟體。"
 
 #: main.c:174
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "%s 版"
 
 #: main.c:175
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "作者：%s"
 
 #: main.c:176
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "網站：%s"
 
 #: main.c:178
 msgid "License"
-msgstr ""
+msgstr "授權條款"
 
 #: main.c:181
 #, c-format
@@ -644,11 +644,11 @@ msgstr ""
 
 #: main.c:320
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "開啓圖形使用者界面（預設）"
 
 #: main.c:321
 msgid "Start text-based user interface (TUI)"
-msgstr ""
+msgstr "開啓文字使用者介面"
 
 #: main.c:322
 msgid "Dump all data on standard output and exit"
@@ -668,7 +668,7 @@ msgstr ""
 
 #: main.c:326
 msgid "Set default tab (integer)"
-msgstr ""
+msgstr "設定預設分頁（整數）"
 
 #: main.c:327
 msgid "Select CPU core to monitor (integer)"
@@ -801,69 +801,75 @@ msgstr ""
 
 #: tui_ncurses.c:421
 msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr ""
+msgstr "\t按「左」鍵切換至左邊的分頁。\n"
 
 #: tui_ncurses.c:422
 msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr ""
+msgstr "\t按「右」鍵切換至右邊的分頁。\n"
 
 #: tui_ncurses.c:423
 msgid "\tPress 'h' key to see this help.\n"
-msgstr ""
+msgstr "\t按「h」鍵查看此幫助。\n"
 
 #: tui_ncurses.c:424
 msgid "\tPress 'q' key to exit.\n"
-msgstr ""
+msgstr "\t按「q」鍵退出。\n"
 
 #: tui_ncurses.c:426
 msgid ""
 "\n"
 "CPU tab:\n"
 msgstr ""
+"\n"
+"CPU分頁：\n"
 
 #: tui_ncurses.c:427
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
-msgstr ""
+msgstr "\t按「下」鍵減少要監視的核心數。\n"
 
 #: tui_ncurses.c:428
 msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
+msgstr "\t按「上」鍵增加要監視的核心數。\n"
 
 #: tui_ncurses.c:430
 msgid ""
 "\n"
 "Caches tab:\n"
 msgstr ""
+"\n"
+"快取分頁：\n"
 
 #: tui_ncurses.c:431
 msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr ""
+msgstr "\t按「下」鍵切換至上一項測試。\n"
 
 #: tui_ncurses.c:432
 msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
+msgstr "\t按「上」鍵切換至下一項測試。\n"
 
 #: tui_ncurses.c:434
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr ""
+"\n"
+"效能測試分頁：\n"
 
 #: tui_ncurses.c:435
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
+msgstr "\t按「下」鍵減少效能測試持續的時間。\n"
 
 #: tui_ncurses.c:436
 msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
+msgstr "\t按「上」鍵增加效能測試持續的時間。\n"
 
 #: tui_ncurses.c:437
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
+msgstr "\t按「下一頁」鍵減少要使用的線程數。\n"
 
 #: tui_ncurses.c:438
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
+msgstr "\t按「上一頁」鍵增加要使用的線程數。\n"
 
 #: tui_ncurses.c:439
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
@@ -878,6 +884,8 @@ msgid ""
 "\n"
 "Press any key to exit this help.\n"
 msgstr ""
+"\n"
+"按任意鍵退出幫助。\n"
 
 #: util.c:165
 #, c-format
@@ -896,7 +904,7 @@ msgstr ""
 
 #: util.c:314
 msgid "an error occurred while compiling regex"
-msgstr ""
+msgstr "編譯正則表達式時出錯"
 
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -915,34 +923,32 @@ msgid "pkexec: unexpected error code"
 msgstr ""
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "無法重新配置記憶體"
+msgstr "致命錯誤：無法配置記憶體"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "位元組"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "退出 %s"
