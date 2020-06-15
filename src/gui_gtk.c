@@ -26,6 +26,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <libintl.h>
+#include <sys/wait.h>
 #include "cpu-x.h"
 #include "ipc.h"
 #include "gui_gtk.h"
