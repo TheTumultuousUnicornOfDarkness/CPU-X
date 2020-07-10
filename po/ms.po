@@ -1,13 +1,14 @@
 # Copyright © 2014-2020 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # abuyop <abuyop@gmail.com>, 2020.
+# Allan Nordhøy <epost@anotheragency.no>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-01-24 01:21+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"PO-Revision-Date: 2020-07-11 09:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ms/>\n"
 "Language: ms\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -31,14 +32,14 @@ msgstr ""
 "keluarga ext.: %i"
 
 #: core.c:240
-#, fuzzy, c-format
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-way"
+msgstr "%d x %d %s, %d-way"
 
 #: core.c:241
-#, fuzzy, c-format
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-way"
+msgstr "%d %s, %d-way"
 
 #: core.c:242
 #, c-format
@@ -129,10 +130,9 @@ msgid "None"
 msgstr ""
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Pemacu untuk GPU %i tidak melaporkan frekuensi"
+msgstr "Pemacu untuk GPU %u tidak melaporkan frekuensi"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
