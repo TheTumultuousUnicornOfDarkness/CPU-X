@@ -3,13 +3,14 @@
 # Translators:
 # Pavel Borecki <pavel.borecki@gmail.com>, 2017-2018
 # Jiri Tersel <jiri.tersel@seznam.cz>, 2019.
+# Allan Nordhøy <epost@anotheragency.no>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2019-12-03 00:05+0000\n"
-"Last-Translator: Jiri Tersel <jiri.tersel@seznam.cz>\n"
+"PO-Revision-Date: 2020-07-11 09:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
 "cs/>\n"
 "Language: cs_CZ\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -34,16 +35,14 @@ msgstr ""
 "%i, řada podrobněji: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-cestná"
+msgstr "%d x %d %s, %d-cestná"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-cestná"
+msgstr "%d %s, %d-cestná"
 
 #: core.c:242
 #, fuzzy, c-format
