@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the CPU-X package.
 # Rui Mendes <xz9@protonmail.com>, 2019.
 # ssantos <ssantos@web.de>, 2019.
+# Allan Nordhøy <epost@anotheragency.no>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2019-04-29 23:43+0000\n"
-"Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
+"PO-Revision-Date: 2020-07-11 09:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
 "Language: pt\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -32,16 +33,14 @@ msgstr ""
 "ext. família: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-via"
+msgstr "%d x %d %s, %d-via"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-via"
+msgstr "%d %s, %d-via"
 
 #: core.c:242
 #, fuzzy, c-format
@@ -137,10 +136,9 @@ msgid "None"
 msgstr ""
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "O driver para a GPU %i não reporta frequências"
+msgstr "O driver para a GPU %u não reporta frequências"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
