@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-04-12 11:11+0000\n"
-"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"PO-Revision-Date: 2020-07-11 09:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
 "Language: mr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -31,16 +31,14 @@ msgstr ""
 "आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये नाही."
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-way"
+msgstr "%d x %d %s, %d-way"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB,%d-वे"
+msgstr "%d %s,%d-वे"
 
 #: core.c:242
 #, fuzzy, c-format
@@ -132,10 +130,9 @@ msgid "None"
 msgstr ""
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "GPU %i साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
+msgstr "GPU %u साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
