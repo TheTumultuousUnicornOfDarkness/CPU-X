@@ -1,13 +1,14 @@
 # Copyright © 2014-2020 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Anton Kochubey <anton@kochubey.eu>, 2020.
+# Allan Nordhøy <epost@anotheragency.no>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-01-29 10:50+0000\n"
-"Last-Translator: Anton Kochubey <anton@kochubey.eu>\n"
+"PO-Revision-Date: 2020-07-11 09:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Latvian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/lv/>\n"
 "Language: lv\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= "
 "19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -32,16 +33,14 @@ msgstr ""
 "papl. ģimene: %i"
 
 #: core.c:240
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d KB, %d-direkcionāls"
+msgstr "%d x %d %s, %d-direkcionāls"
 
 #: core.c:241
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d MB, %d-direkcionāls"
+msgstr "%d %s, %d-direkcionāls"
 
 #: core.c:242
 #, c-format
@@ -132,10 +131,9 @@ msgid "None"
 msgstr ""
 
 #: core.c:992
-#, fuzzy, c-format
-#| msgid "Driver for GPU %i doesn't report frequencies"
+#, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "GPU %i draiveris neatbalsta frekvenču nolasīšanu"
+msgstr "GPU %u draiveris neatbalsta frekvenču nolasīšanu"
 
 #: core.c:1016
 msgid "failed to retrieve GPU clocks"
