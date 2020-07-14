@@ -116,6 +116,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Fix build on FreeBSD when GTK is enabled
+- Fix list of influenceable environment variables in help
 
 ---
 

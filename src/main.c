@@ -342,11 +342,25 @@ static const struct
 	char       *description;
 } cpux_env_vars[] =
 {
-	{ true,            "CPUX_BCLK",           N_("Enforce the bus clock")                                   },
-	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",      N_("Read CPUID raw data from a given file")                   },
-	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE", N_("Only print a message if CPU does not belong in database") },
-	{ true,            NULL,                  NULL                                                          }
+	{ true,            "CPUX_BCLK",                N_("Enforce the bus clock")                                   },
+	{ true,            "CPUX_FORCE_FREQ_FALLBACK", N_("Ignore CPU frequency reported by libcpuid") },
+	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",           N_("Read CPUID raw data from a given file")                   },
+	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE",      N_("Only print a message if CPU does not belong in database") },
+	{ true,            NULL,                       NULL                                                          }
 };
+
+/* Check for influenceable environment variables */
+static void check_environment_variables(Labels *data)
+{
+	if(getenv("CPUX_BCLK"))
+		data->bus_freq = atof(getenv("CPUX_BCLK"));
+	if(getenv("CPUX_FORCE_FREQ_FALLBACK"))
+		opts->freq_fallback = ((atoi(getenv("CPUX_FORCE_FREQ_FALLBACK"))) > 0);
+	if(getenv("CPUX_CPUID_RAW"))
+		data->l_data->cpuid_raw_file = getenv("CPUX_CPUID_RAW");
+	if(getenv("CPUX_DEBUG_DATABASE"))
+		opts->debug_database = ((atoi(getenv("CPUX_DEBUG_DATABASE"))) > 0);
+}
 
 /* This is help display with --help option */
 static void help(char *binary_name)
@@ -532,21 +546,6 @@ static void parse_arguments(int argc, char *argv[])
 #undef OPTIONS_COUNT
 #undef SHORT_OPT_SIZE
 #undef SHORT_OPTS_SIZE
-
-/* Check for influenceable environment variables */
-static void check_environment_variables(Labels *data)
-{
-	if(getenv("CPUX_NETWORK"))
-		opts->use_network = ((atoi(getenv("CPUX_NETWORK"))) > 0);
-	if(getenv("CPUX_BCLK"))
-		data->bus_freq = atof(getenv("CPUX_BCLK"));
-	if(getenv("CPUX_CPUID_RAW"))
-		data->l_data->cpuid_raw_file = getenv("CPUX_CPUID_RAW");
-	if(getenv("CPUX_DEBUG_DATABASE"))
-		opts->debug_database = ((atoi(getenv("CPUX_DEBUG_DATABASE"))) > 0);
-	if(getenv("CPUX_FORCE_FREQ_FALLBACK"))
-		opts->freq_fallback = ((atoi(getenv("CPUX_FORCE_FREQ_FALLBACK"))) > 0);
-}
 
 
 /************************* Main-related functions *************************/
