@@ -100,8 +100,11 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 static gboolean grefresh(GThrd *refr)
 {
 	int i;
+	gboolean ret = true;
 	Labels    *(data) = refr->data;
 	GtkLabels *(glab) = refr->glab;
+	uint16_t new_refr_time = g_settings_get_uint(settings, "refresh-time");
+	static uint16_t old_refr_time = 0;
 
 	opts->selected_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(glab->notebook));
 	do_refresh(data);
@@ -144,7 +147,11 @@ static gboolean grefresh(GThrd *refr)
 
 	/* Destroy current timeout when refresh time is updated
 	Note: modify_refresh_time() will create a new timeout */
-	return (opts->refr_time == g_settings_get_uint(settings, "refresh-time"));
+	if(old_refr_time == 0)
+		old_refr_time = new_refr_time;
+	ret = (old_refr_time == new_refr_time);
+	old_refr_time = new_refr_time;
+	return ret;
 }
 
 /* Create new timeout when old one is destroyed */

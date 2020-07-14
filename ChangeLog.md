@@ -122,6 +122,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Fix build on FreeBSD when GTK is enabled
 - Fix list of influenceable environment variables in help
+- Fix override of refresh value when GTK is enabled
 
 ---
 
