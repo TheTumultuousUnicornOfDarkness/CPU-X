@@ -32,6 +32,7 @@
 #include <signal.h>
 #include <execinfo.h>
 #include <getopt.h>
+#include <wordexp.h>
 #include <locale.h>
 #include <libintl.h>
 #include "cpu-x.h"
@@ -342,6 +343,7 @@ static const struct
 	char       *description;
 } cpux_env_vars[] =
 {
+	{ true,            "CPUX_ARGS",                N_("Add default command line arguments")                      },
 	{ true,            "CPUX_BCLK",                N_("Enforce the bus clock")                                   },
 	{ true,            "CPUX_FORCE_FREQ_FALLBACK", N_("Ignore CPU frequency reported by libcpuid") },
 	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",           N_("Read CPUID raw data from a given file")                   },
@@ -392,7 +394,7 @@ static void help(char *binary_name)
 	{
 		if(!cpux_env_vars[i].has_mod)
 			continue;
-		MSG_STDOUT("  %-20s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
+		MSG_STDOUT("  %-25s %s", cpux_env_vars[i].var_name, _(cpux_env_vars[i].description));
 	}
 }
 
@@ -430,17 +432,61 @@ static void version(bool full_header)
 	}
 }
 
+/* Add arguments from environment variable CPUX_ARGS */
+static void environment_to_arguments(int *argc, char ***argv)
+{
+	int err = 0;
+	const char *args = getenv("CPUX_ARGS");
+	wordexp_t we;
+
+	if(args == NULL)
+		return;
+
+	if((err = wordexp(args, &we, 0)) != 0)
+	{
+		MSG_ERROR(_("failed to call wordexp (%i)"), err);
+		return;
+	}
+
+	*argc = we.we_wordc;
+	*argv = malloc((we.we_wordc + 1) * sizeof(char *));
+	for(size_t i = 0; i < we.we_wordc; i++)
+	{
+		const size_t length = strlen(we.we_wordv[i]) + 1;
+		(*argv)[i + 1] = malloc(length * sizeof(char));
+		memcpy((*argv)[i + 1], we.we_wordv[i], length);
+	}
+	wordfree(&we);
+}
+
 /* Parse arguments and set some flags */
 #define OPTIONS_COUNT   (sizeof(cpux_options) / sizeof(cpux_options[0]))
 #define SHORT_OPT_SIZE  3
 #define SHORT_OPTS_SIZE (OPTIONS_COUNT * 2)
-static void parse_arguments(int argc, char *argv[])
+static void parse_arguments(int argc_orig, char *argv_orig[])
 {
-	int i, j = 0, c, longindex, tmp_arg = -1;
+	int i, j = 0, c, argc = 0, longindex, tmp_arg = -1;
 	char shortopt[SHORT_OPT_SIZE], shortopts[SHORT_OPTS_SIZE] = "";
+	char **argv = NULL, **tmp = NULL;
 	struct option longopts[OPTIONS_COUNT];
 
-	/* Filling longopts structure */
+	/* Inject arguments from environment */
+	environment_to_arguments(&argc, &argv);
+	c     = argc;
+	argc += argc_orig;
+	tmp   = realloc(argv, argc * sizeof(char *));
+	ALLOC_CHECK(tmp);
+	argv  = tmp;
+	for(i = 0; i < argc_orig; i++)
+	{
+		j = (i == 0) ? 0 : c + i; // Preserve argv[0], then append original argv at end of new array
+		const size_t length = strlen(argv_orig[i]) + 1;
+		argv[j] = malloc(length * sizeof(char));
+		memcpy(argv[j], argv_orig[i], length);
+	}
+
+	/* Fill longopts structure */
+	j = 0;
 	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
 		while(!cpux_options[i].has_mod)
@@ -542,6 +588,10 @@ static void parse_arguments(int argc, char *argv[])
 				exit(EXIT_FAILURE);
 		}
 	}
+
+	for(i = 0; i < argc; i++)
+		free(argv[i]);
+	free(argv);
 }
 #undef OPTIONS_COUNT
 #undef SHORT_OPT_SIZE
