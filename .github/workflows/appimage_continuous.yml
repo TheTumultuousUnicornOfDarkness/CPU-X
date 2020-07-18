@@ -25,13 +25,13 @@ jobs:
         name: AppImage
         path: AppImage/*
 
-    - name: Delete old continuous release
-      uses: dev-drprasad/delete-tag-and-release@v0.1.2
-      with:
-        delete_release: true
-        tag_name: continuous
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Delete old continuous release
+    #   uses: dev-drprasad/delete-tag-and-release@v0.1.2
+    #   with:
+    #     delete_release: true
+    #     tag_name: continuous
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create continuous release
       uses: ncipollo/release-action@v1
