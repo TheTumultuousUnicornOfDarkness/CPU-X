@@ -118,7 +118,7 @@ void start_tui_ncurses(Labels *data)
 
 	while(ch != 'q')
 	{
-		ch = getch();
+		ch = convert_char(getch());
 		switch(ch)
 		{
 			case KEY_LEFT:
@@ -248,6 +248,37 @@ void start_tui_ncurses(Labels *data)
 
 
 /************************* Private functions *************************/
+
+/* Convert keys when an alternative mapping is used */
+#define ALT_CODE 27
+#define ALT(x)   (x & ALT_CODE)
+static int convert_char(int ch)
+{
+	int i = 0;
+	static int modifier = 0;
+	const int ch_mod = modifier ? ch & modifier : ch;
+
+	const int keymaps[][LASTKEYMAP] =
+	{
+		//Arrow       Emacs       Inverted-T  Vim
+		{ KEY_LEFT,   CTRL('b'),  'j',        'h'          },
+		{ KEY_RIGHT,  CTRL('f'),  'l',        'l'          },
+		{ KEY_UP,     CTRL('p'),  'i',        'k'          },
+		{ KEY_DOWN,   CTRL('n'),  'k',        'j'          },
+		{ KEY_PPAGE,  CTRL('v'),  CTRL('b'),  CTRL('b')    },
+		{ KEY_NPAGE,  ALT('v'),   CTRL('f'),  CTRL('f')    },
+		{ 'h',        '?',        '?',        '?'          },
+		{ ch_mod,     ch_mod,     ch_mod,     ch_mod       } // Sentinel value
+	};
+
+	modifier = (ch == ALT_CODE) ? ch : 0;
+	while(keymaps[i][opts->keymap] != ch_mod)
+		i++;
+
+	return keymaps[i][0];
+}
+#undef ALT_CODE
+#undef ALT
 
 /* Put window in the center of the screen */
 static bool resize_window(WINDOW *pwin, const SizeInfo info)

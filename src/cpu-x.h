@@ -94,7 +94,6 @@
 // TRANSLATORS: Tera-Byte
 #define UNIT_TB               _("TB")
 
-
 /* Linux-specific paths definition */
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"
 #define SYS_CPU               "/sys/devices/system/cpu/cpu"
@@ -206,6 +205,15 @@ enum EnTabAbout
 	LASTABOUT
 };
 
+enum EnOptKeymap
+{
+	ARROWS,
+	EMACS,
+	INVERTED_T,
+	VIM,
+	LASTKEYMAP
+};
+
 typedef struct
 {
 	int8_t  cpu_vendor_id;
@@ -273,6 +281,7 @@ typedef struct
 	bool     color, verbose, issue, use_network, with_daemon, debug_database, freq_fallback;
 	uint8_t  selected_page, selected_core, bw_test;
 	uint16_t output_type, refr_time;
+	enum EnOptKeymap keymap;
 } Options;
 
 typedef struct

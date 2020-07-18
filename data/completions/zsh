@@ -16,7 +16,8 @@ _cpu_x() {
 		{-h,--help}'[Print help and exit]' \
 		{-V,--version}'[Print version and exit]' \
 		'--nocolor[Disable colored output]' \
-		'--issue-fmt[Print required informations to paste in an issue]'
+		'--issue-fmt[Print required informations to paste in an issue]' \
+		'--keymap[Set key mapping for NCurses mode (arrows|emacs|inverted-T|vim)'
 }
 
 _cpu_x "$@"

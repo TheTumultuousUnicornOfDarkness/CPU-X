@@ -4,7 +4,7 @@ _cpu_x() {
 	cur="${COMP_WORDS[COMP_CWORD]}"
 	prev="${COMP_WORDS[COMP_CWORD-1]}"
 	display=(-G --gtk -N --ncurses -D --dump -M --dmidecode -B --bandwidth -h --help -V --version)
-	opts=(-r --refresh -t --tab -c --core -b --cachetest -d --daemon -v --verbose --nocolor --issue-fmt)
+	opts=(-r --refresh -t --tab -c --core -b --cachetest -d --daemon -v --verbose --nocolor --issue-fmt --keymap)
 
 	case $prev in
 		-G|--gtk|-N|--ncurses|-D|dump|-M|--dmidecode|-B|--bandwidth)
@@ -13,7 +13,7 @@ _cpu_x() {
 		-h|--help|-V|--version)
 			return 0
 			;;
-		-r|--refresh|-t|--tab|-c|--core|-b|--cachetest|-d|--daemon|-v|--verbose|--nocolor|--issue-fmt)
+		-r|--refresh|-t|--tab|-c|--core|-b|--cachetest|-d|--daemon|-v|--verbose|--nocolor|--issue-fmt|--keymap)
 			COMPREPLY=($(compgen -W "${opts[*]}" -- "$cur"))
 			;;
 		*)

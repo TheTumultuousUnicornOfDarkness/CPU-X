@@ -97,6 +97,9 @@ typedef struct
 
 /********************************** TUI  **********************************/
 
+/* Convert keys when an alternative mapping is used */
+static int convert_char(int ch);
+
 /* Put window in the center of the screen */
 static bool resize_window(WINDOW *pwin, const SizeInfo info);
 

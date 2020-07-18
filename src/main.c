@@ -332,7 +332,8 @@ static const struct
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
 	{ true,              0, "nocolor",   no_argument,       N_("Disable colored output")                                   },
-	{ true,              0, "issue-fmt", no_argument,       N_("Print required information to paste in an issue")         },
+	{ true,              0, "issue-fmt", no_argument,       N_("Print required information to paste in an issue")          },
+	{ HAS_NCURSES,       0, "keymap",    required_argument, N_("Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])") },
 	{ true,              0, NULL,        0,                 NULL                                                           }
 };
 
@@ -581,6 +582,18 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 					version(false);
 					break;
 				}
+				else if(!strcmp(longopts[longindex].name, "keymap"))
+				{
+					switch(optarg[0])
+					{
+						case 'a': opts->keymap = ARROWS;     break;
+						case 'e': opts->keymap = EMACS;      break;
+						case 'i': opts->keymap = INVERTED_T; break;
+						case 'v': opts->keymap = VIM;        break;
+						default: help(argv[0]); exit(EXIT_FAILURE);
+					}
+					break;
+				}
 				/* Fall through */
 			case '?':
 			default:
@@ -732,7 +745,8 @@ int main(int argc, char *argv[])
 		.selected_page  = 0,
 		.selected_core  = 0,
 		.bw_test        = 0,
-		.refr_time      = 1
+		.refr_time      = 1,
+		.keymap         = ARROWS
 	};
 
 	set_locales();
