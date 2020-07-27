@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-07-20 13:41+0000\n"
+"PO-Revision-Date: 2020-07-28 13:41+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
@@ -43,10 +43,9 @@ msgid "%d %s, %d-way"
 msgstr "%d %s, %d-via"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s associativa, %d-byte tamanho da linha"
+msgstr "%s associativa, %d-%s tamanho da linha"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -80,7 +79,7 @@ msgstr "A calcular multiplicadores da CPU"
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "não é possível encontrar a unidade na cadeia '%s' na posição %i"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -97,7 +96,7 @@ msgstr "A chamar bandwidth (largura de banda)"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Nenhum driver do kernel em uso para a placa de vídeo no caminho %s"
 
 #: core.c:745
 #, c-format
@@ -109,10 +108,9 @@ msgid "Finding devices"
 msgstr "A procurar dispositivos"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "A ignorar pesquisa de dispositivos (tem de ser root)"
+msgstr "Saltar a busca de aparelhos (permissões erradas no aparelho %s)"
 
 #: core.c:821
 #, c-format
@@ -133,7 +131,7 @@ msgstr "A obter as velocidades da GPU"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 #: core.c:992
 #, c-format
@@ -272,13 +270,11 @@ msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 #: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: caso %i não tratado"
 
 #: gui_gtk.c:59
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "Iniciando a interface gráfica GTK..."
+msgstr "Iniciando a interface gráfica GTK…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -286,19 +282,19 @@ msgstr "Falhou ao importar UI no GtkBuilder"
 
 #: gui_gtk.c:501
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Conectado ao daemon"
 
 #: gui_gtk.c:503
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Nenhum agente de autenticação polkit foi encontrado"
 
 #: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Pedir palavra-passe para iniciar o daemon em segundo plano"
 
 #: gui_gtk.c:513
 msgid "Start daemon"
-msgstr ""
+msgstr "Iniciar daemon"
 
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
@@ -308,7 +304,7 @@ msgstr "Núcleo #%i"
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -555,7 +551,7 @@ msgstr "Placa %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "Driver"
 
 #: main.c:147
 msgid "Temperature"
@@ -643,10 +639,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Este programa é fornecido ABSOLUTAMENTE SEM NENHUMA GARANTIA"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "A despejar dados (dumping)..."
+msgstr "A despejar dados (dumping)…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -693,7 +687,7 @@ msgstr ""
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Iniciar e conectar ao daemon"
 
 #: main.c:330
 msgid "Verbose output"
@@ -737,24 +731,12 @@ msgid "Available DISPLAY:"
 msgstr "Tela disponível:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"Opções disponíveis:"
+msgstr "OPÇÕES disponíveis:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"Variáveis de ambiente influenciáveis:"
+msgstr "Variáveis de ambiente influenciáveis:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
@@ -790,25 +772,25 @@ msgid "an error occurred while setting locale"
 msgstr "um erro ocorreu enquanto definia a localização"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "Iniciando a interface de texto NCurses..."
+msgstr "Iniciando a interface de texto NCurses…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"ERRO FATAL: não foi possível encontrar o banco de dados terminfo (tente "
+"definir a variável de ambiente TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Falha ao configurar o terminal %s (err=%i); voltando para %s"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "A janela é pequena demais!\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
@@ -952,48 +934,47 @@ msgstr "um erro ocorreu enquanto compilava o regex"
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr ""
+"pkexec: não foi possível obter a autorização (caixa de diálogo ignorada)"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: não foi possível obter a autorização (não autorizado)"
 
 #: util.c:424
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: comando não encontrado"
 
 #: util.c:427
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: código de erro inesperado"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "não foi possível realocar a memória"
+msgstr "ERRO FATAL: não foi possível alocar a memória"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "bytes"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "A sair do %s"
