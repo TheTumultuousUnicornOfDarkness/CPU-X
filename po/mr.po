@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-07-11 09:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2020-08-01 20:41+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
 "Language: mr\n"
@@ -41,10 +41,9 @@ msgid "%d %s, %d-way"
 msgstr "%d %s,%d-वे"
 
 #: core.c:242
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s सहकारी,%d-बाइट लाइन आकार"
+msgstr "%s सहकारी,%d-%s लाइन आकार"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -74,7 +73,7 @@ msgstr "सीपीयू गुणकांची गणना करत आ�
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "%i स्थानावर '%s' स्ट्रिंगमध्ये युनिट शोधू शकत नाही"
 
 #: core.c:567
 msgid "Calling dmidecode"
