@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-08-01 20:41+0000\n"
+"PO-Revision-Date: 2020-09-12 00:36+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -90,7 +90,7 @@ msgstr "कॉलिंग बँडविड्थ"
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "पथ %s वर ग्राफिक कार्ड करीता कर्नल ड्राइव्हर वापरात नाही"
 
 #: core.c:745
 #, c-format
@@ -102,10 +102,9 @@ msgid "Finding devices"
 msgstr "उपकरणे शोधत आहे"
 
 #: core.c:792
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "डिव्हाइस शोध वगळा (रूट असणे आवश्यक आहे)"
+msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
 
 #: core.c:821
 #, c-format
@@ -126,7 +125,7 @@ msgstr "GPU घड्याळे प्राप्त करीत आहे"
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "काहीही नाही"
 
 #: core.c:992
 #, c-format
@@ -224,7 +223,7 @@ msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅक
 #: core.c:1288
 #, c-format
 msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgstr ""
+msgstr "आपले सीपीयू सॉकेट डेटाबेस ==>%s, कोडनाव:%s मध्ये संबंधित नाही"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
@@ -256,40 +255,40 @@ msgstr "सीपीयू व्होल्टेज (फॉलबॅक म�
 
 #: core.c:1477
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "फॉलबॅक मोडमध्ये सीपीयू वारंवारता पुनर्प्राप्त करीत आहे"
 
 #: core.c:1485
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "सीपीयू वारंवारता पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
 #: daemon.c:246
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "विनंती_हांडलर: केस %i हाताळले नाही"
 
 #: gui_gtk.c:59
 msgid "Starting GTK GUI…"
-msgstr ""
+msgstr "जीटीके जीयूआय प्रारंभ करीत आहे …"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "GtkBuilder मध्ये UI आयात करण्यात अयशस्वी"
 
 #: gui_gtk.c:501
 msgid "Connected to daemon"
-msgstr ""
+msgstr "डिमनशी कनेक्ट केले"
 
 #: gui_gtk.c:503
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "कोणताही पोलकिट ऑथेंटिकेशन एजंट सापडला नाही"
 
 #: gui_gtk.c:507
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "पार्श्वभूमीवर डिमन सुरू करण्यासाठी संकेतशब्द विचारा"
 
 #: gui_gtk.c:513
 msgid "Start daemon"
-msgstr ""
+msgstr "डिमन प्रारंभ करा"
 
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
@@ -299,7 +298,7 @@ msgstr "कोर #%i"
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -546,7 +545,7 @@ msgstr "कार्ड %i"
 
 #: main.c:145
 msgid "Driver"
-msgstr ""
+msgstr "ड्रायव्हर"
 
 #: main.c:147
 msgid "Temperature"
@@ -634,10 +633,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "हा प्रोग्राम पूर्णपणे कोणतीही हमी देत नाही"
 
 #: main.c:250
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "डम्पिंग डेटा ..."
+msgstr "डम्पिंग डेटा…"
 
 #: main.c:292
 msgid "Freeing memory"
@@ -681,7 +678,7 @@ msgstr "सीपीयू कॅशे वेग (पूर्णांक) स
 
 #: main.c:329
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "डिमन प्रारंभ करा आणि कनेक्ट करा"
 
 #: main.c:330
 msgid "Verbose output"
@@ -725,24 +722,12 @@ msgid "Available DISPLAY:"
 msgstr "उपलब्ध प्रदर्शन:"
 
 #: main.c:368
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Available OPTIONS:"
 msgid "Available OPTIONS:"
-msgstr ""
-"\n"
-"उपलब्ध पर्याय:"
+msgstr "उपलब्ध पर्याय:"
 
 #: main.c:376
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Influenceable environment variables:"
 msgid "Influenceable environment variables:"
-msgstr ""
-"\n"
-"प्रभावशाली वातावरण बदल:"
+msgstr "प्रभावशाली वातावरण बदल:"
 
 #: main.c:406
 msgid "This is free software: you are free to change and redistribute it."
