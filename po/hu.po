@@ -7,17 +7,20 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-09-20 04:39+0000\n"
+"Last-Translator: PB <regisztralo111@gmail.com>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/cpu-x/"
+"translations/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "CPU technológia meghatározása"
 
 #: core.c:229
 #, c-format
@@ -38,7 +41,7 @@ msgstr ""
 #: core.c:242
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr ""
+msgstr "%s asszociatív, %d-%s vonalméret"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -47,7 +50,7 @@ msgstr ""
 #: core.c:255
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "libcpuid hívása sikertelen (%s)"
 
 #: core.c:428
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -63,7 +66,7 @@ msgstr ""
 
 #: core.c:489
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "CPU szorzók kiszámítása"
 
 #: core.c:537
 #, c-format
@@ -72,11 +75,11 @@ msgstr ""
 
 #: core.c:567
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "dmidecode hívása"
 
 #: core.c:600
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "CPU használat kiszámítása"
 
 #: core.c:651
 msgid "Calling bandwidth"
@@ -85,16 +88,16 @@ msgstr ""
 #: core.c:726
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "A %s helyen lévő grafikus kártyához nincs kernel driver betöltve"
 
 #: core.c:745
 #, c-format
 msgid "Your GPU driver is unknown: %s"
-msgstr ""
+msgstr "Ismeretlen GPU driver: %s"
 
 #: core.c:780
 msgid "Finding devices"
-msgstr ""
+msgstr "Eszközök keresése"
 
 #: core.c:792
 #, c-format
@@ -104,15 +107,15 @@ msgstr ""
 #: core.c:821
 #, c-format
 msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+msgstr "Ismeretlen GPU gyártó: %s (%#X)"
 
 #: core.c:837
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "nem sikerült a lapkakészlet gyártójának és modelljének meghatározása"
 
 #: core.c:839
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "nem sikerült a grafikus kártya gyártójának és modelljének meghatározása"
 
 #: core.c:882
 msgid "Retrieving GPU clocks"
@@ -120,7 +123,7 @@ msgstr ""
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Nincs"
 
 #: core.c:992
 #, c-format
@@ -150,7 +153,7 @@ msgstr ""
 #: core.c:1130
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i nap, %i óra, %i perc, %i másodperc"
 
 #: core.c:1186
 msgid "Updating benchmark status"
@@ -159,49 +162,49 @@ msgstr ""
 #: core.c:1187 tui_ncurses.c:762
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u perc"
 
 #: core.c:1189 core.c:1190
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktív"
 
 #: core.c:1194 core.c:1195
 msgid "Not started"
-msgstr ""
+msgstr "Nincs elindítva"
 
 #: core.c:1200
 msgid "Active"
-msgstr ""
+msgstr "Aktív"
 
 #: core.c:1205
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u óra van hátra)"
 
 #: core.c:1207
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u perc van hátra)"
 
 #: core.c:1209
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u másodperc van hátra)"
 
 #: core.c:1214
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "%u óra múlva"
 
 #: core.c:1216
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "%u perc múlva"
 
 #: core.c:1218
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "%u másodperc múlva"
 
 #: core.c:1234
 msgid "Starting benchmark"
@@ -263,7 +266,7 @@ msgstr ""
 
 #: gui_gtk.c:59
 msgid "Starting GTK GUI…"
-msgstr ""
+msgstr "GTK GUI indítása…"
 
 #: gui_gtk.c:67
 msgid "failed to import UI in GtkBuilder"
@@ -288,12 +291,12 @@ msgstr ""
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "%i. mag"
 
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -301,19 +304,19 @@ msgstr ""
 
 #: main.c:54
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: main.c:55
 msgid "Processor"
-msgstr ""
+msgstr "Processzor"
 
 #: main.c:56 main.c:111 main.c:144
 msgid "Vendor"
-msgstr ""
+msgstr "Gyártó"
 
 #: main.c:57
 msgid "Code Name"
-msgstr ""
+msgstr "Kódnév"
 
 #: main.c:58
 msgid "Package"
@@ -321,11 +324,11 @@ msgstr ""
 
 #: main.c:59
 msgid "Technology"
-msgstr ""
+msgstr "Technológia"
 
 #: main.c:60
 msgid "Voltage"
-msgstr ""
+msgstr "Feszültség"
 
 #: main.c:61
 msgid "Specification"
@@ -333,23 +336,23 @@ msgstr ""
 
 #: main.c:62
 msgid "Family"
-msgstr ""
+msgstr "Család"
 
 #: main.c:63
 msgid "Ext. Family"
-msgstr ""
+msgstr "Kit. Család"
 
 #: main.c:64 main.c:101 main.c:112 main.c:146
 msgid "Model"
-msgstr ""
+msgstr "Modell"
 
 #: main.c:65
 msgid "Ext. Model"
-msgstr ""
+msgstr "Kit. Modell"
 
 #: main.c:66
 msgid "Temp."
-msgstr ""
+msgstr "Hőm."
 
 #: main.c:67
 msgid "Stepping"
@@ -357,7 +360,7 @@ msgstr ""
 
 #: main.c:68
 msgid "Instructions"
-msgstr ""
+msgstr "Utasítások"
 
 #: main.c:70
 msgid "Clocks"
@@ -365,19 +368,19 @@ msgstr ""
 
 #: main.c:71
 msgid "Core Speed"
-msgstr ""
+msgstr "Mag sebessége"
 
 #: main.c:72
 msgid "Multiplier"
-msgstr ""
+msgstr "Szorzó"
 
 #: main.c:73
 msgid "Bus Speed"
-msgstr ""
+msgstr "Buszsebesség"
 
 #: main.c:74 main.c:148
 msgid "Usage"
-msgstr ""
+msgstr "Kihasználtság"
 
 #: main.c:76
 msgid "Cache"
@@ -385,35 +388,35 @@ msgstr ""
 
 #: main.c:77
 msgid "L1 Data"
-msgstr ""
+msgstr "L1 adat"
 
 #: main.c:78
 msgid "L1 Inst."
-msgstr ""
+msgstr "L1 utas."
 
 #: main.c:79
 msgid "Level 2"
-msgstr ""
+msgstr "Level 2"
 
 #: main.c:80
 msgid "Level 3"
-msgstr ""
+msgstr "Level 3"
 
 #: main.c:82
 msgid "Socket(s)"
-msgstr ""
+msgstr "Foglalat(ok)"
 
 #: main.c:83
 msgid "Core(s)"
-msgstr ""
+msgstr "Mag(ok)"
 
 #: main.c:84
 msgid "Thread(s)"
-msgstr ""
+msgstr "Szál(ak)"
 
 #: main.c:87
 msgid "Caches"
-msgstr ""
+msgstr "Gyorsítótár"
 
 #: main.c:91
 #, c-format
@@ -434,31 +437,31 @@ msgstr ""
 
 #: main.c:98 main.c:99
 msgid "Motherboard"
-msgstr ""
+msgstr "Alaplap"
 
 #: main.c:100
 msgid "Manufacturer"
-msgstr ""
+msgstr "Gyártó"
 
 #: main.c:102
 msgid "Revision"
-msgstr ""
+msgstr "Revízió"
 
 #: main.c:104
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:105
 msgid "Brand"
-msgstr ""
+msgstr "Márka"
 
 #: main.c:106
 msgid "Version"
-msgstr ""
+msgstr "Verzió"
 
 #: main.c:107
 msgid "Date"
-msgstr ""
+msgstr "Dátum"
 
 #: main.c:108
 msgid "ROM Size"
@@ -466,11 +469,11 @@ msgstr ""
 
 #: main.c:110
 msgid "Chipset"
-msgstr ""
+msgstr "Lapkakészlet"
 
 #: main.c:115 main.c:131
 msgid "Memory"
-msgstr ""
+msgstr "Memória"
 
 #: main.c:118
 #, c-format
@@ -511,23 +514,23 @@ msgstr ""
 
 #: main.c:132
 msgid "Used"
-msgstr ""
+msgstr "Használt"
 
 #: main.c:133
 msgid "Buffers"
-msgstr ""
+msgstr "Puffer"
 
 #: main.c:134
 msgid "Cached"
-msgstr ""
+msgstr "Gyorsítótárazott"
 
 #: main.c:135
 msgid "Free"
-msgstr ""
+msgstr "Szabad"
 
 #: main.c:136
 msgid "Swap"
-msgstr ""
+msgstr "Cserehely"
 
 #: main.c:139
 msgid "Graphics"
@@ -568,7 +571,7 @@ msgstr ""
 
 #: main.c:159
 msgid "Score"
-msgstr ""
+msgstr "Pontszám"
 
 #: main.c:160
 msgid "Run"
@@ -584,7 +587,7 @@ msgstr ""
 
 #: main.c:165
 msgid "Threads"
-msgstr ""
+msgstr "Szál"
 
 #: main.c:168 main.c:173
 msgid "About"
@@ -595,11 +598,13 @@ msgstr ""
 msgid "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s egy szabad szoftver, amely a processzorról, alaplapról\n"
+"és egyéb hardverekről jelenít meg információt."
 
 #: main.c:174
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Verzió: %s"
 
 #: main.c:175
 #, c-format
@@ -682,7 +687,7 @@ msgstr ""
 
 #: main.c:332
 msgid "Print version and exit"
-msgstr ""
+msgstr "Verziószám kiírása és kilépés"
 
 #: main.c:333
 msgid "Disable colored output"
@@ -733,7 +738,7 @@ msgstr ""
 #: main.c:415
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr ""
+msgstr "-- %-9s verzió: %s"
 
 #: main.c:566
 #, c-format
@@ -899,28 +904,28 @@ msgstr ""
 
 #: cpu-x.h:52
 msgid "FATAL ERROR: could not allocate memory"
-msgstr ""
+msgstr "VÉGZETES HIBA: nem sikerült memóriát foglalni"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "bájt"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "TB"
