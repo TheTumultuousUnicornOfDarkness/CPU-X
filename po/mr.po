@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-09-12 00:36+0000\n"
+"PO-Revision-Date: 2020-10-06 18:31+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
@@ -28,7 +28,8 @@ msgid ""
 "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
 "family: %i"
 msgstr ""
-"आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये नाही."
+"आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये "
+"नाही"
 
 #: core.c:240
 #, c-format
@@ -73,7 +74,7 @@ msgstr "सीपीयू गुणकांची गणना करत आ�
 #: core.c:537
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr "%i स्थानावर '%s' स्ट्रिंगमध्ये युनिट शोधू शकत नाही"
+msgstr "'%s' स्ट्रिंगमध्ये %i स्थानावर युनिट शोधू शकत नाही"
 
 #: core.c:567
 msgid "Calling dmidecode"
@@ -750,6 +751,9 @@ msgid ""
 "%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
 "%s"
 msgstr ""
+"\n"
+"%s अरेरे, काहीतरी चूक झाली! %s ला सिग्नल %d (%s) प्राप्त झाला आहे आणि क्रॅश "
+"झाला आहे.%s"
 
 #: main.c:581
 msgid "You can paste this backtrace by opening a new issue here:"
@@ -760,25 +764,25 @@ msgid "an error occurred while setting locale"
 msgstr "लोकॅल सेट करताना एक त्रुटी आली"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "एनकर्स टीयूआय प्रारंभ करीत आहे ..."
+msgstr "एनकर्स टीयूआय प्रारंभ करीत आहे…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"FATAL ERROR: टर्मिनफो डेटाबेस सापडू शकला नाही (TERMINFO पर्यावरण व्हेरिएबल से"
+"ट करण्याचा प्रयत्न करा)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "%s टर्मिनल स्थापित करण्यात अपयशी (err=%i); %s मागे पडतोय"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "विंडो खूपच लहान आहे!\n"
 
 #: tui_ncurses.c:270
 msgid "Press 'h' to see help.\n"
@@ -867,19 +871,21 @@ msgstr "\tवाढीव बेंचमार्क कालावधीस�
 
 #: tui_ncurses.c:437
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
-msgstr ""
+msgstr "\tवापरण्यासाठी थ्रेडची संख्या कमी करण्यासाठी 'पुढचे पान' कि दाबा.\n"
 
 #: tui_ncurses.c:438
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
-msgstr ""
+msgstr "\tवापरण्यासाठी थ्रेडच्या वाढीव संख्येसाठी 'मागील पृष्ठ' की दाबा.\n"
 
 #: tui_ncurses.c:439
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
+"\tप्राइम नंबर (स्लो) बेंचमार्क सुरू करण्यासाठी /थांबवण्यासाठी 's' कि दाबा.\n"
 
 #: tui_ncurses.c:440
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
+"\tप्राइम नंबर (स्लो) बेंचमार्क सुरू करण्यासाठी /थांबवण्यासाठी 's' कि दाबा.\n"
 
 #: tui_ncurses.c:442
 msgid ""
@@ -910,49 +916,47 @@ msgstr "regex कंपाईल करताना त्रुटी आली
 
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: अधिकृतता प्राप्त होऊ शकली नाही (संवाद फेटाळला)"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: अधिकृतता मिळू शकली नाही (अधिकृत नाही)"
 
 #: util.c:424
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: कमांड आढळली नाही"
 
 #: util.c:427
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: अनपेक्षित त्रुटी कोड"
 
 #: cpu-x.h:52
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "मेमरी रीलोकॉट करू शकलो नाही"
+msgstr "FATAL ERROR: मेमरी वाटप करू शकलो नाही"
 
 #: cpu-x.h:87
 msgid "bytes"
-msgstr ""
+msgstr "बाईट्स"
 
 #. TRANSLATORS: kilo-Byte
 #: cpu-x.h:89
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: Mega-Byte
 #: cpu-x.h:91
 msgid "MB"
-msgstr ""
+msgstr "एमबी"
 
 #. TRANSLATORS: Giga-Byte
 #: cpu-x.h:93
 msgid "GB"
-msgstr ""
+msgstr "जीबी"
 
 #. TRANSLATORS: Tera-Byte
 #: cpu-x.h:95
 msgid "TB"
-msgstr ""
+msgstr "टीबी"
 
 #~ msgid "Exiting %s"
 #~ msgstr "%s बाहेर पडत आहे"
