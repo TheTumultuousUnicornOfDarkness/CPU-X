@@ -7,13 +7,16 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-10-19 21:26+0000\n"
+"Last-Translator: Hakim Oubouali <hakim.oubouali.skr@gmail.com>\n"
+"Language-Team: Central Atlas Tamazight <https://hosted.weblate.org/projects/"
+"cpu-x/translations/tzm/>\n"
 "Language: tzm\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n >= 2 && (n < 11 || n > 99);\n"
+"X-Generator: Weblate 4.3.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -28,17 +31,17 @@ msgstr ""
 #: core.c:240
 #, c-format
 msgid "%d x %d %s, %d-way"
-msgstr ""
+msgstr "%d x %d%s, %d-aɣaras"
 
 #: core.c:241
 #, c-format
 msgid "%d %s, %d-way"
-msgstr ""
+msgstr "%d%s, %d-aɣaras"
 
 #: core.c:242
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr ""
+msgstr "%s amsmun, %d-%s s wadur"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
@@ -76,11 +79,11 @@ msgstr ""
 
 #: core.c:600
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Asiḍen n asemres n CPU"
 
 #: core.c:651
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Aɣuri n bandwidth"
 
 #: core.c:726
 #, c-format
@@ -120,7 +123,7 @@ msgstr ""
 
 #: core.c:903
 msgid "None"
-msgstr ""
+msgstr "Walu"
 
 #: core.c:992
 #, c-format
@@ -159,7 +162,7 @@ msgstr ""
 #: core.c:1187 tui_ncurses.c:762
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u sdin"
 
 #: core.c:1189 core.c:1190
 msgid "Inactive"
@@ -191,7 +194,7 @@ msgstr ""
 #: core.c:1214
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "g %u tsragin"
 
 #: core.c:1216
 #, c-format
@@ -288,12 +291,12 @@ msgstr ""
 #: gui_gtk.c:522 gui_gtk.c:605 tui_ncurses.c:489
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "Ul #%i"
 
 #: gui_gtk.c:602
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
@@ -301,7 +304,7 @@ msgstr ""
 
 #: main.c:54
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: main.c:55
 msgid "Processor"
@@ -321,11 +324,11 @@ msgstr ""
 
 #: main.c:59
 msgid "Technology"
-msgstr ""
+msgstr "Tatikenulujit"
 
 #: main.c:60
 msgid "Voltage"
-msgstr ""
+msgstr "Asevolt"
 
 #: main.c:61
 msgid "Specification"
@@ -333,7 +336,7 @@ msgstr ""
 
 #: main.c:62
 msgid "Family"
-msgstr ""
+msgstr "Tawacunt"
 
 #: main.c:63
 msgid "Ext. Family"
@@ -341,7 +344,7 @@ msgstr ""
 
 #: main.c:64 main.c:101 main.c:112 main.c:146
 msgid "Model"
-msgstr ""
+msgstr "Azurt"
 
 #: main.c:65
 msgid "Ext. Model"
@@ -377,7 +380,7 @@ msgstr ""
 
 #: main.c:74 main.c:148
 msgid "Usage"
-msgstr ""
+msgstr "Asemres"
 
 #: main.c:76
 msgid "Cache"
@@ -405,7 +408,7 @@ msgstr ""
 
 #: main.c:83
 msgid "Core(s)"
-msgstr ""
+msgstr "Ul(awn)"
 
 #: main.c:84
 msgid "Thread(s)"
@@ -422,19 +425,19 @@ msgstr ""
 
 #: main.c:92
 msgid "Size"
-msgstr ""
+msgstr "Tiɣzi"
 
 #: main.c:93
 msgid "Speed"
-msgstr ""
+msgstr "Tazzla"
 
 #: main.c:95
 msgid "Test"
-msgstr ""
+msgstr "Turimt"
 
 #: main.c:98 main.c:99
 msgid "Motherboard"
-msgstr ""
+msgstr "Taflut taymmat"
 
 #: main.c:100
 msgid "Manufacturer"
@@ -442,23 +445,23 @@ msgstr ""
 
 #: main.c:102
 msgid "Revision"
-msgstr ""
+msgstr "Azzeray"
 
 #: main.c:104
 msgid "BIOS"
-msgstr ""
+msgstr "ABIYUS"
 
 #: main.c:105
 msgid "Brand"
-msgstr ""
+msgstr "Tamatart"
 
 #: main.c:106
 msgid "Version"
-msgstr ""
+msgstr "Taleqqimt"
 
 #: main.c:107
 msgid "Date"
-msgstr ""
+msgstr "Asakud"
 
 #: main.c:108
 msgid "ROM Size"
@@ -470,7 +473,7 @@ msgstr ""
 
 #: main.c:115 main.c:131
 msgid "Memory"
-msgstr ""
+msgstr "Tiktit"
 
 #: main.c:118
 #, c-format
@@ -479,11 +482,11 @@ msgstr ""
 
 #: main.c:119
 msgid "Reference"
-msgstr ""
+msgstr "Tasaɣult"
 
 #: main.c:123
 msgid "System"
-msgstr ""
+msgstr "Anegraw"
 
 #: main.c:124
 msgid "Operating System"
@@ -491,7 +494,7 @@ msgstr ""
 
 #: main.c:125
 msgid "Kernel"
-msgstr ""
+msgstr "Tuẓemt"
 
 #: main.c:126
 msgid "Distribution"
@@ -523,7 +526,7 @@ msgstr ""
 
 #: main.c:135
 msgid "Free"
-msgstr ""
+msgstr "Baṭel"
 
 #: main.c:136
 msgid "Swap"
@@ -588,7 +591,7 @@ msgstr ""
 
 #: main.c:168 main.c:173
 msgid "About"
-msgstr ""
+msgstr "Γef"
 
 #: main.c:170
 #, c-format
@@ -599,7 +602,7 @@ msgstr ""
 #: main.c:174
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Taleqqimt %s"
 
 #: main.c:175
 #, c-format
@@ -609,7 +612,7 @@ msgstr ""
 #: main.c:176
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Asit: %s"
 
 #: main.c:178
 msgid "License"
