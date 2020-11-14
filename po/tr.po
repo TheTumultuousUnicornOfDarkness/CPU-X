@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-05-26 10:41+0000\n"
+"PO-Revision-Date: 2020-11-15 15:28+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -28,23 +28,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
 msgstr "İşlemci teknolojisi bulunuyor"
 
 #: core.c:229
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"CPU'nuz veritabanında bulunmamaktadır ==> %s, model: %i, harici model: %i, "
-"harici aile: %i"
+"Veri tabanında CPU'nuz yok ==> %s, model: %i, harici model: %i, harici aile: "
+"%i"
 
 #: core.c:240
 #, c-format
@@ -234,17 +231,16 @@ msgstr "karşılaştırma başlatılırken hata oluştu"
 
 #: core.c:1270
 msgid "Finding CPU package in fallback mode"
-msgstr "Fallback modunda CPU paketi bulunuyor"
+msgstr "Yedek modda CPU paketi bulunuyor"
 
 #: core.c:1288
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "CPU soketiniz veritabanında eşleşmedi ==> %s, kodadı: %s"
+msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Yedek kipde CPU çarpanlarını hesaplama"
+msgstr "Yedek modda CPU çarpanları hesaplanıyor"
 
 #: core.c:1334
 msgid "Retrieving motherboard information in fallback mode"
@@ -726,10 +722,8 @@ msgid "Read CPUID raw data from a given file"
 msgstr "Belirli bir dosyadan İşlemci Kimliği ham verilerini oku"
 
 #: main.c:347
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Yalnızca CPU veritabanına ait değilse bir mesaj yazdır"
+msgstr "Yalnızca veri tabanında CPU yoksa bir mesaj yazdır"
 
 #: main.c:358
 #, c-format
