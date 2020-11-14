@@ -283,10 +283,17 @@ static int convert_char(int ch)
 /* Put window in the center of the screen */
 static bool resize_window(WINDOW *pwin, const SizeInfo info)
 {
+	static int prev_lines = -1, prev_cols = -1;
+
 	bool ret = true;
 	const int starty = (LINES - info.height) / 2;
 	const int startx = (COLS  - info.width)  / 2;
 
+	if (prev_lines >= 0 && prev_lines == LINES &&
+	    prev_cols >= 0 && prev_cols == COLS)
+		return true;
+	prev_lines = LINES;
+	prev_cols = COLS;
 	erase();
 	if((startx < 0) || (starty < 0))
 	{
