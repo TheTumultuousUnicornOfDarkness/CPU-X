@@ -106,9 +106,10 @@ msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
 #: core.c:821
-#, c-format
-msgid "Your GPU vendor is unknown: %s (%#X)"
-msgstr ""
+#, fuzzy, c-format
+#| msgid "Your GPU driver is unknown: %s"
+msgid "Your GPU vendor is unknown: %s (0x%X)"
+msgstr "Tuntematon näytönohjaimen ajuri: %s"
 
 #: core.c:837
 msgid "failed to find chipset vendor and model"
