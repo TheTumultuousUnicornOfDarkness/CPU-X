@@ -404,6 +404,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_label_tdie);
 	regfree(&regex_label_other);
 
+	MSG_DEBUG("request_sensor_path(base_dir=%s, cached_path=%s, which=%i) ==> %i", base_dir, *cached_path, which, err);
 	return err;
 }
 

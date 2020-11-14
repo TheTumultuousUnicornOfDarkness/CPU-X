@@ -45,6 +45,7 @@
 #define BOLD_GREEN            "\x1b[1;32m"
 #define BOLD_YELLOW           "\x1b[1;33m"
 #define BOLD_BLUE             "\x1b[1;34m"
+#define BOLD_MAGENTA          "\x1b[1;35m"
 
 /* Utilities macro */
 #define LOCATION              PRGNAME, (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__), __LINE__
@@ -59,7 +60,8 @@
 #define MSG_BUFF_LEN          128
 #define MSG_STDOUT(fmt, ...)  fprintf(stdout, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_STDERR(fmt, ...)  fprintf(stderr, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
-#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, colorized_msg(BOLD_GREEN, "%s", fmt), ##__VA_ARGS__) : 0
+#define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, colorized_msg(BOLD_GREEN,   "%s", fmt), ##__VA_ARGS__) : 0
+#define MSG_DEBUG(fmt, ...)   opts->debug   ? fprintf(stdout, colorized_msg(BOLD_MAGENTA, "%s", fmt), ##__VA_ARGS__) : 0
 #define MSG_WARNING(fmt, ...) fprintf(stdout, colorized_msg(BOLD_YELLOW, "%s", fmt), ##__VA_ARGS__)
 #define MSG_ERROR(fmt, ...)   fprintf(stderr, colorized_msg(BOLD_RED, "%s:%s:%i: %s",      LOCATION, fmt), ##__VA_ARGS__)
 #define MSG_ERRNO(fmt, ...)   fprintf(stderr, colorized_msg(BOLD_RED, "%s:%s:%i: %s (%s)", LOCATION, fmt, strerror(errno)), ##__VA_ARGS__)
@@ -278,7 +280,7 @@ typedef struct
 
 typedef struct
 {
-	bool     color, verbose, issue, use_network, with_daemon, debug_database, freq_fallback;
+	bool     color, verbose, debug, issue, use_network, with_daemon, debug_database, freq_fallback;
 	uint8_t  selected_page, selected_core, bw_test;
 	uint16_t output_type, refr_time;
 	enum EnOptKeymap keymap;

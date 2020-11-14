@@ -861,6 +861,7 @@ static bool can_access_sys_debug_dri(Labels *data)
 			ret = -2;
 	}
 
+	MSG_DEBUG("can_access_sys_debug_dri() ==> %i", ret);
 	return !ret;
 }
 #endif /* __linux__ */
@@ -935,7 +936,8 @@ static int gpu_monitoring(Labels *data)
 		{
 			case GPUDRV_AMDGPU:
 			{
-				const char *amdgpu_gpu_busy_file = format( "%s/device/gpu_busy_percent", cached_paths_drm[i]);
+				const char *amdgpu_gpu_busy_file = format("%s/device/gpu_busy_percent", cached_paths_drm[i]);
+				MSG_DEBUG("gpu_monitoring: amdgpu: amdgpu_gpu_busy_file=%s", amdgpu_gpu_busy_file);
 				// ret_temp obtained above
 				if(!access(amdgpu_gpu_busy_file, F_OK)) // Linux 4.19+
 					ret_load = fopen_to_str(&load, "%s", amdgpu_gpu_busy_file);
@@ -972,6 +974,7 @@ static int gpu_monitoring(Labels *data)
 				/* Doc: https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries */
 				const char *nvidia_cmd_base = (data->g_data->gpu_driver[i] == GPUDRV_NVIDIA_BUMBLEBEE) ? "optirun -b none nvidia-smi -c :8" : "nvidia-smi";
 				const char *nvidia_cmd_args = format("%s --format=csv,noheader,nounits --id=%1u", nvidia_cmd_base, nvidia_count);
+				MSG_DEBUG("gpu_monitoring: nvidia: nvidia_cmd_args=%s", nvidia_cmd_args);
 				ret_temp  = popen_to_str(&temp, "%s --query-gpu=temperature.gpu", nvidia_cmd_args);
 				ret_load  = popen_to_str(&load, "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
 				ret_gclk  = popen_to_str(&gclk, "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
@@ -984,6 +987,7 @@ static int gpu_monitoring(Labels *data)
 			{
 				char *pstate = NULL;
 				int ret_pstate = popen_to_str(&pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ", SYS_DEBUG_DRI, card_number);
+				MSG_DEBUG("gpu_monitoring: nouveau: pstate=%s", pstate);
 				// ret_temp obtained above
 				ret_load  = -1;
 				ret_gclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;

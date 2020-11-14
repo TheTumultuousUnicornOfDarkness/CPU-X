@@ -332,6 +332,7 @@ static const struct
 	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
 	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
 	{ true,              0, "nocolor",   no_argument,       N_("Disable colored output")                                   },
+	{ true,              0, "debug",     no_argument,       N_("Print information for debugging")                          },
 	{ true,              0, "issue-fmt", no_argument,       N_("Print required information to paste in an issue")          },
 	{ HAS_NCURSES,       0, "keymap",    required_argument, N_("Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])") },
 	{ true,              0, NULL,        0,                 NULL                                                           }
@@ -566,10 +567,16 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 					opts->color = false;
 					break;
 				}
+				else if(!strcmp(longopts[longindex].name, "debug"))
+				{
+					opts->debug = true;
+					break;
+				}
 				else if(!strcmp(longopts[longindex].name, "issue-fmt"))
 				{
 					opts->color       = false;
 					opts->verbose     = true;
+					opts->debug       = true;
 					opts->issue       = true;
 					opts->use_network = 0;
 					opts->output_type = OUT_DUMP;
@@ -737,6 +744,7 @@ int main(int argc, char *argv[])
 	{
 		.color          = true,
 		.verbose        = false,
+		.debug          = false,
 		.issue          = false,
 		.use_network    = true,
 		.with_daemon    = false,
