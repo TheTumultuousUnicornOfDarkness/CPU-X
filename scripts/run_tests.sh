@@ -14,6 +14,11 @@ fi
 
 count=0
 for file in $(find $TESTS_DIR -name *.test); do
+	if [[ ! "$file" =~ "amd" ]] && [[ ! "$file" =~ "intel" ]]; then
+		# Only AMD and Intel CPUs are supported
+		continue
+	fi
+
 	# Cut test file after delimiter (dash line)
 	tmp_file="/tmp/$(basename $file)"
 	while read -r line; do
@@ -26,11 +31,11 @@ for file in $(find $TESTS_DIR -name *.test); do
 	output=$(sudo LC_ALL=C CPUX_CPUID_RAW="$tmp_file" CPUX_DEBUG_DATABASE=1 cpu-x --dump --nocolor)
 
 	# Display test status
-	if [[ $? -gt 0 ]]; then
+	if [[ $? -eq 0 ]]; then
+		printf "${CBG}OK${CR}\n"
+	else
 		printf "${CBR}${output#*"==> "}${CR}\n"
 		((count++))
-	else
-		printf "${CBG}OK${CR}\n"
 	fi
 	rm "$tmp_file"
 done
