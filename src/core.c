@@ -272,10 +272,10 @@ static int call_libcpuid_static(Labels *data)
 	/* Basically fill CPU tab */
 	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",  datanr.cpu_codename);
 	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",  datanr.brand_str);
-	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, "%#X", datanr.family);
-	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, "%#X", datanr.ext_family);
-	casprintf(&data->tab_cpu[VALUE][MODEL],         false, "%#X", datanr.model);
-	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, "%#X", datanr.ext_model);
+	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, "0x%X", datanr.family);
+	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, "0x%X", datanr.ext_family);
+	casprintf(&data->tab_cpu[VALUE][MODEL],         false, "0x%X", datanr.model);
+	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, "0x%X", datanr.ext_model);
 	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",  datanr.stepping);
 	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",  datanr.num_cores);
 	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",  datanr.num_logical_cpus);
@@ -817,7 +817,7 @@ static int find_devices(Labels *data)
 				case 0x8086: gpu_vendor = "Intel";  break;
 				case 0x10DE: gpu_vendor = "NVIDIA"; break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
-				             MSG_WARNING(_("Your GPU vendor is unknown: %s (%#X)"), gpu_vendor, dev->vendor_id);
+				             MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor, dev->vendor_id);
 			}
 
 			memset(gpu_driver, 0, MAXSTR);
