@@ -348,7 +348,7 @@ static const struct
 	{ true,            "CPUX_BCLK",                N_("Enforce the bus clock")                                   },
 	{ true,            "CPUX_FORCE_FREQ_FALLBACK", N_("Ignore CPU frequency reported by libcpuid") },
 	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",           N_("Read CPUID raw data from a given file")                   },
-	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE",      N_("Only print a message if CPU does not belong in database") },
+	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE",      N_("Only print a message if CPU is not present in the database") },
 	{ true,            NULL,                       NULL                                                          }
 };
 

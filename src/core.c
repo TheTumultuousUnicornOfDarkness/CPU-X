@@ -226,7 +226,7 @@ static int cpu_technology(Labels *data)
 		}
 	}
 
-	MSG_WARNING(_("Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
+	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
 	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
 	RETURN_OR_EXIT(2);
 }
@@ -1289,7 +1289,7 @@ static int cputab_package_fallback(Labels *data)
 		}
 	}
 
-	MSG_WARNING(_("Your CPU socket does not belong in database ==> %s, codename: %s"),
+	MSG_WARNING(_("Your CPU socket is not present in the database ==> %s, codename: %s"),
 		    data->tab_cpu[VALUE][SPECIFICATION], data->tab_cpu[VALUE][CODENAME]);
 	data->tab_cpu[VALUE][PACKAGE][0] = '\0';
 	return 2;
