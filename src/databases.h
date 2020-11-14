@@ -156,10 +156,17 @@ const Package_DB package_intel[] =
 	{ "Pentium D (SmithField)",         NULL,                               "LGA 775"        },
 	{ "Pentium D (Presler)",            NULL,                               "LGA 775"        },
 	{ "Bloomfield",                     NULL,                               "LGA 1366"       },
-	{ "Sandy Bridge",                   "Intel(R) Core(TM) i7-2860QM CPU",  "rPGA 988B"      },
-	{ "Ivy Bridge",                     "Intel(R) Core(TM) i7-3740QM CPU",  "rPGA 988B"      },
-	{ "Haswell",                        "Intel(R) Core(TM) i5-4300U CPU",   "BGA 1168"       },
-	{ "Skylake",                        "Intel(R) Core(TM) i7-6560U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i5-2520M CPU",   "rPGA 988B"      },
+	{ NULL,                             "Intel(R) Core(TM) i7-2860QM CPU",  "rPGA 988B"      },
+	{ NULL,                             "Intel(R) Core(TM) i7-3740QM CPU",  "rPGA 988B"      },
+	{ NULL,                             "Intel(R) Core(TM) i5-4300U CPU",   "BGA 1168"       },
+	{ NULL,                             "Intel(R) Core(TM) i7-5775C CPU",   "LGA 1150"       },
+	{ NULL,                             "Intel(R) Core(TM) i7-6560U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i7-7300U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i7-8250U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i7-8350U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i7-8550U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i7-8650U CPU",   "FCBGA 1356"     },
 	{ NULL,                             NULL,                               NULL             }
 	//Codename                          Model                               Socket
 };

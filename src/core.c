@@ -1283,10 +1283,14 @@ static int cputab_package_fallback(Labels *data)
 	else
 		db = package_unknown;
 
-	while(db[++i].codename != NULL)
+	while(db[++i].socket != NULL)
 	{
-		if((strstr(data->tab_cpu[VALUE][CODENAME], db[i].codename) != NULL) &&
-		  ((db[i].model == NULL) || (strstr(data->tab_cpu[VALUE][SPECIFICATION], db[i].model) != NULL)))
+		const bool codename_defined = (db[i].codename != NULL);
+		const bool model_defined    = (db[i].model    != NULL);
+		const bool codename_matchs  = codename_defined && (strstr(data->tab_cpu[VALUE][CODENAME], db[i].codename)   != NULL);
+		const bool model_matchs     = model_defined    && (strstr(data->tab_cpu[VALUE][SPECIFICATION], db[i].model) != NULL);
+
+		if((codename_matchs && model_matchs) || (codename_matchs && !model_defined) || (!codename_defined && model_matchs))
 		{
 			casprintf(&data->tab_cpu[VALUE][PACKAGE], false, db[i].socket);
 			return 0;
