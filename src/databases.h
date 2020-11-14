@@ -70,6 +70,7 @@ const Technology_DB technology_intel[] =
 	{ 10,          30,          -1,          45 }, // Nehalem
 	{ 10,          42,          -1,          32 }, // Sandy Bridge
 	{ 10,          58,          -1,          22 }, // Ivy Bridge
+	{ 10,         122,          -1,          14 }, // Gemini Lake
 	{ 11,          11,          -1,         130 }, // PIII Tualatine
 	{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
 	{ 12,          44,          -1,          32 }, // Westmere
@@ -84,7 +85,7 @@ const Technology_DB technology_intel[] =
 	{ 14,          78,          -1,          14 }, // Skylake
 	{ 14,          94,          -1,          14 }, // Skylake
 	{ 14,         126,          -1,          10 }, // Ice Lake
-	{ 14,         142,          -1,          14 }, // Kaby Lake / Coffee Lake
+	{ 14,         142,          -1,          14 }, // Kaby Lake / Coffee Lake / Comet Lake-U
 	{ 14,         158,          -1,          14 }, // Kaby Lake / Coffee Lake
 	{ 14,         165,          -1,          14 }, // Comet Lake
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
@@ -129,9 +130,10 @@ const Technology_DB technology_amd[] =
 	{ -1,          17,          23,          14 }, // Zen (Raven Ridge)
 	{ -1,           8,          23,          12 }, // Zen+ (Pinnacle Ridge/Colfax)
 	{ -1,          24,          23,          12 }, // Zen+ (Picasso)
-	{ -1,          49,          23,           7 }, // Zen2 (Rome/Castle Peak)
-	{ -1,          96,          23,           7 }, // Zen2 (Renoir)
-	{ -1,         113,          23,           7 }, // Zen2 (Matisse)
+	{ -1,          49,          23,           7 }, // Zen 2 (Rome/Castle Peak)
+	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
+	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
+	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
 	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
