@@ -312,7 +312,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	DIR *dp      = NULL;
 	struct dirent *dir;
 	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in, regex_dirname_cardN;
-	regex_t regex_label_coreN, regex_label_other;
+	regex_t regex_label_coreN, regex_label_tdie, regex_label_other;
 
 	if((dp = opendir(base_dir)) == NULL)
 	{
@@ -325,6 +325,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	   regcomp(&regex_filename_in_in,    "in0_input",                                       REG_NOSUB)             ||
 	   regcomp(&regex_dirname_cardN,     "card[[:digit:]]",                                 REG_NOSUB)             ||
 	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
+	   regcomp(&regex_label_tdie,        "Tdie",                                            REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
 	{
 		MSG_ERROR("%s", _("an error occurred while compiling regex"));
@@ -362,9 +363,14 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 					Core1 Temp:    +64.0°C */
 					err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_coreN, cached_path);
 				else if(strstr(sensor, "k10temp") != NULL)
-					/* 'sensors' output:
-					temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
-					err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
+				{
+					/* 'sensors' output with Ryzen CPUs since Linux 5.6:
+					Tdie:         +41.4°C */
+					if((err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_tdie, cached_path)))
+						/* 'sensors' output for other cases:
+						temp1:         +29.5°C  (high = +70.0°C, crit = +90.0°C, hyst = +87.0°C) */
+						err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
+				}
 				else if(strstr(sensor, "zenpower") != NULL)
 					/* 'sensors' output:
 					Tdie:         +67.9°C  (high = +95.0°C) */
@@ -395,6 +401,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_filename_in_in);
 	regfree(&regex_dirname_cardN);
 	regfree(&regex_label_coreN);
+	regfree(&regex_label_tdie);
 	regfree(&regex_label_other);
 
 	return err;
