@@ -342,6 +342,10 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 		if((which != RQT_GPU_DRM) && fopen_to_str(&sensor, "%s/%s/name", base_dir, dir->d_name))
 			continue;
 
+		/* Ignore batteries */
+		if((sensor != NULL) && (strcasestr(sensor, "bat") != NULL))
+			continue;
+
 		/* Browse files in directory */
 		casprintf(&path, false, "%s/%s", base_dir, dir->d_name);
 		switch(which)
