@@ -27,10 +27,13 @@ msgid "Finding CPU technology"
 msgstr "正在查找 CPU 工艺"
 
 #: core.c:229
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr "数据库中没有您的 CPU ==> %s，型号： %i，扩展型号： %i，扩展系列： %i"
 
 #: core.c:240
@@ -224,8 +227,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
 #: core.c:1288
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, fuzzy, c-format
+#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
 #: core.c:1307
@@ -712,7 +716,9 @@ msgid "Read CPUID raw data from a given file"
 msgstr "从指定文件中读取 CPUID 源数据"
 
 #: main.c:347
-msgid "Only print a message if CPU does not belong in database"
+#, fuzzy
+#| msgid "Only print a message if CPU does not belong in database"
+msgid "Only print a message if CPU is not present in the database"
 msgstr "CPU 不在数据库时，仅输出消息"
 
 #: main.c:358

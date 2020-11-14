@@ -24,10 +24,13 @@ msgid "Finding CPU technology"
 msgstr "Finner CPU-teknologi"
 
 #: core.c:229
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
 "Prosessoren din tilhører ikke i databasen → %s, modell: %i, ekst. modell: "
 "%i, ekst. familie: %i"
@@ -224,8 +227,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Finner CPU-pakke i tilbakefallsmodus"
 
 #: core.c:1288
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, fuzzy, c-format
+#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din CPU-sokkel hører ikke til i databasen ==> %s, kodenavn: %s"
 
 #: core.c:1307
@@ -732,7 +736,9 @@ msgid "Read CPUID raw data from a given file"
 msgstr "Les CPUID-rådata fra en gitt fil"
 
 #: main.c:347
-msgid "Only print a message if CPU does not belong in database"
+#, fuzzy
+#| msgid "Only print a message if CPU does not belong in database"
+msgid "Only print a message if CPU is not present in the database"
 msgstr "Kun skriv ut en melding hvis CPU-en ikke finnes i databasen"
 
 #: main.c:358

@@ -24,10 +24,13 @@ msgid "Finding CPU technology"
 msgstr "Procesora tehnoloģijas noteikšana"
 
 #: core.c:229
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
 "Jūsu procesors nav atrasts datubāzē ==> %s, modelis: %i, papl. modelis: %i, "
 "papl. ģimene: %i"
@@ -224,9 +227,14 @@ msgid "Finding CPU package in fallback mode"
 msgstr ""
 
 #: core.c:1288
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
+"Jūsu procesors nav atrasts datubāzē ==> %s, modelis: %i, papl. modelis: %i, "
+"papl. ģimene: %i"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
@@ -710,7 +718,7 @@ msgid "Read CPUID raw data from a given file"
 msgstr ""
 
 #: main.c:347
-msgid "Only print a message if CPU does not belong in database"
+msgid "Only print a message if CPU is not present in the database"
 msgstr ""
 
 #: main.c:358

@@ -23,9 +23,13 @@ msgid "Finding CPU technology"
 msgstr "Finder CPU-teknologi"
 
 #: core.c:229
-#, c-format
-msgid "Your CPU does not belong in database ==> %s, model: %i, ext. model: "
-"%i, ext. family: %i"
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
 "Din CPU hører ikke til i databasen ==> %s, model: %i, ext. model: %i, ext. "
 "familie: %i"
@@ -88,7 +92,7 @@ msgid "Calling bandwidth"
 msgstr ""
 
 #: core.c:726
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Ingen kernedriver i brug til grafikkort ved stien %s"
 
@@ -221,9 +225,14 @@ msgid "Finding CPU package in fallback mode"
 msgstr ""
 
 #: core.c:1288
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
+"Din CPU hører ikke til i databasen ==> %s, model: %i, ext. model: %i, ext. "
+"familie: %i"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
@@ -597,7 +606,8 @@ msgstr ""
 
 #: main.c:170
 #, c-format
-msgid "%s is a Free software that gathers information\n"
+msgid ""
+"%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
 
@@ -706,7 +716,7 @@ msgid "Read CPUID raw data from a given file"
 msgstr ""
 
 #: main.c:347
-msgid "Only print a message if CPU does not belong in database"
+msgid "Only print a message if CPU is not present in the database"
 msgstr ""
 
 #: main.c:358
@@ -742,9 +752,10 @@ msgstr ""
 
 #: main.c:566
 #, c-format
-msgid "\n"
-"%sOops, something was wrong! %s has received signal %d (%s) and has "
-"crashed.%s"
+msgid ""
+"\n"
+"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
+"%s"
 msgstr ""
 
 #: main.c:581
@@ -760,8 +771,9 @@ msgid "Starting NCurses TUI…"
 msgstr ""
 
 #: tui_ncurses.c:80
-msgid "FATAL ERROR: terminfo database could not be found (try to set "
-"TERMINFO environment variable)"
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
 msgstr ""
 
 #: tui_ncurses.c:85
@@ -787,7 +799,8 @@ msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
 
 #: tui_ncurses.c:420
-msgid "\n"
+msgid ""
+"\n"
 "Global keys:\n"
 msgstr ""
 
@@ -808,7 +821,8 @@ msgid "\tPress 'q' key to exit.\n"
 msgstr ""
 
 #: tui_ncurses.c:426
-msgid "\n"
+msgid ""
+"\n"
 "CPU tab:\n"
 msgstr ""
 
@@ -821,7 +835,8 @@ msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
 
 #: tui_ncurses.c:430
-msgid "\n"
+msgid ""
+"\n"
 "Caches tab:\n"
 msgstr ""
 
@@ -834,7 +849,8 @@ msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr ""
 
 #: tui_ncurses.c:434
-msgid "\n"
+msgid ""
+"\n"
 "Bench tab:\n"
 msgstr ""
 
@@ -863,7 +879,8 @@ msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
 
 #: tui_ncurses.c:442
-msgid "\n"
+msgid ""
+"\n"
 "Press any key to exit this help.\n"
 msgstr ""
 

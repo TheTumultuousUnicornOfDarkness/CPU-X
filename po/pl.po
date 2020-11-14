@@ -30,10 +30,13 @@ msgid "Finding CPU technology"
 msgstr "Wyszukiwanie technologi procesora"
 
 #: core.c:229
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#| "ext. family: %i"
 msgid ""
-"Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, ext. "
-"family: %i"
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
 "Twojego procesora nie ma w bazie danych ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
@@ -229,8 +232,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
 
 #: core.c:1288
-#, c-format
-msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, fuzzy, c-format
+#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
 
 #: core.c:1307
@@ -719,7 +723,9 @@ msgid "Read CPUID raw data from a given file"
 msgstr "Odczyt danych nieprzetworzonych CPUID z danego pliku"
 
 #: main.c:347
-msgid "Only print a message if CPU does not belong in database"
+#, fuzzy
+#| msgid "Only print a message if CPU does not belong in database"
+msgid "Only print a message if CPU is not present in the database"
 msgstr "Wydrukuj komunikat tylko wtedy, gdy CPU nie należy do bazy danych"
 
 #: main.c:358
