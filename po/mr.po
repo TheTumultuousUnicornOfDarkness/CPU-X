@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-10-06 18:31+0000\n"
+"PO-Revision-Date: 2020-11-20 19:28+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
@@ -16,22 +16,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
 msgstr "CPU तंत्रज्ञान शोधत आहे"
 
 #: core.c:229
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"आपले सीपीयू डेटाबेस ==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: %i मध्ये नाही"
+"आपला सीपीयू डेटाबेसमध्ये उपस्थित नाही==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. "
+"परिवार: %i मध्ये नाही"
 
 #: core.c:240
 #, c-format
@@ -224,10 +222,11 @@ msgid "Finding CPU package in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
 
 #: core.c:1288
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "आपले सीपीयू सॉकेट डेटाबेस ==>%s, कोडनाव:%s मध्ये संबंधित नाही"
+msgstr ""
+"आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित "
+"नाही"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
@@ -713,10 +712,8 @@ msgid "Read CPUID raw data from a given file"
 msgstr "दिलेल्या फाईलमधून CPUIDचा कच्चा डेटा वाचा"
 
 #: main.c:347
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
-msgstr "जर सीपीयू डेटाबेसमध्ये नसेल तर केवळ संदेश मुद्रित करा"
+msgstr "डेटाबेसमध्ये सीपीयू नसल्यास केवळ संदेश मुद्रित करा"
 
 #: main.c:358
 #, c-format
