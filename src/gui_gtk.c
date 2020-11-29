@@ -691,25 +691,20 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 
 	switch(page) /* Set differents level bar color */
 	{
-		case BARUSED:
-			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 1.00, 0.15, 1);
-			cairo_pattern_add_color_stop_rgba(pat, 1, 1.00, 0.75, 0.15, 1);
+		case BARUSED: // yelow
+			pat = is_dark_theme(glab) ? cairo_pattern_create_rgba(0.01, 0.02, 0.37, 1.00) : cairo_pattern_create_rgba(1.00, 0.92, 0.23, 1.00);
 			break;
-		case BARBUFFERS:
-			cairo_pattern_add_color_stop_rgba(pat, 0, 0.00, 0.30, 0.75, 1);
-			cairo_pattern_add_color_stop_rgba(pat, 1, 0.25, 0.55, 1.00, 1);
+		case BARBUFFERS: // blue
+			pat = is_dark_theme(glab) ? cairo_pattern_create_rgba(0.01, 0.24, 0.54, 1.00) : cairo_pattern_create_rgba(0.13, 0.59, 0.95, 1.00);
 			break;
-		case BARCACHED:
-			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 0.25, 0.90, 1);
-			cairo_pattern_add_color_stop_rgba(pat, 1, 0.75, 0.00, 0.65, 1);
+		case BARCACHED: // purple
+			pat = is_dark_theme(glab) ? cairo_pattern_create_rgba(0.00, 0.47, 0.71, 1.00) : cairo_pattern_create_rgba(0.61, 0.15, 0.69, 1.00);
 			break;
-		case BARFREE:
-			cairo_pattern_add_color_stop_rgba(pat, 0, 0.20, 1.00, 0.25, 1);
-			cairo_pattern_add_color_stop_rgba(pat, 1, 0.00, 0.75, 0.05, 1);
+		case BARFREE: // green
+			pat = is_dark_theme(glab) ? cairo_pattern_create_rgba(0.00, 0.59, 0.78, 1.00) : cairo_pattern_create_rgba(0.30, 0.69, 0.31, 1.00);
 			break;
-		case BARSWAP:
-			cairo_pattern_add_color_stop_rgba(pat, 0, 1.00, 0.35, 0.15, 1);
-			cairo_pattern_add_color_stop_rgba(pat, 1, 0.75, 0.15, 0.00, 1);
+		case BARSWAP: // red
+			pat = is_dark_theme(glab) ? cairo_pattern_create_rgba(0.00, 0.71, 0.85, 1.00) : cairo_pattern_create_rgba(0.96, 0.26, 0.21, 1.00);
 			break;
 	}
 
