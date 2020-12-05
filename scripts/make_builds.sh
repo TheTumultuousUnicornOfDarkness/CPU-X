@@ -160,17 +160,24 @@ case "$choice" in
 		;;
 
 	package)
+		REPO_URL="https://download.opensuse.org/repositories/home:/Xorg/"
 		OBS_DIR="$(realpath "$GIT_DIR/../OBS")"
 		PKGS_DIR="$OBS_DIR/pkgs"
 		ARCHIVES_DIR="$GIT_DIR/packages"
 		COMPRESS="tar -zcvf"
 
-		if [[ ! -d "$PKGS_DIR" ]]; then
+		if [[ "$2" == "--local" ]] && [[ ! -d "$PKGS_DIR" ]]; then
 			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "libcpuid"
 			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "cpu-x"
+			cd "$PKGS_DIR"
+		else
+			mkdir -p "$ARCHIVES_DIR" && cd "$_"
+			wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
+			--accept "*.pkg.tar.zst","*.rpm","*.deb" \
+			--reject "*.src.rpm","*git*" \
+			--recursive "$REPO_URL"
 		fi
 
-		cd "$PKGS_DIR"
 		find "$PKGS_DIR" -type f -not -name '*.deb' -and -not -name '*.rpm' -and -not -name '*.pkg.tar.*' -delete
 		mkdir -v "$ARCHIVES_DIR"
 
