@@ -103,14 +103,14 @@ if(EXISTS ${CMAKE_SOURCE_DIR}/.git)
 	find_package(Git)
 	if(GIT_FOUND)
 		execute_process(COMMAND sh -c "${GIT_EXECUTABLE} describe --long --tags --exclude continuous --abbrev=40 --dirty | cut --delimiter=- --fields=2-"
-			RESULT_VARIABLE GIT_DESCRIBE_RESULT
+			WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 			OUTPUT_VARIABLE GIT_DESCRIBE_REVISION
 			ERROR_QUIET
 			OUTPUT_STRIP_TRAILING_WHITESPACE
 		)
-		if(${GIT_DESCRIBE_RESULT} EQUAL 0)
+		if(NOT ${GIT_DESCRIBE_REVISION} STREQUAL "")
 			set(GIT_REVISION "+git-r${GIT_DESCRIBE_REVISION}")
-		endif(${GIT_DESCRIBE_RESULT} EQUAL 0)
+		endif(NOT ${GIT_DESCRIBE_REVISION} STREQUAL "")
 	endif(GIT_FOUND)
 endif(EXISTS ${CMAKE_SOURCE_DIR}/.git)
 
