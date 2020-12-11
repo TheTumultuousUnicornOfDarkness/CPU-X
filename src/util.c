@@ -311,7 +311,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	char *path   = NULL;
 	DIR *dp      = NULL;
 	struct dirent *dir;
-	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in, regex_dirname_cardN;
+	regex_t regex_filename_temp_in, regex_filename_temp_lab, regex_filename_in_in, regex_dirname_cardN, regex_dirname_hwmonN;
 	regex_t regex_label_coreN, regex_label_tdie, regex_label_other;
 
 	if((dp = opendir(base_dir)) == NULL)
@@ -324,6 +324,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
 	   regcomp(&regex_filename_in_in,    "in0_input",                                       REG_NOSUB)             ||
 	   regcomp(&regex_dirname_cardN,     "card[[:digit:]]",                                 REG_NOSUB)             ||
+	   regcomp(&regex_dirname_hwmonN,    "hwmon[[:digit:]]",                                 REG_NOSUB)             ||
 	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_tdie,        "Tdie",                                            REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
@@ -394,6 +395,9 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 			case RQT_GPU_DRM:
 				err = get_directory_path(path, &regex_dirname_cardN, cached_path);
 				break;
+			case RQT_GPU_HWMON:
+				err = get_directory_path(path, &regex_dirname_hwmonN, cached_path);
+				break;
 		}
 	}
 
@@ -404,6 +408,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	regfree(&regex_filename_temp_lab);
 	regfree(&regex_filename_in_in);
 	regfree(&regex_dirname_cardN);
+	regfree(&regex_dirname_hwmonN);
 	regfree(&regex_label_coreN);
 	regfree(&regex_label_tdie);
 	regfree(&regex_label_other);

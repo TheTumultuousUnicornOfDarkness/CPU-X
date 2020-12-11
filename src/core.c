@@ -918,9 +918,9 @@ static int gpu_monitoring(Labels *data)
 				/* HWmon */
 				divisor = 1000.0;
 				if((cached_paths_hwmon[i] == NULL) && (data->g_data->gpu_driver[i] != GPUDRV_INTEL))
-					ret_hwmon = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_TEMPERATURE);
+					ret_hwmon = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_HWMON);
 				if(!ret_hwmon && (cached_paths_hwmon[i] != NULL))
-					ret_temp = fopen_to_str(&temp, cached_paths_hwmon[i]);
+					ret_temp = fopen_to_str(&temp, "%s/temp1_input", cached_paths_hwmon[i]);
 
 				/* DRM */
 				if(cached_paths_drm[i] == NULL)
@@ -943,7 +943,7 @@ static int gpu_monitoring(Labels *data)
 					ret_load = fopen_to_str(&load, "%s", amdgpu_gpu_busy_file);
 				else if(can_access_sys_debug_dri(data))
 					ret_load = popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DEBUG_DRI, card_number);
-				ret_gclk  = popen_to_str(&gclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_sclk", cached_paths_drm[i]);
+				ret_gclk  = popen_to_str(&gclk, "awk -F: '{ print int($1 / 1000 / 1000)}' %s/freq1_input", cached_paths_hwmon[i]);
 				ret_mclk  = popen_to_str(&mclk, "awk -F '(: |Mhz)' '/\\*/ { print $2 }' %s/device/pp_dpm_mclk", cached_paths_drm[i]);
 				break;
 			}

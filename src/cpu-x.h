@@ -332,7 +332,7 @@ bool command_exists(char *cmd);
 int load_module(char *module, int *fd);
 
 /* Get a filename located in a directory corresponding to given request */
-enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM };
+enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM, RQT_GPU_HWMON };
 int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
 
 /* Start daemon in background */
