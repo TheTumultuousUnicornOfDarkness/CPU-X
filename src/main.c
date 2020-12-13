@@ -34,8 +34,11 @@
 #include <getopt.h>
 #include <wordexp.h>
 #include <locale.h>
-#include <libintl.h>
 #include "cpu-x.h"
+
+#if HAS_GETTEXT
+# include <libintl.h>
+#endif
 
 
 #define LOG_FILE "/tmp/cpu-x.log"
@@ -659,6 +662,7 @@ static void sighandler(int signum)
 }
 
  /* Enable internationalization support */
+#if HAS_GETTEXT
 static int set_locales(void)
 {
 	int err;
@@ -682,6 +686,7 @@ static int set_locales(void)
 	else
 		return 0;
 }
+#endif /* HAS_GETTEXT */
 
 int main(int argc, char *argv[])
 {
@@ -759,7 +764,9 @@ int main(int argc, char *argv[])
 		.keymap         = ARROWS
 	};
 
+#if HAS_GETTEXT
 	set_locales();
+#endif /* HAS_GETTEXT */
 	signal(SIGSEGV, sighandler);
 	signal(SIGFPE,  sighandler);
 	signal(SIGABRT, sighandler);
