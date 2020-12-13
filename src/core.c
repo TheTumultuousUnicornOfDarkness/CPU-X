@@ -31,7 +31,6 @@
 #include <math.h>
 #include <pthread.h>
 #include <locale.h>
-#include <libintl.h>
 #include <sys/utsname.h>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -41,6 +40,10 @@
 
 #ifndef __linux__
 # include <sys/sysctl.h>
+#endif
+
+#if HAS_GETTEXT
+# include <libintl.h>
 #endif
 
 #if HAS_LIBCPUID

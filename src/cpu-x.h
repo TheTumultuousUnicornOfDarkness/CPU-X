@@ -65,7 +65,11 @@
 #define MSG_WARNING(fmt, ...) fprintf(stdout, colorized_msg(BOLD_YELLOW, "%s", fmt), ##__VA_ARGS__)
 #define MSG_ERROR(fmt, ...)   fprintf(stderr, colorized_msg(BOLD_RED, "%s:%s:%i: %s",      LOCATION, fmt), ##__VA_ARGS__)
 #define MSG_ERRNO(fmt, ...)   fprintf(stderr, colorized_msg(BOLD_RED, "%s:%s:%i: %s (%s)", LOCATION, fmt, strerror(errno)), ##__VA_ARGS__)
-#define _(msg)                gettext(msg)
+#if HAS_GETTEXT
+# define _(msg)               gettext(msg)
+#else
+# define _(msg)               msg
+#endif /* HAS_GETTEXT */
 #define N_(msg)               msg
 
 /* Options definition */
