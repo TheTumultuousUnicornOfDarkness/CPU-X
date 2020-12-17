@@ -8,13 +8,14 @@
 # Celio Alves <dreamcelio@gmail.com>, 2020.
 # Samuel Carvalho de Araújo <samuelnegro12345@gmail.com>, 2020.
 # André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2020.
+# LL Magical <lolayami2004@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-12-15 00:29+0000\n"
-"Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
+"PO-Revision-Date: 2020-12-18 19:29+0000\n"
+"Last-Translator: LL Magical <lolayami2004@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -29,15 +30,12 @@ msgid "Finding CPU technology"
 msgstr "Encontrando tecnologia da CPU"
 
 #: core.c:229
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"Sua CPU não existe no banco de dados ==> %s, modelo: %i, ext. modelo: %i, "
+"Sua CPU não consta do banco de dados ==> %s, modelo: %i, ext. modelo: %i, "
 "ext. família: %i"
 
 #: core.c:240
@@ -231,10 +229,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Encontrando o pacote da CPU em modo fallback"
 
 #: core.c:1288
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Seu socket de CPU não existe no banco de dados ==> %s, codinome: %s"
+msgstr "Seu soquete de CPU não consta do banco de dados ==> %s, codinome: %s"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
@@ -723,10 +720,8 @@ msgid "Read CPUID raw data from a given file"
 msgstr "Ler dados crus do CPUID de um determinado arquivo"
 
 #: main.c:347
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Somente mostrar uma mensagem se a CPU não estiver no banco de dados"
+msgstr "Somente mostrar uma mensagem se a CPU não constar do banco de dados"
 
 #: main.c:358
 #, c-format
