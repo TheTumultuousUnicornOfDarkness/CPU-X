@@ -5,13 +5,14 @@
 # Jeff Huang <s8321414@gmail.com>, 2019.
 # mingjieWu <mingjie831214@gmail.com>, 2020.
 # Hung, Chi-Heng <chh56@cs.washington.edu>, 2020.
+# crlambda <lm3c@protonmail.ch>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-06-16 23:41+0000\n"
-"Last-Translator: Hung, Chi-Heng <chh56@cs.washington.edu>\n"
+"PO-Revision-Date: 2020-12-26 08:29+0000\n"
+"Last-Translator: crlambda <lm3c@protonmail.ch>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -19,17 +20,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.1.1-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
 msgstr "正在尋找 CPU 技術"
 
 #: core.c:229
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
@@ -164,16 +162,16 @@ msgstr ""
 
 #: core.c:1186
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "更新benchmark狀態"
 
 #: core.c:1187 tui_ncurses.c:762
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u 分鐘"
 
 #: core.c:1189 core.c:1190
 msgid "Inactive"
-msgstr ""
+msgstr "未啟動"
 
 #: core.c:1194 core.c:1195
 msgid "Not started"
@@ -181,17 +179,17 @@ msgstr "未開始"
 
 #: core.c:1200
 msgid "Active"
-msgstr ""
+msgstr "活動中"
 
 #: core.c:1205
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(剩下 %u 小時)"
 
 #: core.c:1207
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(剩下 %u 分鐘)"
 
 #: core.c:1209
 #, c-format
@@ -226,12 +224,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr ""
 
 #: core.c:1288
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%i"
+msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%s"
 
 #: core.c:1307
 msgid "Calculating CPU multipliers in fallback mode"
