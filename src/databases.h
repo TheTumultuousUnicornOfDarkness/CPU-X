@@ -167,6 +167,7 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i7-8350U CPU",   "FCBGA 1356"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-8550U CPU",   "FCBGA 1356"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-8650U CPU",   "FCBGA 1356"     },
+	{ NULL,                             "Intel(R) Core(TM) i9-9900K CPU",   "LGA 1151"       },
 	{ NULL,                             NULL,                               NULL             }
 	//Codename                          Model                               Socket
 };
