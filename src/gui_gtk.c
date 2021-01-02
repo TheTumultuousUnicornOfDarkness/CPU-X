@@ -693,7 +693,7 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 
 	switch(page) /* Set differents level bar color */
 	{
-		case BARUSED: // yelow
+		case BARUSED: // yellow
 			pat = is_dark_theme(glab) ? cairo_pattern_create_rgba(0.01, 0.02, 0.37, 1.00) : cairo_pattern_create_rgba(1.00, 0.92, 0.23, 1.00);
 			break;
 		case BARBUFFERS: // blue
