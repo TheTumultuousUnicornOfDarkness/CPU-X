@@ -134,6 +134,8 @@ static gboolean grefresh(GThrd *refr)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS]);
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS]);
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS]);
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1POWERAVG    + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1POWERAVG    + i * GPUFIELDS]);
 			}
 			break;
 		case NO_BENCH:

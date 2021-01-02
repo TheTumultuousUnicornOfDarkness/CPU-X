@@ -429,6 +429,9 @@ static void nrefresh(NThrd *refr)
 				line++;
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK + i], data->tab_graphics[VALUE][GPU1CORECLOCK     + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK  + i], data->tab_graphics[VALUE][GPU1MEMCLOCK      + i]);
+				line++;
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1VOLTAGE   + i], data->tab_graphics[VALUE][GPU1VOLTAGE       + i]);
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1POWERAVG  + i], data->tab_graphics[VALUE][GPU1POWERAVG      + i]);
 				line += LINE_3 - 1;
 			}
 			break;
@@ -752,7 +755,7 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line, start = LINE_0, end = LINE_5;
+	int i, line, start = LINE_0, end = LINE_6;
 
 	if(!data->gpu_count)
 		return;
@@ -784,6 +787,10 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 			case GPU2MEMCLOCK:
 			case GPU3MEMCLOCK:
 			case GPU4MEMCLOCK:
+			case GPU1POWERAVG:
+			case GPU2POWERAVG:
+			case GPU3POWERAVG:
+			case GPU4POWERAVG:
 				mvwprintw2c(win, line - 1, info.tm, "%18s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 				break;
 			default:
