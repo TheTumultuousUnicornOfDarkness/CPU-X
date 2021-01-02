@@ -41,6 +41,58 @@ The file structure in the `src` directory is the following:
     - tui_ncurses.c
     - tui_ncurses.h
 
+### Add new labels
+
+Adding new labels to CPU-X is a little bit complex, but don't worry: this sub-section explains how to achieve that.  
+This text is based on [this](https://github.com/X0rg/CPU-X/commit/ba60cbfc18952fc52b16a4c34a33f565493fb125#diff-8e11e336b0bbcfe85860ec612c712da5e03aebc0a755e6fcea1efa867c72b2f1) commit.  
+:warning: Note: this guide does not explain how to add a new tab.
+
+**1. In core**
+
+- First of all, you need to add a new constant value in the appropriate enumerated type in `cpu-x.h` file; look for something starting with `enum EnTabTAB`. **Keep the `LASTTAB` value add the end.** In this example, `TAB` is the tab name and `NEWLABEL` is the constant value for the new label.
+- Set the label name in `main.c`, inside the `labels_setname()` function:
+  ```c
+  asprintf(&data->tab_TAB[NAME][NEWLABEL], _("Label name"));
+  ```
+- Set the label value in `core.c`, in the appropriate function:
+  ```c
+  casprintf(&data->tab_TAB[VALUE][NEWLABEL], true or false, "%s", XXX);
+  ```
+  :bulb: `fill_labels()` and `do_refresh()` are the calling functions.
+
+**2. In NCurses TUI**
+
+You may need to adapt `tui_ncurses.c`. To print text on screen, `mvwprintwc()` and `mvwprintw2c()` functions are used.
+
+If your label has a dynamic value (e.g. which change over time), also you need to adapt `nrefresh()` function.
+
+**3. In GTK+ 3 GUI**
+
+You need to use [Glade](https://glade.gnome.org/) to edit UI. The UI file in under `data/` (e.g. `cpu-x-gtk-3.12.ui`).
+
+Two labels must be created at least:
+- one label to display the label name, with an ID like `TAB_labNEWLABEL` ;
+- a second label to display the label value, with an ID like `TAB_valNEWLABEL`.
+
+On top of that, you need to declare these ID inside `gui_gtk_id.h`, in the appropriate array.  
+:warning: Please respect the same order as the corresponding enumerated type in `cpu-x.h`.
+
+Then labels are filled from `gui_gtk.c` file, by using `gtk_label_set_text()` function.  
+You may need to adapt `get_widgets()`, `set_labels()` and `grefresh()` functions.
+
+**4. Verify**
+
+Build and run CPU-X. The software must not crash or freeze after these changes.
+
+Please check all modes to avoid potential regressions:
+```shell
+$ cpu-x -Dv
+$ cpu-x -Nv
+$ cpu-x -Gv
+```
+
+If nothing is broken, congratulations! :tada: You can open a new [pull request](https://github.com/X0rg/CPU-X/compare).
+
 ### Things to do
 
 - A good starting point if you want to do stuff is to fix [issues](https://github.com/X0rg/CPU-X/issues).
