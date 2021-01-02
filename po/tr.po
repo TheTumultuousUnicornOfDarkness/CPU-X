@@ -13,13 +13,13 @@
 # Adnan1091 <adnan.utku@ogr.dpu.edu.tr>, 2020.
 # Yaşar Çiv <yasarciv@protonmail.com>, 2020.
 # Anonymous <noreply@weblate.org>, 2020.
-# Oğuz Ersen <oguzersen@protonmail.com>, 2020.
+# Oğuz Ersen <oguzersen@protonmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2020-05-17 00:31+0200\n"
-"PO-Revision-Date: 2020-11-15 15:28+0000\n"
+"PO-Revision-Date: 2021-01-03 11:06+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: core.c:210
 msgid "Finding CPU technology"
@@ -40,8 +40,8 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"Veri tabanında CPU'nuz yok ==> %s, model: %i, harici model: %i, harici aile: "
-"%i"
+"Veri tabanında CPU'nuz yok ==> %s, model: %i, genişletilmiş model: %i, "
+"genişletilmiş aile: %i"
 
 #: core.c:240
 #, c-format
@@ -60,7 +60,7 @@ msgstr "%s ilişkilendirilebilir, %d-%s satır boyutu"
 
 #: core.c:247
 msgid "Calling libcpuid for retrieving static data"
-msgstr "Statik veri almak için libcpuid çağrısı"
+msgstr "Statik veri almak için libcpuid çağrılıyor"
 
 #: core.c:255
 #, c-format
@@ -69,15 +69,15 @@ msgstr "libcpuid çağrılamadı (%s)"
 
 #: core.c:428
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Dinamik veri almak için libcpuid çağrısı"
+msgstr "Dinamik veri almak için libcpuid çağrılıyor"
 
 #: core.c:441
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "CPU MSR statik değerlerini almak için libcpuid çağrısı"
+msgstr "CPU MSR statik değerlerini almak için libcpuid çağrılıyor"
 
 #: core.c:466
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "CPU MSR dinamik değerlerini almak için libcpuid çağrısı"
+msgstr "CPU MSR dinamik değerlerini almak için libcpuid çağrılıyor"
 
 #: core.c:489
 msgid "Calculating CPU multipliers"
@@ -112,7 +112,7 @@ msgstr "GPU sürücünüz bilinmiyor: %s"
 
 #: core.c:780
 msgid "Finding devices"
-msgstr "Aygıtları bulma"
+msgstr "Aygıtlar bulunuyor"
 
 #: core.c:792
 #, c-format
@@ -177,11 +177,11 @@ msgstr "Karşılaştırma durumu güncelleniyor"
 #: core.c:1187 tui_ncurses.c:762
 #, c-format
 msgid "%u mins"
-msgstr "%u dk"
+msgstr "%u dakika"
 
 #: core.c:1189 core.c:1190
 msgid "Inactive"
-msgstr "Etkisiz"
+msgstr "Etkin değil"
 
 #: core.c:1194 core.c:1195
 msgid "Not started"
@@ -315,11 +315,11 @@ msgstr "%s"
 
 #: main.c:52
 msgid "Setting label names"
-msgstr "Etiket adlarını ayarla"
+msgstr "Etiket adları ayarlanıyor"
 
 #: main.c:54
 msgid "CPU"
-msgstr "CPU (İşlemci)"
+msgstr "CPU"
 
 #: main.c:55
 msgid "Processor"
@@ -355,7 +355,7 @@ msgstr "Aile"
 
 #: main.c:63
 msgid "Ext. Family"
-msgstr "Harici Aile"
+msgstr "Genişletilmiş Aile"
 
 #: main.c:64 main.c:101 main.c:112 main.c:146
 msgid "Model"
@@ -363,11 +363,11 @@ msgstr "Model"
 
 #: main.c:65
 msgid "Ext. Model"
-msgstr "Harici Model"
+msgstr "Genişletilmiş Model"
 
 #: main.c:66
 msgid "Temp."
-msgstr "Sıc."
+msgstr "Sıcaklık"
 
 #: main.c:67
 msgid "Stepping"
@@ -391,7 +391,7 @@ msgstr "Katsayı"
 
 #: main.c:73
 msgid "Bus Speed"
-msgstr "Veri yolu Hızı"
+msgstr "Veri Yolu Hızı"
 
 #: main.c:74 main.c:148
 msgid "Usage"
@@ -407,7 +407,7 @@ msgstr "L1 Verileri"
 
 #: main.c:78
 msgid "L1 Inst."
-msgstr "L1 Yönergesi"
+msgstr "L1 Talimat."
 
 #: main.c:79
 msgid "Level 2"
@@ -423,11 +423,11 @@ msgstr "Soket(ler)"
 
 #: main.c:83
 msgid "Core(s)"
-msgstr "Çekirdek"
+msgstr "Çekirdek(ler)"
 
 #: main.c:84
 msgid "Thread(s)"
-msgstr "İş Parçacığı"
+msgstr "İş Parçacık(lar)ı"
 
 #: main.c:87
 msgid "Caches"
@@ -625,7 +625,7 @@ msgstr "Sürüm %s"
 #: main.c:175
 #, c-format
 msgid "Author: %s"
-msgstr "Eser Sahibi: %s"
+msgstr "Yazar: %s"
 
 #: main.c:176
 #, c-format
@@ -643,27 +643,27 @@ msgstr "Bu yazılım %s koşulları altında dağıtılmıştır"
 
 #: main.c:183 main.c:407
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "Bu programın kesinlikle hiçbir garantisi yoktur"
+msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 
 #: main.c:250
 msgid "Dumping data…"
-msgstr "Veri azaltma…"
+msgstr "Veriler dökülüyor…"
 
 #: main.c:292
 msgid "Freeing memory"
-msgstr "Bellek boşaltma"
+msgstr "Bellek boşaltılıyor"
 
 #: main.c:320
 msgid "Start graphical user interface (GUI) (default)"
-msgstr "Grafiksel arayüzü başlat (GUI) (öntanımlı)"
+msgstr "Grafiksel kullanıcı arayüzünü (GUI) başlat (öntanımlı)"
 
 #: main.c:321
 msgid "Start text-based user interface (TUI)"
-msgstr "Metin tabanlı kullanıcı arayüzünü başlat (TUI)"
+msgstr "Metin tabanlı kullanıcı arayüzünü (TUI) başlat"
 
 #: main.c:322
 msgid "Dump all data on standard output and exit"
-msgstr "Tüm verileri standart çıktıya ve çıkışa dök"
+msgstr "Tüm verileri standart çıktıya dök ve çık"
 
 #: main.c:323
 msgid "Run embedded command dmidecode and exit"
@@ -675,19 +675,19 @@ msgstr "Gömülü bandwidth komutunu çalıştır ve çık"
 
 #: main.c:325
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr "İki yenileme arasında rastgele süre seç (saniye)"
+msgstr "İki yenileme arasında özel süre ayarla (saniye cinsinden)"
 
 #: main.c:326
 msgid "Set default tab (integer)"
-msgstr "Öntanımlı sekmeyi ayarla (tamsayı)"
+msgstr "Öntanımlı sekmeyi ayarla (tam sayı)"
 
 #: main.c:327
 msgid "Select CPU core to monitor (integer)"
-msgstr "İzlenecek işlemci çekirdeğini seçin (tamsayı)"
+msgstr "İzlenecek işlemci çekirdeğini seçin (tam sayı)"
 
 #: main.c:328
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr "İşlemci önbellek hızı için rastgele bantgenişliği ayarla (tamsayı)"
+msgstr "İşlemci önbellek hızı için özel bant genişliği ayarla (tam sayı)"
 
 #: main.c:329
 msgid "Start and connect to daemon"
@@ -711,7 +711,7 @@ msgstr "Renkli çıktıyı devre dışı bırak"
 
 #: main.c:334
 msgid "Print required information to paste in an issue"
-msgstr "Bir soruna yapıştırmak için gerekli bilgileri yazdırın"
+msgstr "Bir soruna yapıştırmak için gerekli bilgileri yazdır"
 
 #: main.c:345
 msgid "Enforce the bus clock"
@@ -719,7 +719,7 @@ msgstr "Veri yolu saatini zorla"
 
 #: main.c:346
 msgid "Read CPUID raw data from a given file"
-msgstr "Belirli bir dosyadan İşlemci Kimliği ham verilerini oku"
+msgstr "Belirtilen bir dosyadan CPUID ham verilerini oku"
 
 #: main.c:347
 msgid "Only print a message if CPU is not present in the database"
@@ -732,11 +732,11 @@ msgstr "Kullanım: %s EKRAN [SEÇENEKLER]\n"
 
 #: main.c:359
 msgid "Available DISPLAY:"
-msgstr "Mevcut EKRAN:"
+msgstr "Kullanılabilir EKRAN:"
 
 #: main.c:368
 msgid "Available OPTIONS:"
-msgstr "Mevcut SEÇENEKLER:"
+msgstr "Kullanılabilir SEÇENEKLER:"
 
 #: main.c:376
 msgid "Influenceable environment variables:"
@@ -749,12 +749,12 @@ msgstr "Bu bir özgür yazılımdır: değiştirmek ve yeniden dağıtmakta özg
 #: main.c:408
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr "%s lisansı için bkz: <%s>\n"
+msgstr "%s lisansına bakın: <%s>\n"
 
 #: main.c:415
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr "-- %-9s sürüm: %s"
+msgstr "-- %-9s sürümü: %s"
 
 #: main.c:566
 #, c-format
@@ -764,7 +764,7 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"%sHay aksi, birşeyler yanlış gitti! %s %d sinyali aldı (%s) ve çöktü.%s"
+"%sHay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü.%s"
 
 #: main.c:581
 msgid "You can paste this backtrace by opening a new issue here:"
@@ -776,20 +776,20 @@ msgstr "yerel ayar yapılırken bir hata oluştu"
 
 #: tui_ncurses.c:72
 msgid "Starting NCurses TUI…"
-msgstr "NCurses Metin tabanlı arayüzü başlatılıyor…"
+msgstr "NCurses metin tabanlı arayüzü başlatılıyor…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
-"ÖNEMLİ HATA: terminfo veritabanı bulunamadı (TERMINFO ortam değişkenini "
-"ayarlamaya çalışın)"
+"ÖNEMLİ HATA: terminfo veri tabanı bulunamadı (TERMINFO ortam değişkenini "
+"ayarlamayı deneyin)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "%s terminali kurulamadı (err =%i); %s öğesine geri düşüyor"
+msgstr "%s terminali ayarlanamadı (err=%i); yedek olarak %s kullanılıyor"
 
 #: tui_ncurses.c:262
 msgid "Window is too small!\n"
@@ -807,7 +807,8 @@ msgstr "%s NCurses yardımına hoş geldiniz!\n"
 #: tui_ncurses.c:418
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
-"Bu yardım Metin Tabanlı Kullanıcı Arayüzünün nasıl kullanılacağını açıklar.\n"
+"Bu yardım, metin tabanlı kullanıcı arayüzünün nasıl kullanılacağını açıklar."
+"\n"
 
 #: tui_ncurses.c:420
 msgid ""
@@ -815,7 +816,7 @@ msgid ""
 "Global keys:\n"
 msgstr ""
 "\n"
-"Küresel tuşlar:\n"
+"Genel tuşlar:\n"
 
 #: tui_ncurses.c:421
 msgid "\tPress 'left' key to switch in left tab.\n"
@@ -863,7 +864,7 @@ msgstr "\tÖnceki teste geçmek için 'aşağı' tuşuna basın.\n"
 
 #: tui_ncurses.c:432
 msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr "\tBir sonraki teste geçmek için 'yukarı' tuşuna basın.\n"
+msgstr "\tSonraki teste geçmek için 'yukarı' tuşuna basın.\n"
 
 #: tui_ncurses.c:434
 msgid ""
@@ -934,11 +935,11 @@ msgstr "düzenli ifade derlenirken bir hata oluştu"
 
 #: util.c:418
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: yetkilendirme alınamadı (iletişim kutusu reddedildi)"
+msgstr "pkexec: yetkilendirme alınamadı (iletişim kutusu kapatıldı)"
 
 #: util.c:421
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: yetki alınamadı (yetkilendirilmedi)"
+msgstr "pkexec: yetkilendirme alınamadı (yetkilendirilmedi)"
 
 #: util.c:424
 msgid "pkexec: command not found"
