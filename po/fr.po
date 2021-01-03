@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-03 12:07+0100\n"
-"PO-Revision-Date: 2021-01-03 11:06+0000\n"
+"PO-Revision-Date: 2021-01-04 12:29+0000\n"
 "Last-Translator: Xorg <xorgbreaker@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
@@ -578,14 +578,12 @@ msgid "Memory clock"
 msgstr "Fréq. mémoire"
 
 #: main.c:155
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Tension"
+msgstr "Tension GPU"
 
 #: main.c:156
 msgid "Power Avg"
-msgstr ""
+msgstr "Puissance"
 
 #: main.c:160
 msgid "Bench"
@@ -730,7 +728,7 @@ msgstr "Désactive la sortie colorée"
 
 #: main.c:340
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Affiche les informations pour le débogage"
 
 #: main.c:341
 msgid "Print required information to paste in an issue"
@@ -740,10 +738,12 @@ msgstr ""
 #: main.c:342
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Définit l'affectation des touches pour le mode NCurses "
+"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:353
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Ajoute les arguments de la ligne de commande par défaut"
 
 #: main.c:354
 msgid "Enforce the bus clock"
@@ -751,7 +751,7 @@ msgstr "Impose la fréquence du bus"
 
 #: main.c:355
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Ignore la fréquence du processeur rapportée par licpuid"
 
 #: main.c:356
 msgid "Read CPUID raw data from a given file"
@@ -797,10 +797,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- Version de %-9s : %s"
 
 #: main.c:454
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "échec lors de l'appel de libcpuid (%s)"
+msgstr "échec lors de l'appel de wordexp (%i)"
 
 #: main.c:640
 #, c-format
