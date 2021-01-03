@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "types.h"
+#include "util.h"
 #include "dmidecode.h"
 #include "dmioem.h"
 #include "dmioutput.h"
@@ -42,34 +43,46 @@ enum DMI_VENDORS
 };
 
 static enum DMI_VENDORS dmi_vendor = VENDOR_UNKNOWN;
+static const char *dmi_product = NULL;
 
 /*
  * Remember the system vendor for later use. We only actually store the
  * value if we know how to decode at least one specific entry type for
  * that vendor.
  */
-void dmi_set_vendor(const char *s)
+void dmi_set_vendor(const char *v, const char *p)
 {
-	int len;
+	const struct { const char *str; enum DMI_VENDORS id; } vendor[] = {
+		{ "Acer",			VENDOR_ACER },
+		{ "HP",				VENDOR_HP },
+		{ "Hewlett-Packard",		VENDOR_HP },
+		{ "HPE",			VENDOR_HPE },
+		{ "Hewlett Packard Enterprise",	VENDOR_HPE },
+		{ "IBM",			VENDOR_IBM },
+		{ "LENOVO",			VENDOR_LENOVO },
+	};
+	unsigned int i;
+	size_t len;
 
 	/*
 	 * Often DMI strings have trailing spaces. Ignore these
 	 * when checking for known vendor names.
 	 */
-	len = strlen(s);
-	while (len && s[len - 1] == ' ')
+	len = v ? strlen(v) : 0;
+	while (len && v[len - 1] == ' ')
 		len--;
 
-	if (strncmp(s, "Acer", len) == 0)
-		dmi_vendor = VENDOR_ACER;
-	else if (strncmp(s, "HP", len) == 0 || strncmp(s, "Hewlett-Packard", len) == 0)
-		dmi_vendor = VENDOR_HP;
-	else if (strncmp(s, "HPE", len) == 0 || strncmp(s, "Hewlett Packard Enterprise", len) == 0)
-		dmi_vendor = VENDOR_HPE;
-	else if (strncmp(s, "IBM", len) == 0)
-		dmi_vendor = VENDOR_IBM;
-	else if (strncmp(s, "LENOVO", len) == 0)
-		dmi_vendor = VENDOR_LENOVO;
+	for (i = 0; i < ARRAY_SIZE(vendor); i++)
+	{
+		if (strlen(vendor[i].str) == len &&
+		    strncmp(v, vendor[i].str, len) == 0)
+		{
+			dmi_vendor = vendor[i].id;
+			break;
+		}
+	}
+
+	dmi_product = p;
 }
 
 /*
@@ -147,12 +160,43 @@ static void dmi_print_hp_net_iface_rec(u8 id, u8 bus, u8 dev, const u8 *mac)
 	}
 }
 
+typedef enum { G6 = 6, G7, G8, G9, G10, G10P } dmi_hpegen_t;
+
+static int dmi_hpegen(const char *s)
+{
+	struct { const char *name; dmi_hpegen_t gen; } table[] = {
+		{ "Gen10 Plus",	G10P },
+		{ "Gen10",	G10 },
+		{ "Gen9",	G9 },
+		{ "Gen8",	G8 },
+		{ "G7",		G7 },
+		{ "G6",		G6 },
+	};
+	unsigned int i;
+
+	if (!strstr(s, "ProLiant") && !strstr(s, "Apollo") &&
+	    !strstr(s, "Synergy")  && !strstr(s, "Edgeline"))
+		return -1;
+
+	for (i = 0; i < ARRAY_SIZE(table); i++) {
+		if (strstr(s, table[i].name))
+			return(table[i].gen);
+	}
+
+	return (dmi_vendor == VENDOR_HPE) ? G10P : G6;
+}
+
 static int dmi_decode_hp(const struct dmi_header *h)
 {
 	u8 *data = h->data;
 	int nic, ptr;
 	u32 feat;
 	const char *company = (dmi_vendor == VENDOR_HP) ? "HP" : "HPE";
+	int gen;
+
+	gen = dmi_hpegen(dmi_product);
+	if (gen < 0)
+		return 0;
 
 	switch (h->type)
 	{
@@ -208,35 +252,6 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			}
 			break;
 
-		case 233:
-			/*
-			 * Vendor Specific: HPE ProLiant NIC MAC Information
-			 *
-			 * This prints the BIOS NIC number,
-			 * PCI bus/device/function, and MAC address
-			 *
-			 * Offset |  Name  | Width | Description
-			 * -------------------------------------
-			 *  0x00  |  Type  | BYTE  | 0xE9, NIC structure
-			 *  0x01  | Length | BYTE  | Length of structure
-			 *  0x02  | Handle | WORD  | Unique handle
-			 *  0x04  | Grp No | WORD  | 0 for single segment
-			 *  0x06  | Bus No | BYTE  | PCI Bus
-			 *  0x07  | Dev No | BYTE  | PCI Device/Function No
-			 *  0x08  |   MAC  | 32B   | MAC addr padded w/ 0s
-			 *  0x28  | Port No| BYTE  | Each NIC maps to a Port
-			 */
-			pr_handle_name("%s BIOS PXE NIC PCI and MAC Information",
-				       company);
-			if (h->length < 0x0E) break;
-			/* If the record isn't long enough, we don't have an ID
-			 * use 0xFF to use the internal counter.
-			 * */
-			nic = h->length > 0x28 ? data[0x28] : 0xFF;
-			dmi_print_hp_net_iface_rec(nic, data[0x06], data[0x07],
-						   &data[0x08]);
-			break;
-
 		case 212:
 			/*
 			 * Vendor Specific: HPE 64-bit CRU Information
@@ -280,6 +295,70 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			pr_attr("Misc. Features", "0x%08x", feat);
 			pr_subattr("iCRU", "%s", feat & 0x0001 ? "Yes" : "No");
 			pr_subattr("UEFI", "%s", feat & 0x1400 ? "Yes" : "No");
+			break;
+
+		case 233:
+			/*
+			 * Vendor Specific: HPE ProLiant NIC MAC Information
+			 *
+			 * This prints the BIOS NIC number,
+			 * PCI bus/device/function, and MAC address
+			 *
+			 * Offset |  Name  | Width | Description
+			 * -------------------------------------
+			 *  0x00  |  Type  | BYTE  | 0xE9, NIC structure
+			 *  0x01  | Length | BYTE  | Length of structure
+			 *  0x02  | Handle | WORD  | Unique handle
+			 *  0x04  | Grp No | WORD  | 0 for single segment
+			 *  0x06  | Bus No | BYTE  | PCI Bus
+			 *  0x07  | Dev No | BYTE  | PCI Device/Function No
+			 *  0x08  |   MAC  | 32B   | MAC addr padded w/ 0s
+			 *  0x28  | Port No| BYTE  | Each NIC maps to a Port
+			 */
+			pr_handle_name("%s BIOS PXE NIC PCI and MAC Information",
+				       company);
+			if (h->length < 0x0E) break;
+			/* If the record isn't long enough, we don't have an ID
+			 * use 0xFF to use the internal counter.
+			 * */
+			nic = h->length > 0x28 ? data[0x28] : 0xFF;
+			dmi_print_hp_net_iface_rec(nic, data[0x06], data[0x07],
+						   &data[0x08]);
+			break;
+
+		case 236:
+			/*
+			 * Vendor Specific: HPE ProLiant HDD Backplane
+			 *
+			 * Offset |  Name      | Width | Description
+			 * ---------------------------------------
+			 *  0x00  | Type       | BYTE  | 0xEC, HDD Backplane
+			 *  0x01  | Length     | BYTE  | Length of structure
+			 *  0x02  | Handle     | WORD  | Unique handle
+			 *  0x04  | I2C Address| BYTE  | Backplane FRU I2C Address
+			 *  0x05  | Box Number | WORD  | Backplane Box Number
+			 *  0x07  | NVRAM ID   | WORD  | Backplane NVRAM ID
+			 *  0x09  | WWID       | QWORD | SAS Expander WWID
+			 *  0x11  | Total Bays | BYTE  | Total SAS Bays
+			 *  0x12  | A0 Bays    | BYTE  | (deprecated) Number of SAS drive bays behind port 0xA0
+			 *  0x13  | A2 Bays    | BYTE  | (deprecated) Number of SAS drive bays behind port 0xA2
+			 *  0x14  | Name       | STRING| (deprecated) Backplane Name
+			 */
+			pr_handle_name("%s HDD Backplane FRU Information", company);
+
+			pr_attr("FRU I2C Address", "0x%X raw(0x%X)", data[0x4] >> 1, data[0x4]);
+			pr_attr("Box Number", "%d", WORD(data + 0x5));
+			pr_attr("NVRAM ID", "0x%X", WORD(data + 0x7));
+			if (h->length < 0x11) break;
+			pr_attr("SAS Expander WWID", "0x%X", QWORD(data + 0x9));
+			if (h->length < 0x12) break;
+			pr_attr("Total SAS Bays", "%d", data[0x11]);
+			if (h->length < 0x15) break;
+			if (gen < G10P) {
+				pr_attr("A0 Bay Count", "%d", data[0x12]);
+				pr_attr("A2 Bay Count", "%d", data[0x13]);
+				pr_attr("Backplane Name", "%s", dmi_string(h, data[0x14]));
+			}
 			break;
 
 		default:

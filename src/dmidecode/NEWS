@@ -1,3 +1,21 @@
+Version 3.3 (Wed Oct 14 2020)
+  - [BUILD] Allow overriding build settings from the environment.
+  - [COMPATIBILITY] Document how the UUID fields are interpreted.
+  - [PORTABILITY] Don't use memcpy on /dev/mem on arm64.
+  - [PORTABILITY] Only scan /dev/mem for entry point on x86.
+  - Support for SMBIOS 3.3.0. This includes new processor names, new port
+    connector types, and new memory device form factors, types and
+    technologies.
+  - Add bios-revision, firmware-revision and system-sku-number to -s option.
+  - Use the most appropriate unit for cache size.
+  - Decode system slot base bus width and peers.
+  - Important bug fixes:
+    Fix Redfish Hostname print length
+    Fix formatting of TPM table output
+    Fix System Slot Information for PCIe SSD
+    Don't choke on invalid processor voltage
+  - Use the most appropriate unit for cache size.
+
 Version 3.2 (Wed Sep 14 2018)
   - [COMPATIBILITY] The UUID is now displayed using lowercase letters, per
     RFC 4122 (#53569). You must ensure that any code parsing it is

@@ -86,7 +86,7 @@
 #define out_of_spec "<OUT OF SPEC>"
 static const char *bad_index = "";
 
-#define SUPPORTED_SMBIOS_VER 0x030200
+#define SUPPORTED_SMBIOS_VER 0x030300
 #define STR_LEN              24
 
 #define FLAG_NO_FILE_OFFSET     (1 << 0)
@@ -1140,7 +1140,7 @@ static void dmi_processor_id(const struct dmi_header *h)
 		u16 dx = WORD(p);
 		/*
 		 * Not all 80486 CPU support the CPUID instruction, we have to find
-		 * wether the one we have here does or not. Note that this trick
+		 * whether the one we have here does or not. Note that this trick
 		 * works only because we know that 80486 must be little-endian.
 		 */
 		if ((dx & 0x0F00) == 0x0400
@@ -1388,10 +1388,12 @@ static const char *dmi_processor_upgrade(u8 code)
 		"Socket LGA2066",
 		"Socket BGA1392",
 		"Socket BGA1510",
-		"Socket BGA1528" /* 0x3C */
+		"Socket BGA1528",
+		"Socket LGA4189",
+		"Socket LGA1200" /* 0x3E */
 	};
 
-	if (code >= 0x01 && code <= 0x3C)
+	if (code >= 0x01 && code <= 0x3E)
 		return upgrade[code - 0x01];
 	return out_of_spec;
 }
@@ -1419,7 +1421,9 @@ static void dmi_processor_characteristics(const char *attr, u16 code)
 		"Hardware Thread",
 		"Execute Protection",
 		"Enhanced Virtualization",
-		"Power/Performance Control" /* 7 */
+		"Power/Performance Control",
+		"128-bit Capable",
+		"Arm64 SoC ID" /* 9 */
 	};
 
 	if ((code & 0x00FC) == 0)
@@ -1429,7 +1433,7 @@ static void dmi_processor_characteristics(const char *attr, u16 code)
 		int i;
 
 		pr_list_start(attr, NULL);
-		for (i = 2; i <= 7; i++)
+		for (i = 2; i <= 9; i++)
 			if (code & (1 << i))
 				pr_list_item("%s", characteristics[i - 2]);
 		pr_list_end();
@@ -1964,11 +1968,16 @@ static const char *dmi_slot_type(u8 code)
 		"MXM Type IV",
 		"MXM 3.0 Type A",
 		"MXM 3.0 Type B",
-		"PCI Express 2 SFF-8639",
-		"PCI Express 3 SFF-8639",
+		"PCI Express 2 SFF-8639 (U.2)",
+		"PCI Express 3 SFF-8639 (U.2)",
 		"PCI Express Mini 52-pin with bottom-side keep-outs",
 		"PCI Express Mini 52-pin without bottom-side keep-outs",
-		"PCI Express Mini 76-pin" /* 0x23 */
+		"PCI Express Mini 76-pin",
+		"PCI Express 4 SFF-8639 (U.2)",
+		"PCI Express 5 SFF-8639 (U.2)",
+		"OCP NIC 3.0 Small Form Factor (SFF)",
+		"OCP NIC 3.0 Large Form Factor (LFF)",
+		"OCP NIC Prior to 3.0" /* 0x28 */
 	};
 	static const char *type_0x30[] = {
 		"CXL FLexbus 1.0" /* 0x30 */
@@ -2003,18 +2012,27 @@ static const char *dmi_slot_type(u8 code)
 		"PCI Express 4 x2",
 		"PCI Express 4 x4",
 		"PCI Express 4 x8",
-		"PCI Express 4 x16" /* 0xBD */
+		"PCI Express 4 x16",
+		"PCI Express 5",
+		"PCI Express 5 x1",
+		"PCI Express 5 x2",
+		"PCI Express 5 x4",
+		"PCI Express 5 x8",
+		"PCI Express 5 x16",
+		"PCI Express 6+",
+		"EDSFF E1",
+		"EDSFF E3" /* 0xC6 */
 	};
 	/*
 	 * Note to developers: when adding entries to these lists, check if
 	 * function dmi_slot_id below needs updating too.
 	 */
 
-	if (code >= 0x01 && code <= 0x23)
+	if (code >= 0x01 && code <= 0x28)
 		return type[code - 0x01];
 	if (code == 0x30)
 		return type_0x30[code - 0x30];
-	if (code >= 0xA0 && code <= 0xBD)
+	if (code >= 0xA0 && code <= 0xC6)
 		return type_0xA0[code - 0xA0];
 	return out_of_spec;
 }
@@ -2149,7 +2167,10 @@ static void dmi_slot_characteristics(const char *attr, u8 code1, u8 code2)
 		"PME signal is supported", /* 0 */
 		"Hot-plug devices are supported",
 		"SMBus signal is supported",
-		"PCIe slot bifurcation is supported" /* 3 */
+		"PCIe slot bifurcation is supported",
+		"Async/surprise removal is supported",
+		"Flexbus slot, CXL 1.0 capable",
+		"Flexbus slot, CXL 2.0 capable" /* 6 */
 	};
 
 	if (code1 & (1 << 0))
@@ -2164,7 +2185,7 @@ static void dmi_slot_characteristics(const char *attr, u8 code1, u8 code2)
 		for (i = 1; i <= 7; i++)
 			if (code1 & (1 << i))
 				pr_list_item("%s", characteristics1[i - 1]);
-		for (i = 0; i <= 3; i++)
+		for (i = 0; i <= 6; i++)
 			if (code2 & (1 << i))
 				pr_list_item("%s", characteristics2[i]);
 		pr_list_end();
@@ -2711,10 +2732,12 @@ static const char *dmi_memory_device_type(u8 code)
 		"LPDDR4",
 		"Logical non-volatile device",
 		"HBM",
-		"HBM2" /* 0x21 */
+		"HBM2",
+		"DDR5",
+		"LPDDR5" /* 0x23 */
 	};
 
-	if (code >= 0x01 && code <= 0x21)
+	if (code >= 0x01 && code <= 0x23)
 		return type[code - 0x01];
 	return out_of_spec;
 }
@@ -2756,12 +2779,22 @@ static void dmi_memory_device_type_detail(u16 code)
 	}
 }
 
-static void dmi_memory_device_speed(const char *attr, u16 code)
+static void dmi_memory_device_speed(const char *attr, u16 code1, u32 code2)
 {
-	if (code == 0)
-		pr_attr(attr, "Unknown");
+	if (code1 == 0xFFFF)
+	{
+		if (code2 == 0)
+			pr_attr(attr, "Unknown");
+		else
+			pr_attr(attr, "%lu MT/s", code2);
+	}
 	else
-		pr_attr(attr, "%u MT/s", code);
+	{
+		if (code1 == 0)
+			pr_attr(attr, "Unknown");
+		else
+			pr_attr(attr, "%u MT/s", code1);
+	}
 }
 
 static void dmi_memory_technology(u8 code)
@@ -3779,16 +3812,16 @@ static void dmi_parse_protocol_record(u8 *rec)
 	 * convenience.  It could get passed from the SMBIOS
 	 * header, but that's a lot of passing of pointers just
 	 * to get that info, and the only thing it is used for is
-	 * to determine the endianess of the field.  Since we only
+	 * to determine the endianness of the field.  Since we only
 	 * do this parsing on versions of SMBIOS after 3.1.1, and the
-	 * endianess of the field is always little after version 2.6.0
+	 * endianness of the field is always little after version 2.6.0
 	 * we can just pick a sufficiently recent version here.
 	 */
 	dmi_system_uuid(pr_subattr, "Service UUID", &rdata[0], 0x311);
 
 	/*
 	 * DSP0270: 8.6: Redfish Over IP Host IP Assignment Type
-	 * Note, using decimal indicies here, as the DSP0270
+	 * Note, using decimal indices here, as the DSP0270
 	 * uses decimal, so as to make it more comparable
 	 */
 	assign_val = rdata[16];
@@ -4523,7 +4556,12 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				dmi_memory_device_type(data[0x12]));
 			dmi_memory_device_type_detail(WORD(data + 0x13));
 			if (h->length < 0x17) break;
-			dmi_memory_device_speed("Speed", WORD(data + 0x15));
+			/* If no module is present, the remaining fields are irrelevant */
+			if (WORD(data + 0x0C) == 0)
+				break;
+			dmi_memory_device_speed("Speed", WORD(data + 0x15),
+						h->length >= 0x5C ?
+						DWORD(data + 0x54) : 0);
 			if (h->length < 0x1B) break;
 			pr_attr("Manufacturer", "%s",
 				dmi_string(h, data[0x17]));
@@ -4540,7 +4578,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				pr_attr("Rank", "%u", data[0x1B] & 0x0F);
 			if (h->length < 0x22) break;
 			dmi_memory_device_speed("Configured Memory Speed",
-						WORD(data + 0x20));
+						WORD(data + 0x20),
+						h->length >= 0x5C ?
+						DWORD(data + 0x58) : 0);
 			if (h->length < 0x28) break;
 			dmi_memory_voltage_value("Minimum Voltage",
 						 WORD(data + 0x22));
@@ -5330,8 +5370,9 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 		}
 
 		/* assign vendor for vendor-specific decodes later */
-		if (h.type == 1 && h.length >= 5)
-			dmi_set_vendor(dmi_string(&h, data[0x04]));
+		if (h.type == 1 && h.length >= 6)
+			dmi_set_vendor(_dmi_string(&h, data[0x04], 0),
+				       _dmi_string(&h, data[0x05], 0));
 
 		/* Fixup a common mistake */
 		if (h.type == 34)
