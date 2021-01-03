@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-03 12:07+0100\n"
-"PO-Revision-Date: 2021-01-03 11:06+0000\n"
+"PO-Revision-Date: 2021-01-04 12:29+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -130,7 +130,7 @@ msgstr "yonga seti satıcısı ve model bulunamadı"
 
 #: core.c:841
 msgid "failed to find graphic card vendor and model"
-msgstr "Ekran kartı marka ve modeli bulunamadı"
+msgstr "ekran kartı marka ve modeli bulunamadı"
 
 #: core.c:885
 msgid "Retrieving GPU clocks"
@@ -248,31 +248,31 @@ msgstr "Yedek modda anakart bilgisi alınıyor"
 
 #: core.c:1388
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "Anakart bilgisi alınamadı (yedek modu)"
+msgstr "anakart bilgisi alınamadı (yedek modu)"
 
 #: core.c:1440
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Yedek kipinde CPU sıcaklığı alınıyor"
+msgstr "Yedek modda CPU sıcaklığı alınıyor"
 
 #: core.c:1481
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "CPU sıcaklığı alınamadı (yedek kip)"
+msgstr "CPU sıcaklığı alınamadı (yedek mod)"
 
 #: core.c:1494
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Yedek kipinde CPU Voltajı alınıyor"
+msgstr "Yedek modda CPU gerilimi alınıyor"
 
 #: core.c:1507
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "CPU Voltajı alınamadı (yedek kip)"
+msgstr "CPU gerilimi alınamadı (yedek mod)"
 
 #: core.c:1522
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Yedek kipinde CPU frekansı alınıyor"
+msgstr "Yedek modda CPU frekansı alınıyor"
 
 #: core.c:1530
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "CPU Frekansı alınamadı (yedek kip)"
+msgstr "CPU frekansı alınamadı (yedek mod)"
 
 #: daemon.c:256
 #, c-format
@@ -343,7 +343,7 @@ msgstr "Teknoloji"
 
 #: main.c:64
 msgid "Voltage"
-msgstr "Voltaj"
+msgstr "Gerilim"
 
 #: main.c:65
 msgid "Specification"
@@ -573,14 +573,12 @@ msgid "Memory clock"
 msgstr "Bellek saati"
 
 #: main.c:155
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Voltaj"
+msgstr "Çekirdek Gerilimi"
 
 #: main.c:156
 msgid "Power Avg"
-msgstr ""
+msgstr "Güç Ortalaması"
 
 #: main.c:160
 msgid "Bench"
@@ -721,7 +719,7 @@ msgstr "Renkli çıktıyı devre dışı bırak"
 
 #: main.c:340
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Hata ayıklama bilgilerini yazdır"
 
 #: main.c:341
 msgid "Print required information to paste in an issue"
@@ -730,10 +728,11 @@ msgstr "Bir soruna yapıştırmak için gerekli bilgileri yazdır"
 #: main.c:342
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"NCurses modu için tuş atamasını ayarla (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:353
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Öntanımlı komut satırı argümanlarını ekle"
 
 #: main.c:354
 msgid "Enforce the bus clock"
@@ -741,7 +740,7 @@ msgstr "Veri yolu saatini zorla"
 
 #: main.c:355
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "libcpuid tarafından bildirilen CPU frekansını yok say"
 
 #: main.c:356
 msgid "Read CPUID raw data from a given file"
@@ -783,10 +782,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- %-9s sürümü: %s"
 
 #: main.c:454
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "libcpuid çağrılamadı (%s)"
+msgstr "wordexp çağrılamadı (%i)"
 
 #: main.c:640
 #, c-format
