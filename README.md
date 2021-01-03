@@ -17,6 +17,8 @@ CPU-X is a system profiling and monitoring application (similar to [CPU-Z for Wi
 This software is written in C and built with [CMake](https://www.cmake.org/) tool.  
 It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
 
+**:warning: There is no major plans for the future, see [this announcement](https://github.com/X0rg/CPU-X/wiki/future-of-project).**
+
 ***
 
 # Table of contents
