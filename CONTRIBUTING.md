@@ -95,7 +95,7 @@ If nothing is broken, congratulations! :tada: You can open a new [pull request](
 
 ### Things to do
 
-- A good starting point if you want to do stuff is to fix [issues](https://github.com/X0rg/CPU-X/issues).
+- A good starting point if you want to do stuff is to fix [issues](https://github.com/X0rg/CPU-X/issues). One example: add proper CPU logos (as requested in #144).
 
 - Another point, if you have a lot of time to spare, is to create new user interfaces:
     - Qt5 GUI can be appreciated by users using Qt-based desktop environnement (like KDE);
