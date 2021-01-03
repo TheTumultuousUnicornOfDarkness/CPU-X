@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the CPU-X package.
 # Davide Neri <davnerix@gmail.com>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
-# Pierfrancesco Passerini <p.passerini@gmail.com>, 2020.
+# Pierfrancesco Passerini <p.passerini@gmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-03 12:07+0100\n"
-"PO-Revision-Date: 2020-11-18 08:28+0000\n"
+"PO-Revision-Date: 2021-01-04 12:29+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: core.c:213
 msgid "Finding CPU technology"
@@ -566,14 +566,12 @@ msgid "Memory clock"
 msgstr "Frequenza della memoria"
 
 #: main.c:155
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Voltaggio"
+msgstr "Voltaggio Core"
 
 #: main.c:156
 msgid "Power Avg"
-msgstr ""
+msgstr "Potenza media"
 
 #: main.c:160
 msgid "Bench"
@@ -716,7 +714,7 @@ msgstr "Disattiva l'output colorato"
 
 #: main.c:340
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Stampa le informazioni per il debug"
 
 #: main.c:341
 msgid "Print required information to paste in an issue"
@@ -726,10 +724,12 @@ msgstr ""
 #: main.c:342
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Imposta la mappatura dei tasti per la modalità NCurses "
+"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:353
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Aggiungi opzioni predefinite per la riga di comando"
 
 #: main.c:354
 msgid "Enforce the bus clock"
@@ -737,7 +737,7 @@ msgstr "Forza la frequenza del bus"
 
 #: main.c:355
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Ignora la frequenza della CPU riportata da libcpuid"
 
 #: main.c:356
 msgid "Read CPUID raw data from a given file"
@@ -780,10 +780,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- versione %-9s: %s"
 
 #: main.c:454
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "errore nella chiamata a libcpuid (%s)"
+msgstr "impossibile eseguire wordexp (%i)"
 
 #: main.c:640
 #, c-format
