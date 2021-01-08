@@ -874,10 +874,10 @@ static int gpu_monitoring(Labels *data)
 {
 #ifdef __linux__
 	bool gpu_ok;
-	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk, ret_gvolt, ret_gpwr;
+	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk, ret_vram_used, ret_vram_total, ret_gvolt, ret_gpwr;
 	uint8_t i, card_number, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
-	long double divisor_temp, divisor_gclk, divisor_mclk, divisor_gvolt, divisor_gpwr;
-	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL, *gvolt = NULL, *gpwr = NULL;
+	long double divisor_temp, divisor_gclk, divisor_mclk, divisor_vram, divisor_gvolt, divisor_gpwr;
+	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL, *vram_used = NULL, *vram_total = NULL, *gvolt = NULL, *gpwr = NULL;
 	static bool once_error = true;
 	static char *cached_paths_drm[LASTGRAPHICS / GPUFIELDS] = { NULL };
 	static char *cached_paths_hwmon[LASTGRAPHICS / GPUFIELDS] = { NULL };
@@ -885,20 +885,23 @@ static int gpu_monitoring(Labels *data)
 	MSG_VERBOSE("%s", _("Retrieving GPU clocks"));
 	for(i = 0; i < data->gpu_count; i++)
 	{
-		gpu_ok     = gpu_is_on(data->g_data->device_path[i]);
-		ret_drm    = 0;
-		ret_hwmon  = 0;
-		ret_temp   = -1;
-		ret_load   = -1;
-		ret_gclk   = -1;
-		ret_mclk   = -1;
-		ret_gvolt  = -1;
-		ret_gpwr   = -1;
-		divisor_temp  = 1.0;
-		divisor_gclk  = 1.0;
-		divisor_mclk  = 1.0;
-		divisor_gvolt = 1.0;
-		divisor_gpwr  = 1.0;
+		gpu_ok         = gpu_is_on(data->g_data->device_path[i]);
+		ret_drm        = 0;
+		ret_hwmon      = 0;
+		ret_temp       = -1;
+		ret_load       = -1;
+		ret_gclk       = -1;
+		ret_mclk       = -1;
+		ret_vram_used  = -1;
+		ret_vram_total = -1;
+		ret_gvolt      = -1;
+		ret_gpwr       = -1;
+		divisor_temp   = 1.0;
+		divisor_gclk   = 1.0;
+		divisor_mclk   = 1.0;
+		divisor_vram   = 1.0;
+		divisor_gvolt  = 1.0;
+		divisor_gpwr   = 1.0;
 
 		if(gpu_ok && (data->g_data->gpu_driver[i] == GPUDRV_UNKNOWN))
 		{
@@ -912,6 +915,7 @@ static int gpu_monitoring(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER      + i * GPUFIELDS], false, _("None"));
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS], false, "---");
@@ -954,12 +958,15 @@ static int gpu_monitoring(Labels *data)
 					ret_load = fopen_to_str(&load, "%s", amdgpu_gpu_busy_file);
 				else if(can_access_sys_debug_dri(data))
 					ret_load = popen_to_str(&load, "awk '/GPU Load/ { print $3 }' %s/%u/amdgpu_pm_info", SYS_DEBUG_DRI, card_number);
-				ret_gclk  = fopen_to_str(&gclk,  "%s/freq1_input",    cached_paths_hwmon[i]);
-				ret_mclk  = fopen_to_str(&mclk,  "%s/freq2_input",    cached_paths_hwmon[i]);
-				ret_gvolt = fopen_to_str(&gvolt, "%s/in0_input",      cached_paths_hwmon[i]);
-				ret_gpwr  = fopen_to_str(&gpwr,  "%s/power1_average", cached_paths_hwmon[i]);
+				ret_gclk       = fopen_to_str(&gclk,       "%s/freq1_input",                 cached_paths_hwmon[i]);
+				ret_mclk       = fopen_to_str(&mclk,       "%s/freq2_input",                 cached_paths_hwmon[i]);
+				ret_vram_used  = fopen_to_str(&vram_used,  "%s/device/mem_info_vram_used",   cached_paths_drm[i]);
+				ret_vram_total = fopen_to_str(&vram_total, "%s/device/mem_info_vram_total",  cached_paths_drm[i]);
+				ret_gvolt      = fopen_to_str(&gvolt,      "%s/in0_input",                   cached_paths_hwmon[i]);
+				ret_gpwr       = fopen_to_str(&gpwr,       "%s/power1_average",              cached_paths_hwmon[i]);
 				divisor_gclk  = 1000000.0;
 				divisor_mclk  = 1000000.0;
+				divisor_vram  = 1048576.0;// 1024 * 1024
 				divisor_gvolt = 1000.0;
 				divisor_gpwr  = 1000000.0;
 				break;
@@ -969,25 +976,31 @@ static int gpu_monitoring(Labels *data)
 				ret_load  = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
 				ret_gclk  = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'",               fglrx_count);
 				ret_mclk  = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'",               fglrx_count);
-				ret_gvolt = -1;
-				ret_gpwr  = -1;
+				ret_vram_used  = -1;
+				ret_vram_total = -1;
+				ret_gvolt      = -1;
+				ret_gpwr       = -1;
 				fglrx_count++;
 				break;
 			case GPUDRV_INTEL:
-				ret_temp  = -1;
-				ret_load  = -1;
+				ret_temp       = -1;
+				ret_load       = -1;
 				ret_gclk  = fopen_to_str(&gclk, "%s/gt_cur_freq_mhz", cached_paths_drm[i]);
-				ret_mclk  = -1;
-				ret_gvolt = -1;
-				ret_gpwr  = -1;
+				ret_mclk       = -1;
+				ret_vram_used  = -1;
+				ret_vram_total = -1;
+				ret_gvolt      = -1;
+				ret_gpwr       = -1;
 				break;
 			case GPUDRV_RADEON:
 				// ret_temp obtained above
-				ret_load  = -1;
+				ret_load       = -1;
 				ret_gclk  = can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
 				ret_mclk  = can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
-				ret_gvolt = -1;
-				ret_gpwr  = -1;
+				ret_vram_used  = -1;
+				ret_vram_total = -1;
+				ret_gvolt      = -1;
+				ret_gpwr       = -1;
 				divisor_gclk = 100.0;
 				divisor_mclk = 100.0;
 				break;
@@ -1002,8 +1015,10 @@ static int gpu_monitoring(Labels *data)
 				ret_load  = popen_to_str(&load, "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
 				ret_gclk  = popen_to_str(&gclk, "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
 				ret_mclk  = popen_to_str(&mclk, "%s --query-gpu=clocks.mem",      nvidia_cmd_args);
-				ret_gvolt = -1;
-				ret_gpwr  = -1;
+				ret_vram_used  = -1;
+				ret_vram_total = -1;
+				ret_gvolt      = -1;
+				ret_gpwr       = -1;
 				nvidia_count++;
 				break;
 			}
@@ -1017,8 +1032,10 @@ static int gpu_monitoring(Labels *data)
 				ret_load  = -1;
 				ret_gclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
 				ret_mclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
-				ret_gvolt = -1;
-				ret_gpwr  = -1;
+				ret_vram_used  = -1;
+				ret_vram_total = -1;
+				ret_gvolt      = -1;
+				ret_gpwr       = -1;
 				FREE(pstate);
 				break;
 			}
@@ -1034,6 +1051,8 @@ static int gpu_monitoring(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], true, "%.2Lf MHz", strtoull(gclk, NULL, 10) / divisor_gclk);
 		if(!ret_mclk)
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%.2Lf MHz", strtoull(mclk, NULL, 10) / divisor_mclk);
+		if(!ret_vram_used && !ret_vram_total)
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], true, "%.0Lf MiB / %.0Lf MiB", strtoull(vram_used, NULL, 10) / divisor_vram, strtoull(vram_total, NULL, 10) / divisor_vram);
 		if(!ret_gvolt)
 			casprintf(&data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS], true, "%.2Lf V", strtoull(gvolt, NULL, 10) / divisor_gvolt);
 		if(!ret_gpwr)
@@ -1042,13 +1061,15 @@ skip_clocks:
 		if(!ret_temp)
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2Lf°C", strtoull(temp, NULL, 10) / divisor_temp);
 
-		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_gvolt && ret_gpwr)
+		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr)
 			failed_count++;
 
 		FREE(temp);
 		FREE(load);
 		FREE(gclk);
 		FREE(mclk);
+		FREE(vram_used);
+		FREE(vram_total);
 		FREE(gvolt);
 		FREE(gpwr);
 	}
