@@ -8,13 +8,14 @@
 # anonymous <noreply@weblate.org>, 2020.
 # Martin Beer <der_baer@yadim.dismail.de>, 2020.
 # nautilusx <mail.ka@mailbox.org>, 2020.
+# nautilusx <translate@disroot.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-03 12:07+0100\n"
-"PO-Revision-Date: 2020-05-17 16:13+0000\n"
-"Last-Translator: nautilusx <mail.ka@mailbox.org>\n"
+"PO-Revision-Date: 2021-01-09 14:41+0000\n"
+"Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -22,23 +23,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: core.c:213
 msgid "Finding CPU technology"
 msgstr "CPU-Technologie finden"
 
 #: core.c:232
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"Ihre CPU gehört nicht in die Datenbank ➜ %s, Model: %i, ext. Model: %i, ext. "
-"Familie: %i"
+"Ihre CPU ist nicht in der Datenbank vorhanden ➜ %s, Model: %i, ext. Model: "
+"%i, ext. Familie: %i"
 
 #: core.c:243
 #, c-format
@@ -231,10 +229,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "CPU-Paket wird in alternativem Modus ermittelt"
 
 #: core.c:1333
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Ihr CPU-Socket gehört nicht in die Datenbank ➜ %s, Codename: %s"
+msgstr "Ihr CPU-Sockel ist nicht in der Datenbank vorhanden ➜ %s, Codename: %s"
 
 #: core.c:1352
 msgid "Calculating CPU multipliers in fallback mode"
@@ -571,10 +568,8 @@ msgid "Memory clock"
 msgstr "Speichertakt"
 
 #: main.c:155
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Spannung"
+msgstr "Kernspannung"
 
 #: main.c:156
 msgid "Power Avg"
@@ -747,11 +742,10 @@ msgid "Read CPUID raw data from a given file"
 msgstr "CPUID-Rohdaten aus einer gegebenen Datei lesen"
 
 #: main.c:357
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
 msgstr ""
-"Nur eine Nachricht ausgeben, wenn die CPU nicht in die Datenbank gehört"
+"Nur eine Nachricht ausgeben, wenn die CPU nicht in der Datenbank vorhanden "
+"ist"
 
 #: main.c:381
 #, c-format
