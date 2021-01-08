@@ -427,6 +427,8 @@ static void nrefresh(NThrd *refr)
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1USAGE       + i], data->tab_graphics[VALUE][GPU1USAGE       + i]);
 				line++;
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMUSED     + i], data->tab_graphics[VALUE][GPU1MEMUSED     + i]);
+				line++;
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK + i], data->tab_graphics[VALUE][GPU1CORECLOCK     + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK  + i], data->tab_graphics[VALUE][GPU1MEMCLOCK      + i]);
 				line++;
@@ -755,7 +757,7 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line, start = LINE_0, end = LINE_6;
+	int i, line, start = LINE_0, end = LINE_7;
 
 	if(!data->gpu_count)
 		return;
