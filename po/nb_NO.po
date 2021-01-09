@@ -1,14 +1,14 @@
 # Copyright © 2014-2021 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020.
+# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021.
 # Michal Čihař <michal@cihar.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-03 12:07+0100\n"
-"PO-Revision-Date: 2020-05-22 04:41+0000\n"
+"PO-Revision-Date: 2021-01-09 14:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -17,23 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: core.c:213
 msgid "Finding CPU technology"
-msgstr "Finner CPU-teknologi"
+msgstr "Finner prosessor-teknologi"
 
 #: core.c:232
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"Prosessoren din tilhører ikke i databasen → %s, modell: %i, ekst. modell: "
-"%i, ekst. familie: %i"
+"Prosessoren din finnes ikke i databasen → %s, modell: %i, ekst. modell: %i, "
+"ekst. familie: %i"
 
 #: core.c:243
 #, c-format
@@ -60,20 +57,24 @@ msgid "failed to call libcpuid (%s)"
 msgstr "Klarte ikke å kalle libcpuid (%s)"
 
 #: core.c:433
+#, fuzzy
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Kaller libcpuid for innhenting av dynamisk data"
+msgstr "Kaller libcpuid for innhenting av dynamisk data …"
 
 #: core.c:446
+#, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Kaller libcpuid for mottak av statiske CPU MSR-verdier"
+msgstr "Kaller libcpuid for mottak av statiske CPU MSR-verdier …"
 
 #: core.c:471
+#, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Kaller libcpuid for mottak av dynamiske CPU MSR-verdier"
+msgstr "Kaller libcpuid for mottak av dynamiske CPU MSR-verdier …"
 
 #: core.c:494
+#, fuzzy
 msgid "Calculating CPU multipliers"
-msgstr "Regner ut CPU-multiplikatorer"
+msgstr "Regner ut prosessor-multiplikatorer …"
 
 #: core.c:542
 #, c-format
@@ -87,7 +88,7 @@ msgstr "Kaller dmidecode"
 #: core.c:605
 #, fuzzy
 msgid "Calculating CPU usage"
-msgstr "Regner ut CPU-bruk"
+msgstr "Regner ut prosessor-bruk …"
 
 #: core.c:656
 msgid "Calling bandwidth"
@@ -224,18 +225,17 @@ msgstr "En feil inntraff under oppstart av ytelsestest"
 
 #: core.c:1311
 msgid "Finding CPU package in fallback mode"
-msgstr "Finner CPU-pakke i tilbakefallsmodus"
+msgstr "Finner prosessor-pakke i tilbakefallsmodus"
 
 #: core.c:1333
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Din CPU-sokkel hører ikke til i databasen ==> %s, kodenavn: %s"
+msgstr "Din prosessor-sokkel finnes ikke i databasen ➜ %s, kodenavn: %s"
 
 #: core.c:1352
-#, fuzzy
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Regner ut CPU-multiplikatorer i tilbakefallsmodus"
+msgstr "Regner ut prosessor-multiplikatorer i tilbakefallsmodus"
 
 #: core.c:1379
 #, fuzzy
@@ -249,30 +249,27 @@ msgstr "Klarte ikke å hente hovedkortinformasjon (tilbakefallsmodus)"
 
 #: core.c:1440
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Henter CPU-temperatur i tilbakefallsmodus"
+msgstr "Henter prosessor-temperatur i tilbakefallsmodus"
 
 #: core.c:1481
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "Klarte ikke å hente CPU-temperatur (tilbakefallsmodus)"
+msgstr "Klarte ikke å hente prosessor-temperatur (tilbakefallsmodus)"
 
 #: core.c:1494
-#, fuzzy
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Henter CPU-spenning i tilbakefallsmodus"
+msgstr "Henter prosessor-spenning i tilbakefallsmodus"
 
 #: core.c:1507
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "Klarte ikke å hente CPU-spenning (tilbakefallsmodus)"
+msgstr "Klarte ikke å hente prosessor-spenning (tilbakefallsmodus)"
 
 #: core.c:1522
-#, fuzzy
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Henter CPU-frekvens i tilbakefallsmodus"
+msgstr "Henter prosessor-frekvens i tilbakefallsmodus"
 
 #: core.c:1530
-#, fuzzy
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "Klarte ikke å hente CPU-frekvens (tilbakefallsmodus)"
+msgstr "Klarte ikke å hente prosessor-frekvens (tilbakefallsmodus)"
 
 #: daemon.c:256
 #, c-format
@@ -301,10 +298,8 @@ msgid "Ask password to start daemon in background"
 msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
 #: gui_gtk.c:533
-#, fuzzy
-#| msgid "Start and connect to daemon"
 msgid "Start daemon"
-msgstr "Start og koble til nisse"
+msgstr "Start nisse"
 
 #: gui_gtk.c:542 gui_gtk.c:625 tui_ncurses.c:530
 #, c-format
@@ -321,9 +316,8 @@ msgid "Setting label names"
 msgstr "Setter etikettnavn"
 
 #: main.c:58
-#, fuzzy
 msgid "CPU"
-msgstr "CPU"
+msgstr "Prosessor"
 
 #: main.c:59
 msgid "Processor"
@@ -574,7 +568,7 @@ msgstr "Temperatur"
 
 #: main.c:153
 msgid "GPU clock"
-msgstr "CPU-klokke"
+msgstr "prosessor-klokke"
 
 #: main.c:154
 #, fuzzy
@@ -582,14 +576,12 @@ msgid "Memory clock"
 msgstr "Minne-klokke"
 
 #: main.c:155
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Spenning"
+msgstr "Kjernespenning"
 
 #: main.c:156
 msgid "Power Avg"
-msgstr ""
+msgstr "Effektgjennomsnitt"
 
 #: main.c:160
 msgid "Bench"
@@ -634,7 +626,7 @@ msgid ""
 "on CPU, motherboard and more."
 msgstr ""
 "%s er fri programvare som henter info om\n"
-"CPU, hovedkort, med mer."
+"prosessor, hovedkort, med mer."
 
 #: main.c:180
 #, c-format
@@ -668,7 +660,7 @@ msgstr "Dette programmet kommer deg i hende UTEN NOEN FORM FOR GARANTI"
 #: main.c:256
 #, fuzzy
 msgid "Dumping data…"
-msgstr "Dumper data…"
+msgstr "Dumper data …"
 
 #: main.c:298
 msgid "Freeing memory"
@@ -705,12 +697,12 @@ msgstr "Sett forvalgt fane (heltall)"
 
 #: main.c:333
 msgid "Select CPU core to monitor (integer)"
-msgstr "Velg CPU-kjerne å overvåke (heltall)"
+msgstr "Velg prosessor-kjerne å overvåke (heltall)"
 
 #: main.c:334
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
-"Sett egendefinert båndbreddetest for hastigheter for CPU-hurtiglagre "
+"Sett egendefinert båndbreddetest for hastigheter for prosessor-hurtiglagre "
 "(heltall)"
 
 #: main.c:335
@@ -735,19 +727,21 @@ msgstr "Skru av fargelagt utdata"
 
 #: main.c:340
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Skriv ut info for avlusing"
 
 #: main.c:341
 msgid "Print required information to paste in an issue"
 msgstr "Skriv ut påkrevd informasjon å lime inn i en feilrapport"
 
 #: main.c:342
+#, fuzzy
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Sett tastetildeling for NCurses-modus (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:353
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Sett forvalgte kommandolinjeargumenter"
 
 #: main.c:354
 msgid "Enforce the bus clock"
@@ -755,17 +749,15 @@ msgstr "Påtving bussklokkefrekvens"
 
 #: main.c:355
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Ignorer prosessorfrekvens rapportert av libcpuid"
 
 #: main.c:356
 msgid "Read CPUID raw data from a given file"
 msgstr "Les CPUID-rådata fra en gitt fil"
 
 #: main.c:357
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Kun skriv ut en melding hvis CPU-en ikke finnes i databasen"
+msgstr "Kun skriv ut en melding hvis prosessoren ikke finnes i databasen"
 
 #: main.c:381
 #, c-format
@@ -803,7 +795,7 @@ msgstr "-- %-9s versjon: %s"
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call wordexp (%i)"
-msgstr "Klarte ikke å kalle libcpuid (%s)"
+msgstr "Klarte ikke å kalle wordexp (%s)"
 
 #: main.c:640
 #, c-format
@@ -826,10 +818,8 @@ msgid "an error occurred while setting locale"
 msgstr "Kunne ikke sette lokalitet"
 
 #: tui_ncurses.c:72
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "Starter ncurses-TUI…"
+msgstr "Starter NCurses-TUI …"
 
 #: tui_ncurses.c:80
 msgid ""
@@ -895,7 +885,7 @@ msgid ""
 "CPU tab:\n"
 msgstr ""
 "\n"
-"CPU-fane:\n"
+"Prosessor-fane:\n"
 
 #: tui_ncurses.c:468
 #, fuzzy
@@ -904,7 +894,6 @@ msgstr ""
 "\tTrykk \"nedover-piltast\" ↓ for å senke kjerneantall å holde oppsikt med.\n"
 
 #: tui_ncurses.c:469
-#, fuzzy
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
 "\tTrykk \"oppover-piltast\" ↑ for å øke kjerneantallet å holde oppsyn med.\n"
@@ -1006,10 +995,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: Uventet feilkode"
 
 #: cpu-x.h:53
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "kunne ikke omfordele minne"
+msgstr "Fatal feil: Kunne ikke tildele minne"
 
 #: cpu-x.h:93
 msgid "bytes"
