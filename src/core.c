@@ -1114,7 +1114,7 @@ static int system_dynamic(Labels *data)
 	MemoryData *m_data = data->m_data;
 
 #if HAS_LIBPROCPS
-	const int div = 1e3;
+	const int div = 1024;
 
 	MSG_VERBOSE("%s", _("Calling libprocps"));
 	/* System uptime */
@@ -1163,8 +1163,8 @@ static int system_dynamic(Labels *data)
 #endif /* HAS_LIBSTATGRAB */
 	/* Memory labels */
 	for(i = USED; i < SWAP; i++)
-		casprintf(&data->tab_system[VALUE][i], false, "%5u %s / %5u %s", m_data->mem_usage[j++], UNIT_MB, m_data->mem_total, UNIT_MB);
-	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u %s / %5u %s", m_data->mem_usage[j], UNIT_MB, m_data->swap_total, UNIT_MB);
+		casprintf(&data->tab_system[VALUE][i], false, "%5u %s / %5u %s", m_data->mem_usage[j++], "MiB", m_data->mem_total, "MiB");
+	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u %s / %5u %s", m_data->mem_usage[j], "MiB", m_data->swap_total, "MiB");
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
