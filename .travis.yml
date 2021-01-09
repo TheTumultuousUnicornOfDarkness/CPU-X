@@ -25,6 +25,7 @@ after_success:
   - sudo CPUX_BCLK=100 cpu-x --issue-fmt
   - cat /tmp/cpu-x.log
   - cat /tmp/cpu-x-daemon.log
+  - git clone https://github.com/anrieff/libcpuid.git /tmp/libcpuid && bash ./scripts/run_libcpuid_tests.sh "/tmp/libcpuid/tests"
 
 notifications:
   slack:
