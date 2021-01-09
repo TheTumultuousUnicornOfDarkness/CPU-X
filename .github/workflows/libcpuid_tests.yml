@@ -10,6 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Build CPU-X
+      run: bash -x ./scripts/build_ubuntu.sh "Debug" "$GITHUB_WORKSPACE"
+
     - name: Clone LibCPUID repository
       run: git clone https://github.com/anrieff/libcpuid.git /tmp/libcpuid
 

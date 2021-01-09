@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ $# -lt 3 ]]; then
-	echo "$0: BUILD_TYPE SOURCE_DIRECTORY INSTALL_DIRECTORY"
+if [[ $# -lt 2 ]]; then
+	echo "$0: BUILD_TYPE SOURCE_DIRECTORY [INSTALL_DIRECTORY]"
 	exit 1
 fi
 
@@ -24,4 +24,8 @@ echo "Build CPU-X"
 cmake --build build
 
 echo "Install CPU-X"
-DESTDIR="$DST_DIR" ninja -C build install
+if [[ -z "$DST_DIR" ]]; then
+	sudo ninja -C build install
+else
+	DESTDIR="$DST_DIR" ninja -C build install
+fi
