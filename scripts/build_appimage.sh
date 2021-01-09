@@ -12,15 +12,6 @@ runCmd() {
 	fi
 }
 
-safeCopy() {
-	local src=("${@:1:$#-1}")
-	local dst="${*:$#}"
-
-	for s in "${src[@]}"; do
-		runCmd cp "$s" --archive --parents --target-directory="$dst" --verbose
-	done
-}
-
 # Constant variables
 if [[ $# -lt 2 ]]; then
 	echo "$0: WORKSPACE APPDIR"
@@ -29,35 +20,38 @@ fi
 
 WORKSPACE="$1"
 APPDIR="$2"
-LIBARCHDIR="lib/x86_64-linux-gnu"
 
-# Add extra files in AppDir
-[[ -z "$VERSION" ]] && cp --recursive --verbose "$WORKSPACE/src" "$APPDIR/usr/" # Debug info
-safeCopy \
-	"/usr/share/"{glib-2.0,terminfo} \
-	"/usr/$LIBARCHDIR/"{gdk-pixbuf-2.0,gtk-3.0,libgtk-3-0} \
-	"/usr/$LIBARCHDIR/libgdk_pixbuf"* \
-	"/usr/$LIBARCHDIR/libgobject"* \
-	"/usr/$LIBARCHDIR/libgio"* \
-	"$APPDIR"
-runCmd glib-compile-schemas "$APPDIR/usr/share/glib-2.0/schemas"
+# Reset arguments
+set --
 
-# Download linuxdeploy
+# Download linuxdeploy and plugins
 BUNDLER="$WORKSPACE/linuxdeploy.AppImage"
-runCmd wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER"
-runCmd chmod --verbose a+x "$BUNDLER"
+runCmd wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
+	&& set -- "$@" --output appimage
+runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh" \
+	&& set -- "$@" --plugin gtk
+runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-ncurses/master/linuxdeploy-plugin-ncurses.sh" \
+	&& set -- "$@" --plugin ncurses
+runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gettext/linuxdeploy-plugin-gettext.sh" \
+	&& set -- "$@" --plugin gettext
+if [[ -z "$VERSION" ]]; then
+	export LINUXDEPLOY_PLUGIN_GDB_SRC="$WORKSPACE/src"
+	runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gdb/linuxdeploy-plugin-gdb.sh" \
+		&& set -- "$@" --plugin gdb
+fi
+runCmd chmod --verbose a+x ./*.AppImage ./*.sh
 
 # Set useful variables for linuxdeploy
 export ARCH=x86_64
 export UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_REPOSITORY//\//|}|${VERSION:-"continuous"}|CPU-X-*$ARCH.AppImage.zsync"
 export VERBOSE=1
+#export DEBUG=1
 export DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1
 
 # Run linuxdeploy
 runCmd mkdir --parents --verbose "$WORKSPACE/AppImage" && runCmd cd "$_"
 runCmd "$BUNDLER" \
 	--appdir="$APPDIR" \
-	--custom-apprun="$WORKSPACE/scripts/run_appimage.sh" \
 	--desktop-file="$APPDIR/usr/share/applications/cpu-x.desktop" \
-	--output appimage \
-	--verbosity=1
+	--verbosity=1 \
+	"$@"
