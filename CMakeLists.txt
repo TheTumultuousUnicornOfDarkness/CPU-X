@@ -52,6 +52,7 @@ option(WITH_LIBSTATGRAB   "Use Libstatgrab library"                             
 option(WITH_DMIDECODE     "Built-in Dmidecode"                                                ON)
 option(WITH_BANDWIDTH     "Built-in Bandwidth"                                                ON)
 option(FORCE_LIBSTATGRAB  "Force use of Libstatgrab instead of Libprocps (GNU/Linux system)"  OFF)
+option(APPIMAGE           "Enable workarounds for AppImage"                                   OFF)
 
 # Colours
 string(ASCII 27 Esc)

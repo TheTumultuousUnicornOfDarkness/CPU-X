@@ -176,6 +176,11 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DDAEMON_PATH="${DAEMON_PATH}"
 )
 
+if(APPIMAGE)
+	set(DAEMON_FLAGS "-static")
+	set(LIBCPUID_LIBRARIES "-l:libcpuid.a")
+endif(APPIMAGE)
+
 # Link libraries
 target_link_libraries(${APP_EXEC}
 	m
@@ -195,6 +200,7 @@ target_link_libraries(${APP_EXEC}
 )
 
 target_link_libraries(${DAEMON_EXEC}
+	${DAEMON_FLAGS}
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
 
