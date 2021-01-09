@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-01-03 12:07+0100\n"
+"POT-Creation-Date: 2021-01-09 15:40+0100\n"
 "PO-Revision-Date: 2021-01-09 14:41+0000\n"
 "Last-Translator: Hayao0819 <hayao@fascode.net>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -127,145 +127,146 @@ msgstr "グラフィックカードのベンダーとモデルの検索に失敗
 msgid "Retrieving GPU clocks"
 msgstr "GPUクロックを取得しています"
 
-#: core.c:912
+#: core.c:915
 #, fuzzy
 msgid "None"
 msgstr "何もありません"
 
-#: core.c:1027
+#: core.c:1044
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %u のドライバは温度を報告していません"
 
-#: core.c:1057
+#: core.c:1080
 msgid "failed to retrieve GPU clocks"
 msgstr "GPUクロックの取得に失敗しました"
 
-#: core.c:1074
+#: core.c:1097
 msgid "Identifying running system"
 msgstr "実行中のシステムを認識しています"
 
-#: core.c:1077
+#: core.c:1100
 msgid "failed to identify running system"
 msgstr "実行中のシステムの認識に失敗しました"
 
-#: core.c:1119
+#: core.c:1142
 msgid "Calling libprocps"
 msgstr "libprocpsを呼び出しています"
 
-#: core.c:1141
+#: core.c:1164
 msgid "Calling libstatgrab"
 msgstr "libstatgrabを呼び出しています"
 
-#: core.c:1171
+#: core.c:1194
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
-#: core.c:1227
+#: core.c:1250
 msgid "Updating benchmark status"
 msgstr "ベンチマークの状態を更新しています"
 
-#: core.c:1228 tui_ncurses.c:807
+#: core.c:1251 tui_ncurses.c:809
 #, c-format
 msgid "%u mins"
 msgstr "%u 分"
 
-#: core.c:1230 core.c:1231
+#: core.c:1253 core.c:1254
 #, fuzzy
 msgid "Inactive"
 msgstr "停止"
 
-#: core.c:1235 core.c:1236
+#: core.c:1258 core.c:1259
 #, fuzzy
 msgid "Not started"
 msgstr "開始されていません"
 
-#: core.c:1241
+#: core.c:1264
 #, fuzzy
 msgid "Active"
 msgstr "実行"
 
-#: core.c:1246
+#: core.c:1269
 #, c-format
 msgid "(%u hours left)"
 msgstr "（残り%u 時間）"
 
-#: core.c:1248
+#: core.c:1271
 #, c-format
 msgid "(%u minutes left)"
 msgstr "（残り%u 分）"
 
-#: core.c:1250
+#: core.c:1273
 #, c-format
 msgid "(%u seconds left)"
 msgstr "（残り%u 秒）"
 
-#: core.c:1255
-#, c-format, fuzzy
+#: core.c:1278
+#, fuzzy, c-format
 msgid "in %u hours"
 msgstr "%u 時間"
 
-#: core.c:1257
-#, c-format, fuzzy
+#: core.c:1280
+#, fuzzy, c-format
 msgid "in %u minutes"
 msgstr "%u 分"
 
-#: core.c:1259
-#, c-format, fuzzy
+#: core.c:1282
+#, fuzzy, c-format
 msgid "in %u seconds"
 msgstr "%u 秒"
 
-#: core.c:1275
+#: core.c:1298
 msgid "Starting benchmark"
 msgstr "ベンチマークを開始しています"
 
-#: core.c:1294
+#: core.c:1317
 msgid "an error occurred while starting benchmark"
 msgstr "ベンチマークの開始中にエラーが発生しました"
 
-#: core.c:1311
+#: core.c:1334
 msgid "Finding CPU package in fallback mode"
 msgstr "fallbackモードでCPUパッケージの検索中"
 
-#: core.c:1333
+#: core.c:1356
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "このCPUソケットはデータベースにありませんでした ==> %s、コードネーム: %s"
+msgstr ""
+"このCPUソケットはデータベースにありませんでした ==> %s、コードネーム: %s"
 
-#: core.c:1352
+#: core.c:1375
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "fallbackモードでCPU倍率を計算しています"
 
-#: core.c:1379
+#: core.c:1402
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "fallbackモードでマザーボードの情報を取得しています"
 
-#: core.c:1388
+#: core.c:1411
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "マザーボードの情報の取得に失敗しました（fallbackモード）"
 
-#: core.c:1440
+#: core.c:1463
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallbackモードでCPUの温度を取得しています"
 
-#: core.c:1481
+#: core.c:1504
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPUの温度の取得に失敗しました（fallbackモード）"
 
-#: core.c:1494
+#: core.c:1517
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallbackモードでCPUの電圧を取得しています"
 
-#: core.c:1507
+#: core.c:1530
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPUの電圧の取得に失敗しました（fallbackモード）"
 
-#: core.c:1522
+#: core.c:1545
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallbackモードでCPUのクロック倍率を取得しています"
 
-#: core.c:1530
+#: core.c:1553
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPUのクロック倍率の取得に失敗しました（fallbackモード）"
 
@@ -282,28 +283,28 @@ msgstr "GTK GUIを開始しています…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilderからのUIのインポートに失敗しました"
 
-#: gui_gtk.c:521
+#: gui_gtk.c:522
 msgid "Connected to daemon"
 msgstr "デーモンに接続しました"
 
-#: gui_gtk.c:523
+#: gui_gtk.c:524
 msgid "No polkit authentication agent found"
 msgstr "Polkit 認証エージェントが見つかりませんでした"
 
-#: gui_gtk.c:527
+#: gui_gtk.c:528
 msgid "Ask password to start daemon in background"
 msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要です"
 
-#: gui_gtk.c:533
+#: gui_gtk.c:534
 msgid "Start daemon"
 msgstr "デーモンを開始する"
 
-#: gui_gtk.c:542 gui_gtk.c:625 tui_ncurses.c:530
+#: gui_gtk.c:543 gui_gtk.c:626 tui_ncurses.c:532
 #, c-format
 msgid "Core #%i"
 msgstr "コア #%i"
 
-#: gui_gtk.c:622
+#: gui_gtk.c:623
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -560,58 +561,64 @@ msgid "Temperature"
 msgstr "温度"
 
 #: main.c:153
+#, fuzzy
+#| msgid "Memory"
+msgid "Memory Used"
+msgstr "メモリー"
+
+#: main.c:154
 msgid "GPU clock"
 msgstr "GPU クロック"
 
-#: main.c:154
+#: main.c:155
 msgid "Memory clock"
 msgstr "メモリークロック"
 
-#: main.c:155
+#: main.c:156
 msgid "Core Voltage"
 msgstr "コア電圧"
 
-#: main.c:156
+#: main.c:157
 msgid "Power Avg"
 msgstr "平均電圧"
 
-#: main.c:160
+#: main.c:161
 msgid "Bench"
 msgstr "ベンチマーク"
 
-#: main.c:161
+#: main.c:162
 msgid "Prime numbers (slow)"
 msgstr "素数（スロー）"
 
-#: main.c:162
+#: main.c:163
 msgid "Prime numbers (fast)"
 msgstr "素数（ファースト）"
 
-#: main.c:165
+#: main.c:166
 msgid "Score"
 msgstr "スコア"
 
-#: main.c:166
+#: main.c:167
 msgid "Run"
 msgstr "実行"
 
-#: main.c:169
+#: main.c:170
 msgid "Parameters"
 msgstr "パラメータ"
 
-#: main.c:170
+#: main.c:171
 msgid "Duration"
 msgstr "デュレーション"
 
-#: main.c:171
+#: main.c:172
 msgid "Threads"
 msgstr "スレッド"
 
-#: main.c:174 main.c:179
+#: main.c:175 main.c:180
 msgid "About"
 msgstr "CPU-Xについて"
 
-#: main.c:176
+#: main.c:177
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -620,167 +627,169 @@ msgstr ""
 "%s はCPUやマザーボードなどの情報を\n"
 "収集する無料のソフトウェアです。"
 
-#: main.c:180
+#: main.c:181
 #, c-format
 msgid "Version %s"
 msgstr "バージョン %s"
 
-#: main.c:181
+#: main.c:182
 #, c-format
 msgid "Author: %s"
 msgstr "作者: %s"
 
-#: main.c:182
+#: main.c:183
 #, c-format
 msgid "Site: %s"
 msgstr "サイト: %s"
 
-#: main.c:184
+#: main.c:185
 msgid "License"
 msgstr "ライセンス"
 
-#: main.c:187
+#: main.c:188
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "このソフトウェアは%sのもとで配布されています"
 
-#: main.c:189 main.c:430
+#: main.c:190 main.c:431
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "このプログラムは全て自己責任で使用してください"
 
-#: main.c:256
+#: main.c:257
 msgid "Dumping data…"
 msgstr "\"データをダンプしています…"
 
-#: main.c:298
+#: main.c:299
 msgid "Freeing memory"
 msgstr "フリーなメモリ"
 
-#: main.c:326
+#: main.c:327
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "グラフィカルユーザインタフェース（GUI）を開始する（デフォルト）"
 
-#: main.c:327
+#: main.c:328
 msgid "Start text-based user interface (TUI)"
 msgstr "テキストユーザインタフェース（TUI）を開始する"
 
-#: main.c:328
+#: main.c:329
 msgid "Dump all data on standard output and exit"
 msgstr "全てのデータを取得し、標準出力して終了します"
 
-#: main.c:329
+#: main.c:330
 msgid "Run embedded command dmidecode and exit"
 msgstr "埋め込みコマンド dmidecode を実行して終了します"
 
-#: main.c:330
+#: main.c:331
 msgid "Run embedded command bandwidth and exit"
 msgstr "埋め込みコマンド bandwidth を実行して終了します"
 
-#: main.c:331
+#: main.c:332
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "更新の間隔を設定します（秒）"
 
-#: main.c:332
+#: main.c:333
 msgid "Set default tab (integer)"
 msgstr "デフォルトのタブを設定します（整数）"
 
-#: main.c:333
+#: main.c:334
 msgid "Select CPU core to monitor (integer)"
 msgstr "モニタリングするCPUコアを選択します（整数）"
 
-#: main.c:334
+#: main.c:335
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数）"
 
-#: main.c:335
+#: main.c:336
 msgid "Start and connect to daemon"
 msgstr "デーモンを開始、接続します"
 
-#: main.c:336
+#: main.c:337
 msgid "Verbose output"
 msgstr "詳細な出力を有効化します"
 
-#: main.c:337
+#: main.c:338
 msgid "Print help and exit"
 msgstr "ヘルプメッセージを表示して終了します"
 
-#: main.c:338
+#: main.c:339
 msgid "Print version and exit"
 msgstr "バージョンを表示して終了します"
 
-#: main.c:339
+#: main.c:340
 msgid "Disable colored output"
 msgstr "色のついた出力を無効化します"
 
-#: main.c:340
+#: main.c:341
 msgid "Print information for debugging"
 msgstr "デバッグのための情報を表示します"
 
-#: main.c:341
+#: main.c:342
 msgid "Print required information to paste in an issue"
 msgstr "Issueに貼り付けるために必要な情報を表示します"
 
-#: main.c:342
+#: main.c:343
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
-msgstr "NCursesモードのキーマッピングを設定します(a[rrows]|e[macs]|i[nverted-T]|v[im])"
+msgstr ""
+"NCursesモードのキーマッピングを設定します(a[rrows]|e[macs]|i[nverted-T]|"
+"v[im])"
 
-#: main.c:353
+#: main.c:354
 msgid "Add default command line arguments"
 msgstr "デフォルトのコマンドライン引数を追加します"
 
-#: main.c:354
+#: main.c:355
 msgid "Enforce the bus clock"
 msgstr "バスクロックを適用する"
 
-#: main.c:355
+#: main.c:356
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "libcpuidから取得したCPUクロックを無視します"
 
-#: main.c:356
+#: main.c:357
 msgid "Read CPUID raw data from a given file"
 msgstr "生のCPUIDデータを与えられたファイルから読み込みます"
 
-#: main.c:357
+#: main.c:358
 msgid "Only print a message if CPU is not present in the database"
 msgstr "CPUがデータベースに存在しない場合のみメッセージを出力します"
 
-#: main.c:381
+#: main.c:382
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "使い方: %s ディスプレイ（オプション）\n"
 
-#: main.c:382
+#: main.c:383
 msgid "Available DISPLAY:"
 msgstr "利用可能なディスプレイ:"
 
-#: main.c:391
+#: main.c:392
 msgid "Available OPTIONS:"
 msgstr "利用可能なオプション:"
 
-#: main.c:399
+#: main.c:400
 msgid "Influenceable environment variables:"
 msgstr "影響力のある環境変数:"
 
-#: main.c:429
+#: main.c:430
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "これはフリーソフトウェアです: 自由に変更して再配布することができます。"
 
-#: main.c:431
+#: main.c:432
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s ライセンスを見てください: <%s>\n"
 
-#: main.c:438
+#: main.c:439
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s バージョン: %s"
 
-#: main.c:454
+#: main.c:455
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "wordexpの呼び出しに失敗しました（%i）"
 
-#: main.c:640
+#: main.c:641
 #, c-format
 msgid ""
 "\n"
@@ -788,13 +797,14 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"%s何かが間違っています! %s はシグナル %d (%s)を受け取ってクラッシュしました。%s"
+"%s何かが間違っています! %s はシグナル %d (%s)を受け取ってクラッシュしまし"
+"た。%s"
 
-#: main.c:655
+#: main.c:656
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "ここで新しいIssueを開いてバックトレースを貼り付けることができます。"
 
-#: main.c:683
+#: main.c:684
 msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
@@ -821,96 +831,96 @@ msgstr ""
 msgid "Press 'h' to see help.\n"
 msgstr ""
 
-#: tui_ncurses.c:458
+#: tui_ncurses.c:460
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr ""
 
-#: tui_ncurses.c:459
+#: tui_ncurses.c:461
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
 
-#: tui_ncurses.c:461
+#: tui_ncurses.c:463
 msgid ""
 "\n"
 "Global keys:\n"
 msgstr ""
 
-#: tui_ncurses.c:462
+#: tui_ncurses.c:464
 msgid "\tPress 'left' key to switch in left tab.\n"
 msgstr ""
 
-#: tui_ncurses.c:463
+#: tui_ncurses.c:465
 msgid "\tPress 'right' key to switch in right tab.\n"
 msgstr ""
 
-#: tui_ncurses.c:464
+#: tui_ncurses.c:466
 msgid "\tPress 'h' key to see this help.\n"
 msgstr ""
 
-#: tui_ncurses.c:465
+#: tui_ncurses.c:467
 msgid "\tPress 'q' key to exit.\n"
 msgstr "\tqを押して終了します。\n"
 
-#: tui_ncurses.c:467
+#: tui_ncurses.c:469
 msgid ""
 "\n"
 "CPU tab:\n"
 msgstr ""
 
-#: tui_ncurses.c:468
+#: tui_ncurses.c:470
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr ""
 
-#: tui_ncurses.c:469
+#: tui_ncurses.c:471
 msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgstr ""
 
-#: tui_ncurses.c:471
+#: tui_ncurses.c:473
 msgid ""
 "\n"
 "Caches tab:\n"
 msgstr ""
 
-#: tui_ncurses.c:472
+#: tui_ncurses.c:474
 msgid "\tPress 'down' key to switch to previous test.\n"
 msgstr ""
 
-#: tui_ncurses.c:473
+#: tui_ncurses.c:475
 msgid "\tPress 'up' key' to switch to next test.\n"
 msgstr ""
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:477
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr ""
 
-#: tui_ncurses.c:476
+#: tui_ncurses.c:478
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgstr ""
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:479
 msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgstr ""
 
-#: tui_ncurses.c:478
+#: tui_ncurses.c:480
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr ""
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:481
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr ""
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:482
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:483
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:485
 msgid ""
 "\n"
 "Press any key to exit this help.\n"
@@ -935,19 +945,19 @@ msgstr ""
 msgid "an error occurred while compiling regex"
 msgstr ""
 
-#: util.c:451
+#: util.c:458
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr ""
 
-#: util.c:454
+#: util.c:461
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr ""
 
-#: util.c:457
+#: util.c:464
 msgid "pkexec: command not found"
 msgstr "pkexec: コマンドが見つかりませんでした"
 
-#: util.c:460
+#: util.c:467
 msgid "pkexec: unexpected error code"
 msgstr ""
 
@@ -955,26 +965,52 @@ msgstr ""
 msgid "FATAL ERROR: could not allocate memory"
 msgstr ""
 
-#: cpu-x.h:93
+#: cpu-x.h:92
 msgid "bytes"
 msgstr "bytes"
 
-#. TRANSLATORS: kilo-Byte
+#. TRANSLATORS: kilobyte (10³)
 #: cpu-x.h:95
 msgid "kB"
 msgstr "kB"
 
-#. TRANSLATORS: Mega-Byte
+#. TRANSLATORS: megabyte (10⁶)
 #: cpu-x.h:97
 msgid "MB"
 msgstr "MB"
 
-#. TRANSLATORS: Giga-Byte
+#. TRANSLATORS: gigabyte (10⁹)
 #: cpu-x.h:99
 msgid "GB"
 msgstr "GB"
 
-#. TRANSLATORS: Tera-Byte
+#. TRANSLATORS: terabyte (10¹²)
 #: cpu-x.h:101
 msgid "TB"
+msgstr "TB"
+
+#. TRANSLATORS: kibibyte (2¹⁰)
+#: cpu-x.h:104
+msgid "KiB"
+msgstr ""
+
+#. TRANSLATORS: mebibyte (2²⁰)
+#: cpu-x.h:106
+#, fuzzy
+#| msgid "MB"
+msgid "MiB"
+msgstr "MB"
+
+#. TRANSLATORS: gibibyte (2³⁰)
+#: cpu-x.h:108
+#, fuzzy
+#| msgid "GB"
+msgid "GiB"
+msgstr "GB"
+
+#. TRANSLATORS: tebibyte (2⁴⁰)
+#: cpu-x.h:110
+#, fuzzy
+#| msgid "TB"
+msgid "TiB"
 msgstr "TB"
