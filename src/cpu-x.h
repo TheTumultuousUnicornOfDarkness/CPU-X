@@ -89,16 +89,25 @@
 #define GPUFIELDS             10        /* Nb of fields by GPU frame */
 #define BENCHFIELDS           2        /* Nb of fields by bench frame */
 
-/* SI unit prefixes */
 #define UNIT_B                _("bytes")
-// TRANSLATORS: kilo-Byte
+/* SI unit prefixes */
+// TRANSLATORS: kilobyte (10³)
 #define UNIT_KB               _("kB")
-// TRANSLATORS: Mega-Byte
+// TRANSLATORS: megabyte (10⁶)
 #define UNIT_MB               _("MB")
-// TRANSLATORS: Giga-Byte
+// TRANSLATORS: gigabyte (10⁹)
 #define UNIT_GB               _("GB")
-// TRANSLATORS: Tera-Byte
+// TRANSLATORS: terabyte (10¹²)
 #define UNIT_TB               _("TB")
+/* Binary unit prefixes  */
+// TRANSLATORS: kibibyte (2¹⁰)
+#define UNIT_KIB               _("KiB")
+// TRANSLATORS: mebibyte (2²⁰)
+#define UNIT_MIB               _("MiB")
+// TRANSLATORS: gibibyte (2³⁰)
+#define UNIT_GIB               _("GiB")
+// TRANSLATORS: tebibyte (2⁴⁰)
+#define UNIT_TIB               _("TiB")
 
 /* Linux-specific paths definition */
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"

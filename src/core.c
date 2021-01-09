@@ -931,7 +931,7 @@ static int gpu_monitoring(Labels *data)
 			case GPUDRV_NOUVEAU:
 			case GPUDRV_NOUVEAU_BUMBLEBEE:
 				/* HWmon */
-				divisor_temp = 1000.0;
+				divisor_temp = 1e3;
 				if((cached_paths_hwmon[i] == NULL) && (data->g_data->gpu_driver[i] != GPUDRV_INTEL))
 					ret_hwmon = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_HWMON);
 				if(!ret_hwmon && (cached_paths_hwmon[i] != NULL))
@@ -964,11 +964,11 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = fopen_to_str(&vram_total, "%s/device/mem_info_vram_total",  cached_paths_drm[i]);
 				ret_gvolt      = fopen_to_str(&gvolt,      "%s/in0_input",                   cached_paths_hwmon[i]);
 				ret_gpwr       = fopen_to_str(&gpwr,       "%s/power1_average",              cached_paths_hwmon[i]);
-				divisor_gclk  = 1000000.0;
-				divisor_mclk  = 1000000.0;
-				divisor_vram  = 1048576.0;// 1024 * 1024
-				divisor_gvolt = 1000.0;
-				divisor_gpwr  = 1000000.0;
+				divisor_gclk  = 1e6;
+				divisor_mclk  = 1e6;
+				divisor_vram  = 1 << 20;
+				divisor_gvolt = 1e3;
+				divisor_gpwr  = 1e6;
 				break;
 			}
 			case GPUDRV_FGLRX:
@@ -1052,7 +1052,9 @@ static int gpu_monitoring(Labels *data)
 		if(!ret_mclk)
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%.2Lf MHz", strtoull(mclk, NULL, 10) / divisor_mclk);
 		if(!ret_vram_used && !ret_vram_total)
-			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], true, "%.0Lf MiB / %.0Lf MiB", strtoull(vram_used, NULL, 10) / divisor_vram, strtoull(vram_total, NULL, 10) / divisor_vram);
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], true, "%.0Lf %s / %.0Lf %s",
+				strtoull(vram_used,  NULL, 10) / divisor_vram, UNIT_MIB,
+				strtoull(vram_total, NULL, 10) / divisor_vram, UNIT_MIB);
 		if(!ret_gvolt)
 			casprintf(&data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS], true, "%.2Lf V", strtoull(gvolt, NULL, 10) / divisor_gvolt);
 		if(!ret_gpwr)
@@ -1135,7 +1137,7 @@ static int system_dynamic(Labels *data)
 	MemoryData *m_data = data->m_data;
 
 #if HAS_LIBPROCPS
-	const int div = 1e3;
+	const int div = 1 << 10;
 
 	MSG_VERBOSE("%s", _("Calling libprocps"));
 	/* System uptime */
@@ -1154,7 +1156,7 @@ static int system_dynamic(Labels *data)
 
 #if HAS_LIBSTATGRAB
 	static bool called = false;
-	const int div = 1e6;
+	const int div = 1 << 20;
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 	sg_host_info *info;
@@ -1184,8 +1186,8 @@ static int system_dynamic(Labels *data)
 #endif /* HAS_LIBSTATGRAB */
 	/* Memory labels */
 	for(i = USED; i < SWAP; i++)
-		casprintf(&data->tab_system[VALUE][i], false, "%5u %s / %5u %s", m_data->mem_usage[j++], UNIT_MB, m_data->mem_total, UNIT_MB);
-	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u %s / %5u %s", m_data->mem_usage[j], UNIT_MB, m_data->swap_total, UNIT_MB);
+		casprintf(&data->tab_system[VALUE][i], false, "%5u %s / %5u %s", m_data->mem_usage[j++], UNIT_MIB, m_data->mem_total, UNIT_MIB);
+	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u %s / %5u %s", m_data->mem_usage[j], UNIT_MIB, m_data->swap_total, UNIT_MIB);
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
@@ -1374,14 +1376,14 @@ static int cputab_multipliers_fallback(Labels *data)
 	/* Minimum multiplier */
 	if(!(err = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core)))
 	{
-		data->cpu_min_mult = round((strtod(min_freq_str, NULL) / 1000) / data->bus_freq);
+		data->cpu_min_mult = round((strtod(min_freq_str, NULL) / 1e3) / data->bus_freq);
 		free(min_freq_str);
 	}
 
 	/* Maximum multiplier */
 	if(!(err = fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core)))
 	{
-		data->cpu_max_mult = round((strtod(max_freq_str, NULL) / 1000) / data->bus_freq);
+		data->cpu_max_mult = round((strtod(max_freq_str, NULL) / 1e3) / data->bus_freq);
 		free(max_freq_str);
 	}
 #endif /* __linux__ */
@@ -1489,7 +1491,7 @@ static int cputab_temp_fallback(Labels *data)
 	{
 		if(!(err = fopen_to_str(&temp, cached_paths[opts->selected_core])))
 		{
-			casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", atof(temp) / 1000.0);
+			casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", atof(temp) / 1e3);
 			free(temp);
 		}
 	}
@@ -1520,7 +1522,7 @@ static int cputab_volt_fallback(Labels *data)
 	{
 		if(!(err = fopen_to_str(&voltage, cached_path)))
 		{
-			casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", atof(voltage) / 1000.0);
+			casprintf(&data->tab_cpu[VALUE][VOLTAGE], true, "%.3f V", atof(voltage) / 1e3);
 			free(voltage);
 		}
 	}
@@ -1543,7 +1545,7 @@ static int cputab_freq_fallback(Labels *data)
 	MSG_VERBOSE("%s", _("Retrieving CPU frequency in fallback mode"));
 	if(!(err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, opts->selected_core)))
 	{
-		data->cpu_freq = (int) round(strtod(freq, NULL) / 1000.0);
+		data->cpu_freq = (int) round(strtod(freq, NULL) / 1e3);
 		casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
 		free(freq);
 	}
