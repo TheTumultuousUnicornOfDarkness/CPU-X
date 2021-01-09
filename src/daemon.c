@@ -408,5 +408,8 @@ clean:
 	free(ti->thread);
 	pthread_mutex_destroy(&ti->mutex);
 
+	if(getenv("APPDIR") != NULL)
+		remove("/tmp/"DAEMON_EXEC);
+
 	return err;
 }

@@ -423,11 +423,18 @@ const char *start_daemon(bool graphical)
 	pid_t pid;
 	char *msg          = NULL;
 	char *const appdir = getenv("APPDIR");
-	char *const daemon = (appdir == NULL) ? DAEMON_PATH : format("%s/%s", appdir, DAEMON_PATH);
+	char *const daemon = (appdir == NULL) ? DAEMON_PATH : format("/tmp/%s", DAEMON_EXEC);
 	char *const cmd1[] = { daemon, NULL };
 	char *const cmd2[] = { "pkexec", daemon, NULL };
 	char *const cmd3[] = { "pkexec", "--disable-internal-agent", daemon, NULL };
 	char *const *cmd   = cmd2;
+
+	if(appdir != NULL)
+	{
+		/* Hack to allow pkexec to run daemon (when running from AppImage) */
+		char *const cmdcopy = format("cp %s/%s %s", appdir, DAEMON_PATH, daemon);
+		system(cmdcopy);
+	}
 
 	if(graphical)
 		cmd = cmd3;
