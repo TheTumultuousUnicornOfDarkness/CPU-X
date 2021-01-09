@@ -19,5 +19,7 @@ EOF
 sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'${HOST_LANG//[_.]*/}'\"/g' /etc/default/keyboard
 gsettings set org.gnome.desktop.input-sources sources '[]'
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 cp /usr/share/applications/{firefox.desktop,gnome-terminal.desktop} /home/vagrant/Desktop/
 chmod +x /home/vagrant/Desktop/*.desktop

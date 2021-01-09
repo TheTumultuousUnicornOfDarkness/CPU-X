@@ -3,8 +3,9 @@ VM_CPU                  = "2"
 VM_MEMORY               = "2048"
 
 vms = {
-	"ubuntu/xenial64" => { :name => "xenial", :bootstrap => "ubuntu" },
-	"generic/fedora32" => { :name => "fedora", :bootstrap => "fedora" }
+	"ubuntu/xenial64"  => { :name => "xenial", :bootstrap => "ubuntu" },
+	"ubuntu/focal64"   => { :name => "focal",  :bootstrap => "ubuntu" },
+	"generic/fedora33" => { :name => "fedora", :bootstrap => "fedora" }
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

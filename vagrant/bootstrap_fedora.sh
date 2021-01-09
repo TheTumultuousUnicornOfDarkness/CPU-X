@@ -19,4 +19,6 @@ sudo systemctl set-default graphical.target
 localectl set-keymap "${HOST_LANG//[_.]*/}"
 gsettings set org.gnome.desktop.input-sources sources '[]'
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 echo "yes" > "/home/vagrant/.config/gnome-initial-setup-done"
