@@ -18,7 +18,7 @@ echo "Install packages"
 sudo apt-get install -y -qq cmake ninja-build nasm gettext libgtk-3-dev libncursesw5-dev libcpuid-dev-git libpci-dev libprocps-dev libgtk-3-0 libncursesw5 libcpuid15-git libpci3 libprocps4 adwaita-icon-theme
 
 echo "Run CMake"
-cmake -S "$SRC_DIR" -B build -GNinja -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBEXECDIR=/usr/bin
+cmake -S "$SRC_DIR" -B build -GNinja -DCMAKE_BUILD_TYPE="$BUILD_TYPE" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBEXECDIR=/usr/bin -DAPPIMAGE=1
 
 echo "Build CPU-X"
 cmake --build build
