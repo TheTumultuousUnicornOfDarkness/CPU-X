@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-09 15:40+0100\n"
-"PO-Revision-Date: 2021-01-09 14:41+0000\n"
+"PO-Revision-Date: 2021-01-10 09:17+0000\n"
 "Last-Translator: Hayao0819 <hayao@fascode.net>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -391,7 +391,7 @@ msgstr "バススピード"
 
 #: main.c:78 main.c:152
 msgid "Usage"
-msgstr "使い方"
+msgstr "使用量"
 
 #: main.c:80
 msgid "Cache"
@@ -399,7 +399,7 @@ msgstr "キャッシュ"
 
 #: main.c:81
 msgid "L1 Data"
-msgstr "一時キャッシュデータ"
+msgstr "L1 データ"
 
 #: main.c:82
 msgid "L1 Inst."
@@ -756,11 +756,11 @@ msgstr "CPUがデータベースに存在しない場合のみメッセージを
 #: main.c:382
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "使い方: %s ディスプレイ（オプション）\n"
+msgstr "使い方: %s 表示（オプション）\n"
 
 #: main.c:383
 msgid "Available DISPLAY:"
-msgstr "利用可能なディスプレイ:"
+msgstr "利用可能な表示方法:"
 
 #: main.c:392
 msgid "Available OPTIONS:"
@@ -816,25 +816,25 @@ msgstr "NCurses TUI を開始しています…"
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
-msgstr ""
+msgstr "致命的なエラー: terminfoデータベースが見つかりませんでした（TERMINFO環境変数を設定してください）"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "ターミナル %s のセットアップに失敗しました（エラー%i）; %sにFalbackします"
 
 #: tui_ncurses.c:300
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "ウィンドウが小さすぎます\n"
 
 #: tui_ncurses.c:308
 msgid "Press 'h' to see help.\n"
-msgstr ""
+msgstr "ヘルプを見るには「h」キーを押してください。\n"
 
 #: tui_ncurses.c:460
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "%sのNCursesヘルプへようこそ\n"
 
 #: tui_ncurses.c:461
 msgid "This help describes how to use this Text-based User Interface.\n"
@@ -845,6 +845,8 @@ msgid ""
 "\n"
 "Global keys:\n"
 msgstr ""
+"\n"
+"グローバルキー:\n"
 
 #: tui_ncurses.c:464
 msgid "\tPress 'left' key to switch in left tab.\n"
@@ -925,6 +927,8 @@ msgid ""
 "\n"
 "Press any key to exit this help.\n"
 msgstr ""
+"\n"
+"終了するには何かキを押してください\n"
 
 #: util.c:171
 #, c-format
@@ -939,7 +943,7 @@ msgstr ""
 #: util.c:259 util.c:319
 #, c-format
 msgid "failed to open %s directory"
-msgstr ""
+msgstr "ディレクトリ %s を開けませんでした"
 
 #: util.c:332
 msgid "an error occurred while compiling regex"
@@ -951,7 +955,7 @@ msgstr ""
 
 #: util.c:461
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: 認証を取得できませんでした（認証されていません）"
 
 #: util.c:464
 msgid "pkexec: command not found"
@@ -959,7 +963,7 @@ msgstr "pkexec: コマンドが見つかりませんでした"
 
 #: util.c:467
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: 予期しないエラーコード"
 
 #: cpu-x.h:53
 msgid "FATAL ERROR: could not allocate memory"
@@ -992,7 +996,7 @@ msgstr "TB"
 #. TRANSLATORS: kibibyte (2¹⁰)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: mebibyte (2²⁰)
 #: cpu-x.h:106
