@@ -1048,9 +1048,9 @@ static int gpu_monitoring(Labels *data)
 		if(!ret_load)
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "%s%%", load);
 		if(!ret_gclk)
-			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], true, "%.2Lf MHz", strtoull(gclk, NULL, 10) / divisor_gclk);
+			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], true, "%.0Lf MHz", strtoull(gclk, NULL, 10) / divisor_gclk);
 		if(!ret_mclk)
-			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%.2Lf MHz", strtoull(mclk, NULL, 10) / divisor_mclk);
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%.0Lf MHz", strtoull(mclk, NULL, 10) / divisor_mclk);
 		if(!ret_vram_used && !ret_vram_total)
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], true, "%.0Lf %s / %.0Lf %s",
 				strtoull(vram_used,  NULL, 10) / divisor_vram, UNIT_MIB,
