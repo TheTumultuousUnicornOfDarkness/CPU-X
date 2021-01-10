@@ -4,7 +4,7 @@ project(dmidecode
 )
 
 # Config (dmidecode)
-set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} -Wno-format")
+set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} -Wno-format -Wno-format-security")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-shift-count-overflow")
 message(STATUS "Using built-in ${PROJECT_NAME}, version ${PROJECT_VERSION}")
 
