@@ -5,125 +5,144 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - [Changelog](#changelog)
-	- [[master]](#master)
+	- [[v4.1.0] - 2021-01-10](#v410---2021-01-10)
 		- [Added](#added)
+		- [Changed](#changed)
 		- [Fixed](#fixed)
 	- [[v4.0.1] - 2020-06-13](#v401---2020-06-13)
-		- [Changed](#changed)
+		- [Changed](#changed-1)
 		- [Fixed](#fixed-1)
 	- [[v4.0.0] - 2020-05-17](#v400---2020-05-17)
 		- [Added](#added-1)
-		- [Changed](#changed-1)
+		- [Changed](#changed-2)
 		- [Removed](#removed)
 		- [Fixed](#fixed-2)
 	- [[v3.2.4] - 2019-01-13](#v324---2019-01-13)
-		- [Changed](#changed-2)
+		- [Changed](#changed-3)
 		- [Deprecated](#deprecated)
 		- [Fixed](#fixed-3)
 	- [[v3.2.3] - 2018-07-01](#v323---2018-07-01)
 		- [Added](#added-2)
-		- [Changed](#changed-3)
+		- [Changed](#changed-4)
 		- [Removed](#removed-1)
 	- [[v3.2.2] - 2018-05-03](#v322---2018-05-03)
-		- [Changed](#changed-4)
+		- [Changed](#changed-5)
 		- [Fixed](#fixed-4)
 	- [[v3.2.1] - 2018-03-24](#v321---2018-03-24)
-		- [Changed](#changed-5)
+		- [Changed](#changed-6)
 		- [Removed](#removed-2)
 		- [Fixed](#fixed-5)
 	- [[v3.2.0] - 2018-01-31](#v320---2018-01-31)
 		- [Added](#added-3)
-		- [Changed](#changed-6)
+		- [Changed](#changed-7)
 		- [Removed](#removed-3)
 		- [Fixed](#fixed-6)
 	- [[v3.1.3] - 2016-10-25](#v313---2016-10-25)
 		- [Added](#added-4)
-		- [Changed](#changed-7)
+		- [Changed](#changed-8)
 		- [Fixed](#fixed-7)
 	- [[v3.1.2] - 2016-10-23](#v312---2016-10-23)
 		- [Added](#added-5)
-		- [Changed](#changed-8)
+		- [Changed](#changed-9)
 		- [Fixed](#fixed-8)
 	- [[v3.1.1] - 2016-10-16](#v311---2016-10-16)
 		- [Fixed](#fixed-9)
 	- [[v3.1.0] - 2016-09-24](#v310---2016-09-24)
 		- [Added](#added-6)
-		- [Changed](#changed-9)
+		- [Changed](#changed-10)
 		- [Removed](#removed-4)
 		- [Fixed](#fixed-10)
 	- [[v3.0.1] - 2016-08-23](#v301---2016-08-23)
-		- [Changed](#changed-10)
+		- [Changed](#changed-11)
 		- [Fixed](#fixed-11)
 	- [[v3.0.0] - 2016-06-15](#v300---2016-06-15)
 		- [Added](#added-7)
-		- [Changed](#changed-11)
+		- [Changed](#changed-12)
 		- [Removed](#removed-5)
 	- [[v2.2.2] - 2015-12-02](#v222---2015-12-02)
-		- [Changed](#changed-12)
+		- [Changed](#changed-13)
 		- [Fixed](#fixed-12)
 	- [[v2.2.1] - 2015-11-27](#v221---2015-11-27)
-		- [Changed](#changed-13)
+		- [Changed](#changed-14)
 		- [Fixed](#fixed-13)
 	- [[v2.2.0] - 2015-11-21](#v220---2015-11-21)
 		- [Added](#added-8)
-		- [Changed](#changed-14)
+		- [Changed](#changed-15)
 		- [Fixed](#fixed-14)
 	- [[v2.1.1] - 2015-08-26](#v211---2015-08-26)
 		- [Added](#added-9)
-		- [Changed](#changed-15)
+		- [Changed](#changed-16)
 		- [Fixed](#fixed-15)
 	- [[v2.1.0] - 2015-08-08](#v210---2015-08-08)
 		- [Added](#added-10)
-		- [Changed](#changed-16)
+		- [Changed](#changed-17)
 		- [Fixed](#fixed-16)
 	- [[v2.0.3] - 2015-03-15](#v203---2015-03-15)
 		- [Added](#added-11)
-		- [Changed](#changed-17)
+		- [Changed](#changed-18)
 		- [Removed](#removed-6)
 		- [Fixed](#fixed-17)
 	- [[v2.0.2] - 2015-02-08](#v202---2015-02-08)
 		- [Added](#added-12)
-		- [Changed](#changed-18)
+		- [Changed](#changed-19)
 		- [Fixed](#fixed-18)
 	- [[v2.0.1] - 2014-11-23](#v201---2014-11-23)
 		- [Added](#added-13)
-		- [Changed](#changed-19)
+		- [Changed](#changed-20)
 		- [Fixed](#fixed-19)
 	- [[v2.0.0] - 2014-11-16](#v200---2014-11-16)
 		- [Added](#added-14)
-		- [Changed](#changed-20)
+		- [Changed](#changed-21)
 		- [Fixed](#fixed-20)
 	- [[v1.2.2] - 2014-11-05](#v122---2014-11-05)
 		- [Added](#added-15)
-		- [Changed](#changed-21)
+		- [Changed](#changed-22)
 		- [Fixed](#fixed-21)
 	- [[v1.2.1] - 2014-10-24](#v121---2014-10-24)
 		- [Added](#added-16)
-		- [Changed](#changed-22)
+		- [Changed](#changed-23)
 		- [Fixed](#fixed-22)
 	- [[v1.2.0] - 2014-10-12](#v120---2014-10-12)
 		- [Added](#added-17)
-		- [Changed](#changed-23)
+		- [Changed](#changed-24)
 		- [Fixed](#fixed-23)
 	- [[v1.1.0] - 2014-09-28](#v110---2014-09-28)
 		- [Added](#added-18)
-		- [Changed](#changed-24)
+		- [Changed](#changed-25)
 	- [[v1.0.0] - 2014-09-21](#v100---2014-09-21)
 
 ---
 
-## [master]
+## [v4.1.0] - 2021-01-10
 
 ### Added
 
 - Add `CPUX_ARGS` environment variable to set default command line
 - Add alternative key mapping for NCurses mode (option `--keymap`)
+- Add debug mode (option `--debug`)
+- Add screen reader accessibility on GUI
+- Add Core Voltage, Power Avg and Memory Used in Graphics tab (AMDGPU only)
+
+### Changed
+
+- Prefix all hexadecimal values with `0x`
+- Reword nonsensical messages
+- Update databases
+- Request `Tdie` temperature for `k10temp` if available
+- Change bars color in System tab in GTK GUI when Dark theme is used
+- Patch dmidecode to version 3.3.3c111e4
+- Use binary prefixes for System tab
 
 ### Fixed
 
 - Fix build on FreeBSD when GTK is enabled
+- Fix build on musl libc
 - Fix list of influenceable environment variables in help
 - Fix override of refresh value when GTK is enabled
+- Fix screen flickering in NCurses TUI
+- Ignore batteries voltage when searching CPU voltage
+- Fix build when gettext support is disabled
+- Allow to run CPU-X daemon from AppImage
 
 ---
 
