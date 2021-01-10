@@ -50,7 +50,7 @@ case "$choice" in
 			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "cpu-x"
 			cd "$PKGS_DIR"
 		else
-			mkdir -p "$ARCHIVES_DIR" && cd "$_"
+			mkdir -p "$PKGS_DIR" && cd "$_"
 			wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
 			--accept "*.pkg.tar.zst","*.rpm","*.deb" \
 			--reject "*.src.rpm","*git*" \
@@ -58,7 +58,8 @@ case "$choice" in
 		fi
 
 		find "$PKGS_DIR" -type f -not -name '*.deb' -and -not -name '*.rpm' -and -not -name '*.pkg.tar.*' -delete
-		mkdir -v "$ARCHIVES_DIR"
+		find "$PKGS_DIR" -type d -empty -delete
+		mkdir -p "$ARCHIVES_DIR"
 
 		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_ArchLinux.tar.gz" Arch*
 		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Debian.tar.gz"    Debian*
