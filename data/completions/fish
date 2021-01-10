@@ -18,5 +18,6 @@ complete -c $progname -s b -l cachetest -x -d 'Set custom bandwidth test for CPU
 complete -c $progname -s d -l daemon -d 'Start and connect to daemon'
 complete -c $progname -s v -l verbose -d 'Verbose output'
 complete -c $progname -l nocolor -d 'Disable colored output'
+complete -c $progname -l debug -d 'Print information for debugging'
 complete -c $progname -l issue-fmt -d 'Print required informations to paste in an issue'
 complete -c $progname -l keymap -x -d 'Set key mapping for NCurses mode (arrows|emacs|inverted-T|vim)'

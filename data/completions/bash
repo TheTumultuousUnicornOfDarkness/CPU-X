@@ -13,7 +13,7 @@ _cpu_x() {
 		-h|--help|-V|--version)
 			return 0
 			;;
-		-r|--refresh|-t|--tab|-c|--core|-b|--cachetest|-d|--daemon|-v|--verbose|--nocolor|--issue-fmt|--keymap)
+		-r|--refresh|-t|--tab|-c|--core|-b|--cachetest|-d|--daemon|-v|--verbose|--nocolor|--debug|--issue-fmt|--keymap)
 			COMPREPLY=($(compgen -W "${opts[*]}" -- "$cur"))
 			;;
 		*)
