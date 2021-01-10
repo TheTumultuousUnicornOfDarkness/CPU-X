@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-09 15:40+0100\n"
-"PO-Revision-Date: 2021-01-04 12:29+0000\n"
+"PO-Revision-Date: 2021-01-11 10:32+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -558,10 +558,8 @@ msgid "Temperature"
 msgstr "Temperatura"
 
 #: main.c:153
-#, fuzzy
-#| msgid "Memory"
 msgid "Memory Used"
-msgstr "Memoria"
+msgstr "Memoria in uso"
 
 #: main.c:154
 msgid "GPU clock"
@@ -1013,28 +1011,22 @@ msgstr "TB"
 #. TRANSLATORS: kibibyte (2¹⁰)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: mebibyte (2²⁰)
 #: cpu-x.h:106
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #. TRANSLATORS: gibibyte (2³⁰)
 #: cpu-x.h:108
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: tebibyte (2⁴⁰)
 #: cpu-x.h:110
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Uscita %s"
