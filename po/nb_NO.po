@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-09 15:40+0100\n"
-"PO-Revision-Date: 2021-01-09 14:41+0000\n"
+"PO-Revision-Date: 2021-01-10 09:17+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -798,10 +798,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- %-9s versjon: %s"
 
 #: main.c:455
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "Klarte ikke å kalle wordexp (%s)"
+msgstr "Klarte ikke å kalle wordexp (%i)"
 
 #: main.c:641
 #, c-format
