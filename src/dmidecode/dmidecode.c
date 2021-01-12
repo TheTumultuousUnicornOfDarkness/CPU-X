@@ -2207,7 +2207,7 @@ static void dmi_slot_peers(u8 n, const u8 *data)
 
 	for (i = 1; i <= n; i++, data += 5)
 	{
-		sprintf(attr, "Peer Device %hu", i);
+		sprintf(attr, "Peer Device %hhu", (u8)i);
 		pr_attr(attr, "%04x:%02x:%02x.%x (Width %u)",
 			WORD(data), data[2], data[3] >> 3, data[3] & 0x07,
 			data[4]);
@@ -2273,7 +2273,7 @@ static void dmi_oem_strings(const struct dmi_header *h)
 
 	for (i = 1; i <= count; i++)
 	{
-		sprintf(attr, "String %hu", i);
+		sprintf(attr, "String %hhu", (u8)i);
 		pr_attr(attr, "%s",dmi_string(h, i));
 	}
 }
@@ -2291,7 +2291,7 @@ static void dmi_system_configuration_options(const struct dmi_header *h)
 
 	for (i = 1; i <= count; i++)
 	{
-		sprintf(attr, "Option %hu", i);
+		sprintf(attr, "Option %hhu", (u8)i);
 		pr_attr(attr, "%s",dmi_string(h, i));
 	}
 }
@@ -2475,10 +2475,10 @@ static void dmi_event_log_descriptors(u8 count, u8 len, const u8 *p)
 	{
 		if (len >= 0x02)
 		{
-			sprintf(attr, "Descriptor %hu", i + 1);
+			sprintf(attr, "Descriptor %d", i + 1);
 			pr_attr(attr, "%s",
 				dmi_event_log_descriptor_type(p[i * len]));
-			sprintf(attr, "Data Format %hu", i + 1);
+			sprintf(attr, "Data Format %d", i + 1);
 			pr_attr(attr, "%s",
 				dmi_event_log_descriptor_format(p[i * len + 1]));
 		}
@@ -3495,11 +3495,11 @@ static void dmi_memory_channel_devices(u8 count, const u8 *p)
 
 	for (i = 1; i <= count; i++)
 	{
-		sprintf(attr, "Device %hu Load", i);
+		sprintf(attr, "Device %hhu Load", (u8)i);
 		pr_attr(attr, "%u", p[3 * i]);
 		if (!(opt.flags & FLAG_QUIET))
 		{
-			sprintf(attr, "Device %hu Handle", i);
+			sprintf(attr, "Device %hhu Handle", (u8)i);
 			pr_attr(attr, "0x%04X", WORD(p + 3 * i + 1));
 		}
 	}

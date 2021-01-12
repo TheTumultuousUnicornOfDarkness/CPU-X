@@ -146,7 +146,7 @@ static void dmi_print_hp_net_iface_rec(u8 id, u8 bus, u8 dev, const u8 *mac)
 	if (id == 0xFF)
 		id = ++nic_ctr;
 
-	sprintf(attr, "NIC %hu", id);
+	sprintf(attr, "NIC %hhu", id);
 	if (dev == 0x00 && bus == 0x00)
 		pr_attr(attr, "Disabled");
 	else if (dev == 0xFF && bus == 0xFF)
