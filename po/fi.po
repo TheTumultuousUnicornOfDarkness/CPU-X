@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-01-09 15:40+0100\n"
+"POT-Creation-Date: 2021-01-15 22:11+0100\n"
 "PO-Revision-Date: 2020-10-19 21:26+0000\n"
 "Last-Translator: Riku Viitanen <riku.viitanen@protonmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
@@ -48,24 +48,24 @@ msgstr ""
 msgid "Calling libcpuid for retrieving static data"
 msgstr ""
 
-#: core.c:263
+#: core.c:262
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
 
-#: core.c:433
+#: core.c:432
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr ""
 
-#: core.c:446
+#: core.c:445
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 
-#: core.c:471
+#: core.c:470
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 
-#: core.c:494
+#: core.c:493
 msgid "Calculating CPU multipliers"
 msgstr "Lasketaan CPU kertoimia"
 
@@ -74,190 +74,195 @@ msgstr "Lasketaan CPU kertoimia"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr ""
 
-#: core.c:572
+#: core.c:554
+#, c-format
+msgid "String '%s' is too long, truncating…"
+msgstr ""
+
+#: core.c:582
 msgid "Calling dmidecode"
 msgstr ""
 
-#: core.c:605
+#: core.c:615
 msgid "Calculating CPU usage"
 msgstr "Lasketaan prosessorinkäyttö"
 
-#: core.c:656
+#: core.c:666
 msgid "Calling bandwidth"
 msgstr ""
 
-#: core.c:731
+#: core.c:741
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 
-#: core.c:750
+#: core.c:760
 #, c-format
 msgid "Your GPU driver is unknown: %s"
 msgstr "Tuntematon näytönohjaimen ajuri: %s"
 
-#: core.c:782
+#: core.c:792
 msgid "Finding devices"
 msgstr "Etsitään laitteita"
 
-#: core.c:794
+#: core.c:804
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
-#: core.c:823
+#: core.c:833
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Tuntematon näytönohjaimen ajuri: %s"
 
-#: core.c:839
+#: core.c:849
 msgid "failed to find chipset vendor and model"
 msgstr ""
 
-#: core.c:841
+#: core.c:851
 msgid "failed to find graphic card vendor and model"
 msgstr ""
 
-#: core.c:885
+#: core.c:895
 msgid "Retrieving GPU clocks"
 msgstr "Haetaan GPU kellotaajuuksia"
 
-#: core.c:915
+#: core.c:925
 msgid "None"
 msgstr "Ei mitään"
 
-#: core.c:1044
+#: core.c:1054
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %u:n ajuri ei raportoi taajuuksia"
 
-#: core.c:1080
+#: core.c:1090
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU-kellotaajuuksien haku epäonnistui"
 
-#: core.c:1097
+#: core.c:1107
 msgid "Identifying running system"
 msgstr ""
 
-#: core.c:1100
+#: core.c:1110
 msgid "failed to identify running system"
 msgstr ""
 
-#: core.c:1142
+#: core.c:1152
 msgid "Calling libprocps"
 msgstr "Kutsutaan libprocps:ää"
 
-#: core.c:1164
+#: core.c:1174
 msgid "Calling libstatgrab"
 msgstr "Kutsutaan libstatgrabia"
 
-#: core.c:1194
+#: core.c:1204
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i päivää, %i tuntia, %i minuuttia, %i sekuntia"
 
-#: core.c:1250
+#: core.c:1260
 msgid "Updating benchmark status"
 msgstr ""
 
-#: core.c:1251 tui_ncurses.c:809
+#: core.c:1261 tui_ncurses.c:809
 #, c-format
 msgid "%u mins"
 msgstr "%u minuuttia"
 
-#: core.c:1253 core.c:1254
+#: core.c:1263 core.c:1264
 msgid "Inactive"
 msgstr ""
 
-#: core.c:1258 core.c:1259
+#: core.c:1268 core.c:1269
 msgid "Not started"
 msgstr "Ei aloitettu"
 
-#: core.c:1264
+#: core.c:1274
 msgid "Active"
 msgstr "Aktiivinen"
 
-#: core.c:1269
+#: core.c:1279
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u tuntia jäljellä)"
 
-#: core.c:1271
+#: core.c:1281
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minuuttia jäljellä)"
 
-#: core.c:1273
+#: core.c:1283
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekuntia jäljellä)"
 
-#: core.c:1278
+#: core.c:1288
 #, c-format
 msgid "in %u hours"
 msgstr "%u tunnissa"
 
-#: core.c:1280
+#: core.c:1290
 #, c-format
 msgid "in %u minutes"
 msgstr "%u minuutissa"
 
-#: core.c:1282
+#: core.c:1292
 #, c-format
 msgid "in %u seconds"
 msgstr "%u sekunnissa"
 
-#: core.c:1298
+#: core.c:1308
 msgid "Starting benchmark"
 msgstr ""
 
-#: core.c:1317
+#: core.c:1327
 msgid "an error occurred while starting benchmark"
 msgstr ""
 
-#: core.c:1334
+#: core.c:1344
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:1356
+#: core.c:1366
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 
-#: core.c:1375
+#: core.c:1385
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:1402
+#: core.c:1412
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:1411
+#: core.c:1421
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:1463
+#: core.c:1473
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:1504
+#: core.c:1514
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:1517
+#: core.c:1527
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:1530
+#: core.c:1540
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:1545
+#: core.c:1555
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:1553
+#: core.c:1563
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
@@ -958,46 +963,46 @@ msgstr ""
 msgid "bytes"
 msgstr "tavua"
 
-#. TRANSLATORS: kilobyte (10³)
+#. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:95
 msgid "kB"
 msgstr "kt"
 
-#. TRANSLATORS: megabyte (10⁶)
+#. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: cpu-x.h:97
 msgid "MB"
 msgstr "Mt"
 
-#. TRANSLATORS: gigabyte (10⁹)
+#. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: cpu-x.h:99
 msgid "GB"
 msgstr "Gt"
 
-#. TRANSLATORS: terabyte (10¹²)
+#. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: cpu-x.h:101
 msgid "TB"
 msgstr "Tt"
 
-#. TRANSLATORS: kibibyte (2¹⁰)
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
 msgstr ""
 
-#. TRANSLATORS: mebibyte (2²⁰)
+#. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
 #, fuzzy
 #| msgid "MB"
 msgid "MiB"
 msgstr "Mt"
 
-#. TRANSLATORS: gibibyte (2³⁰)
+#. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
 #, fuzzy
 #| msgid "GB"
 msgid "GiB"
 msgstr "Gt"
 
-#. TRANSLATORS: tebibyte (2⁴⁰)
+#. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
 #, fuzzy
 #| msgid "TB"

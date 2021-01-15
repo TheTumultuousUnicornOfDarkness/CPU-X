@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-01-09 15:40+0100\n"
+"POT-Creation-Date: 2021-01-15 22:11+0100\n"
 "PO-Revision-Date: 2021-01-15 15:32+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
@@ -57,24 +57,24 @@ msgstr "%s przemienne, %d-%s rozmiar linii"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Wywołanie libcpuid w celu pobierania danych statycznych"
 
-#: core.c:263
+#: core.c:262
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "nie udało się wywołać libcpuid (%s)"
 
-#: core.c:433
+#: core.c:432
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Wywołanie libcpuid w celu pobierania danych dynamicznych"
 
-#: core.c:446
+#: core.c:445
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Wywołanie libcpuid w celu pobrania statycznych danych z CPU MSR"
 
-#: core.c:471
+#: core.c:470
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Wywołanie libcpuid w celu pobrania dynamicznych danych z CPU MSR"
 
-#: core.c:494
+#: core.c:493
 msgid "Calculating CPU multipliers"
 msgstr "Obliczanie mnożnika CPU"
 
@@ -83,189 +83,194 @@ msgstr "Obliczanie mnożnika CPU"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "nie można odnaleźć jednostki w ciągu '%s' w pozycji %i"
 
-#: core.c:572
+#: core.c:554
+#, c-format
+msgid "String '%s' is too long, truncating…"
+msgstr ""
+
+#: core.c:582
 msgid "Calling dmidecode"
 msgstr "Wywołanie dmidecode"
 
-#: core.c:605
+#: core.c:615
 msgid "Calculating CPU usage"
 msgstr "Obliczanie użycia procesora"
 
-#: core.c:656
+#: core.c:666
 msgid "Calling bandwidth"
 msgstr "Wywołanie bandwidth"
 
-#: core.c:731
+#: core.c:741
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Brak sterownika jądra dla karty graficznej przy ścieżce %s"
 
-#: core.c:750
+#: core.c:760
 #, c-format
 msgid "Your GPU driver is unknown: %s"
 msgstr "Twój sterownik GPU jest nieznany: %s"
 
-#: core.c:782
+#: core.c:792
 msgid "Finding devices"
 msgstr "Wyszukiwanie urządzeń"
 
-#: core.c:794
+#: core.c:804
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
 
-#: core.c:823
+#: core.c:833
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Dostawca procesora GPU jest nieznany: %s (0x%X)"
 
-#: core.c:839
+#: core.c:849
 msgid "failed to find chipset vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu chipsetu"
 
-#: core.c:841
+#: core.c:851
 msgid "failed to find graphic card vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu GPU"
 
-#: core.c:885
+#: core.c:895
 msgid "Retrieving GPU clocks"
 msgstr "Pobieranie zegarów GPU"
 
-#: core.c:915
+#: core.c:925
 msgid "None"
 msgstr "Żaden"
 
-#: core.c:1044
+#: core.c:1054
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Sterownik procesora graficznego %u nie raportuje częstotliwości"
 
-#: core.c:1080
+#: core.c:1090
 msgid "failed to retrieve GPU clocks"
 msgstr "nie udało się znaleźć zegarów GPU"
 
-#: core.c:1097
+#: core.c:1107
 msgid "Identifying running system"
 msgstr "Identyfikacja uruchomionego systemu"
 
-#: core.c:1100
+#: core.c:1110
 msgid "failed to identify running system"
 msgstr "nie udało się zidentyfikować uruchomionego systemu"
 
-#: core.c:1142
+#: core.c:1152
 msgid "Calling libprocps"
 msgstr "Wywołanie libprocps"
 
-#: core.c:1164
+#: core.c:1174
 msgid "Calling libstatgrab"
 msgstr "Wywołanie libstatgrab"
 
-#: core.c:1194
+#: core.c:1204
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dni, %i godzin, %i minut, %i sekund"
 
-#: core.c:1250
+#: core.c:1260
 msgid "Updating benchmark status"
 msgstr "Aktualizacja statusu benchmarku"
 
-#: core.c:1251 tui_ncurses.c:809
+#: core.c:1261 tui_ncurses.c:809
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
 
-#: core.c:1253 core.c:1254
+#: core.c:1263 core.c:1264
 msgid "Inactive"
 msgstr "Nieaktywny"
 
-#: core.c:1258 core.c:1259
+#: core.c:1268 core.c:1269
 msgid "Not started"
 msgstr "Nie uruchomiono"
 
-#: core.c:1264
+#: core.c:1274
 msgid "Active"
 msgstr "Aktywny"
 
-#: core.c:1269
+#: core.c:1279
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u godzin pozostało)"
 
-#: core.c:1271
+#: core.c:1281
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minut pozostało)"
 
-#: core.c:1273
+#: core.c:1283
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(pozostało %u sekund)"
 
-#: core.c:1278
+#: core.c:1288
 #, c-format
 msgid "in %u hours"
 msgstr "w %u godzinach"
 
-#: core.c:1280
+#: core.c:1290
 #, c-format
 msgid "in %u minutes"
 msgstr "w %u minutach"
 
-#: core.c:1282
+#: core.c:1292
 #, c-format
 msgid "in %u seconds"
 msgstr "w %u sekundach"
 
-#: core.c:1298
+#: core.c:1308
 msgid "Starting benchmark"
 msgstr "Uruchamianie benchmarku"
 
-#: core.c:1317
+#: core.c:1327
 msgid "an error occurred while starting benchmark"
 msgstr "wystąpił błąd podczas uruchamiania benchmarku"
 
-#: core.c:1334
+#: core.c:1344
 msgid "Finding CPU package in fallback mode"
 msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
 
-#: core.c:1356
+#: core.c:1366
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
 
-#: core.c:1375
+#: core.c:1385
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Obliczanie mnożnika CPU w trybie awaryjnym"
 
-#: core.c:1402
+#: core.c:1412
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Pozyskiwanie informacji o płycie głównej w trybie awaryjnym"
 
-#: core.c:1411
+#: core.c:1421
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nie udało się pobrać informacji o płycie głównej (tryb awaryjny)"
 
-#: core.c:1463
+#: core.c:1473
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Pozyskiwanie informacji o temperaturze CPU w trybie awaryjnym"
 
-#: core.c:1504
+#: core.c:1514
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nie udało się pobrać temperatury CPU (tryb awaryjny)"
 
-#: core.c:1517
+#: core.c:1527
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Pozyskiwanie napięcia CPU w trybie awaryjnym"
 
-#: core.c:1530
+#: core.c:1540
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nie udało się pozyskać napięcia CPU (tryb awaryjny)"
 
-#: core.c:1545
+#: core.c:1555
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Pobieranie częstotliwości procesora w trybie awaryjnym"
 
-#: core.c:1553
+#: core.c:1563
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
 
@@ -997,42 +1002,42 @@ msgstr "Błąd krytyczny: nie można przydzielić pamięci"
 msgid "bytes"
 msgstr "bajtów"
 
-#. TRANSLATORS: kilobyte (10³)
+#. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:95
 msgid "kB"
 msgstr "kB"
 
-#. TRANSLATORS: megabyte (10⁶)
+#. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: cpu-x.h:97
 msgid "MB"
 msgstr "MB"
 
-#. TRANSLATORS: gigabyte (10⁹)
+#. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: cpu-x.h:99
 msgid "GB"
 msgstr "GB"
 
-#. TRANSLATORS: terabyte (10¹²)
+#. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: cpu-x.h:101
 msgid "TB"
 msgstr "TB"
 
-#. TRANSLATORS: kibibyte (2¹⁰)
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
 msgstr "KiB"
 
-#. TRANSLATORS: mebibyte (2²⁰)
+#. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
 msgid "MiB"
 msgstr "MiB"
 
-#. TRANSLATORS: gibibyte (2³⁰)
+#. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
 msgid "GiB"
 msgstr "GiB"
 
-#. TRANSLATORS: tebibyte (2⁴⁰)
+#. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
 msgid "TiB"
 msgstr "TiB"
