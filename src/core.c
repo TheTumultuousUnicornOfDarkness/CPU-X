@@ -518,25 +518,26 @@ static char *strdup_and_set_unit(char *str)
 		return NULL;
 
 	const ssize_t len = strlen(str) + 1;
-	int i = 0, j = 0;
+	bool full = false;
+	ssize_t i = 0, j = 0, free = len, written;
 	char *ptr = malloc(len);
 	ALLOC_CHECK(ptr);
 
-	while(i < len)
+	while((i < len) && !full)
 	{
 		if((str[i] == '@') && (i + TOKEN_LEN - 1 < len) && (str[i + TOKEN_LEN - 1] == '@'))
 		{
 			/* Set unit in destination string */
 			if(!strncmp(&str[i], "@0B@", TOKEN_LEN))
-				j += snprintf(&ptr[j], len, "%s", UNIT_B);
+				written = snprintf(&ptr[j], free, "%s", UNIT_B);
 			else if(!strncmp(&str[i], "@KB@", TOKEN_LEN))
-				j += snprintf(&ptr[j], len, "%s", UNIT_KB);
+				written = snprintf(&ptr[j], free, "%s", UNIT_KB);
 			else if(!strncmp(&str[i], "@MB@", TOKEN_LEN))
-				j += snprintf(&ptr[j], len, "%s", UNIT_MB);
+				written = snprintf(&ptr[j], free, "%s", UNIT_MB);
 			else if(!strncmp(&str[i], "@GB@", TOKEN_LEN))
-				j += snprintf(&ptr[j], len, "%s", UNIT_GB);
+				written = snprintf(&ptr[j], free, "%s", UNIT_GB);
 			else if(!strncmp(&str[i], "@TB@", TOKEN_LEN))
-				j += snprintf(&ptr[j], len, "%s", UNIT_TB);
+				written = snprintf(&ptr[j], free, "%s", UNIT_TB);
 			else
 				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str, i);
 			i += TOKEN_LEN;
@@ -544,9 +545,19 @@ static char *strdup_and_set_unit(char *str)
 		else
 		{
 			/* Copy one character */
-			ptr[j] = str[i];
-			i++;
-			j++;
+			ptr[j]  = str[i];
+			written = 1;
+			i      += written;
+		}
+		if((written >= free) && (str[i - 1] != '\0'))
+		{
+			MSG_WARNING(_("String '%s' is too long, truncating…"), str);
+			full = true;
+		}
+		else
+		{
+			j    += written;
+			free -= written;
 		}
 	}
 	ptr[j - 1] = '\0';
