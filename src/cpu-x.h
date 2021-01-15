@@ -91,22 +91,22 @@
 
 #define UNIT_B                _("bytes")
 /* SI unit prefixes */
-// TRANSLATORS: kilobyte (10³)
+// TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #define UNIT_KB               _("kB")
-// TRANSLATORS: megabyte (10⁶)
+// TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #define UNIT_MB               _("MB")
-// TRANSLATORS: gigabyte (10⁹)
+// TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #define UNIT_GB               _("GB")
-// TRANSLATORS: terabyte (10¹²)
+// TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #define UNIT_TB               _("TB")
 /* Binary unit prefixes  */
-// TRANSLATORS: kibibyte (2¹⁰)
+// TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #define UNIT_KIB               _("KiB")
-// TRANSLATORS: mebibyte (2²⁰)
+// TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #define UNIT_MIB               _("MiB")
-// TRANSLATORS: gibibyte (2³⁰)
+// TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #define UNIT_GIB               _("GiB")
-// TRANSLATORS: tebibyte (2⁴⁰)
+// TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #define UNIT_TIB               _("TiB")
 
 /* Linux-specific paths definition */
