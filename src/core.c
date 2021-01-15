@@ -517,7 +517,7 @@ static char *strdup_and_set_unit(char *str)
 	if(str == NULL)
 		return NULL;
 
-	const ssize_t len = strlen(str) + 1;
+	const ssize_t len = MAXSTR;
 	bool full = false;
 	ssize_t i = 0, j = 0, free = len, written;
 	char *ptr = malloc(len);
