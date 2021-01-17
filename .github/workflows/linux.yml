@@ -1,0 +1,40 @@
+name: Linux build
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  linux-build:
+    name: Linux x64_64 (Build)
+    runs-on: ${{ matrix.os.label }}
+    strategy:
+      matrix:
+        os:
+          - { label: ubuntu-16.04 }
+          - { label: ubuntu-18.04 }
+          - { label: ubuntu-20.04 }
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build CPU-X
+      run: bash ./scripts/build_ubuntu.sh "Debug" "$GITHUB_WORKSPACE"
+
+    - name: Run tests
+      run: ninja -C build test
+
+    - name: Run CPU-X
+      run: |
+        sudo CPUX_BCLK=100 cpu-x --issue-fmt
+        cat /tmp/cpu-x.log
+        cat /tmp/cpu-x-daemon.log
+
+    - name: Test CPU database with LibCPUID tests
+      run: |
+        git clone https://github.com/anrieff/libcpuid.git "/tmp/libcpuid"
+        bash ./scripts/run_libcpuid_tests.sh "/tmp/libcpuid/tests"
