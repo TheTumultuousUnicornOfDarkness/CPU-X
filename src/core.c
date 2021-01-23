@@ -371,7 +371,7 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Add string "HT" in CPU Intructions label (if enabled) */
 	if(datanr.num_cores < datanr.num_logical_cpus)
-		strncat(tmp, "HT", MAXSTR * 2 - strlen(tmp));
+		strncat(tmp, (data->l_data->cpu_vendor_id == VENDOR_INTEL) ? "HT" : "SMT", MAXSTR * 2 - strlen(tmp));
 
 	/* Fill CPU Intructions label */
 	const struct { const cpu_feature_t flag; const char *str; } cpu_flags[] =
