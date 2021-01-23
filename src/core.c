@@ -627,7 +627,7 @@ static int cpu_usage(Labels *data)
 	fp = fopen("/proc/stat","r");
 	fscanf(fp,"%*s %li %li %li %li %*s %*s %*s %*s %*s %*s", &new[USER], &new[NICE], &new[SYSTEM], &new[IDLE]);
 	fclose(fp);
-#else
+#else /* __linux__ */
 	size_t len = sizeof(new) * LASTSTAT;
 
 	if(sysctlbyname("kern.cp_time", new, &len, NULL, 0))
@@ -688,15 +688,18 @@ static bool gpu_is_on(char *device_path)
 {
 #ifdef __linux__
 	return !access(format("%s/driver", device_path), F_OK);
-#else
+#else /* __linux__ */
 	UNUSED(device_path);
-	return false;
+	return true;
 #endif /* __linux__ */
 }
 
 /* Find driver name for a device */
 static int find_gpu_device_path(struct pci_dev *dev, char **device_path)
 {
+	int err = 0;
+
+#ifdef __linux__
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	char *base = NULL;
 
@@ -713,14 +716,17 @@ static int find_gpu_device_path(struct pci_dev *dev, char **device_path)
 	}
 
 	casprintf(device_path, false, "%s/devices/%04x:%02x:%02x.%d", base, dev->domain, dev->bus, dev->dev, dev->func);
-	return 0;
+#else /* __linux__ */
+	err = popen_to_str(device_path, "sysctl hw.dri | grep busid | grep %04x:%02x:%02x.%d | cut -d. -f1-3", dev->domain, dev->bus, dev->dev, dev->func);
+#endif /* __linux__ */
+
+	MSG_DEBUG("find_gpu_device_path: device_path=%s", *device_path);
+	return err;
 }
 
 static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *gpu_driver)
 {
 	int i;
-	ssize_t n;
-	char buff[MAXSTR] = "";
 	char *drv = NULL, *cmd = NULL;
 	*gpu_driver = GPUDRV_UNKNOWN;
 	const struct { const char *str; const enum EnGpuDrv val; } gpu_drivers[] =
@@ -732,7 +738,7 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 		{ "nvidia",   GPUDRV_NVIDIA  },
 		{ "nouveau",  GPUDRV_NOUVEAU },
 		{ "vfio-pci", GPUDRV_VFIO    },
-		{ buff,       GPUDRV_UNKNOWN }
+		{ "",         GPUDRV_UNKNOWN }
 	};
 
 	/* Check GPU state */
@@ -741,6 +747,9 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 		MSG_WARNING(_("No kernel driver in use for graphic card at path %s"), device_path);
 		return 1;
 	}
+#ifdef __linux__
+	ssize_t n;
+	char buff[MAXSTR] = "";
 
 	/* Get driver name (as string) */
 	if((n = readlink(format("%s/driver", device_path), buff, MAXSTR)) < 0)
@@ -751,13 +760,22 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	buff[n] = '\0';
 	drv = strrchr(buff, '/');
 	strncpy(driver_name, (drv == NULL) ? buff : drv + 1, MAXSTR);
+#else /* __linux__ */
+	size_t len = MAXSTR;
+
+	if(!sysctlbyname(format("%s.name", device_path), driver_name, &len, NULL, 0))
+	{
+		if((drv = strchr(driver_name, ' ')) != NULL)
+			drv[0] = '\0';
+	}
+#endif /* __linux__ */
 
 	/* Find driver type */
-	for(i = 0; strstr(gpu_drivers[i].str, driver_name) == NULL; i++);
+	for(i = 0; (i != GPUDRV_UNKNOWN - 1) && (strstr(gpu_drivers[i].str, driver_name) == NULL); i++);
 	*gpu_driver = gpu_drivers[i].val;
 	if(*gpu_driver == GPUDRV_UNKNOWN)
 	{
-		MSG_WARNING(_("Your GPU driver is unknown: %s"), buff);
+		MSG_WARNING(_("Your GPU driver is unknown: %s"), driver_name);
 		return 1;
 	}
 
@@ -1121,7 +1139,7 @@ static int system_static(Labels *data)
 	/* Distribution label */
 	err += popen_to_str(&data->tab_system[VALUE][DISTRIBUTION], ". /etc/os-release && echo $PRETTY_NAME");
 
-#else
+#else /* __linux__ */
 	char tmp[MAXSTR];
 	size_t len = sizeof(tmp);
 
@@ -1507,7 +1525,11 @@ static int cputab_temp_fallback(Labels *data)
 	}
 #else /* __linux__ */
 	/* Tested on FreeBSD 12: https://github.com/X0rg/CPU-X/issues/121#issuecomment-575985765 */
-	err = popen_to_str(&data->tab_cpu[VALUE][TEMPERATURE], "sysctl -n dev.cpu.%i.temperature", opts->selected_core);
+	char temp[MAXSTR];
+	size_t len = sizeof(temp);
+
+	if(!(err = sysctlbyname(format("dev.cpu.%i.temperature", opts->selected_core), temp, &len, NULL, 0)))
+		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%s", temp);
 #endif /* __linux__ */
 
 	if(err)
