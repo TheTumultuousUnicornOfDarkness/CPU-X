@@ -134,6 +134,7 @@ const Technology_DB technology_amd[] =
 	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
 	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
+	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
 	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
