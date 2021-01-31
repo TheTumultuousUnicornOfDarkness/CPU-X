@@ -992,18 +992,18 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = fopen_to_str(&vram_total, "%s/device/mem_info_vram_total",  cached_paths_drm[i]);
 				ret_gvolt      = fopen_to_str(&gvolt,      "%s/in0_input",                   cached_paths_hwmon[i]);
 				ret_gpwr       = fopen_to_str(&gpwr,       "%s/power1_average",              cached_paths_hwmon[i]);
-				divisor_gclk  = 1e6;
-				divisor_mclk  = 1e6;
-				divisor_vram  = 1 << 20;
-				divisor_gvolt = 1e3;
-				divisor_gpwr  = 1e6;
+				divisor_gclk   = 1e6;
+				divisor_mclk   = 1e6;
+				divisor_vram   = 1 << 20;
+				divisor_gvolt  = 1e3;
+				divisor_gpwr   = 1e6;
 				break;
 			}
 			case GPUDRV_FGLRX:
-				ret_temp  = popen_to_str(&temp, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'",                       fglrx_count);
-				ret_load  = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
-				ret_gclk  = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'",               fglrx_count);
-				ret_mclk  = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'",               fglrx_count);
+				ret_temp       = popen_to_str(&temp, "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'",                       fglrx_count);
+				ret_load       = popen_to_str(&load, "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
+				ret_gclk       = popen_to_str(&gclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'",               fglrx_count);
+				ret_mclk       = popen_to_str(&mclk, "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'",               fglrx_count);
 				ret_vram_used  = -1;
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
@@ -1013,7 +1013,7 @@ static int gpu_monitoring(Labels *data)
 			case GPUDRV_INTEL:
 				ret_temp       = -1;
 				ret_load       = -1;
-				ret_gclk  = fopen_to_str(&gclk, "%s/gt_cur_freq_mhz", cached_paths_drm[i]);
+				ret_gclk       = fopen_to_str(&gclk, "%s/gt_cur_freq_mhz", cached_paths_drm[i]);
 				ret_mclk       = -1;
 				ret_vram_used  = -1;
 				ret_vram_total = -1;
@@ -1023,14 +1023,14 @@ static int gpu_monitoring(Labels *data)
 			case GPUDRV_RADEON:
 				// ret_temp obtained above
 				ret_load       = -1;
-				ret_gclk  = can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
-				ret_mclk  = can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
+				ret_gclk       = can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
+				ret_mclk       = can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
 				ret_vram_used  = -1;
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
 				ret_gpwr       = -1;
-				divisor_gclk = 100.0;
-				divisor_mclk = 100.0;
+				divisor_gclk   = 100.0;
+				divisor_mclk   = 100.0;
 				break;
 			case GPUDRV_NVIDIA:
 			case GPUDRV_NVIDIA_BUMBLEBEE:
@@ -1039,10 +1039,10 @@ static int gpu_monitoring(Labels *data)
 				const char *nvidia_cmd_base = (data->g_data->gpu_driver[i] == GPUDRV_NVIDIA_BUMBLEBEE) ? "optirun -b none nvidia-smi -c :8" : "nvidia-smi";
 				const char *nvidia_cmd_args = format("%s --format=csv,noheader,nounits --id=%1u", nvidia_cmd_base, nvidia_count);
 				MSG_DEBUG("gpu_monitoring: nvidia: nvidia_cmd_args=%s", nvidia_cmd_args);
-				ret_temp  = popen_to_str(&temp, "%s --query-gpu=temperature.gpu", nvidia_cmd_args);
-				ret_load  = popen_to_str(&load, "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
-				ret_gclk  = popen_to_str(&gclk, "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
-				ret_mclk  = popen_to_str(&mclk, "%s --query-gpu=clocks.mem",      nvidia_cmd_args);
+				ret_temp       = popen_to_str(&temp, "%s --query-gpu=temperature.gpu", nvidia_cmd_args);
+				ret_load       = popen_to_str(&load, "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
+				ret_gclk       = popen_to_str(&gclk, "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
+				ret_mclk       = popen_to_str(&mclk, "%s --query-gpu=clocks.mem",      nvidia_cmd_args);
 				ret_vram_used  = -1;
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
@@ -1057,9 +1057,9 @@ static int gpu_monitoring(Labels *data)
 				int ret_pstate = popen_to_str(&pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ", SYS_DEBUG_DRI, card_number);
 				MSG_DEBUG("gpu_monitoring: nouveau: pstate=%s", pstate);
 				// ret_temp obtained above
-				ret_load  = -1;
-				ret_gclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
-				ret_mclk  = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
+				ret_load       = -1;
+				ret_gclk       = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&gclk, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate) : -1;
+				ret_mclk       = !ret_pstate && can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate) : -1;
 				ret_vram_used  = -1;
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
