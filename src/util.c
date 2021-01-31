@@ -119,6 +119,75 @@ char *format(char *str, ...)
 }
 #undef BUFFER_COUNT
 
+#define TOKEN_LEN 4
+/* Duplicate a string and set unit */
+char *strdup_and_set_unit(char *str)
+{
+	if(str == NULL)
+		return NULL;
+
+	const ssize_t len = MAXSTR;
+	bool full = false;
+	ssize_t i = 0, j = 0, free = len, written;
+	char *ptr = malloc(len);
+	ALLOC_CHECK(ptr);
+
+	while((i < len) && !full)
+	{
+		if((str[i] == '@') && (i + TOKEN_LEN - 1 < len) && (str[i + TOKEN_LEN - 1] == '@'))
+		{
+			/* Set unit in destination string */
+			if(!strncmp(&str[i], "@0B@", TOKEN_LEN))
+				written = snprintf(&ptr[j], free, "%s", UNIT_B);
+			else if(!strncmp(&str[i], "@KB@", TOKEN_LEN))
+				written = snprintf(&ptr[j], free, "%s", UNIT_KB);
+			else if(!strncmp(&str[i], "@MB@", TOKEN_LEN))
+				written = snprintf(&ptr[j], free, "%s", UNIT_MB);
+			else if(!strncmp(&str[i], "@GB@", TOKEN_LEN))
+				written = snprintf(&ptr[j], free, "%s", UNIT_GB);
+			else if(!strncmp(&str[i], "@TB@", TOKEN_LEN))
+				written = snprintf(&ptr[j], free, "%s", UNIT_TB);
+			else
+				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str, i);
+			i += TOKEN_LEN;
+		}
+		else
+		{
+			/* Copy one character */
+			ptr[j]  = str[i];
+			written = 1;
+			i      += written;
+		}
+		if((written >= free) && (str[i - 1] != '\0'))
+		{
+			MSG_WARNING(_("String '%s' is too long, truncating…"), str);
+			full = true;
+		}
+		else
+		{
+			j    += written;
+			free -= written;
+		}
+	}
+	ptr[j - 1] = '\0';
+
+	return ptr;
+}
+#undef TOKEN_LEN
+
+/* Check is string is empty (e.g. contains only non printable characters) */
+bool string_is_empty(char *str)
+{
+	int i;
+
+	if(str == NULL)
+		return true;
+
+	for(i = 0; (!isalnum(str[i])) && (str[i] != '\0'); i++);
+
+	return (str[i] == '\0');
+}
+
 /* Similar to format(), but string can be colorized */
 char *colorized_msg(const char *color, const char *str, ...)
 {

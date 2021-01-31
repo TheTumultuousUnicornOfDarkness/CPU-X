@@ -329,6 +329,12 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...);
 /* Return a formatted string */
 char *format(char *str, ...);
 
+/* Duplicate a string and set unit */
+char *strdup_and_set_unit(char *str);
+
+/* Check is string is empty (e.g. contains only non printable characters) */
+bool string_is_empty(char *str);
+
 /* Similar to format(), but string can be colorized */
 char *colorized_msg(const char *color, const char *str, ...);
 
