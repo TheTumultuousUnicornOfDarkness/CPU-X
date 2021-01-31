@@ -119,6 +119,53 @@ char *format(char *str, ...)
 }
 #undef BUFFER_COUNT
 
+/* Divide a number (in bytes) with the appropriate prefix */
+void find_best_prefix(uint64_t value, enum EnMultipliers multiplier, bool use_si_prefixes, PrefixUnit *pu)
+{
+	int i, d;
+	struct Table { enum EnMultipliers multiplier; char *prefix; uint64_t divisor; };
+
+	const struct Table si_prefixes[] =
+	{
+		{ MULT_NONE,  UNIT_B,  1    },
+		{ MULT_K,     UNIT_KB, 1e3  },
+		{ MULT_M,     UNIT_MB, 1e6  },
+		{ MULT_G,     UNIT_GB, 1e9  },
+		{ MULT_T,     UNIT_TB, 1e12 },
+		{ multiplier, "?B",    1    }
+	};
+	const struct Table binary_prefixes[] =
+	{
+		{ MULT_NONE,  UNIT_B,   1ULL       },
+		{ MULT_K,     UNIT_KIB, 1ULL << 10 },
+		{ MULT_M,     UNIT_MIB, 1ULL << 20 },
+		{ MULT_G,     UNIT_GIB, 1ULL << 30 },
+		{ MULT_T,     UNIT_TIB, 1ULL << 40 },
+		{ multiplier, "?iB",    1ULL       }
+	};
+	const struct Table *prefixes = use_si_prefixes ? si_prefixes : binary_prefixes;
+	const ssize_t table_len = (sizeof(si_prefixes) / sizeof(struct Table)) - 1;
+
+	/* Find current multiplier */
+	for(i = 0; prefixes[i].multiplier != multiplier; i++);
+	pu->init    = true;
+	pu->prefix  = prefixes[i].prefix;
+	pu->divisor = prefixes[0].divisor;
+	if(i >= table_len - 1)
+	{
+		/* Due to the loop over an enum, this case is not possible */
+		MSG_ERROR("multiplier=%i, value=%llu", multiplier, value);
+		return;
+	}
+
+	/* Find new prefix and new divisor */
+	for(i = i + 1, d = 1; (i < table_len) && (d < table_len) && ((value / prefixes[d].divisor) > 0); i++, d++)
+	{
+		pu->prefix  = prefixes[i].prefix;
+		pu->divisor = prefixes[d].divisor;
+	}
+}
+
 #define TOKEN_LEN 4
 /* Duplicate a string and set unit */
 char *strdup_and_set_unit(char *str)

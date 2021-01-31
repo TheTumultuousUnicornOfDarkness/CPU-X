@@ -229,6 +229,15 @@ enum EnOptKeymap
 	LASTKEYMAP
 };
 
+enum EnMultipliers
+{
+	MULT_NONE,
+	MULT_K,
+	MULT_M,
+	MULT_G,
+	MULT_T
+};
+
 typedef struct
 {
 	int8_t  cpu_vendor_id;
@@ -246,9 +255,9 @@ typedef struct
 
 typedef struct
 {
-	uint32_t mem_usage[SWAP - USED + 1];
-	uint32_t mem_total;
-	uint32_t swap_total;
+	long double mem_usage[SWAP - USED + 1];
+	long double mem_total;
+	long double swap_total;
 } MemoryData;
 
 typedef struct
@@ -306,6 +315,13 @@ typedef struct
 	int  last;
 } Arrays;
 
+typedef struct
+{
+	bool     init;
+	char     *prefix;
+	uint64_t divisor;
+} PrefixUnit;
+
 extern Options *opts;
 
 
@@ -328,6 +344,9 @@ int casprintf(char **str, bool clean_str, const char *fmt, ...);
 
 /* Return a formatted string */
 char *format(char *str, ...);
+
+/* Divide a number (in bytes) with the appropriate prefix */
+void find_best_prefix(uint64_t value, enum EnMultipliers multiplier, bool use_si_prefixes, PrefixUnit *pu);
 
 /* Duplicate a string and set unit */
 char *strdup_and_set_unit(char *str);

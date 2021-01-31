@@ -1108,28 +1108,31 @@ static int system_dynamic(Labels *data)
 	time_t uptime_s = 0;
 	struct tm *tm;
 	MemoryData *m_data = data->m_data;
+	static PrefixUnit pu_mem  = { .init = false }, pu_swap = { .init = false };
 
 #if HAS_LIBPROCPS
-	const int div = 1 << 10;
-
 	MSG_VERBOSE("%s", _("Calling libprocps"));
 	/* System uptime */
 	uptime_s = (time_t) uptime(NULL, NULL);
 
 	/* Memory variables */
 	meminfo();
-	m_data->mem_usage[BARUSED]    = kb_main_used    / div;
-	m_data->mem_usage[BARBUFFERS] = kb_main_buffers / div;
-	m_data->mem_usage[BARCACHED]  = kb_main_cached  / div;
-	m_data->mem_usage[BARFREE]    = kb_main_free    / div;
-	m_data->mem_usage[BARSWAP]    = kb_swap_used    / div;
-	m_data->mem_total             = kb_main_total   / div;
-	m_data->swap_total            = kb_swap_total   / div;
+	if(!pu_mem.init || !pu_swap.init)
+	{
+		find_best_prefix(kb_main_total, MULT_K, false, &pu_mem);
+		find_best_prefix(kb_swap_total, MULT_K, false, &pu_swap);
+	}
+	m_data->mem_usage[BARUSED]    = kb_main_used    / (long double) pu_mem.divisor;
+	m_data->mem_usage[BARBUFFERS] = kb_main_buffers / (long double) pu_mem.divisor;
+	m_data->mem_usage[BARCACHED]  = kb_main_cached  / (long double) pu_mem.divisor;
+	m_data->mem_usage[BARFREE]    = kb_main_free    / (long double) pu_mem.divisor;
+	m_data->mem_usage[BARSWAP]    = kb_swap_used    / (long double) pu_swap.divisor;
+	m_data->mem_total             = kb_main_total   / (long double) pu_mem.divisor;
+	m_data->swap_total            = kb_swap_total   / (long double) pu_swap.divisor;
 #endif /* HAS_LIBPROCPS */
 
 #if HAS_LIBSTATGRAB
 	static bool called = false;
-	const int div = 1 << 20;
 	sg_mem_stats *mem; /* Memory labels */
 	sg_swap_stats *swap;
 	sg_host_info *info;
@@ -1149,18 +1152,23 @@ static int system_dynamic(Labels *data)
 	uptime_s = info->uptime;
 
 	/* Memory variables */
-	m_data->mem_usage[BARUSED]    = mem->used   / div;
+	if(!pu_mem.init || !pu_swap.init)
+	{
+		find_best_prefix(mem->total,  MULT_M, false, &pu_mem);
+		find_best_prefix(swap->total, MULT_M, false, &pu_swap);
+	}
+	m_data->mem_usage[BARUSED]    = mem->used   / (long double) pu_mem.divisor;
 	m_data->mem_usage[BARBUFFERS] = 0;
-	m_data->mem_usage[BARCACHED]  = mem->cache  / div;
-	m_data->mem_usage[BARFREE]    = mem->free   / div;
-	m_data->mem_usage[BARSWAP]    = swap->used  / div;
-	m_data->mem_total             = mem->total  / div;
-	m_data->swap_total            = swap->total / div;
+	m_data->mem_usage[BARCACHED]  = mem->cache  / (long double) pu_mem.divisor;
+	m_data->mem_usage[BARFREE]    = mem->free   / (long double) pu_mem.divisor;
+	m_data->mem_usage[BARSWAP]    = swap->used  / (long double) pu_swap.divisor;
+	m_data->mem_total             = mem->total  / (long double) pu_mem.divisor;
+	m_data->swap_total            = swap->total / (long double) pu_swap.divisor;
 #endif /* HAS_LIBSTATGRAB */
 	/* Memory labels */
 	for(i = USED; i < SWAP; i++)
-		casprintf(&data->tab_system[VALUE][i], false, "%5u %s / %5u %s", m_data->mem_usage[j++], UNIT_MIB, m_data->mem_total, UNIT_MIB);
-	casprintf(&data->tab_system[VALUE][SWAP], false, "%5u %s / %5u %s", m_data->mem_usage[j], UNIT_MIB, m_data->swap_total, UNIT_MIB);
+		casprintf(&data->tab_system[VALUE][i], false, "%3.2Lf %s / %3.2Lf %s", m_data->mem_usage[j++], pu_mem.prefix, m_data->mem_total, pu_mem.prefix);
+	casprintf(&data->tab_system[VALUE][SWAP], false, "%3.2Lf %s / %3.2Lf %s", m_data->mem_usage[j], pu_swap.prefix, m_data->swap_total, pu_swap.prefix);
 
 	/* Uptime label */
 	tm = gmtime(&uptime_s);
