@@ -6,7 +6,7 @@ TEST_DIR="$(dirname "$(realpath "$0")")"
 source "$TEST_DIR/../common.sh"
 cd "$TEST_DIR" || exit 255
 
-tmp_dir="$(mktemp -td CPU-X.XXXXXX)"
+tmp_dir="$(mktemp --tmpdir --directory CPU-X.XXXXXX)"
 for awk in gawk mawk nawk; do
 	$awk '/Sensor/ { print $5 }' aticonfig-odgt                         &> "$tmp_dir/aticonfig-odgt.$awk"
 	$awk '/GPU Load/ { print $3 }' amdgpu_pm_info                       &> "$tmp_dir/amdgpu_pm_info.$awk"
@@ -15,8 +15,9 @@ for awk in gawk mawk nawk; do
 	$awk '/GPU load/ { sub("%","",$4); print $4 }' aticonfig-odgc       &> "$tmp_dir/aticonfig-odgc-load.$awk"
 	$awk '/Current Clocks/ { print $4 }' aticonfig-odgc                 &> "$tmp_dir/aticonfig-odgc-sclk.$awk"
 	$awk '/Current Clocks/ { print $5 }' aticonfig-odgc                 &> "$tmp_dir/aticonfig-odgc-mclk.$awk"
-	$awk -F '(sclk: | mclk:)' 'NR==2 { print $2 }' radeon_pm_info       &> "$tmp_dir/radeon_pm_info-sclk.$awk"
-	$awk -F '(mclk: | vddc:)' 'NR==2 { print $2 }' radeon_pm_info       &> "$tmp_dir/radeon_pm_info-mclk.$awk"
+	$awk -F '(sclk: | mclk:)'  'NR==2 { print $2 }' radeon_pm_info      &> "$tmp_dir/radeon_pm_info-sclk.$awk"
+	$awk -F '(mclk: | vddc:)'  'NR==2 { print $2 }' radeon_pm_info      &> "$tmp_dir/radeon_pm_info-mclk.$awk"
+	$awk -F '(vddc: | vddci:)' 'NR==2 { print $2 }' radeon_pm_info      &> "$tmp_dir/radeon_pm_info-vddc.$awk"
 	$awk -F '[,= ]' '{ print $2 }' nvidia-settings-GPUUtilization       &> "$tmp_dir/nvidia-settings-GPUUtilization.$awk"
 	$awk -F '[,]'   '{ print $1 }' nvidia-settings-GPUCurrentClockFreqs &> "$tmp_dir/nvidia-settings-GPUCurrentClockFreqs-sclk.$awk"
 	$awk -F '[,]'   '{ print $2 }' nvidia-settings-GPUCurrentClockFreqs &> "$tmp_dir/nvidia-settings-GPUCurrentClockFreqs-mclk.$awk"
