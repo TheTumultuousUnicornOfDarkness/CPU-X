@@ -1154,8 +1154,8 @@ static int system_dynamic(Labels *data)
 	/* Memory variables */
 	if(!pu_mem.init || !pu_swap.init)
 	{
-		find_best_prefix(mem->total,  MULT_M, false, &pu_mem);
-		find_best_prefix(swap->total, MULT_M, false, &pu_swap);
+		find_best_prefix(mem->total,  MULT_NONE, false, &pu_mem);
+		find_best_prefix(swap->total, MULT_NONE, false, &pu_swap);
 	}
 	m_data->mem_usage[BARUSED]    = mem->used   / (long double) pu_mem.divisor;
 	m_data->mem_usage[BARBUFFERS] = 0;
