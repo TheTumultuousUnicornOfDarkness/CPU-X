@@ -6,13 +6,14 @@
 # Andrei Stepanov <adem4ik@gmail.com>, 2020.
 # Artem <KovalevArtem.ru@gmail.com>, 2020.
 # Alex <theavganec@gmail.com>, 2020.
+# Виктор Ерухин <official159ru@mail.ru>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-15 22:11+0100\n"
-"PO-Revision-Date: 2020-05-23 09:08+0000\n"
-"Last-Translator: Alex <theavganec@gmail.com>\n"
+"PO-Revision-Date: 2021-02-09 15:50+0000\n"
+"Last-Translator: Виктор Ерухин <official159ru@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: core.c:213
 msgid "Finding CPU technology"
@@ -572,10 +573,8 @@ msgid "Temperature"
 msgstr "Температура"
 
 #: main.c:153
-#, fuzzy
-#| msgid "Memory"
 msgid "Memory Used"
-msgstr "Оперативная память"
+msgstr "Используемая память"
 
 #: main.c:154
 msgid "GPU clock"
@@ -586,14 +585,12 @@ msgid "Memory clock"
 msgstr "Частота памяти"
 
 #: main.c:156
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Напряжение"
+msgstr "Напряжение ядра"
 
 #: main.c:157
 msgid "Power Avg"
-msgstr ""
+msgstr "Среднее напряжение"
 
 #: main.c:161
 msgid "Bench"
@@ -735,7 +732,7 @@ msgstr "Отключить цветной вывод"
 
 #: main.c:341
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Вывод информации для отладки"
 
 #: main.c:342
 msgid "Print required information to paste in an issue"
