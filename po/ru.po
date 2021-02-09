@@ -7,13 +7,14 @@
 # Artem <KovalevArtem.ru@gmail.com>, 2020.
 # Alex <theavganec@gmail.com>, 2020.
 # Виктор Ерухин <official159ru@mail.ru>, 2021.
+# Andrey F. <firsan777@mail.ru>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-15 22:11+0100\n"
-"PO-Revision-Date: 2021-02-09 15:50+0000\n"
-"Last-Translator: Виктор Ерухин <official159ru@mail.ru>\n"
+"PO-Revision-Date: 2021-02-10 16:50+0000\n"
+"Last-Translator: Andrey F. <firsan777@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -30,10 +31,7 @@ msgid "Finding CPU technology"
 msgstr "Обнаружение технологии ЦП"
 
 #: core.c:232
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
@@ -93,7 +91,7 @@ msgstr "не удается найти элемент в '%s' строке на 
 #: core.c:554
 #, c-format
 msgid "String '%s' is too long, truncating…"
-msgstr ""
+msgstr "Строка '%s' слишком длинная, обрезается…"
 
 #: core.c:582
 msgid "Calling dmidecode"
@@ -241,8 +239,7 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Поиск корпусировки ЦП в fallback-режиме"
 
 #: core.c:1366
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ваш сокет ЦП отсутствует в базе данных ==> %s, кодовое название: %s"
 
@@ -415,7 +412,7 @@ msgstr "Уровень 1 (данные)"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr "Инструкции 1 уровня"
+msgstr "1 уровень инструкц."
 
 #: main.c:83
 msgid "Level 2"
@@ -741,10 +738,12 @@ msgstr "Вывести требуемую информацию для встав
 #: main.c:343
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Установить сопоставление клавиш для режима NCurses "
+"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:354
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Добавить аргументы командной строки по умолчанию"
 
 #: main.c:355
 msgid "Enforce the bus clock"
@@ -752,17 +751,15 @@ msgstr "Принудительно установить тактовую час�
 
 #: main.c:356
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Игнорировать частоту ЦП, сообщаемую libcpuid"
 
 #: main.c:357
 msgid "Read CPUID raw data from a given file"
 msgstr "Прочитать сырые данные CPUID из заданного файла"
 
 #: main.c:358
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Только вывести сообщение, если ЦП не обнаружен в базе данных"
+msgstr "Распечатать сообщение, только если ЦП отсутствует в базе данных"
 
 #: main.c:382
 #, c-format
@@ -798,10 +795,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- %-9s версия: %s"
 
 #: main.c:455
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "не удалось вызвать libcpuid (%s)"
+msgstr "не удалось вызвать wordexp (%i)"
 
 #: main.c:641
 #, c-format
