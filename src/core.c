@@ -746,7 +746,7 @@ static int find_devices(Labels *data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
-	char *gpu_vendor = NULL;
+	char *gpu_vendor = NULL, *gpu_umd = NULL;
 	char gpu_driver[MAXSTR] = "", buff[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
@@ -788,9 +788,9 @@ static int find_devices(Labels *data)
 		{
 			switch(dev->vendor_id)
 			{
-				case 0x1002: gpu_vendor = "AMD";    break;
-				case 0x8086: gpu_vendor = "Intel";  break;
-				case 0x10DE: gpu_vendor = "NVIDIA"; break;
+				case 0x1002: gpu_vendor = "AMD";	break;
+				case 0x8086: gpu_vendor = "Intel";	break;
+				case 0x10DE: gpu_vendor = "NVIDIA";	break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
 				             MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor, dev->vendor_id);
 			}
@@ -799,8 +799,21 @@ static int find_devices(Labels *data)
 			memset(buff,       0, MAXSTR);
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
+
+			const char *get_umd_base = "glxinfo -B | grep 'OpenGL core profile version'";
+			switch(*gpu_driver)
+			{
+				case GPUDRV_NVIDIA:
+					popen_to_str(&gpu_umd, "%s | sed -e 's/^.*NVIDIA/NVIDIA/g'",   get_umd_base);
+					break;
+				default:
+					popen_to_str(&gpu_umd, "%s | sed -e 's/^.*Mesa/Mesa/g'",       get_umd_base);
+					break;
+			}
+
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
+			casprintf(&data->tab_graphics[VALUE][GPU1UMD    + data->gpu_count * GPUFIELDS], false, "%s", gpu_umd);
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
 		}

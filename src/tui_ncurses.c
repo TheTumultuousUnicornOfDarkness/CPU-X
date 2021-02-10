@@ -757,7 +757,7 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line, start = LINE_0, end = LINE_7;
+	int i, line, start = LINE_0, end = LINE_8;
 
 	if(!data->gpu_count)
 		return;
