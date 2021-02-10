@@ -971,7 +971,7 @@ static int gpu_monitoring(Labels *data)
 				ret_mclk       = can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "awk -F '(mclk: | vddc:)'  'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
 				ret_vram_used  = -1;
 				ret_vram_total = -1;
-				ret_gvolt      = can_access_sys_debug_dri(data) ? popen_to_str(&mclk, "awk -F '(vddc: | vddci:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
+				ret_gvolt      = can_access_sys_debug_dri(data) ? popen_to_str(&gvolt, "awk -F '(vddc: | vddci:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
 				ret_gpwr       = -1;
 				divisor_gclk   = 100.0;
 				divisor_mclk   = 100.0;
@@ -984,14 +984,14 @@ static int gpu_monitoring(Labels *data)
 				const char *nvidia_cmd_base = (data->g_data->gpu_driver[i] == GPUDRV_NVIDIA_BUMBLEBEE) ? "optirun -b none nvidia-smi -c :8" : "nvidia-smi";
 				const char *nvidia_cmd_args = format("%s --format=csv,noheader,nounits --id=%1u", nvidia_cmd_base, nvidia_count);
 				MSG_DEBUG("gpu_monitoring: nvidia: nvidia_cmd_args=%s", nvidia_cmd_args);
-				ret_temp       = popen_to_str(&temp, "%s --query-gpu=temperature.gpu", nvidia_cmd_args);
-				ret_load       = popen_to_str(&load, "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
-				ret_gclk       = popen_to_str(&gclk, "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
-				ret_mclk       = popen_to_str(&mclk, "%s --query-gpu=clocks.mem",      nvidia_cmd_args);
-				ret_vram_used  = popen_to_str(&mclk, "%s --query-gpu=memory.used",     nvidia_cmd_args);
-				ret_vram_total = popen_to_str(&mclk, "%s --query-gpu=memory.total",    nvidia_cmd_args);
+				ret_temp       = popen_to_str(&temp,       "%s --query-gpu=temperature.gpu", nvidia_cmd_args);
+				ret_load       = popen_to_str(&load,       "%s --query-gpu=utilization.gpu", nvidia_cmd_args);
+				ret_gclk       = popen_to_str(&gclk,       "%s --query-gpu=clocks.gr",       nvidia_cmd_args);
+				ret_mclk       = popen_to_str(&mclk,       "%s --query-gpu=clocks.mem",      nvidia_cmd_args);
+				ret_vram_used  = popen_to_str(&vram_used,  "%s --query-gpu=memory.used",     nvidia_cmd_args);
+				ret_vram_total = popen_to_str(&vram_total, "%s --query-gpu=memory.total",    nvidia_cmd_args);
 				ret_gvolt      = -1;
-				ret_gpwr       = popen_to_str(&mclk, "%s --query-gpu=power.draw",      nvidia_cmd_args);;
+				ret_gpwr       = popen_to_str(&gpwr,       "%s --query-gpu=power.draw",      nvidia_cmd_args);;
 				nvidia_count++;
 				break;
 			}
