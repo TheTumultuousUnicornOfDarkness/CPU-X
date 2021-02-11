@@ -44,7 +44,7 @@ static const char *trad[LASTOBJ] =
 /* Tab CPU */
 static const char *objectcpu[LASTCPU] =
 {
-	"proc_vendor", "proc_cdename", "proc_pkg", "proc_tech", "proc_volt", "proc_spec", "proc_fam", "proc_extfam", "proc_mod", "proc_extmod", "proc_temp", "proc_step", "proc_instr",
+	"proc_vendor", "proc_cdename", "proc_pkg", "proc_tech", "proc_volt", "proc_spec", "proc_fam", "proc_mod", "proc_temp", "proc_step", "proc_instr",
 	"clock_core", "clock_mult", "clock_bus", "clock_usage",
 	"cache_l1d", "cache_l1i", "cache_l2", "cache_l3",
 	"trg_sock", "trg_core", "trg_thrd"

@@ -274,11 +274,9 @@ static int call_libcpuid_static(Labels *data)
 	/* Basically fill CPU tab */
 	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",  datanr.cpu_codename);
 	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",  datanr.brand_str);
-	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, "0x%X", datanr.family);
-	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, "0x%X", datanr.ext_family);
-	casprintf(&data->tab_cpu[VALUE][MODEL],         false, "0x%X", datanr.model);
-	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, "0x%X", datanr.ext_model);
-	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",  datanr.stepping);
+	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, "0x%X (%d)", datanr.ext_family, datanr.ext_family);
+	casprintf(&data->tab_cpu[VALUE][MODEL],         false, "0x%X (%d)", datanr.ext_model,  datanr.ext_model);
+	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "0x%X", datanr.stepping);
 	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",  datanr.num_cores);
 	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",  datanr.num_logical_cpus);
 

@@ -558,17 +558,14 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 			case VOLTAGE:
 				mvwprintw2c(win, LINE_4, info.tm, "%11s: %s", data->tab_cpu[NAME][VOLTAGE],      data->tab_cpu[VALUE][VOLTAGE]);
 				break;
-			case MODEL:
-				mvwprintw2c(win, LINE_6, info.tm, "%11s: %s", data->tab_cpu[NAME][MODEL],        data->tab_cpu[VALUE][MODEL]);
-				break;
-			case EXTMODEL:
-				mvwprintw2c(win, LINE_7, info.tm, "%11s: %s", data->tab_cpu[NAME][EXTMODEL],     data->tab_cpu[VALUE][EXTMODEL]);
-				break;
 			case TEMPERATURE:
-				mvwprintw2c(win, LINE_6, info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE],  data->tab_cpu[VALUE][TEMPERATURE]);
+				mvwprintw2c(win, LINE_4, info.te, "%9s: %s",  data->tab_cpu[NAME][TEMPERATURE],  data->tab_cpu[VALUE][TEMPERATURE]);
+				break;
+			case MODEL:
+				mvwprintw2c(win, LINE_6, info.tm + 2, "%9s: %s", data->tab_cpu[NAME][MODEL],     data->tab_cpu[VALUE][MODEL]);
 				break;
 			case STEPPING:
-				mvwprintw2c(win, LINE_7, info.te, "%9s: %s",  data->tab_cpu[NAME][STEPPING],     data->tab_cpu[VALUE][STEPPING]);
+				mvwprintw2c(win, LINE_6, info.te, "%9s: %s",  data->tab_cpu[NAME][STEPPING],  data->tab_cpu[VALUE][STEPPING]);
 				break;
 			case INSTRUCTIONS:
 				mvwprintw2c(win, line++, info.tb, "%14s: %s", data->tab_cpu[NAME][INSTRUCTIONS], data->tab_cpu[VALUE][INSTRUCTIONS]);

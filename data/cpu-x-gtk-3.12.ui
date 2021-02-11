@@ -161,14 +161,14 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="proc_labextfam">
+                                  <object class="GtkLabel" id="proc_labmod">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="margin-end">4</property>
                                     <property name="margin-top">1</property>
                                     <property name="margin-bottom">1</property>
-                                    <property name="mnemonic-widget">proc_valextfam</property>
+                                    <property name="mnemonic-widget">proc_valmod</property>
                                     <property name="single-line-mode">True</property>
                                     <property name="lines">1</property>
                                   </object>
@@ -467,9 +467,9 @@
                                             <property name="justify">center</property>
                                             <property name="selectable">True</property>
                                             <property name="ellipsize">end</property>
-                                            <property name="width-chars">7</property>
+                                            <property name="width-chars">9</property>
                                             <property name="single-line-mode">True</property>
-                                            <property name="max-width-chars">7</property>
+                                            <property name="max-width-chars">9</property>
                                             <property name="lines">1</property>
                                           </object>
                                         </child>
@@ -477,33 +477,6 @@
                                       <packing>
                                         <property name="left-attach">0</property>
                                         <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="proc_framextfam">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="proc_valextfam">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">7</property>
-                                            <property name="single-line-mode">True</property>
-                                            <property name="max-width-chars">7</property>
-                                            <property name="lines">1</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">1</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -521,100 +494,16 @@
                                             <property name="justify">center</property>
                                             <property name="selectable">True</property>
                                             <property name="ellipsize">end</property>
-                                            <property name="width-chars">7</property>
+                                            <property name="width-chars">9</property>
                                             <property name="single-line-mode">True</property>
-                                            <property name="max-width-chars">7</property>
+                                            <property name="max-width-chars">9</property>
                                             <property name="lines">1</property>
                                           </object>
                                         </child>
                                       </object>
                                       <packing>
-                                        <property name="left-attach">2</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="proc_framextmod">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="proc_valextmod">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">7</property>
-                                            <property name="single-line-mode">True</property>
-                                            <property name="max-width-chars">7</property>
-                                            <property name="lines">1</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">2</property>
+                                        <property name="left-attach">0</property>
                                         <property name="top-attach">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="proc_labmod">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="halign">end</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-end">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="mnemonic-widget">proc_valmod</property>
-                                        <property name="single-line-mode">True</property>
-                                        <property name="lines">1</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="proc_labextmod">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="halign">end</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-end">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="mnemonic-widget">proc_valextmod</property>
-                                        <property name="single-line-mode">True</property>
-                                        <property name="lines">1</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="proc_labtemp">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="halign">end</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-end">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="mnemonic-widget">proc_valtemp</property>
-                                        <property name="single-line-mode">True</property>
-                                        <property name="lines">1</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">3</property>
-                                        <property name="top-attach">0</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -667,7 +556,7 @@
                                         </child>
                                       </object>
                                       <packing>
-                                        <property name="left-attach">4</property>
+                                        <property name="left-attach">2</property>
                                         <property name="top-attach">1</property>
                                       </packing>
                                     </child>
@@ -686,9 +575,40 @@
                                         <property name="lines">1</property>
                                       </object>
                                       <packing>
-                                        <property name="left-attach">3</property>
+                                        <property name="left-attach">1</property>
                                         <property name="top-attach">1</property>
                                       </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="proc_labtemp">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-start">6</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="mnemonic-widget">proc_valtemp</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">3</property>
+                                        <property name="top-attach">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
                                     </child>
                                     <child>
                                       <placeholder/>

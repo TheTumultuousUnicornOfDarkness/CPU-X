@@ -64,9 +64,7 @@ static void labels_setname(Labels *data)
 	asprintf(&data->tab_cpu[NAME][VOLTAGE],         _("Voltage"));
 	asprintf(&data->tab_cpu[NAME][SPECIFICATION],   _("Specification"));
 	asprintf(&data->tab_cpu[NAME][FAMILY],          _("Family"));
-	asprintf(&data->tab_cpu[NAME][EXTFAMILY],       _("Ext. Family"));
 	asprintf(&data->tab_cpu[NAME][MODEL],           _("Model"));
-	asprintf(&data->tab_cpu[NAME][EXTMODEL],        _("Ext. Model"));
 	asprintf(&data->tab_cpu[NAME][TEMPERATURE],     _("Temp."));
 	asprintf(&data->tab_cpu[NAME][STEPPING],        _("Stepping"));
 	asprintf(&data->tab_cpu[NAME][INSTRUCTIONS],    _("Instructions"));
