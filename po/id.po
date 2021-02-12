@@ -6,13 +6,14 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # Fredianto <fredianto@tutanota.com>, 2020.
 # william mahagintha <williammahagintha123456@gmail.com>, 2020.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-01-15 22:11+0100\n"
-"PO-Revision-Date: 2020-10-13 02:26+0000\n"
-"Last-Translator: william mahagintha <williammahagintha123456@gmail.com>\n"
+"PO-Revision-Date: 2021-02-13 08:50+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
 "Language: id\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: core.c:213
 msgid "Finding CPU technology"
@@ -86,7 +87,7 @@ msgstr "unit string '%s' pada posisi %i tidak ditemukan"
 #: core.c:554
 #, c-format
 msgid "String '%s' is too long, truncating…"
-msgstr ""
+msgstr "String '%s' terlalu panjang, mengecilkan…"
 
 #: core.c:582
 msgid "Calling dmidecode"
@@ -409,15 +410,15 @@ msgstr "Data L1"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr ""
+msgstr "L1 Inst."
 
 #: main.c:83
 msgid "Level 2"
-msgstr ""
+msgstr "Tingkat 2"
 
 #: main.c:84
 msgid "Level 3"
-msgstr ""
+msgstr "Tingkat 3"
 
 #: main.c:86
 msgid "Socket(s)"
@@ -430,117 +431,117 @@ msgstr "Inti"
 
 #: main.c:88
 msgid "Thread(s)"
-msgstr ""
+msgstr "Thread(s)"
 
 #: main.c:91
 msgid "Caches"
-msgstr ""
+msgstr "Caches"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "L%i Cache"
 
 #: main.c:96
 msgid "Size"
-msgstr ""
+msgstr "Ukuran"
 
 #: main.c:97
 msgid "Speed"
-msgstr ""
+msgstr "Kecepatan"
 
 #: main.c:99
 msgid "Test"
-msgstr ""
+msgstr "Tes"
 
 #: main.c:102 main.c:103
 msgid "Motherboard"
-msgstr ""
+msgstr "Papan Induk"
 
 #: main.c:104
 msgid "Manufacturer"
-msgstr ""
+msgstr "Manufaktur"
 
 #: main.c:106
 msgid "Revision"
-msgstr ""
+msgstr "Revisi"
 
 #: main.c:108
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:109
 msgid "Brand"
-msgstr ""
+msgstr "Merek"
 
 #: main.c:110
 msgid "Version"
-msgstr ""
+msgstr "Versi"
 
 #: main.c:111
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 #: main.c:112
 msgid "ROM Size"
-msgstr ""
+msgstr "Ukuran ROM"
 
 #: main.c:114
 msgid "Chipset"
-msgstr ""
+msgstr "Chipset"
 
 #: main.c:119 main.c:135
 msgid "Memory"
-msgstr ""
+msgstr "Memori"
 
 #: main.c:122
 #, c-format
 msgid "Bank %i"
-msgstr ""
+msgstr "Bank %i"
 
 #: main.c:123
 msgid "Reference"
-msgstr ""
+msgstr "Referensi"
 
 #: main.c:127
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: main.c:128
 msgid "Operating System"
-msgstr ""
+msgstr "Sistem Operasi"
 
 #: main.c:129
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 #: main.c:130
 msgid "Distribution"
-msgstr ""
+msgstr "Distribusi"
 
 #: main.c:131
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 #: main.c:132
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
 
 #: main.c:133
 msgid "Compiler"
-msgstr ""
+msgstr "Penyusun"
 
 #: main.c:136
 msgid "Used"
-msgstr ""
+msgstr "Digunakan"
 
 #: main.c:137
 msgid "Buffers"
-msgstr ""
+msgstr "Buffers"
 
 #: main.c:138
 msgid "Cached"
-msgstr ""
+msgstr "Dalam cache"
 
 #: main.c:139
 msgid "Free"
@@ -552,78 +553,76 @@ msgstr ""
 
 #: main.c:143
 msgid "Graphics"
-msgstr ""
+msgstr "Grafis"
 
 #: main.c:147
 #, c-format
 msgid "Card %i"
-msgstr ""
+msgstr "Kartu %i"
 
 #: main.c:149
 msgid "Driver"
-msgstr ""
+msgstr "Driver"
 
 #: main.c:151
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
 #: main.c:153
 msgid "Memory Used"
-msgstr ""
+msgstr "Memori yang digunakan"
 
 #: main.c:154
 msgid "GPU clock"
-msgstr ""
+msgstr "GPU clock"
 
 #: main.c:155
 msgid "Memory clock"
-msgstr ""
+msgstr "Memori Clock"
 
 #: main.c:156
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Voltase"
+msgstr "Voltase Inti"
 
 #: main.c:157
 msgid "Power Avg"
-msgstr ""
+msgstr "Daya Rata-rata"
 
 #: main.c:161
 msgid "Bench"
-msgstr ""
+msgstr "Bench"
 
 #: main.c:162
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "Nomor prima (lambat)"
 
 #: main.c:163
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "Nomor prima (cepat)"
 
 #: main.c:166
 msgid "Score"
-msgstr ""
+msgstr "Skor"
 
 #: main.c:167
 msgid "Run"
-msgstr ""
+msgstr "Jalankan"
 
 #: main.c:170
 msgid "Parameters"
-msgstr ""
+msgstr "Parameter"
 
 #: main.c:171
 msgid "Duration"
-msgstr ""
+msgstr "Durasi"
 
 #: main.c:172
 msgid "Threads"
-msgstr ""
+msgstr "Threads"
 
 #: main.c:175 main.c:180
 msgid "About"
-msgstr ""
+msgstr "Tentang"
 
 #: main.c:177
 #, c-format
@@ -631,34 +630,36 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s adalah perangkat lunak gratis yang mengumpulkan informasi\n"
+"CPU, motherboard, dan lainnya."
 
 #: main.c:181
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Versi %s"
 
 #: main.c:182
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "Pencipta: %s"
 
 #: main.c:183
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Situs: %s"
 
 #: main.c:185
 msgid "License"
-msgstr ""
+msgstr "Lisensi"
 
 #: main.c:188
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "Perangkat lunak ini didistribusikan di bawah aturan %s"
 
 #: main.c:190 main.c:431
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "Program ini hadir dengan TANPA JAMINAN"
 
 #: main.c:257
 msgid "Dumping data…"
@@ -666,15 +667,15 @@ msgstr ""
 
 #: main.c:299
 msgid "Freeing memory"
-msgstr ""
+msgstr "Mengosongkan memori"
 
 #: main.c:327
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "Mulai antarmuka pengguna grafis (GUI) (default)"
 
 #: main.c:328
 msgid "Start text-based user interface (TUI)"
-msgstr ""
+msgstr "Memulai antarmuka pengguna berbasis teks (TUI)"
 
 #: main.c:329
 msgid "Dump all data on standard output and exit"
@@ -710,19 +711,19 @@ msgstr ""
 
 #: main.c:337
 msgid "Verbose output"
-msgstr ""
+msgstr "Keluaran verbose"
 
 #: main.c:338
 msgid "Print help and exit"
-msgstr ""
+msgstr "Cetak bantuan dan keluar"
 
 #: main.c:339
 msgid "Print version and exit"
-msgstr ""
+msgstr "Cetak versi dan keluar"
 
 #: main.c:340
 msgid "Disable colored output"
-msgstr ""
+msgstr "Nonaktifkan keluaran berwarna"
 
 #: main.c:341
 msgid "Print information for debugging"
@@ -780,18 +781,17 @@ msgstr ""
 #: main.c:432
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "Lihat %s lisensi: <%s>\n"
 
 #: main.c:439
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr ""
+msgstr "-- %-9s versi: %s"
 
 #: main.c:455
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "gagal memanggil wordexp (%i)"
 
 #: main.c:641
 #, c-format
@@ -800,18 +800,20 @@ msgid ""
 "%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
 "%s"
 msgstr ""
+"\n"
+"%s Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan jatuh. %s"
 
 #: main.c:656
 msgid "You can paste this backtrace by opening a new issue here:"
-msgstr ""
+msgstr "Anda dapat menempelkan backtrace ini dengan membuka issue baru di sini:"
 
 #: main.c:684
 msgid "an error occurred while setting locale"
-msgstr ""
+msgstr "timbul galat saat menyetel lokal"
 
 #: tui_ncurses.c:72
 msgid "Starting NCurses TUI…"
-msgstr ""
+msgstr "Memulai NCurses TUI…"
 
 #: tui_ncurses.c:80
 msgid ""
@@ -868,6 +870,8 @@ msgid ""
 "\n"
 "CPU tab:\n"
 msgstr ""
+"\n"
+"tab CPU:\n"
 
 #: tui_ncurses.c:470
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
@@ -940,27 +944,27 @@ msgstr ""
 #: util.c:259 util.c:319
 #, c-format
 msgid "failed to open %s directory"
-msgstr ""
+msgstr "gagal membuka direktori %s"
 
 #: util.c:332
 msgid "an error occurred while compiling regex"
-msgstr ""
+msgstr "timbul galat saat mengompilasi regex"
 
 #: util.c:458
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: otorisasi tidak dapat diperoleh (dialog ditutup)"
 
 #: util.c:461
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: otorisasi tidak dapat diperoleh (tidak diizinkan)"
 
 #: util.c:464
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: perintah tidak ditemukan"
 
 #: util.c:467
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: kode kesalahan tak terduga"
 
 #: cpu-x.h:53
 msgid "FATAL ERROR: could not allocate memory"
@@ -968,47 +972,47 @@ msgstr "GALAT: tidak bisa mengalokasikan memori"
 
 #: cpu-x.h:92
 msgid "bytes"
-msgstr ""
+msgstr "Bita"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:95
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: cpu-x.h:97
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: cpu-x.h:99
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: cpu-x.h:101
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "Keluar %s"
