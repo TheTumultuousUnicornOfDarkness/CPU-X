@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: cpu-x \n"
         "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-        "POT-Creation-Date: 2021-02-13 16:14+0000\n"
+        "POT-Creation-Date: 2021-02-13 18:09+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,234 +26,234 @@ msgid   "Your CPU is not present in the database ==> %s, model: %i, ext. "
         "model: %i, ext. family: %i"
 msgstr  ""
 
-#: core.c:247
+#: core.c:248
 #, c-format
 msgid   "%d x %d %s, %d-way"
 msgstr  ""
 
-#: core.c:248
+#: core.c:249
 #, c-format
 msgid   "%d %s, %d-way"
 msgstr  ""
 
-#: core.c:249
+#: core.c:250
 #, c-format
 msgid   "%s associative, %d-%s line size"
 msgstr  ""
 
-#: core.c:254
+#: core.c:255
 msgid   "Calling libcpuid for retrieving static data"
 msgstr  ""
 
-#: core.c:266
+#: core.c:267
 #, c-format
 msgid   "failed to call libcpuid (%s)"
 msgstr  ""
 
-#: core.c:436
+#: core.c:437
 msgid   "Calling libcpuid for retrieving dynamic data"
 msgstr  ""
 
-#: core.c:449
+#: core.c:450
 msgid   "Calling libcpuid for retrieving CPU MSR static values"
 msgstr  ""
 
-#: core.c:474
+#: core.c:475
 msgid   "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr  ""
 
-#: core.c:497
+#: core.c:498
 msgid   "Calculating CPU multipliers"
 msgstr  ""
 
-#: core.c:530
+#: core.c:531
 msgid   "Calling dmidecode"
 msgstr  ""
 
-#: core.c:563
+#: core.c:564
 msgid   "Calculating CPU usage"
 msgstr  ""
 
-#: core.c:614
+#: core.c:615
 msgid   "Calling bandwidth"
 msgstr  ""
 
-#: core.c:695
+#: core.c:696
 #, c-format
 msgid   "No kernel driver in use for graphic card at path %s"
 msgstr  ""
 
-#: core.c:726
+#: core.c:727
 #, c-format
 msgid   "Your GPU kernel driver is unknown: %s"
 msgstr  ""
 
-#: core.c:779
+#: core.c:780
 #, c-format
 msgid   "Your GPU user mode driver is unknown: %s"
 msgstr  ""
 
-#: core.c:802
+#: core.c:803
 msgid   "Finding devices"
 msgstr  ""
 
-#: core.c:814
+#: core.c:815
 #, c-format
 msgid   "Skip devices search (wrong permissions on %s device)"
 msgstr  ""
 
-#: core.c:843
+#: core.c:844
 #, c-format
 msgid   "Your GPU vendor is unknown: %s (0x%X)"
 msgstr  ""
 
-#: core.c:861
+#: core.c:862
 msgid   "failed to find chipset vendor and model"
 msgstr  ""
 
-#: core.c:863
+#: core.c:864
 msgid   "failed to find graphic card vendor and model"
 msgstr  ""
 
-#: core.c:907
+#: core.c:908
 msgid   "Retrieving GPU clocks"
 msgstr  ""
 
-#: core.c:937
+#: core.c:938
 msgid   "None"
 msgstr  ""
 
-#: core.c:1067
+#: core.c:1068
 #, c-format
 msgid   "Driver for GPU %u doesn't report frequencies"
 msgstr  ""
 
-#: core.c:1103
+#: core.c:1104
 msgid   "failed to retrieve GPU clocks"
 msgstr  ""
 
-#: core.c:1120
+#: core.c:1121
 msgid   "Identifying running system"
 msgstr  ""
 
-#: core.c:1123
+#: core.c:1124
 msgid   "failed to identify running system"
 msgstr  ""
 
-#: core.c:1164
+#: core.c:1165
 msgid   "Calling libprocps"
 msgstr  ""
 
-#: core.c:1190
+#: core.c:1191
 msgid   "Calling libstatgrab"
 msgstr  ""
 
-#: core.c:1225
+#: core.c:1226
 #, c-format
 msgid   "%i days, %i hours, %i minutes, %i seconds"
 msgstr  ""
 
-#: core.c:1281
+#: core.c:1282
 msgid   "Updating benchmark status"
 msgstr  ""
 
-#: core.c:1282 tui_ncurses.c:809
+#: core.c:1283 tui_ncurses.c:809
 #, c-format
 msgid   "%u mins"
 msgstr  ""
 
-#: core.c:1284 core.c:1285
+#: core.c:1285 core.c:1286
 msgid   "Inactive"
 msgstr  ""
 
-#: core.c:1289 core.c:1290
+#: core.c:1290 core.c:1291
 msgid   "Not started"
 msgstr  ""
 
-#: core.c:1295
+#: core.c:1296
 msgid   "Active"
 msgstr  ""
 
-#: core.c:1300
+#: core.c:1301
 #, c-format
 msgid   "(%u hours left)"
 msgstr  ""
 
-#: core.c:1302
+#: core.c:1303
 #, c-format
 msgid   "(%u minutes left)"
 msgstr  ""
 
-#: core.c:1304
+#: core.c:1305
 #, c-format
 msgid   "(%u seconds left)"
 msgstr  ""
 
-#: core.c:1309
+#: core.c:1310
 #, c-format
 msgid   "in %u hours"
 msgstr  ""
 
-#: core.c:1311
+#: core.c:1312
 #, c-format
 msgid   "in %u minutes"
 msgstr  ""
 
-#: core.c:1313
+#: core.c:1314
 #, c-format
 msgid   "in %u seconds"
 msgstr  ""
 
-#: core.c:1329
+#: core.c:1330
 msgid   "Starting benchmark"
 msgstr  ""
 
-#: core.c:1348
+#: core.c:1349
 msgid   "an error occurred while starting benchmark"
 msgstr  ""
 
-#: core.c:1365
+#: core.c:1366
 msgid   "Finding CPU package in fallback mode"
 msgstr  ""
 
-#: core.c:1387
+#: core.c:1388
 #, c-format
 msgid   "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr  ""
 
-#: core.c:1406
+#: core.c:1407
 msgid   "Calculating CPU multipliers in fallback mode"
 msgstr  ""
 
-#: core.c:1433
+#: core.c:1434
 msgid   "Retrieving motherboard information in fallback mode"
 msgstr  ""
 
-#: core.c:1442
+#: core.c:1443
 msgid   "failed to retrieve motherboard information (fallback mode)"
 msgstr  ""
 
-#: core.c:1481
+#: core.c:1482
 msgid   "Retrieving CPU temperature in fallback mode"
 msgstr  ""
 
-#: core.c:1526
+#: core.c:1527
 msgid   "failed to retrieve CPU temperature (fallback mode)"
 msgstr  ""
 
-#: core.c:1539
+#: core.c:1540
 msgid   "Retrieving CPU voltage in fallback mode"
 msgstr  ""
 
-#: core.c:1552
+#: core.c:1553
 msgid   "failed to retrieve CPU voltage (fallback mode)"
 msgstr  ""
 
-#: core.c:1567
+#: core.c:1568
 msgid   "Retrieving CPU frequency in fallback mode"
 msgstr  ""
 
-#: core.c:1575
+#: core.c:1576
 msgid   "failed to retrieve CPU frequency (fallback mode)"
 msgstr  ""
 
@@ -262,36 +262,36 @@ msgstr  ""
 msgid   "request_handler: case %i not handled"
 msgstr  ""
 
-#: gui_gtk.c:60
+#: gui_gtk.c:61
 msgid   "Starting GTK GUI…"
 msgstr  ""
 
-#: gui_gtk.c:68
+#: gui_gtk.c:69
 msgid   "failed to import UI in GtkBuilder"
 msgstr  ""
 
-#: gui_gtk.c:522
+#: gui_gtk.c:525
 msgid   "Connected to daemon"
 msgstr  ""
 
-#: gui_gtk.c:524
+#: gui_gtk.c:527
 msgid   "No polkit authentication agent found"
 msgstr  ""
 
-#: gui_gtk.c:528
+#: gui_gtk.c:531
 msgid   "Ask password to start daemon in background"
 msgstr  ""
 
-#: gui_gtk.c:534
+#: gui_gtk.c:537
 msgid   "Start daemon"
 msgstr  ""
 
-#: gui_gtk.c:543 gui_gtk.c:626 tui_ncurses.c:532
+#: gui_gtk.c:546 gui_gtk.c:629 tui_ncurses.c:532
 #, c-format
 msgid   "Core #%i"
 msgstr  ""
 
-#: gui_gtk.c:623
+#: gui_gtk.c:626
 #, c-format
 msgid   "%s"
 msgstr  ""
@@ -637,7 +637,7 @@ msgstr  ""
 msgid   "This software is distributed under the terms of %s"
 msgstr  ""
 
-#: main.c:191 main.c:433
+#: main.c:191 main.c:434
 msgid   "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr  ""
 
@@ -702,90 +702,94 @@ msgid   "Print version and exit"
 msgstr  ""
 
 #: main.c:341
-msgid   "Disable colored output"
+msgid   "Print CPUID values in decimal (default is hexadeximal)"
 msgstr  ""
 
 #: main.c:342
-msgid   "Print information for debugging"
+msgid   "Disable colored output"
 msgstr  ""
 
 #: main.c:343
-msgid   "Print required information to paste in an issue"
+msgid   "Print information for debugging"
 msgstr  ""
 
 #: main.c:344
+msgid   "Print required information to paste in an issue"
+msgstr  ""
+
+#: main.c:345
 msgid   "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
         "v[im])"
 msgstr  ""
 
-#: main.c:355
+#: main.c:356
 msgid   "Add default command line arguments"
 msgstr  ""
 
-#: main.c:356
+#: main.c:357
 msgid   "Enforce the bus clock"
 msgstr  ""
 
-#: main.c:357
+#: main.c:358
 msgid   "Ignore CPU frequency reported by libcpuid"
 msgstr  ""
 
-#: main.c:358
+#: main.c:359
 msgid   "Read CPUID raw data from a given file"
 msgstr  ""
 
-#: main.c:359
+#: main.c:360
 msgid   "Only print a message if CPU is not present in the database"
 msgstr  ""
 
-#: main.c:383
+#: main.c:384
 #, c-format
 msgid   "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr  ""
 
-#: main.c:384
+#: main.c:385
 msgid   "Available DISPLAY:"
 msgstr  ""
 
-#: main.c:393
+#: main.c:394
 msgid   "Available OPTIONS:"
 msgstr  ""
 
-#: main.c:401
+#: main.c:402
 msgid   "Influenceable environment variables:"
 msgstr  ""
 
-#: main.c:432
+#: main.c:433
 msgid   "This is free software: you are free to change and redistribute it."
 msgstr  ""
 
-#: main.c:434
+#: main.c:435
 #, c-format
 msgid   "See the %s license: <%s>\n"
 msgstr  ""
 
-#: main.c:441
+#: main.c:442
 #, c-format
 msgid   "-- %-9s version: %s"
 msgstr  ""
 
-#: main.c:457
+#: main.c:458
 #, c-format
 msgid   "failed to call wordexp (%i)"
 msgstr  ""
 
-#: main.c:643
+#: main.c:649
 #, c-format
 msgid   "\n"
         "%sOops, something was wrong! %s has received signal %d (%s) and has "
         "crashed.%s"
 msgstr  ""
 
-#: main.c:658
+#: main.c:664
 msgid   "You can paste this backtrace by opening a new issue here:"
 msgstr  ""
 
-#: main.c:686
+#: main.c:692
 msgid   "an error occurred while setting locale"
 msgstr  ""
 
