@@ -806,7 +806,7 @@ static int find_devices(Labels *data)
 			GLFWwindow* win = glfwCreateWindow(640, 480, "", NULL, NULL);
 			glfwMakeContextCurrent(win);
 
-			const char *gl_ver = NULL, *umd_ver = NULL;
+			const char *gl_ver = NULL;
 			gl_ver = (const char *)glGetString(GL_VERSION);
 
 			switch(*gpu_driver)
