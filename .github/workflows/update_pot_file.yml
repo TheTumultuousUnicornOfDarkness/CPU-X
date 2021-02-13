@@ -1,0 +1,34 @@
+name: Update POT file
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-pot-file:
+    name: Linux x64_64 (L10n)
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install packages
+      run: sudo apt-get install -y -qq cmake ninja-build gettext
+
+    - name: Disable all options in CMakeLists.txt
+      run: sed -i 's/ ON)$/ OFF)/g' "$GITHUB_WORKSPACE/CMakeLists.txt"
+
+    - name: Generate files for build system
+      run: cmake -S "$GITHUB_WORKSPACE" -B build -GNinja -DWITH_GETTEXT=1
+
+    - name: Generate new POT file
+      run: ninja -C build genpot
+
+    - uses: EndBug/add-and-commit@v7
+      with:
+        add: 'po'
+        cwd: "$GITHUB_WORKSPACE"
+        message: 'Regen POT file'
+        pull_strategy: '--ff-only or --rebase'
+        push: true
