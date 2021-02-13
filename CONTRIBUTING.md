@@ -35,8 +35,8 @@ The file structure in the `src` directory is the following:
     - bandwidth
     - dmidecode
 3. User interfaces (optional):
-     - gui_gtk.c
-     - gui_gtk.h
+    - gui_gtk.c
+    - gui_gtk.h
     - gui_gtk_id.h
     - tui_ncurses.c
     - tui_ncurses.h
@@ -92,6 +92,24 @@ $ cpu-x -Gv
 ```
 
 If nothing is broken, congratulations! :tada: You can open a new [pull request](https://github.com/X0rg/CPU-X/compare).
+
+### Add new options
+
+This section describe how to add a new option. You can take a look on [this commit](https://github.com/X0rg/CPU-X/commit/6a469c04ba6cba16df31fe60b6c57f56eb217c54).
+
+1. `src/cpu-x.h`: add new option in `struct Options`
+2. `src/main.c`:
+   * in `main()`: initialize default value in `opts = &(Options)`
+   * in `struct cpux_options[]`: add a new line entry
+   * in `parse_arguments()`: retrieve value for option
+4. `data/org.cpu-x.gschema.xml`: add a new key
+5. `data/cpu-x-gtk-3.12.ui`: open UI file in Glade and change Settings window
+6. `src/gui_gtk.h`: add a new `GtkWidget` in `struct GtkLabels`
+7. `src/gui_gtk.c:`
+   * `get_widgets()`: map widget
+   * `load_settings()`: map setting to option
+   * `start_gui_gtk()`: bind setting to widget
+8. Do something with your new option!
 
 ### Things to do
 
