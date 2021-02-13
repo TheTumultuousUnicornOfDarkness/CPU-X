@@ -111,6 +111,21 @@ if(WITH_BANDWIDTH)
 	endif(BANDWIDTH_FOUND)
 endif(WITH_BANDWIDTH)
 
+find_package(OpenGL REQUIRED)
+if(OpenGL_FOUND)
+	include_directories(${OpenGL_INCLUDE_DIRS})
+	link_directories(${OpenGL_LIBRARY_DIRS})
+	add_definitions(${OpenGL_CFLAGS_OTHER})
+	set(OpenGL_LIBRARIES "GL" ${OpenGL_LIBRARIES})
+endif(OpenGL_FOUND)
+
+find_package(glfw3 REQUIRED)
+if(glfw3_FOUND)
+	include_directories(${glfw3_INCLUDE_DIRS})
+	link_directories(${glfw3_LIBRARY_DIRS})
+	add_definitions(${glfw3_CFLAGS_OTHER})
+	set(glfw3_LIBRARIES "glfw" ${glfw3_LIBRARIES})
+endif(glfw3_FOUND)
 
 ### FINAL CONFIG
 
@@ -196,6 +211,8 @@ target_link_libraries(${APP_EXEC}
 	${LIBSTATGRAB_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
+	${OpenGL_LIBRARIES}
+	${glfw3_LIBRARIES}
 	${OTHER_LIBRARIES}
 )
 
