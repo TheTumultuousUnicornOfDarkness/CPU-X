@@ -7,6 +7,15 @@ on:
   workflow_dispatch:
 
 jobs:
+  pre-conditions:
+    name: Pre conditions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check commiter name
+        if: github.event.pusher.login == 'weblate'
+        run: exit 1
+
   update-pot-file:
     name: Linux x64_64 (L10n)
     runs-on: ubuntu-latest
@@ -29,7 +38,6 @@ jobs:
     - uses: EndBug/add-and-commit@v7
       with:
         add: 'po'
-        cwd: "$GITHUB_WORKSPACE"
         message: 'Regen POT file'
-        pull_strategy: '--ff-only or --rebase'
+        pull_strategy: '--ff-only'
         push: true
