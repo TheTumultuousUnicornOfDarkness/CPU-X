@@ -147,6 +147,7 @@ static void labels_setname(Labels *data)
 		asprintf(&data->objects[FRAMGPU1 + j],                   _("Card %i"), j); // Frame label
 		asprintf(&data->tab_graphics[NAME][GPU1VENDOR      + i], _("Vendor"));
 		asprintf(&data->tab_graphics[NAME][GPU1DRIVER      + i], _("Driver"));
+		asprintf(&data->tab_graphics[NAME][GPU1UMD         + i], _("UMD Version"));
 		asprintf(&data->tab_graphics[NAME][GPU1MODEL       + i], _("Model"));
 		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));
 		asprintf(&data->tab_graphics[NAME][GPU1USAGE       + i], _("Usage"));
@@ -416,6 +417,7 @@ static void version(bool full_header)
 		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
 		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
+		{ HAS_LIBGLFW,     "LIBGLFW",     LIBGLFW_VERSION     },
 		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
 		{ HAS_LIBSTATGRAB, "LIBSTATGRAB", LIBSTATGRAB_VERSION },
 		{ HAS_DMIDECODE,   "DMIDECODE",   DMIDECODE_VERSION   },

@@ -63,6 +63,10 @@
 # include <proc/sysinfo.h>
 #endif
 
+#if HAS_LIBGLFW
+# include <GLFW/glfw3.h>
+#endif
+
 #if HAS_LIBSTATGRAB
 # include <statgrab.h>
 #endif
@@ -668,7 +672,7 @@ static int find_gpu_device_path(struct pci_dev *dev, char **device_path)
 	return err;
 }
 
-static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *gpu_driver)
+static int find_gpu_kernel_driver(char *device_path, char *driver_name, enum EnGpuDrv *gpu_driver)
 {
 	int i;
 	char *drv = NULL, *cmd = NULL;
@@ -719,7 +723,7 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	*gpu_driver = gpu_drivers[i].val;
 	if(*gpu_driver == GPUDRV_UNKNOWN)
 	{
-		MSG_WARNING(_("Your GPU driver is unknown: %s"), driver_name);
+		MSG_WARNING(_("Your GPU kernel driver is unknown: %s"), driver_name);
 		return 1;
 	}
 
@@ -739,6 +743,50 @@ static int find_gpu_driver(char *device_path, char *driver_name, enum EnGpuDrv *
 	return 0;
 }
 
+static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_driver)
+{
+	int err = 0;
+
+#if HAS_LIBGLFW
+	const char *gl_ver = NULL, *umd_ver = NULL;
+
+	glfwInit();
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+	GLFWwindow *win = glfwCreateWindow(640, 480, "", NULL, NULL);
+	glfwMakeContextCurrent(win);
+	gl_ver = (const char*) glGetString(GL_VERSION);
+
+	switch(gpu_driver)
+	{
+		case GPUDRV_AMDGPU:
+		case GPUDRV_INTEL:
+		case GPUDRV_RADEON:
+		case GPUDRV_NOUVEAU:
+		case GPUDRV_NOUVEAU_BUMBLEBEE:
+			umd_ver = strstr(gl_ver, "Mesa");
+			break;
+		case GPUDRV_NVIDIA:
+			umd_ver = strstr(gl_ver, "NVIDIA");
+			break;
+		default:
+			break;
+	}
+
+	if(umd_ver != NULL)
+		snprintf(user_mode_driver, MAXSTR, "%s", umd_ver);
+	else
+	{
+		MSG_WARNING(_("Your GPU user mode driver is unknown: %s"), gl_ver);
+		err = 1;
+	}
+	glfwDestroyWindow(win);
+#else
+	UNUSED(gpu_driver);
+#endif /* HAS_LIBGLFW */
+
+	return err;
+}
+
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
 /* Find some PCI devices, like chipset and GPU */
@@ -747,7 +795,7 @@ static int find_devices(Labels *data)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
 	char *gpu_vendor = NULL;
-	char gpu_driver[MAXSTR] = "", buff[MAXSTR] = "";
+	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 
@@ -798,9 +846,11 @@ static int find_devices(Labels *data)
 			memset(gpu_driver, 0, MAXSTR);
 			memset(buff,       0, MAXSTR);
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
-			find_gpu_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
+			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
+			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd);
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
+			casprintf(&data->tab_graphics[VALUE][GPU1UMD    + data->gpu_count * GPUFIELDS], false, "%s", gpu_umd);
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			data->gpu_count++;
 		}
@@ -878,7 +928,7 @@ static int gpu_monitoring(Labels *data)
 		if(gpu_ok && (data->g_data->gpu_driver[i] == GPUDRV_UNKNOWN))
 		{
 			char gpu_driver[MAXSTR] = "";
-			find_gpu_driver(data->g_data->device_path[i], gpu_driver, &data->g_data->gpu_driver[i]);
+			find_gpu_kernel_driver(data->g_data->device_path[i], gpu_driver, &data->g_data->gpu_driver[i]);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + i * GPUFIELDS], false, "%s", gpu_driver);
 		}
 		else if(!gpu_ok)

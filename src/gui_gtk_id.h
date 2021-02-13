@@ -89,10 +89,10 @@ static const char *objectsys_bar[LASTBAR] =
 /* Tab Graphics */
 static const char *objectgpu[LASTGRAPHICS] =
 {
-	"card0_vend", "card0_driver", "card0_mod", "card0_temp", "card0_usage", "card0_vram_used", "card0_gclk", "card0_mclk", "card0_gvolt", "card0_gpwr",
-	"card1_vend", "card1_driver", "card1_mod", "card1_temp", "card1_usage", "card1_vram_used", "card1_gclk", "card1_mclk", "card1_gvolt", "card1_gpwr",
-	"card2_vend", "card2_driver", "card2_mod", "card2_temp", "card2_usage", "card2_vram_used", "card2_gclk", "card2_mclk", "card2_gvolt", "card2_gpwr",
-	"card3_vend", "card3_driver", "card3_mod", "card3_temp", "card3_usage", "card3_vram_used", "card3_gclk", "card3_mclk", "card3_gvolt", "card3_gpwr"
+	"card0_vend", "card0_driver", "card0_umd", "card0_mod", "card0_temp", "card0_usage", "card0_vram_used", "card0_gclk", "card0_mclk", "card0_gvolt", "card0_gpwr",
+	"card1_vend", "card1_driver", "card1_umd", "card1_mod", "card1_temp", "card1_usage", "card1_vram_used", "card1_gclk", "card1_mclk", "card1_gvolt", "card1_gpwr",
+	"card2_vend", "card2_driver", "card2_umd", "card2_mod", "card2_temp", "card2_usage", "card2_vram_used", "card2_gclk", "card2_mclk", "card2_gvolt", "card2_gpwr",
+	"card3_vend", "card3_driver", "card3_umd", "card3_mod", "card3_temp", "card3_usage", "card3_vram_used", "card3_gclk", "card3_mclk", "card3_gvolt", "card3_gpwr"
 };
 
 /* Tab Bench */
