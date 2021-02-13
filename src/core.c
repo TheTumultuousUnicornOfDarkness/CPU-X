@@ -757,6 +757,9 @@ static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_d
 	glfwMakeContextCurrent(win);
 	gl_ver = (const char*) glGetString(GL_VERSION);
 
+	if(gl_ver == NULL)
+		return 1;
+
 	switch(gpu_driver)
 	{
 		case GPUDRV_AMDGPU:
