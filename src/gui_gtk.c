@@ -44,6 +44,7 @@ void load_settings()
 	opts->selected_page = g_settings_get_enum(settings, "default-tab");
 	opts->selected_core = g_settings_get_uint(settings, "default-cpu-core");
 	opts->bw_test       = g_settings_get_uint(settings, "default-cache-test");
+	opts->cpuid_decimal = g_settings_get_boolean(settings, "print-cpuid-decimal");
 	opts->with_daemon   = g_settings_get_boolean(settings, "always-start-daemon");
 	g_settings_delay(settings);
 }
@@ -84,6 +85,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_settings_bind(settings, "default-tab",         glab.defaulttab,       "active-id", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-cpu-core",    glab.defaultcore,      "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-cache-test",  glab.defaultcachetest, "active",    G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind(settings, "print-cpuid-decimal", glab.cpuiddecimal,     "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "always-start-daemon", glab.startdaemon,      "active",    G_SETTINGS_BIND_DEFAULT);
 
 	g_timeout_add_seconds_full(G_PRIORITY_DEFAULT, opts->refr_time, (gpointer)grefresh, &refr, modify_refresh_time);
@@ -362,6 +364,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->defaulttab       = GTK_WIDGET(gtk_builder_get_object(builder, "defaulttab_val"));
 	glab->defaultcore      = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcore_val"));
 	glab->defaultcachetest = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcachetest_val"));
+	glab->cpuiddecimal     = GTK_WIDGET(gtk_builder_get_object(builder, "cpuiddecimal"));
 	glab->startdaemon      = GTK_WIDGET(gtk_builder_get_object(builder, "startdaemon"));
 
 	gtk_widget_set_name(glab->footer, "footer_box");

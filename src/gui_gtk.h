@@ -48,6 +48,7 @@ typedef struct
 	GtkWidget *defaulttab;
 	GtkWidget *defaultcore;
 	GtkWidget *defaultcachetest;
+	GtkWidget *cpuiddecimal;
 	GtkWidget *startdaemon;
 
 	/* Tab CPU */

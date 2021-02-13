@@ -244,6 +244,7 @@ static int call_libcpuid_static(Labels *data)
 {
 	int err, i, j = 0;
 	char tmp[MAXSTR * 2] = "";
+	const char *fmt_cpuid    = opts->cpuid_decimal ? "%i" : "0x%X";
 	const char *fmt_cache_kb = _("%d x %d %s, %d-way");
 	const char *fmt_cache_mb = _("%d %s, %d-way");
 	const char *fmt_lines    = _("%s associative, %d-%s line size");
@@ -276,15 +277,15 @@ static int call_libcpuid_static(Labels *data)
 		opts->selected_core = 0;
 
 	/* Basically fill CPU tab */
-	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",  datanr.cpu_codename);
-	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",  datanr.brand_str);
-	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, "0x%X", datanr.family);
-	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, "0x%X", datanr.ext_family);
-	casprintf(&data->tab_cpu[VALUE][MODEL],         false, "0x%X", datanr.model);
-	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, "0x%X", datanr.ext_model);
-	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",  datanr.stepping);
-	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",  datanr.num_cores);
-	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",  datanr.num_logical_cpus);
+	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",      datanr.cpu_codename);
+	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",      datanr.brand_str);
+	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, fmt_cpuid, datanr.family);
+	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, fmt_cpuid, datanr.ext_family);
+	casprintf(&data->tab_cpu[VALUE][MODEL],         false, fmt_cpuid, datanr.model);
+	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, fmt_cpuid, datanr.ext_model);
+	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",      datanr.stepping);
+	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",      datanr.num_cores);
+	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",      datanr.num_logical_cpus);
 
 	/* Improve the CPU Vendor label */
 	const struct CpuVendor { char *standard; char *improved; cpu_vendor_t id; } cpuvendors[] =

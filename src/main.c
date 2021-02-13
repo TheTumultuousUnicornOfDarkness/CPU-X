@@ -325,24 +325,25 @@ static const struct
 	char       *description;
 } cpux_options[] =
 {
-	{ HAS_GTK,         'G', "gtk",       no_argument,       N_("Start graphical user interface (GUI) (default)")           },
-	{ HAS_NCURSES,     'N', "ncurses",   no_argument,       N_("Start text-based user interface (TUI)")                    },
-	{ true,            'D', "dump",      no_argument,       N_("Dump all data on standard output and exit")                },
-	{ HAS_DMIDECODE,   'M', "dmidecode", no_argument,       N_("Run embedded command dmidecode and exit")                  },
-	{ HAS_BANDWIDTH,   'B', "bandwidth", no_argument,       N_("Run embedded command bandwidth and exit")                  },
-	{ true,            'r', "refresh",   required_argument, N_("Set custom time between two refreshes (in seconds)")       },
-	{ true,            't', "tab",       required_argument, N_("Set default tab (integer)")                                },
-	{ HAS_LIBCPUID,    'c', "core",      required_argument, N_("Select CPU core to monitor (integer)")                     },
-	{ HAS_BANDWIDTH,   'b', "cachetest", required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
-	{ true,            'd', "daemon",    no_argument,       N_("Start and connect to daemon")                              },
-	{ true,            'v', "verbose",   no_argument,       N_("Verbose output")                                           },
-	{ true,            'h', "help",      no_argument,       N_("Print help and exit")                                      },
-	{ true,            'V', "version",   no_argument,       N_("Print version and exit")                                   },
-	{ true,              0, "nocolor",   no_argument,       N_("Disable colored output")                                   },
-	{ true,              0, "debug",     no_argument,       N_("Print information for debugging")                          },
-	{ true,              0, "issue-fmt", no_argument,       N_("Print required information to paste in an issue")          },
-	{ HAS_NCURSES,       0, "keymap",    required_argument, N_("Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])") },
-	{ true,              0, NULL,        0,                 NULL                                                           }
+	{ HAS_GTK,         'G', "gtk",           no_argument,       N_("Start graphical user interface (GUI) (default)")           },
+	{ HAS_NCURSES,     'N', "ncurses",       no_argument,       N_("Start text-based user interface (TUI)")                    },
+	{ true,            'D', "dump",          no_argument,       N_("Dump all data on standard output and exit")                },
+	{ HAS_DMIDECODE,   'M', "dmidecode",     no_argument,       N_("Run embedded command dmidecode and exit")                  },
+	{ HAS_BANDWIDTH,   'B', "bandwidth",     no_argument,       N_("Run embedded command bandwidth and exit")                  },
+	{ true,            'r', "refresh",       required_argument, N_("Set custom time between two refreshes (in seconds)")       },
+	{ true,            't', "tab",           required_argument, N_("Set default tab (integer)")                                },
+	{ HAS_LIBCPUID,    'c', "core",          required_argument, N_("Select CPU core to monitor (integer)")                     },
+	{ HAS_BANDWIDTH,   'b', "cachetest",     required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
+	{ true,            'd', "daemon",        no_argument,       N_("Start and connect to daemon")                              },
+	{ true,            'v', "verbose",       no_argument,       N_("Verbose output")                                           },
+	{ true,            'h', "help",          no_argument,       N_("Print help and exit")                                      },
+	{ true,            'V', "version",       no_argument,       N_("Print version and exit")                                   },
+	{ HAS_LIBCPUID,      0, "cpuid-decimal", no_argument,       N_("Print CPUID values in decimal (default is hexadeximal)")   },
+	{ true,              0, "nocolor",       no_argument,       N_("Disable colored output")                                   },
+	{ true,              0, "debug",         no_argument,       N_("Print information for debugging")                          },
+	{ true,              0, "issue-fmt",     no_argument,       N_("Print required information to paste in an issue")          },
+	{ HAS_NCURSES,       0, "keymap",        required_argument, N_("Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])") },
+	{ true,              0, NULL,            0,                 NULL                                                           }
 };
 
 static const struct
@@ -395,7 +396,7 @@ static void help(char *binary_name)
 
 		if(cpux_options[i].short_opt) snprintf(buff, MAXSTR, "  -%c,", cpux_options[i].short_opt);
 		else                          snprintf(buff, MAXSTR, "     ");
-		MSG_STDOUT("%s --%-10s %s", buff, cpux_options[i].long_opt, _(cpux_options[i].description));
+		MSG_STDOUT("%s --%-14s %s", buff, cpux_options[i].long_opt, _(cpux_options[i].description));
 	}
 
 	MSG_STDOUT("\n%s", _("Influenceable environment variables:"));
@@ -570,7 +571,12 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 				exit(EXIT_SUCCESS);
 				break;
 			case 0:
-				if(!strcmp(longopts[longindex].name, "nocolor"))
+				if(!strcmp(longopts[longindex].name, "cpuid-decimal"))
+				{
+					opts->cpuid_decimal = true;
+					break;
+				}
+				else if(!strcmp(longopts[longindex].name, "nocolor"))
 				{
 					opts->color = false;
 					break;
@@ -752,6 +758,7 @@ int main(int argc, char *argv[])
 	};
 	opts = &(Options)
 	{
+		.cpuid_decimal  = false,
 		.color          = true,
 		.verbose        = false,
 		.debug          = false,

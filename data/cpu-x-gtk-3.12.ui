@@ -7931,7 +7931,7 @@
               </packing>
             </child>
             <child>
-              <!-- n-columns=3 n-rows=4 -->
+              <!-- n-columns=2 n-rows=5 -->
               <object class="GtkGrid" id="startup_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -8011,8 +8011,8 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="startdaemon">
-                    <property name="label" translatable="yes">Start and connect to daemon</property>
+                  <object class="GtkCheckButton" id="cpuiddecimal">
+                    <property name="label" translatable="yes">Print CPUID values in decimal</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -8026,16 +8026,19 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
+                  <object class="GtkCheckButton" id="startdaemon">
+                    <property name="label" translatable="yes">Start and connect to daemon</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="halign">start</property>
+                    <property name="draw-indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">4</property>
+                    <property name="width">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>

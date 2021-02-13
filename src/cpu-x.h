@@ -302,7 +302,7 @@ typedef struct
 
 typedef struct
 {
-	bool     color, verbose, debug, issue, use_network, with_daemon, debug_database, freq_fallback;
+	bool     cpuid_decimal, color, verbose, debug, issue, with_daemon, debug_database, freq_fallback;
 	uint8_t  selected_page, selected_core, bw_test;
 	uint16_t output_type, refr_time;
 	enum EnOptKeymap keymap;
