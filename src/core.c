@@ -37,6 +37,7 @@
 #include "core.h"
 #include "cpu-x.h"
 #include "ipc.h"
+#include <GLFW/glfw3.h>
 
 #ifndef __linux__
 # include <sys/sysctl.h>
@@ -788,9 +789,9 @@ static int find_devices(Labels *data)
 		{
 			switch(dev->vendor_id)
 			{
-				case 0x1002: gpu_vendor = "AMD";	break;
-				case 0x8086: gpu_vendor = "Intel";	break;
-				case 0x10DE: gpu_vendor = "NVIDIA";	break;
+				case 0x1002: gpu_vendor = "AMD";    break;
+				case 0x8086: gpu_vendor = "Intel";  break;
+				case 0x10DE: gpu_vendor = "NVIDIA"; break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
 				             MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor, dev->vendor_id);
 			}
@@ -800,16 +801,25 @@ static int find_devices(Labels *data)
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 
-			const char *get_umd_base = "glxinfo -B | grep 'OpenGL core profile version'";
+			glfwInit();
+			glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+			GLFWwindow* win = glfwCreateWindow(640, 480, "", NULL, NULL);
+			glfwMakeContextCurrent(win);
+
+			const char *gl_ver = NULL, *umd_ver = NULL;
+			gl_ver = (const char *)glGetString(GL_VERSION);
+
 			switch(*gpu_driver)
 			{
 				case GPUDRV_NVIDIA:
-					popen_to_str(&gpu_umd, "%s | sed -e 's/^.*NVIDIA/NVIDIA/g'",   get_umd_base);
+					gpu_umd = strstr(gl_ver, "NVIDIA");
 					break;
 				default:
-					popen_to_str(&gpu_umd, "%s | sed -e 's/^.*Mesa/Mesa/g'",       get_umd_base);
+					gpu_umd = strstr(gl_ver, "Mesa");
 					break;
 			}
+
+			glfwDestroyWindow(win);
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
