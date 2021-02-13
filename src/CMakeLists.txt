@@ -74,13 +74,12 @@ endif(WITH_LIBPCI)
 
 # Libglfw
 if(WITH_LIBGLFW)
-	pkg_check_modules(LIBOPENGL opengl)
+	pkg_check_modules(LIBOPENGL gl)
 	pkg_check_modules(LIBGLFW glfw3)
 	if(LIBOPENGL_FOUND AND LIBGLFW_FOUND)
 		include_directories(${LIBOPENGL_INCLUDE_DIRS} ${LIBGLFW_INCLUDE_DIRS})
 		link_directories(${LIBOPENGL_LIBRARY_DIRS} ${LIBGLFW_LIBRARY_DIRS})
 		add_definitions(${LIBOPENGL_CFLAGS_OTHER} ${LIBGLFW_CFLAGS_OTHER})
-		set(LIBGLFW_LIBRARIES "GL" ${LIBGLFW_LIBRARIES})
 	endif(LIBOPENGL_FOUND AND LIBGLFW_FOUND)
 endif(WITH_LIBGLFW)
 
