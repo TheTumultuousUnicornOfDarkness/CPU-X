@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: cpu-x \n"
         "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-        "POT-Creation-Date: 2021-01-15 22:11+0100\n"
+        "POT-Creation-Date: 2021-02-13 14:33+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,199 +66,189 @@ msgstr  ""
 msgid   "Calculating CPU multipliers"
 msgstr  ""
 
-#: core.c:542
-#, c-format
-msgid   "cannot find unit in '%s' string at position %i"
-msgstr  ""
-
-#: core.c:554
-#, c-format
-msgid   "String '%s' is too long, truncating…"
-msgstr  ""
-
-#: core.c:582
+#: core.c:526
 msgid   "Calling dmidecode"
 msgstr  ""
 
-#: core.c:615
+#: core.c:559
 msgid   "Calculating CPU usage"
 msgstr  ""
 
-#: core.c:666
+#: core.c:610
 msgid   "Calling bandwidth"
 msgstr  ""
 
-#: core.c:741
+#: core.c:691
 #, c-format
 msgid   "No kernel driver in use for graphic card at path %s"
 msgstr  ""
 
-#: core.c:760
+#: core.c:722
 #, c-format
 msgid   "Your GPU driver is unknown: %s"
 msgstr  ""
 
-#: core.c:792
+#: core.c:754
 msgid   "Finding devices"
 msgstr  ""
 
-#: core.c:804
+#: core.c:766
 #, c-format
 msgid   "Skip devices search (wrong permissions on %s device)"
 msgstr  ""
 
-#: core.c:833
+#: core.c:795
 #, c-format
 msgid   "Your GPU vendor is unknown: %s (0x%X)"
 msgstr  ""
 
-#: core.c:849
+#: core.c:811
 msgid   "failed to find chipset vendor and model"
 msgstr  ""
 
-#: core.c:851
+#: core.c:813
 msgid   "failed to find graphic card vendor and model"
 msgstr  ""
 
-#: core.c:895
+#: core.c:857
 msgid   "Retrieving GPU clocks"
 msgstr  ""
 
-#: core.c:925
+#: core.c:887
 msgid   "None"
 msgstr  ""
 
-#: core.c:1054
+#: core.c:1017
 #, c-format
 msgid   "Driver for GPU %u doesn't report frequencies"
 msgstr  ""
 
-#: core.c:1090
+#: core.c:1053
 msgid   "failed to retrieve GPU clocks"
 msgstr  ""
 
-#: core.c:1107
+#: core.c:1070
 msgid   "Identifying running system"
 msgstr  ""
 
-#: core.c:1110
+#: core.c:1073
 msgid   "failed to identify running system"
 msgstr  ""
 
-#: core.c:1152
+#: core.c:1114
 msgid   "Calling libprocps"
 msgstr  ""
 
-#: core.c:1174
+#: core.c:1140
 msgid   "Calling libstatgrab"
 msgstr  ""
 
-#: core.c:1204
+#: core.c:1175
 #, c-format
 msgid   "%i days, %i hours, %i minutes, %i seconds"
 msgstr  ""
 
-#: core.c:1260
+#: core.c:1231
 msgid   "Updating benchmark status"
 msgstr  ""
 
-#: core.c:1261 tui_ncurses.c:809
+#: core.c:1232 tui_ncurses.c:809
 #, c-format
 msgid   "%u mins"
 msgstr  ""
 
-#: core.c:1263 core.c:1264
+#: core.c:1234 core.c:1235
 msgid   "Inactive"
 msgstr  ""
 
-#: core.c:1268 core.c:1269
+#: core.c:1239 core.c:1240
 msgid   "Not started"
 msgstr  ""
 
-#: core.c:1274
+#: core.c:1245
 msgid   "Active"
 msgstr  ""
 
-#: core.c:1279
+#: core.c:1250
 #, c-format
 msgid   "(%u hours left)"
 msgstr  ""
 
-#: core.c:1281
+#: core.c:1252
 #, c-format
 msgid   "(%u minutes left)"
 msgstr  ""
 
-#: core.c:1283
+#: core.c:1254
 #, c-format
 msgid   "(%u seconds left)"
 msgstr  ""
 
-#: core.c:1288
+#: core.c:1259
 #, c-format
 msgid   "in %u hours"
 msgstr  ""
 
-#: core.c:1290
+#: core.c:1261
 #, c-format
 msgid   "in %u minutes"
 msgstr  ""
 
-#: core.c:1292
+#: core.c:1263
 #, c-format
 msgid   "in %u seconds"
 msgstr  ""
 
-#: core.c:1308
+#: core.c:1279
 msgid   "Starting benchmark"
 msgstr  ""
 
-#: core.c:1327
+#: core.c:1298
 msgid   "an error occurred while starting benchmark"
 msgstr  ""
 
-#: core.c:1344
+#: core.c:1315
 msgid   "Finding CPU package in fallback mode"
 msgstr  ""
 
-#: core.c:1366
+#: core.c:1337
 #, c-format
 msgid   "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr  ""
 
-#: core.c:1385
+#: core.c:1356
 msgid   "Calculating CPU multipliers in fallback mode"
 msgstr  ""
 
-#: core.c:1412
+#: core.c:1383
 msgid   "Retrieving motherboard information in fallback mode"
 msgstr  ""
 
-#: core.c:1421
+#: core.c:1392
 msgid   "failed to retrieve motherboard information (fallback mode)"
 msgstr  ""
 
-#: core.c:1473
+#: core.c:1431
 msgid   "Retrieving CPU temperature in fallback mode"
 msgstr  ""
 
-#: core.c:1514
+#: core.c:1476
 msgid   "failed to retrieve CPU temperature (fallback mode)"
 msgstr  ""
 
-#: core.c:1527
+#: core.c:1489
 msgid   "Retrieving CPU voltage in fallback mode"
 msgstr  ""
 
-#: core.c:1540
+#: core.c:1502
 msgid   "failed to retrieve CPU voltage (fallback mode)"
 msgstr  ""
 
-#: core.c:1555
+#: core.c:1517
 msgid   "Retrieving CPU frequency in fallback mode"
 msgstr  ""
 
-#: core.c:1563
+#: core.c:1525
 msgid   "failed to retrieve CPU frequency (fallback mode)"
 msgstr  ""
 
@@ -902,38 +892,48 @@ msgid   "\n"
         "Press any key to exit this help.\n"
 msgstr  ""
 
-#: util.c:171
+#: util.c:198
+#, c-format
+msgid   "cannot find unit in '%s' string at position %i"
+msgstr  ""
+
+#: util.c:210
+#, c-format
+msgid   "String '%s' is too long, truncating…"
+msgstr  ""
+
+#: util.c:287
 #, c-format
 msgid   "an error occurred while opening file '%s' (%s)"
 msgstr  ""
 
-#: util.c:201
+#: util.c:317
 #, c-format
 msgid   "an error occurred while running command '%s' (%s)"
 msgstr  ""
 
-#: util.c:259 util.c:319
+#: util.c:375 util.c:435
 #, c-format
 msgid   "failed to open %s directory"
 msgstr  ""
 
-#: util.c:332
+#: util.c:448
 msgid   "an error occurred while compiling regex"
 msgstr  ""
 
-#: util.c:458
+#: util.c:574
 msgid   "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr  ""
 
-#: util.c:461
+#: util.c:577
 msgid   "pkexec: authorization could not be obtained (not authorized)"
 msgstr  ""
 
-#: util.c:464
+#: util.c:580
 msgid   "pkexec: command not found"
 msgstr  ""
 
-#: util.c:467
+#: util.c:583
 msgid   "pkexec: unexpected error code"
 msgstr  ""
 
