@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-02-13 17:14+0000\n"
+"POT-Creation-Date: 2021-02-13 18:32+0000\n"
 "PO-Revision-Date: 2021-02-13 17:07+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -43,234 +43,234 @@ msgstr ""
 "Veri tabanında CPU'nuz yok ==> %s, model: %i, genişletilmiş model: %i, "
 "genişletilmiş aile: %i"
 
-#: core.c:247
+#: core.c:248
 #, c-format
 msgid "%d x %d %s, %d-way"
 msgstr "%d x %d %s, %d-yol"
 
-#: core.c:248
+#: core.c:249
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-yol"
 
-#: core.c:249
+#: core.c:250
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s ilişkilendirilebilir, %d-%s satır boyutu"
 
-#: core.c:254
+#: core.c:255
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Statik veri almak için libcpuid çağrılıyor"
 
-#: core.c:266
+#: core.c:267
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid çağrılamadı (%s)"
 
-#: core.c:436
+#: core.c:437
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Dinamik veri almak için libcpuid çağrılıyor"
 
-#: core.c:449
+#: core.c:450
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "CPU MSR statik değerlerini almak için libcpuid çağrılıyor"
 
-#: core.c:474
+#: core.c:475
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "CPU MSR dinamik değerlerini almak için libcpuid çağrılıyor"
 
-#: core.c:497
+#: core.c:498
 msgid "Calculating CPU multipliers"
 msgstr "CPU çarpanları hesaplanıyor"
 
-#: core.c:530
+#: core.c:531
 msgid "Calling dmidecode"
 msgstr "dmidecode çağrılıyor"
 
-#: core.c:563
+#: core.c:564
 msgid "Calculating CPU usage"
 msgstr "CPU kullanımı hesaplanıyor"
 
-#: core.c:614
+#: core.c:615
 msgid "Calling bandwidth"
 msgstr "Bant genişliği çağırılıyor"
 
-#: core.c:695
+#: core.c:696
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "%s yolundaki grafik kartı için kullanılan çekirdek sürücüsü yok"
 
-#: core.c:726
+#: core.c:727
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
 
-#: core.c:779
+#: core.c:780
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "GPU kullanıcı modu sürücünüz bilinmiyor: %s"
 
-#: core.c:802
+#: core.c:803
 msgid "Finding devices"
 msgstr "Aygıtlar bulunuyor"
 
-#: core.c:814
+#: core.c:815
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 
-#: core.c:843
+#: core.c:844
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
 
-#: core.c:861
+#: core.c:862
 msgid "failed to find chipset vendor and model"
 msgstr "yonga seti satıcısı ve model bulunamadı"
 
-#: core.c:863
+#: core.c:864
 msgid "failed to find graphic card vendor and model"
 msgstr "ekran kartı marka ve modeli bulunamadı"
 
-#: core.c:907
+#: core.c:908
 msgid "Retrieving GPU clocks"
 msgstr "GPU saatleri alınıyor"
 
-#: core.c:937
+#: core.c:938
 msgid "None"
 msgstr "Hiçbiri"
 
-#: core.c:1067
+#: core.c:1068
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "%u GPU sürücüsü frekansları bildirmiyor"
 
-#: core.c:1103
+#: core.c:1104
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU saatleri alınamadı"
 
-#: core.c:1120
+#: core.c:1121
 msgid "Identifying running system"
 msgstr "İşletim sistemi tanımlanıyor"
 
-#: core.c:1123
+#: core.c:1124
 msgid "failed to identify running system"
 msgstr "işletim sistemi tanımlanamadı"
 
-#: core.c:1164
+#: core.c:1165
 msgid "Calling libprocps"
 msgstr "libprocps çağrılıyor"
 
-#: core.c:1190
+#: core.c:1191
 msgid "Calling libstatgrab"
 msgstr "libstatgrab çağrılıyor"
 
-#: core.c:1225
+#: core.c:1226
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i gün, %i saat, %i dakika, %i saniye"
 
-#: core.c:1281
+#: core.c:1282
 msgid "Updating benchmark status"
 msgstr "Karşılaştırma durumu güncelleniyor"
 
-#: core.c:1282 tui_ncurses.c:809
+#: core.c:1283 tui_ncurses.c:809
 #, c-format
 msgid "%u mins"
 msgstr "%u dakika"
 
-#: core.c:1284 core.c:1285
+#: core.c:1285 core.c:1286
 msgid "Inactive"
 msgstr "Etkin değil"
 
-#: core.c:1289 core.c:1290
+#: core.c:1290 core.c:1291
 msgid "Not started"
 msgstr "Başlatılmadı"
 
-#: core.c:1295
+#: core.c:1296
 msgid "Active"
 msgstr "Etkin"
 
-#: core.c:1300
+#: core.c:1301
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u saat kaldı)"
 
-#: core.c:1302
+#: core.c:1303
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u dakika kaldı)"
 
-#: core.c:1304
+#: core.c:1305
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u saniye kaldı)"
 
-#: core.c:1309
+#: core.c:1310
 #, c-format
 msgid "in %u hours"
 msgstr "%u saat içinde"
 
-#: core.c:1311
+#: core.c:1312
 #, c-format
 msgid "in %u minutes"
 msgstr "%u dakika içinde"
 
-#: core.c:1313
+#: core.c:1314
 #, c-format
 msgid "in %u seconds"
 msgstr "%u saniye içinde"
 
-#: core.c:1329
+#: core.c:1330
 msgid "Starting benchmark"
 msgstr "Karşılaştırma başlatılıyor"
 
-#: core.c:1348
+#: core.c:1349
 msgid "an error occurred while starting benchmark"
 msgstr "karşılaştırma başlatılırken hata oluştu"
 
-#: core.c:1365
+#: core.c:1366
 msgid "Finding CPU package in fallback mode"
 msgstr "Yedek modda CPU paketi bulunuyor"
 
-#: core.c:1387
+#: core.c:1388
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
 
-#: core.c:1406
+#: core.c:1407
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Yedek modda CPU çarpanları hesaplanıyor"
 
-#: core.c:1433
+#: core.c:1434
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Yedek modda anakart bilgisi alınıyor"
 
-#: core.c:1442
+#: core.c:1443
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "anakart bilgisi alınamadı (yedek modu)"
 
-#: core.c:1481
+#: core.c:1482
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Yedek modda CPU sıcaklığı alınıyor"
 
-#: core.c:1526
+#: core.c:1527
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU sıcaklığı alınamadı (yedek mod)"
 
-#: core.c:1539
+#: core.c:1540
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Yedek modda CPU gerilimi alınıyor"
 
-#: core.c:1552
+#: core.c:1553
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU gerilimi alınamadı (yedek mod)"
 
-#: core.c:1567
+#: core.c:1568
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Yedek modda CPU frekansı alınıyor"
 
-#: core.c:1575
+#: core.c:1576
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 
@@ -279,36 +279,36 @@ msgstr "CPU frekansı alınamadı (yedek mod)"
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: %i durumu işlemedi"
 
-#: gui_gtk.c:60
+#: gui_gtk.c:61
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI başlatılıyor…"
 
-#: gui_gtk.c:68
+#: gui_gtk.c:69
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
-#: gui_gtk.c:522
+#: gui_gtk.c:525
 msgid "Connected to daemon"
 msgstr "Arka plan programına bağlandı"
 
-#: gui_gtk.c:524
+#: gui_gtk.c:527
 msgid "No polkit authentication agent found"
 msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
-#: gui_gtk.c:528
+#: gui_gtk.c:531
 msgid "Ask password to start daemon in background"
 msgstr "Arka plan programı başlatmak için parola sor"
 
-#: gui_gtk.c:534
+#: gui_gtk.c:537
 msgid "Start daemon"
 msgstr "Arka plan programını başlat"
 
-#: gui_gtk.c:543 gui_gtk.c:626 tui_ncurses.c:532
+#: gui_gtk.c:546 gui_gtk.c:629 tui_ncurses.c:532
 #, c-format
 msgid "Core #%i"
 msgstr "Çekirdek #%i"
 
-#: gui_gtk.c:623
+#: gui_gtk.c:626
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -657,7 +657,7 @@ msgstr "Lisans"
 msgid "This software is distributed under the terms of %s"
 msgstr "Bu yazılım %s koşulları altında dağıtılmıştır"
 
-#: main.c:191 main.c:433
+#: main.c:191 main.c:434
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 
@@ -722,79 +722,83 @@ msgid "Print version and exit"
 msgstr "Sürümü yazdır ve çık"
 
 #: main.c:341
+msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgstr ""
+
+#: main.c:342
 msgid "Disable colored output"
 msgstr "Renkli çıktıyı devre dışı bırak"
 
-#: main.c:342
+#: main.c:343
 msgid "Print information for debugging"
 msgstr "Hata ayıklama bilgilerini yazdır"
 
-#: main.c:343
+#: main.c:344
 msgid "Print required information to paste in an issue"
 msgstr "Bir soruna yapıştırmak için gerekli bilgileri yazdır"
 
-#: main.c:344
+#: main.c:345
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "NCurses modu için tuş atamasını ayarla (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.c:355
+#: main.c:356
 msgid "Add default command line arguments"
 msgstr "Öntanımlı komut satırı argümanlarını ekle"
 
-#: main.c:356
+#: main.c:357
 msgid "Enforce the bus clock"
 msgstr "Veri yolu saatini zorla"
 
-#: main.c:357
+#: main.c:358
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "libcpuid tarafından bildirilen CPU frekansını yok say"
 
-#: main.c:358
+#: main.c:359
 msgid "Read CPUID raw data from a given file"
 msgstr "Belirtilen bir dosyadan CPUID ham verilerini oku"
 
-#: main.c:359
+#: main.c:360
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Yalnızca veri tabanında CPU yoksa bir mesaj yazdır"
 
-#: main.c:383
+#: main.c:384
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Kullanım: %s EKRAN [SEÇENEKLER]\n"
 
-#: main.c:384
+#: main.c:385
 msgid "Available DISPLAY:"
 msgstr "Kullanılabilir EKRAN:"
 
-#: main.c:393
+#: main.c:394
 msgid "Available OPTIONS:"
 msgstr "Kullanılabilir SEÇENEKLER:"
 
-#: main.c:401
+#: main.c:402
 msgid "Influenceable environment variables:"
 msgstr "Etkilenebilir ortam değişkenleri:"
 
-#: main.c:432
+#: main.c:433
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Bu bir özgür yazılımdır: değiştirmek ve yeniden dağıtmakta özgürsünüz."
 
-#: main.c:434
+#: main.c:435
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s lisansına bakın: <%s>\n"
 
-#: main.c:441
+#: main.c:442
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s sürümü: %s"
 
-#: main.c:457
+#: main.c:458
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "wordexp çağrılamadı (%i)"
 
-#: main.c:643
+#: main.c:649
 #, c-format
 msgid ""
 "\n"
@@ -804,11 +808,11 @@ msgstr ""
 "\n"
 "%sHay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü.%s"
 
-#: main.c:658
+#: main.c:664
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "Bu geri izlemeyi buraya yeni bir konu açarak yapıştırabilirsiniz:"
 
-#: main.c:686
+#: main.c:692
 msgid "an error occurred while setting locale"
 msgstr "yerel ayar yapılırken bir hata oluştu"
 

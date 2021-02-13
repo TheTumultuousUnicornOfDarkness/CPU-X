@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-01-15 22:11+0100\n"
+"POT-Creation-Date: 2021-02-13 18:32+0000\n"
 "PO-Revision-Date: 2021-02-07 00:50+0000\n"
 "Last-Translator: Umio Yasuno <coelacanth_dream@pm.me>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -21,11 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.5-dev\n"
 
-#: core.c:213
+#: core.c:217
 msgid "Finding CPU technology"
 msgstr "CPUテクノロジーを確認中"
 
-#: core.c:232
+#: core.c:236
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -34,245 +34,242 @@ msgstr ""
 "このCPUはデータベースにありませんでした ==> %s、モデル: %i、拡張モデル：%i、"
 "拡張ファミリー：%i"
 
-#: core.c:243
+#: core.c:248
 #, c-format
 msgid "%d x %d %s, %d-way"
 msgstr "%d x %d %s, %d-way"
 
-#: core.c:244
+#: core.c:249
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-way"
 
-#: core.c:245
+#: core.c:250
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s 連帯, %d-%s 行サイズ"
 
-#: core.c:250
+#: core.c:255
 msgid "Calling libcpuid for retrieving static data"
 msgstr "静的データを取得するためにlibcpuidを呼び出しています"
 
-#: core.c:262
+#: core.c:267
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuidの呼び出しに失敗しました（%s）"
 
-#: core.c:432
+#: core.c:437
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "動的データを取得するために libcpuid を呼び出しています"
 
-#: core.c:445
+#: core.c:450
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "CPUMSR静的値を取得するために libcpuid を呼び出す"
 
-#: core.c:470
+#: core.c:475
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "動的なCPU MSR値を取得するために libcpuid を呼び出しています"
 
-#: core.c:493
+#: core.c:498
 msgid "Calculating CPU multipliers"
 msgstr "クロック倍率を計算しています"
 
-#: core.c:542
-#, c-format
-msgid "cannot find unit in '%s' string at position %i"
-msgstr "「%s」文字列が%iのにユニットが見つかりません"
-
-#: core.c:554
-#, c-format
-msgid "String '%s' is too long, truncating…"
-msgstr ""
-
-#: core.c:582
+#: core.c:531
 msgid "Calling dmidecode"
 msgstr "dmidecode を呼び出す"
 
-#: core.c:615
+#: core.c:564
 msgid "Calculating CPU usage"
 msgstr "CPU 使用率の計算"
 
-#: core.c:666
+#: core.c:615
 msgid "Calling bandwidth"
 msgstr "帯域幅を呼び出し中"
 
-#: core.c:741
+#: core.c:696
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 "パス %s でグラフィックカードに使用されているカーネルドライバがありません"
 
-#: core.c:760
-#, c-format
-msgid "Your GPU driver is unknown: %s"
+#: core.c:727
+#, fuzzy, c-format
+#| msgid "Your GPU driver is unknown: %s"
+msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPUドライバーが不明です: %s"
 
-#: core.c:792
+#: core.c:780
+#, fuzzy, c-format
+#| msgid "Your GPU driver is unknown: %s"
+msgid "Your GPU user mode driver is unknown: %s"
+msgstr "GPUドライバーが不明です: %s"
+
+#: core.c:803
 msgid "Finding devices"
 msgstr "デバイスを探しています"
 
-#: core.c:804
+#: core.c:815
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "デバイス検索をスキップします（デバイス%sの不正なパーミッション）"
 
-#: core.c:833
+#: core.c:844
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "不明なベンダー（%s）によるGPUです（0x%X）"
 
-#: core.c:849
+#: core.c:862
 msgid "failed to find chipset vendor and model"
 msgstr "チップセットのベンダーとモデルの検索に失敗しました"
 
-#: core.c:851
+#: core.c:864
 msgid "failed to find graphic card vendor and model"
 msgstr "グラフィックカードのベンダーとモデルの検索に失敗しました"
 
-#: core.c:895
+#: core.c:908
 msgid "Retrieving GPU clocks"
 msgstr "GPUクロックを取得しています"
 
-#: core.c:925
+#: core.c:938
 #, fuzzy
 msgid "None"
 msgstr "何もありません"
 
-#: core.c:1054
+#: core.c:1068
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %u のドライバは温度を報告していません"
 
-#: core.c:1090
+#: core.c:1104
 msgid "failed to retrieve GPU clocks"
 msgstr "GPUクロックの取得に失敗しました"
 
-#: core.c:1107
+#: core.c:1121
 msgid "Identifying running system"
 msgstr "実行中のシステムを認識しています"
 
-#: core.c:1110
+#: core.c:1124
 msgid "failed to identify running system"
 msgstr "実行中のシステムの認識に失敗しました"
 
-#: core.c:1152
+#: core.c:1165
 msgid "Calling libprocps"
 msgstr "libprocpsを呼び出しています"
 
-#: core.c:1174
+#: core.c:1191
 msgid "Calling libstatgrab"
 msgstr "libstatgrabを呼び出しています"
 
-#: core.c:1204
+#: core.c:1226
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
-#: core.c:1260
+#: core.c:1282
 msgid "Updating benchmark status"
 msgstr "ベンチマークの状態を更新しています"
 
-#: core.c:1261 tui_ncurses.c:809
+#: core.c:1283 tui_ncurses.c:809
 #, c-format
 msgid "%u mins"
 msgstr "%u 分"
 
-#: core.c:1263 core.c:1264
+#: core.c:1285 core.c:1286
 #, fuzzy
 msgid "Inactive"
 msgstr "停止"
 
-#: core.c:1268 core.c:1269
+#: core.c:1290 core.c:1291
 #, fuzzy
 msgid "Not started"
 msgstr "開始されていません"
 
-#: core.c:1274
+#: core.c:1296
 #, fuzzy
 msgid "Active"
 msgstr "実行"
 
-#: core.c:1279
+#: core.c:1301
 #, c-format
 msgid "(%u hours left)"
 msgstr "（残り%u 時間）"
 
-#: core.c:1281
+#: core.c:1303
 #, c-format
 msgid "(%u minutes left)"
 msgstr "（残り%u 分）"
 
-#: core.c:1283
+#: core.c:1305
 #, c-format
 msgid "(%u seconds left)"
 msgstr "（残り%u 秒）"
 
-#: core.c:1288
+#: core.c:1310
 #, fuzzy, c-format
 msgid "in %u hours"
 msgstr "%u 時間"
 
-#: core.c:1290
+#: core.c:1312
 #, fuzzy, c-format
 msgid "in %u minutes"
 msgstr "%u 分"
 
-#: core.c:1292
+#: core.c:1314
 #, fuzzy, c-format
 msgid "in %u seconds"
 msgstr "%u 秒"
 
-#: core.c:1308
+#: core.c:1330
 msgid "Starting benchmark"
 msgstr "ベンチマークを開始しています"
 
-#: core.c:1327
+#: core.c:1349
 msgid "an error occurred while starting benchmark"
 msgstr "ベンチマークの開始中にエラーが発生しました"
 
-#: core.c:1344
+#: core.c:1366
 msgid "Finding CPU package in fallback mode"
 msgstr "fallbackモードでCPUパッケージの検索中"
 
-#: core.c:1366
+#: core.c:1388
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "このCPUソケットはデータベースにありませんでした ==> %s、コードネーム: %s"
 
-#: core.c:1385
+#: core.c:1407
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "fallbackモードでCPU倍率を計算しています"
 
-#: core.c:1412
+#: core.c:1434
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "fallbackモードでマザーボードの情報を取得しています"
 
-#: core.c:1421
+#: core.c:1443
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "マザーボードの情報の取得に失敗しました（fallbackモード）"
 
-#: core.c:1473
+#: core.c:1482
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallbackモードでCPUの温度を取得しています"
 
-#: core.c:1514
+#: core.c:1527
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPUの温度の取得に失敗しました（fallbackモード）"
 
-#: core.c:1527
+#: core.c:1540
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallbackモードでCPUの電圧を取得しています"
 
-#: core.c:1540
+#: core.c:1553
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPUの電圧の取得に失敗しました（fallbackモード）"
 
-#: core.c:1555
+#: core.c:1568
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallbackモードでCPUのクロック倍率を取得しています"
 
-#: core.c:1563
+#: core.c:1576
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPUのクロック倍率の取得に失敗しました（fallbackモード）"
 
@@ -281,36 +278,36 @@ msgstr "CPUのクロック倍率の取得に失敗しました（fallbackモー�
 msgid "request_handler: case %i not handled"
 msgstr "要求されたハンドラー: %iは処理されません"
 
-#: gui_gtk.c:60
+#: gui_gtk.c:61
 msgid "Starting GTK GUI…"
 msgstr "GTK GUIを開始しています…"
 
-#: gui_gtk.c:68
+#: gui_gtk.c:69
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilderからのUIのインポートに失敗しました"
 
-#: gui_gtk.c:522
+#: gui_gtk.c:525
 msgid "Connected to daemon"
 msgstr "デーモンに接続しました"
 
-#: gui_gtk.c:524
+#: gui_gtk.c:527
 msgid "No polkit authentication agent found"
 msgstr "Polkit 認証エージェントが見つかりませんでした"
 
-#: gui_gtk.c:528
+#: gui_gtk.c:531
 msgid "Ask password to start daemon in background"
 msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要です"
 
-#: gui_gtk.c:534
+#: gui_gtk.c:537
 msgid "Start daemon"
 msgstr "デーモンを開始する"
 
-#: gui_gtk.c:543 gui_gtk.c:626 tui_ncurses.c:532
+#: gui_gtk.c:546 gui_gtk.c:629 tui_ncurses.c:532
 #, c-format
 msgid "Core #%i"
 msgstr "コア #%i"
 
-#: gui_gtk.c:623
+#: gui_gtk.c:626
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -359,7 +356,7 @@ msgstr "ファミリー"
 msgid "Ext. Family"
 msgstr "拡張ファミリー"
 
-#: main.c:68 main.c:105 main.c:116 main.c:150
+#: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "モデル"
 
@@ -395,7 +392,7 @@ msgstr "周波数"
 msgid "Bus Speed"
 msgstr "バススピード"
 
-#: main.c:78 main.c:152
+#: main.c:78 main.c:153
 msgid "Usage"
 msgstr "使用量"
 
@@ -562,69 +559,75 @@ msgstr "カード %i"
 msgid "Driver"
 msgstr "ドライバー"
 
-#: main.c:151
+#: main.c:150
+#, fuzzy
+#| msgid "Version"
+msgid "UMD Version"
+msgstr "バージョン"
+
+#: main.c:152
 msgid "Temperature"
 msgstr "温度"
 
-#: main.c:153
+#: main.c:154
 #, fuzzy
 #| msgid "Memory"
 msgid "Memory Used"
 msgstr "メモリー"
 
-#: main.c:154
+#: main.c:155
 msgid "GPU clock"
 msgstr "GPU クロック"
 
-#: main.c:155
+#: main.c:156
 msgid "Memory clock"
 msgstr "メモリークロック"
 
-#: main.c:156
+#: main.c:157
 msgid "Core Voltage"
 msgstr "コア電圧"
 
-#: main.c:157
+#: main.c:158
 msgid "Power Avg"
 msgstr "平均電圧"
 
-#: main.c:161
+#: main.c:162
 msgid "Bench"
 msgstr "ベンチマーク"
 
-#: main.c:162
+#: main.c:163
 msgid "Prime numbers (slow)"
 msgstr "素数（スロー）"
 
-#: main.c:163
+#: main.c:164
 msgid "Prime numbers (fast)"
 msgstr "素数（ファースト）"
 
-#: main.c:166
+#: main.c:167
 msgid "Score"
 msgstr "スコア"
 
-#: main.c:167
+#: main.c:168
 msgid "Run"
 msgstr "実行"
 
-#: main.c:170
+#: main.c:171
 msgid "Parameters"
 msgstr "パラメータ"
 
-#: main.c:171
+#: main.c:172
 msgid "Duration"
 msgstr "デュレーション"
 
-#: main.c:172
+#: main.c:173
 msgid "Threads"
 msgstr "スレッド"
 
-#: main.c:175 main.c:180
+#: main.c:176 main.c:181
 msgid "About"
 msgstr "CPU-Xについて"
 
-#: main.c:177
+#: main.c:178
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -633,169 +636,173 @@ msgstr ""
 "%s はCPUやマザーボードなどの情報を\n"
 "収集する無料のソフトウェアです。"
 
-#: main.c:181
+#: main.c:182
 #, c-format
 msgid "Version %s"
 msgstr "バージョン %s"
 
-#: main.c:182
+#: main.c:183
 #, c-format
 msgid "Author: %s"
 msgstr "作者: %s"
 
-#: main.c:183
+#: main.c:184
 #, c-format
 msgid "Site: %s"
 msgstr "サイト: %s"
 
-#: main.c:185
+#: main.c:186
 msgid "License"
 msgstr "ライセンス"
 
-#: main.c:188
+#: main.c:189
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "このソフトウェアは%sのもとで配布されています"
 
-#: main.c:190 main.c:431
+#: main.c:191 main.c:434
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "このプログラムは全て自己責任で使用してください"
 
-#: main.c:257
+#: main.c:258
 msgid "Dumping data…"
 msgstr "\"データをダンプしています…"
 
-#: main.c:299
+#: main.c:300
 msgid "Freeing memory"
 msgstr "フリーなメモリ"
 
-#: main.c:327
+#: main.c:328
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "グラフィカルユーザインタフェース（GUI）を開始する（デフォルト）"
 
-#: main.c:328
+#: main.c:329
 msgid "Start text-based user interface (TUI)"
 msgstr "テキストユーザインタフェース（TUI）を開始する"
 
-#: main.c:329
+#: main.c:330
 msgid "Dump all data on standard output and exit"
 msgstr "全てのデータを取得し、標準出力して終了します"
 
-#: main.c:330
+#: main.c:331
 msgid "Run embedded command dmidecode and exit"
 msgstr "埋め込みコマンド dmidecode を実行して終了します"
 
-#: main.c:331
+#: main.c:332
 msgid "Run embedded command bandwidth and exit"
 msgstr "埋め込みコマンド bandwidth を実行して終了します"
 
-#: main.c:332
+#: main.c:333
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "更新の間隔を設定します（秒）"
 
-#: main.c:333
+#: main.c:334
 msgid "Set default tab (integer)"
 msgstr "デフォルトのタブを設定します（整数）"
 
-#: main.c:334
+#: main.c:335
 msgid "Select CPU core to monitor (integer)"
 msgstr "モニタリングするCPUコアを選択します（整数）"
 
-#: main.c:335
+#: main.c:336
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数）"
 
-#: main.c:336
+#: main.c:337
 msgid "Start and connect to daemon"
 msgstr "デーモンを開始、接続します"
 
-#: main.c:337
+#: main.c:338
 msgid "Verbose output"
 msgstr "詳細な出力を有効化します"
 
-#: main.c:338
+#: main.c:339
 msgid "Print help and exit"
 msgstr "ヘルプメッセージを表示して終了します"
 
-#: main.c:339
+#: main.c:340
 msgid "Print version and exit"
 msgstr "バージョンを表示して終了します"
 
-#: main.c:340
+#: main.c:341
+msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgstr ""
+
+#: main.c:342
 msgid "Disable colored output"
 msgstr "色のついた出力を無効化します"
 
-#: main.c:341
+#: main.c:343
 msgid "Print information for debugging"
 msgstr "デバッグのための情報を表示します"
 
-#: main.c:342
+#: main.c:344
 msgid "Print required information to paste in an issue"
 msgstr "Issueに貼り付けるために必要な情報を表示します"
 
-#: main.c:343
+#: main.c:345
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "NCursesモードのキーマッピングを設定します(a[rrows]|e[macs]|i[nverted-T]|"
 "v[im])"
 
-#: main.c:354
+#: main.c:356
 msgid "Add default command line arguments"
 msgstr "デフォルトのコマンドライン引数を追加します"
 
-#: main.c:355
+#: main.c:357
 msgid "Enforce the bus clock"
 msgstr "バスクロックを適用する"
 
-#: main.c:356
+#: main.c:358
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "libcpuidから取得したCPUクロックを無視します"
 
-#: main.c:357
+#: main.c:359
 msgid "Read CPUID raw data from a given file"
 msgstr "生のCPUIDデータを与えられたファイルから読み込みます"
 
-#: main.c:358
+#: main.c:360
 msgid "Only print a message if CPU is not present in the database"
 msgstr "CPUがデータベースに存在しない場合のみメッセージを出力します"
 
-#: main.c:382
+#: main.c:384
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "使い方: %s 表示（オプション）\n"
 
-#: main.c:383
+#: main.c:385
 msgid "Available DISPLAY:"
 msgstr "利用可能な表示方法:"
 
-#: main.c:392
+#: main.c:394
 msgid "Available OPTIONS:"
 msgstr "利用可能なオプション:"
 
-#: main.c:400
+#: main.c:402
 msgid "Influenceable environment variables:"
 msgstr "影響力のある環境変数:"
 
-#: main.c:430
+#: main.c:433
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "これはフリーソフトウェアです: 自由に変更して再配布することができます。"
 
-#: main.c:432
+#: main.c:435
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s ライセンスを見てください: <%s>\n"
 
-#: main.c:439
+#: main.c:442
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s バージョン: %s"
 
-#: main.c:455
+#: main.c:458
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "wordexpの呼び出しに失敗しました（%i）"
 
-#: main.c:641
+#: main.c:649
 #, c-format
 msgid ""
 "\n"
@@ -806,11 +813,11 @@ msgstr ""
 "%s何かが間違っています! %s はシグナル %d (%s)を受け取ってクラッシュしまし"
 "た。%s"
 
-#: main.c:656
+#: main.c:664
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "ここで新しいIssueを開いてバックトレースを貼り付けることができます。"
 
-#: main.c:684
+#: main.c:692
 msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
@@ -939,38 +946,48 @@ msgstr ""
 "\n"
 "終了するには何かキを押してください\n"
 
-#: util.c:171
+#: util.c:198
+#, c-format
+msgid "cannot find unit in '%s' string at position %i"
+msgstr "「%s」文字列が%iのにユニットが見つかりません"
+
+#: util.c:210
+#, c-format
+msgid "String '%s' is too long, truncating…"
+msgstr ""
+
+#: util.c:287
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
 msgstr ""
 
-#: util.c:201
+#: util.c:317
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
 msgstr ""
 
-#: util.c:259 util.c:319
+#: util.c:375 util.c:435
 #, c-format
 msgid "failed to open %s directory"
 msgstr "ディレクトリ %s を開けませんでした"
 
-#: util.c:332
+#: util.c:448
 msgid "an error occurred while compiling regex"
 msgstr ""
 
-#: util.c:458
+#: util.c:574
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr ""
 
-#: util.c:461
+#: util.c:577
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec: 認証を取得できませんでした（認証されていません）"
 
-#: util.c:464
+#: util.c:580
 msgid "pkexec: command not found"
 msgstr "pkexec: コマンドが見つかりませんでした"
 
-#: util.c:467
+#: util.c:583
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: 予期しないエラーコード"
 
