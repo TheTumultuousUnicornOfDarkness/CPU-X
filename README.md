@@ -107,4 +107,5 @@ Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new/choose) and f
 
 ## Translate CPU-X
 
-If you want to translate CPU-X in your native tongue, please visit the [Weblate page](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget).
+If you want to translate CPU-X in your native tongue, please visit the [Weblate page](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget).  
+POT file is updated on each changes thanks to [Update POT file workflow](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22Update+POT+file%22).
