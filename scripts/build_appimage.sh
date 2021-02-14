@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Functions
 die() {
 	echo "[FATAL] $*"

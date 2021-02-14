@@ -1,15 +1,18 @@
 #!/bin/bash
 # This script is used to test the CPU Technology database
 
-TESTS_DIR=$1
+set -euo pipefail
+
 CR="\033[0m"     # Color reset
 CB="\033[1m"     # Color bold
 CBR="\033[1;31m" # Color bold red
 CBG="\033[1;32m" # Color bold green
 
-if [[ $# -lt 1 ]] || [[ ! -d "$TESTS_DIR" ]]; then
+if [[ $# -lt 1 ]]; then
 	echo "$0: you must provide the libcpuid 'tests' directory."
 	exit 1
+else
+	TESTS_DIR="$1"
 fi
 
 count=0

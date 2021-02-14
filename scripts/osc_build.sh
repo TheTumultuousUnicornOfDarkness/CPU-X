@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 die() {
 	echo "Error: $*"
 	exit 1

@@ -1,6 +1,8 @@
 #!/bin/bash
 # This script is used to create archives for releases
 
+set -euo pipefail
+
 GIT_DIR="$(git rev-parse --show-toplevel)"
 VER=$(git describe --tags --exclude continuous | cut -d- -f1)
 

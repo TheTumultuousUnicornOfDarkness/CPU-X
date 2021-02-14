@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 CPUX_DIR="$(git rev-parse --show-toplevel)/src/dmidecode"
 DMIDECODE_DIR="/tmp/dmidecode"
 HASH_FILE="$CPUX_DIR/.hash"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -euo pipefail
 source /etc/os-release
 
 if [[ $# -lt 2 ]]; then
@@ -14,8 +15,13 @@ fi
 
 BUILD_TYPE="$1"
 SRC_DIR="$2"
-DST_DIR="$3"
-[[ -z "$DST_DIR" ]] && APPIMAGE=0 || APPIMAGE=1
+if [[ $# -ge 3 ]]; then
+	DST_DIR="$3"
+	APPIMAGE=1
+else
+	DST_DIR=""
+	APPIMAGE=0
+fi
 
 case "$VERSION_ID" in
 	"16.04") PACKAGES=('libncursesw5-dev' 'libncursesw5' 'libcpuid15-git' 'libpci3' 'libglfw3-dev' 'libglfw3' 'libprocps4');;
