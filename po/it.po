@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-02-13 18:35+0000\n"
-"PO-Revision-Date: 2021-01-18 19:32+0000\n"
+"PO-Revision-Date: 2021-02-14 11:02+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -90,16 +90,14 @@ msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Nessun kernel driver in uso per la scheda grafica in %s"
 
 #: core.c:727
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Il tuo driver della GPU è sconosciuto: %s"
+msgstr "Il driver (kernel) della GPU è sconosciuto: %s"
 
 #: core.c:780
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "Il tuo driver della GPU è sconosciuto: %s"
+msgstr "Il driver (user mode) della GPU è sconosciuto: %s"
 
 #: core.c:803
 msgid "Finding devices"
@@ -556,10 +554,8 @@ msgid "Driver"
 msgstr "Driver"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "Versione"
+msgstr "Versione UMD"
 
 #: main.c:152
 msgid "Temperature"
@@ -723,6 +719,7 @@ msgstr "Stampa il numero di versione ed esci"
 #: main.c:341
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
+"Stampa i valori CPUID in decimale (esadecimale per impostazione predefinita)"
 
 #: main.c:342
 msgid "Disable colored output"
