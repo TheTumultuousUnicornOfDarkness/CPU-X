@@ -64,6 +64,7 @@
 #endif
 
 #if HAS_LIBGLFW
+# include <GL/gl.h>
 # include <GLFW/glfw3.h>
 #endif
 
