@@ -56,7 +56,7 @@
 #endif
 
 #if HAS_LIBPCI
-# include "pci/pci.h"
+# include <pci/pci.h>
 #endif
 
 #if HAS_LIBPROCPS
