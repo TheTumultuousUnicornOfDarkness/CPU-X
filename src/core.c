@@ -749,13 +749,33 @@ static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_d
 	int err = 0;
 
 #if HAS_LIBGLFW
-	const char *gl_ver = NULL, *umd_ver = NULL;
+	const char *description, *gl_ver = NULL, *umd_ver = NULL;
 
-	glfwInit();
+	if(glfwInit() == GLFW_FALSE)
+	{
+		err = glfwGetError(&description);
+		goto clean;
+	}
+
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+	if((err = glfwGetError(&description)) != GLFW_NO_ERROR)
+		goto clean;
+
 	GLFWwindow *win = glfwCreateWindow(640, 480, "", NULL, NULL);
+	if((err = glfwGetError(&description)) != GLFW_NO_ERROR)
+		goto clean;
+
 	glfwMakeContextCurrent(win);
+	if((err = glfwGetError(&description)) != GLFW_NO_ERROR)
+		goto clean;
+
 	gl_ver = (const char*) glGetString(GL_VERSION);
+	if(gl_ver == NULL)
+	{
+		err = glGetError() == GL_NO_ERROR ? -1 : (int) glGetError();
+		description = "glGetString";
+		goto clean;
+	}
 
 	switch(gpu_driver)
 	{
@@ -776,11 +796,13 @@ static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_d
 	if(umd_ver != NULL)
 		snprintf(user_mode_driver, MAXSTR, "%s", umd_ver);
 	else
-	{
 		MSG_WARNING(_("Your GPU user mode driver is unknown: %s"), gl_ver);
-		err = 1;
-	}
-	glfwDestroyWindow(win);
+
+clean:
+	if(err)
+		MSG_ERROR(_("failed to call GLFW (%i): %s"), err, description);
+	if(win != NULL)
+		glfwDestroyWindow(win);
 #else
 	UNUSED(gpu_driver);
 #endif /* HAS_LIBGLFW */
