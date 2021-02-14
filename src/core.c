@@ -750,6 +750,7 @@ static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_d
 
 #if HAS_LIBGLFW
 	const char *description, *gl_ver = NULL, *umd_ver = NULL;
+	GLFWwindow *win = NULL;
 
 	if(glfwInit() == GLFW_FALSE)
 	{
@@ -761,7 +762,7 @@ static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_d
 	if((err = glfwGetError(&description)) != GLFW_NO_ERROR)
 		goto clean;
 
-	GLFWwindow *win = glfwCreateWindow(640, 480, "", NULL, NULL);
+	win = glfwCreateWindow(640, 480, "", NULL, NULL);
 	if((err = glfwGetError(&description)) != GLFW_NO_ERROR)
 		goto clean;
 
