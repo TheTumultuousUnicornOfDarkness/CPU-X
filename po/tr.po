@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-02-14 11:02+0000\n"
-"PO-Revision-Date: 2021-02-14 11:02+0000\n"
+"PO-Revision-Date: 2021-02-15 11:50+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -111,10 +111,9 @@ msgid "Your GPU user mode driver is unknown: %s"
 msgstr "GPU kullanıcı modu sürücünüz bilinmiyor: %s"
 
 #: core.c:803
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "wordexp çağrılamadı (%i)"
+msgstr "GLFW çağrılamadı (%i): %s"
 
 #: core.c:826
 msgid "Finding devices"
