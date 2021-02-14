@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-02-13 18:35+0000\n"
+"POT-Creation-Date: 2021-02-14 11:02+0000\n"
 "PO-Revision-Date: 2021-01-18 19:32+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -100,176 +100,182 @@ msgstr "Ingen kjernedriver i bruk for grafikkort på stien %s"
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Ukjent sjermkortdriver: %s"
 
-#: core.c:780
+#: core.c:799
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Ukjent sjermkortdriver: %s"
 
 #: core.c:803
+#, fuzzy, c-format
+#| msgid "failed to call wordexp (%i)"
+msgid "failed to call GLFW (%i): %s"
+msgstr "Klarte ikke å kalle wordexp (%i)"
+
+#: core.c:826
 msgid "Finding devices"
 msgstr "Finner enheter"
 
-#: core.c:815
+#: core.c:838
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Hopp over søk etter enheter (feil tilganger på %s-enhet)"
 
-#: core.c:844
+#: core.c:867
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU-tilvirker er ukjent: %s (0x%X)"
 
-#: core.c:862
+#: core.c:885
 msgid "failed to find chipset vendor and model"
 msgstr "klarte ikke å finne brikkesetttilverker eller modell"
 
-#: core.c:864
+#: core.c:887
 msgid "failed to find graphic card vendor and model"
 msgstr "klarte ikke å finne grafikkorttilvirker eller modell"
 
-#: core.c:908
+#: core.c:931
 msgid "Retrieving GPU clocks"
 msgstr "Henter GPU-klokker"
 
-#: core.c:938
+#: core.c:961
 msgid "None"
 msgstr "Ingen"
 
-#: core.c:1068
+#: core.c:1091
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Driver for GPU %u rapporterer ikke frekvenser"
 
-#: core.c:1104
+#: core.c:1127
 msgid "failed to retrieve GPU clocks"
 msgstr "klarte ikke å hente GPU-klokker"
 
-#: core.c:1121
+#: core.c:1144
 msgid "Identifying running system"
 msgstr "Identifiserer kjørende system"
 
-#: core.c:1124
+#: core.c:1147
 msgid "failed to identify running system"
 msgstr "klarte ikke å identifisere kjørende system"
 
-#: core.c:1165
+#: core.c:1188
 msgid "Calling libprocps"
 msgstr "Kaller libprocps"
 
-#: core.c:1191
+#: core.c:1214
 msgid "Calling libstatgrab"
 msgstr "Kaller libstatgrab"
 
-#: core.c:1226
+#: core.c:1249
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dager, %i timer, %i minutter, %i sekunder"
 
-#: core.c:1282
+#: core.c:1305
 msgid "Updating benchmark status"
 msgstr "Oppdaterer ytelsesteststatus"
 
-#: core.c:1283 tui_ncurses.c:809
+#: core.c:1306 tui_ncurses.c:809
 #, c-format
 msgid "%u mins"
 msgstr "%u minutter"
 
-#: core.c:1285 core.c:1286
+#: core.c:1308 core.c:1309
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.c:1290 core.c:1291
+#: core.c:1313 core.c:1314
 msgid "Not started"
 msgstr "Ikke startet"
 
-#: core.c:1296
+#: core.c:1319
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.c:1301
+#: core.c:1324
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u timer gjenstår)"
 
-#: core.c:1303
+#: core.c:1326
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutter gjenstår)"
 
-#: core.c:1305
+#: core.c:1328
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekunder gjenstår)"
 
-#: core.c:1310
+#: core.c:1333
 #, c-format
 msgid "in %u hours"
 msgstr "om %u timer"
 
-#: core.c:1312
+#: core.c:1335
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u minutter"
 
-#: core.c:1314
+#: core.c:1337
 #, c-format
 msgid "in %u seconds"
 msgstr "om %u sekunder"
 
-#: core.c:1330
+#: core.c:1353
 msgid "Starting benchmark"
 msgstr "Starter ytelsestest"
 
-#: core.c:1349
+#: core.c:1372
 msgid "an error occurred while starting benchmark"
 msgstr "En feil inntraff under oppstart av ytelsestest"
 
-#: core.c:1366
+#: core.c:1389
 msgid "Finding CPU package in fallback mode"
 msgstr "Finner prosessor-pakke i tilbakefallsmodus"
 
-#: core.c:1388
+#: core.c:1411
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din prosessor-sokkel finnes ikke i databasen ➜ %s, kodenavn: %s"
 
-#: core.c:1407
+#: core.c:1430
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Regner ut prosessor-multiplikatorer i tilbakefallsmodus"
 
-#: core.c:1434
+#: core.c:1457
 #, fuzzy
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Henter hovedkortinformasjon i tilbakefallsmodus"
 
-#: core.c:1443
+#: core.c:1466
 #, fuzzy
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Klarte ikke å hente hovedkortinformasjon (tilbakefallsmodus)"
 
-#: core.c:1482
+#: core.c:1505
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Henter prosessor-temperatur i tilbakefallsmodus"
 
-#: core.c:1527
+#: core.c:1550
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-temperatur (tilbakefallsmodus)"
 
-#: core.c:1540
+#: core.c:1563
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Henter prosessor-spenning i tilbakefallsmodus"
 
-#: core.c:1553
+#: core.c:1576
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-spenning (tilbakefallsmodus)"
 
-#: core.c:1568
+#: core.c:1591
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Henter prosessor-frekvens i tilbakefallsmodus"
 
-#: core.c:1576
+#: core.c:1599
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-frekvens (tilbakefallsmodus)"
 
