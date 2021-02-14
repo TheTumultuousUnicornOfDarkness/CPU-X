@@ -805,6 +805,7 @@ clean:
 		glfwDestroyWindow(win);
 #else
 	UNUSED(gpu_driver);
+	UNUSED(user_mode_driver);
 #endif /* HAS_LIBGLFW */
 
 	return err;
