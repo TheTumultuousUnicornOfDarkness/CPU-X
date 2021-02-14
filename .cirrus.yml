@@ -10,7 +10,7 @@ task:
 
   install_script:
     - pkg update -f
-    - pkg install -y cmake ninja pkgconf gettext nasm ncurses libcpuid pciutils libstatgrab
+    - pkg install -y cmake ninja pkgconf gettext nasm ncurses libcpuid pciutils glfw libstatgrab
 
   build_script:
     - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0
