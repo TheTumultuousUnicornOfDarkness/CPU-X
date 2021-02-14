@@ -75,7 +75,7 @@ endif(WITH_LIBPCI)
 # Libglfw
 if(WITH_LIBGLFW)
 	pkg_check_modules(LIBGL gl)
-	pkg_check_modules(LIBGLFW glfw3)
+	pkg_check_modules(LIBGLFW glfw3>=3.3)
 	if(LIBGL_FOUND AND LIBGLFW_FOUND)
 		include_directories(${LIBGL_INCLUDE_DIRS} ${LIBGLFW_INCLUDE_DIRS})
 		link_directories(${LIBGL_LIBRARY_DIRS} ${LIBGLFW_LIBRARY_DIRS})
