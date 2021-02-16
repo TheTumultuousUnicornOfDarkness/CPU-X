@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-02-14 11:02+0000\n"
-"PO-Revision-Date: 2021-02-07 00:50+0000\n"
+"PO-Revision-Date: 2021-02-17 08:50+0000\n"
 "Last-Translator: Umio Yasuno <coelacanth_dream@pm.me>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.5\n"
 
 #: core.c:217
 msgid "Finding CPU technology"
@@ -412,7 +412,7 @@ msgstr "L1 データ"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr "L1 Inst."
+msgstr "L1 命令"
 
 #: main.c:83
 msgid "Level 2"
@@ -595,7 +595,7 @@ msgstr "コア電圧"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr "平均電圧"
+msgstr "平均電力"
 
 #: main.c:162
 msgid "Bench"
@@ -732,7 +732,7 @@ msgstr "バージョンを表示して終了します"
 
 #: main.c:341
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
+msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
 
 #: main.c:342
 msgid "Disable colored output"
