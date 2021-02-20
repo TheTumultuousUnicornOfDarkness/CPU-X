@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-02-14 11:02+0000\n"
-"PO-Revision-Date: 2021-01-09 14:41+0000\n"
+"PO-Revision-Date: 2021-02-23 09:50+0000\n"
 "Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5\n"
 
 #: core.c:217
 msgid "Finding CPU technology"
@@ -96,22 +96,19 @@ msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 
 #: core.c:727
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Unbekannter GPU-Treiber: %s"
+msgstr "Ihr GPU-Kerneltreiber ist unbekannt: %s"
 
 #: core.c:799
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "Unbekannter GPU-Treiber: %s"
+msgstr "Ihr GPU-Benutzermodustreiber ist unbekannt: %s"
 
 #: core.c:803
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "Fehler beim Aufruf von libcpuid (%s)"
+msgstr "GLFW konnte nicht aufgerufen werden (%i): %s"
 
 #: core.c:826
 msgid "Finding devices"
@@ -455,7 +452,7 @@ msgstr "Test"
 
 #: main.c:102 main.c:103
 msgid "Motherboard"
-msgstr "Mutterplatine"
+msgstr "Motherboard"
 
 #: main.c:104
 msgid "Manufacturer"
@@ -564,20 +561,16 @@ msgid "Driver"
 msgstr "Treiber"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "Version"
+msgstr "UMD-Version"
 
 #: main.c:152
 msgid "Temperature"
 msgstr "Temperatur"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Memory"
 msgid "Memory Used"
-msgstr "Speicher"
+msgstr "Verwendeter Speicher"
 
 #: main.c:155
 msgid "GPU clock"
@@ -759,7 +752,7 @@ msgstr "Bustaktung erzwingen"
 
 #: main.c:358
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Ignorieren der von libcpuid gemeldeten CPU-Frequenz"
 
 #: main.c:359
 msgid "Read CPUID raw data from a given file"
@@ -1051,28 +1044,22 @@ msgstr "TB"
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #~ msgid "Exiting %s"
 #~ msgstr "%s beenden"
