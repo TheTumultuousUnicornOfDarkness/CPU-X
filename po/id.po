@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-02-14 11:02+0000\n"
-"PO-Revision-Date: 2021-02-20 05:50+0000\n"
-"Last-Translator: Syahmin Sukhairi <syahmin@gmail.com>\n"
+"PO-Revision-Date: 2021-02-23 09:50+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
 "Language: id\n"
@@ -28,15 +28,12 @@ msgid "Finding CPU technology"
 msgstr "Menemukan Teknologi CPU"
 
 #: core.c:236
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"CPU Anda tidak termasuk dalam basis data ==> %s, model: %i, model luar: %i, "
+"CPU Anda tidak ada dalam basis data ==> %s, model: %i, model luar: %i, "
 "keluarga luar: %i"
 
 #: core.c:248
@@ -98,16 +95,14 @@ msgstr ""
 "Tidak ada drivel kernel yang digunakan oleh kartu grafis pada alamat %s"
 
 #: core.c:727
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "GPU driver Anda tidak diketahui: %s"
+msgstr "Driver kernel GPU Anda tidak diketahui: %s"
 
 #: core.c:799
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "GPU driver Anda tidak diketahui: %s"
+msgstr "Driver mode pengguna GPU Anda tidak diketahui: %s"
 
 #: core.c:803
 #, c-format
@@ -238,10 +233,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Mencari paket CPU di mode fallback"
 
 #: core.c:1411
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Soket CPU Anda tidak ada di database ==> %s, codename: %s"
+msgstr "Soket CPU Anda tidak ada dalam database ==> %s, nama kode: %s"
 
 #: core.c:1430
 msgid "Calculating CPU multipliers in fallback mode"
@@ -372,7 +366,7 @@ msgstr "Model Ekstensi"
 
 #: main.c:70
 msgid "Temp."
-msgstr "Suhu"
+msgstr "Temp."
 
 #: main.c:71
 msgid "Stepping"
@@ -427,7 +421,6 @@ msgid "Socket(s)"
 msgstr "Soket"
 
 #: main.c:87
-#, fuzzy
 msgid "Core(s)"
 msgstr "Inti"
 
@@ -547,11 +540,11 @@ msgstr "Dalam cache"
 
 #: main.c:139
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: main.c:140
 msgid "Swap"
-msgstr ""
+msgstr "Tukar"
 
 #: main.c:143
 msgid "Graphics"
@@ -567,10 +560,8 @@ msgid "Driver"
 msgstr "Driver"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "Versi"
+msgstr "Versi UMD"
 
 #: main.c:152
 msgid "Temperature"
@@ -671,7 +662,7 @@ msgstr "Program ini hadir dengan TANPA JAMINAN"
 
 #: main.c:258
 msgid "Dumping data…"
-msgstr ""
+msgstr "Membuang data…"
 
 #: main.c:300
 msgid "Freeing memory"
@@ -687,35 +678,35 @@ msgstr "Memulai antarmuka pengguna berbasis teks (TUI)"
 
 #: main.c:330
 msgid "Dump all data on standard output and exit"
-msgstr ""
+msgstr "Buang semua data pada keluaran standar dan keluar"
 
 #: main.c:331
 msgid "Run embedded command dmidecode and exit"
-msgstr ""
+msgstr "Jalankan perintah dmidecode dan keluar"
 
 #: main.c:332
 msgid "Run embedded command bandwidth and exit"
-msgstr ""
+msgstr "Jalankan perintah bandwidth dan keluar"
 
 #: main.c:333
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr ""
+msgstr "Atur waktu khusus antara dua penyegaran (dalam detik)"
 
 #: main.c:334
 msgid "Set default tab (integer)"
-msgstr ""
+msgstr "Setel tab default (integer)"
 
 #: main.c:335
 msgid "Select CPU core to monitor (integer)"
-msgstr ""
+msgstr "Pilih inti CPU untuk dipantau (integer)"
 
 #: main.c:336
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr ""
+msgstr "Setel pengujian bandwidth khusus untuk kecepatan cache CPU (integer)"
 
 #: main.c:337
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Mulai dan sambungkan daemon"
 
 #: main.c:338
 msgid "Verbose output"
@@ -731,7 +722,7 @@ msgstr "Cetak versi dan keluar"
 
 #: main.c:341
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
+msgstr "Cetak nilai desimal CPUID (defaultnya adalah heksadesimal)"
 
 #: main.c:342
 msgid "Disable colored output"
@@ -739,56 +730,60 @@ msgstr "Nonaktifkan keluaran berwarna"
 
 #: main.c:343
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Cetak informasi untuk debugging"
 
 #: main.c:344
 msgid "Print required information to paste in an issue"
-msgstr ""
+msgstr "Cetak informasi yang diperlukan untuk ditempelkan dalam issue"
 
 #: main.c:345
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Setel pemetaan kunci untuk mode NCurses (a [baris] | e [macs] | i [nverted-T]"
+" | v [im])"
 
 #: main.c:356
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Tambahkan argumen baris perintah default"
 
 #: main.c:357
 msgid "Enforce the bus clock"
-msgstr ""
+msgstr "Terapkan jam bus"
 
 #: main.c:358
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Abaikan frekuensi CPU yang dilaporkan oleh libcpuid"
 
 #: main.c:359
 msgid "Read CPUID raw data from a given file"
-msgstr ""
+msgstr "Baca data mentah CPUID dari file tertentu"
 
 #: main.c:360
 msgid "Only print a message if CPU is not present in the database"
-msgstr ""
+msgstr "Hanya mencetak pesan jika CPU tidak ada dalam basisdata"
 
 #: main.c:384
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
+msgstr "Pengunaan: %s Tampilan [Opsi]\n"
 
 #: main.c:385
 msgid "Available DISPLAY:"
-msgstr ""
+msgstr "TAMPILAN yang tersedia:"
 
 #: main.c:394
 msgid "Available OPTIONS:"
-msgstr ""
+msgstr "OPSI yang tersedia:"
 
 #: main.c:402
 msgid "Influenceable environment variables:"
-msgstr ""
+msgstr "Variabel lingkungan yang dapat dipengaruhi:"
 
 #: main.c:433
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
+"Ini adalah perangkat lunak gratis: Anda bebas mengubah dan "
+"mendistribusikannya kembali."
 
 #: main.c:435
 #, c-format
@@ -833,50 +828,55 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"KESALAHAN FATAL: database terminfo tidak dapat ditemukan (coba atur variabel "
+"lingkungan TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Gagal menyetel terminal %s (err=%i); kembali ke %s"
 
 #: tui_ncurses.c:300
 msgid "Window is too small!\n"
-msgstr ""
+msgstr "Jendela terlalu kecil!\n"
 
 #: tui_ncurses.c:308
 msgid "Press 'h' to see help.\n"
-msgstr ""
+msgstr "Tekan 'h' untuk melihat bantuan.\n"
 
 #: tui_ncurses.c:460
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "Selamat datang di %s bantuan NCurses!\n"
 
 #: tui_ncurses.c:461
 msgid "This help describes how to use this Text-based User Interface.\n"
 msgstr ""
+"Bantuan ini menjelaskan cara menggunakan Antarmuka Pengguna berbasis Teks.\n"
 
 #: tui_ncurses.c:463
 msgid ""
 "\n"
 "Global keys:\n"
 msgstr ""
+"\n"
+"Kunci global:\n"
 
 #: tui_ncurses.c:464
 msgid "\tPress 'left' key to switch in left tab.\n"
-msgstr ""
+msgstr "\tTekan tombol 'kiri' untuk beralih di tab kiri.\n"
 
 #: tui_ncurses.c:465
 msgid "\tPress 'right' key to switch in right tab.\n"
-msgstr ""
+msgstr "\tTekan tombol 'kanan' untuk beralih di tab kanan.\n"
 
 #: tui_ncurses.c:466
 msgid "\tPress 'h' key to see this help.\n"
-msgstr ""
+msgstr "\tTekan tombol 'h' untuk melihat bantuan ini.\n"
 
 #: tui_ncurses.c:467
 msgid "\tPress 'q' key to exit.\n"
-msgstr ""
+msgstr "\tTekan 'q' untuk keluar.\n"
 
 #: tui_ncurses.c:469
 msgid ""
@@ -889,60 +889,74 @@ msgstr ""
 #: tui_ncurses.c:470
 msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgstr ""
+"\tTekan tombol 'bawah' untuk mengurangi nomor inti yang akan dipantau.\n"
 
 #: tui_ncurses.c:471
 msgid "\tPress 'up' key to increase core number to monitor.\n"
-msgstr ""
+msgstr "\tTekan tombol 'atas' untuk menambah nomor inti yang akan dipantau.\n"
 
 #: tui_ncurses.c:473
 msgid ""
 "\n"
 "Caches tab:\n"
 msgstr ""
+"\n"
+"Tab cache:\n"
 
 #: tui_ncurses.c:474
 msgid "\tPress 'down' key to switch to previous test.\n"
-msgstr ""
+msgstr "\tTekan tombol 'bawah' untuk beralih ke tes sebelumnya.\n"
 
 #: tui_ncurses.c:475
 msgid "\tPress 'up' key' to switch to next test.\n"
-msgstr ""
+msgstr "\tTekan tombol 'atas' untuk beralih ke tes berikutnya.\n"
 
 #: tui_ncurses.c:477
 msgid ""
 "\n"
 "Bench tab:\n"
 msgstr ""
+"\n"
+"Tab Pengujian:\n"
 
 #: tui_ncurses.c:478
 msgid "\tPress 'down' key to decrement benchmark duration.\n"
-msgstr ""
+msgstr "\tTekan tombol 'bawah' untuk mengurangi durasi pengujian.\n"
 
 #: tui_ncurses.c:479
 msgid "\tPress 'up' key to increment benchmark duration.\n"
-msgstr ""
+msgstr "\tTekan tombol 'atas' untuk menambah durasi pengujian.\n"
 
 #: tui_ncurses.c:480
 msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgstr ""
+"\tTekan tombol 'next page' untuk mengurangi jumlah thread yang akan "
+"digunakan.\n"
 
 #: tui_ncurses.c:481
 msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgstr ""
+"\tTekan tombol 'previous page' untuk menambah jumlah thread yang akan "
+"digunakan.\n"
 
 #: tui_ncurses.c:482
 msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgstr ""
+"\tTekan 's untuk memulai / menghentikan benchmark bilangan prima (lambat).\n"
 
 #: tui_ncurses.c:483
 msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgstr ""
+"\tTekan tombol 'f' untuk memulai / menghentikan benchmark bilangan prima "
+"(cepat).\n"
 
 #: tui_ncurses.c:485
 msgid ""
 "\n"
 "Press any key to exit this help.\n"
 msgstr ""
+"\n"
+"Tekan tombol apa saja untuk keluar dari bantuan ini.\n"
 
 #: util.c:198
 #, c-format
@@ -957,12 +971,12 @@ msgstr "String '%s' terlalu panjang, mengecilkan…"
 #: util.c:287
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr ""
+msgstr "kesalahan terjadi saat membuka file '%s' (%s)"
 
 #: util.c:317
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
+msgstr "galat terjadi saat menjalankan perintah '%s' (%s)"
 
 #: util.c:375 util.c:435
 #, c-format
