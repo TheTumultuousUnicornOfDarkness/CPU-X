@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-02-14 11:02+0000\n"
-"PO-Revision-Date: 2021-01-24 10:32+0000\n"
+"PO-Revision-Date: 2021-02-23 09:50+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.5\n"
 
 #: core.c:217
 msgid "Finding CPU technology"
@@ -96,22 +96,19 @@ msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Brak sterownika jądra dla karty graficznej przy ścieżce %s"
 
 #: core.c:727
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Twój sterownik GPU jest nieznany: %s"
+msgstr "Nieznany sterownik jądra GPU: %s"
 
 #: core.c:799
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "Twój sterownik GPU jest nieznany: %s"
+msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU: %s"
 
 #: core.c:803
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "nie udało się wywołać wordexp (%i)"
+msgstr "nie udało się wywołać GLFW (%i): %s"
 
 #: core.c:826
 msgid "Finding devices"
@@ -564,10 +561,8 @@ msgid "Driver"
 msgstr "Sterownik"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "Wersja"
+msgstr "Wersja UMD"
 
 #: main.c:152
 msgid "Temperature"
@@ -730,7 +725,7 @@ msgstr "Wydrukuj wersję i wyjdź"
 
 #: main.c:341
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
+msgstr "Wydrukuj wartości CPUID w systemie dziesiętnym (domyślnie szesnastkowo)"
 
 #: main.c:342
 msgid "Disable colored output"
