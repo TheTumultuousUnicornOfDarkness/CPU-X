@@ -63,6 +63,7 @@ const Technology_DB technology_intel[] =
 	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          22 }, // Atom Bay Trail
 	{  7,          71,          -1,          14 }, // Broadwell
+	{  7,         167,          -1,          14 }, // Rocket Lake
 	{  8,           0,           0,         180 }, // PIII Coppermine-T
 	{  8,           8,          -1,         180 }, // PIII Coppermine
 	{  9,           9,          -1,         130 }, // Pentium M Banias
@@ -135,6 +136,8 @@ const Technology_DB technology_amd[] =
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
 	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
 	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
+	{ -1,           1,          25,           7 }, // Zen 3 (Milan)
+
 	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
