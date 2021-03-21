@@ -157,6 +157,7 @@ static void labels_setname(Labels *data)
 		asprintf(&data->tab_graphics[NAME][GPU1VOLTAGE     + i], _("Core Voltage"));
 		asprintf(&data->tab_graphics[NAME][GPU1POWERAVG    + i], _("Power Avg"));
 	}
+	asprintf(&data->objects[FRAMCARDS], _("Cards")); // Frame label
 
 	/* Bench tab */
 	asprintf(&data->objects[TABBENCH],              _("Bench")); // Tab label
@@ -252,7 +253,11 @@ static void dump_data(Labels *data)
 		{ NO_GRAPHICS,    GPU1VENDOR,   FRAMGPU1            },
 		{ NO_GRAPHICS,    GPU2VENDOR,   FRAMGPU2            },
 		{ NO_GRAPHICS,    GPU3VENDOR,   FRAMGPU3            },
-		{ NO_GRAPHICS,    GPU4VENDOR,   FRAMGPU4            }
+		{ NO_GRAPHICS,    GPU4VENDOR,   FRAMGPU4            },
+		{ NO_GRAPHICS,    GPU5VENDOR,   FRAMGPU5            },
+		{ NO_GRAPHICS,    GPU6VENDOR,   FRAMGPU6            },
+		{ NO_GRAPHICS,    GPU7VENDOR,   FRAMGPU7            },
+		{ NO_GRAPHICS,    GPU8VENDOR,   FRAMGPU8            }
 	};
 
 	MSG_VERBOSE("%s", _("Dumping data…"));
@@ -281,17 +286,18 @@ static void dump_data(Labels *data)
 /* Free memory after display labels */
 void labels_free(Labels *data)
 {
+	/* Note: data->objects and data->tab_graphics[VALUE] are not freed:
+	 * values inside are still read when user change active graphic card  */
 	int i, j;
 	Arrays arrays[] =
 	{
-		{ data->objects,               NULL,                         LASTOBJ                         },
 		{ data->tab_cpu[NAME],         data->tab_cpu[VALUE],         LASTCPU                         },
 		{ data->tab_caches[NAME],      data->tab_caches[VALUE],      data->cache_count * CACHEFIELDS },
 		{ data->w_data->test_name,     NULL,                         data->w_data->test_count        },
 		{ data->tab_motherboard[NAME], data->tab_motherboard[VALUE], LASTMOTHERBOARD                 },
 		{ data->tab_memory[NAME],      data->tab_memory[VALUE],      data->dimm_count                },
 		{ data->tab_system[NAME],      data->tab_system[VALUE],      LASTSYSTEM                      },
-		{ data->tab_graphics[NAME],    data->tab_graphics[VALUE],    data->gpu_count * GPUFIELDS     },
+		{ data->tab_graphics[NAME],    NULL,                         data->gpu_count * GPUFIELDS     },
 		{ data->tab_bench[NAME],       data->tab_bench[VALUE],       LASTBENCH                       },
 		{ data->tab_about,             NULL,                         LASTABOUT                       },
 		{ NULL,                        NULL,                         0                               }
@@ -334,6 +340,7 @@ static const struct
 	{ true,            't', "tab",           required_argument, N_("Set default tab (integer)")                                },
 	{ HAS_LIBCPUID,    'c', "core",          required_argument, N_("Select CPU core to monitor (integer)")                     },
 	{ HAS_BANDWIDTH,   'b', "cachetest",     required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
+	{ HAS_LIBPCI,      'g', "gpu",           required_argument, N_("Select default graphic card (integer)")                    },
 	{ true,            'd', "daemon",        no_argument,       N_("Start and connect to daemon")                              },
 	{ true,            'v', "verbose",       no_argument,       N_("Verbose output")                                           },
 	{ true,            'h', "help",          no_argument,       N_("Print help and exit")                                      },
@@ -556,6 +563,11 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 				if(tmp_arg >= 0)
 					opts->bw_test = atoi(optarg);
 				break;
+			case 'g':
+				tmp_arg = atoi(optarg);
+				if(tmp_arg >= 0)
+					opts->selected_gpu = tmp_arg;
+				break;
 			case 'd':
 				opts->with_daemon = true;
 				break;
@@ -768,6 +780,7 @@ int main(int argc, char *argv[])
 		.selected_page  = 0,
 		.selected_core  = 0,
 		.bw_test        = 0,
+		.selected_gpu   = 0,
 		.refr_time      = 1,
 		.keymap         = ARROWS
 	};

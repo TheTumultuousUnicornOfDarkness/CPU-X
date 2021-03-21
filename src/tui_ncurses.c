@@ -156,6 +156,11 @@ void start_tui_ncurses(Labels *data)
 					opts->bw_test--;
 					print_activetest(win, info, data);
 				}
+				else if(opts->selected_page == NO_GRAPHICS && opts->selected_gpu > 0)
+				{
+					opts->selected_gpu--;
+					print_activecard(win, info, data);
+				}
 				else if(opts->selected_page == NO_BENCH && data->b_data->duration > 1)
 				{
 					data->b_data->duration--;
@@ -179,6 +184,11 @@ void start_tui_ncurses(Labels *data)
 				{
 					opts->bw_test++;
 					print_activetest(win, info, data);
+				}
+				else if(opts->selected_page == NO_GRAPHICS && (int) opts->selected_gpu < data->gpu_count - 1)
+				{
+					opts->selected_gpu++;
+					print_activecard(win, info, data);
 				}
 				else if(opts->selected_page == NO_BENCH && data->b_data->duration < 60 * 24)
 				{
@@ -297,7 +307,7 @@ static bool resize_window(WINDOW *pwin, const SizeInfo info)
 	erase();
 	if((startx < 0) || (starty < 0))
 	{
-		printw("%s", _("Window is too small!\n"));
+		printw("%s\n", _("Window is too small!"));
 		timeout(-1);
 		ret = false;
 	}
@@ -305,7 +315,7 @@ static bool resize_window(WINDOW *pwin, const SizeInfo info)
 	{
 		wresize(pwin, info.height, info.width);
 		mvwin(pwin, starty, startx);
-		printw("%s", _("Press 'h' to see help.\n"));
+		printw("%s\n", _("Press 'h' to see help."));
 		timeout(opts->refr_time * 1000);
 	}
 	refresh();
@@ -458,31 +468,35 @@ static void print_help()
 	nodelay(stdscr, FALSE);
 
 	printw(_("Welcome in %s NCurses help!\n"), PRGNAME);
-	printw("%s", _("This help describes how to use this Text-based User Interface.\n"));
+	printw("%s\n", _("This help describes how to use this Text-based User Interface."));
 
-	printw("%s", _("\nGlobal keys:\n"));
-	printw("%s", _("\tPress 'left' key to switch in left tab.\n"));
-	printw("%s", _("\tPress 'right' key to switch in right tab.\n"));
-	printw("%s", _("\tPress 'h' key to see this help.\n"));
-	printw("%s", _("\tPress 'q' key to exit.\n"));
+	printw("\n%s\n", _("Global keys:"));
+	printw("\t%s\n", _("Press 'left' key to switch in left tab."));
+	printw("\t%s\n", _("Press 'right' key to switch in right tab."));
+	printw("\t%s\n", _("Press 'h' key to see this help."));
+	printw("\t%s\n", _("Press 'q' key to exit."));
 
-	printw("%s", _("\nCPU tab:\n"));
-	printw("%s", _("\tPress 'down' key to decrease core number to monitor.\n"));
-	printw("%s", _("\tPress 'up' key to increase core number to monitor.\n"));
+	printw("\n%s\n", _("CPU tab:"));
+	printw("\t%s\n", _("Press 'down' key to decrease core number to monitor."));
+	printw("\t%s\n", _("Press 'up' key to increase core number to monitor."));
 
-	printw("%s", _("\nCaches tab:\n"));
-	printw("%s", _("\tPress 'down' key to switch to previous test.\n"));
-	printw("%s", _("\tPress 'up' key' to switch to next test.\n"));
+	printw("\n%s\n", _("Caches tab:"));
+	printw("\t%s\n", _("Press 'down' key to switch to previous test."));
+	printw("\t%s\n", _("Press 'up' key' to switch to next test."));
 
-	printw("%s", _("\nBench tab:\n"));
-	printw("%s", _("\tPress 'down' key to decrement benchmark duration.\n"));
-	printw("%s", _("\tPress 'up' key to increment benchmark duration.\n"));
-	printw("%s", _("\tPress 'next page' key to decrement number of threads to use.\n"));
-	printw("%s", _("\tPress 'previous page' key to increment number of threads to use.\n"));
-	printw("%s", _("\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"));
-	printw("%s", _("\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"));
+	printw("\n%s\n", _("Bench tab:"));
+	printw("\t%s\n", _("Press 'down' key to decrement benchmark duration."));
+	printw("\t%s\n", _("Press 'up' key to increment benchmark duration."));
+	printw("\t%s\n", _("Press 'next page' key to decrement number of threads to use."));
+	printw("\t%s\n", _("Press 'previous page' key to increment number of threads to use."));
+	printw("\t%s\n", _("Press 's' key to start/stop prime numbers (slow) benchmark."));
+	printw("\t%s\n", _("Press 'f' key to start/stop prime numbers (fast) benchmark."));
 
-	printw("%s", _("\nPress any key to exit this help.\n"));
+	printw("\n%s\n", _("Graphics tab:"));
+	printw("\t%s\n", _("Press 'down' key to switch to previous graphic card."));
+	printw("\t%s\n", _("Press 'up' key to switch to next graphic card."));
+
+	printw("\n%s\n", _("Press any key to exit this help."));
 
 	refresh();
 	getch();
@@ -604,14 +618,13 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 /* Display active Test in Caches tab */
 static void print_activetest(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	UNUSED(info);
 	const int line = LINE_1 + (CACHEFIELDS + 2) * data->cache_count;
 
 	if(!data->cache_count)
 		return;
 
 	if(HAS_BANDWIDTH)
-		mvwprintwc(win, line, 12, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
+		mvwprintwc(win, line, info.tb + 1, DEFAULT_COLOR, "%s", data->w_data->test_name[opts->bw_test]);
 
 	wrefresh(win);
 }
@@ -754,51 +767,46 @@ static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar)
 	before += bar_count - adjust;
 }
 
+/* Display active card in Graphics tab */
+static void print_activecard(WINDOW *win, const SizeInfo info, Labels *data)
+{
+	if(data->gpu_count == 0)
+		return;
+
+	mvwprintwc(win, LINE_10, info.tb + 1, DEFAULT_COLOR, "#%i: %s", opts->selected_gpu, data->tab_graphics[VALUE][GPU1MODEL + opts->selected_gpu * GPUFIELDS]);
+	wrefresh(win);
+}
+
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line, start = LINE_0, end = LINE_8;
+	int i, j, line, start = LINE_0, end = LINE_8;
 
-	if(!data->gpu_count)
+	if(data->gpu_count == 0)
 		return;
 
 	/* Card frames */
 	line = LINE_1;
-	for(i = GPU1VENDOR; i < data->gpu_count * GPUFIELDS; i++)
+	frame(win, start, info.start, end, info.width - 1, data->objects[FRAMGPU1 + opts->selected_gpu]);
+	for(i = opts->selected_gpu * GPUFIELDS, j = 0; j < GPUFIELDS; i++, j++)
 	{
-		if(i % GPUFIELDS == 0)
-		{
-			frame(win, start, info.start, end, info.width - 1, data->objects[FRAMGPU1 + i / GPUFIELDS]);
-			start = end + 1;
-			end += 6;
-			if(i > 0)
-				line += 2;
-		}
-
-		switch(i)
+		switch(j)
 		{
 			case GPU1DRIVER:
-			case GPU2DRIVER:
-			case GPU3DRIVER:
-			case GPU4DRIVER:
 			case GPU1USAGE:
-			case GPU2USAGE:
-			case GPU3USAGE:
-			case GPU4USAGE:
 			case GPU1MEMCLOCK:
-			case GPU2MEMCLOCK:
-			case GPU3MEMCLOCK:
-			case GPU4MEMCLOCK:
 			case GPU1POWERAVG:
-			case GPU2POWERAVG:
-			case GPU3POWERAVG:
-			case GPU4POWERAVG:
 				mvwprintw2c(win, line - 1, info.tm, "%18s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 				break;
 			default:
 				mvwprintw2c(win, line++, info.tb, "%13s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 		}
 	}
+
+	/* Cards frame */
+	line++;
+	frame(win, line, info.start , line + 2, info.width - 1, data->objects[FRAMCARDS]);
+	print_activecard(win, info, data);
 
 	wrefresh(win);
 }
@@ -871,7 +879,6 @@ static void ntab_about(WINDOW *win, const SizeInfo info, Labels *data)
 /* Draw a frame */
 static void frame(WINDOW *win, int starty, int startx, int endy, int endx, char *label)
 {
-
 	if(opts->color)
 	{
 		init_pair(DEFAULT_COLOR, COLOR_BLACK, COLOR_WHITE);

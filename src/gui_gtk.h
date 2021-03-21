@@ -48,6 +48,7 @@ typedef struct
 	GtkWidget *defaulttab;
 	GtkWidget *defaultcore;
 	GtkWidget *defaultcachetest;
+	GtkWidget *defaultcard;
 	GtkWidget *cpuiddecimal;
 	GtkWidget *startdaemon;
 
@@ -75,7 +76,8 @@ typedef struct
 
 	/* Tab Graphics */
 	GtkWidget *gridcards;
-	GtkWidget *gtktab_graphics[2][LASTGRAPHICS];
+	GtkWidget *gtktab_graphics[2][GPUFIELDS];
+	GtkWidget *activecard;
 
 	/* Tab Bench */
 	GtkWidget *gtktab_bench[2][LASTBENCH];

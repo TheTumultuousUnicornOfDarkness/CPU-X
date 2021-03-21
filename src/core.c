@@ -888,6 +888,19 @@ static int find_devices(Labels *data)
 	if(!data->gpu_count)
 		MSG_ERROR("%s", _("failed to find graphic card vendor and model"));
 
+#if 0
+	while(data->gpu_count < LASTGRAPHICS / GPUFIELDS)
+	{
+		casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "Vendor %u", data->gpu_count);
+		casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "Driver %u", data->gpu_count);
+		casprintf(&data->tab_graphics[VALUE][GPU1UMD    + data->gpu_count * GPUFIELDS], false, "UMD %u", data->gpu_count);
+		casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "Model %u", data->gpu_count);
+		data->gpu_count++;
+	}
+#endif
+	if(opts->selected_gpu >= data->gpu_count)
+		opts->selected_gpu = 0;
+
 	return !chipset_found + !data->gpu_count;
 }
 #undef DEVICE_VENDOR_STR

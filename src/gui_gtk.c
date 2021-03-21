@@ -44,6 +44,7 @@ void load_settings()
 	opts->selected_page = g_settings_get_enum(settings, "default-tab");
 	opts->selected_core = g_settings_get_uint(settings, "default-cpu-core");
 	opts->bw_test       = g_settings_get_uint(settings, "default-cache-test");
+	opts->selected_gpu  = g_settings_get_uint(settings, "default-active-card");
 	opts->cpuid_decimal = g_settings_get_boolean(settings, "print-cpuid-decimal");
 	opts->with_daemon   = g_settings_get_boolean(settings, "always-start-daemon");
 	g_settings_delay(settings);
@@ -85,6 +86,7 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	g_settings_bind(settings, "default-tab",         glab.defaulttab,       "active-id", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-cpu-core",    glab.defaultcore,      "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-cache-test",  glab.defaultcachetest, "active",    G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind(settings, "default-active-card", glab.defaultcard,      "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "print-cpuid-decimal", glab.cpuiddecimal,     "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "always-start-daemon", glab.startdaemon,      "active",    G_SETTINGS_BIND_DEFAULT);
 
@@ -125,21 +127,18 @@ static gboolean grefresh(GThrd *refr)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 			break;
 		case NO_SYSTEM:
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][UPTIME]),    data->tab_system[VALUE][UPTIME]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][UPTIME]), data->tab_system[VALUE][UPTIME]);
 			for(i = USED; i < LASTSYSTEM; i++)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 			break;
 		case NO_GRAPHICS:
-			for(i = 0; i < data->gpu_count; i++)
-			{
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS]);
-				gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1POWERAVG    + i * GPUFIELDS]), data->tab_graphics[VALUE][GPU1POWERAVG    + i * GPUFIELDS]);
-			}
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE]), data->tab_graphics[VALUE][GPU1TEMPERATURE + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE]),       data->tab_graphics[VALUE][GPU1USAGE       + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMUSED]),     data->tab_graphics[VALUE][GPU1MEMUSED     + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK]),   data->tab_graphics[VALUE][GPU1CORECLOCK   + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK]),    data->tab_graphics[VALUE][GPU1MEMCLOCK    + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1VOLTAGE]),     data->tab_graphics[VALUE][GPU1VOLTAGE     + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1POWERAVG]),    data->tab_graphics[VALUE][GPU1POWERAVG    + opts->selected_gpu * GPUFIELDS]);
 			break;
 		case NO_BENCH:
 			for(i = PRIMESLOWSCORE; i <= PRIMEFASTSCORE; i += BENCHFIELDS)
@@ -244,6 +243,23 @@ static void change_activetest(GtkComboBox *box, Labels *data)
 
 	if(0 <= test && test < data->w_data->test_count)
 		opts->bw_test = test;
+}
+
+/* Event in Graphics tab when graphic card is changed */
+static void change_activecard(GtkComboBox *box, GThrd *refr)
+{
+	int i, j;
+	Labels    *(data) = refr->data;
+	GtkLabels *(glab) = refr->glab;
+	const gint gpu = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
+
+	if(0 <= gpu && gpu < data->gpu_count)
+	{
+		opts->selected_gpu = gpu;
+		gtk_label_set_text(GTK_LABEL(glab->gtktrad[FRAMGPU1]), data->objects[FRAMGPU1 + opts->selected_gpu]);
+		for(i = opts->selected_gpu * GPUFIELDS, j = 0; j < GPUFIELDS; i++, j++)
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][j]), data->tab_graphics[VALUE][i]);
+	}
 }
 
 /* Events in Bench tab when a benchmark start/stop */
@@ -353,6 +369,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->logocpu        = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
 	glab->activecore     = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
 	glab->activetest     = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
+	glab->activecard     = GTK_WIDGET(gtk_builder_get_object(builder, "cards_activecard"));
 	glab->logoprg        = GTK_WIDGET(gtk_builder_get_object(builder, "about_logoprg"));
 	glab->butcol         = GTK_WIDGET(gtk_builder_get_object(builder, "colorbutton"));
 
@@ -364,6 +381,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->defaulttab       = GTK_WIDGET(gtk_builder_get_object(builder, "defaulttab_val"));
 	glab->defaultcore      = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcore_val"));
 	glab->defaultcachetest = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcachetest_val"));
+	glab->defaultcard      = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcard_val"));
 	glab->cpuiddecimal     = GTK_WIDGET(gtk_builder_get_object(builder, "cpuiddecimal"));
 	glab->startdaemon      = GTK_WIDGET(gtk_builder_get_object(builder, "startdaemon"));
 
@@ -423,7 +441,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	}
 
 	/* Tab Graphics */
-	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
+	for(i = GPU1VENDOR; i < GPUFIELDS; i++)
 	{
 		glab->gtktab_graphics[NAME][i]  = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "lab")));
 		glab->gtktab_graphics[VALUE][i] = GTK_WIDGET(gtk_builder_get_object(builder, get_id(objectgpu[i], "val")));
@@ -512,7 +530,7 @@ static void set_logos(GtkLabels *glab, Labels *data)
 /* Filling all labels */
 static void set_labels(GtkLabels *glab, Labels *data)
 {
-	int i;
+	int i, j;
 	const int pkcheck = system(format("pkcheck --action-id org.freedesktop.policykit.exec --process %u > /dev/null 2>&1", getpid()));
 	const gint width1 = gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][COMPILER]);
 	const gint width2 = width1 - gtk_widget_get_allocated_width(glab->gtktab_system[VALUE][USED]) - 6;
@@ -592,15 +610,17 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	}
 
 	/* Tab Graphics */
-	for(i = GPU1VENDOR; i < LASTGRAPHICS; i++)
+	for(i = opts->selected_gpu * GPUFIELDS, j = 0; j < GPUFIELDS; i++, j++)
 	{
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[NAME][i]),  data->tab_graphics[NAME][i]);
-		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][i]), data->tab_graphics[VALUE][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[NAME][j]),  data->tab_graphics[NAME][i]);
+		gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][j]), data->tab_graphics[VALUE][i]);
 	}
-	for(i = LASTGRAPHICS / GPUFIELDS; i >= data->gpu_count; i--)
-		gtk_grid_remove_row(GTK_GRID(glab->gridcards), i);
-	if(!data->gpu_count)
+	gtk_label_set_text(GTK_LABEL(glab->gtktrad[FRAMGPU1]), data->objects[FRAMGPU1 + opts->selected_gpu]);
+	if(data->gpu_count == 0)
 		gtk_widget_hide(GTK_WIDGET(glab->gridcards));
+	for(i = 0; i < data->gpu_count; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecard), format("#%i: %s", i, data->tab_graphics[VALUE][GPU1MODEL + i * GPUFIELDS]));
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecard), opts->selected_gpu);
 
 	/* Tab Bench */
 	for(i = PRIMESLOWSCORE; i < LASTBENCH; i++)
@@ -630,6 +650,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaultcore), opts->selected_core);
 	for(i = 0; i < data->w_data->test_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaultcachetest), data->w_data->test_name[i]);
+	for(i = 0; i < data->gpu_count; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaultcard), format("#%i: %s", i, data->tab_graphics[VALUE][GPU1MODEL + i * GPUFIELDS]));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaultcachetest), opts->bw_test);
 	gtk_widget_set_sensitive(GTK_WIDGET(glab->defaultcachetest), data->cache_count > 0);
 }
@@ -645,6 +667,7 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	g_signal_connect(glab->daemonbutton,   "clicked",      G_CALLBACK(reload_with_daemon),   refr);
 	g_signal_connect(glab->activecore,     "changed",      G_CALLBACK(change_activecore),    data);
 	g_signal_connect(glab->activetest,     "changed",      G_CALLBACK(change_activetest),    data);
+	g_signal_connect(glab->activecard,     "changed",      G_CALLBACK(change_activecard),    refr);
 
 	/* Tab Bench */
 	g_signal_connect(glab->gtktab_bench[VALUE][PRIMESLOWRUN],  "button-press-event", G_CALLBACK(start_benchmark_bg), refr);

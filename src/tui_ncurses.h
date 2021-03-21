@@ -143,6 +143,9 @@ static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data);
 static void ntab_system(WINDOW *win, const SizeInfo info, Labels *data);
 static void draw_bar(WINDOW *win, const SizeInfo info, Labels *data, int bar);
 
+/* Display active card in Graphics tab */
+static void print_activecard(WINDOW *win, const SizeInfo info, Labels *data);
+
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data);
 

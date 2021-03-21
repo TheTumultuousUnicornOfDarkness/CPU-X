@@ -55,6 +55,14 @@
 				Set custom bandwidth test for CPU caches speed
 			</description>
 		</key>
+		<key name="default-active-card" type="u">
+			<default>0</default>
+			<range min="0"/>
+			<summary>Default active graphic card</summary>
+			<description>
+				Select graphic card to monitor
+			</description>
+		</key>
 		<key name="print-cpuid-decimal" type="b">
 			<default>false</default>
 			<summary>Print CPUID values in decimal</summary>
