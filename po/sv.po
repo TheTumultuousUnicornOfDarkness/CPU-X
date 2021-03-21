@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-03-21 20:37+0100\n"
-"PO-Revision-Date: 2021-02-17 11:33+0000\n"
+"PO-Revision-Date: 2021-03-21 20:32+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: core.c:218
 msgid "Finding CPU technology"
@@ -583,10 +583,8 @@ msgid "Power Avg"
 msgstr "Effekt Genomsnitt"
 
 #: main.c:160
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "Kort %i"
+msgstr "Kort"
 
 #: main.c:163
 msgid "Bench"
@@ -706,10 +704,8 @@ msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Ange anpassad bandbreddstest för CPU-cachehastighet (heltal)"
 
 #: main.c:343
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Ange standardflik (heltal)"
+msgstr "Välj standardgrafikkort (heltal)"
 
 #: main.c:344
 msgid "Start and connect to daemon"
@@ -842,16 +838,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Det gick inte att starta %s terminal (fel=%i); Faller tillbaka på %s"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "Fönstret är för litet!\n"
+msgstr "Fönstret är för litet!"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Tryck \"h\" för att se hjälpen.\n"
+msgstr "Tryck \"h\" för att se hjälpen."
 
 #: tui_ncurses.c:470
 #, c-format
@@ -859,164 +851,97 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Välkommen till %s NCurses hjälp!\n"
 
 #: tui_ncurses.c:471
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
-"Denna hjälp beskriver hur man använder detta textbaserade "
-"användargränssnitt.\n"
+"Denna hjälp beskriver hur man använder detta textbaserade användargränssnitt."
 
 #: tui_ncurses.c:473
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Systemövergripande tangenter:\n"
+msgstr "Systemövergripande tangenter:"
 
 #: tui_ncurses.c:474
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "\tTryck \"vänster\" för att växla till vänster flik.\n"
+msgstr "Tryck \"vänster\" för att växla till vänster flik."
 
 #: tui_ncurses.c:475
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
-msgstr "\tTryck \"höger\" för att växla till höger flik.\n"
+msgstr "Tryck \"höger\" för att växla till höger flik."
 
 #: tui_ncurses.c:476
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "\tTryck \"h\" för att se den här hjälpen\n"
+msgstr "Tryck \"h\" för att se den här hjälpen."
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\tTryck \"q\" för att avsluta.\n"
+msgstr "Tryck \"q\" för att avsluta."
 
 #: tui_ncurses.c:479
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"CPU-flik:\n"
+msgstr "CPU-flik:"
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
-msgstr "\tTryck\n"
+msgstr "Tryck \"ner\" för att minska antalet kärnor att övervaka."
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
-msgstr "\tTryck \"upp\" för att öka antalet kärnor att övervaka.\n"
+msgstr "Tryck \"upp\" för att öka antalet kärnor att övervaka."
 
 #: tui_ncurses.c:483
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Cache-flik:\n"
+msgstr "Cache-flik:"
 
 #: tui_ncurses.c:484
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "\tTryck \"ner\" för att växla till föregående test.\n"
+msgstr "Tryck \"ner\" för att växla till föregående test."
 
 #: tui_ncurses.c:485
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "\tTryck \"upp\" för att växla till nästa test.\n"
+msgstr "Tryck \"upp\" för att växla till nästa test."
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"Testflik:\n"
+msgstr "Testflik:"
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "\tTryck \"ner\" för att minska varaktigheten för prestandatestet.\n"
+msgstr "Tryck \"ner\" för att minska varaktigheten för prestandatestet."
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\tTryck \"upp\" för att öka varaktigheten för prestandatestet.\n"
+msgstr "Tryck \"upp\" för att öka varaktigheten för prestandatestet."
 
 #: tui_ncurses.c:490
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr "\tTryck \"nästa sida\" för att minska antalet trådar som används.\n"
+msgstr "Tryck \"nästa sida\" för att minska antalet trådar som används."
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "\tTryck \"föregående sida\" för att öka anatalet trådar som används\n"
+msgstr "Tryck \"föregående sida\" för att öka anatalet trådar som används."
 
 #: tui_ncurses.c:492
-#, fuzzy
-#| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "\tTryck \"s\" för att starta/stoppa primtalstest (långsam).\n"
+msgstr "Tryck \"s\" för att starta/stoppa primtalstest (långsam)."
 
 #: tui_ncurses.c:493
-#, fuzzy
-#| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "\tTryck \"f\" för att starta/stoppa primtalstest (snabbt).\n"
+msgstr "Tryck \"f\" för att starta/stoppa primtalstest (snabbt)."
 
 #: tui_ncurses.c:495
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Grafik"
+msgstr "Grafikflik:"
 
 #: tui_ncurses.c:496
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\tTryck \"ner\" för att växla till föregående test.\n"
+msgstr "Tryck \"ner\" för att växla till föregående grafikkort."
 
 #: tui_ncurses.c:497
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\tTryck \"upp\" för att växla till nästa test.\n"
+msgstr "Tryck \"upp\" för att växla till nästa grafikkort."
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"Tryck valfri tangent för avsluta denna hjälp.\n"
+msgstr "Tryck valfri tangent för avsluta denna hjälp."
 
 #: util.c:198
 #, c-format
