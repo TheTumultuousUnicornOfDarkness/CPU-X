@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-03-21 20:37+0100\n"
-"PO-Revision-Date: 2021-02-17 08:50+0000\n"
+"PO-Revision-Date: 2021-03-23 15:29+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: core.c:218
 msgid "Finding CPU technology"
@@ -587,10 +587,8 @@ msgid "Power Avg"
 msgstr "Potenza media"
 
 #: main.c:160
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "Scheda %i"
+msgstr "Schede %i"
 
 #: main.c:163
 msgid "Bench"
@@ -712,10 +710,8 @@ msgstr ""
 "cache della CPU (intero)"
 
 #: main.c:343
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Imposta scheda di default (intero)"
+msgstr "Imposta la scheda grafica predefinita (intero)"
 
 #: main.c:344
 msgid "Start and connect to daemon"
@@ -851,16 +847,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Impossibile impostare il terminale %s (err=%i); verrà utilizzato %s"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "La finestra è troppo piccola!\n"
+msgstr "La finestra è troppo piccola!"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Premi 'h' per visualizzare la guida.\n"
+msgstr "Premi 'h' per visualizzare la guida."
 
 #: tui_ncurses.c:470
 #, c-format
@@ -868,168 +860,99 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Benvenuto/a nella guida Ncurses di %s!\n"
 
 #: tui_ncurses.c:471
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
-msgstr "Questa guida descrive come usare questa interfaccia testuale.\n"
+msgstr "Questa guida descrive come usare questa interfaccia testuale."
 
 #: tui_ncurses.c:473
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Tasti globali:\n"
+msgstr "Tasti globali:"
 
 #: tui_ncurses.c:474
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "\tPremi il tasto 'sinistra' per passare alla scheda a sinistra.\n"
+msgstr "Premi il tasto 'sinistra' per passare alla scheda a sinistra."
 
 #: tui_ncurses.c:475
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
-msgstr "\tPremi il tasto 'destra' per passare alla scheda a destra.\n"
+msgstr "Premi il tasto 'destra' per passare alla scheda a destra."
 
 #: tui_ncurses.c:476
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "\tPremi il tasto 'h' per visualizzare questa guida.\n"
+msgstr "Premi il tasto 'h' per visualizzare questa guida."
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\tPremi il tasto 'q' per uscire.\n"
+msgstr "Premi il tasto 'q' per uscire."
 
 #: tui_ncurses.c:479
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"Scheda CPU:\n"
+msgstr "Scheda CPU:"
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
-msgstr "\tPremi 'giù' per diminuire il numero di core da monitorare.\n"
+msgstr "Premi 'giù' per diminuire il numero di core da monitorare."
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
-msgstr "\tPremi 'su' per aumentare il numero di core da monitorare.\n"
+msgstr "Premi 'su' per aumentare il numero di core da monitorare."
 
 #: tui_ncurses.c:483
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Scheda cache:\n"
+msgstr "Scheda cache:"
 
 #: tui_ncurses.c:484
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "\tPremi il tasto 'giù' per tornare al test precedente.\n"
+msgstr "Premi il tasto 'giù' per tornare al test precedente."
 
 #: tui_ncurses.c:485
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "\tPremi il tasto 'su' per passare al prossimo test.\n"
+msgstr "Premi il tasto 'su' per passare al prossimo test."
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"Scheda bench:\n"
+msgstr "Scheda bench:"
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "\tPremi il tasto 'giù' per diminuire la durata del benchmark.\n"
+msgstr "Premi il tasto 'giù' per diminuire la durata del benchmark."
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\tPremi il tasto 'su' per aumentare la durata del benchmark.\n"
+msgstr "Premi il tasto 'su' per aumentare la durata del benchmark."
 
 #: tui_ncurses.c:490
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-"\tPremi il tasto 'pagina giù' per diminuire il numero di thread da usare.\n"
+msgstr "Premi il tasto 'pagina giù' per diminuire il numero di thread da usare."
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-"\tPremi il tasto 'pagina su' per aumentare il numero di thread da usare.\n"
+msgstr "Premi il tasto 'pagina su' per aumentare il numero di thread da usare."
 
 #: tui_ncurses.c:492
-#, fuzzy
-#| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
-"\tPremi il tasto 's' per avviare/fermare il benchmark dei numeri primi "
-"(lento).\n"
+"Premi il tasto 's' per avviare/fermare il benchmark dei numeri primi (lento)."
 
 #: tui_ncurses.c:493
-#, fuzzy
-#| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"\tPremi il tasto 'f' per avviare/fermare il benchmark dei numeri primi "
-"(veloce).\n"
+"Premi il tasto 'f' per avviare/fermare il benchmark dei numeri primi "
+"(veloce)."
 
 #: tui_ncurses.c:495
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Grafica"
+msgstr "Scheda Grafica:"
 
 #: tui_ncurses.c:496
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\tPremi il tasto 'giù' per tornare al test precedente.\n"
+msgstr "Premi il tasto 'giù' per tornare alla precedente scheda grafica."
 
 #: tui_ncurses.c:497
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\tPremi il tasto 'su' per passare al prossimo test.\n"
+msgstr "Premi il tasto 'su' per passare alla prossima scheda grafica."
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"Premi qualsiasi tasto per uscire da questa guida.\n"
+msgstr "Premi qualsiasi tasto per uscire da questa guida."
 
 #: util.c:198
 #, c-format
