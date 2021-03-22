@@ -867,6 +867,7 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
 			casprintf(&data->tab_graphics[VALUE][GPU1UMD    + data->gpu_count * GPUFIELDS], false, "%s", gpu_umd);
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
+			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID + data->gpu_count * GPUFIELDS], false, "0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
 			data->gpu_count++;
 		}
 	}
