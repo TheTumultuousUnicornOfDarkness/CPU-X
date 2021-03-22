@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-03-21 20:37+0100\n"
-"PO-Revision-Date: 2021-02-15 11:50+0000\n"
+"PO-Revision-Date: 2021-03-23 15:29+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: core.c:218
 msgid "Finding CPU technology"
@@ -586,10 +586,8 @@ msgid "Power Avg"
 msgstr "平均功率"
 
 #: main.c:160
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "卡 %i"
+msgstr "卡"
 
 #: main.c:163
 msgid "Bench"
@@ -709,10 +707,8 @@ msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "为 CPU 缓存速度设置自定义 bandwidth 测试 (整型)"
 
 #: main.c:343
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "设置默认选项卡 (整型)"
+msgstr "选择默认显卡 (整型)"
 
 #: main.c:344
 msgid "Start and connect to daemon"
@@ -840,16 +836,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "无法设置%s终端（err = %i）；退回至%s"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "窗户太小了！\n"
+msgstr "窗口太小了！"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "按 'h' 键查看帮助。\n"
+msgstr "按 'h' 键查看帮助。"
 
 #: tui_ncurses.c:470
 #, c-format
@@ -857,162 +849,96 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "欢迎来到 %s NCurses 帮助！\n"
 
 #: tui_ncurses.c:471
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
-msgstr "此帮助介绍如何使用该文本用户界面\n"
+msgstr "此帮助介绍如何使用该基于文本的用户界面。"
 
 #: tui_ncurses.c:473
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"全局按键：\n"
+msgstr "全局按键："
 
 #: tui_ncurses.c:474
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "\t按 '左' 键切换至左选项卡。\n"
+msgstr "按“left”键切换到左侧选项卡。"
 
 #: tui_ncurses.c:475
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
-msgstr "\t按 '右' 键切换至右选项卡。\n"
+msgstr "按“右”键切换到右选项卡。"
 
 #: tui_ncurses.c:476
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "\t按 'h' 键查看此帮助。\n"
+msgstr "按 'h' 键查看此帮助。"
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\t按 'q' 键退出。\n"
+msgstr "按 'q' 键退出。"
 
 #: tui_ncurses.c:479
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"CPU 选项卡：\n"
+msgstr "CPU 选项卡："
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
-msgstr "\t按 '下' 键减小要监视的核心数值。\n"
+msgstr "按 'down' 键减小要监视的核心数值。"
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
-msgstr "\t按 '上' 键增加要监视的核心数值。\n"
+msgstr "按 'up' 键增加要监视的核心数值。"
 
 #: tui_ncurses.c:483
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"缓存选项卡：\n"
+msgstr "缓存选项卡："
 
 #: tui_ncurses.c:484
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "\t按 '下' 键切换至上一项测试。\n"
+msgstr "按 'down' 键切换至上一项测试。"
 
 #: tui_ncurses.c:485
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "\t按 '上' 键切换至下一项测试。\n"
+msgstr "按 'up' 键切换至下一项测试。"
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"基准测试选项卡：\n"
+msgstr "基准测试选项卡："
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "\t按 '下' 键减少基准测试持续时间。\n"
+msgstr "按 'down' 键减少基准测试持续时间。"
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\t按 '上' 键增加基准测试持续时间。\n"
+msgstr "按 'up' 键增加基准测试持续时间。"
 
 #: tui_ncurses.c:490
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr "\t按 '下一页' 减少要使用的线程数。\n"
+msgstr "按 'next page' 键减少要使用的线程数。"
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "\t按 '上一页' 增加要使用的线程数。\n"
+msgstr "按 'previous page' 键增加要使用的线程数。"
 
 #: tui_ncurses.c:492
-#, fuzzy
-#| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "\t按 's' 键开始/停止素数 (慢速) 基准测试。\n"
+msgstr "按 's' 键开始/停止素数 (慢速) 基准测试。"
 
 #: tui_ncurses.c:493
-#, fuzzy
-#| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "\t按 'f' 键开始/停止素数 (快速) 基准测试。\n"
+msgstr "按 'f' 键开始/停止素数 (快速) 基准测试。"
 
 #: tui_ncurses.c:495
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "显卡"
+msgstr "显卡选项卡："
 
 #: tui_ncurses.c:496
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\t按 '下' 键切换至上一项测试。\n"
+msgstr "按 'down' 键切换至上一张显卡。"
 
 #: tui_ncurses.c:497
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\t按 '上' 键切换至下一项测试。\n"
+msgstr "按 'up' 键切换至下一张显卡。"
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"按任意键退出帮助。\n"
+msgstr "按任意键退出帮助。"
 
 #: util.c:198
 #, c-format
