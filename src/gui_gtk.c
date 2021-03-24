@@ -134,6 +134,7 @@ static gboolean grefresh(GThrd *refr)
 		case NO_GRAPHICS:
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE]), data->tab_graphics[VALUE][GPU1TEMPERATURE + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE]),       data->tab_graphics[VALUE][GPU1USAGE       + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1PCIE]),        data->tab_graphics[VALUE][GPU1PCIE        + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMUSED]),     data->tab_graphics[VALUE][GPU1MEMUSED     + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK]),   data->tab_graphics[VALUE][GPU1CORECLOCK   + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK]),    data->tab_graphics[VALUE][GPU1MEMCLOCK    + opts->selected_gpu * GPUFIELDS]);

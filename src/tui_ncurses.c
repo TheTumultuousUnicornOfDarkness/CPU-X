@@ -434,6 +434,10 @@ static void nrefresh(NThrd *refr)
 			line = LINE_3;
 			for(i = 0; i < data->gpu_count * GPUFIELDS; i += GPUFIELDS)
 			{
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1DIDRID      + i], data->tab_graphics[VALUE][GPU1DIDRID     + i]);
+				line++;
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1PCIE        + i], data->tab_graphics[VALUE][GPU1PCIE       + i]);
+				line++;
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1USAGE       + i], data->tab_graphics[VALUE][GPU1USAGE       + i]);
 				line++;
@@ -773,14 +777,14 @@ static void print_activecard(WINDOW *win, const SizeInfo info, Labels *data)
 	if(data->gpu_count == 0)
 		return;
 
-	mvwprintwc(win, LINE_11, info.tb + 1, DEFAULT_COLOR, "#%i: %s", opts->selected_gpu, data->tab_graphics[VALUE][GPU1MODEL + opts->selected_gpu * GPUFIELDS]);
+	mvwprintwc(win, LINE_12, info.tb + 1, DEFAULT_COLOR, "#%i: %s", opts->selected_gpu, data->tab_graphics[VALUE][GPU1MODEL + opts->selected_gpu * GPUFIELDS]);
 	wrefresh(win);
 }
 
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, j, line, start = LINE_0, end = LINE_9;
+	int i, j, line, start = LINE_0, end = LINE_10;
 
 	if(data->gpu_count == 0)
 		return;
