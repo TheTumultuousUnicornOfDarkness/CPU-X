@@ -929,6 +929,26 @@ static bool can_access_sys_debug_dri(Labels *data)
 	MSG_DEBUG("can_access_sys_debug_dri() ==> %i", ret);
 	return !ret;
 }
+
+static int convert_pcie_speed_to_gen(char *pcie_speed, uint8_t *pcie_gen)
+{
+	if (!strcmp(pcie_speed,       "2.5 GT/s PCIe"))
+		*pcie_gen = 1;
+	else if (!strcmp(pcie_speed,  "5.0 GT/s PCIe"))
+		*pcie_gen = 2;
+	else if (!strcmp(pcie_speed,  "8.0 GT/s PCIe"))
+		*pcie_gen = 3;
+	else if (!strcmp(pcie_speed, "16.0 GT/s PCIe"))
+		*pcie_gen = 4;
+	else if (!strcmp(pcie_speed, "32.0 GT/s PCIe"))
+		*pcie_gen = 5;
+	else if (!strcmp(pcie_speed, "64.0 GT/s PCIe"))
+		*pcie_gen = 6;
+	else
+		*pcie_gen = 0;
+
+	return 0;
+}
 #endif /* __linux__ */
 
 /* Retrieve GPU temperature and clocks */
@@ -936,10 +956,10 @@ static int gpu_monitoring(Labels *data)
 {
 #ifdef __linux__
 	bool gpu_ok;
-	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk, ret_vram_used, ret_vram_total, ret_gvolt, ret_gpwr;
-	uint8_t i, card_number, failed_count = 0, fglrx_count = 0, nvidia_count = 0;
+	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk, ret_vram_used, ret_vram_total, ret_gvolt, ret_gpwr, ret_pcie_max_speed, ret_pcie_max_width, ret_pcie_sta_speed, ret_pcie_sta_width;
+	uint8_t i, card_number, failed_count = 0, fglrx_count = 0, nvidia_count = 0, pcie_max_gen = 0, pcie_sta_gen = 0;
 	long double divisor_temp, divisor_gclk, divisor_mclk, divisor_vram, divisor_gvolt, divisor_gpwr;
-	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL, *vram_used = NULL, *vram_total = NULL, *gvolt = NULL, *gpwr = NULL;
+	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL, *vram_used = NULL, *vram_total = NULL, *gvolt = NULL, *gpwr = NULL, *pcie_max_speed = NULL, *pcie_max_width = NULL, *pcie_sta_speed = NULL, *pcie_sta_width = NULL;
 	static bool once_error = true;
 	static char *cached_paths_drm[LASTGRAPHICS / GPUFIELDS] = { NULL };
 	static char *cached_paths_hwmon[LASTGRAPHICS / GPUFIELDS] = { NULL };
@@ -958,6 +978,10 @@ static int gpu_monitoring(Labels *data)
 		ret_vram_total = -1;
 		ret_gvolt      = -1;
 		ret_gpwr       = -1;
+		ret_pcie_max_speed = -1;
+		ret_pcie_max_width = -1;
+		ret_pcie_sta_speed = -1;
+		ret_pcie_sta_width = -1;
 		divisor_temp   = 1.0;
 		divisor_gclk   = 1.0;
 		divisor_mclk   = 1.0;
@@ -976,6 +1000,8 @@ static int gpu_monitoring(Labels *data)
 			data->g_data->gpu_driver[i] = GPUDRV_UNKNOWN;
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER      + i * GPUFIELDS], false, _("None"));
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID      + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], false, "---");
@@ -1004,6 +1030,7 @@ static int gpu_monitoring(Labels *data)
 					ret_drm = request_sensor_path(format("%s/drm", data->g_data->device_path[i]), &cached_paths_drm[i], RQT_GPU_DRM);
 				if(ret_drm || (cached_paths_drm[i] == NULL) || (sscanf(cached_paths_drm[i], "/sys/bus/pci/devices/%*x:%*x:%*x.%*d/drm/card%hhu", &card_number) != 1))
 					goto skip_clocks;
+
 				break;
 			default:
 				break;
@@ -1108,6 +1135,26 @@ static int gpu_monitoring(Labels *data)
 				continue;
 		}
 
+		// Linux 4.13+
+		const char  *max_speed_file = format("%s/device/max_link_speed",     cached_paths_drm[i]),
+						*max_width_file = format("%s/device/max_link_width",     cached_paths_drm[i]),
+						*sta_speed_file = format("%s/device/current_link_speed", cached_paths_drm[i]),
+						*sta_width_file = format("%s/device/current_link_width", cached_paths_drm[i]);
+
+		if(!access(max_speed_file, F_OK) && !access(max_width_file, F_OK)
+		&& !access(sta_width_file, F_OK) && !access(sta_speed_file, F_OK))
+		{
+			ret_pcie_max_speed = fopen_to_str(&pcie_max_speed, "%s", max_speed_file);
+			ret_pcie_max_width = fopen_to_str(&pcie_max_width, "%s", max_width_file);
+			ret_pcie_sta_speed = fopen_to_str(&pcie_sta_speed, "%s", sta_speed_file);
+			ret_pcie_sta_width = fopen_to_str(&pcie_sta_width, "%s", sta_width_file);
+
+			if(!ret_pcie_max_speed)
+				convert_pcie_speed_to_gen(pcie_max_speed, &pcie_max_gen);
+			if(!ret_pcie_sta_speed)
+				convert_pcie_speed_to_gen(pcie_sta_speed, &pcie_sta_gen);
+		}
+
 		if(!ret_load)
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "%s%%", load);
 		if(!ret_gclk)
@@ -1125,8 +1172,12 @@ static int gpu_monitoring(Labels *data)
 skip_clocks:
 		if(!ret_temp)
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2Lf°C", strtoull(temp, NULL, 10) / divisor_temp);
+		if(!ret_pcie_max_width && !ret_pcie_sta_width && pcie_sta_gen && pcie_max_gen)
+			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false, "PCIe Gen%1dx%d, Gen%1dx%d",
+				pcie_sta_gen, atoi(pcie_sta_width), pcie_max_gen, atoi(pcie_max_width));
 
-		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr)
+		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
+		&& ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width)
 			failed_count++;
 
 		FREE(temp);
@@ -1137,6 +1188,10 @@ skip_clocks:
 		FREE(vram_total);
 		FREE(gvolt);
 		FREE(gpwr);
+		FREE(pcie_max_speed);
+		FREE(pcie_max_width);
+		FREE(pcie_sta_speed);
+		FREE(pcie_sta_width);
 	}
 
 	if(once_error && failed_count)
