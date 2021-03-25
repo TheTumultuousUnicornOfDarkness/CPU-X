@@ -132,14 +132,14 @@ static gboolean grefresh(GThrd *refr)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_system[VALUE][i]), data->tab_system[VALUE][i]);
 			break;
 		case NO_GRAPHICS:
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1PCIE]),        data->tab_graphics[VALUE][GPU1PCIE        + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1TEMPERATURE]), data->tab_graphics[VALUE][GPU1TEMPERATURE + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1USAGE]),       data->tab_graphics[VALUE][GPU1USAGE       + opts->selected_gpu * GPUFIELDS]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1PCIE]),        data->tab_graphics[VALUE][GPU1PCIE        + opts->selected_gpu * GPUFIELDS]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMUSED]),     data->tab_graphics[VALUE][GPU1MEMUSED     + opts->selected_gpu * GPUFIELDS]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK]),   data->tab_graphics[VALUE][GPU1CORECLOCK   + opts->selected_gpu * GPUFIELDS]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK]),    data->tab_graphics[VALUE][GPU1MEMCLOCK    + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1VOLTAGE]),     data->tab_graphics[VALUE][GPU1VOLTAGE     + opts->selected_gpu * GPUFIELDS]);
 			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1POWERAVG]),    data->tab_graphics[VALUE][GPU1POWERAVG    + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1CORECLOCK]),   data->tab_graphics[VALUE][GPU1CORECLOCK   + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMCLOCK]),    data->tab_graphics[VALUE][GPU1MEMCLOCK    + opts->selected_gpu * GPUFIELDS]);
+			gtk_label_set_text(GTK_LABEL(glab->gtktab_graphics[VALUE][GPU1MEMUSED]),     data->tab_graphics[VALUE][GPU1MEMUSED     + opts->selected_gpu * GPUFIELDS]);
 			break;
 		case NO_BENCH:
 			for(i = PRIMESLOWSCORE; i <= PRIMEFASTSCORE; i += BENCHFIELDS)
