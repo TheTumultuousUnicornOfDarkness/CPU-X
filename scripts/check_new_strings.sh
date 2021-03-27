@@ -8,18 +8,17 @@ SHA=${GITHUB_SHA:-HEAD~0}
 cd "$GIT_DIR" || exit 1
 
 if [[ "$(git show -s --format='%ce' "$SHA")" == "hosted@weblate.org" ]]; then
-	echo "Last commit by WebLate, skipping commit."
-	exit 1
+	echo "NO_CHANGE"
+	exit 0
 fi
 
 for file in $(git show --pretty="" --name-only "$SHA"); do
 	if [[ "$file" == *.c ]] || [[ "$file" == *.h ]]; then
 		if git show "$SHA" "$file" | egrep '^(\+|\-)' | egrep -qw '_\(|N_\('; then
-			echo "Found a string change in $file."
+			echo "REGEN"
 			exit 0
 		fi
 	fi
 done
 
-echo "No string change found."
-exit 1
+echo "NO_CHANGE"

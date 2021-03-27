@@ -19,15 +19,13 @@ jobs:
 
     - id: step1
       name: Check if POT file needs to be regenerated
-      run: |
-        bash ./scripts/check_new_strings.sh
-        echo "::set-output name=check_ret::$?"
+      run: echo "::set-output name=check_ret::$(bash ./scripts/check_new_strings.sh)"
 
   update_pot_file:
     name: Linux x64_64 (L10n)
     runs-on: ubuntu-latest
     needs: check_new_string
-    if: ${{ needs.check_new_string.outputs.output1 == '0' }}
+    if: ${{ needs.check_new_string.outputs.output1 == 'REGEN' }}
 
     steps:
     - uses: actions/checkout@v2
