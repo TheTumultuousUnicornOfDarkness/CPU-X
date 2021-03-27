@@ -1173,7 +1173,8 @@ skip_clocks:
 		if(!ret_temp)
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2Lf°C", strtoull(temp, NULL, 10) / divisor_temp);
 		if(!ret_pcie_max_width && !ret_pcie_sta_width && pcie_sta_gen && pcie_max_gen)
-			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false, "PCIe Gen%1dx%d, Gen%1dx%d",
+			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false,
+				"Current: PCIe Gen%1dx%d / Max: Gen%1dx%d",
 				pcie_sta_gen, atoi(pcie_sta_width), pcie_max_gen, atoi(pcie_max_width));
 
 		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
