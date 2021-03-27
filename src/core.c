@@ -1125,13 +1125,13 @@ static int gpu_monitoring(Labels *data)
 		}
 
 		// Linux 4.13+
-		const char  *max_speed_file = format("%s/device/max_link_speed",     cached_paths_drm[i]),
-						*max_width_file = format("%s/device/max_link_width",     cached_paths_drm[i]),
-						*sta_speed_file = format("%s/device/current_link_speed", cached_paths_drm[i]),
-						*sta_width_file = format("%s/device/current_link_width", cached_paths_drm[i]);
+		const char *max_speed_file = format("%s/device/max_link_speed",     cached_paths_drm[i]);
+		const char *max_width_file = format("%s/device/max_link_width",     cached_paths_drm[i]);
+		const char *sta_speed_file = format("%s/device/current_link_speed", cached_paths_drm[i]);
+		const char *sta_width_file = format("%s/device/current_link_width", cached_paths_drm[i]);
 
-		if(!access(max_speed_file, F_OK) && !access(max_width_file, F_OK)
-		&& !access(sta_width_file, F_OK) && !access(sta_speed_file, F_OK))
+		if(!access(max_speed_file, F_OK) && !access(max_width_file, F_OK) &&
+		   !access(sta_width_file, F_OK) && !access(sta_speed_file, F_OK))
 		{
 			ret_pcie_max_speed = fopen_to_str(&pcie_max_speed, "%s", max_speed_file);
 			ret_pcie_max_width = fopen_to_str(&pcie_max_width, "%s", max_width_file);
@@ -1163,7 +1163,7 @@ skip_clocks:
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2Lf°C", strtoull(temp, NULL, 10) / divisor_temp);
 		if(!ret_pcie_max_width && !ret_pcie_sta_width && pcie_sta_gen && pcie_max_gen)
 			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false,
-				"Current: PCIe Gen%1dx%d / Max: Gen%1dx%d",
+				_("Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"),
 				pcie_sta_gen, atoi(pcie_sta_width), pcie_max_gen, atoi(pcie_max_width));
 
 		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
