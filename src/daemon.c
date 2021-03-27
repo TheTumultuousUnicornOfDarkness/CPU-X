@@ -75,7 +75,6 @@ char *colorized_msg(const char *__color, const char *str, ...)
 #if HAS_LIBCPUID
 static void libcpuid_msr_serialize(void)
 {
-#ifdef HAVE_MSR_SERIALIZE_RAW_DATA
 	struct msr_driver_t *msr = cpu_msr_driver_open_core(0);
 
 	if(msr != NULL)
@@ -84,7 +83,6 @@ static void libcpuid_msr_serialize(void)
 		msr_serialize_raw_data(msr, NULL);
 		cpu_msr_driver_close(msr);
 	}
-#endif /* HAVE_MSR_SERIALIZE_RAW_DATA */
 }
 
 /* Try to open a CPU MSR */

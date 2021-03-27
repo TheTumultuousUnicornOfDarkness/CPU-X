@@ -320,26 +320,15 @@ static int call_libcpuid_static(Labels *data)
 
 	/* Cache level 1 (instruction) */
 	if(datanr.l1_instruction_cache > 0)
-	{
-#ifdef HAVE_CPU_ID_L1I_INFO
 		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, fmt_cache_kb, datanr.num_cores, datanr.l1_instruction_cache, UNIT_KB, datanr.l1_instruction_assoc);
-#else /* HAVE_CPU_ID_L1I_INFO */
-		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, fmt_cache_kb, datanr.num_cores, datanr.l1_instruction_cache, UNIT_KB, datanr.l1_assoc);
-#endif /* HAVE_CPU_ID_L1I_INFO */
-	}
 
 	/* Cache level 1 (data) */
 	if(datanr.l1_data_cache > 0)
 	{
 		data->cache_count++;
 		data->w_data->size[0] = datanr.l1_data_cache;
-#ifdef HAVE_CPU_ID_L1I_INFO
 		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, fmt_cache_kb, datanr.num_cores, datanr.l1_data_cache, UNIT_KB, datanr.l1_data_assoc);
 		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL1D], datanr.l1_data_cacheline, UNIT_B);
-#else /* HAVE_CPU_ID_L1I_INFO */
-		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, fmt_cache_kb, datanr.num_cores, datanr.l1_data_cache, UNIT_KB, datanr.l1_assoc);
-		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL1D], datanr.l1_cacheline, UNIT_B);
-#endif /* HAVE_CPU_ID_L1I_INFO */
 	}
 
 	/* Cache level 2 */
