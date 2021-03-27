@@ -3,26 +3,31 @@ name: Update POT file
 on:
   push:
     branches:
-      - '*'
+      - master
   workflow_dispatch:
 
 jobs:
-  check-new-string:
+  check_new_string:
     name: Linux x64_64 (check)
     runs-on: ubuntu-latest
+
+    outputs:
+      output1: ${{ steps.step1.outputs.check_ret }}
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Check if POT file needs to be regenerated
+    - id: step1
+      name: Check if POT file needs to be regenerated
       run: |
         bash ./scripts/check_new_strings.sh
-        echo "CHECK_RET=$?" >> $GITHUB_ENV
+        echo "::set-output name=check_ret::$?"
 
-  update-pot-file:
+  update_pot_file:
     name: Linux x64_64 (L10n)
     runs-on: ubuntu-latest
-    if: ${{ env.CHECK_RET == '0' }}
+    needs: check_new_string
+    if: ${{ needs.check_new_string.outputs.output1 == '0' }}
 
     steps:
     - uses: actions/checkout@v2
