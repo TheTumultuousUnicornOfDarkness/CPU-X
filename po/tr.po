@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-27 13:56+0000\n"
+"POT-Creation-Date: 2021-03-27 14:05+0000\n"
 "PO-Revision-Date: 2021-03-23 15:29+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -129,153 +129,158 @@ msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
 
-#: core.c:876
+#: core.c:877
 msgid "failed to find chipset vendor and model"
 msgstr "yonga seti satıcısı ve model bulunamadı"
 
-#: core.c:878
+#: core.c:879
 msgid "failed to find graphic card vendor and model"
 msgstr "ekran kartı marka ve modeli bulunamadı"
 
-#: core.c:935
+#: core.c:956
 msgid "Retrieving GPU clocks"
 msgstr "GPU saatleri alınıyor"
 
-#: core.c:965
+#: core.c:990
 msgid "None"
 msgstr "Hiçbiri"
 
-#: core.c:1095
+#: core.c:1123
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "%u GPU sürücüsü frekansları bildirmiyor"
 
-#: core.c:1131
+#: core.c:1166
+#, c-format
+msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgstr ""
+
+#: core.c:1188
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU saatleri alınamadı"
 
-#: core.c:1148
+#: core.c:1205
 msgid "Identifying running system"
 msgstr "İşletim sistemi tanımlanıyor"
 
-#: core.c:1151
+#: core.c:1208
 msgid "failed to identify running system"
 msgstr "işletim sistemi tanımlanamadı"
 
-#: core.c:1192
+#: core.c:1249
 msgid "Calling libprocps"
 msgstr "libprocps çağrılıyor"
 
-#: core.c:1218
+#: core.c:1275
 msgid "Calling libstatgrab"
 msgstr "libstatgrab çağrılıyor"
 
-#: core.c:1253
+#: core.c:1310
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i gün, %i saat, %i dakika, %i saniye"
 
-#: core.c:1309
+#: core.c:1366
 msgid "Updating benchmark status"
 msgstr "Karşılaştırma durumu güncelleniyor"
 
-#: core.c:1310 tui_ncurses.c:817
+#: core.c:1367 tui_ncurses.c:824
 #, c-format
 msgid "%u mins"
 msgstr "%u dakika"
 
-#: core.c:1312 core.c:1313
+#: core.c:1369 core.c:1370
 msgid "Inactive"
 msgstr "Etkin değil"
 
-#: core.c:1317 core.c:1318
+#: core.c:1374 core.c:1375
 msgid "Not started"
 msgstr "Başlatılmadı"
 
-#: core.c:1323
+#: core.c:1380
 msgid "Active"
 msgstr "Etkin"
 
-#: core.c:1328
+#: core.c:1385
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u saat kaldı)"
 
-#: core.c:1330
+#: core.c:1387
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u dakika kaldı)"
 
-#: core.c:1332
+#: core.c:1389
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u saniye kaldı)"
 
-#: core.c:1337
+#: core.c:1394
 #, c-format
 msgid "in %u hours"
 msgstr "%u saat içinde"
 
-#: core.c:1339
+#: core.c:1396
 #, c-format
 msgid "in %u minutes"
 msgstr "%u dakika içinde"
 
-#: core.c:1341
+#: core.c:1398
 #, c-format
 msgid "in %u seconds"
 msgstr "%u saniye içinde"
 
-#: core.c:1357
+#: core.c:1414
 msgid "Starting benchmark"
 msgstr "Karşılaştırma başlatılıyor"
 
-#: core.c:1376
+#: core.c:1433
 msgid "an error occurred while starting benchmark"
 msgstr "karşılaştırma başlatılırken hata oluştu"
 
-#: core.c:1393
+#: core.c:1450
 msgid "Finding CPU package in fallback mode"
 msgstr "Yedek modda CPU paketi bulunuyor"
 
-#: core.c:1415
+#: core.c:1472
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
 
-#: core.c:1434
+#: core.c:1491
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Yedek modda CPU çarpanları hesaplanıyor"
 
-#: core.c:1461
+#: core.c:1518
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Yedek modda anakart bilgisi alınıyor"
 
-#: core.c:1470
+#: core.c:1527
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "anakart bilgisi alınamadı (yedek modu)"
 
-#: core.c:1509
+#: core.c:1566
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Yedek modda CPU sıcaklığı alınıyor"
 
-#: core.c:1554
+#: core.c:1611
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU sıcaklığı alınamadı (yedek mod)"
 
-#: core.c:1567
+#: core.c:1624
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Yedek modda CPU gerilimi alınıyor"
 
-#: core.c:1580
+#: core.c:1637
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU gerilimi alınamadı (yedek mod)"
 
-#: core.c:1595
+#: core.c:1652
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Yedek modda CPU frekansı alınıyor"
 
-#: core.c:1603
+#: core.c:1660
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 
@@ -292,28 +297,28 @@ msgstr "GTK GUI başlatılıyor…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
-#: gui_gtk.c:543
+#: gui_gtk.c:544
 msgid "Connected to daemon"
 msgstr "Arka plan programına bağlandı"
 
-#: gui_gtk.c:545
+#: gui_gtk.c:546
 msgid "No polkit authentication agent found"
 msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
-#: gui_gtk.c:549
+#: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
 msgstr "Arka plan programı başlatmak için parola sor"
 
-#: gui_gtk.c:555
+#: gui_gtk.c:556
 msgid "Start daemon"
 msgstr "Arka plan programını başlat"
 
-#: gui_gtk.c:564 gui_gtk.c:649 tui_ncurses.c:546
+#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr "Çekirdek #%i"
 
-#: gui_gtk.c:646
+#: gui_gtk.c:647
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -398,7 +403,7 @@ msgstr "Katsayı"
 msgid "Bus Speed"
 msgstr "Veri Yolu Hızı"
 
-#: main.c:78 main.c:153
+#: main.c:78 main.c:155
 msgid "Usage"
 msgstr "Kullanım"
 
@@ -570,70 +575,78 @@ msgid "UMD Version"
 msgstr "UMD Sürümü"
 
 #: main.c:152
+msgid "DeviceID"
+msgstr ""
+
+#: main.c:153
+msgid "Interface"
+msgstr ""
+
+#: main.c:154
 msgid "Temperature"
 msgstr "Sıcaklık"
 
-#: main.c:154
-msgid "Memory Used"
-msgstr "Kullanılan Bellek"
-
-#: main.c:155
-msgid "GPU clock"
-msgstr "GPU saati"
-
 #: main.c:156
-msgid "Memory clock"
-msgstr "Bellek saati"
-
-#: main.c:157
 msgid "Core Voltage"
 msgstr "Çekirdek Gerilimi"
 
-#: main.c:158
+#: main.c:157
 msgid "Power Avg"
 msgstr "Güç Ortalaması"
 
+#: main.c:158
+msgid "GPU clock"
+msgstr "GPU saati"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "Bellek saati"
+
 #: main.c:160
+msgid "Memory Used"
+msgstr "Kullanılan Bellek"
+
+#: main.c:162
 msgid "Cards"
 msgstr "Kartlar"
 
-#: main.c:163
+#: main.c:165
 msgid "Bench"
 msgstr "Karşılaştırma"
 
-#: main.c:164
+#: main.c:166
 msgid "Prime numbers (slow)"
 msgstr "Asal sayılar (yavaş)"
 
-#: main.c:165
+#: main.c:167
 msgid "Prime numbers (fast)"
 msgstr "Asal sayılar (hızlı)"
 
-#: main.c:168
+#: main.c:170
 msgid "Score"
 msgstr "Puan"
 
-#: main.c:169
+#: main.c:171
 msgid "Run"
 msgstr "Çalıştır"
 
-#: main.c:172
+#: main.c:174
 msgid "Parameters"
 msgstr "Parametreler"
 
-#: main.c:173
+#: main.c:175
 msgid "Duration"
 msgstr "Süre"
 
-#: main.c:174
+#: main.c:176
 msgid "Threads"
 msgstr "İş Parçacıkları"
 
-#: main.c:177 main.c:182
+#: main.c:179 main.c:184
 msgid "About"
 msgstr "Hakkında"
 
-#: main.c:179
+#: main.c:181
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -642,177 +655,177 @@ msgstr ""
 "%s CPU, anakart ve daha fazlası hakkında bilgi\n"
 "toplayan özgür bir yazılımdır."
 
-#: main.c:183
+#: main.c:185
 #, c-format
 msgid "Version %s"
 msgstr "Sürüm %s"
 
-#: main.c:184
+#: main.c:186
 #, c-format
 msgid "Author: %s"
 msgstr "Yazar: %s"
 
-#: main.c:185
+#: main.c:187
 #, c-format
 msgid "Site: %s"
 msgstr "Site: %s"
 
-#: main.c:187
+#: main.c:189
 msgid "License"
 msgstr "Lisans"
 
-#: main.c:190
+#: main.c:192
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Bu yazılım %s koşulları altında dağıtılmıştır"
 
-#: main.c:192 main.c:441
+#: main.c:194 main.c:443
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 
-#: main.c:263
+#: main.c:265
 msgid "Dumping data…"
 msgstr "Veriler dökülüyor…"
 
-#: main.c:306
+#: main.c:308
 msgid "Freeing memory"
 msgstr "Bellek boşaltılıyor"
 
-#: main.c:334
+#: main.c:336
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Grafiksel kullanıcı arayüzünü (GUI) başlat (öntanımlı)"
 
-#: main.c:335
+#: main.c:337
 msgid "Start text-based user interface (TUI)"
 msgstr "Metin tabanlı kullanıcı arayüzünü (TUI) başlat"
 
-#: main.c:336
+#: main.c:338
 msgid "Dump all data on standard output and exit"
 msgstr "Tüm verileri standart çıktıya dök ve çık"
 
-#: main.c:337
+#: main.c:339
 msgid "Run embedded command dmidecode and exit"
 msgstr "Gömülü dmidecode komutunu çalıştır ve çık"
 
-#: main.c:338
+#: main.c:340
 msgid "Run embedded command bandwidth and exit"
 msgstr "Gömülü bandwidth komutunu çalıştır ve çık"
 
-#: main.c:339
+#: main.c:341
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "İki yenileme arasında özel süre ayarla (saniye cinsinden)"
 
-#: main.c:340
+#: main.c:342
 msgid "Set default tab (integer)"
 msgstr "Öntanımlı sekmeyi ayarla (tam sayı)"
 
-#: main.c:341
+#: main.c:343
 msgid "Select CPU core to monitor (integer)"
 msgstr "İzlenecek işlemci çekirdeğini seç (tam sayı)"
 
-#: main.c:342
+#: main.c:344
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "İşlemci önbellek hızı için özel bant genişliği ayarla (tam sayı)"
 
-#: main.c:343
+#: main.c:345
 msgid "Select default graphic card (integer)"
 msgstr "Öntanımlı grafik kartını seç (tam sayı)"
 
-#: main.c:344
+#: main.c:346
 msgid "Start and connect to daemon"
 msgstr "Arka plan programını başlat ve bağlan"
 
-#: main.c:345
+#: main.c:347
 msgid "Verbose output"
 msgstr "Ayrıntılı çıktı"
 
-#: main.c:346
+#: main.c:348
 msgid "Print help and exit"
 msgstr "Yardımı yazdır ve çık"
 
-#: main.c:347
+#: main.c:349
 msgid "Print version and exit"
 msgstr "Sürümü yazdır ve çık"
 
-#: main.c:348
+#: main.c:350
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "CPUID değerlerini ondalık olarak yazdır (öntanımlı olarak onaltılıktır)"
 
-#: main.c:349
+#: main.c:351
 msgid "Disable colored output"
 msgstr "Renkli çıktıyı devre dışı bırak"
 
-#: main.c:350
+#: main.c:352
 msgid "Print information for debugging"
 msgstr "Hata ayıklama bilgilerini yazdır"
 
-#: main.c:351
+#: main.c:353
 msgid "Print required information to paste in an issue"
 msgstr "Bir soruna yapıştırmak için gerekli bilgileri yazdır"
 
-#: main.c:352
+#: main.c:354
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "NCurses modu için tuş atamasını ayarla (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.c:363
+#: main.c:365
 msgid "Add default command line arguments"
 msgstr "Öntanımlı komut satırı argümanlarını ekle"
 
-#: main.c:364
+#: main.c:366
 msgid "Enforce the bus clock"
 msgstr "Veri yolu saatini zorla"
 
-#: main.c:365
+#: main.c:367
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "libcpuid tarafından bildirilen CPU frekansını yok say"
 
-#: main.c:366
+#: main.c:368
 msgid "Read CPUID raw data from a given file"
 msgstr "Belirtilen bir dosyadan CPUID ham verilerini oku"
 
-#: main.c:367
+#: main.c:369
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Yalnızca veri tabanında CPU yoksa bir mesaj yazdır"
 
-#: main.c:391
+#: main.c:393
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Kullanım: %s EKRAN [SEÇENEKLER]\n"
 
-#: main.c:392
+#: main.c:394
 msgid "Available DISPLAY:"
 msgstr "Kullanılabilir EKRAN:"
 
-#: main.c:401
+#: main.c:403
 msgid "Available OPTIONS:"
 msgstr "Kullanılabilir SEÇENEKLER:"
 
-#: main.c:409
+#: main.c:411
 msgid "Influenceable environment variables:"
 msgstr "Etkilenebilir ortam değişkenleri:"
 
-#: main.c:440
+#: main.c:442
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Bu bir özgür yazılımdır: değiştirmek ve yeniden dağıtmakta özgürsünüz."
 
-#: main.c:442
+#: main.c:444
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s lisansına bakın: <%s>\n"
 
-#: main.c:449
+#: main.c:451
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s sürümü: %s"
 
-#: main.c:465
+#: main.c:467
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "wordexp çağrılamadı (%i)"
 
-#: main.c:660
+#: main.c:662
 #, c-format
 msgid ""
 "\n"
@@ -822,11 +835,11 @@ msgstr ""
 "\n"
 "%sHay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü.%s"
 
-#: main.c:675
+#: main.c:677
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "Bu geri izlemeyi buraya yeni bir konu açarak yapıştırabilirsiniz:"
 
-#: main.c:703
+#: main.c:705
 msgid "an error occurred while setting locale"
 msgstr "yerel ayar yapılırken bir hata oluştu"
 
@@ -855,108 +868,108 @@ msgstr "Pencere çok küçük!"
 msgid "Press 'h' to see help."
 msgstr "Yardımı görmek için 'h' tuşuna basın."
 
-#: tui_ncurses.c:470
+#: tui_ncurses.c:474
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "%s NCurses yardımına hoş geldiniz!\n"
 
-#: tui_ncurses.c:471
+#: tui_ncurses.c:475
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
 "Bu yardım, metin tabanlı kullanıcı arayüzünün nasıl kullanılacağını açıklar."
 
-#: tui_ncurses.c:473
+#: tui_ncurses.c:477
 msgid "Global keys:"
 msgstr "Genel tuşlar:"
 
-#: tui_ncurses.c:474
+#: tui_ncurses.c:478
 msgid "Press 'left' key to switch in left tab."
 msgstr "Sol sekmeye geçmek için 'sol' tuşuna basın."
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:479
 msgid "Press 'right' key to switch in right tab."
 msgstr "Sağ sekmeye geçmek için 'sağ' tuşuna basın."
 
-#: tui_ncurses.c:476
+#: tui_ncurses.c:480
 msgid "Press 'h' key to see this help."
 msgstr "Bu yardımı görmek için 'h' tuşuna basın."
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:481
 msgid "Press 'q' key to exit."
 msgstr "Çıkmak için 'q' tuşuna basın."
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:483
 msgid "CPU tab:"
 msgstr "CPU sekmesi:"
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:484
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr "İzlenecek çekirdek sayısını azaltmak için 'aşağı' tuşuna basın."
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:485
 msgid "Press 'up' key to increase core number to monitor."
 msgstr "İzlenecek çekirdek sayısını artırmak için 'yukarı' tuşuna basın."
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:487
 msgid "Caches tab:"
 msgstr "Önbellek sekmesi:"
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:488
 msgid "Press 'down' key to switch to previous test."
 msgstr "Önceki teste geçmek için 'aşağı' tuşuna basın."
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:489
 msgid "Press 'up' key' to switch to next test."
 msgstr "Sonraki teste geçmek için 'yukarı' tuşuna basın."
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:491
 msgid "Bench tab:"
 msgstr "Karşılaştırma sekmesi:"
 
-#: tui_ncurses.c:488
+#: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "Karşılaştırma süresini azaltmak için 'aşağı' tuşuna basın."
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "Karşılaştırma süresini artırmak için 'yukarı' tuşuna basın."
 
-#: tui_ncurses.c:490
+#: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
 "Kullanılacak iş parçacığı sayısını azaltmak için 'sonraki sayfa' tuşuna "
 "basın."
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:495
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
 "Kullanılacak iş parçacığı sayısını artırmak için 'önceki sayfa' tuşuna basın."
 
-#: tui_ncurses.c:492
+#: tui_ncurses.c:496
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
 "Asal sayıları (yavaş) karşılaştırmayı başlatmak/durdurmak için 's' tuşuna "
 "basın."
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:497
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
 "Asal sayıları (hızlı) karşılaştırmayı başlatmak/durdurmak için 'f' tuşuna "
 "basın."
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:499
 msgid "Graphics tab:"
 msgstr "Grafikler sekmesi:"
 
-#: tui_ncurses.c:496
+#: tui_ncurses.c:500
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "Önceki grafik kartına geçmek için 'aşağı' tuşuna basın."
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:501
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "Sonraki grafik kartına geçmek için 'yukarı' tuşuna basın."
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:503
 msgid "Press any key to exit this help."
 msgstr "Yardımdan çıkmak için herhangi bir tuşa basın."
 

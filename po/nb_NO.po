@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-27 13:56+0000\n"
+"POT-Creation-Date: 2021-03-27 14:05+0000\n"
 "PO-Revision-Date: 2021-03-23 15:29+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -126,156 +126,161 @@ msgstr "Hopp over søk etter enheter (feil tilganger på %s-enhet)"
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU-tilvirker er ukjent: %s (0x%X)"
 
-#: core.c:876
+#: core.c:877
 msgid "failed to find chipset vendor and model"
 msgstr "klarte ikke å finne brikkesetttilverker eller modell"
 
-#: core.c:878
+#: core.c:879
 msgid "failed to find graphic card vendor and model"
 msgstr "klarte ikke å finne grafikkorttilvirker eller modell"
 
-#: core.c:935
+#: core.c:956
 msgid "Retrieving GPU clocks"
 msgstr "Henter GPU-klokker"
 
-#: core.c:965
+#: core.c:990
 msgid "None"
 msgstr "Ingen"
 
-#: core.c:1095
+#: core.c:1123
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Driver for GPU %u rapporterer ikke frekvenser"
 
-#: core.c:1131
+#: core.c:1166
+#, c-format
+msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgstr ""
+
+#: core.c:1188
 msgid "failed to retrieve GPU clocks"
 msgstr "klarte ikke å hente GPU-klokker"
 
-#: core.c:1148
+#: core.c:1205
 msgid "Identifying running system"
 msgstr "Identifiserer kjørende system"
 
-#: core.c:1151
+#: core.c:1208
 msgid "failed to identify running system"
 msgstr "klarte ikke å identifisere kjørende system"
 
-#: core.c:1192
+#: core.c:1249
 msgid "Calling libprocps"
 msgstr "Kaller libprocps"
 
-#: core.c:1218
+#: core.c:1275
 msgid "Calling libstatgrab"
 msgstr "Kaller libstatgrab"
 
-#: core.c:1253
+#: core.c:1310
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dager, %i timer, %i minutter, %i sekunder"
 
-#: core.c:1309
+#: core.c:1366
 msgid "Updating benchmark status"
 msgstr "Oppdaterer ytelsesteststatus"
 
-#: core.c:1310 tui_ncurses.c:817
+#: core.c:1367 tui_ncurses.c:824
 #, c-format
 msgid "%u mins"
 msgstr "%u minutter"
 
-#: core.c:1312 core.c:1313
+#: core.c:1369 core.c:1370
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.c:1317 core.c:1318
+#: core.c:1374 core.c:1375
 msgid "Not started"
 msgstr "Ikke startet"
 
-#: core.c:1323
+#: core.c:1380
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.c:1328
+#: core.c:1385
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u timer gjenstår)"
 
-#: core.c:1330
+#: core.c:1387
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutter gjenstår)"
 
-#: core.c:1332
+#: core.c:1389
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekunder gjenstår)"
 
-#: core.c:1337
+#: core.c:1394
 #, c-format
 msgid "in %u hours"
 msgstr "om %u timer"
 
-#: core.c:1339
+#: core.c:1396
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u minutter"
 
-#: core.c:1341
+#: core.c:1398
 #, c-format
 msgid "in %u seconds"
 msgstr "om %u sekunder"
 
-#: core.c:1357
+#: core.c:1414
 msgid "Starting benchmark"
 msgstr "Starter ytelsestest"
 
-#: core.c:1376
+#: core.c:1433
 msgid "an error occurred while starting benchmark"
 msgstr "En feil inntraff under oppstart av ytelsestest"
 
-#: core.c:1393
+#: core.c:1450
 msgid "Finding CPU package in fallback mode"
 msgstr "Finner prosessor-pakke i tilbakefallsmodus"
 
-#: core.c:1415
+#: core.c:1472
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din prosessor-sokkel finnes ikke i databasen ➜ %s, kodenavn: %s"
 
-#: core.c:1434
+#: core.c:1491
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Regner ut prosessor-multiplikatorer i tilbakefallsmodus"
 
-#: core.c:1461
+#: core.c:1518
 #, fuzzy
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Henter hovedkortinformasjon i tilbakefallsmodus"
 
-#: core.c:1470
+#: core.c:1527
 #, fuzzy
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Klarte ikke å hente hovedkortinformasjon (tilbakefallsmodus)"
 
-#: core.c:1509
+#: core.c:1566
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Henter prosessor-temperatur i tilbakefallsmodus"
 
-#: core.c:1554
+#: core.c:1611
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-temperatur (tilbakefallsmodus)"
 
-#: core.c:1567
+#: core.c:1624
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Henter prosessor-spenning i tilbakefallsmodus"
 
-#: core.c:1580
+#: core.c:1637
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-spenning (tilbakefallsmodus)"
 
-#: core.c:1595
+#: core.c:1652
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Henter prosessor-frekvens i tilbakefallsmodus"
 
-#: core.c:1603
+#: core.c:1660
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-frekvens (tilbakefallsmodus)"
 
@@ -293,28 +298,28 @@ msgstr "Starter grafisk GTK-brukergrensesnitt…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "Klarte ikke å importere grensesnitt i GtkBuilder"
 
-#: gui_gtk.c:543
+#: gui_gtk.c:544
 msgid "Connected to daemon"
 msgstr "Tilkoblet nisse"
 
-#: gui_gtk.c:545
+#: gui_gtk.c:546
 msgid "No polkit authentication agent found"
 msgstr "Fant ingen polkit-identitetsbekreftelsesagent"
 
-#: gui_gtk.c:549
+#: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
 msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
-#: gui_gtk.c:555
+#: gui_gtk.c:556
 msgid "Start daemon"
 msgstr "Start nisse"
 
-#: gui_gtk.c:564 gui_gtk.c:649 tui_ncurses.c:546
+#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr "Kjerne #%i"
 
-#: gui_gtk.c:646
+#: gui_gtk.c:647
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -403,7 +408,7 @@ msgstr "Multiplikator"
 msgid "Bus Speed"
 msgstr "Busshastighet"
 
-#: main.c:78 main.c:153
+#: main.c:78 main.c:155
 msgid "Usage"
 msgstr "Bruk"
 
@@ -577,75 +582,83 @@ msgid "UMD Version"
 msgstr "Versjon"
 
 #: main.c:152
+msgid "DeviceID"
+msgstr ""
+
+#: main.c:153
+msgid "Interface"
+msgstr ""
+
+#: main.c:154
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: main.c:154
+#: main.c:156
+msgid "Core Voltage"
+msgstr "Kjernespenning"
+
+#: main.c:157
+msgid "Power Avg"
+msgstr "Effektgjennomsnitt"
+
+#: main.c:158
+msgid "GPU clock"
+msgstr "prosessor-klokke"
+
+#: main.c:159
+#, fuzzy
+msgid "Memory clock"
+msgstr "Minne-klokke"
+
+#: main.c:160
 #, fuzzy
 #| msgid "Memory"
 msgid "Memory Used"
 msgstr "Minne"
 
-#: main.c:155
-msgid "GPU clock"
-msgstr "prosessor-klokke"
-
-#: main.c:156
-#, fuzzy
-msgid "Memory clock"
-msgstr "Minne-klokke"
-
-#: main.c:157
-msgid "Core Voltage"
-msgstr "Kjernespenning"
-
-#: main.c:158
-msgid "Power Avg"
-msgstr "Effektgjennomsnitt"
-
-#: main.c:160
+#: main.c:162
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "Kort %i"
 
-#: main.c:163
+#: main.c:165
 msgid "Bench"
 msgstr "Ytelsestest"
 
-#: main.c:164
+#: main.c:166
 msgid "Prime numbers (slow)"
 msgstr "Primtall (tregt)"
 
-#: main.c:165
+#: main.c:167
 msgid "Prime numbers (fast)"
 msgstr "Primtall (raskt)"
 
-#: main.c:168
+#: main.c:170
 msgid "Score"
 msgstr "Poengsum"
 
-#: main.c:169
+#: main.c:171
 msgid "Run"
 msgstr "Kjør"
 
-#: main.c:172
+#: main.c:174
 msgid "Parameters"
 msgstr "Parameter"
 
-#: main.c:173
+#: main.c:175
 msgid "Duration"
 msgstr "Varighet"
 
-#: main.c:174
+#: main.c:176
 msgid "Threads"
 msgstr "Tråder"
 
-#: main.c:177 main.c:182
+#: main.c:179 main.c:184
 msgid "About"
 msgstr "Om"
 
-#: main.c:179
+#: main.c:181
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -654,186 +667,186 @@ msgstr ""
 "%s er fri programvare som henter info om\n"
 "prosessor, hovedkort, med mer."
 
-#: main.c:183
+#: main.c:185
 #, c-format
 msgid "Version %s"
 msgstr "Versjon %s"
 
-#: main.c:184
+#: main.c:186
 #, c-format
 msgid "Author: %s"
 msgstr "Utvikler: %s"
 
-#: main.c:185
+#: main.c:187
 #, fuzzy, c-format
 msgid "Site: %s"
 msgstr "Nettside: %s"
 
-#: main.c:187
+#: main.c:189
 #, fuzzy
 msgid "License"
 msgstr "Lisens"
 
-#: main.c:190
+#: main.c:192
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Denne programvaren utgis i henhold til vilkårene i %s"
 
-#: main.c:192 main.c:441
+#: main.c:194 main.c:443
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dette programmet kommer deg i hende UTEN NOEN FORM FOR GARANTI"
 
-#: main.c:263
+#: main.c:265
 #, fuzzy
 msgid "Dumping data…"
 msgstr "Dumper data …"
 
-#: main.c:306
+#: main.c:308
 msgid "Freeing memory"
 msgstr "Frigjør minne"
 
-#: main.c:334
+#: main.c:336
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Start grafisk brukergrensesnitt (GUI) (forvalg)"
 
-#: main.c:335
+#: main.c:337
 msgid "Start text-based user interface (TUI)"
 msgstr "Start tekstbasert brukergrensesnitt (TUI)"
 
-#: main.c:336
+#: main.c:338
 #, fuzzy
 msgid "Dump all data on standard output and exit"
 msgstr "Dump all data til forvalgt utdata og avslutt"
 
-#: main.c:337
+#: main.c:339
 msgid "Run embedded command dmidecode and exit"
 msgstr "Kjør den innebygde kommandoen dmidecode og avslutt"
 
-#: main.c:338
+#: main.c:340
 msgid "Run embedded command bandwidth and exit"
 msgstr "Kjør den innebygde kommandoen bandwidth og avslutt"
 
-#: main.c:339
+#: main.c:341
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Sett egendefinert tid mellom to oppdateringer (i sekunder)"
 
-#: main.c:340
+#: main.c:342
 msgid "Set default tab (integer)"
 msgstr "Sett forvalgt fane (heltall)"
 
-#: main.c:341
+#: main.c:343
 msgid "Select CPU core to monitor (integer)"
 msgstr "Velg prosessor-kjerne å overvåke (heltall)"
 
-#: main.c:342
+#: main.c:344
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Sett egendefinert båndbreddetest for hastigheter for prosessor-hurtiglagre "
 "(heltall)"
 
-#: main.c:343
+#: main.c:345
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
 msgstr "Sett forvalgt fane (heltall)"
 
-#: main.c:344
+#: main.c:346
 msgid "Start and connect to daemon"
 msgstr "Start og koble til nisse"
 
-#: main.c:345
+#: main.c:347
 msgid "Verbose output"
 msgstr "Ordrik utdata"
 
-#: main.c:346
+#: main.c:348
 msgid "Print help and exit"
 msgstr "Skriv ut hjelp og avslutt"
 
-#: main.c:347
+#: main.c:349
 msgid "Print version and exit"
 msgstr "Skriv ut versjon og avslutt"
 
-#: main.c:348
+#: main.c:350
 #, fuzzy
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "Skriv ut CPUID-verdier i desimalform (forvalget er heksadesimaler)"
 
-#: main.c:349
+#: main.c:351
 msgid "Disable colored output"
 msgstr "Skru av fargelagt utdata"
 
-#: main.c:350
+#: main.c:352
 msgid "Print information for debugging"
 msgstr "Skriv ut info for avlusing"
 
-#: main.c:351
+#: main.c:353
 msgid "Print required information to paste in an issue"
 msgstr "Skriv ut påkrevd informasjon å lime inn i en feilrapport"
 
-#: main.c:352
+#: main.c:354
 #, fuzzy
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Sett tastetildeling for NCurses-modus (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.c:363
+#: main.c:365
 msgid "Add default command line arguments"
 msgstr "Sett forvalgte kommandolinjeargumenter"
 
-#: main.c:364
+#: main.c:366
 msgid "Enforce the bus clock"
 msgstr "Påtving bussklokkefrekvens"
 
-#: main.c:365
+#: main.c:367
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "Ignorer prosessorfrekvens rapportert av libcpuid"
 
-#: main.c:366
+#: main.c:368
 msgid "Read CPUID raw data from a given file"
 msgstr "Les CPUID-rådata fra en gitt fil"
 
-#: main.c:367
+#: main.c:369
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Kun skriv ut en melding hvis prosessoren ikke finnes i databasen"
 
-#: main.c:391
+#: main.c:393
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Bruk: %s SKJERM {VALG]\n"
 
-#: main.c:392
+#: main.c:394
 msgid "Available DISPLAY:"
 msgstr "Tilgjengelig SKJERM:"
 
-#: main.c:401
+#: main.c:403
 msgid "Available OPTIONS:"
 msgstr "Tilgjengelige VALG:"
 
-#: main.c:409
+#: main.c:411
 msgid "Influenceable environment variables:"
 msgstr "Påvirkelige miljøvariabler:"
 
-#: main.c:440
+#: main.c:442
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Dette er fri programvare: Du står fritt til å endre og redistribuere den."
 
-#: main.c:442
+#: main.c:444
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Vis %s-linsensen: <%s>\n"
 
-#: main.c:449
+#: main.c:451
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s versjon: %s"
 
-#: main.c:465
+#: main.c:467
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "Klarte ikke å kalle wordexp (%i)"
 
-#: main.c:660
+#: main.c:662
 #, c-format
 msgid ""
 "\n"
@@ -843,12 +856,12 @@ msgstr ""
 "\n"
 "%s! %s has received signal %d (%s) and has crashed.%s"
 
-#: main.c:675
+#: main.c:677
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr ""
 "Du kan lime inn denne tilbakesporingen ved å åpne en ny feilrapport her:"
 
-#: main.c:703
+#: main.c:705
 #, fuzzy
 msgid "an error occurred while setting locale"
 msgstr "Kunne ikke sette lokalitet"
@@ -881,19 +894,19 @@ msgstr "Vinduet er for lite!\n"
 msgid "Press 'h' to see help."
 msgstr "Trykk \"h\" for å vise hjelp.\n"
 
-#: tui_ncurses.c:470
+#: tui_ncurses.c:474
 #, fuzzy, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Velkommen til %s-ncurseshjelpen!\n"
 
-#: tui_ncurses.c:471
+#: tui_ncurses.c:475
 #, fuzzy
 #| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
 "Denne hjelpen beskrives bruken av dette tekstbaserte brukergrensesnittet.\n"
 
-#: tui_ncurses.c:473
+#: tui_ncurses.c:477
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -903,29 +916,29 @@ msgstr ""
 "\n"
 "Programvide hurtigtaster:\n"
 
-#: tui_ncurses.c:474
+#: tui_ncurses.c:478
 #, fuzzy
 #| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
 msgstr "\tTrykk \"venstre piltast\" for å veksle i venstre fane.\n"
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:479
 #, fuzzy
 #| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
 msgstr "\tTrykk \"høyre piltast\" for å veksle i høyre fane.\n"
 
-#: tui_ncurses.c:476
+#: tui_ncurses.c:480
 #, fuzzy
 msgid "Press 'h' key to see this help."
 msgstr "\tTrykk \"h\"-tasten for å se denne hjelpen.\n"
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:481
 #, fuzzy
 msgid "Press 'q' key to exit."
 msgstr "\tTrykk \"q\"-tast for å avslutte.\n"
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:483
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -935,20 +948,20 @@ msgstr ""
 "\n"
 "Prosessor-fane:\n"
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:484
 #, fuzzy
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr ""
 "\tTrykk \"nedover-piltast\" ↓ for å senke kjerneantall å holde oppsikt med.\n"
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:485
 #, fuzzy
 #| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
 msgstr ""
 "\tTrykk \"oppover-piltast\" ↑ for å øke kjerneantallet å holde oppsyn med.\n"
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:487
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -958,17 +971,17 @@ msgstr ""
 "\n"
 "Fane for hurtiglagre:\n"
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:488
 #, fuzzy
 msgid "Press 'down' key to switch to previous test."
 msgstr "\tTrykk \"nedovertast\" ↓ for å bytte til forrige test.\n"
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:489
 #, fuzzy
 msgid "Press 'up' key' to switch to next test."
 msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:491
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -978,56 +991,56 @@ msgstr ""
 "\n"
 "Ytelsestestfane:\n"
 
-#: tui_ncurses.c:488
+#: tui_ncurses.c:492
 #, fuzzy
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "\tTrykk \"nedover-piltast\" ↓ for å senke ytelsestestens varighet.\n"
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:493
 #, fuzzy
 #| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "\tTrykk \"oppovertast\" ↑ for å endre ytelsestestens varighet.\n"
 
-#: tui_ncurses.c:490
+#: tui_ncurses.c:494
 #, fuzzy
 #| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr "\tTrykk \"neste side-tast\" for å senke antall tråder i bruk.\n"
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:495
 #, fuzzy
 #| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr "\tTrykk \"forrige side-tast\" for å øke antall tråder i bruk.\n"
 
-#: tui_ncurses.c:492
+#: tui_ncurses.c:496
 #, fuzzy
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr "\tTrykk \"s\"-tast for å starte/stoppe primtall (treg) ytelsestest.\n"
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:497
 #, fuzzy
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr "\tTrykk \"f\"-tast for å starte/stoppe primtall (rask) ytelsestest.\n"
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:499
 #, fuzzy
 #| msgid "Graphics"
 msgid "Graphics tab:"
 msgstr "Grafikk"
 
-#: tui_ncurses.c:496
+#: tui_ncurses.c:500
 #, fuzzy
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "\tTrykk \"nedovertast\" ↓ for å bytte til forrige test.\n"
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:501
 #, fuzzy
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:503
 #, fuzzy
 #| msgid ""
 #| "\n"

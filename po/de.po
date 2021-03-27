@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-27 13:56+0000\n"
+"POT-Creation-Date: 2021-03-27 14:05+0000\n"
 "PO-Revision-Date: 2021-02-23 09:50+0000\n"
 "Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
@@ -124,153 +124,158 @@ msgstr "Suche nach Geräten überspringen (falsche Berechtigungen auf %s Gerät)
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Unbekannter GPU-Hersteller: %s (0x%X)"
 
-#: core.c:876
+#: core.c:877
 msgid "failed to find chipset vendor and model"
 msgstr "Chipsatzhersteller und Modell konnte nicht ermittelt werden"
 
-#: core.c:878
+#: core.c:879
 msgid "failed to find graphic card vendor and model"
 msgstr "Grafikkartenhersteller und Modell konnten nicht ermittelt werden"
 
-#: core.c:935
+#: core.c:956
 msgid "Retrieving GPU clocks"
 msgstr "GPU-Taktgeber abrufen"
 
-#: core.c:965
+#: core.c:990
 msgid "None"
 msgstr "Keine"
 
-#: core.c:1095
+#: core.c:1123
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Treiber von GPU %u meldet keine Taktfrequenzen"
 
-#: core.c:1131
+#: core.c:1166
+#, c-format
+msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgstr ""
+
+#: core.c:1188
 msgid "failed to retrieve GPU clocks"
 msgstr "Fehler beim Abrufen von GPU-Takten"
 
-#: core.c:1148
+#: core.c:1205
 msgid "Identifying running system"
 msgstr "Laufendes System wird identifiziert"
 
-#: core.c:1151
+#: core.c:1208
 msgid "failed to identify running system"
 msgstr "Fehler beim Identifizieren des laufenden Systems"
 
-#: core.c:1192
+#: core.c:1249
 msgid "Calling libprocps"
 msgstr "libprocps aufrufen"
 
-#: core.c:1218
+#: core.c:1275
 msgid "Calling libstatgrab"
 msgstr "libstatgrab aufrufen"
 
-#: core.c:1253
+#: core.c:1310
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i Tage, %i Stunden, %i Minuten, %i Sekunden"
 
-#: core.c:1309
+#: core.c:1366
 msgid "Updating benchmark status"
 msgstr "Benchmark-Status wird aktualisiert"
 
-#: core.c:1310 tui_ncurses.c:817
+#: core.c:1367 tui_ncurses.c:824
 #, c-format
 msgid "%u mins"
 msgstr "%u Minuten"
 
-#: core.c:1312 core.c:1313
+#: core.c:1369 core.c:1370
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.c:1317 core.c:1318
+#: core.c:1374 core.c:1375
 msgid "Not started"
 msgstr "Nicht gestartet"
 
-#: core.c:1323
+#: core.c:1380
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.c:1328
+#: core.c:1385
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u Stunden verbleibend)"
 
-#: core.c:1330
+#: core.c:1387
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u Minuten verbleibend)"
 
-#: core.c:1332
+#: core.c:1389
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u Sekunden verbleibend)"
 
-#: core.c:1337
+#: core.c:1394
 #, c-format
 msgid "in %u hours"
 msgstr "in %u Stunden"
 
-#: core.c:1339
+#: core.c:1396
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u Minuten"
 
-#: core.c:1341
+#: core.c:1398
 #, c-format
 msgid "in %u seconds"
 msgstr "in %u Sekunden"
 
-#: core.c:1357
+#: core.c:1414
 msgid "Starting benchmark"
 msgstr "Benchmark starten"
 
-#: core.c:1376
+#: core.c:1433
 msgid "an error occurred while starting benchmark"
 msgstr "Beim Starten des Benchmarks ist ein Fehler aufgetreten"
 
-#: core.c:1393
+#: core.c:1450
 msgid "Finding CPU package in fallback mode"
 msgstr "CPU-Paket wird in alternativem Modus ermittelt"
 
-#: core.c:1415
+#: core.c:1472
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ihr CPU-Sockel ist nicht in der Datenbank vorhanden ➜ %s, Codename: %s"
 
-#: core.c:1434
+#: core.c:1491
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "CPU-Multiplikatoren werden in alternativem Modus ermittelt"
 
-#: core.c:1461
+#: core.c:1518
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Motherboard-Informationen werden in alternativem Modus abgerufen"
 
-#: core.c:1470
+#: core.c:1527
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Fehler beim Abrufen der Motherboard-Informationen (alternativer Modus)"
 
-#: core.c:1509
+#: core.c:1566
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "CPU-Temperatur wird in alternativem Modus abgerufen"
 
-#: core.c:1554
+#: core.c:1611
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Temperatur (alternativer Modus)"
 
-#: core.c:1567
+#: core.c:1624
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "CPU-Spannung wird in alternativem Modus abgerufen"
 
-#: core.c:1580
+#: core.c:1637
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Spannung (alternativer Modus)"
 
-#: core.c:1595
+#: core.c:1652
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "CPU-Frequenz wird in alternativem Modus abgerufen"
 
-#: core.c:1603
+#: core.c:1660
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Frequenz (alternativer Modus)"
 
@@ -287,28 +292,28 @@ msgstr "GTK-GUI wird gestartet…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "Fehler beim Importieren des UIs in GtkBuilder"
 
-#: gui_gtk.c:543
+#: gui_gtk.c:544
 msgid "Connected to daemon"
 msgstr ""
 
-#: gui_gtk.c:545
+#: gui_gtk.c:546
 msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.c:549
+#: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:555
+#: gui_gtk.c:556
 msgid "Start daemon"
 msgstr ""
 
-#: gui_gtk.c:564 gui_gtk.c:649 tui_ncurses.c:546
+#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr "Kern %i"
 
-#: gui_gtk.c:646
+#: gui_gtk.c:647
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -393,7 +398,7 @@ msgstr "Multiplikator"
 msgid "Bus Speed"
 msgstr "Bustakt"
 
-#: main.c:78 main.c:153
+#: main.c:78 main.c:155
 msgid "Usage"
 msgstr "Auslastung"
 
@@ -565,72 +570,80 @@ msgid "UMD Version"
 msgstr "UMD-Version"
 
 #: main.c:152
+msgid "DeviceID"
+msgstr ""
+
+#: main.c:153
+msgid "Interface"
+msgstr ""
+
+#: main.c:154
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: main.c:154
-msgid "Memory Used"
-msgstr "Verwendeter Speicher"
-
-#: main.c:155
-msgid "GPU clock"
-msgstr "GPU-Takt"
-
 #: main.c:156
-msgid "Memory clock"
-msgstr "Speichertakt"
-
-#: main.c:157
 msgid "Core Voltage"
 msgstr "Kernspannung"
 
-#: main.c:158
+#: main.c:157
 msgid "Power Avg"
 msgstr ""
 
+#: main.c:158
+msgid "GPU clock"
+msgstr "GPU-Takt"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "Speichertakt"
+
 #: main.c:160
+msgid "Memory Used"
+msgstr "Verwendeter Speicher"
+
+#: main.c:162
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "Karte %i"
 
-#: main.c:163
+#: main.c:165
 msgid "Bench"
 msgstr "Bench"
 
-#: main.c:164
+#: main.c:166
 msgid "Prime numbers (slow)"
 msgstr "Primzahlen (langsam)"
 
-#: main.c:165
+#: main.c:167
 msgid "Prime numbers (fast)"
 msgstr "Primzahlen (schnell)"
 
-#: main.c:168
+#: main.c:170
 msgid "Score"
 msgstr "Ergebnis"
 
-#: main.c:169
+#: main.c:171
 msgid "Run"
 msgstr "Start"
 
-#: main.c:172
+#: main.c:174
 msgid "Parameters"
 msgstr "Parameter"
 
-#: main.c:173
+#: main.c:175
 msgid "Duration"
 msgstr "Dauer"
 
-#: main.c:174
+#: main.c:176
 msgid "Threads"
 msgstr "Threads"
 
-#: main.c:177 main.c:182
+#: main.c:179 main.c:184
 msgid "About"
 msgstr "Über"
 
-#: main.c:179
+#: main.c:181
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -639,181 +652,181 @@ msgstr ""
 "%s ist eine Freie Software die Informationen\n"
 "über CPU, Motherboard und mehr sammelt."
 
-#: main.c:183
+#: main.c:185
 #, c-format
 msgid "Version %s"
 msgstr "Version %s"
 
-#: main.c:184
+#: main.c:186
 #, c-format
 msgid "Author: %s"
 msgstr "Autor: %s"
 
-#: main.c:185
+#: main.c:187
 #, c-format
 msgid "Site: %s"
 msgstr "Seite: %s"
 
-#: main.c:187
+#: main.c:189
 msgid "License"
 msgstr "Lizenz"
 
-#: main.c:190
+#: main.c:192
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Diese Software wird unter den Bedingungen der %s verteilt"
 
-#: main.c:192 main.c:441
+#: main.c:194 main.c:443
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dieses Programm kommt mit ABSOLUT KEINER GARANTIE"
 
-#: main.c:263
+#: main.c:265
 msgid "Dumping data…"
 msgstr "Daten werden ausgegeben…"
 
-#: main.c:306
+#: main.c:308
 msgid "Freeing memory"
 msgstr "Speicher wird freigegeben"
 
-#: main.c:334
+#: main.c:336
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Grafische Benutzeroberfläche (GUI) starten (Standard)"
 
-#: main.c:335
+#: main.c:337
 msgid "Start text-based user interface (TUI)"
 msgstr "Text-basierte Benutzeroberfläche (TUI) starten"
 
-#: main.c:336
+#: main.c:338
 msgid "Dump all data on standard output and exit"
 msgstr "Alle Daten in die Standardausgabe schreiben und Anwendung beenden"
 
-#: main.c:337
+#: main.c:339
 msgid "Run embedded command dmidecode and exit"
 msgstr "Eingebettetes Kommando dmidecode ausführen und Anwendung beenden"
 
-#: main.c:338
+#: main.c:340
 msgid "Run embedded command bandwidth and exit"
 msgstr "Eingebettete Kommando bandwidth ausführen und Anwendung beenden"
 
-#: main.c:339
+#: main.c:341
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Intervall für die Aktualisierungen festlegen (in Sekunden)"
 
-#: main.c:340
+#: main.c:342
 msgid "Set default tab (integer)"
 msgstr "Standard-Tab festlegen (Ganzzahl)"
 
-#: main.c:341
+#: main.c:343
 msgid "Select CPU core to monitor (integer)"
 msgstr "Zu überwachenden CPU-Kern auswählen (Ganzzahl)"
 
-#: main.c:342
+#: main.c:344
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Bandbreiten-Test für die CPU-Cache-Geschwindigkeit auswählen (Ganzzahl)"
 
-#: main.c:343
+#: main.c:345
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
 msgstr "Standard-Tab festlegen (Ganzzahl)"
 
-#: main.c:344
+#: main.c:346
 msgid "Start and connect to daemon"
 msgstr ""
 
-#: main.c:345
+#: main.c:347
 msgid "Verbose output"
 msgstr "Ausführliche Ausgabe"
 
-#: main.c:346
+#: main.c:348
 msgid "Print help and exit"
 msgstr "Hilfetext ausgeben und Anwendung beenden"
 
-#: main.c:347
+#: main.c:349
 msgid "Print version and exit"
 msgstr "Version ausgeben und Anwendung beenden"
 
-#: main.c:348
+#: main.c:350
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 
-#: main.c:349
+#: main.c:351
 msgid "Disable colored output"
 msgstr "Farbige Ausgabe deaktivieren"
 
-#: main.c:350
+#: main.c:352
 msgid "Print information for debugging"
 msgstr ""
 
-#: main.c:351
+#: main.c:353
 msgid "Print required information to paste in an issue"
 msgstr "Benötigte Informationen zum Einfügen in einen Problembericht ausgeben"
 
-#: main.c:352
+#: main.c:354
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 
-#: main.c:363
+#: main.c:365
 msgid "Add default command line arguments"
 msgstr ""
 
-#: main.c:364
+#: main.c:366
 msgid "Enforce the bus clock"
 msgstr "Bustaktung erzwingen"
 
-#: main.c:365
+#: main.c:367
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "Ignorieren der von libcpuid gemeldeten CPU-Frequenz"
 
-#: main.c:366
+#: main.c:368
 msgid "Read CPUID raw data from a given file"
 msgstr "CPUID-Rohdaten aus einer gegebenen Datei lesen"
 
-#: main.c:367
+#: main.c:369
 msgid "Only print a message if CPU is not present in the database"
 msgstr ""
 "Nur eine Nachricht ausgeben, wenn die CPU nicht in der Datenbank vorhanden "
 "ist"
 
-#: main.c:391
+#: main.c:393
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Aufruf: %s ANZEIGE [OPTIONEN]\n"
 
-#: main.c:392
+#: main.c:394
 msgid "Available DISPLAY:"
 msgstr "Verfügbare ANZEIGE:"
 
-#: main.c:401
+#: main.c:403
 msgid "Available OPTIONS:"
 msgstr "Verfügbare OPTIONEN:"
 
-#: main.c:409
+#: main.c:411
 msgid "Influenceable environment variables:"
 msgstr "Umgebungsvariablen:"
 
-#: main.c:440
+#: main.c:442
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Dies ist freie Software: Sie dürfen sie frei verändern und verbreiten."
 
-#: main.c:442
+#: main.c:444
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Siehe %s Lizenz: %s\n"
 
-#: main.c:449
+#: main.c:451
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s Version: %s"
 
-#: main.c:465
+#: main.c:467
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call wordexp (%i)"
 msgstr "Fehler beim Aufruf von libcpuid (%s)"
 
-#: main.c:660
+#: main.c:662
 #, c-format
 msgid ""
 "\n"
@@ -824,13 +837,13 @@ msgstr ""
 "%sEin Fehler ist aufgetreten! %s hat das Signal %d (%s) empfangen und ist "
 "abgestürzt.%s"
 
-#: main.c:675
+#: main.c:677
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr ""
 "Sie können diese Backtrace einfügen, indem Sie hier einen neuen "
 "Problembericht öffnen:"
 
-#: main.c:703
+#: main.c:705
 msgid "an error occurred while setting locale"
 msgstr "Setzen des Gebietsschemas ist fehlgeschlagen"
 
@@ -861,12 +874,12 @@ msgstr "Fenster ist zu klein!\n"
 msgid "Press 'h' to see help."
 msgstr "Taste »H« drücken, um die Hilfe anzuzeigen\n"
 
-#: tui_ncurses.c:470
+#: tui_ncurses.c:474
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Willkommen in der %s NCurses-Hilfe!\n"
 
-#: tui_ncurses.c:471
+#: tui_ncurses.c:475
 #, fuzzy
 #| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
@@ -874,7 +887,7 @@ msgstr ""
 "Diese Hilfe beschreibt die Verwendung dieser textbasierten "
 "Benutzeroberfläche.\n"
 
-#: tui_ncurses.c:473
+#: tui_ncurses.c:477
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -884,31 +897,31 @@ msgstr ""
 "\n"
 "Globale Tasten:\n"
 
-#: tui_ncurses.c:474
+#: tui_ncurses.c:478
 #, fuzzy
 #| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
 msgstr "\tPfeiltaste »Links« drücken, um zum linken Tab zu wechseln.\n"
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:479
 #, fuzzy
 #| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
 msgstr "\tPfeiltaste »Rechts« drücken, um zum linken Tab zu wechseln.\n"
 
-#: tui_ncurses.c:476
+#: tui_ncurses.c:480
 #, fuzzy
 #| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
 msgstr "\tTaste »H« drücken, um diese Hilfe anzuzeigen.\n"
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:481
 #, fuzzy
 #| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
 msgstr "\tTaste »Q« drücken, um zu beenden.\n"
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:483
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -918,7 +931,7 @@ msgstr ""
 "\n"
 "CPU-Tab:\n"
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:484
 #, fuzzy
 #| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
@@ -926,7 +939,7 @@ msgstr ""
 "\tPfeiltaste »Abwärts« drücken, um die Anzahl der zu überwachenden Kerne zu "
 "verringern.\n"
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:485
 #, fuzzy
 #| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
@@ -934,7 +947,7 @@ msgstr ""
 "\tPfeiltaste »Aufwärts« drücken, um die Anzahl der zu überwachenden Kerne zu "
 "erhöhen.\n"
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:487
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -944,19 +957,19 @@ msgstr ""
 "\n"
 "Caches Tab:\n"
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:488
 #, fuzzy
 #| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
 msgstr "\tPfeiltaste »Abwärts« drücken, um zum vorigen Test zu wechseln\n"
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:489
 #, fuzzy
 #| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
 msgstr "\tPfeiltaste »Aufwärts« drücken, um zum nächsten Test zu wechseln\n"
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:491
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -966,21 +979,21 @@ msgstr ""
 "\n"
 "Bench Tab:\n"
 
-#: tui_ncurses.c:488
+#: tui_ncurses.c:492
 #, fuzzy
 #| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr ""
 "\tTaste »Pfeil abwärts« drücken, um die Dauer des Benchmarks zu verringern.\n"
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:493
 #, fuzzy
 #| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
 msgstr ""
 "\tTaste »Pfeil aufwärts« drücken, um die Dauer des Benchmarks zu erhöhen.\n"
 
-#: tui_ncurses.c:490
+#: tui_ncurses.c:494
 #, fuzzy
 #| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -988,7 +1001,7 @@ msgstr ""
 "\tTaste »Bild abwärts« drücken, um die Anzahl der zu verwendeten Threads zu "
 "verringern.\n"
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:495
 #, fuzzy
 #| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
@@ -996,7 +1009,7 @@ msgstr ""
 "\tTaste »Bild aufwärts« drücken, um die Anzahl der zu verwendeten Threads zu "
 "erhöhen.\n"
 
-#: tui_ncurses.c:492
+#: tui_ncurses.c:496
 #, fuzzy
 #| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
@@ -1004,7 +1017,7 @@ msgstr ""
 "\tTaste »S« drücken, um den »Primzahlen (langsam)«-Benchmark zu starten/"
 "anzuhalten.\n"
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:497
 #, fuzzy
 #| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
@@ -1012,25 +1025,25 @@ msgstr ""
 "\tTaste »F« drücken, um den »Primzahlen (schnell)«-Benchmark zu starten/"
 "anzuhalten.\n"
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:499
 #, fuzzy
 #| msgid "Graphics"
 msgid "Graphics tab:"
 msgstr "Grafik"
 
-#: tui_ncurses.c:496
+#: tui_ncurses.c:500
 #, fuzzy
 #| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "\tPfeiltaste »Abwärts« drücken, um zum vorigen Test zu wechseln\n"
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:501
 #, fuzzy
 #| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "\tPfeiltaste »Aufwärts« drücken, um zum nächsten Test zu wechseln\n"
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:503
 #, fuzzy
 #| msgid ""
 #| "\n"

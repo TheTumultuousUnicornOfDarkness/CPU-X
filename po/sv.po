@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-27 13:56+0000\n"
+"POT-Creation-Date: 2021-03-27 14:05+0000\n"
 "PO-Revision-Date: 2021-03-21 20:32+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
@@ -118,153 +118,158 @@ msgstr "Hoppa över enhetssök (fel behörigheter på %s)"
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU-leverantör är okänd: %s (0x%X)"
 
-#: core.c:876
+#: core.c:877
 msgid "failed to find chipset vendor and model"
 msgstr "kunde inte hitta chipset-leverantör och modell"
 
-#: core.c:878
+#: core.c:879
 msgid "failed to find graphic card vendor and model"
 msgstr "kunde inte hitta grafikkortsleverantör och modell"
 
-#: core.c:935
+#: core.c:956
 msgid "Retrieving GPU clocks"
 msgstr "Hämtar GPU-frekvenser"
 
-#: core.c:965
+#: core.c:990
 msgid "None"
 msgstr "Inga"
 
-#: core.c:1095
+#: core.c:1123
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Drivrutinen för GPU %u rapporterar inte frekvenser"
 
-#: core.c:1131
+#: core.c:1166
+#, c-format
+msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgstr ""
+
+#: core.c:1188
 msgid "failed to retrieve GPU clocks"
 msgstr "kunde inte hämta GPU-frekvenser"
 
-#: core.c:1148
+#: core.c:1205
 msgid "Identifying running system"
 msgstr "Identifierar aktuellt system"
 
-#: core.c:1151
+#: core.c:1208
 msgid "failed to identify running system"
 msgstr "kunde inte identifiera aktuellt system"
 
-#: core.c:1192
+#: core.c:1249
 msgid "Calling libprocps"
 msgstr "Anropar libprocps"
 
-#: core.c:1218
+#: core.c:1275
 msgid "Calling libstatgrab"
 msgstr "Anropar libstatgrab"
 
-#: core.c:1253
+#: core.c:1310
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dagar, %i timmar, %i minuter, %i sekunder"
 
-#: core.c:1309
+#: core.c:1366
 msgid "Updating benchmark status"
 msgstr "Uppdaterar prestandateststatus"
 
-#: core.c:1310 tui_ncurses.c:817
+#: core.c:1367 tui_ncurses.c:824
 #, c-format
 msgid "%u mins"
 msgstr "%u min."
 
-#: core.c:1312 core.c:1313
+#: core.c:1369 core.c:1370
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.c:1317 core.c:1318
+#: core.c:1374 core.c:1375
 msgid "Not started"
 msgstr "Inte startad"
 
-#: core.c:1323
+#: core.c:1380
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.c:1328
+#: core.c:1385
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u timmar kvar)"
 
-#: core.c:1330
+#: core.c:1387
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minuter kvar)"
 
-#: core.c:1332
+#: core.c:1389
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekunder kvar)"
 
-#: core.c:1337
+#: core.c:1394
 #, c-format
 msgid "in %u hours"
 msgstr "om %u timmar"
 
-#: core.c:1339
+#: core.c:1396
 #, c-format
 msgid "in %u minutes"
 msgstr "om %u minuter"
 
-#: core.c:1341
+#: core.c:1398
 #, c-format
 msgid "in %u seconds"
 msgstr "om %u sekunder"
 
-#: core.c:1357
+#: core.c:1414
 msgid "Starting benchmark"
 msgstr "Startar prestandtest"
 
-#: core.c:1376
+#: core.c:1433
 msgid "an error occurred while starting benchmark"
 msgstr "ett fel inträffade under start av prestandatest"
 
-#: core.c:1393
+#: core.c:1450
 msgid "Finding CPU package in fallback mode"
 msgstr "Söker CPU-paket i nödfallsläge"
 
-#: core.c:1415
+#: core.c:1472
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din CPU-sockel finns inte databasen ==> %s, kodnamn: %s"
 
-#: core.c:1434
+#: core.c:1491
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Beräknar CPU-multiplikatorer i nödfallsläge"
 
-#: core.c:1461
+#: core.c:1518
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Hämtar moderkortsinformation i nödfallsläge"
 
-#: core.c:1470
+#: core.c:1527
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "kunde inte hämta moderkortsinformation (nödfallsläge)"
 
-#: core.c:1509
+#: core.c:1566
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Hämtar CPU-temperatur i nödfallsläge"
 
-#: core.c:1554
+#: core.c:1611
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "kunde inte hämta CPU-temperatur (nödfallsläge)"
 
-#: core.c:1567
+#: core.c:1624
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Hämtar CPU-spänning i nödfallsläge"
 
-#: core.c:1580
+#: core.c:1637
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "kunde inte hämta CPU-spänning (nödfallsläge)"
 
-#: core.c:1595
+#: core.c:1652
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Hämtar CPU-frekvens i nödfallsläge"
 
-#: core.c:1603
+#: core.c:1660
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "kunde inte hämta CPU-frekvens (nödfallsläge)"
 
@@ -281,28 +286,28 @@ msgstr "Startar GTK-gui…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "kunde inte importera UI i GtkBuilder"
 
-#: gui_gtk.c:543
+#: gui_gtk.c:544
 msgid "Connected to daemon"
 msgstr "Ansluten till tjänsten"
 
-#: gui_gtk.c:545
+#: gui_gtk.c:546
 msgid "No polkit authentication agent found"
 msgstr "Ingen polkit-autentiseringsagent hittades"
 
-#: gui_gtk.c:549
+#: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
 msgstr "Be om lösenord för att starta tjänsten i bakgrunden"
 
-#: gui_gtk.c:555
+#: gui_gtk.c:556
 msgid "Start daemon"
 msgstr "Starta tjänsten"
 
-#: gui_gtk.c:564 gui_gtk.c:649 tui_ncurses.c:546
+#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr "Kärna #%i"
 
-#: gui_gtk.c:646
+#: gui_gtk.c:647
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -387,7 +392,7 @@ msgstr "Multiplikator"
 msgid "Bus Speed"
 msgstr "Busshastighet"
 
-#: main.c:78 main.c:153
+#: main.c:78 main.c:155
 msgid "Usage"
 msgstr "Användning"
 
@@ -559,70 +564,78 @@ msgid "UMD Version"
 msgstr "UMD-version"
 
 #: main.c:152
+msgid "DeviceID"
+msgstr ""
+
+#: main.c:153
+msgid "Interface"
+msgstr ""
+
+#: main.c:154
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: main.c:154
-msgid "Memory Used"
-msgstr "Använt minne"
-
-#: main.c:155
-msgid "GPU clock"
-msgstr "GPU-frekvens"
-
 #: main.c:156
-msgid "Memory clock"
-msgstr "Minnesfrekvens"
-
-#: main.c:157
 msgid "Core Voltage"
 msgstr "Kärnspänning"
 
-#: main.c:158
+#: main.c:157
 msgid "Power Avg"
 msgstr "Effekt Genomsnitt"
 
+#: main.c:158
+msgid "GPU clock"
+msgstr "GPU-frekvens"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "Minnesfrekvens"
+
 #: main.c:160
+msgid "Memory Used"
+msgstr "Använt minne"
+
+#: main.c:162
 msgid "Cards"
 msgstr "Kort"
 
-#: main.c:163
+#: main.c:165
 msgid "Bench"
 msgstr "Testbänk"
 
-#: main.c:164
+#: main.c:166
 msgid "Prime numbers (slow)"
 msgstr "Primtal (långsam)"
 
-#: main.c:165
+#: main.c:167
 msgid "Prime numbers (fast)"
 msgstr "Primtal (snabb)"
 
-#: main.c:168
+#: main.c:170
 msgid "Score"
 msgstr "Poäng"
 
-#: main.c:169
+#: main.c:171
 msgid "Run"
 msgstr "Kör"
 
-#: main.c:172
+#: main.c:174
 msgid "Parameters"
 msgstr "Parametrar"
 
-#: main.c:173
+#: main.c:175
 msgid "Duration"
 msgstr "Varaktighet"
 
-#: main.c:174
+#: main.c:176
 msgid "Threads"
 msgstr "Trådar"
 
-#: main.c:177 main.c:182
+#: main.c:179 main.c:184
 msgid "About"
 msgstr "Om"
 
-#: main.c:179
+#: main.c:181
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -631,176 +644,176 @@ msgstr ""
 "%s är fri mjukvara som samlar in information\n"
 "om CPU, moderkort och mer."
 
-#: main.c:183
+#: main.c:185
 #, c-format
 msgid "Version %s"
 msgstr "Version %s"
 
-#: main.c:184
+#: main.c:186
 #, c-format
 msgid "Author: %s"
 msgstr "Utvecklare: %s"
 
-#: main.c:185
+#: main.c:187
 #, c-format
 msgid "Site: %s"
 msgstr "Sajt: %s"
 
-#: main.c:187
+#: main.c:189
 msgid "License"
 msgstr "Licens"
 
-#: main.c:190
+#: main.c:192
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Denna mjukvara distribueras under villkoren för %s"
 
-#: main.c:192 main.c:441
+#: main.c:194 main.c:443
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Detta program levereras UTAN NÅGRA SOM HELST GARANTIER"
 
-#: main.c:263
+#: main.c:265
 msgid "Dumping data…"
 msgstr "Dumpar data…"
 
-#: main.c:306
+#: main.c:308
 msgid "Freeing memory"
 msgstr "Frigör minne"
 
-#: main.c:334
+#: main.c:336
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Starta grafiskt användargränssnitt (GUI) (standard)"
 
-#: main.c:335
+#: main.c:337
 msgid "Start text-based user interface (TUI)"
 msgstr "Starta textbaserat användargränssnitt (TUI)"
 
-#: main.c:336
+#: main.c:338
 msgid "Dump all data on standard output and exit"
 msgstr "Dumpa all data till standard utdata och avsluta"
 
-#: main.c:337
+#: main.c:339
 msgid "Run embedded command dmidecode and exit"
 msgstr "Kör inbäddad kommando-dmidecode och avsluta"
 
-#: main.c:338
+#: main.c:340
 msgid "Run embedded command bandwidth and exit"
 msgstr "Kör inbäddad kommandobandbredd och avsluta"
 
-#: main.c:339
+#: main.c:341
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Ange anpassad tid mellan två uppdateringar (i sekunder)"
 
-#: main.c:340
+#: main.c:342
 msgid "Set default tab (integer)"
 msgstr "Ange standardflik (heltal)"
 
-#: main.c:341
+#: main.c:343
 msgid "Select CPU core to monitor (integer)"
 msgstr "Välj CPU-kärna att övervaka (heltal)"
 
-#: main.c:342
+#: main.c:344
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Ange anpassad bandbreddstest för CPU-cachehastighet (heltal)"
 
-#: main.c:343
+#: main.c:345
 msgid "Select default graphic card (integer)"
 msgstr "Välj standardgrafikkort (heltal)"
 
-#: main.c:344
+#: main.c:346
 msgid "Start and connect to daemon"
 msgstr "Starta och anslut till tjänsten"
 
-#: main.c:345
+#: main.c:347
 msgid "Verbose output"
 msgstr "Utförlig utdata"
 
-#: main.c:346
+#: main.c:348
 msgid "Print help and exit"
 msgstr "Skriv ut hjälp och avsluta"
 
-#: main.c:347
+#: main.c:349
 msgid "Print version and exit"
 msgstr "Skriv ut version och avsluta"
 
-#: main.c:348
+#: main.c:350
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "Skriv ut CPUID-värden decimalt (standard är hexadeximalt)"
 
-#: main.c:349
+#: main.c:351
 msgid "Disable colored output"
 msgstr "Inaktivera färgad utdata"
 
-#: main.c:350
+#: main.c:352
 msgid "Print information for debugging"
 msgstr "Skriv ut information för felsökning"
 
-#: main.c:351
+#: main.c:353
 msgid "Print required information to paste in an issue"
 msgstr "Skriv ut önskad information att klistra in i ett ärende"
 
-#: main.c:352
+#: main.c:354
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Ange tangentmappning för NCurses-läge (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.c:363
+#: main.c:365
 msgid "Add default command line arguments"
 msgstr "Lägg till standardargument för kommandorad"
 
-#: main.c:364
+#: main.c:366
 msgid "Enforce the bus clock"
 msgstr "Framtvinga bussfrekvens"
 
-#: main.c:365
+#: main.c:367
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "Ignorera CPU-frekvens rapporterad a libcpuid"
 
-#: main.c:366
+#: main.c:368
 msgid "Read CPUID raw data from a given file"
 msgstr "Läs CPUID-rådata från en given fil"
 
-#: main.c:367
+#: main.c:369
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Skriv bara ut ett meddelande om CPU:n inte finns med i databasen"
 
-#: main.c:391
+#: main.c:393
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Användning: %s DISPLAY [OPTIONS]\n"
 
-#: main.c:392
+#: main.c:394
 msgid "Available DISPLAY:"
 msgstr "Tillgänglig SKÄRM:"
 
-#: main.c:401
+#: main.c:403
 msgid "Available OPTIONS:"
 msgstr "Tillgängliga ALTERNATIV:"
 
-#: main.c:409
+#: main.c:411
 msgid "Influenceable environment variables:"
 msgstr "Påverkbara miljövariabler:"
 
-#: main.c:440
+#: main.c:442
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Detta är fri mjukvara: Du får ändra och återdistribuera den."
 
-#: main.c:442
+#: main.c:444
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Se %s-licensen: <%s>\n"
 
-#: main.c:449
+#: main.c:451
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s version: %s"
 
-#: main.c:465
+#: main.c:467
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "kunde inte anropa wordexp (%i)"
 
-#: main.c:660
+#: main.c:662
 #, c-format
 msgid ""
 "\n"
@@ -811,12 +824,12 @@ msgstr ""
 "%sHoppsan, något gick snett! %s har mottagit signal %d (%s) och har kraschat."
 "%s"
 
-#: main.c:675
+#: main.c:677
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr ""
 "Du kan klistra in denna bakåtspårning genom att öppna ett nytt ärende här:"
 
-#: main.c:703
+#: main.c:705
 msgid "an error occurred while setting locale"
 msgstr "ett fel uppstod vid inställning av språk"
 
@@ -845,101 +858,101 @@ msgstr "Fönstret är för litet!"
 msgid "Press 'h' to see help."
 msgstr "Tryck \"h\" för att se hjälpen."
 
-#: tui_ncurses.c:470
+#: tui_ncurses.c:474
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Välkommen till %s NCurses hjälp!\n"
 
-#: tui_ncurses.c:471
+#: tui_ncurses.c:475
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
 "Denna hjälp beskriver hur man använder detta textbaserade användargränssnitt."
 
-#: tui_ncurses.c:473
+#: tui_ncurses.c:477
 msgid "Global keys:"
 msgstr "Systemövergripande tangenter:"
 
-#: tui_ncurses.c:474
+#: tui_ncurses.c:478
 msgid "Press 'left' key to switch in left tab."
 msgstr "Tryck \"vänster\" för att växla till vänster flik."
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:479
 msgid "Press 'right' key to switch in right tab."
 msgstr "Tryck \"höger\" för att växla till höger flik."
 
-#: tui_ncurses.c:476
+#: tui_ncurses.c:480
 msgid "Press 'h' key to see this help."
 msgstr "Tryck \"h\" för att se den här hjälpen."
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:481
 msgid "Press 'q' key to exit."
 msgstr "Tryck \"q\" för att avsluta."
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:483
 msgid "CPU tab:"
 msgstr "CPU-flik:"
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:484
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr "Tryck \"ner\" för att minska antalet kärnor att övervaka."
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:485
 msgid "Press 'up' key to increase core number to monitor."
 msgstr "Tryck \"upp\" för att öka antalet kärnor att övervaka."
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:487
 msgid "Caches tab:"
 msgstr "Cache-flik:"
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:488
 msgid "Press 'down' key to switch to previous test."
 msgstr "Tryck \"ner\" för att växla till föregående test."
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:489
 msgid "Press 'up' key' to switch to next test."
 msgstr "Tryck \"upp\" för att växla till nästa test."
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:491
 msgid "Bench tab:"
 msgstr "Testflik:"
 
-#: tui_ncurses.c:488
+#: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "Tryck \"ner\" för att minska varaktigheten för prestandatestet."
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "Tryck \"upp\" för att öka varaktigheten för prestandatestet."
 
-#: tui_ncurses.c:490
+#: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr "Tryck \"nästa sida\" för att minska antalet trådar som används."
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:495
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr "Tryck \"föregående sida\" för att öka anatalet trådar som används."
 
-#: tui_ncurses.c:492
+#: tui_ncurses.c:496
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr "Tryck \"s\" för att starta/stoppa primtalstest (långsam)."
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:497
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr "Tryck \"f\" för att starta/stoppa primtalstest (snabbt)."
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:499
 msgid "Graphics tab:"
 msgstr "Grafikflik:"
 
-#: tui_ncurses.c:496
+#: tui_ncurses.c:500
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "Tryck \"ner\" för att växla till föregående grafikkort."
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:501
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "Tryck \"upp\" för att växla till nästa grafikkort."
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:503
 msgid "Press any key to exit this help."
 msgstr "Tryck valfri tangent för avsluta denna hjälp."
 

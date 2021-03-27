@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-27 13:56+0000\n"
+"POT-Creation-Date: 2021-03-27 14:05+0000\n"
 "PO-Revision-Date: 2021-03-23 15:29+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
@@ -121,153 +121,158 @@ msgstr "跳过设备搜索 (%s设备上的权限错误)"
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "您的 GPU 供应商未知: %s (0x%X)"
 
-#: core.c:876
+#: core.c:877
 msgid "failed to find chipset vendor and model"
 msgstr "未找到芯片组供应商和型号"
 
-#: core.c:878
+#: core.c:879
 msgid "failed to find graphic card vendor and model"
 msgstr "未找到显卡供应商和型号"
 
-#: core.c:935
+#: core.c:956
 msgid "Retrieving GPU clocks"
 msgstr "正在检索 GPU 时钟"
 
-#: core.c:965
+#: core.c:990
 msgid "None"
 msgstr "无"
 
-#: core.c:1095
+#: core.c:1123
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU 驱动 %u 无法报告频率"
 
-#: core.c:1131
+#: core.c:1166
+#, c-format
+msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgstr ""
+
+#: core.c:1188
 msgid "failed to retrieve GPU clocks"
 msgstr "无法检索 GPU 时钟"
 
-#: core.c:1148
+#: core.c:1205
 msgid "Identifying running system"
 msgstr "正在识别本系统"
 
-#: core.c:1151
+#: core.c:1208
 msgid "failed to identify running system"
 msgstr "未识别本系统"
 
-#: core.c:1192
+#: core.c:1249
 msgid "Calling libprocps"
 msgstr "正在调用 libprocps"
 
-#: core.c:1218
+#: core.c:1275
 msgid "Calling libstatgrab"
 msgstr "正在调用 libstatgrab"
 
-#: core.c:1253
+#: core.c:1310
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天，%i 小时，%i 分钟，%i 秒"
 
-#: core.c:1309
+#: core.c:1366
 msgid "Updating benchmark status"
 msgstr "正在更新基准测试状态"
 
-#: core.c:1310 tui_ncurses.c:817
+#: core.c:1367 tui_ncurses.c:824
 #, c-format
 msgid "%u mins"
 msgstr "%u 分钟"
 
-#: core.c:1312 core.c:1313
+#: core.c:1369 core.c:1370
 msgid "Inactive"
 msgstr "待用"
 
-#: core.c:1317 core.c:1318
+#: core.c:1374 core.c:1375
 msgid "Not started"
 msgstr "未启动"
 
-#: core.c:1323
+#: core.c:1380
 msgid "Active"
 msgstr "启用"
 
-#: core.c:1328
+#: core.c:1385
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩余 %u 小时)"
 
-#: core.c:1330
+#: core.c:1387
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩余 %u 分钟)"
 
-#: core.c:1332
+#: core.c:1389
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩余 %u 秒)"
 
-#: core.c:1337
+#: core.c:1394
 #, c-format
 msgid "in %u hours"
 msgstr "%u 小时后"
 
-#: core.c:1339
+#: core.c:1396
 #, c-format
 msgid "in %u minutes"
 msgstr "%u 分钟后"
 
-#: core.c:1341
+#: core.c:1398
 #, c-format
 msgid "in %u seconds"
 msgstr "%u 秒后"
 
-#: core.c:1357
+#: core.c:1414
 msgid "Starting benchmark"
 msgstr "正在启动基准测试"
 
-#: core.c:1376
+#: core.c:1433
 msgid "an error occurred while starting benchmark"
 msgstr "启动基准测试时出错"
 
-#: core.c:1393
+#: core.c:1450
 msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
-#: core.c:1415
+#: core.c:1472
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
-#: core.c:1434
+#: core.c:1491
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "正在应急模式下计算 CPU 倍频"
 
-#: core.c:1461
+#: core.c:1518
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "正在应急模式下检索主板信息"
 
-#: core.c:1470
+#: core.c:1527
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "无法检索主板信息 (应急模式)"
 
-#: core.c:1509
+#: core.c:1566
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "正在应急模式下检索 CPU 温度"
 
-#: core.c:1554
+#: core.c:1611
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "未能检索 CPU 温度 (应急模式)"
 
-#: core.c:1567
+#: core.c:1624
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "正在应急模式下检索 CPU 电压"
 
-#: core.c:1580
+#: core.c:1637
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "未能检索 CPU 电压 (应急模式)"
 
-#: core.c:1595
+#: core.c:1652
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "正在应急模式下检索 CPU 频率"
 
-#: core.c:1603
+#: core.c:1660
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "未能检索 CPU 频率 (应急模式)"
 
@@ -284,28 +289,28 @@ msgstr "正在启动 GTK 图形用户界面…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "无法在 GtkBuilder 中导入用户界面"
 
-#: gui_gtk.c:543
+#: gui_gtk.c:544
 msgid "Connected to daemon"
 msgstr "连接到守护程序"
 
-#: gui_gtk.c:545
+#: gui_gtk.c:546
 msgid "No polkit authentication agent found"
 msgstr "找不到polkit身份验证代理"
 
-#: gui_gtk.c:549
+#: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
 msgstr "询问密码以在后台启动守护进程"
 
-#: gui_gtk.c:555
+#: gui_gtk.c:556
 msgid "Start daemon"
 msgstr "启动守护进程"
 
-#: gui_gtk.c:564 gui_gtk.c:649 tui_ncurses.c:546
+#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr "核心 #%i"
 
-#: gui_gtk.c:646
+#: gui_gtk.c:647
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -390,7 +395,7 @@ msgstr "倍频"
 msgid "Bus Speed"
 msgstr "总线速度"
 
-#: main.c:78 main.c:153
+#: main.c:78 main.c:155
 msgid "Usage"
 msgstr "使用率"
 
@@ -562,70 +567,78 @@ msgid "UMD Version"
 msgstr "UMD 版本"
 
 #: main.c:152
+msgid "DeviceID"
+msgstr ""
+
+#: main.c:153
+msgid "Interface"
+msgstr ""
+
+#: main.c:154
 msgid "Temperature"
 msgstr "温度"
 
-#: main.c:154
-msgid "Memory Used"
-msgstr "所用内存"
-
-#: main.c:155
-msgid "GPU clock"
-msgstr "GPU 时钟"
-
 #: main.c:156
-msgid "Memory clock"
-msgstr "内存时钟"
-
-#: main.c:157
 msgid "Core Voltage"
 msgstr "核心电压"
 
-#: main.c:158
+#: main.c:157
 msgid "Power Avg"
 msgstr "平均功率"
 
+#: main.c:158
+msgid "GPU clock"
+msgstr "GPU 时钟"
+
+#: main.c:159
+msgid "Memory clock"
+msgstr "内存时钟"
+
 #: main.c:160
+msgid "Memory Used"
+msgstr "所用内存"
+
+#: main.c:162
 msgid "Cards"
 msgstr "卡"
 
-#: main.c:163
+#: main.c:165
 msgid "Bench"
 msgstr "基准测试"
 
-#: main.c:164
+#: main.c:166
 msgid "Prime numbers (slow)"
 msgstr "素数 (慢速)"
 
-#: main.c:165
+#: main.c:167
 msgid "Prime numbers (fast)"
 msgstr "素数 (快速)"
 
-#: main.c:168
+#: main.c:170
 msgid "Score"
 msgstr "分数"
 
-#: main.c:169
+#: main.c:171
 msgid "Run"
 msgstr "运行"
 
-#: main.c:172
+#: main.c:174
 msgid "Parameters"
 msgstr "参数"
 
-#: main.c:173
+#: main.c:175
 msgid "Duration"
 msgstr "持续时间"
 
-#: main.c:174
+#: main.c:176
 msgid "Threads"
 msgstr "线程"
 
-#: main.c:177 main.c:182
+#: main.c:179 main.c:184
 msgid "About"
 msgstr "关于"
 
-#: main.c:179
+#: main.c:181
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -634,175 +647,175 @@ msgstr ""
 "%s 是一个自由软件，收集有关\n"
 " CPU 和主板等的信息。"
 
-#: main.c:183
+#: main.c:185
 #, c-format
 msgid "Version %s"
 msgstr "%s 版"
 
-#: main.c:184
+#: main.c:186
 #, c-format
 msgid "Author: %s"
 msgstr "作者：%s"
 
-#: main.c:185
+#: main.c:187
 #, c-format
 msgid "Site: %s"
 msgstr "网站：%s"
 
-#: main.c:187
+#: main.c:189
 msgid "License"
 msgstr "许可证"
 
-#: main.c:190
+#: main.c:192
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "本软件依照 %s 条款分发"
 
-#: main.c:192 main.c:441
+#: main.c:194 main.c:443
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "本软件不作任何保修"
 
-#: main.c:263
+#: main.c:265
 msgid "Dumping data…"
 msgstr "正在转储数据…"
 
-#: main.c:306
+#: main.c:308
 msgid "Freeing memory"
 msgstr "正在释放内存"
 
-#: main.c:334
+#: main.c:336
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "启动图形用户界面 (GUI) (默认)"
 
-#: main.c:335
+#: main.c:337
 msgid "Start text-based user interface (TUI)"
 msgstr "启动文本用户界面 (TUI)"
 
-#: main.c:336
+#: main.c:338
 msgid "Dump all data on standard output and exit"
 msgstr "将所有数据转储到标准输出并退出"
 
-#: main.c:337
+#: main.c:339
 msgid "Run embedded command dmidecode and exit"
 msgstr "运行嵌入式命令 dmidecode 并退出"
 
-#: main.c:338
+#: main.c:340
 msgid "Run embedded command bandwidth and exit"
 msgstr "运行嵌入的命令 bandwidth 并退出"
 
-#: main.c:339
+#: main.c:341
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "设置两次刷新之间的自定义时间 (以秒为单位)"
 
-#: main.c:340
+#: main.c:342
 msgid "Set default tab (integer)"
 msgstr "设置默认选项卡 (整型)"
 
-#: main.c:341
+#: main.c:343
 msgid "Select CPU core to monitor (integer)"
 msgstr "选择要监视的 CPU 核心 (整型)"
 
-#: main.c:342
+#: main.c:344
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "为 CPU 缓存速度设置自定义 bandwidth 测试 (整型)"
 
-#: main.c:343
+#: main.c:345
 msgid "Select default graphic card (integer)"
 msgstr "选择默认显卡 (整型)"
 
-#: main.c:344
+#: main.c:346
 msgid "Start and connect to daemon"
 msgstr "启动并连接到守护进程"
 
-#: main.c:345
+#: main.c:347
 msgid "Verbose output"
 msgstr "详细输出"
 
-#: main.c:346
+#: main.c:348
 msgid "Print help and exit"
 msgstr "打印帮助并退出"
 
-#: main.c:347
+#: main.c:349
 msgid "Print version and exit"
 msgstr "打印版本并退出"
 
-#: main.c:348
+#: main.c:350
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "以十进制打印 CPUID 值(默认是十六进制)"
 
-#: main.c:349
+#: main.c:351
 msgid "Disable colored output"
 msgstr "禁用彩色输出"
 
-#: main.c:350
+#: main.c:352
 msgid "Print information for debugging"
 msgstr "打印信息用于调试"
 
-#: main.c:351
+#: main.c:353
 msgid "Print required information to paste in an issue"
 msgstr "输出粘贴在问题反馈中的所需信息"
 
-#: main.c:352
+#: main.c:354
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr "设置 NCurses 模式的键位映射 (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.c:363
+#: main.c:365
 msgid "Add default command line arguments"
 msgstr "添加默认的命令行参数"
 
-#: main.c:364
+#: main.c:366
 msgid "Enforce the bus clock"
 msgstr "强制执行总线计时器"
 
-#: main.c:365
+#: main.c:367
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "忽略 libcpuid 报告的 CPU 频率"
 
-#: main.c:366
+#: main.c:368
 msgid "Read CPUID raw data from a given file"
 msgstr "从指定文件中读取 CPUID 源数据"
 
-#: main.c:367
+#: main.c:369
 msgid "Only print a message if CPU is not present in the database"
 msgstr "仅在 CPU 不存在于数据库时打印消息"
 
-#: main.c:391
+#: main.c:393
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "用法: %s 显示 [选项]\n"
 
-#: main.c:392
+#: main.c:394
 msgid "Available DISPLAY:"
 msgstr "可用显示:"
 
-#: main.c:401
+#: main.c:403
 msgid "Available OPTIONS:"
 msgstr "可用选项:"
 
-#: main.c:409
+#: main.c:411
 msgid "Influenceable environment variables:"
 msgstr "可影响的环境变量:"
 
-#: main.c:440
+#: main.c:442
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "这是一个自由软件：您可以自由更改和重新分发。"
 
-#: main.c:442
+#: main.c:444
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "查看 %s 许可协议: <%s>\n"
 
-#: main.c:449
+#: main.c:451
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s 版本：%s"
 
-#: main.c:465
+#: main.c:467
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "调用 wordexp (%i) 失败"
 
-#: main.c:660
+#: main.c:662
 #, c-format
 msgid ""
 "\n"
@@ -812,11 +825,11 @@ msgstr ""
 "\n"
 "%s遇到了错误！ %s 获得信号 %d (%s) 并崩溃。%s"
 
-#: main.c:675
+#: main.c:677
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "您可以在这里打开一个新的问题来粘贴该回馈："
 
-#: main.c:703
+#: main.c:705
 msgid "an error occurred while setting locale"
 msgstr "本地化设置时出错"
 
@@ -843,100 +856,100 @@ msgstr "窗口太小了！"
 msgid "Press 'h' to see help."
 msgstr "按 'h' 键查看帮助。"
 
-#: tui_ncurses.c:470
+#: tui_ncurses.c:474
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "欢迎来到 %s NCurses 帮助！\n"
 
-#: tui_ncurses.c:471
+#: tui_ncurses.c:475
 msgid "This help describes how to use this Text-based User Interface."
 msgstr "此帮助介绍如何使用该基于文本的用户界面。"
 
-#: tui_ncurses.c:473
+#: tui_ncurses.c:477
 msgid "Global keys:"
 msgstr "全局按键："
 
-#: tui_ncurses.c:474
+#: tui_ncurses.c:478
 msgid "Press 'left' key to switch in left tab."
 msgstr "按“left”键切换到左侧选项卡。"
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:479
 msgid "Press 'right' key to switch in right tab."
 msgstr "按“右”键切换到右选项卡。"
 
-#: tui_ncurses.c:476
+#: tui_ncurses.c:480
 msgid "Press 'h' key to see this help."
 msgstr "按 'h' 键查看此帮助。"
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:481
 msgid "Press 'q' key to exit."
 msgstr "按 'q' 键退出。"
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:483
 msgid "CPU tab:"
 msgstr "CPU 选项卡："
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:484
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr "按 'down' 键减小要监视的核心数值。"
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:485
 msgid "Press 'up' key to increase core number to monitor."
 msgstr "按 'up' 键增加要监视的核心数值。"
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:487
 msgid "Caches tab:"
 msgstr "缓存选项卡："
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:488
 msgid "Press 'down' key to switch to previous test."
 msgstr "按 'down' 键切换至上一项测试。"
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:489
 msgid "Press 'up' key' to switch to next test."
 msgstr "按 'up' 键切换至下一项测试。"
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:491
 msgid "Bench tab:"
 msgstr "基准测试选项卡："
 
-#: tui_ncurses.c:488
+#: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "按 'down' 键减少基准测试持续时间。"
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "按 'up' 键增加基准测试持续时间。"
 
-#: tui_ncurses.c:490
+#: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr "按 'next page' 键减少要使用的线程数。"
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:495
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr "按 'previous page' 键增加要使用的线程数。"
 
-#: tui_ncurses.c:492
+#: tui_ncurses.c:496
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr "按 's' 键开始/停止素数 (慢速) 基准测试。"
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:497
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr "按 'f' 键开始/停止素数 (快速) 基准测试。"
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:499
 msgid "Graphics tab:"
 msgstr "显卡选项卡："
 
-#: tui_ncurses.c:496
+#: tui_ncurses.c:500
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "按 'down' 键切换至上一张显卡。"
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:501
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "按 'up' 键切换至下一张显卡。"
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:503
 msgid "Press any key to exit this help."
 msgstr "按任意键退出帮助。"
 
