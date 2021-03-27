@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-21 20:37+0100\n"
+"POT-Creation-Date: 2021-03-27 13:44+0000\n"
 "PO-Revision-Date: 2021-03-05 22:50+0000\n"
 "Last-Translator: vadimkozhin <vadim.kozhin@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -64,225 +64,225 @@ msgstr "Вызов libcpuid для получения статических д�
 msgid "failed to call libcpuid (%s)"
 msgstr "не удалось вызвать libcpuid (%s)"
 
-#: core.c:438
+#: core.c:427
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Вызов libcpuid для получения динамических данных"
 
-#: core.c:451
+#: core.c:440
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Вызов libcpuid для получения статических значений моделезависимых регистров "
 "ЦП"
 
-#: core.c:476
+#: core.c:465
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Вызов libcpuid для получения динамических значений моделезависимых регистров "
 "ЦП"
 
-#: core.c:499
+#: core.c:488
 msgid "Calculating CPU multipliers"
 msgstr "Подсчет множителей ЦП"
 
-#: core.c:532
+#: core.c:521
 msgid "Calling dmidecode"
 msgstr "Вызов dmidecode"
 
-#: core.c:565
+#: core.c:554
 msgid "Calculating CPU usage"
 msgstr "Подсчет использования ЦП"
 
-#: core.c:616
+#: core.c:605
 msgid "Calling bandwidth"
 msgstr "Вызов пропускной способности"
 
-#: core.c:697
+#: core.c:686
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "В ядре нет драйвера для видео карты по адресу %s"
 
-#: core.c:728
+#: core.c:717
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Неизвестный драйвер ядра ГП: %s"
 
-#: core.c:801
+#: core.c:790
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Неизвестный драйвер ГП: %s"
 
-#: core.c:805
+#: core.c:794
 #, fuzzy, c-format
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to call GLFW (%i): %s"
 msgstr "не удалось вызвать wordexp (%i)"
 
-#: core.c:828
+#: core.c:817
 msgid "Finding devices"
 msgstr "Поиск устройств"
 
-#: core.c:840
+#: core.c:829
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Пропустить поиск устройств (некорректные права на устройстве %s)"
 
-#: core.c:869
+#: core.c:858
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Неизвестный производитель ГП: %s (0x%X)"
 
-#: core.c:887
+#: core.c:876
 msgid "failed to find chipset vendor and model"
 msgstr "не удалось найти производителя и модель чипсета"
 
-#: core.c:889
+#: core.c:878
 msgid "failed to find graphic card vendor and model"
 msgstr "не удалось найти производителя и модель видеокарты"
 
-#: core.c:946
+#: core.c:935
 msgid "Retrieving GPU clocks"
 msgstr "Получение частоты ГП"
 
-#: core.c:976
+#: core.c:965
 msgid "None"
 msgstr "Отсутствует"
 
-#: core.c:1106
+#: core.c:1095
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Драйвер ГП %u не отдает значения частоты"
 
-#: core.c:1142
+#: core.c:1131
 msgid "failed to retrieve GPU clocks"
 msgstr "не удалось получить частоту ГП"
 
-#: core.c:1159
+#: core.c:1148
 msgid "Identifying running system"
 msgstr "Определение запущенной системы"
 
-#: core.c:1162
+#: core.c:1151
 msgid "failed to identify running system"
 msgstr "не удалось определить запущенную систему"
 
-#: core.c:1203
+#: core.c:1192
 msgid "Calling libprocps"
 msgstr "Вызов libprocps"
 
-#: core.c:1229
+#: core.c:1218
 msgid "Calling libstatgrab"
 msgstr "Вызов libstatgrab"
 
-#: core.c:1264
+#: core.c:1253
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i дней, %i часов, %i минут, %i секунд"
 
-#: core.c:1320
+#: core.c:1309
 msgid "Updating benchmark status"
 msgstr "Обновление состояния бенчмарка"
 
-#: core.c:1321 tui_ncurses.c:817
+#: core.c:1310 tui_ncurses.c:817
 #, c-format
 msgid "%u mins"
 msgstr "%u минут"
 
-#: core.c:1323 core.c:1324
+#: core.c:1312 core.c:1313
 msgid "Inactive"
 msgstr "Неактивен"
 
-#: core.c:1328 core.c:1329
+#: core.c:1317 core.c:1318
 msgid "Not started"
 msgstr "Не запускался"
 
-#: core.c:1334
+#: core.c:1323
 msgid "Active"
 msgstr "Активен"
 
-#: core.c:1339
+#: core.c:1328
 #, c-format
 msgid "(%u hours left)"
 msgstr "(осталось %u часов)"
 
-#: core.c:1341
+#: core.c:1330
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(осталось %u минут)"
 
-#: core.c:1343
+#: core.c:1332
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(осталось %u секунд)"
 
-#: core.c:1348
+#: core.c:1337
 #, c-format
 msgid "in %u hours"
 msgstr "за %u часов"
 
-#: core.c:1350
+#: core.c:1339
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u минут"
 
-#: core.c:1352
+#: core.c:1341
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u секунд"
 
-#: core.c:1368
+#: core.c:1357
 msgid "Starting benchmark"
 msgstr "Запуск бенчмарка"
 
-#: core.c:1387
+#: core.c:1376
 msgid "an error occurred while starting benchmark"
 msgstr "ошибка при запуске бенчмарка"
 
-#: core.c:1404
+#: core.c:1393
 msgid "Finding CPU package in fallback mode"
 msgstr "Поиск корпусировки ЦП в fallback-режиме"
 
-#: core.c:1426
+#: core.c:1415
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ваш сокет ЦП отсутствует в базе данных ==> %s, кодовое название: %s"
 
-#: core.c:1445
+#: core.c:1434
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Подсчет множителей ЦП в fallback-режиме"
 
-#: core.c:1472
+#: core.c:1461
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Получение информации о материнской плате в fallback-режиме"
 
-#: core.c:1481
+#: core.c:1470
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не удалось получить информацию о материнской плате (fallback-режим)"
 
-#: core.c:1520
+#: core.c:1509
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Получение температуры ЦП в fallback-режиме"
 
-#: core.c:1565
+#: core.c:1554
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не удалось получить температуру ЦП (fallback-режим)"
 
-#: core.c:1578
+#: core.c:1567
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Получение напряжения ЦП в fallback-режиме"
 
-#: core.c:1591
+#: core.c:1580
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не удалось получить напряжение ЦП (fallback-режим)"
 
-#: core.c:1606
+#: core.c:1595
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Получение частоты ЦП в fallback-режиме"
 
-#: core.c:1614
+#: core.c:1603
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не удалось получить частоту ЦП (fallback-режим)"
 
-#: daemon.c:256
+#: daemon.c:254
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: %i не обрабатывается"

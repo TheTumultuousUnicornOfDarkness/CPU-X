@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-21 20:37+0100\n"
+"POT-Creation-Date: 2021-03-27 13:44+0000\n"
 "PO-Revision-Date: 2021-03-23 15:29+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"cpu-x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
+"x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,219 +59,219 @@ msgstr "正在调用 libcpuid 以检索静态数据"
 msgid "failed to call libcpuid (%s)"
 msgstr "无法调用 libcpuid (%s)"
 
-#: core.c:438
+#: core.c:427
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "正在调用 libcpuid 以检索动态数据"
 
-#: core.c:451
+#: core.c:440
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "正在调用 libcpuid 以检索 CPU MSR 静态值"
 
-#: core.c:476
+#: core.c:465
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "正在调用 libcpuid 以检索 CPU MSR 动态值"
 
-#: core.c:499
+#: core.c:488
 msgid "Calculating CPU multipliers"
 msgstr "正在计算 CPU 倍频"
 
-#: core.c:532
+#: core.c:521
 msgid "Calling dmidecode"
 msgstr "正在调用 dmidecode"
 
-#: core.c:565
+#: core.c:554
 msgid "Calculating CPU usage"
 msgstr "正在计算 CPU 使用率"
 
-#: core.c:616
+#: core.c:605
 msgid "Calling bandwidth"
 msgstr "正在调用 bandwidth"
 
-#: core.c:697
+#: core.c:686
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "路径%s中没有驱动图形卡的内核驱动程序"
 
-#: core.c:728
+#: core.c:717
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "你的 GPU 内核驱动未知: %s"
 
-#: core.c:801
+#: core.c:790
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "你的 GPU 用户模式驱动未知: %s"
 
-#: core.c:805
+#: core.c:794
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "调用 GLFW (%i) 失败: %s"
 
-#: core.c:828
+#: core.c:817
 msgid "Finding devices"
 msgstr "正在搜索设备"
 
-#: core.c:840
+#: core.c:829
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "跳过设备搜索 (%s设备上的权限错误)"
 
-#: core.c:869
+#: core.c:858
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "您的 GPU 供应商未知: %s (0x%X)"
 
-#: core.c:887
+#: core.c:876
 msgid "failed to find chipset vendor and model"
 msgstr "未找到芯片组供应商和型号"
 
-#: core.c:889
+#: core.c:878
 msgid "failed to find graphic card vendor and model"
 msgstr "未找到显卡供应商和型号"
 
-#: core.c:946
+#: core.c:935
 msgid "Retrieving GPU clocks"
 msgstr "正在检索 GPU 时钟"
 
-#: core.c:976
+#: core.c:965
 msgid "None"
 msgstr "无"
 
-#: core.c:1106
+#: core.c:1095
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU 驱动 %u 无法报告频率"
 
-#: core.c:1142
+#: core.c:1131
 msgid "failed to retrieve GPU clocks"
 msgstr "无法检索 GPU 时钟"
 
-#: core.c:1159
+#: core.c:1148
 msgid "Identifying running system"
 msgstr "正在识别本系统"
 
-#: core.c:1162
+#: core.c:1151
 msgid "failed to identify running system"
 msgstr "未识别本系统"
 
-#: core.c:1203
+#: core.c:1192
 msgid "Calling libprocps"
 msgstr "正在调用 libprocps"
 
-#: core.c:1229
+#: core.c:1218
 msgid "Calling libstatgrab"
 msgstr "正在调用 libstatgrab"
 
-#: core.c:1264
+#: core.c:1253
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天，%i 小时，%i 分钟，%i 秒"
 
-#: core.c:1320
+#: core.c:1309
 msgid "Updating benchmark status"
 msgstr "正在更新基准测试状态"
 
-#: core.c:1321 tui_ncurses.c:817
+#: core.c:1310 tui_ncurses.c:817
 #, c-format
 msgid "%u mins"
 msgstr "%u 分钟"
 
-#: core.c:1323 core.c:1324
+#: core.c:1312 core.c:1313
 msgid "Inactive"
 msgstr "待用"
 
-#: core.c:1328 core.c:1329
+#: core.c:1317 core.c:1318
 msgid "Not started"
 msgstr "未启动"
 
-#: core.c:1334
+#: core.c:1323
 msgid "Active"
 msgstr "启用"
 
-#: core.c:1339
+#: core.c:1328
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩余 %u 小时)"
 
-#: core.c:1341
+#: core.c:1330
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩余 %u 分钟)"
 
-#: core.c:1343
+#: core.c:1332
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩余 %u 秒)"
 
-#: core.c:1348
+#: core.c:1337
 #, c-format
 msgid "in %u hours"
 msgstr "%u 小时后"
 
-#: core.c:1350
+#: core.c:1339
 #, c-format
 msgid "in %u minutes"
 msgstr "%u 分钟后"
 
-#: core.c:1352
+#: core.c:1341
 #, c-format
 msgid "in %u seconds"
 msgstr "%u 秒后"
 
-#: core.c:1368
+#: core.c:1357
 msgid "Starting benchmark"
 msgstr "正在启动基准测试"
 
-#: core.c:1387
+#: core.c:1376
 msgid "an error occurred while starting benchmark"
 msgstr "启动基准测试时出错"
 
-#: core.c:1404
+#: core.c:1393
 msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
-#: core.c:1426
+#: core.c:1415
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
-#: core.c:1445
+#: core.c:1434
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "正在应急模式下计算 CPU 倍频"
 
-#: core.c:1472
+#: core.c:1461
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "正在应急模式下检索主板信息"
 
-#: core.c:1481
+#: core.c:1470
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "无法检索主板信息 (应急模式)"
 
-#: core.c:1520
+#: core.c:1509
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "正在应急模式下检索 CPU 温度"
 
-#: core.c:1565
+#: core.c:1554
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "未能检索 CPU 温度 (应急模式)"
 
-#: core.c:1578
+#: core.c:1567
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "正在应急模式下检索 CPU 电压"
 
-#: core.c:1591
+#: core.c:1580
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "未能检索 CPU 电压 (应急模式)"
 
-#: core.c:1606
+#: core.c:1595
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "正在应急模式下检索 CPU 频率"
 
-#: core.c:1614
+#: core.c:1603
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "未能检索 CPU 频率 (应急模式)"
 
-#: daemon.c:256
+#: daemon.c:254
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: 事件 %i 未处理"

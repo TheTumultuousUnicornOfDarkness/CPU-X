@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-03-21 20:37+0100\n"
+"POT-Creation-Date: 2021-03-27 13:44+0000\n"
 "PO-Revision-Date: 2021-02-01 10:41+0000\n"
 "Last-Translator: Xorg <xorgbreaker@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
@@ -59,235 +59,235 @@ msgstr "Appel libcpuid pour récupérer les données statiques"
 msgid "failed to call libcpuid (%s)"
 msgstr "échec lors de l'appel de libcpuid (%s)"
 
-#: core.c:438
+#: core.c:427
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Appel libcpuid pour récupérer les données dynamiques"
 
-#: core.c:451
+#: core.c:440
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Appel de libcpuid pour récupérer les valeurs statiques des MSR du processeur"
 
-#: core.c:476
+#: core.c:465
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Appel de libcpuid pour récupérer les valeurs dynamiques des MSR du processeur"
 
-#: core.c:499
+#: core.c:488
 msgid "Calculating CPU multipliers"
 msgstr "Calcule les multiplicateurs du processeur"
 
-#: core.c:532
+#: core.c:521
 msgid "Calling dmidecode"
 msgstr "Appel dmidecode"
 
-#: core.c:565
+#: core.c:554
 msgid "Calculating CPU usage"
 msgstr "Calcule l'utilisation du processeur"
 
-#: core.c:616
+#: core.c:605
 msgid "Calling bandwidth"
 msgstr "Appel bandwidth"
 
-#: core.c:697
+#: core.c:686
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Aucun pilote noyau n'est utilisé par la carte graphique de chemin %s"
 
-#: core.c:728
+#: core.c:717
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Le pilote de votre carte-graphique est inconnu : %s"
 
-#: core.c:801
+#: core.c:790
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Le pilote de votre carte-graphique est inconnu : %s"
 
-#: core.c:805
+#: core.c:794
 #, fuzzy, c-format
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to call GLFW (%i): %s"
 msgstr "échec lors de l'appel de wordexp (%i)"
 
-#: core.c:828
+#: core.c:817
 msgid "Finding devices"
 msgstr "Recherche des périphériques"
 
-#: core.c:840
+#: core.c:829
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Saute la recherche des périphériques (mauvaises permissions pour le "
 "périphérique %s)"
 
-#: core.c:869
+#: core.c:858
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Le fabricant de votre carte-graphique est inconnu : %s (0x%X)"
 
-#: core.c:887
+#: core.c:876
 msgid "failed to find chipset vendor and model"
 msgstr "échec lors de la recherche du vendeur et du modèle du chipset"
 
-#: core.c:889
+#: core.c:878
 msgid "failed to find graphic card vendor and model"
 msgstr ""
 "échec lors de la recherche du vendeur et du modèle de la carte-graphique"
 
-#: core.c:946
+#: core.c:935
 msgid "Retrieving GPU clocks"
 msgstr "Récupère les fréquences de la carte-graphique"
 
-#: core.c:976
+#: core.c:965
 msgid "None"
 msgstr "Aucun"
 
-#: core.c:1106
+#: core.c:1095
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Le pilote de la carte-graphique %u ne rapporte pas les fréquences"
 
-#: core.c:1142
+#: core.c:1131
 msgid "failed to retrieve GPU clocks"
 msgstr "échec lors de la récupération des fréquences de la carte-graphique"
 
-#: core.c:1159
+#: core.c:1148
 msgid "Identifying running system"
 msgstr "Identifie le système en cours de fonctionnement"
 
-#: core.c:1162
+#: core.c:1151
 msgid "failed to identify running system"
 msgstr "échec lors de l'identification du système en cours de fonctionnement"
 
-#: core.c:1203
+#: core.c:1192
 msgid "Calling libprocps"
 msgstr "Appel libprocps"
 
-#: core.c:1229
+#: core.c:1218
 msgid "Calling libstatgrab"
 msgstr "Appel libstatgrab"
 
-#: core.c:1264
+#: core.c:1253
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i jours, %i heures, %i minutes, %i secondes"
 
-#: core.c:1320
+#: core.c:1309
 msgid "Updating benchmark status"
 msgstr "Mise à jour du statut du test de performance"
 
-#: core.c:1321 tui_ncurses.c:817
+#: core.c:1310 tui_ncurses.c:817
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
 
-#: core.c:1323 core.c:1324
+#: core.c:1312 core.c:1313
 msgid "Inactive"
 msgstr "Inactif"
 
-#: core.c:1328 core.c:1329
+#: core.c:1317 core.c:1318
 msgid "Not started"
 msgstr "Non démarré"
 
-#: core.c:1334
+#: core.c:1323
 msgid "Active"
 msgstr "Actif"
 
-#: core.c:1339
+#: core.c:1328
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u heures restantes)"
 
-#: core.c:1341
+#: core.c:1330
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutes restantes)"
 
-#: core.c:1343
+#: core.c:1332
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u secondes restantes)"
 
-#: core.c:1348
+#: core.c:1337
 #, c-format
 msgid "in %u hours"
 msgstr "en %u heures"
 
-#: core.c:1350
+#: core.c:1339
 #, c-format
 msgid "in %u minutes"
 msgstr "en %u minutes"
 
-#: core.c:1352
+#: core.c:1341
 #, c-format
 msgid "in %u seconds"
 msgstr "en %u secondes"
 
-#: core.c:1368
+#: core.c:1357
 msgid "Starting benchmark"
 msgstr "Démarrage du test de performance"
 
-#: core.c:1387
+#: core.c:1376
 msgid "an error occurred while starting benchmark"
 msgstr "une erreur est survenue lors du démarrage du test de performance"
 
-#: core.c:1404
+#: core.c:1393
 msgid "Finding CPU package in fallback mode"
 msgstr "Recherche du socket du processeur en mode de secours"
 
-#: core.c:1426
+#: core.c:1415
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Votre socket de processeur n'est pas présent dans la base de données ==> %s, "
 "nom de code : %s"
 
-#: core.c:1445
+#: core.c:1434
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Calcule les multiplicateurs du processeur en mode de secours"
 
-#: core.c:1472
+#: core.c:1461
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Récupère les informations de la carte-mère en mode de secours"
 
-#: core.c:1481
+#: core.c:1470
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 "échec lors de la récupération des informations de la carte-mère (mode de "
 "secours)"
 
-#: core.c:1520
+#: core.c:1509
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Récupère la température du processeur en mode de secours"
 
-#: core.c:1565
+#: core.c:1554
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la température du processeur (mode de "
 "secours)"
 
-#: core.c:1578
+#: core.c:1567
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Récupère la tension du processeur en mode de secours"
 
-#: core.c:1591
+#: core.c:1580
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la tension du processeur (mode de secours)"
 
-#: core.c:1606
+#: core.c:1595
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Récupère la fréquence du processeur en mode de secours"
 
-#: core.c:1614
+#: core.c:1603
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la fréquence du processeur (mode de secours)"
 
-#: daemon.c:256
+#: daemon.c:254
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler : le cas %i n'est pas géré"
