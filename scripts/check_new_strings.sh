@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 # This script is used to check if there are new strings in source files
 
 set -euo pipefail
@@ -8,6 +8,7 @@ SHA=${GITHUB_SHA:-HEAD~0}
 cd "$GIT_DIR" || exit 1
 
 if [[ "$(git show -s --format='%ce' "$SHA")" == "hosted@weblate.org" ]]; then
+	echo "Commit by Weblate, nothing to do." > /dev/stderr
 	echo "NO_CHANGE"
 	exit 0
 fi
@@ -15,12 +16,12 @@ fi
 for file in $(git show --pretty="" --name-only "$SHA"); do
 	if [[ "$file" == *.c ]] || [[ "$file" == *.h ]]; then
 		if git show "$SHA" "$file" | egrep '^(\+|\-)' | egrep -qw '_\(|N_\('; then
-			#echo "REGEN"
 			git show "$SHA" "$file" > /dev/stderr
-			echo "NO_CHANGE"
+			echo "REGEN"
 			exit 0
 		fi
 	fi
 done
 
+echo "No commit with translation change." > /dev/stderr
 echo "NO_CHANGE"
