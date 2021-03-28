@@ -30,7 +30,7 @@ set --
 BUNDLER="$WORKSPACE/linuxdeploy.AppImage"
 runCmd wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
 	&& set -- "$@" --output appimage
-runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh" \
+runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/libpangoft2/linuxdeploy-plugin-gtk.sh" \
 	&& set -- "$@" --plugin gtk
 runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-ncurses/master/linuxdeploy-plugin-ncurses.sh" \
 	&& set -- "$@" --plugin ncurses
