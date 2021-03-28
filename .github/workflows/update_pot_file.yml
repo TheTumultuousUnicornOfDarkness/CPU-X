@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
 
     - id: step1
       name: Check if POT file needs to be regenerated
