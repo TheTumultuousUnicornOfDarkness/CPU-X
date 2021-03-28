@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # This script is used to check if there are new strings in source files
 
 set -euo pipefail
@@ -15,7 +15,8 @@ fi
 for file in $(git show --pretty="" --name-only "$SHA"); do
 	if [[ "$file" == *.c ]] || [[ "$file" == *.h ]]; then
 		if git show "$SHA" "$file" | egrep '^(\+|\-)' | egrep -qw '_\(|N_\('; then
-			echo "REGEN"
+			#echo "REGEN"
+			echo "NO_CHANGE"
 			exit 0
 		fi
 	fi
