@@ -16,6 +16,7 @@ for file in $(git show --pretty="" --name-only "$SHA"); do
 	if [[ "$file" == *.c ]] || [[ "$file" == *.h ]]; then
 		if git show "$SHA" "$file" | egrep '^(\+|\-)' | egrep -qw '_\(|N_\('; then
 			#echo "REGEN"
+			git show "$SHA" "$file" > /dev/stderr
 			echo "NO_CHANGE"
 			exit 0
 		fi
