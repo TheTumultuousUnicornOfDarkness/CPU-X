@@ -815,7 +815,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 	uint8_t ret_cl = 0;
 #if HAS_OpenCL
 	uint8_t ret_topo = 0, ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
-	cl_uint num_pf, num_ocl_dev, amd_gfx_major;
+	cl_uint num_pf, num_ocl_dev, ocl_vendor, amd_gfx_major;
 	uint32_t i, j, comp_unit_d = 0;
 	cl_platform_id  pf_id;
 	cl_device_id    ocl_dev_id;
@@ -856,7 +856,11 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 				return ret_cl;
 			}
 
-			switch (dev->vendor_id)
+			CLINFO(ocl_dev_id, CL_DEVICE_VENDOR_ID, ocl_vendor);
+			if (dev->vendor_id != ocl_vendor)
+				break;
+
+			switch (ocl_vendor)
 			{
 			case 0x1002:
 				ret_cl = CLINFO(ocl_dev_id, CL_DEVICE_TOPOLOGY_AMD, topo_amd);
@@ -885,6 +889,10 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 					CLINFO(ocl_dev_id, CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
 				}
 				break;
+			case 0x8086:
+				CLINFO(ocl_dev_id, CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
+				snprintf(comp_unit_type, MAXSTR, "%s", "EU"); // Execution Unit
+				break;
 			case 0x10DE:
 				ret_domain_nv = CLINFO(ocl_dev_id, CL_DEVICE_PCI_DOMAIN_ID_NV, ocl_domain_nv);
 				ret_bus_nv    = CLINFO(ocl_dev_id, CL_DEVICE_PCI_BUS_ID_NV,    ocl_bus_nv);
@@ -905,7 +913,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 				}
 				break;
 			default:
-				MSG_DEBUG("get_gpu_comp_unit function support only AMD GPU or NVIDIA GPU", NULL);
+				MSG_DEBUG("get_gpu_comp_unit function support only AMD/Intel/NVIDIA GPU", NULL);
 				break;
 			} /* end switch (vendor_id) */
 		} /* end num_ocl_dev */
