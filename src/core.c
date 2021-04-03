@@ -68,6 +68,12 @@
 # include <GLFW/glfw3.h>
 #endif
 
+#if HAS_OpenCL
+# define CL_TARGET_OPENCL_VERSION 120
+# include <CL/cl.h>
+# include <CL/cl_ext.h>
+#endif
+
 #if HAS_LIBSTATGRAB
 # include <statgrab.h>
 #endif
@@ -802,6 +808,122 @@ clean:
 	return err;
 }
 
+#define CLINFO(dev_id, PARAM, prop) \
+	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
+static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *comp_unit_type)
+{
+	uint8_t ret_cl = 0;
+#if HAS_OpenCL
+	uint8_t ret_topo = 0, ret_ocl_domain = 0, ret_ocl_bus = 0, ret_ocl_dev = 0;
+	cl_uint num_pf, num_ocl_dev, amd_gfx_major;
+	uint32_t i, j, comp_unit_d = 0;
+	cl_platform_id  pf_id;
+	cl_device_id    ocl_dev_id;
+	cl_device_topology_amd topo_amd; // for AMD
+	cl_uint ocl_domain_nv, ocl_bus_nv, ocl_dev_nv; // for NVIDIA
+
+	ret_cl = clGetPlatformIDs(0, NULL, &num_pf); // get number of platform
+	if (ret_cl != CL_SUCCESS || !num_pf)
+	{
+		MSG_ERROR(_("This platform is not support OpenCL"), NULL);
+		return ret_cl;
+	}
+	MSG_DEBUG("Number of OpenCL Platform:\t%d", num_pf);
+
+	for (i = 1; i <= num_pf; i++) // find GPU device
+	{
+		ret_cl = clGetPlatformIDs(i, &pf_id, NULL); // get platform id
+		if (ret_cl)
+		{
+			MSG_ERROR(_("failed to call clGetPlatformIDs"), NULL);
+			return ret_cl;
+		}
+
+		ret_cl = clGetDeviceIDs(pf_id, CL_DEVICE_TYPE_GPU, 0, NULL, &num_ocl_dev); // get number of device
+		if (ret_cl)
+		{
+			MSG_ERROR(_("failed to call clGetDeviceIDs"), NULL);
+			return ret_cl;
+		}
+		MSG_DEBUG("Number of OpenCL Device:\t%d", num_ocl_dev);
+
+		for (j = 1; j <= num_ocl_dev; j++)
+		{
+			ret_cl = clGetDeviceIDs(pf_id, CL_DEVICE_TYPE_GPU, i, &ocl_dev_id, NULL); // get deviceid of opencl
+			if (ret_cl)
+			{
+				MSG_ERROR(_("faild to call clGetDeviceIDs"), NULL);
+				return ret_cl;
+			}
+
+			switch (dev->vendor_id)
+			{
+			#ifdef CL_DEVICE_TOPOLOGY_AMD
+			case 0x1002:
+				ret_cl = CLINFO(ocl_dev_id, CL_DEVICE_TOPOLOGY_AMD, topo_amd);
+				if (ret_cl)
+				{
+					MSG_WARNING(_("OpenCL Driver is not support CL_DEVICE_TOPOLOGY_AMD"), NULL);
+					return ret_cl;
+				}
+
+				if (dev->bus  ==  topo_amd.pcie.bus     &&
+				    dev->dev  ==  topo_amd.pcie.device  &&
+				    dev->func ==  topo_amd.pcie.function)
+				{
+					ret_cl = CLINFO(ocl_dev_id, CL_DEVICE_GFXIP_MAJOR_AMD, amd_gfx_major);
+					if (ret_cl)
+					{
+						MSG_WARNING(_("OpenCL Driver is not support CL_DEVICE_GFXIP_MAJOR_AMD"), NULL);
+						amd_gfx_major = 0;
+					}
+
+					if (10 <= amd_gfx_major) // for RDNA, gfx10+
+						snprintf(comp_unit_type, MAXSTR, "%s", "WGP"); // Workgroup Processor
+					else
+						snprintf(comp_unit_type, MAXSTR, "%s", "CU"); // Compute Unit
+
+					CLINFO(ocl_dev_id, CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
+				}
+				break;
+			#endif /* CL_DEVICE_TOPOLOGY_AMD */
+			#if defined(CL_DEVICE_PCI_DOMAIN_ID_NV) && \
+			    defined(CL_DEVICE_PCI_BUS_ID_NV) && \
+			    defined(CL_DEVICE_PCI_SLOT_ID_NV) // Slot == Device
+			case 0x10DE:
+				ret_domain_nv = CLINFO(ocl_dev_id, CL_DEVICE_PCI_DOMAIN_ID_NV, ocl_domain_nv);
+				ret_bus_nv    = CLINFO(ocl_dev_id, CL_DEVICE_PCI_BUS_ID_NV,    ocl_bus_nv);
+				ret_dev_nv    = CLINFO(ocl_dev_id, CL_DEVICE_PCI_SLOT_ID_NV,   ocl_dev_nv);
+
+				if (ret_domain_nv && ret_bus_nv && ret_dev_nv)
+				{
+					MSG_WARNING(_("OpenCL Driver is not support CL_DEVICE_PCI_DOMAIN_ID_NV, CL_DEVICE_PCI_BUS_ID_NV, CL_DEVICE_PCI_SLOT_ID_NV"), NULL);
+					return ret_domain_nv && ret_bus_nv && ret_dev_nv;
+				}
+
+				if (dev->domain == ocl_domain_nv &&
+				    dev->bus    == ocl_bus_nv    &&
+				    dev->dev    == ocl_dev_nv)
+				{
+					CLINFO(ocl_dev_id, CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
+					snprintf(comp_unit_type, MAXSTR, "%s", "SM"); // Streaming Multiprocessor
+				}
+				break;
+			#endif /* CL_DEVICE_PCI_*_ID_NV */
+			default:
+				MSG_DEBUG("get_gpu_comp_unit function support only AMD GPU or NVIDIA GPU", NULL);
+				break;
+			} /* end switch (vendor_id) */
+		} /* end num_ocl_dev */
+	} /* end num_pf */
+#else
+	UNUSED(comp_unit);
+	UNUSED(comp_unit_type);
+#endif /* HAS_OpenCL */
+
+	return ret_cl;
+}
+
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
 /* Find some PCI devices, like chipset and GPU */
@@ -810,9 +932,10 @@ static int find_devices(Labels *data)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
 	char *gpu_vendor = NULL;
-	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "";
+	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
+	uint32_t comp_unit;
 
 	MSG_VERBOSE("%s", _("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
@@ -863,11 +986,14 @@ static int find_devices(Labels *data)
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd);
+			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type);
+
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
 			casprintf(&data->tab_graphics[VALUE][GPU1UMD    + data->gpu_count * GPUFIELDS], false, "%s", gpu_umd);
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID + data->gpu_count * GPUFIELDS], false, "0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
+			casprintf(&data->tab_graphics[VALUE][GPU1CU     + data->gpu_count * GPUFIELDS], true,  "%d %s", comp_unit, comp_unit_type);
 			data->gpu_count++;
 		}
 	}

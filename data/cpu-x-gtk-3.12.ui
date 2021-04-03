@@ -3962,7 +3962,7 @@
                                 <property name="margin-end">6</property>
                                 <property name="margin-bottom">6</property>
                                 <child>
-                                  <!-- n-columns=2 n-rows=9 -->
+                                  <!-- n-columns=2 n-rows=10 -->
                                   <object class="GtkGrid" id="card0_grid">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
@@ -4029,7 +4029,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">0</property>
-                                        <property name="top-attach">5</property>
+                                        <property name="top-attach">6</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4118,7 +4118,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="top-attach">5</property>
+                                        <property name="top-attach">6</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4207,7 +4207,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="top-attach">7</property>
+                                        <property name="top-attach">8</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4402,7 +4402,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="top-attach">6</property>
+                                        <property name="top-attach">7</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4419,7 +4419,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">0</property>
-                                        <property name="top-attach">6</property>
+                                        <property name="top-attach">7</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4436,7 +4436,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">0</property>
-                                        <property name="top-attach">7</property>
+                                        <property name="top-attach">8</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4455,7 +4455,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">0</property>
-                                        <property name="top-attach">8</property>
+                                        <property name="top-attach">9</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4486,7 +4486,7 @@
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="top-attach">8</property>
+                                        <property name="top-attach">9</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -4645,6 +4645,68 @@
                                       <packing>
                                         <property name="left-attach">1</property>
                                         <property name="top-attach">4</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="card0_comp_unit">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card0_framcomp_unit">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-top">1</property>
+                                            <property name="margin-bottom">1</property>
+                                            <property name="label-xalign">0</property>
+                                            <property name="shadow-type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card0_valcomp_unit">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width-chars">13</property>
+                                                <property name="single-line-mode">True</property>
+                                                <property name="max-width-chars">13</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">5</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="card0_labcomp_unit">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">5</property>
                                       </packing>
                                     </child>
                                     <child>
