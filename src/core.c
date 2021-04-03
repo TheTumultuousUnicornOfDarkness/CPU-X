@@ -71,7 +71,7 @@
 #if HAS_OpenCL
 # define CL_TARGET_OPENCL_VERSION 120
 # include <CL/cl.h>
-# include <CL/cl_ext.h>
+# include "opencl_ext.h"
 #endif
 
 #if HAS_LIBSTATGRAB
@@ -814,7 +814,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 {
 	uint8_t ret_cl = 0;
 #if HAS_OpenCL
-	uint8_t ret_topo = 0, ret_ocl_domain = 0, ret_ocl_bus = 0, ret_ocl_dev = 0;
+	uint8_t ret_topo = 0, ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
 	cl_uint num_pf, num_ocl_dev, amd_gfx_major;
 	uint32_t i, j, comp_unit_d = 0;
 	cl_platform_id  pf_id;
@@ -858,7 +858,6 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 
 			switch (dev->vendor_id)
 			{
-			#ifdef CL_DEVICE_TOPOLOGY_AMD
 			case 0x1002:
 				ret_cl = CLINFO(ocl_dev_id, CL_DEVICE_TOPOLOGY_AMD, topo_amd);
 				if (ret_cl)
@@ -886,14 +885,10 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 					CLINFO(ocl_dev_id, CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
 				}
 				break;
-			#endif /* CL_DEVICE_TOPOLOGY_AMD */
-			#if defined(CL_DEVICE_PCI_DOMAIN_ID_NV) && \
-			    defined(CL_DEVICE_PCI_BUS_ID_NV) && \
-			    defined(CL_DEVICE_PCI_SLOT_ID_NV) // Slot == Device
 			case 0x10DE:
 				ret_domain_nv = CLINFO(ocl_dev_id, CL_DEVICE_PCI_DOMAIN_ID_NV, ocl_domain_nv);
 				ret_bus_nv    = CLINFO(ocl_dev_id, CL_DEVICE_PCI_BUS_ID_NV,    ocl_bus_nv);
-				ret_dev_nv    = CLINFO(ocl_dev_id, CL_DEVICE_PCI_SLOT_ID_NV,   ocl_dev_nv);
+				ret_dev_nv    = CLINFO(ocl_dev_id, CL_DEVICE_PCI_SLOT_ID_NV,   ocl_dev_nv); // Slot == Device
 
 				if (ret_domain_nv && ret_bus_nv && ret_dev_nv)
 				{
@@ -909,7 +904,6 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 					snprintf(comp_unit_type, MAXSTR, "%s", "SM"); // Streaming Multiprocessor
 				}
 				break;
-			#endif /* CL_DEVICE_PCI_*_ID_NV */
 			default:
 				MSG_DEBUG("get_gpu_comp_unit function support only AMD GPU or NVIDIA GPU", NULL);
 				break;
