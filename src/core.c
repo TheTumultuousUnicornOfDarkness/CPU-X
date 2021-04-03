@@ -816,7 +816,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 #if HAS_OpenCL
 	uint8_t ret_topo = 0, ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
 	cl_uint num_pf, num_ocl_dev, ocl_vendor, amd_gfx_major;
-	uint32_t i, j, comp_unit_d = 0;
+	uint32_t i, j;
 	cl_platform_id  pf_id;
 	cl_device_id    ocl_dev_id;
 	cl_device_topology_amd topo_amd; // for AMD
@@ -825,7 +825,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 	ret_cl = clGetPlatformIDs(0, NULL, &num_pf); // get number of platform
 	if (ret_cl != CL_SUCCESS || !num_pf)
 	{
-		MSG_ERROR(_("This platform is not support OpenCL"), NULL);
+		MSG_ERROR(_("This platform does not support OpenCL"), NULL);
 		return ret_cl;
 	}
 	MSG_DEBUG("Number of OpenCL Platform:\t%d", num_pf);
@@ -866,7 +866,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 				ret_cl = CLINFO(ocl_dev_id, CL_DEVICE_TOPOLOGY_AMD, topo_amd);
 				if (ret_cl)
 				{
-					MSG_WARNING(_("OpenCL Driver is not support CL_DEVICE_TOPOLOGY_AMD"), NULL);
+					MSG_WARNING(_("OpenCL Driver does not support CL_DEVICE_TOPOLOGY_AMD"), NULL);
 					return ret_cl;
 				}
 
@@ -877,7 +877,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 					ret_cl = CLINFO(ocl_dev_id, CL_DEVICE_GFXIP_MAJOR_AMD, amd_gfx_major);
 					if (ret_cl)
 					{
-						MSG_WARNING(_("OpenCL Driver is not support CL_DEVICE_GFXIP_MAJOR_AMD"), NULL);
+						MSG_WARNING(_("OpenCL Driver does not support CL_DEVICE_GFXIP_MAJOR_AMD"), NULL);
 						amd_gfx_major = 0;
 					}
 
