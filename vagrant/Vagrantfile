@@ -20,7 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			node.vm.box      = box
 			node.vm.hostname = info[:name]
 			node.vm.synced_folder '../', '/home/vagrant/CPU-X'
-			node.vm.provision :shell, reboot: true, env: {"HOST_LANG" => ENV['LANG']}, path: "bootstrap_" + info[:bootstrap] + ".sh"
+			#node.vm.provision :shell, path: "bootstrap_" + info[:bootstrap] + ".sh"
+			node.vm.provision :shell, reboot: true, env: {"HOST_LANG" => ENV['LANG']}, path: "bootstrap_common.sh"
 
 			if Vagrant.has_plugin?("vagrant-proxyconf")
 				node.proxy.http     = ENV['HTTP_PROXY']  || ENV['http_proxy']  || ""
