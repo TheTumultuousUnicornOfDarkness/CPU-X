@@ -814,7 +814,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 {
 	uint8_t ret_cl = 0;
 #if HAS_OpenCL
-	uint8_t ret_topo = 0, ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
+	uint8_t ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
 	cl_uint num_pf, num_ocl_dev, ocl_vendor, amd_gfx_major;
 	uint32_t i, j;
 	cl_platform_id  pf_id;
@@ -904,9 +904,9 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 					return ret_domain_nv && ret_bus_nv && ret_dev_nv;
 				}
 
-				if (dev->domain == ocl_domain_nv &&
-				    dev->bus    == ocl_bus_nv    &&
-				    dev->dev    == ocl_dev_nv)
+				if (dev->domain == (int) ocl_domain_nv &&
+				    dev->bus    ==       ocl_bus_nv    &&
+				    dev->dev    ==       ocl_dev_nv)
 				{
 					CLINFO(ocl_dev_id, CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
 					snprintf(comp_unit_type, MAXSTR, "%s", "SM"); // Streaming Multiprocessor
@@ -919,6 +919,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 		} /* end num_ocl_dev */
 	} /* end num_pf */
 #else
+	UNUSED(dev);
 	UNUSED(comp_unit);
 	UNUSED(comp_unit_type);
 #endif /* HAS_OpenCL */
@@ -937,7 +938,7 @@ static int find_devices(Labels *data)
 	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	uint32_t comp_unit;
+	uint32_t comp_unit = 0;
 
 	MSG_VERBOSE("%s", _("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
