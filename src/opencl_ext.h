@@ -86,6 +86,7 @@ const char *opencl_error(cl_int err)
 		CaseReturnString(CL_INVALID_COMPILER_OPTIONS       )
 		CaseReturnString(CL_INVALID_LINKER_OPTIONS         )
 		CaseReturnString(CL_INVALID_DEVICE_PARTITION_COUNT )
+		case -1001: return "CL_PLATFORM_NOT_FOUND_KHR";
 		default: return "Unknown OpenCL error code";
 	}
 }
