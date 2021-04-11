@@ -7,13 +7,14 @@
 # Fredianto <fredianto@tutanota.com>, 2020.
 # william mahagintha <williammahagintha123456@gmail.com>, 2020.
 # Reza Almanda <rezaalmanda27@gmail.com>, 2021.
+# whenwesober <naomi16i_1298q@cikuh.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-03-28 13:26+0000\n"
-"PO-Revision-Date: 2021-02-23 09:50+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"PO-Revision-Date: 2021-04-11 12:46+0000\n"
+"Last-Translator: whenwesober <naomi16i_1298q@cikuh.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
 "Language: id\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: core.c:218
 msgid "Finding CPU technology"
@@ -147,7 +148,7 @@ msgstr "Diver GPU %u tidak melaporkan frekuensi"
 #: core.c:1166
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "Saat Ini: PCIe Gen%1dx%d / Maks: Gen%1dx%d"
 
 #: core.c:1188
 msgid "failed to retrieve GPU clocks"
@@ -570,11 +571,11 @@ msgstr "Versi UMD"
 
 #: main.c:152
 msgid "DeviceID"
-msgstr ""
+msgstr "ID Perangkat"
 
 #: main.c:153
 msgid "Interface"
-msgstr ""
+msgstr "Antarmuka"
 
 #: main.c:154
 msgid "Temperature"
@@ -601,10 +602,8 @@ msgid "Memory Used"
 msgstr "Memori yang digunakan"
 
 #: main.c:162
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "Kartu %i"
+msgstr "Kartu"
 
 #: main.c:165
 msgid "Bench"
@@ -724,10 +723,8 @@ msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Setel pengujian bandwidth khusus untuk kecepatan cache CPU (integer)"
 
 #: main.c:345
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Setel tab default (integer)"
+msgstr "Pilih kartu grafis default (integer)"
 
 #: main.c:346
 msgid "Start and connect to daemon"
@@ -862,16 +859,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Gagal menyetel terminal %s (err=%i); kembali ke %s"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "Jendela terlalu kecil!\n"
+msgstr "Jendela terlalu kecil!"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Tekan 'h' untuk melihat bantuan.\n"
+msgstr "Tekan 'h' untuk melihat bantuan."
 
 #: tui_ncurses.c:474
 #, c-format
@@ -879,171 +872,101 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Selamat datang di %s bantuan NCurses!\n"
 
 #: tui_ncurses.c:475
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
-"Bantuan ini menjelaskan cara menggunakan Antarmuka Pengguna berbasis Teks.\n"
+"Bantuan ini menjelaskan cara menggunakan Antarmuka Pengguna berbasis Teks."
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Kunci global:\n"
+msgstr "Kunci global:"
 
 #: tui_ncurses.c:478
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "\tTekan tombol 'kiri' untuk beralih di tab kiri.\n"
+msgstr "Tekan tombol 'kiri' untuk beralih di tab kiri."
 
 #: tui_ncurses.c:479
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
-msgstr "\tTekan tombol 'kanan' untuk beralih di tab kanan.\n"
+msgstr "Tekan tombol 'kanan' untuk beralih di tab kanan."
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "\tTekan tombol 'h' untuk melihat bantuan ini.\n"
+msgstr "Tekan tombol 'h' untuk melihat bantuan ini."
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\tTekan 'q' untuk keluar.\n"
+msgstr "Tekan 'q' untuk keluar."
 
 #: tui_ncurses.c:483
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"tab CPU:\n"
+msgstr "Tab CPU:"
 
 #: tui_ncurses.c:484
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
-msgstr ""
-"\tTekan tombol 'bawah' untuk mengurangi nomor inti yang akan dipantau.\n"
+msgstr "Tekan tombol 'bawah' untuk mengurangi jumlah inti yang akan dipantau."
 
 #: tui_ncurses.c:485
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
-msgstr "\tTekan tombol 'atas' untuk menambah nomor inti yang akan dipantau.\n"
+msgstr "Tekan tombol 'atas' untuk menambah jumlah inti yang akan dipantau."
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Tab cache:\n"
+msgstr "Tab cache:"
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "\tTekan tombol 'bawah' untuk beralih ke tes sebelumnya.\n"
+msgstr "Tekan tombol 'bawah' untuk beralih ke tes sebelumnya."
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "\tTekan tombol 'atas' untuk beralih ke tes berikutnya.\n"
+msgstr "Tekan tombol 'atas' untuk beralih ke tes berikutnya."
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"Tab Pengujian:\n"
+msgstr "Tab Pengujian:"
 
 #: tui_ncurses.c:492
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "\tTekan tombol 'bawah' untuk mengurangi durasi pengujian.\n"
+msgstr "Tekan tombol 'bawah' untuk mengurangi durasi pengujian."
 
 #: tui_ncurses.c:493
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\tTekan tombol 'atas' untuk menambah durasi pengujian.\n"
+msgstr "Tekan tombol 'atas' untuk menambah durasi pengujian."
 
 #: tui_ncurses.c:494
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
-"\tTekan tombol 'next page' untuk mengurangi jumlah thread yang akan "
-"digunakan.\n"
+"Tekan tombol 'next page' untuk mengurangi jumlah thread yang akan digunakan."
 
 #: tui_ncurses.c:495
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
-"\tTekan tombol 'previous page' untuk menambah jumlah thread yang akan "
-"digunakan.\n"
+"Tekan tombol 'previous page' untuk menambah jumlah thread yang akan "
+"digunakan."
 
 #: tui_ncurses.c:496
-#, fuzzy
-#| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-"\tTekan 's untuk memulai / menghentikan benchmark bilangan prima (lambat).\n"
+msgstr "Tekan 's' untuk memulai/menghentikan benchmark bilangan prima (lambat)."
 
 #: tui_ncurses.c:497
-#, fuzzy
-#| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"\tTekan tombol 'f' untuk memulai / menghentikan benchmark bilangan prima "
-"(cepat).\n"
+"Tekan tombol 'f' untuk memulai/menghentikan benchmark bilangan prima (cepat)."
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Grafis"
+msgstr "Tab Grafis:"
 
 #: tui_ncurses.c:500
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\tTekan tombol 'bawah' untuk beralih ke tes sebelumnya.\n"
+msgstr "Tekan tombol 'bawah' untuk beralih ke kartu grafis sebelumnya."
 
 #: tui_ncurses.c:501
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\tTekan tombol 'atas' untuk beralih ke tes berikutnya.\n"
+msgstr "Tekan tombol 'atas' untuk beralih ke kartu grafis berikutnya."
 
 #: tui_ncurses.c:503
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"Tekan tombol apa saja untuk keluar dari bantuan ini.\n"
+msgstr "Tekan tombol apa saja untuk keluar dari bantuan ini."
 
 #: util.c:198
 #, c-format
