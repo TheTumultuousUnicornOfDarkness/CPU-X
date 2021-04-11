@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-04-11 12:46+0000\n"
+"POT-Creation-Date: 2021-04-11 15:35+0000\n"
 "PO-Revision-Date: 2021-03-31 19:26+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
@@ -110,208 +110,246 @@ msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU: %s"
 msgid "failed to call GLFW (%i): %s"
 msgstr "nie udało się wywołać GLFW (%i): %s"
 
-#: core.c:828
-msgid "This platform does not support OpenCL"
+#: core.c:829
+#, c-format
+msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
 #: core.c:838
-#, fuzzy
+#, fuzzy, c-format
 #| msgid "failed to call dmidecode"
-msgid "failed to call clGetPlatformIDs"
+msgid "failed to get all OpenCL platforms (%s)"
 msgstr "nie udało się wywołać dmidecode"
 
-#: core.c:845
-#, fuzzy
-#| msgid "failed to call dmidecode"
-msgid "failed to call clGetDeviceIDs"
-msgstr "nie udało się wywołać dmidecode"
+#: core.c:848
+#, fuzzy, c-format
+#| msgid "failed to perform the Curl transfer (%s)"
+msgid "failed to get name for platform %u (%s)"
+msgstr "Nie udało się przesłać Curl'em (%s)"
 
 #: core.c:855
-#, fuzzy
-#| msgid "failed to call dmidecode"
-msgid "faild to call clGetDeviceIDs"
-msgstr "nie udało się wywołać dmidecode"
+#, fuzzy, c-format
+#| msgid "failed to perform the Curl transfer (%s)"
+msgid "failed to get version for platform %u (%s)"
+msgstr "Nie udało się przesłać Curl'em (%s)"
 
-#: core.c:869
-msgid "OpenCL Driver does not support CL_DEVICE_TOPOLOGY_AMD"
+#: core.c:862
+#, c-format
+msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:880
-msgid "OpenCL Driver does not support CL_DEVICE_GFXIP_MAJOR_AMD"
+#: core.c:870
+#, c-format
+msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:903
+#: core.c:884
+#, fuzzy, c-format
+#| msgid "failed to call wordexp (%i)"
+msgid "failed to get name for device %u (%s)"
+msgstr "nie udało się wywołać wordexp (%i)"
+
+#: core.c:891
+#, fuzzy, c-format
+#| msgid "failed to find graphic card driver (%s)"
+msgid "failed to get version for device %u (%s)"
+msgstr "nie udało się znaleźć sterownika karty graficznej (%s)"
+
+#: core.c:902
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+msgstr ""
+
+#: core.c:913
+#, c-format
 msgid ""
-"OpenCL Driver is not support CL_DEVICE_PCI_DOMAIN_ID_NV, "
-"CL_DEVICE_PCI_BUS_ID_NV, CL_DEVICE_PCI_SLOT_ID_NV"
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:943
+#: core.c:925 core.c:935 core.c:960
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr ""
+
+#: core.c:948
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgstr ""
+
+#: core.c:968
+#, c-format
+msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+msgstr ""
+
+#: core.c:997
 msgid "Finding devices"
 msgstr "Wyszukiwanie urządzeń"
 
-#: core.c:955
+#: core.c:1009
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
 
-#: core.c:984
+#: core.c:1038
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Dostawca procesora GPU jest nieznany: %s (0x%X)"
 
-#: core.c:1006
+#: core.c:1060
 msgid "failed to find chipset vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu chipsetu"
 
-#: core.c:1008
+#: core.c:1062
 msgid "failed to find graphic card vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu GPU"
 
-#: core.c:1085
+#: core.c:1139
 msgid "Retrieving GPU clocks"
 msgstr "Pobieranie zegarów GPU"
 
-#: core.c:1119
+#: core.c:1173
 msgid "None"
 msgstr "Żaden"
 
-#: core.c:1252
+#: core.c:1306
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Sterownik procesora graficznego %u nie raportuje częstotliwości"
 
-#: core.c:1295
+#: core.c:1349
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Aktualne: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
-#: core.c:1317
+#: core.c:1371
 msgid "failed to retrieve GPU clocks"
 msgstr "nie udało się znaleźć zegarów GPU"
 
-#: core.c:1334
+#: core.c:1388
 msgid "Identifying running system"
 msgstr "Identyfikacja uruchomionego systemu"
 
-#: core.c:1337
+#: core.c:1391
 msgid "failed to identify running system"
 msgstr "nie udało się zidentyfikować uruchomionego systemu"
 
-#: core.c:1378
+#: core.c:1432
 msgid "Calling libprocps"
 msgstr "Wywołanie libprocps"
 
-#: core.c:1404
+#: core.c:1458
 msgid "Calling libstatgrab"
 msgstr "Wywołanie libstatgrab"
 
-#: core.c:1439
+#: core.c:1493
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dni, %i godzin, %i minut, %i sekund"
 
-#: core.c:1495
+#: core.c:1549
 msgid "Updating benchmark status"
 msgstr "Aktualizacja statusu benchmarku"
 
-#: core.c:1496 tui_ncurses.c:822
+#: core.c:1550 tui_ncurses.c:822
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
 
-#: core.c:1498 core.c:1499
+#: core.c:1552 core.c:1553
 msgid "Inactive"
 msgstr "Nieaktywny"
 
-#: core.c:1503 core.c:1504
+#: core.c:1557 core.c:1558
 msgid "Not started"
 msgstr "Nie uruchomiono"
 
-#: core.c:1509
+#: core.c:1563
 msgid "Active"
 msgstr "Aktywny"
 
-#: core.c:1514
+#: core.c:1568
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u godzin pozostało)"
 
-#: core.c:1516
+#: core.c:1570
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minut pozostało)"
 
-#: core.c:1518
+#: core.c:1572
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(pozostało %u sekund)"
 
-#: core.c:1523
+#: core.c:1577
 #, c-format
 msgid "in %u hours"
 msgstr "w %u godzinach"
 
-#: core.c:1525
+#: core.c:1579
 #, c-format
 msgid "in %u minutes"
 msgstr "w %u minutach"
 
-#: core.c:1527
+#: core.c:1581
 #, c-format
 msgid "in %u seconds"
 msgstr "w %u sekundach"
 
-#: core.c:1543
+#: core.c:1597
 msgid "Starting benchmark"
 msgstr "Uruchamianie benchmarku"
 
-#: core.c:1562
+#: core.c:1616
 msgid "an error occurred while starting benchmark"
 msgstr "wystąpił błąd podczas uruchamiania benchmarku"
 
-#: core.c:1579
+#: core.c:1633
 msgid "Finding CPU package in fallback mode"
 msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
 
-#: core.c:1601
+#: core.c:1655
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
 
-#: core.c:1620
+#: core.c:1674
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Obliczanie mnożnika CPU w trybie awaryjnym"
 
-#: core.c:1647
+#: core.c:1701
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Pozyskiwanie informacji o płycie głównej w trybie awaryjnym"
 
-#: core.c:1656
+#: core.c:1710
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nie udało się pobrać informacji o płycie głównej (tryb awaryjny)"
 
-#: core.c:1695
+#: core.c:1749
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Pozyskiwanie informacji o temperaturze CPU w trybie awaryjnym"
 
-#: core.c:1740
+#: core.c:1794
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nie udało się pobrać temperatury CPU (tryb awaryjny)"
 
-#: core.c:1753
+#: core.c:1807
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Pozyskiwanie napięcia CPU w trybie awaryjnym"
 
-#: core.c:1766
+#: core.c:1820
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nie udało się pozyskać napięcia CPU (tryb awaryjny)"
 
-#: core.c:1781
+#: core.c:1835
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Pobieranie częstotliwości procesora w trybie awaryjnym"
 
-#: core.c:1789
+#: core.c:1843
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
 
@@ -1109,6 +1147,16 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#, fuzzy
+#~| msgid "failed to call dmidecode"
+#~ msgid "failed to call clGetDeviceIDs"
+#~ msgstr "nie udało się wywołać dmidecode"
+
+#, fuzzy
+#~| msgid "failed to call dmidecode"
+#~ msgid "faild to call clGetDeviceIDs"
+#~ msgstr "nie udało się wywołać dmidecode"
+
 #~ msgid "Exiting %s"
 #~ msgstr "Wychodzące %s"
 
@@ -1129,9 +1177,6 @@ msgstr "TiB"
 
 #~ msgid "(%s driver)"
 #~ msgstr "(sterownik %s)"
-
-#~ msgid "failed to find graphic card driver (%s)"
-#~ msgstr "nie udało się znaleźć sterownika karty graficznej (%s)"
 
 #~ msgid "Retrieving GPU temperature"
 #~ msgstr "Pobieranie temperatury GPU"
@@ -1183,9 +1228,6 @@ msgstr "TiB"
 
 #~ msgid "failed to open a Curl session"
 #~ msgstr "Nie udało się otworzyć sesji Curl"
-
-#~ msgid "failed to perform the Curl transfer (%s)"
-#~ msgstr "Nie udało się przesłać Curl'em (%s)"
 
 #~ msgid "wrong write data"
 #~ msgstr "nieprawidłowy zapis danych"
