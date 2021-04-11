@@ -13,10 +13,10 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 12:46+0000\n"
-"PO-Revision-Date: 2021-03-28 13:27+0000\n"
+"PO-Revision-Date: 2021-04-11 15:35+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,39 +109,35 @@ msgstr "调用 GLFW (%i) 失败: %s"
 
 #: core.c:828
 msgid "This platform does not support OpenCL"
-msgstr ""
+msgstr "此平台不支持 OpenCL"
 
 #: core.c:838
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call clGetPlatformIDs"
-msgstr "无法调用 dmidecode"
+msgstr "调用 clGetPlatformIDs失败"
 
 #: core.c:845
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call clGetDeviceIDs"
-msgstr "无法调用 dmidecode"
+msgstr "调用 clGetDeviceIDs失败"
 
 #: core.c:855
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "faild to call clGetDeviceIDs"
-msgstr "无法调用 dmidecode"
+msgstr "调用 clGetDeviceIDs失败"
 
 #: core.c:869
 msgid "OpenCL Driver does not support CL_DEVICE_TOPOLOGY_AMD"
-msgstr ""
+msgstr "OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD"
 
 #: core.c:880
 msgid "OpenCL Driver does not support CL_DEVICE_GFXIP_MAJOR_AMD"
-msgstr ""
+msgstr "OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD"
 
 #: core.c:903
 msgid ""
 "OpenCL Driver is not support CL_DEVICE_PCI_DOMAIN_ID_NV, "
 "CL_DEVICE_PCI_BUS_ID_NV, CL_DEVICE_PCI_SLOT_ID_NV"
 msgstr ""
+"OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV、CL_DEVICE_PCI_BUS_ID_NV、CL_DEVICE_PCI_"
+"SLOT_ID_NV"
 
 #: core.c:943
 msgid "Finding devices"
@@ -604,7 +600,7 @@ msgstr "UMD 版本"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "计算单元"
 
 #: main.c:153
 msgid "DeviceID"
