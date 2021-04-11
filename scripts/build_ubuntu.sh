@@ -47,6 +47,9 @@ sudo apt-get install -y -qq \
 	libgtk-3-dev \
 	libcpuid-dev-git \
 	libpci-dev \
+	opencl-headers \
+	ocl-icd-libopencl1 \
+	ocl-icd-opencl-dev \
 	libprocps-dev
 
 echo "Run CMake"
