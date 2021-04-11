@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 12:46+0000\n"
-"PO-Revision-Date: 2021-04-10 16:26+0000\n"
+"PO-Revision-Date: 2021-04-11 15:35+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -93,7 +93,7 @@ msgstr "CPU kullanımı hesaplanıyor"
 
 #: core.c:611
 msgid "Calling bandwidth"
-msgstr "Bant genişliği çağırılıyor"
+msgstr "Bant genişliği çağrılıyor"
 
 #: core.c:692
 #, c-format
@@ -117,39 +117,35 @@ msgstr "GLFW çağrılamadı (%i): %s"
 
 #: core.c:828
 msgid "This platform does not support OpenCL"
-msgstr ""
+msgstr "Bu platform OpenCL'yi desteklemiyor"
 
 #: core.c:838
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call clGetPlatformIDs"
-msgstr "dmidecode çağırılamadı"
+msgstr "clGetPlatformIDs çağrılamadı"
 
 #: core.c:845
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call clGetDeviceIDs"
-msgstr "dmidecode çağırılamadı"
+msgstr "clGetDeviceIDs çağrılamadı"
 
 #: core.c:855
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "faild to call clGetDeviceIDs"
-msgstr "dmidecode çağırılamadı"
+msgstr "clGetDeviceIDs çağrılamadı"
 
 #: core.c:869
 msgid "OpenCL Driver does not support CL_DEVICE_TOPOLOGY_AMD"
-msgstr ""
+msgstr "OpenCL Sürücüsü CL_DEVICE_TOPOLOGY_AMD desteklemiyor"
 
 #: core.c:880
 msgid "OpenCL Driver does not support CL_DEVICE_GFXIP_MAJOR_AMD"
-msgstr ""
+msgstr "OpenCL Sürücüsü CL_DEVICE_GFXIP_MAJOR_AMD desteklemiyor"
 
 #: core.c:903
 msgid ""
 "OpenCL Driver is not support CL_DEVICE_PCI_DOMAIN_ID_NV, "
 "CL_DEVICE_PCI_BUS_ID_NV, CL_DEVICE_PCI_SLOT_ID_NV"
 msgstr ""
+"OpenCL Sürücüsü CL_DEVICE_PCI_DOMAIN_ID_NV, CL_DEVICE_PCI_BUS_ID_NV, "
+"CL_DEVICE_PCI_SLOT_ID_NV desteklemiyor"
 
 #: core.c:943
 msgid "Finding devices"
@@ -612,7 +608,7 @@ msgstr "UMD Sürümü"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "İşlem Birimi"
 
 #: main.c:153
 msgid "DeviceID"
