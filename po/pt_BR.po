@@ -15,10 +15,10 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 15:51+0000\n"
-"PO-Revision-Date: 2021-04-11 15:51+0000\n"
+"PO-Revision-Date: 2021-04-11 15:52+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,10 +119,9 @@ msgid "There is no platform with OpenCL support (%s)"
 msgstr "Não há plataforma com suporte ao OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "falhou ao chamar o dmidecode"
+msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
 
 #: core.c:848
 #, c-format
@@ -189,7 +188,7 @@ msgstr ""
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "O OpenCL não é compatível com o modelo da sua GPU (0x %X)"
 
 #: core.c:997
 msgid "Finding devices"
@@ -660,7 +659,7 @@ msgstr "Versão UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Unidade de Cálculo"
 
 #: main.c:153
 msgid "DeviceID"
