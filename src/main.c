@@ -149,6 +149,7 @@ static void labels_setname(Labels *data)
 		asprintf(&data->tab_graphics[NAME][GPU1DRIVER      + i], _("Driver"));
 		asprintf(&data->tab_graphics[NAME][GPU1UMD         + i], _("UMD Version"));
 		asprintf(&data->tab_graphics[NAME][GPU1MODEL       + i], _("Model"));
+		asprintf(&data->tab_graphics[NAME][GPU1CU          + i], _("Compute Unit"));
 		asprintf(&data->tab_graphics[NAME][GPU1DIDRID      + i], _("DeviceID"));
 		asprintf(&data->tab_graphics[NAME][GPU1PCIE        + i], _("Interface"));
 		asprintf(&data->tab_graphics[NAME][GPU1TEMPERATURE + i], _("Temperature"));

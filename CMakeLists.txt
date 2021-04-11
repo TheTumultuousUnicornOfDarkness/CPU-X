@@ -48,6 +48,7 @@ option(WITH_GETTEXT       "Build support for internationalization"              
 option(WITH_LIBCPUID      "Use Libcpuid library"                                              ON)
 option(WITH_LIBPCI        "Use Libpci library"                                                ON)
 option(WITH_LIBGLFW       "Use Libglfw library"                                               ON)
+option(WITH_OPENCL        "Use OpenCL library"                                                ON)
 option(WITH_LIBPROCPS     "Use Libprocps library"                                             ON)
 option(WITH_LIBSTATGRAB   "Use Libstatgrab library"                                           ON)
 option(WITH_DMIDECODE     "Built-in Dmidecode"                                                ON)
