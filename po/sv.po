@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2021-03-27 20:52+0000\n"
+"PO-Revision-Date: 2021-04-11 20:01+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -107,61 +107,61 @@ msgstr "kunde inte anropa GLFW (%i): %s"
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Det finns ingen plattform med OpenCL-stöd (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "kunde inte anropa wordexp (%i)"
+msgstr "kunde inte hämta alla OpenCL-plattformar (%s)"
 
 #: core.c:848
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "kunde inte hämta namn för plattformen %u (%s)"
 
 #: core.c:855
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "kunde inte hämta versionsinfo för plattformen %u (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "kunde inte hitta antalet OpenCL-enheter för plattformen \"%s %s\" (%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "kunde inte hämta alla OpenCL-enheter för plattformen \"%s %s\" (%s)"
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "kunde inte anropa wordexp (%i)"
+msgstr "kunde inte hämta namn för enhet %u (%s)"
 
 #: core.c:891
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "kunde inte hämta versionen för enheten %u (%s)"
 
 #: core.c:902
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "OpenCL-drivrutin för \"%s %s\" stödjer inte CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:913
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"OpenCL-drivrutin för \"%s %s\" stödjer inte CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:925 core.c:935 core.c:960
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"OpenCL-drivrutin för \"%s %s\" stödjer inte CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:948
 #, c-format
@@ -169,11 +169,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"OpenCL-drivrutin för \"%s %s\" stödjer inte CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) eller CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL stöds inte med din GPU-leverantör (0x%X)"
 
 #: core.c:997
 msgid "Finding devices"
@@ -636,7 +638,7 @@ msgstr "UMD-version"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Beräkningsenhet"
 
 #: main.c:153
 msgid "DeviceID"
