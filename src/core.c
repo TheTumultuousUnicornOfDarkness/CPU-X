@@ -895,7 +895,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 			MSG_DEBUG("OpenCL device %u is '%s %s'", j, device_name, device_version);
 			switch (ocl_vendor)
 			{
-				case 0x1002:
+				case DEV_VENDOR_ID_AMD:
 					ret_cl = CLINFO(devices[j], CL_DEVICE_TOPOLOGY_AMD, topo_amd);
 					if (ret_cl != CL_SUCCESS)
 					{
@@ -928,7 +928,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 						}
 					}
 					break;
-				case 0x8086:
+				case DEV_VENDOR_ID_INTEL:
 					ret_cl = CLINFO(devices[j], CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
 					if (ret_cl != CL_SUCCESS)
 					{
@@ -938,7 +938,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 					}
 					snprintf(comp_unit_type, MAXSTR, "%s", "EU"); // Execution Unit
 					break;
-				case 0x10DE:
+				case DEV_VENDOR_ID_NVIDIA:
 					ret_domain_nv = CLINFO(devices[j], CL_DEVICE_PCI_DOMAIN_ID_NV, ocl_domain_nv);
 					ret_bus_nv    = CLINFO(devices[j], CL_DEVICE_PCI_BUS_ID_NV,    ocl_bus_nv);
 					ret_dev_nv    = CLINFO(devices[j], CL_DEVICE_PCI_SLOT_ID_NV,   ocl_dev_nv); // Slot == Device
@@ -1031,9 +1031,9 @@ static int find_devices(Labels *data)
 		{
 			switch(dev->vendor_id)
 			{
-				case 0x1002: gpu_vendor = "AMD";    break;
-				case 0x8086: gpu_vendor = "Intel";  break;
-				case 0x10DE: gpu_vendor = "NVIDIA"; break;
+				case DEV_VENDOR_ID_AMD:    gpu_vendor = "AMD";    break;
+				case DEV_VENDOR_ID_INTEL:  gpu_vendor = "Intel";  break;
+				case DEV_VENDOR_ID_NVIDIA: gpu_vendor = "NVIDIA"; break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
 				             MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor, dev->vendor_id);
 			}

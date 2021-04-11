@@ -120,6 +120,10 @@
 /* FreeBSD-specific paths definition */
 #define DEV_PCI               "/dev/pci"
 
+/* Devices vendor ID */
+#define DEV_VENDOR_ID_AMD    0x1002
+#define DEV_VENDOR_ID_INTEL  0x8086
+#define DEV_VENDOR_ID_NVIDIA 0x10DE
 
 enum EnTabNumber
 {
