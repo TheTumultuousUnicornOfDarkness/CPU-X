@@ -5,11 +5,17 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      force:
+        description: 'ignore check_new_strings result'
+        required: false
+        default: "no"
 
 jobs:
   check_new_string:
     name: Linux x64_64 (check)
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.force != 'yes' }}"
 
     outputs:
       output1: ${{ steps.step1.outputs.check_ret }}
@@ -27,7 +33,9 @@ jobs:
     name: Linux x64_64 (L10n)
     runs-on: ubuntu-latest
     needs: check_new_string
-    if: ${{ needs.check_new_string.outputs.output1 == 'REGEN' }}
+    if: |
+      ${{ needs.check_new_string.outputs.output1 == 'REGEN' }} ||
+      ${{ github.event.inputs.force == 'yes' }}"
 
     steps:
     - uses: actions/checkout@v2
