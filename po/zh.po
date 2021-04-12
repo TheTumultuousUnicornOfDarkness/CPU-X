@@ -13,10 +13,10 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2021-04-11 15:35+0000\n"
+"PO-Revision-Date: 2021-04-13 03:26+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,87 +108,75 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "调用 GLFW (%i) 失败: %s"
 
 #: core.c:829
-#, fuzzy, c-format
-#| msgid "This platform does not support OpenCL"
+#, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr "此平台不支持 OpenCL"
+msgstr "没有支持 OpenCL 的平台 (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call clGetPlatformIDs"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "调用 clGetPlatformIDs失败"
+msgstr "未能获得所有 OpenCL 平台 (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "无法执行 Curl 传输 (%s)"
+msgstr "未能获得平台名称 %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "无法执行 Curl 传输 (%s)"
+msgstr "未能获得平台 %u 的版本 (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "查找平台 '%s %s' (%s) 的 OpenCL 设备数失败"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "未能获得平台 '%s %s' (%s) 所有的 OpenCL 设备"
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "调用 wordexp (%i) 失败"
+msgstr "未能获得设备 %u 的名称 (%s)"
 
 #: core.c:891
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "未找到显卡驱动程序 (%s)"
+msgstr "未能获得设备 %u 的版本 (%s)"
 
 #: core.c:902
-#, fuzzy, c-format
-#| msgid "OpenCL Driver does not support CL_DEVICE_TOPOLOGY_AMD"
+#, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD"
+msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:913
-#, fuzzy, c-format
-#| msgid "OpenCL Driver does not support CL_DEVICE_GFXIP_MAJOR_AMD"
+#, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr "OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD"
+msgstr "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:925 core.c:935 core.c:960
-#, fuzzy, c-format
-#| msgid "OpenCL Driver does not support CL_DEVICE_TOPOLOGY_AMD"
+#, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr "OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD"
+msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:948
-#, fuzzy, c-format
-#| msgid ""
-#| "OpenCL Driver is not support CL_DEVICE_PCI_DOMAIN_ID_NV, "
-#| "CL_DEVICE_PCI_BUS_ID_NV, CL_DEVICE_PCI_SLOT_ID_NV"
+#, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
-"OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV、CL_DEVICE_PCI_BUS_ID_NV、"
-"CL_DEVICE_PCI_SLOT_ID_NV"
+"'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
+"CL_DEVICE_PCI_BUS_ID_NV (%s) 或CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "Open 不受你的 GPU 厂商 (0x%X) 的支持"
 
 #: core.c:997
 msgid "Finding devices"
