@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2021-03-31 19:26+0000\n"
+"PO-Revision-Date: 2021-04-17 21:26+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -107,35 +107,33 @@ msgstr "impossibile eseguire GLFW (%i): %s"
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Non c'è una piattaforma con supporto OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "fallimento a chiamare dmidecode"
+msgstr "impossibile ottenere le piattaforme OpenCL (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "fallimento ad eseguire un trasferimento (%s)"
+msgstr "Impossibile ottenere il nome della piattaforma %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "fallimento ad eseguire un trasferimento (%s)"
+msgstr "Impossibile ottenere la versione della piattaforma %u (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "Impossibile trovare il numero delle periferiche OpenCL per '%s %s' (%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"Impossibile ottenere le periferiche OpenCL per la piattaforma '%s %s' (%s)"
 
 #: core.c:884
 #, fuzzy, c-format
