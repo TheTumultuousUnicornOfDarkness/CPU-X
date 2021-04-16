@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2021-03-31 19:26+0000\n"
+"PO-Revision-Date: 2021-04-17 21:26+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -113,47 +113,43 @@ msgstr "nie udało się wywołać GLFW (%i): %s"
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Nie ma platformy obsługującej OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "nie udało się wywołać dmidecode"
+msgstr "nie udało się uzyskać wszystkich platform OpenCL (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "Nie udało się przesłać Curl'em (%s)"
+msgstr "nie udało się uzyskać nazwy platformy %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "Nie udało się przesłać Curl'em (%s)"
+msgstr "nie udało się pobrać wersji na platformę %u (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "nie udało się znaleźć liczby urządzeń OpenCL dla platformy '%s %s' (%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"nie udało się pobrać wszystkich urządzeń OpenCL na platformę '%s %s' (%s)"
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "nie udało się wywołać wordexp (%i)"
+msgstr "nie udało się uzyskać nazwy urządzenia %u (%s)"
 
 #: core.c:891
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "nie udało się znaleźć sterownika karty graficznej (%s)"
+msgstr "nie udało się pobrać wersji dla urządzenia %u (%s)"
 
 #: core.c:902
 #, c-format
@@ -182,7 +178,7 @@ msgstr ""
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "Dostawca GPU nie obsługuje standardu OpenCL (0x%X)"
 
 #: core.c:997
 msgid "Finding devices"
@@ -645,7 +641,7 @@ msgstr "Wersja UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Jednostka obliczeniowa"
 
 #: main.c:153
 msgid "DeviceID"
