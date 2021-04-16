@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2021-04-11 12:46+0000\n"
+"PO-Revision-Date: 2021-04-17 21:26+0000\n"
 "Last-Translator: whenwesober <naomi16i_1298q@cikuh.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
@@ -113,61 +113,64 @@ msgstr "gagal memanggil GLFW (%i): %s"
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Tidak terdapat platform dengan dukungan OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to open CPU MSR (%s)"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "gagal membuka CPU MSR (%s)"
+msgstr "gagal mendapatkan platform OpenCL (%s)"
 
 #: core.c:848
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "gagal untuk mendapatkan nama untuk platform %u (%s)"
 
 #: core.c:855
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "gagal untuk mendapatkan versi untuk platform %u (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"gagal untuk mendapatkan jumlah dari perangkat OpenCL untuk platform '%s %s' "
+"(%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"gagal untuk mendapatkan semua perangkat OpenCL dari platform '%s %s' (%s)"
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "gagal memanggil wordexp (%i)"
+msgstr "gagal untuk mendapatkan nama untuk perangkat %u (%s)"
 
 #: core.c:891
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "gagal untuk mendapatkan versi untuk perangkat %u (%s)"
 
 #: core.c:902
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:913
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:925 core.c:935 core.c:960
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:948
 #, c-format
@@ -175,11 +178,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL tidak didukung dengan vendor GPU Anda (0x%X)"
 
 #: core.c:997
 msgid "Finding devices"
@@ -642,7 +647,7 @@ msgstr "Versi UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Unit Komputasi"
 
 #: main.c:153
 msgid "DeviceID"
