@@ -22,23 +22,24 @@ fi
 
 WORKSPACE="$1"
 APPDIR="$2"
+WGET_ARGS=(--continue --no-verbose)
 
 # Reset arguments
 set --
 
 # Download linuxdeploy and plugins
 BUNDLER="$WORKSPACE/linuxdeploy.AppImage"
-runCmd wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
+runCmd wget "${WGET_ARGS[@]}" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
 	&& set -- "$@" --output appimage
-runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/dev/linuxdeploy-plugin-gtk.sh" \
+runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/dev/linuxdeploy-plugin-gtk.sh" \
 	&& set -- "$@" --plugin gtk
-runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-ncurses/master/linuxdeploy-plugin-ncurses.sh" \
+runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-ncurses/master/linuxdeploy-plugin-ncurses.sh" \
 	&& set -- "$@" --plugin ncurses
-runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gettext/linuxdeploy-plugin-gettext.sh" \
+runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gettext/linuxdeploy-plugin-gettext.sh" \
 	&& set -- "$@" --plugin gettext
 if [[ -z "$VERSION" ]]; then
 	export LINUXDEPLOY_PLUGIN_GDB_SRC="$WORKSPACE/src"
-	runCmd wget --no-verbose "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gdb/linuxdeploy-plugin-gdb.sh" \
+	runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gdb/linuxdeploy-plugin-gdb.sh" \
 		&& set -- "$@" --plugin gdb
 fi
 runCmd chmod --verbose a+x ./*.AppImage ./*.sh
