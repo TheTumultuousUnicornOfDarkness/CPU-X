@@ -159,6 +159,7 @@ static void labels_setname(Labels *data)
 		asprintf(&data->tab_graphics[NAME][GPU1CORECLOCK   + i], _("GPU clock"));
 		asprintf(&data->tab_graphics[NAME][GPU1MEMCLOCK    + i], _("Memory clock"));
 		asprintf(&data->tab_graphics[NAME][GPU1MEMUSED     + i], _("Memory Used"));
+		asprintf(&data->tab_graphics[NAME][GPU1REBAR       + i], _("Resizable BAR"));
 	}
 	asprintf(&data->objects[FRAMCARDS], _("Cards")); // Frame label
 
@@ -759,6 +760,7 @@ int main(int argc, char *argv[])
 	{
 		.gpu_driver  = { GPUDRV_UNKNOWN },
 		.device_path = { NULL },
+		.bar_size    = { 0 }
 	};
 	data->b_data = &(BenchData)
 	{
