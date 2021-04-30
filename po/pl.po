@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2021-04-17 21:26+0000\n"
+"PO-Revision-Date: 2021-05-01 18:31+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -154,19 +154,21 @@ msgstr "nie udało się pobrać wersji dla urządzenia %u (%s)"
 #: core.c:902
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "Sterownik OpenCL dla '%s %s'nie obsługuje CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:913
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:925 core.c:935 core.c:960
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:948
 #, c-format
@@ -174,6 +176,8 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) lub CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:968
 #, c-format
