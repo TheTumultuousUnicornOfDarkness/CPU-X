@@ -1,14 +1,14 @@
 # Copyright © 2014-2021 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Rui Mendes <xz9@protonmail.com>, 2019.
-# ssantos <ssantos@web.de>, 2019, 2020.
+# ssantos <ssantos@web.de>, 2019, 2020, 2021.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-04-11 16:40+0000\n"
-"PO-Revision-Date: 2020-10-05 12:12+0000\n"
+"PO-Revision-Date: 2021-05-03 19:54+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
@@ -17,22 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
 msgstr "A encontrar tecnologias da CPU"
 
 #: core.c:243
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"A sua CPU não existe na base de dados ==> %s, modelo: %i, ext. modelo: %i, "
+"A sua CPU não existe no banco de dados ==> %s, modelo: %i, ext. modelo: %i, "
 "ext. família: %i"
 
 #: core.c:255
@@ -97,84 +94,85 @@ msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Nenhum driver do kernel em uso para a placa de vídeo no caminho %s"
 
 #: core.c:723
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "O controlador da sua GPU é desconhecido: %s"
+msgstr "O driver da sua GPU é desconhecido: %s"
 
 #: core.c:796
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "O controlador da sua GPU é desconhecido: %s"
+msgstr "O driver modo de utilizador da sua GPU é desconhecido: %s"
 
 #: core.c:800
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "Houve uma falha ao invocar o GLFW (%i): %s"
 
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Não há plataforma com suporte ao OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "falhou a chamada de dmidecode"
+msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "falhou ao realizar a transferência Curl (%s)"
+msgstr "Houve uma falha ao obter o nome da plataforma %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "falhou ao realizar a transferência Curl (%s)"
+msgstr "houve uma falha ao obter a versão para a plataforma %u (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"houve uma falha ao encontrar a quantidade dos aparelhos OpenCL para a "
+"plataforma '%s %s' (%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"houve uma falha ao obter todos os aparelhos OpenCL para a plataforma '%s %s' "
+"(%s)"
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "houve uma falha ao obter o nome do aparelho %u (%s)"
 
 #: core.c:891
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "não foi possível encontrar o controlador da placa gráfica (%s)"
+msgstr "houve uma falha ao obter a versão para o aparelho %u (%s)"
 
 #: core.c:902
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
+"O driver OpenCL para '%s %s' não é compatível com CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:913
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"O driver OpenCL para '%s %s' não é compatível com CL_DEVICE_GFXIP_MAJOR_AMD "
+"(%s)"
 
 #: core.c:925 core.c:935 core.c:960
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"O driver OpenCL para '%s %s' não é compatível com "
+"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:948
 #, c-format
@@ -182,11 +180,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"O driver OpenCL para '%s %s' não é compatível com CL_DEVICE_PCI_DOMAIN_ID_NV "
+"(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) ou CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "O OpenCL não é compatível com o modelo da sua GPU (0x %X)"
 
 #: core.c:997
 msgid "Finding devices"
@@ -226,7 +226,7 @@ msgstr "O driver para a GPU %u não reporta frequências"
 #: core.c:1349
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "Atual: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1371
 msgid "failed to retrieve GPU clocks"
@@ -317,10 +317,9 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Encontrando o pacote da CPU em modo fallback"
 
 #: core.c:1655
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Seu socket de CPU não existe no banco de dados ==> %s, codinome: %s"
+msgstr "O soquete da sua CPU não consta no banco de dados ==> %s, codinome: %s"
 
 #: core.c:1674
 msgid "Calculating CPU multipliers in fallback mode"
@@ -645,36 +644,32 @@ msgid "Driver"
 msgstr "Driver"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "Versão"
+msgstr "Versão UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Unidade de Cálculo"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr ""
+msgstr "ID do aparelho"
 
 #: main.c:154
 msgid "Interface"
-msgstr ""
+msgstr "Interface"
 
 #: main.c:155
 msgid "Temperature"
 msgstr "Temperatura"
 
 #: main.c:157
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "Voltagem"
+msgstr "Tensão Principal"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr ""
+msgstr "Média da Alimentação"
 
 #: main.c:159
 msgid "GPU clock"
@@ -685,16 +680,12 @@ msgid "Memory clock"
 msgstr "Velocidade da memória"
 
 #: main.c:161
-#, fuzzy
-#| msgid "Memory"
 msgid "Memory Used"
-msgstr "Memória"
+msgstr "Utilização da Memória"
 
 #: main.c:163
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "Placa %i"
+msgstr "Placas"
 
 #: main.c:166
 msgid "Bench"
@@ -817,10 +808,8 @@ msgstr ""
 "CPU (inteiro)"
 
 #: main.c:346
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Define a aba padrão (inteiro)"
+msgstr "Defina a placa gráfica padrão (valor inteiro)"
 
 #: main.c:347
 msgid "Start and connect to daemon"
@@ -840,7 +829,7 @@ msgstr "Imprime a versão e sai"
 
 #: main.c:351
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
+msgstr "Imprima os valores do CPUID em decimal (o padrão é hexadeximal)"
 
 #: main.c:352
 msgid "Disable colored output"
@@ -848,7 +837,7 @@ msgstr "Desativar saída a cores"
 
 #: main.c:353
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Imprima as informações para a depuração"
 
 #: main.c:354
 msgid "Print required information to paste in an issue"
@@ -857,10 +846,12 @@ msgstr "Imprimir informações necessárias para colar em uma questão"
 #: main.c:355
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Definir o mapeamento das chaves para o modo NCurses "
+"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:366
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Adicione as opções padrão na linha de comando"
 
 #: main.c:367
 msgid "Enforce the bus clock"
@@ -868,17 +859,15 @@ msgstr "Forçar o bus clock"
 
 #: main.c:368
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Ignore a frequência da CPU informada pelo libcpuid"
 
 #: main.c:369
 msgid "Read CPUID raw data from a given file"
 msgstr "Ler dados crus do CPUID de um determinado ficheiro"
 
 #: main.c:370
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Somente mostrar uma mensagem se a CPU não estiver no banco de dados"
+msgstr "Exiba somente uma mensagem caso a CPU não exista no banco de dados"
 
 #: main.c:394
 #, c-format
@@ -913,10 +902,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- %-9s versão: %s"
 
 #: main.c:468
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "Houve uma falha ao invocar o wordexp (%i)"
 
 #: main.c:663
 #, c-format
@@ -954,16 +942,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Falha ao configurar o terminal %s (err=%i); voltando para %s"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "A janela é pequena demais!\n"
+msgstr "A janela é muito pequena!"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Pressione 'h' para ver a ajuda.\n"
+msgstr "Pressione 'h' para ver a ajuda."
 
 #: tui_ncurses.c:474
 #, c-format
@@ -971,173 +955,107 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Bem vindo a ajuda do %s Ncurses!\n"
 
 #: tui_ncurses.c:475
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
-"Essa ajuda descreve como usar a interface de utilizador baseada em texto.\n"
+"Essa ajuda descreve como usar a interface do utilizador com base em texto."
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Chaves globais:\n"
+msgstr "Chaves globais:"
 
 #: tui_ncurses.c:478
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "\tPressione a tecla 'esquerda' para alternar a aba esquerda.\n"
+msgstr "Pressione a tecla 'esquerda' para alternar para a guia esquerda."
 
 #: tui_ncurses.c:479
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
-msgstr "\tPressione a tecla 'direita' para alternar a aba direita.\n"
+msgstr "Pressione a tecla 'direita' para alternar para a guia direita."
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "\tPressione 'h' para ver essa ajuda.\n"
+msgstr "Pressione 'h' para ver esta ajuda."
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\tPressione a tecla 'q' para sair.\n"
+msgstr "Pressione a tecla 'q' para encerrar."
 
 #: tui_ncurses.c:483
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"Separador da CPU:\n"
+msgstr "Aba da CPU:"
 
 #: tui_ncurses.c:484
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr ""
-"\tPressione a tecla 'abaixo' para diminutir o número de núcleos à "
-"monitorar.\n"
+"Pressione a tecla 'abaixo' para reduzir a quantidade dos núcleos que serão "
+"monitorados."
 
 #: tui_ncurses.c:485
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
 msgstr ""
-"\tPressione a tecla 'acima' para aumentar o número de núcleos à monitorar.\n"
+"Pressione a tecla 'acima' para aumentar a quantidade dos núcleos que serão "
+"monitorados."
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Separador das Caches:\n"
+msgstr "Aba Caches:"
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "\tPressione a tecla 'abaixo' para alternar para o teste anterior.\n"
+msgstr "Pressione a tecla 'abaixo' para alternar para o teste anterior."
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "\tPressione a tecla 'acima' para alternar para o próximo teste.\n"
+msgstr "Pressione a tecla 'acima' para alternar para o próximo teste."
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"Aba Bench:\n"
+msgstr "Aba Bench:"
 
 #: tui_ncurses.c:492
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
-"\tPressione a tecla 'abaixo' para decrementar a duração do benchmark.\n"
+msgstr "Pressione a tecla 'abaixo' para reduzir a duração do benchmark."
 
 #: tui_ncurses.c:493
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\tPressione a tecla 'acima' para incrementar a duração do benchmark.\n"
+msgstr "Pressione a tecla 'acima' para aumentar a duração do benchmark."
 
 #: tui_ncurses.c:494
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
-"\tPressione a tecla 'próxima página' para decrementar o número de threads\n"
+"Pressione a tecla 'próxima página' para reduzir a quantidade de threads."
 
 #: tui_ncurses.c:495
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
-"\tPressione a tecla 'página anterior' para incrementar o número de threads\n"
+"Pressione a tecla 'página anterior' para aumentar a quantidade das threads."
 
 #: tui_ncurses.c:496
-#, fuzzy
-#| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
-"\tPressione a tecla 's' para iniciar/parar o benchmark de números primos "
-"(lento).\n"
+"Pressione a tecla 's' para iniciar/parar o benchmark dos números primos "
+"(lento)."
 
 #: tui_ncurses.c:497
-#, fuzzy
-#| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"\tPressione a tecla 'f' para iniciar/parar o benchmark de números primos "
-"(rápido).\n"
+"Pressione a tecla 'f' para iniciar/parar o benchmark dos números primos "
+"(rápido)."
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Gráficos"
+msgstr "Aba gráficos:"
 
 #: tui_ncurses.c:500
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\tPressione a tecla 'abaixo' para alternar para o teste anterior.\n"
+msgstr "Pressione a tecla 'abaixo' para alternar para a placa gráfica anterior."
 
 #: tui_ncurses.c:501
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\tPressione a tecla 'acima' para alternar para o próximo teste.\n"
+msgstr "Pressione a tecla 'acima' para alternar para a próxima placa gráfica."
 
 #: tui_ncurses.c:503
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"Pressione qualquer tecla para sair desta ajuda.\n"
+msgstr "Pressione qualquer tecla para encerrar esta ajuda."
 
 #: util.c:198
 #, c-format
@@ -1147,7 +1065,7 @@ msgstr "não é possível encontrar a unidade na cadeia '%s' na posição %i"
 #: util.c:210
 #, c-format
 msgid "String '%s' is too long, truncating…"
-msgstr ""
+msgstr "A string '%s' é muito grande, a cortar…"
 
 #: util.c:287
 #, c-format
@@ -1216,28 +1134,22 @@ msgstr "TB"
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
