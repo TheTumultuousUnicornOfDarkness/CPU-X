@@ -1357,7 +1357,7 @@ skip_clocks:
 			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false,
 				_("Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"),
 				pcie_sta_gen, atoi(pcie_sta_width), pcie_max_gen, atoi(pcie_max_width));
-		if(!ret_vram_total)
+		if(strlen(data->tab_graphics[VALUE][GPU1REBAR + i * GPUFIELDS]) == 0 && !ret_vram_total)
 			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false,
 				"%s", (atol(vram_total) / divisor_vram * 0.9 < data->g_data->bar_size[i] / (1 << 20)) ? _("Enabled") : _("Disabled"));
 
