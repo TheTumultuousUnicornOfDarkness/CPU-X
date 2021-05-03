@@ -1031,9 +1031,18 @@ static int find_devices(Labels *data)
 		{
 			switch(dev->vendor_id)
 			{
-				case DEV_VENDOR_ID_AMD:    gpu_vendor = "AMD";    break;
-				case DEV_VENDOR_ID_INTEL:  gpu_vendor = "Intel";  break;
-				case DEV_VENDOR_ID_NVIDIA: gpu_vendor = "NVIDIA"; break;
+				case DEV_VENDOR_ID_AMD:
+					gpu_vendor = "AMD";
+					data->g_data->bar_size[data->gpu_count] = dev->size[0];
+					break;
+				case DEV_VENDOR_ID_INTEL:
+					gpu_vendor = "Intel";
+					data->g_data->bar_size[data->gpu_count] = 0;
+					break;
+				case DEV_VENDOR_ID_NVIDIA:
+					gpu_vendor = "NVIDIA";
+					data->g_data->bar_size[data->gpu_count] = dev->size[1];
+					break;
 				default:     gpu_vendor = DEVICE_VENDOR_STR(dev);
 				             MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor, dev->vendor_id);
 			}
@@ -1348,6 +1357,9 @@ skip_clocks:
 			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false,
 				_("Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"),
 				pcie_sta_gen, atoi(pcie_sta_width), pcie_max_gen, atoi(pcie_max_width));
+		if(strlen(data->tab_graphics[VALUE][GPU1REBAR + i * GPUFIELDS]) == 0 && !ret_vram_total)
+			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false,
+				"%s", (atol(vram_total) / divisor_vram * 0.9 < data->g_data->bar_size[i] / (1 << 20)) ? _("Enabled") : _("Disabled"));
 
 		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
 		&& ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width)
