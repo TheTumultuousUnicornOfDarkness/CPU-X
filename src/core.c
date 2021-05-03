@@ -1359,7 +1359,7 @@ skip_clocks:
 				pcie_sta_gen, atoi(pcie_sta_width), pcie_max_gen, atoi(pcie_max_width));
 		if(!ret_vram_total)
 			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false,
-				_("%s"), (atol(vram_total) / divisor_vram * 0.9 < data->g_data->bar_size[i] / (1 << 20)) ? "Enabled" : "Disabled");
+				"%s", (atol(vram_total) / divisor_vram * 0.9 < data->g_data->bar_size[i] / (1 << 20)) ? _("Enabled") : _("Disabled"));
 
 		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
 		&& ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width)
