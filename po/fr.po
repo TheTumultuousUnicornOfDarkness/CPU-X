@@ -6,13 +6,14 @@
 # Xorg <xorgbreaker@gmail.com>, 2019, 2020, 2021.
 # Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>, 2020.
 # Julien Humbert <julroy67@gmail.com>, 2020.
+# J. Lavoie <j.lavoie@net-c.ca>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-03-28 13:27+0000\n"
-"Last-Translator: Xorg <xorgbreaker@gmail.com>\n"
+"PO-Revision-Date: 2021-05-11 03:31+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -112,25 +113,22 @@ msgstr "échec lors de l'appel de GLFW (%i) : %s"
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Il n'y a pas de plateforme prenant en charge OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "échec lors de l'appel de dmidecode"
+msgstr "impossible d'obtenir toutes les plateformes OpenCL (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "échec lors de l'exécution du transfert pour Curl (%s)"
+msgstr "impossible d'obtenir le nom de la plateforme %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "échec lors de l'exécution du transfert pour Curl (%s)"
+msgstr "impossible d'obtenir la version pour la plate-forme %u (%s)"
 
 #: core.c:862
 #, c-format
@@ -228,15 +226,15 @@ msgstr "Actuel : PCIe Gen%1dx%d / Max : Gen%1dx%d"
 
 #: core.c:1362
 msgid "Enabled"
-msgstr ""
+msgstr "Activé"
 
 #: core.c:1362
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 #: core.c:1383
 msgid "failed to retrieve GPU clocks"
-msgstr "échec lors de la récupération des fréquences de la carte-graphique"
+msgstr "échec lors de la récupération des fréquences de la carte graphique"
 
 #: core.c:1400
 msgid "Identifying running system"
