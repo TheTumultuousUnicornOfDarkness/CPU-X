@@ -9,13 +9,14 @@
 # Martin Beer <der_baer@yadim.dismail.de>, 2020.
 # nautilusx <mail.ka@mailbox.org>, 2020.
 # nautilusx <translate@disroot.org>, 2021.
+# sm_moshi <meya@posteo.se>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-04-17 21:26+0000\n"
-"Last-Translator: nautilusx <translate@disroot.org>\n"
+"PO-Revision-Date: 2021-05-11 03:31+0000\n"
+"Last-Translator: sm_moshi <meya@posteo.se>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -94,6 +95,7 @@ msgstr "Rufe bandwidth auf"
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
+"Im folgenden Pfad wurde kein Kernel Treiber für Grafikkarten gefunden %s"
 
 #: core.c:723
 #, c-format
@@ -113,41 +115,40 @@ msgstr "GLFW konnte nicht aufgerufen werden (%i): %s"
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Es gibt keine Plattform mit OpenCL Unterstützung (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "Fehler beim Aufruf von dmidecode"
+msgstr "Fehler beim Aufrufen aller OpenCL Plattformen (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "Ausführung der Curl-Übertragung fehlgeschlagen (%s)"
+msgstr "Anfordern des Namens der Plattform %u fehlgeschlagen (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "Ausführung der Curl-Übertragung fehlgeschlagen (%s)"
+msgstr "Anfordern der Version der Plattform %u fehlgeschlagen (%s)"
 
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"Finden der Menge an OpenCL Geräten für die Plattform '%s %s' fehlgeschlagen "
+"(%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"Aufruf aller OpenCL Geräte für die Plattform '%s %s' fehlgeschlagen (%s)"
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "Fehler beim Aufruf von libcpuid (%s)"
+msgstr "Aufruf des Namens des Gerätes %u fehlgeschlagen (%s)"
 
 #: core.c:891
 #, fuzzy, c-format
@@ -159,18 +160,23 @@ msgstr "Grafikkartentreiber konnte nicht ermittelt werden (%s)"
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
+"Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_TOPOLOGY_AMD (%s) nicht"
 
 #: core.c:913
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_GFXIP_MAJOR_AMD (%s) "
+"nicht"
 
 #: core.c:925 core.c:935 core.c:960
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_MAX_COMPUTE_UNITS (%s) "
+"nicht"
 
 #: core.c:948
 #, c-format
@@ -178,11 +184,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) oder CL_DEVICE_PCI_SLOT_ID_NV (%s) nicht"
 
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL wird von deinem GPU Hersteller nicht unterstützt (0x%X)"
 
 #: core.c:997
 msgid "Finding devices"
