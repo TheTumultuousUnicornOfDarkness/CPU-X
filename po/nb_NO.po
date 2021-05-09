@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-03-31 19:26+0000\n"
+"PO-Revision-Date: 2021-05-11 03:31+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -110,7 +110,7 @@ msgstr "Ukjent sjermkortdriver: %s"
 #, fuzzy, c-format
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to call GLFW (%i): %s"
-msgstr "Klarte ikke å kalle wordexp (%i)"
+msgstr "Klarte ikke å kalle GLFW (%i): %s"
 
 #: core.c:829
 #, c-format
@@ -118,20 +118,19 @@ msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "kall til dmidecode mislyktes"
+msgstr "klarte ikke å hente alle OpenCL-plattformer (%s)"
 
 #: core.c:848
-#, fuzzy, c-format
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "Klarte ikke å utføre Curl-overføring (%s)"
+msgstr "klarte ikke å hente plattformsnavn %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "Klarte ikke å utføre Curl-overføring (%s)"
+msgstr "klarte ikke å hente plattformsversjon %u (%s)"
 
 #: core.c:862
 #, c-format
@@ -144,16 +143,14 @@ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "Klarte ikke å kalle wordexp (%i)"
+msgstr "klarte ikke å hente navn på enhet %u (%s)"
 
 #: core.c:891
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "klarte ikke å finne grafikkortdriver (%s)"
+msgstr "klarte ikke å hente enhetsversjon %u (%s)"
 
 #: core.c:902
 #, c-format
