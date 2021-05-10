@@ -9,13 +9,14 @@
 # Виктор Ерухин <official159ru@mail.ru>, 2021.
 # Andrey F. <firsan777@mail.ru>, 2021.
 # vadimkozhin <vadim.kozhin@gmail.com>, 2021.
+# Axus Wizix <axus.wizix@mail.ru>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-03-05 22:50+0000\n"
-"Last-Translator: vadimkozhin <vadim.kozhin@gmail.com>\n"
+"PO-Revision-Date: 2021-05-11 03:31+0000\n"
+"Last-Translator: Axus Wizix <axus.wizix@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -107,21 +108,19 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Неизвестный драйвер ядра ГП: %s"
 
 #: core.c:796
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "Неизвестный драйвер ГП: %s"
+msgstr "Пользовательский режим вашего драйвера ГП неизвестен: %s"
 
 #: core.c:800
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "не удалось вызвать wordexp (%i)"
+msgstr "не удалось вызвать GLFW (%i): %s"
 
 #: core.c:829
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Нет платформы с поддержкой OpenCL (%s)"
 
 #: core.c:838
 #, fuzzy, c-format
@@ -130,16 +129,14 @@ msgid "failed to get all OpenCL platforms (%s)"
 msgstr "не удалось вызвать dmidecode"
 
 #: core.c:848
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "не удалось выполнить перенос Curl (%s)"
+msgstr "не удалось получить название для платформы %u (%s)"
 
 #: core.c:855
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "не удалось выполнить перенос Curl (%s)"
+msgstr "не удалось получить версию для платформы %u (%s)"
 
 #: core.c:862
 #, c-format
