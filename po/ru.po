@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-05-11 03:31+0000\n"
+"PO-Revision-Date: 2021-05-12 05:32+0000\n"
 "Last-Translator: Axus Wizix <axus.wizix@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -163,19 +163,21 @@ msgstr "не удалось найти драйвер видеокарты (%s)"
 #: core.c:902
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "Драйвер OpenCL для '%s %s' не поддерживает CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:913
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"Драйвер OpenCL для '%s %s' не поддерживает CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:925 core.c:935 core.c:960
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Дрйвер OpenCL для '%s %s' не поддерживает CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:948
 #, c-format
@@ -231,11 +233,11 @@ msgstr ""
 
 #: core.c:1362
 msgid "Enabled"
-msgstr ""
+msgstr "Включено"
 
 #: core.c:1362
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 #: core.c:1383
 msgid "failed to retrieve GPU clocks"
@@ -656,7 +658,7 @@ msgstr "Драйвер"
 #, fuzzy
 #| msgid "Version"
 msgid "UMD Version"
-msgstr "Версия"
+msgstr "Версия UMD"
 
 #: main.c:152
 msgid "Compute Unit"
@@ -702,7 +704,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
-msgstr "Карта %i"
+msgstr "Карты"
 
 #: main.c:167
 msgid "Bench"
@@ -826,7 +828,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Установить вкладку по умолчанию (целое число)"
+msgstr "Выбрать графическую карту по умолчанию (целое число)"
 
 #: main.c:348
 msgid "Start and connect to daemon"
@@ -845,8 +847,11 @@ msgid "Print version and exit"
 msgstr "Показать версию и выйти"
 
 #: main.c:352
+#, fuzzy
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
+"Выводить значения CPUID в десятичном формате (по умолчанию - "
+"шестнадцатеричный)"
 
 #: main.c:353
 msgid "Disable colored output"
@@ -1084,20 +1089,16 @@ msgid "Press 'up' key to increment benchmark duration."
 msgstr "Нажмите клавишу \"вверх\" для увеличения длительности бенчмарка.\n"
 
 #: tui_ncurses.c:494
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
-"Нажмите клавишу \"предыдущая страница\" для уменьшения числа используемых "
-"потоков.\n"
+"Нажмите клавишу 'следующая страница' для уменьшения числа используемых "
+"потоков."
 
 #: tui_ncurses.c:495
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
-"Нажмите клавишу \"следующая страница\" для увеличения числа используемых "
-"потоков.\n"
+"Нажмите клавишу 'предыдущая страница' для увеличения числа используемых "
+"потоков."
 
 #: tui_ncurses.c:496
 #, fuzzy
