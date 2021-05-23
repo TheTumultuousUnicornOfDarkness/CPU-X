@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-05-11 03:31+0000\n"
-"Last-Translator: sm_moshi <meya@posteo.se>\n"
+"PO-Revision-Date: 2021-05-25 05:32+0000\n"
+"Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -89,7 +89,7 @@ msgstr "CPU-Auslastung wird berechnet"
 
 #: core.c:611
 msgid "Calling bandwidth"
-msgstr "Rufe bandwidth auf"
+msgstr "Bandbreite aufrufen"
 
 #: core.c:692
 #, c-format
@@ -151,10 +151,9 @@ msgid "failed to get name for device %u (%s)"
 msgstr "Aufruf des Namens des Gerätes %u fehlgeschlagen (%s)"
 
 #: core.c:891
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "Grafikkartentreiber konnte nicht ermittelt werden (%s)"
+msgstr "Version für Gerät %u konnte nicht ermittelt werden (%s)"
 
 #: core.c:902
 #, c-format
@@ -230,15 +229,15 @@ msgstr "Treiber von GPU %u meldet keine Taktfrequenzen"
 #: core.c:1358
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "Aktuell: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1362
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiviert"
 
 #: core.c:1362
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiviert"
 
 #: core.c:1383
 msgid "failed to retrieve GPU clocks"
@@ -822,10 +821,8 @@ msgstr ""
 "Bandbreiten-Test für die CPU-Cache-Geschwindigkeit auswählen (Ganzzahl)"
 
 #: main.c:347
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Standard-Tab festlegen (Ganzzahl)"
+msgstr "Standardgrafikkarte auswählen (Ganzzahl)"
 
 #: main.c:348
 msgid "Start and connect to daemon"
@@ -853,7 +850,7 @@ msgstr "Farbige Ausgabe deaktivieren"
 
 #: main.c:354
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Informationen zur Fehlersuche drucken"
 
 #: main.c:355
 msgid "Print required information to paste in an issue"
@@ -917,10 +914,9 @@ msgid "-- %-9s version: %s"
 msgstr "-- %-9s Version: %s"
 
 #: main.c:469
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "Fehler beim Aufruf von libcpuid (%s)"
+msgstr "Aufruf von wordexp fehlgeschlagen (%i)"
 
 #: main.c:664
 #, c-format
@@ -1126,10 +1122,8 @@ msgid "pkexec: unexpected error code"
 msgstr ""
 
 #: cpu-x.h:53
-#, fuzzy
-#| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "konnte Speicher nicht neu zuweisen"
+msgstr "SCHWERER FEHLER: konnte keinen Speicher zuweisen"
 
 #: cpu-x.h:92
 msgid "bytes"
