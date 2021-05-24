@@ -3,13 +3,14 @@
 # abuyop <abuyop@gmail.com>, 2020.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # Kazuki278 <muadz.hakim.7@gmail.com>, 2021.
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-04-04 16:26+0000\n"
-"Last-Translator: Kazuki278 <muadz.hakim.7@gmail.com>\n"
+"PO-Revision-Date: 2021-05-25 05:32+0000\n"
+"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ms/>\n"
 "Language: ms\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -123,7 +124,7 @@ msgstr "gagal memanggil dmidecode"
 #: core.c:848
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "gagal mendapatkan nama untuk platform %u (%s)"
 
 #: core.c:855
 #, c-format
@@ -515,12 +516,12 @@ msgstr "Bebenang"
 
 #: main.c:91
 msgid "Caches"
-msgstr ""
+msgstr "Cache"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "L%i Cache"
 
 #: main.c:96
 msgid "Size"
@@ -593,7 +594,7 @@ msgstr "Sistem Operasi"
 
 #: main.c:129
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 #: main.c:130
 msgid "Distribution"
@@ -613,11 +614,11 @@ msgstr ""
 
 #: main.c:136
 msgid "Used"
-msgstr ""
+msgstr "Digunakan"
 
 #: main.c:137
 msgid "Buffers"
-msgstr ""
+msgstr "Buffer"
 
 #: main.c:138
 msgid "Cached"
@@ -646,7 +647,7 @@ msgstr ""
 
 #: main.c:150
 msgid "UMD Version"
-msgstr ""
+msgstr "Versi UMD"
 
 #: main.c:152
 msgid "Compute Unit"
@@ -740,7 +741,7 @@ msgstr ""
 #: main.c:187
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Versi %s"
 
 #: main.c:188
 #, c-format
@@ -750,7 +751,7 @@ msgstr ""
 #: main.c:189
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Laman Web: %s"
 
 #: main.c:191
 msgid "License"
@@ -900,7 +901,7 @@ msgstr ""
 #: main.c:453
 #, c-format
 msgid "-- %-9s version: %s"
-msgstr ""
+msgstr "-- %-9s versi: %s"
 
 #: main.c:469
 #, fuzzy, c-format
@@ -978,7 +979,7 @@ msgstr ""
 
 #: tui_ncurses.c:483
 msgid "CPU tab:"
-msgstr ""
+msgstr "Tab CPU:"
 
 #: tui_ncurses.c:484
 msgid "Press 'down' key to decrease core number to monitor."
@@ -1104,42 +1105,42 @@ msgstr ""
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:95
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: cpu-x.h:97
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: cpu-x.h:99
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: cpu-x.h:101
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
