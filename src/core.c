@@ -238,6 +238,9 @@ static int cpu_technology(Labels *data)
 			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", db[i].process);
 			RETURN_OR_EXIT(0);
 		}
+		else
+			MSG_DEBUG("cpu_technology: model: %i/%i, ext. model: %i/%i, ext. family: %i/%i",
+			          db[i].cpu_model, l_data->cpu_model, db[i].cpu_ext_model, l_data->cpu_ext_model, db[i].cpu_ext_family, l_data->cpu_ext_family);
 	}
 
 	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),

@@ -78,6 +78,7 @@ const Technology_DB technology_intel[] =
 	{ 12,          44,          -1,          32 }, // Westmere
 	{ 12,          60,          -1,          22 }, // Haswell
 	{ 12,          76,          -1,          14 }, // Atom Cherry Trail
+	{ 12,         140,          -1,          10 }, // Tiger Lake
 	{ 13,          13,          -1,          90 }, // Pentium M Dothan
 	{ 13,          45,          -1,          32 }, // Sandy Bridge-E
 	{ 13,          61,          -1,          14 }, // Broadwell-U
@@ -174,6 +175,7 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i7-8550U CPU",   "FCBGA 1356"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-8650U CPU",   "FCBGA 1356"     },
 	{ NULL,                             "Intel(R) Core(TM) i9-9900K CPU",   "LGA 1151"       },
+	{ NULL,                             "Intel(R) Core(TM) i5-1135G7",      "FCBGA 1449"     },
 	{ NULL,                             NULL,                               NULL             }
 	//Codename                          Model                               Socket
 };
