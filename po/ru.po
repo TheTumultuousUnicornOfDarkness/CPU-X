@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-05-12 05:32+0000\n"
+"PO-Revision-Date: 2021-05-27 10:35+0000\n"
 "Last-Translator: Axus Wizix <axus.wizix@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -149,16 +149,14 @@ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
 #: core.c:884
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "не удалось вызвать wordexp (%i)"
+msgstr "не удалось получить имя для устройства %u (%s)"
 
 #: core.c:891
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "не удалось найти драйвер видеокарты (%s)"
+msgstr "не удалось получить версию для устройства %u (%s)"
 
 #: core.c:902
 #, c-format
@@ -185,11 +183,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Драйвер OpenCL для '%s %s' не поддерживает CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) или CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:968
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL не поддерживается вашим производителем ГП (0x%X)"
 
 #: core.c:997
 msgid "Finding devices"
@@ -655,8 +655,6 @@ msgid "Driver"
 msgstr "Драйвер"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
 msgstr "Версия UMD"
 
@@ -670,7 +668,7 @@ msgstr ""
 
 #: main.c:154
 msgid "Interface"
-msgstr ""
+msgstr "Интерфейс"
 
 #: main.c:155
 msgid "Temperature"
@@ -701,8 +699,6 @@ msgid "Resizable BAR"
 msgstr ""
 
 #: main.c:164
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
 msgstr "Карты"
 
@@ -825,8 +821,6 @@ msgstr ""
 "Установить тест пропускной способности для скорости кэша ЦП (целое число)"
 
 #: main.c:347
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
 msgstr "Выбрать графическую карту по умолчанию (целое число)"
 
@@ -847,7 +841,6 @@ msgid "Print version and exit"
 msgstr "Показать версию и выйти"
 
 #: main.c:352
-#, fuzzy
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "Выводить значения CPUID в десятичном формате (по умолчанию - "
@@ -965,16 +958,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Ошибка установки %s (err=%i); откат к %s"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "Окно слишком маленькое.\n"
+msgstr "Окно слишком маленькое!"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Нажмите \"H\" для получения помощи.\n"
+msgstr "Нажмите 'h' для получения помощи."
 
 #: tui_ncurses.c:474
 #, c-format
@@ -998,28 +987,20 @@ msgstr ""
 "Глобальные клавиши:\n"
 
 #: tui_ncurses.c:478
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "Нажмите клавишу \"влево\", чтобы перейти на вкладку слева.\n"
+msgstr "Нажмите клавишу 'влево', чтобы перейти на вкладку слева."
 
 #: tui_ncurses.c:479
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key to switch in right tab."
-msgstr "Нажмите клавишу \"вправо\", чтобы перейти на вкладку справа.\n"
+msgstr "Нажмите клавишу 'вправо', чтобы перейти на вкладку справа."
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "Нажмите клавишу \"H\" для вызова помощи.\n"
+msgstr "Нажмите клавишу 'h' для вызова помощи."
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "Нажмите \"Q\" для выхода.\n"
+msgstr "Нажмите 'q' для выхода."
 
 #: tui_ncurses.c:483
 #, fuzzy
