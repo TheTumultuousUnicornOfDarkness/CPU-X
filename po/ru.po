@@ -10,13 +10,14 @@
 # Andrey F. <firsan777@mail.ru>, 2021.
 # vadimkozhin <vadim.kozhin@gmail.com>, 2021.
 # Axus Wizix <axus.wizix@mail.ru>, 2021.
+# S3aBreeze <paperwork@evilcorp.ltd>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-05-27 10:35+0000\n"
-"Last-Translator: Axus Wizix <axus.wizix@mail.ru>\n"
+"PO-Revision-Date: 2021-06-14 18:32+0000\n"
+"Last-Translator: S3aBreeze <paperwork@evilcorp.ltd>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -123,10 +124,9 @@ msgid "There is no platform with OpenCL support (%s)"
 msgstr "Нет платформы с поддержкой OpenCL (%s)"
 
 #: core.c:838
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "не удалось вызвать dmidecode"
+msgstr "не удалось получить все OpenCL платформы (%s)"
 
 #: core.c:848
 #, c-format
@@ -141,12 +141,12 @@ msgstr "не удалось получить версию для платфор�
 #: core.c:862
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "не удалось обнаружить число OpenCL устройств для платформы '%s %s' (%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "не удалось получить все устройства OpenCL для платформы '%s %s' (%s)"
 
 #: core.c:884
 #, c-format
@@ -229,7 +229,7 @@ msgstr "Драйвер ГП %u не отдает значения частоты
 #: core.c:1358
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "Текущий: PCIe Gen%1dx%d / Максимальный: Gen%1dx%d"
 
 #: core.c:1362
 msgid "Enabled"
@@ -660,11 +660,11 @@ msgstr "Версия UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Вычислительная Единица"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr ""
+msgstr "Идентификатор устройства"
 
 #: main.c:154
 msgid "Interface"
@@ -696,7 +696,7 @@ msgstr "Используемая память"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr ""
+msgstr "Изменяемый размер BAR"
 
 #: main.c:164
 msgid "Cards"
@@ -971,20 +971,12 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Добро пожаловать в %s помощь NCurses!\n"
 
 #: tui_ncurses.c:475
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
-msgstr "Здесь описано, как использовать текстовый интерфейс.\n"
+msgstr "В этой справке описано, как использовать текстовый интерфейс."
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Глобальные клавиши:\n"
+msgstr "Глобальные клавиши:"
 
 #: tui_ncurses.c:478
 msgid "Press 'left' key to switch in left tab."
@@ -1003,71 +995,40 @@ msgid "Press 'q' key to exit."
 msgstr "Нажмите 'q' для выхода."
 
 #: tui_ncurses.c:483
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"Вкладка \"ЦП\":\n"
+msgstr "Вкладка \"ЦП\":"
 
 #: tui_ncurses.c:484
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease core number to monitor."
-msgstr "Нажмите клавишу \"вниз\" для уменьшения номера ядра для мониторинга.\n"
+msgstr "Нажмите клавишу \"вниз\" для уменьшения числа ядер для мониторинга."
 
 #: tui_ncurses.c:485
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase core number to monitor."
-msgstr ""
-"Нажмите клавишу \"вверх\" для увеличения номера ядра для мониторинга.\n"
+msgstr "Нажмите клавишу \"вверх\" для увеличения числа ядер для мониторинга."
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Вкладка \"Кэши\":\n"
+msgstr "Вкладка \"Кэши\":"
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "Нажмите клавишу \"вниз\" для перехода к предыдущему тесту.\n"
+msgstr "Нажмите клавишу \"вниз\" для перехода к предыдущему тесту."
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "Нажмите клавишу \"вверх\" для перехода к следующему тесту.\n"
+msgstr "Нажмите клавишу \"вверх\" для перехода к следующему тесту."
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"Вкладка \"Бенчмарк\":\n"
+msgstr "Вкладка \"Бенчмарк\":"
 
 #: tui_ncurses.c:492
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Нажмите клавишу \"вниз\" для уменьшения длительности бенчмарка.\n"
+msgstr "Нажмите клавишу \"вниз\" для уменьшения длительности бенчмарка."
 
 #: tui_ncurses.c:493
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "Нажмите клавишу \"вверх\" для увеличения длительности бенчмарка.\n"
+msgstr "Нажмите клавишу \"вверх\" для увеличения длительности бенчмарка."
 
 #: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -1082,48 +1043,32 @@ msgstr ""
 "потоков."
 
 #: tui_ncurses.c:496
-#, fuzzy
-#| msgid "\tPress 's' key to start/stop prime numbers (slow) benchmark.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
 "Нажмите клавишу \"S\" для запуска/остановки бенчмарка \"простые числа "
-"(медленно)\".\n"
+"(медленно)\"."
 
 #: tui_ncurses.c:497
-#, fuzzy
-#| msgid "\tPress 'f' key to start/stop prime numbers (fast) benchmark.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
 "Нажмите клавишу \"F\" для запуска/остановки бенчмарка \"простые числа "
-"(быстро)\".\n"
+"(быстро)\"."
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Графическая подсистема"
+msgstr "Вкладка \"Графика\":"
 
 #: tui_ncurses.c:500
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Нажмите клавишу \"вниз\" для перехода к предыдущему тесту.\n"
+msgstr "Нажмите клавишу \"вниз\" для перехода к предыдущей видеокарте."
 
 #: tui_ncurses.c:501
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "Нажмите клавишу \"вверх\" для перехода к следующему тесту.\n"
+msgstr "Нажмите клавишу \"вверх\" для перехода к следующей видеокарте."
 
 #: tui_ncurses.c:503
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"Нажмите любую клавишу для выхода из помощи.\n"
+msgstr "Нажмите любую клавишу для выхода из справки."
 
 #: util.c:198
 #, c-format
