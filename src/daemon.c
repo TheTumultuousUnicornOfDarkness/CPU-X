@@ -86,11 +86,11 @@ static void libcpuid_msr_serialize(void)
 }
 
 /* Try to open a CPU MSR */
-static int libcpuid_init_msr(int fd, struct msr_driver_t **msr)
+static int libcpuid_init_msr(int *fd, struct msr_driver_t **msr)
 {
 	unsigned selected_core = 0;
 
-	read(fd, &selected_core, sizeof(uint8_t)); // Core 0 on failure
+	read(*fd, &selected_core, sizeof(uint8_t)); // Core 0 on failure
 	if((*msr = cpu_msr_driver_open_core(selected_core)) == NULL)
 	{
 		MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", selected_core, cpuid_error());
@@ -105,7 +105,7 @@ static int __call_libcpuid_msr_static(int *fd)
 	struct msr_driver_t *msr = NULL;
 	MsrStaticData msg = { CPU_INVALID_VALUE, CPU_INVALID_VALUE, CPU_INVALID_VALUE };
 
-	if(!libcpuid_init_msr(*fd, &msr))
+	if(!libcpuid_init_msr(fd, &msr))
 	{
 		msg.min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
 		msg.max_mult = cpu_msrinfo(msr, INFO_MAX_MULTIPLIER);
@@ -123,7 +123,7 @@ static int __call_libcpuid_msr_dynamic(int *fd)
 	struct msr_driver_t *msr = NULL;
 	MsrDynamicData msg = { CPU_INVALID_VALUE, CPU_INVALID_VALUE };
 
-	if(!libcpuid_init_msr(*fd, &msr))
+	if(!libcpuid_init_msr(fd, &msr))
 	{
 		msg.voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
 		msg.temp    = cpu_msrinfo(msr, INFO_TEMPERATURE);
@@ -239,8 +239,7 @@ static void *request_handler(void *p_data)
 		switch(cmd)
 		{
 #if HAS_LIBCPUID
-			case LIBCPUID_MSR_STATIC:
-			__call_libcpuid_msr_static(&td->fd);  break;
+			case LIBCPUID_MSR_STATIC:  __call_libcpuid_msr_static(&td->fd);  break;
 			case LIBCPUID_MSR_DYNAMIC: __call_libcpuid_msr_dynamic(&td->fd); break;
 #endif /* HAS_LIBCPUID */
 #if HAS_DMIDECODE
