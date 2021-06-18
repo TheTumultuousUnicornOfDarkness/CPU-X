@@ -473,7 +473,7 @@ static int call_libcpuid_msr_dynamic(Labels *data)
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR dynamic values"));
 	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
-	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(unsigned));
+	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(uint8_t));
 	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrDynamicData));
 
 	/* CPU Voltage */
