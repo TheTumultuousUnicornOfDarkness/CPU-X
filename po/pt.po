@@ -3,13 +3,14 @@
 # Rui Mendes <xz9@protonmail.com>, 2019.
 # ssantos <ssantos@web.de>, 2019, 2020, 2021.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
+# Sérgio Morais <lalocas@protonmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-05-03 19:54+0000\n"
-"PO-Revision-Date: 2021-05-11 03:31+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2021-06-27 16:33+0000\n"
+"Last-Translator: Sérgio Morais <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
 "Language: pt\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -29,7 +30,7 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"A sua CPU não existe no banco de dados ==> %s, modelo: %i, ext. modelo: %i, "
+"A sua CPU não existe na base de dados ==> %s, modelo: %i, ext. modelo: %i, "
 "ext. família: %i"
 
 #: core.c:255
@@ -86,12 +87,13 @@ msgstr "A calcular a utilização da CPU"
 
 #: core.c:611
 msgid "Calling bandwidth"
-msgstr "A chamar bandwidth (largura de banda)"
+msgstr "A chamar a largura de banda"
 
 #: core.c:692
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Nenhum driver do kernel em uso para a placa de vídeo no caminho %s"
+msgstr ""
+"Nenhum driver do kernel em utilização para a placa de vídeo no caminho %s"
 
 #: core.c:723
 #, c-format
@@ -121,7 +123,7 @@ msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
 #: core.c:848
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "Houve uma falha ao obter o nome da plataforma %u (%s)"
+msgstr "houve uma falha ao obter o nome da plataforma %u (%s)"
 
 #: core.c:855
 #, c-format
@@ -132,25 +134,25 @@ msgstr "houve uma falha ao obter a versão para a plataforma %u (%s)"
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
-"houve uma falha ao encontrar a quantidade dos aparelhos OpenCL para a "
+"houve uma falha ao encontrar a quantidade dos dispositivos OpenCL para a "
 "plataforma '%s %s' (%s)"
 
 #: core.c:870
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
-"houve uma falha ao obter todos os aparelhos OpenCL para a plataforma '%s "
+"houve uma falha ao obter todos os dispositivos OpenCL para a plataforma '%s "
 "%s' (%s)"
 
 #: core.c:884
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "houve uma falha ao obter o nome do aparelho %u (%s)"
+msgstr "houve uma falha ao obter o nome do dispositivo %u (%s)"
 
 #: core.c:891
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "houve uma falha ao obter a versão para o aparelho %u (%s)"
+msgstr "houve uma falha ao obter a versão para o dispositivo %u (%s)"
 
 #: core.c:902
 #, c-format
@@ -190,12 +192,13 @@ msgstr "O OpenCL não é compatível com o modelo da sua GPU (0x %X)"
 
 #: core.c:997
 msgid "Finding devices"
-msgstr "A procurar aparelhos"
+msgstr "A procurar dispositivos"
 
 #: core.c:1009
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Saltar a busca de aparelhos (permissões erradas no aparelho %s)"
+msgstr ""
+"A ignorar pesquisa de dispositivos (permissões erradas no dispositivo %s)"
 
 #: core.c:1047
 #, c-format
@@ -230,11 +233,11 @@ msgstr "Atual: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1362
 msgid "Enabled"
-msgstr ""
+msgstr "Ativado"
 
 #: core.c:1362
 msgid "Disabled"
-msgstr ""
+msgstr "Desativado"
 
 #: core.c:1383
 msgid "failed to retrieve GPU clocks"
@@ -263,7 +266,7 @@ msgstr "%i dias, %i horas, %i minutos, %i segundos"
 
 #: core.c:1561
 msgid "Updating benchmark status"
-msgstr "A atualizar o estado do benchmark"
+msgstr "A atualizar o estado da performance"
 
 #: core.c:1562 tui_ncurses.c:822
 #, c-format
@@ -314,11 +317,11 @@ msgstr "em %u segundos"
 
 #: core.c:1609
 msgid "Starting benchmark"
-msgstr "Iniciando benchmark"
+msgstr "A iniciar o teste de performance"
 
 #: core.c:1628
 msgid "an error occurred while starting benchmark"
-msgstr "um erro ocorreu enquanto iniciava o benchmark"
+msgstr "ocorreu um erro enquanto iniciava o teste de performance"
 
 #: core.c:1645
 msgid "Finding CPU package in fallback mode"
@@ -327,7 +330,8 @@ msgstr "Encontrando o pacote da CPU em modo fallback"
 #: core.c:1667
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "O soquete da sua CPU não consta no banco de dados ==> %s, codinome: %s"
+msgstr ""
+"O soquete da sua CPU não consta na base de dados ==> %s, nome de código: %s"
 
 #: core.c:1686
 msgid "Calculating CPU multipliers in fallback mode"
@@ -372,15 +376,15 @@ msgstr "request_handler: caso %i não tratado"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr "Iniciando a interface gráfica GTK…"
+msgstr "A iniciar a interface gráfica GTK…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
-msgstr "Falhou ao importar UI no GtkBuilder"
+msgstr "Falha ao importar a interface do utilizador no GtkBuilder"
 
 #: gui_gtk.c:544
 msgid "Connected to daemon"
-msgstr "Conectado ao daemon"
+msgstr "A conectar ao daemon"
 
 #: gui_gtk.c:546
 msgid "No polkit authentication agent found"
@@ -462,7 +466,7 @@ msgstr "Temp."
 
 #: main.c:71
 msgid "Stepping"
-msgstr "Stepping"
+msgstr "Revisão"
 
 #: main.c:72
 msgid "Instructions"
@@ -657,11 +661,11 @@ msgstr "Versão UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr "Unidade de Cálculo"
+msgstr "Unidade de cálculo"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr "ID do aparelho"
+msgstr "ID do dispositivo"
 
 #: main.c:154
 msgid "Interface"
@@ -673,11 +677,11 @@ msgstr "Temperatura"
 
 #: main.c:157
 msgid "Core Voltage"
-msgstr "Tensão Principal"
+msgstr "Voltagem do núcleo"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr "Média da Alimentação"
+msgstr "Média da alimentação"
 
 #: main.c:159
 msgid "GPU clock"
@@ -689,11 +693,11 @@ msgstr "Velocidade da memória"
 
 #: main.c:161
 msgid "Memory Used"
-msgstr "Utilização da Memória"
+msgstr "Utilização da memória"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr ""
+msgstr "BAR redimensionável"
 
 #: main.c:164
 msgid "Cards"
@@ -811,12 +815,12 @@ msgstr "Define a aba padrão (inteiro)"
 
 #: main.c:345
 msgid "Select CPU core to monitor (integer)"
-msgstr "Selecione um núcleo de CPU para monitorar (inteiro)"
+msgstr "Selecione um núcleo de CPU a vigiar (inteiro)"
 
 #: main.c:346
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
-"Definir um teste de bandwidth personalizado para a velocidade de cache da "
+"Definir um teste de performance personalizado para a velocidade de cache da "
 "CPU (inteiro)"
 
 #: main.c:347
@@ -849,7 +853,7 @@ msgstr "Desativar saída a cores"
 
 #: main.c:354
 msgid "Print information for debugging"
-msgstr "Imprima as informações para a depuração"
+msgstr "Imprimir as informações para a depuração"
 
 #: main.c:355
 msgid "Print required information to paste in an issue"
@@ -867,11 +871,11 @@ msgstr "Adicione as opções padrão na linha de comando"
 
 #: main.c:368
 msgid "Enforce the bus clock"
-msgstr "Forçar o bus clock"
+msgstr "Forçar a velocidade do bus"
 
 #: main.c:369
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr "Ignore a frequência da CPU informada pelo libcpuid"
+msgstr "Ignorar a frequência da CPU informada pelo libcpuid"
 
 #: main.c:370
 msgid "Read CPUID raw data from a given file"
@@ -879,16 +883,16 @@ msgstr "Ler dados crus do CPUID de um determinado ficheiro"
 
 #: main.c:371
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Exiba somente uma mensagem caso a CPU não exista no banco de dados"
+msgstr "Mostrar apenas uma mensagem caso a CPU não exista na base de dados"
 
 #: main.c:395
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Uso: %s TELA [OPÇÕES]\n"
+msgstr "Utilização: %s ECRÃ [OPÇÕES]\n"
 
 #: main.c:396
 msgid "Available DISPLAY:"
-msgstr "Tela disponível:"
+msgstr "ECRÃ disponível:"
 
 #: main.c:405
 msgid "Available OPTIONS:"
@@ -930,22 +934,22 @@ msgstr ""
 
 #: main.c:679
 msgid "You can paste this backtrace by opening a new issue here:"
-msgstr "Você pode colar esse backtrace abrindo uma nova issue aqui:"
+msgstr "Pode colar este backtrace criando um novo relatório de problemas em:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
-msgstr "um erro ocorreu enquanto definia a localização"
+msgstr "ocorreu um erro ao definir as configurações locsis"
 
 #: tui_ncurses.c:72
 msgid "Starting NCurses TUI…"
-msgstr "Iniciando a interface de texto NCurses…"
+msgstr "A iniciar a interface de texto NCurses…"
 
 #: tui_ncurses.c:80
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
-"ERRO FATAL: não foi possível encontrar o banco de dados terminfo (tente "
+"ERRO FATAL: não foi possível encontrar a base de dados terminfo (tente "
 "definir a variável de ambiente TERMINFO)"
 
 #: tui_ncurses.c:85
@@ -964,7 +968,7 @@ msgstr "Pressione 'h' para ver a ajuda."
 #: tui_ncurses.c:474
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr "Bem vindo a ajuda do %s Ncurses!\n"
+msgstr "Bem-vindo(a) à ajuda do %s Ncurses!\n"
 
 #: tui_ncurses.c:475
 msgid "This help describes how to use this Text-based User Interface."
@@ -985,7 +989,7 @@ msgstr "Pressione a tecla 'direita' para alternar para a guia direita."
 
 #: tui_ncurses.c:480
 msgid "Press 'h' key to see this help."
-msgstr "Pressione 'h' para ver esta ajuda."
+msgstr "Pressione a tecla 'h' para ver esta ajuda."
 
 #: tui_ncurses.c:481
 msgid "Press 'q' key to exit."
@@ -999,17 +1003,17 @@ msgstr "Aba da CPU:"
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr ""
 "Pressione a tecla 'abaixo' para reduzir a quantidade dos núcleos que serão "
-"monitorados."
+"vigiados."
 
 #: tui_ncurses.c:485
 msgid "Press 'up' key to increase core number to monitor."
 msgstr ""
 "Pressione a tecla 'acima' para aumentar a quantidade dos núcleos que serão "
-"monitorados."
+"vigiados."
 
 #: tui_ncurses.c:487
 msgid "Caches tab:"
-msgstr "Aba Caches:"
+msgstr "Aba caches:"
 
 #: tui_ncurses.c:488
 msgid "Press 'down' key to switch to previous test."
@@ -1021,15 +1025,17 @@ msgstr "Pressione a tecla 'acima' para alternar para o próximo teste."
 
 #: tui_ncurses.c:491
 msgid "Bench tab:"
-msgstr "Aba Bench:"
+msgstr "Aba performance:"
 
 #: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Pressione a tecla 'abaixo' para reduzir a duração do benchmark."
+msgstr ""
+"Pressione a tecla 'abaixo' para reduzir a duração do teste de performance."
 
 #: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "Pressione a tecla 'acima' para aumentar a duração do benchmark."
+msgstr ""
+"Pressione a tecla 'acima' para aumentar a duração do teste d eperformance."
 
 #: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -1044,14 +1050,14 @@ msgstr ""
 #: tui_ncurses.c:496
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
-"Pressione a tecla 's' para iniciar/parar o benchmark dos números primos "
-"(lento)."
+"Pressione a tecla 's' para iniciar/parar o teste de performance dos números "
+"primos (lento)."
 
 #: tui_ncurses.c:497
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"Pressione a tecla 'f' para iniciar/parar o benchmark dos números primos "
-"(rápido)."
+"Pressione a tecla 'f' para iniciar/parar o teste de performance dos números "
+"primos (rápido)."
 
 #: tui_ncurses.c:499
 msgid "Graphics tab:"
