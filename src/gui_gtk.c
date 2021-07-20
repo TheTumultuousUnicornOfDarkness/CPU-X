@@ -565,6 +565,11 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format(_("Core #%i"), i));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
+	gtk_widget_set_tooltip_text(glab->gtktab_cpu[NAME][FAMILY], _("BaseFamily[3:0]"));
+	gtk_widget_set_tooltip_text(glab->gtktab_cpu[NAME][MODEL],  _("BaseModel[3:0]"));
+	gtk_widget_set_tooltip_text(glab->gtktab_cpu[NAME][EXTFAMILY], _("CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"));
+	gtk_widget_set_tooltip_text(glab->gtktab_cpu[NAME][EXTMODEL],  _("CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"));
+
 	/* Tab Caches */
 	for(i = L1SIZE; i < LASTCACHES; i++)
 	{
