@@ -624,7 +624,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	gtk_label_set_text(GTK_LABEL(glab->gtktrad[FRAMGPU1]), data->objects[FRAMGPU1 + opts->selected_gpu]);
 	if(data->gpu_count == 0)
 		gtk_widget_hide(GTK_WIDGET(glab->gridcards));
-	for(i = 0; i < data->gpu_count; i++) {
+	for(i = 0; i < data->gpu_count; i++)
+	{
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecard), format("#%i: %s", i, data->tab_graphics[VALUE][GPU1MODEL + i * GPUFIELDS]));
 		gtk_widget_set_tooltip_text(glab->gtktab_graphics[NAME][GPU1UMD + i * GPUFIELDS],  _("User Mode Driver Version"));
 	}
