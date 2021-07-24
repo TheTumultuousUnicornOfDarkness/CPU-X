@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-05-03 19:54+0000\n"
+"POT-Creation-Date: 2021-07-24 18:27+0000\n"
 "PO-Revision-Date: 2020-07-11 09:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Latvian <https://hosted.weblate.org/projects/cpu-x/"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Finding CPU technology"
 msgstr "Procesora tehnoloģijas noteikšana"
 
-#: core.c:243
+#: core.c:246
 #, fuzzy, c-format
 #| msgid ""
 #| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
@@ -35,290 +35,290 @@ msgstr ""
 "Jūsu procesors nav atrasts datubāzē ==> %s, modelis: %i, papl. modelis: %i, "
 "papl. ģimene: %i"
 
-#: core.c:255
+#: core.c:258
 #, c-format
 msgid "%d x %d %s, %d-way"
 msgstr "%d x %d %s, %d-direkcionāls"
 
-#: core.c:256
+#: core.c:259
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-direkcionāls"
 
-#: core.c:257
+#: core.c:260
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr ""
 
-#: core.c:262
+#: core.c:265
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Izsaucu libcpuid statisko datu saņemšanai"
 
-#: core.c:274
+#: core.c:277
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid izsaukšana neveiksmīga (%s)"
 
-#: core.c:433
+#: core.c:436
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Izsaucu libcpuid dinamisko datu saņemšanai"
 
-#: core.c:446
+#: core.c:449
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Izsaucu libcpuid procesora MSR statisko vērtību nolasīšanai"
 
-#: core.c:471
+#: core.c:474
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Izsaucu libcpuid procesora MSR dinamisko vērtību nolasīšanai"
 
-#: core.c:494
+#: core.c:497
 msgid "Calculating CPU multipliers"
 msgstr "Izrēķinu CPU frekvences reizinātākus"
 
-#: core.c:527
+#: core.c:530
 msgid "Calling dmidecode"
 msgstr "Izsaucu dmidecode"
 
-#: core.c:560
+#: core.c:563
 msgid "Calculating CPU usage"
 msgstr "Izrēķinu procesora pielietojumu"
 
-#: core.c:611
+#: core.c:614
 msgid "Calling bandwidth"
 msgstr ""
 
-#: core.c:692
+#: core.c:695
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 
-#: core.c:723
+#: core.c:726
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Jūsu GPU draiveris nav zināms: %s"
 
-#: core.c:796
+#: core.c:799
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Jūsu GPU draiveris nav zināms: %s"
 
-#: core.c:800
+#: core.c:803
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call GLFW (%i): %s"
 msgstr "libcpuid izsaukšana neveiksmīga (%s)"
 
-#: core.c:829
+#: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
-#: core.c:838
+#: core.c:841
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "Nav iespējams izsaukt dmidecode"
 
-#: core.c:848
+#: core.c:851
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr ""
 
-#: core.c:855
+#: core.c:858
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr ""
 
-#: core.c:862
+#: core.c:865
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:870
+#: core.c:873
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:884
+#: core.c:887
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "libcpuid izsaukšana neveiksmīga (%s)"
 
-#: core.c:891
+#: core.c:894
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr ""
 
-#: core.c:902
+#: core.c:905
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:913
+#: core.c:916
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:925 core.c:935 core.c:960
+#: core.c:928 core.c:938 core.c:963
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:948
+#: core.c:951
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:968
+#: core.c:971
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:997
+#: core.c:1000
 msgid "Finding devices"
 msgstr "Ierīču meklēšana"
 
-#: core.c:1009
+#: core.c:1012
 #, fuzzy, c-format
 #| msgid "Skip devices search (need to be root)"
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Ierīču meklēšana tiek izlaista (nepieciešamas root tiesības)"
 
-#: core.c:1047
+#: core.c:1050
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Jūsu GPU ražōtājs ir nezināms: %s (0x%X)"
 
-#: core.c:1069
+#: core.c:1072
 msgid "failed to find chipset vendor and model"
 msgstr "nav iespējams noteikt mikroshēmojuma ražotāju un modeli"
 
-#: core.c:1071
+#: core.c:1074
 msgid "failed to find graphic card vendor and model"
 msgstr "nav iespējams noteikt grafiskā akseleratora ražotāju un modeli"
 
-#: core.c:1148
+#: core.c:1151
 msgid "Retrieving GPU clocks"
 msgstr "GPU frekvences nolasīšana"
 
-#: core.c:1182
+#: core.c:1185
 msgid "None"
 msgstr ""
 
-#: core.c:1315
+#: core.c:1318
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %u draiveris neatbalsta frekvenču nolasīšanu"
 
-#: core.c:1358
+#: core.c:1361
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1362
+#: core.c:1365
 msgid "Enabled"
 msgstr ""
 
-#: core.c:1362
+#: core.c:1365
 msgid "Disabled"
 msgstr ""
 
-#: core.c:1383
+#: core.c:1386
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU frekvenču nolasīšana neveiksmīga"
 
-#: core.c:1400
+#: core.c:1403
 msgid "Identifying running system"
 msgstr "Darbojošās sistēmas noteikšana"
 
-#: core.c:1403
+#: core.c:1406
 msgid "failed to identify running system"
 msgstr "Nav iespējams noteikt darbojošo sistēmu"
 
-#: core.c:1444
+#: core.c:1447
 msgid "Calling libprocps"
 msgstr "Izsauc libprocps"
 
-#: core.c:1470
+#: core.c:1473
 msgid "Calling libstatgrab"
 msgstr "Izsauc libstatgrab"
 
-#: core.c:1505
+#: core.c:1508
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dienas, %i stundas, %i minūtes, %i sekundes"
 
-#: core.c:1561
+#: core.c:1564
 msgid "Updating benchmark status"
 msgstr "Atjauno darbspējas mērījuma statusu"
 
-#: core.c:1562 tui_ncurses.c:822
+#: core.c:1565 tui_ncurses.c:822
 #, c-format
 msgid "%u mins"
 msgstr "%u minūtes"
 
-#: core.c:1564 core.c:1565
+#: core.c:1567 core.c:1568
 msgid "Inactive"
 msgstr "Nav aktīvs"
 
-#: core.c:1569 core.c:1570
+#: core.c:1572 core.c:1573
 msgid "Not started"
 msgstr "Nav palaists"
 
-#: core.c:1575
+#: core.c:1578
 msgid "Active"
 msgstr "Aktīvs"
 
-#: core.c:1580
+#: core.c:1583
 #, c-format
 msgid "(%u hours left)"
 msgstr "(palika %u stundas)"
 
-#: core.c:1582
+#: core.c:1585
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(palika %u minūtes)"
 
-#: core.c:1584
+#: core.c:1587
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(palika %u sekundes)"
 
-#: core.c:1589
+#: core.c:1592
 #, c-format
 msgid "in %u hours"
 msgstr "pēc %u stundām"
 
-#: core.c:1591
+#: core.c:1594
 #, c-format
 msgid "in %u minutes"
 msgstr "pēc %u minūtēm"
 
-#: core.c:1593
+#: core.c:1596
 #, c-format
 msgid "in %u seconds"
 msgstr "pēc %u sekundēm"
 
-#: core.c:1609
+#: core.c:1612
 msgid "Starting benchmark"
 msgstr ""
 
-#: core.c:1628
+#: core.c:1631
 msgid "an error occurred while starting benchmark"
 msgstr ""
 
-#: core.c:1645
+#: core.c:1648
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:1667
+#: core.c:1670
 #, fuzzy, c-format
 #| msgid ""
 #| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
@@ -328,43 +328,43 @@ msgstr ""
 "Jūsu procesors nav atrasts datubāzē ==> %s, modelis: %i, papl. modelis: %i, "
 "papl. ģimene: %i"
 
-#: core.c:1686
+#: core.c:1689
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:1713
+#: core.c:1716
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:1722
+#: core.c:1725
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:1761
+#: core.c:1764
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:1806
+#: core.c:1809
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:1819
+#: core.c:1822
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:1832
+#: core.c:1835
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:1847
+#: core.c:1850
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:1855
+#: core.c:1858
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
-#: daemon.c:254
+#: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr ""
@@ -393,12 +393,32 @@ msgstr ""
 msgid "Start daemon"
 msgstr ""
 
-#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
+#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr ""
 
-#: gui_gtk.c:647
+#: gui_gtk.c:568
+msgid "BaseFamily"
+msgstr ""
+
+#: gui_gtk.c:569
+msgid "BaseModel"
+msgstr ""
+
+#: gui_gtk.c:570
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+
+#: gui_gtk.c:571
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+
+#: gui_gtk.c:630
+msgid "User Mode Driver Version"
+msgstr ""
+
+#: gui_gtk.c:655
 #, c-format
 msgid "%s"
 msgstr ""
@@ -444,7 +464,7 @@ msgid "Family"
 msgstr ""
 
 #: main.c:67
-msgid "Ext. Family"
+msgid "Disp. Family"
 msgstr ""
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
@@ -452,7 +472,7 @@ msgid "Model"
 msgstr ""
 
 #: main.c:69
-msgid "Ext. Model"
+msgid "Disp. Model"
 msgstr ""
 
 #: main.c:70

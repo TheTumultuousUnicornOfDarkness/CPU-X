@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-05-03 19:54+0000\n"
+"POT-Creation-Date: 2021-07-24 18:27+0000\n"
 "PO-Revision-Date: 2021-05-25 05:32+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Finding CPU technology"
 msgstr "CPU तंत्रज्ञान शोधत आहे"
 
-#: core.c:243
+#: core.c:246
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -31,328 +31,328 @@ msgstr ""
 "आपला सीपीयू डेटाबेसमध्ये उपस्थित नाही==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: "
 "%i मध्ये नाही"
 
-#: core.c:255
+#: core.c:258
 #, c-format
 msgid "%d x %d %s, %d-way"
 msgstr "%d x %d %s, %d-way"
 
-#: core.c:256
+#: core.c:259
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s,%d-वे"
 
-#: core.c:257
+#: core.c:260
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s सहकारी,%d-%s लाइन आकार"
 
-#: core.c:262
+#: core.c:265
 msgid "Calling libcpuid for retrieving static data"
 msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core.c:274
+#: core.c:277
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.c:433
+#: core.c:436
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core.c:446
+#: core.c:449
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
 
-#: core.c:471
+#: core.c:474
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
 
-#: core.c:494
+#: core.c:497
 msgid "Calculating CPU multipliers"
 msgstr "सीपीयू गुणकांची गणना करत आहे"
 
-#: core.c:527
+#: core.c:530
 msgid "Calling dmidecode"
 msgstr "डीमिडेकोडला कॉल करीत आहे"
 
-#: core.c:560
+#: core.c:563
 msgid "Calculating CPU usage"
 msgstr "सीपीयू वापराची गणना करत आहे"
 
-#: core.c:611
+#: core.c:614
 msgid "Calling bandwidth"
 msgstr "कॉलिंग बँडविड्थ"
 
-#: core.c:692
+#: core.c:695
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "पथ %s वर ग्राफिक कार्ड करीता कर्नल ड्राइव्हर वापरात नाही"
 
-#: core.c:723
+#: core.c:726
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "आपला GPU कर्नल ड्राइव्हर अज्ञात आहे: %s"
 
-#: core.c:796
+#: core.c:799
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "आपला GPU वापरकर्ता मोड ड्राइव्हर अज्ञात आहे: %s"
 
-#: core.c:800
+#: core.c:803
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW (%i): %s वर कॉल करण्यात अयशस्वी"
 
-#: core.c:829
+#: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL समर्थनासह कोणतेही प्लॅटफॉर्म नाही (%s)"
 
-#: core.c:838
+#: core.c:841
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core.c:848
+#: core.c:851
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "प्लॅटफॉर्म %u (%s) चे नाव मिळविण्यात अयशस्वी"
 
-#: core.c:855
+#: core.c:858
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get version for platform %u (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
-#: core.c:862
+#: core.c:865
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:870
+#: core.c:873
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:884
+#: core.c:887
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.c:891
+#: core.c:894
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
 
-#: core.c:902
+#: core.c:905
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:913
+#: core.c:916
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:925 core.c:935 core.c:960
+#: core.c:928 core.c:938 core.c:963
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:948
+#: core.c:951
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:968
+#: core.c:971
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:997
+#: core.c:1000
 msgid "Finding devices"
 msgstr "उपकरणे शोधत आहे"
 
-#: core.c:1009
+#: core.c:1012
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
 
-#: core.c:1047
+#: core.c:1050
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "आपला GPU विक्रेता अज्ञात आहे: %s (0x%X)"
 
-#: core.c:1069
+#: core.c:1072
 msgid "failed to find chipset vendor and model"
 msgstr "चिपसेट विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core.c:1071
+#: core.c:1074
 msgid "failed to find graphic card vendor and model"
 msgstr "ग्राफिक कार्ड विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core.c:1148
+#: core.c:1151
 msgid "Retrieving GPU clocks"
 msgstr "GPU घड्याळे प्राप्त करीत आहे"
 
-#: core.c:1182
+#: core.c:1185
 msgid "None"
 msgstr "काहीही नाही"
 
-#: core.c:1315
+#: core.c:1318
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %u साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
 
-#: core.c:1358
+#: core.c:1361
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1362
+#: core.c:1365
 msgid "Enabled"
 msgstr ""
 
-#: core.c:1362
+#: core.c:1365
 msgid "Disabled"
 msgstr ""
 
-#: core.c:1383
+#: core.c:1386
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU घड्याळे प्राप्त करण्यात अयशस्वी"
 
-#: core.c:1400
+#: core.c:1403
 msgid "Identifying running system"
 msgstr "कार्यरत प्रणाली ओळखत आहे"
 
-#: core.c:1403
+#: core.c:1406
 msgid "failed to identify running system"
 msgstr "चालू प्रणाली ओळखण्यात अयशस्वी"
 
-#: core.c:1444
+#: core.c:1447
 msgid "Calling libprocps"
 msgstr "libprocps ला कॉल करीत आहे"
 
-#: core.c:1470
+#: core.c:1473
 msgid "Calling libstatgrab"
 msgstr "libstatgrab ला कॉल करीत आहे"
 
-#: core.c:1505
+#: core.c:1508
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
 
-#: core.c:1561
+#: core.c:1564
 msgid "Updating benchmark status"
 msgstr "बेंचमार्क स्थिती अद्यतनित करीत आहे"
 
-#: core.c:1562 tui_ncurses.c:822
+#: core.c:1565 tui_ncurses.c:822
 #, c-format
 msgid "%u mins"
 msgstr "%u मि"
 
-#: core.c:1564 core.c:1565
+#: core.c:1567 core.c:1568
 msgid "Inactive"
 msgstr "निष्क्रीय"
 
-#: core.c:1569 core.c:1570
+#: core.c:1572 core.c:1573
 msgid "Not started"
 msgstr "सुरू झाले नाही"
 
-#: core.c:1575
+#: core.c:1578
 msgid "Active"
 msgstr "सक्रीय"
 
-#: core.c:1580
+#: core.c:1583
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u तास बाकी)"
 
-#: core.c:1582
+#: core.c:1585
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u मिनिटे बाकी)"
 
-#: core.c:1584
+#: core.c:1587
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u सेकंद शिल्लक)"
 
-#: core.c:1589
+#: core.c:1592
 #, c-format
 msgid "in %u hours"
 msgstr "%u तासात"
 
-#: core.c:1591
+#: core.c:1594
 #, c-format
 msgid "in %u minutes"
 msgstr "%u मिनिटात"
 
-#: core.c:1593
+#: core.c:1596
 #, c-format
 msgid "in %u seconds"
 msgstr "%u सेकंदात"
 
-#: core.c:1609
+#: core.c:1612
 msgid "Starting benchmark"
 msgstr "बेंचमार्क सुरू करीत आहे"
 
-#: core.c:1628
+#: core.c:1631
 msgid "an error occurred while starting benchmark"
 msgstr "बेंचमार्क सुरू करताना एक त्रुटी आली"
 
-#: core.c:1645
+#: core.c:1648
 msgid "Finding CPU package in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
 
-#: core.c:1667
+#: core.c:1670
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित नाही"
 
-#: core.c:1686
+#: core.c:1689
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू मल्टिप्लायर्सची गणना करत आहे"
 
-#: core.c:1713
+#: core.c:1716
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये मदरबोर्ड माहिती पुनर्प्राप्त करीत आहे"
 
-#: core.c:1722
+#: core.c:1725
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "मदरबोर्ड माहिती पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
-#: core.c:1761
+#: core.c:1764
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू तापमान प्राप्त करत आहे"
 
-#: core.c:1806
+#: core.c:1809
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "सीपीयू तापमान (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.c:1819
+#: core.c:1822
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू व्होल्टेज पुनर्प्राप्त करीत आहे"
 
-#: core.c:1832
+#: core.c:1835
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "सीपीयू व्होल्टेज (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.c:1847
+#: core.c:1850
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू वारंवारता पुनर्प्राप्त करीत आहे"
 
-#: core.c:1855
+#: core.c:1858
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "सीपीयू वारंवारता पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
-#: daemon.c:254
+#: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "विनंती_हांडलर: केस %i हाताळले नाही"
@@ -381,12 +381,38 @@ msgstr "पार्श्वभूमीवर डिमन सुरू कर
 msgid "Start daemon"
 msgstr "डिमन प्रारंभ करा"
 
-#: gui_gtk.c:565 gui_gtk.c:650 tui_ncurses.c:550
+#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
 msgstr "कोर #%i"
 
-#: gui_gtk.c:647
+#: gui_gtk.c:568
+#, fuzzy
+#| msgid "Family"
+msgid "BaseFamily"
+msgstr "परिवार"
+
+#: gui_gtk.c:569
+#, fuzzy
+#| msgid "Model"
+msgid "BaseModel"
+msgstr "मॉडेल"
+
+#: gui_gtk.c:570
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+
+#: gui_gtk.c:571
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+
+#: gui_gtk.c:630
+#, fuzzy
+#| msgid "Version"
+msgid "User Mode Driver Version"
+msgstr "आवृत्ती"
+
+#: gui_gtk.c:655
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -432,7 +458,9 @@ msgid "Family"
 msgstr "परिवार"
 
 #: main.c:67
-msgid "Ext. Family"
+#, fuzzy
+#| msgid "Ext. Family"
+msgid "Disp. Family"
 msgstr "Ext. परिवार"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
@@ -440,7 +468,9 @@ msgid "Model"
 msgstr "मॉडेल"
 
 #: main.c:69
-msgid "Ext. Model"
+#, fuzzy
+#| msgid "Ext. Model"
+msgid "Disp. Model"
 msgstr "Ext. मॉडेल"
 
 #: main.c:70
