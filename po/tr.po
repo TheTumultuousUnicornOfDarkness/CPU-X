@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-05-05 08:31+0000\n"
+"PO-Revision-Date: 2021-07-26 16:35+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -400,30 +400,28 @@ msgid "Core #%i"
 msgstr "Çekirdek #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Aile"
+msgstr "TemelAile"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Model"
+msgstr "TemelModel"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Görüntülenen (\"gerçek\") CPU ailesi (TemelAile+GenişletilmişAile olarak "
+"hesaplanır)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Görüntülenen (\"gerçek\") CPU modeli ((GenişletilmişModel<<4)+TemelModel "
+"olarak hesaplanır)"
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "UMD Sürümü"
+msgstr "Kullanıcı Modu Sürücü Sürümü"
 
 #: gui_gtk.c:655
 #, c-format
@@ -471,20 +469,16 @@ msgid "Family"
 msgstr "Aile"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Genişletilmiş Aile"
+msgstr "Görüntülenen Aile"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Model"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Genişletilmiş Model"
+msgstr "Görüntülenen Model"
 
 #: main.c:70
 msgid "Temp."
