@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-05-11 03:31+0000\n"
+"PO-Revision-Date: 2021-07-26 16:35+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -400,13 +400,13 @@ msgstr "Core #%i"
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
-msgstr "Famiglia"
+msgstr "Famiglia originale"
 
 #: gui_gtk.c:569
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
-msgstr "Modello"
+msgstr "Modello originale"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
@@ -417,10 +417,8 @@ msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "Versione UMD"
+msgstr "Versione driver modalità utente (UMD)"
 
 #: gui_gtk.c:655
 #, c-format
