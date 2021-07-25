@@ -15,16 +15,16 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-05-05 08:31+0000\n"
+"PO-Revision-Date: 2021-07-26 16:35+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -413,30 +413,27 @@ msgid "Core #%i"
 msgstr "Núcleo #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
 msgstr "Família"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
 msgstr "Modelo"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Exiba a família da CPU (\"true\") (calculada como BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Exiba o modelo da CPU (\"true\") (computado como "
+"(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "Versão UMD"
+msgstr "Versão do usuário UMD"
 
 #: gui_gtk.c:655
 #, c-format
@@ -484,20 +481,16 @@ msgid "Family"
 msgstr "Família"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Ext. Família"
+msgstr "Disp. Família"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Modelo"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Ext. Modelo"
+msgstr "Disp. Modelo"
 
 #: main.c:70
 msgid "Temp."
