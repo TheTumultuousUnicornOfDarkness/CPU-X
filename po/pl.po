@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-07-26 16:35+0000\n"
+"PO-Revision-Date: 2021-08-05 10:33+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -397,16 +397,12 @@ msgid "Core #%i"
 msgstr "Rdzeń #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Rodzina"
+msgstr "Rodzina bazowa"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Model"
+msgstr "Model bazowy"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
@@ -471,7 +467,7 @@ msgstr "Rodzina"
 #, fuzzy
 #| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Zewnętrzna Rodzina"
+msgstr "Wyśw. Rodzina"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
