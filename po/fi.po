@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-03-07 18:50+0000\n"
+"PO-Revision-Date: 2021-08-08 13:15+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Etsitään suoritinteknologia"
 
 #: core.c:246
 #, c-format
@@ -29,6 +29,8 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
+"Suorittimesi tietoja ei ole tietokannassa ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 
 #: core.c:258
 #, c-format
@@ -68,11 +70,11 @@ msgstr ""
 
 #: core.c:497
 msgid "Calculating CPU multipliers"
-msgstr "Lasketaan CPU kertoimia"
+msgstr "Lasketaan CPU-kertoimia"
 
 #: core.c:530
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Kutsutaan dmidecodea"
 
 #: core.c:563
 msgid "Calculating CPU usage"
@@ -80,7 +82,7 @@ msgstr "Lasketaan prosessorinkäyttö"
 
 #: core.c:614
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Kutsutaan kaistanleveyttä"
 
 #: core.c:695
 #, c-format
@@ -99,15 +101,14 @@ msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Tuntematon näytönohjaimen ajuri: %s"
 
 #: core.c:803
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "GLFW:n (%i) kutsuminen epäonnistui: %s"
 
 #: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Ei alustaa OpenCL-tuella (%s)"
 
 #: core.c:841
 #, fuzzy, c-format
@@ -200,7 +201,7 @@ msgstr ""
 
 #: core.c:1151
 msgid "Retrieving GPU clocks"
-msgstr "Haetaan GPU kellotaajuuksia"
+msgstr "Haetaan GPU-kellotaajuuksia"
 
 #: core.c:1185
 msgid "None"
@@ -218,11 +219,11 @@ msgstr ""
 
 #: core.c:1365
 msgid "Enabled"
-msgstr ""
+msgstr "Käytössä"
 
 #: core.c:1365
 msgid "Disabled"
-msgstr ""
+msgstr "Ei käytössä"
 
 #: core.c:1386
 msgid "failed to retrieve GPU clocks"
@@ -230,7 +231,7 @@ msgstr "GPU-kellotaajuuksien haku epäonnistui"
 
 #: core.c:1403
 msgid "Identifying running system"
-msgstr ""
+msgstr "Tunnistetaan käynnissä olevaa järjestelmää"
 
 #: core.c:1406
 msgid "failed to identify running system"
@@ -260,7 +261,7 @@ msgstr "%u minuuttia"
 
 #: core.c:1567 core.c:1568
 msgid "Inactive"
-msgstr ""
+msgstr "Ei aktiivinen"
 
 #: core.c:1572 core.c:1573
 msgid "Not started"
@@ -302,11 +303,11 @@ msgstr "%u sekunnissa"
 
 #: core.c:1612
 msgid "Starting benchmark"
-msgstr ""
+msgstr "Aloitetaan suorituskykymittausta"
 
 #: core.c:1631
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "suorituskykymittausta aloittaessa tapahtui virhe"
 
 #: core.c:1648
 msgid "Finding CPU package in fallback mode"
@@ -360,7 +361,7 @@ msgstr ""
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr "Käynnistetään GTK GUI…"
+msgstr "Käynnistetään GTK-käyttöliittymä…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
@@ -452,7 +453,7 @@ msgstr "Jännite"
 
 #: main.c:65
 msgid "Specification"
-msgstr ""
+msgstr "Määritys"
 
 #: main.c:66
 msgid "Family"
@@ -618,7 +619,7 @@ msgstr "Käyttöjärjestelmä"
 
 #: main.c:129
 msgid "Kernel"
-msgstr "Käyttöjärjestelmäydin"
+msgstr "Ydin"
 
 #: main.c:130
 msgid "Distribution"
@@ -675,15 +676,15 @@ msgstr "UMD-versio"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Laskentayksikkö"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr ""
+msgstr "Laite-ID"
 
 #: main.c:154
 msgid "Interface"
-msgstr ""
+msgstr "Liitäntä"
 
 #: main.c:155
 msgid "Temperature"
@@ -699,7 +700,7 @@ msgstr "Kulutus keskim."
 
 #: main.c:159
 msgid "GPU clock"
-msgstr "GPU kellotaajuus"
+msgstr "GPU-kellotaajuus"
 
 #: main.c:160
 msgid "Memory clock"
@@ -714,14 +715,12 @@ msgid "Resizable BAR"
 msgstr ""
 
 #: main.c:164
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "Kortti %i"
+msgstr "Kortit"
 
 #: main.c:167
 msgid "Bench"
-msgstr ""
+msgstr "Mittaus"
 
 #: main.c:168
 msgid "Prime numbers (slow)"
@@ -794,7 +793,7 @@ msgstr "Tämä ohjelma EI SISÄLLÄ MINKÄÄNLAISTA TAKUUTA"
 
 #: main.c:267
 msgid "Dumping data…"
-msgstr ""
+msgstr "Dumpataan tiedot…"
 
 #: main.c:310
 msgid "Freeing memory"
@@ -868,7 +867,7 @@ msgstr ""
 
 #: main.c:354
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Tulosta tiedot vianselvitystä varten"
 
 #: main.c:355
 msgid "Print required information to paste in an issue"
@@ -967,16 +966,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "Ikkuna on liian pieni!\n"
+msgstr "Ikkuna on liian pieni!"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Paina 'h' nähdäksesi ohjeen.\n"
+msgstr "Paina 'h' nähdäksesi ohjeen."
 
 #: tui_ncurses.c:474
 #, c-format
@@ -1002,16 +997,12 @@ msgid "Press 'right' key to switch in right tab."
 msgstr ""
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "Paina 'h' nähdäksesi ohjeen.\n"
+msgstr "Paina 'h' nähdäksesi tämän ohjeen."
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\tPaina 'q' poistuaksesi.\n"
+msgstr "Paina 'q' poistuaksesi."
 
 #: tui_ncurses.c:483
 msgid "CPU tab:"
@@ -1165,28 +1156,22 @@ msgstr "Tt"
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "Mt"
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "Gt"
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "Tt"
+msgstr "TiB"
 
 #, fuzzy
 #~| msgid "failed to call libcpuid (%s)"
