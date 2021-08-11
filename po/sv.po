@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-05-05 08:31+0000\n"
+"PO-Revision-Date: 2021-08-12 17:34+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -390,16 +390,12 @@ msgid "Core #%i"
 msgstr "Kärna #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Familj"
+msgstr "Basfamilj"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Modell"
+msgstr "Basmodell"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
@@ -410,10 +406,8 @@ msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "UMD-version"
+msgstr "Användarlägesversion"
 
 #: gui_gtk.c:655
 #, c-format
@@ -461,20 +455,16 @@ msgid "Family"
 msgstr "Familj"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Ext. familj"
+msgstr "Disp. familj"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Modell"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Ext. modell"
+msgstr "Disp. modell"
 
 #: main.c:70
 msgid "Temp."
