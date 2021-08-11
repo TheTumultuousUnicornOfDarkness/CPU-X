@@ -7,135 +7,142 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-08-12 17:34+0000\n"
+"Last-Translator: Sergi Font <sfont@tuta.io>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/cpu-x/"
+"translations/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Cercant la tecnologia de la CPU"
 
 #: core.c:246
 #, c-format
 msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
 "model: %i, ext. family: %i"
 msgstr ""
+"La teva CPU no és present a la base de dades ==> %s, model: %i, ext. model: "
+"%i, ext. família: %i"
 
 #: core.c:258
 #, c-format
 msgid "%d x %d %s, %d-way"
-msgstr ""
+msgstr "%d x %d %s, %d-way"
 
 #: core.c:259
 #, c-format
 msgid "%d %s, %d-way"
-msgstr ""
+msgstr "%d %s, %d-way"
 
 #: core.c:260
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr ""
+msgstr "%s associatiu, %d-%s mida de la línia"
 
 #: core.c:265
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Cridant a libcpuid per recuperar les estadístiques"
 
 #: core.c:277
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "No s'ha pogut cridar libcpuid (%s)"
 
 #: core.c:436
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Cridant a libcpuid per recuperar dades dinàmiques"
 
 #: core.c:449
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "Cridant libcpuid per recuperar estadístiques de CPU MSR"
 
 #: core.c:474
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "Cridant a libcpuid per recuperar valors dinàmics de CPU MSR"
 
 #: core.c:497
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "Calculant multiplicadors CPU"
 
 #: core.c:530
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Cridant dmidecode"
 
 #: core.c:563
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Calculant l'ús de la CPU"
 
 #: core.c:614
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Cridant l'ample de banda"
 
 #: core.c:695
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "No hi ha controlador kernel en ús per la targeta gràfica a la ruta %s"
 
 #: core.c:726
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr ""
+msgstr "El teu controlador kernel GPU és desconegut: %s"
 
 #: core.c:799
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr ""
+msgstr "El teu mode d'usuari de controlador de GPU és desconegut: %s"
 
 #: core.c:803
 #, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr ""
+msgstr "No s'ha pogut cridar GLFW (%i): %s"
 
 #: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "No hi ha una plataforma amb suport OpenCL (%s)"
 
 #: core.c:841
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr ""
+msgstr "no s'ha obtingut totes les plataformes OpenCL (%s)"
 
 #: core.c:851
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "no s'ha obtingut el nom de la plataforma %u (%s)"
 
 #: core.c:858
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "no s'ha obtingut la versió de la plataforma %u (%s)"
 
 #: core.c:865
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"no s'ha trobat el número de dispositius OpenCL per la plataforma '%s %s' (%s)"
 
 #: core.c:873
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"no s'ha obtingut tots els dispositius OpenCL per la plataforma '%s %s' (%s)"
 
 #: core.c:887
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr ""
+msgstr "no s'ha obtingut el nom del dispositiu %u (%s)"
 
 #: core.c:894
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "no s'ha obtingut la versió pel dispositiu %u (%s)"
 
 #: core.c:905
 #, c-format
