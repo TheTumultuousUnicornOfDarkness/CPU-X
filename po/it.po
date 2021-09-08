@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-07-26 16:35+0000\n"
+"PO-Revision-Date: 2021-09-09 10:32+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -400,13 +400,13 @@ msgstr "Core #%i"
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
-msgstr "Famiglia originale"
+msgstr "BaseFamily"
 
 #: gui_gtk.c:569
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
-msgstr "Modello originale"
+msgstr "BaseModel"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
@@ -466,20 +466,16 @@ msgid "Family"
 msgstr "Famiglia"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Famiglia estesa"
+msgstr "Mostra Famiglia"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Modello"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Modello esteso"
+msgstr "Mostra Modello"
 
 #: main.c:70
 msgid "Temp."
