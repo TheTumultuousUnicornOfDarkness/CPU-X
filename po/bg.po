@@ -7,13 +7,16 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-09-15 16:34+0000\n"
+"Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
+"Language-Team: Bulgarian <https://hosted.weblate.org/projects/cpu-x/"
+"translations/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -141,19 +144,21 @@ msgstr ""
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
 "(%s)"
-msgstr ""
+msgstr "Драйверът на OpenCL за „%s %s“ не поддържа CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:916
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
 "(%s)"
 msgstr ""
+"Драйверът на OpenCL за „%s %s“ не поддържа CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:928 core.c:938 core.c:963
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support "
 "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Драйверът на OpenCL за „%s %s“ не поддържа CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:951
 #, c-format
@@ -161,11 +166,13 @@ msgid "OpenCL driver for '%s %s' does not support "
 "CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
 "CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Драйверът на OpenCL за „%s %s“ не поддържа CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) или CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:971
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "Вашата видеокарта не поддържа OpenCL (0x%X)"
 
 #: core.c:1000
 msgid "Finding devices"
@@ -247,7 +254,7 @@ msgstr ""
 #: core.c:1565 tui_ncurses.c:822
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u минути"
 
 #: core.c:1567 core.c:1568
 msgid "Inactive"
@@ -264,32 +271,32 @@ msgstr ""
 #: core.c:1583
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(остават %u часа)"
 
 #: core.c:1585
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(остават %u минути)"
 
 #: core.c:1587
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(остават %u секунди)"
 
 #: core.c:1592
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "за %u часа"
 
 #: core.c:1594
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "за %u минути"
 
 #: core.c:1596
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "за %u секунди"
 
 #: core.c:1612
 msgid "Starting benchmark"
@@ -376,7 +383,7 @@ msgstr ""
 #: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "Ядро №%i"
 
 #: gui_gtk.c:568
 msgid "BaseFamily"
@@ -402,7 +409,7 @@ msgstr ""
 #: gui_gtk.c:655
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:56
 msgid "Setting label names"
@@ -410,355 +417,357 @@ msgstr ""
 
 #: main.c:58
 msgid "CPU"
-msgstr ""
+msgstr "ЦП"
 
 #: main.c:59
 msgid "Processor"
-msgstr ""
+msgstr "Процесор"
 
 #: main.c:60 main.c:115 main.c:148
 msgid "Vendor"
-msgstr ""
+msgstr "Производител"
 
 #: main.c:61
 msgid "Code Name"
-msgstr ""
+msgstr "Кодово име"
 
 #: main.c:62
 msgid "Package"
-msgstr ""
+msgstr "Гнездо"
 
 #: main.c:63
 msgid "Technology"
-msgstr ""
+msgstr "Технология"
 
 #: main.c:64
 msgid "Voltage"
-msgstr ""
+msgstr "Волтаж"
 
 #: main.c:65
 msgid "Specification"
-msgstr ""
+msgstr "Спецификация"
 
 #: main.c:66
 msgid "Family"
-msgstr ""
+msgstr "Семейство"
 
 #: main.c:67
 msgid "Disp. Family"
-msgstr ""
+msgstr "Доп. семейство"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
-msgstr ""
+msgstr "Модел"
 
 #: main.c:69
 msgid "Disp. Model"
-msgstr ""
+msgstr "Доп. модел"
 
 #: main.c:70
 msgid "Temp."
-msgstr ""
+msgstr "Темп."
 
 #: main.c:71
 msgid "Stepping"
-msgstr ""
+msgstr "Ревизия"
 
 #: main.c:72
 msgid "Instructions"
-msgstr ""
+msgstr "Инструкции"
 
 #: main.c:74
 msgid "Clocks"
-msgstr ""
+msgstr "Честота"
 
 #: main.c:75
 msgid "Core Speed"
-msgstr ""
+msgstr "Ядро"
 
 #: main.c:76
 msgid "Multiplier"
-msgstr ""
+msgstr "Коефициент"
 
 #: main.c:77
 msgid "Bus Speed"
-msgstr ""
+msgstr "Шина"
 
 #: main.c:78 main.c:156
 msgid "Usage"
-msgstr ""
+msgstr "Използване"
 
 #: main.c:80
 msgid "Cache"
-msgstr ""
+msgstr "Кеш"
 
 #: main.c:81
 msgid "L1 Data"
-msgstr ""
+msgstr "Н1 — данни"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr ""
+msgstr "Н1 — инстр."
 
 #: main.c:83
 msgid "Level 2"
-msgstr ""
+msgstr "Ниво 2"
 
 #: main.c:84
 msgid "Level 3"
-msgstr ""
+msgstr "Ниво 3"
 
 #: main.c:86
 msgid "Socket(s)"
-msgstr ""
+msgstr "Гнезда"
 
 #: main.c:87
 msgid "Core(s)"
-msgstr ""
+msgstr "Ядра"
 
 #: main.c:88
 msgid "Thread(s)"
-msgstr ""
+msgstr "Нишки"
 
 #: main.c:91
 msgid "Caches"
-msgstr ""
+msgstr "Кешпамет"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "Кеш Н%i"
 
 #: main.c:96
 msgid "Size"
-msgstr ""
+msgstr "Размер"
 
 #: main.c:97
 msgid "Speed"
-msgstr ""
+msgstr "Скорост"
 
 #: main.c:99
 msgid "Test"
-msgstr ""
+msgstr "Проверка"
 
 #: main.c:102 main.c:103
 msgid "Motherboard"
-msgstr ""
+msgstr "Дънна платка"
 
 #: main.c:104
 msgid "Manufacturer"
-msgstr ""
+msgstr "Производител"
 
 #: main.c:106
 msgid "Revision"
-msgstr ""
+msgstr "Ревизия"
 
 #: main.c:108
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:109
 msgid "Brand"
-msgstr ""
+msgstr "Марка"
 
 #: main.c:110
 msgid "Version"
-msgstr ""
+msgstr "Версия"
 
 #: main.c:111
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: main.c:112
 msgid "ROM Size"
-msgstr ""
+msgstr "Размер на ROM"
 
 #: main.c:114
 msgid "Chipset"
-msgstr ""
+msgstr "Чипсет"
 
 #: main.c:119 main.c:135
 msgid "Memory"
-msgstr ""
+msgstr "Оперативна памет"
 
 #: main.c:122
 #, c-format
 msgid "Bank %i"
-msgstr ""
+msgstr "Модул %i"
 
 #: main.c:123
 msgid "Reference"
-msgstr ""
+msgstr "Описание"
 
 #: main.c:127
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: main.c:128
 msgid "Operating System"
-msgstr ""
+msgstr "Операционна система"
 
 #: main.c:129
 msgid "Kernel"
-msgstr ""
+msgstr "Ядро"
 
 #: main.c:130
 msgid "Distribution"
-msgstr ""
+msgstr "Дистрибуция"
 
 #: main.c:131
 msgid "Hostname"
-msgstr ""
+msgstr "Име на компютъра"
 
 #: main.c:132
 msgid "Uptime"
-msgstr ""
+msgstr "Време на работа"
 
 #: main.c:133
 msgid "Compiler"
-msgstr ""
+msgstr "Компилатор"
 
 #: main.c:136
 msgid "Used"
-msgstr ""
+msgstr "Използвана"
 
 #: main.c:137
 msgid "Buffers"
-msgstr ""
+msgstr "Буферирана"
 
 #: main.c:138
 msgid "Cached"
-msgstr ""
+msgstr "Кеширана"
 
 #: main.c:139
 msgid "Free"
-msgstr ""
+msgstr "Свободна"
 
 #: main.c:140
 msgid "Swap"
-msgstr ""
+msgstr "Виртуална"
 
 #: main.c:143
 msgid "Graphics"
-msgstr ""
+msgstr "Видеокарта"
 
 #: main.c:147
 #, c-format
 msgid "Card %i"
-msgstr ""
+msgstr "Карта %i"
 
 #: main.c:149
 msgid "Driver"
-msgstr ""
+msgstr "Драйвер"
 
 #: main.c:150
 msgid "UMD Version"
-msgstr ""
+msgstr "Версия на UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Изчислителна единица"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr ""
+msgstr "Идентификатор"
 
 #: main.c:154
 msgid "Interface"
-msgstr ""
+msgstr "Интерфейс"
 
 #: main.c:155
 msgid "Temperature"
-msgstr ""
+msgstr "Температура"
 
 #: main.c:157
 msgid "Core Voltage"
-msgstr ""
+msgstr "Волтаж на ядрото"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr ""
+msgstr "Средно напрежение"
 
 #: main.c:159
 msgid "GPU clock"
-msgstr ""
+msgstr "Честота на ГП"
 
 #: main.c:160
 msgid "Memory clock"
-msgstr ""
+msgstr "Честота на паметта"
 
 #: main.c:161
 msgid "Memory Used"
-msgstr ""
+msgstr "Използвана памет"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr ""
+msgstr "Преоразмеряване на BAR"
 
 #: main.c:164
 msgid "Cards"
-msgstr ""
+msgstr "Карти"
 
 #: main.c:167
 msgid "Bench"
-msgstr ""
+msgstr "Анализ"
 
 #: main.c:168
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "Прости числа (бавно)"
 
 #: main.c:169
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "Прости числа (бързо)"
 
 #: main.c:172
 msgid "Score"
-msgstr ""
+msgstr "Резултат"
 
 #: main.c:173
 msgid "Run"
-msgstr ""
+msgstr "Изпълнение"
 
 #: main.c:176
 msgid "Parameters"
-msgstr ""
+msgstr "Параметри"
 
 #: main.c:177
 msgid "Duration"
-msgstr ""
+msgstr "Продължителност"
 
 #: main.c:178
 msgid "Threads"
-msgstr ""
+msgstr "Нишки"
 
 #: main.c:181 main.c:186
 msgid "About"
-msgstr ""
+msgstr "Относно"
 
 #: main.c:183
 #, c-format
 msgid "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s е свободен софтуер, който събира информация\n"
+"за Вашия компютър."
 
 #: main.c:187
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Версия %s"
 
 #: main.c:188
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "Автор: %s"
 
 #: main.c:189
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Сайт: %s"
 
 #: main.c:191
 msgid "License"
-msgstr ""
+msgstr "Лиценз"
 
 #: main.c:194
 #, c-format
@@ -941,11 +950,11 @@ msgstr ""
 
 #: tui_ncurses.c:310
 msgid "Window is too small!"
-msgstr ""
+msgstr "Прозорецът е твърде малък!"
 
 #: tui_ncurses.c:318
 msgid "Press 'h' to see help."
-msgstr ""
+msgstr "Натиснете „h“ за помощ."
 
 #: tui_ncurses.c:474
 #, c-format
@@ -974,7 +983,7 @@ msgstr ""
 
 #: tui_ncurses.c:481
 msgid "Press 'q' key to exit."
-msgstr ""
+msgstr "Натиснете клавиша „q“ за излизане."
 
 #: tui_ncurses.c:483
 msgid "CPU tab:"
@@ -1095,44 +1104,44 @@ msgstr ""
 
 #: cpu-x.h:92
 msgid "bytes"
-msgstr ""
+msgstr "байта"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:95
 msgid "kB"
-msgstr ""
+msgstr "КБ"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: cpu-x.h:97
 msgid "MB"
-msgstr ""
+msgstr "МБ"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: cpu-x.h:99
 msgid "GB"
-msgstr ""
+msgstr "ГБ"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: cpu-x.h:101
 msgid "TB"
-msgstr ""
+msgstr "ТБ"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
 msgid "KiB"
-msgstr ""
+msgstr "КиБ"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
 msgid "MiB"
-msgstr ""
+msgstr "МиБ"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
 msgid "GiB"
-msgstr ""
+msgstr "ГиБ"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
 msgid "TiB"
-msgstr ""
+msgstr "ТиБ"
