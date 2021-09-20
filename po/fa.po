@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-09-17 00:39+0000\n"
+"PO-Revision-Date: 2021-09-21 22:38+0000\n"
 "Last-Translator: Ali Akrami <aliakrami.ce@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fa/>\n"
@@ -360,7 +360,7 @@ msgstr "دریافت ناموفق فرکانس پردازنده (حالت جای
 #: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: مورد %i رسیدگی نشده است"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
@@ -402,18 +402,22 @@ msgstr "مدل پایه"
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"نمایش خانواده پردازنده(\"true\") (محاسبه شده بر اساس "
+"BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as "
 "(ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"نمایش مدل پردازنده (\"true\") (محاسبه شده به صورت "
+"(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
 msgid "User Mode Driver Version"
 msgstr "نسخه راه انداز حالت کاربر"
 
 #: gui_gtk.c:655
-#, c-format, fuzzy
+#, c-format
 msgid "%s"
 msgstr "%s"
 
@@ -511,7 +515,7 @@ msgstr "داده L1"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr ""
+msgstr "کش دستورالعمل L1"
 
 #: main.c:83
 msgid "Level 2"
@@ -868,6 +872,8 @@ msgstr "چاپ اطلاعات مورد نیاز برای جایگزاری در �
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
 "v[im])"
 msgstr ""
+"برای حالت NCurses نگاشت کلیدها را تنظیم کنید "
+"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:367
 msgid "Add default command line arguments"
@@ -1097,11 +1103,11 @@ msgstr "خطایی در هنگام کامپایل regex رخ داده است"
 
 #: util.c:574
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: مجوزهای دسترسی دریافت نشد (جلوی باز شدن پنجره گرفته شد)"
 
 #: util.c:577
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: مجوزهای دسترسی دریافت نشد (دسترسی مجاز نیست)"
 
 #: util.c:580
 msgid "pkexec: command not found"
