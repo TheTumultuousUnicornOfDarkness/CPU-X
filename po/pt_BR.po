@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-07-26 16:35+0000\n"
+"PO-Revision-Date: 2021-09-29 08:36+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/pt_BR/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -61,7 +61,7 @@ msgstr "Invocando o libcpuid para recuperar os dados estáticos"
 #: core.c:277
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr "Falha ao invocar o libcpuid (%s)"
+msgstr "Houve uma falha ao invocar o libcpuid (%s)"
 
 #: core.c:436
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -200,13 +200,12 @@ msgstr "Localizando os dispositivos"
 #: core.c:1012
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr ""
-"Ignore a pesquisa dos dispositivos (permissões erradas no dispositivo %s)"
+msgstr "Ignore a busca dos dispositivos (permissões erradas no dispositivo %s)"
 
 #: core.c:1050
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "A fabricante da GPU é desconhecido: %s (0x%X)"
+msgstr "O fabricante da sua GPU é desconhecido: %s (0x%X)"
 
 #: core.c:1072
 msgid "failed to find chipset vendor and model"
@@ -285,7 +284,7 @@ msgstr "Inativo"
 
 #: core.c:1572 core.c:1573
 msgid "Not started"
-msgstr "Não iniciado"
+msgstr "Não foi iniciado"
 
 #: core.c:1578
 msgid "Active"
@@ -510,7 +509,7 @@ msgstr "Frequências"
 
 #: main.c:75
 msgid "Core Speed"
-msgstr "Velocidade do Núcleo"
+msgstr "Velocidade do núcleo"
 
 #: main.c:76
 msgid "Multiplier"
@@ -518,7 +517,7 @@ msgstr "Multiplicador"
 
 #: main.c:77
 msgid "Bus Speed"
-msgstr "Velocidade do Barramento"
+msgstr "Velocidade do barramento"
 
 #: main.c:78 main.c:156
 msgid "Usage"
@@ -632,7 +631,7 @@ msgstr "Sistema"
 
 #: main.c:128
 msgid "Operating System"
-msgstr "Sistema Operacional"
+msgstr "Sistema operacional"
 
 #: main.c:129
 msgid "Kernel"
@@ -644,7 +643,7 @@ msgstr "Distribuição"
 
 #: main.c:131
 msgid "Hostname"
-msgstr "Nome do Host"
+msgstr "Nome do host"
 
 #: main.c:132
 msgid "Uptime"
@@ -664,7 +663,7 @@ msgstr "Buffers"
 
 #: main.c:138
 msgid "Cached"
-msgstr "Em Cache"
+msgstr "Em cache"
 
 #: main.c:139
 msgid "Free"
@@ -693,7 +692,7 @@ msgstr "Versão UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr "Unidade de Cálculo"
+msgstr "Unidade de cálculo"
 
 #: main.c:153
 msgid "DeviceID"
@@ -709,11 +708,11 @@ msgstr "Temperatura"
 
 #: main.c:157
 msgid "Core Voltage"
-msgstr "Tensão Principal"
+msgstr "Tensão principal"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr "Média da Alimentação"
+msgstr "Média da alimentação"
 
 #: main.c:159
 msgid "GPU clock"
@@ -725,7 +724,7 @@ msgstr "Frequência da memória"
 
 #: main.c:161
 msgid "Memory Used"
-msgstr "Utilização da Memória"
+msgstr "Utilização da memória"
 
 #: main.c:162
 msgid "Resizable BAR"
@@ -753,7 +752,7 @@ msgstr "Nota"
 
 #: main.c:173
 msgid "Run"
-msgstr "Executar"
+msgstr "Execute"
 
 #: main.c:176
 msgid "Parameters"
@@ -810,7 +809,7 @@ msgstr "Este programa vem com ABSOLUTAMENTE NENHUMA GARANTIA"
 
 #: main.c:267
 msgid "Dumping data…"
-msgstr "Despejando dados…"
+msgstr "Despejando os dados…"
 
 #: main.c:310
 msgid "Freeing memory"
