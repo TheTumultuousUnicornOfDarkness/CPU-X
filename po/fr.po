@@ -7,13 +7,14 @@
 # Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>, 2020.
 # Julien Humbert <julroy67@gmail.com>, 2020.
 # J. Lavoie <j.lavoie@net-c.ca>, 2021.
+# Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-05-27 10:35+0000\n"
-"Last-Translator: Xorg <xorgbreaker@gmail.com>\n"
+"PO-Revision-Date: 2021-09-30 15:35+0000\n"
+"Last-Translator: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -134,40 +135,47 @@ msgstr "impossible d'obtenir la version pour la plate-forme %u (%s)"
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"impossible de déterminer le nombre de devices OpenCL pour la plateforme « %s "
+"%s » (%s)"
 
 #: core.c:873
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"impossible d’obtenir tous les devices OpenCL pour la plateforme « %s %s » "
+"(%s)"
 
 #: core.c:887
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "échec lors de l'appel de wordexp (%i)"
+msgstr "impossible d’obtenir le nom pour le device %u (%s)"
 
 #: core.c:894
-#, fuzzy, c-format
-#| msgid "failed to find graphic card driver (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "échec lors de la recherche du pilote de la carte-graphique (%s)"
+msgstr "impossible d’obtenir la version pour le device %u (%s)"
 
 #: core.c:905
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
+"Le driver OpenCL pour « %s %s » n’implémente pas CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:916
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"Le driver OpenCL pour « %s %s » n’implémente pas CL_DEVICE_GFXIP_MAJOR_AMD "
+"(%s)"
 
 #: core.c:928 core.c:938 core.c:963
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Le driver OpenCL pour « %s %s » n’implémente pas CL_DEVICE_MAX_COMPUTE_UNITS "
+"(%s)"
 
 #: core.c:951
 #, c-format
@@ -175,11 +183,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Le driver OpenCL pour « %s %s » n’implémente pas CL_DEVICE_PCI_DOMAIN_ID_NV "
+"(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) ou CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:971
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL n’est pas pris en charge par votre vendeur de GPU (0x%X)"
 
 #: core.c:1000
 msgid "Finding devices"
@@ -404,30 +414,27 @@ msgid "Core #%i"
 msgstr "Cœur #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Famille"
+msgstr "Famille de base"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Modèle"
+msgstr "Modèle de base"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Famille CPU (« réelle ») affichée (calculée à partir de "
+"BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Modèle CPU (« réel ») affiché (calculé par (ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "Version UMD"
+msgstr "Version de l’User Mode Driver (UMD)"
 
 #: gui_gtk.c:655
 #, c-format
@@ -475,20 +482,16 @@ msgid "Family"
 msgstr "Famille"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Famille ét."
+msgstr "Famille affichée"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Modèle"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Modèle ét."
+msgstr "Modèle affiché"
 
 #: main.c:70
 msgid "Temp."
@@ -691,7 +694,7 @@ msgstr "Version UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Unité de calcul"
 
 #: main.c:153
 msgid "DeviceID"
@@ -727,7 +730,7 @@ msgstr "Mémoire utilisée"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr ""
+msgstr "BAR redimensionnable"
 
 #: main.c:164
 msgid "Cards"
