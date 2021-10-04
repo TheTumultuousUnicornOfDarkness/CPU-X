@@ -1,0 +1,1138 @@
+# CPU-X translations template
+# Copyright © 2014-2021 Xorg
+# This file is distributed under the same license as the cpu-x package.
+# Pêşeroja paşerojê <cyax1@protonmail.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: cpu-x\n"
+"Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
+"POT-Creation-Date: 2021-07-24 18:27+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: kmr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: core.c:224
+msgid "Finding CPU technology"
+msgstr ""
+
+#: core.c:246
+#, c-format
+msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
+"model: %i, ext. family: %i"
+msgstr ""
+
+#: core.c:258
+#, c-format
+msgid "%d x %d %s, %d-way"
+msgstr ""
+
+#: core.c:259
+#, c-format
+msgid "%d %s, %d-way"
+msgstr ""
+
+#: core.c:260
+#, c-format
+msgid "%s associative, %d-%s line size"
+msgstr ""
+
+#: core.c:265
+msgid "Calling libcpuid for retrieving static data"
+msgstr ""
+
+#: core.c:277
+#, c-format
+msgid "failed to call libcpuid (%s)"
+msgstr ""
+
+#: core.c:436
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr ""
+
+#: core.c:449
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr ""
+
+#: core.c:474
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr ""
+
+#: core.c:497
+msgid "Calculating CPU multipliers"
+msgstr ""
+
+#: core.c:530
+msgid "Calling dmidecode"
+msgstr ""
+
+#: core.c:563
+msgid "Calculating CPU usage"
+msgstr ""
+
+#: core.c:614
+msgid "Calling bandwidth"
+msgstr ""
+
+#: core.c:695
+#, c-format
+msgid "No kernel driver in use for graphic card at path %s"
+msgstr ""
+
+#: core.c:726
+#, c-format
+msgid "Your GPU kernel driver is unknown: %s"
+msgstr ""
+
+#: core.c:799
+#, c-format
+msgid "Your GPU user mode driver is unknown: %s"
+msgstr ""
+
+#: core.c:803
+#, c-format
+msgid "failed to call GLFW (%i): %s"
+msgstr ""
+
+#: core.c:832
+#, c-format
+msgid "There is no platform with OpenCL support (%s)"
+msgstr ""
+
+#: core.c:841
+#, c-format
+msgid "failed to get all OpenCL platforms (%s)"
+msgstr ""
+
+#: core.c:851
+#, c-format
+msgid "failed to get name for platform %u (%s)"
+msgstr ""
+
+#: core.c:858
+#, c-format
+msgid "failed to get version for platform %u (%s)"
+msgstr ""
+
+#: core.c:865
+#, c-format
+msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+
+#: core.c:873
+#, c-format
+msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+
+#: core.c:887
+#, c-format
+msgid "failed to get name for device %u (%s)"
+msgstr ""
+
+#: core.c:894
+#, c-format
+msgid "failed to get version for device %u (%s)"
+msgstr ""
+
+#: core.c:905
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
+"(%s)"
+msgstr ""
+
+#: core.c:916
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
+"(%s)"
+msgstr ""
+
+#: core.c:928 core.c:938 core.c:963
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support "
+"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr ""
+
+#: core.c:951
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support "
+"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
+"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgstr ""
+
+#: core.c:971
+#, c-format
+msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+msgstr ""
+
+#: core.c:1000
+msgid "Finding devices"
+msgstr ""
+
+#: core.c:1012
+#, c-format
+msgid "Skip devices search (wrong permissions on %s device)"
+msgstr ""
+
+#: core.c:1050
+#, c-format
+msgid "Your GPU vendor is unknown: %s (0x%X)"
+msgstr ""
+
+#: core.c:1072
+msgid "failed to find chipset vendor and model"
+msgstr ""
+
+#: core.c:1074
+msgid "failed to find graphic card vendor and model"
+msgstr ""
+
+#: core.c:1151
+msgid "Retrieving GPU clocks"
+msgstr ""
+
+#: core.c:1185
+msgid "None"
+msgstr ""
+
+#: core.c:1318
+#, c-format
+msgid "Driver for GPU %u doesn't report frequencies"
+msgstr ""
+
+#: core.c:1361
+#, c-format
+msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgstr ""
+
+#: core.c:1365
+msgid "Enabled"
+msgstr ""
+
+#: core.c:1365
+msgid "Disabled"
+msgstr ""
+
+#: core.c:1386
+msgid "failed to retrieve GPU clocks"
+msgstr ""
+
+#: core.c:1403
+msgid "Identifying running system"
+msgstr ""
+
+#: core.c:1406
+msgid "failed to identify running system"
+msgstr ""
+
+#: core.c:1447
+msgid "Calling libprocps"
+msgstr ""
+
+#: core.c:1473
+msgid "Calling libstatgrab"
+msgstr ""
+
+#: core.c:1508
+#, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr ""
+
+#: core.c:1564
+msgid "Updating benchmark status"
+msgstr ""
+
+#: core.c:1565 tui_ncurses.c:822
+#, c-format
+msgid "%u mins"
+msgstr ""
+
+#: core.c:1567 core.c:1568
+msgid "Inactive"
+msgstr ""
+
+#: core.c:1572 core.c:1573
+msgid "Not started"
+msgstr ""
+
+#: core.c:1578
+msgid "Active"
+msgstr ""
+
+#: core.c:1583
+#, c-format
+msgid "(%u hours left)"
+msgstr ""
+
+#: core.c:1585
+#, c-format
+msgid "(%u minutes left)"
+msgstr ""
+
+#: core.c:1587
+#, c-format
+msgid "(%u seconds left)"
+msgstr ""
+
+#: core.c:1592
+#, c-format
+msgid "in %u hours"
+msgstr ""
+
+#: core.c:1594
+#, c-format
+msgid "in %u minutes"
+msgstr ""
+
+#: core.c:1596
+#, c-format
+msgid "in %u seconds"
+msgstr ""
+
+#: core.c:1612
+msgid "Starting benchmark"
+msgstr ""
+
+#: core.c:1631
+msgid "an error occurred while starting benchmark"
+msgstr ""
+
+#: core.c:1648
+msgid "Finding CPU package in fallback mode"
+msgstr ""
+
+#: core.c:1670
+#, c-format
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+msgstr ""
+
+#: core.c:1689
+msgid "Calculating CPU multipliers in fallback mode"
+msgstr ""
+
+#: core.c:1716
+msgid "Retrieving motherboard information in fallback mode"
+msgstr ""
+
+#: core.c:1725
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr ""
+
+#: core.c:1764
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr ""
+
+#: core.c:1809
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr ""
+
+#: core.c:1822
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr ""
+
+#: core.c:1835
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr ""
+
+#: core.c:1850
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr ""
+
+#: core.c:1858
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr ""
+
+#: daemon.c:253
+#, c-format
+msgid "request_handler: case %i not handled"
+msgstr ""
+
+#: gui_gtk.c:62
+msgid "Starting GTK GUI…"
+msgstr ""
+
+#: gui_gtk.c:70
+msgid "failed to import UI in GtkBuilder"
+msgstr ""
+
+#: gui_gtk.c:544
+msgid "Connected to daemon"
+msgstr ""
+
+#: gui_gtk.c:546
+msgid "No polkit authentication agent found"
+msgstr ""
+
+#: gui_gtk.c:550
+msgid "Ask password to start daemon in background"
+msgstr ""
+
+#: gui_gtk.c:556
+msgid "Start daemon"
+msgstr ""
+
+#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
+#, c-format
+msgid "Core #%i"
+msgstr ""
+
+#: gui_gtk.c:568
+msgid "BaseFamily"
+msgstr ""
+
+#: gui_gtk.c:569
+msgid "BaseModel"
+msgstr ""
+
+#: gui_gtk.c:570
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+
+#: gui_gtk.c:571
+msgid "CPU display (\"true\") model (computed as "
+"(ExtendedModel<<4)+BaseModel)"
+msgstr ""
+
+#: gui_gtk.c:630
+msgid "User Mode Driver Version"
+msgstr ""
+
+#: gui_gtk.c:655
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: main.c:56
+msgid "Setting label names"
+msgstr ""
+
+#: main.c:58
+msgid "CPU"
+msgstr ""
+
+#: main.c:59
+msgid "Processor"
+msgstr ""
+
+#: main.c:60 main.c:115 main.c:148
+msgid "Vendor"
+msgstr ""
+
+#: main.c:61
+msgid "Code Name"
+msgstr ""
+
+#: main.c:62
+msgid "Package"
+msgstr ""
+
+#: main.c:63
+msgid "Technology"
+msgstr ""
+
+#: main.c:64
+msgid "Voltage"
+msgstr ""
+
+#: main.c:65
+msgid "Specification"
+msgstr ""
+
+#: main.c:66
+msgid "Family"
+msgstr ""
+
+#: main.c:67
+msgid "Disp. Family"
+msgstr ""
+
+#: main.c:68 main.c:105 main.c:116 main.c:151
+msgid "Model"
+msgstr ""
+
+#: main.c:69
+msgid "Disp. Model"
+msgstr ""
+
+#: main.c:70
+msgid "Temp."
+msgstr ""
+
+#: main.c:71
+msgid "Stepping"
+msgstr ""
+
+#: main.c:72
+msgid "Instructions"
+msgstr ""
+
+#: main.c:74
+msgid "Clocks"
+msgstr ""
+
+#: main.c:75
+msgid "Core Speed"
+msgstr ""
+
+#: main.c:76
+msgid "Multiplier"
+msgstr ""
+
+#: main.c:77
+msgid "Bus Speed"
+msgstr ""
+
+#: main.c:78 main.c:156
+msgid "Usage"
+msgstr ""
+
+#: main.c:80
+msgid "Cache"
+msgstr ""
+
+#: main.c:81
+msgid "L1 Data"
+msgstr ""
+
+#: main.c:82
+msgid "L1 Inst."
+msgstr ""
+
+#: main.c:83
+msgid "Level 2"
+msgstr ""
+
+#: main.c:84
+msgid "Level 3"
+msgstr ""
+
+#: main.c:86
+msgid "Socket(s)"
+msgstr ""
+
+#: main.c:87
+msgid "Core(s)"
+msgstr ""
+
+#: main.c:88
+msgid "Thread(s)"
+msgstr ""
+
+#: main.c:91
+msgid "Caches"
+msgstr ""
+
+#: main.c:95
+#, c-format
+msgid "L%i Cache"
+msgstr ""
+
+#: main.c:96
+msgid "Size"
+msgstr ""
+
+#: main.c:97
+msgid "Speed"
+msgstr ""
+
+#: main.c:99
+msgid "Test"
+msgstr ""
+
+#: main.c:102 main.c:103
+msgid "Motherboard"
+msgstr ""
+
+#: main.c:104
+msgid "Manufacturer"
+msgstr ""
+
+#: main.c:106
+msgid "Revision"
+msgstr ""
+
+#: main.c:108
+msgid "BIOS"
+msgstr ""
+
+#: main.c:109
+msgid "Brand"
+msgstr ""
+
+#: main.c:110
+msgid "Version"
+msgstr ""
+
+#: main.c:111
+msgid "Date"
+msgstr ""
+
+#: main.c:112
+msgid "ROM Size"
+msgstr ""
+
+#: main.c:114
+msgid "Chipset"
+msgstr ""
+
+#: main.c:119 main.c:135
+msgid "Memory"
+msgstr ""
+
+#: main.c:122
+#, c-format
+msgid "Bank %i"
+msgstr ""
+
+#: main.c:123
+msgid "Reference"
+msgstr ""
+
+#: main.c:127
+msgid "System"
+msgstr ""
+
+#: main.c:128
+msgid "Operating System"
+msgstr ""
+
+#: main.c:129
+msgid "Kernel"
+msgstr ""
+
+#: main.c:130
+msgid "Distribution"
+msgstr ""
+
+#: main.c:131
+msgid "Hostname"
+msgstr ""
+
+#: main.c:132
+msgid "Uptime"
+msgstr ""
+
+#: main.c:133
+msgid "Compiler"
+msgstr ""
+
+#: main.c:136
+msgid "Used"
+msgstr ""
+
+#: main.c:137
+msgid "Buffers"
+msgstr ""
+
+#: main.c:138
+msgid "Cached"
+msgstr ""
+
+#: main.c:139
+msgid "Free"
+msgstr ""
+
+#: main.c:140
+msgid "Swap"
+msgstr ""
+
+#: main.c:143
+msgid "Graphics"
+msgstr ""
+
+#: main.c:147
+#, c-format
+msgid "Card %i"
+msgstr ""
+
+#: main.c:149
+msgid "Driver"
+msgstr ""
+
+#: main.c:150
+msgid "UMD Version"
+msgstr ""
+
+#: main.c:152
+msgid "Compute Unit"
+msgstr ""
+
+#: main.c:153
+msgid "DeviceID"
+msgstr ""
+
+#: main.c:154
+msgid "Interface"
+msgstr ""
+
+#: main.c:155
+msgid "Temperature"
+msgstr ""
+
+#: main.c:157
+msgid "Core Voltage"
+msgstr ""
+
+#: main.c:158
+msgid "Power Avg"
+msgstr ""
+
+#: main.c:159
+msgid "GPU clock"
+msgstr ""
+
+#: main.c:160
+msgid "Memory clock"
+msgstr ""
+
+#: main.c:161
+msgid "Memory Used"
+msgstr ""
+
+#: main.c:162
+msgid "Resizable BAR"
+msgstr ""
+
+#: main.c:164
+msgid "Cards"
+msgstr ""
+
+#: main.c:167
+msgid "Bench"
+msgstr ""
+
+#: main.c:168
+msgid "Prime numbers (slow)"
+msgstr ""
+
+#: main.c:169
+msgid "Prime numbers (fast)"
+msgstr ""
+
+#: main.c:172
+msgid "Score"
+msgstr ""
+
+#: main.c:173
+msgid "Run"
+msgstr ""
+
+#: main.c:176
+msgid "Parameters"
+msgstr ""
+
+#: main.c:177
+msgid "Duration"
+msgstr ""
+
+#: main.c:178
+msgid "Threads"
+msgstr ""
+
+#: main.c:181 main.c:186
+msgid "About"
+msgstr ""
+
+#: main.c:183
+#, c-format
+msgid "%s is a Free software that gathers information\n"
+"on CPU, motherboard and more."
+msgstr ""
+
+#: main.c:187
+#, c-format
+msgid "Version %s"
+msgstr ""
+
+#: main.c:188
+#, c-format
+msgid "Author: %s"
+msgstr ""
+
+#: main.c:189
+#, c-format
+msgid "Site: %s"
+msgstr ""
+
+#: main.c:191
+msgid "License"
+msgstr ""
+
+#: main.c:194
+#, c-format
+msgid "This software is distributed under the terms of %s"
+msgstr ""
+
+#: main.c:196 main.c:445
+msgid "This program comes with ABSOLUTELY NO WARRANTY"
+msgstr ""
+
+#: main.c:267
+msgid "Dumping data…"
+msgstr ""
+
+#: main.c:310
+msgid "Freeing memory"
+msgstr ""
+
+#: main.c:338
+msgid "Start graphical user interface (GUI) (default)"
+msgstr ""
+
+#: main.c:339
+msgid "Start text-based user interface (TUI)"
+msgstr ""
+
+#: main.c:340
+msgid "Dump all data on standard output and exit"
+msgstr ""
+
+#: main.c:341
+msgid "Run embedded command dmidecode and exit"
+msgstr ""
+
+#: main.c:342
+msgid "Run embedded command bandwidth and exit"
+msgstr ""
+
+#: main.c:343
+msgid "Set custom time between two refreshes (in seconds)"
+msgstr ""
+
+#: main.c:344
+msgid "Set default tab (integer)"
+msgstr ""
+
+#: main.c:345
+msgid "Select CPU core to monitor (integer)"
+msgstr ""
+
+#: main.c:346
+msgid "Set custom bandwidth test for CPU caches speed (integer)"
+msgstr ""
+
+#: main.c:347
+msgid "Select default graphic card (integer)"
+msgstr ""
+
+#: main.c:348
+msgid "Start and connect to daemon"
+msgstr ""
+
+#: main.c:349
+msgid "Verbose output"
+msgstr ""
+
+#: main.c:350
+msgid "Print help and exit"
+msgstr ""
+
+#: main.c:351
+msgid "Print version and exit"
+msgstr ""
+
+#: main.c:352
+msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgstr ""
+
+#: main.c:353
+msgid "Disable colored output"
+msgstr ""
+
+#: main.c:354
+msgid "Print information for debugging"
+msgstr ""
+
+#: main.c:355
+msgid "Print required information to paste in an issue"
+msgstr ""
+
+#: main.c:356
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
+"v[im])"
+msgstr ""
+
+#: main.c:367
+msgid "Add default command line arguments"
+msgstr ""
+
+#: main.c:368
+msgid "Enforce the bus clock"
+msgstr ""
+
+#: main.c:369
+msgid "Ignore CPU frequency reported by libcpuid"
+msgstr ""
+
+#: main.c:370
+msgid "Read CPUID raw data from a given file"
+msgstr ""
+
+#: main.c:371
+msgid "Only print a message if CPU is not present in the database"
+msgstr ""
+
+#: main.c:395
+#, c-format
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr ""
+
+#: main.c:396
+msgid "Available DISPLAY:"
+msgstr ""
+
+#: main.c:405
+msgid "Available OPTIONS:"
+msgstr ""
+
+#: main.c:413
+msgid "Influenceable environment variables:"
+msgstr ""
+
+#: main.c:444
+msgid "This is free software: you are free to change and redistribute it."
+msgstr ""
+
+#: main.c:446
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr ""
+
+#: main.c:453
+#, c-format
+msgid "-- %-9s version: %s"
+msgstr ""
+
+#: main.c:469
+#, c-format
+msgid "failed to call wordexp (%i)"
+msgstr ""
+
+#: main.c:664
+#, c-format
+msgid "\n"
+"%sOops, something was wrong! %s has received signal %d (%s) and has "
+"crashed.%s"
+msgstr ""
+
+#: main.c:679
+msgid "You can paste this backtrace by opening a new issue here:"
+msgstr ""
+
+#: main.c:707
+msgid "an error occurred while setting locale"
+msgstr ""
+
+#: tui_ncurses.c:72
+msgid "Starting NCurses TUI…"
+msgstr ""
+
+#: tui_ncurses.c:80
+msgid "FATAL ERROR: terminfo database could not be found (try to set "
+"TERMINFO environment variable)"
+msgstr ""
+
+#: tui_ncurses.c:85
+#, c-format
+msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+msgstr ""
+
+#: tui_ncurses.c:310
+msgid "Window is too small!"
+msgstr ""
+
+#: tui_ncurses.c:318
+msgid "Press 'h' to see help."
+msgstr ""
+
+#: tui_ncurses.c:474
+#, c-format
+msgid "Welcome in %s NCurses help!\n"
+msgstr ""
+
+#: tui_ncurses.c:475
+msgid "This help describes how to use this Text-based User Interface."
+msgstr ""
+
+#: tui_ncurses.c:477
+msgid "Global keys:"
+msgstr ""
+
+#: tui_ncurses.c:478
+msgid "Press 'left' key to switch in left tab."
+msgstr ""
+
+#: tui_ncurses.c:479
+msgid "Press 'right' key to switch in right tab."
+msgstr ""
+
+#: tui_ncurses.c:480
+msgid "Press 'h' key to see this help."
+msgstr ""
+
+#: tui_ncurses.c:481
+msgid "Press 'q' key to exit."
+msgstr ""
+
+#: tui_ncurses.c:483
+msgid "CPU tab:"
+msgstr ""
+
+#: tui_ncurses.c:484
+msgid "Press 'down' key to decrease core number to monitor."
+msgstr ""
+
+#: tui_ncurses.c:485
+msgid "Press 'up' key to increase core number to monitor."
+msgstr ""
+
+#: tui_ncurses.c:487
+msgid "Caches tab:"
+msgstr ""
+
+#: tui_ncurses.c:488
+msgid "Press 'down' key to switch to previous test."
+msgstr ""
+
+#: tui_ncurses.c:489
+msgid "Press 'up' key' to switch to next test."
+msgstr ""
+
+#: tui_ncurses.c:491
+msgid "Bench tab:"
+msgstr ""
+
+#: tui_ncurses.c:492
+msgid "Press 'down' key to decrement benchmark duration."
+msgstr ""
+
+#: tui_ncurses.c:493
+msgid "Press 'up' key to increment benchmark duration."
+msgstr ""
+
+#: tui_ncurses.c:494
+msgid "Press 'next page' key to decrement number of threads to use."
+msgstr ""
+
+#: tui_ncurses.c:495
+msgid "Press 'previous page' key to increment number of threads to use."
+msgstr ""
+
+#: tui_ncurses.c:496
+msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+msgstr ""
+
+#: tui_ncurses.c:497
+msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+msgstr ""
+
+#: tui_ncurses.c:499
+msgid "Graphics tab:"
+msgstr ""
+
+#: tui_ncurses.c:500
+msgid "Press 'down' key to switch to previous graphic card."
+msgstr ""
+
+#: tui_ncurses.c:501
+msgid "Press 'up' key to switch to next graphic card."
+msgstr ""
+
+#: tui_ncurses.c:503
+msgid "Press any key to exit this help."
+msgstr ""
+
+#: util.c:198
+#, c-format
+msgid "cannot find unit in '%s' string at position %i"
+msgstr ""
+
+#: util.c:210
+#, c-format
+msgid "String '%s' is too long, truncating…"
+msgstr ""
+
+#: util.c:287
+#, c-format
+msgid "an error occurred while opening file '%s' (%s)"
+msgstr ""
+
+#: util.c:317
+#, c-format
+msgid "an error occurred while running command '%s' (%s)"
+msgstr ""
+
+#: util.c:375 util.c:435
+#, c-format
+msgid "failed to open %s directory"
+msgstr ""
+
+#: util.c:448
+msgid "an error occurred while compiling regex"
+msgstr ""
+
+#: util.c:574
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: util.c:577
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: util.c:580
+msgid "pkexec: command not found"
+msgstr ""
+
+#: util.c:583
+msgid "pkexec: unexpected error code"
+msgstr ""
+
+#: cpu-x.h:53
+msgid "FATAL ERROR: could not allocate memory"
+msgstr ""
+
+#: cpu-x.h:92
+msgid "bytes"
+msgstr ""
+
+#. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
+#: cpu-x.h:95
+msgid "kB"
+msgstr ""
+
+#. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
+#: cpu-x.h:97
+msgid "MB"
+msgstr ""
+
+#. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
+#: cpu-x.h:99
+msgid "GB"
+msgstr ""
+
+#. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
+#: cpu-x.h:101
+msgid "TB"
+msgstr ""
+
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#: cpu-x.h:104
+msgid "KiB"
+msgstr ""
+
+#. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
+#: cpu-x.h:106
+msgid "MiB"
+msgstr ""
+
+#. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
+#: cpu-x.h:108
+msgid "GiB"
+msgstr ""
+
+#. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
+#: cpu-x.h:110
+msgid "TiB"
+msgstr ""
