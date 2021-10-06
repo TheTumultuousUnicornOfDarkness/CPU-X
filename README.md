@@ -46,7 +46,7 @@ These dependencies are needed to **build** CPU-X:
 * A C compiler ([GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/))
 * [CMake](https://www.cmake.org/)
 * [Pkg-Config](https://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
-* [NASM](http://www.nasm.us/)
+* [NASM](https://www.nasm.us/)
 
 ### Build and run dependencies
 
