@@ -262,6 +262,12 @@ void start_tui_ncurses(Labels *data)
 /* Convert keys when an alternative mapping is used */
 #define ALT_CODE 27
 #define ALT(x)   (x & ALT_CODE)
+
+/* glibc's term.h pulls in sys/ttydefaults.h which has it, but musl's does not. */
+#ifndef CTRL
+#define CTRL(x)	(x&037)
+#endif
+
 static int convert_char(int ch)
 {
 	int i = 0;
