@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-05-25 05:32+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-11-02 07:37+0000\n"
+"Last-Translator: Kazuki278 <muadz.hakim.7@gmail.com>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ms/>\n"
 "Language: ms\n"
@@ -18,22 +18,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
 msgstr "Mencari teknologi CPU"
 
 #: core.c:246
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"CPU anda tiada dalam pangkalan data ==> %s, model: %i, model ext.: %i, "
+"CPU anda tiada di dalam pangkalan data ==> %s, model: %i, model ext.: %i, "
 "keluarga ext.: %i"
 
 #: core.c:258
@@ -113,13 +110,12 @@ msgstr "gagal memanggil GLFW (%i):%s"
 #: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Tiada platform yang menyokong OpenCL (%s)"
 
 #: core.c:841
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "gagal memanggil dmidecode"
+msgstr "gagal mendapatkan semua platform OpenCL (%s)"
 
 #: core.c:851
 #, c-format
