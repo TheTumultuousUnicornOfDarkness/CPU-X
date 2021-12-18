@@ -3,13 +3,14 @@
 # Tymofij Lytvynenko <till.svit@gmail.com>, 2019, 2020.
 # Oleksii Melnychenko <moymilo@gmail.com>, 2020.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
+# userko <ukoshulap@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2020-07-11 09:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2021-12-19 09:10+0000\n"
+"Last-Translator: userko <ukoshulap@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -18,23 +19,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
 msgstr "Пошук технології процесора"
 
 #: core.c:246
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"Ваш процесор відсутній у базі даних ==> %s, модель: %i, дод. модель: %i, "
-"дод. сімейство: %i"
+"Ваш процесор відсутній у базі даних ==> %s, модель: %i, загальн. модель: %i, "
+"загальн. сімейство: %i"
 
 #: core.c:258
 #, c-format
@@ -95,84 +93,81 @@ msgstr "Виклик пропускної спроможності"
 #: core.c:695
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Немає драйвера ядра для відео карти за адресою %s"
 
 #: core.c:726
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Невідомий драйвер GPU: %s"
+msgstr "Невідомий драйвер ядра GPU: %s"
 
 #: core.c:799
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Невідомий драйвер GPU: %s"
 
 #: core.c:803
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "не вдалося викликати libcpuid (%s)"
+msgstr "не вдалося викликати GLFW (%s)"
 
 #: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Немає платформи з підтримкою OpenCL (%s)"
 
 #: core.c:841
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "не вдалося викликати dmidecode"
+msgstr "не вдалося викликати усі платформи OpenCL (%s)"
 
 #: core.c:851
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "не вдалося отримати для платформи %u (%s)"
 
 #: core.c:858
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "не вдалося отримати версію для платформи %u (%s)"
 
 #: core.c:865
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"не вдалося визначити кількість пристроїв OpenCL для платформи '%s %s' (%s)"
 
 #: core.c:873
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "не вдалось отримати всі пристрої OpenCL для платформи '%s %s' (%s)"
 
 #: core.c:887
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "не вдалося викликати libcpuid (%s)"
+msgstr "не вдалося отримати назву для пристрою %u (%s)"
 
 #: core.c:894
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "не вдалося отримати версію для пристрою %u (%s)"
 
 #: core.c:905
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:916
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
+msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:928 core.c:938 core.c:963
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:951
 #, c-format
@@ -180,21 +175,22 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) чи CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:971
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL не підтримується вашим виробником (0x%X)"
 
 #: core.c:1000
 msgid "Finding devices"
 msgstr "Пошук пристроїв"
 
 #: core.c:1012
-#, fuzzy, c-format
-#| msgid "Skip devices search (need to be root)"
+#, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Пропустити пошук пристроїв (потрібно мати root)"
+msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
 
 #: core.c:1050
 #, c-format
@@ -215,7 +211,7 @@ msgstr "Отримання частоти GPU"
 
 #: core.c:1185
 msgid "None"
-msgstr ""
+msgstr "Немає"
 
 #: core.c:1318
 #, c-format
@@ -225,15 +221,15 @@ msgstr "Драйвер для GPU %u не звітує частоти"
 #: core.c:1361
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "Поточний: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1365
 msgid "Enabled"
-msgstr ""
+msgstr "Включено"
 
 #: core.c:1365
 msgid "Disabled"
-msgstr ""
+msgstr "Відключено"
 
 #: core.c:1386
 msgid "failed to retrieve GPU clocks"
@@ -317,298 +313,299 @@ msgstr "Запустити тестування"
 
 #: core.c:1631
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "помилка при запуску бенчмарку"
 
 #: core.c:1648
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "Пошук моделі маркування ЦП у аварійному режимі"
 
 #: core.c:1670
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
-"Ваш процесор відсутній у базі даних ==> %s, модель: %i, дод. модель: %i, "
-"дод. сімейство: %i"
+"Не вдалося знайти сокет вашого процесора у базі даних ==> %s, кодова назва: "
+"%is"
 
 #: core.c:1689
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
+msgstr "Підрахунок помножувачів процесора у аварійному режимі"
 
 #: core.c:1716
 msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
+msgstr "Отримання інформації про материнську плату в аварійному режимі"
 
 #: core.c:1725
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
+msgstr "не вдалося отримати інформацію про материнську плату (аварійний режим)"
 
 #: core.c:1764
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "Отримання температури процесора в аварійному режимі"
 
 #: core.c:1809
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
+msgstr "не вдалося отримати температуру процесора (аварійний режим)"
 
 #: core.c:1822
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "Отримання робочої напруги процесора в аварійному режимі"
 
 #: core.c:1835
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
+msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
 
 #: core.c:1850
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "Отримання частоти процесора в аварійному режимі"
 
 #: core.c:1858
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "не вдалося отримати частоту процесора (аварійний режим)"
 
 #: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: випадок %i не опрацьовується"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr ""
+msgstr "Запуск графічного інтерфейсу GTK…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "не вдалося імпортувати інтерфейс в GtkBuilder"
 
 #: gui_gtk.c:544
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Підключення до демона"
 
 #: gui_gtk.c:546
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Не знайдена аутентифікація агента polkit"
 
 #: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Потрібний пароль для запуску демона в фоновому режимі"
 
 #: gui_gtk.c:556
 msgid "Start daemon"
-msgstr ""
+msgstr "Активація демона"
 
 #: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "Ядро #%i"
 
 #: gui_gtk.c:568
 msgid "BaseFamily"
-msgstr ""
+msgstr "Базова Родина"
 
 #: gui_gtk.c:569
 msgid "BaseModel"
-msgstr ""
+msgstr "Базова Модель"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Сімейство процесорів (\"правда\") (вираховується як розширена родина + "
+"базова родина)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Відображена (\"дійсна\") модель процесора (вираховується як "
+"(РозширенаМодель<<4)+БазоваМодель)"
 
 #: gui_gtk.c:630
 msgid "User Mode Driver Version"
-msgstr ""
+msgstr "Версія драйвера користувацького режиму"
 
 #: gui_gtk.c:655
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: main.c:56
 msgid "Setting label names"
-msgstr ""
+msgstr "Встановлення назв міток"
 
 #: main.c:58
 msgid "CPU"
-msgstr ""
+msgstr "ЦП"
 
 #: main.c:59
 msgid "Processor"
-msgstr ""
+msgstr "Процесор"
 
 #: main.c:60 main.c:115 main.c:148
 msgid "Vendor"
-msgstr ""
+msgstr "Виробник"
 
 #: main.c:61
 msgid "Code Name"
-msgstr ""
+msgstr "Кодова назва"
 
 #: main.c:62
 msgid "Package"
-msgstr ""
+msgstr "Тип корпусу"
 
 #: main.c:63
 msgid "Technology"
-msgstr ""
+msgstr "Технологія"
 
 #: main.c:64
 msgid "Voltage"
-msgstr ""
+msgstr "Напруга"
 
 #: main.c:65
 msgid "Specification"
-msgstr ""
+msgstr "Специфікація"
 
 #: main.c:66
 msgid "Family"
-msgstr ""
+msgstr "Родина"
 
 #: main.c:67
 msgid "Disp. Family"
-msgstr ""
+msgstr "Відобр. родина"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
-msgstr ""
+msgstr "Модель"
 
 #: main.c:69
 msgid "Disp. Model"
-msgstr ""
+msgstr "Відобр. модель"
 
 #: main.c:70
 msgid "Temp."
-msgstr ""
+msgstr "Темп."
 
 #: main.c:71
 msgid "Stepping"
-msgstr ""
+msgstr "Крок"
 
 #: main.c:72
 msgid "Instructions"
-msgstr ""
+msgstr "Інструкції"
 
 #: main.c:74
 msgid "Clocks"
-msgstr ""
+msgstr "Такти"
 
 #: main.c:75
 msgid "Core Speed"
-msgstr ""
+msgstr "Тактова частота ядра"
 
 #: main.c:76
 msgid "Multiplier"
-msgstr ""
+msgstr "Множник"
 
 #: main.c:77
 msgid "Bus Speed"
-msgstr ""
+msgstr "Швидкість шини"
 
 #: main.c:78 main.c:156
 msgid "Usage"
-msgstr ""
+msgstr "Використання"
 
 #: main.c:80
 msgid "Cache"
-msgstr ""
+msgstr "Кеш"
 
 #: main.c:81
 msgid "L1 Data"
-msgstr ""
+msgstr "Дані рівня L1"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr ""
+msgstr "Інстр. рівня L1"
 
 #: main.c:83
 msgid "Level 2"
-msgstr ""
+msgstr "Рівень 2"
 
 #: main.c:84
 msgid "Level 3"
-msgstr ""
+msgstr "Рівень 3"
 
 #: main.c:86
 msgid "Socket(s)"
-msgstr ""
+msgstr "Сокет(и)"
 
 #: main.c:87
 msgid "Core(s)"
-msgstr ""
+msgstr "Ядро(/а)"
 
 #: main.c:88
 msgid "Thread(s)"
-msgstr ""
+msgstr "Потік(/и)"
 
 #: main.c:91
 msgid "Caches"
-msgstr ""
+msgstr "Кеші"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "Кеш L%i"
 
 #: main.c:96
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #: main.c:97
 msgid "Speed"
-msgstr ""
+msgstr "Швидкість"
 
 #: main.c:99
 msgid "Test"
-msgstr ""
+msgstr "Тест"
 
 #: main.c:102 main.c:103
 msgid "Motherboard"
-msgstr ""
+msgstr "Материнка"
 
 #: main.c:104
 msgid "Manufacturer"
-msgstr ""
+msgstr "Виробник"
 
 #: main.c:106
 msgid "Revision"
-msgstr ""
+msgstr "Ревізія"
 
 #: main.c:108
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:109
 msgid "Brand"
-msgstr ""
+msgstr "Марка"
 
 #: main.c:110
 msgid "Version"
-msgstr ""
+msgstr "Версія"
 
 #: main.c:111
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: main.c:112
 msgid "ROM Size"
-msgstr ""
+msgstr "Розмір ROM"
 
 #: main.c:114
 msgid "Chipset"
-msgstr ""
+msgstr "Чіпсет"
 
 #: main.c:119 main.c:135
 msgid "Memory"
-msgstr ""
+msgstr "Пам'ять"
 
 #: main.c:122
 #, c-format
 msgid "Bank %i"
-msgstr ""
+msgstr "Банк %i"
 
 #: main.c:123
 msgid "Reference"
