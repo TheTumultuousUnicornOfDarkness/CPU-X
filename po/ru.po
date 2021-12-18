@@ -3,7 +3,7 @@
 # Translators:
 # TotalCaesar659 <x24cm5b8c54q6szxw@yandex.ru>, 2016,2018
 # Xorg <xorgbreaker@gmail.com>, 2019.
-# Andrei Stepanov <adem4ik@gmail.com>, 2020.
+# Andrei Stepanov <adem4ik@gmail.com>, 2020, 2021.
 # Artem <KovalevArtem.ru@gmail.com>, 2020.
 # Alex <theavganec@gmail.com>, 2020.
 # Виктор Ерухин <official159ru@mail.ru>, 2021.
@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-06-14 18:32+0000\n"
-"Last-Translator: S3aBreeze <paperwork@evilcorp.ltd>\n"
+"PO-Revision-Date: 2021-12-19 09:10+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -84,7 +84,7 @@ msgstr ""
 
 #: core.c:497
 msgid "Calculating CPU multipliers"
-msgstr "Подсчет множителей ЦП"
+msgstr "Подсчёт множителей ЦП"
 
 #: core.c:530
 msgid "Calling dmidecode"
@@ -92,7 +92,7 @@ msgstr "Вызов dmidecode"
 
 #: core.c:563
 msgid "Calculating CPU usage"
-msgstr "Подсчет использования ЦП"
+msgstr "Подсчёт использования ЦП"
 
 #: core.c:614
 msgid "Calling bandwidth"
@@ -335,7 +335,7 @@ msgstr "Ваш сокет ЦП отсутствует в базе данных =
 
 #: core.c:1689
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Подсчет множителей ЦП в fallback-режиме"
+msgstr "Подсчёт множителей ЦП в режиме c откатом"
 
 #: core.c:1716
 msgid "Retrieving motherboard information in fallback mode"
@@ -404,30 +404,28 @@ msgid "Core #%i"
 msgstr "Ядро #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Семейство"
+msgstr "Базовое семейство"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Модель"
+msgstr "Базовая Модель"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Семейство отображаемых ЦП (\"истина\") (рассчитывается как расширенное "
+"семейство + базовое семейство)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Модель отображения ЦП (\"истина\") (вычисляется как (расширенная модель << 4)"
+" + базовая модель)"
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "Версия UMD"
+msgstr "Версия драйвера пользовательского режима"
 
 #: gui_gtk.c:655
 #, c-format
@@ -475,20 +473,16 @@ msgid "Family"
 msgstr "Семейство"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Доп. семейство"
+msgstr "Отобр. семейство"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Модель"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Доп. модель"
+msgstr "Отбр. модель"
 
 #: main.c:70
 msgid "Temp."
@@ -577,7 +571,7 @@ msgstr "Тест"
 
 #: main.c:102 main.c:103
 msgid "Motherboard"
-msgstr "Материнская плата"
+msgstr "Плата"
 
 #: main.c:104
 msgid "Manufacturer"
@@ -674,7 +668,7 @@ msgstr "Подкачка"
 
 #: main.c:143
 msgid "Graphics"
-msgstr "Графическая подсистема"
+msgstr "Графика"
 
 #: main.c:147
 #, c-format
@@ -711,7 +705,7 @@ msgstr "Напряжение ядра"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr "Среднее напряжение"
+msgstr "Сред. напряжение"
 
 #: main.c:159
 msgid "GPU clock"
@@ -735,7 +729,7 @@ msgstr "Карты"
 
 #: main.c:167
 msgid "Bench"
-msgstr "Бенчмарк"
+msgstr "Тест"
 
 #: main.c:168
 msgid "Prime numbers (slow)"
@@ -747,7 +741,7 @@ msgstr "Простые числа (быстро)"
 
 #: main.c:172
 msgid "Score"
-msgstr "Счет"
+msgstr "Очки"
 
 #: main.c:173
 msgid "Run"
@@ -759,7 +753,7 @@ msgstr "Параметры"
 
 #: main.c:177
 msgid "Duration"
-msgstr "Продолжительность"
+msgstr "Длительность"
 
 #: main.c:178
 msgid "Threads"
@@ -775,8 +769,8 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
-"%s это свободное программное обеспечение\n"
-"для сбора информации о процессоре, видеокарте и др."
+"%s — это свободное программное обеспечение\n"
+"для сбора информации о процессоре, видеокарте и пр."
 
 #: main.c:187
 #, c-format
@@ -1051,15 +1045,15 @@ msgstr "Нажмите клавишу \"вверх\" для перехода к 
 
 #: tui_ncurses.c:491
 msgid "Bench tab:"
-msgstr "Вкладка \"Бенчмарк\":"
+msgstr "Вкладка «Тест»:"
 
 #: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Нажмите клавишу \"вниз\" для уменьшения длительности бенчмарка."
+msgstr "Нажмите клавишу «вниз» для уменьшения длительности бенчмарка."
 
 #: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "Нажмите клавишу \"вверх\" для увеличения длительности бенчмарка."
+msgstr "Нажмите клавишу «вверх» для увеличения длительности бенчмарка."
 
 #: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -1076,14 +1070,13 @@ msgstr ""
 #: tui_ncurses.c:496
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
-"Нажмите клавишу \"S\" для запуска/остановки бенчмарка \"простые числа "
-"(медленно)\"."
+"Нажмите клавишу «S» для запуска/остановки бенчмарка «простые числа "
+"(медленно)»."
 
 #: tui_ncurses.c:497
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"Нажмите клавишу \"F\" для запуска/остановки бенчмарка \"простые числа "
-"(быстро)\"."
+"Нажмите клавишу «F» для запуска/остановки бенчмарка «простые числа (быстро)»."
 
 #: tui_ncurses.c:499
 msgid "Graphics tab:"
