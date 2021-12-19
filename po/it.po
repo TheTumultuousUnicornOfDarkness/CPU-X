@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-09-09 10:32+0000\n"
+"PO-Revision-Date: 2021-12-19 09:10+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -443,7 +443,7 @@ msgstr "Produttore"
 
 #: main.c:61
 msgid "Code Name"
-msgstr "Codice"
+msgstr "Nome in codice"
 
 #: main.c:62
 msgid "Package"
@@ -515,11 +515,11 @@ msgstr "Cache"
 
 #: main.c:81
 msgid "L1 Data"
-msgstr "Dati L1"
+msgstr "L1 Dati"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr "Istr. L1"
+msgstr "L1 Istr."
 
 #: main.c:83
 msgid "Level 2"
@@ -641,7 +641,7 @@ msgstr "Compilatore"
 
 #: main.c:136
 msgid "Used"
-msgstr "Utilizzati"
+msgstr "In uso"
 
 #: main.c:137
 msgid "Buffers"
@@ -762,8 +762,8 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
-"%s è software libero che raccoglie informazioni\n"
-"su CPU, scheda grafica e altre."
+"%s è un software libero che raccoglie informazioni\n"
+"su CPU, scheda grafica ed altro."
 
 #: main.c:187
 #, c-format
@@ -787,7 +787,7 @@ msgstr "Licenza"
 #: main.c:194
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr "Questo software è distribuito nei termini della %s"
+msgstr "Questo software è distribuito sotto i termini della %s"
 
 #: main.c:196 main.c:445
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
@@ -861,8 +861,7 @@ msgstr "Stampa il numero di versione ed esci"
 
 #: main.c:352
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
-"Stampa i valori CPUID in decimale (esadecimale per impostazione predefinita)"
+msgstr "Stampa i valori CPUID in decimale (predefinito in esadecimale)"
 
 #: main.c:353
 msgid "Disable colored output"
@@ -923,7 +922,7 @@ msgstr "Variabili di ambiente influenzabili:"
 #: main.c:444
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
-"Questo è un software libero: sei libero/a di modificarlo e ridistribuirlo."
+"Questo è un software libero: sei libero di modificarlo e ridistribuirlo."
 
 #: main.c:446
 #, c-format
@@ -952,6 +951,7 @@ msgstr ""
 "bloccato.%s"
 
 #: main.c:679
+#, fuzzy
 msgid "You can paste this backtrace by opening a new issue here:"
 msgstr "Puoi incollare questo backtrace aprendo un nuovo rapporto qui:"
 
