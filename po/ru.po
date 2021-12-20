@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-12-20 03:09+0000\n"
+"PO-Revision-Date: 2021-12-22 04:51+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -176,7 +176,7 @@ msgstr ""
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
-"Дрйвер OpenCL для '%s %s' не поддерживает CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+"Драйвер OpenCL для «%s %s» не поддерживает CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:951
 #, c-format
@@ -326,7 +326,7 @@ msgstr "ошибка при запуске бенчмарка"
 
 #: core.c:1648
 msgid "Finding CPU package in fallback mode"
-msgstr "Поиск корпусировки ЦП в fallback-режиме"
+msgstr "Поиск корпусировки ЦП в режиме с откатом"
 
 #: core.c:1670
 #, c-format
@@ -339,35 +339,35 @@ msgstr "Подсчёт множителей ЦП в режиме c откато�
 
 #: core.c:1716
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "Получение информации о материнской плате в fallback-режиме"
+msgstr "Получение информации о материнской плате в режиме с откатом"
 
 #: core.c:1725
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "не удалось получить информацию о материнской плате (fallback-режим)"
+msgstr "не удалось получить информацию о материнской плате (режим с откатом)"
 
 #: core.c:1764
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Получение температуры ЦП в fallback-режиме"
+msgstr "Получение температуры ЦП в режиме с откатом"
 
 #: core.c:1809
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "не удалось получить температуру ЦП (fallback-режим)"
+msgstr "не удалось получить температуру ЦП (режим с откатом)"
 
 #: core.c:1822
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Получение напряжения ЦП в fallback-режиме"
+msgstr "Получение напряжения ЦП в режиме с откатом"
 
 #: core.c:1835
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "не удалось получить напряжение ЦП (fallback-режим)"
+msgstr "не удалось получить напряжение ЦП (режим с откатом)"
 
 #: core.c:1850
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Получение частоты ЦП в fallback-режиме"
+msgstr "Получение частоты ЦП в режиме с откатом"
 
 #: core.c:1858
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "не удалось получить частоту ЦП (fallback-режим)"
+msgstr "не удалось получить частоту ЦП (режим с откатом)"
 
 #: daemon.c:253
 #, c-format
@@ -396,7 +396,7 @@ msgstr "Требуется пароль для запуска демона в ф
 
 #: gui_gtk.c:556
 msgid "Start daemon"
-msgstr "Запустить демона"
+msgstr "Запуск демона"
 
 #: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
 #, c-format
@@ -482,7 +482,7 @@ msgstr "Модель"
 
 #: main.c:69
 msgid "Disp. Model"
-msgstr "Отбр. модель"
+msgstr "Отобр. модель"
 
 #: main.c:70
 msgid "Temp."
@@ -526,7 +526,7 @@ msgstr "Уровень 1 (данные)"
 
 #: main.c:82
 msgid "L1 Inst."
-msgstr "1 уровень инструкц."
+msgstr "Уровень 1 (инструкц.)"
 
 #: main.c:83
 msgid "Level 2"
@@ -571,7 +571,7 @@ msgstr "Тест"
 
 #: main.c:102 main.c:103
 msgid "Motherboard"
-msgstr "Плата"
+msgstr "Мат. плата"
 
 #: main.c:104
 msgid "Manufacturer"
@@ -656,7 +656,7 @@ msgstr "Буферы"
 
 #: main.c:138
 msgid "Cached"
-msgstr "Кэш"
+msgstr "Кэшировано"
 
 #: main.c:139
 msgid "Free"
@@ -685,11 +685,11 @@ msgstr "Версия UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr "Вычислительная Единица"
+msgstr "Вычислительный узел"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr "Идентификатор устройства"
+msgstr "ИД устройства"
 
 #: main.c:154
 msgid "Interface"
@@ -721,7 +721,7 @@ msgstr "Используемая память"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr "Изменяемый размер BAR"
+msgstr "Resizable BAR"
 
 #: main.c:164
 msgid "Cards"
@@ -912,7 +912,7 @@ msgstr "Распечатать сообщение, только если ЦП о
 #: main.c:395
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Использование: %s ДИСПЛЕЙ [ОПЦИИ]\n"
+msgstr "Использование: %s ВЫВЕСТИ [ПАРАМЕТРЫ]\n"
 
 #: main.c:396
 msgid "Available DISPLAY:"
@@ -974,7 +974,7 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
-"FATAL ERROR: база данных terminfo не найдена (попробуйте установить "
+"КРИТИЧЕСКАЯ ОШИБКА: база данных terminfo не найдена (попробуйте установить "
 "переменную окружения TERMINFO)"
 
 #: tui_ncurses.c:85
@@ -1125,7 +1125,7 @@ msgstr "ошибка при компиляции регулярных выраж
 
 #: util.c:574
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: не удается получить авторизацию (диалог отключен)"
+msgstr "pkexec: не удаётся получить авторизацию (диалог отключён)"
 
 #: util.c:577
 msgid "pkexec: authorization could not be obtained (not authorized)"
@@ -1141,7 +1141,7 @@ msgstr "pkexec: непредвиденный код ошибки"
 
 #: cpu-x.h:53
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "FATAL ERROR: Не удалось распределить память"
+msgstr "КРИТИЧЕСКАЯ ОШИБКА: не удалось распределить память"
 
 #: cpu-x.h:92
 msgid "bytes"
@@ -1150,22 +1150,22 @@ msgstr "байты"
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:95
 msgid "kB"
-msgstr "кб"
+msgstr "КБ"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: cpu-x.h:97
 msgid "MB"
-msgstr "мб"
+msgstr "МБ"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: cpu-x.h:99
 msgid "GB"
-msgstr "гб"
+msgstr "ГБ"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: cpu-x.h:101
 msgid "TB"
-msgstr "тб"
+msgstr "ТБ"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: cpu-x.h:104
