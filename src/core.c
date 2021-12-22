@@ -34,6 +34,7 @@
 #include <sys/utsname.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <sched.h>
 #include "core.h"
 #include "cpu-x.h"
 #include "ipc.h"
@@ -260,6 +261,22 @@ static int call_libcpuid_static(Labels *data)
 	const char *fmt_lines    = _("%s associative, %d-%s line size");
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
+
+	cpu_set_t *cpuset;
+	cpuset = CPU_ALLOC(0);
+	CPU_ZERO_S(sizeof(cpuset), cpuset);
+	if(cpuset == NULL)
+	{
+		MSG_ERROR(_("failed to call CPU_ZERO_S"));
+		return 1;
+	}
+	CPU_SET(0, cpuset);
+	err = sched_setaffinity(0, sizeof(cpuset), cpuset);
+	if(err)
+	{
+		MSG_ERROR(_("failed to call sched_setaffinity"));
+		return 1;
+	}
 
 	/* Call libcpuid */
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving static data"));
