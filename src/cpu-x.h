@@ -246,6 +246,11 @@ enum EnMultipliers
 	MULT_T
 };
 
+enum CoreType {
+	INTEL_ATOM = 0x20,
+	INTEL_CORE = 0x40,
+};
+
 typedef struct
 {
 	int8_t  cpu_vendor_id;
@@ -330,6 +335,12 @@ typedef struct
 	char     *prefix;
 	uint64_t divisor;
 } PrefixUnit;
+
+typedef struct
+{
+	uint32_t big_cpu_count, small_cpu_count;
+	uint32_t big_th_per_cpu, small_th_per_cpu;
+} HybridTopology;
 
 extern Options *opts;
 

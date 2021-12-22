@@ -261,8 +261,9 @@ static int call_libcpuid_static(Labels *data)
 	const char *fmt_lines    = _("%s associative, %d-%s line size");
 	struct cpu_raw_data_t raw;
 	struct cpu_id_t datanr;
-
 	cpu_set_t *cpuset;
+	bool is_hybrid;
+
 	cpuset = CPU_ALLOC(0);
 	CPU_ZERO_S(sizeof(cpuset), cpuset);
 	if(cpuset == NULL)
@@ -293,6 +294,23 @@ static int call_libcpuid_static(Labels *data)
 	{
 		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
 		return 1;
+	}
+
+	/* Hybrid flag: EAX=0x7, ECX=0 => EDX: Bit15 */
+	is_hybrid = ((raw.basic_cpuid[0x7][3] >> 15) & 1) == 1;
+	if(is_hybrid)
+	{
+		/* Core Type: EAX=0x1A, ECX=0 => EAX: Bit31-24 */
+		uint32_t core_type = (raw.basic_cpuid[0x1A][0] >> 24);
+		switch(core_type)
+		{
+			case INTEL_CORE:
+				break;
+			case INTEL_ATOM:
+				break;
+			default:
+				break;
+		}
 	}
 
 	/* Some prerequisites */
