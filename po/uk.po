@@ -3,13 +3,13 @@
 # Tymofij Lytvynenko <till.svit@gmail.com>, 2019, 2020.
 # Oleksii Melnychenko <moymilo@gmail.com>, 2020.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
-# userko <ukoshulap@gmail.com>, 2021.
+# userko <ukoshulap@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-12-22 04:51+0000\n"
+"PO-Revision-Date: 2022-01-09 09:54+0000\n"
 "Last-Translator: userko <ukoshulap@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -965,84 +965,88 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"КРИТИЧНА ПОМИЛКА: неможливо знайти базу даних terminfo (спробуй встановити "
+"змінну середовища TERMINFO)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Неможливо встановити %s термінал (err=%i); поворот до %s"
 
 #: tui_ncurses.c:310
 msgid "Window is too small!"
-msgstr ""
+msgstr "Вікно є надто малим!"
 
 #: tui_ncurses.c:318
 msgid "Press 'h' to see help."
-msgstr ""
+msgstr "Натисніть 'h' для отримання допомоги."
 
 #: tui_ncurses.c:474
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "Ласкаво просимо до %s допомоги NCurses!\n"
 
 #: tui_ncurses.c:475
 msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
+msgstr "Ця справка описує використання текстового інтерфейсу корстувача."
 
 #: tui_ncurses.c:477
 msgid "Global keys:"
-msgstr ""
+msgstr "Глобальні клавіші:"
 
 #: tui_ncurses.c:478
 msgid "Press 'left' key to switch in left tab."
-msgstr ""
+msgstr "Натисніть клавішу 'вліво', щоб перейти на вкладку ліворуч."
 
 #: tui_ncurses.c:479
 msgid "Press 'right' key to switch in right tab."
-msgstr ""
+msgstr "Натисніть клавішу 'вправо', щоб перейти на вкладку праворуч."
 
 #: tui_ncurses.c:480
 msgid "Press 'h' key to see this help."
-msgstr ""
+msgstr "Натисніть клавішу 'h' для виклику цієї допомоги."
 
 #: tui_ncurses.c:481
 msgid "Press 'q' key to exit."
-msgstr ""
+msgstr "Натисніть клавішу 'q', щоб вийти."
 
 #: tui_ncurses.c:483
 msgid "CPU tab:"
-msgstr ""
+msgstr "Вкладка \"ЦП\":"
 
 #: tui_ncurses.c:484
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr ""
+"Натисніть клавішу \"вниз\", щоб зменшити кількості ядер для моніторингу."
 
 #: tui_ncurses.c:485
 msgid "Press 'up' key to increase core number to monitor."
 msgstr ""
+"Натисніть клавішу \"вгору\", щоб збільшити кількість ядер для моніторингу."
 
 #: tui_ncurses.c:487
 msgid "Caches tab:"
-msgstr ""
+msgstr "Вкладка \"Кеші\":"
 
 #: tui_ncurses.c:488
 msgid "Press 'down' key to switch to previous test."
-msgstr ""
+msgstr "Натисніть клавішу \"вниз\", щоб перейти до попереднього тесту."
 
 #: tui_ncurses.c:489
 msgid "Press 'up' key' to switch to next test."
-msgstr ""
+msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступного тесту."
 
 #: tui_ncurses.c:491
 msgid "Bench tab:"
-msgstr ""
+msgstr "Вкладка \"Тест\":"
 
 #: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
+msgstr "Натисніть клавішу \"вниз\" для змешення тривалості тесту."
 
 #: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
+msgstr "Натисніть клавішу \"вгору\" для збільшення тривалості тесту."
 
 #: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
