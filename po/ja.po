@@ -5,13 +5,14 @@
 # Huang Zhiyi <hzy980512@126.com>, 2020.
 # Takuro Onoue <kusanaginoturugi@gmail.com>, 2020.
 # Umio Yasuno <coelacanth_dream@pm.me>, 2021.
+# Kyotaro Iijima <kyotaro.eyes@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2021-07-24 18:27+0000\n"
-"PO-Revision-Date: 2021-06-08 08:34+0000\n"
-"Last-Translator: Umio Yasuno <coelacanth_dream@pm.me>\n"
+"PO-Revision-Date: 2022-01-26 21:54+0000\n"
+"Last-Translator: Kyotaro Iijima <kyotaro.eyes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
 "Language: ja\n"
@@ -19,20 +20,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
-msgstr "CPUテクノロジーを確認中"
+msgstr "CPU 性能の識別中"
 
 #: core.c:246
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
-msgstr ""
-"このCPUはデータベースにありませんでした ==> %s、モデル: %i、拡張モデル：%i、"
-"拡張ファミリー：%i"
+msgstr "この CPU はデータベースに登録がありません ==> %s、モデル: %i、拡張モデル：%i、拡張ファミリー：%i"
 
 #: core.c:258
 #, c-format
@@ -47,40 +46,40 @@ msgstr "%d %s, %d-way"
 #: core.c:260
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s 連帯, %d-%s 行サイズ"
+msgstr "%s 自動調整, %d-%s 行サイズ"
 
 #: core.c:265
 msgid "Calling libcpuid for retrieving static data"
-msgstr "静的データを取得するためにlibcpuidを呼び出しています"
+msgstr "静的データを取得するため libcpuid を呼び出し中"
 
 #: core.c:277
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr "libcpuidの呼び出しに失敗しました（%s）"
+msgstr "libcpuid の取得に失敗（%s）"
 
 #: core.c:436
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "動的データを取得するために libcpuid を呼び出しています"
+msgstr "動的データを取得するため libcpuid を呼び出し中"
 
 #: core.c:449
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "CPUMSR静的値を取得するために libcpuid を呼び出す"
+msgstr "CPU の MSR スタティックの値を取得するため libcpuid を呼び出し中"
 
 #: core.c:474
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "動的なCPU MSR値を取得するために libcpuid を呼び出しています"
+msgstr "CPU の MSR ダイナミックの値を取得するため libcpuid を呼び出し中"
 
 #: core.c:497
 msgid "Calculating CPU multipliers"
-msgstr "クロック倍率を計算しています"
+msgstr "クロック倍率の計算中"
 
 #: core.c:530
 msgid "Calling dmidecode"
-msgstr "dmidecode を呼び出す"
+msgstr "dmidecode を呼び出し中"
 
 #: core.c:563
 msgid "Calculating CPU usage"
-msgstr "CPU 使用率の計算"
+msgstr "CPU 使用率の計算中"
 
 #: core.c:614
 msgid "Calling bandwidth"
@@ -89,85 +88,79 @@ msgstr "帯域幅を呼び出し中"
 #: core.c:695
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
-"パス %s でグラフィックカードに使用されているカーネルドライバがありません"
+msgstr "パス %s にグラフィック カードに使用するカーネル ドライバがありません"
 
 #: core.c:726
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "GPUドライバーが不明です: %s"
+msgstr "不明な GPU カーネル ドライバー: %s"
 
 #: core.c:799
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "GPUドライバーが不明です: %s"
+msgstr "不明なユーザー モードの GPU ドライバー: %s"
 
 #: core.c:803
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "wordexpの呼び出しに失敗しました（%i）"
+msgstr "GLFW の取得に失敗（%i）: %s"
 
 #: core.c:832
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "OpenCL に対応するプラットフォームはありません（%s）"
 
 #: core.c:841
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "wordexpの呼び出しに失敗しました（%i）"
+msgstr "すべての OpenCL プラットフォームの取得に失敗（%s）"
 
 #: core.c:851
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "プラットフォーム %u の名前の取得に失敗（%s）"
 
 #: core.c:858
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "プラットフォーム %u のバージョンの取得に失敗（%s）"
 
 #: core.c:865
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗（%s）"
 
 #: core.c:873
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗（%s）"
 
 #: core.c:887
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "wordexpの呼び出しに失敗しました（%i）"
+msgstr "デバイス %u の名前の取得に失敗（%s）"
 
 #: core.c:894
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "デバイス %u (%s) のバージョンの取得に失敗"
 
 #: core.c:905
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応"
 
 #: core.c:916
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応"
 
 #: core.c:928 core.c:938 core.c:963
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応"
 
 #: core.c:951
 #, c-format
@@ -175,52 +168,53 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"'%s %s´の OpenCL ドライバは、CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
+"CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応"
 
 #: core.c:971
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OPENCL は GPU ベンダー (0x%X) に未対応"
 
 #: core.c:1000
 msgid "Finding devices"
-msgstr "デバイスを探しています"
+msgstr "デバイスの識別中"
 
 #: core.c:1012
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "デバイス検索をスキップします（デバイス%sの不正なパーミッション）"
+msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
 
 #: core.c:1050
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "不明なベンダー（%s）によるGPUです（0x%X）"
+msgstr "不明な GPU ベンダー : %s（0x %X）"
 
 #: core.c:1072
 msgid "failed to find chipset vendor and model"
-msgstr "チップセットのベンダーとモデルの検索に失敗しました"
+msgstr "チップセットのベンダーとモデルの判別に失敗"
 
 #: core.c:1074
 msgid "failed to find graphic card vendor and model"
-msgstr "グラフィックカードのベンダーとモデルの検索に失敗しました"
+msgstr "グラフィック カードのベンダーとモデルの取得に失敗"
 
 #: core.c:1151
 msgid "Retrieving GPU clocks"
-msgstr "GPUクロックを取得しています"
+msgstr "GPU クロックの取得"
 
 #: core.c:1185
-#, fuzzy
 msgid "None"
-msgstr "何もありません"
+msgstr "None"
 
 #: core.c:1318
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "GPU %u のドライバは温度を報告していません"
+msgstr "GPU ドライバー %u は周波数を通知しません"
 
 #: core.c:1361
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "現在: PCIe Gen%1dx%d / 最大: Gen%1dx%d"
 
 #: core.c:1365
 msgid "Enabled"
@@ -232,23 +226,23 @@ msgstr "無効"
 
 #: core.c:1386
 msgid "failed to retrieve GPU clocks"
-msgstr "GPUクロックの取得に失敗しました"
+msgstr "GPU クロックの取得に失敗"
 
 #: core.c:1403
 msgid "Identifying running system"
-msgstr "実行中のシステムを認識しています"
+msgstr "実行中のシステムの識別"
 
 #: core.c:1406
 msgid "failed to identify running system"
-msgstr "実行中のシステムの認識に失敗しました"
+msgstr "実行中のシステムの識別に失敗"
 
 #: core.c:1447
 msgid "Calling libprocps"
-msgstr "libprocpsを呼び出しています"
+msgstr "libprocps の呼び出し中"
 
 #: core.c:1473
 msgid "Calling libstatgrab"
-msgstr "libstatgrabを呼び出しています"
+msgstr "libstatgrab を呼び出し中"
 
 #: core.c:1508
 #, c-format
@@ -257,7 +251,7 @@ msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
 #: core.c:1564
 msgid "Updating benchmark status"
-msgstr "ベンチマークの状態を更新しています"
+msgstr "ベンチマーク状態の更新中"
 
 #: core.c:1565 tui_ncurses.c:822
 #, c-format
@@ -265,132 +259,128 @@ msgid "%u mins"
 msgstr "%u 分"
 
 #: core.c:1567 core.c:1568
-#, fuzzy
 msgid "Inactive"
-msgstr "停止"
+msgstr "休止中"
 
 #: core.c:1572 core.c:1573
-#, fuzzy
 msgid "Not started"
-msgstr "開始されていません"
+msgstr "停止中"
 
 #: core.c:1578
-#, fuzzy
 msgid "Active"
-msgstr "実行"
+msgstr "動作中"
 
 #: core.c:1583
 #, c-format
 msgid "(%u hours left)"
-msgstr "（残り%u 時間）"
+msgstr "（残り %u 時間）"
 
 #: core.c:1585
 #, c-format
 msgid "(%u minutes left)"
-msgstr "（残り%u 分）"
+msgstr "（残り %u 分）"
 
 #: core.c:1587
 #, c-format
 msgid "(%u seconds left)"
-msgstr "（残り%u 秒）"
+msgstr "（残り %u 秒）"
 
 #: core.c:1592
-#, fuzzy, c-format
+#, c-format
 msgid "in %u hours"
-msgstr "%u 時間"
+msgstr "/ %u 時間"
 
 #: core.c:1594
-#, fuzzy, c-format
+#, c-format
 msgid "in %u minutes"
-msgstr "%u 分"
+msgstr "/ %u 分"
 
 #: core.c:1596
-#, fuzzy, c-format
+#, c-format
 msgid "in %u seconds"
-msgstr "%u 秒"
+msgstr "/ %u 秒"
 
 #: core.c:1612
 msgid "Starting benchmark"
-msgstr "ベンチマークを開始しています"
+msgstr "ベンチマークの開始"
 
 #: core.c:1631
 msgid "an error occurred while starting benchmark"
-msgstr "ベンチマークの開始中にエラーが発生しました"
+msgstr "ベンチマーク開始時にエラーが発生"
 
 #: core.c:1648
 msgid "Finding CPU package in fallback mode"
-msgstr "fallbackモードでCPUパッケージの検索中"
+msgstr "fallback モードで CPU パッケージの識別中"
 
 #: core.c:1670
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr ""
-"このCPUソケットはデータベースにありませんでした ==> %s、コードネーム: %s"
+msgstr "この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
 
 #: core.c:1689
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "fallbackモードでCPU倍率を計算しています"
+msgstr "fallback モードで CPU 倍率の計算"
 
 #: core.c:1716
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "fallbackモードでマザーボードの情報を取得しています"
+msgstr "fallback モードでマザーボード情報の取得"
 
 #: core.c:1725
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "マザーボードの情報の取得に失敗しました（fallbackモード）"
+msgstr "マザーボード情報の取得に失敗（fallback モード）"
 
 #: core.c:1764
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "fallbackモードでCPUの温度を取得しています"
+msgstr "fallback モードで CPU 温度の取得"
 
 #: core.c:1809
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "CPUの温度の取得に失敗しました（fallbackモード）"
+msgstr "CPU 温度の取得に失敗（fallback モード）"
 
 #: core.c:1822
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "fallbackモードでCPUの電圧を取得しています"
+msgstr "fallback モードで CPU 電圧の取得"
 
 #: core.c:1835
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "CPUの電圧の取得に失敗しました（fallbackモード）"
+msgstr "CPU 電圧の取得に失敗（fallback モード）"
 
 #: core.c:1850
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "fallbackモードでCPUのクロック倍率を取得しています"
+msgstr "fallback モードでCPU クロック周波数の取得"
 
 #: core.c:1858
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "CPUのクロック倍率の取得に失敗しました（fallbackモード）"
+msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
 
 #: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr "要求されたハンドラー: %iは処理されません"
+msgstr "request_handler: %i は未搭載"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr "GTK GUIを開始しています…"
+msgstr "GTK GUI の起動…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
-msgstr "GtkBuilderからのUIのインポートに失敗しました"
+msgstr "GtkBuilder での UI のインポートに失敗"
 
 #: gui_gtk.c:544
 msgid "Connected to daemon"
-msgstr "デーモンに接続しました"
+msgstr "デーモンに接続"
 
 #: gui_gtk.c:546
 msgid "No polkit authentication agent found"
-msgstr "Polkit 認証エージェントが見つかりませんでした"
+msgstr "Polkit 認証エージェントが見つかりません"
 
 #: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
-msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要です"
+msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要"
 
 #: gui_gtk.c:556
 msgid "Start daemon"
-msgstr "デーモンを開始する"
+msgstr "デーモンの起動"
 
 #: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
 #, c-format
@@ -398,30 +388,24 @@ msgid "Core #%i"
 msgstr "コア #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "ファミリー"
+msgstr "ベース ファミリー"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "モデル"
+msgstr "ベース モデル"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
+msgstr "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
+msgstr "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "Version"
 msgid "User Mode Driver Version"
-msgstr "バージョン"
+msgstr "ユーザー モードのドライバーのバージョン"
 
 #: gui_gtk.c:655
 #, c-format
@@ -430,7 +414,7 @@ msgstr "%s"
 
 #: main.c:56
 msgid "Setting label names"
-msgstr "ラベル名を設定"
+msgstr "ラベル名の設定"
 
 #: main.c:58
 msgid "CPU"
@@ -469,20 +453,16 @@ msgid "Family"
 msgstr "ファミリー"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "拡張ファミリー"
+msgstr "表示: ファミリー"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "モデル"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "拡張モデル"
+msgstr "表示: モデル"
 
 #: main.c:70
 msgid "Temp."
@@ -506,7 +486,7 @@ msgstr "1コアの速度"
 
 #: main.c:76
 msgid "Multiplier"
-msgstr "周波数"
+msgstr "倍率"
 
 #: main.c:77
 msgid "Bus Speed"
@@ -680,14 +660,12 @@ msgid "Driver"
 msgstr "ドライバー"
 
 #: main.c:150
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "バージョン"
+msgstr "UMD バージョン"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "演算ユニット"
 
 #: main.c:153
 msgid "DeviceID"
@@ -723,13 +701,11 @@ msgstr "メモリー使用量"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr ""
+msgstr "Resizable BAR"
 
 #: main.c:164
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "カード %i"
+msgstr "カード"
 
 #: main.c:167
 msgid "Bench"
@@ -849,10 +825,8 @@ msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数）"
 
 #: main.c:347
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "デフォルトのタブを設定します（整数）"
+msgstr "デフォルトのグラフィックカードの選択（整数）"
 
 #: main.c:348
 msgid "Start and connect to daemon"
@@ -946,7 +920,7 @@ msgstr "-- %-9s バージョン: %s"
 #: main.c:469
 #, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "wordexpの呼び出しに失敗しました（%i）"
+msgstr "wordexp の取得に失敗 （%i）"
 
 #: main.c:664
 #, c-format
@@ -986,16 +960,12 @@ msgstr ""
 "ターミナル %s のセットアップに失敗しました（エラー%i）; %sにFalbackします"
 
 #: tui_ncurses.c:310
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "ウィンドウが小さすぎます\n"
+msgstr "ウィンドウが小さすぎます！"
 
 #: tui_ncurses.c:318
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "ヘルプを見るには「h」キーを押してください。\n"
+msgstr "ヘルプの表示は「h」キーを押す。"
 
 #: tui_ncurses.c:474
 #, c-format
@@ -1004,168 +974,136 @@ msgstr "%sのNCursesヘルプへようこそ\n"
 
 #: tui_ncurses.c:475
 msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
+msgstr "このヘルプでは、テキスト ベースのユーザー インターフェイスの使用方法について説明します。"
 
 #: tui_ncurses.c:477
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"グローバルキー:\n"
+msgstr "グローバル キー:"
 
 #: tui_ncurses.c:478
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'left' key to switch in left tab."
-msgstr "\tqを押して終了します。\n"
+msgstr "左矢印キーで、左タブに切り替わります。"
 
 #: tui_ncurses.c:479
 msgid "Press 'right' key to switch in right tab."
-msgstr ""
+msgstr "右矢印キーで、左タブに切り替わります。"
 
 #: tui_ncurses.c:480
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "ヘルプを見るには「h」キーを押してください。\n"
+msgstr "「h」キーで、ヘルプの表示。"
 
 #: tui_ncurses.c:481
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\tqを押して終了します。\n"
+msgstr "「q」キーで、で終了。"
 
 #: tui_ncurses.c:483
 msgid "CPU tab:"
-msgstr ""
+msgstr "CPU タブ:"
 
 #: tui_ncurses.c:484
 msgid "Press 'down' key to decrease core number to monitor."
-msgstr ""
+msgstr "下矢印キーで、モニターするコアの数の減少。"
 
 #: tui_ncurses.c:485
 msgid "Press 'up' key to increase core number to monitor."
-msgstr ""
+msgstr "上矢印キーで、モニターするコアの数の増加。"
 
 #: tui_ncurses.c:487
-#, fuzzy
-#| msgid "Caches"
 msgid "Caches tab:"
-msgstr "キャッシュ"
+msgstr "キャッシュ タブ:"
 
 #: tui_ncurses.c:488
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr ""
-"\n"
-"終了するには何かキを押してください\n"
+msgstr "下矢印キーで、前のテストに切り替わります。"
 
 #: tui_ncurses.c:489
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'up' key' to switch to next test."
-msgstr "\tqを押して終了します。\n"
+msgstr "上矢印キーで、次のテストに切り替わります。"
 
 #: tui_ncurses.c:491
-#, fuzzy
-#| msgid "Bench"
 msgid "Bench tab:"
-msgstr "ベンチマーク"
+msgstr "ベンチ タブ:"
 
 #: tui_ncurses.c:492
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
+msgstr "下矢印キーで、ベンチマーク期間 の減少。"
 
 #: tui_ncurses.c:493
 msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
+msgstr "上矢印キーで、ベンチマーク期間 の増加。"
 
 #: tui_ncurses.c:494
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
+msgstr "「次のページ」キーで、使用するスレッド数の減少。"
 
 #: tui_ncurses.c:495
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
+msgstr "「前のページ」キーで、使用するスレッド数の増加。"
 
 #: tui_ncurses.c:496
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
+msgstr "「s」キーで、素数ベンチマーク（遅く）の始動/停止。"
 
 #: tui_ncurses.c:497
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
+msgstr "「f」キーで、素数ベンチマーク（早く）の始動/停止。"
 
 #: tui_ncurses.c:499
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "グラフィック"
+msgstr "グラフィック タブ:"
 
 #: tui_ncurses.c:500
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr ""
+msgstr "下矢印キーで、前のグラフィックカードに切り替える。"
 
 #: tui_ncurses.c:501
 msgid "Press 'up' key to switch to next graphic card."
-msgstr ""
+msgstr "上矢印キーで、次のグラフィックカードに切り替える。"
 
 #: tui_ncurses.c:503
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"終了するには何かキを押してください\n"
+msgstr "ヘルプの終了は、任意のキーを押します。"
 
 #: util.c:198
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr "「%s」文字列が%iのにユニットが見つかりません"
+msgstr "「%s」の %i 番目の文字列にはユニットがない"
 
 #: util.c:210
 #, c-format
 msgid "String '%s' is too long, truncating…"
-msgstr ""
+msgstr "文字列「%s 」が長すぎて、切り捨てられました"
 
 #: util.c:287
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr ""
+msgstr "ファイル '%s' (%s) を開くときにエラー発生"
 
 #: util.c:317
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
+msgstr "コマンド '%s'（%s）の実行中にエラー発生"
 
 #: util.c:375 util.c:435
 #, c-format
 msgid "failed to open %s directory"
-msgstr "ディレクトリ %s を開けませんでした"
+msgstr "%s ディレクトリを開くことができません"
 
 #: util.c:448
 msgid "an error occurred while compiling regex"
-msgstr ""
+msgstr "正規表現のコンパイル中にエラー発生"
 
 #: util.c:574
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: 認証を取得できません（ダイアログが閉じられました）"
 
 #: util.c:577
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: 認証を取得できませんでした（認証されていません）"
+msgstr "pkexec: 認証を取得できません（認証されていません）"
 
 #: util.c:580
 msgid "pkexec: command not found"
-msgstr "pkexec: コマンドが見つかりませんでした"
+msgstr "pkexec: コマンドが見つかりません"
 
 #: util.c:583
 msgid "pkexec: unexpected error code"
@@ -1173,7 +1111,7 @@ msgstr "pkexec: 予期しないエラーコード"
 
 #: cpu-x.h:53
 msgid "FATAL ERROR: could not allocate memory"
-msgstr ""
+msgstr "FATAL ERROR: メモリを割り当てられません"
 
 #: cpu-x.h:92
 msgid "bytes"
@@ -1206,24 +1144,18 @@ msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: cpu-x.h:106
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: cpu-x.h:108
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: cpu-x.h:110
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #, fuzzy
 #~| msgid "failed to call libcpuid (%s)"
