@@ -162,6 +162,7 @@ const Package_DB package_intel[] =
 	{ "Pentium D (SmithField)",         NULL,                               "LGA 775"        },
 	{ "Pentium D (Presler)",            NULL,                               "LGA 775"        },
 	{ "Bloomfield",                     NULL,                               "LGA 1366"       },
+	{ NULL,                             "Intel(R) Core(TM)2 Duo CPU E7400", "LGA 775"        },
 	{ NULL,                             "Intel(R) Core(TM) i5-2520M CPU",   "rPGA 988B"      },
 	{ NULL,                             "Intel(R) Xeon(R) CPU E31275",      "LGA 1155"       },
 	{ NULL,                             "Intel(R) Core(TM) i7-2860QM CPU",  "rPGA 988B"      },
