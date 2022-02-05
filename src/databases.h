@@ -191,7 +191,8 @@ const Package_DB package_amd[] =
 	{ "Trinity X4",                     NULL,            "FM2 (PGA-ZIF)"  },
 	{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
 	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
-	{ "Deneb",    "AMD Phenom(tm) II X4 945",            "AM3 (PGA-938"   },
+	{ "Deneb",    "AMD Phenom(tm) II X4 945",            "AM3 (PGA-938)"  },
+	{ "Athlon II X4 (Propus)",          NULL,            "AM3 (PGA-938)"  },
 	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
 	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
 	/* Zen */
