@@ -1,5 +1,5 @@
 /****************************************************************************
-*    Copyright © 2014-2021 Xorg
+*    Copyright © 2014-2022 Xorg
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 #define PRGNAME_LOW           "cpu-x"
 #define PRGAUTH               "X0rg"
 #define PRGURL                "https://"PRGAUTH".github.io/"PRGNAME
-#define PRGCPRGHT             "Copyright © 2014-2021 Xorg"
+#define PRGCPRGHT             "Copyright © 2014-2022 Xorg"
 #define PRGLCNS               "GNU GPL v3"
 #define LCNSURL               "https://www.gnu.org/licenses/gpl.txt"
 
