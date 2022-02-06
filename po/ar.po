@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2021-07-24 18:27+0000\n"
+"POT-Creation-Date: 2022-02-06 20:17+0100\n"
 "PO-Revision-Date: 2020-11-25 18:29+0000\n"
 "Last-Translator: Гринько Владимир <volb132@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
@@ -39,294 +39,305 @@ msgstr ""
 "لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
 "ext. family: %i"
 
-#: core.c:258
+#: core.c:259
 #, fuzzy, c-format
 #| msgid "%d x %d KB, %d-way"
 msgid "%d x %d %s, %d-way"
 msgstr "%d س%d كب ، %d -مسار"
 
-#: core.c:259
+#: core.c:260
 #, fuzzy, c-format
 #| msgid "%d MB, %d-way"
 msgid "%d %s, %d-way"
 msgstr "%d مب ، %d -مسار"
 
-#: core.c:260
+#: core.c:261
 #, fuzzy, c-format
 #| msgid "%s associative, %d-byte line size"
 msgid "%s associative, %d-%s line size"
 msgstr "%s ترابطي ،%d-بايت حجم المسار"
 
-#: core.c:265
+#: core.c:266
 msgid "Calling libcpuid for retrieving static data"
 msgstr "استدعاء libcpuid لاسترجاع البيانات الثابتة"
 
-#: core.c:277
+#: core.c:278
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "تعذر استدعاء libcpuid (%s)"
 
-#: core.c:436
+#: core.c:288
+#, c-format
+msgid ""
+"CPU hybrid architecture is not supported. For more details, please refer to "
+"following issue: %s"
+msgstr ""
+
+#: core.c:308
+msgid "NOT SUPPORTED"
+msgstr ""
+
+#: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "استدعاء libcpuid لاسترجاع البيانات الديناميكية"
 
-#: core.c:449
+#: core.c:467
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "استدعاء ليبكبويد لاسترداد قيم ثابتة MSR وحدة المعالجة المركزية"
 
-#: core.c:474
+#: core.c:492
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "استدعاء ليبكبويد لاسترداد قيم ديناميكية MSR وحدة المعالجة المركزية"
 
-#: core.c:497
+#: core.c:515
 msgid "Calculating CPU multipliers"
 msgstr "حساب مضاعفات وحدة المعالجة المركزية"
 
-#: core.c:530
+#: core.c:548
 msgid "Calling dmidecode"
 msgstr "استدعاء دميديكودي"
 
-#: core.c:563
+#: core.c:581
 msgid "Calculating CPU usage"
 msgstr "حساب استخدام وحدة المعالجة المركزية"
 
-#: core.c:614
+#: core.c:632
 msgid "Calling bandwidth"
 msgstr "عرض النطاق الترددي الاتصال"
 
-#: core.c:695
+#: core.c:713
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 
-#: core.c:726
+#: core.c:744
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
 
-#: core.c:799
+#: core.c:817
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
 
-#: core.c:803
+#: core.c:821
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call GLFW (%i): %s"
 msgstr "تعذر استدعاء libcpuid (%s)"
 
-#: core.c:832
+#: core.c:850
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
-#: core.c:841
+#: core.c:859
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "فشل استدعاء دميديكودي"
 
-#: core.c:851
+#: core.c:869
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr ""
 
-#: core.c:858
+#: core.c:876
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr ""
 
-#: core.c:865
+#: core.c:883
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:873
+#: core.c:891
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:887
+#: core.c:905
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "تعذر استدعاء libcpuid (%s)"
 
-#: core.c:894
+#: core.c:912
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr ""
 
-#: core.c:905
+#: core.c:923
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:916
+#: core.c:934
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:928 core.c:938 core.c:963
+#: core.c:946 core.c:956 core.c:981
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:951
+#: core.c:969
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:971
+#: core.c:989
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:1000
+#: core.c:1018
 msgid "Finding devices"
 msgstr "العثور على الأجهزة"
 
-#: core.c:1012
+#: core.c:1030
 #, fuzzy, c-format
 #| msgid "Skip devices search (need to be root)"
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "تخطي البحث عن الأجهزة (تحتاج إلى صلاحيات الروت)"
 
-#: core.c:1050
+#: core.c:1068
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "بائع وحدة معالج البيانات غير معروف: %s (0x%X)"
 
-#: core.c:1072
+#: core.c:1090
 msgid "failed to find chipset vendor and model"
 msgstr "لم يعثر على بائع الرقائق والنوع"
 
-#: core.c:1074
+#: core.c:1092
 msgid "failed to find graphic card vendor and model"
 msgstr "تعذر إيجاد بائع بطاقة الرسوميات ونوعها"
 
-#: core.c:1151
+#: core.c:1169
 msgid "Retrieving GPU clocks"
 msgstr "جارٍ استرداد سرعات GPU"
 
-#: core.c:1185
+#: core.c:1203
 msgid "None"
 msgstr ""
 
-#: core.c:1318
+#: core.c:1336
 #, fuzzy, c-format
 #| msgid "Driver for GPU %i doesn't report frequencies"
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "تعريف وحدة معالجة الرسوميات %i لا يبلغ عن الترددات"
 
-#: core.c:1361
+#: core.c:1379
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1365
+#: core.c:1383
 msgid "Enabled"
 msgstr ""
 
-#: core.c:1365
+#: core.c:1383
 msgid "Disabled"
 msgstr ""
 
-#: core.c:1386
+#: core.c:1404
 msgid "failed to retrieve GPU clocks"
 msgstr "فشل في استرداد سرعات GPU"
 
-#: core.c:1403
+#: core.c:1421
 msgid "Identifying running system"
 msgstr "يتعرف على النظام الشغَّال"
 
-#: core.c:1406
+#: core.c:1424
 msgid "failed to identify running system"
 msgstr "تعذر التعرف على النظام الشغَّال"
 
-#: core.c:1447
+#: core.c:1465
 msgid "Calling libprocps"
 msgstr "يستدعي libprocps"
 
-#: core.c:1473
+#: core.c:1491
 msgid "Calling libstatgrab"
 msgstr "يستدعي libstatgrab"
 
-#: core.c:1508
+#: core.c:1526
 #, fuzzy, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i أيام، %i ساعات، %i دقيقة، %i ثانية"
 
-#: core.c:1564
+#: core.c:1582
 msgid "Updating benchmark status"
 msgstr "تحديث حالة إختبار الأداء"
 
-#: core.c:1565 tui_ncurses.c:822
+#: core.c:1583 tui_ncurses.c:828
 #, fuzzy, c-format
 msgid "%u mins"
 msgstr "%u دقيقة"
 
-#: core.c:1567 core.c:1568
+#: core.c:1585 core.c:1586
 msgid "Inactive"
 msgstr "غير نَشِط"
 
-#: core.c:1572 core.c:1573
+#: core.c:1590 core.c:1591
 msgid "Not started"
 msgstr "لم يبدأ"
 
-#: core.c:1578
+#: core.c:1596
 msgid "Active"
 msgstr "نشط"
 
-#: core.c:1583
+#: core.c:1601
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u ساعة متبقية)"
 
-#: core.c:1585
+#: core.c:1603
 #, fuzzy, c-format
 msgid "(%u minutes left)"
 msgstr "(%u دقيقة متبقية)"
 
-#: core.c:1587
+#: core.c:1605
 #, fuzzy, c-format
 msgid "(%u seconds left)"
 msgstr "(%u ثانية متبقية)"
 
-#: core.c:1592
+#: core.c:1610
 #, fuzzy, c-format
 msgid "in %u hours"
 msgstr "في %u ساعة"
 
-#: core.c:1594
+#: core.c:1612
 #, fuzzy, c-format
 msgid "in %u minutes"
 msgstr "في %u دقيقة"
 
-#: core.c:1596
+#: core.c:1614
 #, fuzzy, c-format
 msgid "in %u seconds"
 msgstr "في %u ثانية"
 
-#: core.c:1612
+#: core.c:1630
 msgid "Starting benchmark"
 msgstr "بدء اختبار الأداء"
 
-#: core.c:1631
+#: core.c:1649
 msgid "an error occurred while starting benchmark"
 msgstr "حدث خطأ ما أثناء بدء اختبار الأداء"
 
-#: core.c:1648
+#: core.c:1666
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:1670
+#: core.c:1688
 #, fuzzy, c-format
 #| msgid ""
 #| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
@@ -336,39 +347,39 @@ msgstr ""
 "لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
 "ext. family: %i"
 
-#: core.c:1689
+#: core.c:1707
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:1716
+#: core.c:1734
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:1725
+#: core.c:1743
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:1764
+#: core.c:1782
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:1809
+#: core.c:1827
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:1822
+#: core.c:1840
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:1835
+#: core.c:1853
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:1850
+#: core.c:1868
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:1858
+#: core.c:1876
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
@@ -403,7 +414,7 @@ msgstr ""
 msgid "Start daemon"
 msgstr ""
 
-#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:550
+#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "النواة %i"
@@ -995,116 +1006,116 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 
-#: tui_ncurses.c:310
+#: tui_ncurses.c:316
 msgid "Window is too small!"
 msgstr ""
 
-#: tui_ncurses.c:318
+#: tui_ncurses.c:324
 #, fuzzy
 #| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
 msgstr "اضغط 'h' لرؤية المساعدة.\n"
 
-#: tui_ncurses.c:474
+#: tui_ncurses.c:480
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr ""
 
-#: tui_ncurses.c:475
+#: tui_ncurses.c:481
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
 
-#: tui_ncurses.c:477
+#: tui_ncurses.c:483
 msgid "Global keys:"
 msgstr ""
 
-#: tui_ncurses.c:478
+#: tui_ncurses.c:484
 msgid "Press 'left' key to switch in left tab."
 msgstr ""
 
-#: tui_ncurses.c:479
+#: tui_ncurses.c:485
 msgid "Press 'right' key to switch in right tab."
 msgstr ""
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:486
 #, fuzzy
 #| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' key to see this help."
 msgstr "اضغط 'h' لرؤية المساعدة.\n"
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:487
 #, fuzzy
 #| msgid "Press 'h' to see help.\n"
 msgid "Press 'q' key to exit."
 msgstr "اضغط 'h' لرؤية المساعدة.\n"
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:489
 msgid "CPU tab:"
 msgstr ""
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:490
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr ""
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:491
 msgid "Press 'up' key to increase core number to monitor."
 msgstr ""
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:493
 #, fuzzy
 #| msgid "Cache"
 msgid "Caches tab:"
 msgstr "الخبيئة"
 
-#: tui_ncurses.c:488
+#: tui_ncurses.c:494
 msgid "Press 'down' key to switch to previous test."
 msgstr ""
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:495
 msgid "Press 'up' key' to switch to next test."
 msgstr ""
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:497
 msgid "Bench tab:"
 msgstr ""
 
-#: tui_ncurses.c:492
+#: tui_ncurses.c:498
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr ""
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:499
 msgid "Press 'up' key to increment benchmark duration."
 msgstr ""
 
-#: tui_ncurses.c:494
+#: tui_ncurses.c:500
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:501
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
 
-#: tui_ncurses.c:496
+#: tui_ncurses.c:502
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:503
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:505
 msgid "Graphics tab:"
 msgstr ""
 
-#: tui_ncurses.c:500
+#: tui_ncurses.c:506
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr ""
 
-#: tui_ncurses.c:501
+#: tui_ncurses.c:507
 msgid "Press 'up' key to switch to next graphic card."
 msgstr ""
 
-#: tui_ncurses.c:503
+#: tui_ncurses.c:509
 #, fuzzy
 #| msgid "Press 'h' to see help.\n"
 msgid "Press any key to exit this help."
