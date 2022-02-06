@@ -253,7 +253,8 @@ static int cpu_technology(Labels *data)
 static int call_libcpuid_static(Labels *data)
 {
 	int err, i, j = 0;
-	char tmp[MAXSTR * 2] = "";
+	bool cpu_supported       = true;
+	char tmp[MAXSTR * 2]     = "";
 	const char *fmt_cpuid    = opts->cpuid_decimal ? "%i" : "0x%X";
 	const char *fmt_cache_kb = _("%d x %d %s, %d-way");
 	const char *fmt_cache_mb = _("%d %s, %d-way");
@@ -278,6 +279,23 @@ static int call_libcpuid_static(Labels *data)
 		return 1;
 	}
 
+	/* Unsupported CPUs
+	   When CPUID.07H.0H:EDX[15]=1, hybrid topology is present
+	   https://www.intel.com/content/www/us/en/developer/articles/guide/alder-lake-developer-guide.html?wapkw=alder%20lake
+	*/
+	if((datanr.vendor == VENDOR_INTEL) && (raw.basic_cpuid[0x7][EDX] & 0x8000))
+	{
+		MSG_WARNING(_("CPU hybrid architecture is not supported. For more details, please refer to following issue: %s"), "https://github.com/anrieff/libcpuid/issues/157");
+		cpu_supported               = false;
+		datanr.num_cores            = 0;
+		datanr.num_logical_cpus     = 0;
+		datanr.l1_data_cache        = 0;
+		datanr.l1_instruction_cache = 0;
+		datanr.l2_cache             = 0;
+		datanr.l3_cache             = 0;
+		datanr.l4_cache             = 0;
+	}
+
 	/* Some prerequisites */
 	data->cpu_count              = datanr.num_logical_cpus;
 	data->l_data->cpu_model      = datanr.model;
@@ -287,7 +305,7 @@ static int call_libcpuid_static(Labels *data)
 		opts->selected_core = 0;
 
 	/* Basically fill CPU tab */
-	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",      datanr.cpu_codename);
+	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",      cpu_supported ? datanr.cpu_codename : _("NOT SUPPORTED"));
 	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",      datanr.brand_str);
 	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, fmt_cpuid, datanr.family);
 	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, fmt_cpuid, datanr.ext_family);
