@@ -25,8 +25,9 @@ msgstr "Se găsește tehnologia procesorului"
 
 #: core.c:246
 #, c-format
-msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
-"model: %i, ext. family: %i"
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
 "Procesorul dumneavoastră nu este prezent în baza de date ==> %s, model: %i, "
 "model extins: %i, familie extinsă: %i"
@@ -153,32 +154,31 @@ msgstr "a eșuat obținerea versiunii dispozitivului %u (%s)"
 
 #: core.c:905
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
-"(%s)"
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:916
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
-"(%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_GFXIP_MAJOR_AMD "
 "(%s)"
 
 #: core.c:928 core.c:938 core.c:963
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support "
-"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină "
 "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:951
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support "
-"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
-"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) sau CL_DEVICE_PCI_SLOT_ID_NV (%s)"
@@ -417,8 +417,7 @@ msgstr ""
 "bază + Familia extinsă)"
 
 #: gui_gtk.c:571
-msgid "CPU display (\"true\") model (computed as "
-"(ExtendedModel<<4)+BaseModel)"
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Pentru procesor afișează (adevărat - „true”) modelul (compus ca (modelul "
 "extins<<4)+Modelul de bază)"
@@ -765,7 +764,8 @@ msgstr "Despre"
 
 #: main.c:183
 #, c-format
-msgid "%s is a Free software that gathers information\n"
+msgid ""
+"%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
 "%s este un program liber care adună informațiile\n"
@@ -885,11 +885,10 @@ msgid "Print required information to paste in an issue"
 msgstr "Tipărește informațiile necesare de lipit într-un defect"
 
 #: main.c:356
-msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
-"v[im])"
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
-"Stabilește asocierea tastelor pentru modul NCurses "
-"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
+"Stabilește asocierea tastelor pentru modul NCurses (a[rrows]|e[macs]|"
+"i[nverted-T]|v[im])"
 
 #: main.c:367
 msgid "Add default command line arguments"
@@ -951,9 +950,10 @@ msgstr "a eșuat apelarea wordexp (%i)"
 
 #: main.c:664
 #, c-format
-msgid "\n"
-"%sOops, something was wrong! %s has received signal %d (%s) and has "
-"crashed.%s"
+msgid ""
+"\n"
+"%sOops, something was wrong! %s has received signal %d (%s) and has crashed."
+"%s"
 msgstr ""
 "\n"
 "%sOpa, ceva a fost greșit! %s a primit semnalul %d (%s) și a picat.%s"
@@ -972,8 +972,9 @@ msgid "Starting NCurses TUI…"
 msgstr "Se porntește interfața textuală NCurses…"
 
 #: tui_ncurses.c:80
-msgid "FATAL ERROR: terminfo database could not be found (try to set "
-"TERMINFO environment variable)"
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
 msgstr ""
 "EROARE FATALĂ: baza de date terminfo nu a putut fi găsită (încercați să "
 "stabiliți variabila de mediu TERMINFO)"
