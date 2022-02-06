@@ -40,6 +40,7 @@ struct opt
 	char *dumpfile;
 	u32 handle;
 };
+extern struct opt opt;
 
 #define FLAG_VERSION            (1 << 0)
 #define FLAG_HELP               (1 << 1)

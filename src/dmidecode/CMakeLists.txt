@@ -1,5 +1,5 @@
 project(dmidecode
-	VERSION "3.3.20201210"
+	VERSION "3.3.20211021"
 	LANGUAGES C
 )
 
@@ -16,6 +16,7 @@ add_library(dmidecode
 	util.c
 	util.h
 	dmiopt.h
+	dmiopt.c
 	dmioem.c
 	dmioem.h
 	dmidecode.c
