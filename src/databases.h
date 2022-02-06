@@ -135,6 +135,7 @@ const Technology_DB technology_amd[] =
 	{ -1,          24,          23,          12 }, // Zen+ (Picasso)
 	{ -1,          49,          23,           7 }, // Zen 2 (Rome/Castle Peak)
 	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
+	{ -1,         104,          23,           7 }, // Zen 2 (Lucienne)
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
 	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
 	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
@@ -197,14 +198,18 @@ const Package_DB package_amd[] =
 	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
 	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
 	/* Zen */
+	{ "Raven Ridge",                    NULL,            "FP5 (BGA-1140)"   },
 	{ "Summit Ridge",                   NULL,            "AM4 (PGA-1331)"   },
 	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
 	{ "Naples",                         NULL,            "SP3 (LGA-4094)"   },
 	/* Zen+ */
-	{ "Picasso",                        NULL,            "FP5 (BGA)"        },
+	{ "Picasso",                        NULL,            "FP5 (BGA-1140)"   },
 	{ "Pinnacle Ridge",                 NULL,            "AM4 (PGA-1331)"   },
 	{ "Colfax",                         NULL,            "SP3r2 (LGA-4094)" },
 	/* Zen 2 */
+	{ "Renoir",                         NULL,            "FP6 (BGA-1140)"   },
+	{ "Lucienne",                       NULL,            "FP6 (BGA-1140)"   },
+	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
 	{ "Matisse",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Castle Peak",                    NULL,            "SP3r2 (LGA-4094)" },
 	{ "Rome",                           NULL,            "SP3 (LGA-4094)"   },
