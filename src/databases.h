@@ -209,10 +209,13 @@ const Package_DB package_amd[] =
 	/* Zen 2 */
 	{ "Renoir",                         NULL,            "FP6 (BGA-1140)"   },
 	{ "Lucienne",                       NULL,            "FP6 (BGA-1140)"   },
-	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
 	{ "Matisse",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Castle Peak",                    NULL,            "SP3r2 (LGA-4094)" },
 	{ "Rome",                           NULL,            "SP3 (LGA-4094)"   },
+	/* Zen 3 */
+	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
+	{ "Vermeer",                        NULL,            "AM4 (PGA-1331)"   },
+	{ "Milan",                          NULL,            "SP3 (LGA-4094)"   },
 	{ NULL,                             NULL,            NULL               }
 	//Codename                          Model            Socket
 };
