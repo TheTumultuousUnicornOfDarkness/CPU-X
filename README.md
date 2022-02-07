@@ -69,12 +69,13 @@ In alphabetical order:
 - [Fedora (since version 30)](https://src.fedoraproject.org/rpms/cpu-x): `dnf install cpu-x`
 - [FreeBSD (since version 11)](https://www.freshports.org/sysutils/cpu-x): `pkg install cpu-x`
 - [OpenMandriva Lx (since version 4.0 "Nitrogen")](https://github.com/OpenMandrivaAssociation/cpu-x): `dnf install cpu-x`
+- [openSUSE Leap (since version 15.2 from **utilities** project)](https://software.opensuse.org//download.html?project=utilities&package=cpu-x): `zypper install cpu-x`
 - [Solus](https://packages.getsol.us/shannon/c/cpu-x/): `eopkg install cpu-x`
 - [Ubuntu (since version 20.04 "Focal Fossa")](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `apt install cpu-x`
 
 ### From third-party repositories
 
-- Arch Linux/Debian/openSUSE/Ubuntu (OBS): [cpu-x](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x) / [cpu-x-git](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x-git)
+- Arch Linux/Debian/Ubuntu (OBS): [cpu-x](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x) / [cpu-x-git](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x-git)
 - Arch Linux (AUR): [cpu-x](https://aur.archlinux.org/packages/cpu-x/) / [cpu-x-git](https://aur.archlinux.org/packages/cpu-x-git/)
 - Slackware: on [SlackOnly](https://slackonly.com/)
 
