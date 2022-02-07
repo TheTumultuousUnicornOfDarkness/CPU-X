@@ -10,14 +10,14 @@
 # Andrey F. <firsan777@mail.ru>, 2021.
 # vadimkozhin <vadim.kozhin@gmail.com>, 2021.
 # Axus Wizix <axus.wizix@mail.ru>, 2021.
-# S3aBreeze <paperwork@evilcorp.ltd>, 2021.
+# S3aBreeze <paperwork@evilcorp.ltd>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-06 20:17+0100\n"
-"PO-Revision-Date: 2021-12-22 04:51+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2022-02-10 01:56+0000\n"
+"Last-Translator: S3aBreeze <paperwork@evilcorp.ltd>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -72,10 +72,12 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"Гибридная архитектура ЦП не поддерживается. Для получения подробной "
+"информации, пожалуйста, посмотрите следующую проблему: %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "НЕ ПОДДЕРЖИВАЕТСЯ"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
