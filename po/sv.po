@@ -1,13 +1,13 @@
 # CPU-X translations template
 # Copyright © 2014-2022 Xorg
 # This file is distributed under the same license as the cpu-x package.
-# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-06 20:17+0100\n"
-"PO-Revision-Date: 2021-08-12 17:34+0000\n"
+"PO-Revision-Date: 2022-02-08 07:39+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -61,10 +61,11 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"CPU-hybridarkitektur stöds inte. Mer information finns i följande ärende: %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "STÖDS EJ"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
