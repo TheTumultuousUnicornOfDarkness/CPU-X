@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 18:46+0100\n"
+"POT-Creation-Date: 2022-02-12 19:05+0100\n"
 "PO-Revision-Date: 2022-02-10 01:56+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -700,6 +700,8 @@ msgstr "İşlem Birimi"
 msgid "DeviceID"
 msgstr "Aygıt Kimliği"
 
+#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
+#. Setting: "Interface" tab
 #: main.c:154 cpu-x-gtk-3.12.ui:5663
 msgid "Interface"
 msgstr "Arayüz"
@@ -1192,38 +1194,47 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
 msgstr ""
 
+#. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
 msgstr ""
 
+#. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
 msgstr ""
 
+#. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
 msgstr ""
 
+#. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
 msgstr ""
 
+#. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
 msgstr ""
 
+#. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
 msgstr ""
 
+#. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
-msgid "Default caches test"
+msgid "Default cache test"
 msgstr ""
 
+#. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
 #, fuzzy
 #| msgid "Print CPUID values in decimal (default is hexadeximal)"
@@ -1231,12 +1242,14 @@ msgid "Print CPUID values in decimal"
 msgstr ""
 "CPUID değerlerini ondalık olarak yazdır (öntanımlı olarak onaltılıktır)"
 
+#. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
 msgstr "Öntanımlı grafik kartını seç (tam sayı)"
 
+#. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr ""

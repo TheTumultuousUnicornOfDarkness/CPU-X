@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 18:46+0100\n"
+"POT-Creation-Date: 2022-02-12 19:05+0100\n"
 "PO-Revision-Date: 2021-09-21 22:38+0000\n"
 "Last-Translator: Ali Akrami <aliakrami.ce@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -690,6 +690,8 @@ msgstr "واحد محاسبه"
 msgid "DeviceID"
 msgstr "شناسه دستگاه"
 
+#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
+#. Setting: "Interface" tab
 #: main.c:154 cpu-x-gtk-3.12.ui:5663
 msgid "Interface"
 msgstr "رابط"
@@ -1177,50 +1179,61 @@ msgstr "گیگابایت"
 msgid "TiB"
 msgstr "ترابایت"
 
+#. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
 msgstr ""
 
+#. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
 msgstr ""
 
+#. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
 msgstr ""
 
+#. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
 msgstr ""
 
+#. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
 msgstr ""
 
+#. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
 msgstr ""
 
+#. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
 msgstr ""
 
+#. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
-msgid "Default caches test"
+msgid "Default cache test"
 msgstr ""
 
+#. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
 #, fuzzy
 #| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
 msgstr "چاپ مقادیر CPUID به صورت decimal (پیش فرض hexadeximal است)"
 
+#. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
 msgstr "انتخاب کارت گرافیک پیش فرض (عددی)"
 
+#. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr ""

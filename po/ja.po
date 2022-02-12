@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 18:46+0100\n"
+"POT-Creation-Date: 2022-02-12 19:05+0100\n"
 "PO-Revision-Date: 2022-02-08 10:58+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -689,6 +689,8 @@ msgstr "演算ユニット"
 msgid "DeviceID"
 msgstr "デバイスID"
 
+#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
+#. Setting: "Interface" tab
 #: main.c:154 cpu-x-gtk-3.12.ui:5663
 msgid "Interface"
 msgstr "インターフェイス"
@@ -1177,50 +1179,61 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
 msgstr ""
 
+#. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
 msgstr ""
 
+#. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
 msgstr ""
 
+#. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
 msgstr ""
 
+#. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
 msgstr ""
 
+#. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
 msgstr ""
 
+#. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
 msgstr ""
 
+#. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
-msgid "Default caches test"
+msgid "Default cache test"
 msgstr ""
 
+#. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
 #, fuzzy
 #| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
 msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
 
+#. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
 msgstr "デフォルトのグラフィックカードの選択（整数）"
 
+#. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr ""
