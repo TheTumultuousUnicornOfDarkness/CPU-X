@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-06 20:17+0100\n"
+"POT-Creation-Date: 2022-02-12 18:46+0100\n"
 "PO-Revision-Date: 2022-02-08 10:58+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -65,7 +65,9 @@ msgstr "libcpuid の取得に失敗（%s）"
 msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
-msgstr "CPUハイブリッドアーキテクチャには対応していません。詳細については Issue: %s を参照してください"
+msgstr ""
+"CPUハイブリッドアーキテクチャには対応していません。詳細については Issue: %s "
+"を参照してください"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
@@ -432,11 +434,11 @@ msgstr "%s"
 msgid "Setting label names"
 msgstr "ラベル名の設定"
 
-#: main.c:58
+#: main.c:58 cpu-x-gtk-3.12.ui:1399
 msgid "CPU"
 msgstr "CPU"
 
-#: main.c:59
+#: main.c:59 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "プロセッサー"
 
@@ -492,7 +494,7 @@ msgstr "ステッピング"
 msgid "Instructions"
 msgstr "命令"
 
-#: main.c:74
+#: main.c:74 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "クロック"
 
@@ -512,7 +514,7 @@ msgstr "バススピード"
 msgid "Usage"
 msgstr "使用率"
 
-#: main.c:80
+#: main.c:80 cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
 msgstr "キャッシュ"
 
@@ -532,19 +534,19 @@ msgstr "レベル2"
 msgid "Level 3"
 msgstr "レベル3"
 
-#: main.c:86
+#: main.c:86 cpu-x-gtk-3.12.ui:1231
 msgid "Socket(s)"
 msgstr "ソケット"
 
-#: main.c:87
+#: main.c:87 cpu-x-gtk-3.12.ui:1251
 msgid "Core(s)"
 msgstr "コア"
 
-#: main.c:88
+#: main.c:88 cpu-x-gtk-3.12.ui:1271
 msgid "Thread(s)"
 msgstr "スレッド"
 
-#: main.c:91
+#: main.c:91 cpu-x-gtk-3.12.ui:1997
 msgid "Caches"
 msgstr "キャッシュ"
 
@@ -565,7 +567,7 @@ msgstr "スピード"
 msgid "Test"
 msgstr "テスト"
 
-#: main.c:102 main.c:103
+#: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2175 cpu-x-gtk-3.12.ui:2546
 msgid "Motherboard"
 msgstr "マザーボード"
 
@@ -577,7 +579,7 @@ msgstr "メーカー"
 msgid "Revision"
 msgstr "リビジョン"
 
-#: main.c:108
+#: main.c:108 cpu-x-gtk-3.12.ui:2396
 msgid "BIOS"
 msgstr "BIOS"
 
@@ -597,11 +599,11 @@ msgstr "日付"
 msgid "ROM Size"
 msgstr "ROMサイズ"
 
-#: main.c:114
+#: main.c:114 cpu-x-gtk-3.12.ui:2527
 msgid "Chipset"
 msgstr "チップセット"
 
-#: main.c:119 main.c:135
+#: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3256 cpu-x-gtk-3.12.ui:3906
 msgid "Memory"
 msgstr "メモリー"
 
@@ -614,11 +616,11 @@ msgstr "バンク %i"
 msgid "Reference"
 msgstr "リファレンス"
 
-#: main.c:127
+#: main.c:127 cpu-x-gtk-3.12.ui:3925
 msgid "System"
 msgstr "システム"
 
-#: main.c:128
+#: main.c:128 cpu-x-gtk-3.12.ui:3525
 msgid "Operating System"
 msgstr "オペレーティングシステム"
 
@@ -662,7 +664,7 @@ msgstr "フリー"
 msgid "Swap"
 msgstr "スワップ"
 
-#: main.c:143
+#: main.c:143 cpu-x-gtk-3.12.ui:4848
 msgid "Graphics"
 msgstr "グラフィック"
 
@@ -687,7 +689,7 @@ msgstr "演算ユニット"
 msgid "DeviceID"
 msgstr "デバイスID"
 
-#: main.c:154
+#: main.c:154 cpu-x-gtk-3.12.ui:5663
 msgid "Interface"
 msgstr "インターフェイス"
 
@@ -719,19 +721,19 @@ msgstr "メモリー使用量"
 msgid "Resizable BAR"
 msgstr "Resizable BAR"
 
-#: main.c:164
+#: main.c:164 cpu-x-gtk-3.12.ui:4826
 msgid "Cards"
 msgstr "カード"
 
-#: main.c:167
+#: main.c:167 cpu-x-gtk-3.12.ui:5188
 msgid "Bench"
 msgstr "ベンチマーク"
 
-#: main.c:168
+#: main.c:168 cpu-x-gtk-3.12.ui:4958
 msgid "Prime numbers (slow)"
 msgstr "素数（スロー）"
 
-#: main.c:169
+#: main.c:169 cpu-x-gtk-3.12.ui:5066
 msgid "Prime numbers (fast)"
 msgstr "素数（ファースト）"
 
@@ -743,7 +745,7 @@ msgstr "スコア"
 msgid "Run"
 msgstr "実行"
 
-#: main.c:176
+#: main.c:176 cpu-x-gtk-3.12.ui:5169
 msgid "Parameters"
 msgstr "パラメータ"
 
@@ -755,7 +757,7 @@ msgstr "デュレーション"
 msgid "Threads"
 msgstr "スレッド"
 
-#: main.c:181 main.c:186
+#: main.c:181 main.c:186 cpu-x-gtk-3.12.ui:5332 cpu-x-gtk-3.12.ui:5440
 msgid "About"
 msgstr "CPU-Xについて"
 
@@ -783,7 +785,7 @@ msgstr "作者: %s"
 msgid "Site: %s"
 msgstr "サイト: %s"
 
-#: main.c:191
+#: main.c:191 cpu-x-gtk-3.12.ui:5421
 msgid "License"
 msgstr "ライセンス"
 
@@ -844,7 +846,7 @@ msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数
 msgid "Select default graphic card (integer)"
 msgstr "デフォルトのグラフィックカードの選択（整数）"
 
-#: main.c:348
+#: main.c:348 cpu-x-gtk-3.12.ui:5766
 msgid "Start and connect to daemon"
 msgstr "デーモンを開始、接続します"
 
@@ -1174,6 +1176,54 @@ msgstr "GiB"
 #: cpu-x.h:110
 msgid "TiB"
 msgstr "TiB"
+
+#: cpu-x-gtk-3.12.ui:5608
+msgid "Refresh time"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5632
+msgid "Theme"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5647
+msgid "Automatic"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5648
+msgid "Light"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5649
+msgid "Dark"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5682
+msgid "Default tab"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5695
+msgid "Default CPU core"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5708
+msgid "Default caches test"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5751
+#, fuzzy
+#| msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgid "Print CPUID values in decimal"
+msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
+
+#: cpu-x-gtk-3.12.ui:5784
+#, fuzzy
+#| msgid "Select default graphic card (integer)"
+msgid "Default graphic card"
+msgstr "デフォルトのグラフィックカードの選択（整数）"
+
+#: cpu-x-gtk-3.12.ui:5812
+msgid "Startup"
+msgstr ""
 
 #, fuzzy
 #~| msgid "failed to call libcpuid (%s)"

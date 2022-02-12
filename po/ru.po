@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-06 20:17+0100\n"
+"POT-Creation-Date: 2022-02-12 18:46+0100\n"
 "PO-Revision-Date: 2022-02-10 01:56+0000\n"
 "Last-Translator: S3aBreeze <paperwork@evilcorp.ltd>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -449,11 +449,11 @@ msgstr "%s"
 msgid "Setting label names"
 msgstr "Установка названий меток"
 
-#: main.c:58
+#: main.c:58 cpu-x-gtk-3.12.ui:1399
 msgid "CPU"
 msgstr "ЦП"
 
-#: main.c:59
+#: main.c:59 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "Процессор"
 
@@ -509,7 +509,7 @@ msgstr "Степпинг"
 msgid "Instructions"
 msgstr "Инструкции"
 
-#: main.c:74
+#: main.c:74 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Частоты"
 
@@ -529,7 +529,7 @@ msgstr "Скорость шины"
 msgid "Usage"
 msgstr "Использование"
 
-#: main.c:80
+#: main.c:80 cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
 msgstr "Кэш"
 
@@ -549,19 +549,19 @@ msgstr "Уровень 2"
 msgid "Level 3"
 msgstr "Уровень 3"
 
-#: main.c:86
+#: main.c:86 cpu-x-gtk-3.12.ui:1231
 msgid "Socket(s)"
 msgstr "Сокет(-ы)"
 
-#: main.c:87
+#: main.c:87 cpu-x-gtk-3.12.ui:1251
 msgid "Core(s)"
 msgstr "Ядро(-а)"
 
-#: main.c:88
+#: main.c:88 cpu-x-gtk-3.12.ui:1271
 msgid "Thread(s)"
 msgstr "Поток(-и)"
 
-#: main.c:91
+#: main.c:91 cpu-x-gtk-3.12.ui:1997
 msgid "Caches"
 msgstr "Кэши"
 
@@ -582,7 +582,7 @@ msgstr "Скорость"
 msgid "Test"
 msgstr "Тест"
 
-#: main.c:102 main.c:103
+#: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2175 cpu-x-gtk-3.12.ui:2546
 msgid "Motherboard"
 msgstr "Мат. плата"
 
@@ -594,7 +594,7 @@ msgstr "Производитель"
 msgid "Revision"
 msgstr "Ревизия"
 
-#: main.c:108
+#: main.c:108 cpu-x-gtk-3.12.ui:2396
 msgid "BIOS"
 msgstr "BIOS"
 
@@ -614,11 +614,11 @@ msgstr "Дата"
 msgid "ROM Size"
 msgstr "Размер ROM"
 
-#: main.c:114
+#: main.c:114 cpu-x-gtk-3.12.ui:2527
 msgid "Chipset"
 msgstr "Чипсет"
 
-#: main.c:119 main.c:135
+#: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3256 cpu-x-gtk-3.12.ui:3906
 msgid "Memory"
 msgstr "Оперативная память"
 
@@ -631,11 +631,11 @@ msgstr "Модуль %i"
 msgid "Reference"
 msgstr "Описание"
 
-#: main.c:127
+#: main.c:127 cpu-x-gtk-3.12.ui:3925
 msgid "System"
 msgstr "Система"
 
-#: main.c:128
+#: main.c:128 cpu-x-gtk-3.12.ui:3525
 msgid "Operating System"
 msgstr "Операционная система"
 
@@ -679,7 +679,7 @@ msgstr "Свободно"
 msgid "Swap"
 msgstr "Подкачка"
 
-#: main.c:143
+#: main.c:143 cpu-x-gtk-3.12.ui:4848
 msgid "Graphics"
 msgstr "Графика"
 
@@ -704,7 +704,7 @@ msgstr "Вычислительный узел"
 msgid "DeviceID"
 msgstr "ИД устройства"
 
-#: main.c:154
+#: main.c:154 cpu-x-gtk-3.12.ui:5663
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -736,19 +736,19 @@ msgstr "Используемая память"
 msgid "Resizable BAR"
 msgstr "Resizable BAR"
 
-#: main.c:164
+#: main.c:164 cpu-x-gtk-3.12.ui:4826
 msgid "Cards"
 msgstr "Карты"
 
-#: main.c:167
+#: main.c:167 cpu-x-gtk-3.12.ui:5188
 msgid "Bench"
 msgstr "Тест"
 
-#: main.c:168
+#: main.c:168 cpu-x-gtk-3.12.ui:4958
 msgid "Prime numbers (slow)"
 msgstr "Простые числа (медленно)"
 
-#: main.c:169
+#: main.c:169 cpu-x-gtk-3.12.ui:5066
 msgid "Prime numbers (fast)"
 msgstr "Простые числа (быстро)"
 
@@ -760,7 +760,7 @@ msgstr "Очки"
 msgid "Run"
 msgstr "Запуск"
 
-#: main.c:176
+#: main.c:176 cpu-x-gtk-3.12.ui:5169
 msgid "Parameters"
 msgstr "Параметры"
 
@@ -772,7 +772,7 @@ msgstr "Длительность"
 msgid "Threads"
 msgstr "Потоки"
 
-#: main.c:181 main.c:186
+#: main.c:181 main.c:186 cpu-x-gtk-3.12.ui:5332 cpu-x-gtk-3.12.ui:5440
 msgid "About"
 msgstr "О программе"
 
@@ -800,7 +800,7 @@ msgstr "Автор: %s"
 msgid "Site: %s"
 msgstr "Сайт: %s"
 
-#: main.c:191
+#: main.c:191 cpu-x-gtk-3.12.ui:5421
 msgid "License"
 msgstr "Лицензия"
 
@@ -862,7 +862,7 @@ msgstr ""
 msgid "Select default graphic card (integer)"
 msgstr "Выбрать графическую карту по умолчанию (целое число)"
 
-#: main.c:348
+#: main.c:348 cpu-x-gtk-3.12.ui:5766
 msgid "Start and connect to daemon"
 msgstr "Старт и подключение к демону"
 
@@ -1199,6 +1199,56 @@ msgstr "ГиБ"
 #: cpu-x.h:110
 msgid "TiB"
 msgstr "ТиБ"
+
+#: cpu-x-gtk-3.12.ui:5608
+msgid "Refresh time"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5632
+msgid "Theme"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5647
+msgid "Automatic"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5648
+msgid "Light"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5649
+msgid "Dark"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5682
+msgid "Default tab"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5695
+msgid "Default CPU core"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5708
+msgid "Default caches test"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:5751
+#, fuzzy
+#| msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgid "Print CPUID values in decimal"
+msgstr ""
+"Выводить значения CPUID в десятичном формате (по умолчанию - "
+"шестнадцатеричный)"
+
+#: cpu-x-gtk-3.12.ui:5784
+#, fuzzy
+#| msgid "Select default graphic card (integer)"
+msgid "Default graphic card"
+msgstr "Выбрать графическую карту по умолчанию (целое число)"
+
+#: cpu-x-gtk-3.12.ui:5812
+msgid "Startup"
+msgstr ""
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
