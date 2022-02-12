@@ -5605,7 +5605,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Refresh time</property>
+                    <property name="label" translatable="yes" comments="Setting: refresh time for UI">Refresh time</property>
                     <property name="mnemonic-widget">refreshtime_val</property>
                   </object>
                   <packing>
@@ -5629,7 +5629,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Theme</property>
+                    <property name="label" translatable="yes" comments="Setting: GUI theme">Theme</property>
                     <property name="mnemonic-widget">theme_val</property>
                   </object>
                   <packing>
@@ -5644,9 +5644,9 @@
                     <property name="hexpand">True</property>
                     <property name="active">0</property>
                     <items>
-                      <item id="auto" translatable="yes">Automatic</item>
-                      <item id="light" translatable="yes">Light</item>
-                      <item id="dark" translatable="yes">Dark</item>
+                      <item id="auto" translatable="yes" comments="Setting: automatic GUI theme">Automatic</item>
+                      <item id="light" translatable="yes" comments="Setting: light GUI theme">Light</item>
+                      <item id="dark" translatable="yes" comments="Setting: dark GUI theme">Dark</item>
                     </items>
                   </object>
                   <packing>
@@ -5660,7 +5660,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Interface</property>
+                <property name="label" translatable="yes" comments="Setting: &quot;Interface&quot; tab">Interface</property>
               </object>
               <packing>
                 <property name="tab-fill">False</property>
@@ -5679,7 +5679,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Default tab</property>
+                    <property name="label" translatable="yes" comments="Setting: default tab at startup">Default tab</property>
                     <property name="mnemonic-widget">defaulttab_val</property>
                   </object>
                   <packing>
@@ -5692,7 +5692,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Default CPU core</property>
+                    <property name="label" translatable="yes" comments="Setting: default CPU core at startup">Default CPU core</property>
                     <property name="mnemonic-widget">defaultcore_val</property>
                   </object>
                   <packing>
@@ -5705,7 +5705,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Default caches test</property>
+                    <property name="label" translatable="yes" comments="Setting: default cache test at startup">Default cache test</property>
                     <property name="mnemonic-widget">defaultcachetest_val</property>
                   </object>
                   <packing>
@@ -5748,7 +5748,7 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="cpuiddecimal">
-                    <property name="label" translatable="yes">Print CPUID values in decimal</property>
+                    <property name="label" translatable="yes" comments="Setting: print CPUID values in decimal or hexadecimal">Print CPUID values in decimal</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -5781,7 +5781,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Default graphic card</property>
+                    <property name="label" translatable="yes" comments="Setting: default graphic card at startup">Default graphic card</property>
                     <property name="mnemonic-widget">defaultcachetest_val</property>
                   </object>
                   <packing>
@@ -5809,7 +5809,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Startup</property>
+                <property name="label" translatable="yes" comments="Setting: &quot;Startup&quot; tab">Startup</property>
               </object>
               <packing>
                 <property name="position">1</property>

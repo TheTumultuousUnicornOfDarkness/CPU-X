@@ -33,7 +33,7 @@ if(GETTEXT_FOUND)
 		COMMAND xgettext
 			--language=Glade
 			--keyword=translatable --indent
-			--add-comments=TRANSLATORS:
+			--add-comments
 			--package-name=${CMAKE_PROJECT_NAME}
 			--package-version=${PROJECT_VERSION}
 			--default-domain=${CMAKE_PROJECT_NAME}
