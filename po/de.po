@@ -10,13 +10,14 @@
 # nautilusx <mail.ka@mailbox.org>, 2020.
 # nautilusx <translate@disroot.org>, 2021.
 # sm_moshi <meya@posteo.se>, 2021.
+# Alex <alexander.simm@posteo.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2021-05-25 05:32+0000\n"
-"Last-Translator: nautilusx <translate@disroot.org>\n"
+"PO-Revision-Date: 2022-02-13 17:09+0000\n"
+"Last-Translator: Alex <alexander.simm@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -69,6 +70,8 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"Hybride Prozessorarchitektur wird nicht unterstützt. Mehr Details findest du "
+"im folgenden Issue: %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
@@ -394,7 +397,7 @@ msgstr "Fehler beim Importieren des UIs in GtkBuilder"
 
 #: gui_gtk.c:544
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Mit Daemon verbunden"
 
 #: gui_gtk.c:546
 msgid "No polkit authentication agent found"
@@ -406,7 +409,7 @@ msgstr ""
 
 #: gui_gtk.c:556
 msgid "Start daemon"
-msgstr ""
+msgstr "Daemon starten"
 
 #: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
 #, c-format
@@ -869,7 +872,7 @@ msgstr "Standardgrafikkarte auswählen (Ganzzahl)"
 
 #: main.c:348 cpu-x-gtk-3.12.ui:5766
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Starten und mit Daemon verbinden"
 
 #: main.c:349
 msgid "Verbose output"
