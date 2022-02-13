@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2022-02-08 10:58+0000\n"
+"PO-Revision-Date: 2022-02-13 06:24+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -561,7 +561,7 @@ msgstr "サイズ"
 
 #: main.c:97
 msgid "Speed"
-msgstr "スピード"
+msgstr "速度"
 
 #: main.c:99
 msgid "Test"
@@ -850,7 +850,7 @@ msgstr "デフォルトのグラフィックカードの選択（整数）"
 
 #: main.c:348 cpu-x-gtk-3.12.ui:5766
 msgid "Start and connect to daemon"
-msgstr "デーモンを開始、接続します"
+msgstr "起動時にデーモンを開始する"
 
 #: main.c:349
 msgid "Verbose output"
@@ -1182,61 +1182,59 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
-msgstr ""
+msgstr "更新間隔"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
-msgstr ""
+msgstr "テーマ"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
-msgstr ""
+msgstr "自動"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
+#, fuzzy
 msgid "Light"
-msgstr ""
+msgstr "Light"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
+#, fuzzy
 msgid "Dark"
-msgstr ""
+msgstr "Dark"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
-msgstr ""
+msgstr "デフォルトのタブ"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
-msgstr ""
+msgstr "デフォルトのCPUコア"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
 msgid "Default cache test"
-msgstr ""
+msgstr "デフォルトのキャッシュテスト"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
-#, fuzzy
-#| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
-msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
+msgstr "CPUIDの値を10進数で表示する"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "デフォルトのグラフィックカードの選択（整数）"
+msgstr "デフォルトのグラフィックカード"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
-msgstr ""
+msgstr "起動時"
 
 #, fuzzy
 #~| msgid "failed to call libcpuid (%s)"
