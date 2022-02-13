@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2022-02-13 06:24+0000\n"
+"PO-Revision-Date: 2022-02-13 06:40+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: core.c:224
 msgid "Finding CPU technology"
-msgstr "CPU 性能の識別中"
+msgstr "CPUテクノロジーの識別中"
 
 #: core.c:246
 #, c-format
@@ -500,7 +500,7 @@ msgstr "クロック"
 
 #: main.c:75
 msgid "Core Speed"
-msgstr "1コアの速度"
+msgstr "コア速度"
 
 #: main.c:76
 msgid "Multiplier"
@@ -508,7 +508,7 @@ msgstr "倍率"
 
 #: main.c:77
 msgid "Bus Speed"
-msgstr "バススピード"
+msgstr "バス速度"
 
 #: main.c:78 main.c:156
 msgid "Usage"
@@ -733,11 +733,11 @@ msgstr "ベンチマーク"
 
 #: main.c:168 cpu-x-gtk-3.12.ui:4958
 msgid "Prime numbers (slow)"
-msgstr "素数（スロー）"
+msgstr "素数（低速）"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5066
 msgid "Prime numbers (fast)"
-msgstr "素数（ファースト）"
+msgstr "素数（高速）"
 
 #: main.c:172
 msgid "Score"
