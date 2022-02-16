@@ -31,7 +31,7 @@ set --
 BUNDLER="$WORKSPACE/linuxdeploy.AppImage"
 runCmd wget "${WGET_ARGS[@]}" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
 	&& set -- "$@" --output appimage
-runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/dev/linuxdeploy-plugin-gtk.sh" \
+runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/fix_24/linuxdeploy-plugin-gtk.sh" \
 	&& set -- "$@" --plugin gtk
 runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-ncurses/master/linuxdeploy-plugin-ncurses.sh" \
 	&& set -- "$@" --plugin ncurses
