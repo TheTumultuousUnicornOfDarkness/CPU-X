@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the CPU-X package.
 # Prachi Joshi <josprachi@yahoo.com>, 2019, 2020, 2021.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
+# Sarang Bhaisare <sarangbhaisare@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2021-05-25 05:32+0000\n"
-"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"PO-Revision-Date: 2022-02-17 13:58+0000\n"
+"Last-Translator: Sarang Bhaisare <sarangbhaisare@gmail.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
 "translations/mr/>\n"
 "Language: mr\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -56,15 +57,18 @@ msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
 #: core.c:288
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"या मध्यवर्ती प्रक्रियाक एकाकाचे (Central Processing Unit-CPU) वास्तु समर्थित "
+"नाही. अधिक तपशीलांसाठी कृपया खालील त्रासाचा संदर्भ घ्या: %s"
 
 #: core.c:308
+#, fuzzy
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "समर्थित नाही"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -130,20 +134,19 @@ msgid "failed to get name for platform %u (%s)"
 msgstr "प्लॅटफॉर्म %u (%s) चे नाव मिळविण्यात अयशस्वी"
 
 #: core.c:876
-#, fuzzy, c-format
-#| msgid "failed to perform the Curl transfer (%s)"
+#, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
 #: core.c:883
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "व्यासपीठासाठी ओपन सीएल उपकरणांची संख्या शोधण्यात अयशस्वी '%s %s' (%s)"
 
 #: core.c:891
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "व्यासपीठासाठी ओपन सीएल सर्व उपकरणे मिळविण्यात अयशस्वी '%s %s' (%s)"
 
 #: core.c:905
 #, fuzzy, c-format
@@ -161,18 +164,23 @@ msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) �
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
+"%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_TOPOLOGY_AMD (%s) ला समर्थन देत नाही"
 
 #: core.c:934
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_GFXIP_MAJOR_AMD (%s) ला समर्थन देत "
+"नाही"
 
 #: core.c:946 core.c:956 core.c:981
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_MAX_COMPUTE_UNITS (%s) ला समर्थन देत "
+"नाही"
 
 #: core.c:969
 #, c-format
@@ -180,11 +188,15 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"'%s %s' साठी ओपन सीएल ड्राइव्हर CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) किंवा CL_DEVICE_PCI_SLOT_ID_NV (%s) ला समर्थन दे"
+"त नाही"
 
 #: core.c:989
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
+"तुमच्या चित्रक प्रक्रीयक एकक(GPU) विक्रेत्यासह ओपन सीएल समर्थित नाही (0x%X)"
 
 #: core.c:1018
 msgid "Finding devices"
@@ -224,15 +236,15 @@ msgstr "GPU %u साठी ड्राइव्हर वारंवारि
 #: core.c:1379
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "वर्तमान: PCIe Gen%1dx%d / कमाल: Gen%1dx%d"
 
 #: core.c:1383
 msgid "Enabled"
-msgstr ""
+msgstr "सक्षम केले आहे"
 
 #: core.c:1383
 msgid "Disabled"
-msgstr ""
+msgstr "अक्षम केले आहे"
 
 #: core.c:1404
 msgid "failed to retrieve GPU clocks"
@@ -398,20 +410,18 @@ msgid "Core #%i"
 msgstr "कोर #%i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "परिवार"
+msgstr "मुळ कुटूंब"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "मॉडेल"
+msgstr "प्रतिकृती"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"मध्यवर्ती प्रक्रीयक एकक(CPU) प्रदर्शक(Display) (\"खरे\") कुटूंब (मुळ "
+"कुटूंब+विस्तारित कुटुंब म्हणून गणना)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
