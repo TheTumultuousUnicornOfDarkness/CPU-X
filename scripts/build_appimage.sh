@@ -31,17 +31,17 @@ set --
 BUNDLER="$WORKSPACE/linuxdeploy.AppImage"
 runCmd wget "${WGET_ARGS[@]}" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
 	&& set -- "$@" --output appimage
-runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh" \
+runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/fix_24/linuxdeploy-plugin-gtk.sh" \
 	&& set -- "$@" --plugin gtk
 runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-ncurses/master/linuxdeploy-plugin-ncurses.sh" \
 	&& set -- "$@" --plugin ncurses
 runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gettext/linuxdeploy-plugin-gettext.sh" \
 	&& set -- "$@" --plugin gettext
-if [[ -z "$VERSION" ]]; then
-	export LINUXDEPLOY_PLUGIN_GDB_SRC="$WORKSPACE/src"
-	runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gdb/linuxdeploy-plugin-gdb.sh" \
-		&& set -- "$@" --plugin gdb
-fi
+#if [[ -z "$VERSION" ]]; then
+#	export LINUXDEPLOY_PLUGIN_GDB_SRC="$WORKSPACE/src"
+#	runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/misc-plugins/master/gdb/linuxdeploy-plugin-gdb.sh" \
+#		&& set -- "$@" --plugin gdb
+#fi
 runCmd chmod --verbose a+x ./*.AppImage ./*.sh
 
 # Set useful variables for linuxdeploy
