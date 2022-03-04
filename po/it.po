@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the CPU-X package.
 # Davide Neri <davnerix@gmail.com>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
-# Pierfrancesco Passerini <p.passerini@gmail.com>, 2020, 2021.
+# Pierfrancesco Passerini <p.passerini@gmail.com>, 2020, 2021, 2022.
 # J. Lavoie <j.lavoie@net-c.ca>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2021-12-22 04:51+0000\n"
+"PO-Revision-Date: 2022-03-06 15:58+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -63,10 +63,12 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"Le CPU con architettura ibrida non sono supportate. Per maggiori dettagli, "
+"fare riferimento a questa segnalazione: %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "NON SUPPORTATO"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -411,21 +413,26 @@ msgstr "Core #%i"
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
-msgstr "BaseFamily"
+msgstr "Famiglia CPU"
 
 #: gui_gtk.c:569
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
-msgstr "BaseModel"
+msgstr "Modello CPU"
 
 #: gui_gtk.c:570
+#, fuzzy
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Famiglia CPU (\"reale\") visualizzata (ricavato da BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:571
+#, fuzzy
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Modello CPU (\"reale\") visualizzato (ricavato da "
+"(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
 msgid "User Mode Driver Version"
@@ -494,7 +501,7 @@ msgstr "Temp."
 
 #: main.c:71
 msgid "Stepping"
-msgstr "Stepping"
+msgstr "Revisione"
 
 #: main.c:72
 msgid "Instructions"
@@ -621,7 +628,7 @@ msgstr "Banco %i"
 #: main.c:123
 #, fuzzy
 msgid "Reference"
-msgstr "Tipologia"
+msgstr "Fonte"
 
 #: main.c:127 cpu-x-gtk-3.12.ui:3925
 msgid "System"
@@ -645,7 +652,7 @@ msgstr "Hostname"
 
 #: main.c:132
 msgid "Uptime"
-msgstr "Uptime"
+msgstr "Tempo di funzionamento"
 
 #: main.c:133
 msgid "Compiler"
@@ -694,7 +701,7 @@ msgstr "Unità di calcolo"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr "DeviceID"
+msgstr "ID dispositivo"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -887,8 +894,7 @@ msgstr "Stampa le informazioni per il debug"
 
 #: main.c:355
 msgid "Print required information to paste in an issue"
-msgstr ""
-"Stampa le informazioni necessarie da incollare in un rapporto di errore"
+msgstr "Stampa le informazioni necessarie da includere in una segnalazione"
 
 #: main.c:356
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
@@ -965,9 +971,8 @@ msgstr ""
 "bloccato.%s"
 
 #: main.c:679
-#, fuzzy
 msgid "You can paste this backtrace by opening a new issue here:"
-msgstr "Puoi incollare questo backtrace aprendo un nuovo rapporto qui:"
+msgstr "Puoi incollare quest'analisi aprendo una nuova segnalazione qui:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
@@ -1197,61 +1202,60 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
-msgstr ""
+msgstr "Intervallo di aggiornamento"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
-msgstr ""
+msgstr "Automatico"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
-msgstr ""
+msgstr "Chiaro"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
-msgstr ""
+msgstr "Scuro"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
-msgstr ""
+msgstr "Scheda predefinita"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
+#, fuzzy
 msgid "Default CPU core"
-msgstr ""
+msgstr "CPU core predefinito"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
+#, fuzzy
 msgid "Default cache test"
-msgstr ""
+msgstr "Test cache predefinito"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
-#, fuzzy
-#| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
-msgstr "Stampa i valori CPUID in decimale (predefinito in esadecimale)"
+msgstr "Stampa i valori CPUID in decimale"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "Imposta la scheda grafica predefinita (intero)"
+msgstr "Scheda grafica predefinita"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
+#, fuzzy
 msgid "Startup"
-msgstr ""
+msgstr "Avvio"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
