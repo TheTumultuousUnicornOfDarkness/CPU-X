@@ -465,12 +465,15 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 
 static gboolean is_dark_theme(GtkLabels *glab)
 {
+	static gboolean called = false, is_dark = false;
 	gdouble contrast;
 	GdkRGBA *fg, *bg;
 	GtkStyleContext *context;
 
 	if (theme != AUTO)
 		return (theme == DARK);
+	else if (called)
+		return is_dark;
 
 	context = gtk_widget_get_style_context(GTK_WIDGET(glab->mainwindow));
 	gtk_style_context_get(context, GTK_STATE_FLAG_NORMAL,
@@ -478,10 +481,12 @@ static gboolean is_dark_theme(GtkLabels *glab)
 		GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &bg,
 		NULL);
 	contrast = bg->red - fg->red + bg->green - fg->green + bg->blue - fg->blue;
+	called   = true;
+	is_dark  = (contrast < -1);
 	gdk_rgba_free(fg);
 	gdk_rgba_free(bg);
 
-	return (contrast < -1);
+	return is_dark;
 }
 
 /* Set custom GTK theme */
