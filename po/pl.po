@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2022-02-11 16:58+0000\n"
+"PO-Revision-Date: 2022-03-19 20:58+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -72,7 +72,6 @@ msgstr ""
 "informacji, zapoznaj się z następującym zagadnieniem: %s"
 
 #: core.c:308
-#, fuzzy
 msgid "NOT SUPPORTED"
 msgstr "NIEOBSŁUGIWANE"
 
@@ -427,10 +426,8 @@ msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "Wersja sterownika trybu użytkownika (UMD)"
+msgstr "Tryb użytkownika Wersja sterownika"
 
 #: gui_gtk.c:655
 #, c-format
@@ -478,8 +475,6 @@ msgid "Family"
 msgstr "Rodzina"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
 msgstr "Wyśw. Rodzina"
 
@@ -488,10 +483,8 @@ msgid "Model"
 msgstr "Model"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Zewnętrzny Model"
+msgstr "Wyśw. Model"
 
 #: main.c:70
 msgid "Temp."
@@ -1205,62 +1198,57 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
-msgstr ""
+msgstr "Czas odświeżenia"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
-msgstr ""
+msgstr "Kompozycja"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
-msgstr ""
+msgstr "Automatyczny"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
-msgstr ""
+msgstr "Jasny"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
-msgstr ""
+msgstr "Ciemny"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
-msgstr ""
+msgstr "Domyślna karta"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
-msgstr ""
+msgstr "Domyślny rdzeń procesora"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
 msgid "Default cache test"
-msgstr ""
+msgstr "Domyślny test pamięci podręcznej"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
-#, fuzzy
-#| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
-msgstr ""
-"Wydrukuj wartości CPUID w systemie dziesiętnym (domyślnie szesnastkowo)"
+msgstr "Wydrukuj wartości CPUID w postaci dziesiętnej"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "Wybierz domyślną kartę graficzną (liczba całkowita)"
+msgstr "Domyślna karta graficzna"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
-msgstr ""
+msgstr "Uruchamianie"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
