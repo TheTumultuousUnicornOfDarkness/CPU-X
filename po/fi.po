@@ -2,13 +2,13 @@
 # Copyright © 2014-2022 Xorg
 # This file is distributed under the same license as the cpu-x package.
 # Riku Viitanen <riku.viitanen@protonmail.com>, 2020.
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2021.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2021-08-08 13:15+0000\n"
+"PO-Revision-Date: 2022-03-29 17:12+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -65,7 +65,7 @@ msgstr ""
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "EI TUETTU"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -384,11 +384,11 @@ msgstr "Yhdistetty daemoniin"
 
 #: gui_gtk.c:546
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Polkit-todennusagenttia ei löydy"
 
 #: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Kysy salasana taustapalvelun käynnistämiseksi"
 
 #: gui_gtk.c:556
 msgid "Start daemon"
@@ -814,11 +814,11 @@ msgstr "Vapautetaan muistia"
 
 #: main.c:338
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "Käynnistä graafinen käyttöliittymä (GUI) (oletus)"
 
 #: main.c:339
 msgid "Start text-based user interface (TUI)"
-msgstr ""
+msgstr "Käynnistä tekstipohjainen käyttöliittymä (TUI)"
 
 #: main.c:340
 msgid "Dump all data on standard output and exit"
@@ -856,7 +856,7 @@ msgstr "Valitse tarkkailtava suoritinydin (numero)"
 
 #: main.c:348 cpu-x-gtk-3.12.ui:5766
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Käynnistä ja yhdistä taustapalveluun"
 
 #: main.c:349
 msgid "Verbose output"
@@ -965,7 +965,7 @@ msgstr ""
 
 #: tui_ncurses.c:72
 msgid "Starting NCurses TUI…"
-msgstr ""
+msgstr "Käynnistetään NCurses-tekstikäyttöliittymää…"
 
 #: tui_ncurses.c:80
 msgid ""
@@ -1189,27 +1189,27 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
-msgstr ""
+msgstr "Päivitysaika"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
-msgstr ""
+msgstr "Teema"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
-msgstr ""
+msgstr "Automaattinen"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
-msgstr ""
+msgstr "Vaalea"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
-msgstr ""
+msgstr "Tumma"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
@@ -1241,7 +1241,7 @@ msgstr "Valitse tarkkailtava suoritinydin (numero)"
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
-msgstr ""
+msgstr "Käynnistys"
 
 #, fuzzy
 #~| msgid "failed to call libcpuid (%s)"
