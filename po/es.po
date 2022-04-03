@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2022-04-03 10:30+0000\n"
-"Last-Translator: LocoUnPocoNadaMas <dkno_c1@hotmail.com>\n"
+"PO-Revision-Date: 2022-04-04 11:12+0000\n"
+"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
 "Language: es\n"
@@ -50,7 +50,7 @@ msgstr "%d %s, %d-vias"
 #: core.c:261
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s asociativo, %d-%s línea de tamaño"
+msgstr "%s asociativo, %d-%s tamaño de línea"
 
 #: core.c:266
 msgid "Calling libcpuid for retrieving static data"
@@ -76,15 +76,15 @@ msgstr "NO PROPORCIONADO"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Llamando a libcpuid para recuperar datos dinámicos"
+msgstr "Invocando a libcpuid para recuperar datos dinámicos"
 
 #: core.c:467
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Llamando a libcpuid para recuperar valores estáticos de CPU MSR"
+msgstr "Invocando a libcpuid para recuperar valores estáticos de CPU MSR"
 
 #: core.c:492
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Llamando a libcpuid para recuperar valores dinámicos de CPU MSR"
+msgstr "Invocando a libcpuid para recuperar valores dinámicos de CPU MSR"
 
 #: core.c:515
 msgid "Calculating CPU multipliers"
@@ -92,7 +92,7 @@ msgstr "Calculando multiplicadores de CPU"
 
 #: core.c:548
 msgid "Calling dmidecode"
-msgstr "Llamando a dmidecode"
+msgstr "Invocando a ‘dmidecode’"
 
 #: core.c:581
 msgid "Calculating CPU usage"
@@ -100,13 +100,13 @@ msgstr "Calculando el uso de la CPU"
 
 #: core.c:632
 msgid "Calling bandwidth"
-msgstr "Llamando al ancho de banda"
+msgstr "Invocando al ancho de banda"
 
 #: core.c:713
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
-"No hay controlador kernel en uso para la tarjeta grafica en la ubicación %s"
+"No hay controlador kernel en uso para la tarjeta gráfica en la ubicación %s"
 
 #: core.c:744
 #, c-format
@@ -192,6 +192,8 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Controlador OpenCL para «%s %s» no admite CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) o CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:989
 #, c-format
@@ -240,7 +242,6 @@ msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Actual: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1383
-#, fuzzy
 msgid "Enabled"
 msgstr "Habilitado"
 
