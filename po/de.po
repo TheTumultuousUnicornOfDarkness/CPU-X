@@ -11,13 +11,14 @@
 # nautilusx <translate@disroot.org>, 2021.
 # sm_moshi <meya@posteo.se>, 2021.
 # Alex <alexander.simm@posteo.de>, 2022.
+# sal0max <msal.coding@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2022-02-13 17:09+0000\n"
-"Last-Translator: Alex <alexander.simm@posteo.de>\n"
+"PO-Revision-Date: 2022-04-19 22:12+0000\n"
+"Last-Translator: sal0max <msal.coding@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -75,7 +76,7 @@ msgstr ""
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "NICHT UNTERSTÜTZT"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -385,7 +386,7 @@ msgstr "Fehler beim Abrufen der CPU-Frequenz (alternativer Modus)"
 #: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: Fall %i nicht verarbeitet"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
@@ -401,11 +402,11 @@ msgstr "Mit Daemon verbunden"
 
 #: gui_gtk.c:546
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Kein Polkit-Authentifizierungsagent gefunden"
 
 #: gui_gtk.c:550
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Verlange Passwort um den Daemon im Hintergrund zu starten"
 
 #: gui_gtk.c:556
 msgid "Start daemon"
@@ -417,30 +418,28 @@ msgid "Core #%i"
 msgstr "Kern %i"
 
 #: gui_gtk.c:568
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Familie"
+msgstr "BaseFamily"
 
 #: gui_gtk.c:569
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Modell"
+msgstr "BaseModel"
 
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Angezeigte (\"echte\") CPU-Familie (zusammengestellt aus "
+"BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Angezeigtes (\"echtes\") CPU-Modell (zusammengestellt aus "
+"(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "UMD-Version"
+msgstr "User-Mode Driver-Version"
 
 #: gui_gtk.c:655
 #, c-format
@@ -488,20 +487,16 @@ msgid "Family"
 msgstr "Familie"
 
 #: main.c:67
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Erw. Familie"
+msgstr "Angez. Familie"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Modell"
 
 #: main.c:69
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Erw. Modell"
+msgstr "Angez. Modell"
 
 #: main.c:70
 msgid "Temp."
@@ -704,7 +699,7 @@ msgstr "UMD-Version"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr ""
+msgstr "Recheneinheit"
 
 #: main.c:153
 msgid "DeviceID"
@@ -713,8 +708,9 @@ msgstr "Geräte-ID"
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
 #: main.c:154 cpu-x-gtk-3.12.ui:5663
+#, fuzzy
 msgid "Interface"
-msgstr ""
+msgstr "Schnittstelle"
 
 #: main.c:155
 msgid "Temperature"
@@ -726,7 +722,7 @@ msgstr "Kernspannung"
 
 #: main.c:158
 msgid "Power Avg"
-msgstr ""
+msgstr "Durchschn. Energie"
 
 #: main.c:159
 msgid "GPU clock"
@@ -742,7 +738,7 @@ msgstr "Verwendeter Speicher"
 
 #: main.c:162
 msgid "Resizable BAR"
-msgstr ""
+msgstr "Resizable BAR"
 
 #: main.c:164 cpu-x-gtk-3.12.ui:4826
 msgid "Cards"
@@ -888,7 +884,7 @@ msgstr "Version ausgeben und Anwendung beenden"
 
 #: main.c:352
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
+msgstr "CPUID-Werte in Dezimaldarstellung (Standard ist Hexadezimal)"
 
 #: main.c:353
 msgid "Disable colored output"
@@ -905,10 +901,12 @@ msgstr "Benötigte Informationen zum Einfügen in einen Problembericht ausgeben"
 #: main.c:356
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Tastenkürzel für den NCurser-Modus festlegen "
+"(a[Pfeile]|e[macs]|i[nvertiertes-T]|v[im])"
 
 #: main.c:367
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Setze Standard-Kommandozeilenargumente"
 
 #: main.c:368
 msgid "Enforce the bus clock"
@@ -994,11 +992,13 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"SCHWERWIEGENDER FEHLER: terminfo-Datenbank wurde nicht gefunden (bitte "
+"TERMINFO-Umgebungsvariable setzen)"
 
 #: tui_ncurses.c:85
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Konnte %s Terminal nicht erstellen (Fehler=%i); Falle zurück auf %s"
 
 #: tui_ncurses.c:316
 msgid "Window is too small!"
@@ -1125,12 +1125,12 @@ msgstr "Eine beliebige Taste drücken, um diese Hilfe zu beenden."
 #: util.c:198
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "Konnte keine Einheit in String '%s' an Position %i finden"
 
 #: util.c:210
 #, c-format
 msgid "String '%s' is too long, truncating…"
-msgstr ""
+msgstr "String '%s' ist zu lang, schneide ab…"
 
 #: util.c:287
 #, c-format
@@ -1153,19 +1153,19 @@ msgstr "Beim Kompilieren eines Regulären Ausdrucks trat ein Fehler auf"
 
 #: util.c:574
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: Autorisierung konnte nicht erlangt werden (Dialog verworfen)"
 
 #: util.c:577
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: Autorisierung konnte nicht erlangt werden (nicht autorisiert)"
 
 #: util.c:580
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: Befehl nicht gefunden"
 
 #: util.c:583
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: Unerwarteter Fehlercode"
 
 #: cpu-x.h:53
 msgid "FATAL ERROR: could not allocate memory"
@@ -1218,59 +1218,57 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
 msgid "Refresh time"
-msgstr ""
+msgstr "Aktualisierungsintervall"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
-msgstr ""
+msgstr "Design"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
-msgstr ""
+msgstr "Hell"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
-msgstr ""
+msgstr "Dunkel"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
-msgstr ""
+msgstr "Standard-Tab"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
-msgstr ""
+msgstr "Standard-Prozessorkern"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
 msgid "Default cache test"
-msgstr ""
+msgstr "Standard-Cache-Test"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
 msgid "Print CPUID values in decimal"
-msgstr ""
+msgstr "CPUID-Werte dezimal ausgeben"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5784
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "Standardgrafikkarte auswählen (Ganzzahl)"
+msgstr "Standard-Grafikkarte"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
-msgstr ""
+msgstr "Startup"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
