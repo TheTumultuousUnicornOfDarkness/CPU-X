@@ -1,14 +1,14 @@
 # Copyright © 2014-2022 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021.
+# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021, 2022.
 # Michal Čihař <michal@cihar.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-02-12 19:05+0100\n"
-"PO-Revision-Date: 2021-07-30 08:34+0000\n"
+"PO-Revision-Date: 2022-04-23 17:11+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -62,10 +62,12 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"Hybrid-prosessorarkitektur støttes ikke. Flere detaljer er å finne i denne "
+"feilrapporten: %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "IKKE STØTTET"
 
 #: core.c:454
 #, fuzzy
@@ -124,9 +126,9 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "Klarte ikke å kalle GLFW (%i): %s"
 
 #: core.c:850
-#, c-format
+#, c-format, fuzzy
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Det finnes ingen plattform med OpenCL-støtte (%s)"
 
 #: core.c:859
 #, c-format
@@ -144,14 +146,14 @@ msgid "failed to get version for platform %u (%s)"
 msgstr "klarte ikke å hente plattformsversjon %u (%s)"
 
 #: core.c:883
-#, c-format
+#, c-format, fuzzy
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "klarte ikke å finne antall OpenCL-enheter for plattformen «%s %s» (%s»"
 
 #: core.c:891
-#, c-format
+#, c-format, fuzzy
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "klarte ikke å hente alle OpenCL-enheter for plattformen «%s %s» (%s)"
 
 #: core.c:905
 #, c-format
@@ -167,18 +169,21 @@ msgstr "klarte ikke å hente enhetsversjon %u (%s)"
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
+"OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:934
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
+"OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:946 core.c:956 core.c:981
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:969
 #, c-format
@@ -186,11 +191,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_PCI_DOMAIN_ID_NV (%s)"
+", CL_DEVICE_PCI_BUS_ID_NV (%s) eller CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:989
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL støttes ikke med din GPU-leverandør (0x%X)"
 
 #: core.c:1018
 msgid "Finding devices"
@@ -233,12 +240,13 @@ msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Nåværende: PCIe-gen%1dx%d / Maks: gen%1dx%d"
 
 #: core.c:1383
+#, fuzzy
 msgid "Enabled"
-msgstr ""
+msgstr "Påskrudd"
 
 #: core.c:1383
 msgid "Disabled"
-msgstr ""
+msgstr "Avskrudd"
 
 #: core.c:1404
 msgid "failed to retrieve GPU clocks"
@@ -422,10 +430,14 @@ msgstr "Modell"
 #: gui_gtk.c:570
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Representativ (ekte) prosessorfamilie, (utregnet som "
+"BaseFamily+ExtendeFamily)"
 
 #: gui_gtk.c:571
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Representativ (ekte) prosessormodell, (utregnet som "
+"(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:630
 #, fuzzy
@@ -696,8 +708,9 @@ msgid "UMD Version"
 msgstr "Versjon"
 
 #: main.c:152
+#, fuzzy
 msgid "Compute Unit"
-msgstr ""
+msgstr "Regneenhet"
 
 #: main.c:153
 msgid "DeviceID"
@@ -737,8 +750,9 @@ msgid "Memory Used"
 msgstr "Minne"
 
 #: main.c:162
+#, fuzzy
 msgid "Resizable BAR"
-msgstr ""
+msgstr "Tilpassbar BAR"
 
 #: main.c:164 cpu-x-gtk-3.12.ui:4826
 #, fuzzy
@@ -1275,43 +1289,44 @@ msgstr "TB"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5608
+#, fuzzy
 msgid "Refresh time"
-msgstr ""
+msgstr "Gjenoppfriskningstid"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5632
 msgid "Theme"
-msgstr ""
+msgstr "Drakt"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5647
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisk"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5648
 msgid "Light"
-msgstr ""
+msgstr "Lys"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5649
 msgid "Dark"
-msgstr ""
+msgstr "Mørk"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5682
 msgid "Default tab"
-msgstr ""
+msgstr "Forvalgt fane"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5695
 msgid "Default CPU core"
-msgstr ""
+msgstr "Forvalgt prosessorkjerne"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5708
 msgid "Default cache test"
-msgstr ""
+msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5751
@@ -1329,7 +1344,7 @@ msgstr "Sett forvalgt fane (heltall)"
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
-msgstr ""
+msgstr "Oppstart"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
