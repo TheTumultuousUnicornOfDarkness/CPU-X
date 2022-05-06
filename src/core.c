@@ -669,6 +669,13 @@ static int find_gpu_device_path(struct pci_dev *dev, char **device_path)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	char *base = NULL;
 
+	if(dev->access == NULL)
+	{
+		MSG_ERROR(_("pci_access is not properly initialized: it is a common issue when %s was built with a lower libpci version.\n"
+			"Check that libpci %s library is present on your system. Otherwise, please rebuild %s."), PRGNAME, LIBPCI_VERSION, PRGNAME);
+		return 1;
+	}
+
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
 	{
 		MSG_ERROR("dev->access->method=%u", dev->access->method);

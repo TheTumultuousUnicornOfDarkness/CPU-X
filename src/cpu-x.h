@@ -58,7 +58,7 @@
 #define UNUSED(x)             (void)(x)
 
 /* Formatted messages definition */
-#define MSG_BUFF_LEN          128
+#define MSG_BUFF_LEN          256
 #define MSG_STDOUT(fmt, ...)  fprintf(stdout, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_STDERR(fmt, ...)  fprintf(stderr, colorized_msg(DEFAULT, "%s", fmt), ##__VA_ARGS__)
 #define MSG_VERBOSE(fmt, ...) opts->verbose ? fprintf(stdout, colorized_msg(BOLD_GREEN,   "%s", fmt), ##__VA_ARGS__) : 0
