@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 19:05+0100\n"
+"POT-Creation-Date: 2022-05-06 08:28+0000\n"
 "PO-Revision-Date: 2020-09-20 04:39+0000\n"
 "Last-Translator: PB <regisztralo111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/cpu-x/"
@@ -377,54 +377,54 @@ msgstr "GTK GUI indítása…"
 msgid "failed to import UI in GtkBuilder"
 msgstr ""
 
-#: gui_gtk.c:544
+#: gui_gtk.c:549
 msgid "Connected to daemon"
 msgstr ""
 
-#: gui_gtk.c:546
+#: gui_gtk.c:551
 msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.c:550
+#: gui_gtk.c:555
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:556
+#: gui_gtk.c:561
 msgid "Start daemon"
 msgstr ""
 
-#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "%i. mag"
 
-#: gui_gtk.c:568
+#: gui_gtk.c:573
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "Család"
 
-#: gui_gtk.c:569
+#: gui_gtk.c:574
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "Modell"
 
-#: gui_gtk.c:570
+#: gui_gtk.c:575
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 
-#: gui_gtk.c:571
+#: gui_gtk.c:576
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.c:630
+#: gui_gtk.c:635
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "Verzió"
 
-#: gui_gtk.c:655
+#: gui_gtk.c:660
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -959,7 +959,7 @@ msgid ""
 msgstr ""
 
 #: main.c:679
-msgid "You can paste this backtrace by opening a new issue here:"
+msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
 #: main.c:707
@@ -1133,55 +1133,55 @@ msgstr ""
 msgid "pkexec: unexpected error code"
 msgstr ""
 
-#: cpu-x.h:53
+#: cpu-x.h:54
 msgid "FATAL ERROR: could not allocate memory"
 msgstr "VÉGZETES HIBA: nem sikerült memóriát foglalni"
 
-#: cpu-x.h:92
+#: cpu-x.h:93
 msgid "bytes"
 msgstr "bájt"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:95
+#: cpu-x.h:96
 msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:97
+#: cpu-x.h:98
 msgid "MB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:99
+#: cpu-x.h:100
 msgid "GB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:101
+#: cpu-x.h:102
 msgid "TB"
 msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:104
+#: cpu-x.h:105
 msgid "KiB"
 msgstr ""
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:106
+#: cpu-x.h:107
 #, fuzzy
 #| msgid "MB"
 msgid "MiB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:108
+#: cpu-x.h:109
 #, fuzzy
 #| msgid "GB"
 msgid "GiB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:110
+#: cpu-x.h:111
 #, fuzzy
 #| msgid "TB"
 msgid "TiB"

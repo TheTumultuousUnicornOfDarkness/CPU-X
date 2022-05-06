@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 19:05+0100\n"
+"POT-Creation-Date: 2022-05-06 08:28+0000\n"
 "PO-Revision-Date: 2020-07-11 09:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -400,54 +400,54 @@ msgid "failed to import UI in GtkBuilder"
 msgstr ""
 "nepodařilo se importovat definici uživatelské rozhraní ve formátu GtkBuilder"
 
-#: gui_gtk.c:544
+#: gui_gtk.c:549
 msgid "Connected to daemon"
 msgstr ""
 
-#: gui_gtk.c:546
+#: gui_gtk.c:551
 msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.c:550
+#: gui_gtk.c:555
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.c:556
+#: gui_gtk.c:561
 msgid "Start daemon"
 msgstr ""
 
-#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "Jádro č. %i"
 
-#: gui_gtk.c:568
+#: gui_gtk.c:573
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "Řada"
 
-#: gui_gtk.c:569
+#: gui_gtk.c:574
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "Model"
 
-#: gui_gtk.c:570
+#: gui_gtk.c:575
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 
-#: gui_gtk.c:571
+#: gui_gtk.c:576
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.c:630
+#: gui_gtk.c:635
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "Verze"
 
-#: gui_gtk.c:655
+#: gui_gtk.c:660
 #, c-format
 msgid "%s"
 msgstr ""
@@ -1005,10 +1005,8 @@ msgstr ""
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a zhavarovalo.%s"
 
 #: main.c:679
-msgid "You can paste this backtrace by opening a new issue here:"
+msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
-"Tento záznam volání funkcí (backtrace) můžete vložit otevřením nového "
-"hlášení problému zde:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
@@ -1272,53 +1270,53 @@ msgstr ""
 msgid "pkexec: unexpected error code"
 msgstr ""
 
-#: cpu-x.h:53
+#: cpu-x.h:54
 #, fuzzy
 #| msgid "could not reallocate memory"
 msgid "FATAL ERROR: could not allocate memory"
 msgstr "nepodařilo se znovupřidělit paměť"
 
-#: cpu-x.h:92
+#: cpu-x.h:93
 msgid "bytes"
 msgstr ""
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:95
+#: cpu-x.h:96
 msgid "kB"
 msgstr ""
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:97
+#: cpu-x.h:98
 msgid "MB"
 msgstr ""
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:99
+#: cpu-x.h:100
 msgid "GB"
 msgstr ""
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:101
+#: cpu-x.h:102
 msgid "TB"
 msgstr ""
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:104
+#: cpu-x.h:105
 msgid "KiB"
 msgstr ""
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:106
+#: cpu-x.h:107
 msgid "MiB"
 msgstr ""
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:108
+#: cpu-x.h:109
 msgid "GiB"
 msgstr ""
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:110
+#: cpu-x.h:111
 msgid "TiB"
 msgstr ""
 
@@ -1378,6 +1376,11 @@ msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr ""
+
+#~ msgid "You can paste this backtrace by opening a new issue here:"
+#~ msgstr ""
+#~ "Tento záznam volání funkcí (backtrace) můžete vložit otevřením nového "
+#~ "hlášení problému zde:"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"

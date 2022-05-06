@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 19:05+0100\n"
+"POT-Creation-Date: 2022-05-06 08:28+0000\n"
 "PO-Revision-Date: 2022-01-13 02:56+0000\n"
 "Last-Translator: Daniel <danny3@tutanota.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -392,52 +392,52 @@ msgstr "Se pornește interfața grafică de tip GTK…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "a eșuat importarea interfeței grafice în unealta GtkBuilder"
 
-#: gui_gtk.c:544
+#: gui_gtk.c:549
 msgid "Connected to daemon"
 msgstr "Connectat la daemon"
 
-#: gui_gtk.c:546
+#: gui_gtk.c:551
 msgid "No polkit authentication agent found"
 msgstr "Nu a fost găsit niciu agent de autentificare polkit"
 
-#: gui_gtk.c:550
+#: gui_gtk.c:555
 msgid "Ask password to start daemon in background"
 msgstr "Cere parola la pornirea daemon-ului pe fundal"
 
-#: gui_gtk.c:556
+#: gui_gtk.c:561
 msgid "Start daemon"
 msgstr "Pornește daemon-ul"
 
-#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "Nucleu #%i"
 
-#: gui_gtk.c:568
+#: gui_gtk.c:573
 msgid "BaseFamily"
 msgstr "Familia de bază"
 
-#: gui_gtk.c:569
+#: gui_gtk.c:574
 msgid "BaseModel"
 msgstr "Modelul de bază"
 
-#: gui_gtk.c:570
+#: gui_gtk.c:575
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Pentru procesor afișează (adevărat - „true”) familia (compusă ca Famila de "
 "bază + Familia extinsă)"
 
-#: gui_gtk.c:571
+#: gui_gtk.c:576
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Pentru procesor afișează (adevărat - „true”) modelul (compus ca (modelul "
 "extins<<4)+Modelul de bază)"
 
-#: gui_gtk.c:630
+#: gui_gtk.c:635
 msgid "User Mode Driver Version"
 msgstr "Versiune ghidator mod utilizator"
 
-#: gui_gtk.c:655
+#: gui_gtk.c:660
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -972,9 +972,8 @@ msgstr ""
 "%sOpa, ceva a fost greșit! %s a primit semnalul %d (%s) și a picat.%s"
 
 #: main.c:679
-msgid "You can paste this backtrace by opening a new issue here:"
+msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
-"Puteți să lipiți această urmă înapoi prin deschiderea unei probleme noi aici:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
@@ -1157,51 +1156,51 @@ msgstr "pkexec: comanda nu a putut fi găsită"
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: cod de eroare neașteptat"
 
-#: cpu-x.h:53
+#: cpu-x.h:54
 msgid "FATAL ERROR: could not allocate memory"
 msgstr "EROARE FATALĂ: nu s-a putut aloca memorie"
 
-#: cpu-x.h:92
+#: cpu-x.h:93
 msgid "bytes"
 msgstr "octeți"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:95
+#: cpu-x.h:96
 msgid "kB"
 msgstr "kO"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:97
+#: cpu-x.h:98
 msgid "MB"
 msgstr "MO"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:99
+#: cpu-x.h:100
 msgid "GB"
 msgstr "GO"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:101
+#: cpu-x.h:102
 msgid "TB"
 msgstr "TO"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:104
+#: cpu-x.h:105
 msgid "KiB"
 msgstr "KiO"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:106
+#: cpu-x.h:107
 msgid "MiB"
 msgstr "MiO"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:108
+#: cpu-x.h:109
 msgid "GiB"
 msgstr "GiO"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:110
+#: cpu-x.h:111
 msgid "TiB"
 msgstr "TiO"
 
@@ -1265,3 +1264,8 @@ msgstr "Selectați placa video implicită (întreg)"
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr ""
+
+#~ msgid "You can paste this backtrace by opening a new issue here:"
+#~ msgstr ""
+#~ "Puteți să lipiți această urmă înapoi prin deschiderea unei probleme noi "
+#~ "aici:"

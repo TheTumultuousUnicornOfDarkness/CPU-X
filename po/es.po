@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 19:05+0100\n"
+"POT-Creation-Date: 2022-05-06 08:28+0000\n"
 "PO-Revision-Date: 2022-05-04 05:11+0000\n"
 "Last-Translator: Yoandry González Castro <yoandry.gonzalezc@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
@@ -155,8 +155,8 @@ msgstr ""
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
-"erróneo al obtener todos los dispositivos OpenCL para la plataforma «%s %s» "
-"(%s)"
+"erróneo al obtener todos los dispositivos OpenCL para la plataforma «%s "
+"%s» (%s)"
 
 #: core.c:905
 #, c-format
@@ -394,51 +394,51 @@ msgstr "Inicializando IGU GTK…"
 msgid "failed to import UI in GtkBuilder"
 msgstr "fallo al importar la IU en GtkBuilder"
 
-#: gui_gtk.c:544
+#: gui_gtk.c:549
 msgid "Connected to daemon"
 msgstr "Conectado a demonio"
 
-#: gui_gtk.c:546
+#: gui_gtk.c:551
 msgid "No polkit authentication agent found"
 msgstr "Ningún agente de autenticación polkit encontrado"
 
-#: gui_gtk.c:550
+#: gui_gtk.c:555
 msgid "Ask password to start daemon in background"
 msgstr "Solicite contraseña para inicializar demonio en segundo plano"
 
-#: gui_gtk.c:556
+#: gui_gtk.c:561
 msgid "Start daemon"
 msgstr "Iniciar demonio"
 
-#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "Núcleo #%i"
 
-#: gui_gtk.c:568
+#: gui_gtk.c:573
 msgid "BaseFamily"
 msgstr "FamiliaBase"
 
-#: gui_gtk.c:569
+#: gui_gtk.c:574
 msgid "BaseModel"
 msgstr "ModeloBase"
 
-#: gui_gtk.c:570
+#: gui_gtk.c:575
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "CPU representa familia (\"true\") (calculado como BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.c:571
+#: gui_gtk.c:576
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Mostrar CPU (\"verdadero\") modelo (computado como "
 "(ModeloExtendido<<4)+ModeloBase)"
 
-#: gui_gtk.c:630
+#: gui_gtk.c:635
 msgid "User Mode Driver Version"
 msgstr "Modo Usuario de Versión del Controlador"
 
-#: gui_gtk.c:655
+#: gui_gtk.c:660
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -971,8 +971,8 @@ msgstr ""
 "estrellado.%s"
 
 #: main.c:679
-msgid "You can paste this backtrace by opening a new issue here:"
-msgstr "Puede pegar esta retrotraza abriendo aquí una asunto nuevo:"
+msgid "You can open a new issue here, by filling the template as requested:"
+msgstr ""
 
 #: main.c:707
 msgid "an error occurred while setting locale"
@@ -1158,51 +1158,51 @@ msgstr "plexec: instrucción no encontrada"
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: código de error inesperado"
 
-#: cpu-x.h:53
+#: cpu-x.h:54
 msgid "FATAL ERROR: could not allocate memory"
 msgstr "ERROR FATAL: no pudo asignar memoria"
 
-#: cpu-x.h:92
+#: cpu-x.h:93
 msgid "bytes"
 msgstr "bytes"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:95
+#: cpu-x.h:96
 msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:97
+#: cpu-x.h:98
 msgid "MB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:99
+#: cpu-x.h:100
 msgid "GB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:101
+#: cpu-x.h:102
 msgid "TB"
 msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:104
+#: cpu-x.h:105
 msgid "KiB"
 msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:106
+#: cpu-x.h:107
 msgid "MiB"
 msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:108
+#: cpu-x.h:109
 msgid "GiB"
 msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:110
+#: cpu-x.h:111
 msgid "TiB"
 msgstr "TiB"
 
@@ -1260,6 +1260,9 @@ msgstr "Tarjeta gráfica predeterminada"
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr "Arrancar"
+
+#~ msgid "You can paste this backtrace by opening a new issue here:"
+#~ msgstr "Puede pegar esta retrotraza abriendo aquí una asunto nuevo:"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"

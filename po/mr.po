@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-02-12 19:05+0100\n"
+"POT-Creation-Date: 2022-05-06 08:28+0000\n"
 "PO-Revision-Date: 2022-02-17 13:58+0000\n"
 "Last-Translator: Sarang Bhaisare <sarangbhaisare@gmail.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
@@ -57,13 +57,13 @@ msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
 #: core.c:288
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
-"या मध्यवर्ती प्रक्रियाक एकाकाचे (Central Processing Unit-CPU) वास्तु समर्थित "
-"नाही. अधिक तपशीलांसाठी कृपया खालील त्रासाचा संदर्भ घ्या: %s"
+"या मध्यवर्ती प्रक्रियाक एकाकाचे (Central Processing Unit-CPU) वास्तु समर्थित नाही. "
+"अधिक तपशीलांसाठी कृपया खालील त्रासाचा संदर्भ घ्या: %s"
 
 #: core.c:308
 #, fuzzy
@@ -171,16 +171,14 @@ msgstr ""
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
-"'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_GFXIP_MAJOR_AMD (%s) ला समर्थन देत "
-"नाही"
+"'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_GFXIP_MAJOR_AMD (%s) ला समर्थन देत नाही"
 
 #: core.c:946 core.c:956 core.c:981
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
-"'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_MAX_COMPUTE_UNITS (%s) ला समर्थन देत "
-"नाही"
+"'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_MAX_COMPUTE_UNITS (%s) ला समर्थन देत नाही"
 
 #: core.c:969
 #, c-format
@@ -189,14 +187,13 @@ msgid ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 "'%s %s' साठी ओपन सीएल ड्राइव्हर CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) किंवा CL_DEVICE_PCI_SLOT_ID_NV (%s) ला समर्थन दे"
-"त नाही"
+"CL_DEVICE_PCI_BUS_ID_NV (%s) किंवा CL_DEVICE_PCI_SLOT_ID_NV (%s) ला समर्थन देत "
+"नाही"
 
 #: core.c:989
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
-"तुमच्या चित्रक प्रक्रीयक एकक(GPU) विक्रेत्यासह ओपन सीएल समर्थित नाही (0x%X)"
+msgstr "तुमच्या चित्रक प्रक्रीयक एकक(GPU) विक्रेत्यासह ओपन सीएल समर्थित नाही (0x%X)"
 
 #: core.c:1018
 msgid "Finding devices"
@@ -388,52 +385,52 @@ msgstr "जीटीके जीयूआय प्रारंभ करीत
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder मध्ये UI आयात करण्यात अयशस्वी"
 
-#: gui_gtk.c:544
+#: gui_gtk.c:549
 msgid "Connected to daemon"
 msgstr "डिमनशी कनेक्ट केले"
 
-#: gui_gtk.c:546
+#: gui_gtk.c:551
 msgid "No polkit authentication agent found"
 msgstr "कोणताही पोलकिट ऑथेंटिकेशन एजंट सापडला नाही"
 
-#: gui_gtk.c:550
+#: gui_gtk.c:555
 msgid "Ask password to start daemon in background"
 msgstr "पार्श्वभूमीवर डिमन सुरू करण्यासाठी संकेतशब्द विचारा"
 
-#: gui_gtk.c:556
+#: gui_gtk.c:561
 msgid "Start daemon"
 msgstr "डिमन प्रारंभ करा"
 
-#: gui_gtk.c:565 gui_gtk.c:658 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "कोर #%i"
 
-#: gui_gtk.c:568
+#: gui_gtk.c:573
 msgid "BaseFamily"
 msgstr "मुळ कुटूंब"
 
-#: gui_gtk.c:569
+#: gui_gtk.c:574
 msgid "BaseModel"
 msgstr "प्रतिकृती"
 
-#: gui_gtk.c:570
+#: gui_gtk.c:575
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
-"मध्यवर्ती प्रक्रीयक एकक(CPU) प्रदर्शक(Display) (\"खरे\") कुटूंब (मुळ "
-"कुटूंब+विस्तारित कुटुंब म्हणून गणना)"
+"मध्यवर्ती प्रक्रीयक एकक(CPU) प्रदर्शक(Display) (\"खरे\") कुटूंब (मुळ कुटूंब+विस्तारित कुटुंब "
+"म्हणून गणना)"
 
-#: gui_gtk.c:571
+#: gui_gtk.c:576
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.c:630
+#: gui_gtk.c:635
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "आवृत्ती"
 
-#: gui_gtk.c:655
+#: gui_gtk.c:660
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -974,8 +971,8 @@ msgstr ""
 "%s अरेरे, काहीतरी चूक झाली! %s ला सिग्नल %d (%s) प्राप्त झाला आहे आणि क्रॅश झाला आहे.%s"
 
 #: main.c:679
-msgid "You can paste this backtrace by opening a new issue here:"
-msgstr "आपण येथे नवीन समस्या उघडून हा बॅकट्रॅस पेस्ट करू शकता:"
+msgid "You can open a new issue here, by filling the template as requested:"
+msgstr ""
 
 #: main.c:707
 msgid "an error occurred while setting locale"
@@ -1218,55 +1215,55 @@ msgstr "pkexec: कमांड आढळली नाही"
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: अनपेक्षित त्रुटी कोड"
 
-#: cpu-x.h:53
+#: cpu-x.h:54
 msgid "FATAL ERROR: could not allocate memory"
 msgstr "FATAL ERROR: मेमरी वाटप करू शकलो नाही"
 
-#: cpu-x.h:92
+#: cpu-x.h:93
 msgid "bytes"
 msgstr "बाईट्स"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:95
+#: cpu-x.h:96
 msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:97
+#: cpu-x.h:98
 msgid "MB"
 msgstr "एमबी"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:99
+#: cpu-x.h:100
 msgid "GB"
 msgstr "जीबी"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:101
+#: cpu-x.h:102
 msgid "TB"
 msgstr "टीबी"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:104
+#: cpu-x.h:105
 msgid "KiB"
 msgstr ""
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:106
+#: cpu-x.h:107
 #, fuzzy
 #| msgid "MB"
 msgid "MiB"
 msgstr "एमबी"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:108
+#: cpu-x.h:109
 #, fuzzy
 #| msgid "GB"
 msgid "GiB"
 msgstr "जीबी"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:110
+#: cpu-x.h:111
 #, fuzzy
 #| msgid "TB"
 msgid "TiB"
@@ -1328,6 +1325,9 @@ msgstr "डीफॉल्ट टॅब सेट करा (पूर्णा�
 #: cpu-x-gtk-3.12.ui:5812
 msgid "Startup"
 msgstr ""
+
+#~ msgid "You can paste this backtrace by opening a new issue here:"
+#~ msgstr "आपण येथे नवीन समस्या उघडून हा बॅकट्रॅस पेस्ट करू शकता:"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
