@@ -675,9 +675,9 @@ static void sighandler(int signum)
 			MSG_STDERR("#%2i %s", i, bt_syms[i]);
 		free(buff);
 	}
-	MSG_STDERR("%s", "======================== End Backtrace =======================\n");
-	MSG_STDERR("%s", _("You can paste this backtrace by opening a new issue here:"));
-	MSG_STDERR("%s", "https://github.com/X0rg/CPU-X/issues/new\n");
+	MSG_STDERR("%s\n", "======================== End Backtrace =======================");
+	MSG_STDERR("%s", _("You can open a new issue here, by filling the template as requested:"));
+	MSG_STDERR("%s\n", ISSUEURL);
 
 	/* Stop program */
 	free(bt_syms);

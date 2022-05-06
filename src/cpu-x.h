@@ -35,6 +35,7 @@
 #define PRGNAME_LOW           "cpu-x"
 #define PRGAUTH               "X0rg"
 #define PRGURL                "https://"PRGAUTH".github.io/"PRGNAME
+#define ISSUEURL              "https://github.com/"PRGAUTH"/"PRGNAME"/issues/new?template=bug_report.md"
 #define PRGCPRGHT             "Copyright © 2014-2022 Xorg"
 #define PRGLCNS               "GNU GPL v3"
 #define LCNSURL               "https://www.gnu.org/licenses/gpl.txt"

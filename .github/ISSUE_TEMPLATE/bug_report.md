@@ -13,11 +13,21 @@ INCOMPLETE REPORTS MAY BE CLOSED WITHOUT JUSTIFICATION
 -->
 
 **Describe the bug/Expected behavior**
-<!-- A clear and concise description of what the bug is/what you expected to happen. -->
+<!--
+A clear and concise description of what the bug is/what you expected to happen.
+-->
 
 **Additional information**
 * Operating system name and version: <!-- e.g. Debian 9 -->
 * CPU-X installation type: <!-- e.g. package/portable version/built from source -->
 
-**CPU-X dump**
-<!-- In case of bug, please run the `cpu-x --issue-fmt` (or `./CPU-X-v4.0.0-x86_64.AppImage --issue-fmt` for AppImage) as root and attach both /tmp/cpu-x.log and /tmp/cpu-x-daemon.log files here -->
+**Bug information**
+<!--
+In case of bug, please run the `cpu-x --issue-fmt` (or `./CPU-X-vx.y.z-aaa.AppImage --issue-fmt` for AppImage) as root and attach both /tmp/cpu-x.log and /tmp/cpu-x-daemon.log files here.
+If there is a backtrace, you can also paste the backtrace below.
+-->
+```
+========================= Backtrace =========================
+PASTE BACKTRACE HERE
+======================== End Backtrace =======================
+```
