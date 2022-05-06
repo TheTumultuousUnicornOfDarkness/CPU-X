@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-05-06 08:28+0000\n"
+"POT-Creation-Date: 2022-05-06 14:46+0000\n"
 "PO-Revision-Date: 2022-02-03 10:55+0000\n"
 "Last-Translator: userko <ukoshulap@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -102,86 +102,95 @@ msgstr "Розрахунок завантаження процесора"
 msgid "Calling bandwidth"
 msgstr "Виклик пропускної спроможності"
 
-#: core.c:713
+#: core.c:674
+#, c-format
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
+msgstr ""
+
+#: core.c:720
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Немає драйвера ядра для відео карти за адресою %s"
 
-#: core.c:744
+#: core.c:751
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Невідомий драйвер ядра GPU: %s"
 
-#: core.c:817
+#: core.c:824
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Невідомий драйвер GPU: %s"
 
-#: core.c:821
+#: core.c:828
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "не вдалося викликати GLFW (%s)"
 
-#: core.c:850
+#: core.c:857
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Немає платформи з підтримкою OpenCL (%s)"
 
-#: core.c:859
+#: core.c:866
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "не вдалося викликати усі платформи OpenCL (%s)"
 
-#: core.c:869
+#: core.c:876
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "не вдалося отримати для платформи %u (%s)"
 
-#: core.c:876
+#: core.c:883
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "не вдалося отримати версію для платформи %u (%s)"
 
-#: core.c:883
+#: core.c:890
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "не вдалося визначити кількість пристроїв OpenCL для платформи '%s %s' (%s)"
 
-#: core.c:891
+#: core.c:898
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "не вдалось отримати всі пристрої OpenCL для платформи '%s %s' (%s)"
 
-#: core.c:905
+#: core.c:912
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "не вдалося отримати назву для пристрою %u (%s)"
 
-#: core.c:912
+#: core.c:919
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "не вдалося отримати версію для пристрою %u (%s)"
 
-#: core.c:923
+#: core.c:930
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.c:934
+#: core.c:941
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.c:946 core.c:956 core.c:981
+#: core.c:953 core.c:963 core.c:988
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.c:969
+#: core.c:976
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -190,187 +199,187 @@ msgstr ""
 "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) чи CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.c:989
+#: core.c:996
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL не підтримується вашим виробником (0x%X)"
 
-#: core.c:1018
+#: core.c:1025
 msgid "Finding devices"
 msgstr "Пошук пристроїв"
 
-#: core.c:1030
+#: core.c:1037
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
 
-#: core.c:1068
+#: core.c:1075
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Постачальник графічного процесора невідомий: %s (0x%X)"
 
-#: core.c:1090
+#: core.c:1097
 msgid "failed to find chipset vendor and model"
 msgstr "не вдалося знайти постачальника чи модель чіпсету"
 
-#: core.c:1092
+#: core.c:1099
 msgid "failed to find graphic card vendor and model"
 msgstr "не вдалося знайти постачальника та модель графічної карти"
 
-#: core.c:1169
+#: core.c:1176
 msgid "Retrieving GPU clocks"
 msgstr "Отримання частоти GPU"
 
-#: core.c:1203
+#: core.c:1210
 msgid "None"
 msgstr "Немає"
 
-#: core.c:1336
+#: core.c:1343
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Драйвер для GPU %u не звітує частоти"
 
-#: core.c:1379
+#: core.c:1386
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Поточний: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
-#: core.c:1383
+#: core.c:1390
 msgid "Enabled"
 msgstr "Включено"
 
-#: core.c:1383
+#: core.c:1390
 msgid "Disabled"
 msgstr "Відключено"
 
-#: core.c:1404
+#: core.c:1411
 msgid "failed to retrieve GPU clocks"
 msgstr "не вдалося отримати частоту GPU"
 
-#: core.c:1421
+#: core.c:1428
 msgid "Identifying running system"
 msgstr "Виявлення запущеної системи"
 
-#: core.c:1424
+#: core.c:1431
 msgid "failed to identify running system"
 msgstr "не вдалося визначити запущену систему"
 
-#: core.c:1465
+#: core.c:1472
 msgid "Calling libprocps"
 msgstr "Виклик libprocps"
 
-#: core.c:1491
+#: core.c:1498
 msgid "Calling libstatgrab"
 msgstr "Виклик libstatgrab"
 
-#: core.c:1526
+#: core.c:1533
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i днів, %i годин, %i хвилин, %i секунд"
 
-#: core.c:1582
+#: core.c:1589
 msgid "Updating benchmark status"
 msgstr "Оновлення стану тестів"
 
-#: core.c:1583 tui_ncurses.c:828
+#: core.c:1590 tui_ncurses.c:828
 #, c-format
 msgid "%u mins"
 msgstr "%u хв."
 
-#: core.c:1585 core.c:1586
+#: core.c:1592 core.c:1593
 msgid "Inactive"
 msgstr "Неактивний"
 
-#: core.c:1590 core.c:1591
+#: core.c:1597 core.c:1598
 msgid "Not started"
 msgstr "Не запущено"
 
-#: core.c:1596
+#: core.c:1603
 msgid "Active"
 msgstr "Активний"
 
-#: core.c:1601
+#: core.c:1608
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u годин лишилось)"
 
-#: core.c:1603
+#: core.c:1610
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u хвилин лишилось)"
 
-#: core.c:1605
+#: core.c:1612
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u секунд лишилося)"
 
-#: core.c:1610
+#: core.c:1617
 #, c-format
 msgid "in %u hours"
 msgstr "за %u годин"
 
-#: core.c:1612
+#: core.c:1619
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u хвилин"
 
-#: core.c:1614
+#: core.c:1621
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u секунд"
 
-#: core.c:1630
+#: core.c:1637
 msgid "Starting benchmark"
 msgstr "Запустити тестування"
 
-#: core.c:1649
+#: core.c:1656
 msgid "an error occurred while starting benchmark"
 msgstr "помилка при запуску бенчмарку"
 
-#: core.c:1666
+#: core.c:1673
 msgid "Finding CPU package in fallback mode"
 msgstr "Пошук моделі маркування ЦП у аварійному режимі"
 
-#: core.c:1688
+#: core.c:1695
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Не вдалося знайти сокет вашого процесора у базі даних ==> %s, кодова назва: "
 "%is"
 
-#: core.c:1707
+#: core.c:1714
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Підрахунок помножувачів процесора у аварійному режимі"
 
-#: core.c:1734
+#: core.c:1741
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Отримання інформації про материнську плату в аварійному режимі"
 
-#: core.c:1743
+#: core.c:1750
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не вдалося отримати інформацію про материнську плату (аварійний режим)"
 
-#: core.c:1782
+#: core.c:1789
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Отримання температури процесора в аварійному режимі"
 
-#: core.c:1827
+#: core.c:1834
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не вдалося отримати температуру процесора (аварійний режим)"
 
-#: core.c:1840
+#: core.c:1847
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Отримання робочої напруги процесора в аварійному режимі"
 
-#: core.c:1853
+#: core.c:1860
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
 
-#: core.c:1868
+#: core.c:1875
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Отримання частоти процесора в аварійному режимі"
 
-#: core.c:1876
+#: core.c:1883
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не вдалося отримати частоту процесора (аварійний режим)"
 

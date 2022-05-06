@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-05-06 08:28+0000\n"
+"POT-Creation-Date: 2022-05-06 14:46+0000\n"
 "PO-Revision-Date: 2022-05-06 14:46+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -109,86 +109,95 @@ msgstr "CPU kullanımı hesaplanıyor"
 msgid "Calling bandwidth"
 msgstr "Bant genişliği çağrılıyor"
 
-#: core.c:713
+#: core.c:674
+#, c-format
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
+msgstr ""
+
+#: core.c:720
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "%s yolundaki grafik kartı için kullanılan çekirdek sürücüsü yok"
 
-#: core.c:744
+#: core.c:751
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
 
-#: core.c:817
+#: core.c:824
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "GPU kullanıcı modu sürücünüz bilinmiyor: %s"
 
-#: core.c:821
+#: core.c:828
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW çağrılamadı (%i): %s"
 
-#: core.c:850
+#: core.c:857
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL desteğine sahip bir platform yok (%s)"
 
-#: core.c:859
+#: core.c:866
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "tüm OpenCL platformları alınamadı (%s)"
 
-#: core.c:869
+#: core.c:876
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "%u. platformun adı alınamadı (%s)"
 
-#: core.c:876
+#: core.c:883
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "%u .platform için sürüm alınamadı (%s)"
 
-#: core.c:883
+#: core.c:890
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "'%s %s' platformu için OpenCL aygıtlarının sayısı bulunamadı (%s)"
 
-#: core.c:891
+#: core.c:898
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "'%s %s' platformu için tüm OpenCL aygıtları alınamadı (%s)"
 
-#: core.c:905
+#: core.c:912
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "%u. aygıtın adı alınamadı (%s)"
 
-#: core.c:912
+#: core.c:919
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "%u. aygıt için sürüm alınamadı (%s)"
 
-#: core.c:923
+#: core.c:930
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' için OpenCL sürücüsü CL_DEVICE_TOPOLOGY_AMD desteklemiyor (%s)"
 
-#: core.c:934
+#: core.c:941
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' için OpenCL sürücüsü CL_DEVICE_GFXIP_MAJOR_AMD desteklemiyor (%s)"
 
-#: core.c:946 core.c:956 core.c:981
+#: core.c:953 core.c:963 core.c:988
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' için OpenCL sürücüsü CL_DEVICE_MAX_COMPUTE_UNITS desteklemiyor (%s)"
 
-#: core.c:969
+#: core.c:976
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -197,185 +206,185 @@ msgstr ""
 "'%s %s' için OpenCL sürücüsü CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) veya CL_DEVICE_PCI_SLOT_ID_NV (%s) desteklemiyor"
 
-#: core.c:989
+#: core.c:996
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "GPU markanız OpenCL'yi desteklenmiyor (0x%X)"
 
-#: core.c:1018
+#: core.c:1025
 msgid "Finding devices"
 msgstr "Aygıtlar bulunuyor"
 
-#: core.c:1030
+#: core.c:1037
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 
-#: core.c:1068
+#: core.c:1075
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
 
-#: core.c:1090
+#: core.c:1097
 msgid "failed to find chipset vendor and model"
 msgstr "yonga seti satıcısı ve model bulunamadı"
 
-#: core.c:1092
+#: core.c:1099
 msgid "failed to find graphic card vendor and model"
 msgstr "ekran kartı marka ve modeli bulunamadı"
 
-#: core.c:1169
+#: core.c:1176
 msgid "Retrieving GPU clocks"
 msgstr "GPU saatleri alınıyor"
 
-#: core.c:1203
+#: core.c:1210
 msgid "None"
 msgstr "Hiçbiri"
 
-#: core.c:1336
+#: core.c:1343
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "%u GPU sürücüsü frekansları bildirmiyor"
 
-#: core.c:1379
+#: core.c:1386
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Şu anki: PCIe Gen%1dx%d / En yüksek: Gen%1dx%d"
 
-#: core.c:1383
+#: core.c:1390
 msgid "Enabled"
 msgstr "Etkin"
 
-#: core.c:1383
+#: core.c:1390
 msgid "Disabled"
 msgstr "Devre dışı"
 
-#: core.c:1404
+#: core.c:1411
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU saatleri alınamadı"
 
-#: core.c:1421
+#: core.c:1428
 msgid "Identifying running system"
 msgstr "İşletim sistemi tanımlanıyor"
 
-#: core.c:1424
+#: core.c:1431
 msgid "failed to identify running system"
 msgstr "işletim sistemi tanımlanamadı"
 
-#: core.c:1465
+#: core.c:1472
 msgid "Calling libprocps"
 msgstr "libprocps çağrılıyor"
 
-#: core.c:1491
+#: core.c:1498
 msgid "Calling libstatgrab"
 msgstr "libstatgrab çağrılıyor"
 
-#: core.c:1526
+#: core.c:1533
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i gün, %i saat, %i dakika, %i saniye"
 
-#: core.c:1582
+#: core.c:1589
 msgid "Updating benchmark status"
 msgstr "Karşılaştırma durumu güncelleniyor"
 
-#: core.c:1583 tui_ncurses.c:828
+#: core.c:1590 tui_ncurses.c:828
 #, c-format
 msgid "%u mins"
 msgstr "%u dakika"
 
-#: core.c:1585 core.c:1586
+#: core.c:1592 core.c:1593
 msgid "Inactive"
 msgstr "Etkin değil"
 
-#: core.c:1590 core.c:1591
+#: core.c:1597 core.c:1598
 msgid "Not started"
 msgstr "Başlatılmadı"
 
-#: core.c:1596
+#: core.c:1603
 msgid "Active"
 msgstr "Etkin"
 
-#: core.c:1601
+#: core.c:1608
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u saat kaldı)"
 
-#: core.c:1603
+#: core.c:1610
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u dakika kaldı)"
 
-#: core.c:1605
+#: core.c:1612
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u saniye kaldı)"
 
-#: core.c:1610
+#: core.c:1617
 #, c-format
 msgid "in %u hours"
 msgstr "%u saat içinde"
 
-#: core.c:1612
+#: core.c:1619
 #, c-format
 msgid "in %u minutes"
 msgstr "%u dakika içinde"
 
-#: core.c:1614
+#: core.c:1621
 #, c-format
 msgid "in %u seconds"
 msgstr "%u saniye içinde"
 
-#: core.c:1630
+#: core.c:1637
 msgid "Starting benchmark"
 msgstr "Karşılaştırma başlatılıyor"
 
-#: core.c:1649
+#: core.c:1656
 msgid "an error occurred while starting benchmark"
 msgstr "karşılaştırma başlatılırken hata oluştu"
 
-#: core.c:1666
+#: core.c:1673
 msgid "Finding CPU package in fallback mode"
 msgstr "Yedek modda CPU paketi bulunuyor"
 
-#: core.c:1688
+#: core.c:1695
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
 
-#: core.c:1707
+#: core.c:1714
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Yedek modda CPU çarpanları hesaplanıyor"
 
-#: core.c:1734
+#: core.c:1741
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Yedek modda anakart bilgisi alınıyor"
 
-#: core.c:1743
+#: core.c:1750
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "anakart bilgisi alınamadı (yedek modu)"
 
-#: core.c:1782
+#: core.c:1789
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Yedek modda CPU sıcaklığı alınıyor"
 
-#: core.c:1827
+#: core.c:1834
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU sıcaklığı alınamadı (yedek mod)"
 
-#: core.c:1840
+#: core.c:1847
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Yedek modda CPU gerilimi alınıyor"
 
-#: core.c:1853
+#: core.c:1860
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU gerilimi alınamadı (yedek mod)"
 
-#: core.c:1868
+#: core.c:1875
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Yedek modda CPU frekansı alınıyor"
 
-#: core.c:1876
+#: core.c:1883
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 

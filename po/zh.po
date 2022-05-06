@@ -13,11 +13,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-05-06 08:28+0000\n"
+"POT-Creation-Date: 2022-05-06 14:46+0000\n"
 "PO-Revision-Date: 2022-05-06 14:46+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"cpu-x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
+"x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,84 +99,93 @@ msgstr "正在计算 CPU 使用率"
 msgid "Calling bandwidth"
 msgstr "正在调用 bandwidth"
 
-#: core.c:713
+#: core.c:674
+#, c-format
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
+msgstr ""
+
+#: core.c:720
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "路径%s中没有驱动图形卡的内核驱动程序"
 
-#: core.c:744
+#: core.c:751
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "你的 GPU 内核驱动未知: %s"
 
-#: core.c:817
+#: core.c:824
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "你的 GPU 用户模式驱动未知: %s"
 
-#: core.c:821
+#: core.c:828
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "调用 GLFW (%i) 失败: %s"
 
-#: core.c:850
+#: core.c:857
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "没有支持 OpenCL 的平台 (%s)"
 
-#: core.c:859
+#: core.c:866
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "未能获得所有 OpenCL 平台 (%s)"
 
-#: core.c:869
+#: core.c:876
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "未能获得平台名称 %u (%s)"
 
-#: core.c:876
+#: core.c:883
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "未能获得平台 %u 的版本 (%s)"
 
-#: core.c:883
+#: core.c:890
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "查找平台 '%s %s' (%s) 的 OpenCL 设备数失败"
 
-#: core.c:891
+#: core.c:898
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "未能获得平台 '%s %s' (%s) 所有的 OpenCL 设备"
 
-#: core.c:905
+#: core.c:912
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "未能获得设备 %u 的名称 (%s)"
 
-#: core.c:912
+#: core.c:919
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "未能获得设备 %u 的版本 (%s)"
 
-#: core.c:923
+#: core.c:930
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.c:934
+#: core.c:941
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.c:946 core.c:956 core.c:981
+#: core.c:953 core.c:963 core.c:988
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.c:969
+#: core.c:976
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -185,185 +194,185 @@ msgstr ""
 "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
 "CL_DEVICE_PCI_BUS_ID_NV (%s) 或CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.c:989
+#: core.c:996
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "Open 不受你的 GPU 厂商 (0x%X) 的支持"
 
-#: core.c:1018
+#: core.c:1025
 msgid "Finding devices"
 msgstr "正在搜索设备"
 
-#: core.c:1030
+#: core.c:1037
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "跳过设备搜索 (%s设备上的权限错误)"
 
-#: core.c:1068
+#: core.c:1075
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "您的 GPU 供应商未知: %s (0x%X)"
 
-#: core.c:1090
+#: core.c:1097
 msgid "failed to find chipset vendor and model"
 msgstr "未找到芯片组供应商和型号"
 
-#: core.c:1092
+#: core.c:1099
 msgid "failed to find graphic card vendor and model"
 msgstr "未找到显卡供应商和型号"
 
-#: core.c:1169
+#: core.c:1176
 msgid "Retrieving GPU clocks"
 msgstr "正在检索 GPU 时钟"
 
-#: core.c:1203
+#: core.c:1210
 msgid "None"
 msgstr "无"
 
-#: core.c:1336
+#: core.c:1343
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU 驱动 %u 无法报告频率"
 
-#: core.c:1379
+#: core.c:1386
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "当前: PCIe Gen%1dx%d / 最高: Gen%1dx%d"
 
-#: core.c:1383
+#: core.c:1390
 msgid "Enabled"
 msgstr "已启用"
 
-#: core.c:1383
+#: core.c:1390
 msgid "Disabled"
 msgstr "已禁用"
 
-#: core.c:1404
+#: core.c:1411
 msgid "failed to retrieve GPU clocks"
 msgstr "无法检索 GPU 时钟"
 
-#: core.c:1421
+#: core.c:1428
 msgid "Identifying running system"
 msgstr "正在识别本系统"
 
-#: core.c:1424
+#: core.c:1431
 msgid "failed to identify running system"
 msgstr "未识别本系统"
 
-#: core.c:1465
+#: core.c:1472
 msgid "Calling libprocps"
 msgstr "正在调用 libprocps"
 
-#: core.c:1491
+#: core.c:1498
 msgid "Calling libstatgrab"
 msgstr "正在调用 libstatgrab"
 
-#: core.c:1526
+#: core.c:1533
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天，%i 小时，%i 分钟，%i 秒"
 
-#: core.c:1582
+#: core.c:1589
 msgid "Updating benchmark status"
 msgstr "正在更新基准测试状态"
 
-#: core.c:1583 tui_ncurses.c:828
+#: core.c:1590 tui_ncurses.c:828
 #, c-format
 msgid "%u mins"
 msgstr "%u 分钟"
 
-#: core.c:1585 core.c:1586
+#: core.c:1592 core.c:1593
 msgid "Inactive"
 msgstr "待用"
 
-#: core.c:1590 core.c:1591
+#: core.c:1597 core.c:1598
 msgid "Not started"
 msgstr "未启动"
 
-#: core.c:1596
+#: core.c:1603
 msgid "Active"
 msgstr "启用"
 
-#: core.c:1601
+#: core.c:1608
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩余 %u 小时)"
 
-#: core.c:1603
+#: core.c:1610
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩余 %u 分钟)"
 
-#: core.c:1605
+#: core.c:1612
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩余 %u 秒)"
 
-#: core.c:1610
+#: core.c:1617
 #, c-format
 msgid "in %u hours"
 msgstr "%u 小时后"
 
-#: core.c:1612
+#: core.c:1619
 #, c-format
 msgid "in %u minutes"
 msgstr "%u 分钟后"
 
-#: core.c:1614
+#: core.c:1621
 #, c-format
 msgid "in %u seconds"
 msgstr "%u 秒后"
 
-#: core.c:1630
+#: core.c:1637
 msgid "Starting benchmark"
 msgstr "正在启动基准测试"
 
-#: core.c:1649
+#: core.c:1656
 msgid "an error occurred while starting benchmark"
 msgstr "启动基准测试时出错"
 
-#: core.c:1666
+#: core.c:1673
 msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
-#: core.c:1688
+#: core.c:1695
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
-#: core.c:1707
+#: core.c:1714
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "正在应急模式下计算 CPU 倍频"
 
-#: core.c:1734
+#: core.c:1741
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "正在应急模式下检索主板信息"
 
-#: core.c:1743
+#: core.c:1750
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "无法检索主板信息 (应急模式)"
 
-#: core.c:1782
+#: core.c:1789
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "正在应急模式下检索 CPU 温度"
 
-#: core.c:1827
+#: core.c:1834
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "未能检索 CPU 温度 (应急模式)"
 
-#: core.c:1840
+#: core.c:1847
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "正在应急模式下检索 CPU 电压"
 
-#: core.c:1853
+#: core.c:1860
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "未能检索 CPU 电压 (应急模式)"
 
-#: core.c:1868
+#: core.c:1875
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "正在应急模式下检索 CPU 频率"
 
-#: core.c:1876
+#: core.c:1883
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "未能检索 CPU 频率 (应急模式)"
 
