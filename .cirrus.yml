@@ -1,9 +1,8 @@
 task:
   name: FreeBSD
-  freebsd_instance:
+  freebsd_instance: # https://cirrus-ci.org/guide/FreeBSD/#list-of-available-image-families
     matrix:
-      image_family: freebsd-11-3-snap
-      image_family: freebsd-12-1-snap
+      image_family: freebsd-12-3-snap
       image_family: freebsd-13-0-snap
   env:
     IGNORE_OSVERSION: yes # supress package installation error on FreeBSD-13
