@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-05-06 14:46+0000\n"
+"PO-Revision-Date: 2022-05-08 17:12+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -103,6 +103,9 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access är inte ordentligt initierad. Det är ett vanligt problem när %s "
+"byggts med en lägre libpci-version.\n"
+"Kontrollera att libpci %s bibliotek finns i ditt system. Annars, bygg om %s."
 
 #: core.c:720
 #, c-format
