@@ -33,7 +33,7 @@ esac
 
 echo "Add OBS repository"
 echo "deb http://download.opensuse.org/repositories/home:/Xorg/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/home:Xorg.list
-curl -sSL "https://download.opensuse.org/repositories/home:Xorg/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add -
+curl -fsSL "https://download.opensuse.org/repositories/home:Xorg/xUbuntu_${VERSION_ID}/Release.key" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Xorg.gpg > /dev/null
 sudo apt-get update -qq
 
 echo "Install packages"
