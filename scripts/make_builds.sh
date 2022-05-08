@@ -47,16 +47,16 @@ case "$choice" in
 		ARCHIVES_DIR="$GIT_DIR/packages"
 		COMPRESS="tar -zcvf"
 
-		if [[ "$2" == "--local" ]] && [[ ! -d "$PKGS_DIR" ]]; then
+		if [[ $# -ge 2 ]] && [[ "$2" == "--local" ]] && [[ ! -d "$PKGS_DIR" ]]; then
 			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "libcpuid"
 			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "cpu-x"
 			cd "$PKGS_DIR"
 		else
 			mkdir -p "$PKGS_DIR" && cd "$_"
 			wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
-			--accept "*.pkg.tar.zst","*.rpm","*.deb" \
-			--reject "*.src.rpm","*git*" \
-			--recursive "$REPO_URL"
+				--accept "*.pkg.tar.zst","*.rpm","*.deb" \
+				--reject "*.src.rpm","*git*" \
+				--recursive "$REPO_URL"
 		fi
 
 		find "$PKGS_DIR" -type f -not -name '*.deb' -and -not -name '*.rpm' -and -not -name '*.pkg.tar.*' -delete
@@ -65,7 +65,6 @@ case "$choice" in
 
 		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_ArchLinux.tar.gz" Arch*
 		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Debian.tar.gz"    Debian*
-		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_openSUSE.tar.gz"  openSUSE*
 		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Ubuntu.tar.gz"    xUbuntu*
 		;;
 esac
