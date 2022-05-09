@@ -7,13 +7,14 @@
 # Umio Yasuno <coelacanth_dream@pm.me>, 2021.
 # Kyotaro Iijima <kyotaro.eyes@gmail.com>, 2022.
 # UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022.
+# Kenryu Shibata <kenryushibata@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-02-28 20:54+0000\n"
-"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
+"PO-Revision-Date: 2022-05-10 19:16+0000\n"
+"Last-Translator: Kenryu Shibata <kenryushibata@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
 "Language: ja\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -138,54 +139,54 @@ msgstr "OpenCL に対応するプラットフォームはありません（%s）
 #: core.c:866
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "すべての OpenCL プラットフォームの取得に失敗（%s）"
+msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s）"
 
 #: core.c:876
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "プラットフォーム %u の名前の取得に失敗（%s）"
+msgstr "プラットフォーム %u の名前の取得に失敗しました（%s）"
 
 #: core.c:883
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "プラットフォーム %u のバージョンの取得に失敗（%s）"
+msgstr "プラットフォーム %u のバージョンの取得に失敗しました（%s）"
 
 #: core.c:890
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗（%s）"
+msgstr "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗しました（%s）"
 
 #: core.c:898
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗（%s）"
+msgstr "プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗しました（%s）"
 
 #: core.c:912
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "デバイス %u の名前の取得に失敗（%s）"
+msgstr "デバイス %u の名前の取得に失敗しました（%s）"
 
 #: core.c:919
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "デバイス %u (%s) のバージョンの取得に失敗"
+msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
 
 #: core.c:930
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応"
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応です"
 
 #: core.c:941
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応"
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応です"
 
 #: core.c:953 core.c:963 core.c:988
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応"
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応です"
 
 #: core.c:976
 #, c-format
@@ -194,16 +195,17 @@ msgid ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 "'%s %s´の OpenCL ドライバは、CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
-"CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応"
+"CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) "
+"に未対応です"
 
 #: core.c:996
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "OPENCL は GPU ベンダー (0x%X) に未対応"
+msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
 
 #: core.c:1025
 msgid "Finding devices"
-msgstr "デバイスの識別中"
+msgstr "デバイスを識別中"
 
 #: core.c:1037
 #, c-format
@@ -217,15 +219,15 @@ msgstr "不明な GPU ベンダー : %s（0x %X）"
 
 #: core.c:1097
 msgid "failed to find chipset vendor and model"
-msgstr "チップセットのベンダーとモデルの判別に失敗"
+msgstr "チップセットのベンダーとモデルの判別に失敗しました"
 
 #: core.c:1099
 msgid "failed to find graphic card vendor and model"
-msgstr "グラフィック カードのベンダーとモデルの取得に失敗"
+msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
 
 #: core.c:1176
 msgid "Retrieving GPU clocks"
-msgstr "GPU クロックの取得"
+msgstr "GPU クロックを取得中"
 
 #: core.c:1210
 msgid "None"
@@ -251,15 +253,15 @@ msgstr "無効"
 
 #: core.c:1411
 msgid "failed to retrieve GPU clocks"
-msgstr "GPU クロックの取得に失敗"
+msgstr "GPU クロックの取得に失敗しました"
 
 #: core.c:1428
 msgid "Identifying running system"
-msgstr "実行中のシステムの識別"
+msgstr "実行中のシステムの識別中"
 
 #: core.c:1431
 msgid "failed to identify running system"
-msgstr "実行中のシステムの識別に失敗"
+msgstr "実行中のシステムの識別に失敗しました"
 
 #: core.c:1472
 msgid "Calling libprocps"
@@ -276,7 +278,7 @@ msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
 #: core.c:1589
 msgid "Updating benchmark status"
-msgstr "ベンチマーク状態の更新中"
+msgstr "ベンチマーク状態を更新中"
 
 #: core.c:1590 tui_ncurses.c:828
 #, c-format
@@ -327,15 +329,15 @@ msgstr "/ %u 秒"
 
 #: core.c:1637
 msgid "Starting benchmark"
-msgstr "ベンチマークの開始"
+msgstr "ベンチマークを開始"
 
 #: core.c:1656
 msgid "an error occurred while starting benchmark"
-msgstr "ベンチマーク開始時にエラーが発生"
+msgstr "ベンチマーク開始時にエラーが発生しました"
 
 #: core.c:1673
 msgid "Finding CPU package in fallback mode"
-msgstr "fallback モードで CPU パッケージの識別中"
+msgstr "fallback モードで CPU パッケージを識別中"
 
 #: core.c:1695
 #, c-format
@@ -345,11 +347,11 @@ msgstr ""
 
 #: core.c:1714
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "fallback モードで CPU 倍率の計算"
+msgstr "fallback モードで CPU 倍率を計算中"
 
 #: core.c:1741
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "fallback モードでマザーボード情報の取得"
+msgstr "fallback モードでマザーボード情報を取得中"
 
 #: core.c:1750
 msgid "failed to retrieve motherboard information (fallback mode)"
