@@ -84,6 +84,7 @@ endif(WITH_OPENCL)
 
 # Libprocps
 set(LIBSYSTEM 0)
+set(LIBPROC2 -1)
 if(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
 	pkg_check_modules(LIBPROC2 libproc-2)
 	if(LIBPROC2_FOUND)
@@ -185,7 +186,7 @@ if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1) # When Libprocps is used
 	add_definitions(-DHAS_LIBSTATGRAB=0 -DLIBSTATGRAB_VERSION=NULL)
 	if(${LIBPROC2} EQUAL 1)
 		add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
-	else()
+	else(${LIBPROC2} EQUAL 0)
 		add_definitions(-DHAS_LIBPROC2=0  -DLIBPROC2_VERSION=NULL)
 	endif()
 endif()
