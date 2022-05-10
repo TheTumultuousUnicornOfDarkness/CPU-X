@@ -89,7 +89,7 @@ static int system_static(Labels *data);
 #if (HAS_LIBSYSTEM)
 /* Dynamic elements for System tab, provided by libprocps/libstatgrab */
 static int system_dynamic(Labels *data);
-/* Required: HAS_LIBPROCPS || HAS_LIBSTATGRAB */
+/* Required: HAS_LIBPROC2 || HAS_LIBPROCPS || HAS_LIBSTATGRAB */
 #endif /* HAS_LIBSYSTEM */
 
 /* Report score of benchmarks */

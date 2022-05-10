@@ -85,7 +85,17 @@ endif(WITH_OPENCL)
 # Libprocps
 set(LIBSYSTEM 0)
 if(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
-	pkg_check_modules(LIBPROCPS libprocps)
+	pkg_check_modules(LIBPROC2 libproc-2)
+	if(LIBPROC2_FOUND)
+		include_directories(${LIBPROC2_INCLUDE_DIRS})
+		link_directories(${LIBPROC2_LIBRARY_DIRS})
+		add_definitions(${LIBPROC2_CFLAGS_OTHER})
+		set(LIBSYSTEM 1)
+		set(LIBPROC2 1)
+	else()
+		pkg_check_modules(LIBPROCPS libprocps)
+		set(LIBPROC2 0)
+	endif()
 	if(LIBPROCPS_FOUND)
 		include_directories(${LIBPROCPS_INCLUDE_DIRS})
 		link_directories(${LIBPROCPS_LIBRARY_DIRS})
@@ -137,7 +147,11 @@ print_config("LIBPCI"              "${LIBPCI_VERSION}"      LIBPCI_FOUND      WI
 print_config("LIBGLFW"             "${LIBGLFW_VERSION}"     LIBGLFW_FOUND     WITH_LIBGLFW)
 print_config("OpenCL"              "${OPENCL_VERSION}"      OPENCL_FOUND      WITH_OPENCL)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
-	print_config("LIBPROCPS"   "${LIBPROCPS_VERSION}"   LIBPROCPS_FOUND   WITH_LIBPROCPS)
+	if(${LIBPROC2} EQUAL 1)
+		print_config("LIBPROC2"    "${LIBPROC2_VERSION}"    LIBPROC2_FOUND    WITH_LIBPROCPS)
+	else()
+		print_config("LIBPROCPS"   "${LIBPROCPS_VERSION}"   LIBPROCPS_FOUND   WITH_LIBPROCPS)
+	endif()
 else()
 	print_config("LIBSTATGRAB" "${LIBSTATGRAB_VERSION}" LIBSTATGRAB_FOUND WITH_LIBSTATGRAB)
 endif()
@@ -167,11 +181,17 @@ add_executable(${DAEMON_EXEC}
 )
 
 # Libsystem extra-definitions
-if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1)
+if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1) # When Libprocps is used
 	add_definitions(-DHAS_LIBSTATGRAB=0 -DLIBSTATGRAB_VERSION=NULL)
+	if(${LIBPROC2} EQUAL 1)
+		add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
+	else()
+		add_definitions(-DHAS_LIBPROC2=0  -DLIBPROC2_VERSION=NULL)
+	endif()
 endif()
-if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2)
-	add_definitions(-DHAS_LIBPROCPS=0   -DLIBPROCPS_VERSION=NULL)
+if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2) # When Libstatgrab is used
+	add_definitions(-DHAS_LIBPROC2=0  -DLIBPROC2_VERSION=NULL)
+	add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
 endif()
 
 # Various definitions
@@ -207,6 +227,7 @@ target_link_libraries(${APP_EXEC}
 	${LIBGL_LIBRARIES}
 	${LIBGLFW_LIBRARIES}
 	${OPENCL_LIBRARIES}
+	${LIBPROC2_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
 	${LIBSTATGRAB_LIBRARIES}
 	${DMIDECODE_LIBRARIES}

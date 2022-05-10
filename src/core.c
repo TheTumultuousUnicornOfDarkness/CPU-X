@@ -59,8 +59,17 @@
 # include <pci/pci.h>
 #endif
 
+#if HAS_LIBPROC2
+# include <procps/meminfo.h>
+# include <procps/misc.h>
+#endif
+
 #if HAS_LIBPROCPS
 # include <proc/sysinfo.h>
+#endif
+
+#if HAS_LIBSTATGRAB
+# include <statgrab.h>
 #endif
 
 #if HAS_LIBGLFW
@@ -74,9 +83,6 @@
 # include "opencl_ext.h"
 #endif
 
-#if HAS_LIBSTATGRAB
-# include <statgrab.h>
-#endif
 
 
 /************************* Public functions *************************/
@@ -1468,6 +1474,37 @@ static int system_dynamic(Labels *data)
 	MemoryData *m_data = data->m_data;
 	static PrefixUnit pu_mem  = { .init = false }, pu_swap = { .init = false };
 
+#if HAS_LIBPROC2
+	double up_secs;
+	struct meminfo_info *mem_info = NULL;
+
+	MSG_VERBOSE("%s", _("Calling libprocps"));
+	/* System uptime */
+	if(procps_uptime(&up_secs, NULL) < 0)
+		MSG_ERRNO("%s", _("unable to get system uptime"));
+	else
+		uptime_s = (time_t) up_secs;
+
+	/* Memory variables */
+	if(procps_meminfo_new(&mem_info) < 0)
+		MSG_ERRNO("%s", _("unable to create meminfo structure"));
+	else
+	{
+		if(!pu_mem.init || !pu_swap.init)
+		{
+			find_best_prefix(MEMINFO_GET(mem_info, MEMINFO_MEM_TOTAL, ul_int) , MULT_K, false, &pu_mem);
+			find_best_prefix(MEMINFO_GET(mem_info, MEMINFO_SWAP_TOTAL, ul_int), MULT_K, false, &pu_swap);
+		}
+		m_data->mem_usage[BARUSED]    = MEMINFO_GET(mem_info, MEMINFO_MEM_USED,       ul_int) / (long double) pu_mem.divisor;
+		m_data->mem_usage[BARBUFFERS] = MEMINFO_GET(mem_info, MEMINFO_MEM_BUFFERS,    ul_int) / (long double) pu_mem.divisor;
+		m_data->mem_usage[BARCACHED]  = MEMINFO_GET(mem_info, MEMINFO_MEM_CACHED_ALL, ul_int) / (long double) pu_mem.divisor;
+		m_data->mem_usage[BARFREE]    = MEMINFO_GET(mem_info, MEMINFO_MEM_FREE,       ul_int) / (long double) pu_mem.divisor;
+		m_data->mem_usage[BARSWAP]    = MEMINFO_GET(mem_info, MEMINFO_SWAP_USED,      ul_int) / (long double) pu_swap.divisor;
+		m_data->mem_total             = MEMINFO_GET(mem_info, MEMINFO_MEM_TOTAL,      ul_int) / (long double) pu_mem.divisor;
+		m_data->swap_total            = MEMINFO_GET(mem_info, MEMINFO_SWAP_TOTAL,     ul_int) / (long double) pu_swap.divisor;
+	}
+#endif /* HAS_LIBPROC2 */
+
 #if HAS_LIBPROCPS
 	MSG_VERBOSE("%s", _("Calling libprocps"));
 	/* System uptime */
@@ -1524,14 +1561,19 @@ static int system_dynamic(Labels *data)
 	m_data->swap_total            = swap->total / (long double) pu_swap.divisor;
 #endif /* HAS_LIBSTATGRAB */
 	/* Memory labels */
-	for(i = USED; i < SWAP; i++)
-		casprintf(&data->tab_system[VALUE][i], false, "%3.2Lf %s / %3.2Lf %s", m_data->mem_usage[j++], pu_mem.prefix, m_data->mem_total, pu_mem.prefix);
-	casprintf(&data->tab_system[VALUE][SWAP], false, "%3.2Lf %s / %3.2Lf %s", m_data->mem_usage[j], pu_swap.prefix, m_data->swap_total, pu_swap.prefix);
+	if(m_data->mem_total > 0)
+		for(i = USED; i < SWAP; i++)
+			casprintf(&data->tab_system[VALUE][i], false, "%3.2Lf %s / %3.2Lf %s", m_data->mem_usage[j++], pu_mem.prefix, m_data->mem_total, pu_mem.prefix);
+	if(m_data->swap_total > 0)
+		casprintf(&data->tab_system[VALUE][SWAP], false, "%3.2Lf %s / %3.2Lf %s", m_data->mem_usage[j], pu_swap.prefix, m_data->swap_total, pu_swap.prefix);
 
 	/* Uptime label */
-	tm = gmtime(&uptime_s);
-	casprintf(&data->tab_system[VALUE][UPTIME], false, _("%i days, %i hours, %i minutes, %i seconds"),
-	          tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec);
+	if(uptime_s > 0)
+	{
+		tm = gmtime(&uptime_s);
+		casprintf(&data->tab_system[VALUE][UPTIME], false, _("%i days, %i hours, %i minutes, %i seconds"),
+				tm->tm_yday, tm->tm_hour, tm->tm_min, tm->tm_sec);
+	}
 
 	return err;
 }
