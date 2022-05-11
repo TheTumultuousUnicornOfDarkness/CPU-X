@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-04-12 12:12+0000\n"
+"PO-Revision-Date: 2022-05-12 10:18+0000\n"
 "Last-Translator: SC <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -111,6 +111,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access não foi inicializado corretamente: é um problema comum quando %s "
+"foi compilado com uma versão inferior da libpci.\n"
+"Verifique se a biblioteca libpci %s está presente no seu sistema. Caso "
+"contrário, compile %s."
 
 #: core.c:720
 #, c-format
@@ -984,6 +988,7 @@ msgstr ""
 #: main.c:679
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Pode reportar o problema aqui, preenchendo o modelo conforme solicitado:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
