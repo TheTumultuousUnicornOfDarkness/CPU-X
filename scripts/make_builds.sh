@@ -5,20 +5,40 @@ set -euo pipefail
 
 GIT_DIR="$(git rev-parse --show-toplevel)"
 VER=$(git describe --tags --exclude continuous | cut -d- -f1)
-
+ARCHIVES_DIR="$GIT_DIR/assets"
+COMPRESS="tar -zcvf"
 
 #########################################################
 #                    FUNCTIONS                          #
 #########################################################
 
+build_packages_local() {
+	OBS_DIR="$(realpath "$GIT_DIR/../OBS")"
+	PKGS_DIR="$OBS_DIR/pkgs"
 
+	if [[ ! -d "$PKGS_DIR" ]]; then
+		"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "libcpuid"
+		"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "cpu-x"
+	fi
+	cd "$PKGS_DIR"
+}
 
+download_packages_remote() {
+	REPO_URL="https://download.opensuse.org/repositories/home:/Xorg/"
+	PKGS_DIR="$GIT_DIR/pkgs"
+
+	mkdir -p "$PKGS_DIR" && cd "$_"
+	wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
+		--accept "*.pkg.tar.zst","*.rpm","*.deb" \
+		--reject "*.src.rpm","*git*" \
+		--recursive "$REPO_URL"
+}
 
 help() {
 	echo -e "Usage: $0 OPTION"
 	echo -e "Options:"
-	echo -e "\t-p, --package\tMake tarballs which contain packages"
-	echo -e "\t    --local\tBuild packages locally (with --package)"
+	echo -e "\t-l  --local\tBuild packages locally"
+	echo -e "\t-r  --remote\tDownload packages from OBS"
 	echo -e "\t-h, --help\tDisplay this help and exit"
 }
 
@@ -27,44 +47,25 @@ help() {
 #                    MAIN                               #
 #########################################################
 
-if [[ $# < 1 ]]; then
+if [[ $# -lt 1 ]]; then
 	help
 	exit 1
 fi
 
 case "$1" in
-	-p|--package)   choice="package";;
+	-l|--local)     build_packages_local;;
+	-r|--remote)    download_packages_remote;;
 	-h|--help)      help; exit 0;;
 	- |--)          help; exit 1;;
 	*)              help; exit 1;;
 esac
 
-case "$choice" in
-	package)
-		REPO_URL="https://download.opensuse.org/repositories/home:/Xorg/"
-		OBS_DIR="$(realpath "$GIT_DIR/../OBS")"
-		PKGS_DIR="$OBS_DIR/pkgs"
-		ARCHIVES_DIR="$GIT_DIR/packages"
-		COMPRESS="tar -zcvf"
+# Clean package directory
+find "$PKGS_DIR" -type f -not -name '*.deb' -and -not -name '*.rpm' -and -not -name '*.pkg.tar.*' -delete
+find "$PKGS_DIR" -type d -empty -delete
+mkdir -p "$ARCHIVES_DIR"
 
-		if [[ $# -ge 2 ]] && [[ "$2" == "--local" ]] && [[ ! -d "$PKGS_DIR" ]]; then
-			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "libcpuid"
-			"$GIT_DIR/scripts/osc_build.sh" "$OBS_DIR" "cpu-x"
-			cd "$PKGS_DIR"
-		else
-			mkdir -p "$PKGS_DIR" && cd "$_"
-			wget --no-parent --no-host-directories --cut-dirs=3 --quiet --show-progress --continue \
-				--accept "*.pkg.tar.zst","*.rpm","*.deb" \
-				--reject "*.src.rpm","*git*" \
-				--recursive "$REPO_URL"
-		fi
-
-		find "$PKGS_DIR" -type f -not -name '*.deb' -and -not -name '*.rpm' -and -not -name '*.pkg.tar.*' -delete
-		find "$PKGS_DIR" -type d -empty -delete
-		mkdir -p "$ARCHIVES_DIR"
-
-		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_ArchLinux.tar.gz" Arch*
-		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Debian.tar.gz"    Debian*
-		$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Ubuntu.tar.gz"    xUbuntu*
-		;;
-esac
+# Create compressed archives with packages
+$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_ArchLinux.tar.gz" Arch*
+$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Debian.tar.gz"    Debian*
+$COMPRESS "$ARCHIVES_DIR/CPU-X_${VER}_Ubuntu.tar.gz"    xUbuntu*
