@@ -9,13 +9,14 @@
 # Bruno <bruno199723@gmail.com>, 2020.
 # Francisco Serrador <fserrador@gmail.com>, 2022.
 # Yoandry González Castro <yoandry.gonzalezc@gmail.com>, 2022.
+# Luiz Carlos Lucasv <csversut@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-05-04 05:11+0000\n"
-"Last-Translator: Yoandry González Castro <yoandry.gonzalezc@gmail.com>\n"
+"PO-Revision-Date: 2022-05-20 23:16+0000\n"
+"Last-Translator: Luiz Carlos Lucasv <csversut@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
 "Language: es\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -341,7 +342,7 @@ msgstr "Iniciando benchmark"
 
 #: core.c:1656
 msgid "an error occurred while starting benchmark"
-msgstr "se produjo un error al iniciar el punto de referencia"
+msgstr "un error ocorrió mientras inicia benchmark"
 
 #: core.c:1673
 msgid "Finding CPU package in fallback mode"
@@ -380,7 +381,7 @@ msgstr "Obteniendo voltaje de CPU en el modo respaldo"
 
 #: core.c:1860
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "erróneo al obtener voltaje de CPU (modo respaldo)"
+msgstr "fallo al recuperar voltaje de CPU (modo respaldo)"
 
 #: core.c:1875
 msgid "Retrieving CPU frequency in fallback mode"
@@ -557,7 +558,6 @@ msgid "Level 3"
 msgstr "Nivel 3"
 
 #: main.c:86 cpu-x-gtk-3.12.ui:1231
-#, fuzzy
 msgid "Socket(s)"
 msgstr "Zócalo(s)"
 
@@ -709,9 +709,8 @@ msgid "Compute Unit"
 msgstr "Unidad Computadora"
 
 #: main.c:153
-#, fuzzy
 msgid "DeviceID"
-msgstr "DeviceID"
+msgstr "Id de dispositivo"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
