@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-04-01 09:11+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2022-05-23 04:17+0000\n"
+"Last-Translator: S3aBreeze <paperwork@evilcorp.ltd>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -119,6 +119,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access не был правильно загружен: это частая проблема, когда %s был "
+"собран, используя меньшую версию libpci.\n"
+"Проверьте, чтобы библиотека libpci %s присутствовала в вашей системе. В "
+"противном случае, пожалуйста, пересоберите %s."
 
 #: core.c:720
 #, c-format
@@ -984,6 +988,8 @@ msgstr ""
 #: main.c:679
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Вы можете открыть новый отчёт об ошибке здесь, заполнив шаблон следующим "
+"образом:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
