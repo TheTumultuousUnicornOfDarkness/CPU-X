@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-05-20 23:16+0000\n"
+"PO-Revision-Date: 2022-05-23 04:17+0000\n"
 "Last-Translator: Luiz Carlos Lucasv <csversut@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
@@ -112,6 +112,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access no se inicializó correctamente: es un problema común cuando %s se "
+"creó con una versión inferior de libpci\n"
+"Verifique que la biblioteca libpci %s esté presente en su sistema. De lo "
+"contrario, reconstruya %s."
 
 #: core.c:720
 #, c-format
@@ -274,7 +278,7 @@ msgstr "fallo al identificar el sistema en ejecución"
 
 #: core.c:1472
 msgid "Calling libprocps"
-msgstr "Llamando a libprocps"
+msgstr "Llamar libprocps"
 
 #: core.c:1498
 msgid "Calling libstatgrab"
@@ -752,7 +756,7 @@ msgstr "Tarjetas"
 
 #: main.c:167 cpu-x-gtk-3.12.ui:5188
 msgid "Bench"
-msgstr "Pupitre"
+msgstr "Banco"
 
 #: main.c:168 cpu-x-gtk-3.12.ui:4958
 msgid "Prime numbers (slow)"
@@ -924,7 +928,7 @@ msgstr "Descarta frecuencia de CPU comunicada por libcpuid"
 
 #: main.c:370
 msgid "Read CPUID raw data from a given file"
-msgstr "Leer datos crudos de CPUID de un archivo determinado"
+msgstr "Leer datos puros de CPUID de un archivo determinado"
 
 #: main.c:371
 msgid "Only print a message if CPU is not present in the database"
@@ -981,6 +985,8 @@ msgstr ""
 #: main.c:679
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Puede abrir una nueva cuestión aquí, rellenando la plantilla como se "
+"solicita:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
