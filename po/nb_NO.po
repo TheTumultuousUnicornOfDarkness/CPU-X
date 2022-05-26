@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-04-23 17:11+0000\n"
+"PO-Revision-Date: 2022-05-27 02:16+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -110,6 +110,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access er ikke igangsatt på riktig vis: Dette er et vanlig problem når "
+"%s er bygd med en lavere libpci-versjon.\n"
+"Sjekk at libpci %s-biblioteket er å finne på systemet ditt. Ellers må du "
+"bygge %s igjen."
 
 #: core.c:720
 #, c-format
@@ -1006,6 +1010,7 @@ msgstr ""
 #: main.c:679
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Du kan åpne en ny problemrapport her ved å fylle ut malen som forespurt:"
 
 #: main.c:707
 #, fuzzy
