@@ -7,13 +7,14 @@
 # Hung, Chi-Heng <chh56@cs.washington.edu>, 2020.
 # crlambda <lm3c@protonmail.ch>, 2020.
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2022.
+# Jackie C. L. Liu <ls4860@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-02-17 13:58+0000\n"
-"Last-Translator: 快乐的老鼠宝宝 <keaitianxinmail@qq.com>\n"
+"PO-Revision-Date: 2022-06-12 04:14+0000\n"
+"Last-Translator: Jackie C. L. Liu <ls4860@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -67,7 +68,7 @@ msgstr ""
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "不支援"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -109,84 +110,79 @@ msgstr ""
 #: core.c:720
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "路徑 %s 沒有顯示卡核心驅動程式正在使用"
 
 #: core.c:751
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "無法得知您的 GPU 驅動程式：%s"
+msgstr "無法得知您的 GPU 核心驅動程式：%s"
 
 #: core.c:824
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "無法得知您的 GPU 驅動程式：%s"
+msgstr "未知的使用者 GPU 驅動程式：%s"
 
 #: core.c:828
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "呼叫 libcpuid 失敗 (%s)"
+msgstr "呼叫 libcpuid 失敗 (%i):(%s)"
 
 #: core.c:857
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "沒有受 OpenCL 支援的平台 (%s)"
 
 #: core.c:866
-#, fuzzy, c-format
-#| msgid "failed to open CPU MSR (%s)"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "開啟 CPU MSR 失敗 (%s)"
+msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 
 #: core.c:876
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "擷取平台名稱時失敗 %u (%s)"
 
 #: core.c:883
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "擷取平台版本號數時失敗 %u (%s)"
 
 #: core.c:890
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
 
 #: core.c:898
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "擷取平台上全部 OpenCL 裝置時失敗 '%s %s' (%s)"
 
 #: core.c:912
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "呼叫 libcpuid 失敗 (%s)"
+msgstr "擷取裝置名稱時失敗 %u (%s)"
 
 #: core.c:919
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "取得裝置版本資訊時失敗%u (%s)"
 
 #: core.c:930
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:941
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
+msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:953 core.c:963 core.c:988
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
+msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:976
 #, c-format
@@ -194,11 +190,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_PCI_DOMAIN_ID_NV (%s)， "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) 或是 CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:996
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "您的顯示卡供應商 (0x%X) 不支援 OpenCL"
 
 #: core.c:1025
 msgid "Finding devices"
@@ -207,7 +205,7 @@ msgstr "正在尋找裝置"
 #: core.c:1037
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr ""
+msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
 
 #: core.c:1075
 #, c-format
@@ -233,49 +231,49 @@ msgstr "無"
 #: core.c:1343
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr ""
+msgstr "GPU驅動程式 %u 未回報頻率"
 
 #: core.c:1386
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "現行的：PCIe Gen %1dx%d / 最高：Gen %1dx%d"
 
 #: core.c:1390
 msgid "Enabled"
-msgstr ""
+msgstr "開啟"
 
 #: core.c:1390
 msgid "Disabled"
-msgstr ""
+msgstr "關閉"
 
 #: core.c:1411
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "取得 GPU 時脈頻率時失敗"
 
 #: core.c:1428
 msgid "Identifying running system"
-msgstr ""
+msgstr "正在辨識作業環境系統"
 
 #: core.c:1431
 msgid "failed to identify running system"
-msgstr ""
+msgstr "辨識作業環境系統失敗"
 
 #: core.c:1472
 msgid "Calling libprocps"
-msgstr ""
+msgstr "正在呼叫 libprocps"
 
 #: core.c:1498
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "正在呼叫 libstatgrab"
 
 #: core.c:1533
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i 天， %i 小時， %i 分鐘， %i 秒"
 
 #: core.c:1589
 msgid "Updating benchmark status"
-msgstr "更新benchmark狀態"
+msgstr "正在更新benchmark狀態"
 
 #: core.c:1590 tui_ncurses.c:828
 #, c-format
@@ -307,22 +305,22 @@ msgstr "(剩下 %u 分鐘)"
 #: core.c:1612
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(剩下 %u 秒鐘)"
 
 #: core.c:1617
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "在 %u 小時內"
 
 #: core.c:1619
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "在 %u 分鐘內"
 
 #: core.c:1621
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "在 %u 秒鐘內"
 
 #: core.c:1637
 msgid "Starting benchmark"
@@ -330,7 +328,7 @@ msgstr "正在開始效能測試"
 
 #: core.c:1656
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "開始效能測試時有錯誤發生"
 
 #: core.c:1673
 msgid "Finding CPU package in fallback mode"
@@ -339,7 +337,7 @@ msgstr ""
 #: core.c:1695
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%s"
+msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
 
 #: core.c:1714
 msgid "Calculating CPU multipliers in fallback mode"
