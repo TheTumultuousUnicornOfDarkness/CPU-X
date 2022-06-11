@@ -5261,7 +5261,7 @@ static void dmi_decode_cpux(const struct dmi_header *h)
 					char *size = (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C));
 					snprintf(specs, MAXSTR, "%s @ %u MHz (%s %s)",
 					         size,
-					         (WORD(data + 0x15)),
+					         (WORD(data + 0x20)),
 					         dmi_memory_device_form_factor(data[0x0E]),
 					         dmi_memory_device_type(data[0x12]));
 					strncat(cpux_data->memory[cpux_data->dimm_count], specs, MAXSTR);
