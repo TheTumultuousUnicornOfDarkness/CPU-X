@@ -12,13 +12,14 @@
 # sm_moshi <meya@posteo.se>, 2021.
 # Alex <alexander.simm@posteo.de>, 2022.
 # sal0max <msal.coding@gmail.com>, 2022.
+# jagfwajgf <juri26@outlook.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-04-19 22:12+0000\n"
-"Last-Translator: sal0max <msal.coding@gmail.com>\n"
+"PO-Revision-Date: 2022-06-21 15:15+0000\n"
+"Last-Translator: jagfwajgf <juri26@outlook.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -107,13 +108,17 @@ msgid "Calling bandwidth"
 msgstr "Bandbreite aufrufen"
 
 #: core.c:674
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
 "built with a lower libpci version.\n"
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access ist nicht richtig initialisiert: Das ist ein häufiges Problem, "
+"wenn %s mit einer niedrigeren libpci-Version compiled wurde.\n"
+"Prüfen Sie, ob die libpci %s Bibliothek auf Ihrem System vorhanden ist. "
+"Andernfalls compilen Sie %s bitte neu."
 
 #: core.c:720
 #, c-format
@@ -983,8 +988,11 @@ msgstr ""
 "abgestürzt.%s"
 
 #: main.c:679
+#, fuzzy
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Sie können hier ein neues Problem eröffnen, indem Sie die Vorlage wie "
+"vorgegeben ausfüllen:"
 
 #: main.c:707
 msgid "an error occurred while setting locale"
