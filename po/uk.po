@@ -5,13 +5,14 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # userko <ukoshulap@gmail.com>, 2021, 2022.
 # Vladyslav Spirin <vladspirin@hotmail.com>, 2022.
+# Artem <artem@molotov.work>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-02-03 10:55+0000\n"
-"Last-Translator: userko <ukoshulap@gmail.com>\n"
+"PO-Revision-Date: 2022-06-23 18:16+0000\n"
+"Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -246,7 +247,7 @@ msgstr "Поточний: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1390
 msgid "Enabled"
-msgstr "Включено"
+msgstr "Увімкнено"
 
 #: core.c:1390
 msgid "Disabled"
@@ -1134,7 +1135,7 @@ msgstr "помилка при виконанні команди '%s' (%s)"
 #: util.c:375 util.c:435
 #, c-format
 msgid "failed to open %s directory"
-msgstr "не вдалося відкрити папку %s"
+msgstr "не вдалося відкрити теку %s"
 
 #: util.c:448
 msgid "an error occurred while compiling regex"
