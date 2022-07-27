@@ -2,22 +2,26 @@
 # Copyright © 2014-2022 Xorg
 # This file is distributed under the same license as the cpu-x package.
 # Heimen Stoffels <vistausss@outlook.com>, 2021.
+# Heimen Stoffels <vistausss@fastmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-07-28 19:21+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
+"nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Bezig met zoeken naar cpu-technologie…"
 
 #: core.c:246
 #, c-format
@@ -25,16 +29,18 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
+"Uw cpu is niet opgenomen in de databank. %s - model: %i - ext. model: %i - "
+"ext. familie: %i"
 
 #: core.c:259
 #, c-format
 msgid "%d x %d %s, %d-way"
-msgstr ""
+msgstr "%d x %d %s, %d-voudig"
 
 #: core.c:260
 #, c-format
 msgid "%d %s, %d-way"
-msgstr ""
+msgstr "%d %s, %d-voudig"
 
 #: core.c:261
 #, c-format
@@ -48,7 +54,7 @@ msgstr ""
 #: core.c:278
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "libcpuid kan niet worden aangeroepen (%s)"
 
 #: core.c:288
 #, c-format
@@ -56,10 +62,12 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"Deze hybride cpu-architectuur wordt niet ondersteund. Ga voor meer "
+"informatie naar %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
-msgstr ""
+msgstr "NIET-ONDERSTEUND"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -83,7 +91,7 @@ msgstr ""
 
 #: core.c:581
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Bezig met berekenen van cpu-gebruik…"
 
 #: core.c:632
 msgid "Calling bandwidth"
