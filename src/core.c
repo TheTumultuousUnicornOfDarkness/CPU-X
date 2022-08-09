@@ -774,12 +774,12 @@ static int find_gpu_kernel_driver(char *device_path, char *driver_name, enum EnG
 	return 0;
 }
 
-static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_driver)
+static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_driver, char *gl_version)
 {
 	int err = 0;
 
 #if HAS_LIBGLFW
-	const char *description, *gl_ver = NULL, *umd_ver = NULL;
+	const char *description, *gl_ver = NULL, *glsl_ver = NULL, *umd_ver = NULL;
 	GLFWwindow *win = NULL;
 
 	if(glfwInit() == GLFW_FALSE)
@@ -801,12 +801,15 @@ static int find_gpu_user_mode_driver(enum EnGpuDrv gpu_driver, char *user_mode_d
 		goto clean;
 
 	gl_ver = (const char*) glGetString(GL_VERSION);
-	if(gl_ver == NULL)
+	glsl_ver = (const char*) glGetString(GL_SHADING_LANGUAGE_VERSION);
+
+	if(gl_ver == NULL || glsl_ver == NULL)
 	{
 		err = glGetError() == GL_NO_ERROR ? -1 : (int) glGetError();
 		description = "glGetString";
 		goto clean;
 	}
+	snprintf(gl_version, MAXSTR, "%s", glsl_ver);
 
 	switch(gpu_driver)
 	{
@@ -837,6 +840,7 @@ clean:
 #else
 	UNUSED(gpu_driver);
 	UNUSED(user_mode_driver);
+	UNUSED(gl_version);
 #endif /* HAS_LIBGLFW */
 
 	return err;
@@ -1023,7 +1027,7 @@ static int find_devices(Labels *data)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
 	char *gpu_vendor = NULL;
-	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
+	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	uint32_t comp_unit = 0;
@@ -1085,7 +1089,7 @@ static int find_devices(Labels *data)
 			memset(buff,       0, MAXSTR);
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
-			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd);
+			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd, gl_ver);
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type);
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
@@ -1094,6 +1098,7 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID + data->gpu_count * GPUFIELDS], false, "0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
 			casprintf(&data->tab_graphics[VALUE][GPU1CU     + data->gpu_count * GPUFIELDS], true,  "%d %s", comp_unit, comp_unit_type);
+			casprintf(&data->tab_graphics[VALUE][GPU1GLVER  + data->gpu_count * GPUFIELDS], true,  "%s", gl_ver);
 			data->gpu_count++;
 		}
 	}
