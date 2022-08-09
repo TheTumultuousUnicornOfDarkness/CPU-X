@@ -920,9 +920,15 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 			free(device_ext);
 
 			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
+			#if (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
 				VK_API_VERSION_MAJOR(prop.apiVersion),
 				VK_API_VERSION_MINOR(prop.apiVersion),
 				VK_API_VERSION_PATCH(prop.apiVersion)
+			#else
+				VK_VERSION_MAJOR(prop.apiVersion),
+				VK_VERSION_MINOR(prop.apiVersion),
+				VK_VERSION_PATCH(prop.apiVersion)
+			#endif
 			);
 			break;
 		}
