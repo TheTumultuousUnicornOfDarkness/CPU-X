@@ -921,12 +921,12 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version)
 
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
-static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *comp_unit_type)
+static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *comp_unit_type, char *cl_version)
 {
 	int ret_cl = 0;
 #if HAS_OpenCL
 	uint8_t ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
-	char platform_name[MAXSTR] = "", platform_version[MAXSTR] = "", device_name[MAXSTR] = "", device_version[MAXSTR] = "";
+	char platform_name[MAXSTR] = "", platform_version[MAXSTR] = "", device_name[MAXSTR] = "", device_version[MAXSTR] = "", cl_ver[MAXSTR] = "";
 	cl_uint num_pf = 0, num_ocl_dev = 0, ocl_vendor = 0, amd_gfx_major = 0;
 	cl_uint i, j;
 	cl_platform_id *platforms = NULL;
@@ -997,11 +997,14 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 			}
 
 			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_VERSION, sizeof(device_version), device_version, NULL);
-			if (ret_cl != CL_SUCCESS)
+			if (ret_cl != CL_SUCCESS || string_is_empty(device_version))
 			{
 				MSG_ERROR(_("failed to get version for device %u (%s)"), j, opencl_error(ret_cl));
 				continue;
 			}
+			size_t prefix_len = strlen("OpenCL ");
+			strncpy(cl_ver, &device_version[prefix_len], MAXSTR - prefix_len);
+			snprintf(cl_version, MAXSTR, "%s", cl_ver);
 
 			MSG_DEBUG("OpenCL device %u is '%s %s'", j, device_name, device_version);
 			switch (ocl_vendor)
@@ -1087,6 +1090,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 	UNUSED(dev);
 	UNUSED(comp_unit);
 	UNUSED(comp_unit_type);
+	UNUSED(cl_version);
 #endif /* HAS_OpenCL */
 
 	return ret_cl;
@@ -1100,7 +1104,7 @@ static int find_devices(Labels *data)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
 	char *gpu_vendor = NULL;
-	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", vk_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
+	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", vk_ver[MAXSTR] = "", cl_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	uint32_t comp_unit = 0;
@@ -1164,7 +1168,7 @@ static int find_devices(Labels *data)
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd, gl_ver);
 			get_vulkan_api_version((uint32_t)dev->device_id, vk_ver);
-			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type);
+			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type, cl_ver);
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
@@ -1174,6 +1178,7 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1CU     + data->gpu_count * GPUFIELDS], true,  "%d %s", comp_unit, comp_unit_type);
 			casprintf(&data->tab_graphics[VALUE][GPU1GLVER  + data->gpu_count * GPUFIELDS], true,  "%s", gl_ver);
 			casprintf(&data->tab_graphics[VALUE][GPU1VKVER  + data->gpu_count * GPUFIELDS], true,  "%s", vk_ver);
+			casprintf(&data->tab_graphics[VALUE][GPU1CLVER  + data->gpu_count * GPUFIELDS], true,  "%s", cl_ver);
 			data->gpu_count++;
 		}
 	}

@@ -89,7 +89,7 @@ static const char *objectsys_bar[LASTBAR] =
 /* Tab Graphics */
 static const char *objectgpu[GPUFIELDS] =
 {
-	"card0_vend", "card0_driver", "card0_umd", "card0_mod", "card0_comp_unit", "card0_did_rid", "card0_pcie", "card0_temp", "card0_usage", "card0_gvolt", "card0_gpwr", "card0_gclk", "card0_mclk", "card0_vram_used", "card0_rebar", "card0_gl_ver", "card0_vk_ver"
+	"card0_vend", "card0_driver", "card0_umd", "card0_mod", "card0_comp_unit", "card0_did_rid", "card0_pcie", "card0_temp", "card0_usage", "card0_gvolt", "card0_gpwr", "card0_gclk", "card0_mclk", "card0_vram_used", "card0_rebar", "card0_gl_ver", "card0_vk_ver", "card0_cl_ver"
 };
 
 /* Tab Bench */
