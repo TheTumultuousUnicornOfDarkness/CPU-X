@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the cpu-x package.
 # Riku Viitanen <riku.viitanen@protonmail.com>, 2020.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2021, 2022.
+# LINUX-SAUNA <linuxsauna@protonmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-05-06 14:46+0000\n"
-"PO-Revision-Date: 2022-03-29 17:12+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2022-08-10 22:21+0000\n"
+"Last-Translator: LINUX-SAUNA <linuxsauna@protonmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
 "Language: fi\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:224
 msgid "Finding CPU technology"
@@ -62,6 +63,8 @@ msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
+"Hybridi-suoritinrakenne ei ole tuettu. Lisätietoja saadaksesi katso seuraava "
+"ongelmayhteys: %s"
 
 #: core.c:308
 msgid "NOT SUPPORTED"
@@ -69,7 +72,7 @@ msgstr "EI TUETTU"
 
 #: core.c:454
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Kutsutaan libcpuid jotta saadaan noudettua dynaaminen data"
 
 #: core.c:467
 msgid "Calling libcpuid for retrieving CPU MSR static values"
