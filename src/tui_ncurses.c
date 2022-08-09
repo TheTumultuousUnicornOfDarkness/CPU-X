@@ -807,6 +807,7 @@ static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 			case GPU1MEMCLOCK:
 			case GPU1POWERAVG:
 			case GPU1DIDRID:
+			case GPU1VKVER:
 				mvwprintw2c(win, line - 1, info.tm, "%18s: %s", data->tab_graphics[NAME][i], data->tab_graphics[VALUE][i]);
 				break;
 			default:

@@ -73,6 +73,10 @@
 #endif
 
 #if HAS_LIBGLFW
+# if HAS_Vulkan
+#	define GLFW_INCLUDE_VULKAN
+#	include <vulkan/vulkan.h>
+# endif
 # include <GL/gl.h>
 # include <GLFW/glfw3.h>
 #endif
@@ -846,6 +850,75 @@ clean:
 	return err;
 }
 
+static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version)
+{
+	int err = 0;
+#if HAS_LIBGLFW && HAS_Vulkan
+	uint32_t i, device_count = 0;
+
+	if (glfwVulkanSupported() == GLFW_FALSE) {
+		MSG_WARNING("%s", _("Vulkan API is not available"));
+		return err;
+	}
+
+	VkInstance instance = {0};
+	VkInstanceCreateInfo createInfo = {0};
+
+	if (vkCreateInstance(&createInfo, NULL, &instance) != VK_SUCCESS)
+	{
+		MSG_ERROR("%s", _("failed to call vkCreateInstance"));
+		return err;
+	}
+
+	VkPhysicalDevice *devices = NULL;
+
+	/* get number of devices */
+	if (vkEnumeratePhysicalDevices(instance, &device_count, NULL) != VK_SUCCESS)
+	{
+		MSG_ERROR("%s", _("failed to call vkEnumeratePhysicalDevices"));
+		return err;
+	}
+
+	if (device_count == 0)
+	{
+		MSG_WARNING("%s", _("There is no device with Vulkan support"));
+		return err;
+	}
+
+	devices = malloc(sizeof(VkPhysicalDevice) * device_count);
+
+	/* get all device handles */
+	if (vkEnumeratePhysicalDevices(instance, &device_count, devices) != VK_SUCCESS)
+	{
+		MSG_WARNING("%s", _("There is no available physical device"));
+		free(devices);
+		return err;
+	}
+
+	for (i = 0; i < device_count; i++) {
+		VkPhysicalDeviceProperties prop = {0};
+		vkGetPhysicalDeviceProperties(devices[i], &prop);
+
+		if (device_id == prop.deviceID) {
+			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
+				VK_API_VERSION_MAJOR(prop.apiVersion),
+				VK_API_VERSION_MINOR(prop.apiVersion),
+				VK_API_VERSION_PATCH(prop.apiVersion)
+			);
+			break;
+		}
+	}
+
+	free(devices);
+#else
+	UNUSED(device_id);
+	UNUSED(vulkan_version);
+#endif /* HAS_LIBGLFW */
+
+	return err;
+}
+
+
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
 static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *comp_unit_type)
@@ -1027,7 +1100,7 @@ static int find_devices(Labels *data)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
 	char *gpu_vendor = NULL;
-	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
+	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", vk_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	uint32_t comp_unit = 0;
@@ -1090,6 +1163,7 @@ static int find_devices(Labels *data)
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd, gl_ver);
+			get_vulkan_api_version((uint32_t)dev->device_id, vk_ver);
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type);
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
@@ -1099,6 +1173,7 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID + data->gpu_count * GPUFIELDS], false, "0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
 			casprintf(&data->tab_graphics[VALUE][GPU1CU     + data->gpu_count * GPUFIELDS], true,  "%d %s", comp_unit, comp_unit_type);
 			casprintf(&data->tab_graphics[VALUE][GPU1GLVER  + data->gpu_count * GPUFIELDS], true,  "%s", gl_ver);
+			casprintf(&data->tab_graphics[VALUE][GPU1VKVER  + data->gpu_count * GPUFIELDS], true,  "%s", vk_ver);
 			data->gpu_count++;
 		}
 	}
