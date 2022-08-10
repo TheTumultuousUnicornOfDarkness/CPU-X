@@ -437,7 +437,7 @@ static void nrefresh(NThrd *refr)
 			break;
 		case NO_GRAPHICS:
 			do_refresh(data);
-			line = LINE_5;
+			line = LINE_6;
 			for(i = 0; i < data->gpu_count * GPUFIELDS; i += GPUFIELDS)
 			{
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1PCIE        + i], data->tab_graphics[VALUE][GPU1PCIE        + i]);
@@ -452,7 +452,7 @@ static void nrefresh(NThrd *refr)
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK    + i], data->tab_graphics[VALUE][GPU1MEMCLOCK    + i]);
 				line++;
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1MEMUSED     + i], data->tab_graphics[VALUE][GPU1MEMUSED     + i]);
-				line += LINE_5 - 1;
+				line += LINE_6 - 1;
 			}
 			break;
 		case NO_BENCH:
@@ -781,14 +781,14 @@ static void print_activecard(WINDOW *win, const SizeInfo info, Labels *data)
 	if(data->gpu_count == 0)
 		return;
 
-	mvwprintwc(win, LINE_15, info.tb + 1, DEFAULT_COLOR, "#%i: %s", opts->selected_gpu, data->tab_graphics[VALUE][GPU1MODEL + opts->selected_gpu * GPUFIELDS]);
+	mvwprintwc(win, LINE_16, info.tb + 1, DEFAULT_COLOR, "#%i: %s", opts->selected_gpu, data->tab_graphics[VALUE][GPU1MODEL + opts->selected_gpu * GPUFIELDS]);
 	wrefresh(win);
 }
 
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, j, line, start = LINE_0, end = LINE_13;
+	int i, j, line, start = LINE_0, end = LINE_14;
 
 	if(data->gpu_count == 0)
 		return;
