@@ -24,11 +24,18 @@ else
 fi
 
 case "$VERSION_ID" in
-	"16.04") PACKAGES=('libncursesw5-dev' 'libncursesw5' 'libcpuid15-git' 'libpci3' 'libglfw3-dev' 'libglfw3' 'libprocps4');;
-	"18.04") PACKAGES=('libncursesw5-dev' 'libncursesw5' 'libcpuid15-git' 'libpci3' 'libglfw3-dev' 'libglfw3' 'libprocps6');;
-	"20.04") PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libglfw3-dev' 'libglfw3' 'libprocps8');;
-	"22.04") PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libglfw3-dev' 'libglfw3' 'libprocps8');;
-	*)       echo "Unsupported Ubuntu version: $VERSION_ID" ; exit 1;;
+	"18.04") # Bionic Beaver
+		PACKAGES=('libncursesw5-dev' 'libncursesw5' 'libcpuid15-git' 'libpci3' 'libprocps6' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		;;
+	"20.04") # Focal Fossa
+		PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		;;
+	"22.04") # Jammy Jellyfish
+		PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		;;
+	*)
+		echo "Unsupported Ubuntu version: $VERSION_ID" ; exit 1
+		;;
 esac
 
 echo "Add OBS repository"
