@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-14 07:21+0000\n"
-"PO-Revision-Date: 2022-05-08 17:12+0000\n"
+"PO-Revision-Date: 2022-08-14 11:05+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -134,29 +134,23 @@ msgstr "impossibile eseguire GLFW (%i): %s"
 
 #: core.c:860
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "API Vulkan non disponibile"
 
 #: core.c:869
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call vkCreateInstance"
-msgstr "fallimento a chiamare dmidecode"
+msgstr "chiamata a vkCreateInstance fallita"
 
 #: core.c:878
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call vkEnumeratePhysicalDevices"
-msgstr "fallimento a chiamare dmidecode"
+msgstr "chiamata a vkEnumeratePhysicalDevices fallita"
 
 #: core.c:884
-#, fuzzy
-#| msgid "There is no platform with OpenCL support (%s)"
 msgid "There is no device with Vulkan support"
-msgstr "Non c'è una piattaforma con supporto OpenCL (%s)"
+msgstr "Non ci sono dispositivi con supporto Vulkan"
 
 #: core.c:893
 msgid "There is no available physical device"
-msgstr ""
+msgstr "Non è disponibile alcun dispositivo fisico"
 
 #: core.c:966
 #, c-format
@@ -302,11 +296,11 @@ msgstr "Chiamata a libprocps"
 
 #: core.c:1597
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "Impossibile ottenere il tempo di attività del sistema"
 
 #: core.c:1603
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "Impossibile creare la struttura MemInfo"
 
 #: core.c:1648
 msgid "Calling libstatgrab"
@@ -466,16 +460,15 @@ msgid "BaseModel"
 msgstr "Versione base"
 
 #: gui_gtk.c:575
-#, fuzzy
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
-"Famiglia CPU (\"reale\") visualizzata (ricavato da BaseFamily+ExtendedFamily)"
+"Famiglia CPU (\"reale\") visualizzata (calcolata come "
+"BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:576
-#, fuzzy
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
-"Modello CPU (\"reale\") visualizzato (ricavato da "
+"Modello CPU (\"reale\") visualizzato (calcolato come "
 "(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:635
@@ -484,7 +477,7 @@ msgstr "Versione driver modalità utente (UMD)"
 
 #: gui_gtk.c:636
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan Ray Tracing"
 
 #: gui_gtk.c:661
 #, c-format
@@ -493,7 +486,7 @@ msgstr "%s"
 
 #: main.c:56
 msgid "Setting label names"
-msgstr "Imposto i nomi delle etichette"
+msgstr "Impostazione dei nomi delle etichette"
 
 #: main.c:58 cpu-x-gtk-3.12.ui:1399
 msgid "CPU"
@@ -699,7 +692,7 @@ msgstr "Hostname"
 
 #: main.c:132
 msgid "Uptime"
-msgstr "Tempo di funzionamento"
+msgstr "Tempo in attività"
 
 #: main.c:133
 msgid "Compiler"
@@ -786,25 +779,19 @@ msgstr "Barra ridimensionabile"
 
 #: main.c:163
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:164
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Versione"
+msgstr "Versione OpenGL"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Versione"
+msgstr "Versione Vulkan"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Versione"
+msgstr "Versione OpenCL"
 
 #: main.c:168 cpu-x-gtk-3.12.ui:5041
 msgid "Cards"
