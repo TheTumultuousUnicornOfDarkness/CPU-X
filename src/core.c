@@ -1284,10 +1284,10 @@ static int gpu_monitoring(Labels *data)
 {
 #ifdef __linux__
 	bool gpu_ok;
-	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk, ret_vram_used, ret_vram_total, ret_gvolt, ret_gpwr, ret_pcie_max_speed, ret_pcie_max_width, ret_pcie_sta_speed, ret_pcie_sta_width;
+	int ret_drm, ret_hwmon, ret_temp, ret_load, ret_gclk, ret_mclk, ret_vram_used, ret_vram_total, ret_gvolt, ret_gpwr, ret_pcie_max_speed, ret_pcie_max_width, ret_pcie_sta_speed, ret_pcie_sta_width, ret_vbios_ver;
 	uint8_t i, card_number, failed_count = 0, fglrx_count = 0, nvidia_count = 0, pcie_max_gen = 0, pcie_sta_gen = 0;
 	long double divisor_temp, divisor_gclk, divisor_mclk, divisor_vram, divisor_gvolt, divisor_gpwr;
-	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL, *vram_used = NULL, *vram_total = NULL, *gvolt = NULL, *gpwr = NULL, *pcie_max_speed = NULL, *pcie_max_width = NULL, *pcie_sta_speed = NULL, *pcie_sta_width = NULL;
+	char *temp = NULL, *gclk = NULL, *mclk = NULL, *load = NULL, *vram_used = NULL, *vram_total = NULL, *gvolt = NULL, *gpwr = NULL, *pcie_max_speed = NULL, *pcie_max_width = NULL, *pcie_sta_speed = NULL, *pcie_sta_width = NULL, *vbios_ver = NULL;
 	static bool once_error = true;
 	static char *cached_paths_drm[LASTGRAPHICS / GPUFIELDS] = { NULL };
 	static char *cached_paths_hwmon[LASTGRAPHICS / GPUFIELDS] = { NULL };
@@ -1310,6 +1310,7 @@ static int gpu_monitoring(Labels *data)
 		ret_pcie_max_width = -1;
 		ret_pcie_sta_speed = -1;
 		ret_pcie_sta_width = -1;
+		ret_vbios_ver  = -1;
 		divisor_temp   = 1.0;
 		divisor_gclk   = 1.0;
 		divisor_mclk   = 1.0;
@@ -1328,6 +1329,7 @@ static int gpu_monitoring(Labels *data)
 			data->g_data->gpu_driver[i] = GPUDRV_UNKNOWN;
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER      + i * GPUFIELDS], false, _("None"));
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1VBIOS       + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1PCIE        + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID      + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1USAGE       + i * GPUFIELDS], false, "---");
@@ -1336,6 +1338,7 @@ static int gpu_monitoring(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS], false, "---");
 			casprintf(&data->tab_graphics[VALUE][GPU1POWERAVG    + i * GPUFIELDS], false, "---");
+			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false, "---");
 			continue;
 		}
 
@@ -1381,6 +1384,7 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = fopen_to_str(&vram_total, "%s/device/mem_info_vram_total",  cached_paths_drm[i]);
 				ret_gvolt      = fopen_to_str(&gvolt,      "%s/in0_input",                   cached_paths_hwmon[i]);
 				ret_gpwr       = fopen_to_str(&gpwr,       "%s/power1_average",              cached_paths_hwmon[i]);
+				ret_vbios_ver  = fopen_to_str(&vbios_ver,  "%s/device/vbios_version",        cached_paths_drm[i]);
 				divisor_gclk   = 1e6;
 				divisor_mclk   = 1e6;
 				divisor_vram   = 1 << 20;
@@ -1397,6 +1401,7 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
 				ret_gpwr       = -1;
+				ret_vbios_ver  = -1;
 				fglrx_count++;
 				break;
 			case GPUDRV_INTEL:
@@ -1408,6 +1413,7 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
 				ret_gpwr       = -1;
+				ret_vbios_ver  = -1;
 				break;
 			case GPUDRV_RADEON:
 				// ret_temp obtained above
@@ -1418,6 +1424,7 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = -1;
 				ret_gvolt      = can_access_sys_debug_dri(data) ? popen_to_str(&gvolt, "awk -F '(vddc: | vddci:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card_number) : -1;
 				ret_gpwr       = -1;
+				ret_vbios_ver  = -1;
 				divisor_gclk   = 100.0;
 				divisor_mclk   = 100.0;
 				break;
@@ -1436,7 +1443,8 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_used  = popen_to_str(&vram_used,  "%s --query-gpu=memory.used",     nvidia_cmd_args);
 				ret_vram_total = popen_to_str(&vram_total, "%s --query-gpu=memory.total",    nvidia_cmd_args);
 				ret_gvolt      = -1;
-				ret_gpwr       = popen_to_str(&gpwr,       "%s --query-gpu=power.draw",      nvidia_cmd_args);;
+				ret_gpwr       = popen_to_str(&gpwr,       "%s --query-gpu=power.draw",      nvidia_cmd_args);
+				ret_vbios_ver  = popen_to_str(&vbios_ver,  "%s --query-gpu=vbios_version",   nvidia_cmd_args);
 				nvidia_count++;
 				break;
 			}
@@ -1454,6 +1462,7 @@ static int gpu_monitoring(Labels *data)
 				ret_vram_total = -1;
 				ret_gvolt      = -1;
 				ret_gpwr       = -1;
+				ret_vbios_ver  = -1;
 				FREE(pstate);
 				break;
 			}
@@ -1507,9 +1516,11 @@ skip_clocks:
 		if(strlen(data->tab_graphics[VALUE][GPU1REBAR + i * GPUFIELDS]) == 0 && !ret_vram_total)
 			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false,
 				"%s", (atol(vram_total) / divisor_vram * 0.9 < data->g_data->bar_size[i] / (1 << 20)) ? _("Enabled") : _("Disabled"));
+		if(strlen(data->tab_graphics[VALUE][GPU1VBIOS + i * GPUFIELDS]) == 0 && !ret_vbios_ver)
+			casprintf(&data->tab_graphics[VALUE][GPU1VBIOS       + i * GPUFIELDS], false, "%s", vbios_ver);
 
 		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
-		&& ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width)
+		&& ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width && ret_vbios_ver)
 			failed_count++;
 
 		FREE(temp);
@@ -1524,6 +1535,7 @@ skip_clocks:
 		FREE(pcie_max_width);
 		FREE(pcie_sta_speed);
 		FREE(pcie_sta_width);
+		FREE(vbios_ver);
 	}
 
 	if(once_error && failed_count)
