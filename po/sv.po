@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-14 11:05+0000\n"
-"PO-Revision-Date: 2022-05-08 17:12+0000\n"
+"PO-Revision-Date: 2022-08-14 11:58+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -130,29 +130,23 @@ msgstr "kunde inte anropa GLFW (%i): %s"
 
 #: core.c:860
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "Vulkan-API inte tillgänglig"
 
 #: core.c:869
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkCreateInstance"
-msgstr "kunde inte anropa libcpuid (%s)"
+msgstr "kunde inte anropa vkCreateInstance"
 
 #: core.c:878
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkEnumeratePhysicalDevices"
-msgstr "kunde inte anropa libcpuid (%s)"
+msgstr "kunde inte anropa vkEnumeratePhysicalDevices"
 
 #: core.c:884
-#, fuzzy
-#| msgid "There is no platform with OpenCL support (%s)"
 msgid "There is no device with Vulkan support"
-msgstr "Det finns ingen plattform med OpenCL-stöd (%s)"
+msgstr "Det finns ingen enhet med Vulkan-stöd"
 
 #: core.c:893
 msgid "There is no available physical device"
-msgstr ""
+msgstr "Det finns ingen fysisk enhet tillgänglig"
 
 #: core.c:966
 #, c-format
@@ -294,11 +288,11 @@ msgstr "Anropar libprocps"
 
 #: core.c:1609
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "kunde inte hämta systemets upptid"
 
 #: core.c:1615
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "kunde inte skapa struktur för minnesinformation"
 
 #: core.c:1660
 msgid "Calling libstatgrab"
@@ -469,7 +463,7 @@ msgstr "Användarlägesversion"
 
 #: gui_gtk.c:636
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan Ray-spårning"
 
 #: gui_gtk.c:661
 #, c-format
@@ -736,10 +730,8 @@ msgid "DeviceID"
 msgstr "Enhets-ID"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Version"
+msgstr "VBIOS-version"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -777,25 +769,19 @@ msgstr "Anpassningsbar BAR"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Version"
+msgstr "OpenGL-version"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Version"
+msgstr "Vulkan-version"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Version"
+msgstr "OpenCL-version"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5083
 msgid "Cards"
