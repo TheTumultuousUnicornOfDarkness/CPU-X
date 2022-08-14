@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-08-14 07:21+0000\n"
+"POT-Creation-Date: 2022-08-14 11:05+0000\n"
 "PO-Revision-Date: 2022-06-23 18:16+0000\n"
 "Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -245,11 +245,11 @@ msgstr "Пропустити пошук пристроїв (невірні пр�
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Постачальник графічного процесора невідомий: %s (0x%X)"
 
-#: core.c:1206 core.c:1509
+#: core.c:1206 core.c:1518
 msgid "Enabled"
 msgstr "Увімкнено"
 
-#: core.c:1206 core.c:1509
+#: core.c:1206 core.c:1518
 msgid "Disabled"
 msgstr "Відключено"
 
@@ -265,156 +265,156 @@ msgstr "не вдалося знайти постачальника та мод�
 msgid "Retrieving GPU clocks"
 msgstr "Отримання частоти GPU"
 
-#: core.c:1329
+#: core.c:1330
 msgid "None"
 msgstr "Немає"
 
-#: core.c:1462
+#: core.c:1471
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Драйвер для GPU %u не звітує частоти"
 
-#: core.c:1505
+#: core.c:1514
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Поточний: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
-#: core.c:1530
+#: core.c:1542
 msgid "failed to retrieve GPU clocks"
 msgstr "не вдалося отримати частоту GPU"
 
-#: core.c:1547
+#: core.c:1559
 msgid "Identifying running system"
 msgstr "Виявлення запущеної системи"
 
-#: core.c:1550
+#: core.c:1562
 msgid "failed to identify running system"
 msgstr "не вдалося визначити запущену систему"
 
-#: core.c:1594 core.c:1622
+#: core.c:1606 core.c:1634
 msgid "Calling libprocps"
 msgstr "Виклик libprocps"
 
-#: core.c:1597
+#: core.c:1609
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1603
+#: core.c:1615
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1648
+#: core.c:1660
 msgid "Calling libstatgrab"
 msgstr "Виклик libstatgrab"
 
-#: core.c:1687
+#: core.c:1699
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i днів, %i годин, %i хвилин, %i секунд"
 
-#: core.c:1744
+#: core.c:1756
 msgid "Updating benchmark status"
 msgstr "Оновлення стану тестів"
 
-#: core.c:1745 tui_ncurses.c:830
+#: core.c:1757 tui_ncurses.c:828
 #, c-format
 msgid "%u mins"
 msgstr "%u хв."
 
-#: core.c:1747 core.c:1748
+#: core.c:1759 core.c:1760
 msgid "Inactive"
 msgstr "Неактивний"
 
-#: core.c:1752 core.c:1753
+#: core.c:1764 core.c:1765
 msgid "Not started"
 msgstr "Не запущено"
 
-#: core.c:1758
+#: core.c:1770
 msgid "Active"
 msgstr "Активний"
 
-#: core.c:1763
+#: core.c:1775
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u годин лишилось)"
 
-#: core.c:1765
+#: core.c:1777
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u хвилин лишилось)"
 
-#: core.c:1767
+#: core.c:1779
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u секунд лишилося)"
 
-#: core.c:1772
+#: core.c:1784
 #, c-format
 msgid "in %u hours"
 msgstr "за %u годин"
 
-#: core.c:1774
+#: core.c:1786
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u хвилин"
 
-#: core.c:1776
+#: core.c:1788
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u секунд"
 
-#: core.c:1792
+#: core.c:1804
 msgid "Starting benchmark"
 msgstr "Запустити тестування"
 
-#: core.c:1811
+#: core.c:1823
 msgid "an error occurred while starting benchmark"
 msgstr "помилка при запуску бенчмарку"
 
-#: core.c:1828
+#: core.c:1840
 msgid "Finding CPU package in fallback mode"
 msgstr "Пошук моделі маркування ЦП у аварійному режимі"
 
-#: core.c:1850
+#: core.c:1862
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Не вдалося знайти сокет вашого процесора у базі даних ==> %s, кодова назва: "
 "%is"
 
-#: core.c:1869
+#: core.c:1881
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Підрахунок помножувачів процесора у аварійному режимі"
 
-#: core.c:1896
+#: core.c:1908
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Отримання інформації про материнську плату в аварійному режимі"
 
-#: core.c:1905
+#: core.c:1917
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не вдалося отримати інформацію про материнську плату (аварійний режим)"
 
-#: core.c:1944
+#: core.c:1956
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Отримання температури процесора в аварійному режимі"
 
-#: core.c:1989
+#: core.c:2001
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не вдалося отримати температуру процесора (аварійний режим)"
 
-#: core.c:2002
+#: core.c:2014
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Отримання робочої напруги процесора в аварійному режимі"
 
-#: core.c:2015
+#: core.c:2027
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
 
-#: core.c:2030
+#: core.c:2042
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Отримання частоти процесора в аварійному режимі"
 
-#: core.c:2038
+#: core.c:2050
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не вдалося отримати частоту процесора (аварійний режим)"
 
@@ -447,7 +447,7 @@ msgstr "Потрібний пароль для запуску демона в ф
 msgid "Start daemon"
 msgstr "Активація демона"
 
-#: gui_gtk.c:570 gui_gtk.c:664 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:664 tui_ncurses.c:554
 #, c-format
 msgid "Core #%i"
 msgstr "Ядро #%i"
@@ -565,7 +565,7 @@ msgstr "Множник"
 msgid "Bus Speed"
 msgstr "Швидкість шини"
 
-#: main.c:78 main.c:156
+#: main.c:78 main.c:157
 msgid "Usage"
 msgstr "Використання"
 
@@ -719,7 +719,7 @@ msgstr "Вільно"
 msgid "Swap"
 msgstr "Підкачка (Своп)"
 
-#: main.c:143 cpu-x-gtk-3.12.ui:5063
+#: main.c:143 cpu-x-gtk-3.12.ui:5105
 msgid "Graphics"
 msgstr "Графіка"
 
@@ -744,103 +744,109 @@ msgstr "Одиниця обчислення"
 msgid "DeviceID"
 msgstr "ID пристрою"
 
+#: main.c:154
+#, fuzzy
+#| msgid "Version"
+msgid "VBIOS Version"
+msgstr "Версія"
+
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: main.c:154 cpu-x-gtk-3.12.ui:5878
+#: main.c:155 cpu-x-gtk-3.12.ui:5920
 msgid "Interface"
 msgstr "Інтерфейс"
 
-#: main.c:155
+#: main.c:156
 msgid "Temperature"
 msgstr "Температура"
 
-#: main.c:157
+#: main.c:158
 msgid "Core Voltage"
 msgstr "Напруга ядра"
 
-#: main.c:158
+#: main.c:159
 msgid "Power Avg"
 msgstr "Средн. потужність"
 
-#: main.c:159
+#: main.c:160
 msgid "GPU clock"
 msgstr "Частота ГП"
 
-#: main.c:160
+#: main.c:161
 msgid "Memory clock"
 msgstr "Частота памяті"
 
-#: main.c:161
+#: main.c:162
 msgid "Memory Used"
 msgstr "Вживана пам'ять"
 
-#: main.c:162
+#: main.c:163
 msgid "Resizable BAR"
 msgstr "Змінюваний BAR (PCIe)"
 
-#: main.c:163
+#: main.c:164
 msgid "Vulkan RT"
 msgstr ""
 
-#: main.c:164
+#: main.c:165
 #, fuzzy
 #| msgid "Version"
 msgid "OpenGL Version"
 msgstr "Версія"
 
-#: main.c:165
+#: main.c:166
 #, fuzzy
 #| msgid "Version"
 msgid "Vulkan Version"
 msgstr "Версія"
 
-#: main.c:166
+#: main.c:167
 #, fuzzy
 #| msgid "Version"
 msgid "OpenCL Version"
 msgstr "Версія"
 
-#: main.c:168 cpu-x-gtk-3.12.ui:5041
+#: main.c:169 cpu-x-gtk-3.12.ui:5083
 msgid "Cards"
 msgstr "Карти"
 
-#: main.c:171 cpu-x-gtk-3.12.ui:5403
+#: main.c:172 cpu-x-gtk-3.12.ui:5445
 msgid "Bench"
 msgstr "Тест"
 
-#: main.c:172 cpu-x-gtk-3.12.ui:5173
+#: main.c:173 cpu-x-gtk-3.12.ui:5215
 msgid "Prime numbers (slow)"
 msgstr "Прості числа (повільно)"
 
-#: main.c:173 cpu-x-gtk-3.12.ui:5281
+#: main.c:174 cpu-x-gtk-3.12.ui:5323
 msgid "Prime numbers (fast)"
 msgstr "Прості числа (швидко)"
 
-#: main.c:176
+#: main.c:177
 msgid "Score"
 msgstr "Результат"
 
-#: main.c:177
+#: main.c:178
 msgid "Run"
 msgstr "Запуск"
 
-#: main.c:180 cpu-x-gtk-3.12.ui:5384
+#: main.c:181 cpu-x-gtk-3.12.ui:5426
 msgid "Parameters"
 msgstr "Параметри"
 
-#: main.c:181
+#: main.c:182
 msgid "Duration"
 msgstr "Тривалість"
 
-#: main.c:182
+#: main.c:183
 msgid "Threads"
 msgstr "Потоки"
 
-#: main.c:185 main.c:190 cpu-x-gtk-3.12.ui:5547 cpu-x-gtk-3.12.ui:5655
+#: main.c:186 main.c:191 cpu-x-gtk-3.12.ui:5589 cpu-x-gtk-3.12.ui:5697
 msgid "About"
 msgstr "Про програму"
 
-#: main.c:187
+#: main.c:188
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -849,180 +855,180 @@ msgstr ""
 "%s — вільне програмне забезпечення, яке збирає інформацію\n"
 "про процесор, материнську плату, та ін."
 
-#: main.c:191
+#: main.c:192
 #, c-format
 msgid "Version %s"
 msgstr "Версія %s"
 
-#: main.c:192
+#: main.c:193
 #, c-format
 msgid "Author: %s"
 msgstr "Автор: %s"
 
-#: main.c:193
+#: main.c:194
 #, c-format
 msgid "Site: %s"
 msgstr "Сайт: %s"
 
-#: main.c:195 cpu-x-gtk-3.12.ui:5636
+#: main.c:196 cpu-x-gtk-3.12.ui:5678
 msgid "License"
 msgstr "Ліцензія"
 
-#: main.c:198
+#: main.c:199
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Дане програмне забезпечення поширюється на умовах %s"
 
-#: main.c:200 main.c:450
+#: main.c:201 main.c:451
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Дане программне забезпечення надається БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ"
 
-#: main.c:271
+#: main.c:272
 msgid "Dumping data…"
 msgstr "Отримання дампу даних…"
 
-#: main.c:314
+#: main.c:315
 msgid "Freeing memory"
 msgstr "Вивільнення пам'яті"
 
-#: main.c:342
+#: main.c:343
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Запустити графічний інтерфейс (GUI) (за замовчуванням)"
 
-#: main.c:343
+#: main.c:344
 msgid "Start text-based user interface (TUI)"
 msgstr "Запустити текстовий інтерфейс (TUI)"
 
-#: main.c:344
+#: main.c:345
 msgid "Dump all data on standard output and exit"
 msgstr "Скинути всі дані на стандартнe виведення (stdout) і вийти"
 
-#: main.c:345
+#: main.c:346
 msgid "Run embedded command dmidecode and exit"
 msgstr "Запустити вбудовану команду dmidecode і вийти"
 
-#: main.c:346
+#: main.c:347
 msgid "Run embedded command bandwidth and exit"
 msgstr "Запустити вбудовану команду bandwidth і вийти"
 
-#: main.c:347
+#: main.c:348
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Встановити час між двома оновленнями (в секундах)"
 
-#: main.c:348
+#: main.c:349
 msgid "Set default tab (integer)"
 msgstr "Встановити вкладку за замовчуванням (ціле число)"
 
-#: main.c:349
+#: main.c:350
 msgid "Select CPU core to monitor (integer)"
 msgstr "Обрати ядро ЦП для моніторингу (ціле число)"
 
-#: main.c:350
+#: main.c:351
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Встановити тест швидкості пропускної здатності кешу ЦП (ціле число)"
 
-#: main.c:351
+#: main.c:352
 msgid "Select default graphic card (integer)"
 msgstr "Оберіть графічну карту за замовчуванням (ціле число)"
 
-#: main.c:352 cpu-x-gtk-3.12.ui:5981
+#: main.c:353 cpu-x-gtk-3.12.ui:6023
 msgid "Start and connect to daemon"
 msgstr "Запуск і підключення до демону"
 
-#: main.c:353
+#: main.c:354
 msgid "Verbose output"
 msgstr "Розширений опис дій"
 
-#: main.c:354
+#: main.c:355
 msgid "Print help and exit"
 msgstr "Показати допомогу і вийти"
 
-#: main.c:355
+#: main.c:356
 msgid "Print version and exit"
 msgstr "Показати версію і вийти"
 
-#: main.c:356
+#: main.c:357
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "Показувати значення CPUID в десятковій системі (за замовчуванням - "
 "шістнадцяткова)"
 
-#: main.c:357
+#: main.c:358
 msgid "Disable colored output"
 msgstr "Вимкнути колірний вивід"
 
-#: main.c:358
+#: main.c:359
 msgid "Print information for debugging"
 msgstr "Показати інформацію для налагодження"
 
-#: main.c:359
+#: main.c:360
 msgid "Print required information to paste in an issue"
 msgstr "Показати інформацію, необхідну для вставки у звіт про прмилку"
 
-#: main.c:360
+#: main.c:361
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Встановити комбінації клавіш для режиму NCurses (a [rrows] | e [macs] | i "
 "[nverted-T] | v [im])"
 
-#: main.c:371
+#: main.c:372
 msgid "Add default command line arguments"
 msgstr "Додати аргументи командного рядка за замовчуванням"
 
-#: main.c:372
+#: main.c:373
 msgid "Enforce the bus clock"
 msgstr "Задати тактову частоту шини"
 
-#: main.c:373
+#: main.c:374
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "Ігнорувати частоту ЦП отриману від libcpuid"
 
-#: main.c:374
+#: main.c:375
 msgid "Read CPUID raw data from a given file"
 msgstr "Зчитати неопрацьовані дані CPUID з файлу"
 
-#: main.c:375
+#: main.c:376
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Вивести повідомлення, лише у випадку відсутності ЦП у базі даних"
 
-#: main.c:399
+#: main.c:400
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Використання: %s ПОКАЗАТИ [ОПЦІЇ]\n"
 
-#: main.c:400
+#: main.c:401
 msgid "Available DISPLAY:"
 msgstr "Доступний ДИСПЛЕЙ:"
 
-#: main.c:409
+#: main.c:410
 msgid "Available OPTIONS:"
 msgstr "Доступні ОПЦІЇ:"
 
-#: main.c:417
+#: main.c:418
 msgid "Influenceable environment variables:"
 msgstr "Змінні середовища, які можна корегувати:"
 
-#: main.c:449
+#: main.c:450
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Це вільне програмне забезпечення: Ви можете його змінювати і поширювати."
 
-#: main.c:451
+#: main.c:452
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Переглянути ліцензію %s: <%s>\n"
 
-#: main.c:458
+#: main.c:459
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s версія: %s"
 
-#: main.c:474
+#: main.c:475
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "не вдалося викликати wordexp (%i)"
 
-#: main.c:669
+#: main.c:670
 #, c-format
 msgid ""
 "\n"
@@ -1032,11 +1038,11 @@ msgstr ""
 "\n"
 "%sЙой, щось пішло не так! %s отримав сигнал %d (%s) і припинив роботу.%s"
 
-#: main.c:684
+#: main.c:685
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.c:712
+#: main.c:713
 msgid "an error occurred while setting locale"
 msgstr "помилка при встановленні локалізації"
 
@@ -1065,110 +1071,110 @@ msgstr "Вікно є надто малим!"
 msgid "Press 'h' to see help."
 msgstr "Натисніть 'h' для отримання допомоги."
 
-#: tui_ncurses.c:480
+#: tui_ncurses.c:478
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Ласкаво просимо до %s допомоги NCurses!\n"
 
-#: tui_ncurses.c:481
+#: tui_ncurses.c:479
 msgid "This help describes how to use this Text-based User Interface."
 msgstr "Ця справка описує використання текстового інтерфейсу корстувача."
 
-#: tui_ncurses.c:483
+#: tui_ncurses.c:481
 msgid "Global keys:"
 msgstr "Глобальні клавіші:"
 
-#: tui_ncurses.c:484
+#: tui_ncurses.c:482
 msgid "Press 'left' key to switch in left tab."
 msgstr "Натисніть клавішу 'вліво', щоб перейти на вкладку ліворуч."
 
-#: tui_ncurses.c:485
+#: tui_ncurses.c:483
 msgid "Press 'right' key to switch in right tab."
 msgstr "Натисніть клавішу 'вправо', щоб перейти на вкладку праворуч."
 
-#: tui_ncurses.c:486
+#: tui_ncurses.c:484
 msgid "Press 'h' key to see this help."
 msgstr "Натисніть клавішу 'h' для виклику цієї допомоги."
 
-#: tui_ncurses.c:487
+#: tui_ncurses.c:485
 msgid "Press 'q' key to exit."
 msgstr "Натисніть клавішу 'q', щоб вийти."
 
-#: tui_ncurses.c:489
+#: tui_ncurses.c:487
 msgid "CPU tab:"
 msgstr "Вкладка \"ЦП\":"
 
-#: tui_ncurses.c:490
+#: tui_ncurses.c:488
 msgid "Press 'down' key to decrease core number to monitor."
 msgstr ""
 "Натисніть клавішу \"вниз\", щоб зменшити кількості ядер для моніторингу."
 
-#: tui_ncurses.c:491
+#: tui_ncurses.c:489
 msgid "Press 'up' key to increase core number to monitor."
 msgstr ""
 "Натисніть клавішу \"вгору\", щоб збільшити кількість ядер для моніторингу."
 
-#: tui_ncurses.c:493
+#: tui_ncurses.c:491
 msgid "Caches tab:"
 msgstr "Вкладка \"Кеші\":"
 
-#: tui_ncurses.c:494
+#: tui_ncurses.c:492
 msgid "Press 'down' key to switch to previous test."
 msgstr "Натисніть клавішу \"вниз\", щоб перейти до попереднього тесту."
 
-#: tui_ncurses.c:495
+#: tui_ncurses.c:493
 msgid "Press 'up' key' to switch to next test."
 msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступного тесту."
 
-#: tui_ncurses.c:497
+#: tui_ncurses.c:495
 msgid "Bench tab:"
 msgstr "Вкладка \"Тест\":"
 
-#: tui_ncurses.c:498
+#: tui_ncurses.c:496
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "Натисніть клавішу \"вниз\" для змешення тривалості тесту."
 
-#: tui_ncurses.c:499
+#: tui_ncurses.c:497
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "Натисніть клавішу \"вгору\" для збільшення тривалості тесту."
 
-#: tui_ncurses.c:500
+#: tui_ncurses.c:498
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
 "Натисніть клавішу 'наступна сторінка' для зменшення кількості пов'язаних "
 "сторінок."
 
-#: tui_ncurses.c:501
+#: tui_ncurses.c:499
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
 "Натисніть клавішу 'попередня сторінка' для збільшення кількості пов'язаних "
 "сторінок."
 
-#: tui_ncurses.c:502
+#: tui_ncurses.c:500
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
 "Натисніть клавішу \"s\" щоб запустити/зупинити тест продуктивності \"прості "
 "числа (повільно)\"."
 
-#: tui_ncurses.c:503
+#: tui_ncurses.c:501
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
 "Натисніть клавішу \"f\" щоб запустити/зупинити тест продуктивності \"прості "
 "числа (швидко)\"."
 
-#: tui_ncurses.c:505
+#: tui_ncurses.c:503
 msgid "Graphics tab:"
 msgstr "Графіки:"
 
-#: tui_ncurses.c:506
+#: tui_ncurses.c:504
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "Натисніть клавішу \"вниз\", щоб перейти до попередньої відеокарти."
 
-#: tui_ncurses.c:507
+#: tui_ncurses.c:505
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступної відеокарти."
 
-#: tui_ncurses.c:509
+#: tui_ncurses.c:507
 msgid "Press any key to exit this help."
 msgstr "Натисніть будь-яку клавішу, щоб вийти з вікна допомоги."
 
@@ -1266,47 +1272,47 @@ msgid "TiB"
 msgstr "ТіБ"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5823
+#: cpu-x-gtk-3.12.ui:5865
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5847
+#: cpu-x-gtk-3.12.ui:5889
 msgid "Theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5862
+#: cpu-x-gtk-3.12.ui:5904
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5863
+#: cpu-x-gtk-3.12.ui:5905
 msgid "Light"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5864
+#: cpu-x-gtk-3.12.ui:5906
 msgid "Dark"
 msgstr ""
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5897
+#: cpu-x-gtk-3.12.ui:5939
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5952
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5923
+#: cpu-x-gtk-3.12.ui:5965
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5966
+#: cpu-x-gtk-3.12.ui:6008
 #, fuzzy
 #| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
@@ -1315,14 +1321,14 @@ msgstr ""
 "шістнадцяткова)"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5999
+#: cpu-x-gtk-3.12.ui:6041
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
 msgstr "Оберіть графічну карту за замовчуванням (ціле число)"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6027
+#: cpu-x-gtk-3.12.ui:6069
 msgid "Startup"
 msgstr ""
 
