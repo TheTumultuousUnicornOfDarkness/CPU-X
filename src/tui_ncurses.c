@@ -437,24 +437,22 @@ static void nrefresh(NThrd *refr)
 			break;
 		case NO_GRAPHICS:
 			do_refresh(data);
-			line = LINE_3;
+			line = LINE_5;
 			for(i = 0; i < data->gpu_count * GPUFIELDS; i += GPUFIELDS)
 			{
-				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1DIDRID      + i], data->tab_graphics[VALUE][GPU1DIDRID     + i]);
-				line++;
-				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1PCIE        + i], data->tab_graphics[VALUE][GPU1PCIE       + i]);
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1PCIE        + i], data->tab_graphics[VALUE][GPU1PCIE        + i]);
 				line++;
 				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1TEMPERATURE + i], data->tab_graphics[VALUE][GPU1TEMPERATURE + i]);
 				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1USAGE       + i], data->tab_graphics[VALUE][GPU1USAGE       + i]);
 				line++;
-				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMUSED     + i], data->tab_graphics[VALUE][GPU1MEMUSED     + i]);
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1VOLTAGE     + i], data->tab_graphics[VALUE][GPU1VOLTAGE     + i]);
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1POWERAVG    + i], data->tab_graphics[VALUE][GPU1POWERAVG    + i]);
 				line++;
-				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK + i], data->tab_graphics[VALUE][GPU1CORECLOCK     + i]);
-				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK  + i], data->tab_graphics[VALUE][GPU1MEMCLOCK      + i]);
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1CORECLOCK   + i], data->tab_graphics[VALUE][GPU1CORECLOCK   + i]);
+				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1MEMCLOCK    + i], data->tab_graphics[VALUE][GPU1MEMCLOCK    + i]);
 				line++;
-				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1VOLTAGE   + i], data->tab_graphics[VALUE][GPU1VOLTAGE       + i]);
-				mvwprintw2c(win, line, info.tm, "%18s: %s", data->tab_graphics[NAME][GPU1POWERAVG  + i], data->tab_graphics[VALUE][GPU1POWERAVG      + i]);
-				line += LINE_3 - 1;
+				mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_graphics[NAME][GPU1MEMUSED     + i], data->tab_graphics[VALUE][GPU1MEMUSED     + i]);
+				line += LINE_5 - 1;
 			}
 			break;
 		case NO_BENCH:
