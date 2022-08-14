@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-14 07:21+0000\n"
-"PO-Revision-Date: 2022-05-08 17:12+0000\n"
+"PO-Revision-Date: 2022-08-14 11:05+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -144,29 +144,23 @@ msgstr "GLFW çağrılamadı (%i): %s"
 
 #: core.c:860
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "Vulkan API kullanılabilir değil"
 
 #: core.c:869
-#, fuzzy
-#| msgid "failed to call clGetDeviceIDs"
 msgid "failed to call vkCreateInstance"
-msgstr "clGetDeviceIDs çağrılamadı"
+msgstr "vkCreateInstance çağrılamadı"
 
 #: core.c:878
-#, fuzzy
-#| msgid "failed to call clGetDeviceIDs"
 msgid "failed to call vkEnumeratePhysicalDevices"
-msgstr "clGetDeviceIDs çağrılamadı"
+msgstr "vkEnumeratePhysicalDevices çağrılamadı"
 
 #: core.c:884
-#, fuzzy
-#| msgid "There is no platform with OpenCL support (%s)"
 msgid "There is no device with Vulkan support"
-msgstr "OpenCL desteğine sahip bir platform yok (%s)"
+msgstr "Vulkan desteğine sahip bir aygıt yok"
 
 #: core.c:893
 msgid "There is no available physical device"
-msgstr ""
+msgstr "Kullanılabilir fiziksel aygıt yok"
 
 #: core.c:966
 #, c-format
@@ -307,11 +301,11 @@ msgstr "libprocps çağrılıyor"
 
 #: core.c:1597
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "sistem çalışma süresi alınamıyor"
 
 #: core.c:1603
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "meminfo yapısı oluşturulamıyor"
 
 #: core.c:1648
 msgid "Calling libstatgrab"
@@ -486,7 +480,7 @@ msgstr "Kullanıcı Modu Sürücü Sürümü"
 
 #: gui_gtk.c:636
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan Işın Yansıma (Ray Tracing)"
 
 #: gui_gtk.c:661
 #, c-format
@@ -788,25 +782,19 @@ msgstr "Yeniden boyutlandırılabilir BAR"
 
 #: main.c:163
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:164
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Sürüm"
+msgstr "OpenGL Sürümü"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Sürüm"
+msgstr "Vulkan Sürümü"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Sürüm"
+msgstr "OpenCL Sürümü"
 
 #: main.c:168 cpu-x-gtk-3.12.ui:5041
 msgid "Cards"
