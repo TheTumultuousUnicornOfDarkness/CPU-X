@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-05-06 14:46+0000\n"
+"POT-Creation-Date: 2022-08-14 07:21+0000\n"
 "PO-Revision-Date: 2020-07-11 09:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -21,11 +21,11 @@ msgstr ""
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 "X-Generator: Weblate 4.2-dev\n"
 
-#: core.c:224
+#: core.c:234
 msgid "Finding CPU technology"
 msgstr "Zjišťování technologie procesoru"
 
-#: core.c:246
+#: core.c:256
 #, fuzzy, c-format
 #| msgid ""
 #| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
@@ -37,75 +37,75 @@ msgstr ""
 "Váš procesor se nenachází v databázi ==> %s, model: %i, model podrobněji: "
 "%i, řada podrobněji: %i"
 
-#: core.c:259
+#: core.c:269
 #, c-format
 msgid "%d x %d %s, %d-way"
 msgstr "%d x %d %s, %d-cestná"
 
-#: core.c:260
+#: core.c:270
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-cestná"
 
-#: core.c:261
+#: core.c:271
 #, fuzzy, c-format
 #| msgid "%s associative, %d-byte line size"
 msgid "%s associative, %d-%s line size"
 msgstr "%s asociativní, %d-bajtová velikost řádku"
 
-#: core.c:266
+#: core.c:276
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Získávání statických údajů prostřednictvím knihovny libcpuid"
 
-#: core.c:278
+#: core.c:288
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core.c:288
+#: core.c:298
 #, c-format
 msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
 "following issue: %s"
 msgstr ""
 
-#: core.c:308
+#: core.c:318
 msgid "NOT SUPPORTED"
 msgstr ""
 
-#: core.c:454
+#: core.c:464
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Získávání dynamických údajů prostřednictvím knihovny libcpuid"
 
-#: core.c:467
+#: core.c:477
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Získávání statických hodnot MSR registru procesoru prostřednictvím knihovny "
 "libcpuid"
 
-#: core.c:492
+#: core.c:502
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Získávání dynamických hodnot MSR registru procesoru prostřednictvím knihovny "
 "libcpuid"
 
-#: core.c:515
+#: core.c:525
 msgid "Calculating CPU multipliers"
 msgstr "Výpočet násobičů frekvence procesoru"
 
-#: core.c:548
+#: core.c:558
 msgid "Calling dmidecode"
 msgstr "Získávání údajů prostřednictvím nástroje dmidecode"
 
-#: core.c:581
+#: core.c:591
 msgid "Calculating CPU usage"
 msgstr "Výpočet vytížení procesoru"
 
-#: core.c:632
+#: core.c:642
 msgid "Calling bandwidth"
 msgstr "Zjišťování údajů prostřednictvím nástroje bandwidth"
 
-#: core.c:674
+#: core.c:684
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -114,282 +114,314 @@ msgid ""
 "rebuild %s."
 msgstr ""
 
-#: core.c:720
+#: core.c:730
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 
-#: core.c:751
+#: core.c:761
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Neznámý ovladač grafického čipu: %s"
 
-#: core.c:824
+#: core.c:837
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Neznámý ovladač grafického čipu: %s"
 
-#: core.c:828
+#: core.c:841
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call GLFW (%i): %s"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core.c:857
+#: core.c:860
+msgid "Vulkan API is not available"
+msgstr ""
+
+#: core.c:869
+#, fuzzy
+#| msgid "failed to call dmidecode"
+msgid "failed to call vkCreateInstance"
+msgstr "nepodařilo se zavolat nástroj dmidecode"
+
+#: core.c:878
+#, fuzzy
+#| msgid "failed to call dmidecode"
+msgid "failed to call vkEnumeratePhysicalDevices"
+msgstr "nepodařilo se zavolat nástroj dmidecode"
+
+#: core.c:884
+msgid "There is no device with Vulkan support"
+msgstr ""
+
+#: core.c:893
+msgid "There is no available physical device"
+msgstr ""
+
+#: core.c:966
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
-#: core.c:866
+#: core.c:975
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "nepodařilo se zavolat nástroj dmidecode"
 
-#: core.c:876
+#: core.c:985
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get name for platform %u (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core.c:883
+#: core.c:992
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get version for platform %u (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core.c:890
+#: core.c:999
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:898
+#: core.c:1007
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:912
+#: core.c:1021
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core.c:919
+#: core.c:1028
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "nepodařilo se zjistit ovladač grafické karty (%s)"
 
-#: core.c:930
+#: core.c:1042
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:941
+#: core.c:1053
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:953 core.c:963 core.c:988
+#: core.c:1065 core.c:1075 core.c:1100
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:976
+#: core.c:1088
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:996
+#: core.c:1108
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:1025
+#: core.c:1139
 msgid "Finding devices"
 msgstr "Hledání zařízení"
 
-#: core.c:1037
+#: core.c:1151
 #, fuzzy, c-format
 #| msgid "Skip devices search (need to be root)"
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Přeskočit vyhledávání zařízení (je třeba mít práva správce systému – root)"
 
-#: core.c:1075
+#: core.c:1189
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Neznámý výrobce grafického čipu: %s (0x%X)"
 
-#: core.c:1097
+#: core.c:1206 core.c:1509
+msgid "Enabled"
+msgstr ""
+
+#: core.c:1206 core.c:1509
+msgid "Disabled"
+msgstr ""
+
+#: core.c:1216
 msgid "failed to find chipset vendor and model"
 msgstr "nepodařilo se určit výrobce a model čipové sady"
 
-#: core.c:1099
+#: core.c:1218
 msgid "failed to find graphic card vendor and model"
 msgstr "nepodařilo se určit výrobce a model grafického čipu"
 
-#: core.c:1176
+#: core.c:1295
 msgid "Retrieving GPU clocks"
 msgstr "Zjišťování taktů graf. čipu"
 
-#: core.c:1210
+#: core.c:1329
 msgid "None"
 msgstr ""
 
-#: core.c:1343
+#: core.c:1462
 #, fuzzy, c-format
 #| msgid "Driver for GPU %i doesn't report frequencies"
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Ovladač graf. čipu %i nehlásí takty"
 
-#: core.c:1386
+#: core.c:1505
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1390
-msgid "Enabled"
-msgstr ""
-
-#: core.c:1390
-msgid "Disabled"
-msgstr ""
-
-#: core.c:1411
+#: core.c:1530
 msgid "failed to retrieve GPU clocks"
 msgstr "nepodařilo se zjistit takty grafického čipu"
 
-#: core.c:1428
+#: core.c:1547
 msgid "Identifying running system"
 msgstr "Rozpoznávání operačního systému, ve kterém je spuštěné"
 
-#: core.c:1431
+#: core.c:1550
 msgid "failed to identify running system"
 msgstr "nepodařilo se rozpoznat operační systém, ve kterém je spuštěné"
 
-#: core.c:1472
+#: core.c:1594 core.c:1622
 msgid "Calling libprocps"
 msgstr "Zjišťování údajů prostřednictvím knihovny libprocps"
 
-#: core.c:1498
+#: core.c:1597
+msgid "unable to get system uptime"
+msgstr ""
+
+#: core.c:1603
+msgid "unable to create meminfo structure"
+msgstr ""
+
+#: core.c:1648
 msgid "Calling libstatgrab"
 msgstr "Zjišťování údajů prostřednictvím knihovny libstatgrab"
 
-#: core.c:1533
+#: core.c:1687
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dnů, %i hodin, %i minut, %i sekund"
 
-#: core.c:1589
+#: core.c:1744
 msgid "Updating benchmark status"
 msgstr "Aktualizace stavu výkonostního testu"
 
-#: core.c:1590 tui_ncurses.c:828
+#: core.c:1745 tui_ncurses.c:830
 #, c-format
 msgid "%u mins"
 msgstr "%u minut"
 
-#: core.c:1592 core.c:1593
+#: core.c:1747 core.c:1748
 msgid "Inactive"
 msgstr "Neaktivní"
 
-#: core.c:1597 core.c:1598
+#: core.c:1752 core.c:1753
 msgid "Not started"
 msgstr "Není spuštěné"
 
-#: core.c:1603
+#: core.c:1758
 msgid "Active"
 msgstr "Aktivní"
 
-#: core.c:1608
+#: core.c:1763
 #, c-format
 msgid "(%u hours left)"
 msgstr "(zbývá %u hodin)"
 
-#: core.c:1610
+#: core.c:1765
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(zbývá %u minut)"
 
-#: core.c:1612
+#: core.c:1767
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(zbývá %u sekund)"
 
-#: core.c:1617
+#: core.c:1772
 #, c-format
 msgid "in %u hours"
 msgstr "za %u hodin"
 
-#: core.c:1619
+#: core.c:1774
 #, c-format
 msgid "in %u minutes"
 msgstr "za %u minut"
 
-#: core.c:1621
+#: core.c:1776
 #, c-format
 msgid "in %u seconds"
 msgstr "za %u sekund"
 
-#: core.c:1637
+#: core.c:1792
 msgid "Starting benchmark"
 msgstr "Spouštění výkonnostního testu"
 
-#: core.c:1656
+#: core.c:1811
 msgid "an error occurred while starting benchmark"
 msgstr "při spouštění výkonnostního testu se vyskytla chyba"
 
-#: core.c:1673
+#: core.c:1828
 msgid "Finding CPU package in fallback mode"
 msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
 
-#: core.c:1695
+#: core.c:1850
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
 
-#: core.c:1714
+#: core.c:1869
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Násobiče frekvence procesoru zjišťovány v náhradním režimu"
 
-#: core.c:1741
+#: core.c:1896
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Informace o základní desce zjišťovány v náhradním režimu"
 
-#: core.c:1750
+#: core.c:1905
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nepodařilo se získat informace o základní desce (náhradní režim)"
 
-#: core.c:1789
+#: core.c:1944
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Teplota procesoru zjišťována v náhradním režimu"
 
-#: core.c:1834
+#: core.c:1989
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nepodařilo se zjistit teplotu procesoru (náhradní režim)"
 
-#: core.c:1847
+#: core.c:2002
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Provozní napětí procesoru zjišťováno v náhradním režimu"
 
-#: core.c:1860
+#: core.c:2015
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
 
-#: core.c:1875
+#: core.c:2030
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
 
-#: core.c:1883
+#: core.c:2038
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
 
@@ -425,7 +457,7 @@ msgstr ""
 msgid "Start daemon"
 msgstr ""
 
-#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:664 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "Jádro č. %i"
@@ -456,7 +488,11 @@ msgstr ""
 msgid "User Mode Driver Version"
 msgstr "Verze"
 
-#: gui_gtk.c:660
+#: gui_gtk.c:636
+msgid "Vulkan Ray Tracing"
+msgstr ""
+
+#: gui_gtk.c:661
 #, c-format
 msgid "%s"
 msgstr ""
@@ -699,7 +735,7 @@ msgstr "Volné"
 msgid "Swap"
 msgstr "Odkládací prostor (swap)"
 
-#: main.c:143 cpu-x-gtk-3.12.ui:4848
+#: main.c:143 cpu-x-gtk-3.12.ui:5063
 msgid "Graphics"
 msgstr "Grafika"
 
@@ -728,7 +764,7 @@ msgstr ""
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: main.c:154 cpu-x-gtk-3.12.ui:5663
+#: main.c:154 cpu-x-gtk-3.12.ui:5878
 msgid "Interface"
 msgstr ""
 
@@ -764,49 +800,71 @@ msgstr "Operační paměť"
 msgid "Resizable BAR"
 msgstr ""
 
-#: main.c:164 cpu-x-gtk-3.12.ui:4826
+#: main.c:163
+msgid "Vulkan RT"
+msgstr ""
+
+#: main.c:164
+#, fuzzy
+#| msgid "Version"
+msgid "OpenGL Version"
+msgstr "Verze"
+
+#: main.c:165
+#, fuzzy
+#| msgid "Version"
+msgid "Vulkan Version"
+msgstr "Verze"
+
+#: main.c:166
+#, fuzzy
+#| msgid "Version"
+msgid "OpenCL Version"
+msgstr "Verze"
+
+#: main.c:168 cpu-x-gtk-3.12.ui:5041
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "Adaptér %i"
 
-#: main.c:167 cpu-x-gtk-3.12.ui:5188
+#: main.c:171 cpu-x-gtk-3.12.ui:5403
 msgid "Bench"
 msgstr "Výkon. test"
 
-#: main.c:168 cpu-x-gtk-3.12.ui:4958
+#: main.c:172 cpu-x-gtk-3.12.ui:5173
 msgid "Prime numbers (slow)"
 msgstr "Prvočísla (důkladně)"
 
-#: main.c:169 cpu-x-gtk-3.12.ui:5066
+#: main.c:173 cpu-x-gtk-3.12.ui:5281
 msgid "Prime numbers (fast)"
 msgstr "Prvočísla (zběžně)"
 
-#: main.c:172
+#: main.c:176
 msgid "Score"
 msgstr "Výsledek"
 
-#: main.c:173
+#: main.c:177
 msgid "Run"
 msgstr "Spustit"
 
-#: main.c:176 cpu-x-gtk-3.12.ui:5169
+#: main.c:180 cpu-x-gtk-3.12.ui:5384
 msgid "Parameters"
 msgstr "Parametry"
 
-#: main.c:177
+#: main.c:181
 msgid "Duration"
 msgstr "Doba trvání"
 
-#: main.c:178
+#: main.c:182
 msgid "Threads"
 msgstr "Vláken"
 
-#: main.c:181 main.c:186 cpu-x-gtk-3.12.ui:5332 cpu-x-gtk-3.12.ui:5440
+#: main.c:185 main.c:190 cpu-x-gtk-3.12.ui:5547 cpu-x-gtk-3.12.ui:5655
 msgid "About"
 msgstr "O aplikaci"
 
-#: main.c:183
+#: main.c:187
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -815,155 +873,155 @@ msgstr ""
 "%s je svobodný software který pro vás shromažďuje\n"
 "o procesoru, základní desce a další."
 
-#: main.c:187
+#: main.c:191
 #, c-format
 msgid "Version %s"
 msgstr "Verze %s"
 
-#: main.c:188
+#: main.c:192
 #, c-format
 msgid "Author: %s"
 msgstr "Autor: %s"
 
-#: main.c:189
+#: main.c:193
 #, c-format
 msgid "Site: %s"
 msgstr "Webové stránky: %s"
 
-#: main.c:191 cpu-x-gtk-3.12.ui:5421
+#: main.c:195 cpu-x-gtk-3.12.ui:5636
 msgid "License"
 msgstr "Licence"
 
-#: main.c:194
+#: main.c:198
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Tento software je šířen za podmínek licence %s"
 
-#: main.c:196 main.c:445
+#: main.c:200 main.c:450
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Na tuto aplikaci nejsou poskytovány VŮBEC ŽÁDNÉ ZÁRUKY"
 
-#: main.c:267
+#: main.c:271
 #, fuzzy
 #| msgid "Dumping data..."
 msgid "Dumping data…"
 msgstr "Pořizování výpisu dat…"
 
-#: main.c:310
+#: main.c:314
 msgid "Freeing memory"
 msgstr "Uvolňování paměti"
 
-#: main.c:338
+#: main.c:342
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Spustit grafické uživatelské rozhraní (GUI) – výchozí"
 
-#: main.c:339
+#: main.c:343
 msgid "Start text-based user interface (TUI)"
 msgstr "Spustit pseudografické uživatelské rozhraní (TUI)"
 
-#: main.c:340
+#: main.c:344
 msgid "Dump all data on standard output and exit"
 msgstr "Vypsat veškeré údaje na standardní výstup a skončit"
 
-#: main.c:341
+#: main.c:345
 msgid "Run embedded command dmidecode and exit"
 msgstr "Spustit vestavěný příkaz dmidecode a skončit"
 
-#: main.c:342
+#: main.c:346
 msgid "Run embedded command bandwidth and exit"
 msgstr "Spustit vestavěný příkaz bandwidth a skončit"
 
-#: main.c:343
+#: main.c:347
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Nastavit vlastní prodlevu mezi dvěma obnoveními (v sekundách)"
 
-#: main.c:344
+#: main.c:348
 msgid "Set default tab (integer)"
 msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 
-#: main.c:345
+#: main.c:349
 msgid "Select CPU core to monitor (integer)"
 msgstr "Vybrat jádro procesoru které monitorovat (celočíselná hodnota)"
 
-#: main.c:346
+#: main.c:350
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Nastavit vlastní test propustnosti mezipamětí procesoru (celočíselná hodnota)"
 
-#: main.c:347
+#: main.c:351
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
 msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 
-#: main.c:348 cpu-x-gtk-3.12.ui:5766
+#: main.c:352 cpu-x-gtk-3.12.ui:5981
 msgid "Start and connect to daemon"
 msgstr ""
 
-#: main.c:349
+#: main.c:353
 msgid "Verbose output"
 msgstr "Podrobnější výstup"
 
-#: main.c:350
+#: main.c:354
 msgid "Print help and exit"
 msgstr "Vypsat nápovědu a skončit"
 
-#: main.c:351
+#: main.c:355
 msgid "Print version and exit"
 msgstr "Vypsat verzi a skončit"
 
-#: main.c:352
+#: main.c:356
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 
-#: main.c:353
+#: main.c:357
 msgid "Disable colored output"
 msgstr "Vypnout obarvování výstupu"
 
-#: main.c:354
+#: main.c:358
 msgid "Print information for debugging"
 msgstr ""
 
-#: main.c:355
+#: main.c:359
 msgid "Print required information to paste in an issue"
 msgstr "Vypsat potřebné informace pro přiložení k hlášení problému"
 
-#: main.c:356
+#: main.c:360
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 
-#: main.c:367
+#: main.c:371
 msgid "Add default command line arguments"
 msgstr ""
 
-#: main.c:368
+#: main.c:372
 msgid "Enforce the bus clock"
 msgstr "Vynutit takt sběrnice"
 
-#: main.c:369
+#: main.c:373
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr ""
 
-#: main.c:370
+#: main.c:374
 msgid "Read CPUID raw data from a given file"
 msgstr "Načíst nezpracovaná CPUID data ze zadaného souboru"
 
-#: main.c:371
+#: main.c:375
 #, fuzzy
 #| msgid "Only print a message if CPU does not belong in database"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Pokud procesor není v databázi, pouze vypsat hlášení"
 
-#: main.c:395
+#: main.c:399
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Použití: %s ZOBRAZENÍ [PŘEDVOLBY]\n"
 
-#: main.c:396
+#: main.c:400
 msgid "Available DISPLAY:"
 msgstr "ZOBRAZENÍ k dispozici:"
 
-#: main.c:405
+#: main.c:409
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -973,7 +1031,7 @@ msgstr ""
 "\n"
 "PŘEDVOLBY k dispozici:"
 
-#: main.c:413
+#: main.c:417
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -983,27 +1041,27 @@ msgstr ""
 "\n"
 "Ovlivnitelné proměnné prostředí:"
 
-#: main.c:444
+#: main.c:449
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Toto je svobodný software: můžete ho upravovat a šířit dál."
 
-#: main.c:446
+#: main.c:451
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Viz licence %s: <%s>\n"
 
-#: main.c:453
+#: main.c:458
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s verze: %s"
 
-#: main.c:469
+#: main.c:474
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call wordexp (%i)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: main.c:664
+#: main.c:669
 #, c-format
 msgid ""
 "\n"
@@ -1013,11 +1071,11 @@ msgstr ""
 "\n"
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a zhavarovalo.%s"
 
-#: main.c:679
+#: main.c:684
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.c:707
+#: main.c:712
 msgid "an error occurred while setting locale"
 msgstr "při nastavování místních a jazykových nastavení došlo k chybě"
 
@@ -1330,59 +1388,59 @@ msgid "TiB"
 msgstr ""
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5608
+#: cpu-x-gtk-3.12.ui:5823
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5632
+#: cpu-x-gtk-3.12.ui:5847
 msgid "Theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5647
+#: cpu-x-gtk-3.12.ui:5862
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5648
+#: cpu-x-gtk-3.12.ui:5863
 msgid "Light"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5649
+#: cpu-x-gtk-3.12.ui:5864
 msgid "Dark"
 msgstr ""
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5682
+#: cpu-x-gtk-3.12.ui:5897
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5695
+#: cpu-x-gtk-3.12.ui:5910
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5708
+#: cpu-x-gtk-3.12.ui:5923
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5751
+#: cpu-x-gtk-3.12.ui:5966
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5784
+#: cpu-x-gtk-3.12.ui:5999
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Default graphic card"
 msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:5812
+#: cpu-x-gtk-3.12.ui:6027
 msgid "Startup"
 msgstr ""
 
@@ -1390,11 +1448,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Tento záznam volání funkcí (backtrace) můžete vložit otevřením nového "
 #~ "hlášení problému zde:"
-
-#, fuzzy
-#~| msgid "failed to call dmidecode"
-#~ msgid "failed to call clGetDeviceIDs"
-#~ msgstr "nepodařilo se zavolat nástroj dmidecode"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"

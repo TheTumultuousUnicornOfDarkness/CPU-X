@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-05-06 14:46+0000\n"
+"POT-Creation-Date: 2022-08-14 07:21+0000\n"
 "PO-Revision-Date: 2022-06-21 15:15+0000\n"
 "Last-Translator: jagfwajgf <juri26@outlook.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
@@ -29,11 +29,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1-dev\n"
 
-#: core.c:224
+#: core.c:234
 msgid "Finding CPU technology"
 msgstr "CPU-Technologie finden"
 
-#: core.c:246
+#: core.c:256
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -42,31 +42,31 @@ msgstr ""
 "Ihre CPU ist nicht in der Datenbank vorhanden ➜ %s, Model: %i, ext. Model: "
 "%i, ext. Familie: %i"
 
-#: core.c:259
+#: core.c:269
 #, c-format
 msgid "%d x %d %s, %d-way"
 msgstr "%d × %d %s, %d-fach"
 
-#: core.c:260
+#: core.c:270
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-fach"
 
-#: core.c:261
+#: core.c:271
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s assoziativ, %d-%s Zeilengröße"
 
-#: core.c:266
+#: core.c:276
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Aufruf von libcpuid zum Abrufen statischer Daten"
 
-#: core.c:278
+#: core.c:288
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "Fehler beim Aufruf von libcpuid (%s)"
 
-#: core.c:288
+#: core.c:298
 #, c-format
 msgid ""
 "CPU hybrid architecture is not supported. For more details, please refer to "
@@ -75,40 +75,40 @@ msgstr ""
 "Hybride Prozessorarchitektur wird nicht unterstützt. Mehr Details findest du "
 "im folgenden Issue: %s"
 
-#: core.c:308
+#: core.c:318
 msgid "NOT SUPPORTED"
 msgstr "NICHT UNTERSTÜTZT"
 
-#: core.c:454
+#: core.c:464
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Aufruf von libcpuid zum Abruf dynamischer Daten"
 
-#: core.c:467
+#: core.c:477
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Aufruf von libcpuid zum Abrufen von statischen CPU-MSR-Werten"
 
-#: core.c:492
+#: core.c:502
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Aufruf von libcpuid zum Abrufen von dynamischer CPU-MSR-Werten"
 
-#: core.c:515
+#: core.c:525
 msgid "Calculating CPU multipliers"
 msgstr "CPU-Multiplikatoren berechnen"
 
-#: core.c:548
+#: core.c:558
 msgid "Calling dmidecode"
 msgstr "dmidecode aufrufen"
 
-#: core.c:581
+#: core.c:591
 msgid "Calculating CPU usage"
 msgstr "CPU-Auslastung wird berechnet"
 
-#: core.c:632
+#: core.c:642
 msgid "Calling bandwidth"
 msgstr "Bandbreite aufrufen"
 
-#: core.c:674
-#, c-format, fuzzy
+#: core.c:684
+#, fuzzy, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
 "built with a lower libpci version.\n"
@@ -120,77 +120,103 @@ msgstr ""
 "Prüfen Sie, ob die libpci %s Bibliothek auf Ihrem System vorhanden ist. "
 "Andernfalls compilen Sie %s bitte neu."
 
-#: core.c:720
+#: core.c:730
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 "Im folgenden Pfad wurde kein Kernel Treiber für Grafikkarten gefunden %s"
 
-#: core.c:751
+#: core.c:761
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Ihr GPU-Kerneltreiber ist unbekannt: %s"
 
-#: core.c:824
+#: core.c:837
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "Ihr GPU-Benutzermodustreiber ist unbekannt: %s"
 
-#: core.c:828
+#: core.c:841
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW konnte nicht aufgerufen werden (%i): %s"
 
-#: core.c:857
+#: core.c:860
+msgid "Vulkan API is not available"
+msgstr ""
+
+#: core.c:869
+#, fuzzy
+#| msgid "failed to call dmidecode"
+msgid "failed to call vkCreateInstance"
+msgstr "Fehler beim Aufruf von dmidecode"
+
+#: core.c:878
+#, fuzzy
+#| msgid "failed to call dmidecode"
+msgid "failed to call vkEnumeratePhysicalDevices"
+msgstr "Fehler beim Aufruf von dmidecode"
+
+#: core.c:884
+#, fuzzy
+#| msgid "There is no platform with OpenCL support (%s)"
+msgid "There is no device with Vulkan support"
+msgstr "Es gibt keine Plattform mit OpenCL Unterstützung (%s)"
+
+#: core.c:893
+msgid "There is no available physical device"
+msgstr ""
+
+#: core.c:966
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Es gibt keine Plattform mit OpenCL Unterstützung (%s)"
 
-#: core.c:866
+#: core.c:975
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "Fehler beim Aufrufen aller OpenCL Plattformen (%s)"
 
-#: core.c:876
+#: core.c:985
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "Anfordern des Namens der Plattform %u fehlgeschlagen (%s)"
 
-#: core.c:883
+#: core.c:992
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "Anfordern der Version der Plattform %u fehlgeschlagen (%s)"
 
-#: core.c:890
+#: core.c:999
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "Finden der Menge an OpenCL Geräten für die Plattform '%s %s' fehlgeschlagen "
 "(%s)"
 
-#: core.c:898
+#: core.c:1007
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "Aufruf aller OpenCL Geräte für die Plattform '%s %s' fehlgeschlagen (%s)"
 
-#: core.c:912
+#: core.c:1021
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "Aufruf des Namens des Gerätes %u fehlgeschlagen (%s)"
 
-#: core.c:919
+#: core.c:1028
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "Version für Gerät %u konnte nicht ermittelt werden (%s)"
 
-#: core.c:930
+#: core.c:1042
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_TOPOLOGY_AMD (%s) nicht"
 
-#: core.c:941
+#: core.c:1053
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -198,7 +224,7 @@ msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_GFXIP_MAJOR_AMD (%s) "
 "nicht"
 
-#: core.c:953 core.c:963 core.c:988
+#: core.c:1065 core.c:1075 core.c:1100
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -206,7 +232,7 @@ msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_MAX_COMPUTE_UNITS (%s) "
 "nicht"
 
-#: core.c:976
+#: core.c:1088
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -215,185 +241,193 @@ msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) oder CL_DEVICE_PCI_SLOT_ID_NV (%s) nicht"
 
-#: core.c:996
+#: core.c:1108
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL wird von deinem GPU Hersteller nicht unterstützt (0x%X)"
 
-#: core.c:1025
+#: core.c:1139
 msgid "Finding devices"
 msgstr "Suche Geräte"
 
-#: core.c:1037
+#: core.c:1151
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Suche nach Geräten überspringen (falsche Berechtigungen auf %s Gerät)"
 
-#: core.c:1075
+#: core.c:1189
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Unbekannter GPU-Hersteller: %s (0x%X)"
 
-#: core.c:1097
+#: core.c:1206 core.c:1509
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: core.c:1206 core.c:1509
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: core.c:1216
 msgid "failed to find chipset vendor and model"
 msgstr "Chipsatzhersteller und Modell konnte nicht ermittelt werden"
 
-#: core.c:1099
+#: core.c:1218
 msgid "failed to find graphic card vendor and model"
 msgstr "Grafikkartenhersteller und Modell konnten nicht ermittelt werden"
 
-#: core.c:1176
+#: core.c:1295
 msgid "Retrieving GPU clocks"
 msgstr "GPU-Taktgeber abrufen"
 
-#: core.c:1210
+#: core.c:1329
 msgid "None"
 msgstr "Keine"
 
-#: core.c:1343
+#: core.c:1462
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Treiber von GPU %u meldet keine Taktfrequenzen"
 
-#: core.c:1386
+#: core.c:1505
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Aktuell: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
-#: core.c:1390
-msgid "Enabled"
-msgstr "Aktiviert"
-
-#: core.c:1390
-msgid "Disabled"
-msgstr "Deaktiviert"
-
-#: core.c:1411
+#: core.c:1530
 msgid "failed to retrieve GPU clocks"
 msgstr "Fehler beim Abrufen von GPU-Takten"
 
-#: core.c:1428
+#: core.c:1547
 msgid "Identifying running system"
 msgstr "Laufendes System wird identifiziert"
 
-#: core.c:1431
+#: core.c:1550
 msgid "failed to identify running system"
 msgstr "Fehler beim Identifizieren des laufenden Systems"
 
-#: core.c:1472
+#: core.c:1594 core.c:1622
 msgid "Calling libprocps"
 msgstr "libprocps aufrufen"
 
-#: core.c:1498
+#: core.c:1597
+msgid "unable to get system uptime"
+msgstr ""
+
+#: core.c:1603
+msgid "unable to create meminfo structure"
+msgstr ""
+
+#: core.c:1648
 msgid "Calling libstatgrab"
 msgstr "libstatgrab aufrufen"
 
-#: core.c:1533
+#: core.c:1687
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i Tage, %i Stunden, %i Minuten, %i Sekunden"
 
-#: core.c:1589
+#: core.c:1744
 msgid "Updating benchmark status"
 msgstr "Benchmark-Status wird aktualisiert"
 
-#: core.c:1590 tui_ncurses.c:828
+#: core.c:1745 tui_ncurses.c:830
 #, c-format
 msgid "%u mins"
 msgstr "%u Minuten"
 
-#: core.c:1592 core.c:1593
+#: core.c:1747 core.c:1748
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.c:1597 core.c:1598
+#: core.c:1752 core.c:1753
 msgid "Not started"
 msgstr "Nicht gestartet"
 
-#: core.c:1603
+#: core.c:1758
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.c:1608
+#: core.c:1763
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u Stunden verbleibend)"
 
-#: core.c:1610
+#: core.c:1765
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u Minuten verbleibend)"
 
-#: core.c:1612
+#: core.c:1767
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u Sekunden verbleibend)"
 
-#: core.c:1617
+#: core.c:1772
 #, c-format
 msgid "in %u hours"
 msgstr "in %u Stunden"
 
-#: core.c:1619
+#: core.c:1774
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u Minuten"
 
-#: core.c:1621
+#: core.c:1776
 #, c-format
 msgid "in %u seconds"
 msgstr "in %u Sekunden"
 
-#: core.c:1637
+#: core.c:1792
 msgid "Starting benchmark"
 msgstr "Benchmark starten"
 
-#: core.c:1656
+#: core.c:1811
 msgid "an error occurred while starting benchmark"
 msgstr "Beim Starten des Benchmarks ist ein Fehler aufgetreten"
 
-#: core.c:1673
+#: core.c:1828
 msgid "Finding CPU package in fallback mode"
 msgstr "CPU-Paket wird in alternativem Modus ermittelt"
 
-#: core.c:1695
+#: core.c:1850
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ihr CPU-Sockel ist nicht in der Datenbank vorhanden ➜ %s, Codename: %s"
 
-#: core.c:1714
+#: core.c:1869
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "CPU-Multiplikatoren werden in alternativem Modus ermittelt"
 
-#: core.c:1741
+#: core.c:1896
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Motherboard-Informationen werden in alternativem Modus abgerufen"
 
-#: core.c:1750
+#: core.c:1905
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Fehler beim Abrufen der Motherboard-Informationen (alternativer Modus)"
 
-#: core.c:1789
+#: core.c:1944
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "CPU-Temperatur wird in alternativem Modus abgerufen"
 
-#: core.c:1834
+#: core.c:1989
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Temperatur (alternativer Modus)"
 
-#: core.c:1847
+#: core.c:2002
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "CPU-Spannung wird in alternativem Modus abgerufen"
 
-#: core.c:1860
+#: core.c:2015
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Spannung (alternativer Modus)"
 
-#: core.c:1875
+#: core.c:2030
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "CPU-Frequenz wird in alternativem Modus abgerufen"
 
-#: core.c:1883
+#: core.c:2038
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Frequenz (alternativer Modus)"
 
@@ -426,7 +460,7 @@ msgstr "Verlange Passwort um den Daemon im Hintergrund zu starten"
 msgid "Start daemon"
 msgstr "Daemon starten"
 
-#: gui_gtk.c:570 gui_gtk.c:663 tui_ncurses.c:556
+#: gui_gtk.c:570 gui_gtk.c:664 tui_ncurses.c:556
 #, c-format
 msgid "Core #%i"
 msgstr "Kern %i"
@@ -455,7 +489,11 @@ msgstr ""
 msgid "User Mode Driver Version"
 msgstr "User-Mode Driver-Version"
 
-#: gui_gtk.c:660
+#: gui_gtk.c:636
+msgid "Vulkan Ray Tracing"
+msgstr ""
+
+#: gui_gtk.c:661
 #, c-format
 msgid "%s"
 msgstr "%s"
@@ -694,7 +732,7 @@ msgstr "Frei"
 msgid "Swap"
 msgstr "Swap"
 
-#: main.c:143 cpu-x-gtk-3.12.ui:4848
+#: main.c:143 cpu-x-gtk-3.12.ui:5063
 msgid "Graphics"
 msgstr "Grafik"
 
@@ -721,7 +759,7 @@ msgstr "Geräte-ID"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: main.c:154 cpu-x-gtk-3.12.ui:5663
+#: main.c:154 cpu-x-gtk-3.12.ui:5878
 #, fuzzy
 msgid "Interface"
 msgstr "Schnittstelle"
@@ -754,47 +792,69 @@ msgstr "Verwendeter Speicher"
 msgid "Resizable BAR"
 msgstr "Resizable BAR"
 
-#: main.c:164 cpu-x-gtk-3.12.ui:4826
+#: main.c:163
+msgid "Vulkan RT"
+msgstr ""
+
+#: main.c:164
+#, fuzzy
+#| msgid "Version"
+msgid "OpenGL Version"
+msgstr "Version"
+
+#: main.c:165
+#, fuzzy
+#| msgid "Version"
+msgid "Vulkan Version"
+msgstr "Version"
+
+#: main.c:166
+#, fuzzy
+#| msgid "Version"
+msgid "OpenCL Version"
+msgstr "Version"
+
+#: main.c:168 cpu-x-gtk-3.12.ui:5041
 msgid "Cards"
 msgstr "Karten"
 
-#: main.c:167 cpu-x-gtk-3.12.ui:5188
+#: main.c:171 cpu-x-gtk-3.12.ui:5403
 msgid "Bench"
 msgstr "Bench"
 
-#: main.c:168 cpu-x-gtk-3.12.ui:4958
+#: main.c:172 cpu-x-gtk-3.12.ui:5173
 msgid "Prime numbers (slow)"
 msgstr "Primzahlen (langsam)"
 
-#: main.c:169 cpu-x-gtk-3.12.ui:5066
+#: main.c:173 cpu-x-gtk-3.12.ui:5281
 msgid "Prime numbers (fast)"
 msgstr "Primzahlen (schnell)"
 
-#: main.c:172
+#: main.c:176
 msgid "Score"
 msgstr "Ergebnis"
 
-#: main.c:173
+#: main.c:177
 msgid "Run"
 msgstr "Start"
 
-#: main.c:176 cpu-x-gtk-3.12.ui:5169
+#: main.c:180 cpu-x-gtk-3.12.ui:5384
 msgid "Parameters"
 msgstr "Parameter"
 
-#: main.c:177
+#: main.c:181
 msgid "Duration"
 msgstr "Dauer"
 
-#: main.c:178
+#: main.c:182
 msgid "Threads"
 msgstr "Threads"
 
-#: main.c:181 main.c:186 cpu-x-gtk-3.12.ui:5332 cpu-x-gtk-3.12.ui:5440
+#: main.c:185 main.c:190 cpu-x-gtk-3.12.ui:5547 cpu-x-gtk-3.12.ui:5655
 msgid "About"
 msgstr "Über"
 
-#: main.c:183
+#: main.c:187
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -803,180 +863,180 @@ msgstr ""
 "%s ist eine Freie Software die Informationen\n"
 "über CPU, Motherboard und mehr sammelt."
 
-#: main.c:187
+#: main.c:191
 #, c-format
 msgid "Version %s"
 msgstr "Version %s"
 
-#: main.c:188
+#: main.c:192
 #, c-format
 msgid "Author: %s"
 msgstr "Autor: %s"
 
-#: main.c:189
+#: main.c:193
 #, c-format
 msgid "Site: %s"
 msgstr "Seite: %s"
 
-#: main.c:191 cpu-x-gtk-3.12.ui:5421
+#: main.c:195 cpu-x-gtk-3.12.ui:5636
 msgid "License"
 msgstr "Lizenz"
 
-#: main.c:194
+#: main.c:198
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Diese Software wird unter den Bedingungen der %s verteilt"
 
-#: main.c:196 main.c:445
+#: main.c:200 main.c:450
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dieses Programm kommt mit ABSOLUT KEINER GARANTIE"
 
-#: main.c:267
+#: main.c:271
 msgid "Dumping data…"
 msgstr "Daten werden ausgegeben…"
 
-#: main.c:310
+#: main.c:314
 msgid "Freeing memory"
 msgstr "Speicher wird freigegeben"
 
-#: main.c:338
+#: main.c:342
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Grafische Benutzeroberfläche (GUI) starten (Standard)"
 
-#: main.c:339
+#: main.c:343
 msgid "Start text-based user interface (TUI)"
 msgstr "Text-basierte Benutzeroberfläche (TUI) starten"
 
-#: main.c:340
+#: main.c:344
 msgid "Dump all data on standard output and exit"
 msgstr "Alle Daten in die Standardausgabe schreiben und Anwendung beenden"
 
-#: main.c:341
+#: main.c:345
 msgid "Run embedded command dmidecode and exit"
 msgstr "Eingebettetes Kommando dmidecode ausführen und Anwendung beenden"
 
-#: main.c:342
+#: main.c:346
 msgid "Run embedded command bandwidth and exit"
 msgstr "Eingebettete Kommando bandwidth ausführen und Anwendung beenden"
 
-#: main.c:343
+#: main.c:347
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Intervall für die Aktualisierungen festlegen (in Sekunden)"
 
-#: main.c:344
+#: main.c:348
 msgid "Set default tab (integer)"
 msgstr "Standard-Tab festlegen (Ganzzahl)"
 
-#: main.c:345
+#: main.c:349
 msgid "Select CPU core to monitor (integer)"
 msgstr "Zu überwachenden CPU-Kern auswählen (Ganzzahl)"
 
-#: main.c:346
+#: main.c:350
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Bandbreiten-Test für die CPU-Cache-Geschwindigkeit auswählen (Ganzzahl)"
 
-#: main.c:347
+#: main.c:351
 msgid "Select default graphic card (integer)"
 msgstr "Standardgrafikkarte auswählen (Ganzzahl)"
 
-#: main.c:348 cpu-x-gtk-3.12.ui:5766
+#: main.c:352 cpu-x-gtk-3.12.ui:5981
 msgid "Start and connect to daemon"
 msgstr "Starten und mit Daemon verbinden"
 
-#: main.c:349
+#: main.c:353
 msgid "Verbose output"
 msgstr "Ausführliche Ausgabe"
 
-#: main.c:350
+#: main.c:354
 msgid "Print help and exit"
 msgstr "Hilfetext ausgeben und Anwendung beenden"
 
-#: main.c:351
+#: main.c:355
 msgid "Print version and exit"
 msgstr "Version ausgeben und Anwendung beenden"
 
-#: main.c:352
+#: main.c:356
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "CPUID-Werte in Dezimaldarstellung (Standard ist Hexadezimal)"
 
-#: main.c:353
+#: main.c:357
 msgid "Disable colored output"
 msgstr "Farbige Ausgabe deaktivieren"
 
-#: main.c:354
+#: main.c:358
 msgid "Print information for debugging"
 msgstr "Informationen zur Fehlersuche drucken"
 
-#: main.c:355
+#: main.c:359
 msgid "Print required information to paste in an issue"
 msgstr "Benötigte Informationen zum Einfügen in einen Problembericht ausgeben"
 
-#: main.c:356
+#: main.c:360
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Tastenkürzel für den NCurser-Modus festlegen (a[Pfeile]|e[macs]|"
 "i[nvertiertes-T]|v[im])"
 
-#: main.c:367
+#: main.c:371
 msgid "Add default command line arguments"
 msgstr "Setze Standard-Kommandozeilenargumente"
 
-#: main.c:368
+#: main.c:372
 msgid "Enforce the bus clock"
 msgstr "Bustaktung erzwingen"
 
-#: main.c:369
+#: main.c:373
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "Ignorieren der von libcpuid gemeldeten CPU-Frequenz"
 
-#: main.c:370
+#: main.c:374
 msgid "Read CPUID raw data from a given file"
 msgstr "CPUID-Rohdaten aus einer gegebenen Datei lesen"
 
-#: main.c:371
+#: main.c:375
 msgid "Only print a message if CPU is not present in the database"
 msgstr ""
 "Nur eine Nachricht ausgeben, wenn die CPU nicht in der Datenbank vorhanden "
 "ist"
 
-#: main.c:395
+#: main.c:399
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Aufruf: %s ANZEIGE [OPTIONEN]\n"
 
-#: main.c:396
+#: main.c:400
 msgid "Available DISPLAY:"
 msgstr "Verfügbare ANZEIGE:"
 
-#: main.c:405
+#: main.c:409
 msgid "Available OPTIONS:"
 msgstr "Verfügbare OPTIONEN:"
 
-#: main.c:413
+#: main.c:417
 msgid "Influenceable environment variables:"
 msgstr "Umgebungsvariablen:"
 
-#: main.c:444
+#: main.c:449
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Dies ist freie Software: Sie dürfen sie frei verändern und verbreiten."
 
-#: main.c:446
+#: main.c:451
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Siehe %s Lizenz: %s\n"
 
-#: main.c:453
+#: main.c:458
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s Version: %s"
 
-#: main.c:469
+#: main.c:474
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "Aufruf von wordexp fehlgeschlagen (%i)"
 
-#: main.c:664
+#: main.c:669
 #, c-format
 msgid ""
 "\n"
@@ -987,14 +1047,14 @@ msgstr ""
 "%sEin Fehler ist aufgetreten! %s hat das Signal %d (%s) empfangen und ist "
 "abgestürzt.%s"
 
-#: main.c:679
+#: main.c:684
 #, fuzzy
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Sie können hier ein neues Problem eröffnen, indem Sie die Vorlage wie "
 "vorgegeben ausfüllen:"
 
-#: main.c:707
+#: main.c:712
 msgid "an error occurred while setting locale"
 msgstr "Setzen des Gebietsschemas ist fehlgeschlagen"
 
@@ -1231,57 +1291,57 @@ msgid "TiB"
 msgstr "TiB"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5608
+#: cpu-x-gtk-3.12.ui:5823
 msgid "Refresh time"
 msgstr "Aktualisierungsintervall"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5632
+#: cpu-x-gtk-3.12.ui:5847
 msgid "Theme"
 msgstr "Design"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5647
+#: cpu-x-gtk-3.12.ui:5862
 msgid "Automatic"
 msgstr "Automatisch"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5648
+#: cpu-x-gtk-3.12.ui:5863
 msgid "Light"
 msgstr "Hell"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5649
+#: cpu-x-gtk-3.12.ui:5864
 msgid "Dark"
 msgstr "Dunkel"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5682
+#: cpu-x-gtk-3.12.ui:5897
 msgid "Default tab"
 msgstr "Standard-Tab"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5695
+#: cpu-x-gtk-3.12.ui:5910
 msgid "Default CPU core"
 msgstr "Standard-Prozessorkern"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5708
+#: cpu-x-gtk-3.12.ui:5923
 msgid "Default cache test"
 msgstr "Standard-Cache-Test"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5751
+#: cpu-x-gtk-3.12.ui:5966
 msgid "Print CPUID values in decimal"
 msgstr "CPUID-Werte dezimal ausgeben"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5784
+#: cpu-x-gtk-3.12.ui:5999
 msgid "Default graphic card"
 msgstr "Standard-Grafikkarte"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:5812
+#: cpu-x-gtk-3.12.ui:6027
 msgid "Startup"
 msgstr "Startup"
 
@@ -1289,11 +1349,6 @@ msgstr "Startup"
 #~ msgstr ""
 #~ "Sie können diese Backtrace einfügen, indem Sie hier einen neuen "
 #~ "Problembericht öffnen:"
-
-#, fuzzy
-#~| msgid "failed to call dmidecode"
-#~ msgid "failed to call clGetDeviceIDs"
-#~ msgstr "Fehler beim Aufruf von dmidecode"
 
 #, fuzzy
 #~| msgid "failed to call dmidecode"
