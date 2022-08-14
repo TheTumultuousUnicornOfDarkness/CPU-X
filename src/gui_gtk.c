@@ -632,7 +632,8 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	for(i = 0; i < data->gpu_count; i++)
 	{
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecard), format("#%i: %s", i, data->tab_graphics[VALUE][GPU1MODEL + i * GPUFIELDS]));
-		gtk_widget_set_tooltip_text(glab->gtktab_graphics[NAME][GPU1UMD + i * GPUFIELDS],  _("User Mode Driver Version"));
+		gtk_widget_set_tooltip_text(glab->gtktab_graphics[NAME][GPU1UMD   + i * GPUFIELDS],  _("User Mode Driver Version"));
+		gtk_widget_set_tooltip_text(glab->gtktab_graphics[NAME][GPU1VKRT  + i * GPUFIELDS],  _("Vulkan Ray Tracing"));
 	}
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecard), opts->selected_gpu);
 

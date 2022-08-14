@@ -70,6 +70,15 @@ if(WITH_LIBGLFW)
 		link_directories(${LIBGL_LIBRARY_DIRS} ${LIBGLFW_LIBRARY_DIRS})
 		add_definitions(${LIBGL_CFLAGS_OTHER} ${LIBGLFW_CFLAGS_OTHER})
 	endif(LIBGL_FOUND AND LIBGLFW_FOUND)
+
+	if(WITH_VULKAN)
+		pkg_check_modules(VULKAN vulkan)
+		if(VULKAN_FOUND AND LIBGLFW_FOUND)
+			include_directories(${VULKAN_INCLUDE_DIRS})
+			link_directories(${VULKAN_LIBRARY_DIRS})
+			add_definitions(${VULKAN_CFLAGS_OTHER})
+		endif(VULKAN_FOUND AND LIBGLFW_FOUND)
+	endif(WITH_VULKAN)
 endif(WITH_LIBGLFW)
 
 # OpenCL
@@ -146,6 +155,7 @@ print_config("GETTEXT"             0                        GETTEXT_FOUND     WI
 print_config("LIBCPUID"            "${LIBCPUID_VERSION}"    LIBCPUID_FOUND    WITH_LIBCPUID)
 print_config("LIBPCI"              "${LIBPCI_VERSION}"      LIBPCI_FOUND      WITH_LIBPCI)
 print_config("LIBGLFW"             "${LIBGLFW_VERSION}"     LIBGLFW_FOUND     WITH_LIBGLFW)
+print_config("Vulkan"              "${VULKAN_VERSION}"      VULKAN_FOUND      WITH_VULKAN)
 print_config("OpenCL"              "${OPENCL_VERSION}"      OPENCL_FOUND      WITH_OPENCL)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
 	if(${LIBPROC2} EQUAL 1)
@@ -227,6 +237,7 @@ target_link_libraries(${APP_EXEC}
 	${LIBPCI_LIBRARIES}
 	${LIBGL_LIBRARIES}
 	${LIBGLFW_LIBRARIES}
+	${VULKAN_LIBRARIES}
 	${OPENCL_LIBRARIES}
 	${LIBPROC2_LIBRARIES}
 	${LIBPROCPS_LIBRARIES}
