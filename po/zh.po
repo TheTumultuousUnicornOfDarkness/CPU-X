@@ -9,13 +9,14 @@
 # Forbidden <10278743+f0rb1d@users.noreply.github.com>, 2020.
 # Eric <spice2wolf@gmail.com>, 2021.
 # Eric <alchemillatruth@purelymail.com>, 2022.
+# yangyangdaji <1504305527@qq.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-14 11:05+0000\n"
-"PO-Revision-Date: 2022-08-15 12:15+0000\n"
-"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
+"PO-Revision-Date: 2022-08-19 02:15+0000\n"
+"Last-Translator: yangyangdaji <1504305527@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
@@ -39,17 +40,17 @@ msgstr "数据库中没有您的 CPU ==> %s，型号： %i，扩展型号： %i�
 #: core.c:269
 #, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d x %d %s, %d-路"
+msgstr "%d x %d %s，%d-路"
 
 #: core.c:270
 #, c-format
 msgid "%d %s, %d-way"
-msgstr "%d %s, %d-路"
+msgstr "%d %s，%d-路"
 
 #: core.c:271
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s 关联, %d-%s 最小缓存单元大小"
+msgstr "%s 关联，%d-%s 最小缓存单元大小"
 
 #: core.c:276
 msgid "Calling libcpuid for retrieving static data"
@@ -58,7 +59,7 @@ msgstr "正在调用 libcpuid 以检索静态数据"
 #: core.c:288
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr "无法调用 libcpuid (%s)"
+msgstr "无法调用 libcpuid（%s）"
 
 #: core.c:298
 #, c-format
@@ -108,27 +109,27 @@ msgid ""
 "rebuild %s."
 msgstr ""
 "pci_access 未正确初始化：这一问题在 %s 由较低版本的 libpci 构建时很常见。\n"
-"检查你的系统中存在 libpci %s 库。否则，请重新构建 %s。"
+"检查你的系统中存在 libpci %s 库。否则请重新构建 %s。"
 
 #: core.c:730
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr "路径%s中没有驱动图形卡的内核驱动程序"
+msgstr "路径 %s 中没有驱动图形卡的内核驱动程序"
 
 #: core.c:761
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "你的 GPU 内核驱动未知: %s"
+msgstr "你的 GPU 内核驱动未知：%s"
 
 #: core.c:837
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "你的 GPU 用户模式驱动未知: %s"
+msgstr "你的 GPU 用户模式驱动未知：%s"
 
 #: core.c:841
 #, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "调用 GLFW (%i) 失败: %s"
+msgstr "调用 GLFW (%i) 失败：%s"
 
 #: core.c:860
 msgid "Vulkan API is not available"
@@ -153,59 +154,59 @@ msgstr "无可用的物理设备"
 #: core.c:966
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr "没有支持 OpenCL 的平台 (%s)"
+msgstr "没有支持 OpenCL 的平台（%s）"
 
 #: core.c:975
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "未能获得所有 OpenCL 平台 (%s)"
+msgstr "未能获得所有 OpenCL 平台（%s）"
 
 #: core.c:985
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "未能获得平台名称 %u (%s)"
+msgstr "未能获得平台名称 %u（%s）"
 
 #: core.c:992
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "未能获得平台 %u 的版本 (%s)"
+msgstr "未能获得平台 %u 的版本（%s）"
 
 #: core.c:999
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "查找平台 '%s %s' (%s) 的 OpenCL 设备数失败"
+msgstr "查找平台 '%s %s'（%s） 的 OpenCL 设备数失败"
 
 #: core.c:1007
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "未能获得平台 '%s %s' (%s) 所有的 OpenCL 设备"
+msgstr "未能获得平台 '%s %s'（%s） 所有的 OpenCL 设备"
 
 #: core.c:1021
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "未能获得设备 %u 的名称 (%s)"
+msgstr "未能获得设备 %u 的名称（%s）"
 
 #: core.c:1028
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "未能获得设备 %u 的版本 (%s)"
+msgstr "未能获得设备 %u 的版本（%s）"
 
 #: core.c:1042
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD (%s)"
+msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD（%s）"
 
 #: core.c:1053
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+msgstr "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD（%s）"
 
 #: core.c:1065 core.c:1075 core.c:1100
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_MAX_COMPUTE_UNITS（%s）"
 
 #: core.c:1088
 #, c-format
@@ -213,8 +214,9 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
-"'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
-"CL_DEVICE_PCI_BUS_ID_NV (%s) 或CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+"'%s %s' 的 OpenCL "
+"驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV（%s）、CL_DEVICE_PCI_BUS_ID_NV（%s） "
+"或CL_DEVICE_PCI_SLOT_ID_NV（%s）"
 
 #: core.c:1108
 #, c-format
@@ -233,7 +235,7 @@ msgstr "跳过设备搜索 (%s设备上的权限错误)"
 #: core.c:1189
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "您的 GPU 供应商未知: %s (0x%X)"
+msgstr "您的 GPU 供应商未知：%s (0x%X)"
 
 #: core.c:1206 core.c:1518
 msgid "Enabled"
@@ -267,7 +269,7 @@ msgstr "GPU 驱动 %u 无法报告频率"
 #: core.c:1514
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr "当前: PCIe Gen%1dx%d / 最高: Gen%1dx%d"
+msgstr "当前：PCIe Gen%1dx%d / 最高：Gen%1dx%d"
 
 #: core.c:1542
 msgid "failed to retrieve GPU clocks"
@@ -409,7 +411,7 @@ msgstr "未能检索 CPU 频率 (应急模式)"
 #: daemon.c:253
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr "request_handler: 事件 %i 未处理"
+msgstr "request_handler：事件 %i 未处理"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
@@ -511,7 +513,7 @@ msgstr "系列"
 
 #: main.c:67
 msgid "Disp. Family"
-msgstr "Disp. 系列"
+msgstr "Disp。系列"
 
 #: main.c:68 main.c:105 main.c:116 main.c:151
 msgid "Model"
@@ -519,11 +521,11 @@ msgstr "型号"
 
 #: main.c:69
 msgid "Disp. Model"
-msgstr "Disp. 型号"
+msgstr "Disp。型号"
 
 #: main.c:70
 msgid "Temp."
-msgstr "温度."
+msgstr "温度。"
 
 #: main.c:71
 msgid "Stepping"
@@ -966,7 +968,7 @@ msgstr "仅在 CPU 不存在于数据库时打印消息"
 #: main.c:400
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "用法: %s 显示 [选项]\n"
+msgstr "用法：%s 显示 [选项]\n"
 
 #: main.c:401
 msgid "Available DISPLAY:"
@@ -987,7 +989,7 @@ msgstr "这是一个自由软件：您可以自由更改和重新分发。"
 #: main.c:452
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr "查看 %s 许可协议: <%s>\n"
+msgstr "查看 %s 许可协议：<%s>\n"
 
 #: main.c:459
 #, c-format
@@ -1007,7 +1009,7 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"%s遇到了错误！ %s 获得信号 %d (%s) 并崩溃。%s"
+"%s遇到了错误！ %s 获得信号 %d（%s） 并崩溃。%s"
 
 #: main.c:685
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1150,12 +1152,12 @@ msgstr "字符串 '%s' 太长，截断中…"
 #: util.c:287
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr "打开文件 '%s' 时发生错误 (%s)"
+msgstr "打开文件 '%s' 时发生错误（%s）"
 
 #: util.c:317
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr "运行命令 '%s' 时发生错误 (%s)"
+msgstr "运行命令 '%s' 时发生错误（%s）"
 
 #: util.c:375 util.c:435
 #, c-format
