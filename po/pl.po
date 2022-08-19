@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-14 11:05+0000\n"
-"PO-Revision-Date: 2022-05-29 20:16+0000\n"
+"PO-Revision-Date: 2022-08-20 14:16+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -138,29 +138,23 @@ msgstr "nie udało się wywołać GLFW (%i): %s"
 
 #: core.c:860
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "API Vulkan jest niedostępny"
 
 #: core.c:869
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call vkCreateInstance"
-msgstr "nie udało się wywołać dmidecode"
+msgstr "nie udało się wywołać vkCreateInstance"
 
 #: core.c:878
-#, fuzzy
-#| msgid "failed to call dmidecode"
 msgid "failed to call vkEnumeratePhysicalDevices"
-msgstr "nie udało się wywołać dmidecode"
+msgstr "nie udało się wywołać vkEnumeratePhysicalDevices"
 
 #: core.c:884
-#, fuzzy
-#| msgid "There is no platform with OpenCL support (%s)"
 msgid "There is no device with Vulkan support"
-msgstr "Nie ma platformy obsługującej OpenCL (%s)"
+msgstr "Nie ma żadnych urządzeń z obsługą Vulkan"
 
 #: core.c:893
 msgid "There is no available physical device"
-msgstr ""
+msgstr "Brak dostępnego urządzenia fizycznego"
 
 #: core.c:966
 #, c-format
@@ -303,11 +297,11 @@ msgstr "Wywołanie libprocps"
 
 #: core.c:1609
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "nie można uzyskać czasu pracy systemu"
 
 #: core.c:1615
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "nie można utworzyć struktury meminfo"
 
 #: core.c:1660
 msgid "Calling libstatgrab"
@@ -749,10 +743,8 @@ msgid "DeviceID"
 msgstr "Identyfikator urządzenia"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Wersja"
+msgstr "Wersja VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -793,22 +785,16 @@ msgid "Vulkan RT"
 msgstr ""
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Wersja"
+msgstr "Wersja OpenGL"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Wersja"
+msgstr "Wersja Vulkan"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Wersja"
+msgstr "Wersja OpenCL"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5083
 msgid "Cards"
