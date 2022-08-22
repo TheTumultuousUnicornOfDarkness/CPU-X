@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-08-19 02:15+0000\n"
+"PO-Revision-Date: 2022-08-24 00:18+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -149,26 +149,23 @@ msgid "Vulkan API is not available"
 msgstr "Vulkan API недоступно"
 
 #: core.c:982
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "не удалось вызвать vkCreateInstance"
+msgstr "не удалось вызвать vkCreateInstance (%s)"
 
 #: core.c:991
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "не удалось вызвать vkEnumeratePhysicalDevices"
+msgstr "не удалось вызвать vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:997
 msgid "There is no device with Vulkan support"
 msgstr "Отсутствуют устройства с поддержкой Vulkan"
 
 #: core.c:1006
-#, fuzzy, c-format
-#| msgid "There is no available physical device"
+#, c-format
 msgid "There is no available physical device (%s)"
-msgstr "Отсутствуют доступные физические устройства"
+msgstr "Отсутствуют доступные физические устройства (%s)"
 
 #: core.c:1079
 #, c-format
