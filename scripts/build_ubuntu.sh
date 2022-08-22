@@ -24,9 +24,6 @@ else
 fi
 
 case "$VERSION_ID" in
-	"18.04") # Bionic Beaver
-		PACKAGES=('libncursesw5-dev' 'libncursesw5' 'libcpuid15-git' 'libpci3' 'libprocps6' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
-		;;
 	"20.04") # Focal Fossa
 		PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
 		;;

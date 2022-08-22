@@ -16,7 +16,6 @@ jobs:
     strategy:
       matrix:
         os: # https://github.com/actions/virtual-environments/tree/main/images/linux
-          - { label: ubuntu-18.04 }
           - { label: ubuntu-20.04 }
           - { label: ubuntu-22.04 }
 
