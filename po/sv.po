@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-08-14 11:58+0000\n"
+"PO-Revision-Date: 2022-08-24 00:18+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -133,26 +133,23 @@ msgid "Vulkan API is not available"
 msgstr "Vulkan-API inte tillgänglig"
 
 #: core.c:982
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "kunde inte anropa vkCreateInstance"
+msgstr "kunde inte anropa vkCreateInstance (%s)"
 
 #: core.c:991
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "kunde inte anropa vkEnumeratePhysicalDevices"
+msgstr "kunde inte anropa vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:997
 msgid "There is no device with Vulkan support"
 msgstr "Det finns ingen enhet med Vulkan-stöd"
 
 #: core.c:1006
-#, fuzzy, c-format
-#| msgid "There is no available physical device"
+#, c-format
 msgid "There is no available physical device (%s)"
-msgstr "Det finns ingen fysisk enhet tillgänglig"
+msgstr "Det finns ingen fysisk enhet tillgänglig (%s)"
 
 #: core.c:1079
 #, c-format
