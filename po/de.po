@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-08-14 11:05+0000\n"
+"POT-Creation-Date: 2022-08-22 17:16+0000\n"
 "PO-Revision-Date: 2022-06-21 15:15+0000\n"
 "Last-Translator: jagfwajgf <juri26@outlook.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
@@ -141,82 +141,83 @@ msgstr "Ihr GPU-Benutzermodustreiber ist unbekannt: %s"
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW konnte nicht aufgerufen werden (%i): %s"
 
-#: core.c:860
+#: core.c:973
 msgid "Vulkan API is not available"
 msgstr ""
 
-#: core.c:869
-#, fuzzy
+#: core.c:982
+#, fuzzy, c-format
 #| msgid "failed to call dmidecode"
-msgid "failed to call vkCreateInstance"
+msgid "failed to call vkCreateInstance (%s)"
 msgstr "Fehler beim Aufruf von dmidecode"
 
-#: core.c:878
-#, fuzzy
+#: core.c:991
+#, fuzzy, c-format
 #| msgid "failed to call dmidecode"
-msgid "failed to call vkEnumeratePhysicalDevices"
+msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "Fehler beim Aufruf von dmidecode"
 
-#: core.c:884
+#: core.c:997
 #, fuzzy
 #| msgid "There is no platform with OpenCL support (%s)"
 msgid "There is no device with Vulkan support"
 msgstr "Es gibt keine Plattform mit OpenCL Unterstützung (%s)"
 
-#: core.c:893
-msgid "There is no available physical device"
+#: core.c:1006
+#, c-format
+msgid "There is no available physical device (%s)"
 msgstr ""
 
-#: core.c:966
+#: core.c:1079
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Es gibt keine Plattform mit OpenCL Unterstützung (%s)"
 
-#: core.c:975
+#: core.c:1088
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "Fehler beim Aufrufen aller OpenCL Plattformen (%s)"
 
-#: core.c:985
+#: core.c:1098
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "Anfordern des Namens der Plattform %u fehlgeschlagen (%s)"
 
-#: core.c:992
+#: core.c:1105
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "Anfordern der Version der Plattform %u fehlgeschlagen (%s)"
 
-#: core.c:999
+#: core.c:1112
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "Finden der Menge an OpenCL Geräten für die Plattform '%s %s' fehlgeschlagen "
 "(%s)"
 
-#: core.c:1007
+#: core.c:1120
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "Aufruf aller OpenCL Geräte für die Plattform '%s %s' fehlgeschlagen (%s)"
 
-#: core.c:1021
+#: core.c:1134
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "Aufruf des Namens des Gerätes %u fehlgeschlagen (%s)"
 
-#: core.c:1028
+#: core.c:1141
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "Version für Gerät %u konnte nicht ermittelt werden (%s)"
 
-#: core.c:1042
+#: core.c:1155
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_TOPOLOGY_AMD (%s) nicht"
 
-#: core.c:1053
+#: core.c:1166
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -224,7 +225,7 @@ msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_GFXIP_MAJOR_AMD (%s) "
 "nicht"
 
-#: core.c:1065 core.c:1075 core.c:1100
+#: core.c:1178 core.c:1188 core.c:1213
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -232,7 +233,7 @@ msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_MAX_COMPUTE_UNITS (%s) "
 "nicht"
 
-#: core.c:1088
+#: core.c:1201
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -241,193 +242,193 @@ msgstr ""
 "Der OpenCL Treiber für '%s %s' unterstützt CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) oder CL_DEVICE_PCI_SLOT_ID_NV (%s) nicht"
 
-#: core.c:1108
+#: core.c:1221
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL wird von deinem GPU Hersteller nicht unterstützt (0x%X)"
 
-#: core.c:1139
+#: core.c:1252
 msgid "Finding devices"
 msgstr "Suche Geräte"
 
-#: core.c:1151
+#: core.c:1264
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Suche nach Geräten überspringen (falsche Berechtigungen auf %s Gerät)"
 
-#: core.c:1189
+#: core.c:1302
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Unbekannter GPU-Hersteller: %s (0x%X)"
 
-#: core.c:1206 core.c:1518
+#: core.c:1319 core.c:1631
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: core.c:1206 core.c:1518
+#: core.c:1319 core.c:1631
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: core.c:1216
+#: core.c:1329
 msgid "failed to find chipset vendor and model"
 msgstr "Chipsatzhersteller und Modell konnte nicht ermittelt werden"
 
-#: core.c:1218
+#: core.c:1331
 msgid "failed to find graphic card vendor and model"
 msgstr "Grafikkartenhersteller und Modell konnten nicht ermittelt werden"
 
-#: core.c:1295
+#: core.c:1408
 msgid "Retrieving GPU clocks"
 msgstr "GPU-Taktgeber abrufen"
 
-#: core.c:1330
+#: core.c:1443
 msgid "None"
 msgstr "Keine"
 
-#: core.c:1471
+#: core.c:1584
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Treiber von GPU %u meldet keine Taktfrequenzen"
 
-#: core.c:1514
+#: core.c:1627
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Aktuell: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
-#: core.c:1542
+#: core.c:1655
 msgid "failed to retrieve GPU clocks"
 msgstr "Fehler beim Abrufen von GPU-Takten"
 
-#: core.c:1559
+#: core.c:1672
 msgid "Identifying running system"
 msgstr "Laufendes System wird identifiziert"
 
-#: core.c:1562
+#: core.c:1675
 msgid "failed to identify running system"
 msgstr "Fehler beim Identifizieren des laufenden Systems"
 
-#: core.c:1606 core.c:1634
+#: core.c:1719 core.c:1747
 msgid "Calling libprocps"
 msgstr "libprocps aufrufen"
 
-#: core.c:1609
+#: core.c:1722
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1615
+#: core.c:1728
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1660
+#: core.c:1773
 msgid "Calling libstatgrab"
 msgstr "libstatgrab aufrufen"
 
-#: core.c:1699
+#: core.c:1812
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i Tage, %i Stunden, %i Minuten, %i Sekunden"
 
-#: core.c:1756
+#: core.c:1869
 msgid "Updating benchmark status"
 msgstr "Benchmark-Status wird aktualisiert"
 
-#: core.c:1757 tui_ncurses.c:828
+#: core.c:1870 tui_ncurses.c:828
 #, c-format
 msgid "%u mins"
 msgstr "%u Minuten"
 
-#: core.c:1759 core.c:1760
+#: core.c:1872 core.c:1873
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.c:1764 core.c:1765
+#: core.c:1877 core.c:1878
 msgid "Not started"
 msgstr "Nicht gestartet"
 
-#: core.c:1770
+#: core.c:1883
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.c:1775
+#: core.c:1888
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u Stunden verbleibend)"
 
-#: core.c:1777
+#: core.c:1890
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u Minuten verbleibend)"
 
-#: core.c:1779
+#: core.c:1892
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u Sekunden verbleibend)"
 
-#: core.c:1784
+#: core.c:1897
 #, c-format
 msgid "in %u hours"
 msgstr "in %u Stunden"
 
-#: core.c:1786
+#: core.c:1899
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u Minuten"
 
-#: core.c:1788
+#: core.c:1901
 #, c-format
 msgid "in %u seconds"
 msgstr "in %u Sekunden"
 
-#: core.c:1804
+#: core.c:1917
 msgid "Starting benchmark"
 msgstr "Benchmark starten"
 
-#: core.c:1823
+#: core.c:1936
 msgid "an error occurred while starting benchmark"
 msgstr "Beim Starten des Benchmarks ist ein Fehler aufgetreten"
 
-#: core.c:1840
+#: core.c:1953
 msgid "Finding CPU package in fallback mode"
 msgstr "CPU-Paket wird in alternativem Modus ermittelt"
 
-#: core.c:1862
+#: core.c:1975
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ihr CPU-Sockel ist nicht in der Datenbank vorhanden ➜ %s, Codename: %s"
 
-#: core.c:1881
+#: core.c:1994
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "CPU-Multiplikatoren werden in alternativem Modus ermittelt"
 
-#: core.c:1908
+#: core.c:2021
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Motherboard-Informationen werden in alternativem Modus abgerufen"
 
-#: core.c:1917
+#: core.c:2030
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Fehler beim Abrufen der Motherboard-Informationen (alternativer Modus)"
 
-#: core.c:1956
+#: core.c:2069
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "CPU-Temperatur wird in alternativem Modus abgerufen"
 
-#: core.c:2001
+#: core.c:2114
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Temperatur (alternativer Modus)"
 
-#: core.c:2014
+#: core.c:2127
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "CPU-Spannung wird in alternativem Modus abgerufen"
 
-#: core.c:2027
+#: core.c:2140
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Spannung (alternativer Modus)"
 
-#: core.c:2042
+#: core.c:2155
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "CPU-Frequenz wird in alternativem Modus abgerufen"
 
-#: core.c:2050
+#: core.c:2163
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Frequenz (alternativer Modus)"
 
