@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-08-15 12:15+0000\n"
+"PO-Revision-Date: 2022-08-24 00:18+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -147,26 +147,23 @@ msgid "Vulkan API is not available"
 msgstr "Vulkan API kullanılabilir değil"
 
 #: core.c:982
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "vkCreateInstance çağrılamadı"
+msgstr "vkCreateInstance çağrılamadı (%s)"
 
 #: core.c:991
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "vkEnumeratePhysicalDevices çağrılamadı"
+msgstr "vkEnumeratePhysicalDevices çağrılamadı (%s)"
 
 #: core.c:997
 msgid "There is no device with Vulkan support"
 msgstr "Vulkan desteğine sahip bir aygıt yok"
 
 #: core.c:1006
-#, fuzzy, c-format
-#| msgid "There is no available physical device"
+#, c-format
 msgid "There is no available physical device (%s)"
-msgstr "Kullanılabilir fiziksel aygıt yok"
+msgstr "Kullanılabilir fiziksel aygıt yok (%s)"
 
 #: core.c:1079
 #, c-format
