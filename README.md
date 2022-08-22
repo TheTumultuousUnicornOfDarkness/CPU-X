@@ -55,9 +55,10 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 * [NCurses](https://www.gnu.org/software/ncurses/)  
 * [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.5.0 or newer is needed)  
 * [Pciutils](https://mj.ucw.cz/sw/pciutils/)  
-* [GLFW](https://www.glfw.org/) (version 3.3 or newer is needed)  
+* [GLFW](https://www.glfw.org/) (version 3.3 or newer is needed), with OpenGL and optionally Vulkan  
 * [OpenCL](https://www.khronos.org/opencl/) (version 1.2 or newer is needed)
 * [Procps-ng](https://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](https://www.i-scream.org/libstatgrab/) (*BSD)  
+
 **¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 ## Download and install
