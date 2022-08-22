@@ -1,3 +1,22 @@
+Version 3.4 (Mon Jun 27 2022)
+  - Support for SMBIOS 3.4.0. This includes new memory device types, new
+    processor upgrades, new slot types and characteristics, decoding of memory
+    module extended speed, new system slot types, new processor characteristics
+    and new format of Processor ID.
+  - Support for SMBIOS 3.5.0. This includes new processor upgrades, BIOS
+    characteristics, new slot characteristics, new on-board device types, new
+    pointing device interface types, and a new record type (type 45 -
+    Firmware Inventory Information).
+  - Decode HPE OEM records 194, 199, 203, 236, 237, 238 and 240.
+  - Bug fixes:
+    Fix OEM vendor name matching
+    Fix ASCII filtering of strings
+    Fix crash with option -u
+  - Minor improvements:
+    Skip details of uninstalled memory modules
+    Don't display the raw CPU ID in quiet mode
+    Improve the formatting of the manual pages
+
 Version 3.3 (Wed Oct 14 2020)
   - [BUILD] Allow overriding build settings from the environment.
   - [COMPATIBILITY] Document how the UUID fields are interpreted.
