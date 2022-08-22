@@ -855,8 +855,8 @@ static inline const char* string_VkResult(VkResult input_value)
 {
 	switch (input_value)
 	{
-		case VK_ERROR_COMPRESSION_EXHAUSTED_EXT:
-			return "VK_ERROR_COMPRESSION_EXHAUSTED_EXT";
+		/*case VK_ERROR_COMPRESSION_EXHAUSTED_EXT:
+			return "VK_ERROR_COMPRESSION_EXHAUSTED_EXT";*/
 		case VK_ERROR_DEVICE_LOST:
 			return "VK_ERROR_DEVICE_LOST";
 		case VK_ERROR_EXTENSION_NOT_PRESENT:
@@ -895,8 +895,8 @@ static inline const char* string_VkResult(VkResult input_value)
 			return "VK_ERROR_MEMORY_MAP_FAILED";
 		case VK_ERROR_NATIVE_WINDOW_IN_USE_KHR:
 			return "VK_ERROR_NATIVE_WINDOW_IN_USE_KHR";
-		case VK_ERROR_NOT_PERMITTED_KHR:
-			return "VK_ERROR_NOT_PERMITTED_KHR";
+		/*case VK_ERROR_NOT_PERMITTED_KHR:
+			return "VK_ERROR_NOT_PERMITTED_KHR";*/
 		case VK_ERROR_OUT_OF_DATE_KHR:
 			return "VK_ERROR_OUT_OF_DATE_KHR";
 		case VK_ERROR_OUT_OF_DEVICE_MEMORY:
@@ -941,20 +941,20 @@ static inline const char* string_VkResult(VkResult input_value)
 			return "VK_INCOMPLETE";
 		case VK_NOT_READY:
 			return "VK_NOT_READY";
-		case VK_OPERATION_DEFERRED_KHR:
+		/*case VK_OPERATION_DEFERRED_KHR:
 			return "VK_OPERATION_DEFERRED_KHR";
 		case VK_OPERATION_NOT_DEFERRED_KHR:
 			return "VK_OPERATION_NOT_DEFERRED_KHR";
 		case VK_PIPELINE_COMPILE_REQUIRED:
-			return "VK_PIPELINE_COMPILE_REQUIRED";
+			return "VK_PIPELINE_COMPILE_REQUIRED";*/
 		case VK_SUBOPTIMAL_KHR:
 			return "VK_SUBOPTIMAL_KHR";
 		case VK_SUCCESS:
 			return "VK_SUCCESS";
-		case VK_THREAD_DONE_KHR:
+		/*case VK_THREAD_DONE_KHR:
 			return "VK_THREAD_DONE_KHR";
 		case VK_THREAD_IDLE_KHR:
-			return "VK_THREAD_IDLE_KHR";
+			return "VK_THREAD_IDLE_KHR";*/
 		case VK_TIMEOUT:
 			return "VK_TIMEOUT";
 		default:
