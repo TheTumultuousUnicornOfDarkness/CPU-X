@@ -15,16 +15,16 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-05-08 17:12+0000\n"
+"PO-Revision-Date: 2022-08-24 00:18+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -141,30 +141,26 @@ msgstr "Houve uma falha ao invocar o GLFW (%i): %s"
 
 #: core.c:973
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "A API Vulkan não está disponível"
 
 #: core.c:982
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "falhou ao chamar o dmidecode"
+msgstr "houve uma falha ao chamar vkCreateInstance (%s)"
 
 #: core.c:991
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "falhou ao chamar o dmidecode"
+msgstr "Houve uma falha ao chamar o vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:997
-#, fuzzy
-#| msgid "There is no platform with OpenCL support (%s)"
 msgid "There is no device with Vulkan support"
-msgstr "Não há plataforma com suporte ao OpenCL (%s)"
+msgstr "Não há dispositivo com suporte ao Vulkan"
 
 #: core.c:1006
 #, c-format
 msgid "There is no available physical device (%s)"
-msgstr ""
+msgstr "Não há dispositivo físico disponível (%s)"
 
 #: core.c:1079
 #, c-format
@@ -315,11 +311,11 @@ msgstr "Invocando o libprocps"
 
 #: core.c:1722
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "não foi possível obter o tempo de atividade do sistema"
 
 #: core.c:1728
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "não foi possível criar a estrutura meminfo"
 
 #: core.c:1773
 msgid "Calling libstatgrab"
@@ -497,7 +493,7 @@ msgstr "Versão do usuário UMD"
 
 #: gui_gtk.c:636
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan Ray Tracing"
 
 #: gui_gtk.c:661
 #, c-format
@@ -764,10 +760,8 @@ msgid "DeviceID"
 msgstr "ID do dispositivo"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Versão"
+msgstr "Versão VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -805,25 +799,19 @@ msgstr "BAR. redimensionável"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Versão"
+msgstr "Versão OpenGL"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Versão"
+msgstr "Versão Vulkan"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Versão"
+msgstr "Versão OpenCL"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5083
 msgid "Cards"
