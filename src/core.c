@@ -975,7 +975,16 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 	}
 
 	VkInstance instance = {0};
-	VkInstanceCreateInfo createInfo = {0};
+	const char * requiredExtensions[] =
+	{
+		VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
+	};
+	VkInstanceCreateInfo createInfo =
+	{
+		.flags                   = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR,
+		.enabledExtensionCount   = sizeof(requiredExtensions) / sizeof(char*),
+		.ppEnabledExtensionNames = requiredExtensions,
+	};
 
 	if ((err = vkCreateInstance(&createInfo, NULL, &instance)) != VK_SUCCESS)
 	{
