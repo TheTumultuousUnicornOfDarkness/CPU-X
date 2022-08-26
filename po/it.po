@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-08-16 17:18+0000\n"
+"PO-Revision-Date: 2022-08-27 14:18+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -137,26 +137,23 @@ msgid "Vulkan API is not available"
 msgstr "API Vulkan non disponibile"
 
 #: core.c:982
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "chiamata a vkCreateInstance fallita"
+msgstr "chiamata a vkCreateInstance (%s) fallita"
 
 #: core.c:991
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "chiamata a vkEnumeratePhysicalDevices fallita"
+msgstr "chiamata a vkEnumeratePhysicalDevices (%s) fallita"
 
 #: core.c:997
 msgid "There is no device with Vulkan support"
 msgstr "Non ci sono dispositivi con supporto Vulkan"
 
 #: core.c:1006
-#, fuzzy, c-format
-#| msgid "There is no available physical device"
+#, c-format
 msgid "There is no available physical device (%s)"
-msgstr "Non è disponibile alcun dispositivo fisico"
+msgstr "Non è disponibile alcun dispositivo fisico (%s)"
 
 #: core.c:1079
 #, c-format
