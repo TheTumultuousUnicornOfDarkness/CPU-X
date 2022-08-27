@@ -1,13 +1,14 @@
 # Copyright © 2014-2022 Xorg
 # This file is distributed under the same license as the CPU-X package.
 # THANOS SIOURDAKIS <siourdakisthanos@gmail.com>, 2019.
+# Efthymis <eft.t@icloud.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2019-06-19 15:01+0000\n"
-"Last-Translator: THANOS SIOURDAKIS <siourdakisthanos@gmail.com>\n"
+"PO-Revision-Date: 2022-08-28 22:21+0000\n"
+"Last-Translator: Efthymis <eft.t@icloud.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/cpu-x/translations/"
 "el/>\n"
 "Language: el\n"
@@ -15,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
-msgstr "Εύρεση τεχνολογίας CPU"
+msgstr "Εύρεση τεχνολογίας Επεξεργαστή"
 
 #: core.c:256
 #, c-format
@@ -27,16 +28,18 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
+"Ο Επεξεργαστής σας δεν βρίσκεται στη βάση δεδομένων ==> 1%s, model: 2%i, "
+"ext. model: 3%i, ext. family: 4%i"
 
 #: core.c:269
 #, c-format
 msgid "%d x %d %s, %d-way"
-msgstr ""
+msgstr "%d x 2%d 3%s, 4%d-way"
 
 #: core.c:270
 #, c-format
 msgid "%d %s, %d-way"
-msgstr ""
+msgstr "%d 2%s, 3%d-way"
 
 #: core.c:271
 #, c-format
@@ -45,12 +48,12 @@ msgstr ""
 
 #: core.c:276
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Κλήση libcpuid για ανάκτηση στατιστικών"
 
 #: core.c:288
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "Αποτυχία κλήσης libcpuid (%s)"
 
 #: core.c:298
 #, c-format
