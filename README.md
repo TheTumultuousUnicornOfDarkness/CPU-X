@@ -76,13 +76,13 @@ In alphabetical order:
 
 ### From third-party repositories
 
-- Arch Linux/Debian/Ubuntu (OBS): [cpu-x](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x) / [cpu-x-git](https://software.opensuse.org//download.html?project=home%3AXorg&package=cpu-x-git)
 - Arch Linux (AUR): [cpu-x](https://aur.archlinux.org/packages/cpu-x/) / [cpu-x-git](https://aur.archlinux.org/packages/cpu-x-git/)
+- Gentoo (Overlay): [cpu-x](https://data.gpo.zugaina.org/beatussum-overlay/sys-process/cpu-x/)
 - Slackware: on [SlackOnly](https://slackonly.com/)
 
 ### From GitHub releases
 
-Look for **Assets** [here ![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/releases/latest) for packages and AppImage.
+Look for **Assets** [here ![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/releases/latest) for portable binary (AppImage).
 
 ### Manual build
 
