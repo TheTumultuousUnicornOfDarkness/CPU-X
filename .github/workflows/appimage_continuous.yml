@@ -14,6 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Build libcpuid
+      run: bash -x ./scripts/build_libcpuid.sh "RelWithDebInfo"
+
     - name: Build CPU-X
       run: bash -x ./scripts/build_ubuntu.sh "RelWithDebInfo" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 

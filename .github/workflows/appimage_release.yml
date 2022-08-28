@@ -16,6 +16,9 @@ jobs:
     - name: Get Git tag
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
+    - name: Build libcpuid
+      run: bash -x ./scripts/build_libcpuid.sh "Release"
+
     - name: Build CPU-X
       run: bash -x ./scripts/build_ubuntu.sh "Release" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 

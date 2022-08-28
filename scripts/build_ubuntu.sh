@@ -25,20 +25,15 @@ fi
 
 case "$VERSION_ID" in
 	"20.04") # Focal Fossa
-		PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		PACKAGES=('libncurses-dev' 'libncursesw6' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
 		;;
 	"22.04") # Jammy Jellyfish
-		PACKAGES=('libncurses-dev'   'libncursesw6' 'libcpuid15-git' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		PACKAGES=('libncurses-dev' 'libncursesw6' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
 		;;
 	*)
 		echo "Unsupported Ubuntu version: $VERSION_ID" ; exit 1
 		;;
 esac
-
-echo "Add OBS repository"
-echo "deb http://download.opensuse.org/repositories/home:/Xorg/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/home:Xorg.list
-curl -fsSL "https://download.opensuse.org/repositories/home:Xorg/xUbuntu_${VERSION_ID}/Release.key" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Xorg.gpg > /dev/null
-sudo apt-get update -qq
 
 echo "Install packages"
 sudo apt-get install -y -qq \
@@ -50,7 +45,6 @@ sudo apt-get install -y -qq \
 	"${PACKAGES[@]}" \
 	libgtk-3-0 \
 	libgtk-3-dev \
-	libcpuid-dev-git \
 	libpci-dev \
 	opencl-headers \
 	ocl-icd-libopencl1 \
