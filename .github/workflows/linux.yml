@@ -39,5 +39,4 @@ jobs:
 
     - name: Test CPU database with LibCPUID tests
       run: |
-        git clone https://github.com/anrieff/libcpuid.git "/tmp/libcpuid"
         bash ./scripts/run_libcpuid_tests.sh "/tmp/libcpuid/tests"

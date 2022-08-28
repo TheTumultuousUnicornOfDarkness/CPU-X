@@ -14,6 +14,7 @@ if [[ "$ID" != "ubuntu" ]]; then
 fi
 
 BUILD_TYPE="$1"
+BUILD_PATH="/tmp/libcpuid"
 
 echo "Install packages"
 sudo apt-get install -y -qq \
@@ -23,9 +24,8 @@ sudo apt-get install -y -qq \
 	g++
 
 echo "Clone libcpuid Git repository"
-cd /tmp
-git clone https://github.com/anrieff/libcpuid.git
-cd libcpuid
+git clone https://github.com/anrieff/libcpuid.git "$BUILD_PATH"
+cd "$BUILD_PATH"
 
 echo "Run CMake"
 cmake -B build \
