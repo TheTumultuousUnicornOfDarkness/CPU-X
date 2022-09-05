@@ -438,7 +438,7 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 
 	if(regcomp(&regex_filename_temp_in,  "temp1_input",                                     REG_NOSUB)             ||
 	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
-	   regcomp(&regex_filename_in_in,    "in0_input",                                       REG_NOSUB)             ||
+	   regcomp(&regex_filename_in_in,    "in1_input",                                       REG_NOSUB)             ||
 	   regcomp(&regex_dirname_cardN,     "card[[:digit:]]",                                 REG_NOSUB)             ||
 	   regcomp(&regex_dirname_hwmonN,    "hwmon[[:digit:]]",                                 REG_NOSUB)             ||
 	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
@@ -501,9 +501,10 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 				err = get_sensor_path(path, &regex_filename_temp_lab, &regex_label_other, cached_path);
 				break;
 			case RQT_CPU_VOLTAGE:
-				/* 'sensors' output:
-				Vcore:         +0.88 V  (min =  +0.80 V, max =  +1.38 V) */
-				err = get_sensor_path(path, &regex_filename_in_in, NULL, cached_path);
+				if(strstr(sensor, "zenpower") != NULL)
+					/* 'sensors' output:
+					SVI2_Core:     1.38 V */
+					err = get_sensor_path(path, &regex_filename_in_in, NULL, cached_path);
 				break;
 			case RQT_GPU_TEMPERATURE:
 				err = get_sensor_path(path, &regex_filename_temp_in, NULL, cached_path);
