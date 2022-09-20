@@ -74,6 +74,7 @@
 
 #if HAS_LIBGLFW
 # if HAS_Vulkan
+#   define VK_VERSION_1_1
 #	define GLFW_INCLUDE_VULKAN
 #	include <vulkan/vulkan.h>
 # endif
@@ -1009,28 +1010,45 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 	}
 
 	for (i = 0; i < device_count; i++) {
-		uint32_t device_ext_count = 0;
-		VkExtensionProperties *device_ext = NULL;
+		VkDevice vk_dev = {0};
 
 		VkPhysicalDeviceProperties prop = {0};
 		vkGetPhysicalDeviceProperties(devices[i], &prop);
 
-		if (device_id == prop.deviceID) {
-			/* get number of extension */
-			vkEnumerateDeviceExtensionProperties(devices[i], NULL, &device_ext_count, NULL);
-			device_ext = malloc(sizeof(VkExtensionProperties) * device_ext_count);
-			/* get all available extensions */
-			vkEnumerateDeviceExtensionProperties(devices[i], NULL, &device_ext_count, device_ext);
+		const char* ext_name_pci[] = { "VK_EXT_pci_bus_info" };
 
-			for (j = 0; j < device_ext_count; j++)
+/*
+		VkDeviceCreateInfo check_pci_bus_info = {
+			.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+			.pNext = NULL,
+			.flags = 0,
+			.enabledExtensionCount = 1,
+			.ppEnabledExtensionNames = ext_name_pci,
+		};
+
+		if (err = (vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
+		{
+			vkDestroyDevice(vk_dev, NULL);
+			continue;
+		}
+*/
+
+		if (device_id == prop.deviceID) {
+			const char* ext_name_rt[] = { "VK_KHR_acceleration_structure" };
+
+			VkDeviceCreateInfo check_rt = {
+				.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+				.pNext = NULL,
+				.flags = 0,
+				.enabledExtensionCount = 1,
+				.ppEnabledExtensionNames = ext_name_rt,
+			};
+
+			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
 			{
-				if (strncmp("VK_KHR_acceleration_structure", device_ext[j].extensionName, VK_MAX_EXTENSION_NAME_SIZE) == 0)
-				{
-					*vulkan_rt = true;
-					break;
-				}
+				*vulkan_rt = true;
 			}
-			free(device_ext);
+			vkDestroyDevice(vk_dev, NULL);
 
 			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
 			#if (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
