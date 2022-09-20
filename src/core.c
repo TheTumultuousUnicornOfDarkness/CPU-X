@@ -981,7 +981,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	}
 
 	VkInstance instance = {0};
-	VkInstanceCreateInfo createInfo = {
+	const VkInstanceCreateInfo createInfo = {
 		.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
 		.flags = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR,
 		.enabledExtensionCount = sizeof(ext_names) / sizeof(const char*),
@@ -1019,32 +1019,39 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		return err;
 	}
 
+	const char* const ext_name_pci[] = { "VK_EXT_pci_bus_info" };
+	const char* const ext_name_rt[] = { "VK_KHR_acceleration_structure" };
+	const VkDeviceCreateInfo check_pci_bus_info = {
+		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+		.pNext = NULL,
+		.flags = 0,
+		.enabledExtensionCount = 1,
+		.ppEnabledExtensionNames = ext_name_pci,
+	};
+	const VkDeviceCreateInfo check_rt = {
+		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+		.pNext = NULL,
+		.flags = 0,
+		.enabledExtensionCount = 1,
+		.ppEnabledExtensionNames = ext_name_rt,
+	};
+	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info = {
+		.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
+		.pNext = NULL,
+	};
+	VkPhysicalDeviceProperties2 prop2 = {
+		.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2,
+		.pNext = &bus_info,
+	};
+
 	for (i = 0; i < device_count; i++) {
 		VkDevice vk_dev = {0};
 
-		const char* ext_name_pci[] = { "VK_EXT_pci_bus_info" };
-		VkDeviceCreateInfo check_pci_bus_info = {
-			.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
-			.pNext = NULL,
-			.flags = 0,
-			.enabledExtensionCount = 1,
-			.ppEnabledExtensionNames = ext_name_pci,
-		};
-
-		if (err = (vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
+		if ((err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
 		{
 			vkDestroyDevice(vk_dev, NULL);
 			continue;
 		}
-
-		VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info = {
-			.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
-			.pNext = NULL,
-		};
-		VkPhysicalDeviceProperties2 prop2 = {
-			.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2,
-			.pNext = &bus_info,
-		};
 
 		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
 
@@ -1054,16 +1061,6 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		    dev->func             == bus_info.pciFunction
 		)
 		{
-			const char* ext_name_rt[] = { "VK_KHR_acceleration_structure" };
-
-			VkDeviceCreateInfo check_rt = {
-				.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
-				.pNext = NULL,
-				.flags = 0,
-				.enabledExtensionCount = 1,
-				.ppEnabledExtensionNames = ext_name_rt,
-			};
-
 			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
 			{
 				*vulkan_rt = true;
