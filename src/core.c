@@ -964,11 +964,12 @@ static inline const char* string_VkResult(VkResult input_value)
 }
 #endif /* HAS_Vulkan */
 
-static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool *vulkan_rt)
+static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, bool *vulkan_rt)
 {
 	int err = 0;
 #if HAS_LIBGLFW && HAS_Vulkan
 	uint32_t i, j, device_count = 0;
+	const char* const ext_names[] = { "VK_KHR_get_physical_device_properties2" };
 
 	if (glfwVulkanSupported() == GLFW_FALSE) {
 		MSG_WARNING("%s", _("Vulkan API is not available"));
@@ -976,7 +977,11 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 	}
 
 	VkInstance instance = {0};
-	VkInstanceCreateInfo createInfo = {0};
+	VkInstanceCreateInfo createInfo = {
+		.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+		.enabledExtensionCount = sizeof(ext_names) / sizeof(const char*),
+		.ppEnabledExtensionNames = ext_names,
+	};
 
 	if ((err = vkCreateInstance(&createInfo, NULL, &instance)) != VK_SUCCESS)
 	{
@@ -1012,12 +1017,7 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 	for (i = 0; i < device_count; i++) {
 		VkDevice vk_dev = {0};
 
-		VkPhysicalDeviceProperties prop = {0};
-		vkGetPhysicalDeviceProperties(devices[i], &prop);
-
 		const char* ext_name_pci[] = { "VK_EXT_pci_bus_info" };
-
-/*
 		VkDeviceCreateInfo check_pci_bus_info = {
 			.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
 			.pNext = NULL,
@@ -1031,9 +1031,24 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 			vkDestroyDevice(vk_dev, NULL);
 			continue;
 		}
-*/
 
-		if (device_id == prop.deviceID) {
+		VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info = {
+			.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
+			.pNext = NULL,
+		};
+		VkPhysicalDeviceProperties2 prop2 = {
+			.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2,
+			.pNext = &bus_info,
+		};
+
+		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
+
+		if ((uint32_t)dev->domain == bus_info.pciDomain   &&
+		    dev->bus              == bus_info.pciBus      &&
+		    dev->dev              == bus_info.pciDevice   &&
+		    dev->func             == bus_info.pciFunction
+		)
+		{
 			const char* ext_name_rt[] = { "VK_KHR_acceleration_structure" };
 
 			VkDeviceCreateInfo check_rt = {
@@ -1052,13 +1067,13 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 
 			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
 			#if (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
-				VK_API_VERSION_MAJOR(prop.apiVersion),
-				VK_API_VERSION_MINOR(prop.apiVersion),
-				VK_API_VERSION_PATCH(prop.apiVersion)
+				VK_API_VERSION_MAJOR(prop2.properties.apiVersion),
+				VK_API_VERSION_MINOR(prop2.properties.apiVersion),
+				VK_API_VERSION_PATCH(prop2.properties.apiVersion)
 			#else
-				VK_VERSION_MAJOR(prop.apiVersion),
-				VK_VERSION_MINOR(prop.apiVersion),
-				VK_VERSION_PATCH(prop.apiVersion)
+				VK_VERSION_MAJOR(prop2.properties.apiVersion),
+				VK_VERSION_MINOR(prop2.properties.apiVersion),
+				VK_VERSION_PATCH(prop2.properties.apiVersion)
 			#endif
 			);
 			break;
@@ -1067,7 +1082,7 @@ static int get_vulkan_api_version(uint32_t device_id, char *vulkan_version, bool
 
 	free(devices);
 #else
-	UNUSED(device_id);
+	UNUSED(dev);
 	UNUSED(vulkan_version);
 	UNUSED(vulkan_rt);
 #endif /* HAS_LIBGLFW */
@@ -1325,7 +1340,7 @@ static int find_devices(Labels *data)
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd, gl_ver);
-			get_vulkan_api_version((uint32_t)dev->device_id, vk_ver, &vulkan_ray_tracing);
+			get_vulkan_api_version(dev, vk_ver, &vulkan_ray_tracing);
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type, cl_ver);
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
