@@ -968,8 +968,12 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 {
 	int err = 0;
 #if HAS_LIBGLFW && HAS_Vulkan
-	uint32_t i, j, device_count = 0;
-	const char* const ext_names[] = { "VK_KHR_get_physical_device_properties2" };
+# define VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR 0x00000001
+	uint32_t i, device_count = 0;
+	const char* const ext_names[] = {
+		"VK_KHR_get_physical_device_properties2",
+		"VK_KHR_portability_enumeration",
+	};
 
 	if (glfwVulkanSupported() == GLFW_FALSE) {
 		MSG_WARNING("%s", _("Vulkan API is not available"));
@@ -979,6 +983,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	VkInstance instance = {0};
 	VkInstanceCreateInfo createInfo = {
 		.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+		.flags = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR,
 		.enabledExtensionCount = sizeof(ext_names) / sizeof(const char*),
 		.ppEnabledExtensionNames = ext_names,
 	};
