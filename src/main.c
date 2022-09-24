@@ -517,8 +517,8 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 	j = 0;
 	for(i = 0; cpux_options[i].long_opt != NULL; i++)
 	{
-		while(!cpux_options[i].has_mod)
-			i++;
+		if(!cpux_options[i].has_mod)
+			continue;
 		longopts[j++] = (struct option) { .name = cpux_options[i].long_opt, .has_arg = cpux_options[i].need_arg, .flag = 0, .val = cpux_options[i].short_opt };
 		snprintf(shortopt, SHORT_OPT_SIZE, "%c%c", cpux_options[i].short_opt, cpux_options[i].need_arg ? ':' : '\0');
 		strncat(shortopts, shortopt, SHORT_OPTS_SIZE - 1);
