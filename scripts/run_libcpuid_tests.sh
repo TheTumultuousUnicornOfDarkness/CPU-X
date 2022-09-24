@@ -25,7 +25,9 @@ while IFS= read -r -d '' file; do
 	# Cut test file after delimiter (dash line)
 	tmp_file="/tmp/$(basename "$file")"
 	while read -r line; do
-		echo "$line" | grep -q "\-\-\-\-\-\-\-\-\-\-\-\-" && break
+		if [[ "$line" == "--------------------------------------------------------------------------------" ]]; then
+			break
+		fi
 		echo "$line" >> "$tmp_file"
 	done < "$file"
 
