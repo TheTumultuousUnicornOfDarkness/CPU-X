@@ -42,6 +42,10 @@ static int call_libcpuid_static(Labels *data);
 static int call_libcpuid_dynamic(Labels *data);
 /* Required: HAS_LIBCPUID */
 
+/* MSRs raw values provided by libcpuid */
+static int call_libcpuid_msr_debug(Labels *data, uint16_t all_cpu_count);
+/* Required: HAS_LIBCPUID && DAEMON_UP */
+
 /* MSRs static values provided by libcpuid */
 static int call_libcpuid_msr_static(Labels *data);
 /* Required: HAS_LIBCPUID && DAEMON_UP */

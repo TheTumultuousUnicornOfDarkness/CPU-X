@@ -621,7 +621,6 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 					opts->issue       = true;
 					opts->output_type = OUT_DUMP;
 					setlocale(LC_ALL, "C");
-					setenv("CPUX_DAEMON_DEBUG", "1", 1);
 					unlink(LOG_FILE);
 					freopen(LOG_FILE, "a", stdout);
 					setvbuf(stdout, NULL, _IONBF, 0);

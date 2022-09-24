@@ -292,7 +292,10 @@ static int call_libcpuid_static(Labels *data)
 		else
 			err = cpuid_deserialize_all_raw_data(&raw_data, data->l_data->cpuid_raw_file);
 		if(opts->issue)
+		{
 			cpuid_serialize_all_raw_data(&raw_data, "");
+			if(DAEMON_UP) call_libcpuid_msr_debug(data, raw_data.num_raw);
+		}
 
 		if(err || cpu_identify_all(&raw_data, &data->l_data->system_id))
 		{
@@ -470,6 +473,17 @@ static int call_libcpuid_dynamic(Labels *data)
 	casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);
 
 	return (data->cpu_freq <= 0);
+}
+
+/* MSRs static values provided by libcpuid */
+static int call_libcpuid_msr_debug(Labels *data, uint16_t all_cpu_count)
+{
+	const DaemonCommand cmd = LIBCPUID_MSR_DEBUG;
+
+	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
+	SEND_DATA(&data->socket_fd,  &all_cpu_count, sizeof(uint16_t));
+
+	return 0;
 }
 
 /* MSRs static values provided by libcpuid */
