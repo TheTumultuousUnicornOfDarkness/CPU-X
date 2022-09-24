@@ -240,6 +240,8 @@ static int cpu_technology(Labels *data)
 	else
 		db = technology_unknown;
 
+	MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => values to find",
+	          l_data->cpu_model, l_data->cpu_ext_model,  l_data->cpu_ext_family);
 	while(db[++i].cpu_model != -2)
 	{
 		if(((db[i].cpu_model     < 0) || (db[i].cpu_model      == l_data->cpu_model))     &&
@@ -247,11 +249,13 @@ static int cpu_technology(Labels *data)
 		  ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == l_data->cpu_ext_family)))
 		{
 			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", db[i].process);
+			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
+			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
 			RETURN_OR_EXIT(0);
 		}
 		else
-			MSG_DEBUG("cpu_technology: model: %i/%i, ext. model: %i/%i, ext. family: %i/%i",
-			          db[i].cpu_model, l_data->cpu_model, db[i].cpu_ext_model, l_data->cpu_ext_model, db[i].cpu_ext_family, l_data->cpu_ext_family);
+			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i does not match",
+			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
 	}
 
 	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
