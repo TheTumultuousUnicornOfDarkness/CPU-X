@@ -122,6 +122,7 @@ void start_tui_ncurses(Labels *data)
 		switch(ch)
 		{
 			case KEY_LEFT:
+			case SHIFT_TAB:
 				/* Switch to left tab */
 				if(opts->selected_page > NO_CPU)
 				{
@@ -134,6 +135,7 @@ void start_tui_ncurses(Labels *data)
 				}
 				break;
 			case KEY_RIGHT:
+			case KEY_TAB:
 				/* Switch to right tab */
 				if(opts->selected_page < NO_ABOUT)
 				{
@@ -258,15 +260,6 @@ void start_tui_ncurses(Labels *data)
 
 
 /************************* Private functions *************************/
-
-/* Convert keys when an alternative mapping is used */
-#define ALT_CODE 27
-#define ALT(x)   (x & ALT_CODE)
-
-/* glibc's term.h pulls in sys/ttydefaults.h which has it, but musl's does not. */
-#ifndef CTRL
-#define CTRL(x)	(x&037)
-#endif
 
 static int convert_char(int ch)
 {

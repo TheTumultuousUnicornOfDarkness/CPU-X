@@ -29,6 +29,19 @@
 
 #define DEFAULT_TERM "xterm"
 
+/* Convert keys when an alternative mapping is used */
+#define ALT_CODE 27
+#define ALT(x)   (x & ALT_CODE)
+
+/* glibc's term.h pulls in sys/ttydefaults.h which has it, but musl's does not. */
+#ifndef CTRL
+#define CTRL(x)  (x & 037)
+#endif
+
+/* Tab key */
+#define KEY_TAB   '\t'
+#define SHIFT_TAB 353
+
 enum EnLines
 {
 	WINDOW_TOP_LINE,
