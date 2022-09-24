@@ -151,7 +151,8 @@ void start_tui_ncurses(Labels *data)
 				if(opts->selected_page == NO_CPU && opts->selected_core > 0)
 				{
 					opts->selected_core--;
-					print_activecore(win);
+					change_current_core_id(data);
+					print_activecore(win, data);
 				}
 				else if(opts->selected_page == NO_CACHES && opts->bw_test > 0)
 				{
@@ -170,17 +171,25 @@ void start_tui_ncurses(Labels *data)
 				}
 				break;
 			case KEY_NPAGE:
-				if(opts->selected_page == NO_BENCH && data->b_data->threads > 1 && !data->b_data->run)
+				if(opts->selected_page == NO_CPU && (int) opts->selected_type > 0)
+				{
+					opts->selected_type--;
+					data->l_data->change_type = true;
+					change_current_core_id(data);
+					print_activetype(win);
+				}
+				else if(opts->selected_page == NO_BENCH && data->b_data->threads > 1 && !data->b_data->run)
 				{
 					data->b_data->threads--;
 					print_paramthreads(win, info, data);
 				}
 				break;
 			case KEY_UP:
-				if(opts->selected_page == NO_CPU && (int) opts->selected_core < data->cpu_count - 1)
+				if(opts->selected_page == NO_CPU && (int) opts->selected_core < data->current_cpu_count - 1)
 				{
 					opts->selected_core++;
-					print_activecore(win);
+					change_current_core_id(data);
+					print_activecore(win, data);
 				}
 				else if(opts->selected_page == NO_CACHES && (int) opts->bw_test < data->w_data->test_count - 1)
 				{
@@ -199,7 +208,14 @@ void start_tui_ncurses(Labels *data)
 				}
 				break;
 			case KEY_PPAGE:
-				if(opts->selected_page == NO_BENCH && data->b_data->threads < data->cpu_count && !data->b_data->run)
+				if(opts->selected_page == NO_CPU && (int) opts->selected_type < data->type_count - 1)
+				{
+					opts->selected_type++;
+					data->l_data->change_type = true;
+					change_current_core_id(data);
+					print_activetype(win);
+				}
+				else if(opts->selected_page == NO_BENCH && data->b_data->threads < data->all_cpu_count && !data->b_data->run)
 				{
 					data->b_data->threads++;
 					print_paramthreads(win, info, data);
@@ -472,14 +488,16 @@ static void print_help()
 	printw("%s\n", _("This help describes how to use this Text-based User Interface."));
 
 	printw("\n%s\n", _("Global keys:"));
-	printw("\t%s\n", _("Press 'left' key to switch in left tab."));
-	printw("\t%s\n", _("Press 'right' key to switch in right tab."));
+	printw("\t%s\n", _("Press 'left' key or 'tab' key to switch in left tab."));
+	printw("\t%s\n", _("Press 'right' key or 'shift + tab' keys to switch in right tab."));
 	printw("\t%s\n", _("Press 'h' key to see this help."));
 	printw("\t%s\n", _("Press 'q' key to exit."));
 
 	printw("\n%s\n", _("CPU tab:"));
-	printw("\t%s\n", _("Press 'down' key to decrease core number to monitor."));
-	printw("\t%s\n", _("Press 'up' key to increase core number to monitor."));
+	printw("\t%s\n", _("Press 'next page' key to decrease core type number to monitor."));
+	printw("\t%s\n", _("Press 'previous page' key to increase core type number to monitor."));
+	printw("\t%s\n", _("Press 'down' key to decrease CPU core number to monitor."));
+	printw("\t%s\n", _("Press 'up' key to increase CPU core number to monitor."));
 
 	printw("\n%s\n", _("Caches tab:"));
 	printw("\t%s\n", _("Press 'down' key to switch to previous test."));
@@ -539,13 +557,28 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 	wrefresh(win);
 }
 
-/* Display active Core in CPU tab */
-#define BUFF_SIZE 16
-static void print_activecore(WINDOW *win)
+/* Display active Type in CPU tab */
+#define BUFF_SIZE 32
+static void print_activetype(WINDOW *win)
 {
 	char buff[BUFF_SIZE];
-	snprintf(buff, BUFF_SIZE, _("Core #%i"), opts->selected_core);
+	snprintf(buff, BUFF_SIZE, _("Type #%i"), opts->selected_type);
 	mvwprintwc(win, LINE_18, 4, DEFAULT_COLOR, buff);
+}
+#undef BUFF_SIZE
+
+/* Display active Core in CPU tab */
+#define BUFF_SIZE 16
+static void print_activecore(WINDOW *win, Labels *data)
+{
+	char buff[BUFF_SIZE];
+#if HAS_LIBCPUID
+	snprintf(buff, BUFF_SIZE, "%s #%i", get_core_type_name(data->l_data->system_id.cpu_types[opts->selected_type].purpose), opts->selected_core);
+#else
+	UNUSED(data);
+	snprintf(buff, BUFF_SIZE, _("Core #%i"), opts->selected_core);
+#endif /* HAS_LIBCPUID */
+	mvwprintwc(win, LINE_18, 18, DEFAULT_COLOR, buff);
 }
 #undef BUFF_SIZE
 
@@ -603,13 +636,13 @@ static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data)
 	/* Cache frame */
 	frame(win, LINE_11, middle, LINE_16, info.width - 1, data->objects[FRAMCACHE]);
 	line = LINE_12;
-	for(i = LEVEL1D; i < SOCKETS; i++)
+	for(i = LEVEL1D; i < CORES; i++)
 		mvwprintw2c(win, line++, middle + 1, "%12s: %s", data->tab_cpu[NAME][i], data->tab_cpu[VALUE][i]);
 
 	/* Last frame */
 	frame(win, LINE_17, info.start, LINE_19, info.width - 1, "");
-	print_activecore(win);
-	mvwprintw2c(win, LINE_18, 18,  "%s: %2s", data->tab_cpu[NAME][SOCKETS], data->tab_cpu[VALUE][SOCKETS]);
+	print_activetype(win);
+	print_activecore(win, data);
 	mvwprintw2c(win, LINE_18, 36, "%s: %2s", data->tab_cpu[NAME][CORES],   data->tab_cpu[VALUE][CORES]);
 	mvwprintw2c(win, LINE_18, 54, "%s: %2s", data->tab_cpu[NAME][THREADS], data->tab_cpu[VALUE][THREADS]);
 

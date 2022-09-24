@@ -135,6 +135,7 @@ int do_refresh(Labels *data)
 	{
 		case NO_CPU:
 #if HAS_LIBCPUID
+			if(data->l_data->change_type) err += err_func(call_libcpuid_static, data);
 			err += err_func(call_libcpuid_dynamic, data);
 			if(DAEMON_UP) err += err_func(call_libcpuid_msr_dynamic, data);
 #endif /* HAS_LIBCPUID */
@@ -227,26 +228,26 @@ static int cpu_technology(Labels *data)
 {
 	int i = -1;
 	const Technology_DB *db;
-	LibcpuidData *l_data = data->l_data;
+	struct cpu_id_t *cpu_id = &data->l_data->system_id.cpu_types[opts->selected_type];
 
-	if(l_data->cpu_vendor_id < 0 || l_data->cpu_model < 0 || l_data->cpu_ext_model < 0 || l_data->cpu_ext_family < 0)
+	if(cpu_id->vendor < 0 || cpu_id->model < 0 || cpu_id->ext_model < 0 || cpu_id->ext_family < 0)
 		RETURN_OR_EXIT(1);
 
 	MSG_VERBOSE("%s", _("Finding CPU technology"));
-	if(l_data->cpu_vendor_id == VENDOR_INTEL)
+	if(cpu_id->vendor == VENDOR_INTEL)
 		db = technology_intel;
-	else if(l_data->cpu_vendor_id == VENDOR_AMD)
+	else if(cpu_id->vendor == VENDOR_AMD)
 		db = technology_amd;
 	else
 		db = technology_unknown;
 
 	MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => values to find",
-	          l_data->cpu_model, l_data->cpu_ext_model,  l_data->cpu_ext_family);
+	          cpu_id->model, cpu_id->ext_model, cpu_id->ext_family);
 	while(db[++i].cpu_model != -2)
 	{
-		if(((db[i].cpu_model     < 0) || (db[i].cpu_model      == l_data->cpu_model))     &&
-		  ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == l_data->cpu_ext_model)) &&
-		  ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == l_data->cpu_ext_family)))
+		if(((db[i].cpu_model      < 0) || (db[i].cpu_model      == cpu_id->model))     &&
+		   ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == cpu_id->ext_model)) &&
+		   ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == cpu_id->ext_family)))
 		{
 			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", db[i].process);
 			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
@@ -259,7 +260,7 @@ static int cpu_technology(Labels *data)
 	}
 
 	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
-	            data->tab_cpu[VALUE][SPECIFICATION], l_data->cpu_model, l_data->cpu_ext_model, l_data->cpu_ext_family);
+	            data->tab_cpu[VALUE][SPECIFICATION], cpu_id->model, cpu_id->ext_model, cpu_id->ext_family);
 	RETURN_OR_EXIT(2);
 }
 #undef RETURN_OR_EXIT
@@ -268,147 +269,145 @@ static int cpu_technology(Labels *data)
 static int call_libcpuid_static(Labels *data)
 {
 	int err, i, j = 0;
-	bool cpu_supported       = true;
-	char tmp[MAXSTR * 2]     = "";
-	const char *fmt_cpuid    = opts->cpuid_decimal ? "%i" : "0x%X";
-	const char *fmt_cache_kb = _("%d x %d %s, %d-way");
-	const char *fmt_cache_mb = _("%d %s, %d-way");
-	const char *fmt_lines    = _("%s associative, %d-%s line size");
-	struct cpu_raw_data_t raw;
-	struct cpu_id_t datanr;
+	char tmp[MAXSTR * 2]        = "";
+	const char *fmt_cpuid       = opts->cpuid_decimal ? "%i" : "0x%X";
+	const char *fmt_cache_mono  = _("%d %s, %d-way");
+	const char *fmt_cache_multi = _("%d x %d %s, %d-way");
+	const char *fmt_lines       = _("%s associative, %d-%s line size");
+	struct cpu_id_t *cpu_id     = NULL;
+	struct cpu_raw_data_array_t raw_data;
+
+	/* Reset some values */
+	data->l_data->change_type = false;
+	data->cache_count         = 0;
 
 	/* Call libcpuid */
-	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving static data"));
-	if(opts->issue)
-		cpuid_set_verbosiness_level(2);
-	if(data->l_data->cpuid_raw_file == NULL)
-		err = cpuid_get_raw_data(&raw);
-	else
-		err = cpuid_deserialize_raw_data(&raw, data->l_data->cpuid_raw_file);
-	if(opts->issue)
-		cpuid_serialize_raw_data(&raw, "");
-
-	if(err || cpu_identify(&raw, &datanr))
+	if(data->type_count == 0)
 	{
-		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
-		return 1;
-	}
+		MSG_VERBOSE("%s", _("Calling libcpuid for retrieving static data"));
+		if(opts->issue)
+			cpuid_set_verbosiness_level(2);
+		if(data->l_data->cpuid_raw_file == NULL)
+			err = cpuid_get_all_raw_data(&raw_data);
+		else
+			err = cpuid_deserialize_all_raw_data(&raw_data, data->l_data->cpuid_raw_file);
+		if(opts->issue)
+			cpuid_serialize_all_raw_data(&raw_data, "");
 
-	/* Unsupported CPUs
-	   When CPUID.07H.0H:EDX[15]=1, hybrid topology is present
-	   https://www.intel.com/content/www/us/en/developer/articles/guide/alder-lake-developer-guide.html?wapkw=alder%20lake
-	*/
-	if((datanr.vendor == VENDOR_INTEL) && (raw.basic_cpuid[0x7][EDX] & 0x8000))
-	{
-		MSG_WARNING(_("CPU hybrid architecture is not supported. For more details, please refer to following issue: %s"), "https://github.com/anrieff/libcpuid/issues/157");
-		cpu_supported               = false;
-		datanr.num_cores            = 0;
-		datanr.num_logical_cpus     = 0;
-		datanr.l1_data_cache        = 0;
-		datanr.l1_instruction_cache = 0;
-		datanr.l2_cache             = 0;
-		datanr.l3_cache             = 0;
-		datanr.l4_cache             = 0;
+		if(err || cpu_identify_all(&raw_data, &data->l_data->system_id))
+		{
+			MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
+			return 1;
+		}
 	}
 
 	/* Some prerequisites */
-	data->cpu_count              = datanr.num_logical_cpus;
-	data->l_data->cpu_model      = datanr.model;
-	data->l_data->cpu_ext_model  = datanr.ext_model;
-	data->l_data->cpu_ext_family = datanr.ext_family;
-	if(opts->selected_core >= data->cpu_count)
+	data->type_count = data->l_data->system_id.num_cpu_types;
+	if(opts->selected_type >= data->type_count)
+	{
+		MSG_WARNING(_("Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"), opts->selected_type, data->type_count - 1);
+		opts->selected_type = 0;
+	}
+	cpu_id                   = &data->l_data->system_id.cpu_types[opts->selected_type];
+	data->current_cpu_count  = cpu_id->num_logical_cpus;
+	data->all_cpu_count      = cpu_id->total_logical_cpus;
+	if(opts->selected_core >= data->current_cpu_count)
+	{
+		MSG_WARNING(_("Selected CPU core (%u) is not a valid number (%u is the maximum for this type of core)"), opts->selected_core, data->current_cpu_count - 1);
 		opts->selected_core = 0;
+	}
+	change_current_core_id(data);
 
 	/* Basically fill CPU tab */
-	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",      cpu_supported ? datanr.cpu_codename : _("NOT SUPPORTED"));
-	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",      datanr.brand_str);
-	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, fmt_cpuid, datanr.family);
-	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, fmt_cpuid, datanr.ext_family);
-	casprintf(&data->tab_cpu[VALUE][MODEL],         false, fmt_cpuid, datanr.model);
-	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, fmt_cpuid, datanr.ext_model);
-	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",      datanr.stepping);
-	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",      datanr.num_cores);
-	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",      datanr.num_logical_cpus);
+	casprintf(&data->tab_cpu[VALUE][CODENAME],      false, "%s",      cpu_id->cpu_codename);
+	casprintf(&data->tab_cpu[VALUE][SPECIFICATION], false, "%s",      cpu_id->brand_str);
+	casprintf(&data->tab_cpu[VALUE][FAMILY],        false, fmt_cpuid, cpu_id->family);
+	casprintf(&data->tab_cpu[VALUE][EXTFAMILY],     false, fmt_cpuid, cpu_id->ext_family);
+	casprintf(&data->tab_cpu[VALUE][MODEL],         false, fmt_cpuid, cpu_id->model);
+	casprintf(&data->tab_cpu[VALUE][EXTMODEL],      false, fmt_cpuid, cpu_id->ext_model);
+	casprintf(&data->tab_cpu[VALUE][STEPPING],      false, "%d",      cpu_id->stepping);
+	casprintf(&data->tab_cpu[VALUE][CORES],         true,  "%d",      cpu_id->num_cores);
+	casprintf(&data->tab_cpu[VALUE][THREADS],       true,  "%d",      cpu_id->num_logical_cpus);
 
 	/* Improve the CPU Vendor label */
-	const struct CpuVendor { char *standard; char *improved; cpu_vendor_t id; } cpuvendors[] =
+	const struct CpuVendor { cpu_vendor_t id; char *str; } cpuvendors[] =
 	{
-		{ "GenuineIntel", "Intel",                  VENDOR_INTEL     },
-		{ "AuthenticAMD", "AMD",                    VENDOR_AMD       },
-		{ "CyrixInstead", "Cyrix",                  VENDOR_CYRIX     },
-		{ "NexGenDriven", "NexGen",                 VENDOR_NEXGEN    },
-		{ "GenuineTMx86", "Transmeta",              VENDOR_TRANSMETA },
-		{ "UMC UMC UMC ", "UMC",                    VENDOR_UMC       },
-		{ "CentaurHauls", "Centaur",                VENDOR_CENTAUR   },
-		{ "RiseRiseRise", "Rise",                   VENDOR_RISE      },
-		{ "SiS SiS SiS ", "SiS",                    VENDOR_SIS       },
-		{ "Geode by NSC", "National Semiconductor", VENDOR_NSC       },
-		{ datanr.vendor_str, datanr.vendor_str,     VENDOR_UNKNOWN   }
+		{ VENDOR_INTEL,     "Intel"                  },
+		{ VENDOR_AMD,       "AMD"                    },
+		{ VENDOR_CYRIX,     "Cyrix"                  },
+		{ VENDOR_NEXGEN,    "NexGen"                 },
+		{ VENDOR_TRANSMETA, "Transmeta"              },
+		{ VENDOR_UMC,       "UMC"                    },
+		{ VENDOR_CENTAUR,   "Centaur"                },
+		{ VENDOR_RISE,      "Rise"                   },
+		{ VENDOR_SIS,       "SiS"                    },
+		{ VENDOR_NSC,       "National Semiconductor" },
+		{ VENDOR_UNKNOWN,   _("unknown")             }
 	};
-	for(i = 0; strcmp(cpuvendors[i].standard, datanr.vendor_str); i++);
-	casprintf(&data->tab_cpu[VALUE][VENDOR], false, cpuvendors[i].improved);
-	data->l_data->cpu_vendor_id = cpuvendors[i].id;
+	for(i = 0; cpuvendors[i].id != cpu_id->vendor; i++);
+	casprintf(&data->tab_cpu[VALUE][VENDOR], false, cpuvendors[i].str);
 
-	/* Search in DB for CPU technology (depends on data->l_data->cpu_vendor_id) */
+	/* Search in DB for CPU technology (depends on CPU vendor) */
 	err = cpu_technology(data);
 
 	/* Remove training spaces in Specification label */
-	for(i = 1; datanr.brand_str[i] != '\0'; i++)
+	for(i = 1; cpu_id->brand_str[i] != '\0'; i++)
 	{
-		if(!(isspace(datanr.brand_str[i]) && isspace(datanr.brand_str[i - 1])))
-			data->tab_cpu[VALUE][SPECIFICATION][++j] = datanr.brand_str[i];
+		if(!(isspace(cpu_id->brand_str[i]) && isspace(cpu_id->brand_str[i - 1])))
+			data->tab_cpu[VALUE][SPECIFICATION][++j] = cpu_id->brand_str[i];
 	}
 	data->tab_cpu[VALUE][SPECIFICATION][++j] = '\0';
 
 	/* Cache level 1 (instruction) */
-	if(datanr.l1_instruction_cache > 0)
-		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, fmt_cache_kb, datanr.num_cores, datanr.l1_instruction_cache, UNIT_KB, datanr.l1_instruction_assoc);
+	if(cpu_id->l1_instruction_cache > 0)
+		casprintf(&data->tab_cpu[VALUE][LEVEL1I], true, fmt_cache_multi, cpu_id->l1_instruction_instances, cpu_id->l1_instruction_cache, UNIT_KB, cpu_id->l1_instruction_assoc);
 
 	/* Cache level 1 (data) */
-	if(datanr.l1_data_cache > 0)
+	if(cpu_id->l1_data_cache > 0)
 	{
 		data->cache_count++;
-		data->w_data->size[0] = datanr.l1_data_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, fmt_cache_kb, datanr.num_cores, datanr.l1_data_cache, UNIT_KB, datanr.l1_data_assoc);
-		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL1D], datanr.l1_data_cacheline, UNIT_B);
+		data->w_data->size[0] = cpu_id->l1_data_cache;
+		casprintf(&data->tab_cpu[VALUE][LEVEL1D], true, fmt_cache_multi, cpu_id->l1_data_instances, cpu_id->l1_data_cache, UNIT_KB, cpu_id->l1_data_assoc);
+		casprintf(&data->tab_caches[VALUE][L1SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL1D], cpu_id->l1_data_cacheline, UNIT_B);
 	}
 
 	/* Cache level 2 */
-	if(datanr.l2_cache > 0)
+	if(cpu_id->l2_cache > 0)
 	{
 		data->cache_count++;
-		data->w_data->size[1] = datanr.l2_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, fmt_cache_kb, datanr.num_cores, datanr.l2_cache, UNIT_KB, datanr.l2_assoc);
-		casprintf(&data->tab_caches[VALUE][L2SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL2], datanr.l2_cacheline, UNIT_B);
+		data->w_data->size[1] = cpu_id->l2_cache;
+		casprintf(&data->tab_cpu[VALUE][LEVEL2], true, fmt_cache_multi, cpu_id->l2_instances, cpu_id->l2_cache, UNIT_KB, cpu_id->l2_assoc);
+		casprintf(&data->tab_caches[VALUE][L2SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL2], cpu_id->l2_cacheline, UNIT_B);
 	}
 
 	/* Cache level 3 */
-	if(datanr.l3_cache > 0)
+	if(cpu_id->l3_cache > 0)
 	{
 		data->cache_count++;
-		data->w_data->size[2] = datanr.l3_cache;
-		casprintf(&data->tab_cpu[VALUE][LEVEL3], true, fmt_cache_mb, datanr.l3_cache >> 10, UNIT_MB, datanr.l3_assoc);
-		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL3], datanr.l3_cacheline, UNIT_B);
+		data->w_data->size[2] = cpu_id->l3_cache;
+		if(data->l_data->system_id.l3_total_instances > 1)
+			casprintf(&data->tab_cpu[VALUE][LEVEL3], true, fmt_cache_multi, cpu_id->l3_instances, cpu_id->l3_cache >> 10, UNIT_MB, cpu_id->l3_assoc);
+		else
+			casprintf(&data->tab_cpu[VALUE][LEVEL3], true, fmt_cache_mono, cpu_id->l3_cache >> 10, UNIT_MB, cpu_id->l3_assoc);
+		casprintf(&data->tab_caches[VALUE][L3SIZE], true, fmt_lines, data->tab_cpu[VALUE][LEVEL3], cpu_id->l3_cacheline, UNIT_B);
 	}
 
 	/* Cache level 4 */
-	if(datanr.l4_cache > 0)
+	if(cpu_id->l4_cache > 0)
 	{
 		data->cache_count++;
-		data->w_data->size[3] = datanr.l4_cache;
-		snprintf(tmp, MAXSTR, fmt_cache_mb, datanr.l4_cache >> 10, UNIT_MB, datanr.l4_assoc);
-		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_lines, tmp, datanr.l4_cacheline, UNIT_B);
+		data->w_data->size[3] = cpu_id->l4_cache;
+		if(data->l_data->system_id.l4_total_instances > 1)
+			snprintf(tmp, MAXSTR, fmt_cache_multi, cpu_id->l4_instances, cpu_id->l4_cache >> 10, UNIT_MB, cpu_id->l4_assoc);
+		else
+			snprintf(tmp, MAXSTR, fmt_cache_mono, cpu_id->l4_cache >> 10, UNIT_MB, cpu_id->l4_assoc);
+		casprintf(&data->tab_caches[VALUE][L4SIZE], true, fmt_lines, tmp, cpu_id->l4_cacheline, UNIT_B);
 		memset(tmp, 0, MAXSTR);
 	}
 
-	if(datanr.total_logical_cpus < datanr.num_logical_cpus)
-		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", 1);
-	else if(datanr.num_logical_cpus > 0) /* Avoid divide by 0 */
-		casprintf(&data->tab_cpu[VALUE][SOCKETS], true, "%d", datanr.total_logical_cpus / datanr.num_logical_cpus);
-
 	/* Add string "HT" in CPU Intructions label (if enabled) */
-	if(datanr.num_cores < datanr.num_logical_cpus)
-		strncat(tmp, (data->l_data->cpu_vendor_id == VENDOR_INTEL) ? "HT" : "SMT", MAXSTR * 2 - strlen(tmp));
+	if(cpu_id->num_cores < cpu_id->num_logical_cpus)
+		strncat(tmp, (cpu_id->vendor == VENDOR_INTEL) ? "HT" : "SMT", MAXSTR * 2 - strlen(tmp));
 
 	/* Fill CPU Intructions label */
 	const struct { const cpu_feature_t flag; const char *str; } cpu_flags[] =
@@ -449,7 +448,7 @@ static int call_libcpuid_static(Labels *data)
 	};
 	for(i = 0; cpu_flags[i].flag != NUM_CPU_FEATURES; i++)
 	{
-		if(!datanr.flags[cpu_flags[i].flag])
+		if(!cpu_id->flags[cpu_flags[i].flag])
 			continue;
 
 		j = strlen(tmp);
@@ -481,7 +480,7 @@ static int call_libcpuid_msr_static(Labels *data)
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR static values"));
 	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
-	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(uint8_t));
+	SEND_DATA(&data->socket_fd,  &data->current_core_id, sizeof(uint16_t));
 	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrStaticData));
 
 	/* CPU Multipliers (minimum & maximum) */
@@ -506,7 +505,7 @@ static int call_libcpuid_msr_dynamic(Labels *data)
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR dynamic values"));
 	SEND_DATA(&data->socket_fd,  &cmd, sizeof(DaemonCommand));
-	SEND_DATA(&data->socket_fd,  &opts->selected_core, sizeof(uint8_t));
+	SEND_DATA(&data->socket_fd,  &data->current_core_id, sizeof(uint16_t));
 	RECEIVE_DATA(&data->socket_fd, &msg, sizeof(MsrDynamicData));
 
 	/* CPU Voltage */
@@ -1504,13 +1503,13 @@ static int gpu_monitoring(Labels *data)
 				/* HWmon */
 				divisor_temp = 1e3;
 				if((cached_paths_hwmon[i] == NULL) && (data->g_data->gpu_driver[i] != GPUDRV_INTEL))
-					ret_hwmon = request_sensor_path(format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_HWMON);
+					ret_hwmon = request_sensor_path(0, format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_HWMON);
 				if(!ret_hwmon && (cached_paths_hwmon[i] != NULL))
 					ret_temp = fopen_to_str(&temp, "%s/temp1_input", cached_paths_hwmon[i]);
 
 				/* DRM */
 				if(cached_paths_drm[i] == NULL)
-					ret_drm = request_sensor_path(format("%s/drm", data->g_data->device_path[i]), &cached_paths_drm[i], RQT_GPU_DRM);
+					ret_drm = request_sensor_path(0, format("%s/drm", data->g_data->device_path[i]), &cached_paths_drm[i], RQT_GPU_DRM);
 				if(ret_drm || (cached_paths_drm[i] == NULL) || (sscanf(cached_paths_drm[i], "/sys/bus/pci/devices/%*x:%*x:%*x.%*d/drm/card%hhu", &card_number) != 1))
 					goto skip_clocks;
 
@@ -1984,15 +1983,15 @@ static int cputab_package_fallback(Labels *data)
 {
 	int i = -1;
 	const Package_DB *db;
-	LibcpuidData *l_data = data->l_data;
+	struct cpu_id_t *cpu_id = &data->l_data->system_id.cpu_types[opts->selected_type];
 
-	if(l_data->cpu_vendor_id < 0 || data->tab_cpu[VALUE][CODENAME] == NULL || data->tab_cpu[VALUE][SPECIFICATION] == NULL)
+	if(cpu_id->vendor < 0 || data->tab_cpu[VALUE][CODENAME] == NULL || data->tab_cpu[VALUE][SPECIFICATION] == NULL)
 		return 1;
 
 	MSG_VERBOSE("%s", _("Finding CPU package in fallback mode"));
-	if(l_data->cpu_vendor_id == VENDOR_INTEL)
+	if(cpu_id->vendor == VENDOR_INTEL)
 		db = package_intel;
-	else if(l_data->cpu_vendor_id == VENDOR_AMD)
+	else if(cpu_id->vendor == VENDOR_AMD)
 		db = package_amd;
 	else
 		db = package_unknown;
@@ -2032,14 +2031,14 @@ static int cputab_multipliers_fallback(Labels *data)
 
 	MSG_VERBOSE("%s", _("Calculating CPU multipliers in fallback mode"));
 	/* Minimum multiplier */
-	if(!(err = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, opts->selected_core)))
+	if(!(err = fopen_to_str(&min_freq_str, "%s%i/cpufreq/cpuinfo_min_freq", SYS_CPU, data->current_core_id)))
 	{
 		data->cpu_min_mult = round((strtod(min_freq_str, NULL) / 1e3) / data->bus_freq);
 		free(min_freq_str);
 	}
 
 	/* Maximum multiplier */
-	if(!(err = fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, opts->selected_core)))
+	if(!(err = fopen_to_str(&max_freq_str, "%s%i/cpufreq/cpuinfo_max_freq", SYS_CPU, data->current_core_id)))
 	{
 		data->cpu_max_mult = round((strtod(max_freq_str, NULL) / 1e3) / data->bus_freq);
 		free(max_freq_str);
@@ -2113,28 +2112,29 @@ static int cputab_temp_fallback(Labels *data)
 
 # if HAS_LIBCPUID
 	static bool module_loaded = false;
+	struct cpu_id_t *cpu_id = &data->l_data->system_id.cpu_types[opts->selected_type];
 	/* Load kernel modules */
-	if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_INTEL))
+	if(!module_loaded && (cpu_id->vendor == VENDOR_INTEL))
 		module_loaded = !load_module("coretemp", &data->socket_fd);
-	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family <= 0x8))
+	else if(!module_loaded && (cpu_id->vendor == VENDOR_AMD) && (cpu_id->ext_family <= 0x8))
 		module_loaded = !load_module("k8temp", &data->socket_fd);
-	else if(!module_loaded && (data->l_data->cpu_vendor_id == VENDOR_AMD) && (data->l_data->cpu_ext_family >= 0x10))
+	else if(!module_loaded && (cpu_id->vendor == VENDOR_AMD) && (cpu_id->ext_family >= 0x10))
 		module_loaded = !load_module("k10temp", &data->socket_fd);
 # endif /* HAS_LIBCPUID */
 
 	/* Filenames are cached */
 	if(cached_paths == NULL)
 	{
-		cached_paths = calloc(data->cpu_count, sizeof(char *));
+		cached_paths = calloc(data->all_cpu_count, sizeof(char *));
 		ALLOC_CHECK(cached_paths);
 	}
-	if(!cached_paths[opts->selected_core])
-		if((err = request_sensor_path(SYS_HWMON, &cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE)))
-			err = request_sensor_path(SYS_HWMON, &cached_paths[opts->selected_core], RQT_CPU_TEMPERATURE_OTHERS);
+	if(!cached_paths[data->current_core_id])
+		if((err = request_sensor_path(data->current_core_id, SYS_HWMON, &cached_paths[data->current_core_id], RQT_CPU_TEMPERATURE)))
+			err = request_sensor_path(data->current_core_id, SYS_HWMON, &cached_paths[data->current_core_id], RQT_CPU_TEMPERATURE_OTHERS);
 
-	if(!err && cached_paths[opts->selected_core])
+	if(!err && cached_paths[data->current_core_id])
 	{
-		if(!(err = fopen_to_str(&temp, cached_paths[opts->selected_core])))
+		if(!(err = fopen_to_str(&temp, cached_paths[data->current_core_id])))
 		{
 			casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%.2f°C", atof(temp) / 1e3);
 			free(temp);
@@ -2145,7 +2145,7 @@ static int cputab_temp_fallback(Labels *data)
 	char temp[MAXSTR];
 	size_t len = sizeof(temp);
 
-	if(!(err = sysctlbyname(format("dev.cpu.%i.temperature", opts->selected_core), temp, &len, NULL, 0)))
+	if(!(err = sysctlbyname(format("dev.cpu.%i.temperature", data->current_core_id), temp, &len, NULL, 0)))
 		casprintf(&data->tab_cpu[VALUE][TEMPERATURE], true, "%s", temp);
 #endif /* __linux__ */
 
@@ -2165,7 +2165,7 @@ static int cputab_volt_fallback(Labels *data)
 
 	MSG_VERBOSE("%s", _("Retrieving CPU voltage in fallback mode"));
 	if(cached_path == NULL)
-		err = request_sensor_path(SYS_HWMON, &cached_path, RQT_CPU_VOLTAGE);
+		err = request_sensor_path(data->current_core_id, SYS_HWMON, &cached_path, RQT_CPU_VOLTAGE);
 
 	if(!err && (cached_path != NULL))
 	{
@@ -2192,7 +2192,7 @@ static int cputab_freq_fallback(Labels *data)
 	char *freq;
 
 	MSG_VERBOSE("%s", _("Retrieving CPU frequency in fallback mode"));
-	if(!(err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, opts->selected_core)))
+	if(!(err = fopen_to_str(&freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, data->current_core_id)))
 	{
 		data->cpu_freq = (int) round(strtod(freq, NULL) / 1e3);
 		casprintf(&data->tab_cpu[VALUE][CORESPEED], true, "%d MHz", data->cpu_freq);

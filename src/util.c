@@ -36,6 +36,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
+
 /* glibc's stat.h has it but musl's does not. */
 #ifndef ACCESSPERMS
 #define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)
@@ -420,7 +424,7 @@ static int get_directory_path(char *dir_path, regex_t *regex_dirname, char **cac
 }
 
 /* Get a filename located in a directory corresponding to given request */
-int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which)
+int request_sensor_path(uint16_t current_core_id, char *base_dir, char **cached_path, enum RequestSensor which)
 {
 	int err      = 1;
 	char *sensor = NULL;
@@ -440,8 +444,8 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
 	   regcomp(&regex_filename_in_in,    "in1_input",                                       REG_NOSUB)             ||
 	   regcomp(&regex_dirname_cardN,     "card[[:digit:]]",                                 REG_NOSUB)             ||
-	   regcomp(&regex_dirname_hwmonN,    "hwmon[[:digit:]]",                                 REG_NOSUB)             ||
-	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
+	   regcomp(&regex_dirname_hwmonN,    "hwmon[[:digit:]]",                                REG_NOSUB)             ||
+	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", current_core_id),     REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_tdie,        "Tdie",                                            REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
 	{
@@ -532,6 +536,33 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 
 	MSG_DEBUG("request_sensor_path(base_dir=%s, cached_path=%s, which=%i) ==> %i", base_dir, *cached_path, which, err);
 	return err;
+}
+
+const char *get_core_type_name(uint8_t purpose)
+{
+#if HAS_LIBCPUID
+	switch(purpose)
+	{
+		case PURPOSE_GENERAL:     return _("Core");
+		case PURPOSE_PERFORMANCE: return _("P-core");
+		case PURPOSE_EFFICIENCY:  return _("E-core");
+	}
+#else
+	UNUSED(purpose);
+#endif /* HAS_LIBCPUID */
+	return _("Core #%i");
+}
+
+void change_current_core_id(Labels *data)
+{
+	data->current_core_id = 0;
+#if HAS_LIBCPUID
+	uint8_t i;
+	for(i = 0; i < opts->selected_type; i++)
+		data->current_core_id += data->l_data->system_id.cpu_types[i].num_logical_cpus;
+	data->current_core_id += opts->selected_core;
+	MSG_DEBUG("change_current_core_id(type=%u) ==> %u", opts->selected_type, data->current_core_id);
+#endif /* HAS_LIBCPUID */
 }
 
 const char *start_daemon(bool graphical)

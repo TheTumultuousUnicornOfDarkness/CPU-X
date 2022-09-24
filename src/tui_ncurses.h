@@ -134,8 +134,11 @@ static void print_help(void);
 /* The main window (title, tabs, footer) */
 static void main_win(WINDOW *win, const SizeInfo info, Labels *data);
 
+/* Display active Type in CPU tab */
+static void print_activetype(WINDOW *win);
+
 /* Display active Core in CPU tab */
-static void print_activecore(WINDOW *win);
+static void print_activecore(WINDOW *win, Labels *data);
 
 /* CPU tab */
 static void ntab_cpu(WINDOW *win, const SizeInfo info, Labels *data);

@@ -46,6 +46,7 @@ typedef struct
 	GtkWidget *refreshtime;
 	GtkWidget *theme;
 	GtkWidget *defaulttab;
+	GtkWidget *defaulttype;
 	GtkWidget *defaultcore;
 	GtkWidget *defaultcachetest;
 	GtkWidget *defaultcard;
@@ -55,6 +56,7 @@ typedef struct
 	/* Tab CPU */
 	GtkWidget *logocpu;
 	GtkWidget *gtktab_cpu[2][LASTCPU];
+	GtkWidget *activetype;
 	GtkWidget *activecore;
 
 	/* Tab Caches */
@@ -127,8 +129,14 @@ static void close_settings_window(GtkWidget *button, GtkLabels *glab);
 /* Hide settings window and apply changes */
 static void save_settings(GtkWidget *button, GtkLabels *glab);
 
+/* Event in settings window when CPU type is changed */
+static void change_defaulttype(GtkComboBox *box, GThrd *refr);
+
 /* Start daemon and reload CPU-X */
 static void reload_with_daemon(GtkWidget *button, GThrd *refr);
+
+/* Event in CPU tab when CPU type is changed */
+static void change_activetype(GtkComboBox *box, GThrd *refr);
 
 /* Event in CPU tab when Core number is changed */
 static void change_activecore(GtkComboBox *box, Labels *data);

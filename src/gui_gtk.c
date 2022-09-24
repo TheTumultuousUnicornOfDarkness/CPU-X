@@ -78,12 +78,12 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 	set_logos  (&glab, data);
 	set_labels (&glab, data);
 	set_signals(&glab, data, &refr);
-	labels_free(data);
 
 	/* Bind settings to get_widgets */
 	g_settings_bind(settings, "refresh-time",        glab.refreshtime,      "value",     G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "gui-theme",           glab.theme,            "active-id", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-tab",         glab.defaulttab,       "active-id", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind(settings, "default-core-type",   glab.defaulttype,      "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-cpu-core",    glab.defaultcore,      "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-cache-test",  glab.defaultcachetest, "active",    G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(settings, "default-active-card", glab.defaultcard,      "active",    G_SETTINGS_BIND_DEFAULT);
@@ -104,10 +104,10 @@ void start_gui_gtk(int *argc, char **argv[], Labels *data)
 static gboolean grefresh(GThrd *refr)
 {
 	int i;
-	gboolean ret = true;
-	Labels    *(data) = refr->data;
-	GtkLabels *(glab) = refr->glab;
-	uint16_t new_refr_time = g_settings_get_uint(settings, "refresh-time");
+	gboolean ret                  = true;
+	Labels    *(data)             = refr->data;
+	GtkLabels *(glab)             = refr->glab;
+	uint16_t new_refr_time        = g_settings_get_uint(settings, "refresh-time");
 	static uint16_t old_refr_time = 0;
 
 	opts->selected_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(glab->notebook));
@@ -116,14 +116,11 @@ static gboolean grefresh(GThrd *refr)
 	switch(opts->selected_page)
 	{
 		case NO_CPU:
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][VOLTAGE]),      data->tab_cpu[VALUE][VOLTAGE]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][TEMPERATURE]),  data->tab_cpu[VALUE][TEMPERATURE]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][MULTIPLIER]),   data->tab_cpu[VALUE][MULTIPLIER]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][CORESPEED]),    data->tab_cpu[VALUE][CORESPEED]);
-			gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][USAGE]),        data->tab_cpu[VALUE][USAGE]);
+			for(i = VENDOR; i < LASTCPU; i++)
+				gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 			break;
 		case NO_CACHES:
-			for(i = L1SPEED; i < data->cache_count * CACHEFIELDS; i += CACHEFIELDS)
+			for(i = L1SIZE; i < data->cache_count * CACHEFIELDS; i++)
 				gtk_label_set_text(GTK_LABEL(glab->gtktab_caches[VALUE][i]), data->tab_caches[VALUE][i]);
 			break;
 		case NO_SYSTEM:
@@ -201,6 +198,27 @@ static void save_settings(GtkWidget *__button, GtkLabels *glab)
 	gtk_widget_hide(GTK_WIDGET(glab->settingswindow));
 }
 
+/* Event in settings window when CPU type is changed */
+static void change_defaulttype(GtkComboBox *box, GThrd *refr)
+{
+	Labels    *(data) = refr->data;
+	GtkLabels *(glab) = refr->glab;
+	const gint type = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
+
+	if((type < 0) || (type >= data->type_count))
+		return;
+
+#if HAS_LIBCPUID
+	/* Update the "Default PCU core" ComboBoxText */
+	uint8_t i;
+	gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(glab->defaultcore));
+	for(i = 0; i < data->l_data->system_id.cpu_types[type].num_logical_cpus; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaultcore), format("%s #%i",
+			get_core_type_name(data->l_data->system_id.cpu_types[type].purpose), i));
+#endif /* HAS_LIBCPUID */
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaultcore), 0);
+}
+
 /* Start daemon and reload CPU-X */
 static void reload_with_daemon(GtkWidget *button, GThrd *refr)
 {
@@ -228,13 +246,44 @@ static void reload_with_daemon(GtkWidget *button, GThrd *refr)
 	}
 }
 
+/* Event in CPU tab when CPU type is changed */
+static void change_activetype(GtkComboBox *box, GThrd *refr)
+{
+	Labels    *(data) = refr->data;
+	GtkLabels *(glab) = refr->glab;
+	const gint type = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
+
+	if((type < 0) || (type >= data->type_count))
+		return;
+
+	opts->selected_type       = type;
+	data->l_data->change_type = true;
+
+#if HAS_LIBCPUID
+	/* Update the "Core" ComboBoxText */
+	uint8_t i;
+	data->current_cpu_count = data->l_data->system_id.cpu_types[type].num_logical_cpus;
+	if(opts->selected_core >= data->current_cpu_count)
+		opts->selected_core = 0;
+	change_current_core_id(data);
+	gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(glab->activecore));
+	for(i = 0; i < data->current_cpu_count; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format("%s #%i",
+			get_core_type_name(data->l_data->system_id.cpu_types[opts->selected_type].purpose), i));
+#endif /* HAS_LIBCPUID */
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
+}
+
 /* Event in CPU tab when Core number is changed */
 static void change_activecore(GtkComboBox *box, Labels *data)
 {
 	const gint core = gtk_combo_box_get_active(GTK_COMBO_BOX(box));
 
-	if(0 <= core && core < data->cpu_count)
-		opts->selected_core = core;
+	if((core < 0) || (core >= data->current_cpu_count))
+		return;
+
+	opts->selected_core = core;
+	change_current_core_id(data);
 }
 
 /* Event in Caches tab when Test number is changed */
@@ -368,6 +417,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->footer         = GTK_WIDGET(gtk_builder_get_object(builder, "footer_box"));
 	glab->notebook       = GTK_WIDGET(gtk_builder_get_object(builder, "header_notebook"));
 	glab->logocpu        = GTK_WIDGET(gtk_builder_get_object(builder, "proc_logocpu"));
+	glab->activetype     = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activetype"));
 	glab->activecore     = GTK_WIDGET(gtk_builder_get_object(builder, "trg_activecore"));
 	glab->activetest     = GTK_WIDGET(gtk_builder_get_object(builder, "test_activetest"));
 	glab->activecard     = GTK_WIDGET(gtk_builder_get_object(builder, "cards_activecard"));
@@ -380,6 +430,7 @@ static void get_widgets(GtkBuilder *builder, GtkLabels *glab)
 	glab->refreshtime      = GTK_WIDGET(gtk_builder_get_object(builder, "refreshtime_val"));
 	glab->theme            = GTK_WIDGET(gtk_builder_get_object(builder, "theme_val"));
 	glab->defaulttab       = GTK_WIDGET(gtk_builder_get_object(builder, "defaulttab_val"));
+	glab->defaulttype      = GTK_WIDGET(gtk_builder_get_object(builder, "defaulttype_val"));
 	glab->defaultcore      = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcore_val"));
 	glab->defaultcachetest = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcachetest_val"));
 	glab->defaultcard      = GTK_WIDGET(gtk_builder_get_object(builder, "defaultcard_val"));
@@ -566,8 +617,16 @@ static void set_labels(GtkLabels *glab, Labels *data)
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[NAME][i]),  data->tab_cpu[NAME][i]);
 		gtk_label_set_text(GTK_LABEL(glab->gtktab_cpu[VALUE][i]), data->tab_cpu[VALUE][i]);
 	}
-	for(i = 0; i < data->cpu_count; i++)
+	for(i = 0; i < data->type_count; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activetype), format(_("Type #%i"), i));
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activetype), opts->selected_type);
+	for(i = 0; i < data->current_cpu_count; i++)
+#if HAS_LIBCPUID
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format("%s #%i",
+			get_core_type_name(data->l_data->system_id.cpu_types[opts->selected_type].purpose), i));
+#else
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->activecore), format(_("Core #%i"), i));
+#endif /* HAS_LIBCPUID */
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->activecore), opts->selected_core);
 
 	gtk_widget_set_tooltip_text(glab->gtktab_cpu[NAME][FAMILY], _("BaseFamily"));
@@ -648,7 +707,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60);
 	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, 1);
 	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMDURATION]), 1, 60 * 24);
-	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, data->cpu_count);
+	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->gtktab_bench[VALUE][PARAMTHREADS]),  1, data->all_cpu_count);
 
 	/* Tab About */
 	for(i = DESCRIPTION; i < LASTABOUT; i++)
@@ -660,8 +719,16 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	for (i = NO_CPU; i <= NO_ABOUT; i++)
 		gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(glab->defaulttab), i, nicktab[i], format(_("%s"), data->objects[i]));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaulttab), opts->selected_page);
-	for(i = 0; i < data->cpu_count; i++)
+	for(i = 0; i < data->type_count; i++)
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaulttype), format(_("Type #%i"), i));
+	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaulttype), opts->selected_type);
+	for(i = 0; i < data->current_cpu_count; i++)
+#if HAS_LIBCPUID
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaultcore), format("%s #%i",
+			get_core_type_name(data->l_data->system_id.cpu_types[opts->selected_type].purpose), i));
+#else
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaultcore), format(_("Core #%i"), i));
+#endif /* HAS_LIBCPUID */
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaultcore), opts->selected_core);
 	for(i = 0; i < data->w_data->test_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaultcachetest), data->w_data->test_name[i]);
@@ -680,6 +747,7 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 	g_signal_connect(glab->settingswindow, "delete-event", G_CALLBACK(hide_settings_window), NULL);
 	g_signal_connect(glab->settingsbutton, "clicked",      G_CALLBACK(open_settings_window), glab);
 	g_signal_connect(glab->daemonbutton,   "clicked",      G_CALLBACK(reload_with_daemon),   refr);
+	g_signal_connect(glab->activetype,     "changed",      G_CALLBACK(change_activetype),    refr);
 	g_signal_connect(glab->activecore,     "changed",      G_CALLBACK(change_activecore),    data);
 	g_signal_connect(glab->activetest,     "changed",      G_CALLBACK(change_activetest),    data);
 	g_signal_connect(glab->activecard,     "changed",      G_CALLBACK(change_activecard),    refr);
@@ -695,7 +763,8 @@ static void set_signals(GtkLabels *glab, Labels *data, GThrd *refr)
 		g_signal_connect(G_OBJECT(glab->bar[i]),  "draw", G_CALLBACK(fill_frame), refr);
 
 	/* Settings window */
-	g_signal_connect(glab->validatebutton, "clicked", G_CALLBACK(save_settings), glab);
+	g_signal_connect(glab->defaulttype,    "changed", G_CALLBACK(change_defaulttype),    refr);
+	g_signal_connect(glab->validatebutton, "clicked", G_CALLBACK(save_settings),         glab);
 	g_signal_connect(glab->cancelbutton,   "clicked", G_CALLBACK(close_settings_window), glab);
 }
 

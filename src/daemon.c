@@ -88,12 +88,12 @@ static void libcpuid_msr_serialize(void)
 /* Try to open a CPU MSR */
 static int libcpuid_init_msr(int *fd, struct msr_driver_t **msr)
 {
-	unsigned selected_core = 0;
+	uint16_t current_core_id = 0;
 
-	read(*fd, &selected_core, sizeof(uint8_t)); // Core 0 on failure
-	if((*msr = cpu_msr_driver_open_core(selected_core)) == NULL)
+	read(*fd, &current_core_id, sizeof(uint16_t)); // Core 0 on failure
+	if((*msr = cpu_msr_driver_open_core(current_core_id)) == NULL)
 	{
-		MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", selected_core, cpuid_error());
+		MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", current_core_id, cpuid_error());
 		return 2;
 	}
 

@@ -2969,7 +2969,7 @@ int bandwidth_cpux(void *p_data)
 
 #if HAS_LIBCPUID
 	/* Fast initialization by using libcpuid */
-	switch(data->l_data->cpu_vendor_id)
+	switch(data->l_data->system_id.cpu_types[opts->selected_type].vendor)
 	{
 		case VENDOR_INTEL:
 			is_intel = true;

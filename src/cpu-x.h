@@ -30,6 +30,10 @@
 #include <errno.h>
 #include <libintl.h>
 
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
+
 /* Software definition */
 #define PRGNAME               "CPU-X"
 #define PRGNAME_LOW           "cpu-x"
@@ -150,7 +154,7 @@ enum EnTabCpu
 	VENDOR, CODENAME, PACKAGE, TECHNOLOGY, VOLTAGE, SPECIFICATION, FAMILY, EXTFAMILY, MODEL, EXTMODEL, TEMPERATURE, STEPPING, INSTRUCTIONS,
 	CORESPEED, MULTIPLIER, BUSSPEED, USAGE,
 	LEVEL1D, LEVEL1I, LEVEL2, LEVEL3,
-	SOCKETS, CORES, THREADS,
+	CORES, THREADS,
 	LASTCPU
 };
 
@@ -249,8 +253,10 @@ enum EnMultipliers
 
 typedef struct
 {
-	int8_t  cpu_vendor_id;
-	int32_t cpu_model, cpu_ext_model, cpu_ext_family;
+	bool change_type;
+#if HAS_LIBCPUID
+	struct system_id_t system_id;
+#endif /* HAS_LIBCPUID */
 	char *cpuid_raw_file;
 } LibcpuidData;
 
@@ -299,7 +305,8 @@ typedef struct
 	char *tab_about[LASTABOUT];
 
 	int     cpu_freq, socket_fd;
-	uint8_t cpu_count, cache_count, dimm_count, gpu_count;
+	uint8_t type_count, cache_count, dimm_count, gpu_count;
+	uint16_t current_cpu_count, all_cpu_count, current_core_id;
 	double  bus_freq, cpu_min_mult, cpu_max_mult;
 	bool    reload;
 
@@ -313,8 +320,8 @@ typedef struct
 typedef struct
 {
 	bool     cpuid_decimal, color, verbose, debug, issue, with_daemon, debug_database, freq_fallback;
-	uint8_t  selected_page, selected_core, bw_test, selected_gpu;
-	uint16_t output_type, refr_time;
+	uint8_t  selected_page, selected_type, bw_test, selected_gpu;
+	uint16_t selected_core, output_type, refr_time;
 	enum EnOptKeymap keymap;
 } Options;
 
@@ -381,7 +388,13 @@ int load_module(char *module, int *fd);
 
 /* Get a filename located in a directory corresponding to given request */
 enum RequestSensor { RQT_CPU_TEMPERATURE, RQT_CPU_TEMPERATURE_OTHERS, RQT_CPU_VOLTAGE, RQT_GPU_TEMPERATURE, RQT_GPU_DRM, RQT_GPU_HWMON };
-int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which);
+int request_sensor_path(uint16_t current_core_id, char *base_dir, char **cached_path, enum RequestSensor which);
+
+/* Get CPU core type name depending on CPU purpose */
+const char *get_core_type_name(uint8_t purpose);
+
+/* Change target core ID */
+void change_current_core_id(Labels *data);
 
 /* Start daemon in background */
 const char *start_daemon(bool graphical);
