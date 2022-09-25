@@ -402,6 +402,9 @@ const char *start_daemon(bool graphical);
 /* Check if daemon is running */
 bool daemon_is_alive(void);
 
+/* Change CPU core affinity */
+bool set_cpu_affinity(uint16_t logical_cpu);
+
 
 /***************************** External headers *****************************/
 

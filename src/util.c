@@ -563,6 +563,8 @@ void change_current_core_id(Labels *data)
 	data->current_core_id += opts->selected_core;
 	MSG_DEBUG("change_current_core_id(type=%u) ==> %u", opts->selected_type, data->current_core_id);
 #endif /* HAS_LIBCPUID */
+	if(!set_cpu_affinity(data->current_core_id))
+		MSG_ERROR(_("failed to change CPU affinitiy to core %u"), data->current_core_id);
 }
 
 const char *start_daemon(bool graphical)
@@ -630,3 +632,61 @@ bool daemon_is_alive()
 
 	return !ret && (statbuf.st_uid == 0) && S_ISSOCK(statbuf.st_mode) && (statbuf.st_mode & ACCESSPERMS);
 }
+
+#if defined linux || defined __linux__
+# include <sched.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpu_set_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(logical_cpu, &cpuset);
+	return sched_setaffinity(0, sizeof(cpuset), &cpuset) == 0;
+}
+/* endif defined linux || defined __linux__ */
+#elif defined __FreeBSD__
+# include <sys/param.h>
+# include <sys/cpuset.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpuset_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(logical_cpu, &cpuset);
+	return cpuset_setaffinity(CPU_LEVEL_WHICH, CPU_WHICH_TID, -1, sizeof(cpuset), &cpuset) == 0;
+}
+/* endif defined __FreeBSD__ */
+#elif defined __DragonFly__
+# include <pthread.h>
+# include <pthread_np.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpuset_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(logical_cpu, &cpuset);
+	return pthread_setaffinity_np(pthread_self(), sizeof(cpuset), &cpuset) == 0;
+}
+/* endif defined __DragonFly__ */
+#elif defined __NetBSD__
+# include <pthread.h>
+# include <sched.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpuset_t *cpuset;
+	cpuset = cpuset_create();
+	cpuset_set((cpuid_t) logical_cpu, cpuset);
+	int ret = pthread_setaffinity_np(pthread_self(), cpuset_size(cpuset), cpuset);
+	cpuset_destroy(cpuset);
+	return ret == 0;
+}
+/* endif defined __NetBSD__ */
+#else
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	static bool warning_printed = 0;
+	if(!warning_printed)
+	{
+		MSG_WARNING("%s", _("set_cpu_affinity() not supported on this operating system"));
+		warning_printed = 1;
+	}
+	return false;
+}
+#endif /* set_cpu_affinity defined */
