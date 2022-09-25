@@ -31,6 +31,7 @@
 #include "cpu-x.h"
 #include "tui_ncurses.h"
 
+static unsigned tab_memory_scroll = 0;
 static void (*func_ptr[])(WINDOW*, const SizeInfo, Labels*) =
 {
 	ntab_cpu,
@@ -65,7 +66,7 @@ static const Colors color[] =
 void start_tui_ncurses(Labels *data)
 {
 	int err = 0, ch = 0;
-	const SizeInfo info = { .height = LINE_COUNT, .width = 70, .start = 1, .tb = 2, .tm = 26, .te = 48 };
+	const SizeInfo info = { .height = LINE_COUNT, .width = 76, .start = 1, .tb = 2, .tm = 26, .te = 48 };
 	NThrd refr = { .data = data, .info = info };
 	WINDOW *win;
 
@@ -176,6 +177,14 @@ void start_tui_ncurses(Labels *data)
 					print_paramthreads(win, info, data);
 				}
 				break;
+			case KEY_HOME:
+				if(opts->selected_page == NO_MEMORY && tab_memory_scroll > 0)
+				{
+					tab_memory_scroll--;
+					main_win(win, info, data);
+					ntab_memory(win, info, data);
+				}
+				break;
 			case KEY_UP:
 				if(opts->selected_page == NO_CPU && (int) opts->selected_core < data->cpu_count - 1)
 				{
@@ -203,6 +212,14 @@ void start_tui_ncurses(Labels *data)
 				{
 					data->b_data->threads++;
 					print_paramthreads(win, info, data);
+				}
+				break;
+			case KEY_END:
+				if(opts->selected_page == NO_MEMORY && tab_memory_scroll + DISPLAYABLE_DIMM_COUNT < data->dimm_count)
+				{
+					tab_memory_scroll++;
+					main_win(win, info, data);
+					ntab_memory(win, info, data);
 				}
 				break;
 			case 'f':
@@ -474,6 +491,8 @@ static void print_help()
 	printw("\n%s\n", _("Global keys:"));
 	printw("\t%s\n", _("Press 'left' key to switch in left tab."));
 	printw("\t%s\n", _("Press 'right' key to switch in right tab."));
+	printw("\t%s\n", _("Press 'home' key to scroll up in a page."));
+	printw("\t%s\n", _("Press 'end' key to scroll down in a page."));
 	printw("\t%s\n", _("Press 'h' key to see this help."));
 	printw("\t%s\n", _("Press 'q' key to exit."));
 
@@ -483,7 +502,7 @@ static void print_help()
 
 	printw("\n%s\n", _("Caches tab:"));
 	printw("\t%s\n", _("Press 'down' key to switch to previous test."));
-	printw("\t%s\n", _("Press 'up' key' to switch to next test."));
+	printw("\t%s\n", _("Press 'up' key to switch to next test."));
 
 	printw("\n%s\n", _("Bench tab:"));
 	printw("\t%s\n", _("Press 'down' key to decrement benchmark duration."));
@@ -519,7 +538,7 @@ static void main_win(WINDOW *win, const SizeInfo info, Labels *data)
 	box(win, 0, 0);
 
 	mvwprintwc(win, TITLE_LINE, info.width / 2 - strlen(PRGNAME) / 2, TITLE_COLOR, PRGNAME);
-	mvwprintwc(win, HEADER_LINE, 2, DEFAULT_COLOR, PRGNAME);
+	mvwprintwc(win, HEADER_LINE, 12, DEFAULT_COLOR, PRGNAME);
 	mvwprintwc(win, HEADER_LINE, info.width / 2, DEFAULT_COLOR, data->tab_about[VERSIONSTR]);
 
 	for(i = 1; i < info.width - 1; i++)
@@ -689,18 +708,24 @@ static void ntab_motherboard(WINDOW *win, const SizeInfo info, Labels *data)
 /* Memory tab */
 static void ntab_memory(WINDOW *win, const SizeInfo info, Labels *data)
 {
-	int i, line = LINE_0;
+	unsigned i, line = LINE_0;
+	const char *delim = ",";
+	char *dimm_line, *dimm_line1, *dimm_line2;
 
 	if(!data->dimm_count)
 		return;
 
 	/* Banks frame */
-	for(i = BANK0; i < data->dimm_count; i++)
+	for(i = tab_memory_scroll; (i < tab_memory_scroll + DISPLAYABLE_DIMM_COUNT) && (i < data->dimm_count); i++)
 	{
-		frame(win, line, info.start, line + 2, info.width - 1, data->objects[FRAMBANK0 + i]);
-		line++;
-		mvwprintw2c(win, line, info.tb, "%13s: %s", data->tab_memory[NAME][i], data->tab_memory[VALUE][i]);
+		frame(win, line, info.start, line + 3, info.width - 1, data->objects[FRAMBANK0 + i]);
+		dimm_line  = strdup(data->tab_memory[VALUE][i]);
+		dimm_line1 = strsep(&dimm_line, delim);
+		dimm_line2 = strsep(&dimm_line, delim);
+		mvwprintw2c(win, ++line, info.tb, "%13s: %s", data->tab_memory[NAME][i], dimm_line1);
+		mvwprintwc (win, ++line, info.tb + 14, LABEL_VALUE_COLOR, (dimm_line2 == NULL) ? "" : dimm_line2);
 		line += 2;
+		free(dimm_line);
 	}
 
 	wrefresh(win);

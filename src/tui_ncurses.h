@@ -28,6 +28,7 @@
 #include <ncurses.h>
 
 #define DEFAULT_TERM "xterm"
+#define DISPLAYABLE_DIMM_COUNT 5
 
 /* Convert keys when an alternative mapping is used */
 #define ALT_CODE 27
