@@ -10,13 +10,14 @@
 # Francisco Serrador <fserrador@gmail.com>, 2022.
 # Yoandry González Castro <yoandry.gonzalezc@gmail.com>, 2022.
 # Luiz Carlos Lucasv <csversut@gmail.com>, 2022.
+# Ciro Haskour <ciroh.jobs@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-05-23 04:17+0000\n"
-"Last-Translator: LocoUnPocoNadaMas <dkno_c1@hotmail.com>\n"
+"PO-Revision-Date: 2022-09-25 19:56-0300\n"
+"Last-Translator: Ciro Haskour <ciroh.jobs@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
 "Language: es\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -140,7 +141,7 @@ msgstr "erróneo al invocar GLFW (%i): %s"
 
 #: core.c:973
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "La API de Vulkan no está disponible"
 
 #: core.c:982
 #, fuzzy, c-format
@@ -163,7 +164,7 @@ msgstr "No hay ninguna plataforma con capacidad OpenCL (%s)"
 #: core.c:1006
 #, c-format
 msgid "There is no available physical device (%s)"
-msgstr ""
+msgstr "No hay un dispositivo físico disponible (%s)"
 
 #: core.c:1079
 #, c-format
@@ -240,11 +241,11 @@ msgstr ""
 #: core.c:1221
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "OpenCL no está mantenido con su proveedor de GPU (0x%X)"
+msgstr "Su proveedor de GPU no soporta OpenCL (0x%X)"
 
 #: core.c:1252
 msgid "Finding devices"
-msgstr "Búsqueda de dispositivos"
+msgstr "Buscando dispositivos"
 
 #: core.c:1264
 #, c-format
@@ -267,7 +268,7 @@ msgstr "Deshabilitado"
 
 #: core.c:1329
 msgid "failed to find chipset vendor and model"
-msgstr "No se encontró el proveedor y el modelo del hipset"
+msgstr "No se encontró el proveedor y el modelo del chipset"
 
 #: core.c:1331
 msgid "failed to find graphic card vendor and model"
@@ -284,7 +285,7 @@ msgstr "Ninguno"
 #: core.c:1584
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "El controlador para la GPU %u no informa de las frecuencias"
+msgstr "El controlador para la GPU %u no devuelve información de frecuencias"
 
 #: core.c:1627
 #, c-format
@@ -309,11 +310,11 @@ msgstr "Llamar libprocps"
 
 #: core.c:1722
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "no se pudo obtener el tiempo de actividad del sistema (uptime)"
 
 #: core.c:1728
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "no se pudo crear la estructúra de meminfo"
 
 #: core.c:1773
 msgid "Calling libstatgrab"
@@ -381,17 +382,17 @@ msgstr "Iniciando benchmark"
 
 #: core.c:1936
 msgid "an error occurred while starting benchmark"
-msgstr "un error ocorrió mientras inicia benchmark"
+msgstr "un error ocurrió mientras se iniciaba el benchmark"
 
 #: core.c:1953
 msgid "Finding CPU package in fallback mode"
-msgstr "Encontrar paquete de CPU en modo de reserva"
+msgstr "Encontrando paquete de CPU en modo de reserva"
 
 #: core.c:1975
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
-"Su zócalo de CPU no está presenta dentro de la base de datos ==> %s, nombre "
+"Su zócalo de CPU no se encuentra dentro de la base de datos ==> %s, nombre "
 "clave: %s"
 
 #: core.c:1994
@@ -437,7 +438,7 @@ msgstr "request_handler: caso %i no gestionado"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr "Inicializando IGU GTK…"
+msgstr "Inicializando la GUI GTK…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
@@ -445,7 +446,7 @@ msgstr "fallo al importar la IU en GtkBuilder"
 
 #: gui_gtk.c:549
 msgid "Connected to daemon"
-msgstr "Conectado a demonio"
+msgstr "Conectado a demonio (daemon)"
 
 #: gui_gtk.c:551
 msgid "No polkit authentication agent found"
@@ -485,11 +486,11 @@ msgstr ""
 
 #: gui_gtk.c:635
 msgid "User Mode Driver Version"
-msgstr "Modo Usuario de Versión del Controlador"
+msgstr "Versión del Driver en modo Usuario"
 
 #: gui_gtk.c:636
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Ray Tracing (Vulkan)"
 
 #: gui_gtk.c:661
 #, c-format
@@ -498,7 +499,7 @@ msgstr "%s"
 
 #: main.c:56
 msgid "Setting label names"
-msgstr "Establecer etiquetas de nombre"
+msgstr "Estableciendo nombres de etiquetas"
 
 #: main.c:58 cpu-x-gtk-3.12.ui:1399
 msgid "CPU"
@@ -614,12 +615,12 @@ msgstr "Hilos(s)"
 
 #: main.c:91 cpu-x-gtk-3.12.ui:1997
 msgid "Caches"
-msgstr "Antememorias"
+msgstr "Cachés"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr "Antememoria L%i"
+msgstr "Caché L%i"
 
 #: main.c:96
 msgid "Size"
@@ -663,7 +664,7 @@ msgstr "Fecha"
 
 #: main.c:112
 msgid "ROM Size"
-msgstr "Tamaño ROM"
+msgstr "Tamaño de la ROM"
 
 #: main.c:114 cpu-x-gtk-3.12.ui:2527
 msgid "Chipset"
@@ -749,19 +750,16 @@ msgstr "Versión UMD"
 
 #: main.c:152
 msgid "Compute Unit"
-msgstr "Unidad Computadora"
+msgstr "Unidad de Cómputo"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr "Id de dispositivo"
+msgstr "ID de dispositivo"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Versión"
+msgstr "Versión de VBIOS"
 
-#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
 #: main.c:155 cpu-x-gtk-3.12.ui:5920
 msgid "Interface"
@@ -773,7 +771,7 @@ msgstr "Temperatura"
 
 #: main.c:158
 msgid "Core Voltage"
-msgstr "Voltaje Núcleo"
+msgstr "Voltaje de Núcleo"
 
 #: main.c:159
 msgid "Power Avg"
@@ -781,11 +779,11 @@ msgstr "Potencia Media"
 
 #: main.c:160
 msgid "GPU clock"
-msgstr "Reloj GPU"
+msgstr "Reloj de GPU"
 
 #: main.c:161
 msgid "Memory clock"
-msgstr "Reloj Memoria"
+msgstr "Reloj de Memoria"
 
 #: main.c:162
 msgid "Memory Used"
@@ -797,25 +795,19 @@ msgstr "RDB Redimensionable"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Versión"
+msgstr "Versión de OpenGL"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Versión"
+msgstr "Versión de Vulkan"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Versión"
+msgstr "Versión de OpenCL"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5083
 msgid "Cards"
@@ -823,7 +815,7 @@ msgstr "Tarjetas"
 
 #: main.c:172 cpu-x-gtk-3.12.ui:5445
 msgid "Bench"
-msgstr "Banco"
+msgstr "Tests"
 
 #: main.c:173 cpu-x-gtk-3.12.ui:5215
 msgid "Prime numbers (slow)"
@@ -864,7 +856,7 @@ msgid ""
 "on CPU, motherboard and more."
 msgstr ""
 "%s es un software gratuito que recopila información\n"
-"en CPU, placa madre y más."
+"sobre CPU, placa madre y más."
 
 #: main.c:192
 #, c-format
@@ -896,7 +888,7 @@ msgstr "Este programa viene ABSOLUTAMENTE SIN GARANTÍA"
 
 #: main.c:272
 msgid "Dumping data…"
-msgstr "Volcado de datos…"
+msgstr "Volcando datos…"
 
 #: main.c:315
 msgid "Freeing memory"
@@ -916,15 +908,16 @@ msgstr "Volcar todos los datos en la salida estándar y salir"
 
 #: main.c:346
 msgid "Run embedded command dmidecode and exit"
-msgstr "Ejecutar instrucción empotrada dmidecode y salir"
+msgstr "Ejecutar instrucción embebida dmidecode y salir"
 
 #: main.c:347
 msgid "Run embedded command bandwidth and exit"
-msgstr "Ejecuta instrucción empotrada de anchura de banda y sale"
+msgstr "Ejecuta instrucción embebida de anchura de banda y sale"
 
 #: main.c:348
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr "Establezca un tiempo personalizado entre dos refrescos (en segundos)"
+msgstr ""
+"Establezca un tiempo personalizado entre dos actualizaciones (en segundos)"
 
 #: main.c:349
 msgid "Set default tab (integer)"
@@ -946,7 +939,7 @@ msgstr "Selecciona tarjeta gráfica predeterminada (entero)"
 
 #: main.c:353 cpu-x-gtk-3.12.ui:6023
 msgid "Start and connect to daemon"
-msgstr "Iniciar y conectar al demonio"
+msgstr "Iniciar y conectar al demonio (daemon)"
 
 #: main.c:354
 msgid "Verbose output"
@@ -979,15 +972,15 @@ msgstr "Imprima la información requerida para pegar en un problema"
 #: main.c:361
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
-"Fija tecla asociada para modo NCurses (a[rrows]|e[macs]|i[nverted-T]|v[im])"
+"Setea tecla asociada para modo NCurses (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:372
 msgid "Add default command line arguments"
-msgstr "Añade argumentos predeterminados de línea de instrucción"
+msgstr "Añade argumentos predeterminados de línea de comandos"
 
 #: main.c:373
 msgid "Enforce the bus clock"
-msgstr "Imponer el reloj del Bus"
+msgstr "Imponer (forzar) el reloj del Bus"
 
 #: main.c:374
 msgid "Ignore CPU frequency reported by libcpuid"
@@ -1017,7 +1010,7 @@ msgstr "OPCIONES disponibles:"
 
 #: main.c:418
 msgid "Influenceable environment variables:"
-msgstr "Variables de entorno influibles:"
+msgstr "Variables de entorno influenciables:"
 
 #: main.c:450
 msgid "This is free software: you are free to change and redistribute it."
@@ -1036,7 +1029,7 @@ msgstr "-- %-9s version: %s"
 #: main.c:475
 #, c-format
 msgid "failed to call wordexp (%i)"
-msgstr "erróneo al invocar wordexp (%i)"
+msgstr "fallo al invocar wordexp (%i)"
 
 #: main.c:670
 #, c-format
@@ -1046,8 +1039,7 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"%s ¡diablos, algo fue mal! %s ha recibido la señal %d (%s) y se ha "
-"estrellado.%s"
+"%s Ups, algo salió mal! %s ha recibido la señal %d (%s) y ha crasheado.%s"
 
 #: main.c:685
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1061,7 +1053,7 @@ msgstr "se produjo un error al ajustar la configuración regional"
 
 #: tui_ncurses.c:72
 msgid "Starting NCurses TUI…"
-msgstr "Iniciando NCurses TUI…"
+msgstr "Iniciando TUI NCurses…"
 
 #: tui_ncurses.c:80
 msgid ""
@@ -1290,7 +1282,7 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5865
 msgid "Refresh time"
-msgstr "Tiempo de recarga"
+msgstr "Tiempo de refresco"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5889
@@ -1315,7 +1307,7 @@ msgstr "Oscuro"
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5939
 msgid "Default tab"
-msgstr "Lengüeta predeterminada"
+msgstr "Pestaña predeterminada"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5952
@@ -1325,7 +1317,7 @@ msgstr "Núcleo CPU predeterminado"
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5965
 msgid "Default cache test"
-msgstr "Prueba caché predetermianda"
+msgstr "Prueba caché predeterminada"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6008
@@ -1340,7 +1332,7 @@ msgstr "Tarjeta gráfica predeterminada"
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6069
 msgid "Startup"
-msgstr "Arrancar"
+msgstr "Arranque"
 
 #~ msgid "You can paste this backtrace by opening a new issue here:"
 #~ msgstr "Puede pegar esta retrotraza abriendo aquí una asunto nuevo:"
