@@ -36,6 +36,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
+
 /* glibc's stat.h has it but musl's does not. */
 #ifndef ACCESSPERMS
 #define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)
@@ -420,7 +424,7 @@ static int get_directory_path(char *dir_path, regex_t *regex_dirname, char **cac
 }
 
 /* Get a filename located in a directory corresponding to given request */
-int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor which)
+int request_sensor_path(uint16_t current_core_id, char *base_dir, char **cached_path, enum RequestSensor which)
 {
 	int err      = 1;
 	char *sensor = NULL;
@@ -440,8 +444,8 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	   regcomp(&regex_filename_temp_lab, "temp[[:digit:]]_label",                           REG_NOSUB)             ||
 	   regcomp(&regex_filename_in_in,    "in1_input",                                       REG_NOSUB)             ||
 	   regcomp(&regex_dirname_cardN,     "card[[:digit:]]",                                 REG_NOSUB)             ||
-	   regcomp(&regex_dirname_hwmonN,    "hwmon[[:digit:]]",                                 REG_NOSUB)             ||
-	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", opts->selected_core), REG_NOSUB | REG_ICASE) ||
+	   regcomp(&regex_dirname_hwmonN,    "hwmon[[:digit:]]",                                REG_NOSUB)             ||
+	   regcomp(&regex_label_coreN,       format("Core[[:space:]]*%u", current_core_id),     REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_tdie,        "Tdie",                                            REG_NOSUB | REG_ICASE) ||
 	   regcomp(&regex_label_other,       "CPU",                                             REG_NOSUB | REG_ICASE))
 	{
@@ -534,6 +538,35 @@ int request_sensor_path(char *base_dir, char **cached_path, enum RequestSensor w
 	return err;
 }
 
+const char *get_core_type_name(uint8_t purpose)
+{
+#if HAS_LIBCPUID
+	switch(purpose)
+	{
+		case PURPOSE_GENERAL:     return _("Core");
+		case PURPOSE_PERFORMANCE: return _("P-core");
+		case PURPOSE_EFFICIENCY:  return _("E-core");
+	}
+#else
+	UNUSED(purpose);
+#endif /* HAS_LIBCPUID */
+	return _("Core #%i");
+}
+
+void change_current_core_id(Labels *data)
+{
+	data->current_core_id = 0;
+#if HAS_LIBCPUID
+	uint8_t i;
+	for(i = 0; i < opts->selected_type; i++)
+		data->current_core_id += data->l_data->system_id.cpu_types[i].num_logical_cpus;
+	data->current_core_id += opts->selected_core;
+	MSG_DEBUG("change_current_core_id(type=%u) ==> %u", opts->selected_type, data->current_core_id);
+#endif /* HAS_LIBCPUID */
+	if(!set_cpu_affinity(data->current_core_id))
+		MSG_ERROR(_("failed to change CPU affinitiy to core %u"), data->current_core_id);
+}
+
 const char *start_daemon(bool graphical)
 {
 	int wstatus = -1;
@@ -599,3 +632,61 @@ bool daemon_is_alive()
 
 	return !ret && (statbuf.st_uid == 0) && S_ISSOCK(statbuf.st_mode) && (statbuf.st_mode & ACCESSPERMS);
 }
+
+#if defined linux || defined __linux__
+# include <sched.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpu_set_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(logical_cpu, &cpuset);
+	return sched_setaffinity(0, sizeof(cpuset), &cpuset) == 0;
+}
+/* endif defined linux || defined __linux__ */
+#elif defined __FreeBSD__
+# include <sys/param.h>
+# include <sys/cpuset.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpuset_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(logical_cpu, &cpuset);
+	return cpuset_setaffinity(CPU_LEVEL_WHICH, CPU_WHICH_TID, -1, sizeof(cpuset), &cpuset) == 0;
+}
+/* endif defined __FreeBSD__ */
+#elif defined __DragonFly__
+# include <pthread.h>
+# include <pthread_np.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpuset_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(logical_cpu, &cpuset);
+	return pthread_setaffinity_np(pthread_self(), sizeof(cpuset), &cpuset) == 0;
+}
+/* endif defined __DragonFly__ */
+#elif defined __NetBSD__
+# include <pthread.h>
+# include <sched.h>
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	cpuset_t *cpuset;
+	cpuset = cpuset_create();
+	cpuset_set((cpuid_t) logical_cpu, cpuset);
+	int ret = pthread_setaffinity_np(pthread_self(), cpuset_size(cpuset), cpuset);
+	cpuset_destroy(cpuset);
+	return ret == 0;
+}
+/* endif defined __NetBSD__ */
+#else
+bool set_cpu_affinity(uint16_t logical_cpu)
+{
+	static bool warning_printed = 0;
+	if(!warning_printed)
+	{
+		MSG_WARNING("%s", _("set_cpu_affinity() not supported on this operating system"));
+		warning_printed = 1;
+	}
+	return false;
+}
+#endif /* set_cpu_affinity defined */

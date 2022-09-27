@@ -42,7 +42,7 @@ endif(Intl_FOUND)
 
 # Libcpuid
 if(WITH_LIBCPUID)
-	pkg_check_modules(LIBCPUID libcpuid>=0.5.0)
+	pkg_check_modules(LIBCPUID libcpuid>=0.6.0)
 	if(LIBCPUID_FOUND)
 		include_directories(${LIBCPUID_INCLUDE_DIRS})
 		link_directories(${LIBCPUID_LIBRARY_DIRS})

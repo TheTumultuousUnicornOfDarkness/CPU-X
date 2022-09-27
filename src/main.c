@@ -83,9 +83,8 @@ static void labels_setname(Labels *data)
 	asprintf(&data->tab_cpu[NAME][LEVEL2],          _("Level 2"));
 	asprintf(&data->tab_cpu[NAME][LEVEL3],          _("Level 3"));
 
-	asprintf(&data->tab_cpu[NAME][SOCKETS],         _("Socket(s)"));
-	asprintf(&data->tab_cpu[NAME][CORES],           _("Core(s)"));
-	asprintf(&data->tab_cpu[NAME][THREADS],         _("Thread(s)"));
+	asprintf(&data->tab_cpu[NAME][CORES],           _("Cores"));
+	asprintf(&data->tab_cpu[NAME][THREADS],         _("Threads"));
 
 	/* Caches tab */
 	asprintf(&data->objects[TABCACHES], _("Caches")); // Tab label
@@ -241,7 +240,7 @@ static void dump_data(Labels *data)
 		{ NO_CPU,         VENDOR,       FRAMPROCESSOR       },
 		{ NO_CPU,         CORESPEED,    FRAMCLOCKS          },
 		{ NO_CPU,         LEVEL1D,      FRAMCACHE           },
-		{ NO_CPU,         SOCKETS,      -1                  },
+		{ NO_CPU,         CORES,        -1                  },
 		{ NO_CACHES,      L1SIZE,       FRAML1CACHE         },
 		{ NO_CACHES,      L2SIZE,       FRAML2CACHE         },
 		{ NO_CACHES,      L3SIZE,       FRAML3CACHE         },
@@ -347,6 +346,7 @@ static const struct
 	{ HAS_BANDWIDTH,   'B', "bandwidth",     no_argument,       N_("Run embedded command bandwidth and exit")                  },
 	{ true,            'r', "refresh",       required_argument, N_("Set custom time between two refreshes (in seconds)")       },
 	{ true,            't', "tab",           required_argument, N_("Set default tab (integer)")                                },
+	{ HAS_LIBCPUID,    'p', "type",          required_argument, N_("Select core type to monitor (integer)")                    },
 	{ HAS_LIBCPUID,    'c', "core",          required_argument, N_("Select CPU core to monitor (integer)")                     },
 	{ HAS_BANDWIDTH,   'b', "cachetest",     required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
 	{ HAS_LIBPCI,      'g', "gpu",           required_argument, N_("Select default graphic card (integer)")                    },
@@ -563,6 +563,11 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 				if(NO_CPU < tmp_arg && tmp_arg <= NO_ABOUT)
 					opts->selected_page = tmp_arg;
 				break;
+			case 'p':
+				tmp_arg = atoi(optarg);
+				if(tmp_arg >= 0)
+					opts->selected_type = tmp_arg;
+				break;
 			case 'c':
 				tmp_arg = atoi(optarg);
 				if(tmp_arg >= 0)
@@ -616,7 +621,6 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 					opts->issue       = true;
 					opts->output_type = OUT_DUMP;
 					setlocale(LC_ALL, "C");
-					setenv("CPUX_DAEMON_DEBUG", "1", 1);
 					unlink(LOG_FILE);
 					freopen(LOG_FILE, "a", stdout);
 					setvbuf(stdout, NULL, _IONBF, 0);
@@ -732,10 +736,13 @@ int main(int argc, char *argv[])
 		.tab_bench       = { { NULL } },
 		.cpu_freq        = 0,
 		.socket_fd       = -1,
-		.cpu_count       = 0,
+		.type_count      = 0,
 		.cache_count     = 0,
 		.dimm_count      = 0,
 		.gpu_count       = 0,
+		.current_cpu_count = 0,
+		.all_cpu_count   = 0,
+		.current_core_id = 0,
 		.bus_freq        = 0.0,
 		.cpu_min_mult    = 0.0,
 		.cpu_max_mult    = 0.0,
@@ -743,10 +750,7 @@ int main(int argc, char *argv[])
 	};
 	data->l_data = &(LibcpuidData)
 	{
-		.cpu_vendor_id  = -1,
-		.cpu_model      = -1,
-		.cpu_ext_model  = -1,
-		.cpu_ext_family = -1,
+		.change_type    = false,
 		.cpuid_raw_file = NULL
 	};
 	data->w_data = &(BandwidthData)
@@ -789,6 +793,7 @@ int main(int argc, char *argv[])
 		.debug_database = false,
 		.freq_fallback  = false,
 		.selected_page  = 0,
+		.selected_type  = 0,
 		.selected_core  = 0,
 		.bw_test        = 0,
 		.selected_gpu   = 0,

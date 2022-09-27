@@ -36,6 +36,7 @@ case "$VERSION_ID" in
 esac
 
 echo "Install packages"
+sudo apt-get update -y -qq
 sudo apt-get install -y -qq \
 	cmake \
 	ninja-build \

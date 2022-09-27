@@ -64,6 +64,7 @@ const Technology_DB technology_intel[] =
 	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          22 }, // Atom Bay Trail
 	{  7,          71,          -1,          14 }, // Broadwell
+	{  7,         151,          -1,           7 }, // Alder Lake-P
 	{  7,         167,          -1,          14 }, // Rocket Lake
 	{  8,           0,           0,         180 }, // PIII Coppermine-T
 	{  8,           8,          -1,         180 }, // PIII Coppermine
@@ -73,6 +74,7 @@ const Technology_DB technology_intel[] =
 	{ 10,          42,          -1,          32 }, // Sandy Bridge
 	{ 10,          58,          -1,          22 }, // Ivy Bridge
 	{ 10,         122,          -1,          14 }, // Gemini Lake
+	{ 10,         154,          -1,           7 }, // Alder Lake-S
 	{ 11,          11,          -1,         130 }, // PIII Tualatine
 	{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
 	{ 12,          44,          -1,          32 }, // Westmere
@@ -137,10 +139,12 @@ const Technology_DB technology_amd[] =
 	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
 	{ -1,         104,          23,           7 }, // Zen 2 (Lucienne)
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
+	{ -1,         144,          23,           7 }, // Zen 2 (Custom APU for Steam Deck)
 	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer/Warhol)
 	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
 	{ -1,           1,          25,           7 }, // Zen 3 (Milan)
 	{ -1,          68,          25,           7 }, // Zen 3 (Rembrandt)
+	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
 
@@ -180,6 +184,12 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i5-1135G7",      "FCBGA 1449"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-1165G7",      "FCBGA 1449"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-11700K",      "LGA 1200"       },
+	{ NULL,                             "Intel(R) Core(TM) i3-1220P",       "FCBGA 1744"     },
+	{ NULL,                             "Intel(R) Core(TM) i5-12400",       "LGA 1700"       },
+	{ NULL,                             "Intel(R) Core(TM) i7-12700H",      "FCBGA 1744"     },
+	{ NULL,                             "Intel(R) Core(TM) i7-12700KF",     "LGA 1700"       },
+	{ NULL,                             "Intel(R) Core(TM) i9-12900K",      "LGA 1700"       },
+	{ NULL,                             "Intel(R) Core(TM) i9-12900HK",     "FCBGA 1744"     },
 	{ NULL,                             NULL,                               NULL             }
 	//Codename                          Model                               Socket
 };

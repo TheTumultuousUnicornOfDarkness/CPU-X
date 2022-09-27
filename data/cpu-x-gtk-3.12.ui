@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkWindow" id="mainwindow">
@@ -1215,29 +1215,10 @@
                         <property name="margin-end">6</property>
                         <property name="margin-bottom">6</property>
                         <child>
-                          <!-- n-columns=7 n-rows=1 -->
+                          <!-- n-columns=6 n-rows=1 -->
                           <object class="GtkGrid" id="trg_grid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="trg_labsock">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">4</property>
-                                <property name="margin-top">1</property>
-                                <property name="margin-bottom">1</property>
-                                <property name="label" translatable="yes">Socket(s)</property>
-                                <property name="mnemonic-widget">trg_valsock</property>
-                                <property name="single-line-mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
                             <child>
                               <object class="GtkLabel" id="trg_labcore">
                                 <property name="visible">True</property>
@@ -1248,13 +1229,13 @@
                                 <property name="margin-top">1</property>
                                 <property name="margin-bottom">1</property>
                                 <property name="hexpand">True</property>
-                                <property name="label" translatable="yes">Core(s)</property>
+                                <property name="label" translatable="yes">Cores</property>
                                 <property name="mnemonic-widget">trg_valcore</property>
                                 <property name="single-line-mode">True</property>
                                 <property name="lines">1</property>
                               </object>
                               <packing>
-                                <property name="left-attach">3</property>
+                                <property name="left-attach">2</property>
                                 <property name="top-attach">0</property>
                               </packing>
                             </child>
@@ -1268,40 +1249,13 @@
                                 <property name="margin-top">1</property>
                                 <property name="margin-bottom">1</property>
                                 <property name="hexpand">True</property>
-                                <property name="label" translatable="yes">Thread(s)</property>
+                                <property name="label" translatable="yes">Threads</property>
                                 <property name="mnemonic-widget">trg_valthrd</property>
                                 <property name="single-line-mode">True</property>
                                 <property name="lines">1</property>
                               </object>
                               <packing>
-                                <property name="left-attach">5</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="trg_framsock">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-top">1</property>
-                                <property name="margin-bottom">1</property>
-                                <property name="label-xalign">0</property>
-                                <property name="shadow-type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="trg_valsock">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width-chars">3</property>
-                                    <property name="single-line-mode">True</property>
-                                    <property name="max-width-chars">3</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">2</property>
+                                <property name="left-attach">4</property>
                                 <property name="top-attach">0</property>
                               </packing>
                             </child>
@@ -1328,7 +1282,7 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="left-attach">4</property>
+                                <property name="left-attach">3</property>
                                 <property name="top-attach">0</property>
                               </packing>
                             </child>
@@ -1355,7 +1309,7 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="left-attach">6</property>
+                                <property name="left-attach">5</property>
                                 <property name="top-attach">0</property>
                               </packing>
                             </child>
@@ -1363,9 +1317,26 @@
                               <object class="GtkComboBoxText" id="trg_activecore">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-right">4</property>
+                                <property name="margin-start">6</property>
+                                <property name="margin-end">1</property>
                                 <property name="margin-top">1</property>
                                 <property name="margin-bottom">1</property>
+                                <property name="hexpand">True</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBoxText" id="trg_activetype">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-start">6</property>
+                                <property name="margin-end">1</property>
+                                <property name="margin-top">1</property>
+                                <property name="margin-bottom">1</property>
+                                <property name="hexpand">True</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
@@ -5924,7 +5895,7 @@
               </packing>
             </child>
             <child>
-              <!-- n-columns=2 n-rows=6 -->
+              <!-- n-columns=2 n-rows=7 -->
               <object class="GtkGrid" id="startup_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -5954,7 +5925,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">1</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -5967,7 +5938,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">2</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -5989,7 +5960,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">1</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -6000,7 +5971,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">2</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -6014,7 +5985,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">4</property>
+                    <property name="top-attach">5</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
@@ -6029,7 +6000,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">5</property>
+                    <property name="top-attach">6</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
@@ -6043,7 +6014,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">3</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -6054,7 +6025,31 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">3</property>
+                    <property name="top-attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="defaulttype_lab">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes" comments="Setting: default CPU core at startup">Default core type</property>
+                    <property name="mnemonic-widget">defaultcore_val</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="defaulttype_val">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
               </object>

@@ -73,28 +73,38 @@ char *colorized_msg(const char *__color, const char *str, ...)
 }
 
 #if HAS_LIBCPUID
-static void libcpuid_msr_serialize(void)
-{
-	struct msr_driver_t *msr = cpu_msr_driver_open_core(0);
-
-	if(msr != NULL)
-	{
-		MSG_STDOUT("libcpuid version %s", cpuid_lib_version());
-		msr_serialize_raw_data(msr, NULL);
-		cpu_msr_driver_close(msr);
-	}
-}
-
 /* Try to open a CPU MSR */
 static int libcpuid_init_msr(int *fd, struct msr_driver_t **msr)
 {
-	unsigned selected_core = 0;
+	uint16_t current_core_id = 0;
 
-	read(*fd, &selected_core, sizeof(uint8_t)); // Core 0 on failure
-	if((*msr = cpu_msr_driver_open_core(selected_core)) == NULL)
+	read(*fd, &current_core_id, sizeof(uint16_t)); // Core 0 on failure
+	if((*msr = cpu_msr_driver_open_core(current_core_id)) == NULL)
 	{
-		MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", selected_core, cpuid_error());
+		MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", current_core_id, cpuid_error());
 		return 2;
+	}
+
+	return 0;
+}
+
+static int __call_libcpuid_msr_debug(int *fd)
+{
+	uint16_t current_core_id, all_cpu_count = 0;
+	struct msr_driver_t *msr;
+
+	MSG_STDOUT("libcpuid version %s", cpuid_lib_version());
+	read(*fd, &all_cpu_count, sizeof(uint16_t)); // CPU count 0 on failure
+	for(current_core_id = 0; current_core_id < all_cpu_count; current_core_id++)
+	{
+		MSG_STDOUT("______________ MSR CPU #%i ______________", current_core_id);
+		if((msr = cpu_msr_driver_open_core(current_core_id)) == NULL)
+			MSG_ERROR("cpu_msr_driver_open_core(%u) (%s)", current_core_id, cpuid_error());
+		else
+		{
+			msr_serialize_raw_data(msr, NULL);
+			cpu_msr_driver_close(msr);
+		}
 	}
 
 	return 0;
@@ -239,6 +249,7 @@ static void *request_handler(void *p_data)
 		switch(cmd)
 		{
 #if HAS_LIBCPUID
+			case LIBCPUID_MSR_DEBUG:   __call_libcpuid_msr_debug(&td->fd);   break;
 			case LIBCPUID_MSR_STATIC:  __call_libcpuid_msr_static(&td->fd);  break;
 			case LIBCPUID_MSR_DYNAMIC: __call_libcpuid_msr_dynamic(&td->fd); break;
 #endif /* HAS_LIBCPUID */
@@ -324,10 +335,6 @@ int main(void)
 	setvbuf(stdout, NULL, _IONBF, 0);
 	dup2(STDOUT_FILENO, STDERR_FILENO);
 	PRGINFO(stdout);
-#if HAS_LIBCPUID
-	if(getenv("CPUX_DAEMON_DEBUG"))
-		libcpuid_msr_serialize();
-#endif /* HAS_LIBCPUID */
 
 	/* Initialize mutex */
 	if(pthread_mutex_init(&ti->mutex, NULL) < 0)
