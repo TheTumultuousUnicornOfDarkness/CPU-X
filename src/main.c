@@ -673,7 +673,8 @@ static void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	MSG_ERROR(_("\nOops, something was wrong! %s has received signal %d (%s) and has crashed."), PRGNAME, signum, strsignal(signum));
+	fprintf(stderr, colorized_msg(BOLD_RED, _("\nOops, something was wrong! %s has received signal %d (%s) and has crashed."),
+		PRGNAME, signum, strsignal(signum)));
 	MSG_STDERR("%s", "========================= Backtrace =========================");
 	PRGINFO(stderr);
 	for(i = 1; i < bt_size; i++)
