@@ -1059,7 +1059,11 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	{
 		.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
 		.pNext = NULL,
+# ifdef VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
 		.flags = (portabilityEnumerationActive ? VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR : 0),
+# else
+		.flags = 0,
+# endif /* VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR */
 		.enabledExtensionCount = enabled_extension_count,
 		.ppEnabledExtensionNames = (const char * const*) extension_names,
 	};
