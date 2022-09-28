@@ -1099,14 +1099,24 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	}
 
 # if defined (VK_EXT_PCI_BUS_INFO_EXTENSION_NAME) && defined(VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME)
+	VkDeviceQueueCreateInfo queueCreateInfo =
+	{
+		.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+		.pNext = NULL,
+		.flags = 0,
+		.queueFamilyIndex = 0,
+		.queueCount = 1,
+		.pQueuePriorities = (float []) { 1.0f },
+	};
+
 	const char* const ext_name_pci[] = { VK_EXT_PCI_BUS_INFO_EXTENSION_NAME };
 	const VkDeviceCreateInfo check_pci_bus_info =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
 		.pNext = NULL,
 		.flags = 0,
-		.queueCreateInfoCount = 0,
-		.pQueueCreateInfos = NULL,
+		.queueCreateInfoCount = 1,
+		.pQueueCreateInfos = &queueCreateInfo,
 		.enabledLayerCount = 0,
 		.ppEnabledLayerNames = NULL,
 		.enabledExtensionCount = 1,
@@ -1120,8 +1130,8 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
 		.pNext = NULL,
 		.flags = 0,
-		.queueCreateInfoCount = 0,
-		.pQueueCreateInfos = NULL,
+		.queueCreateInfoCount = 1,
+		.pQueueCreateInfos = &queueCreateInfo,
 		.enabledLayerCount = 0,
 		.ppEnabledLayerNames = NULL,
 		.enabledExtensionCount = 1,
