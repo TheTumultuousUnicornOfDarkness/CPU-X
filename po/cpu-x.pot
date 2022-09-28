@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: cpu-x \n"
         "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-        "POT-Creation-Date: 2022-09-27 19:02+0000\n"
+        "POT-Creation-Date: 2022-09-28 20:05+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,281 +122,305 @@ msgstr  ""
 msgid   "failed to call GLFW (%i): %s"
 msgstr  ""
 
-#: core.c:996
+#: core.c:991
+msgid   "Enumerating Vulkan instance extension properties"
+msgstr  ""
+
+#: core.c:997
+#, c-format
+msgid   "failed to call vkEnumerateInstanceExtensionProperties (%s)"
+msgstr  ""
+
+#: core.c:1009
+#, c-format
+msgid   "failed to call vkEnumerateInstanceExtensionProperties to fill "
+        "VkExtensionProperties (%s)"
+msgstr  ""
+
+#: core.c:1048
+msgid   "Finding Vulkan API version"
+msgstr  ""
+
+#: core.c:1051
 msgid   "Vulkan API is not available"
 msgstr  ""
 
-#: core.c:1010
+#: core.c:1073
 #, c-format
 msgid   "failed to call vkCreateInstance (%s)"
 msgstr  ""
 
-#: core.c:1019
+#: core.c:1080
 #, c-format
 msgid   "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr  ""
 
-#: core.c:1025
+#: core.c:1087
 msgid   "There is no device with Vulkan support"
 msgstr  ""
 
-#: core.c:1034
+#: core.c:1096
 #, c-format
 msgid   "There is no available physical device (%s)"
 msgstr  ""
 
-#: core.c:1131
+#: core.c:1157
+#, c-format
+msgid   "Failed to create Vulkan for device %u (%s)"
+msgstr  ""
+
+#: core.c:1217
 #, c-format
 msgid   "There is no platform with OpenCL support (%s)"
 msgstr  ""
 
-#: core.c:1140
+#: core.c:1227
 #, c-format
 msgid   "failed to get all OpenCL platforms (%s)"
 msgstr  ""
 
-#: core.c:1150
+#: core.c:1237
 #, c-format
 msgid   "failed to get name for platform %u (%s)"
 msgstr  ""
 
-#: core.c:1157
+#: core.c:1244
 #, c-format
 msgid   "failed to get version for platform %u (%s)"
 msgstr  ""
 
-#: core.c:1164
+#: core.c:1251
 #, c-format
 msgid   "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr  ""
 
-#: core.c:1172
+#: core.c:1260
 #, c-format
 msgid   "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr  ""
 
-#: core.c:1186
+#: core.c:1274
 #, c-format
 msgid   "failed to get name for device %u (%s)"
 msgstr  ""
 
-#: core.c:1193
+#: core.c:1281
 #, c-format
 msgid   "failed to get version for device %u (%s)"
 msgstr  ""
 
-#: core.c:1207
+#: core.c:1295
 #, c-format
 msgid   "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
         "(%s)"
 msgstr  ""
 
-#: core.c:1218
+#: core.c:1306
 #, c-format
 msgid   "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
         "(%s)"
 msgstr  ""
 
-#: core.c:1230 core.c:1240 core.c:1265
+#: core.c:1318 core.c:1328 core.c:1353
 #, c-format
 msgid   "OpenCL driver for '%s %s' does not support "
         "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr  ""
 
-#: core.c:1253
+#: core.c:1341
 #, c-format
 msgid   "OpenCL driver for '%s %s' does not support "
         "CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
         "CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr  ""
 
-#: core.c:1273
+#: core.c:1361
 #, c-format
 msgid   "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr  ""
 
-#: core.c:1304
+#: core.c:1392
 msgid   "Finding devices"
 msgstr  ""
 
-#: core.c:1316
+#: core.c:1404
 #, c-format
 msgid   "Skip devices search (wrong permissions on %s device)"
 msgstr  ""
 
-#: core.c:1354
+#: core.c:1442
 #, c-format
 msgid   "Your GPU vendor is unknown: %s (0x%X)"
 msgstr  ""
 
-#: core.c:1371 core.c:1683
+#: core.c:1459 core.c:1771
 msgid   "Enabled"
 msgstr  ""
 
-#: core.c:1371 core.c:1683
+#: core.c:1459 core.c:1771
 msgid   "Disabled"
 msgstr  ""
 
-#: core.c:1381
+#: core.c:1469
 msgid   "failed to find chipset vendor and model"
 msgstr  ""
 
-#: core.c:1383
+#: core.c:1471
 msgid   "failed to find graphic card vendor and model"
 msgstr  ""
 
-#: core.c:1460
+#: core.c:1548
 msgid   "Retrieving GPU clocks"
 msgstr  ""
 
-#: core.c:1495
+#: core.c:1583
 msgid   "None"
 msgstr  ""
 
-#: core.c:1636
+#: core.c:1724
 #, c-format
 msgid   "Driver for GPU %u doesn't report frequencies"
 msgstr  ""
 
-#: core.c:1679
+#: core.c:1767
 #, c-format
 msgid   "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr  ""
 
-#: core.c:1707
+#: core.c:1795
 msgid   "failed to retrieve GPU clocks"
 msgstr  ""
 
-#: core.c:1724
+#: core.c:1812
 msgid   "Identifying running system"
 msgstr  ""
 
-#: core.c:1727
+#: core.c:1815
 msgid   "failed to identify running system"
 msgstr  ""
 
-#: core.c:1771 core.c:1799
+#: core.c:1859 core.c:1887
 msgid   "Calling libprocps"
 msgstr  ""
 
-#: core.c:1774
+#: core.c:1862
 msgid   "unable to get system uptime"
 msgstr  ""
 
-#: core.c:1780
+#: core.c:1868
 msgid   "unable to create meminfo structure"
 msgstr  ""
 
-#: core.c:1825
+#: core.c:1913
 msgid   "Calling libstatgrab"
 msgstr  ""
 
-#: core.c:1864
+#: core.c:1952
 #, c-format
 msgid   "%i days, %i hours, %i minutes, %i seconds"
 msgstr  ""
 
-#: core.c:1921
+#: core.c:2009
 msgid   "Updating benchmark status"
 msgstr  ""
 
-#: core.c:1922 tui_ncurses.c:879
+#: core.c:2010 tui_ncurses.c:879
 #, c-format
 msgid   "%u mins"
 msgstr  ""
 
-#: core.c:1924 core.c:1925
+#: core.c:2012 core.c:2013
 msgid   "Inactive"
 msgstr  ""
 
-#: core.c:1929 core.c:1930
+#: core.c:2017 core.c:2018
 msgid   "Not started"
 msgstr  ""
 
-#: core.c:1935
+#: core.c:2023
 msgid   "Active"
 msgstr  ""
 
-#: core.c:1940
+#: core.c:2028
 #, c-format
 msgid   "(%u hours left)"
 msgstr  ""
 
-#: core.c:1942
+#: core.c:2030
 #, c-format
 msgid   "(%u minutes left)"
 msgstr  ""
 
-#: core.c:1944
+#: core.c:2032
 #, c-format
 msgid   "(%u seconds left)"
 msgstr  ""
 
-#: core.c:1949
+#: core.c:2037
 #, c-format
 msgid   "in %u hours"
 msgstr  ""
 
-#: core.c:1951
+#: core.c:2039
 #, c-format
 msgid   "in %u minutes"
 msgstr  ""
 
-#: core.c:1953
+#: core.c:2041
 #, c-format
 msgid   "in %u seconds"
 msgstr  ""
 
-#: core.c:1969
+#: core.c:2057
 msgid   "Starting benchmark"
 msgstr  ""
 
-#: core.c:1988
+#: core.c:2076
 msgid   "an error occurred while starting benchmark"
 msgstr  ""
 
-#: core.c:2005
+#: core.c:2093
 msgid   "Finding CPU package in fallback mode"
 msgstr  ""
 
-#: core.c:2027
+#: core.c:2115
 #, c-format
 msgid   "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr  ""
 
-#: core.c:2046
+#: core.c:2134
 msgid   "Calculating CPU multipliers in fallback mode"
 msgstr  ""
 
-#: core.c:2073
+#: core.c:2161
 msgid   "Retrieving motherboard information in fallback mode"
 msgstr  ""
 
-#: core.c:2082
+#: core.c:2170
 msgid   "failed to retrieve motherboard information (fallback mode)"
 msgstr  ""
 
-#: core.c:2121
+#: core.c:2209
 msgid   "Retrieving CPU temperature in fallback mode"
 msgstr  ""
 
-#: core.c:2167
+#: core.c:2255
 msgid   "failed to retrieve CPU temperature (fallback mode)"
 msgstr  ""
 
-#: core.c:2180
+#: core.c:2268
 msgid   "Retrieving CPU voltage in fallback mode"
 msgstr  ""
 
-#: core.c:2193
+#: core.c:2281
 msgid   "failed to retrieve CPU voltage (fallback mode)"
 msgstr  ""
 
-#: core.c:2208
+#: core.c:2296
 msgid   "Retrieving CPU frequency in fallback mode"
 msgstr  ""
 
-#: core.c:2216
+#: core.c:2304
 msgid   "failed to retrieve CPU frequency (fallback mode)"
 msgstr  ""
 
@@ -844,7 +868,7 @@ msgstr  ""
 msgid   "This software is distributed under the terms of %s"
 msgstr  ""
 
-#: main.c:200 main.c:451
+#: main.c:200 main.c:453
 msgid   "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr  ""
 
@@ -974,37 +998,37 @@ msgstr  ""
 msgid   "Influenceable environment variables:"
 msgstr  ""
 
-#: main.c:450
+#: main.c:452
 msgid   "This is free software: you are free to change and redistribute it."
 msgstr  ""
 
-#: main.c:452
+#: main.c:454
 #, c-format
 msgid   "See the %s license: <%s>\n"
 msgstr  ""
 
-#: main.c:459
+#: main.c:461
 #, c-format
 msgid   "-- %-9s version: %s"
 msgstr  ""
 
-#: main.c:475
+#: main.c:477
 #, c-format
 msgid   "failed to call wordexp (%i)"
 msgstr  ""
 
-#: main.c:674
+#: main.c:676
 #, c-format
 msgid   "\n"
-        "%sOops, something was wrong! %s has received signal %d (%s) and has "
-        "crashed.%s"
+        "Oops, something was wrong! %s has received signal %d (%s) and has "
+        "crashed."
 msgstr  ""
 
-#: main.c:689
+#: main.c:691
 msgid   "You can open a new issue here, by filling the template as requested:"
 msgstr  ""
 
-#: main.c:717
+#: main.c:719
 msgid   "an error occurred while setting locale"
 msgstr  ""
 
