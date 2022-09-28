@@ -1086,6 +1086,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 	/* get all device handles */
 	devices = malloc(sizeof(VkPhysicalDevice) * device_count);
+	ALLOC_CHECK(devices);
 	if((err = vkEnumeratePhysicalDevices(instance, &device_count, devices)) != VK_SUCCESS)
 	{
 		MSG_WARNING(_("There is no available physical device (%s)"), string_VkResult(err));
@@ -1205,6 +1206,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 	MSG_DEBUG("Number of OpenCL platforms: %u", num_pf);
 
 	platforms = (cl_platform_id*) malloc(sizeof(cl_platform_id) * num_pf);
+	ALLOC_CHECK(platforms);
 	ret_cl = clGetPlatformIDs(num_pf, platforms, NULL);; // get all platforms
 	if (ret_cl != CL_SUCCESS)
 	{
@@ -1237,6 +1239,7 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 		}
 
 		devices = (cl_device_id*) malloc(sizeof(cl_device_id) * num_ocl_dev);
+		ALLOC_CHECK(devices);
 		ret_cl = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_ALL, num_ocl_dev, devices, NULL); // get all devices
 		if (ret_cl != CL_SUCCESS)
 		{
