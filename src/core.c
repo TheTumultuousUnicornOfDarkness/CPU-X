@@ -1016,7 +1016,7 @@ int get_vulkan_instance_extensions(char *extension_names[VULKAN_MAX_EXTENSION_NA
 		if(!strcmp(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME, instance_extensions[i].extensionName))
 		{
 			MSG_DEBUG("Found instance extension: %s", instance_extensions[i].extensionName);
-			extension_names[*enabled_extension_count++] = VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME;
+			extension_names[(*enabled_extension_count)++] = VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME;
 		}
 #endif /* VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME */
 #ifdef VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
@@ -1024,7 +1024,7 @@ int get_vulkan_instance_extensions(char *extension_names[VULKAN_MAX_EXTENSION_NA
 		{
 			MSG_DEBUG("Found instance extension: %s", instance_extensions[i].extensionName);
 			*portabilityEnumerationActive = true;
-			extension_names[*enabled_extension_count++] = VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME;
+			extension_names[(*enabled_extension_count)++] = VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME;
 		}
 #endif /* VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME */
 	}
