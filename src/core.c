@@ -979,71 +979,19 @@ static inline const char* string_VkResult(VkResult input_value)
 			return "Unhandled VkResult";
 	}
 }
-
-#define VULKAN_MAX_EXTENSION_NAMES 8
-/* Found on https://chromium.googlesource.com/external/github.com/KhronosGroup/Vulkan-Tools/+/HEAD/cube/cube.c#3181 */
-int get_vulkan_instance_extensions(char *extension_names[VULKAN_MAX_EXTENSION_NAMES], uint32_t *enabled_extension_count, bool *portabilityEnumerationActive)
-{
-	uint32_t instance_extension_count = 0;
-	VkResult err = VK_SUCCESS;
-	VkExtensionProperties *instance_extensions = NULL;
-
-	MSG_VERBOSE("%s", _("Enumerating Vulkan instance extension properties"));
-	*enabled_extension_count = 0;
-	*portabilityEnumerationActive = false;
-	memset(extension_names, 0, sizeof(char*) * VULKAN_MAX_EXTENSION_NAMES);
-	if((err = vkEnumerateInstanceExtensionProperties(NULL, &instance_extension_count, NULL)) != VK_SUCCESS)
-	{
-		MSG_ERROR(_("failed to call vkEnumerateInstanceExtensionProperties (%s)"), string_VkResult(err));
-		return err;
-	}
-	MSG_DEBUG("Vulkan instance extensions count: %u", instance_extension_count);
-
-	if(instance_extension_count == 0)
-		return -1;
-
-	instance_extensions = malloc(sizeof(VkExtensionProperties) * instance_extension_count);
-	ALLOC_CHECK(instance_extensions);
-	if((err = vkEnumerateInstanceExtensionProperties(NULL, &instance_extension_count, instance_extensions)) != VK_SUCCESS)
-	{
-		MSG_ERROR(_("failed to call vkEnumerateInstanceExtensionProperties to fill VkExtensionProperties (%s)"), string_VkResult(err));
-		goto cleanup;
-	}
-
-	for(uint32_t i = 0; i < instance_extension_count; i++)
-	{
-#ifdef VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME
-		if(!strcmp(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME, instance_extensions[i].extensionName))
-		{
-			MSG_DEBUG("Found instance extension: %s", instance_extensions[i].extensionName);
-			extension_names[(*enabled_extension_count)++] = VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME;
-		}
-#endif /* VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME */
-#ifdef VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
-		if(!strcmp(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME, instance_extensions[i].extensionName))
-		{
-			MSG_DEBUG("Found instance extension: %s", instance_extensions[i].extensionName);
-			*portabilityEnumerationActive = true;
-			extension_names[(*enabled_extension_count)++] = VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME;
-		}
-#endif /* VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME */
-	}
-
-cleanup:
-	free(instance_extensions);
-	return err;
-}
 #endif /* HAS_Vulkan */
 
 static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, bool *vulkan_rt)
 {
 	int err = 0;
 #if HAS_LIBGLFW && HAS_Vulkan
-	bool portabilityEnumerationActive = false;
-	uint32_t i, device_count = 0, enabled_extension_count = 0;
-	char *extension_names[VULKAN_MAX_EXTENSION_NAMES];
+	uint32_t i, device_count = 0;
 	VkInstance instance = {0};
 	VkPhysicalDevice *devices = NULL;
+	const char* const ext_names[] = {
+		"VK_KHR_get_physical_device_properties2",
+		"VK_KHR_portability_enumeration",
+	};
 
 	MSG_VERBOSE("%s", _("Finding Vulkan API version"));
 	if(glfwVulkanSupported() == GLFW_FALSE)
@@ -1052,25 +1000,24 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		return err;
 	}
 
-	if((err = get_vulkan_instance_extensions(extension_names, &enabled_extension_count, &portabilityEnumerationActive)) != VK_SUCCESS)
-		return err;
-
 	const VkInstanceCreateInfo createInfo =
 	{
 		.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
 		.pNext = NULL,
-# ifdef VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
-		.flags = (portabilityEnumerationActive ? VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR : 0),
-# else
-		.flags = 0,
-# endif /* VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR */
-		.enabledExtensionCount = enabled_extension_count,
-		.ppEnabledExtensionNames = (const char * const*) extension_names,
+		.flags = 0x00000001, // VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
+		.enabledExtensionCount = sizeof(ext_names) / sizeof(const char*),
+		.ppEnabledExtensionNames = ext_names,
 	};
 
 	if((err = vkCreateInstance(&createInfo, NULL, &instance)) != VK_SUCCESS)
 	{
 		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), string_VkResult(err));
+
+		if(err == VK_ERROR_EXTENSION_NOT_PRESENT)
+		{
+			MSG_ERROR("%s", _("VK_KHR_get_physical_device_properties2 and VK_KHR_portability_enumeration are not supported"));
+		}
+
 		return err;
 	}
 
@@ -1109,7 +1056,6 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.pQueuePriorities = (float []) { 1.0f },
 	};
 
-	const char* const ext_name_pci[] = { VK_EXT_PCI_BUS_INFO_EXTENSION_NAME };
 	const VkDeviceCreateInfo check_pci_bus_info =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
@@ -1120,11 +1066,10 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.enabledLayerCount = 0,
 		.ppEnabledLayerNames = NULL,
 		.enabledExtensionCount = 1,
-		.ppEnabledExtensionNames = ext_name_pci,
+		.ppEnabledExtensionNames = (const char* []) { VK_EXT_PCI_BUS_INFO_EXTENSION_NAME },
 		.pEnabledFeatures = NULL,
 	};
 
-	const char* const ext_name_rt[] = { VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME };
 	const VkDeviceCreateInfo check_rt =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
@@ -1135,7 +1080,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.enabledLayerCount = 0,
 		.ppEnabledLayerNames = NULL,
 		.enabledExtensionCount = 1,
-		.ppEnabledExtensionNames = ext_name_rt,
+		.ppEnabledExtensionNames = (const char* []) { VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME },
 		.pEnabledFeatures = NULL,
 	};
 	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info =
@@ -1155,15 +1100,21 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		if((err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
 		{
 			MSG_WARNING(_("Failed to create Vulkan for device %u (%s)"), i, string_VkResult(err));
+
+			if(err == VK_ERROR_EXTENSION_NOT_PRESENT)
+			{
+				MSG_WARNING(_("VK_EXT_pci_bus_info is not supported on device %u"), i);
+			}
+
 			vkDestroyDevice(vk_dev, NULL);
 			continue;
 		}
 
 		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
 		if((uint32_t)dev->domain == bus_info.pciDomain   &&
-		    dev->bus              == bus_info.pciBus      &&
-		    dev->dev              == bus_info.pciDevice   &&
-		    dev->func             == bus_info.pciFunction)
+		    dev->bus             == bus_info.pciBus      &&
+		    dev->dev             == bus_info.pciDevice   &&
+		    dev->func            == bus_info.pciFunction)
 		{
 			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
 				*vulkan_rt = true;
