@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-09-29 18:09+0000\n"
-"PO-Revision-Date: 2022-08-24 00:18+0000\n"
+"PO-Revision-Date: 2022-10-01 10:30+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: core.c:236
 msgid "Finding CPU technology"
@@ -60,6 +60,8 @@ msgstr "kunde inte anropa libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Vald CPU-typ (%u) är inte ett giltigt antal (%u är det maximala antalet för "
+"den här CPU:n)"
 
 #: core.c:319
 #, c-format
@@ -67,10 +69,12 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Valda CPU-kärnor (%u) är inte ett giltigt antal (%u är det maximala antalet "
+"för denna typ av kärna)"
 
 #: core.c:348
 msgid "unknown"
-msgstr ""
+msgstr "okänd"
 
 #: core.c:471
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -135,7 +139,7 @@ msgstr "kunde inte anropa GLFW (%i): %s"
 
 #: core.c:991
 msgid "Enumerating Vulkan instance extension properties"
-msgstr ""
+msgstr "Uppräkning av egenskaper för Vulkan-instanstillägg"
 
 #: core.c:997
 #, fuzzy, c-format
@@ -149,6 +153,8 @@ msgid ""
 "failed to call vkEnumerateInstanceExtensionProperties to fill "
 "VkExtensionProperties (%s)"
 msgstr ""
+"det gick inte att anropa vkEnumerateInstanceExtensionProperties för att "
+"fylla i VkExtensionProperties (%s)"
 
 #: core.c:1048
 #, fuzzy
@@ -1277,7 +1283,7 @@ msgstr "Poäng"
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "det gick inte att ändra CPU-tillhörighet för kärna %u"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1297,7 +1303,7 @@ msgstr "pkexec: Oväntad felkod"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() stöds inte på det här operativsystemet"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
