@@ -1084,7 +1084,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	MSG_DEBUG("Vulkan devices count: %u", device_count);
 	if(device_count == 0)
 	{
-		MSG_WARNING("%s", _("There is no device with Vulkan support"));
+		MSG_WARNING("%s", _("No available Vulkan devices"));
 		return err;
 	}
 
@@ -1093,7 +1093,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	ALLOC_CHECK(devices);
 	if((err = vkEnumeratePhysicalDevices(instance, &device_count, devices)) != VK_SUCCESS)
 	{
-		MSG_WARNING(_("There is no available physical device (%s)"), string_VkResult(err));
+		MSG_WARNING(_("No available physical devices (%s)"), string_VkResult(err));
 		free(devices);
 		return err;
 	}
