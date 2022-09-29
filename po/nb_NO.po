@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-08-22 17:16+0000\n"
-"PO-Revision-Date: 2022-05-27 02:16+0000\n"
+"PO-Revision-Date: 2022-09-29 18:09+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: core.c:234
 msgid "Finding CPU technology"
@@ -140,7 +140,7 @@ msgstr "Klarte ikke å kalle GLFW (%i): %s"
 
 #: core.c:973
 msgid "Vulkan API is not available"
-msgstr ""
+msgstr "Vulkan-API-et er ikke tilgjengelig"
 
 #: core.c:982
 #, fuzzy, c-format
@@ -162,7 +162,7 @@ msgstr "Det finnes ingen plattform med OpenCL-støtte (%s)"
 #: core.c:1006
 #, c-format
 msgid "There is no available physical device (%s)"
-msgstr ""
+msgstr "Ingen tilgjengelige fysiske enheter (%s)"
 
 #: core.c:1079
 #, fuzzy, c-format
@@ -305,11 +305,11 @@ msgstr "Kaller libprocps"
 
 #: core.c:1722
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "kunne ikke hente systemets oppetid"
 
 #: core.c:1728
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "kunne ikke opprette struktur for minneinfo"
 
 #: core.c:1773
 msgid "Calling libstatgrab"
@@ -494,7 +494,7 @@ msgstr "Versjon"
 
 #: gui_gtk.c:636
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Strålesporing (Vulkan)"
 
 #: gui_gtk.c:661
 #, c-format
@@ -813,7 +813,7 @@ msgstr "Tilpassbar BAR"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
 #, fuzzy
