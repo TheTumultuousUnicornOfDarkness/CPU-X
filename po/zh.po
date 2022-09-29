@@ -15,16 +15,16 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-09-29 18:09+0000\n"
-"PO-Revision-Date: 2022-08-24 00:18+0000\n"
-"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"PO-Revision-Date: 2022-10-01 10:30+0000\n"
+"Last-Translator: yangyangdaji <1504305527@qq.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: core.c:236
 msgid "Finding CPU technology"
@@ -65,18 +65,18 @@ msgstr "无法调用 libcpuid（%s）"
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
+msgstr "所选 CPU 类型 (%u) 不是有效数字（%u 是此 CPU 的最大值）"
 
 #: core.c:319
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
-msgstr ""
+msgstr "所选 CPU 内核 (%u) 不是有效数字（%u 是此类内核的最大值）"
 
 #: core.c:348
 msgid "unknown"
-msgstr ""
+msgstr "未知"
 
 #: core.c:471
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -139,13 +139,12 @@ msgstr "调用 GLFW (%i) 失败：%s"
 
 #: core.c:991
 msgid "Enumerating Vulkan instance extension properties"
-msgstr ""
+msgstr "枚举 Vulkan 实例扩展属性"
 
 #: core.c:997
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance (%s)"
+#, c-format
 msgid "failed to call vkEnumerateInstanceExtensionProperties (%s)"
-msgstr "调用 vkCreateInstance 失败 (%s)"
+msgstr "未能调用 vkEnumerateInstanceExtensionProperties (%s)"
 
 #: core.c:1009
 #, c-format
@@ -153,12 +152,12 @@ msgid ""
 "failed to call vkEnumerateInstanceExtensionProperties to fill "
 "VkExtensionProperties (%s)"
 msgstr ""
+"未能调用 vkEnumerateInstanceExtensionProperties 来填充 VkExtensionProperties "
+"(%s)"
 
 #: core.c:1048
-#, fuzzy
-#| msgid "Vulkan Version"
 msgid "Finding Vulkan API version"
-msgstr "Vulkan 版本"
+msgstr "查找 Vulkan API 版本"
 
 #: core.c:1051
 msgid "Vulkan API is not available"
@@ -175,22 +174,18 @@ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "调用 vkEnumeratePhysicalDevices 失败 (%s)"
 
 #: core.c:1087
-#, fuzzy
-#| msgid "There is no available physical device (%s)"
 msgid "No available Vulkan devices"
-msgstr "无可用的物理设备 (%s)"
+msgstr "没有可用的 Vulkan 设备"
 
 #: core.c:1096
-#, fuzzy, c-format
-#| msgid "There is no available physical device (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "无可用的物理设备 (%s)"
+msgstr "没有可用的物理设备 (%s)"
 
 #: core.c:1157
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "未能获得设备 %u 的名称（%s）"
+msgstr "无法为设备 %u (%s) 创建 Vulkan"
 
 #: core.c:1217
 #, c-format
@@ -478,10 +473,9 @@ msgid "Start daemon"
 msgstr "启动守护进程"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "核心 #%i"
+msgstr "类型 #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -622,8 +616,6 @@ msgid "Level 3"
 msgstr "三级缓存"
 
 #: main.c:86 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "核心"
 
@@ -938,10 +930,8 @@ msgid "Set default tab (integer)"
 msgstr "设置默认选项卡 (整型)"
 
 #: main.c:349
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "选择要监视的 CPU 核心 (整型)"
+msgstr "选择要监控的核心类型（整数）"
 
 #: main.c:350
 msgid "Select CPU core to monitor (integer)"
@@ -1048,17 +1038,13 @@ msgid "failed to call wordexp (%i)"
 msgstr "调用 wordexp (%i) 失败"
 
 #: main.c:676
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%s遇到了错误！ %s 获得信号 %d（%s） 并崩溃。%s"
+"遇到了错误！ %s 获得信号 %d（%s） 并崩溃。"
 
 #: main.c:690
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1105,28 +1091,20 @@ msgid "Global keys:"
 msgstr "全局按键："
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "按“left”键切换到左侧选项卡。"
+msgstr "按“左”键或“tab”键切换到左标签。"
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "按“右”键切换到右选项卡。"
+msgstr "按“右”键或“Shift + Tab”键切换到右标签。"
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "按“left”键切换到左侧选项卡。"
+msgstr "按“home”键向上滚动页面。"
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "按“left”键切换到左侧选项卡。"
+msgstr "按“end”键向下滚动页面。"
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1141,28 +1119,20 @@ msgid "CPU tab:"
 msgstr "CPU 选项卡："
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "按 'down' 键减小要监视的核心数值。"
+msgstr "按“next page”键减少要监控的核心类型编号。"
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "按 'up' 键增加要监视的核心数值。"
+msgstr "按“previous page”键增加要监控的核心类型编号。"
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "按 'down' 键减小要监视的核心数值。"
+msgstr "按 “向下” 键减少要监控的 CPU 核心数。"
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "按 'up' 键增加要监视的核心数值。"
+msgstr "按 “向上” 键增加要监控的 CPU 核心数。"
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
@@ -1173,10 +1143,8 @@ msgid "Press 'down' key to switch to previous test."
 msgstr "按 'down' 键切换至上一项测试。"
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
-msgstr "按 'up' 键切换至下一项测试。"
+msgstr "按 “向上” 键切换到下一个测试。"
 
 #: tui_ncurses.c:525
 msgid "Bench tab:"
@@ -1252,27 +1220,21 @@ msgid "an error occurred while compiling regex"
 msgstr "编译正则表达式时出错"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
 msgstr "核心"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "分数"
+msgstr "高性能核心"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
 msgstr "分数"
 
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "未能将 CPU 关联性更改为核心 %u"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1292,7 +1254,7 @@ msgstr "pkexec：意外的错误代码"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "此操作系统不支持 set_cpu_affinity()"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1394,10 +1356,8 @@ msgstr "默认显卡"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "默认缓存测试"
+msgstr "默认核心类型"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
