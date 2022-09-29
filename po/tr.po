@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-09-29 18:09+0000\n"
-"PO-Revision-Date: 2022-08-24 00:18+0000\n"
+"PO-Revision-Date: 2022-10-01 10:30+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: core.c:236
 msgid "Finding CPU technology"
@@ -73,6 +73,7 @@ msgstr "libcpuid çağrılamadı (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Seçilen CPU türü (%u) geçerli bir sayı değil (%u bu CPU için azami değerdir)"
 
 #: core.c:319
 #, c-format
@@ -80,10 +81,12 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Seçilen CPU çekirdeği (%u) geçerli bir sayı değil (%u bu çekirdek türü için "
+"azami sayıdır)"
 
 #: core.c:348
 msgid "unknown"
-msgstr ""
+msgstr "bilinmeyen"
 
 #: core.c:471
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -148,13 +151,12 @@ msgstr "GLFW çağrılamadı (%i): %s"
 
 #: core.c:991
 msgid "Enumerating Vulkan instance extension properties"
-msgstr ""
+msgstr "Vulkan örneği uzantısı özellikleri numaralandırılıyor"
 
 #: core.c:997
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance (%s)"
+#, c-format
 msgid "failed to call vkEnumerateInstanceExtensionProperties (%s)"
-msgstr "vkCreateInstance çağrılamadı (%s)"
+msgstr "vkEnumerateInstanceExtensionProperties çağrılamadı (%s)"
 
 #: core.c:1009
 #, c-format
@@ -162,12 +164,12 @@ msgid ""
 "failed to call vkEnumerateInstanceExtensionProperties to fill "
 "VkExtensionProperties (%s)"
 msgstr ""
+"VkExtensionProperties doldurmak için vkEnumerateInstanceExtensionProperties "
+"çağrılamadı (%s)"
 
 #: core.c:1048
-#, fuzzy
-#| msgid "Vulkan Version"
 msgid "Finding Vulkan API version"
-msgstr "Vulkan Sürümü"
+msgstr "Vulkan API sürümü bulunuyor"
 
 #: core.c:1051
 msgid "Vulkan API is not available"
@@ -184,22 +186,18 @@ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "vkEnumeratePhysicalDevices çağrılamadı (%s)"
 
 #: core.c:1087
-#, fuzzy
-#| msgid "There is no available physical device (%s)"
 msgid "No available Vulkan devices"
-msgstr "Kullanılabilir fiziksel aygıt yok (%s)"
+msgstr "Kullanılabilir Vulkan aygıtı yok"
 
 #: core.c:1096
-#, fuzzy, c-format
-#| msgid "There is no available physical device (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
 msgstr "Kullanılabilir fiziksel aygıt yok (%s)"
 
 #: core.c:1157
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "%u. aygıtın adı alınamadı (%s)"
+msgstr "Aygıt %u için Vulkan oluşturulamadı (%s)"
 
 #: core.c:1217
 #, c-format
@@ -489,10 +487,9 @@ msgid "Start daemon"
 msgstr "Arka plan programını başlat"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "Çekirdek #%i"
+msgstr "Tür #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -637,10 +634,8 @@ msgid "Level 3"
 msgstr "Seviye 3"
 
 #: main.c:86 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
-msgstr "Çekirdek(ler)"
+msgstr "Çekirdekler"
 
 #: main.c:87 main.c:182 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
@@ -953,10 +948,8 @@ msgid "Set default tab (integer)"
 msgstr "Öntanımlı sekmeyi ayarla (tam sayı)"
 
 #: main.c:349
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "İzlenecek işlemci çekirdeğini seç (tam sayı)"
+msgstr "İzlenecek çekirdek türünü seç (tam sayı)"
 
 #: main.c:350
 msgid "Select CPU core to monitor (integer)"
@@ -1065,17 +1058,13 @@ msgid "failed to call wordexp (%i)"
 msgstr "wordexp çağrılamadı (%i)"
 
 #: main.c:676
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%sHay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü.%s"
+"Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü."
 
 #: main.c:690
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1125,28 +1114,20 @@ msgid "Global keys:"
 msgstr "Genel tuşlar:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Sol sekmeye geçmek için 'sol' tuşuna basın."
+msgstr "Sol sekmeye geçmek için 'sol' veya 'tab' tuşuna basın."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Sağ sekmeye geçmek için 'sağ' tuşuna basın."
+msgstr "Sağ sekmeye geçmek için 'sağ' veya 'shift + tab' tuşuna basın."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "Sol sekmeye geçmek için 'sol' tuşuna basın."
+msgstr "Bir sayfada yukarı kaydırmak için 'home' tuşuna basın."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "Sol sekmeye geçmek için 'sol' tuşuna basın."
+msgstr "Bir sayfada aşağı kaydırmak için 'end' tuşuna basın."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1161,28 +1142,22 @@ msgid "CPU tab:"
 msgstr "CPU sekmesi:"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "İzlenecek çekirdek sayısını azaltmak için 'aşağı' tuşuna basın."
+msgstr ""
+"İzlenecek çekirdek türü sayısını azaltmak için 'sonraki sayfa' tuşuna basın."
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "İzlenecek çekirdek sayısını artırmak için 'yukarı' tuşuna basın."
+msgstr ""
+"İzlenecek çekirdek türü sayısını arttırmak için 'önceki sayfa' tuşuna basın."
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "İzlenecek çekirdek sayısını azaltmak için 'aşağı' tuşuna basın."
+msgstr "İzlenecek CPU çekirdek sayısını azaltmak için 'aşağı' tuşuna basın."
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "İzlenecek çekirdek sayısını artırmak için 'yukarı' tuşuna basın."
+msgstr "İzlenecek CPU çekirdek sayısını artırmak için 'yukarı' tuşuna basın."
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
@@ -1193,8 +1168,6 @@ msgid "Press 'down' key to switch to previous test."
 msgstr "Önceki teste geçmek için 'aşağı' tuşuna basın."
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
 msgstr "Sonraki teste geçmek için 'yukarı' tuşuna basın."
 
@@ -1279,27 +1252,21 @@ msgid "an error occurred while compiling regex"
 msgstr "düzenli ifade derlenirken bir hata oluştu"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
-msgstr "Çekirdek(ler)"
+msgstr "Çekirdek"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Puan"
+msgstr "P-çekirdek"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Puan"
+msgstr "E-çekirdek"
 
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "Çekirdek %u için CPU benzeşimi değiştirilemedi"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1319,7 +1286,7 @@ msgstr "pkexec: beklenmedik hata kodu"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() bu işletim sisteminde desteklenmiyor"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1421,10 +1388,8 @@ msgstr "Öntanımlı grafik kartı"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "Öntanımlı önbellek testi"
+msgstr "Öntanımlı çekirdek türü"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
