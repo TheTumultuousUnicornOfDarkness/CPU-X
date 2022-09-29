@@ -989,8 +989,10 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	VkInstance instance = {0};
 	VkPhysicalDevice *devices = NULL;
 	const char* const ext_names[] = {
-		"VK_KHR_get_physical_device_properties2",
-		"VK_KHR_portability_enumeration",
+		VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME,
+# ifdef VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
+		VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME,
+# endif /* VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME */
 	};
 
 	MSG_VERBOSE("%s", _("Finding Vulkan API version"));
@@ -1004,7 +1006,11 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	{
 		.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
 		.pNext = NULL,
-		.flags = 0x00000001, // VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
+# ifdef VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
+		.flags = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR,
+# else
+		.flags = 0,
+# endif /* VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR */
 		.enabledExtensionCount = sizeof(ext_names) / sizeof(const char*),
 		.ppEnabledExtensionNames = ext_names,
 	};
@@ -1045,7 +1051,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		return err;
 	}
 
-# if defined (VK_EXT_PCI_BUS_INFO_EXTENSION_NAME) && defined(VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME)
+# ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
 	VkDeviceQueueCreateInfo queueCreateInfo =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
@@ -1070,6 +1076,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.pEnabledFeatures = NULL,
 	};
 
+#  ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 	const VkDeviceCreateInfo check_rt =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
@@ -1083,6 +1090,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.ppEnabledExtensionNames = (const char* []) { VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME },
 		.pEnabledFeatures = NULL,
 	};
+#  endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info =
 	{
 		.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
@@ -1116,10 +1124,12 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		    dev->dev             == bus_info.pciDevice   &&
 		    dev->func            == bus_info.pciFunction)
 		{
+#  ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
 				*vulkan_rt = true;
 
 			vkDestroyDevice(vk_dev, NULL);
+#  endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
 			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
 #  if(VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
@@ -1135,13 +1145,13 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 			break;
 		}
 	}
-# endif /* defined (VK_EXT_PCI_BUS_INFO_EXTENSION_NAME) && defined(VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME) */
+# endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
 	free(devices);
 #else
 	UNUSED(dev);
 	UNUSED(vulkan_version);
 	UNUSED(vulkan_rt);
-#endif /* HAS_LIBGLFW */
+#endif /* HAS_LIBGLFW && HAS_Vulkan */
 
 	return err;
 }
