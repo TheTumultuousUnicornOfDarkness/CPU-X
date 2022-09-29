@@ -986,6 +986,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	int err = 0;
 #if HAS_LIBGLFW && HAS_Vulkan
 	uint32_t i, device_count = 0;
+	bool use_device_id = false;
 	VkInstance instance = {0};
 	VkPhysicalDevice *devices = NULL;
 	const char* const ext_names[] = {
@@ -1111,24 +1112,22 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 			if(err == VK_ERROR_EXTENSION_NOT_PRESENT)
 			{
-				MSG_WARNING(_("VK_EXT_pci_bus_info is not supported on device %u"), i);
+				MSG_WARNING(_("VK_EXT_pci_bus_info is not supported for device %u, use only deviceID for matching"), i);
+				use_device_id = true;
 			}
-
-			vkDestroyDevice(vk_dev, NULL);
-			continue;
 		}
 
 		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
-		if((uint32_t)dev->domain == bus_info.pciDomain   &&
-		    dev->bus             == bus_info.pciBus      &&
-		    dev->dev             == bus_info.pciDevice   &&
-		    dev->func            == bus_info.pciFunction)
+		if(((uint32_t)dev->domain    == bus_info.pciDomain    &&
+		    dev->bus                 == bus_info.pciBus       &&
+		    dev->dev                 == bus_info.pciDevice    &&
+		    dev->func                == bus_info.pciFunction) ||
+		    (use_device_id &&
+		     (uint32_t)dev->device_id == prop2.properties.deviceID))
 		{
 #  ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
 				*vulkan_rt = true;
-
-			vkDestroyDevice(vk_dev, NULL);
 #  endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
 			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
@@ -1142,6 +1141,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 				VK_VERSION_PATCH(prop2.properties.apiVersion)
 #  endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
 			);
+			vkDestroyDevice(vk_dev, NULL);
 			break;
 		}
 	}
