@@ -1046,7 +1046,6 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		return err;
 	}
 
-# ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
 	VkDeviceQueueCreateInfo queueCreateInfo =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
@@ -1057,6 +1056,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.pQueuePriorities = (float []) { 1.0f },
 	};
 
+# ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
 	const VkDeviceCreateInfo check_pci_bus_info =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
@@ -1070,8 +1070,9 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.ppEnabledExtensionNames = (const char* []) { VK_EXT_PCI_BUS_INFO_EXTENSION_NAME },
 		.pEnabledFeatures = NULL,
 	};
+# endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
 
-#  ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
+# ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 	const VkDeviceCreateInfo check_rt =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
@@ -1085,7 +1086,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.ppEnabledExtensionNames = (const char* []) { VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME },
 		.pEnabledFeatures = NULL,
 	};
-#  endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
+# endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info =
 	{
 		.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
@@ -1100,6 +1101,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	for(i = 0; i < device_count; i++)
 	{
 		VkDevice vk_dev = {0};
+# ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
 		if((err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
 		{
 			MSG_WARNING(_("Failed to create Vulkan for device %u (%s)"), i, string_VkResult(err));
@@ -1110,6 +1112,9 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 				use_device_id = true;
 			}
 		}
+# else
+        use_device_id = true;
+# endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
 
 		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
 		if(((uint32_t)dev->domain    == bus_info.pciDomain    &&
@@ -1119,27 +1124,26 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		    (use_device_id &&
 		     (uint32_t)dev->device_id == prop2.properties.deviceID))
 		{
-#  ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
+# ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
 				*vulkan_rt = true;
-#  endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
+# endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
 			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
-#  if(VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
+# if(VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
 				VK_API_VERSION_MAJOR(prop2.properties.apiVersion),
 				VK_API_VERSION_MINOR(prop2.properties.apiVersion),
 				VK_API_VERSION_PATCH(prop2.properties.apiVersion)
-#  else
+# else
 				VK_VERSION_MAJOR(prop2.properties.apiVersion),
 				VK_VERSION_MINOR(prop2.properties.apiVersion),
 				VK_VERSION_PATCH(prop2.properties.apiVersion)
-#  endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
+# endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
 			);
 			vkDestroyDevice(vk_dev, NULL);
 			break;
 		}
 	}
-# endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
 	vkDestroyInstance(instance, NULL);
 	free(devices);
 #else
