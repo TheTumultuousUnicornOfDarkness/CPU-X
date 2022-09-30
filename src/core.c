@@ -1154,7 +1154,6 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 	return err;
 }
-#undef VULKAN_MAX_EXTENSION_NAMES
 
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
