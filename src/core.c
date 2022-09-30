@@ -73,13 +73,12 @@
 #endif
 
 #if HAS_LIBGLFW
-# if HAS_Vulkan
-#   define VK_VERSION_1_1
-#	define GLFW_INCLUDE_VULKAN
-#	include <vulkan/vulkan.h>
-# endif
 # include <GL/gl.h>
 # include <GLFW/glfw3.h>
+#endif
+
+#if HAS_Vulkan
+# include <vulkan/vulkan.h>
 #endif
 
 #if HAS_OpenCL
@@ -984,7 +983,7 @@ static inline const char* string_VkResult(VkResult input_value)
 static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, bool *vulkan_rt)
 {
 	int err = 0;
-#if HAS_LIBGLFW && HAS_Vulkan
+#if HAS_Vulkan
 	uint32_t i, device_count = 0;
 	bool use_device_id = false;
 	VkInstance instance = {0};
@@ -997,11 +996,6 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	};
 
 	MSG_VERBOSE("%s", _("Finding Vulkan API version"));
-	if(glfwVulkanSupported() == GLFW_FALSE)
-	{
-		MSG_WARNING("%s", _("Vulkan API is not available"));
-		return err;
-	}
 
 	const VkInstanceCreateInfo createInfo =
 	{
@@ -1151,7 +1145,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	UNUSED(dev);
 	UNUSED(vulkan_version);
 	UNUSED(vulkan_rt);
-#endif /* HAS_LIBGLFW && HAS_Vulkan */
+#endif /* HAS_Vulkan */
 
 	return err;
 }
