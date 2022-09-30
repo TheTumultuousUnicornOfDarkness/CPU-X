@@ -1016,7 +1016,10 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 		if(err == VK_ERROR_EXTENSION_NOT_PRESENT)
 		{
-			MSG_ERROR("%s", _("VK_KHR_get_physical_device_properties2 and VK_KHR_portability_enumeration are not supported"));
+			MSG_ERROR(_("%s is not supported"), VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
+# ifdef VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
+			MSG_ERROR(_("%s is not supported"), VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
+# endif /* VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME */
 		}
 
 		return err;
@@ -1108,7 +1111,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 			if(err == VK_ERROR_EXTENSION_NOT_PRESENT)
 			{
-				MSG_WARNING(_("VK_EXT_pci_bus_info is not supported for device %u, use only deviceID for matching"), i);
+				MSG_WARNING(_("%s is not supported for device %u, use only deviceID for matching"), VK_EXT_PCI_BUS_INFO_EXTENSION_NAME, i);
 				use_device_id = true;
 			}
 		}
