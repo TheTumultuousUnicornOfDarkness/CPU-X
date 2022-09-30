@@ -1140,6 +1140,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		}
 	}
 # endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
+	vkDestroyInstance(instance, NULL);
 	free(devices);
 #else
 	UNUSED(dev);
