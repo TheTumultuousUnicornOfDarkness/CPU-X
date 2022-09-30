@@ -71,15 +71,17 @@ if(WITH_LIBGLFW)
 		add_definitions(${LIBGL_CFLAGS_OTHER} ${LIBGLFW_CFLAGS_OTHER})
 	endif(LIBGL_FOUND AND LIBGLFW_FOUND)
 
-	if(WITH_VULKAN)
-		pkg_check_modules(VULKAN vulkan)
-		if(VULKAN_FOUND AND LIBGLFW_FOUND)
-			include_directories(${VULKAN_INCLUDE_DIRS})
-			link_directories(${VULKAN_LIBRARY_DIRS})
-			add_definitions(${VULKAN_CFLAGS_OTHER})
-		endif(VULKAN_FOUND AND LIBGLFW_FOUND)
-	endif(WITH_VULKAN)
 endif(WITH_LIBGLFW)
+
+# Vulkan
+if(WITH_VULKAN)
+	pkg_check_modules(VULKAN vulkan)
+	if(VULKAN_FOUND)
+		include_directories(${VULKAN_INCLUDE_DIRS})
+		link_directories(${VULKAN_LIBRARY_DIRS})
+		add_definitions(${VULKAN_CFLAGS_OTHER})
+	endif(VULKAN_FOUND)
+endif(WITH_VULKAN)
 
 # OpenCL
 if(WITH_OPENCL)
