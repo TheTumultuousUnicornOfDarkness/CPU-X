@@ -134,6 +134,7 @@ const Technology_DB technology_amd[] =
 	{ -1,           1,          23,          14 }, // Zen (Summit Ridge/Whitehaven/Naples)
 	{ -1,          17,          23,          14 }, // Zen (Raven Ridge)
 	{ -1,           8,          23,          12 }, // Zen+ (Pinnacle Ridge/Colfax)
+	{ -1,          32,          23,          14 }, // Zen (Dali)
 	{ -1,          24,          23,          12 }, // Zen+ (Picasso)
 	{ -1,          49,          23,           7 }, // Zen 2 (Rome/Castle Peak)
 	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
