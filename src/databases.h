@@ -144,6 +144,7 @@ const Technology_DB technology_amd[] =
 	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
 	{ -1,           1,          25,           7 }, // Zen 3 (Milan)
 	{ -1,          68,          25,           7 }, // Zen 3 (Rembrandt)
+	{ -1,          97,          25,           5 }, // Zen 4 (Raphael)
 	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
@@ -226,6 +227,7 @@ const Package_DB package_amd[] =
 	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
 	{ "Vermeer",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Milan",                          NULL,            "SP3 (LGA-4094)"   },
+	{ "Raphael",                        NULL,            "AM5 (LGA-1718)"   },
 	{ NULL,                             NULL,            NULL               }
 	//Codename                          Model            Socket
 };
