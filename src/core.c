@@ -1818,7 +1818,7 @@ static int system_static(Labels *data)
 	else
 	{
 		casprintf(&data->tab_system[VALUE][KERNEL],   false, "%s %s", name.sysname, name.release); /* Kernel label */
-		casprintf(&data->tab_system[VALUE][HOSTNAME], false, "%s",    name.nodename); /* Hostname label */
+		casprintf(&data->tab_system[VALUE][HOSTNAME], false, "%s",    opts->issue ? "sensitive data" : name.nodename); /* Hostname label */
 	}
 
 	/* Compiler label */
