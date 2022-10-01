@@ -340,7 +340,7 @@ typedef struct
 } PrefixUnit;
 
 extern Options *opts;
-
+extern bool __sigabrt_received;
 
 /***************************** Defined in main.c *****************************/
 

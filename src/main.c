@@ -44,6 +44,7 @@
 #define LOG_FILE "/tmp/cpu-x.log"
 
 Options *opts;
+bool __sigabrt_received = false;
 
 
 /************************* Arrays management functions *************************/
@@ -661,8 +662,7 @@ static void parse_arguments(int argc_orig, char *argv_orig[])
 
 /************************* Main-related functions *************************/
 
-/* Action on SIGSEV/SIGFPE */
-static void sighandler(int signum)
+static void common_sighandler(int signum, bool need_stop)
 {
 	int bt_size, i;
 	char **bt_syms, *buff = NULL;
@@ -673,7 +673,11 @@ static void sighandler(int signum)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
-	MSG_STDERR(_("\nOops, something was wrong! %s has received signal %d (%s) and has crashed."), PRGNAME, signum, strsignal(signum));
+	if(need_stop)
+		fprintf(stderr, "%s", colorized_msg(BOLD_RED, _("\nOops, something was wrong! %s has received signal %d (%s) and has crashed."), PRGNAME, signum, strsignal(signum)));
+	else
+		fprintf(stderr, "%s", colorized_msg(BOLD_RED, _("\nOops, something was wrong! %s has received signal %d (%s) and is trying to recover."), PRGNAME, signum, strsignal(signum)));
+
 	MSG_STDERR("%s", "========================= Backtrace =========================");
 	PRGINFO(stderr);
 	for(i = 1; i < bt_size; i++)
@@ -687,13 +691,32 @@ static void sighandler(int signum)
 		free(buff);
 	}
 	MSG_STDERR("%s\n", "======================== End Backtrace =======================");
-	MSG_STDERR("%s", _("You can open a new issue here, by filling the template as requested:"));
-	MSG_STDERR("%s\n", ISSUEURL);
+	if(need_stop)
+	{
+		MSG_STDERR("%s", _("You can open a new issue here, by filling the template as requested:"));
+		MSG_STDERR("%s\n", ISSUEURL);
+	}
 
 	/* Stop program */
 	free(bt_syms);
-	signal(signum, SIG_DFL);
-	kill(getpid(), signum);
+	if(need_stop)
+	{
+		signal(signum, SIG_DFL);
+		kill(getpid(), signum);
+	}
+}
+
+/* Action on SIGILL/SIGSEV/SIGFPE */
+static void sighandler_fatal(int signum)
+{
+	common_sighandler(signum, true);
+}
+
+/* Action on SIGABRT */
+static void sighandler_abrt(int signum)
+{
+	__sigabrt_received = true;
+	common_sighandler(signum, false);
 }
 
  /* Enable internationalization support */
@@ -805,9 +828,10 @@ int main(int argc, char *argv[])
 #if HAS_GETTEXT
 	set_locales();
 #endif /* HAS_GETTEXT */
-	signal(SIGSEGV, sighandler);
-	signal(SIGFPE,  sighandler);
-	signal(SIGABRT, sighandler);
+	signal(SIGILL,  sighandler_fatal);
+	signal(SIGSEGV, sighandler_fatal);
+	signal(SIGFPE,  sighandler_fatal);
+	signal(SIGABRT, sighandler_abrt);
 
 	/* Parse options */
 #if HAS_GTK

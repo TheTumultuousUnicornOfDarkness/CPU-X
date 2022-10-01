@@ -1198,7 +1198,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
-static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *comp_unit_type, char *cl_version)
+static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *comp_unit_type, char *cl_version)
 {
 	int ret_cl = 0;
 #if HAS_OpenCL
@@ -1212,19 +1212,21 @@ static int get_gpu_comp_unit (struct pci_dev *dev, uint32_t *comp_unit, char *co
 	cl_uint ocl_domain_nv, ocl_bus_nv, ocl_dev_nv; // for NVIDIA
 
 	ret_cl = clGetPlatformIDs(0, NULL, &num_pf); // get number of platform
-	if (ret_cl != CL_SUCCESS || num_pf == 0)
+	if(__sigabrt_received || (ret_cl != CL_SUCCESS) || (num_pf == 0))
 	{
-		MSG_WARNING(_("There is no platform with OpenCL support (%s)"), opencl_error(ret_cl));
+		MSG_WARNING(_("There is no platform with OpenCL support (%s)"), __sigabrt_received ? "SIGABRT" : opencl_error(ret_cl));
+		__sigabrt_received = false;
 		return ret_cl;
 	}
 	MSG_DEBUG("Number of OpenCL platforms: %u", num_pf);
 
 	platforms = (cl_platform_id*) malloc(sizeof(cl_platform_id) * num_pf);
 	ALLOC_CHECK(platforms);
-	ret_cl = clGetPlatformIDs(num_pf, platforms, NULL);; // get all platforms
-	if (ret_cl != CL_SUCCESS)
+	ret_cl = clGetPlatformIDs(num_pf, platforms, NULL); // get all platforms
+	if(__sigabrt_received || (ret_cl != CL_SUCCESS))
 	{
-		MSG_ERROR(_("failed to get all OpenCL platforms (%s)"), opencl_error(ret_cl));
+		MSG_ERROR(_("failed to get all OpenCL platforms (%s)"), __sigabrt_received ? "SIGABRT" : opencl_error(ret_cl));
+		__sigabrt_received = false;
 		free(platforms);
 		return ret_cl;
 	}
