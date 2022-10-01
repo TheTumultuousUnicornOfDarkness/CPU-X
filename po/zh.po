@@ -14,11 +14,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-09-29 18:09+0000\n"
+"POT-Creation-Date: 2022-10-01 10:30+0000\n"
 "PO-Revision-Date: 2022-10-01 10:30+0000\n"
 "Last-Translator: yangyangdaji <1504305527@qq.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"cpu-x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
+"x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -192,59 +192,59 @@ msgstr "无法为设备 %u (%s) 创建 Vulkan"
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "没有支持 OpenCL 的平台（%s）"
 
-#: core.c:1227
+#: core.c:1228
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "未能获得所有 OpenCL 平台（%s）"
 
-#: core.c:1237
+#: core.c:1239
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "未能获得平台名称 %u（%s）"
 
-#: core.c:1244
+#: core.c:1246
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "未能获得平台 %u 的版本（%s）"
 
-#: core.c:1251
+#: core.c:1253
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "查找平台 '%s %s'（%s） 的 OpenCL 设备数失败"
 
-#: core.c:1260
+#: core.c:1262
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "未能获得平台 '%s %s'（%s） 所有的 OpenCL 设备"
 
-#: core.c:1274
+#: core.c:1276
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "未能获得设备 %u 的名称（%s）"
 
-#: core.c:1281
+#: core.c:1283
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "未能获得设备 %u 的版本（%s）"
 
-#: core.c:1295
+#: core.c:1297
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD（%s）"
 
-#: core.c:1306
+#: core.c:1308
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD（%s）"
 
-#: core.c:1318 core.c:1328 core.c:1353
+#: core.c:1320 core.c:1330 core.c:1355
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_MAX_COMPUTE_UNITS（%s）"
 
-#: core.c:1341
+#: core.c:1343
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -253,193 +253,193 @@ msgstr ""
 "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV（%s）、"
 "CL_DEVICE_PCI_BUS_ID_NV（%s） 或CL_DEVICE_PCI_SLOT_ID_NV（%s）"
 
-#: core.c:1361
+#: core.c:1363
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "Open 不受你的 GPU 厂商 (0x%X) 的支持"
 
-#: core.c:1392
+#: core.c:1394
 msgid "Finding devices"
 msgstr "正在搜索设备"
 
-#: core.c:1404
+#: core.c:1406
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "跳过设备搜索 (%s设备上的权限错误)"
 
-#: core.c:1442
+#: core.c:1444
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "您的 GPU 供应商未知：%s (0x%X)"
 
-#: core.c:1459 core.c:1771
+#: core.c:1461 core.c:1773
 msgid "Enabled"
 msgstr "已启用"
 
-#: core.c:1459 core.c:1771
+#: core.c:1461 core.c:1773
 msgid "Disabled"
 msgstr "已禁用"
 
-#: core.c:1469
+#: core.c:1471
 msgid "failed to find chipset vendor and model"
 msgstr "未找到芯片组供应商和型号"
 
-#: core.c:1471
+#: core.c:1473
 msgid "failed to find graphic card vendor and model"
 msgstr "未找到显卡供应商和型号"
 
-#: core.c:1548
+#: core.c:1550
 msgid "Retrieving GPU clocks"
 msgstr "正在检索 GPU 时钟"
 
-#: core.c:1583
+#: core.c:1585
 msgid "None"
 msgstr "无"
 
-#: core.c:1724
+#: core.c:1726
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU 驱动 %u 无法报告频率"
 
-#: core.c:1767
+#: core.c:1769
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "当前：PCIe Gen%1dx%d / 最高：Gen%1dx%d"
 
-#: core.c:1795
+#: core.c:1797
 msgid "failed to retrieve GPU clocks"
 msgstr "无法检索 GPU 时钟"
 
-#: core.c:1812
+#: core.c:1814
 msgid "Identifying running system"
 msgstr "正在识别本系统"
 
-#: core.c:1815
+#: core.c:1817
 msgid "failed to identify running system"
 msgstr "未识别本系统"
 
-#: core.c:1859 core.c:1887
+#: core.c:1861 core.c:1889
 msgid "Calling libprocps"
 msgstr "正在调用 libprocps"
 
-#: core.c:1862
+#: core.c:1864
 msgid "unable to get system uptime"
 msgstr "无法获取系统运行时间"
 
-#: core.c:1868
+#: core.c:1870
 msgid "unable to create meminfo structure"
 msgstr "无法创建 meminfo 结构"
 
-#: core.c:1913
+#: core.c:1915
 msgid "Calling libstatgrab"
 msgstr "正在调用 libstatgrab"
 
-#: core.c:1952
+#: core.c:1954
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天，%i 小时，%i 分钟，%i 秒"
 
-#: core.c:2009
+#: core.c:2011
 msgid "Updating benchmark status"
 msgstr "正在更新基准测试状态"
 
-#: core.c:2010 tui_ncurses.c:879
+#: core.c:2012 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u 分钟"
 
-#: core.c:2012 core.c:2013
+#: core.c:2014 core.c:2015
 msgid "Inactive"
 msgstr "待用"
 
-#: core.c:2017 core.c:2018
+#: core.c:2019 core.c:2020
 msgid "Not started"
 msgstr "未启动"
 
-#: core.c:2023
+#: core.c:2025
 msgid "Active"
 msgstr "启用"
 
-#: core.c:2028
+#: core.c:2030
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩余 %u 小时)"
 
-#: core.c:2030
+#: core.c:2032
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩余 %u 分钟)"
 
-#: core.c:2032
+#: core.c:2034
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩余 %u 秒)"
 
-#: core.c:2037
+#: core.c:2039
 #, c-format
 msgid "in %u hours"
 msgstr "%u 小时后"
 
-#: core.c:2039
+#: core.c:2041
 #, c-format
 msgid "in %u minutes"
 msgstr "%u 分钟后"
 
-#: core.c:2041
+#: core.c:2043
 #, c-format
 msgid "in %u seconds"
 msgstr "%u 秒后"
 
-#: core.c:2057
+#: core.c:2059
 msgid "Starting benchmark"
 msgstr "正在启动基准测试"
 
-#: core.c:2076
+#: core.c:2078
 msgid "an error occurred while starting benchmark"
 msgstr "启动基准测试时出错"
 
-#: core.c:2093
+#: core.c:2095
 msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
-#: core.c:2115
+#: core.c:2117
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
-#: core.c:2134
+#: core.c:2136
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "正在应急模式下计算 CPU 倍频"
 
-#: core.c:2161
+#: core.c:2163
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "正在应急模式下检索主板信息"
 
-#: core.c:2170
+#: core.c:2172
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "无法检索主板信息 (应急模式)"
 
-#: core.c:2209
+#: core.c:2211
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "正在应急模式下检索 CPU 温度"
 
-#: core.c:2255
+#: core.c:2257
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "未能检索 CPU 温度 (应急模式)"
 
-#: core.c:2268
+#: core.c:2270
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "正在应急模式下检索 CPU 电压"
 
-#: core.c:2281
+#: core.c:2283
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "未能检索 CPU 电压 (应急模式)"
 
-#: core.c:2296
+#: core.c:2298
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "正在应急模式下检索 CPU 频率"
 
-#: core.c:2304
+#: core.c:2306
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "未能检索 CPU 频率 (应急模式)"
 
@@ -511,352 +511,352 @@ msgstr "Vulkan 光线追踪"
 msgid "%s"
 msgstr "%s"
 
-#: main.c:56
+#: main.c:57
 msgid "Setting label names"
 msgstr "正在设置标签名称"
 
-#: main.c:58 cpu-x-gtk-3.12.ui:1370
+#: main.c:59 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
 msgstr "CPU"
 
-#: main.c:59 cpu-x-gtk-3.12.ui:746
+#: main.c:60 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "处理器"
 
-#: main.c:60 main.c:114 main.c:147
+#: main.c:61 main.c:115 main.c:148
 msgid "Vendor"
 msgstr "制造商"
 
-#: main.c:61
+#: main.c:62
 msgid "Code Name"
 msgstr "架构"
 
-#: main.c:62
+#: main.c:63
 msgid "Package"
 msgstr "接口"
 
-#: main.c:63
+#: main.c:64
 msgid "Technology"
 msgstr "工艺"
 
-#: main.c:64
+#: main.c:65
 msgid "Voltage"
 msgstr "电压"
 
-#: main.c:65
+#: main.c:66
 msgid "Specification"
 msgstr "规格"
 
-#: main.c:66
+#: main.c:67
 msgid "Family"
 msgstr "系列"
 
-#: main.c:67
+#: main.c:68
 msgid "Disp. Family"
 msgstr "Disp。系列"
 
-#: main.c:68 main.c:104 main.c:115 main.c:150
+#: main.c:69 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "型号"
 
-#: main.c:69
+#: main.c:70
 msgid "Disp. Model"
 msgstr "Disp。型号"
 
-#: main.c:70
+#: main.c:71
 msgid "Temp."
 msgstr "温度。"
 
-#: main.c:71
+#: main.c:72
 msgid "Stepping"
 msgstr "步进"
 
-#: main.c:72
+#: main.c:73
 msgid "Instructions"
 msgstr "指令集"
 
-#: main.c:74 cpu-x-gtk-3.12.ui:968
+#: main.c:75 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "时钟"
 
-#: main.c:75
+#: main.c:76
 msgid "Core Speed"
 msgstr "核心速度"
 
-#: main.c:76
+#: main.c:77
 msgid "Multiplier"
 msgstr "倍频"
 
-#: main.c:77
+#: main.c:78
 msgid "Bus Speed"
 msgstr "总线速度"
 
-#: main.c:78 main.c:156
+#: main.c:79 main.c:157
 msgid "Usage"
 msgstr "使用率"
 
-#: main.c:80 cpu-x-gtk-3.12.ui:1184
+#: main.c:81 cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
 msgstr "缓存"
 
-#: main.c:81
+#: main.c:82
 msgid "L1 Data"
 msgstr "一级数据缓存"
 
-#: main.c:82
+#: main.c:83
 msgid "L1 Inst."
 msgstr "一级指令缓存."
 
-#: main.c:83
+#: main.c:84
 msgid "Level 2"
 msgstr "二级缓存"
 
-#: main.c:84
+#: main.c:85
 msgid "Level 3"
 msgstr "三级缓存"
 
-#: main.c:86 cpu-x-gtk-3.12.ui:1232
+#: main.c:87 cpu-x-gtk-3.12.ui:1232
 msgid "Cores"
 msgstr "核心"
 
-#: main.c:87 main.c:182 cpu-x-gtk-3.12.ui:1252
+#: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
 msgstr "线程"
 
-#: main.c:90 cpu-x-gtk-3.12.ui:1968
+#: main.c:91 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "缓存"
 
-#: main.c:94
+#: main.c:95
 #, c-format
 msgid "L%i Cache"
 msgstr "%i级缓存"
 
-#: main.c:95
+#: main.c:96
 msgid "Size"
 msgstr "大小"
 
-#: main.c:96
+#: main.c:97
 msgid "Speed"
 msgstr "速度"
 
-#: main.c:98
+#: main.c:99
 msgid "Test"
 msgstr "测试"
 
-#: main.c:101 main.c:102 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "主板"
 
-#: main.c:103
+#: main.c:104
 msgid "Manufacturer"
 msgstr "制造商"
 
-#: main.c:105
+#: main.c:106
 msgid "Revision"
 msgstr "版本修订"
 
-#: main.c:107 cpu-x-gtk-3.12.ui:2367
+#: main.c:108 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "BIOS"
 
-#: main.c:108
+#: main.c:109
 msgid "Brand"
 msgstr "品牌"
 
-#: main.c:109
+#: main.c:110
 msgid "Version"
 msgstr "版本"
 
-#: main.c:110
+#: main.c:111
 msgid "Date"
 msgstr "日期"
 
-#: main.c:111
+#: main.c:112
 msgid "ROM Size"
 msgstr "ROM 大小"
 
-#: main.c:113 cpu-x-gtk-3.12.ui:2498
+#: main.c:114 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "芯片组"
 
-#: main.c:118 main.c:134 cpu-x-gtk-3.12.ui:3227 cpu-x-gtk-3.12.ui:3877
+#: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3227 cpu-x-gtk-3.12.ui:3877
 msgid "Memory"
 msgstr "内存"
 
-#: main.c:121
+#: main.c:122
 #, c-format
 msgid "Bank %i"
 msgstr "插槽 %i"
 
-#: main.c:122
+#: main.c:123
 msgid "Reference"
 msgstr "引用"
 
-#: main.c:126 cpu-x-gtk-3.12.ui:3896
+#: main.c:127 cpu-x-gtk-3.12.ui:3896
 msgid "System"
 msgstr "系统"
 
-#: main.c:127 cpu-x-gtk-3.12.ui:3496
+#: main.c:128 cpu-x-gtk-3.12.ui:3496
 msgid "Operating System"
 msgstr "操作系统"
 
-#: main.c:128
+#: main.c:129
 msgid "Kernel"
 msgstr "内核"
 
-#: main.c:129
+#: main.c:130
 msgid "Distribution"
 msgstr "发行版"
 
-#: main.c:130
+#: main.c:131
 msgid "Hostname"
 msgstr "主机名"
 
-#: main.c:131
+#: main.c:132
 msgid "Uptime"
 msgstr "运行时间"
 
-#: main.c:132
+#: main.c:133
 msgid "Compiler"
 msgstr "编译器"
 
-#: main.c:135
+#: main.c:136
 msgid "Used"
 msgstr "已用"
 
-#: main.c:136
+#: main.c:137
 msgid "Buffers"
 msgstr "缓冲"
 
-#: main.c:137
+#: main.c:138
 msgid "Cached"
 msgstr "缓存"
 
-#: main.c:138
+#: main.c:139
 msgid "Free"
 msgstr "可用"
 
-#: main.c:139
+#: main.c:140
 msgid "Swap"
 msgstr "交换"
 
-#: main.c:142 cpu-x-gtk-3.12.ui:5076
+#: main.c:143 cpu-x-gtk-3.12.ui:5076
 msgid "Graphics"
 msgstr "显卡"
 
-#: main.c:146
+#: main.c:147
 #, c-format
 msgid "Card %i"
 msgstr "卡 %i"
 
-#: main.c:148
+#: main.c:149
 msgid "Driver"
 msgstr "驱动"
 
-#: main.c:149
+#: main.c:150
 msgid "UMD Version"
 msgstr "UMD 版本"
 
-#: main.c:151
+#: main.c:152
 msgid "Compute Unit"
 msgstr "计算单元"
 
-#: main.c:152
+#: main.c:153
 msgid "DeviceID"
 msgstr "设备ID"
 
-#: main.c:153
+#: main.c:154
 msgid "VBIOS Version"
 msgstr "VBIOS 版本"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: main.c:154 cpu-x-gtk-3.12.ui:5891
+#: main.c:155 cpu-x-gtk-3.12.ui:5891
 msgid "Interface"
 msgstr "界面"
 
-#: main.c:155
+#: main.c:156
 msgid "Temperature"
 msgstr "温度"
 
-#: main.c:157
+#: main.c:158
 msgid "Core Voltage"
 msgstr "核心电压"
 
-#: main.c:158
+#: main.c:159
 msgid "Power Avg"
 msgstr "平均功率"
 
-#: main.c:159
+#: main.c:160
 msgid "GPU clock"
 msgstr "GPU 时钟"
 
-#: main.c:160
+#: main.c:161
 msgid "Memory clock"
 msgstr "内存时钟"
 
-#: main.c:161
+#: main.c:162
 msgid "Memory Used"
 msgstr "所用内存"
 
-#: main.c:162
+#: main.c:163
 msgid "Resizable BAR"
 msgstr "可调整大小的 BAR"
 
-#: main.c:163
+#: main.c:164
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: main.c:164
+#: main.c:165
 msgid "OpenGL Version"
 msgstr "OpenGL 版本"
 
-#: main.c:165
+#: main.c:166
 msgid "Vulkan Version"
 msgstr "Vulkan 版本"
 
-#: main.c:166
+#: main.c:167
 msgid "OpenCL Version"
 msgstr "OpenCL 版本"
 
-#: main.c:168 cpu-x-gtk-3.12.ui:5054
+#: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
 msgstr "卡"
 
-#: main.c:171 cpu-x-gtk-3.12.ui:5416
+#: main.c:172 cpu-x-gtk-3.12.ui:5416
 msgid "Bench"
 msgstr "基准测试"
 
-#: main.c:172 cpu-x-gtk-3.12.ui:5186
+#: main.c:173 cpu-x-gtk-3.12.ui:5186
 msgid "Prime numbers (slow)"
 msgstr "素数 (慢速)"
 
-#: main.c:173 cpu-x-gtk-3.12.ui:5294
+#: main.c:174 cpu-x-gtk-3.12.ui:5294
 msgid "Prime numbers (fast)"
 msgstr "素数 (快速)"
 
-#: main.c:176
+#: main.c:177
 msgid "Score"
 msgstr "分数"
 
-#: main.c:177
+#: main.c:178
 msgid "Run"
 msgstr "运行"
 
-#: main.c:180 cpu-x-gtk-3.12.ui:5397
+#: main.c:181 cpu-x-gtk-3.12.ui:5397
 msgid "Parameters"
 msgstr "参数"
 
-#: main.c:181
+#: main.c:182
 msgid "Duration"
 msgstr "持续时间"
 
-#: main.c:185 main.c:190 cpu-x-gtk-3.12.ui:5560 cpu-x-gtk-3.12.ui:5668
+#: main.c:186 main.c:191 cpu-x-gtk-3.12.ui:5560 cpu-x-gtk-3.12.ui:5668
 msgid "About"
 msgstr "关于"
 
-#: main.c:187
+#: main.c:188
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -865,179 +865,179 @@ msgstr ""
 "%s 是一个自由软件，收集有关\n"
 " CPU 和主板等的信息。"
 
-#: main.c:191
+#: main.c:192
 #, c-format
 msgid "Version %s"
 msgstr "%s 版"
 
-#: main.c:192
+#: main.c:193
 #, c-format
 msgid "Author: %s"
 msgstr "作者：%s"
 
-#: main.c:193
+#: main.c:194
 #, c-format
 msgid "Site: %s"
 msgstr "网站：%s"
 
-#: main.c:195 cpu-x-gtk-3.12.ui:5649
+#: main.c:196 cpu-x-gtk-3.12.ui:5649
 msgid "License"
 msgstr "许可证"
 
-#: main.c:198
+#: main.c:199
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "本软件依照 %s 条款分发"
 
-#: main.c:200 main.c:453
+#: main.c:201 main.c:454
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "本软件不作任何保修"
 
-#: main.c:271
+#: main.c:272
 msgid "Dumping data…"
 msgstr "正在转储数据…"
 
-#: main.c:314
+#: main.c:315
 msgid "Freeing memory"
 msgstr "正在释放内存"
 
-#: main.c:342
+#: main.c:343
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "启动图形用户界面 (GUI) (默认)"
 
-#: main.c:343
+#: main.c:344
 msgid "Start text-based user interface (TUI)"
 msgstr "启动文本用户界面 (TUI)"
 
-#: main.c:344
+#: main.c:345
 msgid "Dump all data on standard output and exit"
 msgstr "将所有数据转储到标准输出并退出"
 
-#: main.c:345
+#: main.c:346
 msgid "Run embedded command dmidecode and exit"
 msgstr "运行嵌入式命令 dmidecode 并退出"
 
-#: main.c:346
+#: main.c:347
 msgid "Run embedded command bandwidth and exit"
 msgstr "运行嵌入的命令 bandwidth 并退出"
 
-#: main.c:347
+#: main.c:348
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "设置两次刷新之间的自定义时间 (以秒为单位)"
 
-#: main.c:348
+#: main.c:349
 msgid "Set default tab (integer)"
 msgstr "设置默认选项卡 (整型)"
 
-#: main.c:349
+#: main.c:350
 msgid "Select core type to monitor (integer)"
 msgstr "选择要监控的核心类型（整数）"
 
-#: main.c:350
+#: main.c:351
 msgid "Select CPU core to monitor (integer)"
 msgstr "选择要监视的 CPU 核心 (整型)"
 
-#: main.c:351
+#: main.c:352
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "为 CPU 缓存速度设置自定义 bandwidth 测试 (整型)"
 
-#: main.c:352
+#: main.c:353
 msgid "Select default graphic card (integer)"
 msgstr "选择默认显卡 (整型)"
 
-#: main.c:353 cpu-x-gtk-3.12.ui:5994
+#: main.c:354 cpu-x-gtk-3.12.ui:5994
 msgid "Start and connect to daemon"
 msgstr "启动并连接到守护进程"
 
-#: main.c:354
+#: main.c:355
 msgid "Verbose output"
 msgstr "详细输出"
 
-#: main.c:355
+#: main.c:356
 msgid "Print help and exit"
 msgstr "打印帮助并退出"
 
-#: main.c:356
+#: main.c:357
 msgid "Print version and exit"
 msgstr "打印版本并退出"
 
-#: main.c:357
+#: main.c:358
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "以十进制打印 CPUID 值(默认是十六进制)"
 
-#: main.c:358
+#: main.c:359
 msgid "Disable colored output"
 msgstr "禁用彩色输出"
 
-#: main.c:359
+#: main.c:360
 msgid "Print information for debugging"
 msgstr "打印信息用于调试"
 
-#: main.c:360
+#: main.c:361
 msgid "Print required information to paste in an issue"
 msgstr "输出粘贴在问题反馈中的所需信息"
 
-#: main.c:361
+#: main.c:362
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr "设置 NCurses 模式的键位映射 (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.c:372
+#: main.c:373
 msgid "Add default command line arguments"
 msgstr "添加默认的命令行参数"
 
-#: main.c:373
+#: main.c:374
 msgid "Enforce the bus clock"
 msgstr "强制执行总线计时器"
 
-#: main.c:374
+#: main.c:375
 msgid "Ignore CPU frequency reported by libcpuid"
 msgstr "忽略 libcpuid 报告的 CPU 频率"
 
-#: main.c:375
+#: main.c:376
 msgid "Read CPUID raw data from a given file"
 msgstr "从指定文件中读取 CPUID 源数据"
 
-#: main.c:376
+#: main.c:377
 msgid "Only print a message if CPU is not present in the database"
 msgstr "仅在 CPU 不存在于数据库时打印消息"
 
-#: main.c:400
+#: main.c:401
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "用法：%s 显示 [选项]\n"
 
-#: main.c:401
+#: main.c:402
 msgid "Available DISPLAY:"
 msgstr "可用显示:"
 
-#: main.c:410
+#: main.c:411
 msgid "Available OPTIONS:"
 msgstr "可用选项:"
 
-#: main.c:418
+#: main.c:419
 msgid "Influenceable environment variables:"
 msgstr "可影响的环境变量:"
 
-#: main.c:452
+#: main.c:453
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "这是一个自由软件：您可以自由更改和重新分发。"
 
-#: main.c:454
+#: main.c:455
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "查看 %s 许可协议：<%s>\n"
 
-#: main.c:461
+#: main.c:462
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s 版本：%s"
 
-#: main.c:477
+#: main.c:478
 #, c-format
 msgid "failed to call wordexp (%i)"
 msgstr "调用 wordexp (%i) 失败"
 
-#: main.c:676
+#: main.c:677
 #, c-format
 msgid ""
 "\n"
@@ -1046,11 +1046,24 @@ msgstr ""
 "\n"
 "遇到了错误！ %s 获得信号 %d（%s） 并崩溃。"
 
-#: main.c:690
+#: main.c:679
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
+"recover."
+msgstr ""
+"\n"
+"遇到了错误！ %s 获得信号 %d（%s） 并崩溃。"
+
+#: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "你可以按要求填写模板，在此新开一个 issue："
 
-#: main.c:718
+#: main.c:741
 msgid "an error occurred while setting locale"
 msgstr "本地化设置时出错"
 
