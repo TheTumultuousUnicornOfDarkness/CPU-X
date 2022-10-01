@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-01 10:30+0000\n"
-"PO-Revision-Date: 2022-10-01 10:30+0000\n"
+"PO-Revision-Date: 2022-10-02 10:18+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -145,10 +145,9 @@ msgid "Enumerating Vulkan instance extension properties"
 msgstr "Verifica delle proprietà dell'estensione Vulkan"
 
 #: core.c:997
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance (%s)"
+#, c-format
 msgid "failed to call vkEnumerateInstanceExtensionProperties (%s)"
-msgstr "chiamata a vkCreateInstance (%s) fallita"
+msgstr "chiamata a vkEnumerateInstanceExtensionProperties (%s) fallita"
 
 #: core.c:1009
 #, c-format
@@ -160,10 +159,8 @@ msgstr ""
 "VkExtensionProperties (%s)"
 
 #: core.c:1048
-#, fuzzy
-#| msgid "Vulkan Version"
 msgid "Finding Vulkan API version"
-msgstr "Versione Vulkan"
+msgstr "Verifica versione API Vulkan"
 
 #: core.c:1051
 msgid "Vulkan API is not available"
@@ -180,22 +177,18 @@ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "chiamata a vkEnumeratePhysicalDevices (%s) fallita"
 
 #: core.c:1087
-#, fuzzy
-#| msgid "There is no available physical device (%s)"
 msgid "No available Vulkan devices"
-msgstr "Non è disponibile alcun dispositivo fisico (%s)"
+msgstr "Nessun dispositivo Vulkan disponibile"
 
 #: core.c:1096
-#, fuzzy, c-format
-#| msgid "There is no available physical device (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "Non è disponibile alcun dispositivo fisico (%s)"
+msgstr "Nessun dispositivo fisico disponibile (%s)"
 
 #: core.c:1157
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "impossibile ottenere il nome per il dispositivo %u (%s)"
+msgstr "Impossibile usare Vulkan col dispositivo %u (%s)"
 
 #: core.c:1217
 #, c-format
@@ -492,10 +485,9 @@ msgid "Start daemon"
 msgstr "Avvia demone"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "Core #%i"
+msgstr "Tipo #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -640,8 +632,6 @@ msgid "Level 3"
 msgstr "Livello 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "Core"
 
@@ -956,10 +946,8 @@ msgid "Set default tab (integer)"
 msgstr "Imposta scheda di default (intero)"
 
 #: main.c:350
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "Scegli core CPU da monitorare (intero)"
+msgstr "Scegli quale core monitorare (intero)"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
@@ -1071,33 +1059,25 @@ msgid "failed to call wordexp (%i)"
 msgstr "impossibile eseguire wordexp (%i)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%s Ops, qualcosa è andato storto! %s ha ricevuto il segnale %d (%s) e si è "
-"bloccato.%s"
+"Oops, qualcosa è andato storto! %s ha ricevuto il segnale %d (%s) e si è "
+"bloccato."
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%s Ops, qualcosa è andato storto! %s ha ricevuto il segnale %d (%s) e si è "
-"bloccato.%s"
+"Oops, qualcosa è andato storto! %s ha ricevuto il segnale %d (%s) e sta "
+"cercando una soluzione."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1148,28 +1128,22 @@ msgid "Global keys:"
 msgstr "Tasti globali:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Premi il tasto 'sinistra' per passare alla scheda a sinistra."
+msgstr "Premi il tasto 'sinistra' o 'tab' per passare alla scheda a sinistra."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Premi il tasto 'destra' per passare alla scheda a destra."
+msgstr ""
+"Premi il tasto 'destra' o i tasti 'shift + tab' per passare alla scheda a "
+"destra."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "Premi il tasto 'sinistra' per passare alla scheda a sinistra."
+msgstr "Premere il tasto 'home' per scorrere verso l'alto in una pagina."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "Premi il tasto 'sinistra' per passare alla scheda a sinistra."
+msgstr "Premere il tasto 'fine' per scorrere la pagina verso il basso."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1184,28 +1158,22 @@ msgid "CPU tab:"
 msgstr "Scheda CPU:"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "Premi 'giù' per diminuire il numero di core da monitorare."
+msgstr ""
+"Premere il tasto 'pag. giù' per ridurre il numero di core da monitorare."
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "Premi 'su' per aumentare il numero di core da monitorare."
+msgstr ""
+"Premere il tasto ''pag. su' per aumentare il numero di core da monitorare."
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "Premi 'giù' per diminuire il numero di core da monitorare."
+msgstr "Premi 'giù' per diminuire il numero di CPU core da monitorare."
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "Premi 'su' per aumentare il numero di core da monitorare."
+msgstr "Premi 'su' per aumentare il numero di CPU core da monitorare."
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
@@ -1216,8 +1184,6 @@ msgid "Press 'down' key to switch to previous test."
 msgstr "Premi il tasto 'giù' per tornare al test precedente."
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
 msgstr "Premi il tasto 'su' per passare al prossimo test."
 
@@ -1299,22 +1265,16 @@ msgid "an error occurred while compiling regex"
 msgstr "è intervenuto un errore alla compilazione delle espressioni regolari"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
 msgstr "Core"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Punteggio"
+msgstr "P-core"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Punteggio"
+msgstr "E-core"
 
 #: util.c:567
 #, c-format
@@ -1443,10 +1403,8 @@ msgstr "Scheda grafica predefinita"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "Test cache predefinito"
+msgstr "Tipo di core predefinito"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
