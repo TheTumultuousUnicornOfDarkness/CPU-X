@@ -717,7 +717,7 @@ static void set_labels(GtkLabels *glab, Labels *data)
 	gtk_spin_button_set_range     (GTK_SPIN_BUTTON(glab->refreshtime),  1, G_MAXUSHORT);
 	gtk_spin_button_set_increments(GTK_SPIN_BUTTON(glab->refreshtime),  1, 60);
 	for (i = NO_CPU; i <= NO_ABOUT; i++)
-		gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(glab->defaulttab), i, nicktab[i], format(_("%s"), data->objects[i]));
+		gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(glab->defaulttab), i, nicktab[i], format("%s", data->objects[i]));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(glab->defaulttab), opts->selected_page);
 	for(i = 0; i < data->type_count; i++)
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(glab->defaulttype), format(_("Type #%i"), i));
