@@ -10,15 +10,16 @@
 # Eric <spice2wolf@gmail.com>, 2021.
 # Eric <alchemillatruth@purelymail.com>, 2022.
 # yangyangdaji <1504305527@qq.com>, 2022.
+# Eric <hamburger1024@mailbox.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-01 10:30+0000\n"
-"PO-Revision-Date: 2022-10-01 10:30+0000\n"
-"Last-Translator: yangyangdaji <1504305527@qq.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"PO-Revision-Date: 2022-10-01 11:08+0000\n"
+"Last-Translator: Eric <hamburger1024@mailbox.org>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1047,17 +1048,14 @@ msgstr ""
 "遇到了错误！ %s 获得信号 %d（%s） 并崩溃。"
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"遇到了错误！ %s 获得信号 %d（%s） 并崩溃。"
+"哦，出错了！ %s 已收到信号 %d（%s） 并在尝试恢复。"
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
