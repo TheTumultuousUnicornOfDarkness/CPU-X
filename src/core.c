@@ -1049,7 +1049,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		return err;
 	}
 
-	VkDeviceQueueCreateInfo queueCreateInfo =
+	const VkDeviceQueueCreateInfo queueCreateInfo =
 	{
 		.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
 		.pNext = NULL,
@@ -1124,8 +1124,8 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		    dev->bus                 == bus_info.pciBus       &&
 		    dev->dev                 == bus_info.pciDevice    &&
 		    dev->func                == bus_info.pciFunction) ||
-		    (use_device_id &&
-		     (uint32_t)dev->device_id == prop2.properties.deviceID))
+		   (use_device_id &&
+		    (uint32_t)dev->device_id == prop2.properties.deviceID))
 		{
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
