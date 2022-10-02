@@ -57,10 +57,6 @@ option(WITH_BANDWIDTH     "Built-in Bandwidth"                                  
 option(FORCE_LIBSTATGRAB  "Force use of Libstatgrab instead of Libprocps (GNU/Linux system)"  OFF)
 option(APPIMAGE           "Enable workarounds for AppImage"                                   OFF)
 
-if(NOT WITH_LIBGLFW)
-	set(WITH_VULKAN OFF)
-endif(NOT WITH_LIBGLFW)
-
 # Colours
 string(ASCII 27 Esc)
 set(ColourReset "${Esc}[m")
