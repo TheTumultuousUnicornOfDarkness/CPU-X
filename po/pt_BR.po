@@ -15,10 +15,10 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-02 10:40+0000\n"
-"PO-Revision-Date: 2022-10-01 11:08+0000\n"
+"PO-Revision-Date: 2022-10-09 09:07+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +159,7 @@ msgstr "houve uma falha ao chamar vkCreateInstance (%s)"
 #: core.c:1019 core.c:1021
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s não é suportado"
 
 #: core.c:1031
 #, c-format
@@ -184,6 +184,8 @@ msgstr "Houve uma falha ao criar o Vulkan para o dispositivo %u (%s)"
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s não é compatível com o dispositivo %u, use apenas o deviceID para "
+"correspondência"
 
 #: core.c:1179
 #, c-format
