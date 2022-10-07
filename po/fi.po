@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-02 10:40+0000\n"
-"PO-Revision-Date: 2022-08-10 22:21+0000\n"
-"Last-Translator: LINUX-SAUNA <linuxsauna@protonmail.com>\n"
+"PO-Revision-Date: 2022-10-09 09:07+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
 "Language: fi\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -72,7 +72,7 @@ msgstr ""
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "tuntematon"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -133,10 +133,8 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW:n (%i) kutsuminen epäonnistui: %s"
 
 #: core.c:998
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "Versio"
+msgstr "Etsitään Vulkanin API-versiota"
 
 #: core.c:1015
 #, fuzzy, c-format
@@ -147,7 +145,7 @@ msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
 #: core.c:1019 core.c:1021
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s ei ole tuettu"
 
 #: core.c:1031
 #, fuzzy, c-format
@@ -157,13 +155,12 @@ msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
 
 #: core.c:1038
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Vulkan-laitteita ei ole käytettävissä"
 
 #: core.c:1047
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "Ei käytettävissä olevia fyysisiä laitteita (%s)"
 
 #: core.c:1110
 #, fuzzy, c-format
@@ -612,8 +609,6 @@ msgid "Level 3"
 msgstr "Taso 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "Ytimet"
 
@@ -640,7 +635,7 @@ msgstr "Nopeus"
 
 #: main.c:99
 msgid "Test"
-msgstr ""
+msgstr "Testaa"
 
 #: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
@@ -765,10 +760,8 @@ msgid "DeviceID"
 msgstr "Laite-ID"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Versio"
+msgstr "VBIOS-versio"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -809,22 +802,16 @@ msgid "Vulkan RT"
 msgstr ""
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Versio"
+msgstr "OpenGL-versio"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Versio"
+msgstr "Vulkan-versio"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Versio"
+msgstr "OpenCL-versio"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
@@ -1141,7 +1128,7 @@ msgstr "Paina 'q' poistuaksesi."
 
 #: tui_ncurses.c:515
 msgid "CPU tab:"
-msgstr ""
+msgstr "Suorittimen välilehti:"
 
 #: tui_ncurses.c:516
 msgid "Press 'next page' key to decrease core type number to monitor."
@@ -1162,10 +1149,8 @@ msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr "\tPaina 'q' poistuaksesi.\n"
 
 #: tui_ncurses.c:521
-#, fuzzy
-#| msgid "Caches"
 msgid "Caches tab:"
-msgstr "Välimuistit"
+msgstr "Välimuistien välilehti:"
 
 #: tui_ncurses.c:522
 msgid "Press 'down' key to switch to previous test."
@@ -1206,10 +1191,8 @@ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
 
 #: tui_ncurses.c:533
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Grafiikka"
+msgstr "Grafiikan välilehti:"
 
 #: tui_ncurses.c:534
 msgid "Press 'down' key to switch to previous graphic card."
@@ -1295,7 +1278,7 @@ msgstr "pkexec: odottamaton virhekoodi"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() ei ole tuettu tässä käyttöjärjestelmässä"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1373,34 +1356,32 @@ msgstr "Tumma"
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5910
 msgid "Default tab"
-msgstr ""
+msgstr "Oletusarvoinen välilehti"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5923
 msgid "Default CPU core"
-msgstr ""
+msgstr "Oletusarvoinen suoritinydin"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5936
 msgid "Default cache test"
-msgstr ""
+msgstr "Oletusarvoinen välimuistitesti"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5979
 msgid "Print CPUID values in decimal"
-msgstr ""
+msgstr "Tulosta CPUID-arvot desimaaleissa"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6012
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Default graphic card"
-msgstr "Valitse tarkkailtava suoritinydin (numero)"
+msgstr "Oletusarvoinen grafiikkatyyppi"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
 msgid "Default core type"
-msgstr ""
+msgstr "Oletusarvoinen ydintyyppi"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
