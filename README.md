@@ -25,6 +25,7 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 - [Table of contents](#table-of-contents)
   - [Dependencies](#dependencies)
     - [Build-only dependencies](#build-only-dependencies)
+    - [Test dependencies](#test-dependencies)
     - [Build and run dependencies](#build-and-run-dependencies)
   - [Download and install](#download-and-install)
     - [From official repositories](#from-official-repositories)
@@ -47,6 +48,14 @@ These dependencies are needed to **build** CPU-X:
 * [CMake](https://www.cmake.org/)
 * [Pkg-Config](https://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
 * [NASM](https://www.nasm.us/)
+
+### Test dependencies
+
+These dependencies are needed to **test** CPU-X:
+* [Grep](https://www.gnu.org/software/grep/)
+* [GNU Awk](https://www.gnu.org/software/gawk/)
+* [Mawk](https://invisible-island.net/mawk/)
+* [One true awk](https://github.com/onetrueawk/awk)
 
 ### Build and run dependencies
 
