@@ -198,13 +198,14 @@ static void dmi_hp_240_attr(u64 defined, u64 set)
 	};
 	unsigned int i;
 
-	pr_attr("Attributes Defined/Set", NULL);
+	pr_list_start("Attributes Defined/Set", NULL);
 	for (i = 0; i < ARRAY_SIZE(attributes); i++)
 	{
 		if (!(defined.l & (1UL << i)))
 			continue;
-		pr_subattr(attributes[i], "%s", set.l & (1UL << i) ? "Yes" : "No");
+		pr_list_item("%s: %s", attributes[i], set.l & (1UL << i) ? "Yes" : "No");
 	}
+	pr_list_end();
 }
 
 static void dmi_hp_203_assoc_hndl(const char *fname, u16 num)
@@ -389,6 +390,31 @@ static void dmi_hp_224_chipid(u16 code)
 	pr_attr("Chip Identifier", "%s", str);
 }
 
+static void dmi_hp_230_method_bus_seg_addr(u8 code, u8 bus_seg, u8 addr)
+{
+	const char *str = "Reserved";
+	static const char * const method[] = {
+		"Not Available", /* 0x00 */
+		"IPMI I2C",
+		"iLO",
+		"Chassis Manager", /* 0x03 */
+	};
+	if (code < ARRAY_SIZE(method))
+		str = method[code];
+	pr_attr("Access Method", "%s", str);
+	if (code == 0 || code >= ARRAY_SIZE(method))
+		return;
+	if (bus_seg != 0xFF)
+	{
+		if (code == 2)
+			pr_attr("I2C Segment Number", "%d", bus_seg);
+		else
+			pr_attr("I2C Bus Number", "%d", bus_seg);
+	}
+	if (addr != 0xFF)
+		pr_attr("I2C Address", "0x%02x", addr >> 1);
+}
+
 static void dmi_hp_238_loc(const char *fname, unsigned int code)
 {
 	const char *str = "Reserved";
@@ -398,7 +424,7 @@ static void dmi_hp_238_loc(const char *fname, unsigned int code)
 		"Rear of Server",
 		"Embedded internal SD Card",
 		"iLO USB",
-		"HP NAND Controller (USX 2065 or other)",
+		"USB Hub for NAND Controller",
 		"Reserved",
 		"Debug Port", /* 0x07 */
 	};
@@ -717,6 +743,34 @@ static int dmi_decode_hp(const struct dmi_header *h)
 				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x8));
 			if (h->length < 0x0c) break;
 			dmi_hp_224_chipid(WORD(data + 0x0a));
+			break;
+
+		case 230:
+			/*
+			 * Vendor Specific: Power Supply Information OEM SMBIOS Record
+			 *
+			 * This record is used to communicate additional Power Supply Information
+			 * beyond the Industry Standard System Power Supply (Type 39) Record.
+			 *
+			 * Offset| Name        | Width | Description
+			 * -----------------------------------------
+			 *  0x00 | Type        | BYTE  | 0xE6, Power Supply Information Indicator
+			 *  0x01 | Length      | BYTE  | Length of structure
+			 *  0x02 | Handle      | WORD  | Unique handle
+			 *  0x04 | Assoc Handle| WORD  | Associated Handle (Type 39)
+			 *  0x06 | Manufacturer| STRING| Actual third party manufacturer
+			 *  0x07 | Revision    | STRING| Power Supply Revision Level
+			 *  0x08 | FRU Access  | BYTE  | Power Supply FRU Access Method
+			 *  0x09 | I2C Bus Num | BYTE  | I2C Bus #. Value based upon context
+			 *  0x0A | I2C Address | BYTE  | I2C Address
+			 */
+			pr_handle_name("%s Power Supply Information", company);
+			if (h->length < 0x0B) break;
+			if (!(opt.flags & FLAG_QUIET))
+				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x4));
+			pr_attr("Manufacturer", "%s", dmi_string(h, data[0x06]));
+			pr_attr("Revision", "%s", dmi_string(h, data[0x07]));
+			dmi_hp_230_method_bus_seg_addr(data[0x08], data[0x09], data[0x0A]);
 			break;
 
 		case 233:
