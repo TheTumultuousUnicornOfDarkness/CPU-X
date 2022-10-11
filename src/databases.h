@@ -141,7 +141,7 @@ const Technology_DB technology_amd[] =
 	{ -1,         104,          23,           7 }, // Zen 2 (Lucienne)
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
 	{ -1,         144,          23,           7 }, // Zen 2 (Custom APU for Steam Deck)
-	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer/Warhol)
+	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
 	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
 	{ -1,           1,          25,           7 }, // Zen 3 (Milan)
 	{ -1,          68,          25,           7 }, // Zen 3 (Rembrandt)
