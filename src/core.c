@@ -1101,9 +1101,9 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	for(i = 0; (i < device_count) && !gpu_found; i++)
 	{
 		MSG_DEBUG("Looping into Vulkan device %lu", i);
-		VkDevice vk_dev = {0};
 # ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
-		if((err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
+		VkDevice vk_dev_bus_info = {0};
+		if((err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev_bus_info)) != VK_SUCCESS)
 		{
 			MSG_WARNING(_("Failed to create Vulkan for device %u (%s)"), i, string_VkResult(err));
 
@@ -1113,10 +1113,10 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 				use_device_id = true;
 			}
 		}
+		vkDestroyDevice(vk_dev_bus_info, NULL);
 # else
         use_device_id = true;
 # endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
-
 		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
 		if(use_device_id && ((uint32_t) dev->device_id != prop2.properties.deviceID))
 		{
@@ -1135,8 +1135,10 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 			MSG_DEBUG("Vulkan device %lu: device matches with pci_dev", i);
 
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
-		*vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS);
+		VkDevice vk_dev_rt = {0};
+		*vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS);
 		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, *vulkan_rt ? "ON" : "OFF");
+		vkDestroyDevice(vk_dev_rt, NULL);
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
 		snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
@@ -1151,7 +1153,6 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 # endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
 		);
 		MSG_DEBUG("Vulkan device %lu: version is '%s'", i, vulkan_version);
-		vkDestroyDevice(vk_dev, NULL);
 		gpu_found = true;
 	}
 	vkDestroyInstance(instance, NULL);
