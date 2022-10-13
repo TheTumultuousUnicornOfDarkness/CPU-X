@@ -1447,10 +1447,10 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID + data->gpu_count * GPUFIELDS], false, "0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
 			casprintf(&data->tab_graphics[VALUE][GPU1CU     + data->gpu_count * GPUFIELDS], true,  "%d %s", comp_unit, comp_unit_type);
-			casprintf(&data->tab_graphics[VALUE][GPU1VKRT   + data->gpu_count * GPUFIELDS], true,  "%s", vulkan_ray_tracing ? _("Enabled") : _("Disabled"));
-			casprintf(&data->tab_graphics[VALUE][GPU1GLVER  + data->gpu_count * GPUFIELDS], true,  "%s", gl_ver);
-			casprintf(&data->tab_graphics[VALUE][GPU1VKVER  + data->gpu_count * GPUFIELDS], true,  "%s", vk_ver);
-			casprintf(&data->tab_graphics[VALUE][GPU1CLVER  + data->gpu_count * GPUFIELDS], true,  "%s", cl_ver);
+			casprintf(&data->tab_graphics[VALUE][GPU1VKRT   + data->gpu_count * GPUFIELDS], false, "%s", vulkan_ray_tracing ? _("Enabled") : _("Disabled"));
+			casprintf(&data->tab_graphics[VALUE][GPU1GLVER  + data->gpu_count * GPUFIELDS], false, "%s", gl_ver);
+			casprintf(&data->tab_graphics[VALUE][GPU1VKVER  + data->gpu_count * GPUFIELDS], false, "%s", vk_ver);
+			casprintf(&data->tab_graphics[VALUE][GPU1CLVER  + data->gpu_count * GPUFIELDS], false, "%s", cl_ver);
 			data->gpu_count++;
 		}
 	}
