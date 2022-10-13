@@ -985,6 +985,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 	int err = 0;
 #if HAS_Vulkan
 	uint32_t i, device_count = 0;
+	bool gpu_found = false;
 	bool use_device_id = false;
 	VkInstance instance = {0};
 	VkPhysicalDevice *devices = NULL;
@@ -1090,19 +1091,16 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 		.pEnabledFeatures = NULL,
 	};
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
-	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info =
-	{
-		.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT,
-		.pNext = NULL,
-	};
-	VkPhysicalDeviceProperties2 prop2 =
-	{
-		.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2,
-		.pNext = &bus_info,
-	};
+	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info = {0};
+	bus_info.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
 
-	for(i = 0; i < device_count; i++)
+	VkPhysicalDeviceProperties2 prop2 = {0};
+	prop2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
+	prop2.pNext = &bus_info;
+
+	for(i = 0; (i < device_count) && !gpu_found; i++)
 	{
+		MSG_DEBUG("Looping into Vulkan device %lu", i);
 		VkDevice vk_dev = {0};
 # ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
 		if((err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev)) != VK_SUCCESS)
@@ -1120,32 +1118,38 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 # endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
 
 		vkGetPhysicalDeviceProperties2(devices[i], &prop2);
-		if(((uint32_t)dev->domain    == bus_info.pciDomain    &&
-		    dev->bus                 == bus_info.pciBus       &&
-		    dev->dev                 == bus_info.pciDevice    &&
-		    dev->func                == bus_info.pciFunction) ||
-		   (use_device_id &&
-		    (uint32_t)dev->device_id == prop2.properties.deviceID))
+		if(use_device_id && ((uint32_t) dev->device_id != prop2.properties.deviceID))
 		{
+			MSG_DEBUG("Vulkan device %lu: use only deviceID but device %u does not match device %lu", i, dev->device_id, prop2.properties.deviceID);
+			continue;
+		}
+		else if(!use_device_id && ((uint32_t) dev->domain   != bus_info.pciDomain    ||
+		                           dev->bus                 != bus_info.pciBus       ||
+		                           dev->dev                 != bus_info.pciDevice    ||
+		                           dev->func                != bus_info.pciFunction))
+		{
+			MSG_DEBUG("Vulkan device %lu: device does not match with VkPhysicalDevicePCIBusInfoPropertiesEXT", i);
+			continue;
+		}
+
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
-			if (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
-				*vulkan_rt = true;
+		if(vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
+			*vulkan_rt = true;
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
-			snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
+		snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
 # if(VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
-				VK_API_VERSION_MAJOR(prop2.properties.apiVersion),
-				VK_API_VERSION_MINOR(prop2.properties.apiVersion),
-				VK_API_VERSION_PATCH(prop2.properties.apiVersion)
+			VK_API_VERSION_MAJOR(prop2.properties.apiVersion),
+			VK_API_VERSION_MINOR(prop2.properties.apiVersion),
+			VK_API_VERSION_PATCH(prop2.properties.apiVersion)
 # else
-				VK_VERSION_MAJOR(prop2.properties.apiVersion),
-				VK_VERSION_MINOR(prop2.properties.apiVersion),
-				VK_VERSION_PATCH(prop2.properties.apiVersion)
+			VK_VERSION_MAJOR(prop2.properties.apiVersion),
+			VK_VERSION_MINOR(prop2.properties.apiVersion),
+			VK_VERSION_PATCH(prop2.properties.apiVersion)
 # endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
-			);
-			vkDestroyDevice(vk_dev, NULL);
-			break;
-		}
+		);
+		vkDestroyDevice(vk_dev, NULL);
+		gpu_found = true;
 	}
 	vkDestroyInstance(instance, NULL);
 	free(devices);
