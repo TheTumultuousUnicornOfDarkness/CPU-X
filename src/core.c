@@ -1195,12 +1195,14 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 
 	for (i = 0; i < num_pf; i++) // find GPU devices
 	{
+		MSG_DEBUG("Looping into OpenCL platform %u", i);
 		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_NAME, sizeof(platform_name), platform_name, NULL); // get platform name
 		if (ret_cl != CL_SUCCESS)
 		{
 			MSG_ERROR(_("failed to get name for platform %u (%s)"), i, opencl_error(ret_cl));
 			continue;
 		}
+		MSG_DEBUG("OpenCL platform %u: name is '%s'", i, platform_name);
 
 		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_VERSION, sizeof(platform_version), platform_version, NULL); // get platform version
 		if (ret_cl != CL_SUCCESS)
@@ -1208,29 +1210,33 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 			MSG_ERROR(_("failed to get version for platform %u (%s)"), i, opencl_error(ret_cl));
 			continue;
 		}
+		MSG_DEBUG("OpenCL platform %u: version is '%s'", i, platform_version);
 
+		num_ocl_dev = 0;
 		ret_cl = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_ALL, 0, NULL, &num_ocl_dev); // get number of device
-		if (ret_cl != CL_SUCCESS)
+		if((ret_cl != CL_SUCCESS) || (num_ocl_dev == 0))
 		{
-			MSG_ERROR(_("failed to find number of OpenCL devices for platform '%s %s' (%s)"), platform_name, platform_version, opencl_error(ret_cl));
+			MSG_ERROR(_("failed to find number of OpenCL devices for platform '%s %s' (%s)"), platform_name, platform_version, (num_ocl_dev == 0) ? _("0 device") : opencl_error(ret_cl));
 			continue;
 		}
+		MSG_DEBUG("OpenCL platform %u: found %u devices", i, num_ocl_dev);
 
 		devices = (cl_device_id*) malloc(sizeof(cl_device_id) * num_ocl_dev);
 		ALLOC_CHECK(devices);
 		ret_cl = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_ALL, num_ocl_dev, devices, NULL); // get all devices
-		if (ret_cl != CL_SUCCESS)
+		if(ret_cl != CL_SUCCESS)
 		{
 			MSG_ERROR(_("failed to get all of OpenCL devices for platform '%s %s' (%s)"), platform_name, platform_version, opencl_error(ret_cl));
 			continue;
 		}
-		MSG_DEBUG("Number of OpenCL devices for platform '%s %s': %u", platform_name, platform_version, num_ocl_dev);
 
 		for (j = 0; j < num_ocl_dev; j++)
 		{
+			MSG_DEBUG("Looping into OpenCL platform %u, device %u", i, j);
 			CLINFO(devices[j], CL_DEVICE_VENDOR_ID, ocl_vendor);
 			if (dev->vendor_id != ocl_vendor)
 				continue;
+			MSG_DEBUG("OpenCL platform %u, device %u: found vendor 0x%X", i, j, ocl_vendor);
 
 			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_NAME, sizeof(device_name), device_name, NULL);
 			if (ret_cl != CL_SUCCESS)
@@ -1238,6 +1244,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 				MSG_ERROR(_("failed to get name for device %u (%s)"), j, opencl_error(ret_cl));
 				continue;
 			}
+			MSG_DEBUG("OpenCL platform %u, device %u: name is '%s'", i, j, device_name);
 
 			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_VERSION, sizeof(device_version), device_version, NULL);
 			if (ret_cl != CL_SUCCESS || string_is_empty(device_version))
@@ -1245,14 +1252,16 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 				MSG_ERROR(_("failed to get version for device %u (%s)"), j, opencl_error(ret_cl));
 				continue;
 			}
+			MSG_DEBUG("OpenCL platform %u, device %u: version is '%s'", i, j, device_version);
+
 			size_t prefix_len = strlen("OpenCL ");
 			strncpy(cl_ver, &device_version[prefix_len], MAXSTR - prefix_len);
 			snprintf(cl_version, MAXSTR, "%s", cl_ver);
 
-			MSG_DEBUG("OpenCL device %u is '%s %s'", j, device_name, device_version);
 			switch (ocl_vendor)
 			{
 				case DEV_VENDOR_ID_AMD:
+					MSG_DEBUG("OpenCL platform %u, device %u: vendor is AMD", i, j);
 					ret_cl = CLINFO(devices[j], CL_DEVICE_TOPOLOGY_AMD, topo_amd);
 					if (ret_cl != CL_SUCCESS)
 					{
@@ -1270,6 +1279,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 							MSG_WARNING(_("OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"), device_name, device_version, opencl_error(ret_cl));
 							amd_gfx_major = 0;
 						}
+						MSG_DEBUG("OpenCL platform %u, device %u: CL_DEVICE_GFXIP_MAJOR_AMD is %u", i, j, amd_gfx_major);
 
 						if (10 <= amd_gfx_major) // for RDNA, gfx10+
 							snprintf(comp_unit_type, MAXSTR, "%s", "WGP"); // Workgroup Processor
@@ -1283,9 +1293,11 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 							*comp_unit = 0;
 							continue;
 						}
+						MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, *comp_unit, comp_unit_type);
 					}
 					break;
 				case DEV_VENDOR_ID_INTEL:
+					MSG_DEBUG("OpenCL platform %u, device %u: vendor is Intel", i, j);
 					ret_cl = CLINFO(devices[j], CL_DEVICE_MAX_COMPUTE_UNITS, *comp_unit);
 					if (ret_cl != CL_SUCCESS)
 					{
@@ -1294,8 +1306,10 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 						continue;
 					}
 					snprintf(comp_unit_type, MAXSTR, "%s", "EU"); // Execution Unit
+					MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, *comp_unit, comp_unit_type);
 					break;
 				case DEV_VENDOR_ID_NVIDIA:
+					MSG_DEBUG("OpenCL platform %u, device %u: vendor is NVIDIA", i, j);
 					ret_domain_nv = CLINFO(devices[j], CL_DEVICE_PCI_DOMAIN_ID_NV, ocl_domain_nv);
 					ret_bus_nv    = CLINFO(devices[j], CL_DEVICE_PCI_BUS_ID_NV,    ocl_bus_nv);
 					ret_dev_nv    = CLINFO(devices[j], CL_DEVICE_PCI_SLOT_ID_NV,   ocl_dev_nv); // Slot == Device
@@ -1319,6 +1333,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 							continue;
 						}
 						snprintf(comp_unit_type, MAXSTR, "%s", "SM"); // Streaming Multiprocessor
+						MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, *comp_unit, comp_unit_type);
 					}
 					break;
 				default:
