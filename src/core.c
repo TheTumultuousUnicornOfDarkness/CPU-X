@@ -1164,6 +1164,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 {
 	int ret_cl = 0;
 #if HAS_OpenCL
+	bool gpu_found = false;
 	uint8_t ret_domain_nv = 0, ret_bus_nv = 0, ret_dev_nv = 0;
 	char platform_name[MAXSTR] = "", platform_version[MAXSTR] = "", device_name[MAXSTR] = "", device_version[MAXSTR] = "", cl_ver[MAXSTR] = "";
 	cl_uint num_pf = 0, num_ocl_dev = 0, ocl_vendor = 0, amd_gfx_major = 0;
@@ -1193,7 +1194,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 		return ret_cl;
 	}
 
-	for (i = 0; i < num_pf; i++) // find GPU devices
+	for (i = 0; (i < num_pf) && !gpu_found; i++) // find GPU devices
 	{
 		MSG_DEBUG("Looping into OpenCL platform %u", i);
 		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_NAME, sizeof(platform_name), platform_name, NULL); // get platform name
@@ -1230,7 +1231,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 			continue;
 		}
 
-		for (j = 0; j < num_ocl_dev; j++)
+		for (j = 0; (j < num_ocl_dev) && !gpu_found; j++)
 		{
 			MSG_DEBUG("Looping into OpenCL platform %u, device %u", i, j);
 			CLINFO(devices[j], CL_DEVICE_VENDOR_ID, ocl_vendor);
@@ -1294,6 +1295,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 							continue;
 						}
 						MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, *comp_unit, comp_unit_type);
+						gpu_found = true;
 					}
 					break;
 				case DEV_VENDOR_ID_INTEL:
@@ -1307,6 +1309,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 					}
 					snprintf(comp_unit_type, MAXSTR, "%s", "EU"); // Execution Unit
 					MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, *comp_unit, comp_unit_type);
+					gpu_found = true;
 					break;
 				case DEV_VENDOR_ID_NVIDIA:
 					MSG_DEBUG("OpenCL platform %u, device %u: vendor is NVIDIA", i, j);
@@ -1334,6 +1337,7 @@ static int get_gpu_comp_unit(struct pci_dev *dev, uint32_t *comp_unit, char *com
 						}
 						snprintf(comp_unit_type, MAXSTR, "%s", "SM"); // Streaming Multiprocessor
 						MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, *comp_unit, comp_unit_type);
+						gpu_found = true;
 					}
 					break;
 				default:
