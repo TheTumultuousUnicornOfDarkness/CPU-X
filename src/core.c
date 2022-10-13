@@ -1131,10 +1131,12 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 			MSG_DEBUG("Vulkan device %lu: device does not match with VkPhysicalDevicePCIBusInfoPropertiesEXT", i);
 			continue;
 		}
+		else
+			MSG_DEBUG("Vulkan device %lu: device matches with pci_dev", i);
 
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
-		if(vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS)
-			*vulkan_rt = true;
+		*vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev) == VK_SUCCESS);
+		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, *vulkan_rt ? "ON" : "OFF");
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
 		snprintf(vulkan_version, MAXSTR, "%d.%d.%d",
@@ -1148,6 +1150,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 			VK_VERSION_PATCH(prop2.properties.apiVersion)
 # endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
 		);
+		MSG_DEBUG("Vulkan device %lu: version is '%s'", i, vulkan_version);
 		vkDestroyDevice(vk_dev, NULL);
 		gpu_found = true;
 	}
