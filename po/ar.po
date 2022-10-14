@@ -6,13 +6,14 @@
 # anonymous <noreply@weblate.org>, 2020.
 # Rex_sa <asd1234567890m@gmail.com>, 2020.
 # Гринько Владимир <volb132@gmail.com>, 2020.
+# samhy147 <samhy144@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-02 10:40+0000\n"
-"PO-Revision-Date: 2020-11-25 18:29+0000\n"
-"Last-Translator: Гринько Владимир <volb132@gmail.com>\n"
+"PO-Revision-Date: 2022-10-17 00:04+0000\n"
+"Last-Translator: samhy147 <samhy144@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -21,41 +22,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
 msgstr "ايجاد معلومات المعالج"
 
 #: core.c:261
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
-"ext. family: %i"
+"المعالج الخاص بك غير موجود في قاعدة البيانات ==>%s, model: %i, ext. model: "
+"%i, ext. family: %i"
 
 #: core.c:273
-#, fuzzy, c-format
-#| msgid "%d MB, %d-way"
+#, c-format
 msgid "%d %s, %d-way"
-msgstr "%d مب ، %d -مسار"
+msgstr "%d %s, %مسار"
 
 #: core.c:274
-#, fuzzy, c-format
-#| msgid "%d x %d KB, %d-way"
+#, c-format
 msgid "%d x %d %s, %d-way"
-msgstr "%d س%d كب ، %d -مسار"
+msgstr "%d x %d %s, %d-مسار"
 
 #: core.c:275
 #, fuzzy, c-format
 #| msgid "%s associative, %d-byte line size"
 msgid "%s associative, %d-%s line size"
-msgstr "%s ترابطي ،%d-بايت حجم المسار"
+msgstr "%s ترابطي, d-%s ze"
 
 #: core.c:286
 msgid "Calling libcpuid for retrieving static data"
@@ -81,7 +77,7 @@ msgstr ""
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
