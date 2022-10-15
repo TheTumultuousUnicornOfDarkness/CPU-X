@@ -7,13 +7,14 @@
 # kakiremora <piotrek.pastuszak2003@gmail.com>, 2020.
 # Michal Biesiada <blade-14@o2.pl>, 2020.
 # WaldiS <sto@tutanota.de>, 2020, 2021, 2022.
+# Jacek <uaie_wljjw94@jyplo.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-02 10:40+0000\n"
-"PO-Revision-Date: 2022-08-20 14:16+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2022-10-17 00:04+0000\n"
+"Last-Translator: Jacek <uaie_wljjw94@jyplo.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -67,6 +68,8 @@ msgstr "nie udało się wywołać libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Wybrany typ procesora (%u) nie jest prawidłową liczbą (%u jest maksymalną "
+"liczbą dla tego procesora)"
 
 #: core.c:318
 #, c-format
@@ -74,10 +77,12 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Wybrany rdzeń procesora (%u) nie jest prawidłową liczbą (%u jest maksymalną "
+"liczbą dla tego typu rdzenia)"
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "nieznany"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -141,50 +146,43 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "nie udało się wywołać GLFW (%i): %s"
 
 #: core.c:998
-#, fuzzy
-#| msgid "Vulkan Version"
 msgid "Finding Vulkan API version"
-msgstr "Wersja Vulkan"
+msgstr "Szukanie wersji API Vulkan"
 
 #: core.c:1015
-#, fuzzy, c-format
-#| msgid "failed to call vkCreateInstance"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "nie udało się wywołać vkCreateInstance"
+msgstr "nie udało się wywołać vkCreateInstance (%s)"
 
 #: core.c:1019 core.c:1021
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s nie jest obsługiwany"
 
 #: core.c:1031
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "nie udało się wywołać vkEnumeratePhysicalDevices"
+msgstr "nie udało się wywołać vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:1038
-#, fuzzy
-#| msgid "There is no available physical device"
 msgid "No available Vulkan devices"
-msgstr "Brak dostępnego urządzenia fizycznego"
+msgstr "Brak dostępnych urządzeń Vulkan"
 
 #: core.c:1047
-#, fuzzy, c-format
-#| msgid "There is no available physical device"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "Brak dostępnego urządzenia fizycznego"
+msgstr "Brak dostępnych urządzeń fizycznych (%s)"
 
 #: core.c:1110
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "nie udało się uzyskać nazwy urządzenia %u (%s)"
+msgstr "Nie udało się stworzyć Vulkan dla urządzenia %u (%s)"
 
 #: core.c:1114
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s nie jest obsługiwany dla urządzenia %u, użyj tylko deviceID aby dopasować"
 
 #: core.c:1179
 #, c-format
@@ -476,10 +474,9 @@ msgid "Start daemon"
 msgstr "Uruchom demon"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "Rdzeń #%i"
+msgstr "Typ #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -512,7 +509,7 @@ msgstr "Tryb użytkownika Wersja sterownika"
 
 #: gui_gtk.c:695
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan Ray Tracing"
 
 #: main.c:57
 msgid "Setting label names"
@@ -524,7 +521,7 @@ msgstr "CPU"
 
 #: main.c:60 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
-msgstr "Processor"
+msgstr "Procesor"
 
 #: main.c:61 main.c:115 main.c:148
 msgid "Vendor"
@@ -619,8 +616,6 @@ msgid "Level 3"
 msgstr "Poziom 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "Rdzenie"
 
@@ -811,7 +806,7 @@ msgstr "Zmień rozmiar paska"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
 msgid "OpenGL Version"
@@ -935,10 +930,8 @@ msgid "Set default tab (integer)"
 msgstr "Ustaw domyślną kartę (liczba całkowita)"
 
 #: main.c:350
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "Wybierz rdzeń procesora do monitorowania (liczba całkowita)"
+msgstr "Wybierz typ rdzenia do monitorowania (liczba całkowita)"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
@@ -1050,31 +1043,23 @@ msgid "failed to call wordexp (%i)"
 msgstr "nie udało się wywołać wordexp (%i)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%s Oops, coś było nie tak! %s otrzymał sygnał %d (%s) i się zawiesił.%s"
+"Ups, coś poszło nie tak! %s odebrał sygnał %d (%s) i uległ awarii."
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%s Oops, coś było nie tak! %s otrzymał sygnał %d (%s) i się zawiesił.%s"
+"Ups, coś poszło nie tak! %s odebrał sygnał %d (%s) i próbuje się odbudować."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1125,28 +1110,24 @@ msgid "Global keys:"
 msgstr "Klucze globalne:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Naciśnij klawisz „w lewo”, aby przełączyć się na lewą kartę."
+msgstr ""
+"Naciśnij klawisz „w lewo” lub klawisz „tab”, aby przełączyć się na lewą "
+"kartę."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Naciśnij klawisz „w prawo”, aby przełączyć na prawą kartę."
+msgstr ""
+"Naciśnij klawisz „w prawo” lub klawisze „shift + tab”, aby przełączyć się na "
+"prawą kartę."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "Naciśnij klawisz „w lewo”, aby przełączyć się na lewą kartę."
+msgstr "Naciśnij klawisz „home”, aby przewinąć stronę w górę."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "Naciśnij klawisz „w lewo”, aby przełączyć się na lewą kartę."
+msgstr "Naciśnij \"end\", aby przewinąć stronę w dół."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1161,32 +1142,26 @@ msgid "CPU tab:"
 msgstr "Zakładka CPU:"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
-"Naciśnij klawisz \"w dół\", aby zmniejszyć liczbę rdzeni do monitorowania."
+"Naciśnij klawisz „następna strona”, aby zmniejszyć numer typu rdzenia do "
+"monitorowania."
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr ""
-"Naciśnij klawisz „w górę”, aby zwiększyć liczbę rdzeni do monitorowania."
+"Naciśnij klawisz „poprzednia strona”, aby zwiększyć numer typu rdzenia do "
+"monitorowania."
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
-"Naciśnij klawisz \"w dół\", aby zmniejszyć liczbę rdzeni do monitorowania."
+"Naciśnij \"w dół\", aby zmniejszyć liczbę rdzeni procesora do monitorowania."
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
-"Naciśnij klawisz „w górę”, aby zwiększyć liczbę rdzeni do monitorowania."
+"Naciśnij \"w górę\", aby zwiększyć liczbę rdzeni procesora do monitorowania."
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
@@ -1197,8 +1172,6 @@ msgid "Press 'down' key to switch to previous test."
 msgstr "Naciśnij klawisz „w dół”, aby wrócić do poprzedniego testu."
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
 msgstr "Naciśnij klawisz „w górę”, aby przejść do następnego testu."
 
@@ -1285,27 +1258,21 @@ msgid "an error occurred while compiling regex"
 msgstr "wystąpił błąd podczas kompilacji wyrażenia regularnego"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
-msgstr "Rdzenie"
+msgstr "Rdzeń"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Wynik"
+msgstr "P-core"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Wynik"
+msgstr "P-core"
 
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "nie udało się zmienić koligacji procesora do rdzenia %u"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1326,7 +1293,7 @@ msgstr "pkexec: nieoczekiwany kod błędu"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() nie jest obsługiwana w tym systemie operacyjnym"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1428,10 +1395,8 @@ msgstr "Domyślna karta graficzna"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "Domyślny test pamięci podręcznej"
+msgstr "Domyślny typ rdzenia"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
