@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-13 20:14+0000\n"
-"PO-Revision-Date: 2022-10-02 12:10+0000\n"
+"PO-Revision-Date: 2022-10-17 06:23+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -201,10 +201,8 @@ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "kunde inte hitta antalet OpenCL-enheter för plattformen \"%s %s\" (%s)"
 
 #: core.c:1228
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "Enhets-ID"
+msgstr "0-enhet"
 
 #: core.c:1238
 #, c-format
@@ -489,11 +487,12 @@ msgstr "Basmodell"
 
 #: gui_gtk.c:634
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
+msgstr "CPU-visningsfamilj (\"true\")(beräknad som BaseFamily+ExtendedFamily)"
 
 #: gui_gtk.c:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"CPU-visningsmodell (\"true\")(beräknad som (ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.c:694
 msgid "User Mode Driver Version"
