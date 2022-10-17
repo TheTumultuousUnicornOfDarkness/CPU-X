@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-02 10:40+0000\n"
+"POT-Creation-Date: 2022-10-13 20:14+0000\n"
 "PO-Revision-Date: 2022-10-09 09:07+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -24,11 +24,12 @@ msgstr "CPU தொழில்நுட்பத்தைக் கண்டற�
 
 #: core.c:261
 #, c-format
-msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
-"model: %i, ext. family: %i"
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
-"உங்கள் CPU தரவுத்தளத்தில் இல்லை ==> %s, மாதிரி: %i, ext. மாதிரி: %i, ext. "
-"குடும்பம்: %i"
+"உங்கள் CPU தரவுத்தளத்தில் இல்லை ==> %s, மாதிரி: %i, ext. மாதிரி: %i, ext. குடும்பம்: "
+"%i"
 
 #: core.c:273
 #, c-format
@@ -56,19 +57,20 @@ msgstr "libcpuid (%s) ஐ அழைக்க முடியவில்லை"
 
 #: core.c:310
 #, c-format
-msgid "Selected CPU type (%u) is not a valid number (%u is the maximum for "
-"this CPU)"
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
-"தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u "
-"தான் அதிகபட்சம்)"
+"தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
+"அதிகபட்சம்)"
 
 #: core.c:318
 #, c-format
-msgid "Selected CPU core (%u) is not a valid number (%u is the maximum for "
-"this type of core)"
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
 msgstr ""
-"தேர்ந்தெடுக்கப்பட்ட CPU கோர் (%u) செல்லுபடியாகும் எண் அல்ல (இந்த வகை "
-"மையத்திற்கு %u தான் அதிகபட்சம்)"
+"தேர்ந்தெடுக்கப்பட்ட CPU கோர் (%u) செல்லுபடியாகும் எண் அல்ல (இந்த வகை மையத்திற்கு %u தான் "
+"அதிகபட்சம்)"
 
 #: core.c:347
 msgid "unknown"
@@ -104,10 +106,11 @@ msgstr "அலைவரிசையை அழைக்கிறது"
 
 #: core.c:701
 #, c-format
-msgid "pci_access is not properly initialized: it is a common issue when %s "
-"was built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, "
-"please rebuild %s."
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
 msgstr ""
 
 #: core.c:747
@@ -130,296 +133,299 @@ msgstr ""
 msgid "failed to call GLFW (%i): %s"
 msgstr ""
 
-#: core.c:998
+#: core.c:999
 msgid "Finding Vulkan API version"
 msgstr ""
 
-#: core.c:1015
+#: core.c:1016
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr ""
 
-#: core.c:1019 core.c:1021
+#: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.c:1031
+#: core.c:1032
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr ""
 
-#: core.c:1038
+#: core.c:1039
 msgid "No available Vulkan devices"
 msgstr ""
 
-#: core.c:1047
+#: core.c:1048
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr ""
 
-#: core.c:1110
+#: core.c:1108
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr ""
 
-#: core.c:1114
+#: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1179
+#: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
-#: core.c:1190
+#: core.c:1199
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr ""
 
-#: core.c:1201
+#: core.c:1211
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr ""
 
-#: core.c:1208
+#: core.c:1219
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr ""
 
-#: core.c:1215
+#: core.c:1228
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:1224
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#: core.c:1228
+msgid "0 device"
 msgstr ""
 
 #: core.c:1238
 #, c-format
+msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+
+#: core.c:1253
+#, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr ""
 
-#: core.c:1245
+#: core.c:1261
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr ""
 
-#: core.c:1259
+#: core.c:1277
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
-"(%s)"
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:1270
+#: core.c:1288
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
-"(%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:1282 core.c:1292 core.c:1317
+#: core.c:1301 core.c:1314 core.c:1342
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support "
-"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:1305
+#: core.c:1330
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support "
-"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
-"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:1325
+#: core.c:1352
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:1356
+#: core.c:1383
 msgid "Finding devices"
 msgstr ""
 
-#: core.c:1368
+#: core.c:1395
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
-#: core.c:1406
+#: core.c:1433
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr ""
 
-#: core.c:1423 core.c:1735
+#: core.c:1450 core.c:1762
 msgid "Enabled"
 msgstr ""
 
-#: core.c:1423 core.c:1735
+#: core.c:1450 core.c:1762
 msgid "Disabled"
 msgstr ""
 
-#: core.c:1433
+#: core.c:1460
 msgid "failed to find chipset vendor and model"
 msgstr ""
 
-#: core.c:1435
+#: core.c:1462
 msgid "failed to find graphic card vendor and model"
 msgstr ""
 
-#: core.c:1512
+#: core.c:1539
 msgid "Retrieving GPU clocks"
 msgstr ""
 
-#: core.c:1547
+#: core.c:1574
 msgid "None"
 msgstr ""
 
-#: core.c:1688
+#: core.c:1715
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr ""
 
-#: core.c:1731
+#: core.c:1758
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1759
+#: core.c:1786
 msgid "failed to retrieve GPU clocks"
 msgstr ""
 
-#: core.c:1776
+#: core.c:1803
 msgid "Identifying running system"
 msgstr ""
 
-#: core.c:1779
+#: core.c:1806
 msgid "failed to identify running system"
 msgstr ""
 
-#: core.c:1823 core.c:1851
+#: core.c:1850 core.c:1878
 msgid "Calling libprocps"
 msgstr ""
 
-#: core.c:1826
+#: core.c:1853
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1832
+#: core.c:1859
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1877
+#: core.c:1904
 msgid "Calling libstatgrab"
 msgstr ""
 
-#: core.c:1916
+#: core.c:1943
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr ""
 
-#: core.c:1973
+#: core.c:2000
 msgid "Updating benchmark status"
 msgstr ""
 
-#: core.c:1974 tui_ncurses.c:879
+#: core.c:2001 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr ""
 
-#: core.c:1976 core.c:1977
+#: core.c:2003 core.c:2004
 msgid "Inactive"
 msgstr ""
 
-#: core.c:1981 core.c:1982
+#: core.c:2008 core.c:2009
 msgid "Not started"
 msgstr ""
 
-#: core.c:1987
+#: core.c:2014
 msgid "Active"
 msgstr ""
 
-#: core.c:1992
+#: core.c:2019
 #, c-format
 msgid "(%u hours left)"
 msgstr ""
 
-#: core.c:1994
+#: core.c:2021
 #, c-format
 msgid "(%u minutes left)"
 msgstr ""
 
-#: core.c:1996
+#: core.c:2023
 #, c-format
 msgid "(%u seconds left)"
 msgstr ""
 
-#: core.c:2001
+#: core.c:2028
 #, c-format
 msgid "in %u hours"
 msgstr ""
 
-#: core.c:2003
+#: core.c:2030
 #, c-format
 msgid "in %u minutes"
 msgstr ""
 
-#: core.c:2005
+#: core.c:2032
 #, c-format
 msgid "in %u seconds"
 msgstr ""
 
-#: core.c:2021
+#: core.c:2048
 msgid "Starting benchmark"
 msgstr ""
 
-#: core.c:2040
+#: core.c:2067
 msgid "an error occurred while starting benchmark"
 msgstr ""
 
-#: core.c:2057
+#: core.c:2084
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:2079
+#: core.c:2106
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 
-#: core.c:2098
+#: core.c:2125
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:2125
+#: core.c:2152
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:2134
+#: core.c:2161
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:2173
+#: core.c:2200
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:2219
+#: core.c:2246
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:2232
+#: core.c:2259
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:2245
+#: core.c:2272
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:2260
+#: core.c:2287
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:2268
+#: core.c:2295
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
@@ -475,8 +481,7 @@ msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 
 #: gui_gtk.c:635
-msgid "CPU display (\"true\") model (computed as "
-"(ExtendedModel<<4)+BaseModel)"
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
 #: gui_gtk.c:694
@@ -834,7 +839,8 @@ msgstr ""
 
 #: main.c:188
 #, c-format
-msgid "%s is a Free software that gathers information\n"
+msgid ""
+"%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
 
@@ -951,8 +957,7 @@ msgid "Print required information to paste in an issue"
 msgstr ""
 
 #: main.c:362
-msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
-"v[im])"
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 
 #: main.c:373
@@ -1013,16 +1018,17 @@ msgstr ""
 
 #: main.c:677
 #, c-format
-msgid "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has "
-"crashed."
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 
 #: main.c:679
 #, c-format
-msgid "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is "
-"trying to recover."
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
+"recover."
 msgstr ""
 
 #: main.c:696
@@ -1038,8 +1044,9 @@ msgid "Starting NCurses TUI…"
 msgstr ""
 
 #: tui_ncurses.c:81
-msgid "FATAL ERROR: terminfo database could not be found (try to set "
-"TERMINFO environment variable)"
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
 msgstr ""
 
 #: tui_ncurses.c:86

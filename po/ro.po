@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-02 10:40+0000\n"
+"POT-Creation-Date: 2022-10-13 20:14+0000\n"
 "PO-Revision-Date: 2022-01-13 02:56+0000\n"
 "Last-Translator: Daniel <danny3@tutanota.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -136,99 +136,105 @@ msgstr ""
 msgid "failed to call GLFW (%i): %s"
 msgstr "a eșuat apelarea GLFW (%i): %s"
 
-#: core.c:998
+#: core.c:999
 #, fuzzy
 #| msgid "Version"
 msgid "Finding Vulkan API version"
 msgstr "Versiunea"
 
-#: core.c:1015
+#: core.c:1016
 #, fuzzy, c-format
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "a eșuat apelarea wordexp (%i)"
 
-#: core.c:1019 core.c:1021
+#: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.c:1031
+#: core.c:1032
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "a eșuat apelarea libcpuid (%s)"
 
-#: core.c:1038
+#: core.c:1039
 msgid "No available Vulkan devices"
 msgstr ""
 
-#: core.c:1047
+#: core.c:1048
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "No available physical devices (%s)"
 msgstr "a eșuat apelarea libcpuid (%s)"
 
-#: core.c:1110
+#: core.c:1108
 #, fuzzy, c-format
 #| msgid "failed to get name for device %u (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "a eșuat obținerea numelui pentru dispozitivul %u (%s)"
 
-#: core.c:1114
+#: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1179
+#: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Nu există nicio platformă cu sprijin pentru OpenCL (%s)"
 
-#: core.c:1190
+#: core.c:1199
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "a eșuat obținerea tuturor platformelor OpenCL (%s)"
 
-#: core.c:1201
+#: core.c:1211
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "a eșuat obținerea numelui platformei %u (%s)"
 
-#: core.c:1208
+#: core.c:1219
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "a eșuat obținerea versiunii platformei %u (%s)"
 
-#: core.c:1215
+#: core.c:1228
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "a eșuat găsirea numărului de dispozitive OpenCL pentru platforma '%s %s' (%s)"
 
-#: core.c:1224
+#: core.c:1228
+#, fuzzy
+#| msgid "DeviceID"
+msgid "0 device"
+msgstr "Identifiatorul dispozitivului"
+
+#: core.c:1238
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "a eșuat obținerea tuturor dispozitivelor OpenCL pentru platforma '%s %s' (%s)"
 
-#: core.c:1238
+#: core.c:1253
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "a eșuat obținerea numelui pentru dispozitivul %u (%s)"
 
-#: core.c:1245
+#: core.c:1261
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "a eșuat obținerea versiunii dispozitivului %u (%s)"
 
-#: core.c:1259
+#: core.c:1277
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.c:1270
+#: core.c:1288
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -236,7 +242,7 @@ msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_GFXIP_MAJOR_AMD "
 "(%s)"
 
-#: core.c:1282 core.c:1292 core.c:1317
+#: core.c:1301 core.c:1314 core.c:1342
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -244,7 +250,7 @@ msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină "
 "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.c:1305
+#: core.c:1330
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -253,196 +259,196 @@ msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) sau CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.c:1325
+#: core.c:1352
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 "OpenCL nu este sprijinit de vânzătorul plăcii dumneavoastre video (0x%X)"
 
-#: core.c:1356
+#: core.c:1383
 msgid "Finding devices"
 msgstr "Se găsesc dispozitivele"
 
-#: core.c:1368
+#: core.c:1395
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Omite căutarea dispozitivelor (permisiuni greșite pe dispozitivul %s)"
 
-#: core.c:1406
+#: core.c:1433
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Vânzătorul plăcii dumeavoastră vide este necunoscut: %s (0x%X)"
 
-#: core.c:1423 core.c:1735
+#: core.c:1450 core.c:1762
 msgid "Enabled"
 msgstr "Activat"
 
-#: core.c:1423 core.c:1735
+#: core.c:1450 core.c:1762
 msgid "Disabled"
 msgstr "Dezactivat"
 
-#: core.c:1433
+#: core.c:1460
 msgid "failed to find chipset vendor and model"
 msgstr "a eșuat găsirea furnizorului și modelul cipsetului"
 
-#: core.c:1435
+#: core.c:1462
 msgid "failed to find graphic card vendor and model"
 msgstr "a eșuat găsirea furnizorului și modelul plăcii video"
 
-#: core.c:1512
+#: core.c:1539
 msgid "Retrieving GPU clocks"
 msgstr "Se obțin tactările plăcii video"
 
-#: core.c:1547
+#: core.c:1574
 msgid "None"
 msgstr "Niciunul"
 
-#: core.c:1688
+#: core.c:1715
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Ghidatorul pentru placa video %u nu raportează frecvențele"
 
-#: core.c:1731
+#: core.c:1758
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "Actual: PCIe Gen%1dx%d / Maxim: Gen%1dx%d"
 
-#: core.c:1759
+#: core.c:1786
 msgid "failed to retrieve GPU clocks"
 msgstr "a eșuat obținerea tactărilor plăcii video"
 
-#: core.c:1776
+#: core.c:1803
 msgid "Identifying running system"
 msgstr "Se identifică sistemul actual"
 
-#: core.c:1779
+#: core.c:1806
 msgid "failed to identify running system"
 msgstr "a eșuat identificarea sistemului actual"
 
-#: core.c:1823 core.c:1851
+#: core.c:1850 core.c:1878
 msgid "Calling libprocps"
 msgstr "Se apelează libprocps"
 
-#: core.c:1826
+#: core.c:1853
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1832
+#: core.c:1859
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1877
+#: core.c:1904
 msgid "Calling libstatgrab"
 msgstr "Se apelează libstatgrab"
 
-#: core.c:1916
+#: core.c:1943
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i zile, %i ore, %i minute, %i secunde"
 
-#: core.c:1973
+#: core.c:2000
 msgid "Updating benchmark status"
 msgstr "Se actualizează starea testării performanței"
 
-#: core.c:1974 tui_ncurses.c:879
+#: core.c:2001 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u minute"
 
-#: core.c:1976 core.c:1977
+#: core.c:2003 core.c:2004
 msgid "Inactive"
 msgstr "Inactiv"
 
-#: core.c:1981 core.c:1982
+#: core.c:2008 core.c:2009
 msgid "Not started"
 msgstr "Neînceput"
 
-#: core.c:1987
+#: core.c:2014
 msgid "Active"
 msgstr "Activ"
 
-#: core.c:1992
+#: core.c:2019
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u ore rămase)"
 
-#: core.c:1994
+#: core.c:2021
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minute rămase)"
 
-#: core.c:1996
+#: core.c:2023
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u secunde rămase)"
 
-#: core.c:2001
+#: core.c:2028
 #, c-format
 msgid "in %u hours"
 msgstr "în %u ore"
 
-#: core.c:2003
+#: core.c:2030
 #, c-format
 msgid "in %u minutes"
 msgstr "în %u minute"
 
-#: core.c:2005
+#: core.c:2032
 #, c-format
 msgid "in %u seconds"
 msgstr "în %u secunde"
 
-#: core.c:2021
+#: core.c:2048
 msgid "Starting benchmark"
 msgstr "Se pornește testarea performanței"
 
-#: core.c:2040
+#: core.c:2067
 msgid "an error occurred while starting benchmark"
 msgstr "a apărut o eroare la pornirea testării performanței"
 
-#: core.c:2057
+#: core.c:2084
 msgid "Finding CPU package in fallback mode"
 msgstr "Se găsește pachetul procesorului în modul de rezervă"
 
-#: core.c:2079
+#: core.c:2106
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Soclul procesorului dumneavoastră nu este în baza de date ==> %s, numele de "
 "cod: %s"
 
-#: core.c:2098
+#: core.c:2125
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Se calculează multiplicatorii procesorului în modul de rezervă"
 
-#: core.c:2125
+#: core.c:2152
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Se obțin informațiile plăcii de bază în modul de rezervă"
 
-#: core.c:2134
+#: core.c:2161
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "a eșuat obținerea informațiilor plăcii de bază (în modul de rezervă)"
 
-#: core.c:2173
+#: core.c:2200
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Se obține temperatura procesorului în modul de rezervă"
 
-#: core.c:2219
+#: core.c:2246
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "a eșuat obținerea temperaturii procesorului (în modul de rezervă)"
 
-#: core.c:2232
+#: core.c:2259
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Se obține voltajul procesorului în modul de rezervă"
 
-#: core.c:2245
+#: core.c:2272
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "a eșuat obținerea voltajului procesorului (în modul de rezervă)"
 
-#: core.c:2260
+#: core.c:2287
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Se obține frecvența procesorului în modul de rezervă"
 
-#: core.c:2268
+#: core.c:2295
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "a eșuat obținerea frecvenței procesorului (în modul de rezervă)"
 
