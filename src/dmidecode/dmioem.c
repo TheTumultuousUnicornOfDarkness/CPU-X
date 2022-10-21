@@ -283,7 +283,7 @@ static void dmi_hp_203_devloc(const char *fname, unsigned int code)
 		"Rear USB Port",
 		"Internal USB",
 		"Internal SD Card",
-		"Internal Virutal USB (Embedded NAND)",
+		"Internal Virtual USB (Embedded NAND)",
 		"Embedded SATA Port",
 		"Embedded Smart Array",
 		"PCI Slot",
