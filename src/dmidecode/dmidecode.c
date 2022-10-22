@@ -5464,13 +5464,14 @@ static void dmi_decode_cpux(const struct dmi_header *h)
 		case 17: /* 7.18 Memory Device */
 			if(cpux_data->dimm_count < LASTMEMORY)
 			{
-				if((strstr(dmi_string(h, data[0x17]), "Empty") != NULL) || (strstr(dmi_string(h, data[0x17]), "Not Specified") != NULL) || (WORD(data + 0x0C) == 0))
+				if((strstr(dmi_string(h, data[0x17]), "Empty") != NULL) || (WORD(data + 0x0C) == 0))
 					snprintf(cpux_data->memory[cpux_data->dimm_count], MAXSTR, "- - - - - - - - - - - - - - - - - - -");
 				else
 				{
 					memset(cpux_data->memory[cpux_data->dimm_count], '\0', MAXSTR);
 					if(h->length >= 0x1B)
 					{
+						/* Note: manufacturer can be 'Unknown' or 'Not Specified' */
 						const char *manufacturer = dmi_string(h, data[0x17]);
 						const char *part_number  = dmi_string(h, data[0x1A]);
 						if((strlen(manufacturer) > 0) || (strlen(part_number) > 0))
