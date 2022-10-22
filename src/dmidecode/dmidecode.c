@@ -319,6 +319,49 @@ void dmi_print_memory_size(const char *attr, u64 code, int shift)
 	pr_attr(attr, "%lu %s", capacity, unit[i + shift]);
 }
 
+void dmi_print_memory_size_str(char *str_size, size_t str_len, u64 code, int shift)
+{
+	unsigned long capacity;
+	u16 split[7];
+	static const char *unit[8] = {
+		"@0B@", "@KB@", "@MB@", "@GB@", "@TB@", "PB", "EB", "ZB"
+	};
+	int i;
+
+	/*
+	 * We split the overall size in powers of thousand: EB, PB, TB, GB,
+	 * MB, kB and B. In practice, it is expected that only one or two
+	 * (consecutive) of these will be non-zero.
+	 */
+	split[0] = code.l & 0x3FFUL;
+	split[1] = (code.l >> 10) & 0x3FFUL;
+	split[2] = (code.l >> 20) & 0x3FFUL;
+	split[3] = ((code.h << 2) & 0x3FCUL) | (code.l >> 30);
+	split[4] = (code.h >> 8) & 0x3FFUL;
+	split[5] = (code.h >> 18) & 0x3FFUL;
+	split[6] = code.h >> 28;
+
+	/*
+	 * Now we find the highest unit with a non-zero value. If the following
+	 * is also non-zero, we use that as our base. If the following is zero,
+	 * we simply display the highest unit.
+	 */
+	for (i = 6; i > 0; i--)
+	{
+		if (split[i])
+			break;
+	}
+	if (i > 0 && split[i - 1])
+	{
+		i--;
+		capacity = split[i] + (split[i + 1] << 10);
+	}
+	else
+		capacity = split[i];
+
+	snprintf(str_size, str_len, "%lu %s", capacity, unit[i + shift]);
+}
+
 /*
  * 7.1 BIOS Information (Type 0)
  */
@@ -2784,10 +2827,10 @@ static char *dmi_memory_device_size_str(u16 code)
 		strncpy(size, "Unknown", STR_LEN);
 	else
 	{
-		if (code & 0x8000)
-			snprintf(size, STR_LEN, "%u @KB@", code & 0x7FFF);
-		else
-			snprintf(size, STR_LEN, "%u @MB@", code);
+		u64 s = { .l = code & 0x7FFF };
+		if (!(code & 0x8000))
+			s.l <<= 10;
+		dmi_print_memory_size_str(size, STR_LEN, s, 1);
 	}
 
 	return size;
