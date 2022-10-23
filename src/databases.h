@@ -66,6 +66,7 @@ const Technology_DB technology_intel[] =
 	{  7,          71,          -1,          14 }, // Broadwell
 	{  7,         151,          -1,           7 }, // Alder Lake-P
 	{  7,         167,          -1,          14 }, // Rocket Lake
+	{  7,         183,          -1,           7 }, // Raptor Lake-S
 	{  8,           0,           0,         180 }, // PIII Coppermine-T
 	{  8,           8,          -1,         180 }, // PIII Coppermine
 	{  9,           9,          -1,         130 }, // Pentium M Banias
@@ -193,6 +194,9 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i7-12700KF",     "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i9-12900K",      "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i9-12900HK",     "FCBGA 1744"     },
+	{ NULL,                             "Intel(R) Core(TM) i5-13600K",      "LGA 1700"       },
+	{ NULL,                             "Intel(R) Core(TM) i7-13700K",      "LGA 1700"       },
+	{ NULL,                             "Intel(R) Core(TM) i9-13900K",      "LGA 1700"       },
 	{ NULL,                             NULL,                               NULL             }
 	//Codename                          Model                               Socket
 };
