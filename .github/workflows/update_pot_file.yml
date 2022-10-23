@@ -15,13 +15,13 @@ jobs:
       output1: ${{ steps.step1.outputs.check_ret }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: '0'
 
     - id: step1
       name: Check if POT file needs to be regenerated
-      run: echo "::set-output name=check_ret::$(bash ./scripts/check_new_strings.sh)"
+      run: echo "check_ret=$(bash ./scripts/check_new_strings.sh)" >> $GITHUB_OUTPUT
 
   update_pot_file:
     name: Linux x64_64 (L10n)
@@ -30,7 +30,7 @@ jobs:
     if: ${{ needs.check_new_string.outputs.output1 == 'REGEN' }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install packages
       run: sudo apt-get install -y -qq cmake ninja-build gettext

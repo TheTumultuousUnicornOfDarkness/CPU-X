@@ -20,7 +20,7 @@ jobs:
           - { label: ubuntu-22.04 }
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Build libcpuid
       run: bash -x ./scripts/build_libcpuid.sh "Debug"
