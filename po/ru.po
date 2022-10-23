@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/X0rg/CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-13 20:14+0000\n"
-"PO-Revision-Date: 2022-10-02 12:10+0000\n"
+"PO-Revision-Date: 2022-10-24 22:39+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -220,10 +220,8 @@ msgstr ""
 "не удалось обнаружить число OpenCL устройств для платформы '%s %s' (%s)"
 
 #: core.c:1228
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "ИД устройства"
+msgstr "0 устройство"
 
 #: core.c:1238
 #, c-format
