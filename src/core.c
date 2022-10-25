@@ -60,8 +60,8 @@
 #endif
 
 #if HAS_LIBPROC2
-# include <procps/meminfo.h>
-# include <procps/misc.h>
+# include <libproc2/meminfo.h>
+# include <libproc2/misc.h>
 #endif
 
 #if HAS_LIBPROCPS
