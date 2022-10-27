@@ -28,8 +28,7 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
     - [Test dependencies](#test-dependencies)
     - [Build and run dependencies](#build-and-run-dependencies)
   - [Download and install](#download-and-install)
-    - [From official repositories](#from-official-repositories)
-    - [From third-party repositories](#from-third-party-repositories)
+    - [From repositories](#from-repositories)
     - [From GitHub releases](#from-github-releases)
     - [Manual build](#manual-build)
   - [Usage](#usage)
@@ -73,9 +72,8 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 
 ## Download and install
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/cpu-x.svg)](https://repology.org/project/cpu-x/versions)
 
-### From official repositories
+### From repositories
 
 In alphabetical order:
 - [Debian (since version 11 "Bullseye")](https://packages.debian.org/search?searchon=names&keywords=cpu-x): `apt install cpu-x`
@@ -86,11 +84,8 @@ In alphabetical order:
 - [Solus](https://packages.getsol.us/shannon/c/cpu-x/): `eopkg install cpu-x`
 - [Ubuntu (since version 20.04 "Focal Fossa")](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `apt install cpu-x`
 
-### From third-party repositories
-
-- Arch Linux (AUR): [cpu-x](https://aur.archlinux.org/packages/cpu-x/) / [cpu-x-git](https://aur.archlinux.org/packages/cpu-x-git/)
-- Gentoo (Overlay): [cpu-x](https://data.gpo.zugaina.org/beatussum-overlay/sys-process/cpu-x/)
-- Slackware: on [SlackOnly](https://slackonly.com/)
+All packages:
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cpu-x.svg?exclude_unsupported=1)](https://repology.org/project/cpu-x/versions)
 
 ### From GitHub releases
 
