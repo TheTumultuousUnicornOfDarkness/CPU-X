@@ -84,7 +84,7 @@ In alphabetical order:
 - [Solus](https://packages.getsol.us/shannon/c/cpu-x/): `eopkg install cpu-x`
 - [Ubuntu (since version 20.04 "Focal Fossa")](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `apt install cpu-x`
 
-All packages:
+All packages:  
 [![Packaging status](https://repology.org/badge/vertical-allrepos/cpu-x.svg?exclude_unsupported=1)](https://repology.org/project/cpu-x/versions)
 
 ### From GitHub releases
