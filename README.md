@@ -73,6 +73,8 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 
 ## Download and install
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cpu-x.svg)](https://repology.org/project/cpu-x/versions)
+
 ### From official repositories
 
 In alphabetical order:
