@@ -237,6 +237,8 @@ const Package_DB package_amd[] =
 	{ "Vermeer",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Milan",                          NULL,            "SP3 (LGA-4094)"   },
 	{ "Raphael",                        NULL,            "AM5 (LGA-1718)"   },
+	/* Zen 3+ */
+	{ "Rembrandt",                      NULL,            "FP7 (BGA-1140)"   },
 	{ NULL,                             NULL,            NULL               }
 	//Codename                          Model            Socket
 };
