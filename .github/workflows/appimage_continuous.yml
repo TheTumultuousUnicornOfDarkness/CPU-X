@@ -47,7 +47,7 @@ jobs:
         draft: false
         prerelease: true
         body: |
-          :heavy_check_mark:CPU-X AppImage built from latest commit ([${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})). See [known issues](https://github.com/X0rg/CPU-X/wiki/appimage).
+          :heavy_check_mark:CPU-X AppImage built from latest commit ([${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})). See [known issues](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/appimage).
 
           :scroll: Build log: https://github.com/${{ github.repository }}/commit/${{ github.sha }}/checks?check_suite_id=${{ github.run_id }}
         artifacts: "AppImage/CPU-X-*.AppImage*"

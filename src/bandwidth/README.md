@@ -1,6 +1,6 @@
 # Bandwidth: a memory bandwidth benchmark
 
-Distributed under the terms of the [GNU GPL v2](https://raw.githubusercontent.com/X0rg/CPU-X/master/src/bandwidth/COPYING.txt).
+Distributed under the terms of the [GNU GPL v2](https://raw.githubusercontent.com/TheTumultuousUnicornOfDarkness/CPU-X/master/src/bandwidth/COPYING.txt).
 
 
 ### CPU-X NOTE

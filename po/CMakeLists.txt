@@ -23,8 +23,8 @@ if(GETTEXT_FOUND)
 			--package-name=${CMAKE_PROJECT_NAME}
 			--package-version=${PROJECT_VERSION}
 			--default-domain=${CMAKE_PROJECT_NAME}
-			--msgid-bugs-address=https://github.com/X0rg/CPU-X/issues
-			--copyright-holder=Xorg
+			--msgid-bugs-address=https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues
+			--copyright-holder=TheTumultuousUnicornOfDarkness
 			--output-dir=${CMAKE_CURRENT_BINARY_DIR}
 			--output=source_c.pot
 			--directory="../src"
@@ -37,8 +37,8 @@ if(GETTEXT_FOUND)
 			--package-name=${CMAKE_PROJECT_NAME}
 			--package-version=${PROJECT_VERSION}
 			--default-domain=${CMAKE_PROJECT_NAME}
-			--msgid-bugs-address=https://github.com/X0rg/CPU-X/issues
-			--copyright-holder=Xorg
+			--msgid-bugs-address=https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues
+			--copyright-holder=TheTumultuousUnicornOfDarkness
 			--output-dir=${CMAKE_CURRENT_BINARY_DIR}
 			--output=source_ui.pot
 			--directory="../data"

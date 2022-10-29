@@ -5,7 +5,7 @@ about: Create a report to help us to improve CPU-X
 ---
 
 <!--
-Before all, please read the troubleshooting section on the Wiki: https://github.com/X0rg/CPU-X/wiki/troubleshooting
+Before all, please read the troubleshooting section on the Wiki: https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/troubleshooting
 
 This template is to report a bug. Please fill it to help us to solve your issue.
 

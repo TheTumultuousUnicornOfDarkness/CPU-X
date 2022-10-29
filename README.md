@@ -1,23 +1,23 @@
 
-[![Logo](https://github.com/X0rg/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://x0rg.github.io/CPU-X/)
-[![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/tags)
-[![GitHub commits](https://img.shields.io/github/commits-since/X0rg/CPU-X/latest.svg)](https://github.com/X0rg/CPU-X/commits/master)
-[![GitHub downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/latest/total.svg)](https://github.com/X0rg/CPU-X/releases/latest)
-[![GitHub total downloads](https://img.shields.io/github/downloads/X0rg/CPU-X/total.svg)](https://github.com/X0rg/CPU-X/releases)
-[![GitHub issues](https://img.shields.io/github/issues/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/issues)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/X0rg/CPU-X.svg)](https://GitHub.com/X0rg/CPU-X/pull)
+[![Logo](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://thetumultuousunicornofdarkness.github.io/CPU-X/)
+[![GitHub release](https://img.shields.io/github/release/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/tags)
+[![GitHub commits](https://img.shields.io/github/commits-since/TheTumultuousUnicornOfDarkness/CPU-X/latest.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/commits/master)
+[![GitHub downloads](https://img.shields.io/github/downloads/TheTumultuousUnicornOfDarkness/CPU-X/latest/total.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases/latest)
+[![GitHub total downloads](https://img.shields.io/github/downloads/TheTumultuousUnicornOfDarkness/CPU-X/total.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases)
+[![GitHub issues](https://img.shields.io/github/issues/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://GitHub.com/TheTumultuousUnicornOfDarkness/CPU-X/pull)
 [![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/svg-badge.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)
 
 | Linux | FreeBSD | AppImage |
 | :---: | :---: | :---: |
-| [![Build Status (Linux)](https://github.com/X0rg/CPU-X/workflows/Linux%20build/badge.svg?branch=master)](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22Linux+build%22) | [![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/X0rg/CPU-X.svg)](https://cirrus-ci.com/github/X0rg/CPU-X) | [![AppImage Continuous](https://github.com/X0rg/CPU-X/workflows/AppImage%20Continuous/badge.svg?branch=master)](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22AppImage+Continuous%22) |
+| [![Build Status (Linux)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/workflows/Linux%20build/badge.svg?branch=master)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions?query=workflow%3A%22Linux+build%22) | [![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://cirrus-ci.com/github/TheTumultuousUnicornOfDarkness/CPU-X) | [![AppImage Continuous](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/workflows/AppImage%20Continuous/badge.svg?branch=master)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions?query=workflow%3A%22AppImage+Continuous%22) |
 
 **CPU-X** is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is a system profiling and monitoring application (similar to [CPU-Z for Windows](https://www.cpuid.com/softwares/cpu-z.html)), but CPU-X is a Free and Open Source software designed for GNU/Linux and FreeBSD.  
 This software is written in C and built with [CMake](https://www.cmake.org/) tool.  
 It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
 
-**:warning: There is no major plans for the future, see [this announcement](https://github.com/X0rg/CPU-X/wiki/future-of-project).**
+**:warning: There is no major plans for the future, see [this announcement](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/future-of-project).**
 
 ***
 
@@ -89,11 +89,11 @@ All packages:
 
 ### From GitHub releases
 
-Look for **Assets** [here ![GitHub release](https://img.shields.io/github/release/X0rg/CPU-X.svg)](https://github.com/X0rg/CPU-X/releases/latest) for portable binary (AppImage).
+Look for **Assets** [here ![GitHub release](https://img.shields.io/github/release/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases/latest) for portable binary (AppImage).
 
 ### Manual build
 
-For step-by-step guide, please read [this page](https://github.com/X0rg/CPU-X/wiki/manual-build) on the Wiki.
+For step-by-step guide, please read [this page](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/manual-build) on the Wiki.
 
 ## Usage
 
@@ -109,13 +109,13 @@ Use `--help` to see all arguments.
 
 ## Wiki
 
-More informations are available on Wiki, like screenshots, troubleshooting and tips. You can access to the Wiki with [this link](https://github.com/X0rg/CPU-X/wiki).
+More informations are available on Wiki, like screenshots, troubleshooting and tips. You can access to the Wiki with [this link](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki).
 
 ## Bugs/Improvements/Request features
 
-Please [open a new issue](https://github.com/X0rg/CPU-X/issues/new/choose) and fill the appropriate template. Note that text between `<!-- ... -->` is not displayed.
+Please [open a new issue](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues/new/choose) and fill the appropriate template. Note that text between `<!-- ... -->` is not displayed.
 
 ## Translate CPU-X
 
 If you want to translate CPU-X in your native tongue, please visit the [Weblate page](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget).  
-POT file is updated on each changes thanks to [Update POT file workflow](https://github.com/X0rg/CPU-X/actions?query=workflow%3A%22Update+POT+file%22).
+POT file is updated on each changes thanks to [Update POT file workflow](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions?query=workflow%3A%22Update+POT+file%22).

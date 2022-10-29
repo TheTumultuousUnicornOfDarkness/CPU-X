@@ -1,6 +1,6 @@
 # How to contribute to CPU-X
 
-CPU-X is mainly developed by @X0rg, but contributors are welcome!
+CPU-X is mainly developed by @TheTumultuousUnicornOfDarkness, but contributors are welcome!
 
 Here is some things to be involved.
 
@@ -16,7 +16,7 @@ When new CPUs are out, we need to add them in databases. You can find databases 
 
 CPU-X is written in C and uses the CMake build system.
 
-First of all, if you are interested to modify CPU-X source code, take a look at [how to manually build CPU-X](https://github.com/X0rg/CPU-X/wiki/manual-build).
+First of all, if you are interested to modify CPU-X source code, take a look at [how to manually build CPU-X](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/manual-build).
 
 ### Source files
 
@@ -44,7 +44,7 @@ The file structure in the `src` directory is the following:
 ### Add new labels
 
 Adding new labels to CPU-X is a little bit complex, but don't worry: this sub-section explains how to achieve that.  
-This text is based on [this](https://github.com/X0rg/CPU-X/commit/ba60cbfc18952fc52b16a4c34a33f565493fb125#diff-8e11e336b0bbcfe85860ec612c712da5e03aebc0a755e6fcea1efa867c72b2f1) commit.  
+This text is based on [this](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/commit/ba60cbfc18952fc52b16a4c34a33f565493fb125#diff-8e11e336b0bbcfe85860ec612c712da5e03aebc0a755e6fcea1efa867c72b2f1) commit.  
 :warning: Note: this guide does not explain how to add a new tab.
 
 **1. In core**
@@ -91,11 +91,11 @@ $ cpu-x -Nv
 $ cpu-x -Gv
 ```
 
-If nothing is broken, congratulations! :tada: You can open a new [pull request](https://github.com/X0rg/CPU-X/compare).
+If nothing is broken, congratulations! :tada: You can open a new [pull request](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/compare).
 
 ### Add new options
 
-This section describe how to add a new option. You can take a look on [this commit](https://github.com/X0rg/CPU-X/commit/6a469c04ba6cba16df31fe60b6c57f56eb217c54).
+This section describe how to add a new option. You can take a look on [this commit](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/commit/6a469c04ba6cba16df31fe60b6c57f56eb217c54).
 
 1. `src/cpu-x.h`: add new option in `struct Options`
 2. `src/main.c`:
@@ -113,7 +113,7 @@ This section describe how to add a new option. You can take a look on [this comm
 
 ### Things to do
 
-- A good starting point if you want to do stuff is to fix [issues](https://github.com/X0rg/CPU-X/issues). One example: add proper CPU logos (as requested in #144).
+- A good starting point if you want to do stuff is to fix [issues](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues). One example: add proper CPU logos (as requested in #144).
 
 - Another point, if you have a lot of time to spare, is to create new user interfaces:
     - Qt5 GUI can be appreciated by users using Qt-based desktop environnement (like KDE);
