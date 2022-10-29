@@ -60,6 +60,7 @@ const Technology_DB technology_intel[] =
 	{  6,          54,          -1,          32 }, // Atom Cedarview
 	{  6,          70,          -1,          22 }, // Haswell (Crystalwell, L4 cache)
 	{  6,         102,          -1,          10 }, // Cannon Lake
+	{  6,         150,          -1,          10 }, // Tremont (Elkhart Lake)
 	{  7,           7,          -1,         250 }, // PIII Katmai
 	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          22 }, // Atom Bay Trail
@@ -75,6 +76,7 @@ const Technology_DB technology_intel[] =
 	{ 10,          42,          -1,          32 }, // Sandy Bridge
 	{ 10,          58,          -1,          22 }, // Ivy Bridge
 	{ 10,         122,          -1,          14 }, // Gemini Lake
+	{ 10,         138,          -1,          10 }, // Tremont (Lakefield)
 	{ 10,         154,          -1,           7 }, // Alder Lake-S
 	{ 11,          11,          -1,         130 }, // PIII Tualatine
 	{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
@@ -82,6 +84,7 @@ const Technology_DB technology_intel[] =
 	{ 12,          60,          -1,          22 }, // Haswell
 	{ 12,          76,          -1,          14 }, // Atom Cherry Trail
 	{ 12,         140,          -1,          10 }, // Tiger Lake
+	{ 12,         156,          -1,          10 }, // Tremont (Jasper Lake)
 	{ 13,          13,          -1,          90 }, // Pentium M Dothan
 	{ 13,          45,          -1,          32 }, // Sandy Bridge-E
 	{ 13,          61,          -1,          14 }, // Broadwell-U
