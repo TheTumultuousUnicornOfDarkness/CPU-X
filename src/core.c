@@ -980,7 +980,7 @@ static inline const char* string_VkResult(VkResult input_value)
 }
 #endif /* HAS_Vulkan */
 
-static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, bool *vulkan_rt)
+static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, char *vulkan_rt)
 {
 	int err = 0;
 #if HAS_Vulkan
@@ -1136,8 +1136,8 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, boo
 
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 		VkDevice vk_dev_rt = {0};
-		*vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS);
-		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, *vulkan_rt ? "ON" : "OFF");
+		snprintf(vulkan_rt, MAXSTR, "%s", (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS) ? _("Enabled") : _("Disabled"));
+		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, vulkan_rt);
 		vkDestroyDevice(vk_dev_rt, NULL);
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
@@ -1374,10 +1374,9 @@ static int find_devices(Labels *data)
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
 	char *gpu_vendor = NULL;
-	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", vk_ver[MAXSTR] = "", cl_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
+	char gpu_driver[MAXSTR] = "", gpu_umd[MAXSTR] = "", buff[MAXSTR] = "", gl_ver[MAXSTR] = "", vk_ver[MAXSTR] = "", vk_rt[MAXSTR] = "", cl_ver[MAXSTR] = "", comp_unit_type[MAXSTR] = "";
 	struct pci_access *pacc;
 	struct pci_dev *dev;
-	bool vulkan_ray_tracing = false;
 	uint32_t comp_unit = 0;
 
 	MSG_VERBOSE("%s", _("Finding devices"));
@@ -1434,11 +1433,12 @@ static int find_devices(Labels *data)
 			}
 
 			memset(gpu_driver, 0, MAXSTR);
+			memset(vk_ver,     0, MAXSTR);
 			memset(buff,       0, MAXSTR);
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd, gl_ver);
-			get_vulkan_api_version(dev, vk_ver, &vulkan_ray_tracing);
+			get_vulkan_api_version(dev, vk_ver, vk_rt);
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type, cl_ver);
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
@@ -1447,7 +1447,7 @@ static int find_devices(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1MODEL  + data->gpu_count * GPUFIELDS], false, "%s", DEVICE_PRODUCT_STR(dev));
 			casprintf(&data->tab_graphics[VALUE][GPU1DIDRID + data->gpu_count * GPUFIELDS], false, "0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
 			casprintf(&data->tab_graphics[VALUE][GPU1CU     + data->gpu_count * GPUFIELDS], true,  "%d %s", comp_unit, comp_unit_type);
-			casprintf(&data->tab_graphics[VALUE][GPU1VKRT   + data->gpu_count * GPUFIELDS], false, "%s", vulkan_ray_tracing ? _("Enabled") : _("Disabled"));
+			casprintf(&data->tab_graphics[VALUE][GPU1VKRT   + data->gpu_count * GPUFIELDS], false, "%s", vk_rt);
 			casprintf(&data->tab_graphics[VALUE][GPU1GLVER  + data->gpu_count * GPUFIELDS], false, "%s", gl_ver);
 			casprintf(&data->tab_graphics[VALUE][GPU1VKVER  + data->gpu_count * GPUFIELDS], false, "%s", vk_ver);
 			casprintf(&data->tab_graphics[VALUE][GPU1CLVER  + data->gpu_count * GPUFIELDS], false, "%s", cl_ver);
