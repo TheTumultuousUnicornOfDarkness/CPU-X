@@ -11,8 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-13 20:14+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2022-10-30 14:51+0000\n"
 "PO-Revision-Date: 2022-06-01 00:19+0000\n"
 "Last-Translator: Kenryu Shibata <kenryushibata@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -183,6 +184,14 @@ msgstr "デバイス %u の名前の取得に失敗しました（%s）"
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
+#: core.c:1139 core.c:1762
+msgid "Enabled"
+msgstr "有効"
+
+#: core.c:1139 core.c:1762
+msgid "Disabled"
+msgstr "無効"
+
 #: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
@@ -265,27 +274,19 @@ msgstr ""
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
 
-#: core.c:1383
+#: core.c:1382
 msgid "Finding devices"
 msgstr "デバイスを識別中"
 
-#: core.c:1395
+#: core.c:1394
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
 
-#: core.c:1433
+#: core.c:1432
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "不明な GPU ベンダー : %s（0x %X）"
-
-#: core.c:1450 core.c:1762
-msgid "Enabled"
-msgstr "有効"
-
-#: core.c:1450 core.c:1762
-msgid "Disabled"
-msgstr "無効"
 
 #: core.c:1460
 msgid "failed to find chipset vendor and model"

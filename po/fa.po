@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-13 20:14+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2022-10-30 14:51+0000\n"
 "PO-Revision-Date: 2021-09-21 22:38+0000\n"
 "Last-Translator: Ali Akrami <aliakrami.ce@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -173,6 +174,14 @@ msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
+#: core.c:1139 core.c:1762
+msgid "Enabled"
+msgstr "فعال شده"
+
+#: core.c:1139 core.c:1762
+msgid "Disabled"
+msgstr "غیرفعال شده"
+
 #: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
@@ -256,27 +265,19 @@ msgstr ""
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL توسط سازنده پردازنده گرافیکی شما پشتیبانی نمی شود (0x%X)"
 
-#: core.c:1383
+#: core.c:1382
 msgid "Finding devices"
 msgstr "در حال بررسی دستگاه ها"
 
-#: core.c:1395
+#: core.c:1394
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core.c:1433
+#: core.c:1432
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "سازنده پردازنده گرافیکی شما نامشخص است: %s (0x%X)"
-
-#: core.c:1450 core.c:1762
-msgid "Enabled"
-msgstr "فعال شده"
-
-#: core.c:1450 core.c:1762
-msgid "Disabled"
-msgstr "غیرفعال شده"
 
 #: core.c:1460
 msgid "failed to find chipset vendor and model"

@@ -14,12 +14,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-13 20:14+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2022-10-30 14:51+0000\n"
 "PO-Revision-Date: 2022-10-17 06:23+0000\n"
 "Last-Translator: Eric <hamburger1024@mailbox.org>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"cpu-x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
+"x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,6 +177,14 @@ msgstr "无法为设备 %u (%s) 创建 Vulkan"
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr "%s 在设备 %u 上不受支持。仅使用 deviceID 进行匹配"
 
+#: core.c:1139 core.c:1762
+msgid "Enabled"
+msgstr "已启用"
+
+#: core.c:1139 core.c:1762
+msgid "Disabled"
+msgstr "已禁用"
+
 #: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
@@ -251,27 +260,19 @@ msgstr ""
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "Open 不受你的 GPU 厂商 (0x%X) 的支持"
 
-#: core.c:1383
+#: core.c:1382
 msgid "Finding devices"
 msgstr "正在搜索设备"
 
-#: core.c:1395
+#: core.c:1394
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "跳过设备搜索 (%s设备上的权限错误)"
 
-#: core.c:1433
+#: core.c:1432
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "您的 GPU 供应商未知：%s (0x%X)"
-
-#: core.c:1450 core.c:1762
-msgid "Enabled"
-msgstr "已启用"
-
-#: core.c:1450 core.c:1762
-msgid "Disabled"
-msgstr "已禁用"
 
 #: core.c:1460
 msgid "failed to find chipset vendor and model"

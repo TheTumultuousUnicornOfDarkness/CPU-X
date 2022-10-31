@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-13 20:14+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2022-10-30 14:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -162,6 +163,14 @@ msgstr ""
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
+#: core.c:1139 core.c:1762
+msgid "Enabled"
+msgstr ""
+
+#: core.c:1139 core.c:1762
+msgid "Disabled"
+msgstr ""
+
 #: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
@@ -235,26 +244,18 @@ msgstr ""
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:1383
+#: core.c:1382
 msgid "Finding devices"
 msgstr ""
 
-#: core.c:1395
+#: core.c:1394
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
-#: core.c:1433
+#: core.c:1432
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr ""
-
-#: core.c:1450 core.c:1762
-msgid "Enabled"
-msgstr ""
-
-#: core.c:1450 core.c:1762
-msgid "Disabled"
 msgstr ""
 
 #: core.c:1460
