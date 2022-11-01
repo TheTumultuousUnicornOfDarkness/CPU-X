@@ -4,14 +4,15 @@
 # Pavel Borecki <pavel.borecki@gmail.com>, 2017-2018
 # Jiri Tersel <jiri.tersel@seznam.cz>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
+# cosita official <kokosove18@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2020-07-11 09:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-11-03 07:08+0000\n"
+"Last-Translator: cosita official <kokosove18@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
 "cs/>\n"
 "Language: cs_CZ\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -52,7 +53,7 @@ msgstr "%d x %d %s, %d-cestná"
 #, fuzzy, c-format
 #| msgid "%s associative, %d-byte line size"
 msgid "%s associative, %d-%s line size"
-msgstr "%s asociativní, %d-bajtová velikost řádku"
+msgstr "%s asociativní, %d-bytová velikost řádku"
 
 #: core.c:286
 msgid "Calling libcpuid for retrieving static data"
@@ -68,6 +69,8 @@ msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
+"procesor)"
 
 #: core.c:318
 #, c-format
@@ -75,10 +78,12 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Vybrané jádro procesoru (%u) není správné číslo (%u je maximum pro tento typ "
+"jádra)"
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "neznámé"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -120,15 +125,18 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access není dobře načetlý: je to obyčejná chyba když probíhal build %s s "
+"nižší libpci verzí.\n"
+"Zkontroluj že libpci %s je up-to date na vašem systému. Jinak skuste rebuild "
+"%s."
 
 #: core.c:747
-#, c-format
+#, c-format, fuzzy
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Žádný kernelový ovladač není použit pro grafickou kartu v cestě %s"
 
 #: core.c:778
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Neznámý ovladač grafického čipu: %s"
 
@@ -136,70 +144,64 @@ msgstr "Neznámý ovladač grafického čipu: %s"
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "Neznámý ovladač grafického čipu: %s"
+msgstr "Neznámý ovladač usermodu: %s"
 
 #: core.c:858
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "Verze"
+msgstr "Hledám verzi Vulkan API"
 
 #: core.c:1016
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "nepodařilo se zavolat nástroj dmidecode"
+msgstr "nepodařilo se zavolat vkCreateInstance (%s)"
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s není podporován"
 
 #: core.c:1032
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "nepodařilo se zavolat nástroj dmidecode"
+msgstr "nepodařilo se zavolat vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:1039
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Žádné dostupné Vulkan zařízení"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "nepodařilo se zavolat nástroj dmidecode"
+msgstr "Žádné dostupné fyzické zařízení (%s)"
 
 #: core.c:1108
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
+msgstr "nepodařil se vytvořit Vulkan pro zařízení %u (%s)"
 
 #: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s není podporované pro zařízení %u, použijte pouze deviceID pro porovnání"
 
 #: core.c:1139 core.c:1762
 msgid "Enabled"
-msgstr ""
+msgstr "Zapnuto"
 
 #: core.c:1139 core.c:1762
 msgid "Disabled"
-msgstr ""
+msgstr "Vypnuto"
 
 #: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Není žádná platforma s podporou pro OpenCL (%s)"
 
 #: core.c:1199
 #, fuzzy, c-format
@@ -222,7 +224,7 @@ msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 #: core.c:1228
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "chyba při hledání počtu OpenCL zařízení pro platformu '%s %s' (%s)"
 
 #: core.c:1228
 #, fuzzy
@@ -231,9 +233,10 @@ msgid "0 device"
 msgstr "Hledání zařízení"
 
 #: core.c:1238
-#, c-format
+#, c-format, fuzzy
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"proběhla chyba při hledání všech OpenCL zařízení pro platformu '%s %s'  (%s)"
 
 #: core.c:1253
 #, fuzzy, c-format
@@ -250,19 +253,19 @@ msgstr "nepodařilo se zjistit ovladač grafické karty (%s)"
 #: core.c:1277
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "OpenCL ovladač pro '%s %s' nepodporuje CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:1288
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
+msgstr "OpenCL ovladač pro '%s %s' nepodporuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:1301 core.c:1314 core.c:1342
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
+msgstr "OpenCL ovladač '%s %s' nepodporuje CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.c:1330
 #, c-format
@@ -270,11 +273,13 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"OpenCL ovladač '%s %s' nepodporuje CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) nebo CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:1352
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL není podporován vaším vendorem GPU (0x%X)"
 
 #: core.c:1382
 msgid "Finding devices"
@@ -306,7 +311,7 @@ msgstr "Zjišťování taktů graf. čipu"
 
 #: core.c:1574
 msgid "None"
-msgstr ""
+msgstr "Žádný"
 
 #: core.c:1715
 #, fuzzy, c-format
@@ -337,7 +342,7 @@ msgstr "Zjišťování údajů prostřednictvím knihovny libprocps"
 
 #: core.c:1853
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "chyba při hledání system uptime"
 
 #: core.c:1859
 msgid "unable to create meminfo structure"
@@ -629,7 +634,7 @@ msgstr "1. úrovně (L1) – datová"
 
 #: main.c:83
 msgid "L1 Inst."
-msgstr "1. úrovně (L1) – instrukční"
+msgstr "1.úroveň instrukční"
 
 #: main.c:84
 msgid "Level 2"
@@ -1102,31 +1107,24 @@ msgid "failed to call wordexp (%i)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a zhavarovalo.%s"
+"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a crashlo.%s"
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a zhavarovalo.%s"
+"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a pokouší se o "
+"nápravu.%s"
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1158,10 +1156,8 @@ msgid "Window is too small!"
 msgstr ""
 
 #: tui_ncurses.c:350
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "Nápovědu zobrazíte stisknutím klávesy „H“.\n"
+msgstr "Nápovědu zobrazíte stisknutím klávesy „H“."
 
 #: tui_ncurses.c:504
 #, c-format
@@ -1169,42 +1165,28 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Vítejte v nápovědě pseudografické (NCurses) varianty %s!\n"
 
 #: tui_ncurses.c:505
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-"Tato nápověda popisuje použití tohoto textového uživatelského rozhraní.\n"
+msgstr "Tato nápověda popisuje použití tohoto textového uživatelského rozhraní."
 
 #: tui_ncurses.c:507
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Všeobecné klávesy:\n"
+msgstr "Všeobecné klávesy:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
-"\tStiskem klávesy „Šipka vlevo“ se přepnete do karty nalevo od stávající.\n"
+msgstr "Stiskem klávesy „Šipka vlevo“ nebo \"Tab\" se přepnete do karty nalevo."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr ""
-"\tStiskem klávesy „Šipka vpravo“ se přepnete do karty napravo od stávající.\n"
+"Stiskem klávesy „Šipka vpravo“ nebo \"shift + Tab\" se přepnete do karty "
+"napravo."
 
 #: tui_ncurses.c:510
 #, fuzzy
 #| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'home' key to scroll up in a page."
-msgstr ""
-"\tStiskem klávesy „Šipka vlevo“ se přepnete do karty nalevo od stávající.\n"
+msgstr "Stiskněte klávesu \"home\" pro scrollování nahoru."
 
 #: tui_ncurses.c:511
 #, fuzzy
@@ -1226,14 +1208,8 @@ msgid "Press 'q' key to exit."
 msgstr "\tStiskem klávesy „Q“ aplikaci ukončíte.\n"
 
 #: tui_ncurses.c:515
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"Na kartě procesor:\n"
+msgstr "Procesor:"
 
 #: tui_ncurses.c:516
 #, fuzzy
@@ -1268,14 +1244,8 @@ msgstr ""
 "číslem.\n"
 
 #: tui_ncurses.c:521
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Na kartě mezipaměť:\n"
+msgstr "Na kartě mezipaměť:"
 
 #: tui_ncurses.c:522
 #, fuzzy
