@@ -2,14 +2,15 @@
 # Copyright © 2014-2022 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
 # Ali Akrami <aliakrami.ce@gmail.com>, 2021.
+# Abou <aboozar.gh.r@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2021-09-21 22:38+0000\n"
-"Last-Translator: Ali Akrami <aliakrami.ce@gmail.com>\n"
+"PO-Revision-Date: 2022-11-03 07:08+0000\n"
+"Last-Translator: Abou <aboozar.gh.r@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fa/>\n"
 "Language: fa\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -60,7 +61,7 @@ msgstr "فراخوانی ناموفق libcpuid (%s)"
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
+msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
 #: core.c:318
 #, c-format
@@ -68,26 +69,27 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"هسته پردازنده انتخابی (%u) عدد معتبری نیست (%u حداکثر برای این نوع هسته است)"
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "ناشناخته"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "در حال فراخوانی libcpuid برای دریافت اطلاعات پویا"
+msgstr "در حال فراخوانی کتابخانه شناسه پردازنده برای دریافت اطلاعات پویا"
 
 #: core.c:494
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "فراخوانی libcpuid برای دریافت مقادیر ایستای MSR پردازنده"
+msgstr "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر ایستای MSR پردازنده"
 
 #: core.c:519
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "فراخوانی libcpuid برای دریافت مقادیر پویای MSR پردازنده"
+msgstr "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر پویای MSR پردازنده"
 
 #: core.c:542
 msgid "Calculating CPU multipliers"
-msgstr "در حال محاسبه افزاینده های پردازنده"
+msgstr "در حال محاسبه ضریب‌های پردازنده"
 
 #: core.c:575
 msgid "Calling dmidecode"
@@ -99,7 +101,7 @@ msgstr "در حال محاسبه میزان استفاده از پردازنده
 
 #: core.c:659
 msgid "Calling bandwidth"
-msgstr "در حال فراخوانی bandwidth"
+msgstr "در حال فراخوانی پهنای باند"
 
 #: core.c:701
 #, c-format
@@ -113,7 +115,7 @@ msgstr ""
 #: core.c:747
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr "هیچ راه انداز اصلی برای کارت گرافیک در مسیر %s وجود ندارد"
+msgstr "هیچ درایور کرنلی برای کارت گرافیک در مسیر %s استفاده نمی شود"
 
 #: core.c:778
 #, c-format
