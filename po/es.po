@@ -11,14 +11,15 @@
 # Yoandry González Castro <yoandry.gonzalezc@gmail.com>, 2022.
 # Luiz Carlos Lucasv <csversut@gmail.com>, 2022.
 # Ciro Haskour <ciroh.jobs@gmail.com>, 2022.
+# GitThisBugOff <rafilopez95@outlook.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-09-25 19:56-0300\n"
-"Last-Translator: Ciro Haskour <ciroh.jobs@gmail.com>\n"
+"PO-Revision-Date: 2022-11-09 13:47+0000\n"
+"Last-Translator: GitThisBugOff <rafilopez95@outlook.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
 "Language: es\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -70,6 +71,8 @@ msgstr "No se pudo llamar a libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"El tipo de CPU seleccionada (%u) no es un número válido (%u es el máximo "
+"para esta CPU)"
 
 #: core.c:318
 #, c-format
@@ -77,10 +80,12 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"El núcleo de CPU seleccionado (%u) no es un número válido (%u es el máximo "
+"para este tipo de núcleo)"
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "desconocido"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -145,50 +150,43 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "erróneo al invocar GLFW (%i): %s"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Vulkan Version"
 msgid "Finding Vulkan API version"
-msgstr "Versión de Vulkan"
+msgstr "Buscando la versión de la API de Vulkan"
 
 #: core.c:1016
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "no se pudo llamar a dmidecode"
+msgstr "error al llamar a vkCreateInstance (%s)"
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s no está soportado"
 
 #: core.c:1032
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "no se pudo llamar a dmidecode"
+msgstr "error al llamar a vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:1039
-#, fuzzy
-#| msgid "There is no available physical device (%s)"
 msgid "No available Vulkan devices"
-msgstr "No hay un dispositivo físico disponible (%s)"
+msgstr "No hay dispositivos Vulkan disponibles"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "There is no available physical device (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "No hay un dispositivo físico disponible (%s)"
+msgstr "No hay dispositivos físicos disponibles (%s)"
 
 #: core.c:1108
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "erróneo al obtener nombre para el dispositivo %u (%s)"
+msgstr "Error al crear Vulkan para el dispositivo %u (%s)"
 
 #: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s no está soportado para el dispositivo %u, use solo deviceID para emparejar"
 
 #: core.c:1139 core.c:1762
 msgid "Enabled"
@@ -211,7 +209,7 @@ msgstr "error al obtener todas las plataformas OpenCL (%s)"
 #: core.c:1211
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "error al obtener nombre para plataforma %u (%s)"
+msgstr "No se pudo obtener el nombre de la plataforma%u%s"
 
 #: core.c:1219
 #, c-format
@@ -357,7 +355,7 @@ msgstr "%i días, %i horas, %i minutos, %i segundos"
 
 #: core.c:2000
 msgid "Updating benchmark status"
-msgstr "Actualizando estado del benchmark"
+msgstr "Actualizando estatus  de la prueba de rendimiento"
 
 #: core.c:2001 tui_ncurses.c:879
 #, c-format
