@@ -83,6 +83,7 @@ const Technology_DB technology_intel[] =
 	{ 12,          44,          -1,          32 }, // Westmere
 	{ 12,          60,          -1,          22 }, // Haswell
 	{ 12,          76,          -1,          14 }, // Atom Cherry Trail
+	{ 12,         108,          -1,          10 }, // Ice Lake
 	{ 12,         140,          -1,          10 }, // Tiger Lake
 	{ 12,         156,          -1,          10 }, // Tremont (Jasper Lake)
 	{ 13,          13,          -1,          90 }, // Pentium M Dothan
