@@ -145,6 +145,7 @@ const Technology_DB technology_amd[] =
 	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
 	{ -1,         104,          23,           7 }, // Zen 2 (Lucienne)
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
+	{ -1,         132,          23,           7 }, // Zen 2 (Renoir)
 	{ -1,         144,          23,           7 }, // Zen 2 (Custom APU for Steam Deck)
 	{ -1,         160,          23,           6 }, // Zen 2 (Mendocino)
 	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
