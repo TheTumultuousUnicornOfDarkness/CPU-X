@@ -133,6 +133,7 @@ const Technology_DB technology_amd[] =
 	{ 10,          -1,           6,         130 }, // K7 (Barton)
 	{ 10,          -1,          16,          45 }, // K10 (Thuban)
 	{ 11,          -1,          15,          65 }, // K8 (Brisbane)
+	{ 12,         124,          15,          65 }, // K8 (Sherman)
 	{ 12,          -1,          15,          90 }, // K8 (Venice/Sonora)
 	{ 15,          79,          15,          90 }, // K8 (Manila)
 	{ 15,         127,          15,          65 }, // K8 (Sparta)
