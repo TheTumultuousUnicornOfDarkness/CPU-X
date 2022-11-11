@@ -145,6 +145,7 @@ const Technology_DB technology_amd[] =
 	{ -1,         104,          23,           7 }, // Zen 2 (Lucienne)
 	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
 	{ -1,         144,          23,           7 }, // Zen 2 (Custom APU for Steam Deck)
+	{ -1,         160,          23,           6 }, // Zen 2 (Mendocino)
 	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
 	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
 	{ -1,           1,          25,           7 }, // Zen 3 (Milan)
@@ -232,6 +233,7 @@ const Package_DB package_amd[] =
 	{ "Matisse",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Castle Peak",                    NULL,            "SP3r2 (LGA-4094)" },
 	{ "Rome",                           NULL,            "SP3 (LGA-4094)"   },
+	{ "Mendocino",                      NULL,            "FT6 (BGA)"        },
 	/* Zen 3 */
 	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
 	{ "Vermeer",                        NULL,            "AM4 (PGA-1331)"   },
