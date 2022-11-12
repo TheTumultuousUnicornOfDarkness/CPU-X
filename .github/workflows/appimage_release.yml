@@ -13,6 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - uses: abbbi/github-actions-tune@v1
+
     - name: Get Git tag
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 

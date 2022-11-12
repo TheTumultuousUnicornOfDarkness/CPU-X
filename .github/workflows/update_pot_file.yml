@@ -32,6 +32,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - uses: abbbi/github-actions-tune@v1
+
     - name: Install packages
       run: sudo apt-get install -y -qq cmake ninja-build gettext
 
