@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - v*
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Release
 
 jobs:
   linux-appimage-release:
@@ -15,14 +19,16 @@ jobs:
 
     - uses: abbbi/github-actions-tune@v1
 
-    - name: Get Git tag
-      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+    - name: Set environment variables
+      run: |
+        echo "VERSION=${GITHUB_REF_NAME/v/}" >> $GITHUB_ENV
+        echo "CHANGELOG_TAG=${GITHUB_REF_NAME//./}---$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
     - name: Build libcpuid
-      run: bash -x ./scripts/build_libcpuid.sh "Release"
+      run: bash -x ./scripts/build_libcpuid.sh "$BUILD_TYPE"
 
     - name: Build CPU-X
-      run: bash -x ./scripts/build_ubuntu.sh "Release" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+      run: bash -x ./scripts/build_ubuntu.sh "$BUILD_TYPE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
       run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
@@ -30,17 +36,35 @@ jobs:
     - name: Create versioned release
       uses: ncipollo/release-action@v1
       with:
-        token: "${{ secrets.GITHUB_TOKEN }}"
-        tag: ${{ env.VERSION }}
-        name: ${{ env.VERSION }}
-        commit: ${{ github.sha }}
-        draft: true
-        prerelease: false
+        allowUpdates: false
+        artifacts: "AppImage/CPU-X-*.AppImage*"
         body: |
           **Version ${{ env.VERSION }}.**
 
-          Portable binary and distro packages are available in following tarballs.
-          *Note: Some extra packages may be included (like libcpuid-devel, cpuidtool or debug symbols), but they are not required to run CPU-X.*
-        artifacts: "AppImage/CPU-X-*.AppImage*"
-        allowUpdates: false
+          [ChangeLog](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/blob/master/ChangeLog.md#${{ env.CHANGELOG_TAG }})
+
+          ## Packages
+
+          Search the `cpu-x` package in your repositories.
+
+          ## Binary
+
+          - **AppImage**: CPU-X-v${{ env.VERSION }}-x86_64.AppImage
+
+          *Note: a Polkit Authentication agent is mandatory to start daemon from GUI.*
+
+          ## Notes
+
+          ### To packagers
+          -
+
+          ### To users
+          -
+        commit: ${{ github.sha }}
+        draft: true
+        name: ${{ github.ref_name }}
+        prerelease: false
         replacesArtifacts: true
+        skipIfReleaseExists: true
+        tag: ${{ github.ref_name }}
+        token: "${{ secrets.GITHUB_TOKEN }}"

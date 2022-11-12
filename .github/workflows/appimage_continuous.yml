@@ -6,6 +6,9 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  BUILD_TYPE: RelWithDebInfo
+
 jobs:
   linux-appimage-continuous:
     name: Linux x64_64 (Continuous)
@@ -17,27 +20,13 @@ jobs:
     - uses: abbbi/github-actions-tune@v1
 
     - name: Build libcpuid
-      run: bash -x ./scripts/build_libcpuid.sh "RelWithDebInfo"
+      run: bash -x ./scripts/build_libcpuid.sh "$BUILD_TYPE"
 
     - name: Build CPU-X
-      run: bash -x ./scripts/build_ubuntu.sh "RelWithDebInfo" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+      run: bash -x ./scripts/build_ubuntu.sh "$BUILD_TYPE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
       run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: AppImage
-        path: AppImage/*
-
-    # - name: Delete old continuous release
-    #   uses: dev-drprasad/delete-tag-and-release@v0.1.2
-    #   with:
-    #     delete_release: true
-    #     tag_name: continuous
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create continuous release
       uses: ncipollo/release-action@v1
