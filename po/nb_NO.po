@@ -3,14 +3,15 @@
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021, 2022.
 # Michal Čihař <michal@cihar.com>, 2019.
+# L-M-H <lars.magnus@herland.priv.no>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-09-29 18:09+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-12-02 10:48+0000\n"
+"Last-Translator: L-M-H <lars.magnus@herland.priv.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -1150,15 +1151,12 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Klarte ikke å sette opp %s-terminal (err=%i); faller tilbake til %s"
 
 #: tui_ncurses.c:342
-#, fuzzy
-#| msgid "Window is too small!\n"
 msgid "Window is too small!"
-msgstr "Vinduet er for lite!\n"
+msgstr "Vinduet er for lite!"
 
 #: tui_ncurses.c:350
-#, fuzzy
 msgid "Press 'h' to see help."
-msgstr "Trykk \"h\" for å vise hjelp.\n"
+msgstr "Trykk \"h\" for å vise hjelp."
 
 #: tui_ncurses.c:504
 #, fuzzy, c-format
@@ -1166,39 +1164,28 @@ msgid "Welcome in %s NCurses help!\n"
 msgstr "Velkommen til %s-ncurseshjelpen!\n"
 
 #: tui_ncurses.c:505
-#, fuzzy
-#| msgid "This help describes how to use this Text-based User Interface.\n"
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
-"Denne hjelpen beskrives bruken av dette tekstbaserte brukergrensesnittet.\n"
+"Denne hjelpen beskriver bruken av dette tekstbaserte brukergrensesnittet."
 
 #: tui_ncurses.c:507
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Global keys:\n"
 msgid "Global keys:"
-msgstr ""
-"\n"
-"Programvide hurtigtaster:\n"
+msgstr "Programvide hurtigtaster:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "\tTrykk \"venstre piltast\" for å veksle i venstre fane.\n"
+msgstr ""
+"Trykk \"venstre\"-tasten eller \"tab\"-tasten for å veksle i venstre fane."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "\tTrykk \"høyre piltast\" for å veksle i høyre fane.\n"
+msgstr ""
+"Trykk \"høyre\"-tasten eller \"shift + tab\"-tastene for å veksle i høyre "
+"fane."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'home' key to scroll up in a page."
-msgstr "\tTrykk \"venstre piltast\" for å veksle i venstre fane.\n"
+msgstr "Trykk på \"hjem\"-tasten for å bla oppover på en side."
 
 #: tui_ncurses.c:511
 #, fuzzy
