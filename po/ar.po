@@ -7,14 +7,15 @@
 # Rex_sa <asd1234567890m@gmail.com>, 2020.
 # Гринько Владимир <volb132@gmail.com>, 2020.
 # samhy147 <samhy144@gmail.com>, 2022.
+# Ali Aljishi <ahj696@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-10-17 00:04+0000\n"
-"Last-Translator: samhy147 <samhy144@gmail.com>\n"
+"PO-Revision-Date: 2022-12-02 10:48+0000\n"
+"Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -41,7 +42,7 @@ msgstr ""
 #: core.c:273
 #, c-format
 msgid "%d %s, %d-way"
-msgstr "%d %s, %مسار"
+msgstr "%d%s,%d-طريق"
 
 #: core.c:274
 #, c-format
@@ -290,7 +291,7 @@ msgstr "لم يعثر على بائع الرقائق والنوع"
 
 #: core.c:1462
 msgid "failed to find graphic card vendor and model"
-msgstr "تعذر إيجاد بائع بطاقة الرسوميات ونوعها"
+msgstr "تعذرت معرفة شركة بطاقة الرسوميات وطرازها"
 
 #: core.c:1539
 msgid "Retrieving GPU clocks"
@@ -459,10 +460,8 @@ msgid "request_handler: case %i not handled"
 msgstr ""
 
 #: gui_gtk.c:62
-#, fuzzy
-#| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
-msgstr "يبدأ الواجهة الرسومية GTK..."
+msgstr "بدء واجهة GTK…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
@@ -928,10 +927,8 @@ msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "لا يأتي هذا البرنامج بأي ضمان مطلقًا"
 
 #: main.c:272
-#, fuzzy
-#| msgid "Dumping data..."
 msgid "Dumping data…"
-msgstr "يطرح البيانات..."
+msgstr "طرح البيانات…"
 
 #: main.c:315
 msgid "Freeing memory"
@@ -1100,10 +1097,8 @@ msgid "an error occurred while setting locale"
 msgstr ""
 
 #: tui_ncurses.c:73
-#, fuzzy
-#| msgid "Starting NCurses TUI..."
 msgid "Starting NCurses TUI…"
-msgstr "يبدأ NCurses TUI..."
+msgstr "بدء NCurses TUI…"
 
 #: tui_ncurses.c:81
 msgid ""
@@ -1121,10 +1116,8 @@ msgid "Window is too small!"
 msgstr ""
 
 #: tui_ncurses.c:350
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' to see help."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط 'h' لرؤية المساعدة."
 
 #: tui_ncurses.c:504
 #, c-format
@@ -1148,28 +1141,20 @@ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr ""
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'home' key to scroll up in a page."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط مفتاح 'Home' لتمرير الصفحة للأعلى."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'end' key to scroll down in a page."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط مفتاح 'End' لتمرير الصفحة للأسفل."
 
 #: tui_ncurses.c:512
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط مفتاح 'h' للاطلاع على هذه المساعدة."
 
 #: tui_ncurses.c:513
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'q' key to exit."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط مفتاح 'q' للخروج."
 
 #: tui_ncurses.c:515
 msgid "CPU tab:"
@@ -1192,20 +1177,16 @@ msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
 
 #: tui_ncurses.c:521
-#, fuzzy
-#| msgid "Cache"
 msgid "Caches tab:"
-msgstr "الخبيئة"
+msgstr "تبويبة ذاكرة التخزين المؤقت:"
 
 #: tui_ncurses.c:522
 msgid "Press 'down' key to switch to previous test."
 msgstr ""
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press 'up' key to switch to next test."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط مفتاح 'up' للتبديل للاختبار التالي."
 
 #: tui_ncurses.c:525
 msgid "Bench tab:"
@@ -1248,10 +1229,8 @@ msgid "Press 'up' key to switch to next graphic card."
 msgstr ""
 
 #: tui_ncurses.c:537
-#, fuzzy
-#| msgid "Press 'h' to see help.\n"
 msgid "Press any key to exit this help."
-msgstr "اضغط 'h' لرؤية المساعدة.\n"
+msgstr "اضغط أي مفتاح للخروج من هذه المساعدة."
 
 #: util.c:202
 #, c-format
