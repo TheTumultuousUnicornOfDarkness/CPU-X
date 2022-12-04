@@ -9,14 +9,15 @@
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2022.
 # Jackie C. L. Liu <ls4860@gmail.com>, 2022.
 # Hugel <qihu@nfschina.com>, 2022.
+# yangyangdaji <1504305527@qq.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-08-25 14:23+0000\n"
-"Last-Translator: Hugel <qihu@nfschina.com>\n"
+"PO-Revision-Date: 2022-12-06 04:47+0000\n"
+"Last-Translator: yangyangdaji <1504305527@qq.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -136,16 +137,13 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "呼叫 libcpuid 失敗 (%i):(%s)"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "版本"
+msgstr "查找 Vulkan API 版本"
 
 #: core.c:1016
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "呼叫 libcpuid 失敗 (%s)"
+msgstr "呼叫 vkCreateInstance 失敗 (%s)"
 
 #: core.c:1020 core.c:1022
 #, c-format
@@ -153,28 +151,23 @@ msgid "%s is not supported"
 msgstr ""
 
 #: core.c:1032
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "呼叫 libcpuid 失敗 (%s)"
+msgstr "呼叫 vkEnumeratePhysicalDevices 失敗 (%s)"
 
 #: core.c:1039
-#, fuzzy
-#| msgid "There is no available physical device (%s)"
 msgid "No available Vulkan devices"
-msgstr "沒有可用的物理設備（%s）"
+msgstr "沒有可用的 Vulkan 設備"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "There is no available physical device (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
 msgstr "沒有可用的物理設備（%s）"
 
 #: core.c:1108
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "擷取裝置名稱時失敗 %u (%s)"
+msgstr "無法為設備 %u (%s) 創建 Vulkan"
 
 #: core.c:1112
 #, c-format
@@ -505,10 +498,8 @@ msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
 #: gui_gtk.c:694
-#, fuzzy
-#| msgid "Version"
 msgid "User Mode Driver Version"
-msgstr "版本"
+msgstr "用戶模式驅動程序版本"
 
 #: gui_gtk.c:695
 msgid "Vulkan Ray Tracing"
@@ -1259,14 +1250,8 @@ msgid "Press 'up' key to switch to next graphic card."
 msgstr "\t按「上」鍵切換至下一項測試。\n"
 
 #: tui_ncurses.c:537
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"按任意鍵退出幫助。\n"
+msgstr "按任意鍵退出幫助。"
 
 #: util.c:202
 #, c-format
