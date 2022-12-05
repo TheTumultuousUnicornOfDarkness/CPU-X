@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-10-09 09:07+0000\n"
+"PO-Revision-Date: 2022-12-06 04:47+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -113,49 +113,53 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access சரியாக துவக்கப்படவில்லை: %s குறைந்த libpci பதிப்பில் "
+"கட்டமைக்கப்படும் போது இது ஒரு பொதுவான சிக்கலாகும்.\n"
+"உங்கள் கணினியில் libpci %s நூலகம் உள்ளதா எனச் சரிபார்க்கவும். இல்லையெனில், "
+"%s ஐ மீண்டும் உருவாக்கவும்."
 
 #: core.c:747
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "பாதை %s இல் கிராஃபிக் கார்டுக்கு கர்னல் இயக்கி இல்லை"
 
 #: core.c:778
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr ""
+msgstr "உங்கள் GPU கர்னல் இயக்கி தெரியவில்லை: %s"
 
 #: core.c:854
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr ""
+msgstr "உங்கள் GPU பயனர் பயன்முறை இயக்கி தெரியவில்லை: %s"
 
 #: core.c:858
 #, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr ""
+msgstr "GLFW ஐ அழைப்பதில் தோல்வி (%i): %s"
 
 #: core.c:999
 msgid "Finding Vulkan API version"
-msgstr ""
+msgstr "Vulkan API பதிப்பைக் கண்டறிதல்"
 
 #: core.c:1016
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr ""
+msgstr "vkCreateInstance (%s) ஐ அழைக்க முடியவில்லை"
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s ஆதரிக்கப்படவில்லை"
 
 #: core.c:1032
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr ""
+msgstr "vkEnumeratePhysicalDevices (%s) ஐ அழைக்க முடியவில்லை"
 
 #: core.c:1039
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Vulkan சாதனங்கள் இல்லை"
 
 #: core.c:1048
 #, c-format
