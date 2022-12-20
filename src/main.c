@@ -30,7 +30,9 @@
 #include <ctype.h>
 #include <string.h>
 #include <signal.h>
+#if HAS_BACKTRACE
 #include <execinfo.h>
+#endif
 #include <getopt.h>
 #include <wordexp.h>
 #include <locale.h>
@@ -668,6 +670,7 @@ static void common_sighandler(int signum, bool need_stop)
 	char **bt_syms, *buff = NULL;
 	void *bt[16];
 
+#if HAS_BACKTRACE
 	/* Get the backtrace */
 	bt_size = backtrace(bt, 16);
 	bt_syms = backtrace_symbols(bt, bt_size);
@@ -696,6 +699,7 @@ static void common_sighandler(int signum, bool need_stop)
 		MSG_STDERR("%s", _("You can open a new issue here, by filling the template as requested:"));
 		MSG_STDERR("%s\n", ISSUEURL);
 	}
+#endif
 
 	/* Stop program */
 	free(bt_syms);
