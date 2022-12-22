@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-12-22 10:49+0000\n"
+"PO-Revision-Date: 2022-12-23 11:48+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
@@ -354,7 +354,7 @@ msgstr "%i días, %i horas, %i minutos, %i segundos"
 
 #: core.c:2000
 msgid "Updating benchmark status"
-msgstr "Actualizando estatus  de la prueba de rendimiento"
+msgstr "Actualizar el estado del índice de referencia"
 
 #: core.c:2001 tui_ncurses.c:879
 #, c-format
@@ -765,7 +765,7 @@ msgstr "Placa %i"
 
 #: main.c:149
 msgid "Driver"
-msgstr "Driver"
+msgstr "Controlador"
 
 #: main.c:150
 msgid "UMD Version"
@@ -1056,31 +1056,24 @@ msgid "failed to call wordexp (%i)"
 msgstr "fallo al invocar wordexp (%i)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%s Ups, algo salió mal! %s ha recibido la señal %d (%s) y ha crasheado.%s"
+"Ups, ¡algo iba mal! %s ha recibido la señal %d (%s) y se ha bloqueado."
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%s Ups, algo salió mal! %s ha recibido la señal %d (%s) y ha crasheado.%s"
+"Ups, ¡algo iba mal! %s ha recibido la señal %d (%s) y está intentando "
+"recuperarse."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1132,28 +1125,23 @@ msgid "Global keys:"
 msgstr "Teclas globales:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Presione la tecla 'izquierda' para cambiar a la pestaña izquierda."
+msgstr ""
+"Pulsa la tecla 'izquierda' o 'tabulador' para cambiar a la pestaña izquierda."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Presione la tecla 'derecha' para cambiar a la pestaña derecha."
+msgstr ""
+"Presione la tecla 'derecha' o las teclas 'shift + tab' para cambiar a la "
+"pestaña derecha."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "Presione la tecla 'izquierda' para cambiar a la pestaña izquierda."
+msgstr "Presione la tecla 'inicio' para desplazarse hacia arriba en una página."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "Presione la tecla 'izquierda' para cambiar a la pestaña izquierda."
+msgstr "Presione la tecla 'fín' para desplazarse hacia abajo en una página."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1168,32 +1156,28 @@ msgid "CPU tab:"
 msgstr "Pestaña CPU:"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
-"Presione la tecla 'abajo' para disminuir el número de núcleo a monitorizar."
+"Presione la tecla 'siguiente página' para disminuir el número de tipo de "
+"núcleo para monitorear."
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr ""
-"Presione la tecla 'arriba' para aumentar el número de núcleo a monitorizar."
+"Presione la tecla 'página anterior' para aumentar el número de tipo de "
+"núcleo para monitorear."
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
-"Presione la tecla 'abajo' para disminuir el número de núcleo a monitorizar."
+"Presione la tecla 'abajo' para disminuir el número de núcleos de la CPU para "
+"monitorear."
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
-"Presione la tecla 'arriba' para aumentar el número de núcleo a monitorizar."
+"Presione la tecla 'arriba' para aumentar el número de núcleos de la CPU para "
+"monitorear."
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
@@ -1204,10 +1188,8 @@ msgid "Press 'down' key to switch to previous test."
 msgstr "Presione la tecla 'abajo' para cambiar a la prueba anterior."
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
-msgstr "Presione la tecla 'arriba' para pasar a la siguiente prueba."
+msgstr "Pulse la tecla 'arriba' para pasar a la siguiente prueba."
 
 #: tui_ncurses.c:525
 msgid "Bench tab:"
@@ -1293,27 +1275,21 @@ msgid "an error occurred while compiling regex"
 msgstr "se produjo un error al compilar regex"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
-msgstr "Núcleo(s)"
+msgstr "Núcleo"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Puntuación"
+msgstr "P-core"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Puntuación"
+msgstr "E-core"
 
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "Error al cambiar la afinidad de la CPU al núcleo %u"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1333,7 +1309,7 @@ msgstr "pkexec: código de error inesperado"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() no es compatible con este sistema operativo"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1435,10 +1411,8 @@ msgstr "Tarjeta gráfica predeterminada"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "Prueba caché predeterminada"
+msgstr "Tipo de núcleo por defecto"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
