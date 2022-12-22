@@ -12,14 +12,15 @@
 # Luiz Carlos Lucasv <csversut@gmail.com>, 2022.
 # Ciro Haskour <ciroh.jobs@gmail.com>, 2022.
 # GitThisBugOff <rafilopez95@outlook.com>, 2022.
+# gallegonovato <fran-carro@hotmail.es>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-11-09 13:47+0000\n"
-"Last-Translator: GitThisBugOff <rafilopez95@outlook.com>\n"
+"PO-Revision-Date: 2022-12-22 10:49+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
 "Language: es\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -224,10 +225,8 @@ msgstr ""
 "%s» (%s)"
 
 #: core.c:1228
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "ID de dispositivo"
+msgstr "0 dispositivos"
 
 #: core.c:1238
 #, c-format
@@ -489,10 +488,9 @@ msgid "Start daemon"
 msgstr "Iniciar demonio"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "Núcleo #%i"
+msgstr "Tipo #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -631,10 +629,8 @@ msgid "Level 3"
 msgstr "Nivel 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
-msgstr "Núcleo(s)"
+msgstr "Núcleos"
 
 #: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
@@ -769,7 +765,7 @@ msgstr "Placa %i"
 
 #: main.c:149
 msgid "Driver"
-msgstr "Controlador"
+msgstr "Driver"
 
 #: main.c:150
 msgid "UMD Version"
@@ -948,10 +944,8 @@ msgid "Set default tab (integer)"
 msgstr "Establecer pestaña predeterminada (entero)"
 
 #: main.c:350
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "Seleccione el núcleo de CPU a monitorear (entero)"
+msgstr "Seleccione el tipo de núcleo para monitorear (entero)"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
