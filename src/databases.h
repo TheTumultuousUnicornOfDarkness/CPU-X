@@ -65,7 +65,7 @@ const Technology_DB technology_intel[] =
 	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          22 }, // Atom Bay Trail
 	{  7,          71,          -1,          14 }, // Broadwell
-	{  7,         151,          -1,           7 }, // Alder Lake-P
+	{  7,         151,          -1,           7 }, // Alder Lake-S / Alder Lake-HX
 	{  7,         167,          -1,          14 }, // Rocket Lake
 	{  7,         183,          -1,           7 }, // Raptor Lake-S
 	{  8,           0,           0,         180 }, // PIII Coppermine-T
@@ -77,7 +77,7 @@ const Technology_DB technology_intel[] =
 	{ 10,          58,          -1,          22 }, // Ivy Bridge
 	{ 10,         122,          -1,          14 }, // Gemini Lake
 	{ 10,         138,          -1,          10 }, // Tremont (Lakefield)
-	{ 10,         154,          -1,           7 }, // Alder Lake-S
+	{ 10,         154,          -1,           7 }, // Alder Lake-P / Alder Lake-H
 	{ 11,          11,          -1,         130 }, // PIII Tualatine
 	{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
 	{ 12,          44,          -1,          32 }, // Westmere
