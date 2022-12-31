@@ -3,9 +3,8 @@ VM_CPU                  = "2"
 VM_MEMORY               = "2048"
 
 vms = {
-	"ubuntu/xenial64"  => { :name => "xenial", :bootstrap => "ubuntu" },
-	"ubuntu/focal64"   => { :name => "focal",  :bootstrap => "ubuntu" },
-	"generic/fedora33" => { :name => "fedora", :bootstrap => "fedora" }
+	"ubuntu/jammy64"   => { :name => "jammy",  :bootstrap => "ubuntu" },
+	"generic/fedora37" => { :name => "fedora", :bootstrap => "fedora" }
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -19,7 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		config.vm.define info[:name] do |node|
 			node.vm.box      = box
 			node.vm.hostname = info[:name]
-			node.vm.synced_folder '../', '/home/vagrant/CPU-X'
+			node.vm.synced_folder ".", "/vagrant", disabled: true
+			#node.vm.synced_folder '../', '/home/vagrant/CPU-X'
 			#node.vm.provision :shell, path: "bootstrap_" + info[:bootstrap] + ".sh"
 			node.vm.provision :shell, reboot: true, env: {"HOST_LANG" => ENV['LANG']}, path: "bootstrap_common.sh"
 

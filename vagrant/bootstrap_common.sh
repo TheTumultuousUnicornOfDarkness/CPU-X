@@ -7,10 +7,11 @@ if [[ "$ID" == "ubuntu" ]]; then
 	sed -i 's/1/0/g' /etc/apt/apt.conf.d/20auto-upgrades
 	apt-get update -y
 	apt-get upgrade -y
-	apt-get install -y --no-install-recommends ubuntu-desktop unity-lens-applications unity-lens-files fonts-inconsolata gdm3 gnome-terminal firefox
-	apt-get install -y --no-install-recommends virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
+	apt-get install -y --no-install-recommends ubuntu-desktop unity-lens-applications unity-lens-files fonts-inconsolata gdm3 gnome-terminal firefox dbus-x11 console-data
+	apt-get install -y --no-install-recommends virtualbox-guest-utils virtualbox-guest-x11
 
 	echo "/usr/sbin/gdm3" > /etc/X11/default-display-manager
+	systemctl enable --now gdm3.service
 	DEBCONF_NONINTERACTIVE_SEEN=true dpkg-reconfigure gdm3
 	echo "set shared/default-x-display-manager gdm3" | debconf-communicate
 
