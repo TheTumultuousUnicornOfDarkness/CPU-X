@@ -49,7 +49,7 @@ option(WITH_LIBCPUID      "Use Libcpuid library"                                
 option(WITH_LIBPCI        "Use Libpci library"                                                ON)
 option(WITH_LIBGLFW       "Use Libglfw library"                                               ON)
 option(WITH_VULKAN        "Use Vulkan library"                                                ON)
-option(WITH_OPENCL        "Use OpenCL library"                                                ON)
+option(WITH_OPENCL        "Use OpenCL library"                                                OFF) # Disabled due to issues (#238, #258, #264)
 option(WITH_LIBPROCPS     "Use Libprocps library"                                             ON)
 option(WITH_LIBSTATGRAB   "Use Libstatgrab library"                                           ON)
 option(WITH_DMIDECODE     "Built-in Dmidecode"                                                ON)
