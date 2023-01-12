@@ -6,16 +6,16 @@
 # Takuro Onoue <kusanaginoturugi@gmail.com>, 2020.
 # Umio Yasuno <coelacanth_dream@pm.me>, 2021.
 # Kyotaro Iijima <kyotaro.eyes@gmail.com>, 2022.
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022.
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022, 2023.
 # Kenryu Shibata <kenryushibata@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-06-01 00:19+0000\n"
-"Last-Translator: Kenryu Shibata <kenryushibata@gmail.com>\n"
+"PO-Revision-Date: 2023-01-13 17:52+0000\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
 "Language: ja\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -66,18 +66,20 @@ msgstr "libcpuid の取得に失敗（%s）"
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
+msgstr "選択した CPU タイプ（%u）は有効な数値ではありません（%u がこの CPU "
+"の最大値です）"
 
 #: core.c:318
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
-msgstr ""
+msgstr "選択した CPU コア（%u）は有効な数値ではありません（%u "
+"がこのタイプのコアの最大値です）"
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "不明"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -141,48 +143,43 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW の取得に失敗（%i）: %s"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "バージョン"
+msgstr "Vulkan API バージョンの検索"
 
 #: core.c:1016
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "libcpuidの呼び出しに失敗しました（%s）"
+msgstr "vkCreateInstance の呼び出しに失敗しました（%s）"
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s はサポートされていません"
 
 #: core.c:1032
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "libcpuidの呼び出しに失敗しました（%s）"
+msgstr "vkEnumeratePhysicalDevices の呼び出しに失敗しました（%s）"
 
 #: core.c:1039
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "利用可能な Vulkan デバイスがありません"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "libcpuidの呼び出しに失敗しました（%s）"
+msgstr "利用可能な物理デバイスがありません（%s）"
 
 #: core.c:1108
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "デバイス %u の名前の取得に失敗しました（%s）"
+msgstr "デバイス %u の Vulkan を作成できませんでした（%s）"
 
 #: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
+msgstr "%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID "
+"のみを使用してください"
 
 #: core.c:1139 core.c:1762
 msgid "Enabled"
@@ -219,10 +216,8 @@ msgstr ""
 "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗しました（%s）"
 
 #: core.c:1228
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "デバイスID"
+msgstr "0 デバイス"
 
 #: core.c:1238
 #, c-format
@@ -332,11 +327,11 @@ msgstr "libprocps の呼び出し中"
 
 #: core.c:1853
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "システム稼働時間を取得できません"
 
 #: core.c:1859
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "meminfo ストラクチャを作成できません"
 
 #: core.c:1904
 msgid "Calling libstatgrab"
@@ -482,10 +477,9 @@ msgid "Start daemon"
 msgstr "デーモンの起動"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "コア #%i"
+msgstr "タイプ #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -515,7 +509,7 @@ msgstr "ユーザー モードのドライバーのバージョン"
 
 #: gui_gtk.c:695
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan レイトレーシング"
 
 #: main.c:57
 msgid "Setting label names"
@@ -622,8 +616,6 @@ msgid "Level 3"
 msgstr "レベル3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "コア"
 
@@ -775,10 +767,8 @@ msgid "DeviceID"
 msgstr "デバイスID"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "バージョン"
+msgstr "VBIOS バージョン"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -816,25 +806,19 @@ msgstr "Resizable BAR"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "バージョン"
+msgstr "OpenGL バージョン"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "バージョン"
+msgstr "Vulkan バージョン"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "バージョン"
+msgstr "OpenCL バージョン"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
@@ -946,14 +930,12 @@ msgid "Set default tab (integer)"
 msgstr "デフォルトのタブを設定します（整数）"
 
 #: main.c:350
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "モニタリングするCPUコアを選択します（整数）"
+msgstr "モニターするコアタイプを選択します（整数）"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
-msgstr "モニタリングするCPUコアを選択します（整数）"
+msgstr "モニターするCPUコアを選択します（整数）"
 
 #: main.c:352
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
@@ -1058,33 +1040,23 @@ msgid "failed to call wordexp (%i)"
 msgstr "wordexp の取得に失敗 （%i）"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%s何かが間違っています! %s はシグナル %d (%s)を受け取ってクラッシュしまし"
-"た。%s"
+"何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%s何かが間違っています! %s はシグナル %d (%s)を受け取ってクラッシュしまし"
-"た。%s"
+"何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1136,28 +1108,20 @@ msgid "Global keys:"
 msgstr "グローバル キー:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "左矢印キーで、左タブに切り替わります。"
+msgstr "「左」キーまたは「Tab」キーで左タブに切り替えます。"
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "右矢印キーで、左タブに切り替わります。"
+msgstr "「右」キーまたは「Shift + Tab」キーで右タブに切り替えます。"
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "左矢印キーで、左タブに切り替わります。"
+msgstr "「Home」キーでページを上にスクロールします。"
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "左矢印キーで、左タブに切り替わります。"
+msgstr "「End」キーでページを下にスクロールします。"
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1172,28 +1136,20 @@ msgid "CPU tab:"
 msgstr "CPU タブ:"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "下矢印キーで、モニターするコアの数の減少。"
+msgstr "「PageDown」キーで、モニターするコア タイプの数字を減らします。"
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "上矢印キーで、モニターするコアの数の増加。"
+msgstr "「PageUp」キーで、モニターするコア タイプの数字を増やします。"
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "下矢印キーで、モニターするコアの数の減少。"
+msgstr "「下」キーで、モニターするCPUコアの数字を減らします。"
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "上矢印キーで、モニターするコアの数の増加。"
+msgstr "「上」キーで、モニターするCPUコアの数字を増やします。"
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
@@ -1204,10 +1160,8 @@ msgid "Press 'down' key to switch to previous test."
 msgstr "下矢印キーで、前のテストに切り替わります。"
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
-msgstr "上矢印キーで、次のテストに切り替わります。"
+msgstr "「上」キーで、次のテストに切り替えます。"
 
 #: tui_ncurses.c:525
 msgid "Bench tab:"
@@ -1283,27 +1237,21 @@ msgid "an error occurred while compiling regex"
 msgstr "正規表現のコンパイル中にエラー発生"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
 msgstr "コア"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "スコア"
+msgstr "P-コア"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "スコア"
+msgstr "E-コア"
 
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "CPU アフィニティをコア %u に変更できませんでした"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1323,7 +1271,7 @@ msgstr "pkexec: 予期しないエラーコード"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1425,10 +1373,8 @@ msgstr "デフォルトのグラフィックカード"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "デフォルトのキャッシュテスト"
+msgstr "デフォルトのコアタイプ"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
