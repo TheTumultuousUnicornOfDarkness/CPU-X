@@ -1,14 +1,14 @@
 # CPU-X translations template
 # Copyright © 2014-2022 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
-# K.B.Dharun Krishna <kbdharunkrishna@gmail.com>, 2022.
+# K.B.Dharun Krishna <kbdharunkrishna@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-12-06 04:47+0000\n"
+"PO-Revision-Date: 2023-02-01 09:23+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -164,17 +164,19 @@ msgstr "Vulkan சாதனங்கள் இல்லை"
 #: core.c:1048
 #, c-format
 msgid "No available physical devices (%s)"
-msgstr ""
+msgstr "இயற்பியல் சாதனங்கள் இல்லை (%s)"
 
 #: core.c:1108
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr ""
+msgstr "%u (%s) சாதனத்திற்கான வல்கனை (Vulkan) உருவாக்குவதில் தோல்வி"
 
 #: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%u சாதனம் %s ஆதரிக்கப்படவில்லை, பொருத்துவதற்கு சாதன ஐடியை மட்டும் "
+"பயன்படுத்தவும்"
 
 #: core.c:1139 core.c:1762
 msgid "Enabled"
