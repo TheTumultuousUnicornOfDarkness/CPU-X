@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2023-02-01 09:23+0000\n"
+"PO-Revision-Date: 2023-02-03 07:24+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -175,77 +175,81 @@ msgstr "%u (%s) சாதனத்திற்கான வல்கனை (Vulk
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
-"%u சாதனம் %s ஆதரிக்கப்படவில்லை, பொருத்துவதற்கு சாதன ஐடியை மட்டும் "
+"%s ஆதரிக்கப்படவில்லை %u சாதனத்திர்கு , பொருத்துவதற்கு சாதன ஐடியை மட்டும் "
 "பயன்படுத்தவும்"
 
 #: core.c:1139 core.c:1762
 msgid "Enabled"
-msgstr ""
+msgstr "இயக்கப்பட்டது"
 
 #: core.c:1139 core.c:1762
 msgid "Disabled"
-msgstr ""
+msgstr "முடக்கப்பட்டது"
 
 #: core.c:1188
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "OpenCL ஆதரவுடன் எந்த தளமும் இல்லை (%s)"
 
 #: core.c:1199
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr ""
+msgstr "அனைத்து OpenCL இயங்குதளங்களையும் (%s) பெற முடியவில்லை"
 
 #: core.c:1211
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "%u (%s) இயங்குதளத்திற்கான பெயரைப் பெற முடியவில்லை"
 
 #: core.c:1219
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "இயங்குதளம் %u (%s)க்கான பதிப்பைப் பெறுவதில் தோல்வி"
 
 #: core.c:1228
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"'%s %s' (%s) இயங்குதளத்திற்கான OpenCL சாதனங்களின் எண்ணிக்கையைக் கண்டறிய "
+"முடியவில்லை"
 
 #: core.c:1228
 msgid "0 device"
-msgstr ""
+msgstr "0 சாதனம்"
 
 #: core.c:1238
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
+"'%s %s' (%s) இயங்குதளத்திற்கான அனைத்து OpenCL சாதனங்களையும் பெறுவதில் தோல்வி"
 
 #: core.c:1253
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr ""
+msgstr "%u (%s) சாதனத்திற்கான பெயரைப் பெறுவதில் தோல்வி"
 
 #: core.c:1261
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "%u (%s) சாதனத்திற்கான பதிப்பைப் பெறுவதில் தோல்வி"
 
 #: core.c:1277
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_TOPOLOGY_AMD (%s) ஐ ஆதரிக்காது"
 
 #: core.c:1288
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
+msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_GFXIP_MAJOR_AMD (%s) ஐ ஆதரிக்காது"
 
 #: core.c:1301 core.c:1314 core.c:1342
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_MAX_COMPUTE_UNITS (%s) ஐ ஆதரிக்காது"
 
 #: core.c:1330
 #, c-format
@@ -253,97 +257,100 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"'%s %s'க்கான OpenCL இயக்கி CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) அல்லது CL_DEVICE_PCI_SLOT_ID_NV (%s) ஐ "
+"ஆதரிக்காது"
 
 #: core.c:1352
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "உங்கள் GPU விற்பனையாளருடன் OpenCL ஆதரிக்கப்படவில்லை (0x%X)"
 
 #: core.c:1382
 msgid "Finding devices"
-msgstr ""
+msgstr "சாதனங்களைக் கண்டறிதல்"
 
 #: core.c:1394
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr ""
+msgstr "சாதனத் தேடலைத் தவிர்க்கவும் (%s சாதனத்தில் தவறான அனுமதிகள்)"
 
 #: core.c:1432
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr ""
+msgstr "உங்கள் GPU விற்பனையாளர் தெரியவில்லை: %s (0x%X)"
 
 #: core.c:1460
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "சிப்செட் விற்பனையாளரையும் மாதிரியையும் கண்டுபிடிக்க முடியவில்லை"
 
 #: core.c:1462
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "கிராஃபிக் கார்டு விற்பனையாளரையும் மாடலையும் கண்டுபிடிக்க முடியவில்லை"
 
 #: core.c:1539
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "GPU கடிகாரங்களை மீட்டெடுக்கிறது"
 
 #: core.c:1574
 msgid "None"
-msgstr ""
+msgstr "எதுவும் இல்லை"
 
 #: core.c:1715
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr ""
+msgstr "GPU %uக்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
 
 #: core.c:1758
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "தற்போதைய: PCIe Gen%1dx%d / அதிகபட்சம்: Gen%1dx%d"
 
 #: core.c:1786
 msgid "failed to retrieve GPU clocks"
-msgstr ""
+msgstr "GPU கடிகாரங்களை மீட்டெடுக்க முடியவில்லை"
 
 #: core.c:1803
 msgid "Identifying running system"
-msgstr ""
+msgstr "இயங்கும் அமைப்பைக் கண்டறிதல்"
 
 #: core.c:1806
 msgid "failed to identify running system"
-msgstr ""
+msgstr "இயங்கும் அமைப்பை அடையாளம் காண முடியவில்லை"
 
 #: core.c:1850 core.c:1878
 msgid "Calling libprocps"
-msgstr ""
+msgstr "libprocps ஐ அழைக்கிறது"
 
 #: core.c:1853
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "கணினி இயக்க நேரத்தைப் பெற முடியவில்லை"
 
 #: core.c:1859
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "meminfo அமைப்பை உருவாக்க முடியவில்லை"
 
 #: core.c:1904
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "libstatgrab ஐ அழைக்கிறது"
 
 #: core.c:1943
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i நாட்களில், %i மணிநேரத்தில், %i நிமிடங்களில், %i நொடிகளில்"
 
 #: core.c:2000
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "தரநிலை நிலையைப் புதுப்பிக்கிறது"
 
 #: core.c:2001 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u நிமிடங்கள்"
 
 #: core.c:2003 core.c:2004
 msgid "Inactive"
-msgstr ""
+msgstr "செயலற்றது"
 
 #: core.c:2008 core.c:2009
 msgid "Not started"
