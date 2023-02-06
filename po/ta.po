@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2023-02-03 07:24+0000\n"
+"PO-Revision-Date: 2023-02-07 10:40+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -341,7 +341,7 @@ msgstr "%i நாட்களில், %i மணிநேரத்தில்,
 
 #: core.c:2000
 msgid "Updating benchmark status"
-msgstr "தரநிலை நிலையைப் புதுப்பிக்கிறது"
+msgstr "பெஞ்ச்மார்க் நிலையை மேம்படுத்துகிறது"
 
 #: core.c:2001 tui_ncurses.c:879
 #, c-format
@@ -354,173 +354,177 @@ msgstr "செயலற்றது"
 
 #: core.c:2008 core.c:2009
 msgid "Not started"
-msgstr ""
+msgstr "துவங்கவில்லை"
 
 #: core.c:2014
 msgid "Active"
-msgstr ""
+msgstr "செயலில் உள்ளது"
 
 #: core.c:2019
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u மணிநேரம் மீதமுள்ளது)"
 
 #: core.c:2021
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u நிமிடங்கள் மீதமுள்ளன)"
 
 #: core.c:2023
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u வினாடிகள் மீதமுள்ளன)"
 
 #: core.c:2028
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "%u மணிநேரத்தில்"
 
 #: core.c:2030
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "%u நிமிடங்களில்"
 
 #: core.c:2032
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "%u வினாடிகளில்"
 
 #: core.c:2048
 msgid "Starting benchmark"
-msgstr ""
+msgstr "பெஞ்ச்மார்க் தொடங்குகிறது"
 
 #: core.c:2067
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "பெஞ்ச்மார்க் தொடங்கும் போது பிழை ஏற்பட்டது"
 
 #: core.c:2084
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "ஃபால்பேக் பயன்முறையில் CPU தொகுப்பைக் கண்டறிதல்"
 
 #: core.c:2106
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr ""
+msgstr "உங்கள் CPU சாக்கெட் தரவுத்தளத்தில் இல்லை ==> %s, குறியீட்டு பெயர்: %s"
 
 #: core.c:2125
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
+msgstr "ஃபால்பேக் பயன்முறையில் CPU பெருக்கிகளைக் கணக்கிடுகிறது"
 
 #: core.c:2152
 msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
+msgstr "ஃபால்பேக் பயன்முறையில் மதர்போர்டு தகவலை மீட்டெடுக்கிறது"
 
 #: core.c:2161
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
+msgstr "மதர்போர்டு தகவலை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
 #: core.c:2200
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "ஃபால்பேக் பயன்முறையில் CPU வெப்பநிலையை மீட்டெடுக்கிறது"
 
 #: core.c:2246
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
+msgstr "CPU வெப்பநிலையை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
 #: core.c:2259
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "ஃபால்பேக் பயன்முறையில் CPU மின்னழுத்தத்தை மீட்டெடுக்கிறது"
 
 #: core.c:2272
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
+msgstr "CPU மின்னழுத்தத்தை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
 #: core.c:2287
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "ஃபால்பேக் பயன்முறையில் CPU அலைவரிசையை மீட்டெடுக்கிறது"
 
 #: core.c:2295
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "CPU அதிர்வெண்ணை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
 #: daemon.c:264
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: வழக்கு %i கையாளப்படவில்லை"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr ""
+msgstr "GTK GUIஐத் தொடங்குகிறது…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "GtkBuilder இல் UI ஐ இறக்குமதி செய்ய முடியவில்லை"
 
 #: gui_gtk.c:600
 msgid "Connected to daemon"
-msgstr ""
+msgstr "டெமானுடன் இணைக்கப்பட்டது"
 
 #: gui_gtk.c:602
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "போல்கிட் அங்கீகார முகவர் இல்லை"
 
 #: gui_gtk.c:606
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "பின்னணியில் டீமனைத் தொடங்க கடவுச்சொல்லைக் கேட்கவும்"
 
 #: gui_gtk.c:612
 msgid "Start daemon"
-msgstr ""
+msgstr "டீமனைத் தொடங்கு"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
 #, c-format
 msgid "Type #%i"
-msgstr ""
+msgstr "வகை #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "கோர் #%i"
 
 #: gui_gtk.c:632
 msgid "BaseFamily"
-msgstr ""
+msgstr "அடிப்படை குடும்பம்"
 
 #: gui_gtk.c:633
 msgid "BaseModel"
-msgstr ""
+msgstr "அடிப்படை மாதிரி"
 
 #: gui_gtk.c:634
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"CPU காட்சி (\"உண்மை\") குடும்பம் (அடிப்படை குடும்பம்+விரிவாக்கப்பட்ட "
+"குடும்பமாக கணக்கிடப்பட்டது)"
 
 #: gui_gtk.c:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"CPU காட்சி (\"உண்மை\") மாதிரி ((ExtendedModel<<4)+BaseModel என "
+"கணக்கிடப்பட்டது)"
 
 #: gui_gtk.c:694
 msgid "User Mode Driver Version"
-msgstr ""
+msgstr "பயனர் பயன்முறை இயக்கி பதிப்பு"
 
 #: gui_gtk.c:695
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "வல்கன் ரே டிரேசிங்"
 
 #: main.c:57
 msgid "Setting label names"
-msgstr ""
+msgstr "லேபிள் பெயர்களை அமைத்தல்"
 
 #: main.c:59 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: main.c:60 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
-msgstr ""
+msgstr "செயலி"
 
 #: main.c:61 main.c:115 main.c:148
 msgid "Vendor"
-msgstr ""
+msgstr "விற்பனையாளர்"
 
 #: main.c:62
 msgid "Code Name"
