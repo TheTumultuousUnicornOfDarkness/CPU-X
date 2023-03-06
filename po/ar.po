@@ -8,14 +8,15 @@
 # Гринько Владимир <volb132@gmail.com>, 2020.
 # samhy147 <samhy144@gmail.com>, 2022.
 # Ali Aljishi <ahj696@hotmail.com>, 2022.
+# willkali <willian.exercito@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-12-02 10:48+0000\n"
-"Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
+"PO-Revision-Date: 2023-03-07 23:43+0000\n"
+"Last-Translator: willkali <willian.exercito@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -50,10 +51,9 @@ msgid "%d x %d %s, %d-way"
 msgstr "%d x %d %s, %d-مسار"
 
 #: core.c:275
-#, fuzzy, c-format
-#| msgid "%s associative, %d-byte line size"
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s ترابطي, d-%s ze"
+msgstr "s% ترابطية ، s-%d% حجم الخط"
 
 #: core.c:286
 msgid "Calling libcpuid for retrieving static data"
@@ -69,6 +69,8 @@ msgstr "تعذر استدعاء libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"نوع CPU المحدد (u%) ليس رقمًا صالحًا (u% هو الحد الأقصى لوحدة المعالجة "
+"المركزية هذه)"
 
 #: core.c:318
 #, c-format
@@ -771,7 +773,7 @@ msgstr ""
 
 #: main.c:149
 msgid "Driver"
-msgstr ""
+msgstr "سائق"
 
 #: main.c:150
 #, fuzzy
