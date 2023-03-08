@@ -6,23 +6,24 @@
 # userko <ukoshulap@gmail.com>, 2021, 2022.
 # Vladyslav Spirin <vladspirin@hotmail.com>, 2022.
 # Artem <artem@molotov.work>, 2022.
+# Mykhailo Nikiforov <azaone_m@proton.me>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2022-10-30 14:51+0000\n"
-"PO-Revision-Date: 2022-06-23 18:16+0000\n"
-"Last-Translator: Artem <artem@molotov.work>\n"
+"PO-Revision-Date: 2023-03-10 13:41+0000\n"
+"Last-Translator: Mykhailo Nikiforov <azaone_m@proton.me>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -66,17 +67,21 @@ msgstr "не вдалося викликати libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Обраний тип процесора (%u) не є допустимим (%u є максимальним для цього "
+"процесора)"
 
 #: core.c:318
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Обране ядро процесора (%u) не є дійсним номером (%u є максимальним для цього "
+"типу ядра)"
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "невідомо"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -118,6 +123,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access не ініціалізовано належним чином: це поширена проблема, коли %s "
+"було зібрано з нижчою версією libpci.\n"
+"Перевірте наявність бібліотеки libpci %s у вашій системі. В іншому випадку, "
+"будь ласка, перезберіть %s."
 
 #: core.c:747
 #, c-format
@@ -140,48 +149,48 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "не вдалося викликати GLFW (%s)"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "Версія"
+msgstr "Визначення версії API Vulkan"
 
 #: core.c:1016
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "не вдалося викликати dmidecode"
+msgstr "не вдалося викликати vkCreateInstance (%s)"
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s не підтримується"
 
 #: core.c:1032
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "не вдалося викликати dmidecode"
+msgstr "не вдалося викликати vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:1039
+#, fuzzy
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Немає доступних пристроїв Vulkan"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "не вдалося викликати dmidecode"
+msgstr "Немає доступних фізичних пристроїв (%s)"
 
 #: core.c:1108
 #, fuzzy, c-format
 #| msgid "failed to get name for device %u (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "не вдалося отримати назву для пристрою %u (%s)"
+msgstr "Не вдалося створити Vulkan для пристрою %u (%s)"
 
 #: core.c:1112
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s не підтримується для пристрою %u, використовуйте для зіставлення лише "
+"deviceID"
 
 #: core.c:1139 core.c:1762
 msgid "Enabled"
@@ -221,7 +230,7 @@ msgstr ""
 #, fuzzy
 #| msgid "DeviceID"
 msgid "0 device"
-msgstr "ID пристрою"
+msgstr "0 пристрій"
 
 #: core.c:1238
 #, c-format
@@ -327,12 +336,13 @@ msgid "Calling libprocps"
 msgstr "Виклик libprocps"
 
 #: core.c:1853
+#, fuzzy
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "не вдається отримати час безвідмовної роботи системи"
 
 #: core.c:1859
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "не вдалося створити структуру meminfo"
 
 #: core.c:1904
 msgid "Calling libstatgrab"
@@ -482,7 +492,7 @@ msgstr "Активація демона"
 #, fuzzy, c-format
 #| msgid "Core #%i"
 msgid "Type #%i"
-msgstr "Ядро #%i"
+msgstr "Тип #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
@@ -515,7 +525,7 @@ msgstr "Версія драйвера користувацького режим�
 
 #: gui_gtk.c:695
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Трасування променів Vulkan"
 
 #: main.c:57
 msgid "Setting label names"
@@ -625,7 +635,7 @@ msgstr "Рівень 3"
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Cores"
-msgstr "Ядро(/а)"
+msgstr "Ядра"
 
 #: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
@@ -775,10 +785,8 @@ msgid "DeviceID"
 msgstr "ID пристрою"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Версія"
+msgstr "Версія VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -816,25 +824,19 @@ msgstr "Змінюваний BAR (PCIe)"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Версія"
+msgstr "Версія OpenGL"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Версія"
+msgstr "Версія Vulkan"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Версія"
+msgstr "Версія OpenCL"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
@@ -1061,31 +1063,23 @@ msgid "failed to call wordexp (%i)"
 msgstr "не вдалося викликати wordexp (%i)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%sЙой, щось пішло не так! %s отримав сигнал %d (%s) і припинив роботу.%s"
+"Йой, щось пішло не так! %s отримав сигнал %d (%s) і припинив роботу."
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%sЙой, щось пішло не так! %s отримав сигнал %d (%s) і припинив роботу.%s"
+"Йой, щось пішло не так! %s отримав сигнал %d (%s) і намагається відновитися."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1137,25 +1131,25 @@ msgstr "Глобальні клавіші:"
 #, fuzzy
 #| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Натисніть клавішу 'вліво', щоб перейти на вкладку ліворуч."
+msgstr ""
+"Натисніть клавішу \"ліворуч\" або \"табуляція\", щоб переключитися на ліву "
+"вкладку."
 
 #: tui_ncurses.c:509
 #, fuzzy
 #| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Натисніть клавішу 'вправо', щоб перейти на вкладку праворуч."
+msgstr ""
+"Натисніть клавішу \"вправо\" або \"shift + табуляція\", щоб переключитися на "
+"праву вкладку."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "Натисніть клавішу 'вліво', щоб перейти на вкладку ліворуч."
+msgstr "Натисніть клавішу \"home\", щоб прокрутити сторінку вгору."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "Натисніть клавішу 'вліво', щоб перейти на вкладку ліворуч."
+msgstr "Натисніть клавішу \"end\", щоб прокрутити сторінку вниз."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1170,11 +1164,10 @@ msgid "CPU tab:"
 msgstr "Вкладка \"ЦП\":"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
-"Натисніть клавішу \"вниз\", щоб зменшити кількості ядер для моніторингу."
+"Натисніть клавішу \"next page\", щоб зменшити номер типу ядра для "
+"моніторингу."
 
 #: tui_ncurses.c:517
 #, fuzzy
@@ -1296,24 +1289,24 @@ msgstr "помилка при компіляції регулярних вира
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Core"
-msgstr "Ядро(/а)"
+msgstr "Ядро"
 
 #: util.c:547
 #, fuzzy
 #| msgid "Score"
 msgid "P-core"
-msgstr "Результат"
+msgstr "П-core"
 
 #: util.c:548
 #, fuzzy
 #| msgid "Score"
 msgid "E-core"
-msgstr "Результат"
+msgstr "Е-core"
 
 #: util.c:567
-#, c-format
+#, c-format, fuzzy
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "не вдалося змінити приналежність процесора до ядра %u"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1332,8 +1325,9 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: неочікуваний код помилки"
 
 #: util.c:687
+#, fuzzy
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() не підтримується у цій операційній системі"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
@@ -1385,69 +1379,69 @@ msgstr "ТіБ"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5836
+#, fuzzy
 msgid "Refresh time"
-msgstr ""
+msgstr "Час оновлення"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5860
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5875
 msgid "Automatic"
-msgstr ""
+msgstr "Автоматична"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5876
 msgid "Light"
-msgstr ""
+msgstr "Світла"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5877
 msgid "Dark"
-msgstr ""
+msgstr "Темна"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5910
 msgid "Default tab"
-msgstr ""
+msgstr "Вкладка за замовчуванням"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5923
 msgid "Default CPU core"
-msgstr ""
+msgstr "Ядро процесора за замовчуванням"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5936
 msgid "Default cache test"
-msgstr ""
+msgstr "Тест кешу за замовчуванням"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5979
 #, fuzzy
 #| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
-msgstr ""
-"Показувати значення CPUID в десятковій системі (за замовчуванням - "
-"шістнадцяткова)"
+msgstr "Вивести значення CPUID у десятковому вигляді"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6012
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "Оберіть графічну карту за замовчуванням (ціле число)"
+msgstr "Графічна карта за замовчуванням"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
+#, fuzzy
 msgid "Default core type"
-msgstr ""
+msgstr "Тип ядра за замовчуванням"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
 msgid "Startup"
-msgstr ""
+msgstr "Початова"
 
 #, fuzzy, c-format
 #~| msgid "failed to call dmidecode"
