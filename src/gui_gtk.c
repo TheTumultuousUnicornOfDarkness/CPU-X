@@ -828,10 +828,9 @@ void fill_frame(GtkWidget *widget, cairo_t *cr, GThrd *refr)
 
 	/* Print percentage */
 	if(is_dark_theme(glab))
-		cairo_set_source_rgb(cr, 0.8080, 0.8080, 0.0);
+		cairo_set_source_rgb(cr, 192.0 / 255.0, 192.0 / 255.0, 0.0); // yellow text for dark theme
 	else
-		cairo_set_source_rgb(cr, 0.0, 0.0, 0.8080);
-
+		cairo_set_source_rgb(cr, 0.0, 0.0, 128.0 / 255.0); // blue text for light theme
 	cairo_move_to(cr, -40, 0);
 	pango_layout_set_text(newlayout, format("%.2f%%", percent), -1);
 	pango_cairo_show_layout(cr, newlayout);
