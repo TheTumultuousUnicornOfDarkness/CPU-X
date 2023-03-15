@@ -1422,7 +1422,7 @@ static int find_devices(Labels *data)
 					break;
 				case DEV_VENDOR_ID_INTEL:
 					gpu_vendor = "Intel";
-					data->g_data->bar_size[data->gpu_count] = 0;
+					data->g_data->bar_size[data->gpu_count] = dev->size[2];
 					break;
 				case DEV_VENDOR_ID_NVIDIA:
 					gpu_vendor = "NVIDIA";
