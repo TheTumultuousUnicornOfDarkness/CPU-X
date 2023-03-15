@@ -28,6 +28,14 @@ jobs:
     - name: Package CPU-X as an AppImage
       run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
+    - name: Delete previous continuous release
+      uses: dev-drprasad/delete-tag-and-release@v0.2.0
+      with:
+        tag_name: continuous
+        delete_release: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Create continuous release
       uses: ncipollo/release-action@v1
       with:
