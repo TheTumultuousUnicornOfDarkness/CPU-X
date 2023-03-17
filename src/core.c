@@ -980,11 +980,11 @@ static inline const char* string_VkResult(VkResult input_value)
 }
 #endif /* HAS_Vulkan */
 
-static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, char *vulkan_rt)
+static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, char *vulkan_rt, uint64_t *total_vram_size)
 {
 	int err = 0;
 #if HAS_Vulkan
-	uint32_t i, device_count = 0;
+	uint32_t i, j, device_count = 0;
 	bool gpu_found = false;
 	bool use_device_id = false;
 	VkInstance instance = {0};
@@ -1091,6 +1091,9 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, cha
 		.pEnabledFeatures = NULL,
 	};
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
+	VkPhysicalDeviceMemoryProperties2 heap_info = {0};
+	heap_info.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2;
+
 	VkPhysicalDevicePCIBusInfoPropertiesEXT bus_info = {0};
 	bus_info.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
 
@@ -1133,6 +1136,13 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, cha
 		}
 		else
 			MSG_DEBUG("Vulkan device %lu: device matches with pci_dev", i);
+
+		vkGetPhysicalDeviceMemoryProperties2(devices[i], &heap_info);
+		for (j = 0; j < heap_info.memoryProperties.memoryHeapCount; j++) {
+			if (VK_MEMORY_HEAP_DEVICE_LOCAL_BIT == heap_info.memoryProperties.memoryHeaps[j].flags) {
+				*total_vram_size = heap_info.memoryProperties.memoryHeaps[j].size;
+			}
+		}
 
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 		VkDevice vk_dev_rt = {0};
@@ -1378,6 +1388,7 @@ static int find_devices(Labels *data)
 	struct pci_access *pacc;
 	struct pci_dev *dev;
 	uint32_t comp_unit = 0;
+	uint64_t total_vram_size = 0;
 
 	MSG_VERBOSE("%s", _("Finding devices"));
 	pacc = pci_alloc(); /* Get the pci_access structure */
@@ -1438,8 +1449,12 @@ static int find_devices(Labels *data)
 			find_gpu_device_path(dev, &data->g_data->device_path[data->gpu_count]);
 			find_gpu_kernel_driver(data->g_data->device_path[data->gpu_count], gpu_driver, &data->g_data->gpu_driver[data->gpu_count]);
 			find_gpu_user_mode_driver(data->g_data->gpu_driver[data->gpu_count], gpu_umd, gl_ver);
-			get_vulkan_api_version(dev, vk_ver, vk_rt);
+			get_vulkan_api_version(dev, vk_ver, vk_rt, &total_vram_size);
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type, cl_ver);
+
+			if (0 < total_vram_size) {
+			   data->g_data->total_vram_size[data->gpu_count] = total_vram_size;
+			}
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
@@ -1742,10 +1757,16 @@ static int gpu_monitoring(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], true, "%.0Lf MHz", strtoull(gclk, NULL, 10) / divisor_gclk);
 		if(!ret_mclk)
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%.0Lf MHz", strtoull(mclk, NULL, 10) / divisor_mclk);
-		if(!ret_vram_used && !ret_vram_total)
+		if(!ret_vram_used && !ret_vram_total) {
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], true, "%.0Lf %s / %.0Lf %s",
 				strtoull(vram_used,  NULL, 10) / divisor_vram, UNIT_MIB,
 				strtoull(vram_total, NULL, 10) / divisor_vram, UNIT_MIB);
+		} else if(strlen(data->tab_graphics[VALUE][GPU1MEMUSED + i * GPUFIELDS]) == 0 && 0 < data->g_data->total_vram_size[i]) {
+			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], false, "_ / %lu %s",
+				(data->g_data->total_vram_size[i] / (1 << 20)), UNIT_MIB);
+			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false,
+				"%s", (data->g_data->total_vram_size[i] / (1 << 20) * 0.9 < data->g_data->bar_size[i] / (1 << 20)) ? _("Enabled") : _("Disabled"));
+		}
 		if(!ret_gvolt)
 			casprintf(&data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS], true, "%.2Lf V", strtoull(gvolt, NULL, 10) / divisor_gvolt);
 		if(!ret_gpwr)
