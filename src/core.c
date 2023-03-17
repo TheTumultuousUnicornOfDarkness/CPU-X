@@ -1171,6 +1171,7 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, cha
 	UNUSED(dev);
 	UNUSED(vulkan_version);
 	UNUSED(vulkan_rt);
+	UNUSED(total_vram_size);
 #endif /* HAS_Vulkan */
 
 	return err;
