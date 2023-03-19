@@ -279,8 +279,6 @@ typedef struct
 {
 	enum EnGpuDrv gpu_driver[LASTGRAPHICS / GPUFIELDS];
 	char      *device_path[LASTGRAPHICS / GPUFIELDS];
-	uint64_t  bar_size[LASTGRAPHICS / GPUFIELDS];
-	uint64_t  total_vram_size[LASTGRAPHICS / GPUFIELDS];
 } GraphicsData;
 
 typedef struct
