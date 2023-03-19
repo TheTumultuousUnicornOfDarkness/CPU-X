@@ -1138,11 +1138,9 @@ static int get_vulkan_api_version(struct pci_dev *dev, char *vulkan_version, cha
 			MSG_DEBUG("Vulkan device %lu: device matches with pci_dev", i);
 
 		vkGetPhysicalDeviceMemoryProperties2(devices[i], &heap_info);
-		for (j = 0; j < heap_info.memoryProperties.memoryHeapCount; j++) {
-			if (VK_MEMORY_HEAP_DEVICE_LOCAL_BIT == heap_info.memoryProperties.memoryHeaps[j].flags) {
+		for (j = 0; j < heap_info.memoryProperties.memoryHeapCount; j++)
+			if (VK_MEMORY_HEAP_DEVICE_LOCAL_BIT == heap_info.memoryProperties.memoryHeaps[j].flags)
 				*total_vram_size = heap_info.memoryProperties.memoryHeaps[j].size;
-			}
-		}
 
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 		VkDevice vk_dev_rt = {0};
@@ -1453,9 +1451,8 @@ static int find_devices(Labels *data)
 			get_vulkan_api_version(dev, vk_ver, vk_rt, &total_vram_size);
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type, cl_ver);
 
-			if (0 < total_vram_size) {
-			   data->g_data->total_vram_size[data->gpu_count] = total_vram_size;
-			}
+			if (0 < total_vram_size)
+				data->g_data->total_vram_size[data->gpu_count] = total_vram_size;
 
 			casprintf(&data->tab_graphics[VALUE][GPU1VENDOR + data->gpu_count * GPUFIELDS], false, "%s", gpu_vendor);
 			casprintf(&data->tab_graphics[VALUE][GPU1DRIVER + data->gpu_count * GPUFIELDS], false, "%s", gpu_driver);
@@ -1758,11 +1755,14 @@ static int gpu_monitoring(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1CORECLOCK   + i * GPUFIELDS], true, "%.0Lf MHz", strtoull(gclk, NULL, 10) / divisor_gclk);
 		if(!ret_mclk)
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMCLOCK    + i * GPUFIELDS], true, "%.0Lf MHz", strtoull(mclk, NULL, 10) / divisor_mclk);
-		if(!ret_vram_used && !ret_vram_total) {
+		if(!ret_vram_used && !ret_vram_total)
+		{
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], true, "%.0Lf %s / %.0Lf %s",
 				strtoull(vram_used,  NULL, 10) / divisor_vram, UNIT_MIB,
 				strtoull(vram_total, NULL, 10) / divisor_vram, UNIT_MIB);
-		} else if(strlen(data->tab_graphics[VALUE][GPU1MEMUSED + i * GPUFIELDS]) == 0 && 0 < data->g_data->total_vram_size[i]) {
+		}
+		else if(strlen(data->tab_graphics[VALUE][GPU1MEMUSED + i * GPUFIELDS]) == 0 && 0 < data->g_data->total_vram_size[i])
+		{
 			casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED     + i * GPUFIELDS], false, "_ / %lu %s",
 				(data->g_data->total_vram_size[i] / (1 << 20)), UNIT_MIB);
 			casprintf(&data->tab_graphics[VALUE][GPU1REBAR       + i * GPUFIELDS], false,
