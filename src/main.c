@@ -793,8 +793,7 @@ int main(int argc, char *argv[])
 	data->g_data = &(GraphicsData)
 	{
 		.gpu_driver  = { GPUDRV_UNKNOWN },
-		.device_path = { NULL },
-		.bar_size    = { 0 }
+		.device_path = { NULL }
 	};
 	data->b_data = &(BenchData)
 	{
