@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-30 14:51+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-03-20 18:17+0000\n"
 "PO-Revision-Date: 2023-03-12 00:43+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -66,16 +66,18 @@ msgstr "libcpuid の取得に失敗（%s）"
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr "選択した CPU タイプ（%u）は有効な数値ではありません（%u がこの CPU "
-"の最大値です）"
+msgstr ""
+"選択した CPU タイプ（%u）は有効な数値ではありません（%u がこの CPU の最大値で"
+"す）"
 
 #: core.c:318
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
-msgstr "選択した CPU コア（%u）は有効な数値ではありません（%u "
-"がこのタイプのコアの最大値です）"
+msgstr ""
+"選択した CPU コア（%u）は有効な数値ではありません（%u がこのタイプのコアの最"
+"大値です）"
 
 #: core.c:347
 msgid "unknown"
@@ -170,91 +172,92 @@ msgstr "利用可能な Vulkan デバイスがありません"
 msgid "No available physical devices (%s)"
 msgstr "利用可能な物理デバイスがありません（%s）"
 
-#: core.c:1108
+#: core.c:1111
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "デバイス %u の Vulkan を作成できませんでした（%s）"
 
-#: core.c:1112
+#: core.c:1115
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr "%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID "
-"のみを使用してください"
+msgstr ""
+"%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID のみ"
+"を使用してください"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Enabled"
 msgstr "有効"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Disabled"
 msgstr "無効"
 
-#: core.c:1188
+#: core.c:1197
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL に対応するプラットフォームはありません（%s）"
 
-#: core.c:1199
+#: core.c:1208
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s）"
 
-#: core.c:1211
+#: core.c:1220
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "プラットフォーム %u の名前の取得に失敗しました（%s）"
 
-#: core.c:1219
+#: core.c:1228
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "プラットフォーム %u のバージョンの取得に失敗しました（%s）"
 
-#: core.c:1228
+#: core.c:1237
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗しました（%s）"
 
-#: core.c:1228
+#: core.c:1237
 msgid "0 device"
 msgstr "0 デバイス"
 
-#: core.c:1238
+#: core.c:1247
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗しました（%s）"
 
-#: core.c:1253
+#: core.c:1262
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "デバイス %u の名前の取得に失敗しました（%s）"
 
-#: core.c:1261
+#: core.c:1270
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
 
-#: core.c:1277
+#: core.c:1286
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応です"
 
-#: core.c:1288
+#: core.c:1297
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応です"
 
-#: core.c:1301 core.c:1314 core.c:1342
+#: core.c:1310 core.c:1323 core.c:1351
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応です"
 
-#: core.c:1330
+#: core.c:1339
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -264,186 +267,186 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応で"
 "す"
 
-#: core.c:1352
+#: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
 
-#: core.c:1382
+#: core.c:1392
 msgid "Finding devices"
 msgstr "デバイスを識別中"
 
-#: core.c:1394
+#: core.c:1404
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
 
-#: core.c:1432
+#: core.c:1442
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "不明な GPU ベンダー : %s（0x %X）"
 
-#: core.c:1460
+#: core.c:1478
 msgid "failed to find chipset vendor and model"
 msgstr "チップセットのベンダーとモデルの判別に失敗しました"
 
-#: core.c:1462
+#: core.c:1480
 msgid "failed to find graphic card vendor and model"
 msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
 
-#: core.c:1539
+#: core.c:1557
 msgid "Retrieving GPU clocks"
 msgstr "GPU クロックを取得中"
 
-#: core.c:1574
+#: core.c:1592
 msgid "None"
 msgstr "None"
 
-#: core.c:1715
+#: core.c:1733
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU ドライバー %u は周波数を通知しません"
 
-#: core.c:1758
+#: core.c:1776
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "現在: PCIe Gen%1dx%d / 最大: Gen%1dx%d"
 
-#: core.c:1786
+#: core.c:1801
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU クロックの取得に失敗しました"
 
-#: core.c:1803
+#: core.c:1818
 msgid "Identifying running system"
 msgstr "実行中のシステムの識別中"
 
-#: core.c:1806
+#: core.c:1821
 msgid "failed to identify running system"
 msgstr "実行中のシステムの識別に失敗しました"
 
-#: core.c:1850 core.c:1878
+#: core.c:1865 core.c:1893
 msgid "Calling libprocps"
 msgstr "libprocps の呼び出し中"
 
-#: core.c:1853
+#: core.c:1868
 msgid "unable to get system uptime"
 msgstr "システム稼働時間を取得できません"
 
-#: core.c:1859
+#: core.c:1874
 msgid "unable to create meminfo structure"
 msgstr "meminfo ストラクチャを作成できません"
 
-#: core.c:1904
+#: core.c:1919
 msgid "Calling libstatgrab"
 msgstr "libstatgrab を呼び出し中"
 
-#: core.c:1943
+#: core.c:1958
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
-#: core.c:2000
+#: core.c:2015
 msgid "Updating benchmark status"
 msgstr "ベンチマーク状態を更新中"
 
-#: core.c:2001 tui_ncurses.c:879
+#: core.c:2016 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u 分"
 
-#: core.c:2003 core.c:2004
+#: core.c:2018 core.c:2019
 msgid "Inactive"
 msgstr "休止中"
 
-#: core.c:2008 core.c:2009
+#: core.c:2023 core.c:2024
 msgid "Not started"
 msgstr "停止中"
 
-#: core.c:2014
+#: core.c:2029
 msgid "Active"
 msgstr "動作中"
 
-#: core.c:2019
+#: core.c:2034
 #, c-format
 msgid "(%u hours left)"
 msgstr "（残り %u 時間）"
 
-#: core.c:2021
+#: core.c:2036
 #, c-format
 msgid "(%u minutes left)"
 msgstr "（残り %u 分）"
 
-#: core.c:2023
+#: core.c:2038
 #, c-format
 msgid "(%u seconds left)"
 msgstr "（残り %u 秒）"
 
-#: core.c:2028
+#: core.c:2043
 #, c-format
 msgid "in %u hours"
 msgstr "/ %u 時間"
 
-#: core.c:2030
+#: core.c:2045
 #, c-format
 msgid "in %u minutes"
 msgstr "/ %u 分"
 
-#: core.c:2032
+#: core.c:2047
 #, c-format
 msgid "in %u seconds"
 msgstr "/ %u 秒"
 
-#: core.c:2048
+#: core.c:2063
 msgid "Starting benchmark"
 msgstr "ベンチマークを開始"
 
-#: core.c:2067
+#: core.c:2082
 msgid "an error occurred while starting benchmark"
 msgstr "ベンチマーク開始時にエラーが発生しました"
 
-#: core.c:2084
+#: core.c:2099
 msgid "Finding CPU package in fallback mode"
 msgstr "fallback モードで CPU パッケージを識別中"
 
-#: core.c:2106
+#: core.c:2121
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
 
-#: core.c:2125
+#: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "fallback モードで CPU 倍率を計算中"
 
-#: core.c:2152
+#: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "fallback モードでマザーボード情報を取得中"
 
-#: core.c:2161
+#: core.c:2176
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "マザーボード情報の取得に失敗（fallback モード）"
 
-#: core.c:2200
+#: core.c:2215
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallback モードで CPU 温度の取得"
 
-#: core.c:2246
+#: core.c:2261
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU 温度の取得に失敗（fallback モード）"
 
-#: core.c:2259
+#: core.c:2274
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallback モードで CPU 電圧の取得"
 
-#: core.c:2272
+#: core.c:2287
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU 電圧の取得に失敗（fallback モード）"
 
-#: core.c:2287
+#: core.c:2302
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallback モードでCPU クロック周波数の取得"
 
-#: core.c:2295
+#: core.c:2310
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
 
@@ -1271,7 +1274,8 @@ msgstr "pkexec: 予期しないエラーコード"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr "set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
+msgstr ""
+"set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"

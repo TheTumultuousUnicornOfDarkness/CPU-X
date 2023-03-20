@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2022-10-30 14:51+0000\n"
+"POT-Creation-Date: 2023-03-20 18:17+0000\n"
 "PO-Revision-Date: 2022-10-09 09:07+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
@@ -163,277 +163,277 @@ msgstr "Vulkan-laitteita ei ole käytettävissä"
 msgid "No available physical devices (%s)"
 msgstr "Ei käytettävissä olevia fyysisiä laitteita (%s)"
 
-#: core.c:1108
+#: core.c:1111
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
 
-#: core.c:1112
+#: core.c:1115
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Disabled"
 msgstr "Ei käytössä"
 
-#: core.c:1188
+#: core.c:1197
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Ei alustaa OpenCL-tuella (%s)"
 
-#: core.c:1199
+#: core.c:1208
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
 
-#: core.c:1211
+#: core.c:1220
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr ""
 
-#: core.c:1219
+#: core.c:1228
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr ""
 
-#: core.c:1228
+#: core.c:1237
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:1228
+#: core.c:1237
 #, fuzzy
 #| msgid "DeviceID"
 msgid "0 device"
 msgstr "Laite-ID"
 
-#: core.c:1238
+#: core.c:1247
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:1253
+#: core.c:1262
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
 
-#: core.c:1261
+#: core.c:1270
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr ""
 
-#: core.c:1277
+#: core.c:1286
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:1288
+#: core.c:1297
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:1301 core.c:1314 core.c:1342
+#: core.c:1310 core.c:1323 core.c:1351
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:1330
+#: core.c:1339
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:1352
+#: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:1382
+#: core.c:1392
 msgid "Finding devices"
 msgstr "Etsitään laitteita"
 
-#: core.c:1394
+#: core.c:1404
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
-#: core.c:1432
+#: core.c:1442
 #, fuzzy, c-format
 #| msgid "Your GPU driver is unknown: %s"
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Tuntematon näytönohjaimen ajuri: %s"
 
-#: core.c:1460
+#: core.c:1478
 msgid "failed to find chipset vendor and model"
 msgstr ""
 
-#: core.c:1462
+#: core.c:1480
 msgid "failed to find graphic card vendor and model"
 msgstr ""
 
-#: core.c:1539
+#: core.c:1557
 msgid "Retrieving GPU clocks"
 msgstr "Haetaan GPU-kellotaajuuksia"
 
-#: core.c:1574
+#: core.c:1592
 msgid "None"
 msgstr "Ei mitään"
 
-#: core.c:1715
+#: core.c:1733
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %u:n ajuri ei raportoi taajuuksia"
 
-#: core.c:1758
+#: core.c:1776
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1786
+#: core.c:1801
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU-kellotaajuuksien haku epäonnistui"
 
-#: core.c:1803
+#: core.c:1818
 msgid "Identifying running system"
 msgstr "Tunnistetaan käynnissä olevaa järjestelmää"
 
-#: core.c:1806
+#: core.c:1821
 msgid "failed to identify running system"
 msgstr ""
 
-#: core.c:1850 core.c:1878
+#: core.c:1865 core.c:1893
 msgid "Calling libprocps"
 msgstr "Kutsutaan libprocps:ää"
 
-#: core.c:1853
+#: core.c:1868
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1859
+#: core.c:1874
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1904
+#: core.c:1919
 msgid "Calling libstatgrab"
 msgstr "Kutsutaan libstatgrabia"
 
-#: core.c:1943
+#: core.c:1958
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i päivää, %i tuntia, %i minuuttia, %i sekuntia"
 
-#: core.c:2000
+#: core.c:2015
 msgid "Updating benchmark status"
 msgstr ""
 
-#: core.c:2001 tui_ncurses.c:879
+#: core.c:2016 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u minuuttia"
 
-#: core.c:2003 core.c:2004
+#: core.c:2018 core.c:2019
 msgid "Inactive"
 msgstr "Ei aktiivinen"
 
-#: core.c:2008 core.c:2009
+#: core.c:2023 core.c:2024
 msgid "Not started"
 msgstr "Ei aloitettu"
 
-#: core.c:2014
+#: core.c:2029
 msgid "Active"
 msgstr "Aktiivinen"
 
-#: core.c:2019
+#: core.c:2034
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u tuntia jäljellä)"
 
-#: core.c:2021
+#: core.c:2036
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minuuttia jäljellä)"
 
-#: core.c:2023
+#: core.c:2038
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekuntia jäljellä)"
 
-#: core.c:2028
+#: core.c:2043
 #, c-format
 msgid "in %u hours"
 msgstr "%u tunnissa"
 
-#: core.c:2030
+#: core.c:2045
 #, c-format
 msgid "in %u minutes"
 msgstr "%u minuutissa"
 
-#: core.c:2032
+#: core.c:2047
 #, c-format
 msgid "in %u seconds"
 msgstr "%u sekunnissa"
 
-#: core.c:2048
+#: core.c:2063
 msgid "Starting benchmark"
 msgstr "Aloitetaan suorituskykymittausta"
 
-#: core.c:2067
+#: core.c:2082
 msgid "an error occurred while starting benchmark"
 msgstr "suorituskykymittausta aloittaessa tapahtui virhe"
 
-#: core.c:2084
+#: core.c:2099
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:2106
+#: core.c:2121
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 
-#: core.c:2125
+#: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:2152
+#: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:2161
+#: core.c:2176
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:2200
+#: core.c:2215
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:2246
+#: core.c:2261
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:2259
+#: core.c:2274
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:2272
+#: core.c:2287
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:2287
+#: core.c:2302
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:2295
+#: core.c:2310
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 

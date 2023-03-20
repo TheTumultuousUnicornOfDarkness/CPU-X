@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-30 14:51+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-03-20 18:17+0000\n"
 "PO-Revision-Date: 2023-03-10 13:41+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -114,10 +114,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
-"pci_access சரியாக துவக்கப்படவில்லை: %s குறைந்த libpci பதிப்பில் "
-"கட்டமைக்கப்படும் போது இது ஒரு பொதுவான சிக்கலாகும்.\n"
-"உங்கள் கணினியில் libpci %s நூலகம் உள்ளதா எனச் சரிபார்க்கவும். இல்லையெனில், "
-"%s ஐ மீண்டும் உருவாக்கவும்."
+"pci_access சரியாக துவக்கப்படவில்லை: %s குறைந்த libpci பதிப்பில் கட்டமைக்கப்படும் போது "
+"இது ஒரு பொதுவான சிக்கலாகும்.\n"
+"உங்கள் கணினியில் libpci %s நூலகம் உள்ளதா எனச் சரிபார்க்கவும். இல்லையெனில், %s ஐ மீண்டும் "
+"உருவாக்கவும்."
 
 #: core.c:747
 #, c-format
@@ -167,280 +167,275 @@ msgstr "Vulkan சாதனங்கள் இல்லை"
 msgid "No available physical devices (%s)"
 msgstr "இயற்பியல் சாதனங்கள் இல்லை (%s)"
 
-#: core.c:1108
+#: core.c:1111
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "%u (%s) சாதனத்திற்கான வல்கனை (Vulkan) உருவாக்குவதில் தோல்வி"
 
-#: core.c:1112
+#: core.c:1115
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
-"%s ஆதரிக்கப்படவில்லை %u சாதனத்திர்கு , பொருத்துவதற்கு சாதன ஐடியை மட்டும் "
-"பயன்படுத்தவும்"
+"%s ஆதரிக்கப்படவில்லை %u சாதனத்திர்கு , பொருத்துவதற்கு சாதன ஐடியை மட்டும் பயன்படுத்தவும்"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
 
-#: core.c:1188
+#: core.c:1197
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL ஆதரவுடன் எந்த தளமும் இல்லை (%s)"
 
-#: core.c:1199
+#: core.c:1208
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "அனைத்து OpenCL இயங்குதளங்களையும் (%s) பெற முடியவில்லை"
 
-#: core.c:1211
+#: core.c:1220
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "%u (%s) இயங்குதளத்திற்கான பெயரைப் பெற முடியவில்லை"
 
-#: core.c:1219
+#: core.c:1228
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "இயங்குதளம் %u (%s)க்கான பதிப்பைப் பெறுவதில் தோல்வி"
 
-#: core.c:1228
+#: core.c:1237
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
-"'%s %s' (%s) இயங்குதளத்திற்கான OpenCL சாதனங்களின் எண்ணிக்கையைக் கண்டறிய "
-"முடியவில்லை"
+"'%s %s' (%s) இயங்குதளத்திற்கான OpenCL சாதனங்களின் எண்ணிக்கையைக் கண்டறிய முடியவில்லை"
 
-#: core.c:1228
+#: core.c:1237
 msgid "0 device"
 msgstr "0 சாதனம்"
 
-#: core.c:1238
+#: core.c:1247
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
-"'%s %s' (%s) இயங்குதளத்திற்கான அனைத்து OpenCL சாதனங்களையும் பெறுவதில் தோல்வி"
+msgstr "'%s %s' (%s) இயங்குதளத்திற்கான அனைத்து OpenCL சாதனங்களையும் பெறுவதில் தோல்வி"
 
-#: core.c:1253
+#: core.c:1262
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "%u (%s) சாதனத்திற்கான பெயரைப் பெறுவதில் தோல்வி"
 
-#: core.c:1261
+#: core.c:1270
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "%u (%s) சாதனத்திற்கான பதிப்பைப் பெறுவதில் தோல்வி"
 
-#: core.c:1277
+#: core.c:1286
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_TOPOLOGY_AMD (%s) ஐ ஆதரிக்காது"
 
-#: core.c:1288
+#: core.c:1297
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_GFXIP_MAJOR_AMD (%s) ஐ ஆதரிக்காது"
 
-#: core.c:1301 core.c:1314 core.c:1342
+#: core.c:1310 core.c:1323 core.c:1351
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_MAX_COMPUTE_UNITS (%s) ஐ ஆதரிக்காது"
+msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_MAX_COMPUTE_UNITS (%s) ஐ ஆதரிக்காது"
 
-#: core.c:1330
+#: core.c:1339
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 "'%s %s'க்கான OpenCL இயக்கி CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) அல்லது CL_DEVICE_PCI_SLOT_ID_NV (%s) ஐ "
-"ஆதரிக்காது"
+"CL_DEVICE_PCI_BUS_ID_NV (%s) அல்லது CL_DEVICE_PCI_SLOT_ID_NV (%s) ஐ ஆதரிக்காது"
 
-#: core.c:1352
+#: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "உங்கள் GPU விற்பனையாளருடன் OpenCL ஆதரிக்கப்படவில்லை (0x%X)"
 
-#: core.c:1382
+#: core.c:1392
 msgid "Finding devices"
 msgstr "சாதனங்களைக் கண்டறிதல்"
 
-#: core.c:1394
+#: core.c:1404
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "சாதனத் தேடலைத் தவிர்க்கவும் (%s சாதனத்தில் தவறான அனுமதிகள்)"
 
-#: core.c:1432
+#: core.c:1442
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "உங்கள் GPU விற்பனையாளர் தெரியவில்லை: %s (0x%X)"
 
-#: core.c:1460
+#: core.c:1478
 msgid "failed to find chipset vendor and model"
 msgstr "சிப்செட் விற்பனையாளரையும் மாதிரியையும் கண்டுபிடிக்க முடியவில்லை"
 
-#: core.c:1462
+#: core.c:1480
 msgid "failed to find graphic card vendor and model"
 msgstr "கிராஃபிக் கார்டு விற்பனையாளரையும் மாடலையும் கண்டுபிடிக்க முடியவில்லை"
 
-#: core.c:1539
+#: core.c:1557
 msgid "Retrieving GPU clocks"
 msgstr "GPU கடிகாரங்களை மீட்டெடுக்கிறது"
 
-#: core.c:1574
+#: core.c:1592
 msgid "None"
 msgstr "எதுவும் இல்லை"
 
-#: core.c:1715
+#: core.c:1733
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU %uக்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
 
-#: core.c:1758
+#: core.c:1776
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "தற்போதைய: PCIe Gen%1dx%d / அதிகபட்சம்: Gen%1dx%d"
 
-#: core.c:1786
+#: core.c:1801
 msgid "failed to retrieve GPU clocks"
 msgstr "GPU கடிகாரங்களை மீட்டெடுக்க முடியவில்லை"
 
-#: core.c:1803
+#: core.c:1818
 msgid "Identifying running system"
 msgstr "இயங்கும் அமைப்பைக் கண்டறிதல்"
 
-#: core.c:1806
+#: core.c:1821
 msgid "failed to identify running system"
 msgstr "இயங்கும் அமைப்பை அடையாளம் காண முடியவில்லை"
 
-#: core.c:1850 core.c:1878
+#: core.c:1865 core.c:1893
 msgid "Calling libprocps"
 msgstr "libprocps ஐ அழைக்கிறது"
 
-#: core.c:1853
+#: core.c:1868
 msgid "unable to get system uptime"
 msgstr "கணினி இயக்க நேரத்தைப் பெற முடியவில்லை"
 
-#: core.c:1859
+#: core.c:1874
 msgid "unable to create meminfo structure"
 msgstr "meminfo அமைப்பை உருவாக்க முடியவில்லை"
 
-#: core.c:1904
+#: core.c:1919
 msgid "Calling libstatgrab"
 msgstr "libstatgrab ஐ அழைக்கிறது"
 
-#: core.c:1943
+#: core.c:1958
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i நாட்களில், %i மணிநேரத்தில், %i நிமிடங்களில், %i நொடிகளில்"
 
-#: core.c:2000
+#: core.c:2015
 msgid "Updating benchmark status"
 msgstr "பெஞ்ச்மார்க் நிலையை மேம்படுத்துகிறது"
 
-#: core.c:2001 tui_ncurses.c:879
+#: core.c:2016 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u நிமிடங்கள்"
 
-#: core.c:2003 core.c:2004
+#: core.c:2018 core.c:2019
 msgid "Inactive"
 msgstr "செயலற்றது"
 
-#: core.c:2008 core.c:2009
+#: core.c:2023 core.c:2024
 msgid "Not started"
 msgstr "துவங்கவில்லை"
 
-#: core.c:2014
+#: core.c:2029
 msgid "Active"
 msgstr "செயலில் உள்ளது"
 
-#: core.c:2019
+#: core.c:2034
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u மணிநேரம் மீதமுள்ளது)"
 
-#: core.c:2021
+#: core.c:2036
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u நிமிடங்கள் மீதமுள்ளன)"
 
-#: core.c:2023
+#: core.c:2038
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u வினாடிகள் மீதமுள்ளன)"
 
-#: core.c:2028
+#: core.c:2043
 #, c-format
 msgid "in %u hours"
 msgstr "%u மணிநேரத்தில்"
 
-#: core.c:2030
+#: core.c:2045
 #, c-format
 msgid "in %u minutes"
 msgstr "%u நிமிடங்களில்"
 
-#: core.c:2032
+#: core.c:2047
 #, c-format
 msgid "in %u seconds"
 msgstr "%u வினாடிகளில்"
 
-#: core.c:2048
+#: core.c:2063
 msgid "Starting benchmark"
 msgstr "பெஞ்ச்மார்க் தொடங்குகிறது"
 
-#: core.c:2067
+#: core.c:2082
 msgid "an error occurred while starting benchmark"
 msgstr "பெஞ்ச்மார்க் தொடங்கும் போது பிழை ஏற்பட்டது"
 
-#: core.c:2084
+#: core.c:2099
 msgid "Finding CPU package in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU தொகுப்பைக் கண்டறிதல்"
 
-#: core.c:2106
+#: core.c:2121
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "உங்கள் CPU சாக்கெட் தரவுத்தளத்தில் இல்லை ==> %s, குறியீட்டு பெயர்: %s"
 
-#: core.c:2125
+#: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU பெருக்கிகளைக் கணக்கிடுகிறது"
 
-#: core.c:2152
+#: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் மதர்போர்டு தகவலை மீட்டெடுக்கிறது"
 
-#: core.c:2161
+#: core.c:2176
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "மதர்போர்டு தகவலை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core.c:2200
+#: core.c:2215
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU வெப்பநிலையை மீட்டெடுக்கிறது"
 
-#: core.c:2246
+#: core.c:2261
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU வெப்பநிலையை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core.c:2259
+#: core.c:2274
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU மின்னழுத்தத்தை மீட்டெடுக்கிறது"
 
-#: core.c:2272
+#: core.c:2287
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU மின்னழுத்தத்தை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core.c:2287
+#: core.c:2302
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU அலைவரிசையை மீட்டெடுக்கிறது"
 
-#: core.c:2295
+#: core.c:2310
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU அதிர்வெண்ணை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
@@ -494,14 +489,13 @@ msgstr "அடிப்படை மாதிரி"
 #: gui_gtk.c:634
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
-"CPU காட்சி (\"உண்மை\") குடும்பம் (அடிப்படை குடும்பம்+விரிவாக்கப்பட்ட "
-"குடும்பமாக கணக்கிடப்பட்டது)"
+"CPU காட்சி (\"உண்மை\") குடும்பம் (அடிப்படை குடும்பம்+விரிவாக்கப்பட்ட குடும்பமாக "
+"கணக்கிடப்பட்டது)"
 
 #: gui_gtk.c:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
-"CPU காட்சி (\"உண்மை\") மாதிரி ((ExtendedModel<<4)+BaseModel என "
-"கணக்கிடப்பட்டது)"
+"CPU காட்சி (\"உண்மை\") மாதிரி ((ExtendedModel<<4)+BaseModel என கணக்கிடப்பட்டது)"
 
 #: gui_gtk.c:694
 msgid "User Mode Driver Version"

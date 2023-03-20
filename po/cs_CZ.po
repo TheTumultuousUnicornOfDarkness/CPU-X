@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-30 14:51+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-03-20 18:17+0000\n"
 "PO-Revision-Date: 2022-11-03 07:08+0000\n"
 "Last-Translator: cosita official <kokosove18@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -131,7 +131,7 @@ msgstr ""
 "%s."
 
 #: core.c:747
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Žádný kernelový ovladač není použit pro grafickou kartu v cestě %s"
 
@@ -179,95 +179,95 @@ msgstr "Žádné dostupné Vulkan zařízení"
 msgid "No available physical devices (%s)"
 msgstr "Žádné dostupné fyzické zařízení (%s)"
 
-#: core.c:1108
+#: core.c:1111
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "nepodařil se vytvořit Vulkan pro zařízení %u (%s)"
 
-#: core.c:1112
+#: core.c:1115
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s není podporované pro zařízení %u, použijte pouze deviceID pro porovnání"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Enabled"
 msgstr "Zapnuto"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Disabled"
 msgstr "Vypnuto"
 
-#: core.c:1188
+#: core.c:1197
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Není žádná platforma s podporou pro OpenCL (%s)"
 
-#: core.c:1199
+#: core.c:1208
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "nepodařilo se zavolat nástroj dmidecode"
 
-#: core.c:1211
+#: core.c:1220
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get name for platform %u (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core.c:1219
+#: core.c:1228
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get version for platform %u (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core.c:1228
+#: core.c:1237
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "chyba při hledání počtu OpenCL zařízení pro platformu '%s %s' (%s)"
 
-#: core.c:1228
+#: core.c:1237
 #, fuzzy
 #| msgid "Finding devices"
 msgid "0 device"
 msgstr "Hledání zařízení"
 
-#: core.c:1238
-#, c-format, fuzzy
+#: core.c:1247
+#, fuzzy, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "proběhla chyba při hledání všech OpenCL zařízení pro platformu '%s %s'  (%s)"
 
-#: core.c:1253
+#: core.c:1262
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core.c:1261
+#: core.c:1270
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "nepodařilo se zjistit ovladač grafické karty (%s)"
 
-#: core.c:1277
+#: core.c:1286
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "OpenCL ovladač pro '%s %s' nepodporuje CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.c:1288
+#: core.c:1297
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "OpenCL ovladač pro '%s %s' nepodporuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.c:1301 core.c:1314 core.c:1342
+#: core.c:1310 core.c:1323 core.c:1351
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "OpenCL ovladač '%s %s' nepodporuje CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.c:1330
+#: core.c:1339
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -276,190 +276,190 @@ msgstr ""
 "OpenCL ovladač '%s %s' nepodporuje CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) nebo CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.c:1352
+#: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL není podporován vaším vendorem GPU (0x%X)"
 
-#: core.c:1382
+#: core.c:1392
 msgid "Finding devices"
 msgstr "Hledání zařízení"
 
-#: core.c:1394
+#: core.c:1404
 #, fuzzy, c-format
 #| msgid "Skip devices search (need to be root)"
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Přeskočit vyhledávání zařízení (je třeba mít práva správce systému – root)"
 
-#: core.c:1432
+#: core.c:1442
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Neznámý výrobce grafického čipu: %s (0x%X)"
 
-#: core.c:1460
+#: core.c:1478
 msgid "failed to find chipset vendor and model"
 msgstr "nepodařilo se určit výrobce a model čipové sady"
 
-#: core.c:1462
+#: core.c:1480
 msgid "failed to find graphic card vendor and model"
 msgstr "nepodařilo se určit výrobce a model grafického čipu"
 
-#: core.c:1539
+#: core.c:1557
 msgid "Retrieving GPU clocks"
 msgstr "Zjišťování taktů graf. čipu"
 
-#: core.c:1574
+#: core.c:1592
 msgid "None"
 msgstr "Žádný"
 
-#: core.c:1715
+#: core.c:1733
 #, fuzzy, c-format
 #| msgid "Driver for GPU %i doesn't report frequencies"
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Ovladač graf. čipu %i nehlásí takty"
 
-#: core.c:1758
+#: core.c:1776
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr ""
 
-#: core.c:1786
+#: core.c:1801
 msgid "failed to retrieve GPU clocks"
 msgstr "nepodařilo se zjistit takty grafického čipu"
 
-#: core.c:1803
+#: core.c:1818
 msgid "Identifying running system"
 msgstr "Rozpoznávání operačního systému, ve kterém je spuštěné"
 
-#: core.c:1806
+#: core.c:1821
 msgid "failed to identify running system"
 msgstr "nepodařilo se rozpoznat operační systém, ve kterém je spuštěné"
 
-#: core.c:1850 core.c:1878
+#: core.c:1865 core.c:1893
 msgid "Calling libprocps"
 msgstr "Zjišťování údajů prostřednictvím knihovny libprocps"
 
-#: core.c:1853
+#: core.c:1868
 msgid "unable to get system uptime"
 msgstr "chyba při hledání system uptime"
 
-#: core.c:1859
+#: core.c:1874
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1904
+#: core.c:1919
 msgid "Calling libstatgrab"
 msgstr "Zjišťování údajů prostřednictvím knihovny libstatgrab"
 
-#: core.c:1943
+#: core.c:1958
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dnů, %i hodin, %i minut, %i sekund"
 
-#: core.c:2000
+#: core.c:2015
 msgid "Updating benchmark status"
 msgstr "Aktualizace stavu výkonostního testu"
 
-#: core.c:2001 tui_ncurses.c:879
+#: core.c:2016 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u minut"
 
-#: core.c:2003 core.c:2004
+#: core.c:2018 core.c:2019
 msgid "Inactive"
 msgstr "Neaktivní"
 
-#: core.c:2008 core.c:2009
+#: core.c:2023 core.c:2024
 msgid "Not started"
 msgstr "Není spuštěné"
 
-#: core.c:2014
+#: core.c:2029
 msgid "Active"
 msgstr "Aktivní"
 
-#: core.c:2019
+#: core.c:2034
 #, c-format
 msgid "(%u hours left)"
 msgstr "(zbývá %u hodin)"
 
-#: core.c:2021
+#: core.c:2036
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(zbývá %u minut)"
 
-#: core.c:2023
+#: core.c:2038
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(zbývá %u sekund)"
 
-#: core.c:2028
+#: core.c:2043
 #, c-format
 msgid "in %u hours"
 msgstr "za %u hodin"
 
-#: core.c:2030
+#: core.c:2045
 #, c-format
 msgid "in %u minutes"
 msgstr "za %u minut"
 
-#: core.c:2032
+#: core.c:2047
 #, c-format
 msgid "in %u seconds"
 msgstr "za %u sekund"
 
-#: core.c:2048
+#: core.c:2063
 msgid "Starting benchmark"
 msgstr "Spouštění výkonnostního testu"
 
-#: core.c:2067
+#: core.c:2082
 msgid "an error occurred while starting benchmark"
 msgstr "při spouštění výkonnostního testu se vyskytla chyba"
 
-#: core.c:2084
+#: core.c:2099
 msgid "Finding CPU package in fallback mode"
 msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
 
-#: core.c:2106
+#: core.c:2121
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
 
-#: core.c:2125
+#: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Násobiče frekvence procesoru zjišťovány v náhradním režimu"
 
-#: core.c:2152
+#: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Informace o základní desce zjišťovány v náhradním režimu"
 
-#: core.c:2161
+#: core.c:2176
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nepodařilo se získat informace o základní desce (náhradní režim)"
 
-#: core.c:2200
+#: core.c:2215
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Teplota procesoru zjišťována v náhradním režimu"
 
-#: core.c:2246
+#: core.c:2261
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nepodařilo se zjistit teplotu procesoru (náhradní režim)"
 
-#: core.c:2259
+#: core.c:2274
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Provozní napětí procesoru zjišťováno v náhradním režimu"
 
-#: core.c:2272
+#: core.c:2287
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
 
-#: core.c:2287
+#: core.c:2302
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
 
-#: core.c:2295
+#: core.c:2310
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
 
@@ -1123,8 +1123,8 @@ msgid ""
 "recover."
 msgstr ""
 "\n"
-"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a pokouší se o "
-"nápravu.%s"
+"%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a pokouší se o nápravu."
+"%s"
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1166,7 +1166,8 @@ msgstr "Vítejte v nápovědě pseudografické (NCurses) varianty %s!\n"
 
 #: tui_ncurses.c:505
 msgid "This help describes how to use this Text-based User Interface."
-msgstr "Tato nápověda popisuje použití tohoto textového uživatelského rozhraní."
+msgstr ""
+"Tato nápověda popisuje použití tohoto textového uživatelského rozhraní."
 
 #: tui_ncurses.c:507
 msgid "Global keys:"
@@ -1174,7 +1175,8 @@ msgstr "Všeobecné klávesy:"
 
 #: tui_ncurses.c:508
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Stiskem klávesy „Šipka vlevo“ nebo \"Tab\" se přepnete do karty nalevo."
+msgstr ""
+"Stiskem klávesy „Šipka vlevo“ nebo \"Tab\" se přepnete do karty nalevo."
 
 #: tui_ncurses.c:509
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."

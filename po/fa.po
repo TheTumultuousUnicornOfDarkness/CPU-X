@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2022-10-30 14:51+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-03-20 18:17+0000\n"
 "PO-Revision-Date: 2022-11-03 07:08+0000\n"
 "Last-Translator: Abou <aboozar.gh.r@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -81,7 +81,8 @@ msgstr "در حال فراخوانی کتابخانه شناسه پردازند�
 
 #: core.c:494
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر ایستای MSR پردازنده"
+msgstr ""
+"فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر ایستای MSR پردازنده"
 
 #: core.c:519
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
@@ -165,78 +166,78 @@ msgstr ""
 msgid "No available physical devices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core.c:1108
+#: core.c:1111
 #, fuzzy, c-format
 #| msgid "failed to get name for device %u (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 
-#: core.c:1112
+#: core.c:1115
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Enabled"
 msgstr "فعال شده"
 
-#: core.c:1139 core.c:1762
+#: core.c:1147 core.c:1460
 msgid "Disabled"
 msgstr "غیرفعال شده"
 
-#: core.c:1188
+#: core.c:1197
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "پلتفرمی با پشتیبانی از OpenCL وجود ندارد (%s)"
 
-#: core.c:1199
+#: core.c:1208
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core.c:1211
+#: core.c:1220
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "دریافت ناموفق نام پلتفرم %u (%s)"
 
-#: core.c:1219
+#: core.c:1228
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "دریافت ناموفق نسخه پلتفرم %u (%s)"
 
-#: core.c:1228
+#: core.c:1237
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "یافتن ناموفق دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
-#: core.c:1228
+#: core.c:1237
 #, fuzzy
 #| msgid "DeviceID"
 msgid "0 device"
 msgstr "شناسه دستگاه"
 
-#: core.c:1238
+#: core.c:1247
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "دریافت ناموفق تمام دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
-#: core.c:1253
+#: core.c:1262
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 
-#: core.c:1261
+#: core.c:1270
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "دریافت ناموفق نسخه دستگاه %u (%s)"
 
-#: core.c:1277
+#: core.c:1286
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_TOPOLOGY_AMD پشتیبانی نمی کند (%s)"
 
-#: core.c:1288
+#: core.c:1297
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -244,7 +245,7 @@ msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_GFXIP_MAJOR_AMD (%s) پشتیبانی نمی "
 "کند"
 
-#: core.c:1301 core.c:1314 core.c:1342
+#: core.c:1310 core.c:1323 core.c:1351
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -252,7 +253,7 @@ msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_MAX_COMPUTE_UNITS (%s) پشتیبانی "
 "نمی کند"
 
-#: core.c:1330
+#: core.c:1339
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -262,185 +263,185 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) یا CL_DEVICE_PCI_SLOT_ID_NV (%s) پشتیبانی نمی "
 "کند"
 
-#: core.c:1352
+#: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL توسط سازنده پردازنده گرافیکی شما پشتیبانی نمی شود (0x%X)"
 
-#: core.c:1382
+#: core.c:1392
 msgid "Finding devices"
 msgstr "در حال بررسی دستگاه ها"
 
-#: core.c:1394
+#: core.c:1404
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core.c:1432
+#: core.c:1442
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "سازنده پردازنده گرافیکی شما نامشخص است: %s (0x%X)"
 
-#: core.c:1460
+#: core.c:1478
 msgid "failed to find chipset vendor and model"
 msgstr "جستجوی سازنده و مدل chipset ناموفق بود"
 
-#: core.c:1462
+#: core.c:1480
 msgid "failed to find graphic card vendor and model"
 msgstr "سازنده و مدل کارت گرافیک پیدا نشد"
 
-#: core.c:1539
+#: core.c:1557
 msgid "Retrieving GPU clocks"
 msgstr "در حال دریافت زمان سنج های پردازنده گرافیکی"
 
-#: core.c:1574
+#: core.c:1592
 msgid "None"
 msgstr "هیچ کدام"
 
-#: core.c:1715
+#: core.c:1733
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "راه انداز پردازنده گرافیکی %u فرکانس ها را گزارش نمی دهد"
 
-#: core.c:1758
+#: core.c:1776
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 msgstr "جاری: PCIe Gen%1dx%d / بیشینه: Gen%1dx%d"
 
-#: core.c:1786
+#: core.c:1801
 msgid "failed to retrieve GPU clocks"
 msgstr "دریافت ناموفق زمان سنج های پردازنده گرافیکی"
 
-#: core.c:1803
+#: core.c:1818
 msgid "Identifying running system"
 msgstr "در حال شناسایی سیستم در حال اجرا"
 
-#: core.c:1806
+#: core.c:1821
 msgid "failed to identify running system"
 msgstr "شناسایی سیستم در حال اجرا ناموفق بود"
 
-#: core.c:1850 core.c:1878
+#: core.c:1865 core.c:1893
 msgid "Calling libprocps"
 msgstr "در حال فراخوانی libprocps"
 
-#: core.c:1853
+#: core.c:1868
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1859
+#: core.c:1874
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1904
+#: core.c:1919
 msgid "Calling libstatgrab"
 msgstr "در حال فراخوانی libstatgrab"
 
-#: core.c:1943
+#: core.c:1958
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i روز و %i ساعت و %i دقیقه و %i ثانیه"
 
-#: core.c:2000
+#: core.c:2015
 msgid "Updating benchmark status"
 msgstr "در حال به روز رسانی وضعیت بررسی معیارها"
 
-#: core.c:2001 tui_ncurses.c:879
+#: core.c:2016 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
 msgstr "%u دقیقه"
 
-#: core.c:2003 core.c:2004
+#: core.c:2018 core.c:2019
 msgid "Inactive"
 msgstr "غیرفعال"
 
-#: core.c:2008 core.c:2009
+#: core.c:2023 core.c:2024
 msgid "Not started"
 msgstr "آغاز نشده"
 
-#: core.c:2014
+#: core.c:2029
 msgid "Active"
 msgstr "فعال"
 
-#: core.c:2019
+#: core.c:2034
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u ساعت مانده)"
 
-#: core.c:2021
+#: core.c:2036
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u دقیقه مانده)"
 
-#: core.c:2023
+#: core.c:2038
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u ثانیه مانده)"
 
-#: core.c:2028
+#: core.c:2043
 #, c-format
 msgid "in %u hours"
 msgstr "در %u ساعت"
 
-#: core.c:2030
+#: core.c:2045
 #, c-format
 msgid "in %u minutes"
 msgstr "در %u دقیقه"
 
-#: core.c:2032
+#: core.c:2047
 #, c-format
 msgid "in %u seconds"
 msgstr "در %u ثانیه"
 
-#: core.c:2048
+#: core.c:2063
 msgid "Starting benchmark"
 msgstr "در حال آغاز بررسی معیارها"
 
-#: core.c:2067
+#: core.c:2082
 msgid "an error occurred while starting benchmark"
 msgstr "خطایی در آغاز بررسی معیارها رخ داده است"
 
-#: core.c:2084
+#: core.c:2099
 msgid "Finding CPU package in fallback mode"
 msgstr "در حال یافتن بسته پردازنده در حالت جایگزینی"
 
-#: core.c:2106
+#: core.c:2121
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
 
-#: core.c:2125
+#: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "در حال محاسبه افزاینده های پردازنده در حالت جایگزینی"
 
-#: core.c:2152
+#: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "در حال دریافت اطلاعات مادربرد در حالت جایگزینی"
 
-#: core.c:2161
+#: core.c:2176
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "دریافت ناموفق اطلاعات مادربرد (حالت جایگزینی)"
 
-#: core.c:2200
+#: core.c:2215
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "در حال دریافت دمای پردازنده در حالت جایگزینی"
 
-#: core.c:2246
+#: core.c:2261
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "دریافت ناموفق دمای پردازنده (حالت جایگزینی)"
 
-#: core.c:2259
+#: core.c:2274
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "در حال دریافت ولتاژ پردازنده در حالت جایگزینی"
 
-#: core.c:2272
+#: core.c:2287
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "دریافت ناموفق ولتاژ پردازنده (حالت جایگزینی)"
 
-#: core.c:2287
+#: core.c:2302
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "در حال دریافت فرکانس پردازنده در حالت جایگزینی"
 
-#: core.c:2295
+#: core.c:2310
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "دریافت ناموفق فرکانس پردازنده (حالت جایگزینی)"
 
