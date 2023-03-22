@@ -29,7 +29,7 @@ jobs:
       run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
     - name: Delete previous continuous release
-      uses: dev-drprasad/delete-tag-and-release@v0.2.0
+      uses: dev-drprasad/delete-tag-and-release@v0.2.1
       with:
         tag_name: continuous
         delete_release: true
