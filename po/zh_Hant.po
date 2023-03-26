@@ -14,10 +14,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-03-20 18:17+0000\n"
-"PO-Revision-Date: 2023-02-19 03:36+0000\n"
+"PO-Revision-Date: 2023-03-26 21:41+0000\n"
 "Last-Translator: Hou Qiyao <ryanhou24@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -209,10 +209,8 @@ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
 
 #: core.c:1237
-#, fuzzy
-#| msgid "Finding devices"
 msgid "0 device"
-msgstr "正在尋找裝置"
+msgstr "0 設備"
 
 #: core.c:1247
 #, c-format
@@ -468,10 +466,9 @@ msgid "Start daemon"
 msgstr ""
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "核心 #%i"
+msgstr "類型 #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
