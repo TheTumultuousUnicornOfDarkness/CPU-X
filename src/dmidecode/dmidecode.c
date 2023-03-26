@@ -3002,6 +3002,28 @@ static void dmi_memory_device_speed(const char *attr, u16 code1, u32 code2)
 	}
 }
 
+static char *dmi_memory_device_speed_str(u16 code1, u32 code2)
+{
+	static char speed[STR_LEN] = "";
+
+	if (code1 == 0xFFFF)
+	{
+		if (code2 == 0)
+			snprintf(speed, STR_LEN, "%s", "Unknown speed");
+		else
+			snprintf(speed, STR_LEN, "%u MT/s", code2);
+	}
+	else
+	{
+		if (code1 == 0)
+			snprintf(speed, STR_LEN, "Unknown");
+		else
+			snprintf(speed, STR_LEN, "%u MT/s", code1);
+	}
+
+	return speed;
+}
+
 static void dmi_memory_technology(u8 code)
 {
 	/* 7.18.6 */
@@ -5504,10 +5526,11 @@ static void dmi_decode_cpux(const struct dmi_header *h)
 							snprintf(cpux_data->memory[cpux_data->dimm_count], MAXSTR, "%s %s, ", manufacturer, part_number);
 					}
 					char specs[MAXSTR];
-					char *size = (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C));
-					snprintf(specs, MAXSTR, "%s @ %u MHz (%s %s)",
+					char *size  = (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C));
+					char *speed = dmi_memory_device_speed_str(WORD(data + 0x15), h->length >= 0x5C ? DWORD(data + 0x54) : 0);
+					snprintf(specs, MAXSTR, "%s @ %s (%s %s)",
 					         size,
-					         (WORD(data + 0x20)),
+					         speed,
 					         dmi_memory_device_form_factor(data[0x0E]),
 					         dmi_memory_device_type(data[0x12]));
 					strncat(cpux_data->memory[cpux_data->dimm_count], specs, MAXSTR);
