@@ -270,6 +270,7 @@ int parse_command_line(int argc, char * const argv[])
 		{ "dev-mem", required_argument, NULL, 'd' },
 		{ "help", no_argument, NULL, 'h' },
 		{ "quiet", no_argument, NULL, 'q' },
+		{ "no-quirks", no_argument, NULL, 'Q' },
 		{ "string", required_argument, NULL, 's' },
 		{ "type", required_argument, NULL, 't' },
 		{ "dump", no_argument, NULL, 'u' },
@@ -301,6 +302,9 @@ int parse_command_line(int argc, char * const argv[])
 				break;
 			case 'q':
 				opt.flags |= FLAG_QUIET;
+				break;
+			case 'Q':
+				opt.flags |= FLAG_NO_QUIRKS;
 				break;
 			case 's':
 				if (parse_opt_string(optarg) < 0)
@@ -371,6 +375,7 @@ void print_help(void)
 		" -d, --dev-mem FILE     Read memory from device FILE (default: " DEFAULT_MEM_DEV ")\n"
 		" -h, --help             Display this help text and exit\n"
 		" -q, --quiet            Less verbose output\n"
+		"     --no-quirks        Decode everything without quirks\n"
 		" -s, --string KEYWORD   Only display the value of the given DMI string\n"
 		" -t, --type TYPE        Only display the entries of given type\n"
 		" -H, --handle HANDLE    Only display the entry of given handle\n"

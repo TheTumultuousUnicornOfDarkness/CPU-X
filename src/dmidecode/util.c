@@ -155,6 +155,7 @@ out:
 	return p;
 }
 
+#ifdef USE_MMAP
 static void safe_memcpy(void *dest, const void *src, size_t n)
 {
 #ifdef USE_SLOW_MEMCPY
@@ -164,8 +165,9 @@ static void safe_memcpy(void *dest, const void *src, size_t n)
 		*((u8 *)dest + i) = *((const u8 *)src + i);
 #else
 	memcpy(dest, src, n);
-#endif
+#endif /* USE_SLOW_MEMCPY */
 }
+#endif /* USE_MMAP */
 
 /*
  * Copy a physical memory chunk into a memory buffer.
@@ -173,18 +175,26 @@ static void safe_memcpy(void *dest, const void *src, size_t n)
  */
 void *mem_chunk(off_t base, size_t len, const char *devmem)
 {
-	void *p;
+	struct stat statbuf;
+	void *p = NULL;
 	int fd;
 #ifdef USE_MMAP
-	struct stat statbuf;
 	off_t mmoffset;
 	void *mmp;
 #endif
 
-	if ((fd = open(devmem, O_RDONLY)) == -1)
+	/*
+	 * Safety check: if running as root, devmem is expected to be a
+	 * character device file.
+	 */
+	if ((fd = open(devmem, O_RDONLY)) == -1
+	 || fstat(fd, &statbuf) == -1
+	 || (geteuid() == 0 && !S_ISCHR(statbuf.st_mode)))
 	{
-		perror(devmem);
-		return NULL;
+		fprintf(stderr, "Can't read memory from %s\n", devmem);
+		if (fd == -1)
+			return NULL;
+		goto out;
 	}
 
 	if ((p = malloc(len)) == NULL)
@@ -194,13 +204,6 @@ void *mem_chunk(off_t base, size_t len, const char *devmem)
 	}
 
 #ifdef USE_MMAP
-	if (fstat(fd, &statbuf) == -1)
-	{
-		fprintf(stderr, "%s: ", devmem);
-		perror("stat");
-		goto err_free;
-	}
-
 	/*
 	 * mmap() will fail with SIGBUS if trying to map beyond the end of
 	 * the file.
@@ -257,46 +260,6 @@ out:
 		perror(devmem);
 
 	return p;
-}
-
-int write_dump(size_t base, size_t len, const void *data, const char *dumpfile, int add)
-{
-	FILE *f;
-
-	f = fopen(dumpfile, add ? "r+b" : "wb");
-	if (!f)
-	{
-		fprintf(stderr, "%s: ", dumpfile);
-		perror("fopen");
-		return -1;
-	}
-
-	if (fseek(f, base, SEEK_SET) != 0)
-	{
-		fprintf(stderr, "%s: ", dumpfile);
-		perror("fseek");
-		goto err_close;
-	}
-
-	if (fwrite(data, len, 1, f) != 1)
-	{
-		fprintf(stderr, "%s: ", dumpfile);
-		perror("fwrite");
-		goto err_close;
-	}
-
-	if (fclose(f))
-	{
-		fprintf(stderr, "%s: ", dumpfile);
-		perror("fclose");
-		return -1;
-	}
-
-	return 0;
-
-err_close:
-	fclose(f);
-	return -1;
 }
 
 /* Returns end - start + 1, assuming start < end */

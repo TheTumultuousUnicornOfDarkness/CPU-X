@@ -60,6 +60,7 @@
  *    https://www.dmtf.org/sites/default/files/DSP0270_1.0.1.pdf
  */
 
+#include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
@@ -1179,24 +1180,6 @@ static enum cpuid_type dmi_get_cpuid_type(const struct dmi_header *h)
 	      || (type >= 0xB6 && type <= 0xB7) /* AMD */
 	      || (type >= 0xE4 && type <= 0xEF)) /* AMD */
 		return cpuid_x86_amd;
-	else if (type == 0x01 || type == 0x02)
-	{
-		const char *version = dmi_string(h, data[0x10]);
-		/*
-		 * Some X86-class CPU have family "Other" or "Unknown". In this case,
-		 * we use the version string to determine if they are known to
-		 * support the CPUID instruction.
-		 */
-		if (strncmp(version, "Pentium III MMX", 15) == 0
-		 || strncmp(version, "Intel(R) Core(TM)2", 18) == 0
-		 || strncmp(version, "Intel(R) Pentium(R)", 19) == 0
-		 || strcmp(version, "Genuine Intel(R) CPU U1400") == 0)
-			return cpuid_x86_intel;
-		else if (strncmp(version, "AMD Athlon(TM)", 14) == 0
-		      || strncmp(version, "AMD Opteron(tm)", 15) == 0
-		      || strncmp(version, "Dual-Core AMD Opteron(tm)", 25) == 0)
-			return cpuid_x86_amd;
-	}
 
 	/* neither X86 nor ARM */
 	return cpuid_none;
@@ -2796,7 +2779,7 @@ static void dmi_memory_device_width(const char *attr, u16 code)
 	/*
 	 * If no memory module is present, width may be 0
 	 */
-	if (code == 0xFFFF || code == 0)
+	if (code == 0xFFFF || (code == 0 && !(opt.flags & FLAG_NO_QUIRKS)))
 		pr_attr(attr, "Unknown");
 	else
 		pr_attr(attr, "%u bits", code);
@@ -4833,7 +4816,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			dmi_memory_device_type_detail(WORD(data + 0x13));
 			if (h->length < 0x17) break;
 			/* If no module is present, the remaining fields are irrelevant */
-			if (WORD(data + 0x0C) == 0)
+			if (WORD(data + 0x0C) == 0 && !(opt.flags & FLAG_NO_QUIRKS))
 				break;
 			dmi_memory_device_speed("Speed", WORD(data + 0x15),
 						h->length >= 0x5C ?
@@ -5573,12 +5556,12 @@ static void dmi_table_string(const struct dmi_header *h, const u8 *data, u16 ver
 	switch (key)
 	{
 		case 0x015: /* -s bios-revision */
-			if (data[key - 1] != 0xFF && data[key] != 0xFF)
-				printf("%u.%u\n", data[key - 1], data[key]);
+			if (data[offset - 1] != 0xFF && data[offset] != 0xFF)
+				printf("%u.%u\n", data[offset - 1], data[offset]);
 			break;
 		case 0x017: /* -s firmware-revision */
-			if (data[key - 1] != 0xFF && data[key] != 0xFF)
-				printf("%u.%u\n", data[key - 1], data[key]);
+			if (data[offset - 1] != 0xFF && data[offset] != 0xFF)
+				printf("%u.%u\n", data[offset - 1], data[offset]);
 			break;
 		case 0x108:
 			dmi_system_uuid(NULL, NULL, data + offset, ver);
@@ -5597,11 +5580,65 @@ static void dmi_table_string(const struct dmi_header *h, const u8 *data, u16 ver
 	}
 }
 
-static void dmi_table_dump(const u8 *buf, u32 len)
+static int dmi_table_dump(const u8 *ep, u32 ep_len, const u8 *table,
+			  u32 table_len)
 {
+	int fd;
+	FILE *f;
+
+	fd = open(opt.dumpfile, O_WRONLY|O_CREAT|O_EXCL, 0666);
+	if (fd == -1)
+	{
+		fprintf(stderr, "%s: ", opt.dumpfile);
+		perror("open");
+		return -1;
+	}
+
+	f = fdopen(fd, "wb");
+	if (!f)
+	{
+		fprintf(stderr, "%s: ", opt.dumpfile);
+		perror("fdopen");
+		return -1;
+	}
+
 	if (!(opt.flags & FLAG_QUIET))
-		pr_comment("Writing %d bytes to %s.", len, opt.dumpfile);
-	write_dump(32, len, buf, opt.dumpfile, 0);
+		pr_comment("Writing %d bytes to %s.", ep_len, opt.dumpfile);
+	if (fwrite(ep, ep_len, 1, f) != 1)
+	{
+		fprintf(stderr, "%s: ", opt.dumpfile);
+		perror("fwrite");
+		goto err_close;
+	}
+
+	if (fseek(f, 32, SEEK_SET) != 0)
+	{
+		fprintf(stderr, "%s: ", opt.dumpfile);
+		perror("fseek");
+		goto err_close;
+	}
+
+	if (!(opt.flags & FLAG_QUIET))
+		pr_comment("Writing %d bytes to %s.", table_len, opt.dumpfile);
+	if (fwrite(table, table_len, 1, f) != 1)
+	{
+		fprintf(stderr, "%s: ", opt.dumpfile);
+		perror("fwrite");
+		goto err_close;
+	}
+
+	if (fclose(f))
+	{
+		fprintf(stderr, "%s: ", opt.dumpfile);
+		perror("fclose");
+		return -1;
+	}
+
+	return 0;
+
+err_close:
+	fclose(f);
+	return -1;
 }
 
 static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
@@ -5714,7 +5751,7 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 		}
 
 		/* Fixup a common mistake */
-		if (h.type == 34)
+		if (h.type == 34 && !(opt.flags & FLAG_NO_QUIRKS))
 			dmi_fixup_type_34(&h, display);
 
 		if (display)
@@ -5760,8 +5797,9 @@ static void dmi_table_decode(u8 *buf, u32 len, u16 num, u16 ver, u32 flags)
 	}
 }
 
-static void dmi_table(off_t base, u32 len, u16 num, u32 ver, const char *devmem,
-		      u32 flags)
+/* Allocates a buffer for the table, must be freed by the caller */
+static u8 *dmi_table_get(off_t base, u32 *len, u16 num, u32 ver,
+			 const char *devmem, u32 flags)
 {
 	u8 *buf;
 
@@ -5780,7 +5818,7 @@ static void dmi_table(off_t base, u32 len, u16 num, u32 ver, const char *devmem,
 		{
 			if (num)
 				pr_info("%u structures occupying %u bytes.",
-					num, len);
+					num, *len);
 			if (!(opt.flags & FLAG_FROM_DUMP))
 				pr_info("Table at 0x%08llX.",
 					(unsigned long long)base);
@@ -5798,19 +5836,19 @@ static void dmi_table(off_t base, u32 len, u16 num, u32 ver, const char *devmem,
 		 * would be the result of the kernel truncating the table on
 		 * parse error.
 		 */
-		size_t size = len;
+		size_t size = *len;
 		buf = read_file(flags & FLAG_NO_FILE_OFFSET ? 0 : base,
 			&size, devmem);
-		if (!(opt.flags & FLAG_QUIET) && num && size != (size_t)len)
+		if (!(opt.flags & FLAG_QUIET) && num && size != (size_t)*len)
 		{
 			fprintf(stderr, "Wrong DMI structures length: %u bytes "
 				"announced, only %lu bytes available.\n",
-				len, (unsigned long)size);
+				*len, (unsigned long)size);
 		}
-		len = size;
+		*len = size;
 	}
 	else
-		buf = mem_chunk(base, len, devmem);
+		buf = mem_chunk(base, *len, devmem);
 
 	if (buf == NULL)
 	{
@@ -5820,15 +5858,9 @@ static void dmi_table(off_t base, u32 len, u16 num, u32 ver, const char *devmem,
 			fprintf(stderr,
 				"Try compiling dmidecode with -DUSE_MMAP.\n");
 #endif
-		return;
 	}
 
-	if (opt.flags & FLAG_DUMP_BIN)
-		dmi_table_dump(buf, len);
-	else
-		dmi_table_decode(buf, len, num, ver >> 8, flags);
-
-	free(buf);
+	return buf;
 }
 
 
@@ -5863,8 +5895,9 @@ static void overwrite_smbios3_address(u8 *buf)
 
 static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
 {
-	u32 ver;
+	u32 ver, len;
 	u64 offset;
+	u8 *table;
 
 	/* Don't let checksum run beyond the buffer */
 	if (buf[0x06] > 0x20)
@@ -5875,7 +5908,8 @@ static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
 		return 0;
 	}
 
-	if (!checksum(buf, buf[0x06]))
+	if (buf[0x06] < 0x18
+	 || !checksum(buf, buf[0x06]))
 		return 0;
 
 	ver = (buf[0x07] << 16) + (buf[0x08] << 8) + buf[0x09];
@@ -5890,8 +5924,12 @@ static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
 		return 0;
 	}
 
-	dmi_table(((off_t)offset.h << 32) | offset.l,
-		  DWORD(buf + 0x0C), 0, ver, devmem, flags | FLAG_STOP_AT_EOT);
+	/* Maximum length, may get trimmed */
+	len = DWORD(buf + 0x0C);
+	table = dmi_table_get(((off_t)offset.h << 32) | offset.l, &len, 0, ver,
+			      devmem, flags | FLAG_STOP_AT_EOT);
+	if (table == NULL)
+		return 1;
 
 	if (opt.flags & FLAG_DUMP_BIN)
 	{
@@ -5900,18 +5938,47 @@ static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
 		memcpy(crafted, buf, 32);
 		overwrite_smbios3_address(crafted);
 
-		if (!(opt.flags & FLAG_QUIET))
-			pr_comment("Writing %d bytes to %s.", crafted[0x06],
-				   opt.dumpfile);
-		write_dump(0, crafted[0x06], crafted, opt.dumpfile, 1);
+		dmi_table_dump(crafted, crafted[0x06], table, len);
 	}
+	else
+	{
+		dmi_table_decode(table, len, 0, ver >> 8,
+				 flags | FLAG_STOP_AT_EOT);
+	}
+
+	free(table);
 
 	return 1;
 }
 
+static void dmi_fixup_version(u16 *ver)
+{
+	/* Some BIOS report weird SMBIOS version, fix that up */
+	switch (*ver)
+	{
+		case 0x021F:
+		case 0x0221:
+			if (!(opt.flags & FLAG_QUIET))
+				fprintf(stderr,
+					"SMBIOS version fixup (2.%d -> 2.%d).\n",
+					*ver & 0xFF, 3);
+			*ver = 0x0203;
+			break;
+		case 0x0233:
+			if (!(opt.flags & FLAG_QUIET))
+				fprintf(stderr,
+					"SMBIOS version fixup (2.%d -> 2.%d).\n",
+					51, 6);
+			*ver = 0x0206;
+			break;
+	}
+}
+
 static int smbios_decode(u8 *buf, const char *devmem, u32 flags)
 {
-	u16 ver;
+	u16 ver, num;
+	u32 len;
+	u8 *table;
 
 	/* Don't let checksum run beyond the buffer */
 	if (buf[0x05] > 0x20)
@@ -5922,37 +5989,30 @@ static int smbios_decode(u8 *buf, const char *devmem, u32 flags)
 		return 0;
 	}
 
-	if (!checksum(buf, buf[0x05])
+	/*
+	 * The size of this structure is 0x1F bytes, but we also accept value
+	 * 0x1E due to a mistake in SMBIOS specification version 2.1.
+	 */
+	if (buf[0x05] < 0x1E
+	 || !checksum(buf, buf[0x05])
 	 || memcmp(buf + 0x10, "_DMI_", 5) != 0
 	 || !checksum(buf + 0x10, 0x0F))
 		return 0;
 
 	ver = (buf[0x06] << 8) + buf[0x07];
-	/* Some BIOS report weird SMBIOS version, fix that up */
-	switch (ver)
-	{
-		case 0x021F:
-		case 0x0221:
-			if (!(opt.flags & FLAG_QUIET))
-				fprintf(stderr,
-					"SMBIOS version fixup (2.%d -> 2.%d).\n",
-					ver & 0xFF, 3);
-			ver = 0x0203;
-			break;
-		case 0x0233:
-			if (!(opt.flags & FLAG_QUIET))
-				fprintf(stderr,
-					"SMBIOS version fixup (2.%d -> 2.%d).\n",
-					51, 6);
-			ver = 0x0206;
-			break;
-	}
+	if (!(opt.flags & FLAG_NO_QUIRKS))
+		dmi_fixup_version(&ver);
 	if (!(opt.flags & FLAG_QUIET))
 		pr_info("SMBIOS %u.%u present.",
 			ver >> 8, ver & 0xFF);
 
-	dmi_table(DWORD(buf + 0x18), WORD(buf + 0x16), WORD(buf + 0x1C),
-		ver << 8, devmem, flags);
+	/* Maximum length, may get trimmed */
+	len = WORD(buf + 0x16);
+	num = WORD(buf + 0x1C);
+	table = dmi_table_get(DWORD(buf + 0x18), &len, num, ver << 8,
+			      devmem, flags);
+	if (table == NULL)
+		return 1;
 
 	if (opt.flags & FLAG_DUMP_BIN)
 	{
@@ -5961,27 +6021,39 @@ static int smbios_decode(u8 *buf, const char *devmem, u32 flags)
 		memcpy(crafted, buf, 32);
 		overwrite_dmi_address(crafted + 0x10);
 
-		if (!(opt.flags & FLAG_QUIET))
-			pr_comment("Writing %d bytes to %s.", crafted[0x05],
-				   opt.dumpfile);
-		write_dump(0, crafted[0x05], crafted, opt.dumpfile, 1);
+		dmi_table_dump(crafted, crafted[0x05], table, len);
 	}
+	else
+	{
+		dmi_table_decode(table, len, num, ver, flags);
+	}
+
+	free(table);
 
 	return 1;
 }
 
 static int legacy_decode(u8 *buf, const char *devmem, u32 flags)
 {
+	u16 ver, num;
+	u32 len;
+	u8 *table;
+
 	if (!checksum(buf, 0x0F))
 		return 0;
 
+	ver = ((buf[0x0E] & 0xF0) << 4) + (buf[0x0E] & 0x0F);
 	if (!(opt.flags & FLAG_QUIET))
 		pr_info("Legacy DMI %u.%u present.",
 			buf[0x0E] >> 4, buf[0x0E] & 0x0F);
 
-	dmi_table(DWORD(buf + 0x08), WORD(buf + 0x06), WORD(buf + 0x0C),
-		((buf[0x0E] & 0xF0) << 12) + ((buf[0x0E] & 0x0F) << 8),
-		devmem, flags);
+	/* Maximum length, may get trimmed */
+	len = WORD(buf + 0x06);
+	num = WORD(buf + 0x0C);
+	table = dmi_table_get(DWORD(buf + 0x08), &len, num, ver << 8,
+			      devmem, flags);
+	if (table == NULL)
+		return 1;
 
 	if (opt.flags & FLAG_DUMP_BIN)
 	{
@@ -5990,11 +6062,14 @@ static int legacy_decode(u8 *buf, const char *devmem, u32 flags)
 		memcpy(crafted, buf, 16);
 		overwrite_dmi_address(crafted);
 
-		if (!(opt.flags & FLAG_QUIET))
-			pr_comment("Writing %d bytes to %s.", 0x0F,
-				   opt.dumpfile);
-		write_dump(0, 0x0F, crafted, opt.dumpfile, 1);
+		dmi_table_dump(crafted, 0x0F, table, len);
 	}
+	else
+	{
+		dmi_table_decode(table, len, num, ver, flags);
+	}
+
+	free(table);
 
 	return 1;
 }
