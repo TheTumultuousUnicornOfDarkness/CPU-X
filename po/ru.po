@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-03-20 18:17+0000\n"
-"PO-Revision-Date: 2023-01-13 17:52+0000\n"
+"PO-Revision-Date: 2023-03-30 14:40+0000\n"
 "Last-Translator: Артём Котлубай <artemkotlubai@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -28,10 +28,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: core.c:542
 msgid "Calculating CPU multipliers"
-msgstr "Подсчет множителей ЦП"
+msgstr "Подсчёт множителей ЦП"
 
 #: core.c:575
 msgid "Calling dmidecode"
@@ -328,11 +328,11 @@ msgstr "не удалось получить частоту ГП"
 
 #: core.c:1818
 msgid "Identifying running system"
-msgstr "Определение рабочей системы"
+msgstr "Определение запущенной системы"
 
 #: core.c:1821
 msgid "failed to identify running system"
-msgstr "не удалось определить рабочую систему"
+msgstr "не удалось определить запущенную систему"
 
 #: core.c:1865 core.c:1893
 msgid "Calling libprocps"
@@ -340,11 +340,11 @@ msgstr "Вызов libprocps"
 
 #: core.c:1868
 msgid "unable to get system uptime"
-msgstr "не удается узнать время работы системы"
+msgstr "не удаётся получить время работы системы"
 
 #: core.c:1874
 msgid "unable to create meminfo structure"
-msgstr "не удается создать структуру meminfo"
+msgstr "не удаётся создать структуру meminfo"
 
 #: core.c:1919
 msgid "Calling libstatgrab"
@@ -425,7 +425,7 @@ msgstr "Ваш сокет ЦП отсутствует в базе данных =
 
 #: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Подсчет множителей ЦП в режиме c откатом"
+msgstr "Подсчёт множителей ЦП в режиме c откатом"
 
 #: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
@@ -779,7 +779,7 @@ msgstr "Вычислительный узел"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr "ID устройства"
+msgstr "ИД устройства"
 
 #: main.c:154
 msgid "VBIOS Version"
@@ -1262,7 +1262,7 @@ msgstr "ошибка при выполнении команды «%s» (%s)"
 #: util.c:379 util.c:439
 #, c-format
 msgid "failed to open %s directory"
-msgstr "не удалось открыть каталог «%s»"
+msgstr "не удалось открыть папку «%s»"
 
 #: util.c:452
 msgid "an error occurred while compiling regex"
@@ -1287,7 +1287,7 @@ msgstr "не удалось изменить привязку ЦП к ядру %
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: не удается получить авторизацию (диалог отключен)"
+msgstr "pkexec: не удаётся получить авторизацию (диалог отключён)"
 
 #: util.c:611
 msgid "pkexec: authorization could not be obtained (not authorized)"
@@ -1376,7 +1376,7 @@ msgstr "Светлая"
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5877
 msgid "Dark"
-msgstr "Темная"
+msgstr "Тёмная"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5910
