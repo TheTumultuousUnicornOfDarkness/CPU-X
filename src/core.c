@@ -1452,7 +1452,7 @@ static int find_devices(Labels *data)
 			get_gpu_comp_unit(dev, &comp_unit, comp_unit_type, cl_ver);
 
 			if(total_vram_size > 0)
-				casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED + data->gpu_count * GPUFIELDS], false, "_ / %lu %s",
+				casprintf(&data->tab_graphics[VALUE][GPU1MEMUSED + data->gpu_count * GPUFIELDS], false, "??? / %lu %s",
 				          (total_vram_size >> 20), UNIT_MIB);
 
 			if ((total_vram_size > 0) && (bar_size > 0))
@@ -1604,26 +1604,26 @@ static int gpu_monitoring(Labels *data)
 			continue;
 		}
 
+		/* DRM */
+		if(cached_paths_drm[i] == NULL)
+			ret_drm = request_sensor_path(0, format("%s/drm", data->g_data->device_path[i]), &cached_paths_drm[i], RQT_GPU_DRM);
+		if(once_error && (ret_drm || (cached_paths_drm[i] == NULL)))
+			MSG_WARNING(_("DRM path for GPU %u is unknown"), i);
+		else if(once_error && (sscanf(cached_paths_drm[i], "/sys/bus/pci/devices/%*x:%*x:%*x.%*d/drm/card%hhu", &card_number) != 1))
+			MSG_WARNING(_("Card number for GPU %u is unknown"), i);
+
+		/* HWmon */
 		switch(data->g_data->gpu_driver[i])
 		{
 			case GPUDRV_AMDGPU:
-			case GPUDRV_INTEL:
 			case GPUDRV_RADEON:
 			case GPUDRV_NOUVEAU:
 			case GPUDRV_NOUVEAU_BUMBLEBEE:
-				/* HWmon */
 				divisor_temp = 1e3;
-				if((cached_paths_hwmon[i] == NULL) && (data->g_data->gpu_driver[i] != GPUDRV_INTEL))
+				if(cached_paths_hwmon[i] == NULL)
 					ret_hwmon = request_sensor_path(0, format("%s/hwmon", data->g_data->device_path[i]), &cached_paths_hwmon[i], RQT_GPU_HWMON);
 				if(!ret_hwmon && (cached_paths_hwmon[i] != NULL))
 					ret_temp = fopen_to_str(&temp, "%s/temp1_input", cached_paths_hwmon[i]);
-
-				/* DRM */
-				if(cached_paths_drm[i] == NULL)
-					ret_drm = request_sensor_path(0, format("%s/drm", data->g_data->device_path[i]), &cached_paths_drm[i], RQT_GPU_DRM);
-				if(ret_drm || (cached_paths_drm[i] == NULL) || (sscanf(cached_paths_drm[i], "/sys/bus/pci/devices/%*x:%*x:%*x.%*d/drm/card%hhu", &card_number) != 1))
-					goto skip_clocks;
-
 				break;
 			default:
 				break;
@@ -1633,7 +1633,7 @@ static int gpu_monitoring(Labels *data)
 		{
 			case GPUDRV_AMDGPU:
 			{
-				const char *amdgpu_gpu_busy_file = format("%s/device/gpu_busy_percent", cached_paths_drm[i]);
+				const char *amdgpu_gpu_busy_file = (cached_paths_drm[i] != NULL) ? format("%s/device/gpu_busy_percent", cached_paths_drm[i]) : NULL;
 				MSG_DEBUG("gpu_monitoring: amdgpu: amdgpu_gpu_busy_file=%s", amdgpu_gpu_busy_file);
 				// ret_temp obtained above
 				if(!access(amdgpu_gpu_busy_file, F_OK)) // Linux 4.19+
@@ -1689,6 +1689,7 @@ static int gpu_monitoring(Labels *data)
 				ret_vbios_ver  = -1;
 				divisor_gclk   = 100.0;
 				divisor_mclk   = 100.0;
+				divisor_gvolt  = 1e3;
 				break;
 			case GPUDRV_NVIDIA:
 			case GPUDRV_NVIDIA_BUMBLEBEE:
@@ -1768,7 +1769,6 @@ static int gpu_monitoring(Labels *data)
 			casprintf(&data->tab_graphics[VALUE][GPU1VOLTAGE     + i * GPUFIELDS], true, "%.2Lf V", strtoull(gvolt, NULL, 10) / divisor_gvolt);
 		if(!ret_gpwr)
 			casprintf(&data->tab_graphics[VALUE][GPU1POWERAVG    + i * GPUFIELDS], true, "%.2Lf W", strtoull(gpwr, NULL, 10) / divisor_gpwr);
-skip_clocks:
 		if(!ret_temp)
 			casprintf(&data->tab_graphics[VALUE][GPU1TEMPERATURE + i * GPUFIELDS], true, "%.2Lf°C", strtoull(temp, NULL, 10) / divisor_temp);
 		if(!ret_pcie_max_width && !ret_pcie_sta_width && pcie_sta_gen && pcie_max_gen)
@@ -1778,8 +1778,8 @@ skip_clocks:
 		if(strlen(data->tab_graphics[VALUE][GPU1VBIOS + i * GPUFIELDS]) == 0 && !ret_vbios_ver)
 			casprintf(&data->tab_graphics[VALUE][GPU1VBIOS       + i * GPUFIELDS], false, "%s", vbios_ver);
 
-		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr
-		&& ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width && ret_vbios_ver)
+		if(ret_temp && ret_load && ret_gclk && ret_mclk && ret_vram_used && ret_vram_total && ret_gvolt && ret_gpwr &&
+		   ret_pcie_max_speed && ret_pcie_max_width && ret_pcie_sta_speed && ret_pcie_sta_width && ret_vbios_ver)
 			failed_count++;
 
 		FREE(temp);
