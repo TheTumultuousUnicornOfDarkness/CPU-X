@@ -2891,6 +2891,10 @@ int bandwidth_cpux(void *p_data)
 	usec_per_test = 5000;
 	char graph_title [512] = {0};
 
+	// opts members can be changed from GUI so make a working copy now to avoid race condition
+	uint8_t bw_test = opts->bw_test;
+	// opts->selected_type only used once here, shouldn't be an issue
+
 	/* Needed by CPU-X */
 	int count             = 0;
 	uint8_t cache_level   = 0;
@@ -3096,8 +3100,8 @@ int bandwidth_cpux(void *p_data)
 end_initialization:
 #endif /* HAS_LIBCPUID */
 	/* Check if selectionned test is valid */
-	if(opts->bw_test >= LASTTEST)
-		opts->bw_test = 0;
+	if(bw_test >= LASTTEST)
+		bw_test = 0;
 
 	/* Set test names */
 	if(w_data->test_count == 0)
@@ -3108,19 +3112,19 @@ end_initialization:
 		for(i = 0; i < w_data->test_count; i++)
 		{
 			w_data->test_name[i] = NULL;
-			casprintf(&w_data->test_name[i], false, "#%2i: %s", i, tests[i].name);
+			casprintf(&w_data->test_name[i], false, "#%2i: %s %s", i, tests[i].name, tests[i].need_flag ? "" : _("(unavailable)"));
 		}
 	}
 
-	if(tests[opts->bw_test].need_flag)
+	if(tests[bw_test].need_flag)
 	{
-		if(tests[opts->bw_test].random)
+		if(tests[bw_test].random)
 			srand(time (NULL));
 
 		i = 0;
 		while((chunk_size = chunk_sizes [i++]))
 		{
-			if(!tests[opts->bw_test].need_mask || (tests[opts->bw_test].need_mask && !(chunk_size & 128)))
+			if(!tests[bw_test].need_mask || (tests[bw_test].need_mask && !(chunk_size & 128)))
 			{
 				if(chunk_size > w_data->size[cache_level] * 1024)
 				{
@@ -3133,7 +3137,7 @@ end_initialization:
 						return 0;
 				}
 
-				int amount = (*tests[opts->bw_test].func_ptr)(chunk_size, tests[opts->bw_test].mode, tests[opts->bw_test].random);
+				int amount = (*tests[bw_test].func_ptr)(chunk_size, tests[bw_test].mode, tests[bw_test].random);
 				total_amount += amount;
 				count++;
 			}
