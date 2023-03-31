@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-03-20 18:17+0000\n"
+"POT-Creation-Date: 2023-03-31 05:21+0000\n"
 "PO-Revision-Date: 2023-02-22 18:37+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/cpu-x/"
@@ -277,7 +277,17 @@ msgstr ""
 msgid "None"
 msgstr "არაფერი"
 
-#: core.c:1733
+#: core.c:1611
+#, c-format
+msgid "DRM path for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1613
+#, c-format
+msgid "Card number for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1734
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr ""

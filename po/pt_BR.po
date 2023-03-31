@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-03-20 18:17+0000\n"
+"POT-Creation-Date: 2023-03-31 05:21+0000\n"
 "PO-Revision-Date: 2022-10-18 17:04+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
@@ -313,7 +313,17 @@ msgstr "Obtendo a frequência da GPU"
 msgid "None"
 msgstr "Nenhum"
 
-#: core.c:1733
+#: core.c:1611
+#, c-format
+msgid "DRM path for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1613
+#, c-format
+msgid "Card number for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1734
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "O driver para a GPU %u não informa quaisquer frequências"

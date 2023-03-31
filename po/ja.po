@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-03-20 18:17+0000\n"
+"POT-Creation-Date: 2023-03-31 05:21+0000\n"
 "PO-Revision-Date: 2023-03-12 00:43+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -302,7 +302,17 @@ msgstr "GPU クロックを取得中"
 msgid "None"
 msgstr "None"
 
-#: core.c:1733
+#: core.c:1611
+#, c-format
+msgid "DRM path for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1613
+#, c-format
+msgid "Card number for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1734
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "GPU ドライバー %u は周波数を通知しません"

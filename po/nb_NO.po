@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-03-20 18:17+0000\n"
+"POT-Creation-Date: 2023-03-31 05:21+0000\n"
 "PO-Revision-Date: 2022-12-02 10:48+0000\n"
 "Last-Translator: L-M-H <lars.magnus@herland.priv.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -309,7 +309,17 @@ msgstr "Henter GPU-klokker"
 msgid "None"
 msgstr "Ingen"
 
-#: core.c:1733
+#: core.c:1611
+#, c-format
+msgid "DRM path for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1613
+#, c-format
+msgid "Card number for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1734
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
 msgstr "Driver for GPU %u rapporterer ikke frekvenser"

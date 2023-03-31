@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-03-20 18:17+0000\n"
+"POT-Creation-Date: 2023-03-31 05:21+0000\n"
 "PO-Revision-Date: 2023-03-07 23:43+0000\n"
 "Last-Translator: willkali <willian.exercito@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
@@ -303,7 +303,17 @@ msgstr "جارٍ استرداد سرعات GPU"
 msgid "None"
 msgstr ""
 
-#: core.c:1733
+#: core.c:1611
+#, c-format
+msgid "DRM path for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1613
+#, c-format
+msgid "Card number for GPU %u is unknown"
+msgstr ""
+
+#: core.c:1734
 #, fuzzy, c-format
 #| msgid "Driver for GPU %i doesn't report frequencies"
 msgid "Driver for GPU %u doesn't report frequencies"
