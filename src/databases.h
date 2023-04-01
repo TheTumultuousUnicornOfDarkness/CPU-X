@@ -99,6 +99,7 @@ const Technology_DB technology_intel[] =
 	{ 14,         142,          -1,          14 }, // Kaby Lake / Coffee Lake / Comet Lake-U
 	{ 14,         158,          -1,          14 }, // Kaby Lake / Coffee Lake
 	{ 14,         165,          -1,          14 }, // Comet Lake
+	{ 14,         190,          -1,          10 }, // Alder Lake-N
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          22 }, // Haswell-E
 	{ 15,          79,          -1,          14 }, // Broadwell-E
