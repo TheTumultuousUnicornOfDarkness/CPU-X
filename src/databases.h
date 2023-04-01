@@ -32,133 +32,133 @@ typedef struct
 	const int32_t cpu_model;
 	const int32_t cpu_ext_model;
 	const int32_t cpu_ext_family;
-	const int process;
+	const char    *process;
 } Technology_DB;
 
-const Technology_DB technology_unknown[] = { { -1, -1, -1, -1 } };
+const Technology_DB technology_unknown[] = { { -1, -1, -1, NULL } };
 
 const Technology_DB technology_intel[] =
 {
 	//Model        E. Model     E. Family   Process
-	{  0,           0,          -1,         180 }, // P4 Willamette
-	{  1,           1,           6,         350 }, // Pentium Pro
-	{  1,           1,          15,         180 }, // P4 Willamette
-	{  2,           2,          -1,         130 }, // P4 Northwood / Gallatin
-	{  3,           3,           5,         350 }, // PII Overdrive
-	{  3,           3,           6,         350 }, // PII Klamath
-	{  3,           3,          15,          90 }, // P4 Prescott
-	{  4,           4,          -1,          90 }, // P4 Prescott/Irwindale / PD Smithfield
-	{  5,           5,           6,         250 }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
-	{  5,          37,          -1,          32 }, // Westmere
-	{  5,          53,          -1,          32 }, // Atom Cloverview
-	{  5,          69,          -1,          22 }, // Haswell
-	{  5,          85,          -1,          14 }, // Skylake (Xeon Scalable)
-	{  5,          165,          6,          14 }, // Comet Lake
-	{  6,           6,           6,         250 }, // PII Dixon / Celeron Mendocino
-	{  6,           6,          15,          65 }, // P4 Cedar Mill / PD Presler
-	{  6,          22,          -1,          65 }, // C2 Conroe-L
-	{  6,          54,          -1,          32 }, // Atom Cedarview
-	{  6,          70,          -1,          22 }, // Haswell (Crystalwell, L4 cache)
-	{  6,         102,          -1,          10 }, // Cannon Lake
-	{  6,         150,          -1,          10 }, // Tremont (Elkhart Lake)
-	{  7,           7,          -1,         250 }, // PIII Katmai
-	{  7,          23,          -1,          45 }, // C2 Wolfdale / Yorkfield / Penryn
-	{  7,          55,          -1,          22 }, // Atom Bay Trail
-	{  7,          71,          -1,          14 }, // Broadwell
-	{  7,         151,          -1,           7 }, // Alder Lake-S / Alder Lake-HX
-	{  7,         167,          -1,          14 }, // Rocket Lake
-	{  7,         183,          -1,           7 }, // Raptor Lake-S
-	{  8,           0,           0,         180 }, // PIII Coppermine-T
-	{  8,           8,          -1,         180 }, // PIII Coppermine
-	{  9,           9,          -1,         130 }, // Pentium M Banias
-	{ 10,          26,          -1,          45 }, // Nehalem
-	{ 10,          30,          -1,          45 }, // Nehalem
-	{ 10,          42,          -1,          32 }, // Sandy Bridge
-	{ 10,          58,          -1,          22 }, // Ivy Bridge
-	{ 10,         122,          -1,          14 }, // Gemini Lake
-	{ 10,         138,          -1,          10 }, // Tremont (Lakefield)
-	{ 10,         154,          -1,           7 }, // Alder Lake-P / Alder Lake-H
-	{ 10,         186,          -1,          10 }, // Raptor Lake-P / Raptor Lake-U
-	{ 11,          11,          -1,         130 }, // PIII Tualatine
-	{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
-	{ 12,          44,          -1,          32 }, // Westmere
-	{ 12,          60,          -1,          22 }, // Haswell
-	{ 12,          76,          -1,          14 }, // Atom Cherry Trail
-	{ 12,         108,          -1,          10 }, // Ice Lake
-	{ 12,         140,          -1,          10 }, // Tiger Lake
-	{ 12,         156,          -1,          10 }, // Tremont (Jasper Lake)
-	{ 13,          13,          -1,          90 }, // Pentium M Dothan
-	{ 13,          45,          -1,          32 }, // Sandy Bridge-E
-	{ 13,          61,          -1,          14 }, // Broadwell-U
-	{ 14,          14,          -1,          65 }, // Yonah (Core Solo)
-	{ 14,          30,          -1,          45 }, // Nehalem (Lynnfield)
-	{ 14,          62,          -1,          22 }, // Ivy Bridge-E
-	{ 14,          78,          -1,          14 }, // Skylake
-	{ 14,          94,          -1,          14 }, // Skylake
-	{ 14,         126,          -1,          10 }, // Ice Lake
-	{ 14,         142,          -1,          14 }, // Kaby Lake / Coffee Lake / Comet Lake-U
-	{ 14,         158,          -1,          14 }, // Kaby Lake / Coffee Lake
-	{ 14,         165,          -1,          14 }, // Comet Lake
-	{ 14,         190,          -1,          10 }, // Alder Lake-N
-	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
-	{ 15,          63,          -1,          22 }, // Haswell-E
-	{ 15,          79,          -1,          14 }, // Broadwell-E
-	{ 15,         191,          -1,          10 }, // Raptor Lake-S ("Golden Cove" cores)
-	{ -2,          -2,          -2,          -2 }
+	{  0,           0,          -1,         "180 nm" }, // P4 Willamette
+	{  1,           1,           6,         "350 nm" }, // Pentium Pro
+	{  1,           1,          15,         "180 nm" }, // P4 Willamette
+	{  2,           2,          -1,         "130 nm" }, // P4 Northwood / Gallatin
+	{  3,           3,           5,         "350 nm" }, // PII Overdrive
+	{  3,           3,           6,         "350 nm" }, // PII Klamath
+	{  3,           3,          15,          "90 nm" }, // P4 Prescott
+	{  4,           4,          -1,          "90 nm" }, // P4 Prescott/Irwindale / PD Smithfield
+	{  5,           5,           6,         "250 nm" }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
+	{  5,          37,          -1,          "32 nm" }, // Westmere
+	{  5,          53,          -1,          "32 nm" }, // Atom Cloverview
+	{  5,          69,          -1,          "22 nm" }, // Haswell
+	{  5,          85,          -1,          "14 nm" }, // Skylake (Xeon Scalable)
+	{  5,          165,          6,          "14 nm" }, // Comet Lake
+	{  6,           6,           6,         "250 nm" }, // PII Dixon / Celeron Mendocino
+	{  6,           6,          15,          "65 nm" }, // P4 Cedar Mill / PD Presler
+	{  6,          22,          -1,          "65 nm" }, // C2 Conroe-L
+	{  6,          54,          -1,          "32 nm" }, // Atom Cedarview
+	{  6,          70,          -1,          "22 nm" }, // Haswell (Crystalwell, L4 cache)
+	{  6,         102,          -1,          "10 nm" }, // Cannon Lake
+	{  6,         150,          -1,          "10 nm" }, // Tremont (Elkhart Lake)
+	{  7,           7,          -1,         "250 nm" }, // PIII Katmai
+	{  7,          23,          -1,          "45 nm" }, // C2 Wolfdale / Yorkfield / Penryn
+	{  7,          55,          -1,          "22 nm" }, // Atom Bay Trail
+	{  7,          71,          -1,          "14 nm" }, // Broadwell
+	{  7,         151,          -1,        "Intel 7" }, // Alder Lake-S / Alder Lake-HX
+	{  7,         167,          -1,          "14 nm" }, // Rocket Lake
+	{  7,         183,          -1,        "Intel 7" }, // Raptor Lake-S
+	{  8,           0,           0,         "180 nm" }, // PIII Coppermine-T
+	{  8,           8,          -1,         "180 nm" }, // PIII Coppermine
+	{  9,           9,          -1,         "130 nm" }, // Pentium M Banias
+	{ 10,          26,          -1,          "45 nm" }, // Nehalem
+	{ 10,          30,          -1,          "45 nm" }, // Nehalem
+	{ 10,          42,          -1,          "32 nm" }, // Sandy Bridge
+	{ 10,          58,          -1,          "22 nm" }, // Ivy Bridge
+	{ 10,         122,          -1,          "14 nm" }, // Gemini Lake
+	{ 10,         138,          -1,          "10 nm" }, // Tremont (Lakefield)
+	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-H
+	{ 10,         186,          -1,        "Intel 7" }, // Raptor Lake-P / Raptor Lake-U
+	{ 11,          11,          -1,         "130 nm" }, // PIII Tualatine
+	{ 12,          28,          -1,          "45 nm" }, // Atom Diamondville / Pineview / Silverthorne
+	{ 12,          44,          -1,          "32 nm" }, // Westmere
+	{ 12,          60,          -1,          "22 nm" }, // Haswell
+	{ 12,          76,          -1,          "14 nm" }, // Atom Cherry Trail
+	{ 12,         108,          -1,          "10 nm" }, // Ice Lake
+	{ 12,         140,          -1,           "10SF" }, // Tiger Lake
+	{ 12,         156,          -1,          "10 nm" }, // Tremont (Jasper Lake)
+	{ 13,          13,          -1,          "90 nm" }, // Pentium M Dothan
+	{ 13,          45,          -1,          "32 nm" }, // Sandy Bridge-E
+	{ 13,          61,          -1,          "14 nm" }, // Broadwell-U
+	{ 14,          14,          -1,          "65 nm" }, // Yonah (Core Solo)
+	{ 14,          30,          -1,          "45 nm" }, // Nehalem (Lynnfield)
+	{ 14,          62,          -1,          "22 nm" }, // Ivy Bridge-E
+	{ 14,          78,          -1,          "14 nm" }, // Skylake
+	{ 14,          94,          -1,          "14 nm" }, // Skylake
+	{ 14,         126,          -1,          "10 nm" }, // Ice Lake
+	{ 14,         142,          -1,          "14 nm" }, // Kaby Lake / Coffee Lake / Comet Lake-U
+	{ 14,         158,          -1,          "14 nm" }, // Kaby Lake / Coffee Lake
+	{ 14,         165,          -1,          "14 nm" }, // Comet Lake
+	{ 14,         190,          -1,        "Intel 7" }, // Alder Lake-N
+	{ 15,          15,          -1,          "65 nm" }, // C2 Conroe / Allendale / Kentsfield / Merom
+	{ 15,          63,          -1,          "22 nm" }, // Haswell-E
+	{ 15,          79,          -1,          "14 nm" }, // Broadwell-E
+	{ 15,         191,          -1,        "Intel 7" }, // Raptor Lake-S ("Golden Cove" cores)
+	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
 };
 
 const Technology_DB technology_amd[] =
 {
 	//Model        E. Model     E. Family   Process
-	{  0,          16,          21,          32 }, // Bulldozer (Piledriver: Trinity)
-	{  0,          48,          21,          28 }, // Bulldozer (Steamroller: Kaveri)
-	{  0,         112,          21,          28 }, // Bulldozer (Excavator: Stoney Ridge)
-	{  0,          -1,          22,          28 }, // Jaguar (Kabini/Mullins)
-	{  1,          -1,          18,          32 }, // K10 (Llano)
-	{  1,          -1,          20,          40 }, // Bobcat (Brazos Zacate)
-	{  1,           1,          21,          32 }, // Bulldozer
-	{  1,          96,          21,          28 }, // Bulldozer (Excavator: Carrizo)
-	{  2,          -1,          16,          65 }, // K10 (Kuma/Agena)
-	{  2,          -1,          20,          40 }, // Bobcat (Brazos Desna/Ontario)
-	{  2,          -1,          21,          32 }, // Bulldozer (Piledriver: Vishera)
-	{  3,          -1,          15,          90 }, // K8 (Toledo)
-	{  3,          -1,          21,          32 }, // Bulldozer (Piledriver: Richland)
-	{  4,          -1,          15,          90 }, // K8 (Lancaster)
-	{  4,          -1,          16,          45 }, // K10 (Deneb/Heka)
-	{  5,          -1,          16,          45 }, // K10 (Propus)
-	{  5,          -1,          21,          28 }, // Bulldozer (Excavator: Bristol Ridge)
-	{  6,          -1,          16,          45 }, // K10 (Champlain/Sargas/Regor)
-	{  8,          -1,           6,         130 }, // K7 (Thoroughbred/Applebred)
-	{  8,          -1,          15,          65 }, // K8 (Tyler)
-	{  8,          -1,          21,          28 }, // Bulldozer (Steamroller: Godavari)
-	{  9,          -1,          16,          45 }, // Magny-Cours (Opteron)
-	{ 10,          -1,           6,         130 }, // K7 (Barton)
-	{ 10,          -1,          16,          45 }, // K10 (Thuban)
-	{ 11,          -1,          15,          65 }, // K8 (Brisbane)
-	{ 12,         124,          15,          65 }, // K8 (Sherman)
-	{ 12,          -1,          15,          90 }, // K8 (Venice/Sonora)
-	{ 15,          79,          15,          90 }, // K8 (Manila)
-	{ 15,         127,          15,          65 }, // K8 (Sparta)
-	{ -1,           1,          23,          14 }, // Zen (Summit Ridge/Whitehaven/Naples)
-	{ -1,          17,          23,          14 }, // Zen (Raven Ridge)
-	{ -1,           8,          23,          12 }, // Zen+ (Pinnacle Ridge/Colfax)
-	{ -1,          32,          23,          14 }, // Zen (Dali)
-	{ -1,          24,          23,          12 }, // Zen+ (Picasso)
-	{ -1,          49,          23,           7 }, // Zen 2 (Rome/Castle Peak)
-	{ -1,          71,          23,           7 }, // Zen 2 (4700S Desktop Kit)
-	{ -1,          96,          23,           7 }, // Zen 2 (Renoir)
-	{ -1,         104,          23,           7 }, // Zen 2 (Lucienne)
-	{ -1,         113,          23,           7 }, // Zen 2 (Matisse)
-	{ -1,         132,          23,           7 }, // Zen 2 (4800S Desktop Kit)
-	{ -1,         144,          23,           7 }, // Zen 2 (Custom APU for Steam Deck)
-	{ -1,         160,          23,           6 }, // Zen 2 (Mendocino)
-	{ -1,          33,          25,           7 }, // Zen 3 (Vermeer)
-	{ -1,          80,          25,           7 }, // Zen 3 (Cezanne)
-	{ -1,           1,          25,           7 }, // Zen 3 (Milan)
-	{ -1,          68,          25,           7 }, // Zen 3 (Rembrandt)
-	{ -1,          97,          25,           5 }, // Zen 4 (Raphael)
-	{ -2,          -2,          -2,          -2 }
+	{  0,          16,          21,          "32 nm" }, // Bulldozer (Piledriver: Trinity)
+	{  0,          48,          21,          "28 nm" }, // Bulldozer (Steamroller: Kaveri)
+	{  0,         112,          21,          "28 nm" }, // Bulldozer (Excavator: Stoney Ridge)
+	{  0,          -1,          22,          "28 nm" }, // Jaguar (Kabini/Mullins)
+	{  1,          -1,          18,          "32 nm" }, // K10 (Llano)
+	{  1,          -1,          20,          "40 nm" }, // Bobcat (Brazos Zacate)
+	{  1,           1,          21,          "32 nm" }, // Bulldozer
+	{  1,          96,          21,          "28 nm" }, // Bulldozer (Excavator: Carrizo)
+	{  2,          -1,          16,          "65 nm" }, // K10 (Kuma/Agena)
+	{  2,          -1,          20,          "40 nm" }, // Bobcat (Brazos Desna/Ontario)
+	{  2,          -1,          21,          "32 nm" }, // Bulldozer (Piledriver: Vishera)
+	{  3,          -1,          15,          "90 nm" }, // K8 (Toledo)
+	{  3,          -1,          21,          "32 nm" }, // Bulldozer (Piledriver: Richland)
+	{  4,          -1,          15,          "90 nm" }, // K8 (Lancaster)
+	{  4,          -1,          16,          "45 nm" }, // K10 (Deneb/Heka)
+	{  5,          -1,          16,          "45 nm" }, // K10 (Propus)
+	{  5,          -1,          21,          "28 nm" }, // Bulldozer (Excavator: Bristol Ridge)
+	{  6,          -1,          16,          "45 nm" }, // K10 (Champlain/Sargas/Regor)
+	{  8,          -1,           6,         "130 nm" }, // K7 (Thoroughbred/Applebred)
+	{  8,          -1,          15,          "65 nm" }, // K8 (Tyler)
+	{  8,          -1,          21,          "28 nm" }, // Bulldozer (Steamroller: Godavari)
+	{  9,          -1,          16,          "45 nm" }, // Magny-Cours (Opteron)
+	{ 10,          -1,           6,         "130 nm" }, // K7 (Barton)
+	{ 10,          -1,          16,          "45 nm" }, // K10 (Thuban)
+	{ 11,          -1,          15,          "65 nm" }, // K8 (Brisbane)
+	{ 12,         124,          15,          "65 nm" }, // K8 (Sherman)
+	{ 12,          -1,          15,          "90 nm" }, // K8 (Venice/Sonora)
+	{ 15,          79,          15,          "90 nm" }, // K8 (Manila)
+	{ 15,         127,          15,          "65 nm" }, // K8 (Sparta)
+	{ -1,           1,          23,          "14 nm" }, // Zen (Summit Ridge/Whitehaven/Naples)
+	{ -1,          17,          23,          "14 nm" }, // Zen (Raven Ridge)
+	{ -1,           8,          23,          "12 nm" }, // Zen+ (Pinnacle Ridge/Colfax)
+	{ -1,          32,          23,          "14 nm" }, // Zen (Dali)
+	{ -1,          24,          23,          "12 nm" }, // Zen+ (Picasso)
+	{ -1,          49,          23,           "7 nm" }, // Zen 2 (Rome/Castle Peak)
+	{ -1,          71,          23,           "7 nm" }, // Zen 2 (4700S Desktop Kit)
+	{ -1,          96,          23,           "7 nm" }, // Zen 2 (Renoir)
+	{ -1,         104,          23,           "7 nm" }, // Zen 2 (Lucienne)
+	{ -1,         113,          23,           "7 nm" }, // Zen 2 (Matisse)
+	{ -1,         132,          23,           "7 nm" }, // Zen 2 (4800S Desktop Kit)
+	{ -1,         144,          23,           "7 nm" }, // Zen 2 (Custom APU for Steam Deck)
+	{ -1,         160,          23,           "6 nm" }, // Zen 2 (Mendocino)
+	{ -1,          33,          25,           "7 nm" }, // Zen 3 (Vermeer)
+	{ -1,          80,          25,           "7 nm" }, // Zen 3 (Cezanne)
+	{ -1,           1,          25,           "7 nm" }, // Zen 3 (Milan)
+	{ -1,          68,          25,           "7 nm" }, // Zen 3 (Rembrandt)
+	{ -1,          97,          25,           "5 nm" }, // Zen 4 (Raphael)
+	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
 };
 

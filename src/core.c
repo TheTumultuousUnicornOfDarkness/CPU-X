@@ -222,7 +222,7 @@ static int err_func(int (*func)(Labels *), Labels *data)
 
 #if HAS_LIBCPUID
 #define RETURN_OR_EXIT(e) { if(opts->debug_database) exit(e); else return e; }
-/* Get CPU technology, in nanometre (nm) */
+/* Get CPU technology node */
 static int cpu_technology(Labels *data)
 {
 	int i = -1;
@@ -248,7 +248,7 @@ static int cpu_technology(Labels *data)
 		   ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == cpu_id->ext_model)) &&
 		   ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == cpu_id->ext_family)))
 		{
-			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%i nm", db[i].process);
+			casprintf(&data->tab_cpu[VALUE][TECHNOLOGY], false, "%s", db[i].process);
 			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
 			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
 			RETURN_OR_EXIT(0);
