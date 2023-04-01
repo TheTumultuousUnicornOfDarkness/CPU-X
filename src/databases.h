@@ -40,37 +40,37 @@ const Technology_DB technology_unknown[] = { { -1, -1, -1, NULL } };
 const Technology_DB technology_intel[] =
 {
 	//Model        E. Model     E. Family   Process
-	{  0,           0,          -1,         "180 nm" }, // P4 Willamette
-	{  1,           1,           6,         "350 nm" }, // Pentium Pro
-	{  1,           1,          15,         "180 nm" }, // P4 Willamette
-	{  2,           2,          -1,         "130 nm" }, // P4 Northwood / Gallatin
-	{  3,           3,           5,         "350 nm" }, // PII Overdrive
-	{  3,           3,           6,         "350 nm" }, // PII Klamath
+	{  0,           0,          -1,        "0.18 µm" }, // P4 Willamette
+	{  1,           1,           6,        "0.35 µm" }, // Pentium Pro
+	{  1,           1,          15,        "0.18 µm" }, // P4 Willamette
+	{  2,           2,          -1,        "0.13 µm" }, // P4 Northwood / Gallatin
+	{  3,           3,           5,        "0.35 µm" }, // PII Overdrive
+	{  3,           3,           6,        "0.35 µm" }, // PII Klamath
 	{  3,           3,          15,          "90 nm" }, // P4 Prescott
 	{  4,           4,          -1,          "90 nm" }, // P4 Prescott/Irwindale / PD Smithfield
-	{  5,           5,           6,         "250 nm" }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
+	{  5,           5,           6,        "0.25 µm" }, // PII Deschutes / Tonga / Xeon Drake / Celeron Covington
 	{  5,          37,          -1,          "32 nm" }, // Westmere
 	{  5,          53,          -1,          "32 nm" }, // Atom Cloverview
 	{  5,          69,          -1,          "22 nm" }, // Haswell
 	{  5,          85,          -1,          "14 nm" }, // Skylake (Xeon Scalable)
 	{  5,          165,          6,          "14 nm" }, // Comet Lake
-	{  6,           6,           6,         "250 nm" }, // PII Dixon / Celeron Mendocino
+	{  6,           6,           6,        "0.25 µm" }, // PII Dixon / Celeron Mendocino
 	{  6,           6,          15,          "65 nm" }, // P4 Cedar Mill / PD Presler
 	{  6,          22,          -1,          "65 nm" }, // C2 Conroe-L
 	{  6,          54,          -1,          "32 nm" }, // Atom Cedarview
 	{  6,          70,          -1,          "22 nm" }, // Haswell (Crystalwell, L4 cache)
 	{  6,         102,          -1,          "10 nm" }, // Cannon Lake
 	{  6,         150,          -1,          "10 nm" }, // Tremont (Elkhart Lake)
-	{  7,           7,          -1,         "250 nm" }, // PIII Katmai
+	{  7,           7,          -1,        "0.25 µm" }, // PIII Katmai
 	{  7,          23,          -1,          "45 nm" }, // C2 Wolfdale / Yorkfield / Penryn
 	{  7,          55,          -1,          "22 nm" }, // Atom Bay Trail
 	{  7,          71,          -1,          "14 nm" }, // Broadwell
 	{  7,         151,          -1,        "Intel 7" }, // Alder Lake-S / Alder Lake-HX
 	{  7,         167,          -1,          "14 nm" }, // Rocket Lake
 	{  7,         183,          -1,        "Intel 7" }, // Raptor Lake-S
-	{  8,           0,           0,         "180 nm" }, // PIII Coppermine-T
-	{  8,           8,          -1,         "180 nm" }, // PIII Coppermine
-	{  9,           9,          -1,         "130 nm" }, // Pentium M Banias
+	{  8,           0,           0,        "0.18 µm" }, // PIII Coppermine-T
+	{  8,           8,          -1,        "0.18 µm" }, // PIII Coppermine
+	{  9,           9,          -1,        "0.13 µm" }, // Pentium M Banias
 	{ 10,          26,          -1,          "45 nm" }, // Nehalem
 	{ 10,          30,          -1,          "45 nm" }, // Nehalem
 	{ 10,          42,          -1,          "32 nm" }, // Sandy Bridge
@@ -79,7 +79,7 @@ const Technology_DB technology_intel[] =
 	{ 10,         138,          -1,          "10 nm" }, // Tremont (Lakefield)
 	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-H
 	{ 10,         186,          -1,        "Intel 7" }, // Raptor Lake-P / Raptor Lake-U
-	{ 11,          11,          -1,         "130 nm" }, // PIII Tualatine
+	{ 11,          11,          -1,        "0.13 µm" }, // PIII Tualatine
 	{ 12,          28,          -1,          "45 nm" }, // Atom Diamondville / Pineview / Silverthorne
 	{ 12,          44,          -1,          "32 nm" }, // Westmere
 	{ 12,          60,          -1,          "22 nm" }, // Haswell
@@ -129,11 +129,11 @@ const Technology_DB technology_amd[] =
 	{  5,          -1,          16,          "45 nm" }, // K10 (Propus)
 	{  5,          -1,          21,          "28 nm" }, // Bulldozer (Excavator: Bristol Ridge)
 	{  6,          -1,          16,          "45 nm" }, // K10 (Champlain/Sargas/Regor)
-	{  8,          -1,           6,         "130 nm" }, // K7 (Thoroughbred/Applebred)
+	{  8,          -1,           6,        "0.13 µm" }, // K7 (Thoroughbred/Applebred)
 	{  8,          -1,          15,          "65 nm" }, // K8 (Tyler)
 	{  8,          -1,          21,          "28 nm" }, // Bulldozer (Steamroller: Godavari)
 	{  9,          -1,          16,          "45 nm" }, // Magny-Cours (Opteron)
-	{ 10,          -1,           6,         "130 nm" }, // K7 (Barton)
+	{ 10,          -1,           6,        "0.13 µm" }, // K7 (Barton)
 	{ 10,          -1,          16,          "45 nm" }, // K10 (Thuban)
 	{ 11,          -1,          15,          "65 nm" }, // K8 (Brisbane)
 	{ 12,         124,          15,          "65 nm" }, // K8 (Sherman)
