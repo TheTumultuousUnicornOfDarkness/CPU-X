@@ -78,6 +78,7 @@ const Technology_DB technology_intel[] =
 	{ 10,         122,          -1,          14 }, // Gemini Lake
 	{ 10,         138,          -1,          10 }, // Tremont (Lakefield)
 	{ 10,         154,          -1,           7 }, // Alder Lake-P / Alder Lake-H
+	{ 10,         186,          -1,          10 }, // Raptor Lake-P / Raptor Lake-U
 	{ 11,          11,          -1,         130 }, // PIII Tualatine
 	{ 12,          28,          -1,          45 }, // Atom Diamondville / Pineview / Silverthorne
 	{ 12,          44,          -1,          32 }, // Westmere
