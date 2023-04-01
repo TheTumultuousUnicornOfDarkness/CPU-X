@@ -101,6 +101,7 @@ const Technology_DB technology_intel[] =
 	{ 15,          15,          -1,          65 }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          22 }, // Haswell-E
 	{ 15,          79,          -1,          14 }, // Broadwell-E
+	{ 15,         191,          -1,          10 }, // Raptor Lake-S ("Golden Cove" cores)
 	{ -2,          -2,          -2,          -2 }
 	//Model        E. Model     E. Family   Process
 };
