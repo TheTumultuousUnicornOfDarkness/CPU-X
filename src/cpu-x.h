@@ -1,5 +1,5 @@
 /****************************************************************************
-*    Copyright © 2014-2022 The Tumultuous Unicorn Of Darkness
+*    Copyright © 2014-2023 The Tumultuous Unicorn Of Darkness
 *
 *    This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
 #define PRGAUTH               "The Tumultuous Unicorn Of Darkness"
 #define PRGURL                "https://thetumultuousunicornofdarkness.github.io/"PRGNAME
 #define ISSUEURL              "https://github.com/TheTumultuousUnicornOfDarkness/"PRGNAME"/issues/new?template=bug_report.md"
-#define PRGCPRGHT             "Copyright © 2014-2022 "PRGAUTH
+#define PRGCPRGHT             "Copyright © 2014-2023 "PRGAUTH
 #define PRGLCNS               "GNU GPL v3"
 #define LCNSURL               "https://www.gnu.org/licenses/gpl.txt"
 
