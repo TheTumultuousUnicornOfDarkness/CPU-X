@@ -49,7 +49,7 @@ jobs:
 
           ## Binary
 
-          - **AppImage**: CPU-X-v${{ env.VERSION }}-x86_64.AppImage
+          - **AppImage**: CPU-X-v${{ env.VERSION }}-x86_64.AppImage (**libfuse2** package is required)
 
           *Note: a Polkit Authentication agent is mandatory to start daemon from GUI.*
 
