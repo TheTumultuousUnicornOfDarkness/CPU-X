@@ -158,6 +158,7 @@ const Technology_DB technology_amd[] =
 	{ -1,           1,          25,           "7 nm" }, // Zen 3 (Milan)
 	{ -1,          68,          25,           "7 nm" }, // Zen 3 (Rembrandt)
 	{ -1,          97,          25,           "5 nm" }, // Zen 4 (Raphael)
+	{ -1,          17,          25,           "5 nm" }, // Zen 4 (Genoa)
 	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
 };
