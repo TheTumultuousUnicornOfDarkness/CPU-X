@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the cpu-x package.
 # Heimen Stoffels <vistausss@outlook.com>, 2021.
 # Heimen Stoffels <vistausss@fastmail.com>, 2022.
+# Matrix <matrix.5vi5w@slmails.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-04-01 04:58+0000\n"
-"PO-Revision-Date: 2022-07-28 19:21+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"PO-Revision-Date: 2023-05-03 18:24+0000\n"
+"Last-Translator: Matrix <matrix.5vi5w@slmails.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
 "nl/>\n"
 "Language: nl\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -62,6 +63,8 @@ msgstr "libcpuid kan niet worden aangeroepen (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Geselecteerde CPU type (%u) is geen geldig nummer (%u is het maximum voor "
+"deze CPU)"
 
 #: core.c:318
 #, c-format
@@ -72,7 +75,7 @@ msgstr ""
 
 #: core.c:347
 msgid "unknown"
-msgstr ""
+msgstr "onbekend"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -88,7 +91,7 @@ msgstr ""
 
 #: core.c:542
 msgid "Calculating CPU multipliers"
-msgstr ""
+msgstr "CPU vermenigvuldigers aan het berekenen"
 
 #: core.c:575
 msgid "Calling dmidecode"
@@ -133,7 +136,7 @@ msgstr ""
 
 #: core.c:999
 msgid "Finding Vulkan API version"
-msgstr ""
+msgstr "Zoeken naar Vulkan API versie"
 
 #: core.c:1016
 #, fuzzy, c-format
@@ -144,7 +147,7 @@ msgstr "libcpuid kan niet worden aangeroepen (%s)"
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s wordt niet ondersteund"
 
 #: core.c:1032
 #, fuzzy, c-format
@@ -154,13 +157,12 @@ msgstr "libcpuid kan niet worden aangeroepen (%s)"
 
 #: core.c:1039
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Geen beschikbare Vulkan apparaten"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "libcpuid kan niet worden aangeroepen (%s)"
+msgstr "Geen beschikbare fysieke apparaten (%s)"
 
 #: core.c:1111
 #, fuzzy, c-format
@@ -184,7 +186,7 @@ msgstr ""
 #: core.c:1197
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Er is geen platform met OpenCL ondersteuning (%s)"
 
 #: core.c:1208
 #, c-format
@@ -208,7 +210,7 @@ msgstr ""
 
 #: core.c:1237
 msgid "0 device"
-msgstr ""
+msgstr "0 apparaten"
 
 #: core.c:1247
 #, c-format
@@ -252,21 +254,21 @@ msgstr ""
 #: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "OpenCL wordt niet ondersteund door uw GPU fabrikant (0x%X)"
 
 #: core.c:1392
 msgid "Finding devices"
-msgstr ""
+msgstr "Zoeken naar apparaten"
 
 #: core.c:1404
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr ""
+msgstr "Zoeken naar apparaten overslaan (verkeerde rechten op %s device)"
 
 #: core.c:1442
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr ""
+msgstr "Uw GPU fabrikant is onbekend: %s (0x%X)"
 
 #: core.c:1478
 msgid "failed to find chipset vendor and model"
@@ -282,17 +284,17 @@ msgstr ""
 
 #: core.c:1592
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: core.c:1611
 #, c-format
 msgid "DRM path for GPU %u is unknown"
-msgstr ""
+msgstr "DRM pad voor GPU %u is onbekend"
 
 #: core.c:1613
 #, c-format
 msgid "Card number for GPU %u is unknown"
-msgstr ""
+msgstr "Kaartnummer voor GPU %u is onbekend"
 
 #: core.c:1734
 #, c-format
@@ -302,7 +304,7 @@ msgstr ""
 #: core.c:1776
 #, c-format
 msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr ""
+msgstr "Huidig: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 
 #: core.c:1801
 msgid "failed to retrieve GPU clocks"
@@ -310,7 +312,7 @@ msgstr ""
 
 #: core.c:1818
 msgid "Identifying running system"
-msgstr ""
+msgstr "Lopend systeem wordt geïdentificeerd"
 
 #: core.c:1821
 msgid "failed to identify running system"
@@ -335,58 +337,58 @@ msgstr ""
 #: core.c:1958
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i dagen, %i uren, %i minuten, %i seconden"
 
 #: core.c:2015
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "Benchmark status wordt bijgewerkt"
 
 #: core.c:2016 tui_ncurses.c:879
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u minuten"
 
 #: core.c:2018 core.c:2019
 msgid "Inactive"
-msgstr ""
+msgstr "Inactief"
 
 #: core.c:2023 core.c:2024
 msgid "Not started"
-msgstr ""
+msgstr "Niet gestart"
 
 #: core.c:2029
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #: core.c:2034
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u uren over)"
 
 #: core.c:2036
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u minuten over)"
 
 #: core.c:2038
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u seconden over)"
 
 #: core.c:2043
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "in %u uren"
 
 #: core.c:2045
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "in %u minuten"
 
 #: core.c:2047
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "in %u seconden"
 
 #: core.c:2063
 msgid "Starting benchmark"
@@ -394,7 +396,7 @@ msgstr ""
 
 #: core.c:2082
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "er is een fout opgetreden tijdens het starten van de benchmark"
 
 #: core.c:2099
 msgid "Finding CPU package in fallback mode"
@@ -444,11 +446,11 @@ msgstr ""
 #: daemon.c:264
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: geval %i niet verwerkt"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
-msgstr ""
+msgstr "GTK GUI wordt gestart…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
@@ -456,7 +458,7 @@ msgstr ""
 
 #: gui_gtk.c:600
 msgid "Connected to daemon"
-msgstr ""
+msgstr "Verbonden met daemon"
 
 #: gui_gtk.c:602
 msgid "No polkit authentication agent found"
@@ -464,21 +466,21 @@ msgstr ""
 
 #: gui_gtk.c:606
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Vraag wachtwoord om daemon op de achtergrond te starten"
 
 #: gui_gtk.c:612
 msgid "Start daemon"
-msgstr ""
+msgstr "Start daemon"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
 #, c-format
 msgid "Type #%i"
-msgstr ""
+msgstr "Type #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
 msgid "Core #%i"
-msgstr ""
+msgstr "Kern #%i"
 
 #: gui_gtk.c:632
 msgid "BaseFamily"
@@ -514,11 +516,11 @@ msgstr ""
 
 #: main.c:60 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
-msgstr ""
+msgstr "Processor"
 
 #: main.c:61 main.c:115 main.c:148
 msgid "Vendor"
-msgstr ""
+msgstr "Fabrikant"
 
 #: main.c:62
 msgid "Code Name"
@@ -530,19 +532,19 @@ msgstr ""
 
 #: main.c:64
 msgid "Technology"
-msgstr ""
+msgstr "Technologie"
 
 #: main.c:65
 msgid "Voltage"
-msgstr ""
+msgstr "Spanning"
 
 #: main.c:66
 msgid "Specification"
-msgstr ""
+msgstr "Specificatie"
 
 #: main.c:67
 msgid "Family"
-msgstr ""
+msgstr "Familie"
 
 #: main.c:68
 msgid "Disp. Family"
@@ -558,7 +560,7 @@ msgstr ""
 
 #: main.c:71
 msgid "Temp."
-msgstr ""
+msgstr "Temp."
 
 #: main.c:72
 msgid "Stepping"
@@ -566,7 +568,7 @@ msgstr ""
 
 #: main.c:73
 msgid "Instructions"
-msgstr ""
+msgstr "Instructies"
 
 #: main.c:75 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
@@ -586,27 +588,27 @@ msgstr ""
 
 #: main.c:79 main.c:157
 msgid "Usage"
-msgstr ""
+msgstr "Verbruik"
 
 #: main.c:81 cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
-msgstr ""
+msgstr "Cache"
 
 #: main.c:82
 msgid "L1 Data"
-msgstr ""
+msgstr "L1 Data"
 
 #: main.c:83
 msgid "L1 Inst."
-msgstr ""
+msgstr "L1 Inst."
 
 #: main.c:84
 msgid "Level 2"
-msgstr ""
+msgstr "Level 2"
 
 #: main.c:85
 msgid "Level 3"
-msgstr ""
+msgstr "Level 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
 msgid "Cores"
@@ -618,24 +620,24 @@ msgstr ""
 
 #: main.c:91 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
-msgstr ""
+msgstr "Caches"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr ""
+msgstr "L%i Cache"
 
 #: main.c:96
 msgid "Size"
-msgstr ""
+msgstr "Grootte"
 
 #: main.c:97
 msgid "Speed"
-msgstr ""
+msgstr "Snelheid"
 
 #: main.c:99
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
@@ -643,7 +645,7 @@ msgstr ""
 
 #: main.c:104
 msgid "Manufacturer"
-msgstr ""
+msgstr "Fabrikant"
 
 #: main.c:106
 msgid "Revision"
@@ -651,7 +653,7 @@ msgstr ""
 
 #: main.c:108 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: main.c:109
 msgid "Brand"
@@ -855,46 +857,48 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s is een Gratis software die informatie\n"
+"over CPU, moederbord en meer verzameld."
 
 #: main.c:192
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Versie %s"
 
 #: main.c:193
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "Auteur: %s"
 
 #: main.c:194
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Site: %s"
 
 #: main.c:196 cpu-x-gtk-3.12.ui:5649
 msgid "License"
-msgstr ""
+msgstr "Licentie"
 
 #: main.c:199
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "Deze software wordt verspreid onder de voorwaarden van %s"
 
 #: main.c:201 main.c:454
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "Dit programma komt met ABSOLUUT GEEN GARANTIE"
 
 #: main.c:272
 msgid "Dumping data…"
-msgstr ""
+msgstr "Gegevens dumpen…"
 
 #: main.c:315
 msgid "Freeing memory"
-msgstr ""
+msgstr "Geheugen vrijmaken"
 
 #: main.c:343
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "Grafische Gebruikers Interface (GUI) starten (Standaard)"
 
 #: main.c:344
 msgid "Start text-based user interface (TUI)"
@@ -918,15 +922,15 @@ msgstr ""
 
 #: main.c:349
 msgid "Set default tab (integer)"
-msgstr ""
+msgstr "Standaard tab instellen (Geheel getal)"
 
 #: main.c:350
 msgid "Select core type to monitor (integer)"
-msgstr ""
+msgstr "Selecteer een kern om te monitoren (Geheel getal)"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
-msgstr ""
+msgstr "Selecteer CPU kern om te monitoren (Geheel getal)"
 
 #: main.c:352
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
@@ -934,15 +938,15 @@ msgstr ""
 
 #: main.c:353
 msgid "Select default graphic card (integer)"
-msgstr ""
+msgstr "Selecteer standaard grafische kaart (Geheel getal)"
 
 #: main.c:354 cpu-x-gtk-3.12.ui:5994
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Start en verbind met daemon"
 
 #: main.c:355
 msgid "Verbose output"
-msgstr ""
+msgstr "Uitgebreide uitvoer"
 
 #: main.c:356
 msgid "Print help and exit"
@@ -958,7 +962,7 @@ msgstr ""
 
 #: main.c:359
 msgid "Disable colored output"
-msgstr ""
+msgstr "Gekleurde uitvoer uitschakelen"
 
 #: main.c:360
 msgid "Print information for debugging"
@@ -982,7 +986,7 @@ msgstr ""
 
 #: main.c:375
 msgid "Ignore CPU frequency reported by libcpuid"
-msgstr ""
+msgstr "Negeer gerapporteerde CPU frequentie van libcpuid"
 
 #: main.c:376
 msgid "Read CPUID raw data from a given file"
@@ -1003,15 +1007,15 @@ msgstr ""
 
 #: main.c:411
 msgid "Available OPTIONS:"
-msgstr ""
+msgstr "Beschikbare OPTIES:"
 
 #: main.c:419
 msgid "Influenceable environment variables:"
-msgstr ""
+msgstr "Aanpasbare omgevingsvariabelen:"
 
 #: main.c:453
 msgid "This is free software: you are free to change and redistribute it."
-msgstr ""
+msgstr "Dit is vrije software: u bent vrij om het te veranderen en verspreiden."
 
 #: main.c:455
 #, c-format
@@ -1034,6 +1038,9 @@ msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
+"\n"
+"Oeps, er ging iets verkeerd! %s heeft het signaal %d (%s) ontvangen en is "
+"gecrasht."
 
 #: main.c:679
 #, c-format
@@ -1042,10 +1049,15 @@ msgid ""
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
+"\n"
+"Oeps, er ging iets fout! %s heeft het signaal %d (%s) ontvangen en probeert "
+"te herstellen."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"U kunt hier een nieuw probleem openen, door het invullen van het sjabloon "
+"zoals gevraagd:"
 
 #: main.c:741
 msgid "an error occurred while setting locale"
@@ -1060,6 +1072,8 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"FATALE FOUT: terminfo database kon niet gevonden worden (probeer de "
+"omgevingsvariabele TERMINFO in te stellen)"
 
 #: tui_ncurses.c:86
 #, c-format
@@ -1068,7 +1082,7 @@ msgstr ""
 
 #: tui_ncurses.c:342
 msgid "Window is too small!"
-msgstr ""
+msgstr "Venster is te klein!"
 
 #: tui_ncurses.c:350
 msgid "Press 'h' to see help."
@@ -1085,7 +1099,7 @@ msgstr ""
 
 #: tui_ncurses.c:507
 msgid "Global keys:"
-msgstr ""
+msgstr "Globale toetsen:"
 
 #: tui_ncurses.c:508
 msgid "Press 'left' key or 'tab' key to switch in left tab."
@@ -1113,7 +1127,7 @@ msgstr ""
 
 #: tui_ncurses.c:515
 msgid "CPU tab:"
-msgstr ""
+msgstr "CPU tab:"
 
 #: tui_ncurses.c:516
 msgid "Press 'next page' key to decrease core type number to monitor."
@@ -1200,12 +1214,12 @@ msgstr ""
 #: util.c:291
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr ""
+msgstr "Er trad een fout op tijdens het openen van het bestand '%s' (%s)"
 
 #: util.c:321
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
+msgstr "Er trad een fout op tijdens het uitvoeren van het commando '%s' (%s)"
 
 #: util.c:379 util.c:439
 #, c-format
@@ -1214,7 +1228,7 @@ msgstr ""
 
 #: util.c:452
 msgid "an error occurred while compiling regex"
-msgstr ""
+msgstr "Er trad een fout op tijdens het compileren van regex"
 
 #: util.c:546
 msgid "Core"
@@ -1235,27 +1249,27 @@ msgstr ""
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: autorisatie kon niet verkregen worden (dialoog afgewezen)"
 
 #: util.c:611
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: autorisatie kon niet verkregen worden (niet geautoriseerd)"
 
 #: util.c:614
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: commando niet gevonden"
 
 #: util.c:617
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: onverwachte foutcode"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() wordt niet ondersteund op dit besturingssysteem"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
-msgstr ""
+msgstr "FATALE FOUT: kon geen geheugen toewijzen"
 
 #: cpu-x.h:97
 msgid "bytes"
@@ -1309,27 +1323,27 @@ msgstr ""
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5860
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5875
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5876
 msgid "Light"
-msgstr ""
+msgstr "Licht"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5877
 msgid "Dark"
-msgstr ""
+msgstr "Donker"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5910
 msgid "Default tab"
-msgstr ""
+msgstr "Standaard tab"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5923
