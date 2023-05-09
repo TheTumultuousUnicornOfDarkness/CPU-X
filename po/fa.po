@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the cpu-x package.
 # Ali Akrami <aliakrami.ce@gmail.com>, 2021.
 # Abou <aboozar.gh.r@gmail.com>, 2022.
+# M <bafandehmajid@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-04-01 04:58+0000\n"
-"PO-Revision-Date: 2022-11-03 07:08+0000\n"
-"Last-Translator: Abou <aboozar.gh.r@gmail.com>\n"
+"PO-Revision-Date: 2023-05-10 10:49+0000\n"
+"Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fa/>\n"
 "Language: fa\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -112,6 +113,10 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access به درستی مقداردهی نشده است: این یک مشکل رایج است،‌ زمانیکه %s با "
+"یک نسخه libpci پایین‌تر ساخته شده باشد.\n"
+"بررسی کنید که کتابخانه libpci %s در سیستم شما وجود دارد. در غیر اینصورت،‌ "
+"لطفا %s را بازسازی کنید."
 
 #: core.c:747
 #, c-format
@@ -134,21 +139,18 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "فراخوانی ناموفق GLFW (%i): %s"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "نسخه"
+msgstr "پیدا کردن نسخه Vulkan API"
 
 #: core.c:1016
-#, fuzzy, c-format
-#| msgid "failed to call wordexp (%i)"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "خطا در فراخوانی wordexp (%i)"
+msgstr ""
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s پشتیبانی نمی‌شود"
 
 #: core.c:1032
 #, fuzzy, c-format
@@ -158,7 +160,7 @@ msgstr "فراخوانی ناموفق libcpuid (%s)"
 
 #: core.c:1039
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "هیچ دستگاه Vulkan موجود نیست"
 
 #: core.c:1048
 #, fuzzy, c-format
@@ -176,6 +178,7 @@ msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s برای دستگاه %u پشتیبانی نمی‌شود، فقط از deviceID برای تطابق استفاده کنید"
 
 #: core.c:1147 core.c:1460
 msgid "Enabled"
@@ -211,10 +214,8 @@ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "یافتن ناموفق دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
 #: core.c:1237
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "شناسه دستگاه"
+msgstr "صفر دستگاه"
 
 #: core.c:1247
 #, c-format
@@ -306,7 +307,7 @@ msgstr ""
 #: core.c:1613
 #, c-format
 msgid "Card number for GPU %u is unknown"
-msgstr ""
+msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
 #: core.c:1734
 #, c-format
@@ -336,7 +337,7 @@ msgstr "در حال فراخوانی libprocps"
 
 #: core.c:1868
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "دریافت زمان فعال بودن سیستم ممکن نیست"
 
 #: core.c:1874
 msgid "unable to create meminfo structure"
@@ -628,10 +629,8 @@ msgid "Level 3"
 msgstr "سطح 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
-msgstr "هسته (ها)"
+msgstr "هسته‌ها"
 
 #: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
@@ -781,10 +780,8 @@ msgid "DeviceID"
 msgstr "شناسه دستگاه"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "نسخه"
+msgstr "نسخه VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -825,22 +822,16 @@ msgid "Vulkan RT"
 msgstr ""
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "نسخه"
+msgstr "نسخه OpenGL"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "نسخه"
+msgstr "نسخه Vulkan"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "نسخه"
+msgstr "نسخه OpenCL"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
@@ -952,10 +943,8 @@ msgid "Set default tab (integer)"
 msgstr "تنظیم تب پیش فرض (عددی)"
 
 #: main.c:350
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "انتخاب هسته پردازنده برای پایش (عددی)"
+msgstr "انتخاب هسته پردازنده برای پایش (عدد)"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
@@ -1065,33 +1054,24 @@ msgid "failed to call wordexp (%i)"
 msgstr "خطا در فراخوانی wordexp (%i)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%sای وای، یه چیزی اشتباه شده است! %s سیگنال دریافت کرده %d (%s) و خراب شده "
-"است.%s"
+"مشکلی پیش اومده. %s سیگنال ‮%d (%s) رو دریافت کرد و متوقف شده است."
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%sای وای، یه چیزی اشتباه شده است! %s سیگنال دریافت کرده %d (%s) و خراب شده "
-"است.%s"
+"مشکلی پیش اومده. %s سیگنال ‮%d (%s)‌رو دریافت کرده و در حال تلاش برای "
+"بازیابی است."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1140,28 +1120,20 @@ msgid "Global keys:"
 msgstr "کلیدهای عمومی:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "برای رفتن به تب سمت چپ کلید 'left' را بفشارید."
+msgstr "برای رفتن به سربرگ سمت چپ دکمه 'left' یا 'tab' را فشار دهید."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "برای رفتن به تب سمت راست کلید 'right' را بفشارید."
+msgstr "برای رفتن به سربرگ سمت راست دکمه 'right' یا 'shift + tab' را فشار دهید."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "برای رفتن به تب سمت چپ کلید 'left' را بفشارید."
+msgstr "برای اسکرول به سمت بالا دکمه 'home' را فشار دهید."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "برای رفتن به تب سمت چپ کلید 'left' را بفشارید."
+msgstr "برای اسکرول به سمت پایین دکمه 'end' را فشار دهید."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1299,10 +1271,8 @@ msgid "P-core"
 msgstr "امتیاز"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "امتیاز"
+msgstr ""
 
 #: util.c:567
 #, c-format
@@ -1380,56 +1350,52 @@ msgstr "ترابایت"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5836
 msgid "Refresh time"
-msgstr ""
+msgstr "زمان تازه‌سازی"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5860
 msgid "Theme"
-msgstr ""
+msgstr "تم"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5875
 msgid "Automatic"
-msgstr ""
+msgstr "خودکار"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5876
 msgid "Light"
-msgstr ""
+msgstr "روشن"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5877
 msgid "Dark"
-msgstr ""
+msgstr "تیره"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5910
 msgid "Default tab"
-msgstr ""
+msgstr "سربرگ پیش‌فرض"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5923
 msgid "Default CPU core"
-msgstr ""
+msgstr "هسته CPU پیش‌فرض"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5936
 msgid "Default cache test"
-msgstr ""
+msgstr "تست کش پیش‌فرض"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5979
-#, fuzzy
-#| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
-msgstr "چاپ مقادیر CPUID به صورت decimal (پیش فرض hexadeximal است)"
+msgstr "چاپ مقادیر CPUID به صورت اعشاری"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6012
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "انتخاب کارت گرافیک پیش فرض (عددی)"
+msgstr "کارت گرافیک پیش فرض"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
@@ -1439,7 +1405,7 @@ msgstr ""
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
 msgid "Startup"
-msgstr ""
+msgstr "راه‌اندازی"
 
 #, fuzzy, c-format
 #~| msgid "failed to call wordexp (%i)"
