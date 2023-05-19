@@ -213,6 +213,15 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i9-13900K",      "LGA 1700"       },
 	{ NULL,                             "Intel(R) Celeron(R) CPU N3350",    "FCBGA 1296"     },
 	{ NULL,	                            "Intel(R) Celeron(R) N4000",        "FCBGA 1090"     },
+	{ NULL,                             "Intel(R) Core(TM) i5-3470 CPU",    "LGA 1155"       },
+	{ NULL,                             "Intel(R) Core(TM) i7-4770 CPU",    "LGA 1155"       },
+	{ NULL,                             "Intel(R) Core(TM) i3-4350 CPU",    "LGA 1150"       },
+	{ NULL,                             "Intel(R) Xeon(R) Gold 5220 CPU",   "LGA 3647"       },
+	{ NULL,                             "Intel(R) Xeon(R) CPU E5-2689",     "LGA 2011"       },
+	{ NULL,                             "Intel(R) Xeon(R) CPU E5-2690 ",    "LGA 2011"       },
+	{ NULL,                             "Intel(R) Xeon(R) CPU E5-2690 v2",  "LGA 2011"       },
+	{ NULL,                             "Intel(R) Xeon(R) CPU E5-2690 v3",  "LGA 2011-3"     },
+	{ NULL,                             "Intel(R) Xeon(R) CPU E5-2690 v4",  "LGA 2011-3"     },
 	{ NULL,                             NULL,                               NULL             }
 	//Codename                          Model                               Socket
 };
