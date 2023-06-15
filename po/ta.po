@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-04-01 04:58+0000\n"
-"PO-Revision-Date: 2023-03-10 13:41+0000\n"
+"PO-Revision-Date: 2023-06-16 14:50+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
@@ -295,12 +295,12 @@ msgstr "எதுவும் இல்லை"
 #: core.c:1611
 #, c-format
 msgid "DRM path for GPU %u is unknown"
-msgstr ""
+msgstr "GPU %uக்கான DRM பாதை தெரியவில்லை"
 
 #: core.c:1613
 #, c-format
 msgid "Card number for GPU %u is unknown"
-msgstr ""
+msgstr "GPU %uக்கான அட்டை எண் தெரியவில்லை"
 
 #: core.c:1734
 #, c-format
@@ -682,16 +682,16 @@ msgstr "ROM அளவு"
 
 #: main.c:114 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
-msgstr ""
+msgstr "சிப்செட்"
 
 #: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3227 cpu-x-gtk-3.12.ui:3877
 msgid "Memory"
-msgstr ""
+msgstr "நினைவு"
 
 #: main.c:122
 #, c-format
 msgid "Bank %i"
-msgstr ""
+msgstr "வங்கி %i"
 
 #: main.c:123
 msgid "Reference"
@@ -782,83 +782,83 @@ msgstr "இடைமுகம்"
 
 #: main.c:156
 msgid "Temperature"
-msgstr ""
+msgstr "வெப்பநிலை"
 
 #: main.c:158
 msgid "Core Voltage"
-msgstr ""
+msgstr "மைய மின்னழுத்தம்"
 
 #: main.c:159
 msgid "Power Avg"
-msgstr ""
+msgstr "சக்தி சராசரி"
 
 #: main.c:160
 msgid "GPU clock"
-msgstr ""
+msgstr "GPU கடிகாரம்"
 
 #: main.c:161
 msgid "Memory clock"
-msgstr ""
+msgstr "நினைவக கடிகாரம்"
 
 #: main.c:162
 msgid "Memory Used"
-msgstr ""
+msgstr "நினைவகம் பயன்படுத்தப்பட்டது"
 
 #: main.c:163
 msgid "Resizable BAR"
-msgstr ""
+msgstr "மறுஅளவிடக்கூடிய BAR"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
 msgid "OpenGL Version"
-msgstr ""
+msgstr "OpenGL பதிப்பு"
 
 #: main.c:166
 msgid "Vulkan Version"
-msgstr ""
+msgstr "Vulkan பதிப்பு"
 
 #: main.c:167
 msgid "OpenCL Version"
-msgstr ""
+msgstr "OpenCL பதிப்பு"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
-msgstr ""
+msgstr "அட்டைகள்"
 
 #: main.c:172 cpu-x-gtk-3.12.ui:5416
 msgid "Bench"
-msgstr ""
+msgstr "விசுப்பலகை"
 
 #: main.c:173 cpu-x-gtk-3.12.ui:5186
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "முதன்மை எண்கள் (மெதுவாக)"
 
 #: main.c:174 cpu-x-gtk-3.12.ui:5294
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "முதன்மை எண்கள் (வேகமாக)"
 
 #: main.c:177
 msgid "Score"
-msgstr ""
+msgstr "மதிப்பெண்"
 
 #: main.c:178
 msgid "Run"
-msgstr ""
+msgstr "ஓடு"
 
 #: main.c:181 cpu-x-gtk-3.12.ui:5397
 msgid "Parameters"
-msgstr ""
+msgstr "அளவுருக்கள்"
 
 #: main.c:182
 msgid "Duration"
-msgstr ""
+msgstr "கால அளவு"
 
 #: main.c:186 main.c:191 cpu-x-gtk-3.12.ui:5560 cpu-x-gtk-3.12.ui:5668
 msgid "About"
-msgstr ""
+msgstr "பற்றி"
 
 #: main.c:188
 #, c-format
@@ -866,25 +866,27 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"%s என்பது தகவல்களை சேகரிக்கும் இலவச மென்பொருள் \n"
+"CPU, மதர்போர்டு மற்றும் பலவற்றில்."
 
 #: main.c:192
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "பதிப்பு %s"
 
 #: main.c:193
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "ஆசிரியர்: %s"
 
 #: main.c:194
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "தளம்: %s"
 
 #: main.c:196 cpu-x-gtk-3.12.ui:5649
 msgid "License"
-msgstr ""
+msgstr "உரிமம்"
 
 #: main.c:199
 #, c-format
