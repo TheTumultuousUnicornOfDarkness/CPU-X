@@ -2000,13 +2000,16 @@ static void *stop_benchmarks(void *p_data)
 	uint64_t  i;
 	Labels    *data                    = p_data;
 	BenchData *b_data                  = data->b_data;
+	time_t    start, end;
 	struct timespec remaining, request = { 0, 100000000L };
 
 	/* Wait until the time is up or until user stops benchmark */
+	time(&start);
 	while(b_data->elapsed < b_data->duration * 60 && b_data->run)
 	{
-		b_data->elapsed = (clock() - b_data->start) / CLOCKS_PER_SEC / b_data->threads;
 		nanosleep(&request, &remaining);
+		time(&end);
+		b_data->elapsed = end - start;
 	}
 
 	/* Exit all threads */
@@ -2086,7 +2089,6 @@ void start_benchmarks(Labels *data)
 	b_data->elapsed = 0;
 	b_data->num     = 2;
 	b_data->primes  = 1;
-	b_data->start   = clock();
 	b_data->t_id    = malloc(sizeof(pthread_t) * b_data->threads);
 
 	ALLOC_CHECK(b_data->t_id);

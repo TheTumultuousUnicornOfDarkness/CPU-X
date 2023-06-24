@@ -285,7 +285,7 @@ typedef struct
 {
 	bool     run, fast_mode;
 	unsigned duration, threads;
-	uint32_t primes, start, elapsed;
+	uint32_t primes, elapsed;
 	uint64_t num;
 	pthread_t *t_id;
 	pthread_mutex_t mutex_num, mutex_primes;

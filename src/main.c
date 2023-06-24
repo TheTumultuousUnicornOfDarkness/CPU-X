@@ -801,7 +801,6 @@ int main(int argc, char *argv[])
 		.duration = 1,
 		.threads  = 1,
 		.primes   = 0,
-		.start    = 0,
 		.elapsed  = 0,
 		.num      = 0
 	};
