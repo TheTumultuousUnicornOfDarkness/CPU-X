@@ -2057,10 +2057,12 @@ void start_benchmarks(Labels *data)
 {
 	int err = 0;
 	unsigned i;
+	cpu_set_t cpu_set;
 	pthread_t *t_id = NULL;
+	pthread_attr_t t_attr;
 	BenchData *b_data = data->b_data;
 
-	MSG_VERBOSE("%s", _("Starting benchmark"));
+	MSG_VERBOSE(_("Starting benchmark with %u threads"), b_data->threads);
 	b_data->run     = true;
 	b_data->elapsed = 0;
 	b_data->num     = 2;
@@ -2069,14 +2071,22 @@ void start_benchmarks(Labels *data)
 	t_id            = malloc(sizeof(pthread_t) * b_data->threads);
 
 	ALLOC_CHECK(t_id);
+	pthread_attr_init(&t_attr);
 	err += pthread_mutex_init(&b_data->mutex_num,    NULL);
 	err += pthread_mutex_init(&b_data->mutex_primes, NULL);
 
 	for(i = 0; i < b_data->threads; i++)
-		err += pthread_create(&t_id[i], NULL, primes_bench, data);
+	{
+		CPU_ZERO(&cpu_set);
+		CPU_SET(i, &cpu_set);
+		pthread_attr_setaffinity_np(&t_attr, sizeof(cpu_set_t), &cpu_set);
+		err += pthread_create(&t_id[i], &t_attr, primes_bench, data);
+		MSG_DEBUG("start_benchmarks: created thread #%u with ID 0x%08x", i, t_id[i]);
+	}
 
 	b_data->first_thread = t_id[0];
 	free(t_id);
+	pthread_attr_destroy(&t_attr);
 
 	if(err)
 		MSG_ERROR("%s", _("an error occurred while starting benchmark"));
