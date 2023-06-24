@@ -1970,7 +1970,7 @@ static void *primes_bench(void *p_data)
 	Labels    *data   = p_data;
 	BenchData *b_data = data->b_data;
 
-	while(b_data->elapsed < b_data->duration * 60 && b_data->run)
+	while(b_data->run)
 	{
 		/* b_data->num is shared by all threads */
 		pthread_mutex_lock(&b_data->mutex_num);
@@ -1989,18 +1989,37 @@ static void *primes_bench(void *p_data)
 			b_data->primes++;
 			pthread_mutex_unlock(&b_data->mutex_primes);
 		}
-
-		/* Only the first thread compute elapsed time */
-		if(b_data->first_thread == pthread_self())
-			b_data->elapsed = (clock() - b_data->start) / CLOCKS_PER_SEC / b_data->threads;
 	}
 
-	if(b_data->first_thread == pthread_self())
+	return NULL;
+}
+
+/* Stop all threads running benchmark */
+static void *stop_benchmarks(void *p_data)
+{
+	uint64_t  i;
+	Labels    *data                    = p_data;
+	BenchData *b_data                  = data->b_data;
+	struct timespec remaining, request = { 0, 100000000L };
+
+	/* Wait until the time is up or until user stops benchmark */
+	while(b_data->elapsed < b_data->duration * 60 && b_data->run)
 	{
-		b_data->run = false;
-		pthread_mutex_destroy(&b_data->mutex_num);
-		pthread_mutex_destroy(&b_data->mutex_primes);
+		b_data->elapsed = (clock() - b_data->start) / CLOCKS_PER_SEC / b_data->threads;
+		nanosleep(&request, &remaining);
 	}
+
+	/* Exit all threads */
+	b_data->run = false;
+	for(i = 0; i < b_data->threads; i++)
+	{
+		pthread_join(b_data->t_id[i], NULL);
+		MSG_DEBUG("benchmark_timer: stopped thread #%u with ID 0x%08x", i, b_data->t_id[i]);
+	}
+
+	pthread_mutex_destroy(&b_data->mutex_num);
+	pthread_mutex_destroy(&b_data->mutex_primes);
+	free(b_data->t_id);
 
 	return NULL;
 }
@@ -2058,8 +2077,8 @@ void start_benchmarks(Labels *data)
 	int err = 0;
 	unsigned i;
 	cpu_set_t cpu_set;
-	pthread_t *t_id = NULL;
 	pthread_attr_t t_attr;
+	pthread_t t_timer_id;
 	BenchData *b_data = data->b_data;
 
 	MSG_VERBOSE(_("Starting benchmark with %u threads"), b_data->threads);
@@ -2068,9 +2087,9 @@ void start_benchmarks(Labels *data)
 	b_data->num     = 2;
 	b_data->primes  = 1;
 	b_data->start   = clock();
-	t_id            = malloc(sizeof(pthread_t) * b_data->threads);
+	b_data->t_id    = malloc(sizeof(pthread_t) * b_data->threads);
 
-	ALLOC_CHECK(t_id);
+	ALLOC_CHECK(b_data->t_id);
 	pthread_attr_init(&t_attr);
 	err += pthread_mutex_init(&b_data->mutex_num,    NULL);
 	err += pthread_mutex_init(&b_data->mutex_primes, NULL);
@@ -2080,12 +2099,11 @@ void start_benchmarks(Labels *data)
 		CPU_ZERO(&cpu_set);
 		CPU_SET(i, &cpu_set);
 		pthread_attr_setaffinity_np(&t_attr, sizeof(cpu_set_t), &cpu_set);
-		err += pthread_create(&t_id[i], &t_attr, primes_bench, data);
-		MSG_DEBUG("start_benchmarks: created thread #%u with ID 0x%08x", i, t_id[i]);
+		err += pthread_create(&b_data->t_id[i], &t_attr, primes_bench, data);
+		MSG_DEBUG("start_benchmarks: created thread #%u with ID 0x%08x", i, b_data->t_id[i]);
 	}
 
-	b_data->first_thread = t_id[0];
-	free(t_id);
+	err += pthread_create(&t_timer_id, NULL, stop_benchmarks, data);
 	pthread_attr_destroy(&t_attr);
 
 	if(err)
