@@ -2081,10 +2081,14 @@ void start_benchmarks(Labels *data)
 {
 	int err = 0;
 	unsigned i;
-	cpu_set_t cpu_set;
 	pthread_attr_t t_attr;
 	pthread_t t_timer_id;
 	BenchData *b_data = data->b_data;
+#ifdef __FreeBSD__
+	cpuset_t cpu_set;
+#else
+	cpu_set_t cpu_set;
+#endif /* __FreeBSD__ */
 
 	MSG_VERBOSE(_("Starting benchmark with %u threads"), b_data->threads);
 	b_data->run     = true;
@@ -2102,7 +2106,7 @@ void start_benchmarks(Labels *data)
 	{
 		CPU_ZERO(&cpu_set);
 		CPU_SET(i, &cpu_set);
-		pthread_attr_setaffinity_np(&t_attr, sizeof(cpu_set_t), &cpu_set);
+		pthread_attr_setaffinity_np(&t_attr, sizeof(cpu_set), &cpu_set);
 		err += pthread_create(&b_data->t_id[i], &t_attr, primes_bench, data);
 		MSG_DEBUG("start_benchmarks: created thread #%u with ID 0x%08x", i, b_data->t_id[i]);
 	}
