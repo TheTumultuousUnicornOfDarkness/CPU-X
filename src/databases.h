@@ -52,7 +52,7 @@ const Technology_DB technology_intel[] =
 	{  5,          37,          -1,          "32 nm" }, // Westmere
 	{  5,          53,          -1,          "32 nm" }, // Atom Cloverview
 	{  5,          69,          -1,          "22 nm" }, // Haswell
-	{  5,          85,          -1,          "14 nm" }, // Skylake (Xeon Scalable)
+	{  5,          85,          -1,          "14 nm" }, // Skylake-X / Skylake-W / Skylake-DE / Skylake-SP / Cascade Lake-X / Cascade Lake-W / Cascade Lake-SP
 	{  5,          165,          6,          "14 nm" }, // Comet Lake
 	{  6,           6,           6,        "0.25 µm" }, // PII Dixon / Celeron Mendocino
 	{  6,           6,          15,          "65 nm" }, // P4 Cedar Mill / PD Presler
@@ -67,7 +67,7 @@ const Technology_DB technology_intel[] =
 	{  7,          71,          -1,          "14 nm" }, // Broadwell
 	{  7,         151,          -1,        "Intel 7" }, // Alder Lake-S / Alder Lake-HX
 	{  7,         167,          -1,          "14 nm" }, // Rocket Lake
-	{  7,         183,          -1,        "Intel 7" }, // Raptor Lake-S
+	{  7,         183,          -1,        "Intel 7" }, // Raptor Lake-S / Raptor Lake-HX
 	{  8,           0,           0,        "0.18 µm" }, // PIII Coppermine-T
 	{  8,           8,          -1,        "0.18 µm" }, // PIII Coppermine
 	{  9,           9,          -1,        "0.13 µm" }, // Pentium M Banias
@@ -75,10 +75,11 @@ const Technology_DB technology_intel[] =
 	{ 10,          30,          -1,          "45 nm" }, // Nehalem
 	{ 10,          42,          -1,          "32 nm" }, // Sandy Bridge
 	{ 10,          58,          -1,          "22 nm" }, // Ivy Bridge
+	{ 10,         106,          -1,          "10 nm" }, // Ice Lake-D / Ice Lake-W / Ice Lake-SP
 	{ 10,         122,          -1,          "14 nm" }, // Gemini Lake
 	{ 10,         138,          -1,          "10 nm" }, // Tremont (Lakefield)
 	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-H
-	{ 10,         186,          -1,        "Intel 7" }, // Raptor Lake-P / Raptor Lake-U
+	{ 10,         186,          -1,        "Intel 7" }, // Raptor Lake-P / Raptor Lake-U / Raptor Lake-H
 	{ 11,          11,          -1,        "0.13 µm" }, // PIII Tualatine
 	{ 12,          28,          -1,          "45 nm" }, // Atom Diamondville / Pineview / Silverthorne
 	{ 12,          44,          -1,          "32 nm" }, // Westmere
@@ -103,7 +104,7 @@ const Technology_DB technology_intel[] =
 	{ 15,          15,          -1,          "65 nm" }, // C2 Conroe / Allendale / Kentsfield / Merom
 	{ 15,          63,          -1,          "22 nm" }, // Haswell-E
 	{ 15,          79,          -1,          "14 nm" }, // Broadwell-E
-	{ 15,         143,          -1,        "Intel 7" }, // Sapphire Rapids-WS
+	{ 15,         143,          -1,        "Intel 7" }, // Sapphire Rapids-WS / Sapphire Rapids-SP
 	{ 15,         191,          -1,        "Intel 7" }, // Raptor Lake-S ("Golden Cove" cores)
 	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
