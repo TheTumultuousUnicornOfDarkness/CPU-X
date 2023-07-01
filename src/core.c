@@ -39,7 +39,9 @@
 #include "ipc.h"
 
 #ifndef __linux__
+# include <pthread_np.h>
 # include <sys/sysctl.h>
+# include <sys/cpuset.h>
 #endif
 
 #if HAS_GETTEXT
