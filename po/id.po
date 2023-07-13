@@ -10,14 +10,15 @@
 # whenwesober <naomi16i_1298q@cikuh.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Reno Sifana Paksi <renosifana.paksi@gmail.com>, 2022.
+# Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-04-01 04:58+0000\n"
-"PO-Revision-Date: 2022-11-04 02:32+0000\n"
-"Last-Translator: Reno Sifana Paksi <renosifana.paksi@gmail.com>\n"
+"PO-Revision-Date: 2023-07-15 11:53+0000\n"
+"Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
 "Language: id\n"
@@ -25,11 +26,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: core.c:235
 msgid "Finding CPU technology"
-msgstr "Menemukan Teknologi CPU"
+msgstr "Menemukan teknologi CPU"
 
 #: core.c:261
 #, c-format
@@ -53,7 +54,7 @@ msgstr "%d x %d %s, %d -arah"
 #: core.c:275
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s asosiatif, %d-%s ukuran batas byte"
+msgstr "%s asosiatif, ukuran baris %d-%s"
 
 #: core.c:286
 msgid "Calling libcpuid for retrieving static data"
@@ -69,6 +70,8 @@ msgstr "gagal memanggil libcpuid (%s)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Jenis CPU yang dipilih (%u) bukan merupakan angka yang valid (%u adalah "
+"angka maksimum untuk CPU ini)"
 
 #: core.c:318
 #, c-format
@@ -76,10 +79,12 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Inti CPU yang dipilih (%u) bukan merupakan angka yang valid (%u adalah angka "
+"maksimum untuk jenis inti ini)"
 
 #: core.c:347
 msgid "unknown"
-msgstr "Tidak dikenal"
+msgstr "tidak dikenal"
 
 #: core.c:470
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -107,7 +112,7 @@ msgstr "Menghitung penggunaan CPU"
 
 #: core.c:659
 msgid "Calling bandwidth"
-msgstr "Memanggil bandwidth"
+msgstr "Memanggil lebar pita"
 
 #: core.c:701
 #, c-format
@@ -117,22 +122,26 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access tidak diinisialisasi dengan benar: ini adalah masalah umum ketika "
+"%s dibangun dengan versi libpci yang lebih rendah.\n"
+"Periksa apakah pustaka libpci %s ada pada sistem Anda. Jika tidak, silakan "
+"bangun ulang %s."
 
 #: core.c:747
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
-"Tidak ada drivel kernel yang digunakan oleh kartu grafis pada alamat %s"
+"Tidak ada pengandar kernel yang digunakan oleh kartu grafis pada lokasi %s"
 
 #: core.c:778
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Driver kernel GPU Anda tidak diketahui: %s"
+msgstr "Pengandar kernel GPU Anda tidak diketahui: %s"
 
 #: core.c:854
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
-msgstr "Driver mode pengguna GPU Anda tidak diketahui: %s"
+msgstr "Pengandar mode pengguna GPU Anda tidak diketahui: %s"
 
 #: core.c:858
 #, c-format
@@ -140,56 +149,51 @@ msgid "failed to call GLFW (%i): %s"
 msgstr "gagal memanggil GLFW (%i): %s"
 
 #: core.c:999
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "Versi"
+msgstr "Menemukan versi API Vulkan"
 
 #: core.c:1016
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "gagal memanggil vkCreateInstance (%s)"
 
 #: core.c:1020 core.c:1022
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s tidak didukung"
 
 #: core.c:1032
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "gagal memanggil vkEnumeratePhysicalDevices (%s)"
 
 #: core.c:1039
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Tidak ada perangkat Vulkan yang tersedia"
 
 #: core.c:1048
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "Tidak ada perangkat fisik yang tersedia (%s)"
 
 #: core.c:1111
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "gagal untuk mendapatkan nama untuk perangkat %u (%s)"
+msgstr "Gagal membuat Vulkan untuk perangkat %u (%s)"
 
 #: core.c:1115
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s tidak didukung untuk perangkat %u, gunakan hanya deviceID untuk pencocokan"
 
 #: core.c:1147 core.c:1460
 msgid "Enabled"
-msgstr "Bernyala"
+msgstr "Diaktifkan"
 
 #: core.c:1147 core.c:1460
 msgid "Disabled"
-msgstr "gak Nyala"
+msgstr "Dinonaktifkan"
 
 #: core.c:1197
 #, c-format
@@ -219,10 +223,8 @@ msgstr ""
 "%s' (%s)"
 
 #: core.c:1237
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "ID Perangkat"
+msgstr "0 perangkat"
 
 #: core.c:1247
 #, c-format
@@ -244,21 +246,22 @@ msgstr "gagal untuk mendapatkan versi untuk perangkat %u (%s)"
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
-"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_TOPOLOGY_AMD (%s)"
+"Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.c:1297
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
-"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+"Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.c:1310 core.c:1323 core.c:1351
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
-"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+"Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_MAX_COMPUTE_UNITS "
+"(%s)"
 
 #: core.c:1339
 #, c-format
@@ -266,17 +269,17 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
-"Driver OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+"Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_PCI_DOMAIN_ID_NV "
+"(%s), CL_DEVICE_PCI_BUS_ID_NV (%s), atau CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.c:1361
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "OpenCL tidak didukung dengan vendor GPU Anda (0x%X)"
+msgstr "OpenCL tidak didukung oleh vendor GPU Anda (0x%X)"
 
 #: core.c:1392
 msgid "Finding devices"
-msgstr "Mencari perangkat"
+msgstr "Menemukan perangkat"
 
 #: core.c:1404
 #, c-format
@@ -290,15 +293,15 @@ msgstr "Vendor GPU Anda tidak diketahui: %s (0x%X)"
 
 #: core.c:1478
 msgid "failed to find chipset vendor and model"
-msgstr "pencarian model dan vendor chipset gagal"
+msgstr "gagal menemukan vendor dan model chipset"
 
 #: core.c:1480
 msgid "failed to find graphic card vendor and model"
-msgstr "pencarian model dan vendor kartu grafis gagal"
+msgstr "gagal menemukan vendor dan model kartu grafis"
 
 #: core.c:1557
 msgid "Retrieving GPU clocks"
-msgstr "Mengambil clocks GPU"
+msgstr "Mengambil GPU clock"
 
 #: core.c:1592
 msgid "None"
@@ -307,17 +310,17 @@ msgstr "Tidak ada"
 #: core.c:1611
 #, c-format
 msgid "DRM path for GPU %u is unknown"
-msgstr ""
+msgstr "Lokasi DRM untuk GPU %u tidak diketahui"
 
 #: core.c:1613
 #, c-format
 msgid "Card number for GPU %u is unknown"
-msgstr ""
+msgstr "Nomor kartu untuk GPU %u tidak diketahui"
 
 #: core.c:1734
 #, c-format
 msgid "Driver for GPU %u doesn't report frequencies"
-msgstr "Diver GPU %u tidak melaporkan frekuensi"
+msgstr "Pengandar untuk GPU %u tidak melaporkan frekuensi"
 
 #: core.c:1776
 #, c-format
@@ -326,7 +329,7 @@ msgstr "Saat Ini: PCIe Gen%1dx%d / Maks: Gen%1dx%d"
 
 #: core.c:1801
 msgid "failed to retrieve GPU clocks"
-msgstr "gagal mengambil clocks GPU"
+msgstr "gagal mengambil GPU clock"
 
 #: core.c:1818
 msgid "Identifying running system"
@@ -334,7 +337,7 @@ msgstr "Mengidentifikasi sistem yang berjalan"
 
 #: core.c:1821
 msgid "failed to identify running system"
-msgstr "Identifikasi sistem yang berjalan telah gagal"
+msgstr "gagal mengidentifikasi sistem yang sedang berjalan"
 
 #: core.c:1865 core.c:1893
 msgid "Calling libprocps"
@@ -342,11 +345,11 @@ msgstr "Memanggil libprocps"
 
 #: core.c:1868
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "tidak bisa mendapatkan waktu aktif sistem"
 
 #: core.c:1874
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "tidak dapat membuat struktur meminfo"
 
 #: core.c:1919
 msgid "Calling libstatgrab"
@@ -359,7 +362,7 @@ msgstr "%i hari, %i jam, %i menit, %i detik"
 
 #: core.c:2015
 msgid "Updating benchmark status"
-msgstr "Memperbarui status benchmark"
+msgstr "Memperbarui status pengukuran"
 
 #: core.c:2016 tui_ncurses.c:879
 #, c-format
@@ -396,46 +399,46 @@ msgstr "(%u detik lagi)"
 #: core.c:2043
 #, c-format
 msgid "in %u hours"
-msgstr "pada %u jam"
+msgstr "dalam %u jam"
 
 #: core.c:2045
 #, c-format
 msgid "in %u minutes"
-msgstr "pada %u menit"
+msgstr "dalam %u menit"
 
 #: core.c:2047
 #, c-format
 msgid "in %u seconds"
-msgstr "pada %u detik"
+msgstr "dalam %u detik"
 
 #: core.c:2063
 msgid "Starting benchmark"
-msgstr "Memulai benchmark"
+msgstr "Memulai pengukuran"
 
 #: core.c:2082
 msgid "an error occurred while starting benchmark"
-msgstr "Terjadi galat ketika memulai benchmark"
+msgstr "Terjadi kesalahan saat memulai pengukuran"
 
 #: core.c:2099
 msgid "Finding CPU package in fallback mode"
-msgstr "Mencari paket CPU di mode fallback"
+msgstr "Menemukan paket CPU dalam mode fallback"
 
 #: core.c:2121
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Soket CPU Anda tidak ada dalam database ==> %s, nama kode: %s"
+msgstr "Soket CPU Anda tidak ada dalam basis data ==> %s, nama kode: %s"
 
 #: core.c:2140
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Menghitung pengali CPU di mode fallback"
+msgstr "Menghitung pengali CPU dalam mode fallback"
 
 #: core.c:2167
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "Mengambil informasi motherboard di mode fallback"
+msgstr "Mengambil informasi papan induk di mode fallback"
 
 #: core.c:2176
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "gagal mengambil informasi motherboard (mode fallback)"
+msgstr "gagal mengambil informasi papan induk (mode fallback)"
 
 #: core.c:2215
 msgid "Retrieving CPU temperature in fallback mode"
@@ -447,11 +450,11 @@ msgstr "gagal mengambil suhu CPU (mode fallback)"
 
 #: core.c:2274
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Mengambil voltase CPU di mode fallback"
+msgstr "Mengambil tegangan CPU di mode fallback"
 
 #: core.c:2287
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "gagal mengambil voltase CPU (mode fallback)"
+msgstr "gagal mengambil tegangan CPU (mode fallback)"
 
 #: core.c:2302
 msgid "Retrieving CPU frequency in fallback mode"
@@ -464,7 +467,7 @@ msgstr "gagal mengambil frekuensi CPU (mode fallback)"
 #: daemon.c:264
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr "request_handler: %i tidak dikendalikan"
+msgstr "request_handler: kasus %i tidak ditangani"
 
 #: gui_gtk.c:62
 msgid "Starting GTK GUI…"
@@ -472,11 +475,11 @@ msgstr "Memulai GUI GTK…"
 
 #: gui_gtk.c:70
 msgid "failed to import UI in GtkBuilder"
-msgstr "gagal mengimpor UI di GtkBuilder"
+msgstr "gagal mengimpor UI dalam GtkBuilder"
 
 #: gui_gtk.c:600
 msgid "Connected to daemon"
-msgstr "Terkoneksi dengan daemon"
+msgstr "Terhubung ke daemon"
 
 #: gui_gtk.c:602
 msgid "No polkit authentication agent found"
@@ -484,52 +487,49 @@ msgstr "Agen autentikasi polkit tidak ditemukan"
 
 #: gui_gtk.c:606
 msgid "Ask password to start daemon in background"
-msgstr "Meminta password untuk memulai daemon di latar"
+msgstr "Meminta kata sandi untuk memulai daemon di latar belakang"
 
 #: gui_gtk.c:612
 msgid "Start daemon"
 msgstr "Memulai daemon"
 
 #: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
+#, c-format
 msgid "Type #%i"
-msgstr "Core #%i"
+msgstr "Tipe #%i"
 
 #: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
 #, c-format
 msgid "Core #%i"
-msgstr "Core #%i"
+msgstr "Inti #%i"
 
 #: gui_gtk.c:632
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Keluarga"
+msgstr "KeluargaDasar"
 
 #: gui_gtk.c:633
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Model"
+msgstr "ModelDasar"
 
 #: gui_gtk.c:634
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Tampilan CPU (\"benar\") keluarga (dihitung sebagai "
+"KeluargaDasar+KeluargaBesar)"
 
 #: gui_gtk.c:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Model tampilan CPU (\"benar\") (dihitung sebagai "
+"(ExtendedModel<<4)+ModelDasar)"
 
 #: gui_gtk.c:694
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "Versi UMD"
+msgstr "Versi Pengandar Mode Pengguna"
 
 #: gui_gtk.c:695
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Pelacakan Sinar Vulkan"
 
 #: main.c:57
 msgid "Setting label names"
@@ -549,7 +549,7 @@ msgstr "Vendor"
 
 #: main.c:62
 msgid "Code Name"
-msgstr "Code Name"
+msgstr "Nama Kode"
 
 #: main.c:63
 msgid "Package"
@@ -561,7 +561,7 @@ msgstr "Teknologi"
 
 #: main.c:65
 msgid "Voltage"
-msgstr "Voltase"
+msgstr "Tegangan"
 
 #: main.c:66
 msgid "Specification"
@@ -572,24 +572,20 @@ msgid "Family"
 msgstr "Keluarga"
 
 #: main.c:68
-#, fuzzy
-#| msgid "Ext. Family"
 msgid "Disp. Family"
-msgstr "Ekstensi Keluarga"
+msgstr "Tampilkan Keluarga"
 
 #: main.c:69 main.c:105 main.c:116 main.c:151
 msgid "Model"
 msgstr "Model"
 
 #: main.c:70
-#, fuzzy
-#| msgid "Ext. Model"
 msgid "Disp. Model"
-msgstr "Model Ekstensi"
+msgstr "Tampilkan Model"
 
 #: main.c:71
 msgid "Temp."
-msgstr "Temp."
+msgstr "Suhu"
 
 #: main.c:72
 msgid "Stepping"
@@ -621,7 +617,7 @@ msgstr "Pengunaan"
 
 #: main.c:81 cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
-msgstr "Cache"
+msgstr "Tembolok"
 
 #: main.c:82
 msgid "L1 Data"
@@ -629,34 +625,32 @@ msgstr "Data L1"
 
 #: main.c:83
 msgid "L1 Inst."
-msgstr "L1 Inst."
+msgstr "Instruksi L1"
 
 #: main.c:84
 msgid "Level 2"
-msgstr "Tingkat 2"
+msgstr "Level 2"
 
 #: main.c:85
 msgid "Level 3"
-msgstr "Tingkat 3"
+msgstr "Level 3"
 
 #: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "Inti"
 
 #: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
-msgstr "Threads"
+msgstr "Thread"
 
 #: main.c:91 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
-msgstr "Cache"
+msgstr "Tembolok"
 
 #: main.c:95
 #, c-format
 msgid "L%i Cache"
-msgstr "L%i Cache"
+msgstr "Tembolok L%i"
 
 #: main.c:96
 msgid "Size"
@@ -737,11 +731,11 @@ msgstr "Distribusi"
 
 #: main.c:131
 msgid "Hostname"
-msgstr "Hostname"
+msgstr "Nama host"
 
 #: main.c:132
 msgid "Uptime"
-msgstr "Uptime"
+msgstr "Waktu aktif"
 
 #: main.c:133
 msgid "Compiler"
@@ -753,11 +747,11 @@ msgstr "Digunakan"
 
 #: main.c:137
 msgid "Buffers"
-msgstr "Buffer"
+msgstr "Bufer"
 
 #: main.c:138
 msgid "Cached"
-msgstr "Dalam cache"
+msgstr "Dalam tembolok"
 
 #: main.c:139
 msgid "Free"
@@ -778,7 +772,7 @@ msgstr "Kartu %i"
 
 #: main.c:149
 msgid "Driver"
-msgstr "Driver"
+msgstr "Pengandar"
 
 #: main.c:150
 msgid "UMD Version"
@@ -790,13 +784,11 @@ msgstr "Unit Komputasi"
 
 #: main.c:153
 msgid "DeviceID"
-msgstr "ID Perangkat"
+msgstr "IDPerangkat"
 
 #: main.c:154
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Versi"
+msgstr "Versi VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -806,11 +798,11 @@ msgstr "Antarmuka"
 
 #: main.c:156
 msgid "Temperature"
-msgstr "Temperatur"
+msgstr "Suhu"
 
 #: main.c:158
 msgid "Core Voltage"
-msgstr "Voltase Inti"
+msgstr "Tegangan Inti"
 
 #: main.c:159
 msgid "Power Avg"
@@ -822,37 +814,31 @@ msgstr "GPU clock"
 
 #: main.c:161
 msgid "Memory clock"
-msgstr "Memori Clock"
+msgstr "Clock Memori"
 
 #: main.c:162
 msgid "Memory Used"
-msgstr "Memori yang digunakan"
+msgstr "Memori yang Digunakan"
 
 #: main.c:163
 msgid "Resizable BAR"
-msgstr "BAR yang dapat diubah ukuran"
+msgstr "BAR yang Dapat Diubah"
 
 #: main.c:164
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: main.c:165
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Versi"
+msgstr "Versi OpenGL"
 
 #: main.c:166
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Versi"
+msgstr "Versi Vulkan"
 
 #: main.c:167
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Versi"
+msgstr "Versi OpenCL"
 
 #: main.c:169 cpu-x-gtk-3.12.ui:5054
 msgid "Cards"
@@ -860,15 +846,15 @@ msgstr "Kartu"
 
 #: main.c:172 cpu-x-gtk-3.12.ui:5416
 msgid "Bench"
-msgstr "Bench"
+msgstr "Pengukuran"
 
 #: main.c:173 cpu-x-gtk-3.12.ui:5186
 msgid "Prime numbers (slow)"
-msgstr "Nomor prima (lambat)"
+msgstr "Bilangan prima (lambat)"
 
 #: main.c:174 cpu-x-gtk-3.12.ui:5294
 msgid "Prime numbers (fast)"
-msgstr "Nomor prima (cepat)"
+msgstr "Bilangan prima (cepat)"
 
 #: main.c:177
 msgid "Score"
@@ -897,7 +883,7 @@ msgid ""
 "on CPU, motherboard and more."
 msgstr ""
 "%s adalah perangkat lunak gratis yang mengumpulkan informasi\n"
-"CPU, motherboard, dan lainnya."
+"CPU, papan induk, dan lainnya."
 
 #: main.c:192
 #, c-format
@@ -907,7 +893,7 @@ msgstr "Versi %s"
 #: main.c:193
 #, c-format
 msgid "Author: %s"
-msgstr "Pencipta: %s"
+msgstr "Pembuat: %s"
 
 #: main.c:194
 #, c-format
@@ -925,7 +911,7 @@ msgstr "Perangkat lunak ini didistribusikan di bawah aturan %s"
 
 #: main.c:201 main.c:454
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "Program ini hadir dengan TANPA JAMINAN"
+msgstr "Program ini hadir dengan TANPA JAMINAN APA PUN"
 
 #: main.c:272
 msgid "Dumping data…"
@@ -937,11 +923,11 @@ msgstr "Mengosongkan memori"
 
 #: main.c:343
 msgid "Start graphical user interface (GUI) (default)"
-msgstr "Mulai antarmuka pengguna grafis (GUI) (default)"
+msgstr "Mulai antarmuka pengguna grafis (GUI) (bawaan)"
 
 #: main.c:344
 msgid "Start text-based user interface (TUI)"
-msgstr "Memulai antarmuka pengguna berbasis teks (TUI)"
+msgstr "Mulai antarmuka pengguna berbasis teks (TUI)"
 
 #: main.c:345
 msgid "Dump all data on standard output and exit"
@@ -949,25 +935,23 @@ msgstr "Buang semua data pada keluaran standar dan keluar"
 
 #: main.c:346
 msgid "Run embedded command dmidecode and exit"
-msgstr "Jalankan perintah dmidecode dan keluar"
+msgstr "Jalankan perintah dmidecode tertanam dan keluar"
 
 #: main.c:347
 msgid "Run embedded command bandwidth and exit"
-msgstr "Jalankan perintah bandwidth dan keluar"
+msgstr "Jalankan perintah lebar pita tertanam dan keluar"
 
 #: main.c:348
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr "Atur waktu khusus antara dua penyegaran (dalam detik)"
+msgstr "Atur waktu khusus di antara dua penyegaran (dalam detik)"
 
 #: main.c:349
 msgid "Set default tab (integer)"
-msgstr "Setel tab default (integer)"
+msgstr "Setel tab bawaan (integer)"
 
 #: main.c:350
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "Pilih inti CPU untuk dipantau (integer)"
+msgstr "Pilih jenis inti yang akan dipantau (integer)"
 
 #: main.c:351
 msgid "Select CPU core to monitor (integer)"
@@ -975,11 +959,12 @@ msgstr "Pilih inti CPU untuk dipantau (integer)"
 
 #: main.c:352
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr "Setel pengujian bandwidth khusus untuk kecepatan cache CPU (integer)"
+msgstr ""
+"Setel pengujian lebar pita khusus untuk kecepatan tembolok CPU (integer)"
 
 #: main.c:353
 msgid "Select default graphic card (integer)"
-msgstr "Pilih kartu grafis default (integer)"
+msgstr "Pilih kartu grafis bawaan (integer)"
 
 #: main.c:354 cpu-x-gtk-3.12.ui:5994
 msgid "Start and connect to daemon"
@@ -999,7 +984,7 @@ msgstr "Cetak versi dan keluar"
 
 #: main.c:358
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr "Cetak nilai desimal CPUID (defaultnya adalah heksadesimal)"
+msgstr "Cetak nilai desimal CPUID (nilai bawaannya adalah heksadesimal)"
 
 #: main.c:359
 msgid "Disable colored output"
@@ -1007,25 +992,24 @@ msgstr "Nonaktifkan keluaran berwarna"
 
 #: main.c:360
 msgid "Print information for debugging"
-msgstr "Cetak informasi untuk debugging"
+msgstr "Cetak informasi untuk awakutu"
 
 #: main.c:361
 msgid "Print required information to paste in an issue"
-msgstr "Cetak informasi yang diperlukan untuk ditempelkan dalam issue"
+msgstr "Cetak informasi yang diperlukan untuk ditempelkan dalam sebuah isu"
 
 #: main.c:362
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
-"Setel pemetaan kunci untuk mode NCurses (a [baris] | e [macs] | i [nverted-"
-"T] | v [im])"
+"Atur pemetaan kunci untuk mode NCurses (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.c:373
 msgid "Add default command line arguments"
-msgstr "Tambahkan argumen baris perintah default"
+msgstr "Tambah argumen baris perintah bawaan"
 
 #: main.c:374
 msgid "Enforce the bus clock"
-msgstr "Terapkan jam bus"
+msgstr "Terapkan bus clock"
 
 #: main.c:375
 msgid "Ignore CPU frequency reported by libcpuid"
@@ -1033,16 +1017,16 @@ msgstr "Abaikan frekuensi CPU yang dilaporkan oleh libcpuid"
 
 #: main.c:376
 msgid "Read CPUID raw data from a given file"
-msgstr "Baca data mentah CPUID dari file tertentu"
+msgstr "Baca data mentah CPUID dari berkas tertentu"
 
 #: main.c:377
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Hanya mencetak pesan jika CPU tidak ada dalam basisdata"
+msgstr "Hanya mencetak pesan jika CPU tidak ada dalam basis data"
 
 #: main.c:401
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Pengunaan: %s Tampilan [Opsi]\n"
+msgstr "Penggunaan: %s MENAMPILKAN [OPSI]\n"
 
 #: main.c:402
 msgid "Available DISPLAY:"
@@ -1050,7 +1034,7 @@ msgstr "TAMPILAN yang tersedia:"
 
 #: main.c:411
 msgid "Available OPTIONS:"
-msgstr "OPSI yang tersedia:"
+msgstr "OPSI yang Tersedia:"
 
 #: main.c:419
 msgid "Influenceable environment variables:"
@@ -1059,7 +1043,7 @@ msgstr "Variabel lingkungan yang dapat dipengaruhi:"
 #: main.c:453
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
-"Ini adalah perangkat lunak gratis: Anda bebas mengubah dan "
+"Ini adalah perangkat lunak gratis: Anda bebas untuk mengubah dan "
 "mendistribusikannya kembali."
 
 #: main.c:455
@@ -1078,39 +1062,34 @@ msgid "failed to call wordexp (%i)"
 msgstr "gagal memanggil wordexp (%i)"
 
 #: main.c:677
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 "\n"
-"%s Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan jatuh. %s"
+"Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan mengalami gangguan."
 
 #: main.c:679
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
 "\n"
-"%s Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan jatuh. %s"
+"Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan sedang mencoba "
+"untuk pulih."
 
 #: main.c:696
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Anda dapat membuka isu baru di sini, dengan mengisi templat seperti yang "
+"diminta:"
 
 #: main.c:741
 msgid "an error occurred while setting locale"
-msgstr "timbul galat saat menyetel lokal"
+msgstr "terjadi kesalahan saat mengatur lokasi"
 
 #: tui_ncurses.c:73
 msgid "Starting NCurses TUI…"
@@ -1121,13 +1100,13 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
-"KESALAHAN FATAL: database terminfo tidak dapat ditemukan (coba atur variabel "
-"lingkungan TERMINFO)"
+"KESALAHAN FATAL: basis data terminfo tidak dapat ditemukan (coba atur "
+"variabel lingkungan TERMINFO)"
 
 #: tui_ncurses.c:86
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "Gagal menyetel terminal %s (err=%i); kembali ke %s"
+msgstr "Gagal menyiapkan terminal %s (err=%i); kembali ke %s"
 
 #: tui_ncurses.c:342
 msgid "Window is too small!"
@@ -1145,35 +1124,28 @@ msgstr "Selamat datang di %s bantuan NCurses!\n"
 #: tui_ncurses.c:505
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
-"Bantuan ini menjelaskan cara menggunakan Antarmuka Pengguna berbasis Teks."
+"Bantuan ini menjelaskan cara menggunakan Antarmuka Pengguna Berbasis Teks."
 
 #: tui_ncurses.c:507
 msgid "Global keys:"
 msgstr "Kunci global:"
 
 #: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Tekan tombol 'kiri' untuk beralih di tab kiri."
+msgstr "Tekan tombol 'kiri' atau tombol 'tab' untuk beralih ke tab kiri."
 
 #: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Tekan tombol 'kanan' untuk beralih di tab kanan."
+msgstr ""
+"Tekan tombol 'kanan' atau tombol 'shift + tab' untuk beralih ke tab kanan."
 
 #: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'home' key to scroll up in a page."
-msgstr "Tekan tombol 'kiri' untuk beralih di tab kiri."
+msgstr "Tekan tombol 'home' untuk menggulir ke atas dalam halaman."
 
 #: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
 msgid "Press 'end' key to scroll down in a page."
-msgstr "Tekan tombol 'kiri' untuk beralih di tab kiri."
+msgstr "Tekan tombol 'end' untuk menggulir ke bawah dalam halaman."
 
 #: tui_ncurses.c:512
 msgid "Press 'h' key to see this help."
@@ -1188,54 +1160,49 @@ msgid "CPU tab:"
 msgstr "Tab CPU:"
 
 #: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "Tekan tombol 'bawah' untuk mengurangi jumlah inti yang akan dipantau."
+msgstr ""
+"Tekan tombol 'halaman berikutnya' untuk mengurangi nomor jenis inti yang "
+"akan dipantau."
 
 #: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "Tekan tombol 'atas' untuk menambah jumlah inti yang akan dipantau."
+msgstr ""
+"Tekan tombol 'halaman sebelumnya' untuk menambah nomor tipe inti yang akan "
+"dipantau."
 
 #: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "Tekan tombol 'bawah' untuk mengurangi jumlah inti yang akan dipantau."
+msgstr ""
+"Tekan tombol 'bawah' untuk mengurangi jumlah inti CPU yang akan dipantau."
 
 #: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "Tekan tombol 'atas' untuk menambah jumlah inti yang akan dipantau."
+msgstr "Tekan tombol 'atas' untuk menambah jumlah inti CPU yang akan dipantau."
 
 #: tui_ncurses.c:521
 msgid "Caches tab:"
-msgstr "Tab cache:"
+msgstr "Tab tembolok:"
 
 #: tui_ncurses.c:522
 msgid "Press 'down' key to switch to previous test."
 msgstr "Tekan tombol 'bawah' untuk beralih ke tes sebelumnya."
 
 #: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
 msgid "Press 'up' key to switch to next test."
 msgstr "Tekan tombol 'atas' untuk beralih ke tes berikutnya."
 
 #: tui_ncurses.c:525
 msgid "Bench tab:"
-msgstr "Tab Pengujian:"
+msgstr "Tab pengukuran:"
 
 #: tui_ncurses.c:526
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Tekan tombol 'bawah' untuk mengurangi durasi pengujian."
+msgstr "Tekan tombol 'bawah' untuk mengurangi durasi pengukuran."
 
 #: tui_ncurses.c:527
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "Tekan tombol 'atas' untuk menambah durasi pengujian."
+msgstr "Tekan tombol 'atas' untuk menambah durasi pengukuran."
 
 #: tui_ncurses.c:528
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -1245,22 +1212,23 @@ msgstr ""
 #: tui_ncurses.c:529
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
-"Tekan tombol 'previous page' untuk menambah jumlah thread yang akan "
+"Tekan tombol 'halaman sebelumnya' untuk menambah jumlah thread yang akan "
 "digunakan."
 
 #: tui_ncurses.c:530
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
-"Tekan 's' untuk memulai/menghentikan benchmark bilangan prima (lambat)."
+"Tekan 's' untuk memulai/menghentikan pengukuran bilangan prima (lambat)."
 
 #: tui_ncurses.c:531
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"Tekan tombol 'f' untuk memulai/menghentikan benchmark bilangan prima (cepat)."
+"Tekan tombol 'f' untuk memulai/menghentikan pengukuran bilangan prima "
+"(cepat)."
 
 #: tui_ncurses.c:533
 msgid "Graphics tab:"
-msgstr "Tab Grafis:"
+msgstr "Tab grafis:"
 
 #: tui_ncurses.c:534
 msgid "Press 'down' key to switch to previous graphic card."
@@ -1272,12 +1240,12 @@ msgstr "Tekan tombol 'atas' untuk beralih ke kartu grafis berikutnya."
 
 #: tui_ncurses.c:537
 msgid "Press any key to exit this help."
-msgstr "Tekan tombol apa saja untuk keluar dari bantuan ini."
+msgstr "Tekan sembarang tombol untuk keluar dari bantuan ini."
 
 #: util.c:202
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr "unit string '%s' pada posisi %i tidak ditemukan"
+msgstr "tidak dapat menemukan unit dalam string '%s' pada posisi %i"
 
 #: util.c:214
 #, c-format
@@ -1287,12 +1255,12 @@ msgstr "String '%s' terlalu panjang, mengecilkan…"
 #: util.c:291
 #, c-format
 msgid "an error occurred while opening file '%s' (%s)"
-msgstr "kesalahan terjadi saat membuka file '%s' (%s)"
+msgstr "kesalahan terjadi saat membuka berkas '%s' (%s)"
 
 #: util.c:321
 #, c-format
 msgid "an error occurred while running command '%s' (%s)"
-msgstr "galat terjadi saat menjalankan perintah '%s' (%s)"
+msgstr "terjadi kesalahan saat menjalankan perintah '%s' (%s)"
 
 #: util.c:379 util.c:439
 #, c-format
@@ -1301,34 +1269,28 @@ msgstr "gagal membuka direktori %s"
 
 #: util.c:452
 msgid "an error occurred while compiling regex"
-msgstr "timbul galat saat mengompilasi regex"
+msgstr "terjadi kesalahan saat menyusun regex"
 
 #: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
 msgstr "Inti"
 
 #: util.c:547
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Skor"
+msgstr "Inti-P"
 
 #: util.c:548
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Skor"
+msgstr "Inti-E"
 
 #: util.c:567
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "gagal mengubah afinitas CPU ke inti %u"
 
 #: util.c:608
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: otorisasi tidak dapat diperoleh (dialog ditutup)"
+msgstr "pkexec: otorisasi tidak dapat diperoleh (dialog dihentikan)"
 
 #: util.c:611
 msgid "pkexec: authorization could not be obtained (not authorized)"
@@ -1344,15 +1306,15 @@ msgstr "pkexec: kode kesalahan tak terduga"
 
 #: util.c:687
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() tidak didukung pada sistem operasi ini"
 
 #: cpu-x.h:58
 msgid "FATAL ERROR: could not allocate memory"
-msgstr "GALAT: tidak bisa mengalokasikan memori"
+msgstr "KESALAHAN FATAL: tidak bisa mengalokasikan memori"
 
 #: cpu-x.h:97
 msgid "bytes"
-msgstr "Bita"
+msgstr "bita"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: cpu-x.h:100
@@ -1397,66 +1359,62 @@ msgstr "TiB"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5836
 msgid "Refresh time"
-msgstr ""
+msgstr "Waktu penyegaran"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5860
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5875
 msgid "Automatic"
-msgstr ""
+msgstr "Otomatis"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5876
 msgid "Light"
-msgstr ""
+msgstr "Terang"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5877
 msgid "Dark"
-msgstr ""
+msgstr "Gelap"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5910
 msgid "Default tab"
-msgstr ""
+msgstr "Tab bawaan"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5923
 msgid "Default CPU core"
-msgstr ""
+msgstr "Inti CPU bawaan"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5936
 msgid "Default cache test"
-msgstr ""
+msgstr "Uji tembolok bawaan"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5979
-#, fuzzy
-#| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
-msgstr "Cetak nilai desimal CPUID (defaultnya adalah heksadesimal)"
+msgstr "Mencetak nilai CPUID dalam bentuk desimal"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6012
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
-msgstr "Pilih kartu grafis default (integer)"
+msgstr "Kartu grafis bawaan"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6036
 msgid "Default core type"
-msgstr ""
+msgstr "Tipe inti bawaan"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6064
 msgid "Startup"
-msgstr ""
+msgstr "Memulai"
 
 #, fuzzy, c-format
 #~| msgid "failed to call libcpuid (%s)"
