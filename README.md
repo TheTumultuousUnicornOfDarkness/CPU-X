@@ -14,10 +14,10 @@
 
 **CPU-X** is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is a system profiling and monitoring application (similar to [CPU-Z for Windows](https://www.cpuid.com/softwares/cpu-z.html)), but CPU-X is a Free and Open Source software designed for GNU/Linux and FreeBSD.  
-This software is written in C and built with [CMake](https://www.cmake.org/) tool.  
+This software is written in C++ and built with [CMake](https://www.cmake.org/) tool.  
 It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
 
-**:warning: There is no major plans for the future, see [this announcement](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/future-of-project).**
+**:warning: There are no milestones for this project, read [this announcement](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/future-of-project) for more details.**
 
 ***
 
@@ -43,7 +43,7 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 ### Build-only dependencies
 
 These dependencies are needed to **build** CPU-X:
-* A C compiler ([GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/))
+* A C++ compiler ([GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/))
 * [CMake](https://www.cmake.org/)
 * [Pkg-Config](https://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
 * [NASM](https://www.nasm.us/)
@@ -59,7 +59,7 @@ These dependencies are needed to **test** CPU-X:
 ### Build and run dependencies
 
 These dependencies are needed to **build¹** and **run** CPU-X:
-* [GTK3+](https://www.gtk.org/) (version 3.12 or newer is needed)  
+* [Gtkmm3](https://www.gtkmm.org/en/index.html) (versions 3.12 to 3.24 are supported)  
 * [NCurses](https://www.gnu.org/software/ncurses/)  
 * [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.6.0 or newer is needed)  
 * [Pciutils](https://mj.ucw.cz/sw/pciutils/)  
@@ -71,7 +71,6 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 **¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 ## Download and install
-
 
 ### From repositories
 
@@ -98,7 +97,7 @@ For step-by-step guide, please read [this page](https://github.com/TheTumultuous
 ## Usage
 
 Application is available in menu (**System Tools** category). If you start the daemon, it will allow CPU-X to access some special devices, which provides more information and avoid empty labels.  
-The CPU-X daemon requires root privileges, and it uses Polkit for privileges escalation.
+The CPU-X daemon requires root privileges, and uses Polkit for privileges escalation.
 
 You can use `cpu-x` from command line, some options are available, like:
 - `--gtk`: to start the graphical user interface (default)
@@ -109,11 +108,12 @@ Use `--help` to see all arguments.
 
 ## Wiki
 
-More informations are available on Wiki, like screenshots, troubleshooting and tips. You can access to the Wiki with [this link](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki).
+More informations are available on Wiki, like screenshots, troubleshooting and tips. You can access the Wiki by using [this link](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki).
 
 ## Bugs/Improvements/Request features
 
-Please [open a new issue](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues/new/choose) and fill the appropriate template. Note that text between `<!-- ... -->` is not displayed.
+Please [open a new issue](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues/new/choose) and fill the appropriate template. Note that text between `<!-- ... -->` is not displayed.  
+:warning: **Incomplete reports may be closed without justification.**
 
 ## Translate CPU-X
 

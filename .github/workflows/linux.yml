@@ -35,10 +35,12 @@ jobs:
 
     - name: Run CPU-X
       run: |
-        sudo CPUX_BCLK=100 cpu-x --issue-fmt
+        error=0
+        sudo CPUX_BCLK=100 cpu-x --issue-fmt || error=1
         cat /tmp/cpu-x.log
         cat /tmp/cpu-x-daemon.log
+        exit $error
 
     - name: Test CPU database with LibCPUID tests
       run: |
-        bash ./scripts/run_libcpuid_tests.sh "/tmp/libcpuid/tests"
+        bash ./scripts/run_libcpuid_tests.sh "/tmp/libcpuid/tests" 2> /dev/null

@@ -24,7 +24,13 @@
 #ifndef _LIBBANDWIDTH_H_
 #define _LIBBANDWIDTH_H_
 
-#define BANDWIDTH_MODE (opts->output_type == OUT_BANDWIDTH)
+#include <pthread.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define BANDWIDTH_MAX_CACHE_LEVEL 4
 
 
 enum EnTests
@@ -59,7 +65,7 @@ enum EnTests
 	SEQ_32_W,
 	RAND_32_W,
 #endif
-	LASTTEST
+	BANDWIDTH_LAST_TEST
 };
 
 struct Tests
@@ -74,8 +80,23 @@ struct Tests
 	bool     random;
 };
 
-int bandwidth_main(int argc, char **argv);
-int bandwidth_cpux(void *p_data);
+struct BandwidthData
+{
+	bool     is_amd_cpu;
+	uint8_t  selected_test;
+	uint32_t cache_size[BANDWIDTH_MAX_CACHE_LEVEL];
+	uint32_t cache_speed[BANDWIDTH_MAX_CACHE_LEVEL];
+	char     **test_name;
+	pthread_mutex_t mutex;
+};
 
+
+int bandwidth_main(int argc, const char **argv);
+int bandwidth_cpux(struct BandwidthData *bwd);
+
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

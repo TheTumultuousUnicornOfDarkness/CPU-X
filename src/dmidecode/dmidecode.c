@@ -83,7 +83,13 @@
 #include "dmioutput.h"
 
 /* CPU-X */
-#include "../ipc.h"
+#include "../daemon.h"
+#if HAS_GETTEXT
+# define _(msg)               gettext(msg)
+#else
+# define _(msg)               msg
+#endif /* HAS_GETTEXT */
+#define N_(msg)               msg
 DmidecodeData *cpux_data;
 #define STR_LEN 24
 
@@ -2864,6 +2870,19 @@ static void dmi_memory_voltage_value(const char *attr, u16 code)
 			(float)code / 1000);
 }
 
+static char *dmi_memory_voltage_value_str(u16 code)
+{
+	static char buff[MAXSTR];
+
+	if (code == 0)
+		return "Unknown";
+	else
+	{
+		snprintf(buff, MAXSTR, code % 100 ? "%g V" : "%.1f V", (float)code / 1000);
+		return buff;
+	}
+}
+
 static const char *dmi_memory_device_form_factor(u8 code)
 {
 	/* 7.18.1 */
@@ -2981,6 +3000,43 @@ static void dmi_memory_device_type_detail(u16 code)
 				off += sprintf(list + off, off ? " %s" : "%s",
 					       detail[i - 1]);
 		pr_attr("Type Detail", list);
+	}
+}
+
+static char *dmi_memory_device_type_detail_str(u16 code)
+{
+	/* 7.18.3 */
+	static const char *detail[] = {
+		"Other", /* 1 */
+		"Unknown",
+		"Fast-paged",
+		"Static Column",
+		"Pseudo-static",
+		"RAMBus",
+		"Synchronous",
+		"CMOS",
+		"EDO",
+		"Window DRAM",
+		"Cache DRAM",
+		"Non-Volatile",
+		"Registered (Buffered)",
+		"Unbuffered (Unregistered)",
+		"LRDIMM"  /* 15 */
+	};
+	static char list[172];		/* Update length if you touch the array above */
+
+	if ((code & 0xFFFE) == 0)
+		return "None";
+	else
+	{
+		int i, off = 0;
+
+		list[0] = '\0';
+		for (i = 1; i <= 15; i++)
+			if (code & (1 << i))
+				off += sprintf(list + off, off ? " %s" : "%s",
+					       detail[i - 1]);
+		return list;
 	}
 }
 
@@ -5489,57 +5545,58 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 static void dmi_decode_cpux(const struct dmi_header *h)
 {
 	const u8 *data = h->data;
+	DmidecodeMemoryData *memory_tmp = NULL;
 
 	switch (h->type)
 	{
 		case 0: /* 7.1 BIOS Information */
-			snprintf(cpux_data->motherboard[BRAND],       MAXSTR, "%s", dmi_string(h, data[0x04]));
-			snprintf(cpux_data->motherboard[BIOSVERSION], MAXSTR, "%s", dmi_string(h, data[0x05]));
-			snprintf(cpux_data->motherboard[DATE],        MAXSTR, "%s", dmi_string(h, data[0x08]));
-			snprintf(cpux_data->motherboard[ROMSIZE],     MAXSTR, "%s / %s",
+			strncpy(cpux_data->bios.brand,   dmi_string(h, data[0x04]), MAXSTR);
+			strncpy(cpux_data->bios.version, dmi_string(h, data[0x05]), MAXSTR);
+			strncpy(cpux_data->bios.date,    dmi_string(h, data[0x08]), MAXSTR);
+			snprintf(cpux_data->bios.romsize, MAXSTR, "%s / %s",
 			         dmi_bios_runtime_size_str((0x10000 - WORD(data + 0x06)) << 4),
 			         dmi_bios_rom_size_str(data[0x09], h->length < 0x1A ? 16 : WORD(data + 0x18)));
 			break;
 		case 2: /* 7.3 Base Board Information */
-			snprintf(cpux_data->motherboard[MANUFACTURER], MAXSTR, "%s", dmi_string(h, data[0x04]));
-			snprintf(cpux_data->motherboard[MBMODEL],      MAXSTR, "%s", dmi_string(h, data[0x05]));
-			snprintf(cpux_data->motherboard[REVISION],     MAXSTR, "%s", dmi_string(h, data[0x06]));
+			strncpy(cpux_data->mb.manufacturer, dmi_string(h, data[0x04]), MAXSTR);
+			strncpy(cpux_data->mb.model,        dmi_string(h, data[0x05]), MAXSTR);
+			strncpy(cpux_data->mb.revision,     dmi_string(h, data[0x06]), MAXSTR);
 			break;
 		case 4: /* 7.5 Processor Information */
-			cpux_data->bus_freq = (double) WORD(data + 0x12);
-			snprintf(cpux_data->cpu_package, MAXSTR, "%s", dmi_string(h, data[0x04]));
+			cpux_data->processor.bus_freq = (double) WORD(data + 0x12);
+			strncpy(cpux_data->processor.cpu_package, dmi_string(h, data[0x04]), MAXSTR);
 			break;
 		case 17: /* 7.18 Memory Device */
-			if(cpux_data->dimm_count < LASTMEMORY)
+			/* If no module is present, the remaining fields are irrelevant */
+			if(WORD(data + 0x0C) == 0 && !(opt.flags & FLAG_NO_QUIRKS))
+				break;
+			memory_tmp = realloc(cpux_data->memory, sizeof(DmidecodeMemoryData) * (cpux_data->stick_count + 1));
+			if(memory_tmp == NULL)
 			{
-				if((strstr(dmi_string(h, data[0x17]), "Empty") != NULL) || (WORD(data + 0x0C) == 0))
-					snprintf(cpux_data->memory[cpux_data->dimm_count], MAXSTR, "- - - - - - - - - - - - - - - - - - -");
-				else
-				{
-					memset(cpux_data->memory[cpux_data->dimm_count], '\0', MAXSTR);
-					if(h->length >= 0x1B)
-					{
-						/* Note: manufacturer can be 'Unknown' or 'Not Specified' */
-						const char *manufacturer = dmi_string(h, data[0x17]);
-						const char *part_number  = dmi_string(h, data[0x1A]);
-						if((strlen(manufacturer) > 0) || (strlen(part_number) > 0))
-							snprintf(cpux_data->memory[cpux_data->dimm_count], MAXSTR, "%s %s, ", manufacturer, part_number);
-					}
-					char specs[MAXSTR];
-					char *size  = (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C));
-					char *speed = dmi_memory_device_speed_str(WORD(data + 0x15), h->length >= 0x5C ? DWORD(data + 0x54) : 0);
-					snprintf(specs, MAXSTR, "%s @ %s (%s %s)",
-					         size,
-					         speed,
-					         dmi_memory_device_form_factor(data[0x0E]),
-					         dmi_memory_device_type(data[0x12]));
-					strncat(cpux_data->memory[cpux_data->dimm_count], specs, MAXSTR);
-				}
-				cpux_data->dimm_count++;
+				fprintf(stderr, "dmi_decode_cpux(): failed to reallocate cpux_data->memory");
+				break;
 			}
+			cpux_data->memory = memory_tmp;
+			strncpy(cpux_data->memory[cpux_data->stick_count].manufacturer, dmi_string(h, data[0x17]), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].part_number, dmi_string(h, data[0x1A]), MAXSTR);
+			snprintf(cpux_data->memory[cpux_data->stick_count].type, MAXSTR, "%s %s", dmi_memory_device_form_factor(data[0x0E]), dmi_memory_device_type(data[0x12]));
+			strncpy(cpux_data->memory[cpux_data->stick_count].type_detail, dmi_memory_device_type_detail_str(WORD(data + 0x13)), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].device_locator, dmi_string(h, data[0x10]), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].bank_locator, dmi_string(h, data[0x11]), MAXSTR);
+			if((data[0x1B] & 0x0F) == 0)
+				strncpy(cpux_data->memory[cpux_data->stick_count].rank, _("Unknown"), MAXSTR);
+			else
+				snprintf(cpux_data->memory[cpux_data->stick_count].rank, MAXSTR, "%u", data[0x1B] & 0x0F);
+			strncpy(cpux_data->memory[cpux_data->stick_count].size, (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C)), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].speed_maximum, dmi_memory_device_speed_str(WORD(data + 0x15), h->length >= 0x5C ? DWORD(data + 0x54) : 0), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].speed_configured, dmi_memory_device_speed_str(WORD(data + 0x20), h->length >= 0x5C ? DWORD(data + 0x58) : 0), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].voltage_minimum, dmi_memory_voltage_value_str(WORD(data + 0x22)), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].voltage_maximum, dmi_memory_voltage_value_str(WORD(data + 0x24)), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].voltage_configured, dmi_memory_voltage_value_str(WORD(data + 0x26)), MAXSTR);
+			cpux_data->stick_count++;
 			break;
 		default:
-			MSG_ERROR("internal error in dmi_decode_cpux(): type %u is not supported.", h->type);
+			fprintf(stderr, "internal error in dmi_decode_cpux(): type %u is not supported.", h->type);
 			break;
 	}
 }

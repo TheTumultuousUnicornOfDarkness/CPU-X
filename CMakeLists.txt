@@ -5,13 +5,14 @@ if(POLICY CMP0075)
 endif()
 project(cpu-x
 	VERSION "4.5.3"
-	LANGUAGES C
+	LANGUAGES C CXX
 )
 
 
 ### DEFAULT CONFIG
 
 # Global variables
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(GNUInstallDirs)
 if(NOT EXISTS ${CMAKE_INSTALL_FULL_LIBEXECDIR})
@@ -30,8 +31,11 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 4)
 else(CMAKE_SIZEOF_VOID_P EQUAL 4)
 	set(BITNESS "64")
 endif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+set(CMAKE_COLOR_DIAGNOSTICS ON)
 set(CMAKE_C_FLAGS             "${CMAKE_C_FLAGS} -Wno-deprecated-declarations -Wno-unused-result")
-set(CMAKE_C_FLAGS_DEBUG       "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Wuninitialized -Wstrict-prototypes -Wformat -Wformat-security")
+set(CMAKE_CXX_FLAGS           "${CMAKE_CXX_FLAGS} -Wpedantic -Wno-deprecated-declarations -Wno-unused-result")
+set(CMAKE_C_FLAGS_DEBUG       "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Wuninitialized -Wformat -Wformat-security -Wstrict-prototypes")
+set(CMAKE_CXX_FLAGS_DEBUG     "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wuninitialized -Wformat -Wformat-security")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
 set(CMAKE_EXE_LINKER_FLAGS    "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
 

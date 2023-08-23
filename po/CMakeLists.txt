@@ -17,7 +17,7 @@ if(GETTEXT_FOUND)
 	include(gettext_create_translations)
 	add_custom_target(genpot
 		COMMAND xgettext
-			--language=C
+			--language=C++
 			--keyword=_ --keyword=N_ --indent
 			--add-comments=TRANSLATORS:
 			--package-name=${CMAKE_PROJECT_NAME}
@@ -29,7 +29,7 @@ if(GETTEXT_FOUND)
 			--output=source_c.pot
 			--directory="../src"
 			--from-code="utf-8"
-			"*.c" "cpu-x.h"
+			"*.cpp" "data.hpp" "util.hpp"
 		COMMAND xgettext
 			--language=Glade
 			--keyword=translatable --indent
