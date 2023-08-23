@@ -11,8 +11,8 @@ if(WITH_GTK)
 
 	# Set config
 	file(MAKE_DIRECTORY ${CMAKE_DATA_OUTPUT_DIRECTORY})
-	configure_file(cpu-x.desktop.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop)
-	configure_file(org.cpu-x-daemon.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/org.cpu-x-daemon.policy)
+	configure_file(com.github.thetumultuousunicornofdarkness.cpu-x.desktop.in       ${CMAKE_DATA_OUTPUT_DIRECTORY}/com.github.thetumultuousunicornofdarkness.cpu-x.desktop)
+	configure_file(com.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/com.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy)
 
 	# Install UIs
 	install(FILES
@@ -26,24 +26,24 @@ if(WITH_GTK)
 
 	# AppData metainfo file
 	install(FILES
-		org.cpu-x.appdata.xml
+		com.github.thetumultuousunicornofdarkness.cpu-x.appdata.xml
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/metainfo/
 	)
 
 	# Install launcher
 	install(FILES
-		${CMAKE_DATA_OUTPUT_DIRECTORY}/cpu-x.desktop
+		${CMAKE_DATA_OUTPUT_DIRECTORY}/com.github.thetumultuousunicornofdarkness.cpu-x.desktop
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/applications/
 	)
 
 	# Install policy rule
 	install(FILES
-		${CMAKE_DATA_OUTPUT_DIRECTORY}/org.cpu-x-daemon.policy
+		${CMAKE_DATA_OUTPUT_DIRECTORY}/com.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions/
 	)
 
 	# Install schema file
-	add_schema("org.cpu-x.gschema.xml")
+	add_schema("com.github.thetumultuousunicornofdarkness.cpu-x.gschema.xml")
 
 	add_subdirectory(icons)
 	add_subdirectory(logos)

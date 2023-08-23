@@ -1199,7 +1199,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame" id="trg_fram">
+                  <object class="GtkFrame" id="cpufooter_fram">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-start">6</property>
@@ -1208,7 +1208,7 @@
                     <property name="label-xalign">0</property>
                     <property name="shadow-type">out</property>
                     <child>
-                      <object class="GtkAlignment" id="trg_align">
+                      <object class="GtkAlignment" id="cpufooter_align">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">6</property>
@@ -1216,11 +1216,11 @@
                         <property name="margin-bottom">6</property>
                         <child>
                           <!-- n-columns=6 n-rows=1 -->
-                          <object class="GtkGrid" id="trg_grid">
+                          <object class="GtkGrid" id="cpufooter_grid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <object class="GtkLabel" id="trg_labcore">
+                              <object class="GtkLabel" id="cpufooter_labcore">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
@@ -1230,7 +1230,7 @@
                                 <property name="margin-bottom">1</property>
                                 <property name="hexpand">True</property>
                                 <property name="label" translatable="yes">Cores</property>
-                                <property name="mnemonic-widget">trg_valcore</property>
+                                <property name="mnemonic-widget">cpufooter_valcore</property>
                                 <property name="single-line-mode">True</property>
                                 <property name="lines">1</property>
                               </object>
@@ -1240,7 +1240,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="trg_labthrd">
+                              <object class="GtkLabel" id="cpufooter_labthrd">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
@@ -1250,7 +1250,7 @@
                                 <property name="margin-bottom">1</property>
                                 <property name="hexpand">True</property>
                                 <property name="label" translatable="yes">Threads</property>
-                                <property name="mnemonic-widget">trg_valthrd</property>
+                                <property name="mnemonic-widget">cpufooter_valthrd</property>
                                 <property name="single-line-mode">True</property>
                                 <property name="lines">1</property>
                               </object>
@@ -1260,7 +1260,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkAspectFrame" id="trg_framcore">
+                              <object class="GtkAspectFrame" id="cpufooter_framcore">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-top">1</property>
@@ -1268,7 +1268,7 @@
                                 <property name="label-xalign">0</property>
                                 <property name="shadow-type">in</property>
                                 <child>
-                                  <object class="GtkLabel" id="trg_valcore">
+                                  <object class="GtkLabel" id="cpufooter_valcore">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="justify">center</property>
@@ -1287,7 +1287,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkAspectFrame" id="trg_framthrd">
+                              <object class="GtkAspectFrame" id="cpufooter_framthrd">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-top">1</property>
@@ -1295,7 +1295,7 @@
                                 <property name="label-xalign">0</property>
                                 <property name="shadow-type">in</property>
                                 <child>
-                                  <object class="GtkLabel" id="trg_valthrd">
+                                  <object class="GtkLabel" id="cpufooter_valthrd">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="justify">center</property>
@@ -1314,7 +1314,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBoxText" id="trg_activecore">
+                              <object class="GtkComboBoxText" id="cpufooter_activecore">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-start">6</property>
@@ -1329,7 +1329,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBoxText" id="trg_activetype">
+                              <object class="GtkComboBoxText" id="cpufooter_activetype">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-start">6</property>
@@ -1348,7 +1348,7 @@
                       </object>
                     </child>
                     <child type="label">
-                      <object class="GtkLabel" id="trg_lab">
+                      <object class="GtkLabel" id="cpu_footer_lab">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="lines">1</property>
@@ -3916,7 +3916,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <child>
-                          <object class="GtkFrame" id="card0_fram">
+                          <object class="GtkFrame" id="card_fram">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="margin-start">6</property>
@@ -3926,7 +3926,7 @@
                             <property name="label-xalign">0</property>
                             <property name="shadow-type">out</property>
                             <child>
-                              <object class="GtkAlignment" id="card0_align">
+                              <object class="GtkAlignment" id="card_align">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-start">6</property>
@@ -3934,12 +3934,12 @@
                                 <property name="margin-bottom">6</property>
                                 <child>
                                   <!-- n-columns=2 n-rows=13 -->
-                                  <object class="GtkGrid" id="card0_grid">
+                                  <object class="GtkGrid" id="card_grid">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="halign">end</property>
                                     <child>
-                                      <object class="GtkAspectFrame" id="card0_frammod">
+                                      <object class="GtkAspectFrame" id="card_frammod">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="margin-top">1</property>
@@ -3947,7 +3947,7 @@
                                         <property name="label-xalign">0</property>
                                         <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="card0_valmod">
+                                          <object class="GtkLabel" id="card_valmod">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="hexpand">True</property>
@@ -3970,14 +3970,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labmod">
+                                      <object class="GtkLabel" id="card_labmod">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valmod</property>
+                                        <property name="mnemonic-widget">card_valmod</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -3989,14 +3989,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labtemp">
+                                      <object class="GtkLabel" id="card_labtemp">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valtemp</property>
+                                        <property name="mnemonic-widget">card_valtemp</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4008,11 +4008,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_box1">
+                                      <object class="GtkBox" id="card_box1">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framtemp">
+                                          <object class="GtkAspectFrame" id="card_framtemp">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4020,7 +4020,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valtemp">
+                                              <object class="GtkLabel" id="card_valtemp">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4040,7 +4040,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framusage">
+                                          <object class="GtkAspectFrame" id="card_framusage">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4048,7 +4048,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valusage">
+                                              <object class="GtkLabel" id="card_valusage">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4069,14 +4069,14 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labusage">
+                                          <object class="GtkLabel" id="card_labusage">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valusage</property>
+                                            <property name="mnemonic-widget">card_valusage</property>
                                             <property name="ellipsize">middle</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">18</property>
@@ -4097,11 +4097,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_box2">
+                                      <object class="GtkBox" id="card_box2">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framgclk">
+                                          <object class="GtkAspectFrame" id="card_framgclk">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4109,7 +4109,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valgclk">
+                                              <object class="GtkLabel" id="card_valgclk">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4129,7 +4129,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_frammclk">
+                                          <object class="GtkAspectFrame" id="card_frammclk">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4137,7 +4137,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valmclk">
+                                              <object class="GtkLabel" id="card_valmclk">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4158,14 +4158,14 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labmclk">
+                                          <object class="GtkLabel" id="card_labmclk">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valmclk</property>
+                                            <property name="mnemonic-widget">card_valmclk</property>
                                             <property name="ellipsize">middle</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">18</property>
@@ -4186,11 +4186,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_box0">
+                                      <object class="GtkBox" id="card_box0">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framvend">
+                                          <object class="GtkAspectFrame" id="card_framvend">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4198,7 +4198,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valvend">
+                                              <object class="GtkLabel" id="card_valvend">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4218,7 +4218,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framdriver">
+                                          <object class="GtkAspectFrame" id="card_framdriver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4226,7 +4226,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valdriver">
+                                              <object class="GtkLabel" id="card_valdriver">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4247,14 +4247,14 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labdriver">
+                                          <object class="GtkLabel" id="card_labdriver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valdriver</property>
+                                            <property name="mnemonic-widget">card_valdriver</property>
                                             <property name="ellipsize">middle</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">18</property>
@@ -4275,14 +4275,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labvend">
+                                      <object class="GtkLabel" id="card_labvend">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valvend</property>
+                                        <property name="mnemonic-widget">card_valvend</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4294,11 +4294,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_box3">
+                                      <object class="GtkBox" id="card_box3">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framgvolt">
+                                          <object class="GtkAspectFrame" id="card_framgvolt">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4306,7 +4306,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valgvolt">
+                                              <object class="GtkLabel" id="card_valgvolt">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4326,7 +4326,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framgpwr">
+                                          <object class="GtkAspectFrame" id="card_framgpwr">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4334,7 +4334,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valgpwr">
+                                              <object class="GtkLabel" id="card_valgpwr">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4355,14 +4355,14 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labgpwr">
+                                          <object class="GtkLabel" id="card_labgpwr">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valgpwr</property>
+                                            <property name="mnemonic-widget">card_valgpwr</property>
                                             <property name="ellipsize">middle</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">18</property>
@@ -4383,14 +4383,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labgvolt">
+                                      <object class="GtkLabel" id="card_labgvolt">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valgvolt</property>
+                                        <property name="mnemonic-widget">card_valgvolt</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4402,14 +4402,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labgclk">
+                                      <object class="GtkLabel" id="card_labgclk">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valgclk</property>
+                                        <property name="mnemonic-widget">card_valgclk</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4421,14 +4421,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labvram_used">
+                                      <object class="GtkLabel" id="card_labvram_used">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valvram_used</property>
+                                        <property name="mnemonic-widget">card_valvram_used</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4441,7 +4441,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkAspectFrame" id="card0_framvram_used">
+                                      <object class="GtkAspectFrame" id="card_framvram_used">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="margin-top">1</property>
@@ -4449,7 +4449,7 @@
                                         <property name="label-xalign">0</property>
                                         <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="card0_valvram_used">
+                                          <object class="GtkLabel" id="card_valvram_used">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="hexpand">True</property>
@@ -4472,7 +4472,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkAspectFrame" id="card0_framumd">
+                                      <object class="GtkAspectFrame" id="card_framumd">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="margin-top">1</property>
@@ -4480,7 +4480,7 @@
                                         <property name="label-xalign">0</property>
                                         <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="card0_valumd">
+                                          <object class="GtkLabel" id="card_valumd">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="hexpand">True</property>
@@ -4503,14 +4503,14 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labumd">
+                                      <object class="GtkLabel" id="card_labumd">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valumd</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4522,11 +4522,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_comp_unit_did_rid">
+                                      <object class="GtkBox" id="card_comp_unit_did_rid">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framdid_rid">
+                                          <object class="GtkAspectFrame" id="card_framdid_rid">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4534,7 +4534,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valdid_rid">
+                                              <object class="GtkLabel" id="card_valdid_rid">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4555,7 +4555,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framcomp_unit">
+                                          <object class="GtkAspectFrame" id="card_framcomp_unit">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4563,7 +4563,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valcomp_unit">
+                                              <object class="GtkLabel" id="card_valcomp_unit">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4583,7 +4583,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labdid_rid">
+                                          <object class="GtkLabel" id="card_labdid_rid">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
@@ -4591,7 +4591,7 @@
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valdid_rid</property>
+                                            <property name="mnemonic-widget">card_valdid_rid</property>
                                             <property name="ellipsize">middle</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">18</property>
@@ -4612,7 +4612,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labpcie">
+                                      <object class="GtkLabel" id="card_labpcie">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -4620,7 +4620,7 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="mnemonic-widget">card_valpcie</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="lines">1</property>
                                       </object>
@@ -4630,7 +4630,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkAspectFrame" id="card0_frampcie">
+                                      <object class="GtkAspectFrame" id="card_frampcie">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="margin-top">1</property>
@@ -4638,7 +4638,7 @@
                                         <property name="label-xalign">0</property>
                                         <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="card0_valpcie">
+                                          <object class="GtkLabel" id="card_valpcie">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="justify">center</property>
@@ -4657,7 +4657,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labcomp_unit">
+                                      <object class="GtkLabel" id="card_labcomp_unit">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -4665,7 +4665,7 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="mnemonic-widget">card_valpcie</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="lines">1</property>
                                       </object>
@@ -4675,11 +4675,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_rebar">
+                                      <object class="GtkBox" id="card_rebar">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framrebar">
+                                          <object class="GtkAspectFrame" id="card_framrebar">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4687,7 +4687,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valrebar">
+                                              <object class="GtkLabel" id="card_valrebar">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4707,7 +4707,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framrevkrt">
+                                          <object class="GtkAspectFrame" id="card_framrevkrt">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4715,7 +4715,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valvkrt">
+                                              <object class="GtkLabel" id="card_valvkrt">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4736,7 +4736,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labvkrt">
+                                          <object class="GtkLabel" id="card_labvkrt">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
@@ -4744,7 +4744,7 @@
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valpcie</property>
+                                            <property name="mnemonic-widget">card_valpcie</property>
                                             <property name="ellipsize">end</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">15</property>
@@ -4764,7 +4764,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labrebar">
+                                      <object class="GtkLabel" id="card_labrebar">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -4772,7 +4772,7 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="mnemonic-widget">card_valpcie</property>
                                         <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="max-width-chars">15</property>
@@ -4784,11 +4784,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_gl_vk_ver">
+                                      <object class="GtkBox" id="card_gl_vk_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framgl_ver">
+                                          <object class="GtkAspectFrame" id="card_framgl_ver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4796,7 +4796,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valgl_ver">
+                                              <object class="GtkLabel" id="card_valgl_ver">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4816,7 +4816,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framvk_ver">
+                                          <object class="GtkAspectFrame" id="card_framvk_ver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4824,7 +4824,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valvk_ver">
+                                              <object class="GtkLabel" id="card_valvk_ver">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4845,7 +4845,7 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="card0_labvk_ver">
+                                          <object class="GtkLabel" id="card_labvk_ver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="halign">end</property>
@@ -4853,7 +4853,7 @@
                                             <property name="margin-end">4</property>
                                             <property name="margin-top">1</property>
                                             <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card0_valdid_rid</property>
+                                            <property name="mnemonic-widget">card_valdid_rid</property>
                                             <property name="ellipsize">middle</property>
                                             <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">18</property>
@@ -4874,7 +4874,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labgl_ver">
+                                      <object class="GtkLabel" id="card_labgl_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -4882,7 +4882,7 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="mnemonic-widget">card_valpcie</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="lines">1</property>
                                       </object>
@@ -4892,11 +4892,11 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card0_cl_ver">
+                                      <object class="GtkBox" id="card_cl_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card0_framcl_ver">
+                                          <object class="GtkAspectFrame" id="card_framcl_ver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="margin-top">1</property>
@@ -4904,7 +4904,7 @@
                                             <property name="label-xalign">0</property>
                                             <property name="shadow-type">in</property>
                                             <child>
-                                              <object class="GtkLabel" id="card0_valcl_ver">
+                                              <object class="GtkLabel" id="card_valcl_ver">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
                                                 <property name="justify">center</property>
@@ -4936,7 +4936,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labcl_ver">
+                                      <object class="GtkLabel" id="card_labcl_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -4944,7 +4944,7 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="mnemonic-widget">card_valpcie</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="lines">1</property>
                                       </object>
@@ -4954,7 +4954,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkAspectFrame" id="card0_framvbios_ver">
+                                      <object class="GtkAspectFrame" id="card_framvbios_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="margin-top">1</property>
@@ -4962,7 +4962,7 @@
                                         <property name="label-xalign">0</property>
                                         <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="card0_valvbios_ver">
+                                          <object class="GtkLabel" id="card_valvbios_ver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="justify">center</property>
@@ -4984,7 +4984,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card0_labvbios_ver">
+                                      <object class="GtkLabel" id="card_labvbios_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -4992,7 +4992,7 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">card0_valpcie</property>
+                                        <property name="mnemonic-widget">card_valpcie</property>
                                         <property name="single-line-mode">True</property>
                                         <property name="lines">1</property>
                                       </object>
@@ -5006,7 +5006,7 @@
                               </object>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="card0_lab">
+                              <object class="GtkLabel" id="card_lab">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="label">Card 0</property>
@@ -5538,7 +5538,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="about_site">
+                              <object class="GtkLabel" id="about_website">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="selectable">True</property>
@@ -5589,7 +5589,7 @@
                             <property name="can-focus">False</property>
                             <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkLabel" id="license_labcopyright">
+                              <object class="GtkLabel" id="license_copyright">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-bottom">10</property>
@@ -5601,7 +5601,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="license_lablicense">
+                              <object class="GtkLabel" id="license_name">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="justify">center</property>
@@ -5613,7 +5613,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="license_nowarranty">
+                              <object class="GtkLabel" id="license_warranty">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                               </object>
@@ -5701,6 +5701,7 @@
         </child>
         <child>
           <object class="GtkBox" id="footer_box">
+            <property name="name">footer_box</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="homogeneous">True</property>

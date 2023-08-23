@@ -24,22 +24,105 @@
 #ifndef _DAEMON_H_
 #define _DAEMON_H_
 
-#define POLL_TIMEOUT (5 * 1000) // 5 seconds
-#define NFDS         1
-#define LOG_FILE     "/tmp/cpu-x-daemon.log"
+#ifdef __linux__
+# define SOCKET_NAME "/run/cpu-x.sock"
+#else /* __linux__ */
+# define SOCKET_NAME "/var/run/cpu-x.sock"
+#endif /* __linux__ */
+#define DAEMON_UP   (data.socket_fd >= 0)
+
+#ifndef MAXSTR
+# define MAXSTR 80 /* Max string */
+#endif
+
+#define SEND_DATA(pfd, pdata, size)              \
+	if(write(*pfd, pdata, size) == size)         \
+	{                                            \
+		MSG_DEBUG("daemon: writing %luB", size); \
+	}                                            \
+	else                                         \
+	{                                            \
+		MSG_ERRNO("%s", "daemon: write error");  \
+		close(*pfd);                             \
+		*pfd = -1;                               \
+		return 1;                                \
+	}
+#define RECEIVE_DATA(pfd, pdata, size)           \
+	if(read(*pfd, pdata, size) == size)          \
+	{                                            \
+		MSG_DEBUG("daemon: reading %luB", size); \
+	}                                            \
+	else                                         \
+	{                                            \
+		MSG_ERRNO("%s", "daemon: read error");   \
+		close(*pfd);                             \
+		*pfd = -1;                               \
+		return 1;                                \
+	}
+
+typedef enum
+{
+	LIBCPUID_MSR_DEBUG,
+	LIBCPUID_MSR_STATIC,
+	LIBCPUID_MSR_DYNAMIC,
+	DMIDECODE,
+	ACCESS_DEV_PCI,
+	ACCESS_SYS_DEBUG,
+	LOAD_MODULE,
+} DaemonCommand;
 
 typedef struct
 {
-	pthread_t id;
-	int       fd;
-} Thread;
+	int min_mult, max_mult, bclk;
+} MsrStaticData;
 
 typedef struct
 {
-	pthread_mutex_t mutex;
-	uint8_t count;
-	uint8_t allocated;
-	Thread *thread;
-} ThreadsInfo;
+	int voltage, temp;
+} MsrDynamicData;
+
+typedef struct
+{
+	char brand[MAXSTR], version[MAXSTR], date[MAXSTR], romsize[MAXSTR];
+} DmidecodeBiosData;
+
+typedef struct
+{
+	char manufacturer[MAXSTR], model[MAXSTR], revision[MAXSTR];
+} DmidecodeMBData;
+
+typedef struct
+{
+	double bus_freq;
+	char cpu_package[MAXSTR];
+} DmidecodeCPUData;
+
+typedef struct
+{
+	char manufacturer[MAXSTR];
+	char part_number[MAXSTR];
+	char type[MAXSTR];
+	char type_detail[MAXSTR];
+	char device_locator[MAXSTR];
+	char bank_locator[MAXSTR];
+	char rank[MAXSTR];
+	char size[MAXSTR];
+	char speed_maximum[MAXSTR];
+	char speed_configured[MAXSTR];
+	char voltage_minimum[MAXSTR];
+	char voltage_maximum[MAXSTR];
+	char voltage_configured[MAXSTR];
+} DmidecodeMemoryData;
+
+typedef struct
+{
+	int ret;
+	uint8_t stick_count;
+	DmidecodeBiosData bios;
+	DmidecodeMBData mb;
+	DmidecodeCPUData processor;
+	DmidecodeMemoryData *memory;
+} DmidecodeData;
+
 
 #endif /* _DAEMON_H_ */

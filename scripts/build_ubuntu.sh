@@ -44,8 +44,8 @@ sudo apt-get install -y -qq \
 	gettext \
 	adwaita-icon-theme \
 	"${PACKAGES[@]}" \
-	libgtk-3-0 \
-	libgtk-3-dev \
+	libgtkmm-3.0-1v5 \
+	libgtkmm-3.0-dev \
 	libpci-dev \
 	opencl-headers \
 	ocl-icd-libopencl1 \

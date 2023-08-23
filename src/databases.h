@@ -35,7 +35,7 @@ typedef struct
 	const char    *process;
 } Technology_DB;
 
-const Technology_DB technology_unknown[] = { { -1, -1, -1, NULL } };
+const Technology_DB technology_unknown[] = { { -2, -2, -2, NULL } };
 
 const Technology_DB technology_intel[] =
 {
@@ -78,7 +78,7 @@ const Technology_DB technology_intel[] =
 	{ 10,         106,          -1,          "10 nm" }, // Ice Lake-D / Ice Lake-W / Ice Lake-SP
 	{ 10,         122,          -1,          "14 nm" }, // Gemini Lake
 	{ 10,         138,          -1,          "10 nm" }, // Tremont (Lakefield)
-	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-U / Alder Lake-H
+	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-H
 	{ 10,         186,          -1,        "Intel 7" }, // Raptor Lake-P / Raptor Lake-U / Raptor Lake-H
 	{ 11,          11,          -1,        "0.13 µm" }, // PIII Tualatine
 	{ 12,          28,          -1,          "45 nm" }, // Atom Diamondville / Pineview / Silverthorne

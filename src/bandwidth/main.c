@@ -19,6 +19,7 @@
   The author may be reached at 1@zsmith.co.
  *===========================================================================*/
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,11 +65,18 @@
 #endif
 
 /* Needed by CPU-X */
-#include "../cpu-x.h"
+#include <pthread.h>
 #include "libbandwidth.h"
-#if HAS_LIBCPUID
+#if !HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
 #endif
+#if HAS_GETTEXT
+# define _(msg)               gettext(msg)
+#else
+# define _(msg)               msg
+#endif /* HAS_GETTEXT */
+#define N_(msg)               msg
+static bool do_print = true;
 
 #ifdef __x86_64__
 #define IS_64BIT
@@ -412,13 +420,13 @@ dataAddDatum (Value x, Value y)
 
 void print (const char *s)
 {
-	if(BANDWIDTH_MODE)
+	if(do_print)
 		printf ("%s",s);
 }
 
 void newline ()
 {
-	if(BANDWIDTH_MODE)
+	if(do_print)
 		puts ("");
 }
 
@@ -430,13 +438,13 @@ void println (char *s)
 
 void print_int (int d)
 {
-	if(BANDWIDTH_MODE)
+	if(do_print)
 		printf ("%d", d);
 }
 
 void print_uint (unsigned long d)
 {
-	if(BANDWIDTH_MODE)
+	if(do_print)
 		printf ("%lu", d);
 }
 
@@ -448,7 +456,7 @@ void println_int (int d)
 
 void print_result (long double result)
 {
-	if(BANDWIDTH_MODE)
+	if(do_print)
 		printf ("%.1Lf MB/s", result);
 }
 
@@ -2076,7 +2084,7 @@ usage ()
 // Name:	main
 //----------------------------------------------------------------------------
 int
-bandwidth_main (int argc, char **argv)
+bandwidth_main (int argc, const char **argv)
 {
 	int i, chunk_size;
 
@@ -2085,16 +2093,16 @@ bandwidth_main (int argc, char **argv)
 	--argc;
 	++argv;
 
-        bool network_mode = false;
-        bool network_leader = false; // false => transponder
-        // int network_destinations_size = 0;
-        int n_network_destinations = 0;
-        char **network_destinations = NULL;
+	bool network_mode = false;
+	bool network_leader = false; // false => transponder
+	// int network_destinations_size = 0;
+	int n_network_destinations = 0;
+	char **network_destinations = NULL;
 	char graph_title [512] = {0};
 
 	i = 0;
 	while (i < argc) {
-		char *s = argv [i++];
+		const char *s = argv [i++];
 
 #if NETWORK_MODE // unsure if it still works
 		if (!strcmp ("--network", s)) {
@@ -2884,23 +2892,18 @@ bandwidth_main (int argc, char **argv)
 	return 0;
 }
 
-int bandwidth_cpux(void *p_data)
+int bandwidth_cpux(struct BandwidthData *bwd)
 {
 	int i, chunk_size;
 	outputMode = OUTPUT_MODE_GRAPH;
 	usec_per_test = 5000;
-	char graph_title [512] = {0};
-
-	// opts members can be changed from GUI so make a working copy now to avoid race condition
-	uint8_t bw_test = opts->bw_test;
-	// opts->selected_type only used once here, shouldn't be an issue
+	do_print = false;
 
 	/* Needed by CPU-X */
 	int count             = 0;
 	uint8_t cache_level   = 0;
 	double total_amount   = 0;
-	Labels *data          = p_data;
-	BandwidthData *w_data = data->w_data;
+	pthread_mutex_lock(&bwd->mutex);
 
 	for (i = 0; chunk_sizes[i] && i < sizeof(chunk_sizes)/sizeof(int); i++) {
 		chunk_sizes_log2[i] = log2 (chunk_sizes[i]);
@@ -2922,7 +2925,7 @@ int bandwidth_cpux(void *p_data)
 	cpu_has_avx2 = 0;
 	cpu_has_xd = edx2 & CPUID_EDX_XD;
 	cpu_has_64bit = edx2 & CPUID_EDX_INTEL64;
-	cpu_has_sse4a = 0;
+	cpu_has_sse4a = bwd->is_amd_cpu ? ecx2 & CPUID_ECX_SSE4A : 0;
 
 	if (cpu_has_avx) {
 		cpu_has_avx2 = get_cpuid7_ebx ();
@@ -2971,173 +2974,39 @@ int bandwidth_cpux(void *p_data)
 		{ -1,                NULL,                                     0x0,                false,       false, NULL,     0,           false }
 	};
 
-#if HAS_LIBCPUID
-	/* Fast initialization by using libcpuid */
-	switch(data->l_data->system_id.cpu_types[opts->selected_type].vendor)
-	{
-		case VENDOR_INTEL:
-			is_intel = true;
-			goto end_initialization;
-		case VENDOR_AMD:
-			is_amd = true;
-			cpu_has_sse4a = ecx2 & CPUID_ECX_SSE4A;
-			goto end_initialization;
-		default:
-			break;
-	}
-#endif /* HAS_LIBCPUID */
-
-	static char family [17];
-	get_cpuid_family (family);
-	family [16] = 0;
-	printf ("CPU family: %s\n", family);
-
-	if (!strcmp ("AuthenticAMD", family)) {
-		is_amd = true;
-		cpu_has_sse4a = ecx2 & CPUID_ECX_SSE4A;
-	}
-	else
-	if (!strcmp ("GenuineIntel", family)) {
-		is_intel = true;
-	}
-
-	printf ("CPU features: ");
-	if (cpu_has_mmx) printf ("MMX ");
-	if (cpu_has_sse) printf ("SSE ");
-	if (cpu_has_sse2) printf ("SSE2 ");
-	if (cpu_has_sse3) printf ("SSE3 ");
-	if (cpu_has_ssse3) printf ("SSSE3 ");
-	if (cpu_has_sse4a) printf ("SSE4A ");
-	if (cpu_has_sse41) printf ("SSE4.1 ");
-	if (cpu_has_sse42) printf ("SSE4.2 ");
-	if (cpu_has_aes) printf ("AES ");
-	if (cpu_has_avx) printf ("AVX ");
-	if (cpu_has_avx2) printf ("AVX2 ");
-	if (cpu_has_xd) printf ("XD ");
-	if (cpu_has_64bit) {
-		if (!is_amd)
-			printf ("Intel64 ");
-		else
-			printf ("LongMode ");
-	}
-	puts ("\n");
-
-	if (is_intel) {
-		uint32_t cache_info[4];
-		i = 0;
-		while (1) {
-			get_cpuid_cache_info (cache_info, i);
-			if (!(cache_info[0] & 31))
-				break;
-
-#if 0
-			printf ("Cache info %d = 0x%08x, 0x%08x, 0x%08x, 0x%08x\n", i,
-				cache_info [0],
-				cache_info [1],
-				cache_info [2],
-				cache_info [3]);
-#endif
-			printf ("Cache %d: ", i);
-			switch ((cache_info[0] >> 5) & 7) {
-			case 1: printf ("L1 "); break;
-			case 2: printf ("L2 "); break;
-			case 3: printf ("L3 "); break;
-			}
-			switch (cache_info[0] & 31) {
-			case 1: printf ("data cache,        "); break;
-			case 2: printf ("instruction cache, "); break;
-			case 3: printf ("unified cache,     "); break;
-			}
-			uint32_t n_ways = 1 + (cache_info[1] >> 22);
-			uint32_t line_size = 1 + (cache_info[1] & 2047);
-			uint32_t n_sets = 1 + cache_info[2];
-			printf ("line size %d, ", line_size);
-			printf ("%2d-way%s, ", n_ways, n_ways>1 ? "s" : "");
-			printf ("%5d sets, ", n_sets);
-			unsigned size = (n_ways * line_size * n_sets) >> 10;
-			printf ("size %dk ", size);
-			newline ();
-			i++;
-		}
-	}
-
-	newline ();
-
-	println ("Notation: B = byte, kB = 1024 B, MB = 1048576 B.");
-
-	flush ();
-
-	//------------------------------------------------------------
-	// Attempt to obtain information about the CPU.
-	//
-#ifdef __linux__
-	struct stat st;
-	if (!stat ("/proc/cpuinfo", &st)) {
-#define TMPFILE "/tmp/bandw_tmp"
-		unlink (TMPFILE);
-		if (-1 == system ("grep MHz /proc/cpuinfo | uniq | sed \"s/[\\t\\n: a-zA-Z]//g\" > "TMPFILE))
-			perror ("system");
-
-		FILE *f = fopen (TMPFILE, "r");
-		if (f) {
-			float cpu_speed = 0.0;
-
-			if (1 == fscanf (f, "%g", &cpu_speed)) {
-				newline ();
-				printf ("CPU speed is %g MHz.\n", cpu_speed);
-			}
-			fclose (f);
-		}
-	} else {
-		printf ("CPU information is not available (/proc/cpuinfo).\n");
-	}
-	fflush (stdout);
-#endif
-
-	dataBegins (graph_title);
-
-#if HAS_LIBCPUID
-end_initialization:
-#endif /* HAS_LIBCPUID */
-	/* Check if selectionned test is valid */
-	if(bw_test >= LASTTEST)
-		bw_test = 0;
-
 	/* Set test names */
-	if(w_data->test_count == 0)
+	if(bwd->test_name == NULL)
 	{
-		w_data->test_name  = malloc(LASTTEST * sizeof(char *));
-		w_data->test_count = (w_data->test_name == NULL) ? 0 : LASTTEST;
-
-		for(i = 0; i < w_data->test_count; i++)
+		bwd->test_name  = malloc(BANDWIDTH_LAST_TEST * sizeof(char *));
+		for(i = 0; i < BANDWIDTH_LAST_TEST; i++)
 		{
-			w_data->test_name[i] = NULL;
-			casprintf(&w_data->test_name[i], false, "#%2i: %s %s", i, tests[i].name, tests[i].need_flag ? "" : _("(unavailable)"));
+			bwd->test_name[i] = NULL;
+			asprintf(&bwd->test_name[i], "#%2i: %s %s", i, tests[i].name, tests[i].need_flag ? "" : _("(unavailable)"));
 		}
 	}
 
-	if(tests[bw_test].need_flag)
+	if(tests[bwd->selected_test].need_flag)
 	{
-		if(tests[bw_test].random)
+		if(tests[bwd->selected_test].random)
 			srand(time (NULL));
 
 		i = 0;
 		while((chunk_size = chunk_sizes [i++]))
 		{
-			if(!tests[bw_test].need_mask || (tests[bw_test].need_mask && !(chunk_size & 128)))
+			if(!tests[bwd->selected_test].need_mask || (tests[bwd->selected_test].need_mask && !(chunk_size & 128)))
 			{
-				if(chunk_size > w_data->size[cache_level] * 1024)
+				if(chunk_size > bwd->cache_size[cache_level] * 1024)
 				{
-					w_data->speed[cache_level] = total_amount / count;
+					bwd->cache_speed[cache_level] = total_amount / count;
 					count        = 0;
 					total_amount = 0;
 					cache_level++;
 
-					if(cache_level >= data->cache_count || w_data->size[cache_level] < 1)
-						return 0;
+					if(bwd->cache_size[cache_level] == 0)
+						goto clean;
 				}
 
-				int amount = (*tests[bw_test].func_ptr)(chunk_size, tests[bw_test].mode, tests[bw_test].random);
+				int amount    = (*tests[bwd->selected_test].func_ptr)(chunk_size, tests[bwd->selected_test].mode, tests[bwd->selected_test].random);
 				total_amount += amount;
 				count++;
 			}
@@ -3145,11 +3014,11 @@ end_initialization:
 	}
 	else
 	{
-		for(i = 0; i < LASTCACHES / CACHEFIELDS; i++)
-			w_data->speed[i] = 0;
-
-		return 1;
+		for(i = 0; i < BANDWIDTH_MAX_CACHE_LEVEL; i++)
+			bwd->cache_speed[i] = 0;
 	}
+clean:
+	pthread_mutex_unlock(&bwd->mutex);
 
 	return 0;
 }
