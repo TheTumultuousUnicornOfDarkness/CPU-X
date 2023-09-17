@@ -94,6 +94,7 @@ struct GtkData
 	Gtk::ComboBoxText *defaulttype = nullptr;
 	Gtk::ComboBoxText *defaultcore = nullptr;
 	Gtk::ComboBoxText *defaultcachetest = nullptr;
+	Gtk::ComboBoxText *defaultstick = nullptr;
 	Gtk::ComboBoxText *defaultcard = nullptr;
 	Gtk::CheckButton *cpuiddecimal = nullptr;
 	Gtk::CheckButton *startdaemon = nullptr;
@@ -150,12 +151,16 @@ struct GtkData
 	/* Tab Memory */
 	struct ExtTabMemory : public ExtTab
 	{
-		Gtk::Grid *gridbanks = nullptr;
+		Gtk::ScrolledWindow *scrolledsticks = nullptr;
+		Gtk::ComboBoxText *activestick = nullptr;
 
 		ExtTabMemory(Glib::RefPtr<Gtk::Builder> builder);
 	};
 #define EXT_TAB_MEMORY(memory) static_cast<ExtTabMemory*>(memory.ext)
 	void gtab_memory();
+	void fill_box_active_stick();
+	void fill_box_active_stick(Gtk::ComboBoxText *comboboxtext);
+	void change_active_stick();
 
 	/* Tab System */
 	struct ExtTabSystem : public ExtTab

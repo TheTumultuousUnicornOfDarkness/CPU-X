@@ -423,18 +423,27 @@ static void ntab_motherboard(WINDOW *win, Data &data)
 /* Memory tab */
 static void ntab_memory(WINDOW *win, Data &data)
 {
-	int line = LINE_1, start = LINE_0, end = LINE_2;
-	const int frame_height = end - start + 1;
+	if(data.memory.sticks.size() == 0)
+		return;
 
-	/* Banks frame */
-	for(const auto& stick : data.memory.sticks)
-	{
-		draw_frame(win, start, SizeInfo::start, end, SizeInfo::width - 1, stick);
-		line = start + 1;
-		mvwprintw2c(win, line++, 2, "%13s", "%s", stick.reference);
-		start = end + 1;
-		end  += frame_height;
-	}
+	const auto& stick = data.memory.get_selected_stick();
+
+	/* Card frame */
+	draw_frame(win, LINE_0, SizeInfo::start, LINE_10, SizeInfo::width - 1, stick);
+	mvwprintw2c(win, LINE_1, SizeInfo::tb, "%16s", "%s", stick.manufacturer);
+	mvwprintw2c(win, LINE_2, SizeInfo::tb, "%16s", "%s", stick.part_number);
+	mvwprintw2c(win, LINE_3, SizeInfo::tb, "%16s", "%s", stick.type);
+	mvwprintw2c(win, LINE_4, SizeInfo::tb, "%16s", "%s", stick.type_detail);
+	mvwprintw2c(win, LINE_5, SizeInfo::tb, "%16s", "%s", stick.device_locator);
+	mvwprintw2c(win, LINE_6, SizeInfo::tb, "%16s", "%s", stick.bank_locator);
+	mvwprintw2c(win, LINE_7, SizeInfo::tb, "%16s", "%s", stick.size);
+	mvwprintw2c(win, LINE_7, SizeInfo::tm, "%18s", "%s", stick.rank);
+	mvwprintw2c(win, LINE_8, SizeInfo::tb, "%16s", "%s", stick.speed);
+	mvwprintw2c(win, LINE_9, SizeInfo::tb, "%16s", "%s", stick.voltage);
+
+	/* Sticks frame */
+	draw_frame(win, LINE_17, SizeInfo::start , LINE_19, SizeInfo::width - 1, data.memory.footer);
+	mvwprintwc(win, LINE_18, 4, Pairs::Colors::DEFAULT_COLOR, data.memory.get_selected_stick_formatted());
 }
 
 /* Draw an usage bar in System tab */
@@ -697,6 +706,11 @@ void start_tui_ncurses(Data &data)
 					Options::set_selected_test(Options::get_selected_test() - 1);
 					draw_window(win, data);
 				}
+				else if((Options::get_selected_page() == TAB_MEMORY) && (Options::get_selected_stick() > 0))
+				{
+					Options::set_selected_stick(Options::get_selected_stick() - 1, data.memory.sticks.size());
+					draw_window(win, data);
+				}
 				else if((Options::get_selected_page() == TAB_GRAPHICS) && (Options::get_selected_gpu() > 0))
 				{
 					Options::set_selected_gpu(Options::get_selected_gpu() - 1, data.graphics.cards.size());
@@ -724,6 +738,11 @@ void start_tui_ncurses(Data &data)
 				else if((Options::get_selected_page() == TAB_CACHES) && (Options::get_selected_test() < data.caches.test.names.size() - 1))
 				{
 					Options::set_selected_test(Options::get_selected_test() + 1);
+					draw_window(win, data);
+				}
+				else if((Options::get_selected_page() == TAB_MEMORY) && (Options::get_selected_stick() < data.memory.sticks.size() - 1))
+				{
+					Options::set_selected_stick(Options::get_selected_stick() + 1, data.memory.sticks.size());
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_GRAPHICS) && (Options::get_selected_gpu() < data.graphics.cards.size() - 1))

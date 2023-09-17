@@ -105,8 +105,8 @@ typedef struct
 	char type_detail[MAXSTR];
 	char device_locator[MAXSTR];
 	char bank_locator[MAXSTR];
-	char rank[MAXSTR];
 	char size[MAXSTR];
+	char rank[MAXSTR];
 	char speed_maximum[MAXSTR];
 	char speed_configured[MAXSTR];
 	char voltage_minimum[MAXSTR];

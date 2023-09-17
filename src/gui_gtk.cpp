@@ -138,6 +138,7 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 	builder->get_widget("defaulttype_val", this->defaulttype);
 	builder->get_widget("defaultcore_val", this->defaultcore);
 	builder->get_widget("defaultcachetest_val", this->defaultcachetest);
+	builder->get_widget("defaultstick_val", this->defaultstick);
 	builder->get_widget("defaultcard_val", this->defaultcard);
 	builder->get_widget("cpuiddecimal", this->cpuiddecimal);
 	builder->get_widget("startdaemon", this->startdaemon);
@@ -214,13 +215,23 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 
 	/* Tab: Memory */
 	this->data.memory.extend(new GtkData::ExtTabMemory(builder));
-	/* Bank frame */
-	for(unsigned index = 0; index < this->data.memory.sticks.size(); index++)
+	/* Stick frame */
+	for(auto& stick : this->data.memory.sticks)
 	{
-		const std::string bank_string = "bank" + std::to_string(index);
-		this->data.memory.sticks[index].extend(new ExtFrame(builder, bank_string + "_lab"));
-		this->data.memory.sticks[index].reference.extend(new ExtLabel<Gtk::Label>(builder, bank_string + "_ref"));
+		stick.extend(new ExtFrame(builder, "stick_lab"));
+		stick.manufacturer.  extend(new ExtLabel<Gtk::Label>(builder, "stick_manufacturer"));
+		stick.part_number.   extend(new ExtLabel<Gtk::Label>(builder, "stick_partnumber"));
+		stick.type.          extend(new ExtLabel<Gtk::Label>(builder, "stick_type"));
+		stick.type_detail.   extend(new ExtLabel<Gtk::Label>(builder, "stick_typedetail"));
+		stick.device_locator.extend(new ExtLabel<Gtk::Label>(builder, "stick_devicelocator"));
+		stick.bank_locator.  extend(new ExtLabel<Gtk::Label>(builder, "stick_banklocator"));
+		stick.size.          extend(new ExtLabel<Gtk::Label>(builder, "stick_size"));
+		stick.rank.          extend(new ExtLabel<Gtk::Label>(builder, "stick_rank"));
+		stick.speed.         extend(new ExtLabel<Gtk::Label>(builder, "stick_speed"));
+		stick.voltage.       extend(new ExtLabel<Gtk::Label>(builder, "stick_voltage"));
 	}
+	/* Sticks frame */
+	this->data.memory.footer.extend(new ExtFrame(builder, "sticks_lab"));
 
 	/* Tab: System */
 	this->data.system.extend(new GtkData::ExtTabSystem(builder));
@@ -368,6 +379,7 @@ void GtkData::set_all_labels()
 	}
 
 	/* Settings */
+	this->settingswindow->set_title(_("Settings"));
 	this->refreshtime->set_range(1, G_MAXUSHORT);
 	this->refreshtime->set_increments(1, 60);
 	this->defaulttab->insert(0, "cpu",        this->data.cpu.name);
@@ -382,6 +394,7 @@ void GtkData::set_all_labels()
 	this->fill_box_active_type(this->defaulttype);
 	this->fill_box_active_core(this->defaultcore);
 	this->fill_box_active_test(this->defaultcachetest);
+	this->fill_box_active_stick(this->defaultstick);
 	this->fill_box_active_card(this->defaultcard);
 
 	/* Tab: system */
@@ -413,6 +426,7 @@ void GtkData::set_all_labels()
 	this->fill_box_active_test();
 	this->gtab_motherboard();
 	this->gtab_memory();
+	this->fill_box_active_stick();
 	this->gtab_system();
 	this->gtab_graphics();
 	this->fill_box_active_card();
@@ -457,6 +471,7 @@ void GtkData::set_signals()
 	EXT_TAB_CPU(this->data.cpu)->activetype->signal_changed().connect(sigc::mem_fun(*this, &GtkData::change_active_type));
 	EXT_TAB_CPU(this->data.cpu)->activecore->signal_changed().connect(sigc::mem_fun(*this, &GtkData::change_active_core));
 	EXT_TAB_CACHES(this->data.caches)->activetest->signal_changed().connect(sigc::mem_fun(*this, &GtkData::change_active_test));
+	EXT_TAB_MEMORY(this->data.memory)->activestick->signal_changed().connect(sigc::mem_fun(*this, &GtkData::change_active_stick));
 	EXT_TAB_GRAPHICS(this->data.graphics)->activecard->signal_changed().connect(sigc::mem_fun(*this, &GtkData::change_active_card));
 	EXT_LABEL_SWITCH(this->data.bench.prime_slow.state)->value->signal_state_set().connect(sigc::mem_fun(*this, &GtkData::start_bench_prime_slow), false);
 	EXT_LABEL_SWITCH(this->data.bench.prime_fast.state)->value->signal_state_set().connect(sigc::mem_fun(*this, &GtkData::start_bench_prime_fast), false);
@@ -508,15 +523,16 @@ void GtkData::set_signals()
 
 void GtkData::bind_settings()
 {
-	settings->bind("refresh-time",        this->refreshtime,      "value"    );
-	settings->bind("gui-theme",           this->theme,            "active-id");
-	settings->bind("default-tab",         this->defaulttab,       "active-id");
-	settings->bind("default-core-type",   this->defaulttype,      "active"   );
-	settings->bind("default-cpu-core",    this->defaultcore,      "active"   );
-	settings->bind("default-cache-test",  this->defaultcachetest, "active"   );
-	settings->bind("default-active-card", this->defaultcard,      "active"   );
-	settings->bind("print-cpuid-decimal", this->cpuiddecimal,     "active"   );
-	settings->bind("always-start-daemon", this->startdaemon,      "active"   );
+	settings->bind("refresh-time",         this->refreshtime,      "value"    );
+	settings->bind("gui-theme",            this->theme,            "active-id");
+	settings->bind("default-tab",          this->defaulttab,       "active-id");
+	settings->bind("default-core-type",    this->defaulttype,      "active"   );
+	settings->bind("default-cpu-core",     this->defaultcore,      "active"   );
+	settings->bind("default-cache-test",   this->defaultcachetest, "active"   );
+	settings->bind("default-memory-stick", this->defaultstick,     "active"   );
+	settings->bind("default-active-card",  this->defaultcard,      "active"   );
+	settings->bind("print-cpuid-decimal",  this->cpuiddecimal,     "active"   );
+	settings->bind("always-start-daemon",  this->startdaemon,      "active"   );
 }
 
 bool GtkData::grefresh()
@@ -766,9 +782,10 @@ void GtkData::gtab_motherboard()
 
 /* Memory tab related methods */
 
-GtkData::ExtTabMemory::ExtTabMemory(Glib::RefPtr<Gtk::Builder> builder) : ExtTab(builder, "ramlabel")
+GtkData::ExtTabMemory::ExtTabMemory(Glib::RefPtr<Gtk::Builder> builder) : ExtTab(builder, "memorylabel")
 {
-	builder->get_widget("memory_grid", this->gridbanks);
+	builder->get_widget("memory_scrolledwindow", this->scrolledsticks);
+	builder->get_widget("sticks_activestick", this->activestick);
 }
 
 void GtkData::gtab_memory()
@@ -776,18 +793,56 @@ void GtkData::gtab_memory()
 	/* Hide tab if there is no sticks */
 	if(this->data.memory.sticks.size() == 0)
 	{
-		//EXT_TAB_MEMORY(this->data.memory)->gridbanks->hide();
+		EXT_TAB_MEMORY(this->data.memory)->scrolledsticks->hide();
 		return;
 	}
 
 	set_tab_name(this->data.memory);
 
-	/* Bank frame */
-	for(auto& stick : this->data.memory.sticks)
+	/* Stick frame */
+	const auto& stick = data.memory.get_selected_stick();
+	set_frame_name(stick);
+	set_label_name_and_value(stick.manufacturer);
+	set_label_name_and_value(stick.part_number);
+	set_label_name_and_value(stick.type);
+	set_label_name_and_value(stick.type_detail);
+	set_label_name_and_value(stick.device_locator, _("Identify the physically-labeled socket or board position where the memory device is located"));
+	set_label_name_and_value(stick.bank_locator, _("Identify the physically labeled bank where the memory device is located"));
+	set_label_name_and_value(stick.size);
+	set_label_name_and_value(stick.rank);
+	set_label_name_and_value(stick.speed);
+	set_label_name_and_value(stick.voltage);
+
+	/* Sticks frame */
+	set_frame_name(this->data.memory.footer);
+}
+
+void GtkData::fill_box_active_stick()
+{
+	fill_box_active_stick(EXT_TAB_MEMORY(this->data.memory)->activestick);
+}
+
+void GtkData::fill_box_active_stick(Gtk::ComboBoxText *comboboxtext)
+{
+	if(this->data.memory.sticks.size() > 0)
 	{
-		set_frame_name(stick);
-		set_label_name_and_value(stick.reference);
+		comboboxtext->remove_all();
+		for(unsigned i = 0; i < this->data.memory.sticks.size(); i++)
+			comboboxtext->append(this->data.memory.get_stick_formatted(i));
+		comboboxtext->set_active(Options::get_selected_stick());
 	}
+	else
+		comboboxtext->set_sensitive(false);
+}
+
+void GtkData::change_active_stick()
+{
+	const int stick = EXT_TAB_MEMORY(this->data.memory)->activestick->get_active_row_number();
+	if(stick < 0)
+		return;
+
+	Options::set_selected_stick(stick, this->data.memory.sticks.size());
+	this->gtab_memory();
 }
 
 
@@ -1147,14 +1202,15 @@ void load_settings()
 	Glib::init();
 	settings = Gio::Settings::create(APPLICATION_ID);
 	settings->delay();
-	Options::set_refr_time    (settings->get_uint("refresh-time"));
-	Options::set_selected_page(static_cast<TabNumber>(settings->get_enum("default-tab")));
-	Options::set_selected_type(settings->get_uint("default-core-type"), -1);
-	Options::set_selected_core(settings->get_uint("default-cpu-core"), -1);
-	Options::set_selected_test(settings->get_uint("default-cache-test"));
-	Options::set_selected_gpu (settings->get_uint("default-active-card"), -1);
-	Options::set_cpuid_decimal(settings->get_boolean("print-cpuid-decimal"));
-	Options::set_with_daemon  (settings->get_boolean("always-start-daemon"));
+	Options::set_refr_time     (settings->get_uint("refresh-time"));
+	Options::set_selected_page (static_cast<TabNumber>(settings->get_enum("default-tab")));
+	Options::set_selected_type (settings->get_uint("default-core-type"), -1);
+	Options::set_selected_core (settings->get_uint("default-cpu-core"), -1);
+	Options::set_selected_test (settings->get_uint("default-cache-test"));
+	Options::set_selected_stick(settings->get_uint("default-memory-stick"), -1);
+	Options::set_selected_gpu  (settings->get_uint("default-active-card"), -1);
+	Options::set_cpuid_decimal (settings->get_boolean("print-cpuid-decimal"));
+	Options::set_with_daemon   (settings->get_boolean("always-start-daemon"));
 }
 
 /* Start CPU-X in GTK mode */

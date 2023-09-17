@@ -155,6 +155,26 @@ uint8_t Options::get_selected_test()
 	return Options::selected_test;
 }
 
+bool Options::set_selected_stick(uint8_t selected_stick, uint8_t num_sticks)
+{
+	if(selected_stick < num_sticks)
+	{
+		Options::selected_stick = selected_stick;
+		return true;
+	}
+	else
+	{
+		Options::selected_stick = 0;
+		MSG_WARNING(_("Selected RAM stick (%u) is not a valid number (%u is the maximum for this system)"), selected_stick, num_sticks - 1);
+		return false;
+	}
+}
+
+uint8_t Options::get_selected_stick()
+{
+	return Options::selected_stick;
+}
+
 bool Options::set_selected_gpu(uint8_t selected_gpu, uint8_t num_gpus)
 {
 	if(selected_gpu < num_gpus)

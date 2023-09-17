@@ -78,6 +78,8 @@ public:
 	static uint8_t get_selected_type();
 	static bool set_selected_test(uint8_t selected_test);
 	static uint8_t get_selected_test();
+	static bool set_selected_stick(uint8_t selected_stick, uint8_t num_sticks);
+	static uint8_t get_selected_stick();
 	static bool set_selected_gpu(uint8_t selected_gpu, uint8_t num_gpus);
 	static uint8_t get_selected_gpu();
 	static bool set_selected_core(uint16_t selected_core, uint16_t num_cpu_cores);
@@ -102,6 +104,7 @@ private:
 
 	static inline uint8_t selected_type  = 0;
 	static inline uint8_t selected_test  = 0;
+	static inline uint8_t selected_stick = 0;
 	static inline uint8_t selected_gpu   = 0;
 
 	static inline uint16_t selected_core = 0;

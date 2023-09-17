@@ -484,10 +484,39 @@ Data::Memory::Stick::Stick(uint8_t number) : Frame(string_format(_("Stick %u"), 
 {
 }
 
+Data::Memory::Footer::Footer() : Frame(_("Sticks"))
+{
+}
+
 void Data::Memory::grow_sticks_vector()
 {
 	const auto len = this->sticks.size();
 	this->sticks.push_back(len);
+}
+
+Data::Memory::Stick& Data::Memory::get_selected_stick()
+{
+	/* Check selected stick is a valid index */
+	Options::set_selected_stick(Options::get_selected_stick(), this->sticks.size());
+
+	/* Check that vector is not empty */
+	if(this->sticks.size() == 0)
+		this->grow_sticks_vector();
+
+	return this->sticks.at(Options::get_selected_stick());
+}
+
+const std::string Data::Memory::get_stick_formatted(uint8_t stick)
+{
+	if(stick < this->sticks.size())
+		return "#" + std::to_string(stick) + ": " + this->sticks.at(stick).manufacturer.value + " " + this->sticks.at(stick).part_number.value;
+	else
+		return std::string();
+}
+
+const std::string Data::Memory::get_selected_stick_formatted()
+{
+	return this->get_stick_formatted(Options::get_selected_stick());
 }
 
 std::ostream& operator<<(std::ostream& os, const Data::Memory::Stick& stick)

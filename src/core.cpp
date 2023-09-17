@@ -23,6 +23,7 @@
 
 #include <unistd.h>
 #include <sys/utsname.h>
+#include <cstring>
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -406,6 +407,7 @@ static int call_dmidecode(Data &data)
 	const DaemonCommand cmd = DMIDECODE;
 	DmidecodeData msg;
 	DmidecodeMemoryData msg_memory;
+	bool need_sep = false;
 
 	MSG_VERBOSE("%s", _("Calling dmidecode"));
 	SEND_DATA(&data.socket_fd,  &cmd, sizeof(DaemonCommand));
@@ -438,16 +440,45 @@ static int call_dmidecode(Data &data)
 	{
 		RECEIVE_DATA(&data.socket_fd, &msg_memory, sizeof(DmidecodeMemoryData));
 		data.memory.grow_sticks_vector();
-		data.memory.sticks[i].manufacturer.value = msg_memory.manufacturer;
-		data.memory.sticks[i].part_number.value = msg_memory.part_number;
-		data.memory.sticks[i].type.value = msg_memory.type;
-		data.memory.sticks[i].type_detail.value = msg_memory.type_detail;
+		data.memory.sticks[i].manufacturer.value   = msg_memory.manufacturer;
+		data.memory.sticks[i].part_number.value    = msg_memory.part_number;
+		data.memory.sticks[i].type.value           = msg_memory.type;
+		data.memory.sticks[i].type_detail.value    = msg_memory.type_detail;
 		data.memory.sticks[i].device_locator.value = msg_memory.device_locator;
-		data.memory.sticks[i].bank_locator.value = msg_memory.bank_locator;
-		data.memory.sticks[i].rank.value = msg_memory.rank;
-		data.memory.sticks[i].size.value = string_set_unit(msg_memory.size);
-		data.memory.sticks[i].speed.value = string_format(_("%s (configured) / %s (max)"), msg_memory.speed_configured, msg_memory.speed_maximum);
-		data.memory.sticks[i].voltage.value = string_format(_("%s (min) / %s (configured) / %s (max)"), msg_memory.voltage_minimum, msg_memory.voltage_configured, msg_memory.voltage_maximum);
+		data.memory.sticks[i].bank_locator.value   = msg_memory.bank_locator;
+		data.memory.sticks[i].size.value           = string_set_unit(msg_memory.size);
+		data.memory.sticks[i].rank.value           = msg_memory.rank;
+		need_sep = false;
+		if(std::strlen(msg_memory.speed_configured) > 0)
+		{
+			data.memory.sticks[i].speed.value = string_format(_("%s (configured)"), msg_memory.speed_configured);
+			need_sep = true;
+		}
+		if(std::strlen(msg_memory.speed_maximum) > 0)
+		{
+			if(need_sep)
+				data.memory.sticks[i].speed.value += " / ";
+			data.memory.sticks[i].speed.value += string_format(_("%s (max)"), msg_memory.speed_maximum);
+		}
+		need_sep = false;
+		if(std::strlen(msg_memory.voltage_minimum) > 0)
+		{
+			data.memory.sticks[i].voltage.value = string_format(_("%s (min)"), msg_memory.voltage_minimum);
+			need_sep = true;
+		}
+		if(std::strlen(msg_memory.voltage_configured) > 0)
+		{
+			if(need_sep)
+				data.memory.sticks[i].voltage.value += " / ";
+			data.memory.sticks[i].voltage.value += string_format(_("%s (configured)"), msg_memory.voltage_configured);
+			need_sep = true;
+		}
+		if(std::strlen(msg_memory.voltage_maximum) > 0)
+		{
+			if(need_sep)
+				data.memory.sticks[i].voltage.value += " / ";
+			data.memory.sticks[i].voltage.value += string_format(_("%s (max)"), msg_memory.voltage_maximum);
+		}
 	}
 
 	return 0;
