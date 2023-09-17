@@ -1689,16 +1689,10 @@ static int system_static(Data &data)
 	if(err)
 		MSG_ERRNO("%s", _("failed to identify running system"));
 	else
-	{
-		data.system.os.kernel.value   = string_format("%s %s", name.sysname, name.release); /* Kernel label */
 		data.system.os.hostname.value = Options::get_issue() ? "sensitive data" : name.nodename; /* Hostname label */
-	}
-
-	/* Compiler label */
-	err += popen_to_str(data.system.os.compiler.value, "cc --version | head --lines=1");
 
 #ifdef __linux__
-	/* Distribution label */
+	/* Name label */
 	std::string line;
 	std::ifstream stream("/etc/os-release");
 	std::regex regex("^PRETTY_NAME=\"(.*?)\"$");
@@ -1708,22 +1702,25 @@ static int system_static(Data &data)
 	{
 		if(std::regex_search(line, match, regex))
 		{
-			data.system.os.distribution.value = match[1].str();
+			data.system.os.name.value = match[1].str();
 			break;
 		}
 	}
 
+	/* Kernel label */
+	if(!err)
+		data.system.os.kernel.value = string_format("%s %s", name.sysname, name.release);
+
 #else /* __linux__ */
-	char tmp[MAXSTR];
-	size_t len = sizeof(tmp);
+	if(!err)
+	{
+		/* Name label */
+		data.system.os.kernel.value = string_format("%s %s", name.sysname, name.release);
 
-	/* Overwrite Kernel label */
-	err += sysctlbyname("kern.osrelease", &tmp, &len, NULL, 0);
-	data.system.os.kernel.value = tmp;
+		/* Kernel label */
+		data.system.os.kernel.value = string_format("%s", name.version);
+	}
 
-	/* Distribution label */
-	err += sysctlbyname("kern.ostype", &tmp, &len, NULL, 0);
-	data.system.os.distribution.value = tmp;
 #endif /* __linux__ */
 
 	return err;

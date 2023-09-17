@@ -558,11 +558,10 @@ Data::System::OperatingSystem::OperatingSystem() : Frame(_("Operating System"))
 std::ostream& operator<<(std::ostream& os, const Data::System::OperatingSystem& operatingsystem)
 {
 	os << static_cast<const Frame&>(operatingsystem);
+	os << static_cast<const Label&>(operatingsystem.name);
 	os << static_cast<const Label&>(operatingsystem.kernel);
-	os << static_cast<const Label&>(operatingsystem.distribution);
 	os << static_cast<const Label&>(operatingsystem.hostname);
 	os << static_cast<const Label&>(operatingsystem.uptime);
-	os << static_cast<const Label&>(operatingsystem.compiler);
 	os << std::endl;
 	return os;
 }

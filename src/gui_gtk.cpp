@@ -237,11 +237,10 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 	this->data.system.extend(new GtkData::ExtTabSystem(builder));
 	/* Operating System frame */
 	this->data.system.os.extend(new ExtFrame(builder, "os_lab"));
-	this->data.system.os.kernel.      extend(new ExtLabel<Gtk::Label>(builder, "os_kern"));
-	this->data.system.os.distribution.extend(new ExtLabel<Gtk::Label>(builder, "os_distro"));
-	this->data.system.os.hostname.    extend(new ExtLabel<Gtk::Label>(builder, "os_host"));
-	this->data.system.os.uptime.      extend(new ExtLabel<Gtk::Label>(builder, "os_uptime"));
-	this->data.system.os.compiler.    extend(new ExtLabel<Gtk::Label>(builder, "os_comp"));
+	this->data.system.os.name.    extend(new ExtLabel<Gtk::Label>(builder, "os_name"));
+	this->data.system.os.kernel.  extend(new ExtLabel<Gtk::Label>(builder, "os_kernel"));
+	this->data.system.os.hostname.extend(new ExtLabel<Gtk::Label>(builder, "os_hostname"));
+	this->data.system.os.uptime.  extend(new ExtLabel<Gtk::Label>(builder, "os_uptime"));
 	/* Memory frame */
 	this->data.system.memory.extend(new ExtFrame(builder, "mem_lab"));
 	this->data.system.memory.used.   extend(new ExtLabel<Gtk::Label>(builder, "mem_used"));
@@ -359,7 +358,7 @@ void GtkData::set_all_labels()
 {
 	Gtk::Requisition minimum_size, natural_size;
 	const auto margin     = 6;
-	const auto width_full = EXT_LABEL(this->data.system.os.compiler)->value->get_allocated_width();
+	const auto width_full = EXT_LABEL(this->data.system.os.hostname)->value->get_allocated_width();
 	const auto width_half = width_full - EXT_LABEL(this->data.system.memory.used)->value->get_allocated_width() - margin;
 	const int pkcheck     = run_command("pkcheck --action-id org.freedesktop.policykit.exec --process %u > /dev/null 2>&1", getpid());
 
@@ -863,11 +862,10 @@ void GtkData::gtab_system()
 
 	/* Operating System frame */
 	set_frame_name(this->data.system.os);
+	set_label_name_and_value(this->data.system.os.name);
 	set_label_name_and_value(this->data.system.os.kernel);
-	set_label_name_and_value(this->data.system.os.distribution);
 	set_label_name_and_value(this->data.system.os.hostname);
 	set_label_name_and_value(this->data.system.os.uptime);
-	set_label_name_and_value(this->data.system.os.compiler);
 
 	/* Memory frame */
 	set_frame_name(this->data.system.memory);

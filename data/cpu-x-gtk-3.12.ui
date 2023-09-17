@@ -3184,13 +3184,13 @@
                         <property name="margin-end">6</property>
                         <property name="margin-bottom">6</property>
                         <child>
-                          <!-- n-columns=2 n-rows=5 -->
+                          <!-- n-columns=2 n-rows=4 -->
                           <object class="GtkGrid" id="os_grid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
                             <child>
-                              <object class="GtkAspectFrame" id="os_framkern">
+                              <object class="GtkAspectFrame" id="os_framkernel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-top">1</property>
@@ -3198,35 +3198,7 @@
                                 <property name="label-xalign">0</property>
                                 <property name="shadow-type">in</property>
                                 <child>
-                                  <object class="GtkLabel" id="os_valkern">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width-chars">40</property>
-                                    <property name="single-line-mode">True</property>
-                                    <property name="max-width-chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkAspectFrame" id="os_framdistro">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-top">1</property>
-                                <property name="margin-bottom">1</property>
-                                <property name="label-xalign">0</property>
-                                <property name="shadow-type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="os_valdistro">
+                                  <object class="GtkLabel" id="os_valkernel">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="hexpand">True</property>
@@ -3246,7 +3218,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkAspectFrame" id="os_framhost">
+                              <object class="GtkAspectFrame" id="os_framname">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="margin-top">1</property>
@@ -3254,7 +3226,35 @@
                                 <property name="label-xalign">0</property>
                                 <property name="shadow-type">in</property>
                                 <child>
-                                  <object class="GtkLabel" id="os_valhost">
+                                  <object class="GtkLabel" id="os_valname">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="justify">center</property>
+                                    <property name="selectable">True</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="width-chars">40</property>
+                                    <property name="single-line-mode">True</property>
+                                    <property name="max-width-chars">40</property>
+                                    <property name="lines">1</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkAspectFrame" id="os_framhostname">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">1</property>
+                                <property name="margin-bottom">1</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">in</property>
+                                <child>
+                                  <object class="GtkLabel" id="os_valhostname">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="hexpand">True</property>
@@ -3274,59 +3274,14 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkAspectFrame" id="os_framcomp">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-top">1</property>
-                                <property name="margin-bottom">1</property>
-                                <property name="label-xalign">0</property>
-                                <property name="shadow-type">in</property>
-                                <child>
-                                  <object class="GtkLabel" id="os_valcomp">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="justify">center</property>
-                                    <property name="selectable">True</property>
-                                    <property name="ellipsize">end</property>
-                                    <property name="width-chars">40</property>
-                                    <property name="single-line-mode">True</property>
-                                    <property name="max-width-chars">40</property>
-                                    <property name="lines">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">4</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="os_labkern">
+                              <object class="GtkLabel" id="os_labkernel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
                                 <property name="margin-end">4</property>
                                 <property name="margin-top">1</property>
                                 <property name="margin-bottom">1</property>
-                                <property name="mnemonic-widget">os_valkern</property>
-                                <property name="single-line-mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="os_labdistro">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin-end">4</property>
-                                <property name="margin-top">1</property>
-                                <property name="margin-bottom">1</property>
-                                <property name="mnemonic-widget">os_valdistro</property>
+                                <property name="mnemonic-widget">os_valkernel</property>
                                 <property name="single-line-mode">True</property>
                                 <property name="lines">1</property>
                               </object>
@@ -3336,37 +3291,37 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="os_labhost">
+                              <object class="GtkLabel" id="os_labname">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
                                 <property name="margin-end">4</property>
                                 <property name="margin-top">1</property>
                                 <property name="margin-bottom">1</property>
-                                <property name="mnemonic-widget">os_valhost</property>
+                                <property name="mnemonic-widget">os_valname</property>
+                                <property name="single-line-mode">True</property>
+                                <property name="lines">1</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="os_labhostname">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="margin-end">4</property>
+                                <property name="margin-top">1</property>
+                                <property name="margin-bottom">1</property>
+                                <property name="mnemonic-widget">os_valhostname</property>
                                 <property name="single-line-mode">True</property>
                                 <property name="lines">1</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="os_labcomp">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="margin-end">4</property>
-                                <property name="margin-top">1</property>
-                                <property name="margin-bottom">1</property>
-                                <property name="mnemonic-widget">os_valcomp</property>
-                                <property name="single-line-mode">True</property>
-                                <property name="lines">1</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">4</property>
                               </packing>
                             </child>
                             <child>

@@ -289,11 +289,10 @@ struct Data
 	{
 		struct OperatingSystem : public Frame
 		{
+			Label name         {_("Name")};
 			Label kernel       {_("Kernel")};
-			Label distribution {_("Distribution")};
 			Label hostname     {_("Hostname")};
 			Label uptime       {_("Uptime")};
-			Label compiler     {_("Compiler")};
 
 			OperatingSystem();
 			friend std::ostream& operator<<(std::ostream& os, const OperatingSystem& operatingsystem);

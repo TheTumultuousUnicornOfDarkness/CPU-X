@@ -487,25 +487,24 @@ static void draw_bar(WINDOW *win, int line, Pairs::Colors pair, bool start_left,
 static void ntab_system(WINDOW *win, Data &data)
 {
 	/* OS frame */
-	draw_frame(win, LINE_0, SizeInfo::start , LINE_6, SizeInfo::width - 1, data.system.os);
-	mvwprintw2c(win, LINE_1, SizeInfo::tb, "%13s", "%s", data.system.os.kernel);
-	mvwprintw2c(win, LINE_2, SizeInfo::tb, "%13s", "%s", data.system.os.distribution);
+	draw_frame(win, LINE_0, SizeInfo::start , LINE_5, SizeInfo::width - 1, data.system.os);
+	mvwprintw2c(win, LINE_1, SizeInfo::tb, "%13s", "%s", data.system.os.name);
+	mvwprintw2c(win, LINE_2, SizeInfo::tb, "%13s", "%s", data.system.os.kernel);
 	mvwprintw2c(win, LINE_3, SizeInfo::tb, "%13s", "%s", data.system.os.hostname);
 	mvwprintw2c(win, LINE_4, SizeInfo::tb, "%13s", "%s", data.system.os.uptime);
-	mvwprintw2c(win, LINE_5, SizeInfo::tb, "%13s", "%s", data.system.os.compiler);
 
 	/* Memory frame */
-	draw_frame(win, LINE_7, SizeInfo::start , LINE_13, SizeInfo::width - 1, data.system.memory);
-	mvwprintw2c(win, LINE_8,  SizeInfo::tb, "%13s", "%s", data.system.memory.used);
-	draw_bar(win,    LINE_8, Pairs::Colors::YELLOW_BAR_COLOR, true, data.system.memory.mem_used, data.system.memory.mem_total);
-	mvwprintw2c(win, LINE_9,  SizeInfo::tb, "%13s", "%s", data.system.memory.buffers);
-	draw_bar(win,    LINE_9, Pairs::Colors::BLUE_BAR_COLOR, false, data.system.memory.mem_buffers, data.system.memory.mem_total);
-	mvwprintw2c(win, LINE_10, SizeInfo::tb, "%13s", "%s", data.system.memory.cached);
-	draw_bar(win,    LINE_10, Pairs::Colors::MAGENTA_BAR_COLOR, false, data.system.memory.mem_cached, data.system.memory.mem_total);
-	mvwprintw2c(win, LINE_11, SizeInfo::tb, "%13s", "%s", data.system.memory.free);
-	draw_bar(win,    LINE_11, Pairs::Colors::GREEN_BAR_COLOR, false, data.system.memory.mem_free, data.system.memory.mem_total);
-	mvwprintw2c(win, LINE_12, SizeInfo::tb, "%13s", "%s", data.system.memory.swap);
-	draw_bar(win,    LINE_12, Pairs::Colors::RED_BAR_COLOR, true, data.system.memory.swap_used, data.system.memory.swap_total);
+	draw_frame(win, LINE_6, SizeInfo::start , LINE_12, SizeInfo::width - 1, data.system.memory);
+	mvwprintw2c(win, LINE_7, SizeInfo::tb, "%13s", "%s", data.system.memory.used);
+	draw_bar(win,    LINE_7, Pairs::Colors::YELLOW_BAR_COLOR, true, data.system.memory.mem_used, data.system.memory.mem_total);
+	mvwprintw2c(win, LINE_8, SizeInfo::tb, "%13s", "%s", data.system.memory.buffers);
+	draw_bar(win,    LINE_8, Pairs::Colors::BLUE_BAR_COLOR, false, data.system.memory.mem_buffers, data.system.memory.mem_total);
+	mvwprintw2c(win, LINE_9, SizeInfo::tb, "%13s", "%s", data.system.memory.cached);
+	draw_bar(win,    LINE_9, Pairs::Colors::MAGENTA_BAR_COLOR, false, data.system.memory.mem_cached, data.system.memory.mem_total);
+	mvwprintw2c(win, LINE_10, SizeInfo::tb, "%13s", "%s", data.system.memory.free);
+	draw_bar(win,    LINE_10, Pairs::Colors::GREEN_BAR_COLOR, false, data.system.memory.mem_free, data.system.memory.mem_total);
+	mvwprintw2c(win, LINE_11, SizeInfo::tb, "%13s", "%s", data.system.memory.swap);
+	draw_bar(win,    LINE_11, Pairs::Colors::RED_BAR_COLOR, true, data.system.memory.swap_used, data.system.memory.swap_total);
 }
 
 /* Graphics tab */
