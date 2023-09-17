@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-04-01 04:58+0000\n"
+"POT-Creation-Date: 2023-09-17 19:07+0200\n"
 "PO-Revision-Date: 2022-01-13 02:56+0000\n"
 "Last-Translator: Daniel <danny3@tutanota.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -20,11 +20,11 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Weblate 4.10.1\n"
 
-#: core.c:235
+#: core.cpp:135
 msgid "Finding CPU technology"
 msgstr "Se găsește tehnologia procesorului"
 
-#: core.c:261
+#: core.cpp:161
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -33,80 +33,63 @@ msgstr ""
 "Procesorul dumneavoastră nu este prezent în baza de date ==> %s, model: %i, "
 "model extins: %i, familie extinsă: %i"
 
-#: core.c:273
-#, c-format
-msgid "%d %s, %d-way"
-msgstr "%d %s, %d-căi"
+#: core.cpp:189 data.cpp:150 data.cpp:342
+msgid "unknown"
+msgstr ""
 
-#: core.c:274
-#, c-format
-msgid "%d x %d %s, %d-way"
-msgstr "%d x %d %s, %d-căi"
-
-#: core.c:275
-#, c-format
-msgid "%s associative, %d-%s line size"
-msgstr "în %s asociativă, dimensiune line de %d-%s"
-
-#: core.c:286
+#: core.cpp:230
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Se apelează libcpuid pentru obținerea datelor statice"
 
-#: core.c:301
+#: core.cpp:245
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "a eșuat apelarea libcpuid (%s)"
 
-#: core.c:310
-#, c-format
-msgid ""
-"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
-
-#: core.c:318
-#, c-format
-msgid ""
-"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-"type of core)"
-msgstr ""
-
-#: core.c:347
-msgid "unknown"
-msgstr ""
-
-#: core.c:470
+#: core.cpp:340
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Se apelează libcpuid pentru obținerea datelor dinamice"
 
-#: core.c:494
+#: core.cpp:353
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Se apelează libcpuid pentru obținerea valorilor statice registrului specific "
 "modelului procesorului"
 
-#: core.c:519
+#: core.cpp:380
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Calling libcpuid pentru obținerea valorilor dinamice registrului specific "
 "modelului procesorului"
 
-#: core.c:542
-msgid "Calculating CPU multipliers"
-msgstr "Se calculează multiplicatorii procesorului"
-
-#: core.c:575
+#: core.cpp:412
 msgid "Calling dmidecode"
 msgstr "Se apelează dmidecode"
 
-#: core.c:608
+#: core.cpp:454 core.cpp:473
+#, c-format
+msgid "%s (configured)"
+msgstr ""
+
+#: core.cpp:461 core.cpp:480
+#, c-format
+msgid "%s (max)"
+msgstr ""
+
+#: core.cpp:466
+#, c-format
+msgid "%s (min)"
+msgstr ""
+
+#: core.cpp:496
 msgid "Calculating CPU usage"
 msgstr "Se calculează folosirea procesorului"
 
-#: core.c:659
+#: core.cpp:546
 msgid "Calling bandwidth"
 msgstr "Se apelează lățimea de bandă"
 
-#: core.c:701
+#: core.cpp:613
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -115,135 +98,141 @@ msgid ""
 "rebuild %s."
 msgstr ""
 
-#: core.c:747
+#: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Niciun ghidator nucleu pentru placa video pe calea %s"
 
-#: core.c:778
+#: core.cpp:693
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Ghidatorul nucleu pentru placa dumneavoastră video este necunoscut: %s"
 
-#: core.c:854
+#: core.cpp:771
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr ""
 "Ghidatorul mod utilizator pentru placa dumneavoastră video este necunoscut: "
 "%s"
 
-#: core.c:858
+#: core.cpp:775
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "a eșuat apelarea GLFW (%i): %s"
 
-#: core.c:999
+#: core.cpp:914
 #, fuzzy
 #| msgid "Version"
 msgid "Finding Vulkan API version"
 msgstr "Versiunea"
 
-#: core.c:1016
+#: core.cpp:928
 #, fuzzy, c-format
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "a eșuat apelarea wordexp (%i)"
 
-#: core.c:1020 core.c:1022
+#: core.cpp:932 core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.c:1032
+#: core.cpp:944
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "a eșuat apelarea libcpuid (%s)"
 
-#: core.c:1039
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr ""
 
-#: core.c:1048
+#: core.cpp:959
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "No available physical devices (%s)"
 msgstr "a eșuat apelarea libcpuid (%s)"
 
-#: core.c:1111
+#: core.cpp:1020
 #, fuzzy, c-format
 #| msgid "failed to get name for device %u (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "a eșuat obținerea numelui pentru dispozitivul %u (%s)"
 
-#: core.c:1115
+#: core.cpp:1024
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1147 core.c:1460
+#: core.cpp:1056 core.cpp:1370
 msgid "Enabled"
 msgstr "Activat"
 
-#: core.c:1147 core.c:1460
+#: core.cpp:1056 core.cpp:1370
 msgid "Disabled"
 msgstr "Dezactivat"
 
-#: core.c:1197
+#: core.cpp:1094
+#, fuzzy
+#| msgid "Version"
+msgid "Finding OpenCL API version"
+msgstr "Versiunea"
+
+#: core.cpp:1098
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Nu există nicio platformă cu sprijin pentru OpenCL (%s)"
 
-#: core.c:1208
+#: core.cpp:1108
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "a eșuat obținerea tuturor platformelor OpenCL (%s)"
 
-#: core.c:1220
+#: core.cpp:1121
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "a eșuat obținerea numelui platformei %u (%s)"
 
-#: core.c:1228
+#: core.cpp:1129
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "a eșuat obținerea versiunii platformei %u (%s)"
 
-#: core.c:1237
+#: core.cpp:1137
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "a eșuat găsirea numărului de dispozitive OpenCL pentru platforma '%s %s' (%s)"
 
-#: core.c:1237
+#: core.cpp:1137
 #, fuzzy
 #| msgid "DeviceID"
 msgid "0 device"
 msgstr "Identifiatorul dispozitivului"
 
-#: core.c:1247
+#: core.cpp:1146
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "a eșuat obținerea tuturor dispozitivelor OpenCL pentru platforma '%s %s' (%s)"
 
-#: core.c:1262
+#: core.cpp:1166
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "a eșuat obținerea numelui pentru dispozitivul %u (%s)"
 
-#: core.c:1270
+#: core.cpp:1174
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "a eșuat obținerea versiunii dispozitivului %u (%s)"
 
-#: core.c:1286
+#: core.cpp:1196
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.c:1297
+#: core.cpp:1207
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -251,7 +240,7 @@ msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_GFXIP_MAJOR_AMD "
 "(%s)"
 
-#: core.c:1310 core.c:1323 core.c:1351
+#: core.cpp:1215 core.cpp:1235 core.cpp:1268
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -259,7 +248,7 @@ msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină "
 "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.c:1339
+#: core.cpp:1256
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -268,625 +257,365 @@ msgstr ""
 "Ghidatorul OpenCL pentru „%s %s” does nu sprijină CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) sau CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.c:1361
+#: core.cpp:1279
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 "OpenCL nu este sprijinit de vânzătorul plăcii dumneavoastre video (0x%X)"
 
-#: core.c:1392
+#: core.cpp:1301
 msgid "Finding devices"
 msgstr "Se găsesc dispozitivele"
 
-#: core.c:1404
+#: core.cpp:1313
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Omite căutarea dispozitivelor (permisiuni greșite pe dispozitivul %s)"
 
-#: core.c:1442
+#: core.cpp:1356
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Vânzătorul plăcii dumeavoastră vide este necunoscut: %s (0x%X)"
 
-#: core.c:1478
+#: core.cpp:1376
 msgid "failed to find chipset vendor and model"
 msgstr "a eșuat găsirea furnizorului și modelul cipsetului"
 
-#: core.c:1480
+#: core.cpp:1378
 msgid "failed to find graphic card vendor and model"
 msgstr "a eșuat găsirea furnizorului și modelul plăcii video"
 
-#: core.c:1557
+#: core.cpp:1486
 msgid "Retrieving GPU clocks"
 msgstr "Se obțin tactările plăcii video"
 
-#: core.c:1592
+#: core.cpp:1499
 msgid "None"
 msgstr "Niciunul"
 
-#: core.c:1611
+#: core.cpp:1508
 #, c-format
-msgid "DRM path for GPU %u is unknown"
+msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.c:1613
+#: core.cpp:1515
 #, c-format
-msgid "Card number for GPU %u is unknown"
+msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.c:1734
+#: core.cpp:1540
 #, c-format
-msgid "Driver for GPU %u doesn't report frequencies"
+msgid "PCIe %s (current) / %s (max)"
+msgstr ""
+
+#: core.cpp:1648
+#, fuzzy, c-format
+#| msgid "Driver for GPU %u doesn't report frequencies"
+msgid "Driver for %s doesn't report frequencies"
 msgstr "Ghidatorul pentru placa video %u nu raportează frecvențele"
 
-#: core.c:1776
-#, c-format
-msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr "Actual: PCIe Gen%1dx%d / Maxim: Gen%1dx%d"
+#: core.cpp:1666
+#, fuzzy, c-format
+#| msgid "failed to get all OpenCL platforms (%s)"
+msgid "failed to retrieve all monitoring data for %s"
+msgstr "a eșuat obținerea tuturor platformelor OpenCL (%s)"
 
-#: core.c:1801
-msgid "failed to retrieve GPU clocks"
-msgstr "a eșuat obținerea tactărilor plăcii video"
-
-#: core.c:1818
+#: core.cpp:1687
 msgid "Identifying running system"
 msgstr "Se identifică sistemul actual"
 
-#: core.c:1821
+#: core.cpp:1690
 msgid "failed to identify running system"
 msgstr "a eșuat identificarea sistemului actual"
 
-#: core.c:1865 core.c:1893
+#: core.cpp:1742 core.cpp:1771
 msgid "Calling libprocps"
 msgstr "Se apelează libprocps"
 
-#: core.c:1868
+#: core.cpp:1745
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1874
+#: core.cpp:1751
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1919
+#: core.cpp:1797
 msgid "Calling libstatgrab"
 msgstr "Se apelează libstatgrab"
 
-#: core.c:1958
+#: core.cpp:1845
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i zile, %i ore, %i minute, %i secunde"
 
-#: core.c:2015
+#: core.cpp:1908
 msgid "Updating benchmark status"
 msgstr "Se actualizează starea testării performanței"
 
-#: core.c:2016 tui_ncurses.c:879
-#, c-format
-msgid "%u mins"
-msgstr "%u minute"
-
-#: core.c:2018 core.c:2019
-msgid "Inactive"
-msgstr "Inactiv"
-
-#: core.c:2023 core.c:2024
-msgid "Not started"
-msgstr "Neînceput"
-
-#: core.c:2029
+#: core.cpp:1911
 msgid "Active"
 msgstr "Activ"
 
-#: core.c:2034
+#: core.cpp:1914
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u ore rămase)"
 
-#: core.c:2036
+#: core.cpp:1916
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minute rămase)"
 
-#: core.c:2038
+#: core.cpp:1918
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u secunde rămase)"
 
-#: core.c:2043
+#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+msgid "Inactive"
+msgstr "Inactiv"
+
+#: core.cpp:1925
 #, c-format
 msgid "in %u hours"
 msgstr "în %u ore"
 
-#: core.c:2045
+#: core.cpp:1927
 #, c-format
 msgid "in %u minutes"
 msgstr "în %u minute"
 
-#: core.c:2047
+#: core.cpp:1929
 #, c-format
 msgid "in %u seconds"
 msgstr "în %u secunde"
 
-#: core.c:2063
-msgid "Starting benchmark"
+#: core.cpp:1946
+#, fuzzy, c-format
+#| msgid "Starting benchmark"
+msgid "Starting benchmark with %u threads"
 msgstr "Se pornește testarea performanței"
 
-#: core.c:2082
+#: core.cpp:1969
 msgid "an error occurred while starting benchmark"
 msgstr "a apărut o eroare la pornirea testării performanței"
 
-#: core.c:2099
+#: core.cpp:1995
 msgid "Finding CPU package in fallback mode"
 msgstr "Se găsește pachetul procesorului în modul de rezervă"
 
-#: core.c:2121
+#: core.cpp:2025
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Soclul procesorului dumneavoastră nu este în baza de date ==> %s, numele de "
 "cod: %s"
 
-#: core.c:2140
+#: core.cpp:2045
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Se calculează multiplicatorii procesorului în modul de rezervă"
 
-#: core.c:2167
+#: core.cpp:2065
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Se obțin informațiile plăcii de bază în modul de rezervă"
 
-#: core.c:2176
+#: core.cpp:2078
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "a eșuat obținerea informațiilor plăcii de bază (în modul de rezervă)"
 
-#: core.c:2215
+#: core.cpp:2120
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Se obține temperatura procesorului în modul de rezervă"
 
-#: core.c:2261
+#: core.cpp:2166
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "a eșuat obținerea temperaturii procesorului (în modul de rezervă)"
 
-#: core.c:2274
+#: core.cpp:2181
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Se obține voltajul procesorului în modul de rezervă"
 
-#: core.c:2287
+#: core.cpp:2193
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "a eșuat obținerea voltajului procesorului (în modul de rezervă)"
 
-#: core.c:2302
+#: core.cpp:2207
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Se obține frecvența procesorului în modul de rezervă"
 
-#: core.c:2310
+#: core.cpp:2213
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "a eșuat obținerea frecvenței procesorului (în modul de rezervă)"
 
-#: daemon.c:264
+#: daemon_client.cpp:47
+#, fuzzy
+#| msgid "Ask password to start daemon in background"
+msgid "Starting daemon in background…"
+msgstr "Cere parola la pornirea daemon-ului pe fundal"
+
+#: daemon_client.cpp:82
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr "pkexec: autorizarea nu a putut fi obținută (dialog respins)"
+
+#: daemon_client.cpp:85
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr "pkexec: autorizarea nu a putut fi obținută (neautorizat)"
+
+#: daemon_client.cpp:88
+msgid "pkexec: command not found"
+msgstr "pkexec: comanda nu a putut fi găsită"
+
+#: daemon_client.cpp:91
+msgid "pkexec: unexpected error code"
+msgstr "pkexec: cod de eroare neașteptat"
+
+#: daemon_server.cpp:250
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: cazul %i nu este gestionat"
 
-#: gui_gtk.c:62
-msgid "Starting GTK GUI…"
-msgstr "Se pornește interfața grafică de tip GTK…"
-
-#: gui_gtk.c:70
-msgid "failed to import UI in GtkBuilder"
-msgstr "a eșuat importarea interfeței grafice în unealta GtkBuilder"
-
-#: gui_gtk.c:600
-msgid "Connected to daemon"
-msgstr "Connectat la daemon"
-
-#: gui_gtk.c:602
-msgid "No polkit authentication agent found"
-msgstr "Nu a fost găsit niciu agent de autentificare polkit"
-
-#: gui_gtk.c:606
-msgid "Ask password to start daemon in background"
-msgstr "Cere parola la pornirea daemon-ului pe fundal"
-
-#: gui_gtk.c:612
-msgid "Start daemon"
-msgstr "Pornește daemon-ul"
-
-#: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
-msgid "Type #%i"
-msgstr "Nucleu #%i"
-
-#: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
-#, c-format
-msgid "Core #%i"
-msgstr "Nucleu #%i"
-
-#: gui_gtk.c:632
-msgid "BaseFamily"
-msgstr "Familia de bază"
-
-#: gui_gtk.c:633
-msgid "BaseModel"
-msgstr "Modelul de bază"
-
-#: gui_gtk.c:634
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-"Pentru procesor afișează (adevărat - „true”) familia (compusă ca Famila de "
-"bază + Familia extinsă)"
-
-#: gui_gtk.c:635
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-"Pentru procesor afișează (adevărat - „true”) modelul (compus ca (modelul "
-"extins<<4)+Modelul de bază)"
-
-#: gui_gtk.c:694
-msgid "User Mode Driver Version"
-msgstr "Versiune ghidator mod utilizator"
-
-#: gui_gtk.c:695
-msgid "Vulkan Ray Tracing"
-msgstr ""
-
-#: main.c:57
-msgid "Setting label names"
-msgstr "Stabilirea numelor etichetelor"
-
-#: main.c:59 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:124 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
 msgstr "Procesor"
 
-#: main.c:60 cpu-x-gtk-3.12.ui:746
+#: data.cpp:187
+#, fuzzy
+#| msgid "Score"
+msgid "P-core"
+msgstr "Scor"
+
+#: data.cpp:188
+#, fuzzy
+#| msgid "Score"
+msgid "E-core"
+msgstr "Scor"
+
+#: data.cpp:189 data.cpp:192
+#, fuzzy
+#| msgid "Core(s)"
+msgid "Core"
+msgstr "Nuclee"
+
+#: data.cpp:208 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "Procesor"
 
-#: main.c:61 main.c:115 main.c:148
-msgid "Vendor"
-msgstr "Furnizor"
-
-#: main.c:62
-msgid "Code Name"
-msgstr "Numele de cod"
-
-#: main.c:63
-msgid "Package"
-msgstr "Pachetul"
-
-#: main.c:64
-msgid "Technology"
-msgstr "Tehnologia"
-
-#: main.c:65
-msgid "Voltage"
-msgstr "Voltajul"
-
-#: main.c:66
-msgid "Specification"
-msgstr "Specificația"
-
-#: main.c:67
-msgid "Family"
-msgstr "Familia"
-
-#: main.c:68
-msgid "Disp. Family"
-msgstr "Afișarea familiei"
-
-#: main.c:69 main.c:105 main.c:116 main.c:151
-msgid "Model"
-msgstr "Modelul"
-
-#: main.c:70
-msgid "Disp. Model"
-msgstr "Afișarea modelului"
-
-#: main.c:71
-msgid "Temp."
-msgstr "Temperatura"
-
-#: main.c:72
-msgid "Stepping"
-msgstr "Revizia"
-
-#: main.c:73
-msgid "Instructions"
-msgstr "Instrucțiunile"
-
-#: main.c:75 cpu-x-gtk-3.12.ui:968
-msgid "Clocks"
-msgstr "Tactările"
-
-#: main.c:76
-msgid "Core Speed"
-msgstr "Viteza nucleelor"
-
-#: main.c:77
-msgid "Multiplier"
-msgstr "Multiplicatorul"
-
-#: main.c:78
-msgid "Bus Speed"
-msgstr "Viteza magistralei"
-
-#: main.c:79 main.c:157
-msgid "Usage"
-msgstr "Folosirea"
-
-#: main.c:81 cpu-x-gtk-3.12.ui:1184
-msgid "Cache"
-msgstr "Memoria tampon (cache)"
-
-#: main.c:82
-msgid "L1 Data"
-msgstr "Date N1"
-
-#: main.c:83
-msgid "L1 Inst."
-msgstr "Instrucț. N1"
-
-#: main.c:84
-msgid "Level 2"
-msgstr "N2"
-
-#: main.c:85
-msgid "Level 3"
-msgstr "N3"
-
-#: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
-msgid "Cores"
-msgstr "Nuclee"
-
-#: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
-msgid "Threads"
-msgstr "Fire"
-
-#: main.c:91 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:240 data.cpp:329 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "Memorii tampon"
 
-#: main.c:95
+#: data.cpp:247
+#, fuzzy, c-format
+#| msgid "%d x %d %s, %d-way"
+msgid "%2d x %4d %s, %2d-way"
+msgstr "%d x %d %s, %d-căi"
+
+#: data.cpp:249
 #, c-format
-msgid "L%i Cache"
+msgid "%d %s, %d-way"
+msgstr "%d %s, %d-căi"
+
+#: data.cpp:263
+msgid "Count"
+msgstr ""
+
+#: data.cpp:276 cpu-x-gtk-3.12.ui:968
+msgid "Clocks"
+msgstr "Tactările"
+
+#: data.cpp:379 data.cpp:383
+#, fuzzy, c-format
+#| msgid "L%i Cache"
+msgid "L%u Cache"
 msgstr "Memoria tampon de nivel %i"
 
-#: main.c:96
-msgid "Size"
-msgstr "Dimensiunea"
+#: data.cpp:385
+#, c-format
+msgid "%s associative, %d-%s line size"
+msgstr "în %s asociativă, dimensiune line de %d-%s"
 
-#: main.c:97
-msgid "Speed"
-msgstr "Viteza"
-
-#: main.c:99
+#: data.cpp:398
 msgid "Test"
 msgstr "Testare"
 
-#: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:409 data.cpp:423 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "Placa de bază"
 
-#: main.c:104
-msgid "Manufacturer"
-msgstr "Producătorul"
-
-#: main.c:106
-msgid "Revision"
-msgstr "Revizia"
-
-#: main.c:108 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:437 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "Sistemul Intrare/Ieșire de bază (BIOS)"
 
-#: main.c:109
-msgid "Brand"
-msgstr "Marca"
-
-#: main.c:110
-msgid "Version"
-msgstr "Versiunea"
-
-#: main.c:111
-msgid "Date"
-msgstr "Data"
-
-#: main.c:112
-msgid "ROM Size"
-msgstr "Dimensiunea ROM"
-
-#: main.c:114 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:452 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "Cipsetul"
 
-#: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3227 cpu-x-gtk-3.12.ui:3877
+#: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "Memoria"
 
-#: main.c:122
+#: data.cpp:483
 #, c-format
-msgid "Bank %i"
-msgstr "Banca %i"
+msgid "Stick %u"
+msgstr ""
 
-#: main.c:123
-msgid "Reference"
-msgstr "Referința"
+#: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+msgid "Sticks"
+msgstr ""
 
-#: main.c:127 cpu-x-gtk-3.12.ui:3896
+#: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "Sistemul"
 
-#: main.c:128 cpu-x-gtk-3.12.ui:3496
+#: data.cpp:554 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "Sistemul de operare"
 
-#: main.c:129
-msgid "Kernel"
-msgstr "Nucleul"
-
-#: main.c:130
-msgid "Distribution"
-msgstr "Distribuția"
-
-#: main.c:131
-msgid "Hostname"
-msgstr "Numele de gazdă"
-
-#: main.c:132
-msgid "Uptime"
-msgstr "Durata de funcționare"
-
-#: main.c:133
-msgid "Compiler"
-msgstr "Compilatorul"
-
-#: main.c:136
-msgid "Used"
-msgstr "Folosită"
-
-#: main.c:137
-msgid "Buffers"
-msgstr "Prestocări"
-
-#: main.c:138
-msgid "Cached"
-msgstr "Prealocată"
-
-#: main.c:139
-msgid "Free"
-msgstr "Liberă"
-
-#: main.c:140
-msgid "Swap"
-msgstr "De schimb"
-
-#: main.c:143 cpu-x-gtk-3.12.ui:5076
+#: data.cpp:587 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr "Plăcile video"
 
-#: main.c:147
-#, c-format
-msgid "Card %i"
+#: data.cpp:621
+#, fuzzy, c-format
+#| msgid "Card %i"
+msgid "Card %u"
 msgstr "Placa %i"
 
-#: main.c:149
-msgid "Driver"
-msgstr "Ghidatorul"
-
-#: main.c:150
-msgid "UMD Version"
-msgstr "Versiunea UMD"
-
-#: main.c:152
-msgid "Compute Unit"
-msgstr "Unitatea computațională"
-
-#: main.c:153
-msgid "DeviceID"
-msgstr "Identifiatorul dispozitivului"
-
-#: main.c:154
-#, fuzzy
-#| msgid "Version"
-msgid "VBIOS Version"
-msgstr "Versiunea"
-
-#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
-#. Setting: "Interface" tab
-#: main.c:155 cpu-x-gtk-3.12.ui:5891
-msgid "Interface"
-msgstr "Interfața"
-
-#: main.c:156
-msgid "Temperature"
-msgstr "Temperatura"
-
-#: main.c:158
-msgid "Core Voltage"
-msgstr "Voltajul nucleului"
-
-#: main.c:159
-msgid "Power Avg"
-msgstr "Media energiei electrice"
-
-#: main.c:160
-msgid "GPU clock"
-msgstr "Tactarea procesorului grafic"
-
-#: main.c:161
-msgid "Memory clock"
-msgstr "Tactarea memoriei"
-
-#: main.c:162
-msgid "Memory Used"
-msgstr "Memoria folosită"
-
-#: main.c:163
-msgid "Resizable BAR"
-msgstr "BAR redimensionabil"
-
-#: main.c:164
-msgid "Vulkan RT"
-msgstr ""
-
-#: main.c:165
-#, fuzzy
-#| msgid "Version"
-msgid "OpenGL Version"
-msgstr "Versiunea"
-
-#: main.c:166
-#, fuzzy
-#| msgid "Version"
-msgid "Vulkan Version"
-msgstr "Versiunea"
-
-#: main.c:167
-#, fuzzy
-#| msgid "Version"
-msgid "OpenCL Version"
-msgstr "Versiunea"
-
-#: main.c:169 cpu-x-gtk-3.12.ui:5054
+#: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr "Plăcile video"
 
-#: main.c:172 cpu-x-gtk-3.12.ui:5416
+#: data.cpp:672 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "Testarea performanței"
 
-#: main.c:173 cpu-x-gtk-3.12.ui:5186
+#: data.cpp:685
+msgid "Not started"
+msgstr "Neînceput"
+
+#: data.cpp:688 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr "Numere prime (încet)"
 
-#: main.c:174 cpu-x-gtk-3.12.ui:5294
+#: data.cpp:692 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr "Numere prime (repede)"
 
-#: main.c:177
-msgid "Score"
-msgstr "Scor"
-
-#: main.c:178
-msgid "Run"
-msgstr "Rulare"
-
-#: main.c:181 cpu-x-gtk-3.12.ui:5397
+#: data.cpp:696 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "Parametrii"
 
-#: main.c:182
-msgid "Duration"
-msgstr "Durată"
+#: data.cpp:721 data.cpp:727
+#, c-format
+msgid "%u mins"
+msgstr "%u minute"
 
-#: main.c:186 main.c:191 cpu-x-gtk-3.12.ui:5560 cpu-x-gtk-3.12.ui:5668
+#: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "Despre"
 
-#: main.c:188
+#: data.cpp:739
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -895,190 +624,262 @@ msgstr ""
 "%s este un program liber care adună informațiile\n"
 " despre procesor, placa de bază și alte dispozitive."
 
-#: main.c:192
+#: data.cpp:744
+#, fuzzy
+#| msgid "About"
+msgid "About CPU-X"
+msgstr "Despre"
+
+#: data.cpp:745
 #, c-format
 msgid "Version %s"
 msgstr "Versiunea %s"
 
-#: main.c:193
+#: data.cpp:746
 #, c-format
 msgid "Author: %s"
 msgstr "Autorul: %s"
 
-#: main.c:194
+#: data.cpp:747
 #, c-format
 msgid "Site: %s"
 msgstr "Situl web: %s"
 
-#: main.c:196 cpu-x-gtk-3.12.ui:5649
+#: data.cpp:751 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "Licența"
 
-#: main.c:199
+#: data.cpp:753
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Acest program este distribuit sub termenii licenței %s"
 
-#: main.c:201 main.c:454
+#: data.cpp:754 main.cpp:174
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Acest program vine cu ABSOLUT NICIO GARANȚIE"
 
-#: main.c:272
-msgid "Dumping data…"
-msgstr "Se aruncă datele…"
+#: gui_gtk.cpp:60
+#, c-format
+msgid "Cannot find path for '%s' file"
+msgstr ""
 
-#: main.c:315
-msgid "Freeing memory"
-msgstr "Se eliberează memoria"
+#: gui_gtk.cpp:373
+msgid "Start daemon"
+msgstr "Pornește daemon-ul"
 
-#: main.c:343
+#: gui_gtk.cpp:376
+msgid "Connected to daemon"
+msgstr "Connectat la daemon"
+
+#: gui_gtk.cpp:378
+msgid "No polkit authentication agent found"
+msgstr "Nu a fost găsit niciu agent de autentificare polkit"
+
+#: gui_gtk.cpp:382
+msgid "Ask password to start daemon in background"
+msgstr "Cere parola la pornirea daemon-ului pe fundal"
+
+#: gui_gtk.cpp:386
+msgid "Settings"
+msgstr ""
+
+#: gui_gtk.cpp:600
+msgid "BaseFamily"
+msgstr "Familia de bază"
+
+#: gui_gtk.cpp:601
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+"Pentru procesor afișează (adevărat - „true”) familia (compusă ca Famila de "
+"bază + Familia extinsă)"
+
+#: gui_gtk.cpp:602
+msgid "BaseModel"
+msgstr "Modelul de bază"
+
+#: gui_gtk.cpp:603
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+"Pentru procesor afișează (adevărat - „true”) modelul (compus ca (modelul "
+"extins<<4)+Modelul de bază)"
+
+#: gui_gtk.cpp:813
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
+msgstr ""
+
+#: gui_gtk.cpp:814
+msgid "Identify the physically labeled bank where the memory device is located"
+msgstr ""
+
+#: gui_gtk.cpp:1015
+msgid "User Mode Driver Version"
+msgstr "Versiune ghidator mod utilizator"
+
+#: gui_gtk.cpp:1029
+msgid "Vulkan Ray Tracing"
+msgstr ""
+
+#: gui_gtk.cpp:1222
+msgid "Starting GTK GUI…"
+msgstr "Se pornește interfața grafică de tip GTK…"
+
+#: gui_gtk.cpp:1234
+msgid "failed to import UI in GtkBuilder"
+msgstr "a eșuat importarea interfeței grafice în unealta GtkBuilder"
+
+#: main.cpp:62
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Pornește interfața grafică cu utilizatorul (IGU) (implicit)"
 
-#: main.c:344
+#: main.cpp:63
 msgid "Start text-based user interface (TUI)"
 msgstr "Pornește interfața textuală cu utilizatorul (ITU)"
 
-#: main.c:345
+#: main.cpp:64
 msgid "Dump all data on standard output and exit"
 msgstr "Aruncă toate datele pe ieșirea standard și închide programul"
 
-#: main.c:346
+#: main.cpp:65
 msgid "Run embedded command dmidecode and exit"
 msgstr "Rulează comanda dmidecode integrată și închide programul"
 
-#: main.c:347
+#: main.cpp:66
 msgid "Run embedded command bandwidth and exit"
 msgstr "Rulează comanda lățimii de bandă și închide programul"
 
-#: main.c:348
+#: main.cpp:67
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr ""
 "Stabilește o durată personalizată între două reîmprospătări (în secunde)"
 
-#: main.c:349
+#: main.cpp:68
 msgid "Set default tab (integer)"
 msgstr "Stabiliți pagina implicită (întreg)"
 
-#: main.c:350
+#: main.cpp:69
 #, fuzzy
 #| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
 msgstr "Selectați nucleul procesorului de monitorizat (întreg)"
 
-#: main.c:351
+#: main.cpp:70
 msgid "Select CPU core to monitor (integer)"
 msgstr "Selectați nucleul procesorului de monitorizat (întreg)"
 
-#: main.c:352
+#: main.cpp:71
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Stabiliți testul cu lățime de bandă personalizată pentru memoriile tampon "
 "ale procesorului (întreg)"
 
-#: main.c:353
+#: main.cpp:72
+#, fuzzy
+#| msgid "Select default graphic card (integer)"
+msgid "Select default memory stick (integer)"
+msgstr "Selectați placa video implicită (întreg)"
+
+#: main.cpp:73
 msgid "Select default graphic card (integer)"
 msgstr "Selectați placa video implicită (întreg)"
 
-#: main.c:354 cpu-x-gtk-3.12.ui:5994
+#: main.cpp:74 cpu-x-gtk-3.12.ui:5879
 msgid "Start and connect to daemon"
 msgstr "Pornește și conectează-te la daemon"
 
-#: main.c:355
+#: main.cpp:75
 msgid "Verbose output"
 msgstr "Ieșire detaliată"
 
-#: main.c:356
+#: main.cpp:76
 msgid "Print help and exit"
 msgstr "Tipărește ajutorul și închide programul"
 
-#: main.c:357
+#: main.cpp:77
 msgid "Print version and exit"
 msgstr "Tipărește versiunea și închide programul"
 
-#: main.c:358
+#: main.cpp:78
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "Tipărește indentificatorul procesorului în zecimal (implicit este în "
 "hexazecimal)"
 
-#: main.c:359
+#: main.cpp:79
 msgid "Disable colored output"
 msgstr "Dezactivează ieșirea colorată"
 
-#: main.c:360
+#: main.cpp:80
 msgid "Print information for debugging"
 msgstr "Tipărește informațiile de depanare"
 
-#: main.c:361
+#: main.cpp:81
 msgid "Print required information to paste in an issue"
 msgstr "Tipărește informațiile necesare de lipit într-un defect"
 
-#: main.c:362
+#: main.cpp:82
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Stabilește asocierea tastelor pentru modul NCurses (a[rrows]|e[macs]|"
 "i[nverted-T]|v[im])"
 
-#: main.c:373
+#: main.cpp:93
 msgid "Add default command line arguments"
 msgstr "Adaugă argumente implicite pentru linia de comandă"
 
-#: main.c:374
+#: main.cpp:94
 msgid "Enforce the bus clock"
 msgstr "Impune tactarea magistralei"
 
-#: main.c:375
-msgid "Ignore CPU frequency reported by libcpuid"
-msgstr "Ignoră frecvența procesorului raportată de libcpuid"
+#: main.cpp:95
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt' and 'freq')"
+msgstr ""
 
-#: main.c:376
+#: main.cpp:96
 msgid "Read CPUID raw data from a given file"
 msgstr "Citește datele crude CPUID dintr-un fișier dat"
 
-#: main.c:377
+#: main.cpp:97
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Arată doar un mesaj dacă procesorul nu este prezent în baza de date"
 
-#: main.c:401
+#: main.cpp:124
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Folosire: %s AFIȘAJ [OPȚIUNI]\n"
 
-#: main.c:402
+#: main.cpp:125
 msgid "Available DISPLAY:"
 msgstr "AFIȘAJ disponibil:"
 
-#: main.c:411
+#: main.cpp:133
 msgid "Available OPTIONS:"
 msgstr "OPȚIUNI disponibile:"
 
-#: main.c:419
+#: main.cpp:142
 msgid "Influenceable environment variables:"
 msgstr "Variabile de mediu influențabile:"
 
-#: main.c:453
+#: main.cpp:173
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Acesta este software liber: sunteți liber(ă) să îl schimbați și "
 "redistribuiți."
 
-#: main.c:455
+#: main.cpp:175
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Vedeți licența %s: <%s>\n"
 
-#: main.c:462
+#: main.cpp:182
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s versiunea: %s"
 
-#: main.c:478
-#, c-format
-msgid "failed to call wordexp (%i)"
-msgstr "a eșuat apelarea wordexp (%i)"
-
-#: main.c:677
+#: main.cpp:367
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1091,7 +892,7 @@ msgstr ""
 "\n"
 "%sOpa, ceva a fost greșit! %s a primit semnalul %d (%s) și a picat.%s"
 
-#: main.c:679
+#: main.cpp:369
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1105,19 +906,200 @@ msgstr ""
 "\n"
 "%sOpa, ceva a fost greșit! %s a primit semnalul %d (%s) și a picat.%s"
 
-#: main.c:696
+#: main.cpp:393
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.c:741
+#: main.cpp:435
 msgid "an error occurred while setting locale"
 msgstr "o eroare a apărut în timp ce se stabilea locația de limbă"
 
-#: tui_ncurses.c:73
+#: options.cpp:124
+#, c-format
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
+msgstr ""
+
+#: options.cpp:145
+#, c-format
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
+msgstr ""
+
+#: options.cpp:168
+#, c-format
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+
+#: options.cpp:188
+#, c-format
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+
+#: options.cpp:204
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr ""
+
+#: options.cpp:210
+#, c-format
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
+msgstr ""
+
+#: options.cpp:284
+#, c-format
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr ""
+
+#: tui_ncurses.cpp:111
+msgid "Window is too small!"
+msgstr "Fereastra este prea mică!"
+
+#: tui_ncurses.cpp:119
+msgid "Press 'h' to see help."
+msgstr "Apăsați litera „h” pentru a vedea ajutorul."
+
+#: tui_ncurses.cpp:232
+#, c-format
+msgid "Welcome in %s NCurses help!\n"
+msgstr "Bun venit în ajutorul de tip NCurses pentru %s!\n"
+
+#: tui_ncurses.cpp:233
+msgid "This help describes how to use this Text-based User Interface."
+msgstr ""
+"Acest ajutor descrie cum să folosiți această interfață cu utilizatorul "
+"bazată pe text."
+
+#: tui_ncurses.cpp:235
+msgid "Global keys:"
+msgstr "Taste globale:"
+
+#: tui_ncurses.cpp:236
+#, fuzzy
+#| msgid "Press 'left' key to switch in left tab."
+msgid "Press 'left' key or 'tab' key to switch in left tab."
+msgstr "Apăsați tasta „stânga” pentru a comuta la tabul din stânga."
+
+#: tui_ncurses.cpp:237
+#, fuzzy
+#| msgid "Press 'right' key to switch in right tab."
+msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+msgstr "Apăsați tasta „dreapta” pentru a comuta la tabul din dreapta."
+
+#: tui_ncurses.cpp:238
+msgid "Press 'h' key to see this help."
+msgstr "Apăsați tasta „h” pentru a vedea acest ajutor."
+
+#: tui_ncurses.cpp:239
+msgid "Press 'q' key to exit."
+msgstr "Apăsați tasta „q” key pentru a închide programul."
+
+#: tui_ncurses.cpp:241
+msgid "CPU tab:"
+msgstr "Pagina procesorului:"
+
+#: tui_ncurses.cpp:242
+#, fuzzy
+#| msgid "Press 'down' key to decrease core number to monitor."
+msgid "Press 'next page' key to decrease core type number to monitor."
+msgstr "Apăsați tasta „jos” pentru a scade numărul nucleelor de monitorizat."
+
+#: tui_ncurses.cpp:243
+#, fuzzy
+#| msgid "Press 'up' key to increase core number to monitor."
+msgid "Press 'previous page' key to increase core type number to monitor."
+msgstr "Apăsați tasta „sus” pentru a crește numărul nucleelor de monitorizat."
+
+#: tui_ncurses.cpp:244
+#, fuzzy
+#| msgid "Press 'down' key to decrease core number to monitor."
+msgid "Press 'down' key to decrease CPU core number to monitor."
+msgstr "Apăsați tasta „jos” pentru a scade numărul nucleelor de monitorizat."
+
+#: tui_ncurses.cpp:245
+#, fuzzy
+#| msgid "Press 'up' key to increase core number to monitor."
+msgid "Press 'up' key to increase CPU core number to monitor."
+msgstr "Apăsați tasta „sus” pentru a crește numărul nucleelor de monitorizat."
+
+#: tui_ncurses.cpp:247
+msgid "Caches tab:"
+msgstr "Pagina memoriilor tampon:"
+
+#: tui_ncurses.cpp:248
+msgid "Press 'down' key to switch to previous test."
+msgstr "Apăsați tasta „jos” pentru a comuta la testul anterior."
+
+#: tui_ncurses.cpp:249
+#, fuzzy
+#| msgid "Press 'up' key' to switch to next test."
+msgid "Press 'up' key to switch to next test."
+msgstr "Apăsați tasta „sus” pentru a comuta la testul următor."
+
+#: tui_ncurses.cpp:251
+msgid "Bench tab:"
+msgstr "Pagina testarea performanței:"
+
+#: tui_ncurses.cpp:252
+msgid "Press 'down' key to decrement benchmark duration."
+msgstr "Apăsați tasta „jos” pentru a scade durata testării performanței."
+
+#: tui_ncurses.cpp:253
+msgid "Press 'up' key to increment benchmark duration."
+msgstr "Apăsați tasta „sus” pentru a crește durata testării performanței."
+
+#: tui_ncurses.cpp:254
+msgid "Press 'next page' key to decrement number of threads to use."
+msgstr ""
+"Apăsați tasta „pagina următoare” pentru a crește numărul de fire de execuție "
+"folosite."
+
+#: tui_ncurses.cpp:255
+msgid "Press 'previous page' key to increment number of threads to use."
+msgstr ""
+"Apăsați tasta „pagina anterioară” pentru a crește numărul de fire de "
+"execuție folosite."
+
+#: tui_ncurses.cpp:256
+msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+msgstr ""
+"Apăsați tasta „s” pentru a porni/opri testarea performanței cu numere prime "
+"(înceată)."
+
+#: tui_ncurses.cpp:257
+msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+msgstr ""
+"Apăsați tasta „f” pentru a porni/opri testarea performanței cu numere prime "
+"(rapidă)."
+
+#: tui_ncurses.cpp:259
+msgid "Graphics tab:"
+msgstr "Pagina plăcilor video:"
+
+#: tui_ncurses.cpp:260
+msgid "Press 'down' key to switch to previous graphic card."
+msgstr "Apăsați tasta „jos” pentru a comuta la placa video anterioară."
+
+#: tui_ncurses.cpp:261
+msgid "Press 'up' key to switch to next graphic card."
+msgstr "Apăsați tasta „sus” pentru a comuta la placa video următoare."
+
+#: tui_ncurses.cpp:263
+msgid "Press any key to exit this help."
+msgstr "Apăsați orice tasă pentru a ieși din acest ajutor."
+
+#: tui_ncurses.cpp:638
 msgid "Starting NCurses TUI…"
 msgstr "Se porntește interfața textuală NCurses…"
 
-#: tui_ncurses.c:81
+#: tui_ncurses.cpp:647
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1125,322 +1107,410 @@ msgstr ""
 "EROARE FATALĂ: baza de date terminfo nu a putut fi găsită (încercați să "
 "stabiliți variabila de mediu TERMINFO)"
 
-#: tui_ncurses.c:86
+#: tui_ncurses.cpp:652
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "A eșuat instalarea terminalului %s (eroarea=%i); se revine la %s"
 
-#: tui_ncurses.c:342
-msgid "Window is too small!"
-msgstr "Fereastra este prea mică!"
-
-#: tui_ncurses.c:350
-msgid "Press 'h' to see help."
-msgstr "Apăsați litera „h” pentru a vedea ajutorul."
-
-#: tui_ncurses.c:504
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr "Bun venit în ajutorul de tip NCurses pentru %s!\n"
-
-#: tui_ncurses.c:505
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-"Acest ajutor descrie cum să folosiți această interfață cu utilizatorul "
-"bazată pe text."
-
-#: tui_ncurses.c:507
-msgid "Global keys:"
-msgstr "Taste globale:"
-
-#: tui_ncurses.c:508
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Apăsați tasta „stânga” pentru a comuta la tabul din stânga."
-
-#: tui_ncurses.c:509
-#, fuzzy
-#| msgid "Press 'right' key to switch in right tab."
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Apăsați tasta „dreapta” pentru a comuta la tabul din dreapta."
-
-#: tui_ncurses.c:510
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
-msgid "Press 'home' key to scroll up in a page."
-msgstr "Apăsați tasta „stânga” pentru a comuta la tabul din stânga."
-
-#: tui_ncurses.c:511
-#, fuzzy
-#| msgid "Press 'left' key to switch in left tab."
-msgid "Press 'end' key to scroll down in a page."
-msgstr "Apăsați tasta „stânga” pentru a comuta la tabul din stânga."
-
-#: tui_ncurses.c:512
-msgid "Press 'h' key to see this help."
-msgstr "Apăsați tasta „h” pentru a vedea acest ajutor."
-
-#: tui_ncurses.c:513
-msgid "Press 'q' key to exit."
-msgstr "Apăsați tasta „q” key pentru a închide programul."
-
-#: tui_ncurses.c:515
-msgid "CPU tab:"
-msgstr "Pagina procesorului:"
-
-#: tui_ncurses.c:516
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "Apăsați tasta „jos” pentru a scade numărul nucleelor de monitorizat."
-
-#: tui_ncurses.c:517
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "Apăsați tasta „sus” pentru a crește numărul nucleelor de monitorizat."
-
-#: tui_ncurses.c:518
-#, fuzzy
-#| msgid "Press 'down' key to decrease core number to monitor."
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "Apăsați tasta „jos” pentru a scade numărul nucleelor de monitorizat."
-
-#: tui_ncurses.c:519
-#, fuzzy
-#| msgid "Press 'up' key to increase core number to monitor."
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "Apăsați tasta „sus” pentru a crește numărul nucleelor de monitorizat."
-
-#: tui_ncurses.c:521
-msgid "Caches tab:"
-msgstr "Pagina memoriilor tampon:"
-
-#: tui_ncurses.c:522
-msgid "Press 'down' key to switch to previous test."
-msgstr "Apăsați tasta „jos” pentru a comuta la testul anterior."
-
-#: tui_ncurses.c:523
-#, fuzzy
-#| msgid "Press 'up' key' to switch to next test."
-msgid "Press 'up' key to switch to next test."
-msgstr "Apăsați tasta „sus” pentru a comuta la testul următor."
-
-#: tui_ncurses.c:525
-msgid "Bench tab:"
-msgstr "Pagina testarea performanței:"
-
-#: tui_ncurses.c:526
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Apăsați tasta „jos” pentru a scade durata testării performanței."
-
-#: tui_ncurses.c:527
-msgid "Press 'up' key to increment benchmark duration."
-msgstr "Apăsați tasta „sus” pentru a crește durata testării performanței."
-
-#: tui_ncurses.c:528
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-"Apăsați tasta „pagina următoare” pentru a crește numărul de fire de execuție "
-"folosite."
-
-#: tui_ncurses.c:529
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-"Apăsați tasta „pagina anterioară” pentru a crește numărul de fire de "
-"execuție folosite."
-
-#: tui_ncurses.c:530
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-"Apăsați tasta „s” pentru a porni/opri testarea performanței cu numere prime "
-"(înceată)."
-
-#: tui_ncurses.c:531
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-"Apăsați tasta „f” pentru a porni/opri testarea performanței cu numere prime "
-"(rapidă)."
-
-#: tui_ncurses.c:533
-msgid "Graphics tab:"
-msgstr "Pagina plăcilor video:"
-
-#: tui_ncurses.c:534
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Apăsați tasta „jos” pentru a comuta la placa video anterioară."
-
-#: tui_ncurses.c:535
-msgid "Press 'up' key to switch to next graphic card."
-msgstr "Apăsați tasta „sus” pentru a comuta la placa video următoare."
-
-#: tui_ncurses.c:537
-msgid "Press any key to exit this help."
-msgstr "Apăsați orice tasă pentru a ieși din acest ajutor."
-
-#: util.c:202
+#: util.cpp:172
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "Nu a putut fi găsit șirul „%s” la poziția %i"
 
-#: util.c:214
-#, c-format
-msgid "String '%s' is too long, truncating…"
-msgstr "Șirul „%s” este prea lung, se taie…"
-
-#: util.c:291
-#, c-format
-msgid "an error occurred while opening file '%s' (%s)"
+#: util.cpp:205
+#, fuzzy, c-format
+#| msgid "an error occurred while opening file '%s' (%s)"
+msgid "an error occurred while opening file '%s'"
 msgstr "a apărut o eroare în timp ce se deschidea fișierul „%s” (%s)"
 
-#: util.c:321
-#, c-format
-msgid "an error occurred while running command '%s' (%s)"
+#: util.cpp:243
+#, fuzzy, c-format
+#| msgid "an error occurred while running command '%s' (%s)"
+msgid "an error occurred while running command '%s'"
 msgstr "a apărut o eroare în timp ce se rula comanda „%s” (%s)"
 
-#: util.c:379 util.c:439
-#, c-format
-msgid "failed to open %s directory"
-msgstr "a eșuat deschiderea directorului %s"
-
-#: util.c:452
-msgid "an error occurred while compiling regex"
-msgstr "o eroare a apărut în timp ce se compila expresia regulată"
-
-#: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
-msgid "Core"
-msgstr "Nuclee"
-
-#: util.c:547
-#, fuzzy
-#| msgid "Score"
-msgid "P-core"
-msgstr "Scor"
-
-#: util.c:548
-#, fuzzy
-#| msgid "Score"
-msgid "E-core"
-msgstr "Scor"
-
-#: util.c:567
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
-
-#: util.c:608
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: autorizarea nu a putut fi obținută (dialog respins)"
-
-#: util.c:611
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: autorizarea nu a putut fi obținută (neautorizat)"
-
-#: util.c:614
-msgid "pkexec: command not found"
-msgstr "pkexec: comanda nu a putut fi găsită"
-
-#: util.c:617
-msgid "pkexec: unexpected error code"
-msgstr "pkexec: cod de eroare neașteptat"
-
-#: util.c:687
+#: util.cpp:366
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
-#: cpu-x.h:58
-msgid "FATAL ERROR: could not allocate memory"
-msgstr "EROARE FATALĂ: nu s-a putut aloca memorie"
+#: data.hpp:103 data.hpp:244 data.hpp:332
+msgid "Vendor"
+msgstr "Furnizor"
 
-#: cpu-x.h:97
+#: data.hpp:104
+msgid "Code Name"
+msgstr "Numele de cod"
+
+#: data.hpp:105
+msgid "Package"
+msgstr "Pachetul"
+
+#: data.hpp:106
+msgid "Technology"
+msgstr "Tehnologia"
+
+#: data.hpp:107 data.hpp:268
+msgid "Voltage"
+msgstr "Voltajul"
+
+#: data.hpp:108
+msgid "Specification"
+msgstr "Specificația"
+
+#: data.hpp:109
+msgid "Family"
+msgstr "Familia"
+
+#: data.hpp:110
+msgid "Disp. Family"
+msgstr "Afișarea familiei"
+
+#: data.hpp:111 data.hpp:224 data.hpp:245 data.hpp:335
+msgid "Model"
+msgstr "Modelul"
+
+#: data.hpp:112
+msgid "Disp. Model"
+msgstr "Afișarea modelului"
+
+#: data.hpp:113
+msgid "Temp."
+msgstr "Temperatura"
+
+#: data.hpp:114
+msgid "Stepping"
+msgstr "Revizia"
+
+#: data.hpp:115
+msgid "Instructions"
+msgstr "Instrucțiunile"
+
+#: data.hpp:125
+msgid "L1 Data"
+msgstr "Date N1"
+
+#: data.hpp:126
+msgid "L1 Inst."
+msgstr "Instrucț. N1"
+
+#: data.hpp:127
+msgid "Level 2"
+msgstr "N2"
+
+#: data.hpp:128
+msgid "Level 3"
+msgstr "N3"
+
+#: data.hpp:137 cpu-x-gtk-3.12.ui:1232
+#, fuzzy
+#| msgid "Core(s)"
+msgid "Cores"
+msgstr "Nuclee"
+
+#: data.hpp:138 data.hpp:408 cpu-x-gtk-3.12.ui:1252
+msgid "Threads"
+msgstr "Fire"
+
+#: data.hpp:155
+msgid "Core Speed"
+msgstr "Viteza nucleelor"
+
+#: data.hpp:156
+msgid "Multiplier"
+msgstr "Multiplicatorul"
+
+#: data.hpp:157
+msgid "Bus Speed"
+msgstr "Viteza magistralei"
+
+#: data.hpp:158 data.hpp:341
+msgid "Usage"
+msgstr "Folosirea"
+
+#: data.hpp:188 data.hpp:265
+msgid "Size"
+msgstr "Dimensiunea"
+
+#: data.hpp:189 data.hpp:267
+msgid "Speed"
+msgstr "Viteza"
+
+#: data.hpp:223 data.hpp:259
+msgid "Manufacturer"
+msgstr "Producătorul"
+
+#: data.hpp:225
+msgid "Revision"
+msgstr "Revizia"
+
+#: data.hpp:233
+msgid "Brand"
+msgstr "Marca"
+
+#: data.hpp:234
+msgid "Version"
+msgstr "Versiunea"
+
+#: data.hpp:235
+msgid "Date"
+msgstr "Data"
+
+#: data.hpp:236
+msgid "ROM Size"
+msgstr "Dimensiunea ROM"
+
+#: data.hpp:260
+msgid "Part Number"
+msgstr ""
+
+#: data.hpp:261
+#, fuzzy
+#| msgid "Core #%i"
+msgid "Type"
+msgstr "Nucleu #%i"
+
+#: data.hpp:262
+#, fuzzy
+#| msgid "Core #%i"
+msgid "Type Detail"
+msgstr "Nucleu #%i"
+
+#: data.hpp:263
+msgid "Device Locator"
+msgstr ""
+
+#: data.hpp:264
+msgid "Bank Locator"
+msgstr ""
+
+#: data.hpp:266
+msgid "Rank"
+msgstr ""
+
+#: data.hpp:292
+#, fuzzy
+#| msgid "Code Name"
+msgid "Name"
+msgstr "Numele de cod"
+
+#: data.hpp:293
+msgid "Kernel"
+msgstr "Nucleul"
+
+#: data.hpp:294
+msgid "Hostname"
+msgstr "Numele de gazdă"
+
+#: data.hpp:295
+msgid "Uptime"
+msgstr "Durata de funcționare"
+
+#: data.hpp:303
+msgid "Used"
+msgstr "Folosită"
+
+#: data.hpp:304
+msgid "Buffers"
+msgstr "Prestocări"
+
+#: data.hpp:305
+msgid "Cached"
+msgstr "Prealocată"
+
+#: data.hpp:306
+msgid "Free"
+msgstr "Liberă"
+
+#: data.hpp:307
+msgid "Swap"
+msgstr "De schimb"
+
+#: data.hpp:333
+msgid "Driver"
+msgstr "Ghidatorul"
+
+#: data.hpp:334
+msgid "UMD Version"
+msgstr "Versiunea UMD"
+
+#: data.hpp:336
+msgid "Compute Unit"
+msgstr "Unitatea computațională"
+
+#: data.hpp:337
+#, fuzzy
+#| msgid "DeviceID"
+msgid "Device ID"
+msgstr "Identifiatorul dispozitivului"
+
+#: data.hpp:338
+#, fuzzy
+#| msgid "Version"
+msgid "VBIOS Version"
+msgstr "Versiunea"
+
+#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
+#. Setting: "Interface" tab
+#: data.hpp:339 cpu-x-gtk-3.12.ui:5776
+msgid "Interface"
+msgstr "Interfața"
+
+#: data.hpp:340
+msgid "Temperature"
+msgstr "Temperatura"
+
+#: data.hpp:342
+msgid "Core Voltage"
+msgstr "Voltajul nucleului"
+
+#: data.hpp:343
+msgid "Power Avg"
+msgstr "Media energiei electrice"
+
+#: data.hpp:344
+#, fuzzy
+#| msgid "Memory clock"
+msgid "Core Clock"
+msgstr "Tactarea memoriei"
+
+#: data.hpp:345
+#, fuzzy
+#| msgid "Memory clock"
+msgid "Memory Clock"
+msgstr "Tactarea memoriei"
+
+#: data.hpp:346
+msgid "Memory Used"
+msgstr "Memoria folosită"
+
+#: data.hpp:347
+msgid "Resizable BAR"
+msgstr "BAR redimensionabil"
+
+#: data.hpp:348
+msgid "Vulkan RT"
+msgstr ""
+
+#: data.hpp:349
+#, fuzzy
+#| msgid "Version"
+msgid "OpenGL Version"
+msgstr "Versiunea"
+
+#: data.hpp:350
+#, fuzzy
+#| msgid "Version"
+msgid "Vulkan Version"
+msgstr "Versiunea"
+
+#: data.hpp:351
+#, fuzzy
+#| msgid "Version"
+msgid "OpenCL Version"
+msgstr "Versiunea"
+
+#: data.hpp:387
+msgid "Score"
+msgstr "Scor"
+
+#: data.hpp:388
+msgid "Run"
+msgstr "Rulare"
+
+#: data.hpp:407
+msgid "Duration"
+msgstr "Durată"
+
+#: util.hpp:77
 msgid "bytes"
 msgstr "octeți"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:100
+#: util.hpp:80
 msgid "kB"
 msgstr "kO"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:102
+#: util.hpp:82
 msgid "MB"
 msgstr "MO"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:104
+#: util.hpp:84
 msgid "GB"
 msgstr "GO"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:106
+#: util.hpp:86
 msgid "TB"
 msgstr "TO"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:109
+#: util.hpp:89
 msgid "KiB"
 msgstr "KiO"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:111
+#: util.hpp:91
 msgid "MiB"
 msgstr "MiO"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:113
+#: util.hpp:93
 msgid "GiB"
 msgstr "GiO"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:115
+#: util.hpp:95
 msgid "TiB"
 msgstr "TiO"
 
+#: cpu-x-gtk-3.12.ui:1184
+msgid "Cache"
+msgstr "Memoria tampon (cache)"
+
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5836
+#: cpu-x-gtk-3.12.ui:5721
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5860
+#: cpu-x-gtk-3.12.ui:5745
 msgid "Theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5875
+#: cpu-x-gtk-3.12.ui:5760
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5876
+#: cpu-x-gtk-3.12.ui:5761
 msgid "Light"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5877
+#: cpu-x-gtk-3.12.ui:5762
 msgid "Dark"
 msgstr ""
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5795
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5923
+#: cpu-x-gtk-3.12.ui:5808
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5936
+#: cpu-x-gtk-3.12.ui:5821
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5864
 #, fuzzy
 #| msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgid "Print CPUID values in decimal"
@@ -1449,21 +1519,96 @@ msgstr ""
 "hexazecimal)"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6012
+#: cpu-x-gtk-3.12.ui:5897
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Default graphic card"
 msgstr "Selectați placa video implicită (întreg)"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6036
+#: cpu-x-gtk-3.12.ui:5921
 msgid "Default core type"
 msgstr ""
 
+#. Setting: default graphic card at startup
+#: cpu-x-gtk-3.12.ui:5945
+msgid "Default memory stick"
+msgstr ""
+
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6064
+#: cpu-x-gtk-3.12.ui:5973
 msgid "Startup"
 msgstr ""
+
+#~ msgid "Calculating CPU multipliers"
+#~ msgstr "Se calculează multiplicatorii procesorului"
+
+#, c-format
+#~ msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+#~ msgstr "Actual: PCIe Gen%1dx%d / Maxim: Gen%1dx%d"
+
+#~ msgid "failed to retrieve GPU clocks"
+#~ msgstr "a eșuat obținerea tactărilor plăcii video"
+
+#, c-format
+#~ msgid "Core #%i"
+#~ msgstr "Nucleu #%i"
+
+#~ msgid "Setting label names"
+#~ msgstr "Stabilirea numelor etichetelor"
+
+#, c-format
+#~ msgid "Bank %i"
+#~ msgstr "Banca %i"
+
+#~ msgid "Reference"
+#~ msgstr "Referința"
+
+#~ msgid "Distribution"
+#~ msgstr "Distribuția"
+
+#~ msgid "Compiler"
+#~ msgstr "Compilatorul"
+
+#~ msgid "GPU clock"
+#~ msgstr "Tactarea procesorului grafic"
+
+#~ msgid "Dumping data…"
+#~ msgstr "Se aruncă datele…"
+
+#~ msgid "Freeing memory"
+#~ msgstr "Se eliberează memoria"
+
+#~ msgid "Ignore CPU frequency reported by libcpuid"
+#~ msgstr "Ignoră frecvența procesorului raportată de libcpuid"
+
+#, c-format
+#~ msgid "failed to call wordexp (%i)"
+#~ msgstr "a eșuat apelarea wordexp (%i)"
+
+#, fuzzy
+#~| msgid "Press 'left' key to switch in left tab."
+#~ msgid "Press 'home' key to scroll up in a page."
+#~ msgstr "Apăsați tasta „stânga” pentru a comuta la tabul din stânga."
+
+#, fuzzy
+#~| msgid "Press 'left' key to switch in left tab."
+#~ msgid "Press 'end' key to scroll down in a page."
+#~ msgstr "Apăsați tasta „stânga” pentru a comuta la tabul din stânga."
+
+#, c-format
+#~ msgid "String '%s' is too long, truncating…"
+#~ msgstr "Șirul „%s” este prea lung, se taie…"
+
+#, c-format
+#~ msgid "failed to open %s directory"
+#~ msgstr "a eșuat deschiderea directorului %s"
+
+#~ msgid "an error occurred while compiling regex"
+#~ msgstr "o eroare a apărut în timp ce se compila expresia regulată"
+
+#~ msgid "FATAL ERROR: could not allocate memory"
+#~ msgstr "EROARE FATALĂ: nu s-a putut aloca memorie"
 
 #, fuzzy, c-format
 #~| msgid "failed to call wordexp (%i)"

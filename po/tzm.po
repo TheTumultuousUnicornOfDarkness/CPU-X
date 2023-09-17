@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-04-01 04:58+0000\n"
+"POT-Creation-Date: 2023-09-17 19:07+0200\n"
 "PO-Revision-Date: 2020-10-19 21:26+0000\n"
 "Last-Translator: Hakim Oubouali <hakim.oubouali.skr@gmail.com>\n"
 "Language-Team: Central Atlas Tamazight <https://hosted.weblate.org/projects/"
@@ -19,87 +19,70 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n >= 2 && (n < 11 || n > 99);\n"
 "X-Generator: Weblate 4.3.1-dev\n"
 
-#: core.c:235
+#: core.cpp:135
 msgid "Finding CPU technology"
 msgstr ""
 
-#: core.c:261
+#: core.cpp:161
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
 
-#: core.c:273
-#, c-format
-msgid "%d %s, %d-way"
-msgstr "%d%s, %d-aɣaras"
+#: core.cpp:189 data.cpp:150 data.cpp:342
+msgid "unknown"
+msgstr ""
 
-#: core.c:274
-#, c-format
-msgid "%d x %d %s, %d-way"
-msgstr "%d x %d%s, %d-aɣaras"
-
-#: core.c:275
-#, c-format
-msgid "%s associative, %d-%s line size"
-msgstr "%s amsmun, %d-%s s wadur"
-
-#: core.c:286
+#: core.cpp:230
 msgid "Calling libcpuid for retrieving static data"
 msgstr ""
 
-#: core.c:301
+#: core.cpp:245
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr ""
 
-#: core.c:310
-#, c-format
-msgid ""
-"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
-
-#: core.c:318
-#, c-format
-msgid ""
-"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-"type of core)"
-msgstr ""
-
-#: core.c:347
-msgid "unknown"
-msgstr ""
-
-#: core.c:470
+#: core.cpp:340
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr ""
 
-#: core.c:494
+#: core.cpp:353
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 
-#: core.c:519
+#: core.cpp:380
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 
-#: core.c:542
-msgid "Calculating CPU multipliers"
-msgstr ""
-
-#: core.c:575
+#: core.cpp:412
 msgid "Calling dmidecode"
 msgstr ""
 
-#: core.c:608
+#: core.cpp:454 core.cpp:473
+#, c-format
+msgid "%s (configured)"
+msgstr ""
+
+#: core.cpp:461 core.cpp:480
+#, c-format
+msgid "%s (max)"
+msgstr ""
+
+#: core.cpp:466
+#, c-format
+msgid "%s (min)"
+msgstr ""
+
+#: core.cpp:496
 msgid "Calculating CPU usage"
 msgstr "Asiḍen n asemres n CPU"
 
-#: core.c:659
+#: core.cpp:546
 msgid "Calling bandwidth"
 msgstr "Aɣuri n bandwidth"
 
-#: core.c:701
+#: core.cpp:613
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -108,956 +91,751 @@ msgid ""
 "rebuild %s."
 msgstr ""
 
-#: core.c:747
+#: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 
-#: core.c:778
+#: core.cpp:693
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr ""
 
-#: core.c:854
+#: core.cpp:771
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr ""
 
-#: core.c:858
+#: core.cpp:775
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr ""
 
-#: core.c:999
+#: core.cpp:914
 #, fuzzy
 #| msgid "Version"
 msgid "Finding Vulkan API version"
 msgstr "Taleqqimt"
 
-#: core.c:1016
+#: core.cpp:928
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr ""
 
-#: core.c:1020 core.c:1022
+#: core.cpp:932 core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.c:1032
+#: core.cpp:944
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr ""
 
-#: core.c:1039
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr ""
 
-#: core.c:1048
+#: core.cpp:959
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr ""
 
-#: core.c:1111
+#: core.cpp:1020
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr ""
 
-#: core.c:1115
+#: core.cpp:1024
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1147 core.c:1460
+#: core.cpp:1056 core.cpp:1370
 msgid "Enabled"
 msgstr ""
 
-#: core.c:1147 core.c:1460
+#: core.cpp:1056 core.cpp:1370
 msgid "Disabled"
 msgstr ""
 
-#: core.c:1197
+#: core.cpp:1094
+#, fuzzy
+#| msgid "Version"
+msgid "Finding OpenCL API version"
+msgstr "Taleqqimt"
+
+#: core.cpp:1098
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr ""
 
-#: core.c:1208
+#: core.cpp:1108
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr ""
 
-#: core.c:1220
+#: core.cpp:1121
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr ""
 
-#: core.c:1228
+#: core.cpp:1129
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr ""
 
-#: core.c:1237
+#: core.cpp:1137
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:1237
+#: core.cpp:1137
 msgid "0 device"
 msgstr ""
 
-#: core.c:1247
+#: core.cpp:1146
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
-#: core.c:1262
+#: core.cpp:1166
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr ""
 
-#: core.c:1270
+#: core.cpp:1174
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr ""
 
-#: core.c:1286
+#: core.cpp:1196
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
-#: core.c:1297
+#: core.cpp:1207
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
-#: core.c:1310 core.c:1323 core.c:1351
+#: core.cpp:1215 core.cpp:1235 core.cpp:1268
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
-#: core.c:1339
+#: core.cpp:1256
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
-#: core.c:1361
+#: core.cpp:1279
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 
-#: core.c:1392
+#: core.cpp:1301
 msgid "Finding devices"
 msgstr ""
 
-#: core.c:1404
+#: core.cpp:1313
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
-#: core.c:1442
+#: core.cpp:1356
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr ""
 
-#: core.c:1478
+#: core.cpp:1376
 msgid "failed to find chipset vendor and model"
 msgstr ""
 
-#: core.c:1480
+#: core.cpp:1378
 msgid "failed to find graphic card vendor and model"
 msgstr ""
 
-#: core.c:1557
+#: core.cpp:1486
 msgid "Retrieving GPU clocks"
 msgstr ""
 
-#: core.c:1592
+#: core.cpp:1499
 msgid "None"
 msgstr "Walu"
 
-#: core.c:1611
+#: core.cpp:1508
 #, c-format
-msgid "DRM path for GPU %u is unknown"
+msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.c:1613
+#: core.cpp:1515
 #, c-format
-msgid "Card number for GPU %u is unknown"
+msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.c:1734
+#: core.cpp:1540
 #, c-format
-msgid "Driver for GPU %u doesn't report frequencies"
+msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.c:1776
+#: core.cpp:1648
 #, c-format
-msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+msgid "Driver for %s doesn't report frequencies"
 msgstr ""
 
-#: core.c:1801
-msgid "failed to retrieve GPU clocks"
+#: core.cpp:1666
+#, c-format
+msgid "failed to retrieve all monitoring data for %s"
 msgstr ""
 
-#: core.c:1818
+#: core.cpp:1687
 msgid "Identifying running system"
 msgstr ""
 
-#: core.c:1821
+#: core.cpp:1690
 msgid "failed to identify running system"
 msgstr ""
 
-#: core.c:1865 core.c:1893
+#: core.cpp:1742 core.cpp:1771
 msgid "Calling libprocps"
 msgstr ""
 
-#: core.c:1868
+#: core.cpp:1745
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1874
+#: core.cpp:1751
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1919
+#: core.cpp:1797
 msgid "Calling libstatgrab"
 msgstr ""
 
-#: core.c:1958
+#: core.cpp:1845
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr ""
 
-#: core.c:2015
+#: core.cpp:1908
 msgid "Updating benchmark status"
 msgstr ""
 
-#: core.c:2016 tui_ncurses.c:879
-#, c-format
-msgid "%u mins"
-msgstr "%u sdin"
-
-#: core.c:2018 core.c:2019
-msgid "Inactive"
-msgstr ""
-
-#: core.c:2023 core.c:2024
-msgid "Not started"
-msgstr ""
-
-#: core.c:2029
+#: core.cpp:1911
 msgid "Active"
 msgstr ""
 
-#: core.c:2034
+#: core.cpp:1914
 #, c-format
 msgid "(%u hours left)"
 msgstr ""
 
-#: core.c:2036
+#: core.cpp:1916
 #, c-format
 msgid "(%u minutes left)"
 msgstr ""
 
-#: core.c:2038
+#: core.cpp:1918
 #, c-format
 msgid "(%u seconds left)"
 msgstr ""
 
-#: core.c:2043
+#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+msgid "Inactive"
+msgstr ""
+
+#: core.cpp:1925
 #, c-format
 msgid "in %u hours"
 msgstr "g %u tsragin"
 
-#: core.c:2045
+#: core.cpp:1927
 #, c-format
 msgid "in %u minutes"
 msgstr ""
 
-#: core.c:2047
+#: core.cpp:1929
 #, c-format
 msgid "in %u seconds"
 msgstr ""
 
-#: core.c:2063
-msgid "Starting benchmark"
+#: core.cpp:1946
+#, c-format
+msgid "Starting benchmark with %u threads"
 msgstr ""
 
-#: core.c:2082
+#: core.cpp:1969
 msgid "an error occurred while starting benchmark"
 msgstr ""
 
-#: core.c:2099
+#: core.cpp:1995
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:2121
+#: core.cpp:2025
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 
-#: core.c:2140
+#: core.cpp:2045
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:2167
+#: core.cpp:2065
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:2176
+#: core.cpp:2078
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:2215
+#: core.cpp:2120
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:2261
+#: core.cpp:2166
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:2274
+#: core.cpp:2181
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:2287
+#: core.cpp:2193
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:2302
+#: core.cpp:2207
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:2310
+#: core.cpp:2213
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
-#: daemon.c:264
+#: daemon_client.cpp:47
+msgid "Starting daemon in background…"
+msgstr ""
+
+#: daemon_client.cpp:82
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: daemon_client.cpp:85
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: daemon_client.cpp:88
+msgid "pkexec: command not found"
+msgstr ""
+
+#: daemon_client.cpp:91
+msgid "pkexec: unexpected error code"
+msgstr ""
+
+#: daemon_server.cpp:250
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr ""
 
-#: gui_gtk.c:62
-msgid "Starting GTK GUI…"
-msgstr ""
-
-#: gui_gtk.c:70
-msgid "failed to import UI in GtkBuilder"
-msgstr ""
-
-#: gui_gtk.c:600
-msgid "Connected to daemon"
-msgstr ""
-
-#: gui_gtk.c:602
-msgid "No polkit authentication agent found"
-msgstr ""
-
-#: gui_gtk.c:606
-msgid "Ask password to start daemon in background"
-msgstr ""
-
-#: gui_gtk.c:612
-msgid "Start daemon"
-msgstr ""
-
-#: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, fuzzy, c-format
-#| msgid "Core #%i"
-msgid "Type #%i"
-msgstr "Ul #%i"
-
-#: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
-#, c-format
-msgid "Core #%i"
-msgstr "Ul #%i"
-
-#: gui_gtk.c:632
-#, fuzzy
-#| msgid "Family"
-msgid "BaseFamily"
-msgstr "Tawacunt"
-
-#: gui_gtk.c:633
-#, fuzzy
-#| msgid "Model"
-msgid "BaseModel"
-msgstr "Azurt"
-
-#: gui_gtk.c:634
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-
-#: gui_gtk.c:635
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-
-#: gui_gtk.c:694
-#, fuzzy
-#| msgid "Version"
-msgid "User Mode Driver Version"
-msgstr "Taleqqimt"
-
-#: gui_gtk.c:695
-msgid "Vulkan Ray Tracing"
-msgstr ""
-
-#: main.c:57
-msgid "Setting label names"
-msgstr ""
-
-#: main.c:59 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:124 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
 msgstr "CPU"
 
-#: main.c:60 cpu-x-gtk-3.12.ui:746
+#: data.cpp:187
+msgid "P-core"
+msgstr ""
+
+#: data.cpp:188
+msgid "E-core"
+msgstr ""
+
+#: data.cpp:189 data.cpp:192
+#, fuzzy
+#| msgid "Core(s)"
+msgid "Core"
+msgstr "Ul(awn)"
+
+#: data.cpp:208 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr ""
 
-#: main.c:61 main.c:115 main.c:148
-msgid "Vendor"
-msgstr ""
-
-#: main.c:62
-msgid "Code Name"
-msgstr ""
-
-#: main.c:63
-msgid "Package"
-msgstr ""
-
-#: main.c:64
-msgid "Technology"
-msgstr "Tatikenulujit"
-
-#: main.c:65
-msgid "Voltage"
-msgstr "Asevolt"
-
-#: main.c:66
-msgid "Specification"
-msgstr ""
-
-#: main.c:67
-msgid "Family"
-msgstr "Tawacunt"
-
-#: main.c:68
-#, fuzzy
-#| msgid "Family"
-msgid "Disp. Family"
-msgstr "Tawacunt"
-
-#: main.c:69 main.c:105 main.c:116 main.c:151
-msgid "Model"
-msgstr "Azurt"
-
-#: main.c:70
-#, fuzzy
-#| msgid "Model"
-msgid "Disp. Model"
-msgstr "Azurt"
-
-#: main.c:71
-msgid "Temp."
-msgstr ""
-
-#: main.c:72
-msgid "Stepping"
-msgstr ""
-
-#: main.c:73
-msgid "Instructions"
-msgstr ""
-
-#: main.c:75 cpu-x-gtk-3.12.ui:968
-msgid "Clocks"
-msgstr ""
-
-#: main.c:76
-msgid "Core Speed"
-msgstr ""
-
-#: main.c:77
-msgid "Multiplier"
-msgstr ""
-
-#: main.c:78
-msgid "Bus Speed"
-msgstr ""
-
-#: main.c:79 main.c:157
-msgid "Usage"
-msgstr "Asemres"
-
-#: main.c:81 cpu-x-gtk-3.12.ui:1184
-msgid "Cache"
-msgstr ""
-
-#: main.c:82
-msgid "L1 Data"
-msgstr ""
-
-#: main.c:83
-msgid "L1 Inst."
-msgstr ""
-
-#: main.c:84
-msgid "Level 2"
-msgstr ""
-
-#: main.c:85
-msgid "Level 3"
-msgstr ""
-
-#: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
-msgid "Cores"
-msgstr "Ul(awn)"
-
-#: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
-msgid "Threads"
-msgstr ""
-
-#: main.c:91 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:240 data.cpp:329 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr ""
 
-#: main.c:95
+#: data.cpp:247
+#, fuzzy, c-format
+#| msgid "%d x %d %s, %d-way"
+msgid "%2d x %4d %s, %2d-way"
+msgstr "%d x %d%s, %d-aɣaras"
+
+#: data.cpp:249
 #, c-format
-msgid "L%i Cache"
+msgid "%d %s, %d-way"
+msgstr "%d%s, %d-aɣaras"
+
+#: data.cpp:263
+msgid "Count"
 msgstr ""
 
-#: main.c:96
-msgid "Size"
-msgstr "Tiɣzi"
+#: data.cpp:276 cpu-x-gtk-3.12.ui:968
+msgid "Clocks"
+msgstr ""
 
-#: main.c:97
-msgid "Speed"
-msgstr "Tazzla"
+#: data.cpp:379 data.cpp:383
+#, c-format
+msgid "L%u Cache"
+msgstr ""
 
-#: main.c:99
+#: data.cpp:385
+#, c-format
+msgid "%s associative, %d-%s line size"
+msgstr "%s amsmun, %d-%s s wadur"
+
+#: data.cpp:398
 msgid "Test"
 msgstr "Turimt"
 
-#: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:409 data.cpp:423 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "Taflut taymmat"
 
-#: main.c:104
-msgid "Manufacturer"
-msgstr ""
-
-#: main.c:106
-msgid "Revision"
-msgstr "Azzeray"
-
-#: main.c:108 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:437 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "ABIYUS"
 
-#: main.c:109
-msgid "Brand"
-msgstr "Tamatart"
-
-#: main.c:110
-msgid "Version"
-msgstr "Taleqqimt"
-
-#: main.c:111
-msgid "Date"
-msgstr "Asakud"
-
-#: main.c:112
-msgid "ROM Size"
-msgstr ""
-
-#: main.c:114 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:452 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr ""
 
-#: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3227 cpu-x-gtk-3.12.ui:3877
+#: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "Tiktit"
 
-#: main.c:122
+#: data.cpp:483
 #, c-format
-msgid "Bank %i"
+msgid "Stick %u"
 msgstr ""
 
-#: main.c:123
-msgid "Reference"
-msgstr "Tasaɣult"
+#: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+msgid "Sticks"
+msgstr ""
 
-#: main.c:127 cpu-x-gtk-3.12.ui:3896
+#: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "Anegraw"
 
-#: main.c:128 cpu-x-gtk-3.12.ui:3496
+#: data.cpp:554 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr ""
 
-#: main.c:129
-msgid "Kernel"
-msgstr "Tuẓemt"
-
-#: main.c:130
-msgid "Distribution"
-msgstr ""
-
-#: main.c:131
-msgid "Hostname"
-msgstr ""
-
-#: main.c:132
-msgid "Uptime"
-msgstr ""
-
-#: main.c:133
-msgid "Compiler"
-msgstr ""
-
-#: main.c:136
-msgid "Used"
-msgstr ""
-
-#: main.c:137
-msgid "Buffers"
-msgstr ""
-
-#: main.c:138
-msgid "Cached"
-msgstr ""
-
-#: main.c:139
-msgid "Free"
-msgstr "Baṭel"
-
-#: main.c:140
-msgid "Swap"
-msgstr ""
-
-#: main.c:143 cpu-x-gtk-3.12.ui:5076
+#: data.cpp:587 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr ""
 
-#: main.c:147
+#: data.cpp:621
 #, c-format
-msgid "Card %i"
+msgid "Card %u"
 msgstr ""
 
-#: main.c:149
-msgid "Driver"
-msgstr ""
-
-#: main.c:150
-#, fuzzy
-#| msgid "Version"
-msgid "UMD Version"
-msgstr "Taleqqimt"
-
-#: main.c:152
-msgid "Compute Unit"
-msgstr ""
-
-#: main.c:153
-msgid "DeviceID"
-msgstr ""
-
-#: main.c:154
-#, fuzzy
-#| msgid "Version"
-msgid "VBIOS Version"
-msgstr "Taleqqimt"
-
-#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
-#. Setting: "Interface" tab
-#: main.c:155 cpu-x-gtk-3.12.ui:5891
-msgid "Interface"
-msgstr ""
-
-#: main.c:156
-msgid "Temperature"
-msgstr ""
-
-#: main.c:158
-#, fuzzy
-#| msgid "Voltage"
-msgid "Core Voltage"
-msgstr "Asevolt"
-
-#: main.c:159
-msgid "Power Avg"
-msgstr ""
-
-#: main.c:160
-msgid "GPU clock"
-msgstr ""
-
-#: main.c:161
-msgid "Memory clock"
-msgstr ""
-
-#: main.c:162
-#, fuzzy
-#| msgid "Memory"
-msgid "Memory Used"
-msgstr "Tiktit"
-
-#: main.c:163
-msgid "Resizable BAR"
-msgstr ""
-
-#: main.c:164
-msgid "Vulkan RT"
-msgstr ""
-
-#: main.c:165
-#, fuzzy
-#| msgid "Version"
-msgid "OpenGL Version"
-msgstr "Taleqqimt"
-
-#: main.c:166
-#, fuzzy
-#| msgid "Version"
-msgid "Vulkan Version"
-msgstr "Taleqqimt"
-
-#: main.c:167
-#, fuzzy
-#| msgid "Version"
-msgid "OpenCL Version"
-msgstr "Taleqqimt"
-
-#: main.c:169 cpu-x-gtk-3.12.ui:5054
+#: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr ""
 
-#: main.c:172 cpu-x-gtk-3.12.ui:5416
+#: data.cpp:672 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr ""
 
-#: main.c:173 cpu-x-gtk-3.12.ui:5186
+#: data.cpp:685
+msgid "Not started"
+msgstr ""
+
+#: data.cpp:688 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr ""
 
-#: main.c:174 cpu-x-gtk-3.12.ui:5294
+#: data.cpp:692 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr ""
 
-#: main.c:177
-msgid "Score"
-msgstr ""
-
-#: main.c:178
-msgid "Run"
-msgstr ""
-
-#: main.c:181 cpu-x-gtk-3.12.ui:5397
+#: data.cpp:696 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr ""
 
-#: main.c:182
-msgid "Duration"
-msgstr ""
+#: data.cpp:721 data.cpp:727
+#, c-format
+msgid "%u mins"
+msgstr "%u sdin"
 
-#: main.c:186 main.c:191 cpu-x-gtk-3.12.ui:5560 cpu-x-gtk-3.12.ui:5668
+#: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "Γef"
 
-#: main.c:188
+#: data.cpp:739
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
 
-#: main.c:192
+#: data.cpp:744
+#, fuzzy
+#| msgid "About"
+msgid "About CPU-X"
+msgstr "Γef"
+
+#: data.cpp:745
 #, c-format
 msgid "Version %s"
 msgstr "Taleqqimt %s"
 
-#: main.c:193
+#: data.cpp:746
 #, c-format
 msgid "Author: %s"
 msgstr ""
 
-#: main.c:194
+#: data.cpp:747
 #, c-format
 msgid "Site: %s"
 msgstr "Asit: %s"
 
-#: main.c:196 cpu-x-gtk-3.12.ui:5649
+#: data.cpp:751 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr ""
 
-#: main.c:199
+#: data.cpp:753
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr ""
 
-#: main.c:201 main.c:454
+#: data.cpp:754 main.cpp:174
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr ""
 
-#: main.c:272
-msgid "Dumping data…"
+#: gui_gtk.cpp:60
+#, c-format
+msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: main.c:315
-msgid "Freeing memory"
+#: gui_gtk.cpp:373
+msgid "Start daemon"
 msgstr ""
 
-#: main.c:343
+#: gui_gtk.cpp:376
+msgid "Connected to daemon"
+msgstr ""
+
+#: gui_gtk.cpp:378
+msgid "No polkit authentication agent found"
+msgstr ""
+
+#: gui_gtk.cpp:382
+msgid "Ask password to start daemon in background"
+msgstr ""
+
+#: gui_gtk.cpp:386
+msgid "Settings"
+msgstr ""
+
+#: gui_gtk.cpp:600
+#, fuzzy
+#| msgid "Family"
+msgid "BaseFamily"
+msgstr "Tawacunt"
+
+#: gui_gtk.cpp:601
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+
+#: gui_gtk.cpp:602
+#, fuzzy
+#| msgid "Model"
+msgid "BaseModel"
+msgstr "Azurt"
+
+#: gui_gtk.cpp:603
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+
+#: gui_gtk.cpp:813
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
+msgstr ""
+
+#: gui_gtk.cpp:814
+msgid "Identify the physically labeled bank where the memory device is located"
+msgstr ""
+
+#: gui_gtk.cpp:1015
+#, fuzzy
+#| msgid "Version"
+msgid "User Mode Driver Version"
+msgstr "Taleqqimt"
+
+#: gui_gtk.cpp:1029
+msgid "Vulkan Ray Tracing"
+msgstr ""
+
+#: gui_gtk.cpp:1222
+msgid "Starting GTK GUI…"
+msgstr ""
+
+#: gui_gtk.cpp:1234
+msgid "failed to import UI in GtkBuilder"
+msgstr ""
+
+#: main.cpp:62
 msgid "Start graphical user interface (GUI) (default)"
 msgstr ""
 
-#: main.c:344
+#: main.cpp:63
 msgid "Start text-based user interface (TUI)"
 msgstr ""
 
-#: main.c:345
+#: main.cpp:64
 msgid "Dump all data on standard output and exit"
 msgstr ""
 
-#: main.c:346
+#: main.cpp:65
 msgid "Run embedded command dmidecode and exit"
 msgstr ""
 
-#: main.c:347
+#: main.cpp:66
 msgid "Run embedded command bandwidth and exit"
 msgstr ""
 
-#: main.c:348
+#: main.cpp:67
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr ""
 
-#: main.c:349
+#: main.cpp:68
 msgid "Set default tab (integer)"
 msgstr ""
 
-#: main.c:350
+#: main.cpp:69
 msgid "Select core type to monitor (integer)"
 msgstr ""
 
-#: main.c:351
+#: main.cpp:70
 msgid "Select CPU core to monitor (integer)"
 msgstr ""
 
-#: main.c:352
+#: main.cpp:71
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 
-#: main.c:353
+#: main.cpp:72
+msgid "Select default memory stick (integer)"
+msgstr ""
+
+#: main.cpp:73
 msgid "Select default graphic card (integer)"
 msgstr ""
 
-#: main.c:354 cpu-x-gtk-3.12.ui:5994
+#: main.cpp:74 cpu-x-gtk-3.12.ui:5879
 msgid "Start and connect to daemon"
 msgstr ""
 
-#: main.c:355
+#: main.cpp:75
 msgid "Verbose output"
 msgstr ""
 
-#: main.c:356
+#: main.cpp:76
 msgid "Print help and exit"
 msgstr ""
 
-#: main.c:357
+#: main.cpp:77
 msgid "Print version and exit"
 msgstr ""
 
-#: main.c:358
+#: main.cpp:78
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 
-#: main.c:359
+#: main.cpp:79
 msgid "Disable colored output"
 msgstr ""
 
-#: main.c:360
+#: main.cpp:80
 msgid "Print information for debugging"
 msgstr ""
 
-#: main.c:361
+#: main.cpp:81
 msgid "Print required information to paste in an issue"
 msgstr ""
 
-#: main.c:362
+#: main.cpp:82
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 
-#: main.c:373
+#: main.cpp:93
 msgid "Add default command line arguments"
 msgstr ""
 
-#: main.c:374
+#: main.cpp:94
 msgid "Enforce the bus clock"
 msgstr ""
 
-#: main.c:375
-msgid "Ignore CPU frequency reported by libcpuid"
+#: main.cpp:95
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt' and 'freq')"
 msgstr ""
 
-#: main.c:376
+#: main.cpp:96
 msgid "Read CPUID raw data from a given file"
 msgstr ""
 
-#: main.c:377
+#: main.cpp:97
 msgid "Only print a message if CPU is not present in the database"
 msgstr ""
 
-#: main.c:401
+#: main.cpp:124
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr ""
 
-#: main.c:402
+#: main.cpp:125
 msgid "Available DISPLAY:"
 msgstr ""
 
-#: main.c:411
+#: main.cpp:133
 msgid "Available OPTIONS:"
 msgstr ""
 
-#: main.c:419
+#: main.cpp:142
 msgid "Influenceable environment variables:"
 msgstr ""
 
-#: main.c:453
+#: main.cpp:173
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 
-#: main.c:455
+#: main.cpp:175
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr ""
 
-#: main.c:462
+#: main.cpp:182
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr ""
 
-#: main.c:478
-#, c-format
-msgid "failed to call wordexp (%i)"
-msgstr ""
-
-#: main.c:677
+#: main.cpp:367
 #, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 
-#: main.c:679
+#: main.cpp:369
 #, c-format
 msgid ""
 "\n"
@@ -1065,325 +843,616 @@ msgid ""
 "recover."
 msgstr ""
 
-#: main.c:696
+#: main.cpp:393
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.c:741
+#: main.cpp:435
 msgid "an error occurred while setting locale"
 msgstr ""
 
-#: tui_ncurses.c:73
+#: options.cpp:124
+#, c-format
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
+msgstr ""
+
+#: options.cpp:145
+#, c-format
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
+msgstr ""
+
+#: options.cpp:168
+#, c-format
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+
+#: options.cpp:188
+#, c-format
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+
+#: options.cpp:204
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr ""
+
+#: options.cpp:210
+#, c-format
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
+msgstr ""
+
+#: options.cpp:284
+#, c-format
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr ""
+
+#: tui_ncurses.cpp:111
+msgid "Window is too small!"
+msgstr ""
+
+#: tui_ncurses.cpp:119
+msgid "Press 'h' to see help."
+msgstr ""
+
+#: tui_ncurses.cpp:232
+#, c-format
+msgid "Welcome in %s NCurses help!\n"
+msgstr ""
+
+#: tui_ncurses.cpp:233
+msgid "This help describes how to use this Text-based User Interface."
+msgstr ""
+
+#: tui_ncurses.cpp:235
+msgid "Global keys:"
+msgstr ""
+
+#: tui_ncurses.cpp:236
+msgid "Press 'left' key or 'tab' key to switch in left tab."
+msgstr ""
+
+#: tui_ncurses.cpp:237
+msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+msgstr ""
+
+#: tui_ncurses.cpp:238
+msgid "Press 'h' key to see this help."
+msgstr ""
+
+#: tui_ncurses.cpp:239
+msgid "Press 'q' key to exit."
+msgstr ""
+
+#: tui_ncurses.cpp:241
+msgid "CPU tab:"
+msgstr ""
+
+#: tui_ncurses.cpp:242
+msgid "Press 'next page' key to decrease core type number to monitor."
+msgstr ""
+
+#: tui_ncurses.cpp:243
+msgid "Press 'previous page' key to increase core type number to monitor."
+msgstr ""
+
+#: tui_ncurses.cpp:244
+msgid "Press 'down' key to decrease CPU core number to monitor."
+msgstr ""
+
+#: tui_ncurses.cpp:245
+msgid "Press 'up' key to increase CPU core number to monitor."
+msgstr ""
+
+#: tui_ncurses.cpp:247
+msgid "Caches tab:"
+msgstr ""
+
+#: tui_ncurses.cpp:248
+msgid "Press 'down' key to switch to previous test."
+msgstr ""
+
+#: tui_ncurses.cpp:249
+msgid "Press 'up' key to switch to next test."
+msgstr ""
+
+#: tui_ncurses.cpp:251
+msgid "Bench tab:"
+msgstr ""
+
+#: tui_ncurses.cpp:252
+msgid "Press 'down' key to decrement benchmark duration."
+msgstr ""
+
+#: tui_ncurses.cpp:253
+msgid "Press 'up' key to increment benchmark duration."
+msgstr ""
+
+#: tui_ncurses.cpp:254
+msgid "Press 'next page' key to decrement number of threads to use."
+msgstr ""
+
+#: tui_ncurses.cpp:255
+msgid "Press 'previous page' key to increment number of threads to use."
+msgstr ""
+
+#: tui_ncurses.cpp:256
+msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+msgstr ""
+
+#: tui_ncurses.cpp:257
+msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+msgstr ""
+
+#: tui_ncurses.cpp:259
+msgid "Graphics tab:"
+msgstr ""
+
+#: tui_ncurses.cpp:260
+msgid "Press 'down' key to switch to previous graphic card."
+msgstr ""
+
+#: tui_ncurses.cpp:261
+msgid "Press 'up' key to switch to next graphic card."
+msgstr ""
+
+#: tui_ncurses.cpp:263
+msgid "Press any key to exit this help."
+msgstr ""
+
+#: tui_ncurses.cpp:638
 msgid "Starting NCurses TUI…"
 msgstr ""
 
-#: tui_ncurses.c:81
+#: tui_ncurses.cpp:647
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
 
-#: tui_ncurses.c:86
+#: tui_ncurses.cpp:652
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 
-#: tui_ncurses.c:342
-msgid "Window is too small!"
-msgstr ""
-
-#: tui_ncurses.c:350
-msgid "Press 'h' to see help."
-msgstr ""
-
-#: tui_ncurses.c:504
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr ""
-
-#: tui_ncurses.c:505
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-
-#: tui_ncurses.c:507
-msgid "Global keys:"
-msgstr ""
-
-#: tui_ncurses.c:508
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
-
-#: tui_ncurses.c:509
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
-
-#: tui_ncurses.c:510
-msgid "Press 'home' key to scroll up in a page."
-msgstr ""
-
-#: tui_ncurses.c:511
-msgid "Press 'end' key to scroll down in a page."
-msgstr ""
-
-#: tui_ncurses.c:512
-msgid "Press 'h' key to see this help."
-msgstr ""
-
-#: tui_ncurses.c:513
-msgid "Press 'q' key to exit."
-msgstr ""
-
-#: tui_ncurses.c:515
-msgid "CPU tab:"
-msgstr ""
-
-#: tui_ncurses.c:516
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
-
-#: tui_ncurses.c:517
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
-
-#: tui_ncurses.c:518
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr ""
-
-#: tui_ncurses.c:519
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr ""
-
-#: tui_ncurses.c:521
-msgid "Caches tab:"
-msgstr ""
-
-#: tui_ncurses.c:522
-msgid "Press 'down' key to switch to previous test."
-msgstr ""
-
-#: tui_ncurses.c:523
-msgid "Press 'up' key to switch to next test."
-msgstr ""
-
-#: tui_ncurses.c:525
-msgid "Bench tab:"
-msgstr ""
-
-#: tui_ncurses.c:526
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
-
-#: tui_ncurses.c:527
-msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
-
-#: tui_ncurses.c:528
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-
-#: tui_ncurses.c:529
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-
-#: tui_ncurses.c:530
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-
-#: tui_ncurses.c:531
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-
-#: tui_ncurses.c:533
-msgid "Graphics tab:"
-msgstr ""
-
-#: tui_ncurses.c:534
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr ""
-
-#: tui_ncurses.c:535
-msgid "Press 'up' key to switch to next graphic card."
-msgstr ""
-
-#: tui_ncurses.c:537
-msgid "Press any key to exit this help."
-msgstr ""
-
-#: util.c:202
+#: util.cpp:172
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr ""
 
-#: util.c:214
+#: util.cpp:205
 #, c-format
-msgid "String '%s' is too long, truncating…"
+msgid "an error occurred while opening file '%s'"
 msgstr ""
 
-#: util.c:291
+#: util.cpp:243
 #, c-format
-msgid "an error occurred while opening file '%s' (%s)"
+msgid "an error occurred while running command '%s'"
 msgstr ""
 
-#: util.c:321
-#, c-format
-msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
-
-#: util.c:379 util.c:439
-#, c-format
-msgid "failed to open %s directory"
-msgstr ""
-
-#: util.c:452
-msgid "an error occurred while compiling regex"
-msgstr ""
-
-#: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
-msgid "Core"
-msgstr "Ul(awn)"
-
-#: util.c:547
-msgid "P-core"
-msgstr ""
-
-#: util.c:548
-msgid "E-core"
-msgstr ""
-
-#: util.c:567
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
-
-#: util.c:608
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
-
-#: util.c:611
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
-
-#: util.c:614
-msgid "pkexec: command not found"
-msgstr ""
-
-#: util.c:617
-msgid "pkexec: unexpected error code"
-msgstr ""
-
-#: util.c:687
+#: util.cpp:366
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
-#: cpu-x.h:58
-msgid "FATAL ERROR: could not allocate memory"
+#: data.hpp:103 data.hpp:244 data.hpp:332
+msgid "Vendor"
 msgstr ""
 
-#: cpu-x.h:97
+#: data.hpp:104
+msgid "Code Name"
+msgstr ""
+
+#: data.hpp:105
+msgid "Package"
+msgstr ""
+
+#: data.hpp:106
+msgid "Technology"
+msgstr "Tatikenulujit"
+
+#: data.hpp:107 data.hpp:268
+msgid "Voltage"
+msgstr "Asevolt"
+
+#: data.hpp:108
+msgid "Specification"
+msgstr ""
+
+#: data.hpp:109
+msgid "Family"
+msgstr "Tawacunt"
+
+#: data.hpp:110
+#, fuzzy
+#| msgid "Family"
+msgid "Disp. Family"
+msgstr "Tawacunt"
+
+#: data.hpp:111 data.hpp:224 data.hpp:245 data.hpp:335
+msgid "Model"
+msgstr "Azurt"
+
+#: data.hpp:112
+#, fuzzy
+#| msgid "Model"
+msgid "Disp. Model"
+msgstr "Azurt"
+
+#: data.hpp:113
+msgid "Temp."
+msgstr ""
+
+#: data.hpp:114
+msgid "Stepping"
+msgstr ""
+
+#: data.hpp:115
+msgid "Instructions"
+msgstr ""
+
+#: data.hpp:125
+msgid "L1 Data"
+msgstr ""
+
+#: data.hpp:126
+msgid "L1 Inst."
+msgstr ""
+
+#: data.hpp:127
+msgid "Level 2"
+msgstr ""
+
+#: data.hpp:128
+msgid "Level 3"
+msgstr ""
+
+#: data.hpp:137 cpu-x-gtk-3.12.ui:1232
+#, fuzzy
+#| msgid "Core(s)"
+msgid "Cores"
+msgstr "Ul(awn)"
+
+#: data.hpp:138 data.hpp:408 cpu-x-gtk-3.12.ui:1252
+msgid "Threads"
+msgstr ""
+
+#: data.hpp:155
+msgid "Core Speed"
+msgstr ""
+
+#: data.hpp:156
+msgid "Multiplier"
+msgstr ""
+
+#: data.hpp:157
+msgid "Bus Speed"
+msgstr ""
+
+#: data.hpp:158 data.hpp:341
+msgid "Usage"
+msgstr "Asemres"
+
+#: data.hpp:188 data.hpp:265
+msgid "Size"
+msgstr "Tiɣzi"
+
+#: data.hpp:189 data.hpp:267
+msgid "Speed"
+msgstr "Tazzla"
+
+#: data.hpp:223 data.hpp:259
+msgid "Manufacturer"
+msgstr ""
+
+#: data.hpp:225
+msgid "Revision"
+msgstr "Azzeray"
+
+#: data.hpp:233
+msgid "Brand"
+msgstr "Tamatart"
+
+#: data.hpp:234
+msgid "Version"
+msgstr "Taleqqimt"
+
+#: data.hpp:235
+msgid "Date"
+msgstr "Asakud"
+
+#: data.hpp:236
+msgid "ROM Size"
+msgstr ""
+
+#: data.hpp:260
+msgid "Part Number"
+msgstr ""
+
+#: data.hpp:261
+#, fuzzy
+#| msgid "Core #%i"
+msgid "Type"
+msgstr "Ul #%i"
+
+#: data.hpp:262
+#, fuzzy
+#| msgid "Core #%i"
+msgid "Type Detail"
+msgstr "Ul #%i"
+
+#: data.hpp:263
+msgid "Device Locator"
+msgstr ""
+
+#: data.hpp:264
+msgid "Bank Locator"
+msgstr ""
+
+#: data.hpp:266
+msgid "Rank"
+msgstr ""
+
+#: data.hpp:292
+msgid "Name"
+msgstr ""
+
+#: data.hpp:293
+msgid "Kernel"
+msgstr "Tuẓemt"
+
+#: data.hpp:294
+msgid "Hostname"
+msgstr ""
+
+#: data.hpp:295
+msgid "Uptime"
+msgstr ""
+
+#: data.hpp:303
+msgid "Used"
+msgstr ""
+
+#: data.hpp:304
+msgid "Buffers"
+msgstr ""
+
+#: data.hpp:305
+msgid "Cached"
+msgstr ""
+
+#: data.hpp:306
+msgid "Free"
+msgstr "Baṭel"
+
+#: data.hpp:307
+msgid "Swap"
+msgstr ""
+
+#: data.hpp:333
+msgid "Driver"
+msgstr ""
+
+#: data.hpp:334
+#, fuzzy
+#| msgid "Version"
+msgid "UMD Version"
+msgstr "Taleqqimt"
+
+#: data.hpp:336
+msgid "Compute Unit"
+msgstr ""
+
+#: data.hpp:337
+msgid "Device ID"
+msgstr ""
+
+#: data.hpp:338
+#, fuzzy
+#| msgid "Version"
+msgid "VBIOS Version"
+msgstr "Taleqqimt"
+
+#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
+#. Setting: "Interface" tab
+#: data.hpp:339 cpu-x-gtk-3.12.ui:5776
+msgid "Interface"
+msgstr ""
+
+#: data.hpp:340
+msgid "Temperature"
+msgstr ""
+
+#: data.hpp:342
+#, fuzzy
+#| msgid "Voltage"
+msgid "Core Voltage"
+msgstr "Asevolt"
+
+#: data.hpp:343
+msgid "Power Avg"
+msgstr ""
+
+#: data.hpp:344
+msgid "Core Clock"
+msgstr ""
+
+#: data.hpp:345
+#, fuzzy
+#| msgid "Memory"
+msgid "Memory Clock"
+msgstr "Tiktit"
+
+#: data.hpp:346
+#, fuzzy
+#| msgid "Memory"
+msgid "Memory Used"
+msgstr "Tiktit"
+
+#: data.hpp:347
+msgid "Resizable BAR"
+msgstr ""
+
+#: data.hpp:348
+msgid "Vulkan RT"
+msgstr ""
+
+#: data.hpp:349
+#, fuzzy
+#| msgid "Version"
+msgid "OpenGL Version"
+msgstr "Taleqqimt"
+
+#: data.hpp:350
+#, fuzzy
+#| msgid "Version"
+msgid "Vulkan Version"
+msgstr "Taleqqimt"
+
+#: data.hpp:351
+#, fuzzy
+#| msgid "Version"
+msgid "OpenCL Version"
+msgstr "Taleqqimt"
+
+#: data.hpp:387
+msgid "Score"
+msgstr ""
+
+#: data.hpp:388
+msgid "Run"
+msgstr ""
+
+#: data.hpp:407
+msgid "Duration"
+msgstr ""
+
+#: util.hpp:77
 msgid "bytes"
 msgstr ""
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:100
+#: util.hpp:80
 msgid "kB"
 msgstr ""
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:102
+#: util.hpp:82
 msgid "MB"
 msgstr ""
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:104
+#: util.hpp:84
 msgid "GB"
 msgstr ""
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:106
+#: util.hpp:86
 msgid "TB"
 msgstr ""
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:109
+#: util.hpp:89
 msgid "KiB"
 msgstr ""
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:111
+#: util.hpp:91
 msgid "MiB"
 msgstr ""
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:113
+#: util.hpp:93
 msgid "GiB"
 msgstr ""
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:115
+#: util.hpp:95
 msgid "TiB"
 msgstr ""
 
+#: cpu-x-gtk-3.12.ui:1184
+msgid "Cache"
+msgstr ""
+
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5836
+#: cpu-x-gtk-3.12.ui:5721
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5860
+#: cpu-x-gtk-3.12.ui:5745
 msgid "Theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5875
+#: cpu-x-gtk-3.12.ui:5760
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5876
+#: cpu-x-gtk-3.12.ui:5761
 msgid "Light"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5877
+#: cpu-x-gtk-3.12.ui:5762
 msgid "Dark"
 msgstr ""
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5795
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5923
+#: cpu-x-gtk-3.12.ui:5808
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5936
+#: cpu-x-gtk-3.12.ui:5821
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5864
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6012
+#: cpu-x-gtk-3.12.ui:5897
 msgid "Default graphic card"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6036
+#: cpu-x-gtk-3.12.ui:5921
 msgid "Default core type"
 msgstr ""
 
+#. Setting: default graphic card at startup
+#: cpu-x-gtk-3.12.ui:5945
+msgid "Default memory stick"
+msgstr ""
+
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6064
+#: cpu-x-gtk-3.12.ui:5973
 msgid "Startup"
 msgstr ""
+
+#, c-format
+#~ msgid "Core #%i"
+#~ msgstr "Ul #%i"
+
+#~ msgid "Reference"
+#~ msgstr "Tasaɣult"
 
 #, c-format
 #~ msgid "%s"

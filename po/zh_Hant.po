@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-04-01 04:58+0000\n"
+"POT-Creation-Date: 2023-09-17 19:07+0200\n"
 "PO-Revision-Date: 2023-03-26 21:41+0000\n"
 "Last-Translator: Hou Qiyao <ryanhou24@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -28,87 +28,70 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.17-dev\n"
 
-#: core.c:235
+#: core.cpp:135
 msgid "Finding CPU technology"
 msgstr "正在尋找 CPU 技術"
 
-#: core.c:261
+#: core.cpp:161
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%i"
 
-#: core.c:273
-#, c-format
-msgid "%d %s, %d-way"
-msgstr "%d %s, %d 路"
+#: core.cpp:189 data.cpp:150 data.cpp:342
+msgid "unknown"
+msgstr "未知"
 
-#: core.c:274
-#, c-format
-msgid "%d x %d %s, %d-way"
-msgstr "%d x %d %s, %d 路"
-
-#: core.c:275
-#, c-format
-msgid "%s associative, %d-%s line size"
-msgstr "%s 組合，%d-%s 行大小"
-
-#: core.c:286
+#: core.cpp:230
 msgid "Calling libcpuid for retrieving static data"
 msgstr "正在呼叫 libcpuid 以取得靜態資料"
 
-#: core.c:301
+#: core.cpp:245
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "呼叫 libcpuid 失敗 (%s)"
 
-#: core.c:310
-#, c-format
-msgid ""
-"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr "所選 CPU 類型 (%u) 不是有效數字（%u 是此 CPU 的最大值）"
-
-#: core.c:318
-#, c-format
-msgid ""
-"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-"type of core)"
-msgstr "所選 CPU 核心 (%u) 不是有效數字（%u 是此類核心的最大值）"
-
-#: core.c:347
-msgid "unknown"
-msgstr "未知"
-
-#: core.c:470
+#: core.cpp:340
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "正在呼叫 libcpuid 以取得動態資料"
 
-#: core.c:494
+#: core.cpp:353
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "正在呼叫 libcpuid 以取得 CPU MSR 靜態值"
 
-#: core.c:519
+#: core.cpp:380
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
 
-#: core.c:542
-msgid "Calculating CPU multipliers"
-msgstr "正在計算 CPU 倍頻"
-
-#: core.c:575
+#: core.cpp:412
 msgid "Calling dmidecode"
 msgstr "調用dmidecode"
 
-#: core.c:608
+#: core.cpp:454 core.cpp:473
+#, c-format
+msgid "%s (configured)"
+msgstr ""
+
+#: core.cpp:461 core.cpp:480
+#, c-format
+msgid "%s (max)"
+msgstr ""
+
+#: core.cpp:466
+#, c-format
+msgid "%s (min)"
+msgstr ""
+
+#: core.cpp:496
 msgid "Calculating CPU usage"
 msgstr "正在計算 CPU 使用率"
 
-#: core.c:659
+#: core.cpp:546
 msgid "Calling bandwidth"
 msgstr "調用bandwidth"
 
-#: core.c:701
+#: core.cpp:613
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -117,135 +100,141 @@ msgid ""
 "rebuild %s."
 msgstr ""
 
-#: core.c:747
+#: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "路徑 %s 沒有顯示卡核心驅動程式正在使用"
 
-#: core.c:778
+#: core.cpp:693
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "無法得知您的 GPU 核心驅動程式：%s"
 
-#: core.c:854
+#: core.cpp:771
 #, c-format
 msgid "Your GPU user mode driver is unknown: %s"
 msgstr "未知的使用者 GPU 驅動程式：%s"
 
-#: core.c:858
+#: core.cpp:775
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "呼叫 libcpuid 失敗 (%i):(%s)"
 
-#: core.c:999
+#: core.cpp:914
 msgid "Finding Vulkan API version"
 msgstr "查找 Vulkan API 版本"
 
-#: core.c:1016
+#: core.cpp:928
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "呼叫 vkCreateInstance 失敗 (%s)"
 
-#: core.c:1020 core.c:1022
+#: core.cpp:932 core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.c:1032
+#: core.cpp:944
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "呼叫 vkEnumeratePhysicalDevices 失敗 (%s)"
 
-#: core.c:1039
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr "沒有可用的 Vulkan 設備"
 
-#: core.c:1048
+#: core.cpp:959
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "沒有可用的物理設備（%s）"
 
-#: core.c:1111
+#: core.cpp:1020
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "無法為設備 %u (%s) 創建 Vulkan"
 
-#: core.c:1115
+#: core.cpp:1024
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.c:1147 core.c:1460
+#: core.cpp:1056 core.cpp:1370
 msgid "Enabled"
 msgstr "開啟"
 
-#: core.c:1147 core.c:1460
+#: core.cpp:1056 core.cpp:1370
 msgid "Disabled"
 msgstr "關閉"
 
-#: core.c:1197
+#: core.cpp:1094
+#, fuzzy
+#| msgid "Finding Vulkan API version"
+msgid "Finding OpenCL API version"
+msgstr "查找 Vulkan API 版本"
+
+#: core.cpp:1098
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "沒有受 OpenCL 支援的平台 (%s)"
 
-#: core.c:1208
+#: core.cpp:1108
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 
-#: core.c:1220
+#: core.cpp:1121
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "擷取平台名稱時失敗 %u (%s)"
 
-#: core.c:1228
+#: core.cpp:1129
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "擷取平台版本號數時失敗 %u (%s)"
 
-#: core.c:1237
+#: core.cpp:1137
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
 
-#: core.c:1237
+#: core.cpp:1137
 msgid "0 device"
 msgstr "0 設備"
 
-#: core.c:1247
+#: core.cpp:1146
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "擷取平台上全部 OpenCL 裝置時失敗 '%s %s' (%s)"
 
-#: core.c:1262
+#: core.cpp:1166
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "擷取裝置名稱時失敗 %u (%s)"
 
-#: core.c:1270
+#: core.cpp:1174
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "取得裝置版本資訊時失敗%u (%s)"
 
-#: core.c:1286
+#: core.cpp:1196
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.c:1297
+#: core.cpp:1207
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.c:1310 core.c:1323 core.c:1351
+#: core.cpp:1215 core.cpp:1235 core.cpp:1268
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.c:1339
+#: core.cpp:1256
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -254,631 +243,359 @@ msgstr ""
 "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_PCI_DOMAIN_ID_NV (%s)， "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) 或是 CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.c:1361
+#: core.cpp:1279
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "您的顯示卡供應商 (0x%X) 不支援 OpenCL"
 
-#: core.c:1392
+#: core.cpp:1301
 msgid "Finding devices"
 msgstr "正在尋找裝置"
 
-#: core.c:1404
+#: core.cpp:1313
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
 
-#: core.c:1442
+#: core.cpp:1356
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "無法得知您的 GPU 供應商：%s (0x%X)"
 
-#: core.c:1478
+#: core.cpp:1376
 msgid "failed to find chipset vendor and model"
 msgstr "找不到晶片組供應商及型號"
 
-#: core.c:1480
+#: core.cpp:1378
 msgid "failed to find graphic card vendor and model"
 msgstr "找不到顯示卡供應商及型號"
 
-#: core.c:1557
+#: core.cpp:1486
 msgid "Retrieving GPU clocks"
 msgstr "正在取得 GPU 時脈"
 
-#: core.c:1592
+#: core.cpp:1499
 msgid "None"
 msgstr "無"
 
-#: core.c:1611
+#: core.cpp:1508
 #, c-format
-msgid "DRM path for GPU %u is unknown"
+msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.c:1613
+#: core.cpp:1515
 #, c-format
-msgid "Card number for GPU %u is unknown"
+msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.c:1734
+#: core.cpp:1540
 #, c-format
-msgid "Driver for GPU %u doesn't report frequencies"
+msgid "PCIe %s (current) / %s (max)"
+msgstr ""
+
+#: core.cpp:1648
+#, fuzzy, c-format
+#| msgid "Driver for GPU %u doesn't report frequencies"
+msgid "Driver for %s doesn't report frequencies"
 msgstr "GPU驅動程式 %u 未回報頻率"
 
-#: core.c:1776
-#, c-format
-msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-msgstr "現行的：PCIe Gen %1dx%d / 最高：Gen %1dx%d"
+#: core.cpp:1666
+#, fuzzy, c-format
+#| msgid "failed to get all OpenCL platforms (%s)"
+msgid "failed to retrieve all monitoring data for %s"
+msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 
-#: core.c:1801
-msgid "failed to retrieve GPU clocks"
-msgstr "取得 GPU 時脈頻率時失敗"
-
-#: core.c:1818
+#: core.cpp:1687
 msgid "Identifying running system"
 msgstr "正在辨識作業環境系統"
 
-#: core.c:1821
+#: core.cpp:1690
 msgid "failed to identify running system"
 msgstr "辨識作業環境系統失敗"
 
-#: core.c:1865 core.c:1893
+#: core.cpp:1742 core.cpp:1771
 msgid "Calling libprocps"
 msgstr "正在呼叫 libprocps"
 
-#: core.c:1868
+#: core.cpp:1745
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.c:1874
+#: core.cpp:1751
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.c:1919
+#: core.cpp:1797
 msgid "Calling libstatgrab"
 msgstr "正在呼叫 libstatgrab"
 
-#: core.c:1958
+#: core.cpp:1845
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天， %i 小時， %i 分鐘， %i 秒"
 
-#: core.c:2015
+#: core.cpp:1908
 msgid "Updating benchmark status"
 msgstr "正在更新benchmark狀態"
 
-#: core.c:2016 tui_ncurses.c:879
-#, c-format
-msgid "%u mins"
-msgstr "%u 分鐘"
-
-#: core.c:2018 core.c:2019
-msgid "Inactive"
-msgstr "未啟動"
-
-#: core.c:2023 core.c:2024
-msgid "Not started"
-msgstr "未開始"
-
-#: core.c:2029
+#: core.cpp:1911
 msgid "Active"
 msgstr "活動中"
 
-#: core.c:2034
+#: core.cpp:1914
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩下 %u 小時)"
 
-#: core.c:2036
+#: core.cpp:1916
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩下 %u 分鐘)"
 
-#: core.c:2038
+#: core.cpp:1918
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩下 %u 秒鐘)"
 
-#: core.c:2043
+#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+msgid "Inactive"
+msgstr "未啟動"
+
+#: core.cpp:1925
 #, c-format
 msgid "in %u hours"
 msgstr "在 %u 小時內"
 
-#: core.c:2045
+#: core.cpp:1927
 #, c-format
 msgid "in %u minutes"
 msgstr "在 %u 分鐘內"
 
-#: core.c:2047
+#: core.cpp:1929
 #, c-format
 msgid "in %u seconds"
 msgstr "在 %u 秒鐘內"
 
-#: core.c:2063
-msgid "Starting benchmark"
+#: core.cpp:1946
+#, fuzzy, c-format
+#| msgid "Starting benchmark"
+msgid "Starting benchmark with %u threads"
 msgstr "正在開始效能測試"
 
-#: core.c:2082
+#: core.cpp:1969
 msgid "an error occurred while starting benchmark"
 msgstr "開始效能測試時有錯誤發生"
 
-#: core.c:2099
+#: core.cpp:1995
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.c:2121
+#: core.cpp:2025
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
 
-#: core.c:2140
+#: core.cpp:2045
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.c:2167
+#: core.cpp:2065
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.c:2176
+#: core.cpp:2078
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.c:2215
+#: core.cpp:2120
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.c:2261
+#: core.cpp:2166
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.c:2274
+#: core.cpp:2181
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.c:2287
+#: core.cpp:2193
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.c:2302
+#: core.cpp:2207
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.c:2310
+#: core.cpp:2213
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
-#: daemon.c:264
+#: daemon_client.cpp:47
+msgid "Starting daemon in background…"
+msgstr ""
+
+#: daemon_client.cpp:82
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: daemon_client.cpp:85
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: daemon_client.cpp:88
+msgid "pkexec: command not found"
+msgstr ""
+
+#: daemon_client.cpp:91
+msgid "pkexec: unexpected error code"
+msgstr ""
+
+#: daemon_server.cpp:250
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr ""
 
-#: gui_gtk.c:62
-msgid "Starting GTK GUI…"
-msgstr "正在啟動GTK圖形使用者介面…"
-
-#: gui_gtk.c:70
-msgid "failed to import UI in GtkBuilder"
-msgstr ""
-
-#: gui_gtk.c:600
-msgid "Connected to daemon"
-msgstr ""
-
-#: gui_gtk.c:602
-msgid "No polkit authentication agent found"
-msgstr ""
-
-#: gui_gtk.c:606
-msgid "Ask password to start daemon in background"
-msgstr ""
-
-#: gui_gtk.c:612
-msgid "Start daemon"
-msgstr ""
-
-#: gui_gtk.c:621 gui_gtk.c:723 tui_ncurses.c:584
-#, c-format
-msgid "Type #%i"
-msgstr "類型 #%i"
-
-#: gui_gtk.c:628 gui_gtk.c:730 tui_ncurses.c:598 util.c:553
-#, c-format
-msgid "Core #%i"
-msgstr "核心 #%i"
-
-#: gui_gtk.c:632
-#, fuzzy
-#| msgid "Family"
-msgid "BaseFamily"
-msgstr "系列"
-
-#: gui_gtk.c:633
-#, fuzzy
-#| msgid "Model"
-msgid "BaseModel"
-msgstr "型號"
-
-#: gui_gtk.c:634
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-
-#: gui_gtk.c:635
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-
-#: gui_gtk.c:694
-msgid "User Mode Driver Version"
-msgstr "用戶模式驅動程序版本"
-
-#: gui_gtk.c:695
-msgid "Vulkan Ray Tracing"
-msgstr ""
-
-#: main.c:57
-msgid "Setting label names"
-msgstr ""
-
-#: main.c:59 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:124 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
 msgstr "CPU"
 
-#: main.c:60 cpu-x-gtk-3.12.ui:746
+#: data.cpp:187
+#, fuzzy
+#| msgid "Score"
+msgid "P-core"
+msgstr "分數"
+
+#: data.cpp:188
+#, fuzzy
+#| msgid "Score"
+msgid "E-core"
+msgstr "分數"
+
+#: data.cpp:189 data.cpp:192
+#, fuzzy
+#| msgid "Core(s)"
+msgid "Core"
+msgstr "核心"
+
+#: data.cpp:208 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "處理器"
 
-#: main.c:61 main.c:115 main.c:148
-msgid "Vendor"
-msgstr "供應商"
-
-#: main.c:62
-msgid "Code Name"
-msgstr "代號"
-
-#: main.c:63
-msgid "Package"
-msgstr "封裝"
-
-#: main.c:64
-msgid "Technology"
-msgstr "製程"
-
-#: main.c:65
-msgid "Voltage"
-msgstr "電壓"
-
-#: main.c:66
-msgid "Specification"
-msgstr "規格"
-
-#: main.c:67
-msgid "Family"
-msgstr "系列"
-
-#: main.c:68
-#, fuzzy
-#| msgid "Ext. Family"
-msgid "Disp. Family"
-msgstr "延伸系列"
-
-#: main.c:69 main.c:105 main.c:116 main.c:151
-msgid "Model"
-msgstr "型號"
-
-#: main.c:70
-#, fuzzy
-#| msgid "Ext. Model"
-msgid "Disp. Model"
-msgstr "延伸型號"
-
-#: main.c:71
-msgid "Temp."
-msgstr "溫度"
-
-#: main.c:72
-msgid "Stepping"
-msgstr "步進"
-
-#: main.c:73
-msgid "Instructions"
-msgstr "指令集"
-
-#: main.c:75 cpu-x-gtk-3.12.ui:968
-msgid "Clocks"
-msgstr "時脈"
-
-#: main.c:76
-msgid "Core Speed"
-msgstr "核心速度"
-
-#: main.c:77
-msgid "Multiplier"
-msgstr "倍頻"
-
-#: main.c:78
-msgid "Bus Speed"
-msgstr "匯流排速度"
-
-#: main.c:79 main.c:157
-msgid "Usage"
-msgstr "用量"
-
-#: main.c:81 cpu-x-gtk-3.12.ui:1184
-msgid "Cache"
-msgstr "快取"
-
-#: main.c:82
-msgid "L1 Data"
-msgstr "L1 資料"
-
-#: main.c:83
-msgid "L1 Inst."
-msgstr "L1 指令"
-
-#: main.c:84
-msgid "Level 2"
-msgstr "L2 快取"
-
-#: main.c:85
-msgid "Level 3"
-msgstr "L3 快取"
-
-#: main.c:87 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
-msgid "Cores"
-msgstr "核心"
-
-#: main.c:88 main.c:183 cpu-x-gtk-3.12.ui:1252
-msgid "Threads"
-msgstr "線程"
-
-#: main.c:91 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:240 data.cpp:329 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "快取"
 
-#: main.c:95
-#, c-format
-msgid "L%i Cache"
-msgstr "L%i 快取"
+#: data.cpp:247
+#, fuzzy, c-format
+#| msgid "%d x %d %s, %d-way"
+msgid "%2d x %4d %s, %2d-way"
+msgstr "%d x %d %s, %d 路"
 
-#: main.c:96
-msgid "Size"
+#: data.cpp:249
+#, c-format
+msgid "%d %s, %d-way"
+msgstr "%d %s, %d 路"
+
+#: data.cpp:263
+msgid "Count"
 msgstr ""
 
-#: main.c:97
-msgid "Speed"
-msgstr "速度"
+#: data.cpp:276 cpu-x-gtk-3.12.ui:968
+msgid "Clocks"
+msgstr "時脈"
 
-#: main.c:99
+#: data.cpp:379 data.cpp:383
+#, fuzzy, c-format
+#| msgid "L%i Cache"
+msgid "L%u Cache"
+msgstr "L%i 快取"
+
+#: data.cpp:385
+#, c-format
+msgid "%s associative, %d-%s line size"
+msgstr "%s 組合，%d-%s 行大小"
+
+#: data.cpp:398
 msgid "Test"
 msgstr "測試"
 
-#: main.c:102 main.c:103 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:409 data.cpp:423 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "主機板"
 
-#: main.c:104
-msgid "Manufacturer"
-msgstr "製造商"
-
-#: main.c:106
-msgid "Revision"
-msgstr "修訂"
-
-#: main.c:108 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:437 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "BIOS"
 
-#: main.c:109
-msgid "Brand"
-msgstr "廠牌"
-
-#: main.c:110
-msgid "Version"
-msgstr "版本"
-
-#: main.c:111
-msgid "Date"
-msgstr "日期"
-
-#: main.c:112
-msgid "ROM Size"
-msgstr "唯讀記憶體容量"
-
-#: main.c:114 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:452 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "晶片組"
 
-#: main.c:119 main.c:135 cpu-x-gtk-3.12.ui:3227 cpu-x-gtk-3.12.ui:3877
+#: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "記憶體"
 
-#: main.c:122
+#: data.cpp:483
 #, c-format
-msgid "Bank %i"
+msgid "Stick %u"
 msgstr ""
 
-#: main.c:123
-msgid "Reference"
+#: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+msgid "Sticks"
 msgstr ""
 
-#: main.c:127 cpu-x-gtk-3.12.ui:3896
+#: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "系統"
 
-#: main.c:128 cpu-x-gtk-3.12.ui:3496
+#: data.cpp:554 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "作業系統"
 
-#: main.c:129
-msgid "Kernel"
-msgstr "核心"
-
-#: main.c:130
-msgid "Distribution"
-msgstr "發行版"
-
-#: main.c:131
-msgid "Hostname"
-msgstr "主機名稱"
-
-#: main.c:132
-msgid "Uptime"
-msgstr "上線時間"
-
-#: main.c:133
-msgid "Compiler"
-msgstr "編譯器"
-
-#: main.c:136
-msgid "Used"
-msgstr ""
-
-#: main.c:137
-msgid "Buffers"
-msgstr "緩衝"
-
-#: main.c:138
-msgid "Cached"
-msgstr "快取"
-
-#: main.c:139
-msgid "Free"
-msgstr ""
-
-#: main.c:140
-msgid "Swap"
-msgstr ""
-
-#: main.c:143 cpu-x-gtk-3.12.ui:5076
+#: data.cpp:587 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr ""
 
-#: main.c:147
+#: data.cpp:621
 #, c-format
-msgid "Card %i"
+msgid "Card %u"
 msgstr ""
 
-#: main.c:149
-msgid "Driver"
-msgstr "驅動"
-
-#: main.c:150
-#, fuzzy
-#| msgid "Version"
-msgid "UMD Version"
-msgstr "版本"
-
-#: main.c:152
-msgid "Compute Unit"
-msgstr ""
-
-#: main.c:153
-msgid "DeviceID"
-msgstr ""
-
-#: main.c:154
-#, fuzzy
-#| msgid "Version"
-msgid "VBIOS Version"
-msgstr "版本"
-
-#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
-#. Setting: "Interface" tab
-#: main.c:155 cpu-x-gtk-3.12.ui:5891
-msgid "Interface"
-msgstr ""
-
-#: main.c:156
-msgid "Temperature"
-msgstr "溫度"
-
-#: main.c:158
-#, fuzzy
-#| msgid "Voltage"
-msgid "Core Voltage"
-msgstr "電壓"
-
-#: main.c:159
-msgid "Power Avg"
-msgstr ""
-
-#: main.c:160
-msgid "GPU clock"
-msgstr "GPU 時脈"
-
-#: main.c:161
-msgid "Memory clock"
-msgstr "記憶體時脈"
-
-#: main.c:162
-#, fuzzy
-#| msgid "Memory"
-msgid "Memory Used"
-msgstr "記憶體"
-
-#: main.c:163
-msgid "Resizable BAR"
-msgstr ""
-
-#: main.c:164
-msgid "Vulkan RT"
-msgstr ""
-
-#: main.c:165
-#, fuzzy
-#| msgid "Version"
-msgid "OpenGL Version"
-msgstr "版本"
-
-#: main.c:166
-#, fuzzy
-#| msgid "Version"
-msgid "Vulkan Version"
-msgstr "版本"
-
-#: main.c:167
-#, fuzzy
-#| msgid "Version"
-msgid "OpenCL Version"
-msgstr "版本"
-
-#: main.c:169 cpu-x-gtk-3.12.ui:5054
+#: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr ""
 
-#: main.c:172 cpu-x-gtk-3.12.ui:5416
+#: data.cpp:672 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "效能測試"
 
-#: main.c:173 cpu-x-gtk-3.12.ui:5186
+#: data.cpp:685
+msgid "Not started"
+msgstr "未開始"
+
+#: data.cpp:688 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr ""
 
-#: main.c:174 cpu-x-gtk-3.12.ui:5294
+#: data.cpp:692 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr ""
 
-#: main.c:177
-msgid "Score"
-msgstr "分數"
-
-#: main.c:178
-msgid "Run"
-msgstr "執行"
-
-#: main.c:181 cpu-x-gtk-3.12.ui:5397
+#: data.cpp:696 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "參數"
 
-#: main.c:182
-msgid "Duration"
-msgstr "持續時間"
+#: data.cpp:721 data.cpp:727
+#, c-format
+msgid "%u mins"
+msgstr "%u 分鐘"
 
-#: main.c:186 main.c:191 cpu-x-gtk-3.12.ui:5560 cpu-x-gtk-3.12.ui:5668
+#: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "關於"
 
-#: main.c:188
+#: data.cpp:739
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -887,189 +604,260 @@ msgstr ""
 "%s 是一款蒐集CPU、主機板等資訊\n"
 "的自由軟體。"
 
-#: main.c:192
+#: data.cpp:744
+#, fuzzy
+#| msgid "About"
+msgid "About CPU-X"
+msgstr "關於"
+
+#: data.cpp:745
 #, c-format
 msgid "Version %s"
 msgstr "%s 版"
 
-#: main.c:193
+#: data.cpp:746
 #, c-format
 msgid "Author: %s"
 msgstr "作者：%s"
 
-#: main.c:194
+#: data.cpp:747
 #, c-format
 msgid "Site: %s"
 msgstr "網站：%s"
 
-#: main.c:196 cpu-x-gtk-3.12.ui:5649
+#: data.cpp:751 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "授權條款"
 
-#: main.c:199
+#: data.cpp:753
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr ""
 
-#: main.c:201 main.c:454
+#: data.cpp:754 main.cpp:174
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr ""
 
-#: main.c:272
-msgid "Dumping data…"
+#: gui_gtk.cpp:60
+#, c-format
+msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: main.c:315
-msgid "Freeing memory"
+#: gui_gtk.cpp:373
+msgid "Start daemon"
 msgstr ""
 
-#: main.c:343
+#: gui_gtk.cpp:376
+msgid "Connected to daemon"
+msgstr ""
+
+#: gui_gtk.cpp:378
+msgid "No polkit authentication agent found"
+msgstr ""
+
+#: gui_gtk.cpp:382
+msgid "Ask password to start daemon in background"
+msgstr ""
+
+#: gui_gtk.cpp:386
+msgid "Settings"
+msgstr ""
+
+#: gui_gtk.cpp:600
+#, fuzzy
+#| msgid "Family"
+msgid "BaseFamily"
+msgstr "系列"
+
+#: gui_gtk.cpp:601
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+
+#: gui_gtk.cpp:602
+#, fuzzy
+#| msgid "Model"
+msgid "BaseModel"
+msgstr "型號"
+
+#: gui_gtk.cpp:603
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+
+#: gui_gtk.cpp:813
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
+msgstr ""
+
+#: gui_gtk.cpp:814
+msgid "Identify the physically labeled bank where the memory device is located"
+msgstr ""
+
+#: gui_gtk.cpp:1015
+msgid "User Mode Driver Version"
+msgstr "用戶模式驅動程序版本"
+
+#: gui_gtk.cpp:1029
+msgid "Vulkan Ray Tracing"
+msgstr ""
+
+#: gui_gtk.cpp:1222
+msgid "Starting GTK GUI…"
+msgstr "正在啟動GTK圖形使用者介面…"
+
+#: gui_gtk.cpp:1234
+msgid "failed to import UI in GtkBuilder"
+msgstr ""
+
+#: main.cpp:62
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "開啓圖形使用者界面（預設）"
 
-#: main.c:344
+#: main.cpp:63
 msgid "Start text-based user interface (TUI)"
 msgstr "開啓文字使用者介面"
 
-#: main.c:345
+#: main.cpp:64
 msgid "Dump all data on standard output and exit"
 msgstr ""
 
-#: main.c:346
+#: main.cpp:65
 msgid "Run embedded command dmidecode and exit"
 msgstr ""
 
-#: main.c:347
+#: main.cpp:66
 msgid "Run embedded command bandwidth and exit"
 msgstr ""
 
-#: main.c:348
+#: main.cpp:67
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr ""
 
-#: main.c:349
+#: main.cpp:68
 msgid "Set default tab (integer)"
 msgstr "設定預設分頁（整數）"
 
-#: main.c:350
+#: main.cpp:69
 msgid "Select core type to monitor (integer)"
 msgstr ""
 
-#: main.c:351
+#: main.cpp:70
 msgid "Select CPU core to monitor (integer)"
 msgstr ""
 
-#: main.c:352
+#: main.cpp:71
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 
-#: main.c:353
+#: main.cpp:72
+#, fuzzy
+#| msgid "Set default tab (integer)"
+msgid "Select default memory stick (integer)"
+msgstr "設定預設分頁（整數）"
+
+#: main.cpp:73
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
 msgstr "設定預設分頁（整數）"
 
-#: main.c:354 cpu-x-gtk-3.12.ui:5994
+#: main.cpp:74 cpu-x-gtk-3.12.ui:5879
 msgid "Start and connect to daemon"
 msgstr ""
 
-#: main.c:355
+#: main.cpp:75
 msgid "Verbose output"
 msgstr ""
 
-#: main.c:356
+#: main.cpp:76
 msgid "Print help and exit"
 msgstr ""
 
-#: main.c:357
+#: main.cpp:77
 msgid "Print version and exit"
 msgstr ""
 
-#: main.c:358
+#: main.cpp:78
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 
-#: main.c:359
+#: main.cpp:79
 msgid "Disable colored output"
 msgstr ""
 
-#: main.c:360
+#: main.cpp:80
 msgid "Print information for debugging"
 msgstr ""
 
-#: main.c:361
+#: main.cpp:81
 msgid "Print required information to paste in an issue"
 msgstr ""
 
-#: main.c:362
+#: main.cpp:82
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 
-#: main.c:373
+#: main.cpp:93
 msgid "Add default command line arguments"
 msgstr ""
 
-#: main.c:374
+#: main.cpp:94
 msgid "Enforce the bus clock"
 msgstr ""
 
-#: main.c:375
-msgid "Ignore CPU frequency reported by libcpuid"
+#: main.cpp:95
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt' and 'freq')"
 msgstr ""
 
-#: main.c:376
+#: main.cpp:96
 msgid "Read CPUID raw data from a given file"
 msgstr ""
 
-#: main.c:377
+#: main.cpp:97
 msgid "Only print a message if CPU is not present in the database"
 msgstr ""
 
-#: main.c:401
+#: main.cpp:124
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr ""
 
-#: main.c:402
+#: main.cpp:125
 msgid "Available DISPLAY:"
 msgstr ""
 
-#: main.c:411
+#: main.cpp:133
 msgid "Available OPTIONS:"
 msgstr ""
 
-#: main.c:419
+#: main.cpp:142
 msgid "Influenceable environment variables:"
 msgstr ""
 
-#: main.c:453
+#: main.cpp:173
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 
-#: main.c:455
+#: main.cpp:175
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr ""
 
-#: main.c:462
+#: main.cpp:182
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr ""
 
-#: main.c:478
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
-msgid "failed to call wordexp (%i)"
-msgstr "呼叫 libcpuid 失敗 (%s)"
-
-#: main.c:677
+#: main.cpp:367
 #, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
 
-#: main.c:679
+#: main.cpp:369
 #, c-format
 msgid ""
 "\n"
@@ -1077,377 +865,712 @@ msgid ""
 "recover."
 msgstr ""
 
-#: main.c:696
+#: main.cpp:393
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.c:741
+#: main.cpp:435
 msgid "an error occurred while setting locale"
 msgstr ""
 
-#: tui_ncurses.c:73
-msgid "Starting NCurses TUI…"
-msgstr ""
-
-#: tui_ncurses.c:81
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-
-#: tui_ncurses.c:86
+#: options.cpp:124
 #, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
+msgstr "所選 CPU 類型 (%u) 不是有效數字（%u 是此 CPU 的最大值）"
+
+#: options.cpp:145
+#, fuzzy, c-format
+#| msgid ""
+#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
+#| "CPU)"
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
+msgstr "所選 CPU 類型 (%u) 不是有效數字（%u 是此 CPU 的最大值）"
+
+#: options.cpp:168
+#, fuzzy, c-format
+#| msgid ""
+#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
+#| "CPU)"
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr "所選 CPU 類型 (%u) 不是有效數字（%u 是此 CPU 的最大值）"
+
+#: options.cpp:188
+#, fuzzy, c-format
+#| msgid ""
+#| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+#| "type of core)"
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr "所選 CPU 核心 (%u) 不是有效數字（%u 是此類核心的最大值）"
+
+#: options.cpp:204
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
 msgstr ""
 
-#: tui_ncurses.c:342
+#: options.cpp:210
+#, c-format
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
+msgstr "所選 CPU 核心 (%u) 不是有效數字（%u 是此類核心的最大值）"
+
+#: options.cpp:284
+#, fuzzy, c-format
+#| msgid ""
+#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
+#| "CPU)"
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr "所選 CPU 類型 (%u) 不是有效數字（%u 是此 CPU 的最大值）"
+
+#: tui_ncurses.cpp:111
 msgid "Window is too small!"
 msgstr ""
 
-#: tui_ncurses.c:350
+#: tui_ncurses.cpp:119
 msgid "Press 'h' to see help."
 msgstr "按「h」查看幫助。"
 
-#: tui_ncurses.c:504
+#: tui_ncurses.cpp:232
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr ""
 
-#: tui_ncurses.c:505
+#: tui_ncurses.cpp:233
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
 
-#: tui_ncurses.c:507
+#: tui_ncurses.cpp:235
 msgid "Global keys:"
 msgstr ""
 
-#: tui_ncurses.c:508
+#: tui_ncurses.cpp:236
 #, fuzzy
 #| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key or 'tab' key to switch in left tab."
 msgstr "\t按「左」鍵切換至左邊的分頁。\n"
 
-#: tui_ncurses.c:509
+#: tui_ncurses.cpp:237
 #, fuzzy
 #| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr "\t按「右」鍵切換至右邊的分頁。\n"
 
-#: tui_ncurses.c:510
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
-msgid "Press 'home' key to scroll up in a page."
-msgstr "\t按「左」鍵切換至左邊的分頁。\n"
-
-#: tui_ncurses.c:511
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
-msgid "Press 'end' key to scroll down in a page."
-msgstr "\t按「左」鍵切換至左邊的分頁。\n"
-
-#: tui_ncurses.c:512
+#: tui_ncurses.cpp:238
 #, fuzzy
 #| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
 msgstr "\t按「h」鍵查看此幫助。\n"
 
-#: tui_ncurses.c:513
+#: tui_ncurses.cpp:239
 #, fuzzy
 #| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
 msgstr "\t按「q」鍵退出。\n"
 
-#: tui_ncurses.c:515
+#: tui_ncurses.cpp:241
 msgid "CPU tab:"
 msgstr "CPU分頁："
 
-#: tui_ncurses.c:516
+#: tui_ncurses.cpp:242
 #, fuzzy
 #| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr "\t按「下」鍵減少要監視的核心數。\n"
 
-#: tui_ncurses.c:517
+#: tui_ncurses.cpp:243
 #, fuzzy
 #| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr "\t按「上」鍵增加要監視的核心數。\n"
 
-#: tui_ncurses.c:518
+#: tui_ncurses.cpp:244
 #, fuzzy
 #| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr "\t按「下」鍵減少要監視的核心數。\n"
 
-#: tui_ncurses.c:519
+#: tui_ncurses.cpp:245
 #, fuzzy
 #| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr "\t按「上」鍵增加要監視的核心數。\n"
 
-#: tui_ncurses.c:521
+#: tui_ncurses.cpp:247
 msgid "Caches tab:"
 msgstr "快取分頁："
 
-#: tui_ncurses.c:522
+#: tui_ncurses.cpp:248
 #, fuzzy
 #| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
 msgstr "\t按「下」鍵切換至上一項測試。\n"
 
-#: tui_ncurses.c:523
+#: tui_ncurses.cpp:249
 #, fuzzy
 #| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next test."
 msgstr "\t按「上」鍵切換至下一項測試。\n"
 
-#: tui_ncurses.c:525
+#: tui_ncurses.cpp:251
 msgid "Bench tab:"
 msgstr "效能測試分頁："
 
-#: tui_ncurses.c:526
+#: tui_ncurses.cpp:252
 #, fuzzy
 #| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "\t按「下」鍵減少效能測試持續的時間。\n"
 
-#: tui_ncurses.c:527
+#: tui_ncurses.cpp:253
 #, fuzzy
 #| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "\t按「上」鍵增加效能測試持續的時間。\n"
 
-#: tui_ncurses.c:528
+#: tui_ncurses.cpp:254
 #, fuzzy
 #| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr "\t按「下一頁」鍵減少要使用的線程數。\n"
 
-#: tui_ncurses.c:529
+#: tui_ncurses.cpp:255
 #, fuzzy
 #| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr "\t按「上一頁」鍵增加要使用的線程數。\n"
 
-#: tui_ncurses.c:530
+#: tui_ncurses.cpp:256
 #, fuzzy
 #| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr "\t按「上」鍵增加要監視的核心數。\n"
 
-#: tui_ncurses.c:531
+#: tui_ncurses.cpp:257
 #, fuzzy
 #| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr "\t按「上」鍵增加要監視的核心數。\n"
 
-#: tui_ncurses.c:533
+#: tui_ncurses.cpp:259
 msgid "Graphics tab:"
 msgstr "圖形分頁："
 
-#: tui_ncurses.c:534
+#: tui_ncurses.cpp:260
 #, fuzzy
 #| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "\t按「下」鍵切換至上一項測試。\n"
 
-#: tui_ncurses.c:535
+#: tui_ncurses.cpp:261
 #, fuzzy
 #| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "\t按「上」鍵切換至下一項測試。\n"
 
-#: tui_ncurses.c:537
+#: tui_ncurses.cpp:263
 msgid "Press any key to exit this help."
 msgstr "按任意鍵退出幫助。"
 
-#: util.c:202
+#: tui_ncurses.cpp:638
+msgid "Starting NCurses TUI…"
+msgstr ""
+
+#: tui_ncurses.cpp:647
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
+msgstr ""
+
+#: tui_ncurses.cpp:652
+#, c-format
+msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+msgstr ""
+
+#: util.cpp:172
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr ""
 
-#: util.c:214
-#, c-format
-msgid "String '%s' is too long, truncating…"
-msgstr ""
-
-#: util.c:291
-#, c-format
-msgid "an error occurred while opening file '%s' (%s)"
-msgstr ""
-
-#: util.c:321
-#, c-format
-msgid "an error occurred while running command '%s' (%s)"
-msgstr ""
-
-#: util.c:379 util.c:439
-#, c-format
-msgid "failed to open %s directory"
-msgstr ""
-
-#: util.c:452
-msgid "an error occurred while compiling regex"
+#: util.cpp:205
+#, fuzzy, c-format
+#| msgid "an error occurred while compiling regex"
+msgid "an error occurred while opening file '%s'"
 msgstr "編譯正則表達式時出錯"
 
-#: util.c:546
-#, fuzzy
-#| msgid "Core(s)"
-msgid "Core"
-msgstr "核心"
+#: util.cpp:243
+#, fuzzy, c-format
+#| msgid "an error occurred while starting benchmark"
+msgid "an error occurred while running command '%s'"
+msgstr "開始效能測試時有錯誤發生"
 
-#: util.c:547
-#, fuzzy
-#| msgid "Score"
-msgid "P-core"
-msgstr "分數"
-
-#: util.c:548
-#, fuzzy
-#| msgid "Score"
-msgid "E-core"
-msgstr "分數"
-
-#: util.c:567
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
-
-#: util.c:608
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
-
-#: util.c:611
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
-
-#: util.c:614
-msgid "pkexec: command not found"
-msgstr ""
-
-#: util.c:617
-msgid "pkexec: unexpected error code"
-msgstr ""
-
-#: util.c:687
+#: util.cpp:366
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
-#: cpu-x.h:58
-msgid "FATAL ERROR: could not allocate memory"
-msgstr "致命錯誤：無法配置記憶體"
+#: data.hpp:103 data.hpp:244 data.hpp:332
+msgid "Vendor"
+msgstr "供應商"
 
-#: cpu-x.h:97
+#: data.hpp:104
+msgid "Code Name"
+msgstr "代號"
+
+#: data.hpp:105
+msgid "Package"
+msgstr "封裝"
+
+#: data.hpp:106
+msgid "Technology"
+msgstr "製程"
+
+#: data.hpp:107 data.hpp:268
+msgid "Voltage"
+msgstr "電壓"
+
+#: data.hpp:108
+msgid "Specification"
+msgstr "規格"
+
+#: data.hpp:109
+msgid "Family"
+msgstr "系列"
+
+#: data.hpp:110
+#, fuzzy
+#| msgid "Ext. Family"
+msgid "Disp. Family"
+msgstr "延伸系列"
+
+#: data.hpp:111 data.hpp:224 data.hpp:245 data.hpp:335
+msgid "Model"
+msgstr "型號"
+
+#: data.hpp:112
+#, fuzzy
+#| msgid "Ext. Model"
+msgid "Disp. Model"
+msgstr "延伸型號"
+
+#: data.hpp:113
+msgid "Temp."
+msgstr "溫度"
+
+#: data.hpp:114
+msgid "Stepping"
+msgstr "步進"
+
+#: data.hpp:115
+msgid "Instructions"
+msgstr "指令集"
+
+#: data.hpp:125
+msgid "L1 Data"
+msgstr "L1 資料"
+
+#: data.hpp:126
+msgid "L1 Inst."
+msgstr "L1 指令"
+
+#: data.hpp:127
+msgid "Level 2"
+msgstr "L2 快取"
+
+#: data.hpp:128
+msgid "Level 3"
+msgstr "L3 快取"
+
+#: data.hpp:137 cpu-x-gtk-3.12.ui:1232
+#, fuzzy
+#| msgid "Core(s)"
+msgid "Cores"
+msgstr "核心"
+
+#: data.hpp:138 data.hpp:408 cpu-x-gtk-3.12.ui:1252
+msgid "Threads"
+msgstr "線程"
+
+#: data.hpp:155
+msgid "Core Speed"
+msgstr "核心速度"
+
+#: data.hpp:156
+msgid "Multiplier"
+msgstr "倍頻"
+
+#: data.hpp:157
+msgid "Bus Speed"
+msgstr "匯流排速度"
+
+#: data.hpp:158 data.hpp:341
+msgid "Usage"
+msgstr "用量"
+
+#: data.hpp:188 data.hpp:265
+msgid "Size"
+msgstr ""
+
+#: data.hpp:189 data.hpp:267
+msgid "Speed"
+msgstr "速度"
+
+#: data.hpp:223 data.hpp:259
+msgid "Manufacturer"
+msgstr "製造商"
+
+#: data.hpp:225
+msgid "Revision"
+msgstr "修訂"
+
+#: data.hpp:233
+msgid "Brand"
+msgstr "廠牌"
+
+#: data.hpp:234
+msgid "Version"
+msgstr "版本"
+
+#: data.hpp:235
+msgid "Date"
+msgstr "日期"
+
+#: data.hpp:236
+msgid "ROM Size"
+msgstr "唯讀記憶體容量"
+
+#: data.hpp:260
+msgid "Part Number"
+msgstr ""
+
+#: data.hpp:261
+#, fuzzy
+#| msgid "Type #%i"
+msgid "Type"
+msgstr "類型 #%i"
+
+#: data.hpp:262
+#, fuzzy
+#| msgid "Type #%i"
+msgid "Type Detail"
+msgstr "類型 #%i"
+
+#: data.hpp:263
+msgid "Device Locator"
+msgstr ""
+
+#: data.hpp:264
+msgid "Bank Locator"
+msgstr ""
+
+#: data.hpp:266
+msgid "Rank"
+msgstr ""
+
+#: data.hpp:292
+#, fuzzy
+#| msgid "Code Name"
+msgid "Name"
+msgstr "代號"
+
+#: data.hpp:293
+msgid "Kernel"
+msgstr "核心"
+
+#: data.hpp:294
+msgid "Hostname"
+msgstr "主機名稱"
+
+#: data.hpp:295
+msgid "Uptime"
+msgstr "上線時間"
+
+#: data.hpp:303
+msgid "Used"
+msgstr ""
+
+#: data.hpp:304
+msgid "Buffers"
+msgstr "緩衝"
+
+#: data.hpp:305
+msgid "Cached"
+msgstr "快取"
+
+#: data.hpp:306
+msgid "Free"
+msgstr ""
+
+#: data.hpp:307
+msgid "Swap"
+msgstr ""
+
+#: data.hpp:333
+msgid "Driver"
+msgstr "驅動"
+
+#: data.hpp:334
+#, fuzzy
+#| msgid "Version"
+msgid "UMD Version"
+msgstr "版本"
+
+#: data.hpp:336
+msgid "Compute Unit"
+msgstr ""
+
+#: data.hpp:337
+msgid "Device ID"
+msgstr ""
+
+#: data.hpp:338
+#, fuzzy
+#| msgid "Version"
+msgid "VBIOS Version"
+msgstr "版本"
+
+#. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
+#. Setting: "Interface" tab
+#: data.hpp:339 cpu-x-gtk-3.12.ui:5776
+msgid "Interface"
+msgstr ""
+
+#: data.hpp:340
+msgid "Temperature"
+msgstr "溫度"
+
+#: data.hpp:342
+#, fuzzy
+#| msgid "Voltage"
+msgid "Core Voltage"
+msgstr "電壓"
+
+#: data.hpp:343
+msgid "Power Avg"
+msgstr ""
+
+#: data.hpp:344
+#, fuzzy
+#| msgid "Memory clock"
+msgid "Core Clock"
+msgstr "記憶體時脈"
+
+#: data.hpp:345
+#, fuzzy
+#| msgid "Memory clock"
+msgid "Memory Clock"
+msgstr "記憶體時脈"
+
+#: data.hpp:346
+#, fuzzy
+#| msgid "Memory"
+msgid "Memory Used"
+msgstr "記憶體"
+
+#: data.hpp:347
+msgid "Resizable BAR"
+msgstr ""
+
+#: data.hpp:348
+msgid "Vulkan RT"
+msgstr ""
+
+#: data.hpp:349
+#, fuzzy
+#| msgid "Version"
+msgid "OpenGL Version"
+msgstr "版本"
+
+#: data.hpp:350
+#, fuzzy
+#| msgid "Version"
+msgid "Vulkan Version"
+msgstr "版本"
+
+#: data.hpp:351
+#, fuzzy
+#| msgid "Version"
+msgid "OpenCL Version"
+msgstr "版本"
+
+#: data.hpp:387
+msgid "Score"
+msgstr "分數"
+
+#: data.hpp:388
+msgid "Run"
+msgstr "執行"
+
+#: data.hpp:407
+msgid "Duration"
+msgstr "持續時間"
+
+#: util.hpp:77
 msgid "bytes"
 msgstr "位元組"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: cpu-x.h:100
+#: util.hpp:80
 msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: cpu-x.h:102
+#: util.hpp:82
 msgid "MB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: cpu-x.h:104
+#: util.hpp:84
 msgid "GB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: cpu-x.h:106
+#: util.hpp:86
 msgid "TB"
 msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#: cpu-x.h:109
+#: util.hpp:89
 msgid "KiB"
 msgstr ""
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: cpu-x.h:111
+#: util.hpp:91
 #, fuzzy
 #| msgid "MB"
 msgid "MiB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: cpu-x.h:113
+#: util.hpp:93
 #, fuzzy
 #| msgid "GB"
 msgid "GiB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: cpu-x.h:115
+#: util.hpp:95
 #, fuzzy
 #| msgid "TB"
 msgid "TiB"
 msgstr "TB"
 
+#: cpu-x-gtk-3.12.ui:1184
+msgid "Cache"
+msgstr "快取"
+
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5836
+#: cpu-x-gtk-3.12.ui:5721
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5860
+#: cpu-x-gtk-3.12.ui:5745
 msgid "Theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5875
+#: cpu-x-gtk-3.12.ui:5760
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5876
+#: cpu-x-gtk-3.12.ui:5761
 msgid "Light"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5877
+#: cpu-x-gtk-3.12.ui:5762
 msgid "Dark"
 msgstr ""
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5795
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5923
+#: cpu-x-gtk-3.12.ui:5808
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5936
+#: cpu-x-gtk-3.12.ui:5821
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5864
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6012
+#: cpu-x-gtk-3.12.ui:5897
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Default graphic card"
 msgstr "設定預設分頁（整數）"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6036
+#: cpu-x-gtk-3.12.ui:5921
 msgid "Default core type"
 msgstr ""
 
+#. Setting: default graphic card at startup
+#: cpu-x-gtk-3.12.ui:5945
+msgid "Default memory stick"
+msgstr ""
+
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6064
+#: cpu-x-gtk-3.12.ui:5973
 msgid "Startup"
 msgstr ""
+
+#~ msgid "Calculating CPU multipliers"
+#~ msgstr "正在計算 CPU 倍頻"
+
+#, c-format
+#~ msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
+#~ msgstr "現行的：PCIe Gen %1dx%d / 最高：Gen %1dx%d"
+
+#~ msgid "failed to retrieve GPU clocks"
+#~ msgstr "取得 GPU 時脈頻率時失敗"
+
+#, c-format
+#~ msgid "Core #%i"
+#~ msgstr "核心 #%i"
+
+#~ msgid "Distribution"
+#~ msgstr "發行版"
+
+#~ msgid "Compiler"
+#~ msgstr "編譯器"
+
+#~ msgid "GPU clock"
+#~ msgstr "GPU 時脈"
+
+#, fuzzy, c-format
+#~| msgid "failed to call libcpuid (%s)"
+#~ msgid "failed to call wordexp (%i)"
+#~ msgstr "呼叫 libcpuid 失敗 (%s)"
+
+#, fuzzy
+#~| msgid "\tPress 'left' key to switch in left tab.\n"
+#~ msgid "Press 'home' key to scroll up in a page."
+#~ msgstr "\t按「左」鍵切換至左邊的分頁。\n"
+
+#, fuzzy
+#~| msgid "\tPress 'left' key to switch in left tab.\n"
+#~ msgid "Press 'end' key to scroll down in a page."
+#~ msgstr "\t按「左」鍵切換至左邊的分頁。\n"
+
+#~ msgid "FATAL ERROR: could not allocate memory"
+#~ msgstr "致命錯誤：無法配置記憶體"
 
 #, fuzzy, c-format
 #~| msgid "failed to call libcpuid (%s)"
