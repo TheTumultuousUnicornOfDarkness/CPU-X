@@ -50,7 +50,7 @@ const char *start_daemon(bool graphical)
 	{
 		const std::string appdir_daemon_path = std::string(appdir) + std::string(DAEMON_PATH);
 		MSG_DEBUG("start_daemon: copy '%s' to '%s'", appdir_daemon_path.c_str(), daemon);
-		fs::copy(appdir_daemon_path, daemon);
+		fs::copy(appdir_daemon_path, daemon, fs::copy_options::overwrite_existing);
 	}
 
 	pid = fork();
