@@ -2872,15 +2872,12 @@ static void dmi_memory_voltage_value(const char *attr, u16 code)
 
 static char *dmi_memory_voltage_value_str(u16 code)
 {
-	static char buff[MAXSTR];
+	static char voltage[MAXSTR] = "";
 
-	if (code == 0)
-		return "Unknown";
-	else
-	{
-		snprintf(buff, MAXSTR, code % 100 ? "%g V" : "%.1f V", (float)code / 1000);
-		return buff;
-	}
+	if (code != 0)
+		snprintf(voltage, MAXSTR, code % 100 ? "%g V" : "%.1f V", (float)code / 1000);
+
+	return voltage;
 }
 
 static const char *dmi_memory_device_form_factor(u8 code)
@@ -3064,16 +3061,12 @@ static char *dmi_memory_device_speed_str(u16 code1, u32 code2)
 
 	if (code1 == 0xFFFF)
 	{
-		if (code2 == 0)
-			snprintf(speed, STR_LEN, "%s", "Unknown speed");
-		else
+		if (code2 != 0)
 			snprintf(speed, STR_LEN, "%u MT/s", code2);
 	}
 	else
 	{
-		if (code1 == 0)
-			snprintf(speed, STR_LEN, "Unknown");
-		else
+		if (code1 != 0)
 			snprintf(speed, STR_LEN, "%u MT/s", code1);
 	}
 
@@ -5583,11 +5576,11 @@ static void dmi_decode_cpux(const struct dmi_header *h)
 			strncpy(cpux_data->memory[cpux_data->stick_count].type_detail, dmi_memory_device_type_detail_str(WORD(data + 0x13)), MAXSTR);
 			strncpy(cpux_data->memory[cpux_data->stick_count].device_locator, dmi_string(h, data[0x10]), MAXSTR);
 			strncpy(cpux_data->memory[cpux_data->stick_count].bank_locator, dmi_string(h, data[0x11]), MAXSTR);
+			strncpy(cpux_data->memory[cpux_data->stick_count].size, (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C)), MAXSTR);
 			if((data[0x1B] & 0x0F) == 0)
 				strncpy(cpux_data->memory[cpux_data->stick_count].rank, _("Unknown"), MAXSTR);
 			else
 				snprintf(cpux_data->memory[cpux_data->stick_count].rank, MAXSTR, "%u", data[0x1B] & 0x0F);
-			strncpy(cpux_data->memory[cpux_data->stick_count].size, (h->length >= 0x20 && WORD(data + 0x0C) == 0x7FFF) ? dmi_memory_device_extended_size_str(DWORD(data + 0x1C)) : dmi_memory_device_size_str(WORD(data + 0x0C)), MAXSTR);
 			strncpy(cpux_data->memory[cpux_data->stick_count].speed_maximum, dmi_memory_device_speed_str(WORD(data + 0x15), h->length >= 0x5C ? DWORD(data + 0x54) : 0), MAXSTR);
 			strncpy(cpux_data->memory[cpux_data->stick_count].speed_configured, dmi_memory_device_speed_str(WORD(data + 0x20), h->length >= 0x5C ? DWORD(data + 0x58) : 0), MAXSTR);
 			strncpy(cpux_data->memory[cpux_data->stick_count].voltage_minimum, dmi_memory_voltage_value_str(WORD(data + 0x22)), MAXSTR);

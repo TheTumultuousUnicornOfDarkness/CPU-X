@@ -256,15 +256,14 @@ struct Data
 	{
 		struct Stick : public Frame
 		{
-			Label reference      {_("Reference")}; // To remove
 			Label manufacturer   {_("Manufacturer")};
 			Label part_number    {_("Part Number")};
 			Label type           {_("Type")};
 			Label type_detail    {_("Type Detail")};
 			Label device_locator {_("Device Locator")};
 			Label bank_locator   {_("Bank Locator")};
-			Label rank           {_("Rank")};
 			Label size           {_("Size")};
+			Label rank           {_("Rank")};
 			Label speed          {_("Speed")};
 			Label voltage        {_("Voltage")};
 
@@ -273,8 +272,16 @@ struct Data
 		};
 		std::vector<Stick> sticks {};
 
+		struct Footer : public Frame
+		{
+			Footer();
+		} footer;
+
 		Memory();
 		void grow_sticks_vector();
+		Data::Memory::Stick& get_selected_stick();
+		const std::string get_stick_formatted(uint8_t stick);
+		const std::string get_selected_stick_formatted();
 		friend std::ostream& operator<<(std::ostream& os, const Memory& memory);
 	} memory;
 

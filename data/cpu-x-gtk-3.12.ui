@@ -2532,14 +2532,16 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <!-- n-columns=1 n-rows=8 -->
-                      <object class="GtkGrid" id="memory_grid">
+                      <!-- n-columns=1 n-rows=2 -->
+                      <object class="GtkGrid" id="memory_box">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <child>
-                          <object class="GtkFrame" id="bank0_fram">
+                          <object class="GtkFrame" id="stick_fram">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="margin-left">6</property>
+                            <property name="margin-right">6</property>
                             <property name="margin-start">6</property>
                             <property name="margin-end">6</property>
                             <property name="margin-top">4</property>
@@ -2547,20 +2549,132 @@
                             <property name="label-xalign">0</property>
                             <property name="shadow-type">out</property>
                             <child>
-                              <object class="GtkAlignment" id="bank0_align">
+                              <object class="GtkAlignment" id="stick_align">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="margin-left">6</property>
+                                <property name="margin-right">6</property>
                                 <property name="margin-start">6</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-bottom">6</property>
                                 <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank0_grid">
+                                  <!-- n-columns=2 n-rows=9 -->
+                                  <object class="GtkGrid" id="stick_grid">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="halign">end</property>
                                     <child>
-                                      <object class="GtkAspectFrame" id="bank0_framref">
+                                      <object class="GtkLabel" id="stick_labsize">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valtemp</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">6</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="stick_box1">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="stick_framsize">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-top">1</property>
+                                            <property name="margin-bottom">1</property>
+                                            <property name="label-xalign">0</property>
+                                            <property name="shadow-type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="stick_valsize">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width-chars">13</property>
+                                                <property name="single-line-mode">True</property>
+                                                <property name="max-width-chars">13</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="stick_framrank">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-top">1</property>
+                                            <property name="margin-bottom">1</property>
+                                            <property name="label-xalign">0</property>
+                                            <property name="shadow-type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="stick_valrank">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width-chars">13</property>
+                                                <property name="single-line-mode">True</property>
+                                                <property name="max-width-chars">13</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_labrank">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="halign">end</property>
+                                            <property name="margin-right">4</property>
+                                            <property name="margin-end">4</property>
+                                            <property name="margin-top">1</property>
+                                            <property name="margin-bottom">1</property>
+                                            <property name="mnemonic-widget">card_valusage</property>
+                                            <property name="ellipsize">middle</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">18</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">6</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_frampartnumber">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="margin-top">1</property>
@@ -2568,18 +2682,71 @@
                                         <property name="label-xalign">0</property>
                                         <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkLabel" id="bank0_valref">
+                                          <object class="GtkLabel" id="stick_valpartnumber">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
                                             <property name="justify">center</property>
                                             <property name="selectable">True</property>
                                             <property name="ellipsize">end</property>
                                             <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
                                             <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labpartnumber">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_frammanufacturer">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valmanufacturer">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
                                           </object>
                                         </child>
                                       </object>
@@ -2589,7 +2756,162 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="bank0_labref">
+                                      <object class="GtkAspectFrame" id="stick_framtype">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valtype">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_framtypedetail">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valtypedetail">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_framdevicelocator">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valdevicelocator">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">4</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_frambanklocator">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valbanklocator">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">5</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_framspeed">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valspeed">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">7</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labmanufacturer">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>
@@ -2597,8 +2919,10 @@
                                         <property name="margin-end">4</property>
                                         <property name="margin-top">1</property>
                                         <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank0_valref</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
                                         <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
                                         <property name="lines">1</property>
                                       </object>
                                       <packing>
@@ -2606,15 +2930,166 @@
                                         <property name="top-attach">0</property>
                                       </packing>
                                     </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labtype">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labtypedetail">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labdevicelocator">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">4</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labbanklocator">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">5</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labspeed">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">7</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="stick_labvoltage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-right">4</property>
+                                        <property name="margin-end">4</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="mnemonic-widget">card_valumd</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="single-line-mode">True</property>
+                                        <property name="max-width-chars">15</property>
+                                        <property name="lines">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">8</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkAspectFrame" id="stick_framvoltage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
+                                        <child>
+                                          <object class="GtkLabel" id="stick_valvoltage">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">40</property>
+                                            <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="left-attach">1</property>
+                                        <property name="top-attach">8</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="bank0_lab">
+                              <object class="GtkLabel" id="stick_lab">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label">Bank 0</property>
+                                <property name="label">Stick 0</property>
                               </object>
                             </child>
                           </object>
@@ -2624,9 +3099,11 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkFrame" id="bank1_fram">
+                          <object class="GtkFrame" id="sticks_fram">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="margin-left">6</property>
+                            <property name="margin-right">6</property>
                             <property name="margin-start">6</property>
                             <property name="margin-end">6</property>
                             <property name="margin-top">4</property>
@@ -2634,581 +3111,33 @@
                             <property name="label-xalign">0</property>
                             <property name="shadow-type">out</property>
                             <child>
-                              <object class="GtkAlignment" id="bank1_align">
+                              <object class="GtkAlignment" id="sticks_align">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="margin-left">6</property>
+                                <property name="margin-right">6</property>
                                 <property name="margin-start">6</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-bottom">6</property>
                                 <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank1_grid">
+                                  <object class="GtkComboBoxText" id="sticks_activestick">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank1_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank1_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank1_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank1_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
                                   </object>
                                 </child>
                               </object>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="bank1_lab">
+                              <object class="GtkLabel" id="sticks_lab">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label">Bank 1</property>
+                                <property name="label" translatable="yes">Sticks</property>
                               </object>
                             </child>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
                             <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame" id="bank2_fram">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label-xalign">0</property>
-                            <property name="shadow-type">out</property>
-                            <child>
-                              <object class="GtkAlignment" id="bank2_align">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">6</property>
-                                <property name="margin-bottom">6</property>
-                                <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank2_grid">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank2_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank2_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank2_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank2_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="bank2_lab">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label">Bank 2</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame" id="bank3_fram">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label-xalign">0</property>
-                            <property name="shadow-type">out</property>
-                            <child>
-                              <object class="GtkAlignment" id="bank3_align">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">6</property>
-                                <property name="margin-bottom">6</property>
-                                <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank3_grid">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank3_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank3_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank3_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank3_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="bank3_lab">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label">Bank 3</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame" id="bank4_fram">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label-xalign">0</property>
-                            <property name="shadow-type">out</property>
-                            <child>
-                              <object class="GtkAlignment" id="bank4_align">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">6</property>
-                                <property name="margin-bottom">6</property>
-                                <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank4_grid">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank4_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank4_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank4_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank4_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="bank4_lab">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label">Bank 4</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">4</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame" id="bank5_fram">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label-xalign">0</property>
-                            <property name="shadow-type">out</property>
-                            <child>
-                              <object class="GtkAlignment" id="bank5_align">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">6</property>
-                                <property name="margin-bottom">6</property>
-                                <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank5_grid">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank5_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank5_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank5_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank5_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="bank5_lab">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label">Bank 5</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">5</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame" id="bank6_fram">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label-xalign">0</property>
-                            <property name="shadow-type">out</property>
-                            <child>
-                              <object class="GtkAlignment" id="bank6_align">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">6</property>
-                                <property name="margin-bottom">6</property>
-                                <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank6_grid">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank6_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank6_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank6_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank6_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="bank6_lab">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label">Bank 6</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">6</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame" id="bank7_fram">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="label-xalign">0</property>
-                            <property name="shadow-type">out</property>
-                            <child>
-                              <object class="GtkAlignment" id="bank7_align">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-start">6</property>
-                                <property name="margin-end">6</property>
-                                <property name="margin-bottom">6</property>
-                                <child>
-                                  <!-- n-columns=2 n-rows=1 -->
-                                  <object class="GtkGrid" id="bank7_grid">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="halign">end</property>
-                                    <child>
-                                      <object class="GtkLabel" id="bank7_labref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-right">4</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="mnemonic-widget">bank7_valref</property>
-                                        <property name="single-line-mode">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">0</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkAspectFrame" id="bank7_framref">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="margin-top">1</property>
-                                        <property name="margin-bottom">1</property>
-                                        <property name="label-xalign">0</property>
-                                        <property name="shadow-type">in</property>
-                                        <child>
-                                          <object class="GtkLabel" id="bank7_valref">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="hexpand">True</property>
-                                            <property name="label">
-</property>
-                                            <property name="justify">center</property>
-                                            <property name="selectable">True</property>
-                                            <property name="ellipsize">end</property>
-                                            <property name="width-chars">40</property>
-                                            <property name="max-width-chars">40</property>
-                                            <property name="lines">2</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left-attach">1</property>
-                                        <property name="top-attach">0</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel" id="bank7_lab">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label">Bank 7</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">7</property>
                           </packing>
                         </child>
                       </object>
@@ -3221,7 +3150,7 @@
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="ramlabel">
+              <object class="GtkLabel" id="memorylabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Memory</property>
@@ -5896,7 +5825,7 @@
               </packing>
             </child>
             <child>
-              <!-- n-columns=2 n-rows=7 -->
+              <!-- n-columns=2 n-rows=8 -->
               <object class="GtkGrid" id="startup_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -5986,7 +5915,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">5</property>
+                    <property name="top-attach">6</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
@@ -6001,7 +5930,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">6</property>
+                    <property name="top-attach">7</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
@@ -6015,7 +5944,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">4</property>
+                    <property name="top-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -6026,7 +5955,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">4</property>
+                    <property name="top-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -6051,6 +5980,30 @@
                   <packing>
                     <property name="left-attach">1</property>
                     <property name="top-attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="defaultstick_lab">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes" comments="Setting: default graphic card at startup">Default memory stick</property>
+                    <property name="mnemonic-widget">defaultcachetest_val</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="defaultstick_val">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
               </object>

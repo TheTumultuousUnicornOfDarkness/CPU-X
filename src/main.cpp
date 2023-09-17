@@ -69,6 +69,7 @@ static const std::list<struct Getopt> cpux_options =
 	{ HAS_LIBCPUID,    'p', "type",          required_argument, N_("Select core type to monitor (integer)")                    },
 	{ HAS_LIBCPUID,    'c', "core",          required_argument, N_("Select CPU core to monitor (integer)")                     },
 	{ HAS_BANDWIDTH,   'b', "cachetest",     required_argument, N_("Set custom bandwidth test for CPU caches speed (integer)") },
+	{ HAS_DMIDECODE,   's', "stick",         required_argument, N_("Select default memory stick (integer)")                    },
 	{ HAS_LIBPCI,      'g', "gpu",           required_argument, N_("Select default graphic card (integer)")                    },
 	{ true,            'd', "daemon",        no_argument,       N_("Start and connect to daemon")                              },
 	{ true,            'v', "verbose",       no_argument,       N_("Verbose output")                                           },
@@ -275,6 +276,9 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 				break;
 			case 'b':
 				Options::set_selected_test(std::stoul(optarg));
+				break;
+			case 's':
+				Options::set_selected_stick(std::stoul(optarg), -1);
 				break;
 			case 'g':
 				Options::set_selected_gpu(std::stoul(optarg), -1);
