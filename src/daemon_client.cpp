@@ -48,8 +48,9 @@ const char *start_daemon(bool graphical)
 	/* Hack to allow pkexec to run daemon (when running from AppImage) */
 	if(appdir != NULL)
 	{
-		MSG_DEBUG("start_daemon: copy '%s/%s' to '%s'", appdir, DAEMON_PATH, daemon);
-		fs::copy(fs::path(appdir) / DAEMON_PATH, daemon);
+		const std::string appdir_daemon_path = std::string(appdir) + std::string(DAEMON_PATH);
+		MSG_DEBUG("start_daemon: copy '%s' to '%s'", appdir_daemon_path.c_str(), daemon);
+		fs::copy(appdir_daemon_path, daemon);
 	}
 
 	pid = fork();
