@@ -47,7 +47,10 @@ const char *start_daemon(bool graphical)
 	MSG_VERBOSE("%s", _("Starting daemon in background…"));
 	/* Hack to allow pkexec to run daemon (when running from AppImage) */
 	if(appdir != NULL)
+	{
+		MSG_DEBUG("start_daemon: copy '%s/%s' to '%s'", appdir, DAEMON_PATH, daemon);
 		fs::copy(fs::path(appdir) / DAEMON_PATH, daemon);
+	}
 
 	pid = fork();
 	if(pid < 0)
