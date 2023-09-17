@@ -49,7 +49,12 @@ static const std::string get_data_path(const std::string &file)
 	{
 		const std::string full_path = dir + PRGNAME_LOW + "/" + file;
 		if(Glib::file_test(full_path, Glib::FILE_TEST_EXISTS))
+		{
+			MSG_DEBUG("get_data_path: file=%s ==> %s found", file.c_str(), full_path.c_str());
 			return full_path;
+		}
+		else
+			MSG_DEBUG("get_data_path: file=%s ==> %s does not exist", file.c_str(), full_path.c_str());
 	}
 
 	MSG_ERROR(_("Cannot find path for '%s' file"), file.c_str());
