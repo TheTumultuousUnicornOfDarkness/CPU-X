@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-17 19:07+0200\n"
-"PO-Revision-Date: 2023-03-31 06:47+0000\n"
+"PO-Revision-Date: 2023-09-19 18:59+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -64,17 +64,17 @@ msgstr "Anropar dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (konfigurerad)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (max)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -292,7 +292,7 @@ msgstr "Kortnummer för GPU %u är okänt"
 #: core.cpp:1540
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (nuvarande) / %s (max)"
 
 #: core.cpp:1648
 #, fuzzy, c-format
@@ -496,7 +496,7 @@ msgstr "%d %s, %d-way"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "Antal"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
@@ -639,7 +639,7 @@ msgstr "Detta program levereras UTAN NÅGRA SOM HELST GARANTIER"
 #: gui_gtk.cpp:60
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Kan inte hitta sökvägen för \"%s\""
 
 #: gui_gtk.cpp:373
 msgid "Start daemon"
@@ -659,7 +659,7 @@ msgstr "Be om lösenord för att starta tjänsten i bakgrunden"
 
 #: gui_gtk.cpp:386
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: gui_gtk.cpp:600
 msgid "BaseFamily"
@@ -683,10 +683,12 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Identifiera det fysiskt märkta uttaget eller kortposition där minnesenheten "
+"är placerad"
 
 #: gui_gtk.cpp:814
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
+msgstr "Identifiera det fysiskt märkta uttaget där minnesenheten finns"
 
 #: gui_gtk.cpp:1015
 msgid "User Mode Driver Version"
@@ -804,6 +806,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
+"Ignorera CPU-värden som rapporterats av libcpuid (komma-separerade värden "
+"bland \"temp\", \"volt\" och \"freq\")"
 
 #: main.cpp:96
 msgid "Read CPUID raw data from a given file"
@@ -1219,7 +1223,7 @@ msgstr "ROM-storlek"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "Delnummer"
 
 #: data.hpp:261
 #, fuzzy
@@ -1243,7 +1247,7 @@ msgstr ""
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "Ranking"
 
 #: data.hpp:292
 #, fuzzy
