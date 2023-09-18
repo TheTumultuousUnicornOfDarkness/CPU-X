@@ -56,6 +56,7 @@ static int libcpuid_init_msr(int *fd, struct msr_driver_t **msr)
 {
 	uint16_t current_core_id = 0;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	read(*fd, &current_core_id, sizeof(uint16_t)); // Core 0 on failure
 	if((*msr = cpu_msr_driver_open_core(current_core_id)) == NULL)
 	{
@@ -71,6 +72,7 @@ static int __call_libcpuid_msr_debug(int *fd)
 	uint16_t current_core_id, all_cpu_count = 0;
 	struct msr_driver_t *msr;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	MSG_STDOUT("libcpuid version %s", cpuid_lib_version());
 	read(*fd, &all_cpu_count, sizeof(uint16_t)); // CPU count 0 on failure
 	for(current_core_id = 0; current_core_id < all_cpu_count; current_core_id++)
@@ -96,6 +98,7 @@ static int __call_libcpuid_msr_static(int *fd)
 	msg.max_mult = CPU_INVALID_VALUE;
 	msg.bclk     = CPU_INVALID_VALUE;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	if(!libcpuid_init_msr(fd, &msr))
 	{
 		msg.min_mult = cpu_msrinfo(msr, INFO_MIN_MULTIPLIER);
@@ -116,6 +119,7 @@ static int __call_libcpuid_msr_dynamic(int *fd)
 	msg.voltage = CPU_INVALID_VALUE;
 	msg.temp    = CPU_INVALID_VALUE;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	if(!libcpuid_init_msr(fd, &msr))
 	{
 		msg.voltage = cpu_msrinfo(msr, INFO_VOLTAGE);
@@ -138,6 +142,7 @@ static int __call_dmidecode(int *fd)
 	msg.stick_count        = 0;
 	msg.processor.bus_freq = 0.0;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	msg.ret = dmidecode(1, &msg);
 	SEND_DATA(fd, &msg.ret,         sizeof(int));
 	SEND_DATA(fd, &msg.processor,   sizeof(DmidecodeCPUData));
@@ -156,6 +161,7 @@ static int __find_devices(int *fd)
 {
 	int ret = -1;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 #ifdef __FreeBSD__
 	std::error_code fs_code;
 	fs::permissions(DEV_PCI, fs::perms::owner_read | fs::perms::owner_write | fs::perms::group_read | fs::perms::group_write | fs::perms::others_read | fs::perms::others_write, fs::perm_options::add, fs_code); // 0666
@@ -172,6 +178,7 @@ static int __can_access_sys_debug_dri(int *fd)
 {
 	int ret = -1;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 #ifdef __linux__
 	std::error_code fs_code;
 	if(!fs::is_directory(SYS_DEBUG_DRI))
@@ -197,6 +204,7 @@ static int __load_module(int *fd)
 	ssize_t len;
 	char *module = NULL;
 
+	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	RECEIVE_DATA(fd, &len, sizeof(ssize_t));
 	module = new char[len];
 	RECEIVE_DATA(fd, module, len);
@@ -220,6 +228,7 @@ static void cleanup_thread(int fd)
 	ti.mutex.lock();
 	close(fd);
 	ti.running_threads--;
+	MSG_DEBUG("%s: fd=%i, %u clients are still alive", __func__, fd, ti.running_threads);
 	ti.mutex.unlock();
 }
 
@@ -227,6 +236,7 @@ static void request_handler(int fd)
 {
 	DaemonCommand cmd;
 
+	MSG_DEBUG("%s: fd=%i", __func__, fd);
 	while(42)
 	{
 		if(read(fd, &cmd, sizeof(DaemonCommand)) != sizeof(DaemonCommand))
@@ -261,6 +271,7 @@ static void sighandler([[maybe_unused]] int __signum)
 
 int main([[maybe_unused]] int argc, char *argv[])
 {
+	bool background = true;
 	int listen_socket, data_socket, ret, err = EXIT_SUCCESS;
 	pid_t pid;
 	std::string error_str = "unknown";
@@ -273,6 +284,13 @@ int main([[maybe_unused]] int argc, char *argv[])
 		return 1;
 	}
 
+	/* Check if daemon must run in foreground */
+	if(std::getenv("CPUX_DAEMON_BG"))
+		background = ((std::atoi(std::getenv("CPUX_DAEMON_BG"))) > 0);
+	if(std::getenv("CPUX_DAEMON_DEBUG"))
+		if((std::atoi(std::getenv("CPUX_DAEMON_DEBUG"))) > 0)
+			Logger::set_verbosity(LOG_DEBUG);
+
 	/* Pre-initialization */
 	umask(0);
 	fs::remove(SOCKET_NAME);
@@ -280,9 +298,12 @@ int main([[maybe_unused]] int argc, char *argv[])
 	std::signal(SIGTERM, sighandler);
 
 	/* Logs */
-	std::freopen(LOG_FILE, "w", stdout);
-	std::setvbuf(stdout, NULL, _IONBF, 0);
-	dup2(STDOUT_FILENO, STDERR_FILENO);
+	if(background)
+	{
+		std::freopen(LOG_FILE, "w", stdout);
+		std::setvbuf(stdout, NULL, _IONBF, 0);
+		dup2(STDOUT_FILENO, STDERR_FILENO);
+	}
 	PRGINFO(stdout);
 
 	/* Create local socket. */
@@ -292,7 +313,7 @@ int main([[maybe_unused]] int argc, char *argv[])
 	/* Bind socket to socket name. */
 	memset(&name, 0, sizeof(struct sockaddr_un));
 	name.sun_family = AF_UNIX;
-	strncpy(name.sun_path, SOCKET_NAME, sizeof(name.sun_path) - 1);
+	std::strncpy(name.sun_path, SOCKET_NAME, sizeof(name.sun_path) - 1);
 	if(bind(listen_socket, (const struct sockaddr*) &name, sizeof(struct sockaddr_un)) < 0)
 		GOTO_ERROR("bind");
 
@@ -306,17 +327,20 @@ int main([[maybe_unused]] int argc, char *argv[])
 	fds[0].events = POLLIN;
 
 	/* Fork daemon in background */
-	pid = fork();
-	if(pid > 0)
-		return 0;
-	else if(pid < 0)
-		GOTO_ERROR("fork");
+	if(background)
+	{
+		pid = fork();
+		if(pid > 0)
+			return 0;
+		else if(pid < 0)
+			GOTO_ERROR("fork");
+	}
 
 	/* This is the main loop for handling connections */
 	while(!quit_loop)
 	{
 		/* Wait for incoming connection */
-		ret = poll(fds, NFDS, POLL_TIMEOUT);
+		ret = poll(fds, NFDS, background ? POLL_TIMEOUT : -1);
 		if(ret < 0)
 			MSG_ERRNO("%s", "poll");
 		else if(ret == 0) // Timeout
@@ -327,6 +351,7 @@ int main([[maybe_unused]] int argc, char *argv[])
 				MSG_ERRNO("%s", "accept");
 			else
 			{
+				MSG_DEBUG("%s: fd=%i, %u clients", "test", data_socket, ti.running_threads + 1);
 				ti.mutex.lock();
 				std::thread thread(request_handler, data_socket);
 				thread.detach();
