@@ -13,19 +13,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-17 19:07+0200\n"
-"PO-Revision-Date: 2023-04-01 04:58+0000\n"
+"PO-Revision-Date: 2023-09-19 18:59+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -72,17 +72,17 @@ msgstr "Invocando o dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (configurado)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (max)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -176,10 +176,8 @@ msgid "Disabled"
 msgstr "Desativado"
 
 #: core.cpp:1094
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Encontrando a versão da API do Vulkan"
+msgstr "Encontrando uma versão API OpenCL"
 
 #: core.cpp:1098
 #, c-format
@@ -299,33 +297,29 @@ msgid "None"
 msgstr "Nenhum"
 
 #: core.cpp:1508
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "O caminho DRM para a GPU %u é desconhecido"
+msgstr "O caminho de DRM para %s é desconhecido"
 
 #: core.cpp:1515
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "O número da placa para a GPU %u é desconhecido"
+msgstr "Número do cartão para %s é desconhecido"
 
 #: core.cpp:1540
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (atual) / %s (max)"
 
 #: core.cpp:1648
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "O driver para a GPU %u não informa quaisquer frequências"
+msgstr "O driver para %s não informa as frequências"
 
 #: core.cpp:1666
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
+msgstr "Houve uma falha ao recuperar todos os dados de monitoramento para %s"
 
 #: core.cpp:1687
 msgid "Identifying running system"
@@ -399,10 +393,9 @@ msgid "in %u seconds"
 msgstr "em %u segundos"
 
 #: core.cpp:1946
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Iniciando o benchmark"
+msgstr "Iniciando o benchmark com %u threads"
 
 #: core.cpp:1969
 msgid "an error occurred while starting benchmark"
@@ -458,10 +451,8 @@ msgstr ""
 "houve uma falha durante a recuperação da frequência da CPU (modo fallback)"
 
 #: daemon_client.cpp:47
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "Peça pela senha para iniciar o daemon em segundo plano"
+msgstr "Iniciando o daemon em segundo plano…"
 
 #: daemon_client.cpp:82
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -510,10 +501,9 @@ msgid "Caches"
 msgstr "Caches"
 
 #: data.cpp:247
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s, %d-via(s)"
+msgstr "%2d x %4d %s, %2d-via"
 
 #: data.cpp:249
 #, c-format
@@ -522,17 +512,16 @@ msgstr "%d %s, %d-via(s)"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "Contagem"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Frequências"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "Cache L%i"
+msgstr "L%u Cache"
 
 #: data.cpp:385
 #, c-format
@@ -562,11 +551,11 @@ msgstr "Memória"
 #: data.cpp:483
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Vara %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
-msgstr ""
+msgstr "Sticks"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -581,10 +570,9 @@ msgid "Graphics"
 msgstr "Gráficos"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "Placa %i"
+msgstr "Placa %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
@@ -629,10 +617,8 @@ msgstr ""
 "a sua CPU, placa-mãe e mais."
 
 #: data.cpp:744
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "Sobre"
+msgstr "Sobre CPU-X"
 
 #: data.cpp:745
 #, c-format
@@ -665,7 +651,7 @@ msgstr "Este programa vem com ABSOLUTAMENTE NENHUMA GARANTIA"
 #: gui_gtk.cpp:60
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Não é possível encontrar caminho para o arquivo '%s'"
 
 #: gui_gtk.cpp:373
 msgid "Start daemon"
@@ -685,7 +671,7 @@ msgstr "Peça pela senha para iniciar o daemon em segundo plano"
 
 #: gui_gtk.cpp:386
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: gui_gtk.cpp:600
 msgid "BaseFamily"
@@ -711,10 +697,14 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Identifique o soquete com uma etiqueta física ou a posição da placa onde o "
+"dispositivo de memória está localizado"
 
 #: gui_gtk.cpp:814
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
+"Identifique o banco físico marcado onde o dispositivo de memória está "
+"localizado"
 
 #: gui_gtk.cpp:1015
 msgid "User Mode Driver Version"
@@ -776,10 +766,8 @@ msgstr ""
 "(valor inteiro)"
 
 #: main.cpp:72
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Defina a placa gráfica padrão (valor inteiro)"
+msgstr "Defina a memória padrão (valor inteiro)"
 
 #: main.cpp:73
 msgid "Select default graphic card (integer)"
@@ -836,6 +824,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
+"Ignorar os valores informados da CPU pela libcpuid (valores separados por "
+"vírgula entre 'temp', 'volt' e 'freq')"
 
 #: main.cpp:96
 msgid "Read CPUID raw data from a given file"
@@ -917,40 +907,31 @@ msgstr ""
 "esta CPU)"
 
 #: options.cpp:145
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
-"O tipo da CPU selecionada (%u) não é um número válido (%u é o máximo para "
-"esta CPU)"
+"O teste de largura de banda selecionado (%u) não é um número válido (%u é o "
+"máximo para esse sistema)"
 
 #: options.cpp:168
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"O tipo da CPU selecionada (%u) não é um número válido (%u é o máximo para "
-"esta CPU)"
+"A placa de RAM selecionada (%u) não é um número válido (%u é o máximo para "
+"esse sistema)"
 
 #: options.cpp:188
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-#| "type of core)"
+#, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"O núcleo da CPU selecionada (%u) não é um número válido (%u é o máximo para "
-"este tipo de núcleo)"
+"A placa gráfica selecionada (%u) não é um número válido (%u é o máximo para "
+"este sistema)"
 
 #: options.cpp:204
 #, c-format
@@ -967,14 +948,9 @@ msgstr ""
 "este tipo de núcleo)"
 
 #: options.cpp:284
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
-"O tipo da CPU selecionada (%u) não é um número válido (%u é o máximo para "
-"esta CPU)"
+msgstr "O registro selecionado (%u) não é um número válido (%u é o máximo)"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
@@ -1133,16 +1109,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr "não é possível encontrar a unidade na string '%s' na posição %i"
 
 #: util.cpp:205
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "ocorreu um erro enquanto abria o arquivo '%s' (%s)"
+msgstr "ocorreu um erro ao abrir o arquivo '%s'"
 
 #: util.cpp:243
-#, fuzzy, c-format
-#| msgid "an error occurred while running command '%s' (%s)"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "ocorreu um erro enquanto executava o comando '%s' (%s)"
+msgstr "ocorreu um erro ao executar o comando '%s'"
 
 #: util.cpp:366
 msgid "set_cpu_affinity() not supported on this operating system"
@@ -1274,37 +1248,31 @@ msgstr "Tamanho da ROM"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "Número da peça"
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type"
-msgstr "Tipo #%i"
+msgstr "Tipo"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "Tipo #%i"
+msgstr "Detalhe do tipo"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "Localizador de dispositivos"
 
 #: data.hpp:264
 msgid "Bank Locator"
-msgstr ""
+msgstr "Localizador de bancos"
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "Posição"
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "Codinome"
+msgstr "Nome"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1351,8 +1319,6 @@ msgid "Compute Unit"
 msgstr "Unidade de cálculo"
 
 #: data.hpp:337
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
 msgstr "ID do dispositivo"
 
@@ -1379,14 +1345,10 @@ msgid "Power Avg"
 msgstr "Média da alimentação"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "Frequência da memória"
+msgstr "Frequência principal"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "Frequência da memória"
 
@@ -1531,10 +1493,8 @@ msgstr "Tipo do núcleo padrão"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5945
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
-msgstr "Tipo do núcleo padrão"
+msgstr "Placa da padrão da memória"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5973
