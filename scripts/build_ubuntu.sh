@@ -38,6 +38,8 @@ esac
 echo "Install packages"
 sudo apt-get update -y -qq
 sudo apt-get install -y -qq \
+	gcc-10 \
+	g++-10 \
 	cmake \
 	ninja-build \
 	nasm \
@@ -50,7 +52,13 @@ sudo apt-get install -y -qq \
 	opencl-headers \
 	ocl-icd-libopencl1 \
 	ocl-icd-opencl-dev \
-	libprocps-dev
+	libprocps-dev \
+	dpkg-dev
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
 
 echo "Run CMake"
 cmake -S "$SRC_DIR" \
