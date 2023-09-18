@@ -141,6 +141,7 @@ static int __call_dmidecode(int *fd)
 	msg.ret                = -1;
 	msg.stick_count        = 0;
 	msg.processor.bus_freq = 0.0;
+	msg.memory             = NULL;
 
 	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 	msg.ret = dmidecode(1, &msg);

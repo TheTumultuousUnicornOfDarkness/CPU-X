@@ -5570,6 +5570,7 @@ static void dmi_decode_cpux(const struct dmi_header *h)
 				break;
 			}
 			cpux_data->memory = memory_tmp;
+			memset(&cpux_data->memory[cpux_data->stick_count], 0, sizeof(DmidecodeMemoryData));
 			strncpy(cpux_data->memory[cpux_data->stick_count].manufacturer, dmi_string(h, data[0x17]), MAXSTR);
 			strncpy(cpux_data->memory[cpux_data->stick_count].part_number, dmi_string(h, data[0x1A]), MAXSTR);
 			snprintf(cpux_data->memory[cpux_data->stick_count].type, MAXSTR, "%s %s", dmi_memory_device_form_factor(data[0x0E]), dmi_memory_device_type(data[0x12]));
