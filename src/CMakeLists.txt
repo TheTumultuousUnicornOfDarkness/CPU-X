@@ -240,16 +240,6 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DDAEMON_PATH="${DAEMON_PATH}"
 )
 
-if(APPIMAGE)
-	set(DAEMON_FLAGS "-static")
-	if(LIBCPUID_FOUND)
-		set(LIBCPUID_LIBRARIES "-l:libcpuid.a")
-	endif(LIBCPUID_FOUND)
-	if(VULKAN_FOUND)
-		add_definitions(-DVK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR=1)
-	endif(VULKAN_FOUND)
-endif(APPIMAGE)
-
 # Link libraries
 target_link_libraries(${APP_EXEC}
 	${Intl_LIBRARIES}
