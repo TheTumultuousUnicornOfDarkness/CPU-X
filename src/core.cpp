@@ -893,7 +893,6 @@ static inline const char* string_VkResult(VkResult input_value)
 }
 #endif /* HAS_Vulkan */
 
-#define COUNT_OF(x) sizeof(x) / sizeof(char *)
 static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_unused]] struct pci_dev *dev)
 {
 #if HAS_Vulkan
@@ -903,37 +902,23 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	VkResult vk_err;
 	VkInstance instance{};
 	std::vector<VkPhysicalDevice> devices;
-	const char* const ext_create_info[] =
-	{
-		VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME,
-# ifdef VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
-		VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME,
-# endif /* VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME */
-	};
 
 	MSG_VERBOSE("%s", _("Finding Vulkan API version"));
+	std::vector<const char*> ext_create_info;
+	ext_create_info.emplace_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 	VkInstanceCreateInfo createInfo{};
 	createInfo.sType                   = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pNext                   = NULL;
-# ifdef VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
-	createInfo.flags                   = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR;
-# else
 	createInfo.flags                   = 0;
-# endif /* VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR */
-	createInfo.enabledExtensionCount   = COUNT_OF(ext_create_info);
-	createInfo.ppEnabledExtensionNames = ext_create_info;
+	createInfo.enabledExtensionCount   = (uint32_t) ext_create_info.size();
+	createInfo.ppEnabledExtensionNames = ext_create_info.data();
 
 	if((vk_err = vkCreateInstance(&createInfo, NULL, &instance)) != VK_SUCCESS)
 	{
 		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), string_VkResult(vk_err));
 
 		if(vk_err == VK_ERROR_EXTENSION_NOT_PRESENT)
-		{
 			MSG_ERROR(_("%s is not supported"), VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
-# ifdef VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
-			MSG_ERROR(_("%s is not supported"), VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
-# endif /* VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME */
-		}
 
 		return 1;
 	}
@@ -970,7 +955,8 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	queue_create_info.pQueuePriorities = queue_priorities;
 
 # ifdef VK_EXT_PCI_BUS_INFO_EXTENSION_NAME
-	const char* const ext_pci_bus_info[] = { VK_EXT_PCI_BUS_INFO_EXTENSION_NAME };
+	std::vector<const char*> ext_pci_bus_info;
+	ext_pci_bus_info.emplace_back(VK_EXT_PCI_BUS_INFO_EXTENSION_NAME);
 	VkDeviceCreateInfo check_pci_bus_info{};
 	check_pci_bus_info.sType                   = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 	check_pci_bus_info.pNext                   = NULL;
@@ -979,13 +965,14 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	check_pci_bus_info.pQueueCreateInfos       = &queue_create_info;
 	check_pci_bus_info.enabledLayerCount       = 0;
 	check_pci_bus_info.ppEnabledLayerNames     = NULL;
-	check_pci_bus_info.enabledExtensionCount   = COUNT_OF(ext_pci_bus_info);
-	check_pci_bus_info.ppEnabledExtensionNames = ext_pci_bus_info;
+	check_pci_bus_info.enabledExtensionCount   = (uint32_t) ext_pci_bus_info.size();
+	check_pci_bus_info.ppEnabledExtensionNames = ext_pci_bus_info.data();
 	check_pci_bus_info.pEnabledFeatures        = NULL;
 # endif /* VK_EXT_PCI_BUS_INFO_EXTENSION_NAME */
 
 # ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
-	const char* const ext_rt[] = { VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME };
+	std::vector<const char*> ext_rt;
+	ext_rt.emplace_back(VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME);
 	VkDeviceCreateInfo check_rt{};
 	check_rt.sType                   = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 	check_rt.pNext                   = NULL;
@@ -994,8 +981,8 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	check_rt.pQueueCreateInfos       = &queue_create_info;
 	check_rt.enabledLayerCount       = 0;
 	check_rt.ppEnabledLayerNames     = NULL;
-	check_rt.enabledExtensionCount   = COUNT_OF(ext_rt);
-	check_rt.ppEnabledExtensionNames = ext_rt;
+	check_rt.enabledExtensionCount   = (uint32_t) ext_rt.size();
+	check_rt.ppEnabledExtensionNames = ext_rt.data();
 	check_rt.pEnabledFeatures        = NULL;
 # endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 	VkPhysicalDeviceMemoryProperties2 heap_info{};
@@ -1077,7 +1064,6 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 
 	return 0;
 }
-#undef COUNT_OF
 
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
