@@ -53,7 +53,9 @@ sudo apt-get install -y -qq \
 	ocl-icd-libopencl1 \
 	ocl-icd-opencl-dev \
 	libprocps-dev \
-	dpkg-dev
+	dpkg-dev \
+	gawk \
+	mawk
 
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
