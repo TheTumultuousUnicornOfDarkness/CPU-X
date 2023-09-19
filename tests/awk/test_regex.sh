@@ -4,10 +4,13 @@ TEST_DIR="$(dirname "$(realpath "$0")")"
 
 # shellcheck disable=SC1090
 source "$TEST_DIR/../common.sh"
-cd "$TEST_DIR" || exit 255
+cd "$TEST_DIR/samples" || exit 255
 
 tmp_dir="$(mktemp --tmpdir --directory CPU-X.XXXXXX)"
 for awk in gawk mawk nawk; do
+	if [[ -z "$(command -v "$awk")" ]]; then
+		continue
+	fi
 	$awk '/Sensor/ { print $5 }' aticonfig-odgt                         &> "$tmp_dir/aticonfig-odgt.$awk"
 	$awk '/GPU Load/ { print $3 }' amdgpu_pm_info                       &> "$tmp_dir/amdgpu_pm_info.$awk"
 	$awk -F '(: |Mhz)' '/\*/ { print $2 }' pp_dpm_sclk                  &> "$tmp_dir/pp_dpm_sclk.$awk"
@@ -25,13 +28,13 @@ done
 
 cd "$tmp_dir" || exit 255
 failed=0
-for file1 in *.gawk; do
-	file2=$(basename "$file1" .gawk)
-	printf "%-41s: " "$file2"
-	if diff -qu "$file1" "$file2.mawk" && diff -qu "$file1" "$file2.nawk"; then
+for res_file in *; do
+	exp_file="$TEST_DIR/results/$(basename "${res_file%.*}")"
+	printf "%-50s: " "$res_file"
+	if cmp --quiet "$exp_file" "$res_file"; then
 		success "OK"
 	else
-		error "KO" "(got '$(< "$file2.mawk")'/'$(< "$file2.nawk")', wanted $(< "$file1")"
+		error "KO" "(got '$(< "$res_file")', wanted '$(< "$exp_file")')"
 		((failed++))
 	fi
 done

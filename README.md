@@ -50,15 +50,17 @@ These dependencies are needed to **build** CPU-X:
 
 ### Test dependencies
 
-These dependencies are needed to **test** CPU-X:
+These dependencies are optional to **test** CPU-X:
 * [Grep](https://www.gnu.org/software/grep/)
-* [GNU Awk](https://www.gnu.org/software/gawk/)
-* [Mawk](https://invisible-island.net/mawk/)
-* [One true awk](https://github.com/onetrueawk/awk)
+* [GNU Awk¹](https://www.gnu.org/software/gawk/)
+* [Mawk¹](https://invisible-island.net/mawk/)
+* [One true awk¹](https://github.com/onetrueawk/awk)
+
+**¹**At least on Awk is required, e.g. the default Awk on the system.
 
 ### Build and run dependencies
 
-These dependencies are needed to **build¹** and **run** CPU-X:
+These dependencies are needed to **build²** and **run** CPU-X:
 * [Gtkmm3](https://www.gtkmm.org/en/index.html) (versions 3.12 to 3.24 are supported)  
 * [NCurses](https://www.gnu.org/software/ncurses/)  
 * [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.6.0 or newer is needed)  
@@ -68,7 +70,7 @@ These dependencies are needed to **build¹** and **run** CPU-X:
 * [OpenCL](https://www.khronos.org/opencl/) (version 1.2 or newer is needed), **disabled by default** (enable with `-DWITH_OPENCL=1` during CMake invocation)  
 * [Procps-ng](https://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](https://www.i-scream.org/libstatgrab/) (*BSD)  
 
-**¹**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
+**²**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.
 
 ## Download and install
 
