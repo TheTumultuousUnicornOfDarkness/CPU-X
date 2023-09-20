@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-17 19:07+0200\n"
-"PO-Revision-Date: 2023-04-04 14:38+0000\n"
+"PO-Revision-Date: 2023-09-21 13:45+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -29,9 +29,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.17-dev\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -82,17 +82,17 @@ msgstr "Вызов dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (настроено)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (макс.)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (мин.)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -184,10 +184,8 @@ msgid "Disabled"
 msgstr "Отключено"
 
 #: core.cpp:1094
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Определение версии API Vulkan"
+msgstr "Определяется версия API OpenCL"
 
 #: core.cpp:1098
 #, c-format
@@ -297,33 +295,29 @@ msgid "None"
 msgstr "Отсутствует"
 
 #: core.cpp:1508
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "Путь DRM для ГП %u неизвестен"
+msgstr "Путь DRM для %s неизвестен"
 
 #: core.cpp:1515
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "Номер карты для ГП %u неизвестен"
+msgstr "Номер карты для %s неизвестен"
 
 #: core.cpp:1540
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (текущее) / %s (макс.)"
 
 #: core.cpp:1648
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "Драйвер ГП %u не отдает значения частоты"
+msgstr "Драйвер %s не сообщает значения частоты"
 
 #: core.cpp:1666
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "не удалось определить все платформы OpenCL (%s)"
+msgstr "не удалось получить все данные мониторинга для %s"
 
 #: core.cpp:1687
 msgid "Identifying running system"
@@ -397,10 +391,9 @@ msgid "in %u seconds"
 msgstr "за %u с"
 
 #: core.cpp:1946
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Запуск бенчмарка"
+msgstr "Запускается бенчмарк с %u потоками"
 
 #: core.cpp:1969
 msgid "an error occurred while starting benchmark"
@@ -452,10 +445,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не удалось получить частоту ЦП (режим с откатом)"
 
 #: daemon_client.cpp:47
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "Требуется пароль для запуска службы в фоновом режиме"
+msgstr "Запускается демон в фоновом режиме…"
 
 #: daemon_client.cpp:82
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -503,10 +494,9 @@ msgid "Caches"
 msgstr "Кэши"
 
 #: data.cpp:247
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s, %d-канальный"
+msgstr "%2d x %4d %s, %2d-канальный"
 
 #: data.cpp:249
 #, c-format
@@ -515,17 +505,16 @@ msgstr "%d %s, %d-канальный"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "Число"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Частоты"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "Кэш L%i"
+msgstr "Кэш L%u"
 
 #: data.cpp:385
 #, c-format
@@ -555,11 +544,11 @@ msgstr "Оперативная память"
 #: data.cpp:483
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Планка %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
-msgstr ""
+msgstr "Планки"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -574,10 +563,9 @@ msgid "Graphics"
 msgstr "Графика"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "Карта %i"
+msgstr "Карта %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
@@ -622,10 +610,8 @@ msgstr ""
 "сведений о процессоре, видеокарте и многом другом."
 
 #: data.cpp:744
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "О программе"
+msgstr "О программе CPU-X"
 
 #: data.cpp:745
 #, c-format
@@ -658,7 +644,7 @@ msgstr "Данное программное обеспечение предос�
 #: gui_gtk.cpp:60
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Не удаётся найти путь для файла «%s»"
 
 #: gui_gtk.cpp:373
 msgid "Start daemon"
@@ -678,7 +664,7 @@ msgstr "Требуется пароль для запуска службы в ф
 
 #: gui_gtk.cpp:386
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: gui_gtk.cpp:600
 msgid "BaseFamily"
@@ -705,10 +691,12 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Определить физически помеченное положение сокета или платы, где находится "
+"устройство памяти"
 
 #: gui_gtk.cpp:814
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
+msgstr "Определить физически обозначенный банк, где находится устройство памяти"
 
 #: gui_gtk.cpp:1015
 msgid "User Mode Driver Version"
@@ -768,10 +756,8 @@ msgstr ""
 "Установить тест пропускной способности для скорости кэша ЦП (целое число)"
 
 #: main.cpp:72
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Выбрать графическую карту по умолчанию (целое число)"
+msgstr "Выбрать планку памяти по умолчанию (целое число)"
 
 #: main.cpp:73
 msgid "Select default graphic card (integer)"
