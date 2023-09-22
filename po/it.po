@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-17 19:07+0200\n"
-"PO-Revision-Date: 2023-09-19 18:59+0000\n"
+"PO-Revision-Date: 2023-09-24 10:16+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: core.cpp:135
 msgid "Finding CPU technology"
-msgstr "Ricerca specifiche della CPU"
+msgstr "Ricerca del tipo di CPU"
 
 #: core.cpp:161
 #, c-format
@@ -498,8 +498,9 @@ msgid "%d %s, %d-way"
 msgstr "%d %s, %d vie"
 
 #: data.cpp:263
+#, fuzzy
 msgid "Count"
-msgstr ""
+msgstr "Contatore"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
@@ -536,13 +537,14 @@ msgid "Memory"
 msgstr "Memoria"
 
 #: data.cpp:483
-#, c-format
+#, c-format, fuzzy
 msgid "Stick %u"
-msgstr ""
+msgstr "Modulo %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+#, fuzzy
 msgid "Sticks"
-msgstr ""
+msgstr "Moduli"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -686,7 +688,7 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
-"Identifica il socket o la posizione fisica sulla scheda in cui si trova il "
+"Identifica il socket o la posizione fisica sulla scheda dove si trova il "
 "dispositivo di memoria"
 
 #: gui_gtk.cpp:814
