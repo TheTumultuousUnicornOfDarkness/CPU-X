@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-17 19:07+0200\n"
-"PO-Revision-Date: 2023-09-21 13:45+0000\n"
+"PO-Revision-Date: 2023-09-24 10:16+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: core.cpp:135
 msgid "Finding CPU technology"
-msgstr "Определение технологии ЦП"
+msgstr "Определяется технология ЦП"
 
 #: core.cpp:161
 #, c-format
@@ -52,7 +52,7 @@ msgstr "неизвестно"
 
 #: core.cpp:230
 msgid "Calling libcpuid for retrieving static data"
-msgstr "Вызов libcpuid для получения статических данных"
+msgstr "Вызывается libcpuid для получения статических данных"
 
 #: core.cpp:245
 #, c-format
@@ -61,23 +61,23 @@ msgstr "не удалось вызвать libcpuid (%s)"
 
 #: core.cpp:340
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Вызов libcpuid для получения динамических данных"
+msgstr "Вызывается libcpuid для получения динамических данных"
 
 #: core.cpp:353
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
-"Вызов libcpuid для получения статических значений моделезависимых регистров "
-"ЦП"
+"Вызывается libcpuid для получения статических значений моделезависимых "
+"регистров ЦП"
 
 #: core.cpp:380
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
-"Вызов libcpuid для получения динамических значений моделезависимых регистров "
-"ЦП"
+"Вызывается libcpuid для получения динамических значений моделезависимых "
+"регистров ЦП"
 
 #: core.cpp:412
 msgid "Calling dmidecode"
-msgstr "Вызов dmidecode"
+msgstr "Вызывается dmidecode"
 
 #: core.cpp:454 core.cpp:473
 #, c-format
@@ -816,6 +816,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
+"Игнорировать значения процессора, сообщённые libcpuid (значения, разделённые "
+"запятыми, среди «temp», «volt» и «freq»)"
 
 #: main.cpp:96
 msgid "Read CPUID raw data from a given file"
@@ -896,40 +898,31 @@ msgstr ""
 "ЦП)"
 
 #: options.cpp:145
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
-"Выбранный тип ЦП (%u) не является допустимым числом (%u — максимум для этого "
-"ЦП)"
+"Выбранная проверка пропускной способности (%u) не является допустимым числом "
+"(%u — максимум для этой системы)"
 
 #: options.cpp:168
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Выбранный тип ЦП (%u) не является допустимым числом (%u — максимум для этого "
-"ЦП)"
+"Выбранная планка оперативной памяти (%u) не является допустимым числом (%u — "
+"максимум для этой системы)"
 
 #: options.cpp:188
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-#| "type of core)"
+#, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Выбранное ядро ЦП (%u) не является допустимым числом (%u — максимум для "
-"этого типа ядра)"
+"Выбранная графическая карта (%u) не является допустимым числом (%u — "
+"максимум для этой системы)"
 
 #: options.cpp:204
 #, c-format
@@ -946,14 +939,9 @@ msgstr ""
 "этого типа ядра)"
 
 #: options.cpp:284
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
-"Выбранный тип ЦП (%u) не является допустимым числом (%u — максимум для этого "
-"ЦП)"
+msgstr "Выбранная вкладка (%u) не является допустимым числом (%u — максимум)"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
@@ -1104,16 +1092,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr "не удается найти элемент в строке «%s» на позиции %i"
 
 #: util.cpp:205
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "ошибка при открытии файла «%s» (%s)"
+msgstr "ошибка при открытии файла «%s»"
 
 #: util.cpp:243
-#, fuzzy, c-format
-#| msgid "an error occurred while running command '%s' (%s)"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "ошибка при выполнении команды «%s» (%s)"
+msgstr "ошибка при выполнении команды «%s»"
 
 #: util.cpp:366
 msgid "set_cpu_affinity() not supported on this operating system"
@@ -1245,37 +1231,31 @@ msgstr "Размер ROM"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "Номер части"
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type"
-msgstr "Тип #%i"
+msgstr "Тип"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "Тип #%i"
+msgstr "Деталь типа"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "Локатор устройства"
 
 #: data.hpp:264
 msgid "Bank Locator"
-msgstr ""
+msgstr "Локатор банка"
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "Ранг"
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "Кодовое название"
+msgstr "Название"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1322,8 +1302,6 @@ msgid "Compute Unit"
 msgstr "Вычислительный узел"
 
 #: data.hpp:337
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
 msgstr "ИД устройства"
 
@@ -1350,14 +1328,10 @@ msgid "Power Avg"
 msgstr "Сред. напряжение"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "Частота памяти"
+msgstr "Частота ядра"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "Частота памяти"
 
@@ -1502,10 +1476,8 @@ msgstr "Тип ядра по умолчанию"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5945
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
-msgstr "Тип ядра по умолчанию"
+msgstr "Карта памяти по умолчанию"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5973
