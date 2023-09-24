@@ -352,7 +352,7 @@ int main([[maybe_unused]] int argc, char *argv[])
 				MSG_ERRNO("%s", "accept");
 			else
 			{
-				MSG_DEBUG("%s: fd=%i, %u clients", "test", data_socket, ti.running_threads + 1);
+				MSG_DEBUG("%s: fd=%i, %u clients", __func__, data_socket, ti.running_threads + 1);
 				ti.mutex.lock();
 				std::thread thread(request_handler, data_socket);
 				thread.detach();
