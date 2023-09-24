@@ -141,7 +141,7 @@ void string_trim(std::string &str)
 	string_ltrim(str);
 }
 
-#define TOKEN_LEN 4
+#define TOKEN_LEN 6
 /* Duplicate a string and set unit */
 std::string string_set_unit(char *str_src)
 {
@@ -159,15 +159,15 @@ std::string string_set_unit(char *str_src)
 		{
 			/* Set unit in destination string */
 			if(!strncmp(&str_src[i], "@0B@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN,"%s", UNIT_B);
+				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_B);
 			else if(!strncmp(&str_src[i], "@KB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN,"%s", UNIT_KB);
+				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_KB);
 			else if(!strncmp(&str_src[i], "@MB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN,"%s", UNIT_MB);
+				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_MB);
 			else if(!strncmp(&str_src[i], "@GB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN,"%s", UNIT_GB);
+				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_GB);
 			else if(!strncmp(&str_src[i], "@TB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN,"%s", UNIT_TB);
+				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_TB);
 			else
 				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str_src, i);
 			str_dst += buff;
