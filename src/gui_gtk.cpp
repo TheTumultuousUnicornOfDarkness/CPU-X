@@ -991,6 +991,9 @@ bool GtkData::draw_bar_memory_swap(const Cairo::RefPtr<Cairo::Context> &cr)
 
 bool GtkData::draw_bar_memory(const Cairo::RefPtr<Cairo::Context> &cr, Gtk::DrawingArea *area, Gtk::Label *label, double before, double percent)
 {
+	if(std::isnan(percent))
+		return false;
+
 	auto newlayout    = label->get_layout()->copy();
 	const auto width  = area->get_allocated_width();
 	const auto height = area->get_allocated_height();
