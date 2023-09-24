@@ -14,7 +14,7 @@ if [[ "$(git show -s --format='%ce' "$SHA")" == "hosted@weblate.org" ]]; then
 fi
 
 for file in $(git show --pretty="" --name-only "$SHA"); do
-	if [[ "$file" == *.c ]] || [[ "$file" == *.h ]]; then
+	if [[ "$file" =~ \.(c|h|cpp|hpp|ui)$ ]]; then
 		if git show "$SHA" "$file" | grep -E '^(\+|\-)' | grep -E -qw '_\(|N_\('; then
 			git show "$SHA" "$file" > /dev/stderr
 			echo "REGEN"
