@@ -530,7 +530,7 @@ int run_bandwidth(void)
 }
 
 /* Compute CPU cache speed */
-static int call_bandwidth(Data &data)
+static int call_bandwidth([[maybe_unused]] Data &data)
 {
 	int err = 0;
 #if HAS_LIBCPUID

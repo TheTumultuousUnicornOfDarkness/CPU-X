@@ -131,7 +131,7 @@ uint8_t Options::get_selected_type()
 	return Options::selected_type;
 }
 
-bool Options::set_selected_test(uint8_t selected_test)
+bool Options::set_selected_test([[maybe_unused]] uint8_t selected_test)
 {
 #if HAS_BANDWIDTH
 	if(selected_test < BANDWIDTH_LAST_TEST)
