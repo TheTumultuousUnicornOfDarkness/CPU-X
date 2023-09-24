@@ -33,7 +33,7 @@ while IFS= read -r -d '' file; do
 
 	# Run with CPU-X and display test status
 	printf "Test file ${CB}%-32s${CR}: " "$(basename "$file")"
-	if output=$(LC_ALL=C CPUX_CPUID_RAW="$tmp_file" CPUX_DEBUG_DATABASE=1 cpu-x --dump --nocolor); then
+	if output=$(LC_ALL=C CPUX_CPUID_RAW="$tmp_file" CPUX_DEBUG_DATABASE=1 cpu-x --dump --nocolor 2> /dev/null); then
 		echo -en "${CBG}OK${CR}\n"
 	else
 		echo -en "${CBR}${output#*"==> "}${CR}\n"
