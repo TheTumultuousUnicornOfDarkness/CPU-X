@@ -17,10 +17,8 @@ BUILD_TYPE="$1"
 SRC_DIR="$2"
 if [[ $# -ge 3 ]]; then
 	DST_DIR="$3"
-	APPIMAGE=1
 else
 	DST_DIR=""
-	APPIMAGE=0
 fi
 
 case "$VERSION_ID" in
@@ -68,8 +66,7 @@ cmake -S "$SRC_DIR" \
 	-GNinja \
 	-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
 	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_INSTALL_LIBEXECDIR=/usr/bin \
-	-DAPPIMAGE=$APPIMAGE
+	-DCMAKE_INSTALL_LIBEXECDIR=/usr/bin
 
 echo "Build CPU-X"
 cmake --build build
