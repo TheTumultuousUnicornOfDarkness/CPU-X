@@ -459,6 +459,8 @@ static void draw_bar(WINDOW *win, int line, Pairs::Colors pair, bool start_left,
 
 	before    = start_left ? 0 : before;
 	percent   = used / total;
+	if(std::isnan(percent))
+		return;
 	bar_count = int(std::round(percent * (size - 1)));
 	if(0.0 < percent && bar_count < 1)
 	{
