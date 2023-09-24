@@ -16,9 +16,13 @@ fi
 BUILD_TYPE="$1"
 SRC_DIR="$2"
 if [[ $# -ge 3 ]]; then
+	# AppImage build
 	DST_DIR="$3"
+	CMAKE_EXTRA_OPTIONS=""
 else
+	# Standard build
 	DST_DIR=""
+	CMAKE_EXTRA_OPTIONS="-DWITH_OPENCL=1"
 fi
 
 case "$VERSION_ID" in
@@ -66,7 +70,8 @@ cmake -S "$SRC_DIR" \
 	-GNinja \
 	-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
 	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_INSTALL_LIBEXECDIR=/usr/bin
+	-DCMAKE_INSTALL_LIBEXECDIR=/usr/bin \
+	$CMAKE_EXTRA_OPTIONS
 
 echo "Build CPU-X"
 cmake --build build
