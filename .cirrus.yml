@@ -2,17 +2,17 @@ task:
   name: FreeBSD
   freebsd_instance: # https://cirrus-ci.org/guide/FreeBSD/#list-of-available-image-families
     matrix:
-      image_family: freebsd-12-3-snap
-      image_family: freebsd-13-0-snap
+      image_family: freebsd-12-3
+      image_family: freebsd-13-2
   env:
     IGNORE_OSVERSION: yes # supress package installation error on FreeBSD-13
 
   install_script:
     - pkg update -f
-    - pkg install -y cmake ninja pkgconf gettext nasm ncurses libcpuid pciutils glfw opencl ocl-icd libstatgrab
+    - pkg install -y cmake ninja pkgconf gettext nasm gtkmm30 ncurses libcpuid pciutils glfw opencl ocl-icd vulkan-loader vulkan-headers libstatgrab
 
   build_script:
-    - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GTK=0
+    - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_OPENCL=1
     - cmake --build build
     - cmake --install build
 
