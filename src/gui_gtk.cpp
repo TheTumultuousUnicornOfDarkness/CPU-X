@@ -25,6 +25,7 @@
 #include <gtkmm.h>
 #include <gtkmm/messagedialog.h>
 #include <giomm/settings.h>
+#include <sys/wait.h>
 #include <iostream>
 #include "options.hpp"
 #include "util.hpp"
