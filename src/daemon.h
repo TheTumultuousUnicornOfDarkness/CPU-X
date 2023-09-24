@@ -24,12 +24,7 @@
 #ifndef _DAEMON_H_
 #define _DAEMON_H_
 
-#ifdef __linux__
-# define SOCKET_NAME "/run/cpu-x.sock"
-#else /* __linux__ */
-# define SOCKET_NAME "/var/run/cpu-x.sock"
-#endif /* __linux__ */
-#define DAEMON_UP   (data.socket_fd >= 0)
+#define DAEMON_UP (data.socket_fd >= 0)
 
 #ifndef MAXSTR
 # define MAXSTR 80 /* Max string */

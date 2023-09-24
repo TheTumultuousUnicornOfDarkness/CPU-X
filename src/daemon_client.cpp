@@ -122,6 +122,7 @@ int connect_to_daemon(int &socket_fd)
 	std::string error_str;
 	struct sockaddr_un addr;
 
+	MSG_VERBOSE("%s", _("Connecting to daemon…"));
 	/* Create local socket */
 	if((socket_fd = socket(AF_UNIX, SOCK_SEQPACKET, 0)) < 0)
 		GOTO_ERROR("socket");
@@ -129,6 +130,7 @@ int connect_to_daemon(int &socket_fd)
 	/* Connect socket to socket address */
 	memset(&addr, 0, sizeof(struct sockaddr_un));
 	addr.sun_family = AF_UNIX;
+	MSG_DEBUG("connect_to_daemon: socket_path=%s", SOCKET_NAME);
 	strncpy(addr.sun_path, SOCKET_NAME, sizeof(addr.sun_path) - 1);
 	if(connect(socket_fd, (const struct sockaddr*) &addr, sizeof(struct sockaddr_un)) < 0)
 		GOTO_ERROR("connect");
