@@ -85,6 +85,7 @@ const Technology_DB technology_intel[] =
 	{ 12,          44,          -1,          "32 nm" }, // Westmere
 	{ 12,          60,          -1,          "22 nm" }, // Haswell
 	{ 12,          76,          -1,          "14 nm" }, // Atom Cherry Trail
+	{ 12,          92,          -1,          "14 nm" }, // Apollo Lake
 	{ 12,         108,          -1,          "10 nm" }, // Ice Lake
 	{ 12,         140,          -1,           "10SF" }, // Tiger Lake
 	{ 12,         156,          -1,          "10 nm" }, // Tremont (Jasper Lake)
