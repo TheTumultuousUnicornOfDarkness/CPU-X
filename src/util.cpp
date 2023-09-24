@@ -141,33 +141,33 @@ void string_trim(std::string &str)
 	string_ltrim(str);
 }
 
-#define TOKEN_LEN 6
+#define TOKEN_LEN 4
 /* Duplicate a string and set unit */
 std::string string_set_unit(char *str_src)
 {
 	if(str_src == NULL)
 		return "";
 
-	ssize_t i = 0, written;
+	ssize_t i = 0;
 	const ssize_t len = std::strlen(str_src);
-	char buff[TOKEN_LEN];
 	std::string str_dst = "";
 
 	while(i < len)
 	{
 		if((str_src[i] == '@') && (i + TOKEN_LEN - 1 < len) && (str_src[i + TOKEN_LEN - 1] == '@'))
 		{
+			std::string buff = "";
 			/* Set unit in destination string */
 			if(!strncmp(&str_src[i], "@0B@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_B);
+				buff = UNIT_B;
 			else if(!strncmp(&str_src[i], "@KB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_KB);
+				buff = UNIT_KB;
 			else if(!strncmp(&str_src[i], "@MB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_MB);
+				buff = UNIT_MB;
 			else if(!strncmp(&str_src[i], "@GB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_GB);
+				buff = UNIT_GB;
 			else if(!strncmp(&str_src[i], "@TB@", TOKEN_LEN))
-				written = snprintf(buff, TOKEN_LEN, "%s", UNIT_TB);
+				buff = UNIT_TB;
 			else
 				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str_src, i);
 			str_dst += buff;
@@ -176,9 +176,7 @@ std::string string_set_unit(char *str_src)
 		else
 		{
 			/* Copy one character */
-			str_dst += str_src[i];
-			written  = 1;
-			i       += written;
+			str_dst += str_src[i++];
 		}
 	}
 
