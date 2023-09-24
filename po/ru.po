@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2023-09-17 19:07+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-09-24 12:16+0200\n"
 "PO-Revision-Date: 2023-09-24 10:16+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -29,8 +29,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 5.1-dev\n"
 
 #: core.cpp:135
@@ -135,122 +135,122 @@ msgstr "Неизвестный драйвер пользовательского
 msgid "failed to call GLFW (%i): %s"
 msgstr "не удалось вызвать GLFW (%i): %s"
 
-#: core.cpp:914
+#: core.cpp:906
 msgid "Finding Vulkan API version"
 msgstr "Определение версии API Vulkan"
 
-#: core.cpp:928
+#: core.cpp:918
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "не удалось вызвать vkCreateInstance (%s)"
 
-#: core.cpp:932 core.cpp:934
+#: core.cpp:921
 #, c-format
 msgid "%s is not supported"
 msgstr "%s не поддерживается"
 
-#: core.cpp:944
+#: core.cpp:929
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "не удалось вызвать vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:951
+#: core.cpp:936
 msgid "No available Vulkan devices"
 msgstr "Нет доступных устройств Vulkan"
 
-#: core.cpp:959
+#: core.cpp:944
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Нет доступных физических устройств (%s)"
 
-#: core.cpp:1020
+#: core.cpp:1007
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Не удалось создать Vulkan для устройства %u (%s)"
 
-#: core.cpp:1024
+#: core.cpp:1011
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s не поддерживается для устройства %u, используйте только идентификатор "
 "устройства для соответствия"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Enabled"
 msgstr "Включено"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Disabled"
 msgstr "Отключено"
 
-#: core.cpp:1094
+#: core.cpp:1080
 msgid "Finding OpenCL API version"
 msgstr "Определяется версия API OpenCL"
 
-#: core.cpp:1098
+#: core.cpp:1084
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Нет платформы с поддержкой OpenCL (%s)"
 
-#: core.cpp:1108
+#: core.cpp:1094
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "не удалось определить все платформы OpenCL (%s)"
 
-#: core.cpp:1121
+#: core.cpp:1107
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "не удалось определить название платформы %u (%s)"
 
-#: core.cpp:1129
+#: core.cpp:1115
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "не удалось определить версию платформы %u (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "не удалось определить число устройств OpenCL платформы «%s %s» (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 msgid "0 device"
 msgstr "0 устройство"
 
-#: core.cpp:1146
+#: core.cpp:1132
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "не удалось определить все устройства OpenCL платформы «%s %s» (%s)"
 
-#: core.cpp:1166
+#: core.cpp:1152
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "не удалось определить имя устройства %u (%s)"
 
-#: core.cpp:1174
+#: core.cpp:1160
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "не удалось определить версию устройства %u (%s)"
 
-#: core.cpp:1196
+#: core.cpp:1182
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Драйвер OpenCL для «%s %s» не поддерживает CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1207
+#: core.cpp:1193
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "Драйвер OpenCL для «%s %s» не поддерживает CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1215 core.cpp:1235 core.cpp:1268
+#: core.cpp:1201 core.cpp:1221 core.cpp:1254
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Драйвер OpenCL для «%s %s» не поддерживает CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1256
+#: core.cpp:1242
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -259,188 +259,188 @@ msgstr ""
 "Драйвер OpenCL для «%s %s» не поддерживает CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) или CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1279
+#: core.cpp:1265
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL не поддерживается вашим производителем ГП (0x%X)"
 
-#: core.cpp:1301
+#: core.cpp:1287
 msgid "Finding devices"
 msgstr "Поиск устройств"
 
-#: core.cpp:1313
+#: core.cpp:1299
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Пропустить поиск устройств (некорректные права на устройстве %s)"
 
-#: core.cpp:1356
+#: core.cpp:1342
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Неизвестный производитель ГП: %s (0x%X)"
 
-#: core.cpp:1376
+#: core.cpp:1362
 msgid "failed to find chipset vendor and model"
 msgstr "не удалось определить производителя и модель чипсета"
 
-#: core.cpp:1378
+#: core.cpp:1364
 msgid "failed to find graphic card vendor and model"
 msgstr "не удалось определить производителя и модель видеокарты"
 
-#: core.cpp:1486
+#: core.cpp:1472
 msgid "Retrieving GPU clocks"
 msgstr "Получение частоты ГП"
 
-#: core.cpp:1499
+#: core.cpp:1485
 msgid "None"
 msgstr "Отсутствует"
 
-#: core.cpp:1508
+#: core.cpp:1494
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "Путь DRM для %s неизвестен"
 
-#: core.cpp:1515
+#: core.cpp:1501
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "Номер карты для %s неизвестен"
 
-#: core.cpp:1540
+#: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (текущее) / %s (макс.)"
 
-#: core.cpp:1648
+#: core.cpp:1634
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Драйвер %s не сообщает значения частоты"
 
-#: core.cpp:1666
+#: core.cpp:1652
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "не удалось получить все данные мониторинга для %s"
 
-#: core.cpp:1687
+#: core.cpp:1673
 msgid "Identifying running system"
 msgstr "Определение запущенной системы"
 
-#: core.cpp:1690
+#: core.cpp:1676
 msgid "failed to identify running system"
 msgstr "не удалось определить запущенную систему"
 
-#: core.cpp:1742 core.cpp:1771
+#: core.cpp:1728 core.cpp:1757
 msgid "Calling libprocps"
 msgstr "Вызов libprocps"
 
-#: core.cpp:1745
+#: core.cpp:1731
 msgid "unable to get system uptime"
 msgstr "не удаётся получить время работы системы"
 
-#: core.cpp:1751
+#: core.cpp:1737
 msgid "unable to create meminfo structure"
 msgstr "не удаётся создать структуру meminfo"
 
-#: core.cpp:1797
+#: core.cpp:1783
 msgid "Calling libstatgrab"
 msgstr "Вызов libstatgrab"
 
-#: core.cpp:1845
+#: core.cpp:1831
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i дн., %i ч, %i м, %i с"
 
-#: core.cpp:1908
+#: core.cpp:1894
 msgid "Updating benchmark status"
 msgstr "Обновление состояния бенчмарка"
 
-#: core.cpp:1911
+#: core.cpp:1897
 msgid "Active"
 msgstr "Активен"
 
-#: core.cpp:1914
+#: core.cpp:1900
 #, c-format
 msgid "(%u hours left)"
 msgstr "(осталось %u часов)"
 
-#: core.cpp:1916
+#: core.cpp:1902
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(осталось %u м)"
 
-#: core.cpp:1918
+#: core.cpp:1904
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(осталось %u с)"
 
-#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+#: core.cpp:1908 core.cpp:1963 core.cpp:1964
 msgid "Inactive"
 msgstr "Неактивен"
 
-#: core.cpp:1925
+#: core.cpp:1911
 #, c-format
 msgid "in %u hours"
 msgstr "за %u часов"
 
-#: core.cpp:1927
+#: core.cpp:1913
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u м"
 
-#: core.cpp:1929
+#: core.cpp:1915
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u с"
 
-#: core.cpp:1946
+#: core.cpp:1932
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "Запускается бенчмарк с %u потоками"
 
-#: core.cpp:1969
+#: core.cpp:1955
 msgid "an error occurred while starting benchmark"
 msgstr "ошибка при запуске бенчмарка"
 
-#: core.cpp:1995
+#: core.cpp:1981
 msgid "Finding CPU package in fallback mode"
 msgstr "Поиск корпусировки ЦП в режиме с откатом"
 
-#: core.cpp:2025
+#: core.cpp:2011
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ваш сокет ЦП отсутствует в базе данных ==> %s, кодовое название: %s"
 
-#: core.cpp:2045
+#: core.cpp:2031
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Подсчёт множителей ЦП в режиме c откатом"
 
-#: core.cpp:2065
+#: core.cpp:2051
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Получение информации о материнской плате в режиме с откатом"
 
-#: core.cpp:2078
+#: core.cpp:2064
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не удалось получить информацию о материнской плате (режим с откатом)"
 
-#: core.cpp:2120
+#: core.cpp:2106
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Получение температуры ЦП в режиме с откатом"
 
-#: core.cpp:2166
+#: core.cpp:2152
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не удалось получить температуру ЦП (режим с откатом)"
 
-#: core.cpp:2181
+#: core.cpp:2167
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Получение напряжения ЦП в режиме с откатом"
 
-#: core.cpp:2193
+#: core.cpp:2179
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не удалось получить напряжение ЦП (режим с откатом)"
 
-#: core.cpp:2207
+#: core.cpp:2193
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Получение частоты ЦП в режиме с откатом"
 
-#: core.cpp:2213
+#: core.cpp:2199
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не удалось получить частоту ЦП (режим с откатом)"
 
@@ -448,23 +448,29 @@ msgstr "не удалось получить частоту ЦП (режим с 
 msgid "Starting daemon in background…"
 msgstr "Запускается демон в фоновом режиме…"
 
-#: daemon_client.cpp:82
+#: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr "pkexec: не удаётся получить авторизацию (диалог отключён)"
 
-#: daemon_client.cpp:85
+#: daemon_client.cpp:89
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec: не удается получить авторизацию (нет авторизации)"
 
-#: daemon_client.cpp:88
+#: daemon_client.cpp:92
 msgid "pkexec: command not found"
 msgstr "pkexec: команда не найдена"
 
-#: daemon_client.cpp:91
+#: daemon_client.cpp:95
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: непредвиденный код ошибки"
 
-#: daemon_server.cpp:250
+#: daemon_client.cpp:125
+#, fuzzy
+#| msgid "Connected to daemon"
+msgid "Connecting to daemon…"
+msgstr "Подключение к службе"
+
+#: daemon_server.cpp:261
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: %i не обрабатывается"
@@ -641,52 +647,52 @@ msgstr "Данное программное обеспечение распро�
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Данное программное обеспечение предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
 
-#: gui_gtk.cpp:60
+#: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Не удаётся найти путь для файла «%s»"
 
-#: gui_gtk.cpp:373
+#: gui_gtk.cpp:399
 msgid "Start daemon"
 msgstr "Запустить службу"
 
-#: gui_gtk.cpp:376
+#: gui_gtk.cpp:402
 msgid "Connected to daemon"
 msgstr "Подключение к службе"
 
-#: gui_gtk.cpp:378
+#: gui_gtk.cpp:404
 msgid "No polkit authentication agent found"
 msgstr "Агент аутентификации polkit не найден"
 
-#: gui_gtk.cpp:382
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "Требуется пароль для запуска службы в фоновом режиме"
 
-#: gui_gtk.cpp:386
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr "Настройки"
 
-#: gui_gtk.cpp:600
+#: gui_gtk.cpp:626
 msgid "BaseFamily"
 msgstr "Базовое семейство"
 
-#: gui_gtk.cpp:601
+#: gui_gtk.cpp:627
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Отображаемое («истинное») семейство ЦП (вычисляется как расширенное "
 "семейство + базовое семейство)"
 
-#: gui_gtk.cpp:602
+#: gui_gtk.cpp:628
 msgid "BaseModel"
 msgstr "Базовая модель"
 
-#: gui_gtk.cpp:603
+#: gui_gtk.cpp:629
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Отображаемая («истинная») модель ЦП (вычисляется как (расширенная модель << "
 "4) + базовая модель)"
 
-#: gui_gtk.cpp:813
+#: gui_gtk.cpp:839
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -694,23 +700,24 @@ msgstr ""
 "Определить физически помеченное положение сокета или платы, где находится "
 "устройство памяти"
 
-#: gui_gtk.cpp:814
+#: gui_gtk.cpp:840
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr "Определить физически обозначенный банк, где находится устройство памяти"
+msgstr ""
+"Определить физически обозначенный банк, где находится устройство памяти"
 
-#: gui_gtk.cpp:1015
+#: gui_gtk.cpp:1044
 msgid "User Mode Driver Version"
 msgstr "Версия драйвера пользовательского режима"
 
-#: gui_gtk.cpp:1029
+#: gui_gtk.cpp:1058
 msgid "Vulkan Ray Tracing"
 msgstr "Трассировка лучей Vulkan"
 
-#: gui_gtk.cpp:1222
+#: gui_gtk.cpp:1251
 msgid "Starting GTK GUI…"
 msgstr "Запуск оболочки GTK…"
 
-#: gui_gtk.cpp:1234
+#: gui_gtk.cpp:1263
 msgid "failed to import UI in GtkBuilder"
 msgstr "не удалось импортировать интерфейс в GtkBuilder"
 
@@ -1069,11 +1076,11 @@ msgstr "Нажмите клавишу «Вверх» для перехода к 
 msgid "Press any key to exit this help."
 msgstr "Нажмите любую клавишу для выхода из справки."
 
-#: tui_ncurses.cpp:638
+#: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
 msgstr "Запуск текстового интерфейса NCurses…"
 
-#: tui_ncurses.cpp:647
+#: tui_ncurses.cpp:649
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1081,7 +1088,7 @@ msgstr ""
 "КРИТИЧЕСКАЯ ОШИБКА: база данных terminfo не найдена (попробуйте установить "
 "переменную окружения TERMINFO)"
 
-#: tui_ncurses.cpp:652
+#: tui_ncurses.cpp:654
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Ошибка установки %s (err=%i); откат к %s"
@@ -1091,17 +1098,17 @@ msgstr "Ошибка установки %s (err=%i); откат к %s"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "не удается найти элемент в строке «%s» на позиции %i"
 
-#: util.cpp:205
+#: util.cpp:203
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "ошибка при открытии файла «%s»"
 
-#: util.cpp:243
+#: util.cpp:241
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "ошибка при выполнении команды «%s»"
 
-#: util.cpp:366
+#: util.cpp:364
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() не поддерживается в этой операционной системе"
 

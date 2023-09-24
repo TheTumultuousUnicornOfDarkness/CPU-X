@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2023-09-17 19:07+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-09-24 12:16+0200\n"
 "PO-Revision-Date: 2023-09-24 10:16+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
@@ -126,113 +126,113 @@ msgstr "Le pilote utilisateur de votre carte-graphique est inconnu : %s"
 msgid "failed to call GLFW (%i): %s"
 msgstr "échec lors de l'appel de GLFW (%i) : %s"
 
-#: core.cpp:914
+#: core.cpp:906
 msgid "Finding Vulkan API version"
 msgstr "Recherche de la version de l'API Vulkan"
 
-#: core.cpp:928
+#: core.cpp:918
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "échec lors de l'appel de vkCreateInstance (%s)"
 
-#: core.cpp:932 core.cpp:934
+#: core.cpp:921
 #, c-format
 msgid "%s is not supported"
 msgstr "%s n'est pas supporté"
 
-#: core.cpp:944
+#: core.cpp:929
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "échec lors de l'appel de vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:951
+#: core.cpp:936
 msgid "No available Vulkan devices"
 msgstr "Aucun périphérique compatible Vulkan disponible"
 
-#: core.cpp:959
+#: core.cpp:944
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Aucun périphérique physique disponible (%s)"
 
-#: core.cpp:1020
+#: core.cpp:1007
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "échec lors de création du périphérique Vulkan %u (%s)"
 
-#: core.cpp:1024
+#: core.cpp:1011
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s n'est pas supporté pour le périphérique %u, utilise uniquement "
 "l'identifiant de périphérique pour la correspondance"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Enabled"
 msgstr "Activé"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: core.cpp:1094
+#: core.cpp:1080
 msgid "Finding OpenCL API version"
 msgstr "Recherche de la version de l'API OpenCL"
 
-#: core.cpp:1098
+#: core.cpp:1084
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Il n'y a pas de plateforme prenant en charge OpenCL (%s)"
 
-#: core.cpp:1108
+#: core.cpp:1094
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "impossible d'obtenir toutes les plateformes OpenCL (%s)"
 
-#: core.cpp:1121
+#: core.cpp:1107
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "impossible d'obtenir le nom de la plateforme %u (%s)"
 
-#: core.cpp:1129
+#: core.cpp:1115
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "impossible d'obtenir la version pour la plate-forme %u (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "impossible de déterminer le nombre de périphériques OpenCL pour la "
 "plateforme « %s %s » (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 msgid "0 device"
 msgstr "0 périphérique"
 
-#: core.cpp:1146
+#: core.cpp:1132
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "impossible d’obtenir tous les périphériques OpenCL pour la plateforme « %s "
 "%s » (%s)"
 
-#: core.cpp:1166
+#: core.cpp:1152
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "impossible d’obtenir le nom pour le périphérique %u (%s)"
 
-#: core.cpp:1174
+#: core.cpp:1160
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "impossible d’obtenir la version pour le périphérique %u (%s)"
 
-#: core.cpp:1196
+#: core.cpp:1182
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Le pilote OpenCL pour « %s %s » n’implémente pas CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1207
+#: core.cpp:1193
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -240,7 +240,7 @@ msgstr ""
 "Le pilote OpenCL pour « %s %s » n’implémente pas CL_DEVICE_GFXIP_MAJOR_AMD "
 "(%s)"
 
-#: core.cpp:1215 core.cpp:1235 core.cpp:1268
+#: core.cpp:1201 core.cpp:1221 core.cpp:1254
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -248,7 +248,7 @@ msgstr ""
 "Le pilote OpenCL pour « %s %s » n’implémente pas CL_DEVICE_MAX_COMPUTE_UNITS "
 "(%s)"
 
-#: core.cpp:1256
+#: core.cpp:1242
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -257,199 +257,199 @@ msgstr ""
 "Le pilote OpenCL pour « %s %s » n’implémente pas CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) ou CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1279
+#: core.cpp:1265
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr ""
 "OpenCL n’est pas pris en charge par votre vendeur de carte-graphique (0x%X)"
 
-#: core.cpp:1301
+#: core.cpp:1287
 msgid "Finding devices"
 msgstr "Recherche des périphériques"
 
-#: core.cpp:1313
+#: core.cpp:1299
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Saute la recherche des périphériques (mauvaises permissions pour le "
 "périphérique %s)"
 
-#: core.cpp:1356
+#: core.cpp:1342
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Le fabricant de votre carte-graphique est inconnu : %s (0x%X)"
 
-#: core.cpp:1376
+#: core.cpp:1362
 msgid "failed to find chipset vendor and model"
 msgstr "échec lors de la recherche du vendeur et du modèle du chipset"
 
-#: core.cpp:1378
+#: core.cpp:1364
 msgid "failed to find graphic card vendor and model"
 msgstr ""
 "échec lors de la recherche du vendeur et du modèle de la carte-graphique"
 
-#: core.cpp:1486
+#: core.cpp:1472
 msgid "Retrieving GPU clocks"
 msgstr "Récupère les fréquences de la carte-graphique"
 
-#: core.cpp:1499
+#: core.cpp:1485
 msgid "None"
 msgstr "Aucun"
 
-#: core.cpp:1508
+#: core.cpp:1494
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "Le chemin DRM pour la %s est inconnu"
 
-#: core.cpp:1515
+#: core.cpp:1501
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "Le numéro de la %s est inconnu"
 
-#: core.cpp:1540
+#: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (actuel) / %s (max)"
 
-#: core.cpp:1648
+#: core.cpp:1634
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Le pilote de la %s ne rapporte pas les fréquences"
 
-#: core.cpp:1666
+#: core.cpp:1652
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "impossible d'obtenir toutes les données de surveillance de %s"
 
-#: core.cpp:1687
+#: core.cpp:1673
 msgid "Identifying running system"
 msgstr "Identifie le système en cours de fonctionnement"
 
-#: core.cpp:1690
+#: core.cpp:1676
 msgid "failed to identify running system"
 msgstr "échec lors de l'identification du système en cours de fonctionnement"
 
-#: core.cpp:1742 core.cpp:1771
+#: core.cpp:1728 core.cpp:1757
 msgid "Calling libprocps"
 msgstr "Appel libprocps"
 
-#: core.cpp:1745
+#: core.cpp:1731
 msgid "unable to get system uptime"
 msgstr "impossible d'obtenir la durée de disponibilité du système"
 
-#: core.cpp:1751
+#: core.cpp:1737
 msgid "unable to create meminfo structure"
 msgstr "impossible de créer la structure pour meminfo"
 
-#: core.cpp:1797
+#: core.cpp:1783
 msgid "Calling libstatgrab"
 msgstr "Appel libstatgrab"
 
-#: core.cpp:1845
+#: core.cpp:1831
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i jours, %i heures, %i minutes, %i secondes"
 
-#: core.cpp:1908
+#: core.cpp:1894
 msgid "Updating benchmark status"
 msgstr "Mise à jour du statut du test de performance"
 
-#: core.cpp:1911
+#: core.cpp:1897
 msgid "Active"
 msgstr "Actif"
 
-#: core.cpp:1914
+#: core.cpp:1900
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u heures restantes)"
 
-#: core.cpp:1916
+#: core.cpp:1902
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutes restantes)"
 
-#: core.cpp:1918
+#: core.cpp:1904
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u secondes restantes)"
 
-#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+#: core.cpp:1908 core.cpp:1963 core.cpp:1964
 msgid "Inactive"
 msgstr "Inactif"
 
-#: core.cpp:1925
+#: core.cpp:1911
 #, c-format
 msgid "in %u hours"
 msgstr "en %u heures"
 
-#: core.cpp:1927
+#: core.cpp:1913
 #, c-format
 msgid "in %u minutes"
 msgstr "en %u minutes"
 
-#: core.cpp:1929
+#: core.cpp:1915
 #, c-format
 msgid "in %u seconds"
 msgstr "en %u secondes"
 
-#: core.cpp:1946
+#: core.cpp:1932
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "Démarrage du test de performance avec %u fils"
 
-#: core.cpp:1969
+#: core.cpp:1955
 msgid "an error occurred while starting benchmark"
 msgstr "une erreur est survenue lors du démarrage du test de performance"
 
-#: core.cpp:1995
+#: core.cpp:1981
 msgid "Finding CPU package in fallback mode"
 msgstr "Recherche du support du processeur en mode de secours"
 
-#: core.cpp:2025
+#: core.cpp:2011
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Votre support de processeur n'est pas présent dans la base de données ==> "
 "%s, nom de code : %s"
 
-#: core.cpp:2045
+#: core.cpp:2031
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Calcule les multiplicateurs du processeur en mode de secours"
 
-#: core.cpp:2065
+#: core.cpp:2051
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Récupère les informations de la carte-mère en mode de secours"
 
-#: core.cpp:2078
+#: core.cpp:2064
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 "échec lors de la récupération des informations de la carte-mère (mode de "
 "secours)"
 
-#: core.cpp:2120
+#: core.cpp:2106
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Récupère la température du processeur en mode de secours"
 
-#: core.cpp:2166
+#: core.cpp:2152
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la température du processeur (mode de "
 "secours)"
 
-#: core.cpp:2181
+#: core.cpp:2167
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Récupère la tension du processeur en mode de secours"
 
-#: core.cpp:2193
+#: core.cpp:2179
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la tension du processeur (mode de secours)"
 
-#: core.cpp:2207
+#: core.cpp:2193
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Récupère la fréquence du processeur en mode de secours"
 
-#: core.cpp:2213
+#: core.cpp:2199
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la fréquence du processeur (mode de secours)"
@@ -458,25 +458,31 @@ msgstr ""
 msgid "Starting daemon in background…"
 msgstr "Démarrage du démon en arrière-plan…"
 
-#: daemon_client.cpp:82
+#: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr ""
 "pkexec : l’autorisation ne peut pas être obtenue (la boîte de dialogue a été "
 "rejetée)"
 
-#: daemon_client.cpp:85
+#: daemon_client.cpp:89
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec : l’autorisation ne peut pas être obtenue (non-autorisé)"
 
-#: daemon_client.cpp:88
+#: daemon_client.cpp:92
 msgid "pkexec: command not found"
 msgstr "pkexec : commande introuvable"
 
-#: daemon_client.cpp:91
+#: daemon_client.cpp:95
 msgid "pkexec: unexpected error code"
 msgstr "pkexec : code d'erreur inattendu"
 
-#: daemon_server.cpp:250
+#: daemon_client.cpp:125
+#, fuzzy
+#| msgid "Connected to daemon"
+msgid "Connecting to daemon…"
+msgstr "Connecté au démon"
+
+#: daemon_server.cpp:261
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler : le cas %i n'est pas géré"
@@ -653,51 +659,51 @@ msgstr "Ce logiciel est distribué sous les termes de la %s"
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Ce programme est distribué SANS AUCUNE GARANTIE"
 
-#: gui_gtk.cpp:60
+#: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Impossible de trouver le chemin du fichier '%s'"
 
-#: gui_gtk.cpp:373
+#: gui_gtk.cpp:399
 msgid "Start daemon"
 msgstr "Démarrer le démon"
 
-#: gui_gtk.cpp:376
+#: gui_gtk.cpp:402
 msgid "Connected to daemon"
 msgstr "Connecté au démon"
 
-#: gui_gtk.cpp:378
+#: gui_gtk.cpp:404
 msgid "No polkit authentication agent found"
 msgstr "Aucun agent d'authentification Polkit trouvé"
 
-#: gui_gtk.cpp:382
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "Demander le mot de passe pour démarrer le démon en arrière-plan"
 
-#: gui_gtk.cpp:386
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr "Réglages"
 
-#: gui_gtk.cpp:600
+#: gui_gtk.cpp:626
 msgid "BaseFamily"
 msgstr "Famille de base"
 
-#: gui_gtk.cpp:601
+#: gui_gtk.cpp:627
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "La famille CPU (« réelle ») affichée (calculée à partir de la famille de "
 "base et de la famille étendue)"
 
-#: gui_gtk.cpp:602
+#: gui_gtk.cpp:628
 msgid "BaseModel"
 msgstr "Modèle de base"
 
-#: gui_gtk.cpp:603
+#: gui_gtk.cpp:629
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Le modèle CPU (« réel ») affiché (calculé par (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:813
+#: gui_gtk.cpp:839
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -705,24 +711,24 @@ msgstr ""
 "Identifie la position de la carte ou du port physiquement étiqueté où se "
 "trouve le périphérique mémoire"
 
-#: gui_gtk.cpp:814
+#: gui_gtk.cpp:840
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identifie le banc physiquement étiqueté où se trouve le périphérique mémoire"
 
-#: gui_gtk.cpp:1015
+#: gui_gtk.cpp:1044
 msgid "User Mode Driver Version"
 msgstr "Version du pilote mode utilisateur (UMD)"
 
-#: gui_gtk.cpp:1029
+#: gui_gtk.cpp:1058
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1222
+#: gui_gtk.cpp:1251
 msgid "Starting GTK GUI…"
 msgstr "Démarrage de l'interface graphique GTK…"
 
-#: gui_gtk.cpp:1234
+#: gui_gtk.cpp:1263
 msgid "failed to import UI in GtkBuilder"
 msgstr "échec lors de l'import de l'interface dans GtkBuilder"
 
@@ -1103,11 +1109,11 @@ msgstr ""
 msgid "Press any key to exit this help."
 msgstr "Appuyer sur n'importe quelle touche pour quitter cette aide."
 
-#: tui_ncurses.cpp:638
+#: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
 msgstr "Démarrage de l'interface texte NCurses…"
 
-#: tui_ncurses.cpp:647
+#: tui_ncurses.cpp:649
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1115,7 +1121,7 @@ msgstr ""
 "ERREUR FATALE : la base de données terminfo ne peut pas être trouvée "
 "(essayez de spécifier la variable d'environnement TERMINFO)"
 
-#: tui_ncurses.cpp:652
+#: tui_ncurses.cpp:654
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "La mise en place du terminal %s a échoué (err=%i) ; retour à %s"
@@ -1125,17 +1131,17 @@ msgstr "La mise en place du terminal %s a échoué (err=%i) ; retour à %s"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "impossible de trouver l'unité dans la chaîne « %s » à la position %i"
 
-#: util.cpp:205
+#: util.cpp:203
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "une erreur est survenue lors de l'ouverture du fichier '%s'"
 
-#: util.cpp:243
+#: util.cpp:241
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "une erreur est survenue lors de l'exécution de la commande '%s'"
 
-#: util.cpp:366
+#: util.cpp:364
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() n'est pas supportée sur ce système d'exploitation"
 

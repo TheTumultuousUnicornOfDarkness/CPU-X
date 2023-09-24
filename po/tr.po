@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-09-17 19:07+0200\n"
+"POT-Creation-Date: 2023-09-24 12:16+0200\n"
 "PO-Revision-Date: 2023-08-21 23:59+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -130,124 +130,124 @@ msgstr "GPU kullanıcı modu sürücünüz bilinmiyor: %s"
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW çağrılamadı (%i): %s"
 
-#: core.cpp:914
+#: core.cpp:906
 msgid "Finding Vulkan API version"
 msgstr "Vulkan API sürümü bulunuyor"
 
-#: core.cpp:928
+#: core.cpp:918
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "vkCreateInstance çağrılamadı (%s)"
 
-#: core.cpp:932 core.cpp:934
+#: core.cpp:921
 #, c-format
 msgid "%s is not supported"
 msgstr "%s desteklenmiyor"
 
-#: core.cpp:944
+#: core.cpp:929
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "vkEnumeratePhysicalDevices çağrılamadı (%s)"
 
-#: core.cpp:951
+#: core.cpp:936
 msgid "No available Vulkan devices"
 msgstr "Kullanılabilir Vulkan aygıtı yok"
 
-#: core.cpp:959
+#: core.cpp:944
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Kullanılabilir fiziksel aygıt yok (%s)"
 
-#: core.cpp:1020
+#: core.cpp:1007
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Aygıt %u için Vulkan oluşturulamadı (%s)"
 
-#: core.cpp:1024
+#: core.cpp:1011
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s, aygıt %u için desteklenmiyor, eşleştirme için yalnızca aygıt kimliğini "
 "kullanın"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Enabled"
 msgstr "Etkinleştirildi"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Disabled"
 msgstr "Devre dışı"
 
-#: core.cpp:1094
+#: core.cpp:1080
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
 msgstr "Vulkan API sürümü bulunuyor"
 
-#: core.cpp:1098
+#: core.cpp:1084
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL desteğine sahip bir platform yok (%s)"
 
-#: core.cpp:1108
+#: core.cpp:1094
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "tüm OpenCL platformları alınamadı (%s)"
 
-#: core.cpp:1121
+#: core.cpp:1107
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "%u. platformun adı alınamadı (%s)"
 
-#: core.cpp:1129
+#: core.cpp:1115
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "%u .platform için sürüm alınamadı (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "'%s %s' platformu için OpenCL aygıtlarının sayısı bulunamadı (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 msgid "0 device"
 msgstr "0 aygıt"
 
-#: core.cpp:1146
+#: core.cpp:1132
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "'%s %s' platformu için tüm OpenCL aygıtları alınamadı (%s)"
 
-#: core.cpp:1166
+#: core.cpp:1152
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "%u. aygıtın adı alınamadı (%s)"
 
-#: core.cpp:1174
+#: core.cpp:1160
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "%u. aygıt için sürüm alınamadı (%s)"
 
-#: core.cpp:1196
+#: core.cpp:1182
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' için OpenCL sürücüsü CL_DEVICE_TOPOLOGY_AMD desteklemiyor (%s)"
 
-#: core.cpp:1207
+#: core.cpp:1193
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' için OpenCL sürücüsü CL_DEVICE_GFXIP_MAJOR_AMD desteklemiyor (%s)"
 
-#: core.cpp:1215 core.cpp:1235 core.cpp:1268
+#: core.cpp:1201 core.cpp:1221 core.cpp:1254
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' için OpenCL sürücüsü CL_DEVICE_MAX_COMPUTE_UNITS desteklemiyor (%s)"
 
-#: core.cpp:1256
+#: core.cpp:1242
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -256,193 +256,193 @@ msgstr ""
 "'%s %s' için OpenCL sürücüsü CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) veya CL_DEVICE_PCI_SLOT_ID_NV (%s) desteklemiyor"
 
-#: core.cpp:1279
+#: core.cpp:1265
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "GPU markanız OpenCL'yi desteklenmiyor (0x%X)"
 
-#: core.cpp:1301
+#: core.cpp:1287
 msgid "Finding devices"
 msgstr "Aygıtlar bulunuyor"
 
-#: core.cpp:1313
+#: core.cpp:1299
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 
-#: core.cpp:1356
+#: core.cpp:1342
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
 
-#: core.cpp:1376
+#: core.cpp:1362
 msgid "failed to find chipset vendor and model"
 msgstr "yonga seti satıcısı ve model bulunamadı"
 
-#: core.cpp:1378
+#: core.cpp:1364
 msgid "failed to find graphic card vendor and model"
 msgstr "ekran kartı marka ve modeli bulunamadı"
 
-#: core.cpp:1486
+#: core.cpp:1472
 msgid "Retrieving GPU clocks"
 msgstr "GPU saatleri alınıyor"
 
-#: core.cpp:1499
+#: core.cpp:1485
 msgid "None"
 msgstr "Hiçbiri"
 
-#: core.cpp:1508
+#: core.cpp:1494
 #, fuzzy, c-format
 #| msgid "DRM path for GPU %u is unknown"
 msgid "DRM path for %s is unknown"
 msgstr "%u. GPU için DRM yolu bilinmiyor"
 
-#: core.cpp:1515
+#: core.cpp:1501
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "Card number for %s is unknown"
 msgstr "%u. GPU için kart numarası bilinmiyor"
 
-#: core.cpp:1540
+#: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1648
+#: core.cpp:1634
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%u GPU sürücüsü frekansları bildirmiyor"
 
-#: core.cpp:1666
+#: core.cpp:1652
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "tüm OpenCL platformları alınamadı (%s)"
 
-#: core.cpp:1687
+#: core.cpp:1673
 msgid "Identifying running system"
 msgstr "İşletim sistemi tanımlanıyor"
 
-#: core.cpp:1690
+#: core.cpp:1676
 msgid "failed to identify running system"
 msgstr "işletim sistemi tanımlanamadı"
 
-#: core.cpp:1742 core.cpp:1771
+#: core.cpp:1728 core.cpp:1757
 msgid "Calling libprocps"
 msgstr "libprocps çağrılıyor"
 
-#: core.cpp:1745
+#: core.cpp:1731
 msgid "unable to get system uptime"
 msgstr "sistem çalışma süresi alınamıyor"
 
-#: core.cpp:1751
+#: core.cpp:1737
 msgid "unable to create meminfo structure"
 msgstr "meminfo yapısı oluşturulamıyor"
 
-#: core.cpp:1797
+#: core.cpp:1783
 msgid "Calling libstatgrab"
 msgstr "libstatgrab çağrılıyor"
 
-#: core.cpp:1845
+#: core.cpp:1831
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i gün, %i saat, %i dakika, %i saniye"
 
-#: core.cpp:1908
+#: core.cpp:1894
 msgid "Updating benchmark status"
 msgstr "Karşılaştırma durumu güncelleniyor"
 
-#: core.cpp:1911
+#: core.cpp:1897
 msgid "Active"
 msgstr "Etkin"
 
-#: core.cpp:1914
+#: core.cpp:1900
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u saat kaldı)"
 
-#: core.cpp:1916
+#: core.cpp:1902
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u dakika kaldı)"
 
-#: core.cpp:1918
+#: core.cpp:1904
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u saniye kaldı)"
 
-#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+#: core.cpp:1908 core.cpp:1963 core.cpp:1964
 msgid "Inactive"
 msgstr "Etkin değil"
 
-#: core.cpp:1925
+#: core.cpp:1911
 #, c-format
 msgid "in %u hours"
 msgstr "%u saat içinde"
 
-#: core.cpp:1927
+#: core.cpp:1913
 #, c-format
 msgid "in %u minutes"
 msgstr "%u dakika içinde"
 
-#: core.cpp:1929
+#: core.cpp:1915
 #, c-format
 msgid "in %u seconds"
 msgstr "%u saniye içinde"
 
-#: core.cpp:1946
+#: core.cpp:1932
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Karşılaştırma başlatılıyor"
 
-#: core.cpp:1969
+#: core.cpp:1955
 msgid "an error occurred while starting benchmark"
 msgstr "karşılaştırma başlatılırken hata oluştu"
 
-#: core.cpp:1995
+#: core.cpp:1981
 msgid "Finding CPU package in fallback mode"
 msgstr "Yedek modda CPU paketi bulunuyor"
 
-#: core.cpp:2025
+#: core.cpp:2011
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
 
-#: core.cpp:2045
+#: core.cpp:2031
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Yedek modda CPU çarpanları hesaplanıyor"
 
-#: core.cpp:2065
+#: core.cpp:2051
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Yedek modda anakart bilgisi alınıyor"
 
-#: core.cpp:2078
+#: core.cpp:2064
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "anakart bilgisi alınamadı (yedek modu)"
 
-#: core.cpp:2120
+#: core.cpp:2106
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Yedek modda CPU sıcaklığı alınıyor"
 
-#: core.cpp:2166
+#: core.cpp:2152
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU sıcaklığı alınamadı (yedek mod)"
 
-#: core.cpp:2181
+#: core.cpp:2167
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Yedek modda CPU gerilimi alınıyor"
 
-#: core.cpp:2193
+#: core.cpp:2179
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU gerilimi alınamadı (yedek mod)"
 
-#: core.cpp:2207
+#: core.cpp:2193
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Yedek modda CPU frekansı alınıyor"
 
-#: core.cpp:2213
+#: core.cpp:2199
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 
@@ -452,23 +452,29 @@ msgstr "CPU frekansı alınamadı (yedek mod)"
 msgid "Starting daemon in background…"
 msgstr "Arka plan programı başlatmak için parola sor"
 
-#: daemon_client.cpp:82
+#: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr "pkexec: yetkilendirme alınamadı (iletişim kutusu kapatıldı)"
 
-#: daemon_client.cpp:85
+#: daemon_client.cpp:89
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec: yetkilendirme alınamadı (yetkilendirilmedi)"
 
-#: daemon_client.cpp:88
+#: daemon_client.cpp:92
 msgid "pkexec: command not found"
 msgstr "pkexec: komut bulunamadı"
 
-#: daemon_client.cpp:91
+#: daemon_client.cpp:95
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: beklenmedik hata kodu"
 
-#: daemon_server.cpp:250
+#: daemon_client.cpp:125
+#, fuzzy
+#| msgid "Connected to daemon"
+msgid "Connecting to daemon…"
+msgstr "Arka plan programına bağlandı"
+
+#: daemon_server.cpp:261
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: %i durumu işlemedi"
@@ -650,74 +656,74 @@ msgstr "Bu yazılım %s koşulları altında dağıtılmıştır"
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 
-#: gui_gtk.cpp:60
+#: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:373
+#: gui_gtk.cpp:399
 msgid "Start daemon"
 msgstr "Arka plan programını başlat"
 
-#: gui_gtk.cpp:376
+#: gui_gtk.cpp:402
 msgid "Connected to daemon"
 msgstr "Arka plan programına bağlandı"
 
-#: gui_gtk.cpp:378
+#: gui_gtk.cpp:404
 msgid "No polkit authentication agent found"
 msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
-#: gui_gtk.cpp:382
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "Arka plan programı başlatmak için parola sor"
 
-#: gui_gtk.cpp:386
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:600
+#: gui_gtk.cpp:626
 msgid "BaseFamily"
 msgstr "TemelAile"
 
-#: gui_gtk.cpp:601
+#: gui_gtk.cpp:627
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Görüntülenen (\"gerçek\") CPU ailesi (TemelAile+GenişletilmişAile olarak "
 "hesaplanır)"
 
-#: gui_gtk.cpp:602
+#: gui_gtk.cpp:628
 msgid "BaseModel"
 msgstr "TemelModel"
 
-#: gui_gtk.cpp:603
+#: gui_gtk.cpp:629
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Görüntülenen (\"gerçek\") CPU modeli ((GenişletilmişModel<<4)+TemelModel "
 "olarak hesaplanır)"
 
-#: gui_gtk.cpp:813
+#: gui_gtk.cpp:839
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:814
+#: gui_gtk.cpp:840
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1015
+#: gui_gtk.cpp:1044
 msgid "User Mode Driver Version"
 msgstr "Kullanıcı Modu Sürücü Sürümü"
 
-#: gui_gtk.cpp:1029
+#: gui_gtk.cpp:1058
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Işın Yansıma (Ray Tracing)"
 
-#: gui_gtk.cpp:1222
+#: gui_gtk.cpp:1251
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI başlatılıyor…"
 
-#: gui_gtk.cpp:1234
+#: gui_gtk.cpp:1263
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
@@ -1077,11 +1083,11 @@ msgstr "Sonraki grafik kartına geçmek için 'yukarı' tuşuna basın."
 msgid "Press any key to exit this help."
 msgstr "Yardımdan çıkmak için herhangi bir tuşa basın."
 
-#: tui_ncurses.cpp:638
+#: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
 msgstr "NCurses metin tabanlı arayüzü başlatılıyor…"
 
-#: tui_ncurses.cpp:647
+#: tui_ncurses.cpp:649
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1089,7 +1095,7 @@ msgstr ""
 "ÖNEMLİ HATA: terminfo veri tabanı bulunamadı (TERMINFO ortam değişkenini "
 "ayarlamayı deneyin)"
 
-#: tui_ncurses.cpp:652
+#: tui_ncurses.cpp:654
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "%s terminali ayarlanamadı (err=%i); yedek olarak %s kullanılıyor"
@@ -1099,19 +1105,19 @@ msgstr "%s terminali ayarlanamadı (err=%i); yedek olarak %s kullanılıyor"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "'%s' dizgesinde %i konumundaki birim bulunamıyor"
 
-#: util.cpp:205
+#: util.cpp:203
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "'%s' dosyası açılırken bir hata oluştu (%s)"
 
-#: util.cpp:243
+#: util.cpp:241
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "'%s' komutu çalıştırılırken bir hata oluştu (%s)"
 
-#: util.cpp:366
+#: util.cpp:364
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() bu işletim sisteminde desteklenmiyor"
 

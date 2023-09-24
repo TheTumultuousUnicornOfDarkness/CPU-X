@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-09-17 19:07+0200\n"
+"POT-Creation-Date: 2023-09-24 12:16+0200\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -120,113 +120,113 @@ msgstr "راه انداز حالت کاربری پردازنده گرافیکی 
 msgid "failed to call GLFW (%i): %s"
 msgstr "فراخوانی ناموفق GLFW (%i): %s"
 
-#: core.cpp:914
+#: core.cpp:906
 msgid "Finding Vulkan API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core.cpp:928
+#: core.cpp:918
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr ""
 
-#: core.cpp:932 core.cpp:934
+#: core.cpp:921
 #, c-format
 msgid "%s is not supported"
 msgstr "%s پشتیبانی نمی‌شود"
 
-#: core.cpp:944
+#: core.cpp:929
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core.cpp:951
+#: core.cpp:936
 msgid "No available Vulkan devices"
 msgstr "هیچ دستگاه Vulkan موجود نیست"
 
-#: core.cpp:959
+#: core.cpp:944
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "No available physical devices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core.cpp:1020
+#: core.cpp:1007
 #, fuzzy, c-format
 #| msgid "failed to get name for device %u (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 
-#: core.cpp:1024
+#: core.cpp:1011
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s برای دستگاه %u پشتیبانی نمی‌شود، فقط از deviceID برای تطابق استفاده کنید"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Enabled"
 msgstr "فعال شده"
 
-#: core.cpp:1056 core.cpp:1370
+#: core.cpp:1043 core.cpp:1356
 msgid "Disabled"
 msgstr "غیرفعال شده"
 
-#: core.cpp:1094
+#: core.cpp:1080
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core.cpp:1098
+#: core.cpp:1084
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "پلتفرمی با پشتیبانی از OpenCL وجود ندارد (%s)"
 
-#: core.cpp:1108
+#: core.cpp:1094
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core.cpp:1121
+#: core.cpp:1107
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "دریافت ناموفق نام پلتفرم %u (%s)"
 
-#: core.cpp:1129
+#: core.cpp:1115
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "دریافت ناموفق نسخه پلتفرم %u (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "یافتن ناموفق دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
-#: core.cpp:1137
+#: core.cpp:1123
 msgid "0 device"
 msgstr "صفر دستگاه"
 
-#: core.cpp:1146
+#: core.cpp:1132
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "دریافت ناموفق تمام دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
-#: core.cpp:1166
+#: core.cpp:1152
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 
-#: core.cpp:1174
+#: core.cpp:1160
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "دریافت ناموفق نسخه دستگاه %u (%s)"
 
-#: core.cpp:1196
+#: core.cpp:1182
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_TOPOLOGY_AMD پشتیبانی نمی کند (%s)"
 
-#: core.cpp:1207
+#: core.cpp:1193
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -234,7 +234,7 @@ msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_GFXIP_MAJOR_AMD (%s) پشتیبانی نمی "
 "کند"
 
-#: core.cpp:1215 core.cpp:1235 core.cpp:1268
+#: core.cpp:1201 core.cpp:1221 core.cpp:1254
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -242,7 +242,7 @@ msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_MAX_COMPUTE_UNITS (%s) پشتیبانی "
 "نمی کند"
 
-#: core.cpp:1256
+#: core.cpp:1242
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -252,193 +252,193 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) یا CL_DEVICE_PCI_SLOT_ID_NV (%s) پشتیبانی نمی "
 "کند"
 
-#: core.cpp:1279
+#: core.cpp:1265
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL توسط سازنده پردازنده گرافیکی شما پشتیبانی نمی شود (0x%X)"
 
-#: core.cpp:1301
+#: core.cpp:1287
 msgid "Finding devices"
 msgstr "در حال بررسی دستگاه ها"
 
-#: core.cpp:1313
+#: core.cpp:1299
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core.cpp:1356
+#: core.cpp:1342
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "سازنده پردازنده گرافیکی شما نامشخص است: %s (0x%X)"
 
-#: core.cpp:1376
+#: core.cpp:1362
 msgid "failed to find chipset vendor and model"
 msgstr "جستجوی سازنده و مدل chipset ناموفق بود"
 
-#: core.cpp:1378
+#: core.cpp:1364
 msgid "failed to find graphic card vendor and model"
 msgstr "سازنده و مدل کارت گرافیک پیدا نشد"
 
-#: core.cpp:1486
+#: core.cpp:1472
 msgid "Retrieving GPU clocks"
 msgstr "در حال دریافت زمان سنج های پردازنده گرافیکی"
 
-#: core.cpp:1499
+#: core.cpp:1485
 msgid "None"
 msgstr "هیچ کدام"
 
-#: core.cpp:1508
+#: core.cpp:1494
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "DRM path for %s is unknown"
 msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
-#: core.cpp:1515
+#: core.cpp:1501
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "Card number for %s is unknown"
 msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
-#: core.cpp:1540
+#: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1648
+#: core.cpp:1634
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "راه انداز پردازنده گرافیکی %u فرکانس ها را گزارش نمی دهد"
 
-#: core.cpp:1666
+#: core.cpp:1652
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core.cpp:1687
+#: core.cpp:1673
 msgid "Identifying running system"
 msgstr "در حال شناسایی سیستم در حال اجرا"
 
-#: core.cpp:1690
+#: core.cpp:1676
 msgid "failed to identify running system"
 msgstr "شناسایی سیستم در حال اجرا ناموفق بود"
 
-#: core.cpp:1742 core.cpp:1771
+#: core.cpp:1728 core.cpp:1757
 msgid "Calling libprocps"
 msgstr "در حال فراخوانی libprocps"
 
-#: core.cpp:1745
+#: core.cpp:1731
 msgid "unable to get system uptime"
 msgstr "دریافت زمان فعال بودن سیستم ممکن نیست"
 
-#: core.cpp:1751
+#: core.cpp:1737
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.cpp:1797
+#: core.cpp:1783
 msgid "Calling libstatgrab"
 msgstr "در حال فراخوانی libstatgrab"
 
-#: core.cpp:1845
+#: core.cpp:1831
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i روز و %i ساعت و %i دقیقه و %i ثانیه"
 
-#: core.cpp:1908
+#: core.cpp:1894
 msgid "Updating benchmark status"
 msgstr "در حال به روز رسانی وضعیت بررسی معیارها"
 
-#: core.cpp:1911
+#: core.cpp:1897
 msgid "Active"
 msgstr "فعال"
 
-#: core.cpp:1914
+#: core.cpp:1900
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u ساعت مانده)"
 
-#: core.cpp:1916
+#: core.cpp:1902
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u دقیقه مانده)"
 
-#: core.cpp:1918
+#: core.cpp:1904
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u ثانیه مانده)"
 
-#: core.cpp:1922 core.cpp:1977 core.cpp:1978
+#: core.cpp:1908 core.cpp:1963 core.cpp:1964
 msgid "Inactive"
 msgstr "غیرفعال"
 
-#: core.cpp:1925
+#: core.cpp:1911
 #, c-format
 msgid "in %u hours"
 msgstr "در %u ساعت"
 
-#: core.cpp:1927
+#: core.cpp:1913
 #, c-format
 msgid "in %u minutes"
 msgstr "در %u دقیقه"
 
-#: core.cpp:1929
+#: core.cpp:1915
 #, c-format
 msgid "in %u seconds"
 msgstr "در %u ثانیه"
 
-#: core.cpp:1946
+#: core.cpp:1932
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "در حال آغاز بررسی معیارها"
 
-#: core.cpp:1969
+#: core.cpp:1955
 msgid "an error occurred while starting benchmark"
 msgstr "خطایی در آغاز بررسی معیارها رخ داده است"
 
-#: core.cpp:1995
+#: core.cpp:1981
 msgid "Finding CPU package in fallback mode"
 msgstr "در حال یافتن بسته پردازنده در حالت جایگزینی"
 
-#: core.cpp:2025
+#: core.cpp:2011
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
 
-#: core.cpp:2045
+#: core.cpp:2031
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "در حال محاسبه افزاینده های پردازنده در حالت جایگزینی"
 
-#: core.cpp:2065
+#: core.cpp:2051
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "در حال دریافت اطلاعات مادربرد در حالت جایگزینی"
 
-#: core.cpp:2078
+#: core.cpp:2064
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "دریافت ناموفق اطلاعات مادربرد (حالت جایگزینی)"
 
-#: core.cpp:2120
+#: core.cpp:2106
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "در حال دریافت دمای پردازنده در حالت جایگزینی"
 
-#: core.cpp:2166
+#: core.cpp:2152
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "دریافت ناموفق دمای پردازنده (حالت جایگزینی)"
 
-#: core.cpp:2181
+#: core.cpp:2167
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "در حال دریافت ولتاژ پردازنده در حالت جایگزینی"
 
-#: core.cpp:2193
+#: core.cpp:2179
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "دریافت ناموفق ولتاژ پردازنده (حالت جایگزینی)"
 
-#: core.cpp:2207
+#: core.cpp:2193
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "در حال دریافت فرکانس پردازنده در حالت جایگزینی"
 
-#: core.cpp:2213
+#: core.cpp:2199
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "دریافت ناموفق فرکانس پردازنده (حالت جایگزینی)"
 
@@ -448,23 +448,29 @@ msgstr "دریافت ناموفق فرکانس پردازنده (حالت جای
 msgid "Starting daemon in background…"
 msgstr "برای اجرای برنامه در پس زمینه رمز ورود دریافت شود"
 
-#: daemon_client.cpp:82
+#: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr "pkexec: مجوزهای دسترسی دریافت نشد (جلوی باز شدن پنجره گرفته شد)"
 
-#: daemon_client.cpp:85
+#: daemon_client.cpp:89
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec: مجوزهای دسترسی دریافت نشد (دسترسی مجاز نیست)"
 
-#: daemon_client.cpp:88
+#: daemon_client.cpp:92
 msgid "pkexec: command not found"
 msgstr "pkexec: دستور یافت نشد"
 
-#: daemon_client.cpp:91
+#: daemon_client.cpp:95
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: کد خطای غیرمنتظره"
 
-#: daemon_server.cpp:250
+#: daemon_client.cpp:125
+#, fuzzy
+#| msgid "Connected to daemon"
+msgid "Connecting to daemon…"
+msgstr "ارتباط با برنامه پس زمینه برقرار شد"
+
+#: daemon_server.cpp:261
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: مورد %i رسیدگی نشده است"
@@ -650,74 +656,74 @@ msgstr "این نرم افزار تحت ضوابط %s توزیع شده است"
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "این برنامه به طور مطلق بدون ضمانت ارائه می شود"
 
-#: gui_gtk.cpp:60
+#: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:373
+#: gui_gtk.cpp:399
 msgid "Start daemon"
 msgstr "اجرای برنامه در پس زمینه"
 
-#: gui_gtk.cpp:376
+#: gui_gtk.cpp:402
 msgid "Connected to daemon"
 msgstr "ارتباط با برنامه پس زمینه برقرار شد"
 
-#: gui_gtk.cpp:378
+#: gui_gtk.cpp:404
 msgid "No polkit authentication agent found"
 msgstr "عامل احراز هویت polkit پیدا نشد"
 
-#: gui_gtk.cpp:382
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "برای اجرای برنامه در پس زمینه رمز ورود دریافت شود"
 
-#: gui_gtk.cpp:386
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:600
+#: gui_gtk.cpp:626
 msgid "BaseFamily"
 msgstr "خانواده پایه"
 
-#: gui_gtk.cpp:601
+#: gui_gtk.cpp:627
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "نمایش خانواده پردازنده(\"true\") (محاسبه شده بر اساس "
 "BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:602
+#: gui_gtk.cpp:628
 msgid "BaseModel"
 msgstr "مدل پایه"
 
-#: gui_gtk.cpp:603
+#: gui_gtk.cpp:629
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "نمایش مدل پردازنده (\"true\") (محاسبه شده به صورت "
 "(ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:813
+#: gui_gtk.cpp:839
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:814
+#: gui_gtk.cpp:840
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1015
+#: gui_gtk.cpp:1044
 msgid "User Mode Driver Version"
 msgstr "نسخه راه انداز حالت کاربر"
 
-#: gui_gtk.cpp:1029
+#: gui_gtk.cpp:1058
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1222
+#: gui_gtk.cpp:1251
 msgid "Starting GTK GUI…"
 msgstr "در حال آغاز رابط کاربری گرافیکی GTK…"
 
-#: gui_gtk.cpp:1234
+#: gui_gtk.cpp:1263
 msgid "failed to import UI in GtkBuilder"
 msgstr "وارد کردن ناموفق رابط کاربری GtkBuilder"
 
@@ -1073,11 +1079,11 @@ msgstr "برای رفتن به کارت گرافیک بعدی کلید 'up' را
 msgid "Press any key to exit this help."
 msgstr "برای خروج از این راهنما یک کلید را بفشارید."
 
-#: tui_ncurses.cpp:638
+#: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
 msgstr "در حال اجرای رابط کاربری متنی NCurses…"
 
-#: tui_ncurses.cpp:647
+#: tui_ncurses.cpp:649
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1085,7 +1091,7 @@ msgstr ""
 "خطای بحرانی: پایگاه داده terminfo یافت نشد (متغیر محیطی TERMINFO را تنظیم "
 "کنید)"
 
-#: tui_ncurses.cpp:652
+#: tui_ncurses.cpp:654
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "راه اندازی ناموفق ترمینال %s (err=%i); برگشتن به %s"
@@ -1095,19 +1101,19 @@ msgstr "راه اندازی ناموفق ترمینال %s (err=%i); برگشت�
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "واحدی در متن '%s' در موقعیت %i یافت نشد"
 
-#: util.cpp:205
+#: util.cpp:203
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "خطایی در هنگام باز کردن فایل '%s' رخ داده است (%s)"
 
-#: util.cpp:243
+#: util.cpp:241
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "خطایی در هنگام اجرای دستور '%s' رخ داده است (%s)"
 
-#: util.cpp:366
+#: util.cpp:364
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
