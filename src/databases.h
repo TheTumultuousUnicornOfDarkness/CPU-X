@@ -160,9 +160,10 @@ const Technology_DB technology_amd[] =
 	{ -1,          80,          25,           "7 nm" }, // Zen 3 (Cezanne)
 	{ -1,           1,          25,           "7 nm" }, // Zen 3 (Milan)
 	{ -1,          68,          25,           "7 nm" }, // Zen 3 (Rembrandt)
-	{ -1,          97,          25,           "5 nm" }, // Zen 4 (Raphael)
+	{ -1,          97,          25,           "5 nm" }, // Zen 4 (Raphael/Dragon Range)
 	{ -1,          17,          25,           "5 nm" }, // Zen 4 (Genoa)
 	{ -1,         116,          25,           "5 nm" }, // Zen 4 (Phoenix)
+	{ -1,         120,          25,           "4 nm" }, // Zen 4 (Z1)
 	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
 };
@@ -245,28 +246,34 @@ const Package_DB package_amd[] =
 	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
 	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
 	/* Zen */
-	{ "Raven Ridge",                    NULL,            "FP5 (BGA-1140)"   },
-	{ "Summit Ridge",                   NULL,            "AM4 (PGA-1331)"   },
-	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
 	{ "Naples",                         NULL,            "SP3 (LGA-4094)"   },
+	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
+	{ "Summit Ridge",                   NULL,            "AM4 (PGA-1331)"   },
+	{ "Raven Ridge",                    NULL,            "FP5 (BGA-1140)"   },
+	{ "Dali",                           NULL,            "FP5 (BGA-1140)"   },
 	/* Zen+ */
-	{ "Picasso",                        NULL,            "FP5 (BGA-1140)"   },
-	{ "Pinnacle Ridge",                 NULL,            "AM4 (PGA-1331)"   },
 	{ "Colfax",                         NULL,            "SP3r2 (LGA-4094)" },
+	{ "Pinnacle Ridge",                 NULL,            "AM4 (PGA-1331)"   },
+	{ "Picasso",                        NULL,            "FP5 (BGA-1140)"   },
 	/* Zen 2 */
+	{ "Rome",                           NULL,            "SP3 (LGA-4094)"   },
+	{ "Castle Peak",                    NULL,            "SP3r2 (LGA-4094)" },
+	{ "Matisse",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Renoir",                         NULL,            "FP6 (BGA-1140)"   },
 	{ "Lucienne",                       NULL,            "FP6 (BGA-1140)"   },
-	{ "Matisse",                        NULL,            "AM4 (PGA-1331)"   },
-	{ "Castle Peak",                    NULL,            "SP3r2 (LGA-4094)" },
-	{ "Rome",                           NULL,            "SP3 (LGA-4094)"   },
 	{ "Mendocino",                      NULL,            "FT6 (BGA)"        },
 	/* Zen 3 */
-	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
-	{ "Vermeer",                        NULL,            "AM4 (PGA-1331)"   },
 	{ "Milan",                          NULL,            "SP3 (LGA-4094)"   },
-	{ "Raphael",                        NULL,            "AM5 (LGA-1718)"   },
+	{ "Chagall",                        NULL,            "sWRX8 (LGA-4094)" },
+	{ "Vermeer",                        NULL,            "AM4 (PGA-1331)"   },
+	{ "Cezanne",                        NULL,            "FP6 (BGA-1140)"   },
 	/* Zen 3+ */
 	{ "Rembrandt",                      NULL,            "FP7 (BGA-1140)"   },
+	/* Zen 4 */
+	{ "Genoa",                          NULL,            "SP5 (LGA-6096)"   },
+	{ "Raphael",                        NULL,            "AM5 (LGA-1718)"   },
+	{ "Dragon Range",                   NULL,            "FL1 (BGA)"        },
+	{ "Phoenix",                        NULL,            "FP7/FP8"          },
 	{ NULL,                             NULL,            NULL               }
 	//Codename                          Model            Socket
 };
