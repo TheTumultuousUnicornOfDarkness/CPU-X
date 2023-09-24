@@ -336,26 +336,51 @@ void GtkData::set_colors()
 
 void GtkData::set_logos()
 {
-	Glib::RefPtr<Gdk::Pixbuf> unknown_pixbuf;
+	bool set_unknown     = false;
 	const auto& cpu_type = this->data.cpu.get_selected_cpu_type();
 	const int prg_size   = 72;
 	const int width      = EXT_LABEL(cpu_type.processor.specification)->value->get_allocated_width() - EXT_LABEL(cpu_type.processor.vendor)->value->get_allocated_width() - 6;
 	const int height     = (EXT_LABEL(cpu_type.processor.vendor)->value->get_allocated_height() + 4) * 4;
 
+	/* CPU logo */
 	try
 	{
-		auto cpu_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path(cpu_type.processor.vendor.value + ".png"), width, height, true);
-		auto prg_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path(std::string(PRGNAME) + ".png"), prg_size, prg_size, true);
-		unknown_pixbuf  = Gdk::Pixbuf::create_from_file(get_data_path("Unknown.png"), width, height, true);
+		if(cpu_type.processor.vendor.value.size() > 0)
+		{
+			auto cpu_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path(cpu_type.processor.vendor.value + ".png"), width, height, true);
+			EXT_TAB_CPU(this->data.cpu)->logocpu->set(cpu_pixbuf);
+		}
+		else
+			set_unknown = true;
+	}
+	catch(...)
+	{
+		set_unknown = true;
+	}
 
+	try
+	{
+		if(set_unknown)
+		{
+			auto unknown_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path("Unknown.png"), width, height, true);
+			EXT_TAB_CPU(this->data.cpu)->logocpu->set(unknown_pixbuf);
+		}
+	}
+	catch(...)
+	{
+		MSG_ERRNO("%s", "failed to set CPU icon");
+	}
+
+	/* Program logo */
+	try
+	{
+		auto prg_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path(std::string(PRGNAME) + ".png"), prg_size, prg_size, true);
 		this->mainwindow->set_icon(prg_pixbuf);
-		EXT_TAB_CPU(this->data.cpu)->logocpu->set(cpu_pixbuf);
 		EXT_TAB_ABOUT(this->data.about)->logoprg->set(prg_pixbuf);
 	}
-	catch(const Gdk::PixbufError& e)
+	catch(...)
 	{
-		std::cerr << e.what() << std::endl;
-		EXT_TAB_CPU(this->data.cpu)->logocpu->set(unknown_pixbuf);
+		MSG_ERRNO("%s", "failed to set program icon");
 	}
 }
 
