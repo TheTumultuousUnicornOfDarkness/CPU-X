@@ -1222,7 +1222,7 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 						continue;
 					}
 					comp_unit_type = "EU"; // Execution Unit
-					MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, comp_unit, comp_unit_type);
+					MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, comp_unit, comp_unit_type.c_str());
 					card.comp_unit.value = std::to_string(comp_unit) + " " + comp_unit_type;
 					gpu_found = true;
 					break;
@@ -1255,7 +1255,7 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 							continue;
 						}
 						comp_unit_type = "SM"; // Streaming Multiprocessor
-						MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, comp_unit, comp_unit_type);
+						MSG_DEBUG("OpenCL platform %u, device %u: found %lu %s", i, j, comp_unit, comp_unit_type.c_str());
 						card.comp_unit.value = std::to_string(comp_unit) + " " + comp_unit_type;
 						gpu_found = true;
 					}
