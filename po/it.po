@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-24 12:16+0200\n"
-"PO-Revision-Date: 2023-09-24 10:16+0000\n"
+"PO-Revision-Date: 2023-09-26 11:22+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -459,10 +459,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: errore non previsto"
 
 #: daemon_client.cpp:125
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "Connesso al demone"
+msgstr "Connessione al demone…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -689,16 +687,14 @@ msgstr ""
 "(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.cpp:839
-#, fuzzy
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
-"Identifica il socket o la posizione fisica sulla scheda dove si trova il "
+"Identifica il socket fisico o la posizione sulla scheda dove si trova il "
 "dispositivo di memoria"
 
 #: gui_gtk.cpp:840
-#, fuzzy
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "Identifica il banco fisico dove si trova il dispositivo di memoria"
 
@@ -817,7 +813,6 @@ msgid "Enforce the bus clock"
 msgstr "Forza la frequenza del bus"
 
 #: main.cpp:95
-#, fuzzy
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
@@ -1232,7 +1227,6 @@ msgid "ROM Size"
 msgstr "Dimensione ROM"
 
 #: data.hpp:260
-#, fuzzy
 msgid "Part Number"
 msgstr "Part Number"
 
@@ -1336,14 +1330,10 @@ msgid "Power Avg"
 msgstr "Potenza media"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
 msgstr "Frequenza core"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "Frequenza memoria"
 
@@ -1488,8 +1478,6 @@ msgstr "Tipo di core predefinito"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5945
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
 msgstr "Banco di memoria predefinito"
 
