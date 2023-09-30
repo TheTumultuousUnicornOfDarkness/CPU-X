@@ -14,14 +14,15 @@
 # antohami <antohami@altlinux.org>, 2022.
 # Alexey Dokuchaev <danfe@nsu.ru>, 2023.
 # Артём Котлубай <artemkotlubai@yandex.ru>, 2023.
+# Aleksandr Melman <alexmelman88@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-24 12:16+0200\n"
-"PO-Revision-Date: 2023-09-25 06:43+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2023-10-03 16:11+0000\n"
+"Last-Translator: Aleksandr Melman <alexmelman88@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -598,11 +599,11 @@ msgstr "Параметры"
 #: data.cpp:721 data.cpp:727
 #, c-format
 msgid "%u mins"
-msgstr "%u мин."
+msgstr "%u мин"
 
 #: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
-msgstr "О программе"
+msgstr "О приложении"
 
 #: data.cpp:739
 #, c-format
@@ -611,11 +612,11 @@ msgid ""
 "on CPU, motherboard and more."
 msgstr ""
 "%s — это свободное программное обеспечение для сбора\n"
-"сведений о процессоре, видеокарте и многом другом."
+"сведений о процессоре, материнской плате и многом другом."
 
 #: data.cpp:744
 msgid "About CPU-X"
-msgstr "О программе CPU-X"
+msgstr "О приложении CPU-X"
 
 #: data.cpp:745
 #, c-format
@@ -652,11 +653,11 @@ msgstr "Не удаётся найти путь для файла «%s»"
 
 #: gui_gtk.cpp:399
 msgid "Start daemon"
-msgstr "Запустить службу"
+msgstr "Запустить демон"
 
 #: gui_gtk.cpp:402
 msgid "Connected to daemon"
-msgstr "Подключение к службе"
+msgstr "Подключено к демону"
 
 #: gui_gtk.cpp:404
 msgid "No polkit authentication agent found"
@@ -664,7 +665,7 @@ msgstr "Агент аутентификации polkit не найден"
 
 #: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
-msgstr "Требуется пароль для запуска службы в фоновом режиме"
+msgstr "Требуется пароль для запуска демона в фоновом режиме"
 
 #: gui_gtk.cpp:412
 msgid "Settings"
@@ -713,7 +714,7 @@ msgstr "Трассировка лучей Vulkan"
 
 #: gui_gtk.cpp:1251
 msgid "Starting GTK GUI…"
-msgstr "Запуск оболочки GTK…"
+msgstr "Запуск интерфейса GTK…"
 
 #: gui_gtk.cpp:1263
 msgid "failed to import UI in GtkBuilder"
@@ -770,7 +771,7 @@ msgstr "Выбрать графическую карту по умолчанию
 
 #: main.cpp:74 cpu-x-gtk-3.12.ui:5879
 msgid "Start and connect to daemon"
-msgstr "Запуск и подключение к службе"
+msgstr "Запуск и подключение к демону"
 
 #: main.cpp:75
 msgid "Verbose output"
@@ -1232,7 +1233,7 @@ msgstr "Дата"
 
 #: data.hpp:236
 msgid "ROM Size"
-msgstr "Размер ROM"
+msgstr "Размер ПЗУ"
 
 #: data.hpp:260
 msgid "Part Number"
