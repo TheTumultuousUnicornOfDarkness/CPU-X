@@ -18,10 +18,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-24 12:16+0200\n"
-"PO-Revision-Date: 2023-08-21 23:59+0000\n"
+"PO-Revision-Date: 2023-10-03 16:11+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -77,17 +77,17 @@ msgstr "dmidecode çağrılıyor"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (yapılandırıldı)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (azami)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (asgari)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -179,10 +179,8 @@ msgid "Disabled"
 msgstr "Devre dışı"
 
 #: core.cpp:1080
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Vulkan API sürümü bulunuyor"
+msgstr "OpenCL API sürümü bulunuyor"
 
 #: core.cpp:1084
 #, c-format
@@ -292,33 +290,29 @@ msgid "None"
 msgstr "Hiçbiri"
 
 #: core.cpp:1494
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "%u. GPU için DRM yolu bilinmiyor"
+msgstr "%s için DRM yolu bilinmiyor"
 
 #: core.cpp:1501
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "%u. GPU için kart numarası bilinmiyor"
+msgstr "%s için kart numarası bilinmiyor"
 
 #: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (geçerli) / %s (azami)"
 
 #: core.cpp:1634
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "%u GPU sürücüsü frekansları bildirmiyor"
+msgstr "%s sürücüsü frekansları bildirmiyor"
 
 #: core.cpp:1652
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "tüm OpenCL platformları alınamadı (%s)"
+msgstr "%s için tüm izmele verileri alınamadı"
 
 #: core.cpp:1673
 msgid "Identifying running system"
@@ -392,10 +386,9 @@ msgid "in %u seconds"
 msgstr "%u saniye içinde"
 
 #: core.cpp:1932
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Karşılaştırma başlatılıyor"
+msgstr "Karşılaştırma %u iş parçacığıyla başlatılıyor"
 
 #: core.cpp:1955
 msgid "an error occurred while starting benchmark"
@@ -447,10 +440,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 
 #: daemon_client.cpp:47
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "Arka plan programı başlatmak için parola sor"
+msgstr "Art alan hizmeti arka planda başlatılıyor…"
 
 #: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -469,10 +460,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: beklenmedik hata kodu"
 
 #: daemon_client.cpp:125
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "Arka plan programına bağlandı"
+msgstr "Art alan hizmetine bağlanılıyor…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -504,10 +493,9 @@ msgid "Caches"
 msgstr "Önbellek"
 
 #: data.cpp:247
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s, %d-yol"
+msgstr "%2d x %4d %s, %2d-yol"
 
 #: data.cpp:249
 #, c-format
@@ -516,17 +504,16 @@ msgstr "%d %s, %d-yol"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "Say"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Saatler"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "L%i Önbelleği"
+msgstr "L%u Önbelleği"
 
 #: data.cpp:385
 #, c-format
@@ -556,11 +543,11 @@ msgstr "Bellek"
 #: data.cpp:483
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Çubuk %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
-msgstr ""
+msgstr "Çubuklar"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -575,10 +562,9 @@ msgid "Graphics"
 msgstr "Grafikler"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "Kart %i"
+msgstr "Kart %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
@@ -623,10 +609,8 @@ msgstr ""
 "toplayan özgür bir yazılımdır."
 
 #: data.cpp:744
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "Hakkında"
+msgstr "CPU-X Hakkında"
 
 #: data.cpp:745
 #, c-format
@@ -659,15 +643,15 @@ msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 #: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "'%s' dosyasının yolu bulunamadı"
 
 #: gui_gtk.cpp:399
 msgid "Start daemon"
-msgstr "Arka plan programını başlat"
+msgstr "Art alan hizmetini başlat"
 
 #: gui_gtk.cpp:402
 msgid "Connected to daemon"
-msgstr "Arka plan programına bağlandı"
+msgstr "Art alan hizmetine bağlanıldı"
 
 #: gui_gtk.cpp:404
 msgid "No polkit authentication agent found"
@@ -675,11 +659,11 @@ msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
 #: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
-msgstr "Arka plan programı başlatmak için parola sor"
+msgstr "Art alan hizmetini başlatmak için parola sor"
 
 #: gui_gtk.cpp:412
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: gui_gtk.cpp:626
 msgid "BaseFamily"
@@ -706,10 +690,12 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş soketi ya da kart "
+"konumunu tanımla"
 
 #: gui_gtk.cpp:840
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
+msgstr "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş bakoyu tanımla"
 
 #: gui_gtk.cpp:1044
 msgid "User Mode Driver Version"
@@ -768,10 +754,8 @@ msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "İşlemci önbellek hızı için özel bant genişliği ayarla (tam sayı)"
 
 #: main.cpp:72
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Öntanımlı grafik kartını seç (tam sayı)"
+msgstr "Öntanımlı bellek çubuğunu seç (tam sayı)"
 
 #: main.cpp:73
 msgid "Select default graphic card (integer)"
@@ -779,7 +763,7 @@ msgstr "Öntanımlı grafik kartını seç (tam sayı)"
 
 #: main.cpp:74 cpu-x-gtk-3.12.ui:5879
 msgid "Start and connect to daemon"
-msgstr "Arka plan programını başlat ve bağlan"
+msgstr "Art alan hizmetini başlat ve bağlan"
 
 #: main.cpp:75
 msgid "Verbose output"
@@ -828,6 +812,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
+"Libcpuid tarafından bildirilen CPU değerlerini görmezden gel ('temp', 'volt' "
+"ve 'freq' arasında virgülle ayrılmış değerler)"
 
 #: main.cpp:96
 msgid "Read CPUID raw data from a given file"
@@ -904,38 +890,31 @@ msgstr ""
 "Seçilen CPU türü (%u) geçerli bir sayı değil (%u bu CPU için azami değerdir)"
 
 #: options.cpp:145
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
-"Seçilen CPU türü (%u) geçerli bir sayı değil (%u bu CPU için azami değerdir)"
+"Seçilen bant genişliği türü (%u) geçerli bir sayı değil (%u bu sistem için "
+"azami değerdir)"
 
 #: options.cpp:168
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Seçilen CPU türü (%u) geçerli bir sayı değil (%u bu CPU için azami değerdir)"
+"Seçilen RAM türü (%u) geçerli bir sayı değil (%u bu sistem için azami "
+"değerdir)"
 
 #: options.cpp:188
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-#| "type of core)"
+#, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Seçilen CPU çekirdeği (%u) geçerli bir sayı değil (%u bu çekirdek türü için "
-"azami sayıdır)"
+"Seçilen grafik kartı (%u) geçerli bir sayı değil (%u bu sistem için azami "
+"sayıdır)"
 
 #: options.cpp:204
 #, c-format
@@ -952,13 +931,9 @@ msgstr ""
 "azami sayıdır)"
 
 #: options.cpp:284
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
-"Seçilen CPU türü (%u) geçerli bir sayı değil (%u bu CPU için azami değerdir)"
+msgstr "Seçilen sekme (%u) geçerli bir sayı değil (%u azami değerdir)"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
@@ -1106,16 +1081,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr "'%s' dizgesinde %i konumundaki birim bulunamıyor"
 
 #: util.cpp:203
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "'%s' dosyası açılırken bir hata oluştu (%s)"
+msgstr "'%s' dosyası açılırken bir hata oluştu"
 
 #: util.cpp:241
-#, fuzzy, c-format
-#| msgid "an error occurred while running command '%s' (%s)"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "'%s' komutu çalıştırılırken bir hata oluştu (%s)"
+msgstr "'%s' komutu çalıştırılırken bir hata oluştu"
 
 #: util.cpp:364
 msgid "set_cpu_affinity() not supported on this operating system"
@@ -1247,37 +1220,31 @@ msgstr "ROM Boyutu"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "Parça Numarası"
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type"
-msgstr "Tür #%i"
+msgstr "Tür"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "Tür #%i"
+msgstr "Tür Ayrıntısı"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "Aygıt Bulucu"
 
 #: data.hpp:264
 msgid "Bank Locator"
-msgstr ""
+msgstr "Banko Bulucu"
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "Rütbe"
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "Kod Adı"
+msgstr "Ad"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1324,8 +1291,6 @@ msgid "Compute Unit"
 msgstr "İşlem Birimi"
 
 #: data.hpp:337
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
 msgstr "Aygıt Kimliği"
 
@@ -1352,16 +1317,12 @@ msgid "Power Avg"
 msgstr "Güç Ortalaması"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "Bellek saati"
+msgstr "Çekirdek Saati"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
-msgstr "Bellek saati"
+msgstr "Bellek Saati"
 
 #: data.hpp:346
 msgid "Memory Used"
@@ -1369,7 +1330,7 @@ msgstr "Kullanılan Bellek"
 
 #: data.hpp:347
 msgid "Resizable BAR"
-msgstr "Yeniden boyutlandırılabilir BAR"
+msgstr "Yeniden Boyutlandırılabilir Çubuk"
 
 #: data.hpp:348
 msgid "Vulkan RT"
@@ -1504,10 +1465,8 @@ msgstr "Öntanımlı çekirdek türü"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5945
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
-msgstr "Öntanımlı çekirdek türü"
+msgstr "Öntanımlı bellek çubuğu"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5973
