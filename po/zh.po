@@ -15,19 +15,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-09-24 12:16+0200\n"
-"PO-Revision-Date: 2023-04-30 08:49+0000\n"
+"PO-Revision-Date: 2023-10-03 16:11+0000\n"
 "Last-Translator: yangyangdaji <1504305527@qq.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -72,17 +72,17 @@ msgstr "正在调用 dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (配置)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (最大)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (最小)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -170,10 +170,8 @@ msgid "Disabled"
 msgstr "已禁用"
 
 #: core.cpp:1080
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "查找 Vulkan API 版本"
+msgstr "查找 OpenCL API 版本"
 
 #: core.cpp:1084
 #, c-format
@@ -281,33 +279,29 @@ msgid "None"
 msgstr "无"
 
 #: core.cpp:1494
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "GPU %u 的 DRM 路径未知"
+msgstr "%s 的 DRM 路径未知"
 
 #: core.cpp:1501
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "GPU %u 的卡号未知"
+msgstr "%s 的卡号未知"
 
 #: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s(电流) / %s (最大)"
 
 #: core.cpp:1634
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "GPU 驱动 %u 无法报告频率"
+msgstr "%s 无法报告频率"
 
 #: core.cpp:1652
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "未能获得所有 OpenCL 平台（%s）"
+msgstr "无法检索 %s 的所有监视数据"
 
 #: core.cpp:1673
 msgid "Identifying running system"
@@ -381,10 +375,9 @@ msgid "in %u seconds"
 msgstr "%u 秒后"
 
 #: core.cpp:1932
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "正在启动基准测试"
+msgstr "使用 %u 线程启动基准测试"
 
 #: core.cpp:1955
 msgid "an error occurred while starting benchmark"
@@ -436,10 +429,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "未能检索 CPU 频率 (应急模式)"
 
 #: daemon_client.cpp:47
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "询问密码以在后台启动守护进程"
+msgstr "在背景中启动守护程序…"
 
 #: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -458,10 +449,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec：意外的错误代码"
 
 #: daemon_client.cpp:125
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "连接到守护程序"
+msgstr "连接到守护程序…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -493,10 +482,9 @@ msgid "Caches"
 msgstr "缓存"
 
 #: data.cpp:247
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s，%d-路"
+msgstr "%2d x %4d %s， %2d-路"
 
 #: data.cpp:249
 #, c-format
@@ -505,17 +493,16 @@ msgstr "%d %s，%d-路"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "数数"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "时钟"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "%i级缓存"
+msgstr "%u 级缓存"
 
 #: data.cpp:385
 #, c-format
@@ -545,11 +532,11 @@ msgstr "内存"
 #: data.cpp:483
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "条 %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
-msgstr ""
+msgstr "条"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -564,10 +551,9 @@ msgid "Graphics"
 msgstr "显卡"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "卡 %i"
+msgstr "卡  %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
@@ -612,10 +598,8 @@ msgstr ""
 " CPU 和主板等的信息。"
 
 #: data.cpp:744
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "关于"
+msgstr "关于 CPU-X"
 
 #: data.cpp:745
 #, c-format
@@ -648,7 +632,7 @@ msgstr "本软件不作任何保修"
 #: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "找不到 '%s' 文件的路径"
 
 #: gui_gtk.cpp:399
 msgid "Start daemon"
@@ -668,7 +652,7 @@ msgstr "询问密码以在后台启动守护进程"
 
 #: gui_gtk.cpp:412
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: gui_gtk.cpp:626
 msgid "BaseFamily"
@@ -690,11 +674,11 @@ msgstr "CPU 显示 (\"true\") 型号 (计算为 (ExtendedModel<<4)+BaseModel)"
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
-msgstr ""
+msgstr "确定内存设备所在的物理标记的插座或板位置"
 
 #: gui_gtk.cpp:840
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
+msgstr "确定内存设备所在的物理标记的银行"
 
 #: gui_gtk.cpp:1044
 msgid "User Mode Driver Version"
@@ -753,10 +737,8 @@ msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "为 CPU 缓存速度设置自定义 bandwidth 测试 (整型)"
 
 #: main.cpp:72
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "选择默认显卡 (整型)"
+msgstr "选择默认内存条 (整型)"
 
 #: main.cpp:73
 msgid "Select default graphic card (integer)"
@@ -810,7 +792,7 @@ msgstr "强制执行总线计时器"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
-msgstr ""
+msgstr "忽略 libcpuid 报告的 CPU值（'temp'，'volt' 和 'freq' 之间的逗号分隔值）"
 
 #: main.cpp:96
 msgid "Read CPUID raw data from a given file"
@@ -885,34 +867,25 @@ msgid ""
 msgstr "所选 CPU 类型 (%u) 不是有效数字（%u 是此 CPU 的最大值）"
 
 #: options.cpp:145
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
-msgstr "所选 CPU 类型 (%u) 不是有效数字（%u 是此 CPU 的最大值）"
+msgstr "所选带宽测试 (%u) 不是有效数字（%u 是此 系统的最大值）"
 
 #: options.cpp:168
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr "所选 CPU 类型 (%u) 不是有效数字（%u 是此 CPU 的最大值）"
+msgstr "所选 RAM 内存条 (%u) 不是有效数字（%u 是此系统的最大值）"
 
 #: options.cpp:188
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-#| "type of core)"
+#, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr "所选 CPU 内核 (%u) 不是有效数字（%u 是此类内核的最大值）"
+msgstr "所选 CPU 内核 (%u) 不是有效数字（%u 是此系统的最大值）"
 
 #: options.cpp:204
 #, c-format
@@ -927,12 +900,9 @@ msgid ""
 msgstr "所选 CPU 内核 (%u) 不是有效数字（%u 是此类内核的最大值）"
 
 #: options.cpp:284
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr "所选 CPU 类型 (%u) 不是有效数字（%u 是此 CPU 的最大值）"
+msgstr "所选标签页 (%u) 不是有效数字（%u 是最大值）"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
@@ -1068,16 +1038,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr "在字符串 '%s' 的位置%i找不到单元"
 
 #: util.cpp:203
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "打开文件 '%s' 时发生错误（%s）"
+msgstr "打开文件 '%s' 时发生错误"
 
 #: util.cpp:241
-#, fuzzy, c-format
-#| msgid "an error occurred while running command '%s' (%s)"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "运行命令 '%s' 时发生错误（%s）"
+msgstr "运行命令 '%s' 时发生错误"
 
 #: util.cpp:364
 msgid "set_cpu_affinity() not supported on this operating system"
@@ -1209,37 +1177,31 @@ msgstr "ROM 大小"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "零件号"
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type"
-msgstr "类型 #%i"
+msgstr "类型"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "类型 #%i"
+msgstr "类型详情"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "设备定位器"
 
 #: data.hpp:264
 msgid "Bank Locator"
-msgstr ""
+msgstr "Bank 定位器"
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "排列"
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "架构"
+msgstr "名称"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1286,10 +1248,8 @@ msgid "Compute Unit"
 msgstr "计算单元"
 
 #: data.hpp:337
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
-msgstr "设备ID"
+msgstr "设备 ID"
 
 #: data.hpp:338
 msgid "VBIOS Version"
@@ -1314,14 +1274,10 @@ msgid "Power Avg"
 msgstr "平均功率"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "内存时钟"
+msgstr "核心时钟"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "内存时钟"
 
@@ -1466,10 +1422,8 @@ msgstr "默认核心类型"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5945
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
-msgstr "默认核心类型"
+msgstr "默认内存条"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:5973
