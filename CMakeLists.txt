@@ -10,7 +10,9 @@ project(cpu-x
 
 
 ### DEFAULT CONFIG
-
+if(NOT CMAKE_SYSTEM_NAME MATCHES "(FreeBSD|OpenBSD|NetBSD)")
+link_libraries(stdc++fs)
+endif()
 # Global variables
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
