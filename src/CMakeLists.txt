@@ -246,6 +246,7 @@ target_link_libraries(${APP_EXEC}
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
 	${Backtrace_LIBRARIES}
+	std::filesystem
 
 	${GTK3_LIBRARIES}
 	${NCURSES_LIBRARIES}
@@ -267,6 +268,7 @@ target_link_libraries(${DAEMON_EXEC}
 	${DAEMON_FLAGS}
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
+	std::filesystem
 
 	${LIBCPUID_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
