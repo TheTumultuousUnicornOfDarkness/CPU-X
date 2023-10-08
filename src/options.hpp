@@ -43,6 +43,15 @@ enum OptKeymap
 	LASTKEYMAP
 };
 
+enum OptTempUnit
+{
+	CELSIUS,
+	FAHRENHEIT,
+	KELVIN,
+	RANKINE,
+	LASTTEMPUNIT
+};
+
 enum TabNumber
 {
 	TAB_CPU, TAB_CACHES, TAB_MOTHERBOARD, TAB_MEMORY, TAB_SYSTEM, TAB_GRAPHICS, TAB_BENCH, TAB_ABOUT
@@ -91,6 +100,8 @@ public:
 	static uint16_t get_refr_time();
 	static bool set_keymap(OptKeymap keymap);
 	static OptKeymap get_keymap();
+	static bool set_temp_unit(OptTempUnit temp_unit);
+	static OptTempUnit get_temp_unit();
 
 private:
 	static inline bool cpuid_decimal     = false;
@@ -112,7 +123,8 @@ private:
 	static inline uint16_t refr_time     = 1;
 
 	static inline TabNumber selected_page = TAB_CPU;
-	static inline OptKeymap keymap       = ARROWS;
+	static inline OptKeymap keymap        = ARROWS;
+	static inline OptTempUnit temp_unit   = CELSIUS;
 	Options() = delete;
 	~Options() = delete;
 };

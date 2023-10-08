@@ -5704,7 +5704,7 @@
             <property name="scrollable">True</property>
             <property name="enable-popup">True</property>
             <child>
-              <!-- n-columns=2 n-rows=2 -->
+              <!-- n-columns=2 n-rows=3 -->
               <object class="GtkGrid" id="interface_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -5723,7 +5723,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">0</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -5734,7 +5734,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">0</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -5747,7 +5747,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">1</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -5764,7 +5764,38 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">1</property>
+                    <property name="top-attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="temperatureunit_lab">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes" comments="Setting: temperature unit">Temperature unit</property>
+                    <property name="mnemonic-widget">refreshtime_val</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="temperatureunit_val">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="active">0</property>
+                    <items>
+                      <item id="celsius">Celsius (°C)</item>
+                      <item id="fahrenheit">Fahrenheit (°F)</item>
+                      <item id="kelvin">Kelvin (K)</item>
+                      <item id="rankine">Rankine (Ra)</item>
+                    </items>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
               </object>

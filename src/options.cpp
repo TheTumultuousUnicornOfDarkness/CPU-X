@@ -334,3 +334,25 @@ OptKeymap Options::get_keymap()
 {
 	return Options::keymap;
 }
+
+bool Options::set_temp_unit(OptTempUnit temp_unit)
+{
+	switch(temp_unit)
+	{
+		case CELSIUS:
+		case FAHRENHEIT:
+		case KELVIN:
+		case RANKINE:
+			Options::temp_unit = temp_unit;
+			return true;
+		default:
+			Options::temp_unit = CELSIUS;
+			MSG_ERROR("Options::set_temp_unit() called with %i", temp_unit);
+			return false;
+	}
+}
+
+OptTempUnit Options::get_temp_unit()
+{
+	return Options::temp_unit;
+}

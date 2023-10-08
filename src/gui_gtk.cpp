@@ -138,6 +138,7 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 	builder->get_widget("settingsbutton", this->settingsbutton);
 	builder->get_widget("validatebutton", this->validatebutton);
 	builder->get_widget("cancelbutton", this->cancelbutton);
+	builder->get_widget("temperatureunit_val", this->temperatureunit);
 	builder->get_widget("refreshtime_val", this->refreshtime);
 	builder->get_widget("theme_val", this->theme);
 	builder->get_widget("defaulttab_val", this->defaulttab);
@@ -529,9 +530,13 @@ void GtkData::set_signals()
 	/* Hide settings window and apply changes */
 	this->validatebutton->signal_clicked().connect([this]
 	{
+		/* Apply new temperature unit */
+		Options::set_temp_unit(static_cast<OptTempUnit>(settings->get_enum("temperature-unit")));
+
 		/* Apply new refresh time */
+		Options::set_refr_time(settings->get_uint("refresh-time"));
 		this->refresh_handle.disconnect();
-		this->refresh_handle = Glib::signal_timeout().connect_seconds(sigc::mem_fun(*this, &GtkData::grefresh), settings->get_uint("refresh-time"));
+		this->refresh_handle = Glib::signal_timeout().connect_seconds(sigc::mem_fun(*this, &GtkData::grefresh), Options::get_refr_time());
 
 		/* Apply new color theme */
 		this->check_theme_color();
@@ -553,6 +558,7 @@ void GtkData::set_signals()
 
 void GtkData::bind_settings()
 {
+	settings->bind("temperature-unit",     this->temperatureunit,  "active-id");
 	settings->bind("refresh-time",         this->refreshtime,      "value"    );
 	settings->bind("gui-theme",            this->theme,            "active-id");
 	settings->bind("default-tab",          this->defaulttab,       "active-id");
@@ -1234,6 +1240,7 @@ void load_settings()
 	Glib::init();
 	settings = Gio::Settings::create(APPLICATION_ID);
 	settings->delay();
+	Options::set_temp_unit     (static_cast<OptTempUnit>(settings->get_enum("temperature-unit")));
 	Options::set_refr_time     (settings->get_uint("refresh-time"));
 	Options::set_selected_page (static_cast<TabNumber>(settings->get_enum("default-tab")));
 	Options::set_selected_type (settings->get_uint("default-core-type"), -1);

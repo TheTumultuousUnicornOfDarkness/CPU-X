@@ -88,6 +88,7 @@ struct GtkData
 	Gtk::Button *settingsbutton = nullptr;
 	Gtk::Button *validatebutton = nullptr;
 	Gtk::Button *cancelbutton = nullptr;
+	Gtk::ComboBoxText *temperatureunit = nullptr;
 	Gtk::SpinButton *refreshtime = nullptr;
 	Gtk::ComboBoxText *theme = nullptr;
 	Gtk::ComboBoxText *defaulttab = nullptr;

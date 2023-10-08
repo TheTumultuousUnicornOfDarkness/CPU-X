@@ -184,6 +184,38 @@ std::string string_set_size_unit(char *str_src)
 }
 #undef TOKEN_LEN
 
+/* Format temperature with proper unit */
+std::string string_format_temperature_unit(const char *fmt, const double temp_celsius)
+{
+	double temp;
+	std::string unit;
+
+	switch(Options::get_temp_unit())
+	{
+		case FAHRENHEIT:
+			unit = "°F";
+			temp = temp_celsius * 9/5 + 32;
+			break;
+		case KELVIN:
+			unit = "K";
+			temp = temp_celsius + 273.15;
+			break;
+		case RANKINE:
+			unit = "Ra";
+			temp = temp_celsius * 9/5 + 491.67;
+			break;
+		default:
+			unit = "°C";
+			temp = temp_celsius;
+			break;
+	}
+
+	std::string ret = string_format(fmt, temp);
+	ret += unit;
+	MSG_DEBUG("string_format_temperature_unit: %.2f°C ==> %s", temp_celsius, ret.c_str());
+	return ret;
+}
+
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...)
 {

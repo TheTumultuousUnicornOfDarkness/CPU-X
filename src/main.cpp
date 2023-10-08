@@ -28,6 +28,7 @@
 #include <cstring>
 #include <csignal>
 #include <clocale>
+#include <cctype>
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -64,6 +65,7 @@ static const std::list<struct Getopt> cpux_options =
 	{ true,            'D', "dump",          no_argument,       N_("Dump all data on standard output and exit")                },
 	{ HAS_DMIDECODE,   'M', "dmidecode",     no_argument,       N_("Run embedded command dmidecode and exit")                  },
 	{ HAS_BANDWIDTH,   'B', "bandwidth",     no_argument,       N_("Run embedded command bandwidth and exit")                  },
+	{ true,            'u', "temp-unit",     required_argument, N_("Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])") },
 	{ true,            'r', "refresh",       required_argument, N_("Set custom time between two refreshes (in seconds)")       },
 	{ true,            't', "tab",           required_argument, N_("Set default tab (integer)")                                },
 	{ HAS_LIBCPUID,    'p', "type",          required_argument, N_("Select core type to monitor (integer)")                    },
@@ -262,6 +264,16 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 			case 'B':
 				Options::set_output_type(OUT_BANDWIDTH);
 				break;
+			case 'u':
+				switch(std::tolower(optarg[0]))
+				{
+					case 'c': Options::set_temp_unit(CELSIUS);    break;
+					case 'f': Options::set_temp_unit(FAHRENHEIT); break;
+					case 'k': Options::set_temp_unit(KELVIN);     break;
+					case 'r': Options::set_temp_unit(RANKINE);    break;
+					default: help(binary_name); exit(EXIT_FAILURE);
+				}
+				break;
 			case 'r':
 				Options::set_refr_time(std::stoul(optarg));
 				break;
@@ -328,7 +340,7 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 				}
 				else if(!strcmp(longopts[longindex].name, "keymap"))
 				{
-					switch(optarg[0])
+					switch(std::tolower(optarg[0]))
 					{
 						case 'a': Options::set_keymap(ARROWS);     break;
 						case 'e': Options::set_keymap(EMACS);      break;

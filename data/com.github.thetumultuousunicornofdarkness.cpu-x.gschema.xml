@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
+	<enum id="com.github.thetumultuousunicornofdarkness.cpu-x.temperature-unit">
+		<value value="0" nick="celsius"/>
+		<value value="1" nick="fahrenheit"/>
+		<value value="2" nick="kelvin"/>
+		<value value="3" nick="rankine"/>
+	</enum>
 	<enum id="com.github.thetumultuousunicornofdarkness.cpu-x.theme">
 		<value value="0" nick="auto"/>
 		<value value="1" nick="light"/>
@@ -17,6 +23,13 @@
 	</enum>
 
 	<schema id="com.github.thetumultuousunicornofdarkness.cpu-x" path="/com/github/thetumultuousunicornofdarkness/cpu-x/">
+		<key name="temperature-unit" enum="com.github.thetumultuousunicornofdarkness.cpu-x.temperature-unit">
+			<default>'celsius'</default>
+			<summary>Temperature unit</summary>
+			<description>
+				Set temperature unit
+			</description>
+		</key>
 		<key name="refresh-time" type="u">
 			<default>1</default>
 			<range min="1" max="65535"/>
