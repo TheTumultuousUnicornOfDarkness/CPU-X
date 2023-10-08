@@ -11,10 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-09-25 06:43+0000\n"
+"PO-Revision-Date: 2023-10-09 11:48+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
@@ -551,7 +551,7 @@ msgstr "BIOS"
 
 #: data.cpp:452 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
-msgstr "Chipset"
+msgstr "Jeu de puces"
 
 #: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
@@ -753,6 +753,7 @@ msgstr "Lance la commande intégrée bandwidth et quitte"
 #: main.cpp:68
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
+"Définit l'unité des températures (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
@@ -1488,10 +1489,8 @@ msgstr "Foncé"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Température"
+msgstr "Unité de température"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
