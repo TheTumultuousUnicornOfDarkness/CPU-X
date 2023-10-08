@@ -142,8 +142,8 @@ void string_trim(std::string &str)
 }
 
 #define TOKEN_LEN 4
-/* Duplicate a string and set unit */
-std::string string_set_unit(char *str_src)
+/* Duplicate a string and set data size unit */
+std::string string_set_size_unit(char *str_src)
 {
 	if(str_src == NULL)
 		return "";

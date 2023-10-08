@@ -432,7 +432,7 @@ static int call_dmidecode(Data &data)
 	data.motherboard.bios.brand.value         = msg.bios.brand;
 	data.motherboard.bios.version.value       = msg.bios.version;
 	data.motherboard.bios.date.value          = msg.bios.date;
-	data.motherboard.bios.romsize.value       = string_set_unit(msg.bios.romsize);
+	data.motherboard.bios.romsize.value       = string_set_size_unit(msg.bios.romsize);
 
 	/* Tab RAM */
 	RECEIVE_DATA(&data.socket_fd, &msg.stick_count, sizeof(uint8_t));
@@ -446,7 +446,7 @@ static int call_dmidecode(Data &data)
 		data.memory.sticks[i].type_detail.value    = msg_memory.type_detail;
 		data.memory.sticks[i].device_locator.value = msg_memory.device_locator;
 		data.memory.sticks[i].bank_locator.value   = msg_memory.bank_locator;
-		data.memory.sticks[i].size.value           = string_set_unit(msg_memory.size);
+		data.memory.sticks[i].size.value           = string_set_size_unit(msg_memory.size);
 		data.memory.sticks[i].rank.value           = msg_memory.rank;
 		need_sep = false;
 		if(std::strlen(msg_memory.speed_configured) > 0)

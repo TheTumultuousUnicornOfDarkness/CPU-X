@@ -147,8 +147,8 @@ std::string string_format(const char *str, ...);
 /* Trim a C++ string from both ends */
 void string_trim(std::string &str);
 
-/* Duplicate a string and set unit */
-std::string string_set_unit(char *str_src);
+/* Duplicate a string and set data size unit */
+std::string string_set_size_unit(char *str_src);
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...);
