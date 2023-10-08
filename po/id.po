@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-09-24 12:16+0200\n"
+"POT-Creation-Date: 2023-10-08 10:46+0000\n"
 "PO-Revision-Date: 2023-07-15 11:53+0000\n"
 "Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
@@ -653,7 +653,7 @@ msgstr "Lisensi"
 msgid "This software is distributed under the terms of %s"
 msgstr "Perangkat lunak ini didistribusikan di bawah aturan %s"
 
-#: data.cpp:754 main.cpp:174
+#: data.cpp:754 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Program ini hadir dengan TANPA JAMINAN APA PUN"
 
@@ -662,216 +662,220 @@ msgstr "Program ini hadir dengan TANPA JAMINAN APA PUN"
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:399
+#: gui_gtk.cpp:400
 msgid "Start daemon"
 msgstr "Memulai daemon"
 
-#: gui_gtk.cpp:402
+#: gui_gtk.cpp:403
 msgid "Connected to daemon"
 msgstr "Terhubung ke daemon"
 
-#: gui_gtk.cpp:404
+#: gui_gtk.cpp:405
 msgid "No polkit authentication agent found"
 msgstr "Agen autentikasi polkit tidak ditemukan"
 
-#: gui_gtk.cpp:408
+#: gui_gtk.cpp:409
 msgid "Ask password to start daemon in background"
 msgstr "Meminta kata sandi untuk memulai daemon di latar belakang"
 
-#: gui_gtk.cpp:412
+#: gui_gtk.cpp:413
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:626
+#: gui_gtk.cpp:632
 msgid "BaseFamily"
 msgstr "KeluargaDasar"
 
-#: gui_gtk.cpp:627
+#: gui_gtk.cpp:633
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Tampilan CPU (\"benar\") keluarga (dihitung sebagai "
 "KeluargaDasar+KeluargaBesar)"
 
-#: gui_gtk.cpp:628
+#: gui_gtk.cpp:634
 msgid "BaseModel"
 msgstr "ModelDasar"
 
-#: gui_gtk.cpp:629
+#: gui_gtk.cpp:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Model tampilan CPU (\"benar\") (dihitung sebagai "
 "(ExtendedModel<<4)+ModelDasar)"
 
-#: gui_gtk.cpp:839
+#: gui_gtk.cpp:845
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:840
+#: gui_gtk.cpp:846
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1044
+#: gui_gtk.cpp:1050
 msgid "User Mode Driver Version"
 msgstr "Versi Pengandar Mode Pengguna"
 
-#: gui_gtk.cpp:1058
+#: gui_gtk.cpp:1064
 msgid "Vulkan Ray Tracing"
 msgstr "Pelacakan Sinar Vulkan"
 
-#: gui_gtk.cpp:1251
+#: gui_gtk.cpp:1258
 msgid "Starting GTK GUI…"
 msgstr "Memulai GUI GTK…"
 
-#: gui_gtk.cpp:1263
+#: gui_gtk.cpp:1270
 msgid "failed to import UI in GtkBuilder"
 msgstr "gagal mengimpor UI dalam GtkBuilder"
 
-#: main.cpp:62
+#: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Mulai antarmuka pengguna grafis (GUI) (bawaan)"
 
-#: main.cpp:63
+#: main.cpp:64
 msgid "Start text-based user interface (TUI)"
 msgstr "Mulai antarmuka pengguna berbasis teks (TUI)"
 
-#: main.cpp:64
+#: main.cpp:65
 msgid "Dump all data on standard output and exit"
 msgstr "Buang semua data pada keluaran standar dan keluar"
 
-#: main.cpp:65
+#: main.cpp:66
 msgid "Run embedded command dmidecode and exit"
 msgstr "Jalankan perintah dmidecode tertanam dan keluar"
 
-#: main.cpp:66
+#: main.cpp:67
 msgid "Run embedded command bandwidth and exit"
 msgstr "Jalankan perintah lebar pita tertanam dan keluar"
 
-#: main.cpp:67
+#: main.cpp:68
+msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+msgstr ""
+
+#: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Atur waktu khusus di antara dua penyegaran (dalam detik)"
 
-#: main.cpp:68
+#: main.cpp:70
 msgid "Set default tab (integer)"
 msgstr "Setel tab bawaan (integer)"
 
-#: main.cpp:69
+#: main.cpp:71
 msgid "Select core type to monitor (integer)"
 msgstr "Pilih jenis inti yang akan dipantau (integer)"
 
-#: main.cpp:70
+#: main.cpp:72
 msgid "Select CPU core to monitor (integer)"
 msgstr "Pilih inti CPU untuk dipantau (integer)"
 
-#: main.cpp:71
+#: main.cpp:73
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Setel pengujian lebar pita khusus untuk kecepatan tembolok CPU (integer)"
 
-#: main.cpp:72
+#: main.cpp:74
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
 msgstr "Pilih kartu grafis bawaan (integer)"
 
-#: main.cpp:73
+#: main.cpp:75
 msgid "Select default graphic card (integer)"
 msgstr "Pilih kartu grafis bawaan (integer)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:5879
+#: main.cpp:76 cpu-x-gtk-3.12.ui:5910
 msgid "Start and connect to daemon"
 msgstr "Mulai dan sambungkan daemon"
 
-#: main.cpp:75
+#: main.cpp:77
 msgid "Verbose output"
 msgstr "Keluaran verbose"
 
-#: main.cpp:76
+#: main.cpp:78
 msgid "Print help and exit"
 msgstr "Cetak bantuan dan keluar"
 
-#: main.cpp:77
+#: main.cpp:79
 msgid "Print version and exit"
 msgstr "Cetak versi dan keluar"
 
-#: main.cpp:78
+#: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "Cetak nilai desimal CPUID (nilai bawaannya adalah heksadesimal)"
 
-#: main.cpp:79
+#: main.cpp:81
 msgid "Disable colored output"
 msgstr "Nonaktifkan keluaran berwarna"
 
-#: main.cpp:80
+#: main.cpp:82
 msgid "Print information for debugging"
 msgstr "Cetak informasi untuk awakutu"
 
-#: main.cpp:81
+#: main.cpp:83
 msgid "Print required information to paste in an issue"
 msgstr "Cetak informasi yang diperlukan untuk ditempelkan dalam sebuah isu"
 
-#: main.cpp:82
+#: main.cpp:84
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Atur pemetaan kunci untuk mode NCurses (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.cpp:93
+#: main.cpp:95
 msgid "Add default command line arguments"
 msgstr "Tambah argumen baris perintah bawaan"
 
-#: main.cpp:94
+#: main.cpp:96
 msgid "Enforce the bus clock"
 msgstr "Terapkan bus clock"
 
-#: main.cpp:95
+#: main.cpp:97
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
 
-#: main.cpp:96
+#: main.cpp:98
 msgid "Read CPUID raw data from a given file"
 msgstr "Baca data mentah CPUID dari berkas tertentu"
 
-#: main.cpp:97
+#: main.cpp:99
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Hanya mencetak pesan jika CPU tidak ada dalam basis data"
 
-#: main.cpp:124
+#: main.cpp:126
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Penggunaan: %s MENAMPILKAN [OPSI]\n"
 
-#: main.cpp:125
+#: main.cpp:127
 msgid "Available DISPLAY:"
 msgstr "TAMPILAN yang tersedia:"
 
-#: main.cpp:133
+#: main.cpp:135
 msgid "Available OPTIONS:"
 msgstr "OPSI yang Tersedia:"
 
-#: main.cpp:142
+#: main.cpp:144
 msgid "Influenceable environment variables:"
 msgstr "Variabel lingkungan yang dapat dipengaruhi:"
 
-#: main.cpp:173
+#: main.cpp:175
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Ini adalah perangkat lunak gratis: Anda bebas untuk mengubah dan "
 "mendistribusikannya kembali."
 
-#: main.cpp:175
+#: main.cpp:177
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Lihat %s lisensi: <%s>\n"
 
-#: main.cpp:182
+#: main.cpp:184
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s versi: %s"
 
-#: main.cpp:367
+#: main.cpp:379
 #, c-format
 msgid ""
 "\n"
@@ -880,7 +884,7 @@ msgstr ""
 "\n"
 "Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan mengalami gangguan."
 
-#: main.cpp:369
+#: main.cpp:381
 #, c-format
 msgid ""
 "\n"
@@ -891,13 +895,13 @@ msgstr ""
 "Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan sedang mencoba "
 "untuk pulih."
 
-#: main.cpp:393
+#: main.cpp:405
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Anda dapat membuka isu baru di sini, dengan mengisi templat seperti yang "
 "diminta:"
 
-#: main.cpp:435
+#: main.cpp:447
 msgid "an error occurred while setting locale"
 msgstr "terjadi kesalahan saat mengatur lokasi"
 
@@ -1117,19 +1121,19 @@ msgstr "Gagal menyiapkan terminal %s (err=%i); kembali ke %s"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "tidak dapat menemukan unit dalam string '%s' pada posisi %i"
 
-#: util.cpp:203
+#: util.cpp:235
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "kesalahan terjadi saat membuka berkas '%s' (%s)"
 
-#: util.cpp:241
+#: util.cpp:273
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "terjadi kesalahan saat menjalankan perintah '%s' (%s)"
 
-#: util.cpp:364
+#: util.cpp:396
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() tidak didukung pada sistem operasi ini"
 
@@ -1347,7 +1351,7 @@ msgstr "Versi VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:339 cpu-x-gtk-3.12.ui:5776
+#: data.hpp:339 cpu-x-gtk-3.12.ui:5807
 msgid "Interface"
 msgstr "Antarmuka"
 
@@ -1484,45 +1488,52 @@ msgstr "Terang"
 msgid "Dark"
 msgstr "Gelap"
 
+#. Setting: temperature unit
+#: cpu-x-gtk-3.12.ui:5775
+#, fuzzy
+#| msgid "Temperature"
+msgid "Temperature unit"
+msgstr "Suhu"
+
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5795
+#: cpu-x-gtk-3.12.ui:5826
 msgid "Default tab"
 msgstr "Tab bawaan"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5808
+#: cpu-x-gtk-3.12.ui:5839
 msgid "Default CPU core"
 msgstr "Inti CPU bawaan"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5821
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Default cache test"
 msgstr "Uji tembolok bawaan"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5864
+#: cpu-x-gtk-3.12.ui:5895
 msgid "Print CPUID values in decimal"
 msgstr "Mencetak nilai CPUID dalam bentuk desimal"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5897
+#: cpu-x-gtk-3.12.ui:5928
 msgid "Default graphic card"
 msgstr "Kartu grafis bawaan"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5921
+#: cpu-x-gtk-3.12.ui:5952
 msgid "Default core type"
 msgstr "Tipe inti bawaan"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5945
+#: cpu-x-gtk-3.12.ui:5976
 #, fuzzy
 #| msgid "Default core type"
 msgid "Default memory stick"
 msgstr "Tipe inti bawaan"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:5973
+#: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
 msgstr "Memulai"
 

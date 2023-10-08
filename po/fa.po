@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-09-24 12:16+0200\n"
+"POT-Creation-Date: 2023-10-08 10:46+0000\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -652,7 +652,7 @@ msgstr "مجوز"
 msgid "This software is distributed under the terms of %s"
 msgstr "این نرم افزار تحت ضوابط %s توزیع شده است"
 
-#: data.cpp:754 main.cpp:174
+#: data.cpp:754 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "این برنامه به طور مطلق بدون ضمانت ارائه می شود"
 
@@ -661,215 +661,219 @@ msgstr "این برنامه به طور مطلق بدون ضمانت ارائه 
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:399
+#: gui_gtk.cpp:400
 msgid "Start daemon"
 msgstr "اجرای برنامه در پس زمینه"
 
-#: gui_gtk.cpp:402
+#: gui_gtk.cpp:403
 msgid "Connected to daemon"
 msgstr "ارتباط با برنامه پس زمینه برقرار شد"
 
-#: gui_gtk.cpp:404
+#: gui_gtk.cpp:405
 msgid "No polkit authentication agent found"
 msgstr "عامل احراز هویت polkit پیدا نشد"
 
-#: gui_gtk.cpp:408
+#: gui_gtk.cpp:409
 msgid "Ask password to start daemon in background"
 msgstr "برای اجرای برنامه در پس زمینه رمز ورود دریافت شود"
 
-#: gui_gtk.cpp:412
+#: gui_gtk.cpp:413
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:626
+#: gui_gtk.cpp:632
 msgid "BaseFamily"
 msgstr "خانواده پایه"
 
-#: gui_gtk.cpp:627
+#: gui_gtk.cpp:633
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "نمایش خانواده پردازنده(\"true\") (محاسبه شده بر اساس "
 "BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:628
+#: gui_gtk.cpp:634
 msgid "BaseModel"
 msgstr "مدل پایه"
 
-#: gui_gtk.cpp:629
+#: gui_gtk.cpp:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "نمایش مدل پردازنده (\"true\") (محاسبه شده به صورت "
 "(ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:839
+#: gui_gtk.cpp:845
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:840
+#: gui_gtk.cpp:846
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1044
+#: gui_gtk.cpp:1050
 msgid "User Mode Driver Version"
 msgstr "نسخه راه انداز حالت کاربر"
 
-#: gui_gtk.cpp:1058
+#: gui_gtk.cpp:1064
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1251
+#: gui_gtk.cpp:1258
 msgid "Starting GTK GUI…"
 msgstr "در حال آغاز رابط کاربری گرافیکی GTK…"
 
-#: gui_gtk.cpp:1263
+#: gui_gtk.cpp:1270
 msgid "failed to import UI in GtkBuilder"
 msgstr "وارد کردن ناموفق رابط کاربری GtkBuilder"
 
-#: main.cpp:62
+#: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "آغاز به صورت رابط کاربری گرافیکی (GUI) (پیش فرض)"
 
-#: main.cpp:63
+#: main.cpp:64
 msgid "Start text-based user interface (TUI)"
 msgstr "آغاز به صورت رابط کاربری متنی (TUI)"
 
-#: main.cpp:64
+#: main.cpp:65
 msgid "Dump all data on standard output and exit"
 msgstr "روبرداری از تمام اطلاعات در خروجی استاندارد و خروج"
 
-#: main.cpp:65
+#: main.cpp:66
 msgid "Run embedded command dmidecode and exit"
 msgstr "اجرای دستور تعبیه شده dmidecode و خروج"
 
-#: main.cpp:66
+#: main.cpp:67
 msgid "Run embedded command bandwidth and exit"
 msgstr "اجرای دستور تعبیه شده bandwidth و خروج"
 
-#: main.cpp:67
+#: main.cpp:68
+msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+msgstr ""
+
+#: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "تنظیم زمان دلخواه بین دو بازآوری (به ثانیه)"
 
-#: main.cpp:68
+#: main.cpp:70
 msgid "Set default tab (integer)"
 msgstr "تنظیم تب پیش فرض (عددی)"
 
-#: main.cpp:69
+#: main.cpp:71
 msgid "Select core type to monitor (integer)"
 msgstr "انتخاب هسته پردازنده برای پایش (عدد)"
 
-#: main.cpp:70
+#: main.cpp:72
 msgid "Select CPU core to monitor (integer)"
 msgstr "انتخاب هسته پردازنده برای پایش (عددی)"
 
-#: main.cpp:71
+#: main.cpp:73
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "تنظیم پهنای باند آزمون دلخواه برای سرعت کش پردازنده (عددی)"
 
-#: main.cpp:72
+#: main.cpp:74
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
 msgstr "انتخاب کارت گرافیک پیش فرض (عددی)"
 
-#: main.cpp:73
+#: main.cpp:75
 msgid "Select default graphic card (integer)"
 msgstr "انتخاب کارت گرافیک پیش فرض (عددی)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:5879
+#: main.cpp:76 cpu-x-gtk-3.12.ui:5910
 msgid "Start and connect to daemon"
 msgstr "اجرا و اتصال به برنامه پس زمینه"
 
-#: main.cpp:75
+#: main.cpp:77
 msgid "Verbose output"
 msgstr "خروجی مفصل"
 
-#: main.cpp:76
+#: main.cpp:78
 msgid "Print help and exit"
 msgstr "چاپ راهنما و خروج"
 
-#: main.cpp:77
+#: main.cpp:79
 msgid "Print version and exit"
 msgstr "چاپ نسخه و خروج"
 
-#: main.cpp:78
+#: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "چاپ مقادیر CPUID به صورت decimal (پیش فرض hexadeximal است)"
 
-#: main.cpp:79
+#: main.cpp:81
 msgid "Disable colored output"
 msgstr "غیر فعال کردن خروجی رنگی"
 
-#: main.cpp:80
+#: main.cpp:82
 msgid "Print information for debugging"
 msgstr "چاپ اطلاعات برای اشکال زدایی"
 
-#: main.cpp:81
+#: main.cpp:83
 msgid "Print required information to paste in an issue"
 msgstr "چاپ اطلاعات مورد نیاز برای جایگزاری در یک موضوع"
 
-#: main.cpp:82
+#: main.cpp:84
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "برای حالت NCurses نگاشت کلیدها را تنظیم کنید (a[rrows]|e[macs]|i[nverted-T]|"
 "v[im])"
 
-#: main.cpp:93
+#: main.cpp:95
 msgid "Add default command line arguments"
 msgstr "اضافه کردن آرگومان های پیش فرض خط فرمان"
 
-#: main.cpp:94
+#: main.cpp:96
 msgid "Enforce the bus clock"
 msgstr "از پیش تعیین کردن مقدار زمان سنج گذرگاه"
 
-#: main.cpp:95
+#: main.cpp:97
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
 
-#: main.cpp:96
+#: main.cpp:98
 msgid "Read CPUID raw data from a given file"
 msgstr "خواندن اطلاعات خام CPUID از فایل دریافتی"
 
-#: main.cpp:97
+#: main.cpp:99
 msgid "Only print a message if CPU is not present in the database"
 msgstr "در صورت نبودن پردازنده در پایگاه داده فقط یک پیغام نمایش داده شود"
 
-#: main.cpp:124
+#: main.cpp:126
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "مورد استفاده: %s [تنظیمات] نمایش\n"
 
-#: main.cpp:125
+#: main.cpp:127
 msgid "Available DISPLAY:"
 msgstr "نمایش در دسترس:"
 
-#: main.cpp:133
+#: main.cpp:135
 msgid "Available OPTIONS:"
 msgstr "تنظیمات در دسترس:"
 
-#: main.cpp:142
+#: main.cpp:144
 msgid "Influenceable environment variables:"
 msgstr "متغیر های محیطی تاثیرگذار:"
 
-#: main.cpp:173
+#: main.cpp:175
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "این نرم افزار مجانی است: شما مجاز به اعمال تغییرات و توزیع دوباره آن هستید."
 
-#: main.cpp:175
+#: main.cpp:177
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "مشاهده مجوز %s: <%s>\n"
 
-#: main.cpp:182
+#: main.cpp:184
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s نسخه: %s"
 
-#: main.cpp:367
+#: main.cpp:379
 #, c-format
 msgid ""
 "\n"
@@ -878,7 +882,7 @@ msgstr ""
 "\n"
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s) رو دریافت کرد و متوقف شده است."
 
-#: main.cpp:369
+#: main.cpp:381
 #, c-format
 msgid ""
 "\n"
@@ -889,11 +893,11 @@ msgstr ""
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s)‌رو دریافت کرده و در حال تلاش برای بازیابی "
 "است."
 
-#: main.cpp:393
+#: main.cpp:405
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:435
+#: main.cpp:447
 msgid "an error occurred while setting locale"
 msgstr "خطایی در هنگام تنظیم زبان رخ داده است"
 
@@ -1101,19 +1105,19 @@ msgstr "راه اندازی ناموفق ترمینال %s (err=%i); برگشت�
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "واحدی در متن '%s' در موقعیت %i یافت نشد"
 
-#: util.cpp:203
+#: util.cpp:235
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "خطایی در هنگام باز کردن فایل '%s' رخ داده است (%s)"
 
-#: util.cpp:241
+#: util.cpp:273
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "خطایی در هنگام اجرای دستور '%s' رخ داده است (%s)"
 
-#: util.cpp:364
+#: util.cpp:396
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
@@ -1331,7 +1335,7 @@ msgstr "نسخه VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:339 cpu-x-gtk-3.12.ui:5776
+#: data.hpp:339 cpu-x-gtk-3.12.ui:5807
 msgid "Interface"
 msgstr "رابط"
 
@@ -1468,45 +1472,52 @@ msgstr "روشن"
 msgid "Dark"
 msgstr "تیره"
 
+#. Setting: temperature unit
+#: cpu-x-gtk-3.12.ui:5775
+#, fuzzy
+#| msgid "Temperature"
+msgid "Temperature unit"
+msgstr "دما"
+
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5795
+#: cpu-x-gtk-3.12.ui:5826
 msgid "Default tab"
 msgstr "سربرگ پیش‌فرض"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5808
+#: cpu-x-gtk-3.12.ui:5839
 msgid "Default CPU core"
 msgstr "هسته CPU پیش‌فرض"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5821
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Default cache test"
 msgstr "تست کش پیش‌فرض"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5864
+#: cpu-x-gtk-3.12.ui:5895
 msgid "Print CPUID values in decimal"
 msgstr "چاپ مقادیر CPUID به صورت اعشاری"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5897
+#: cpu-x-gtk-3.12.ui:5928
 msgid "Default graphic card"
 msgstr "کارت گرافیک پیش فرض"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5921
+#: cpu-x-gtk-3.12.ui:5952
 msgid "Default core type"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5945
+#: cpu-x-gtk-3.12.ui:5976
 #, fuzzy
 #| msgid "Default cache test"
 msgid "Default memory stick"
 msgstr "تست کش پیش‌فرض"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:5973
+#: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
 msgstr "راه‌اندازی"
 

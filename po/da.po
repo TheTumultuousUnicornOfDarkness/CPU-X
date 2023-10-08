@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-09-24 12:16+0200\n"
+"POT-Creation-Date: 2023-10-08 10:46+0000\n"
 "PO-Revision-Date: 2022-12-17 05:50+0000\n"
 "Last-Translator: Magnus Jørgensen <magnusmj@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/cpu-x/"
@@ -639,7 +639,7 @@ msgstr "Licens"
 msgid "This software is distributed under the terms of %s"
 msgstr "Denne software er udgivet under vilkårene for %s"
 
-#: data.cpp:754 main.cpp:174
+#: data.cpp:754 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dette program leveres HELT UDEN GARANTI"
 
@@ -648,211 +648,215 @@ msgstr "Dette program leveres HELT UDEN GARANTI"
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:399
+#: gui_gtk.cpp:400
 msgid "Start daemon"
 msgstr "Start baggrundsprogram"
 
-#: gui_gtk.cpp:402
+#: gui_gtk.cpp:403
 msgid "Connected to daemon"
 msgstr "Forbundet til baggrundsprogram"
 
-#: gui_gtk.cpp:404
+#: gui_gtk.cpp:405
 msgid "No polkit authentication agent found"
 msgstr "Ingen polkit autentifikationsagent fundet"
 
-#: gui_gtk.cpp:408
+#: gui_gtk.cpp:409
 msgid "Ask password to start daemon in background"
 msgstr "Forespørg adgangskode til at starte baggrundsprogram i bagrunden"
 
-#: gui_gtk.cpp:412
+#: gui_gtk.cpp:413
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:626
+#: gui_gtk.cpp:632
 msgid "BaseFamily"
 msgstr "Basisfamillie"
 
-#: gui_gtk.cpp:627
+#: gui_gtk.cpp:633
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "CPU udstilling (\"sand\") familie (beregnet som Basisfamilie+Udvidetfamilie)"
 
-#: gui_gtk.cpp:628
+#: gui_gtk.cpp:634
 msgid "BaseModel"
 msgstr "Basismodel"
 
-#: gui_gtk.cpp:629
+#: gui_gtk.cpp:635
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU udstilling (\"sand\") model (beregnet som (UdvidetModel<<4)+Basismodel)"
 
-#: gui_gtk.cpp:839
+#: gui_gtk.cpp:845
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:840
+#: gui_gtk.cpp:846
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1044
+#: gui_gtk.cpp:1050
 msgid "User Mode Driver Version"
 msgstr "Bruger tilstands driver version"
 
-#: gui_gtk.cpp:1058
+#: gui_gtk.cpp:1064
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1251
+#: gui_gtk.cpp:1258
 msgid "Starting GTK GUI…"
 msgstr "Starter GTK Brugergrænseflade…"
 
-#: gui_gtk.cpp:1263
+#: gui_gtk.cpp:1270
 msgid "failed to import UI in GtkBuilder"
 msgstr "kunne ikke importerer brugergrænseflade i GtkBuilder"
 
-#: main.cpp:62
+#: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Start grafisk brugergrænseflade (GUI) (standard)"
 
-#: main.cpp:63
+#: main.cpp:64
 msgid "Start text-based user interface (TUI)"
 msgstr "Start tekstbaseret brugergrænseflade (TUI)"
 
-#: main.cpp:64
+#: main.cpp:65
 msgid "Dump all data on standard output and exit"
 msgstr "Dump alle data til standard output og afslut"
 
-#: main.cpp:65
+#: main.cpp:66
 msgid "Run embedded command dmidecode and exit"
 msgstr "Kør indlejrede kommando dmidecode og afslut"
 
-#: main.cpp:66
+#: main.cpp:67
 msgid "Run embedded command bandwidth and exit"
 msgstr "Kør indlejret kommando båndbredde og afslut"
 
-#: main.cpp:67
+#: main.cpp:68
+msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+msgstr ""
+
+#: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Sæt brugerdefineret tid imellem to opdateringer (i sekunder)"
 
-#: main.cpp:68
+#: main.cpp:70
 msgid "Set default tab (integer)"
 msgstr "Sæt standard fane (heltal)"
 
-#: main.cpp:69
+#: main.cpp:71
 msgid "Select core type to monitor (integer)"
 msgstr "Vælg kerne type der skal overvåges (heltal)"
 
-#: main.cpp:70
+#: main.cpp:72
 msgid "Select CPU core to monitor (integer)"
 msgstr "Vælg CPU kerne der skal overvåges (heltal)"
 
-#: main.cpp:71
+#: main.cpp:73
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Sæt brugerdefineret båndbredetest til CPU-cache hastighed (heltal)"
 
-#: main.cpp:72
+#: main.cpp:74
 #, fuzzy
 #| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
 msgstr "Vælg standard grafik kort (heltal)"
 
-#: main.cpp:73
+#: main.cpp:75
 msgid "Select default graphic card (integer)"
 msgstr "Vælg standard grafik kort (heltal)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:5879
+#: main.cpp:76 cpu-x-gtk-3.12.ui:5910
 msgid "Start and connect to daemon"
 msgstr "Start og forbind til baggrundsprogram"
 
-#: main.cpp:75
+#: main.cpp:77
 msgid "Verbose output"
 msgstr "Udførligt output"
 
-#: main.cpp:76
+#: main.cpp:78
 msgid "Print help and exit"
 msgstr "Udskriv hjælp og afslut"
 
-#: main.cpp:77
+#: main.cpp:79
 msgid "Print version and exit"
 msgstr "Udskriv version og afslut"
 
-#: main.cpp:78
+#: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "Udskriv CPUID værdier i decimaltal (standard er hexadeximaltal)"
 
-#: main.cpp:79
+#: main.cpp:81
 msgid "Disable colored output"
 msgstr "Deaktiver farvet output"
 
-#: main.cpp:80
+#: main.cpp:82
 msgid "Print information for debugging"
 msgstr "Udskriv information til fejlretning"
 
-#: main.cpp:81
+#: main.cpp:83
 msgid "Print required information to paste in an issue"
 msgstr "Udskriv de nødvændige informationer til at vedhæfte i en fejlrapport"
 
-#: main.cpp:82
+#: main.cpp:84
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Sæt nøglehenføring til NCurses tilstand (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.cpp:93
+#: main.cpp:95
 msgid "Add default command line arguments"
 msgstr "Tilføj standard kommandolinje argumenter"
 
-#: main.cpp:94
+#: main.cpp:96
 msgid "Enforce the bus clock"
 msgstr "Håndhæv bus frekvensen"
 
-#: main.cpp:95
+#: main.cpp:97
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
 
-#: main.cpp:96
+#: main.cpp:98
 msgid "Read CPUID raw data from a given file"
 msgstr "Læs CPUID rådata fra en given fil"
 
-#: main.cpp:97
+#: main.cpp:99
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Udskriv kun en besked hvis CPU ikke er til stede i databasen"
 
-#: main.cpp:124
+#: main.cpp:126
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Brug: %s VISNING [VALG]\n"
 
-#: main.cpp:125
+#: main.cpp:127
 msgid "Available DISPLAY:"
 msgstr "Tilgængelige VISNING:"
 
-#: main.cpp:133
+#: main.cpp:135
 msgid "Available OPTIONS:"
 msgstr "Tilgængelige VALG:"
 
-#: main.cpp:142
+#: main.cpp:144
 msgid "Influenceable environment variables:"
 msgstr "Påvirkelige miljøvariabler:"
 
-#: main.cpp:173
+#: main.cpp:175
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Dette er fri software: du er fri til at ændre og omdistribuere det."
 
-#: main.cpp:175
+#: main.cpp:177
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Se %s licensen: <%s>\n"
 
-#: main.cpp:182
+#: main.cpp:184
 #, c-format
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s version: %s"
 
-#: main.cpp:367
+#: main.cpp:379
 #, c-format
 msgid ""
 "\n"
@@ -861,7 +865,7 @@ msgstr ""
 "\n"
 "Hovsa, noget gik galt! %s har modtaget signalet %d (%s) og er nedbrudt."
 
-#: main.cpp:369
+#: main.cpp:381
 #, c-format
 msgid ""
 "\n"
@@ -872,11 +876,11 @@ msgstr ""
 "Hovsa, noget gik galt! %s har modtaget signalet %d (%s) og prøver at "
 "gendanne sig."
 
-#: main.cpp:393
+#: main.cpp:405
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "Du kan åbne en ny rapport har, ved at udfylde skabelonen som ønsket:"
 
-#: main.cpp:435
+#: main.cpp:447
 msgid "an error occurred while setting locale"
 msgstr "en fejl skete under indstilling af regional data"
 
@@ -1082,19 +1086,19 @@ msgstr "Kunne ikke sætte %s terminal (fejl=%i); falder tilbage til %s"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "kan ikke finde enheden i teksten '%s' på position %i"
 
-#: util.cpp:203
+#: util.cpp:235
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "en fejl skete under åbning af filen '%s' (%s)"
 
-#: util.cpp:241
+#: util.cpp:273
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "en fejl skete under kørsel af kommandoen '%s' (%s)"
 
-#: util.cpp:364
+#: util.cpp:396
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() er ikke understøttet på dette operativsystem"
 
@@ -1312,7 +1316,7 @@ msgstr "VBIOS Version"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:339 cpu-x-gtk-3.12.ui:5776
+#: data.hpp:339 cpu-x-gtk-3.12.ui:5807
 msgid "Interface"
 msgstr "Grænseflade"
 
@@ -1449,45 +1453,52 @@ msgstr "Lyst"
 msgid "Dark"
 msgstr "Mørkt"
 
+#. Setting: temperature unit
+#: cpu-x-gtk-3.12.ui:5775
+#, fuzzy
+#| msgid "Temperature"
+msgid "Temperature unit"
+msgstr "Temperatur"
+
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5795
+#: cpu-x-gtk-3.12.ui:5826
 msgid "Default tab"
 msgstr "Standard fane"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5808
+#: cpu-x-gtk-3.12.ui:5839
 msgid "Default CPU core"
 msgstr "Standard CPU kerne"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5821
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Default cache test"
 msgstr "Standard cache test"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5864
+#: cpu-x-gtk-3.12.ui:5895
 msgid "Print CPUID values in decimal"
 msgstr "Udskriv CPUID værdier i heltal"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5897
+#: cpu-x-gtk-3.12.ui:5928
 msgid "Default graphic card"
 msgstr "Standard grafikkort"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5921
+#: cpu-x-gtk-3.12.ui:5952
 msgid "Default core type"
 msgstr "Standard kerne type"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5945
+#: cpu-x-gtk-3.12.ui:5976
 #, fuzzy
 #| msgid "Default core type"
 msgid "Default memory stick"
 msgstr "Standard kerne type"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:5973
+#: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
 msgstr "Opstart"
 
