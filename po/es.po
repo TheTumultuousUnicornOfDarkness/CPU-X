@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-09-25 06:43+0000\n"
+"PO-Revision-Date: 2023-10-09 11:48+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
@@ -742,6 +742,8 @@ msgstr "Ejecuta instrucción embebida de anchura de banda y sale"
 #: main.cpp:68
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
+"Ajustar la unidad para la temperatura "
+"(c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
@@ -1463,10 +1465,8 @@ msgstr "Oscuro"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Temperatura"
+msgstr "Unidades de temperatura"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
