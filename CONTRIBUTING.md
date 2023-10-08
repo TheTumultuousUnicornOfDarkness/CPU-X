@@ -106,7 +106,7 @@ If nothing is broken, congratulations! :tada: You can open a new [pull request](
 
 ### Add new options
 
-This section describe how to add a new option.
+This section describe how to add a new option. You can take a look on [this commit](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/commit/008e03cf95653e964a9e334347c297fef57ce82a).
 
 1. `src/options.hpp`: add new option in `class Options`. Values are private: you need to define a public setter and getter.
 2. `src/main.c`:
@@ -119,6 +119,7 @@ This section describe how to add a new option.
    * `get_widgets()`: map UI widget to a C++ object
    * `load_settings()`: map setting to an option
    * `bind_settings()`: bind schema value to a C++ object
+   * `set_signals()`: handle signal when value is changed by user (note: the "OK" button in Settings window is handled by `this->validatebutton->signal_clicked().connect()`)
 7. Do something with your new option!
 
 ### Things to do
