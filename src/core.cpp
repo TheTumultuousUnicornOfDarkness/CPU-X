@@ -1641,7 +1641,9 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 		SET_LABEL_VALUE(usage,         "%s%%",                usage.value.c_str());
 		SET_LABEL_VALUE(core_voltage,  "%.2Lf V",             std::stoull(core_voltage.value) / core_voltage.divisor);
 		SET_LABEL_VALUE(power_avg,     "%.2Lf W",             std::stoull(power_avg.value)    / power_avg.divisor);
-		SET_LABEL_VALUE(core_clock,    "%.0Lf MHz",           std::stoull(core_clock.value)   / core_clock.divisor);
+		if (std::stoull(core_clock.value) > 0){
+                 SET_LABEL_VALUE(core_clock,    "%.0Lf MHz",           std::stoull(core_clock.value)   / core_clock.divisor);
+                 }
 		SET_LABEL_VALUE(mem_clock,     "%.0Lf MHz",           std::stoull(mem_clock.value)    / mem_clock.divisor);
 		SET_LABEL_VALUE(mem_used,      "%.0Lf %s / %.0Lf %s", std::stoull(mem_used.value)     / mem_used.divisor, UNIT_MIB,
 		                                                      std::stoull(mem_total.value)    / mem_total.divisor, UNIT_MIB);
