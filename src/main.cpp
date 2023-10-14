@@ -235,6 +235,7 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 			}
 		}
 	}
+	longopts.push_back({ NULL, no_argument, NULL, 0 });
 
 	/* Set the default mode */
 	if(HAS_GTK && (std::getenv("DISPLAY") != NULL || std::getenv("WAYLAND_DISPLAY") != NULL))
