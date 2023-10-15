@@ -4,7 +4,7 @@ if(POLICY CMP0075)
 	cmake_policy(SET CMP0075 NEW)
 endif()
 project(cpu-x
-	VERSION "4.5.3"
+	VERSION "5.0.0"
 	LANGUAGES C CXX
 )
 
