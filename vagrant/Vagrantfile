@@ -1,13 +1,15 @@
 VAGRANTFILE_API_VERSION = "2"
 VM_CPU                  = "2"
-VM_MEMORY               = "2048"
+VM_MEMORY               = "4096"
 
 vms = {
-	"ubuntu/jammy64"   => { :name => "jammy",  :bootstrap => "ubuntu" },
-	"generic/fedora37" => { :name => "fedora", :bootstrap => "fedora" }
+	"ubuntu/jammy64"       => { :name => "jammy",  :bootstrap => "ubuntu" },
+	"fedora/38-cloud-base" => { :name => "fedora", :bootstrap => "fedora" }
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+	config.ssh.disable_deprecated_algorithms = true
+
 	if Vagrant.has_plugin?("vagrant-vbguest") then
 		config.vbguest.iso_path    = "/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
 		config.vbguest.auto_update = false
@@ -34,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				vb.cpus   = VM_CPU
 				vb.memory = VM_MEMORY
 				vb.gui    = true
-				vb.customize ["modifyvm", :id, "--vram", "128"]
+				vb.customize ["modifyvm", :id, "--vram", "128", "--clipboard-mode=bidirectional", "--drag-and-drop=bidirectional"]
 				vb.customize ["setextradata", "global", "GUI/Customizations", "noMenuBar"]
 			end
 		end
