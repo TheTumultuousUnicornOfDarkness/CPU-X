@@ -256,23 +256,32 @@ std::string fopen_to_str(const char *str, Args... args)
 /* Run a command and put output in a variable ('str' accept printf-like format) */
 int popen_to_str(std::string &out, const char *str, ...)
 {
-	char *cmd_str = NULL;
+	char *cmd_tmp = NULL, *cmd_str = NULL;
 	char buffer[MAXSTR];
 	FILE *pipe_descr = NULL;
 	va_list aptr;
 
 	out.clear();
 	va_start(aptr, str);
-	vasprintf(&cmd_str, str, aptr);
+	vasprintf(&cmd_tmp, str, aptr);
 	va_end(aptr);
 
+#ifdef FLATPAK
+	asprintf(&cmd_str, "flatpak-spawn --host %s", cmd_tmp);
+	free(cmd_tmp);
+#else
+	cmd_str = cmd_tmp;
+#endif /* FLATPAK */
+
+	MSG_DEBUG("popen_to_str: running '%s'", cmd_str);
 	pipe_descr = popen(cmd_str, "r");
-	free(cmd_str);
 	if(pipe_descr == NULL)
 	{
 		MSG_ERROR(_("an error occurred while running command '%s'"), cmd_str);
+		free(cmd_str);
 		return 1;
 	}
+	free(cmd_str);
 
 	while(fgets(buffer, MAXSTR, pipe_descr) != NULL)
 	{
@@ -287,13 +296,21 @@ int popen_to_str(std::string &out, const char *str, ...)
 int run_command(const char *str, ...)
 {
 	int ret;
-	char *cmd_str = NULL;
+	char *cmd_tmp = NULL, *cmd_str = NULL;
 	va_list aptr;
 
 	va_start(aptr, str);
-	vasprintf(&cmd_str, str, aptr);
+	vasprintf(&cmd_tmp, str, aptr);
 	va_end(aptr);
 
+#ifdef FLATPAK
+	asprintf(&cmd_str, "flatpak-spawn --host %s", cmd_tmp);
+	free(cmd_tmp);
+#else
+	cmd_str = cmd_tmp;
+#endif /* FLATPAK */
+
+	MSG_DEBUG("run_command: running '%s'", cmd_str);
 	ret = std::system(cmd_str);
 	free(cmd_str);
 

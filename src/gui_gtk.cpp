@@ -392,7 +392,7 @@ void GtkData::set_all_labels()
 	const auto margin     = 6;
 	const auto width_full = EXT_LABEL(this->data.system.os.hostname)->value->get_allocated_width();
 	const auto width_half = width_full - EXT_LABEL(this->data.system.memory.used)->value->get_allocated_width() - margin;
-	const int pkcheck     = run_command("pkcheck --action-id org.freedesktop.policykit.exec --process %u > /dev/null 2>&1", getpid());
+	const int pkcheck     = run_command("pkcheck --action-id org.freedesktop.policykit.exec --process %u > /dev/null 2>&1", getpid()); // getpid() returns 2 on Flatpak
 
 	/* Common */
 	notebook->set_current_page(Options::get_selected_page());
@@ -401,8 +401,10 @@ void GtkData::set_all_labels()
 	this->daemonbutton->set_sensitive(false);
 	if(DAEMON_UP)
 		this->daemonbutton->set_tooltip_text(_("Connected to daemon"));
+#ifndef FLATPAK
 	else if(WEXITSTATUS(pkcheck) > 2)
 		this->daemonbutton->set_tooltip_text(_("No polkit authentication agent found"));
+#endif /* !FLATPAK */
 	else
 	{
 		this->daemonbutton->set_sensitive(true);

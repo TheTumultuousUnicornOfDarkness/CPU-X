@@ -270,7 +270,7 @@ static void sighandler([[maybe_unused]] int __signum)
 	quit_loop = true;
 }
 
-int main([[maybe_unused]] int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	bool background = true;
 	int listen_socket, data_socket, ret, err = EXIT_SUCCESS;
@@ -278,6 +278,12 @@ int main([[maybe_unused]] int argc, char *argv[])
 	std::string error_str = "unknown";
 	struct sockaddr_un name;
 	struct pollfd fds[NFDS];
+
+	if(argc < 2)
+	{
+		MSG_ERROR("%s requires socket path as argument.", argv[0]);
+		return 1;
+	}
 
 	if(!IS_ROOT)
 	{
@@ -294,7 +300,7 @@ int main([[maybe_unused]] int argc, char *argv[])
 
 	/* Pre-initialization */
 	umask(0);
-	fs::remove(SOCKET_NAME);
+	fs::remove(argv[1]);
 	std::signal(SIGINT,  sighandler);
 	std::signal(SIGTERM, sighandler);
 
@@ -314,7 +320,7 @@ int main([[maybe_unused]] int argc, char *argv[])
 	/* Bind socket to socket name. */
 	memset(&name, 0, sizeof(struct sockaddr_un));
 	name.sun_family = AF_UNIX;
-	std::strncpy(name.sun_path, SOCKET_NAME, sizeof(name.sun_path) - 1);
+	std::strncpy(name.sun_path, argv[1], sizeof(name.sun_path) - 1);
 	if(bind(listen_socket, (const struct sockaddr*) &name, sizeof(struct sockaddr_un)) < 0)
 		GOTO_ERROR("bind");
 
@@ -370,7 +376,7 @@ error:
 
 clean:
 	std::fclose(stdout);
-	fs::remove(SOCKET_NAME);
+	fs::remove(argv[1]);
 	close(listen_socket);
 
 	if(std::getenv("APPDIR") != NULL)

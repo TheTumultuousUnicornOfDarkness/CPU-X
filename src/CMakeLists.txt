@@ -225,6 +225,16 @@ if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2) # When Libstatgrab is used
 	add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
 endif()
 
+# Flatpak workarounds
+if(FLATPAK)
+	add_definitions(-DFLATPAK)
+	set(DAEMON_SOCKET cpu-x.sock)
+	if(LIBCPUID_FOUND)
+		# flatpak-spawn command will not be able to find libcpuid.so when starting cpu-x-daemon
+		set(LIBCPUID_LIBRARIES "-l:libcpuid.a")
+	endif(LIBCPUID_FOUND)
+endif(FLATPAK)
+
 # Various definitions
 add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DGITREV="${GIT_REVISION}"
