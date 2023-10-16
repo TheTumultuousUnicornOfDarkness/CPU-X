@@ -67,7 +67,7 @@
 /* Needed by CPU-X */
 #include <pthread.h>
 #include "libbandwidth.h"
-#if !HAS_LIBCPUID
+#if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
 #endif
 #if HAS_GETTEXT
