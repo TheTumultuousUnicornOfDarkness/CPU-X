@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-10-09 11:48+0000\n"
+"PO-Revision-Date: 2023-10-17 06:23+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
 "n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -501,12 +501,12 @@ msgstr "Кэши"
 #: data.cpp:247
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%2d x %4d %s, %2d-канальный"
+msgstr "%2d x %4d %s, %2d-канал."
 
 #: data.cpp:249
 #, c-format
 msgid "%d %s, %d-way"
-msgstr "%d %s, %d-канальный"
+msgstr "%d %s, %d-канал."
 
 #: data.cpp:263
 msgid "Count"
@@ -524,7 +524,7 @@ msgstr "Кэш L%u"
 #: data.cpp:385
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s ассоциативный, %d-%s размер кэш-линии"
+msgstr "%s ассоциативный, %d %s кэш-линии"
 
 #: data.cpp:398
 msgid "Test"
@@ -640,11 +640,11 @@ msgstr "Лицензия"
 #: data.cpp:753
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr "Данное программное обеспечение распространяется на условиях %s"
+msgstr "Это программное обеспечение распространяется на условиях %s"
 
 #: data.cpp:754 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr "Данное программное обеспечение предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
+msgstr "Это программное обеспечение предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
 
 #: gui_gtk.cpp:61
 #, c-format
@@ -653,7 +653,7 @@ msgstr "Не удаётся найти путь для файла «%s»"
 
 #: gui_gtk.cpp:400
 msgid "Start daemon"
-msgstr "Запустить демон"
+msgstr "Запустить демона"
 
 #: gui_gtk.cpp:403
 msgid "Connected to daemon"
@@ -777,7 +777,7 @@ msgstr "Выбрать графическую карту по умолчанию
 
 #: main.cpp:76 cpu-x-gtk-3.12.ui:5910
 msgid "Start and connect to daemon"
-msgstr "Запуск и подключение к демону"
+msgstr "Запускать и подключаться к демону"
 
 #: main.cpp:77
 msgid "Verbose output"
@@ -1159,7 +1159,7 @@ msgstr "Отобр. модель"
 
 #: data.hpp:113
 msgid "Temp."
-msgstr "Темп."
+msgstr "Темп-ра"
 
 #: data.hpp:114
 msgid "Stepping"
@@ -1195,7 +1195,7 @@ msgstr "Потоки"
 
 #: data.hpp:155
 msgid "Core Speed"
-msgstr "Тактовая частота ядра"
+msgstr "Такт. частота ядра"
 
 #: data.hpp:156
 msgid "Multiplier"
@@ -1271,7 +1271,7 @@ msgstr "Название"
 
 #: data.hpp:293
 msgid "Kernel"
-msgstr "Ядро"
+msgstr "Ядро ОС"
 
 #: data.hpp:294
 msgid "Hostname"
@@ -1337,7 +1337,7 @@ msgstr "Напряжение ядра"
 
 #: data.hpp:343
 msgid "Power Avg"
-msgstr "Сред. мощьность"
+msgstr "Сред. мощность"
 
 #: data.hpp:344
 msgid "Core Clock"
