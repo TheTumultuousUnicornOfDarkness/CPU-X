@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-10-17 09:11+0000\n"
+"PO-Revision-Date: 2023-10-17 20:38+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -119,7 +119,7 @@ msgstr ""
 #: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr "В ядре нет драйвера для видео карты по адресу %s"
+msgstr "В ядре нет драйвера для видеокарты по адресу %s"
 
 #: core.cpp:693
 #, c-format
@@ -933,8 +933,8 @@ msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Выбранная графическая карта (%u) не является допустимым числом (%u — "
-"максимум для этой системы)"
+"Выбранная видеокарта (%u) не является допустимым числом (%u — максимум для "
+"этой системы)"
 
 #: options.cpp:204
 #, c-format
@@ -1171,11 +1171,11 @@ msgstr "Инструкции"
 
 #: data.hpp:125
 msgid "L1 Data"
-msgstr "Уровень 1 (данные)"
+msgstr "Ур. 1 (данные)"
 
 #: data.hpp:126
 msgid "L1 Inst."
-msgstr "Уровень 1 (инстр.)"
+msgstr "Ур. 1 (инстр.)"
 
 #: data.hpp:127
 msgid "Level 2"
@@ -1307,7 +1307,7 @@ msgstr "Драйвер"
 
 #: data.hpp:334
 msgid "UMD Version"
-msgstr "Версия UMD"
+msgstr "Версия драйвера"
 
 #: data.hpp:336
 msgid "Compute Unit"
@@ -1484,7 +1484,7 @@ msgstr "Выводить значения CPUID в десятичном форм
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5928
 msgid "Default graphic card"
-msgstr "Графическая карта по умолчанию"
+msgstr "Видеокарта по умолчанию"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5952
