@@ -8,14 +8,15 @@
 # Artem <artem@molotov.work>, 2022.
 # Mykhailo Nikiforov <azaone_m@proton.me>, 2023.
 # CakesTwix <cakestwix1@gmail.com>, 2023.
+# griffi-gh <prasol258@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-04-13 19:51+0000\n"
-"Last-Translator: CakesTwix <cakestwix1@gmail.com>\n"
+"PO-Revision-Date: 2023-10-17 18:16+0000\n"
+"Last-Translator: griffi-gh <prasol258@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.1\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -75,17 +76,17 @@ msgstr "Виклик dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (налаштовано)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (макс.)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (мін.)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -304,7 +305,7 @@ msgstr "Номер карти для GPU %u невідомий"
 #: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (поточн.) / %s (макс.)"
 
 #: core.cpp:1634
 #, fuzzy, c-format
@@ -514,7 +515,7 @@ msgstr "%d %s, %d-канальний"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "Кількість"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
