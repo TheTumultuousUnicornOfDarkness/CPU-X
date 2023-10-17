@@ -388,7 +388,7 @@ static int call_libcpuid_msr_dynamic(Data &data)
 
 	/* CPU Temperature */
 	if(msg.temp != CPU_INVALID_VALUE)
-		cpu_type.processor.temperature.value = string_format_temperature_unit("%i", msg.temp);
+		cpu_type.processor.temperature.value = string_with_temperature_unit(double(msg.temp));
 
 	return 0;
 }
@@ -1639,7 +1639,7 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 
 		/* Set labels value */
 		SET_LABEL_VALUE(vbios_version, "%s",                  vbios_version.value.c_str());
-		SET_LABEL_VALUE(temperature,   "%s",                  string_format_temperature_unit("%.2f", std::stoull(temperature.value) / temperature.divisor).c_str());
+		SET_LABEL_VALUE(temperature,   "%s",                  string_with_temperature_unit(std::stoull(temperature.value) / temperature.divisor).c_str());
 		SET_LABEL_VALUE(usage,         "%s%%",                usage.value.c_str());
 		SET_LABEL_VALUE(core_voltage,  "%.2Lf V",             std::stoull(core_voltage.value) / core_voltage.divisor);
 		SET_LABEL_VALUE(power_avg,     "%.2Lf W",             std::stoull(power_avg.value)    / power_avg.divisor);
@@ -2138,7 +2138,7 @@ static int cputab_temp_fallback(Data &data)
 		{
 			const double tmp = std::stod(temperature);
 			if(tmp > 0.0)
-				cpu_type.processor.temperature.value = string_format_temperature_unit("%.1f", tmp / 1e3);
+				cpu_type.processor.temperature.value = string_with_temperature_unit(tmp / 1e3);
 		}
 	}
 
@@ -2150,7 +2150,7 @@ static int cputab_temp_fallback(Data &data)
 
 	snprintf(name, MAXSTR, "dev.cpu.%i.temperature", current_core_id);
 	if(!(err = sysctlbyname(name, &temperature, &len, NULL, 0)))
-		cpu_type.processor.temperature.value = string_format_temperature_unit("%.1f", double(temperature - 2731) / 10.0); // decikelvins
+		cpu_type.processor.temperature.value = string_with_temperature_unit(double(temperature - 2731) / 10.0); // decikelvins
 #endif /* __linux__ */
 
 	if(err)

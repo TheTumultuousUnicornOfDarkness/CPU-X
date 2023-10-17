@@ -150,8 +150,8 @@ void string_trim(std::string &str);
 /* Duplicate a string and set data size unit */
 std::string string_set_size_unit(char *str_src);
 
-/* Format temperature with proper unit */
-std::string string_format_temperature_unit(const char *fmt, const double temp_celsius);
+/* Get a string containing temperature with proper unit */
+std::string string_with_temperature_unit(const double temp_celsius);
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...);

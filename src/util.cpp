@@ -184,8 +184,8 @@ std::string string_set_size_unit(char *str_src)
 }
 #undef TOKEN_LEN
 
-/* Format temperature with proper unit */
-std::string string_format_temperature_unit(const char *fmt, const double temp_celsius)
+/* Get a string containing temperature with proper unit */
+std::string string_with_temperature_unit(const double temp_celsius)
 {
 	double temp;
 	std::string unit;
@@ -210,7 +210,7 @@ std::string string_format_temperature_unit(const char *fmt, const double temp_ce
 			break;
 	}
 
-	std::string ret = string_format(fmt, temp);
+	std::string ret = string_format("%.2f", temp);
 	ret += unit;
 	MSG_DEBUG("string_format_temperature_unit: %.2f°C ==> %s", temp_celsius, ret.c_str());
 	return ret;
