@@ -501,11 +501,11 @@ std::string get_sensor_path_cpu_temperature_driver(uint16_t current_core_id)
 				if(regex_label.has_value())
 				{
 					std::smatch match_regex_label;
-					const std::string label_content = fopen_to_str("%s", dir_sub_entry.path().string().c_str());
+					const std::string label_content = fopen_to_str("%s", sensor_filename.c_str());
 					std::regex_search(label_content, match_regex_label, regex_label.value());
 					/* Return sensor filename if label content corresponds to expected value */
 					if(!match_regex_label.empty())
-						ret = std::regex_replace(match_regex_label.str(), std::regex("_label"), "_input");
+						ret = std::regex_replace(sensor_filename, std::regex("_label"), "_input");
 				}
 				else
 				{
