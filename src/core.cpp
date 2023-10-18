@@ -693,17 +693,21 @@ static int set_gpu_kernel_driver(Data::Graphics::Card &card)
 		MSG_WARNING(_("Your GPU kernel driver is unknown: %s"), card.kernel_driver.value.c_str());
 		return 1;
 	}
+	card.driver = it->second;
+	MSG_DEBUG("set_gpu_kernel_driver: driver '%s' is index %i", card.kernel_driver.value.c_str(), card.driver);
 
 	/* Check for discrete GPU */
-	switch(it->second)
+	switch(card.driver)
 	{
 		case GpuDrv::GPUDRV_NVIDIA:
+			if(command_exists("optirun") && !popen_to_str(cmd, "optirun --status") && (cmd.find("Bumblebee status: Ready") != std::string::npos))
+				card.driver = GpuDrv::GPUDRV_NVIDIA_BUMBLEBEE;
+			break;
 		case GpuDrv::GPUDRV_NOUVEAU:
 			if(command_exists("optirun") && !popen_to_str(cmd, "optirun --status") && (cmd.find("Bumblebee status: Ready") != std::string::npos))
-				card.driver = (it->second == GpuDrv::GPUDRV_NVIDIA) ? GpuDrv::GPUDRV_NVIDIA_BUMBLEBEE : GpuDrv::GPUDRV_NOUVEAU_BUMBLEBEE;
+				card.driver = GpuDrv::GPUDRV_NOUVEAU_BUMBLEBEE;
 			break;
 		default:
-			card.driver = it->second;
 			break;
 	}
 
