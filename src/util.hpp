@@ -162,6 +162,9 @@ int popen_to_str(std::string &out, const char *str, ...);
 /* Run a command and ignore output ('str' accept printf-like format) */
 int run_command(const char *str, ...);
 
+/* Check if a file exists */
+bool file_exists(const std::string& filename);
+
 /* Check if a command exists */
 bool command_exists(const char *cmd);
 

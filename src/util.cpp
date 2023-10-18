@@ -317,6 +317,13 @@ int run_command(const char *str, ...)
 	return ret;
 }
 
+/* Check if a file exists */
+bool file_exists(const std::string& filename)
+{
+	std::ifstream file(filename.c_str());
+	return file.good();
+}
+
 /* Check if a command exists */
 bool command_exists(const char *cmd)
 {

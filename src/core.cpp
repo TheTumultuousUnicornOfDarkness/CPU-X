@@ -1544,7 +1544,8 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 				FOPEN_TO_ITEM(core_voltage,  "%s/in0_input",                   card.hwmon_path.c_str());
 				FOPEN_TO_ITEM(power_avg,     "%s/power1_average",              card.hwmon_path.c_str());
 				FOPEN_TO_ITEM(core_clock,    "%s/freq1_input",                 card.hwmon_path.c_str());
-				FOPEN_TO_ITEM(mem_clock,     "%s/freq2_input",                 card.hwmon_path.c_str());
+				if(file_exists(card.hwmon_path.c_str())) // there is no memory frequency for iGPU
+					FOPEN_TO_ITEM(mem_clock, "%s/freq2_input",                 card.hwmon_path.c_str());
 				FOPEN_TO_ITEM(mem_used,      "%s/device/mem_info_vram_used",   card.drm_path.c_str());
 				FOPEN_TO_ITEM(mem_total,     "%s/device/mem_info_vram_total",  card.drm_path.c_str());
 				core_voltage.divisor = 1e3;
