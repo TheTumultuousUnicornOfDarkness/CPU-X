@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-10-18 03:58+0000\n"
+"PO-Revision-Date: 2023-10-18 09:01+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -97,7 +97,7 @@ msgstr "%s (мин.)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
-msgstr "Подсчет использования ЦП"
+msgstr "Вычисление использования ЦП"
 
 #: core.cpp:546
 msgid "Calling bandwidth"
@@ -215,7 +215,7 @@ msgstr "не удалось определить число устройств O
 
 #: core.cpp:1123
 msgid "0 device"
-msgstr "0 устройство"
+msgstr "устройство 0"
 
 #: core.cpp:1132
 #, c-format
@@ -360,7 +360,7 @@ msgstr "Активен"
 #: core.cpp:1900
 #, c-format
 msgid "(%u hours left)"
-msgstr "(осталось %u часов)"
+msgstr "(осталось %u ч)"
 
 #: core.cpp:1902
 #, c-format
@@ -379,7 +379,7 @@ msgstr "Неактивен"
 #: core.cpp:1911
 #, c-format
 msgid "in %u hours"
-msgstr "за %u часов"
+msgstr "за %u ч"
 
 #: core.cpp:1913
 #, c-format
@@ -455,7 +455,7 @@ msgstr "pkexec: не удаётся получить авторизацию (д�
 
 #: daemon_client.cpp:89
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: не удается получить авторизацию (нет авторизации)"
+msgstr "pkexec: не удаётся получить авторизацию (нет авторизации)"
 
 #: daemon_client.cpp:92
 msgid "pkexec: command not found"
@@ -599,7 +599,7 @@ msgstr "Параметры"
 #: data.cpp:721 data.cpp:727
 #, c-format
 msgid "%u mins"
-msgstr "%u мин"
+msgstr "%u м"
 
 #: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
@@ -807,13 +807,13 @@ msgstr "Вывод информации для отладки"
 
 #: main.cpp:83
 msgid "Print required information to paste in an issue"
-msgstr "Вывести требуемую информацию для вставки в отчет об ошибке"
+msgstr "Вывести требуемую информацию для вставки в отчёт об ошибке"
 
 #: main.cpp:84
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
-"Установить назначение клавиш для режима NCurses (a[rrows]|e[macs]|i[nverted-"
-"T]|v[im])"
+"Установить сопоставление клавиш для режима NCurses "
+"(a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.cpp:95
 msgid "Add default command line arguments"
@@ -1101,7 +1101,7 @@ msgstr "Ошибка установки %s (err=%i); откат к %s"
 #: util.cpp:172
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr "не удается найти элемент в строке «%s» на позиции %i"
+msgstr "не удаётся найти блок в строке «%s» на позиции %i"
 
 #: util.cpp:235
 #, c-format
