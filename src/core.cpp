@@ -1422,7 +1422,7 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 	const std::string link_speed_file = drm_path + "/device/" + type + "_link_speed";
 	const std::string link_width_file = drm_path + "/device/" + type + "_link_width";
 
-	if(access(link_speed_file.c_str(), F_OK) || access(link_width_file.c_str(), F_OK))
+	if(!file_exists(link_speed_file) || !file_exists(link_width_file))
 		return std::string();
 
 	if(fopen_to_str(pcie_speed_raw, "%s", link_speed_file.c_str()) || fopen_to_str(pcie_width_raw, "%s", link_width_file.c_str()))
