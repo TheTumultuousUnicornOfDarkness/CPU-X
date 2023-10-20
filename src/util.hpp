@@ -141,6 +141,9 @@ private:
 
 /* Functions */
 
+/* Check if string can be converted to an unsigned integer */
+bool is_unsigned_integer(const std::string &str);
+
 /* Return a formatted C++ string */
 std::string string_format(const char *str, ...);
 

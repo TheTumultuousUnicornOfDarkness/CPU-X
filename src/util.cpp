@@ -101,6 +101,23 @@ void PrefixUnit::find_best_binary_prefix(uint64_t value, Multipliers multiplier)
 
 /* Functions */
 
+/* Check if string can be converted to an unsigned integer */
+bool is_unsigned_integer(const std::string &str)
+{
+	bool result = false;
+
+	try
+	{
+		std::stoull(str);
+		result = true;
+	}
+	catch (...)
+	{
+	}
+
+	return result;
+}
+
 /* Return a formatted C++ string */
 std::string string_format(const char *str, ...)
 {

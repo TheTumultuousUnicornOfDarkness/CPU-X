@@ -1457,8 +1457,14 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 #define FOPEN_TO_ITEM(item, ...)        item.ret = fopen_to_str(item.value, ##__VA_ARGS__)
 #define POPEN_TO_ITEM(item, ...)        item.ret = popen_to_str(item.value, ##__VA_ARGS__)
 #define POPEN_DRI_TO_ITEM(item, ...)    item.ret = can_access_sys_debug_dri(data) ? popen_to_str(item.value, ##__VA_ARGS__) : -1
-#define SET_LABEL_VALUE(item, fmt, ...) item_count++; \
+#define SET_LABEL_VALUE_NO_CONV(item, fmt, ...) item_count++; \
                                         if(!item.ret) card.item.value = string_format(fmt, ##__VA_ARGS__); \
+                                        else error_count++
+#define SET_LABEL_VALUE_CONV(item, fmt, ...) item_count++; \
+                                        if(!item.ret && is_unsigned_integer(item.value)) card.item.value = string_format(fmt, ##__VA_ARGS__); \
+                                        else error_count++
+#define SET_LABEL_VALUE_CONV2(item1, item2, fmt, ...) item_count++; \
+                                        if(!item1.ret && !item2.ret && is_unsigned_integer(item1.value) && is_unsigned_integer(item2.value)) card.item1.value = string_format(fmt, ##__VA_ARGS__); \
                                         else error_count++
 /* Retrieve GPU temperature and clocks */
 static int gpu_monitoring([[maybe_unused]] Data &data)
@@ -1643,18 +1649,18 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 		}
 
 		/* Set labels value */
-		SET_LABEL_VALUE(vbios_version, "%s",                  vbios_version.value.c_str());
-		SET_LABEL_VALUE(temperature,   "%s",                  string_with_temperature_unit(std::stoull(temperature.value) / temperature.divisor).c_str());
-		SET_LABEL_VALUE(usage,         "%s%%",                usage.value.c_str());
-		SET_LABEL_VALUE(core_voltage,  "%.2Lf V",             std::stoull(core_voltage.value) / core_voltage.divisor);
-		SET_LABEL_VALUE(power_avg,     "%.2Lf W",             std::stoull(power_avg.value)    / power_avg.divisor);
-		if(!core_clock.ret && (std::stoull(core_clock.value) > 0)) // sometimes core_clock.value is 0 (#301)
+		SET_LABEL_VALUE_NO_CONV(vbios_version,     "%s",                  vbios_version.value.c_str());
+		SET_LABEL_VALUE_CONV(temperature,          "%s",                  string_with_temperature_unit(std::stoull(temperature.value) / temperature.divisor).c_str());
+		SET_LABEL_VALUE_NO_CONV(usage,             "%s%%",                usage.value.c_str());
+		SET_LABEL_VALUE_CONV(core_voltage,         "%.2Lf V",             std::stoull(core_voltage.value) / core_voltage.divisor);
+		SET_LABEL_VALUE_CONV(power_avg,            "%.2Lf W",             std::stoull(power_avg.value)    / power_avg.divisor);
+		if(!core_clock.ret && is_unsigned_integer(core_clock.value) && (std::stoull(core_clock.value) > 0)) // sometimes core_clock.value is 0 (#301)
 		{
-			SET_LABEL_VALUE(core_clock, "%.0Lf MHz", std::stoull(core_clock.value) / core_clock.divisor);
+			SET_LABEL_VALUE_CONV(core_clock, "%.0Lf MHz", std::stoull(core_clock.value) / core_clock.divisor);
 		}
-		SET_LABEL_VALUE(mem_clock,     "%.0Lf MHz",           std::stoull(mem_clock.value)    / mem_clock.divisor);
-		SET_LABEL_VALUE(mem_used,      "%.0Lf %s / %.0Lf %s", std::stoull(mem_used.value)     / mem_used.divisor, UNIT_MIB,
-		                                                      std::stoull(mem_total.value)    / mem_total.divisor, UNIT_MIB);
+		SET_LABEL_VALUE_CONV(mem_clock,            "%.0Lf MHz",           std::stoull(mem_clock.value)    / mem_clock.divisor);
+		SET_LABEL_VALUE_CONV2(mem_used, mem_total, "%.0Lf %s / %.0Lf %s", std::stoull(mem_used.value)     / mem_used.divisor, UNIT_MIB,
+		                                                                  std::stoull(mem_total.value)    / mem_total.divisor, UNIT_MIB);
 
 		if(!init_done && (item_count == error_count))
 		{
@@ -1671,7 +1677,9 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 #undef FOPEN_TO_ITEM
 #undef POPEN_TO_ITEM
 #undef POPEN_DRI_TO_ITEM
-#undef SET_LABEL_VALUE
+#undef SET_LABEL_VALUE_NO_CONV
+#undef SET_LABEL_VALUE_CONV
+#undef SET_LABEL_VALUE_CONV2
 #endif /* HAS_LIBPCI */
 
 /* Satic elements for System tab, OS specific */
