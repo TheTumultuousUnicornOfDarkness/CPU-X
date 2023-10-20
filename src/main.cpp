@@ -376,6 +376,7 @@ static void common_sighandler(int signum, bool need_stop)
 	bt_syms = backtrace_symbols(bt, bt_size);
 
 	/* Print the backtrace */
+	Logger::set_verbosity(LOG_ERROR); // disable DEBUG mode for popen_to_str()
 	if(need_stop)
 		MSG_ERROR(_("\nOops, something was wrong! %s has received signal %d (%s) and has crashed."), PRGNAME, signum, strsignal(signum));
 	else
