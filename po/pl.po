@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-09-19 18:59+0000\n"
+"PO-Revision-Date: 2023-10-21 15:02+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -23,10 +23,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
+"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -78,12 +78,12 @@ msgstr "%s (konfiguracji)"
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (max)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -458,10 +458,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: nieoczekiwany kod błędu"
 
 #: daemon_client.cpp:125
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "Połączony z demonem"
+msgstr "Łączę się z demonem…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -740,6 +738,7 @@ msgstr "Uruchom wbudowane pasmo poleceń i zakończ"
 #: main.cpp:68
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
+"Ustawienie jednostki temperatury (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
@@ -1243,7 +1242,7 @@ msgstr "ROM Rozmiar"
 #: data.hpp:260
 #, fuzzy
 msgid "Part Number"
-msgstr "Numer katalogowy"
+msgstr "Numer części"
 
 #: data.hpp:261
 msgid "Type"
@@ -1262,8 +1261,9 @@ msgid "Bank Locator"
 msgstr "Lokalizator banku"
 
 #: data.hpp:266
+#, fuzzy
 msgid "Rank"
-msgstr ""
+msgstr "Pozycja"
 
 #: data.hpp:292
 msgid "Name"
@@ -1458,10 +1458,8 @@ msgstr "Ciemny"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Temperatura"
+msgstr "Jednostka temperatury"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
