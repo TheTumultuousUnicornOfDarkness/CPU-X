@@ -5,15 +5,15 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # Sérgio Morais <lalocas@protonmail.com>, 2021.
 # SC <lalocas@protonmail.com>, 2022.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-04-07 08:38+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2023-10-27 09:27+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -72,17 +72,17 @@ msgstr "A chamar dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (configurado)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (máx)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (mín)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -175,10 +175,8 @@ msgid "Disabled"
 msgstr "Desativado"
 
 #: core.cpp:1080
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Encontrando a versão da API do Vulkan"
+msgstr "Encontrando a versão da API do OpenCL"
 
 #: core.cpp:1084
 #, c-format
@@ -296,16 +294,14 @@ msgid "None"
 msgstr "Nenhum"
 
 #: core.cpp:1494
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "O caminho DRM ao GPU %u é desconhecido"
+msgstr "O caminho DRM para %s é desconhecido"
 
 #: core.cpp:1501
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "O número da placa para a GPU %u é desconhecido"
+msgstr "O número da placa para %s é desconhecido"
 
 #: core.cpp:1526
 #, c-format
@@ -1400,7 +1396,7 @@ msgstr "Utilização da memória"
 
 #: data.hpp:347
 msgid "Resizable BAR"
-msgstr "BAR redimensionável"
+msgstr "Barra redimensionável"
 
 #: data.hpp:348
 msgid "Vulkan RT"
