@@ -1,17 +1,17 @@
 # Copyright © 2014-2023 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021, 2022.
+# Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021, 2022, 2023.
 # Michal Čihař <michal@cihar.com>, 2019.
 # L-M-H <lars.magnus@herland.priv.no>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2022-12-02 10:48+0000\n"
-"Last-Translator: L-M-H <lars.magnus@herland.priv.no>\n"
+"PO-Revision-Date: 2023-11-06 13:36+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: core.cpp:189 data.cpp:150 data.cpp:342
 msgid "unknown"
-msgstr ""
+msgstr "ukjent"
 
 #: core.cpp:230
 msgid "Calling libcpuid for retrieving static data"
@@ -67,19 +67,19 @@ msgid "Calling dmidecode"
 msgstr "Kaller dmidecode"
 
 #: core.cpp:454 core.cpp:473
-#, c-format
+#, c-format, fuzzy
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (konfigurert)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (maks.)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min.)"
 
 #: core.cpp:496
 #, fuzzy
@@ -141,7 +141,7 @@ msgstr "kall til dmidecode mislyktes"
 #: core.cpp:921
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s støttes ikke"
 
 #: core.cpp:929
 #, fuzzy, c-format
@@ -695,7 +695,7 @@ msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
 #: gui_gtk.cpp:413
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: gui_gtk.cpp:632
 #, fuzzy
@@ -1029,14 +1029,8 @@ msgid "Press 'q' key to exit."
 msgstr "\tTrykk \"q\"-tast for å avslutte.\n"
 
 #: tui_ncurses.cpp:241
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "CPU tab:\n"
 msgid "CPU tab:"
-msgstr ""
-"\n"
-"Prosessor-fane:\n"
+msgstr "Prosessor-fane:"
 
 #: tui_ncurses.cpp:242
 #, fuzzy
@@ -1065,14 +1059,8 @@ msgstr ""
 "\tTrykk \"oppover-piltast\" ↑ for å øke kjerneantallet å holde oppsyn med.\n"
 
 #: tui_ncurses.cpp:247
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Caches tab:\n"
 msgid "Caches tab:"
-msgstr ""
-"\n"
-"Fane for hurtiglagre:\n"
+msgstr "Fane for hurtiglagre:"
 
 #: tui_ncurses.cpp:248
 #, fuzzy
@@ -1085,14 +1073,8 @@ msgid "Press 'up' key to switch to next test."
 msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
 
 #: tui_ncurses.cpp:251
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Bench tab:\n"
 msgid "Bench tab:"
-msgstr ""
-"\n"
-"Ytelsestestfane:\n"
+msgstr "Ytelsestestfane:"
 
 #: tui_ncurses.cpp:252
 #, fuzzy
@@ -1144,14 +1126,8 @@ msgid "Press 'up' key to switch to next graphic card."
 msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
 
 #: tui_ncurses.cpp:263
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Press any key to exit this help.\n"
 msgid "Press any key to exit this help."
-msgstr ""
-"\n"
-"Trykk vilkårlig tast for å avslutte denne hjelpen.\n"
+msgstr "Trykk vilkårlig tast for å avslutte denne hjelpen."
 
 #: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
