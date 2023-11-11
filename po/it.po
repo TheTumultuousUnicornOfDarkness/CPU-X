@@ -4,15 +4,15 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # Pierfrancesco Passerini <p.passerini@gmail.com>, 2020, 2021, 2022, 2023.
 # J. Lavoie <j.lavoie@net-c.ca>, 2021.
-# Frankie McEyes <mceyes@protonmail.com>, 2022.
+# Frankie McEyes <mceyes@protonmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-10-13 04:14+0000\n"
-"Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
+"PO-Revision-Date: 2023-11-13 07:29+0000\n"
+"Last-Translator: Frankie McEyes <mceyes@protonmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
 "Language: it\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -502,9 +502,8 @@ msgid "%d %s, %d-way"
 msgstr "%d %s, %d vie"
 
 #: data.cpp:263
-#, fuzzy
 msgid "Count"
-msgstr "Contatore"
+msgstr "Conta"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
@@ -541,12 +540,11 @@ msgid "Memory"
 msgstr "Memoria"
 
 #: data.cpp:483
-#, fuzzy, c-format
+#, c-format
 msgid "Stick %u"
 msgstr "Modulo %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
-#, fuzzy
 msgid "Sticks"
 msgstr "Moduli"
 
@@ -762,10 +760,8 @@ msgstr ""
 "cache della CPU (intero)"
 
 #: main.cpp:74
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Imposta il banco di memoria predefinito (intero)"
+msgstr "Imposta il modulo di memoria predefinito (intero)"
 
 #: main.cpp:75
 msgid "Select default graphic card (integer)"
@@ -1240,23 +1236,18 @@ msgid "Type"
 msgstr "Tipo"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "Dettagli"
+msgstr "Inserisci dettagli"
 
 #: data.hpp:263
-#, fuzzy
 msgid "Device Locator"
-msgstr "Localizza il dispositivo"
+msgstr "Localizzazione dispositivo"
 
 #: data.hpp:264
-#, fuzzy
 msgid "Bank Locator"
 msgstr "Localizza banco"
 
 #: data.hpp:266
-#, fuzzy
 msgid "Rank"
 msgstr "Livello"
 
