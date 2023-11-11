@@ -1351,7 +1351,7 @@ static int find_devices(Data &data)
 			data.graphics.cards[card_index].device_path     = get_gpu_device_path(dev);
 			data.graphics.cards[card_index].vendor.value    = gpu_vendor;
 			data.graphics.cards[card_index].model.value     = DEVICE_PRODUCT_STR(dev);
-			data.graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%02X", dev->device_id, pci_read_byte(dev, PCI_REVISION_ID));
+			data.graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%04X", dev->vendor_id, dev->device_id);
 			set_gpu_kernel_driver(data.graphics.cards[card_index]);
 			set_gpu_user_mode_driver(data.graphics.cards[card_index]);
 			set_gpu_vulkan_version(data.graphics.cards[card_index], dev);
