@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-	<enum id="com.github.thetumultuousunicornofdarkness.cpu-x.temperature-unit">
+	<enum id="io.github.thetumultuousunicornofdarkness.cpu-x.temperature-unit">
 		<value value="0" nick="celsius"/>
 		<value value="1" nick="fahrenheit"/>
 		<value value="2" nick="kelvin"/>
 		<value value="3" nick="rankine"/>
 	</enum>
-	<enum id="com.github.thetumultuousunicornofdarkness.cpu-x.theme">
+	<enum id="io.github.thetumultuousunicornofdarkness.cpu-x.theme">
 		<value value="0" nick="auto"/>
 		<value value="1" nick="light"/>
 		<value value="2" nick="dark"/>
 	</enum>
-	<enum id="com.github.thetumultuousunicornofdarkness.cpu-x.tab">
+	<enum id="io.github.thetumultuousunicornofdarkness.cpu-x.tab">
 		<value value="0" nick="cpu"/>
 		<value value="1" nick="caches"/>
 		<value value="2" nick="motherboad"/>
@@ -22,8 +22,8 @@
 		<value value="7" nick="about"/>
 	</enum>
 
-	<schema id="com.github.thetumultuousunicornofdarkness.cpu-x" path="/com/github/thetumultuousunicornofdarkness/cpu-x/">
-		<key name="temperature-unit" enum="com.github.thetumultuousunicornofdarkness.cpu-x.temperature-unit">
+	<schema id="io.github.thetumultuousunicornofdarkness.cpu-x" path="/io.github.thetumultuousunicornofdarkness.cpu-x/">
+		<key name="temperature-unit" enum="io.github.thetumultuousunicornofdarkness.cpu-x.temperature-unit">
 			<default>'celsius'</default>
 			<summary>Temperature unit</summary>
 			<description>
@@ -38,14 +38,14 @@
 				Set custom time between two refreshes
 			</description>
 		</key>
-		<key name="gui-theme" enum="com.github.thetumultuousunicornofdarkness.cpu-x.theme">
+		<key name="gui-theme" enum="io.github.thetumultuousunicornofdarkness.cpu-x.theme">
 			<default>'auto'</default>
 			<summary>Theme</summary>
 			<description>
 				Change GUI theme color scheme
 			</description>
 		</key>
-		<key name="default-tab" enum="com.github.thetumultuousunicornofdarkness.cpu-x.tab">
+		<key name="default-tab" enum="io.github.thetumultuousunicornofdarkness.cpu-x.tab">
 			<default>'cpu'</default>
 			<summary>Default tab</summary>
 			<description>

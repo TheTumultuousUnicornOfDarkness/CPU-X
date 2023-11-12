@@ -15,7 +15,7 @@ foreach(icon ${icons})
 	install(FILES
 		${icon}
 		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/icons/hicolor/${size}/apps/
-		RENAME com.github.thetumultuousunicornofdarkness.cpu-x.png
+		RENAME io.github.thetumultuousunicornofdarkness.cpu-x.png
 	)
 endforeach()
 

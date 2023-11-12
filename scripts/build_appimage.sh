@@ -55,6 +55,6 @@ export DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1
 runCmd mkdir --parents --verbose "$WORKSPACE/AppImage" && runCmd cd "$_"
 runCmd "$BUNDLER" \
 	--appdir="$APPDIR" \
-	--desktop-file="$APPDIR/usr/share/applications/com.github.thetumultuousunicornofdarkness.cpu-x.desktop" \
+	--desktop-file="$APPDIR/usr/share/applications/io.github.thetumultuousunicornofdarkness.cpu-x.desktop" \
 	--verbosity=1 \
 	"$@"

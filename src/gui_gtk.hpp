@@ -32,7 +32,7 @@
 #include <gtkmm/drawingarea.h>
 #include "data.hpp"
 
-#define APPLICATION_ID "com.github." PRGUSERNAME "." PRGNAME_LOW // https://developer.gnome.org/documentation/tutorials/application-id.html#guidelines-for-choosing-an-application-id
+#define APPLICATION_ID "io.github." PRGUSERNAME "." PRGNAME_LOW // https://developer.gnome.org/documentation/tutorials/application-id.html#guidelines-for-choosing-an-application-id
 
 
 enum GtkTheme

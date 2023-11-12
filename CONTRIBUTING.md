@@ -112,7 +112,7 @@ This section describe how to add a new option. You can take a look on [this comm
 2. `src/main.c`:
    * in `struct cpux_options[]`: add a new line entry
    * in `parse_arguments()`: retrieve value for option
-3. `data/com.github.thetumultuousunicornofdarkness.cpu-x.gschema.xml`: add a new key
+3. `data/io.github.thetumultuousunicornofdarkness.cpu-x.gschema.xml`: add a new key
 4. `data/cpu-x-gtk-3.12.ui`: open UI file in Glade and change Settings window
 5. `src/gui_gtk.hpp`: add a new widget in `struct GtkData`
 6. `src/gui_gtk.cpp`:
