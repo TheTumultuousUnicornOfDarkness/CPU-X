@@ -3,6 +3,7 @@
 	<id>com.github.thetumultuousunicornofdarkness.cpu-x</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0+</project_license>
+	<developer_name>The Tumultuous Unicorn Of Darkness</developer_name>
 	<name>CPU-X</name>
 	<summary>Gathers information on CPU, motherboard and more</summary>
 	<description>
@@ -17,10 +18,20 @@
 	<url type="translate">https://hosted.weblate.org/engage/cpu-x/</url>
 	<screenshots>
 		<screenshot type="default">
-			<image>https://raw.githubusercontent.com/wiki/TheTumultuousUnicornOfDarkness/CPU-X/gallery/screenshots/v4.0.0_CPU_light.png</image>
+			<image type="source">https://raw.githubusercontent.com/wiki/TheTumultuousUnicornOfDarkness/CPU-X/gallery/screenshots/v5.0.1_CPU_light.png</image>
+			<caption>CPU tab (light theme)</caption>
+		</screenshot>
+		<screenshot>
+			<image type="source">https://raw.githubusercontent.com/wiki/TheTumultuousUnicornOfDarkness/CPU-X/gallery/screenshots/v5.0.1_CPU_dark.png</image>
+			<caption>CPU tab (dark theme)</caption>
 		</screenshot>
 	</screenshots>
 	<provides>
 		<id>cpu-x.desktop</id>
 	</provides>
+	<releases>
+		<release version="5.0.1" date="2023-10-21"/>
+		<release version="5.0.0" date="2023-10-15"/>
+	</releases>
+	<content_rating type="oars-1.1" />
 </component>
