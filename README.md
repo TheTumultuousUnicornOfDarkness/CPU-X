@@ -30,6 +30,7 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
   - [Download and install](#download-and-install)
     - [From repositories](#from-repositories)
     - [From GitHub releases](#from-github-releases)
+    - [From Flathub](#from-flathub)
     - [Manual build](#manual-build)
   - [Usage](#usage)
   - [Wiki](#wiki)
@@ -91,6 +92,10 @@ All packages:
 ### From GitHub releases
 
 Look for **Assets** [here ![GitHub release](https://img.shields.io/github/release/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases/latest) for portable binary (AppImage).
+
+### From Flathub
+
+CPU-X is available [as Flatpak on Flathub](https://flathub.org/fr/apps/io.github.thetumultuousunicornofdarkness.cpu-x) since v5.0.2.
 
 ### Manual build
 
