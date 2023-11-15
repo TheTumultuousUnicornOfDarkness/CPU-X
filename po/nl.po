@@ -4,14 +4,15 @@
 # Heimen Stoffels <vistausss@outlook.com>, 2021.
 # Heimen Stoffels <vistausss@fastmail.com>, 2022.
 # Matrix <matrix.5vi5w@slmails.com>, 2023.
+# 跨性别 <github@lgbt.sh>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-05-05 13:50+0000\n"
-"Last-Translator: Matrix <matrix.5vi5w@slmails.com>\n"
+"PO-Revision-Date: 2023-11-15 23:52+0000\n"
+"Last-Translator: 跨性别 <github@lgbt.sh>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
 "nl/>\n"
 "Language: nl\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -66,17 +67,17 @@ msgstr "Dmidecode aanroepen"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (Geconfigureerd)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (max)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -168,10 +169,8 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: core.cpp:1080
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Zoeken naar Vulkan API versie"
+msgstr "Zoeken naar OpenCL API versie"
 
 #: core.cpp:1084
 #, c-format
@@ -284,33 +283,29 @@ msgid "None"
 msgstr "Geen"
 
 #: core.cpp:1494
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "DRM pad voor GPU %u is onbekend"
+msgstr "DRM pad voor GPU %s is onbekend"
 
 #: core.cpp:1501
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "Kaartnummer voor GPU %u is onbekend"
+msgstr "Kaartnummer voor GPU %s is onbekend"
 
 #: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (huidig) / %s (max)"
 
 #: core.cpp:1634
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "Stuurprogramma voor GPU %u meldt geen frequenties"
+msgstr "Stuurprogramma voor GPU %s meldt geen frequenties"
 
 #: core.cpp:1652
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "Kon niet alle OpenCL platformen krijgen (%s)"
+msgstr "Kon niet alle monitorgegevens ophalen voor (%s)"
 
 #: core.cpp:1673
 msgid "Identifying running system"
@@ -384,10 +379,9 @@ msgid "in %u seconds"
 msgstr "in %u seconden"
 
 #: core.cpp:1932
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Benchmark aan het starten"
+msgstr "Benchmark aan het starten met %u threads"
 
 #: core.cpp:1955
 msgid "an error occurred while starting benchmark"
@@ -440,10 +434,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Kon CPU frequentie niet ophalen (back-up modus)"
 
 #: daemon_client.cpp:47
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "Vraag wachtwoord om daemon op de achtergrond te starten"
+msgstr "Daemon in de achtergrond aan het starten…"
 
 #: daemon_client.cpp:86
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -462,10 +454,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: onverwachte foutcode"
 
 #: daemon_client.cpp:125
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "Verbonden met daemon"
+msgstr "Verbinden met daemon…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -497,10 +487,9 @@ msgid "Caches"
 msgstr "Caches"
 
 #: data.cpp:247
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s, %d-voudig"
+msgstr "%2d x %4d %s, %2d-voudig"
 
 #: data.cpp:249
 #, c-format
@@ -509,17 +498,16 @@ msgstr "%d %s, %d-voudig"
 
 #: data.cpp:263
 msgid "Count"
-msgstr ""
+msgstr "Tel"
 
 #: data.cpp:276 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Klokken"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "L%i Cache"
+msgstr "L%u Cache"
 
 #: data.cpp:385
 #, c-format
@@ -549,7 +537,7 @@ msgstr "Geheugen"
 #: data.cpp:483
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Stick %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
@@ -568,10 +556,9 @@ msgid "Graphics"
 msgstr "Grafisch"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "Kaart %i"
+msgstr "Kaart %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
