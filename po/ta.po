@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-06-16 14:50+0000\n"
+"PO-Revision-Date: 2023-11-15 23:52+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -65,17 +65,17 @@ msgstr "dmidecode ஐ அழைக்கிறது"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (கட்டமைக்கப்பட்டது)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (அதிகபட்சம்)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (குறைந்தபட்சம்)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -166,10 +166,8 @@ msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
 
 #: core.cpp:1080
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Vulkan API பதிப்பைக் கண்டறிதல்"
+msgstr "OpenCL API பதிப்பைக் கண்டறிதல்"
 
 #: core.cpp:1084
 #, c-format
@@ -278,27 +276,24 @@ msgid "None"
 msgstr "எதுவும் இல்லை"
 
 #: core.cpp:1494
-#, fuzzy, c-format
-#| msgid "DRM path for GPU %u is unknown"
+#, c-format
 msgid "DRM path for %s is unknown"
-msgstr "GPU %uக்கான DRM பாதை தெரியவில்லை"
+msgstr "%s க்கான DRM பாதை தெரியவில்லை"
 
 #: core.cpp:1501
-#, fuzzy, c-format
-#| msgid "Card number for GPU %u is unknown"
+#, c-format
 msgid "Card number for %s is unknown"
-msgstr "GPU %uக்கான அட்டை எண் தெரியவில்லை"
+msgstr "%s க்கான கார்டு எண் தெரியவில்லை"
 
 #: core.cpp:1526
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (தற்போதைய) / %s (அதிகபட்சம்)"
 
 #: core.cpp:1634
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "GPU %uக்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
+msgstr "%s க்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
 
 #: core.cpp:1652
 #, fuzzy, c-format
