@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-11-15 23:52+0000\n"
+"PO-Revision-Date: 2023-11-16 00:07+0000\n"
 "Last-Translator: Kim YuKyeom <dbrua1222@naver.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ko/>\n"
@@ -35,55 +35,55 @@ msgstr ""
 
 #: core.cpp:189 data.cpp:150 data.cpp:342
 msgid "unknown"
-msgstr ""
+msgstr "불명"
 
 #: core.cpp:230
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "정적 데이터를 얻기 위해 libcpuid 호출 중"
 
 #: core.cpp:245
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "libcpuid 호출 실패 (%s)"
 
 #: core.cpp:340
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "동적 데이터를 얻기 위해 libcpuid 호출 중"
 
 #: core.cpp:353
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "CPU MSR의 정적 값을 얻기 위해 libcpuid 호출 중"
 
 #: core.cpp:380
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "CPU MSR의 동적 값을 얻기 위해 libcpuid 호출 중"
 
 #: core.cpp:412
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "dmidecode 호출 중"
 
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (설정값)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (최댓값)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (최솟값)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "CPU 사용량 계산 중"
 
 #: core.cpp:546
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "대역폭을 불러오는 중"
 
 #: core.cpp:613
 #, c-format
@@ -93,11 +93,15 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access가 정상적으로 초기화되지 않았습니다: 이것은 %s의 libpci버전이 낮을 "
+"때 발생하는 일반적인 오류입니다.\n"
+"libpci %s library가 이 시스템에 존재하는지 확인하거나, %s를 다시 빌드해 "
+"주세요."
 
 #: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "경로 %s에 그래픽카드를 사용하기 위한 커널 드라이버가 없습니다"
 
 #: core.cpp:693
 #, c-format
