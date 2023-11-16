@@ -2,15 +2,15 @@
 # Copyright © 2014-2023 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
 # Riku Viitanen <riku.viitanen@protonmail.com>, 2020.
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2021, 2022.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2021, 2022, 2023.
 # LINUX-SAUNA <linuxsauna@protonmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2022-10-09 09:07+0000\n"
+"PO-Revision-Date: 2023-11-18 18:03+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.2\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -166,10 +166,8 @@ msgid "Disabled"
 msgstr "Ei käytössä"
 
 #: core.cpp:1080
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "Etsitään Vulkanin API-versiota"
+msgstr "Etsitään OpenCL:n API-versiota"
 
 #: core.cpp:1084
 #, c-format
@@ -470,22 +468,16 @@ msgid "CPU"
 msgstr "Suoritin"
 
 #: data.cpp:187
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Tulos"
+msgstr "P-ydin"
 
 #: data.cpp:188
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Tulos"
+msgstr "E-ydin"
 
 #: data.cpp:189 data.cpp:192
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
-msgstr "Ytimet"
+msgstr "Ydin"
 
 #: data.cpp:208 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
@@ -514,10 +506,9 @@ msgid "Clocks"
 msgstr "Kellotaajuudet"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "L%i-välimuisti"
+msgstr "L%u-välimuisti"
 
 #: data.cpp:385
 #, c-format
@@ -566,10 +557,9 @@ msgid "Graphics"
 msgstr "Grafiikka"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "Kortti %i"
+msgstr "Kortti %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
@@ -614,10 +604,8 @@ msgstr ""
 "suorittimesta, emolevystä ja muusta."
 
 #: data.cpp:744
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "Tietoa"
+msgstr "Tietoa - CPU-X"
 
 #: data.cpp:745
 #, c-format
@@ -670,7 +658,7 @@ msgstr "Kysy salasana taustapalvelun käynnistämiseksi"
 
 #: gui_gtk.cpp:413
 msgid "Settings"
-msgstr ""
+msgstr "Asetukset"
 
 #: gui_gtk.cpp:632
 #, fuzzy
@@ -1226,10 +1214,8 @@ msgid "Part Number"
 msgstr ""
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Core #%i"
 msgid "Type"
-msgstr "Ydin #%i"
+msgstr "Tyyppi"
 
 #: data.hpp:262
 #, fuzzy
@@ -1250,10 +1236,8 @@ msgid "Rank"
 msgstr ""
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "Koodinimi"
+msgstr "Nimi"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1300,8 +1284,6 @@ msgid "Compute Unit"
 msgstr "Laskentayksikkö"
 
 #: data.hpp:337
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
 msgstr "Laite-ID"
 
@@ -1328,14 +1310,10 @@ msgid "Power Avg"
 msgstr "Kulutus keskim."
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "Muistin kellotaajuus"
+msgstr "Ytimen kellotaajuus"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "Muistin kellotaajuus"
 
@@ -1450,10 +1428,8 @@ msgstr "Tumma"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Lämpötila"
+msgstr "Lämpötilan yksikkö"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
@@ -1487,10 +1463,8 @@ msgstr "Oletusarvoinen ydintyyppi"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5976
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
-msgstr "Oletusarvoinen ydintyyppi"
+msgstr "Oletusarvoinen muistikampa"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6004
