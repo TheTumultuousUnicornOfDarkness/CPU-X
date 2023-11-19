@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-10-08 10:46+0000\n"
-"PO-Revision-Date: 2023-11-18 18:03+0000\n"
+"PO-Revision-Date: 2023-11-19 08:14+0000\n"
 "Last-Translator: Kim YuKyeom <dbrua1222@naver.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ko/>\n"
@@ -292,7 +292,7 @@ msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (현재) / %s (최대)"
 
 #: core.cpp:1634
-#, c-format, fuzzy
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s의 드라이버가 주파수를 응답하지 않습니다"
 
@@ -859,468 +859,472 @@ msgstr ""
 
 #: main.cpp:405
 msgid "You can open a new issue here, by filling the template as requested:"
-msgstr ""
+msgstr "여기서 주어진 템플릿을 채워 새 issue를 열 수 있습니다:"
 
 #: main.cpp:447
 msgid "an error occurred while setting locale"
-msgstr ""
+msgstr "로케일 설정 중 에러가 발생했습니다"
 
 #: options.cpp:124
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
+msgstr "선택한 CPU 타입 (%u)은 유효한 수치가 아닙니다 (%u가 이 CPU의 최대치입니다)"
 
 #: options.cpp:145
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
-msgstr ""
+msgstr "선택한 대역폭 테스트 (%u)는 유효한 수치가 아닙니다 (%u가 이 시스템의 "
+"최대치입니다)"
 
 #: options.cpp:168
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr ""
+msgstr "선택한 RAM 스틱 (%u)은 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입니다)"
 
 #: options.cpp:188
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr ""
+msgstr "선택한 그래픽 카드 (%u)는 유효한 수치가 아닙니다 (%u가 이 시스템의 "
+"최대치입니다)"
 
 #: options.cpp:204
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "CPU affinity를 코어 %u로 변경하는 데 실패했습니다"
 
 #: options.cpp:210
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
-msgstr ""
+msgstr "선택한 CPU 코어 (%u)는 유효한 수치가 아닙니다 (%u가 이 타입의 코어에서 "
+"최대치입니다)"
 
 #: options.cpp:284
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
+msgstr "선택한 탭 (%u)은 유효한 수치가 아닙니다 (%u가 최대치입니다)"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
-msgstr ""
+msgstr "윈도우가 너무 작습니다!"
 
 #: tui_ncurses.cpp:119
 msgid "Press 'h' to see help."
-msgstr ""
+msgstr "'h'키를 눌러 도움말을 봅니다."
 
 #: tui_ncurses.cpp:232
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "%s NCurses 도움말에 어서오세요!\n"
 
 #: tui_ncurses.cpp:233
 msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
+msgstr "이 도움말에서는 텍스트 기반 유저 인터페이스의 사용법을 설명합니다."
 
 #: tui_ncurses.cpp:235
 msgid "Global keys:"
-msgstr ""
+msgstr "글로벌 키:"
 
 #: tui_ncurses.cpp:236
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
+msgstr "'왼쪽' 키 또는 '탭' 키를 눌러 좌측 탭으로 변환합니다."
 
 #: tui_ncurses.cpp:237
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
+msgstr "'오른쪽' 키 또는 '쉬프트 + 탭' 키를 눌러 우측 탭으로 변환합니다."
 
 #: tui_ncurses.cpp:238
 msgid "Press 'h' key to see this help."
-msgstr ""
+msgstr "'h' 키를 눌러 도움말을 봅니다."
 
 #: tui_ncurses.cpp:239
 msgid "Press 'q' key to exit."
-msgstr ""
+msgstr "'q' 키를 눌러 종료합니다."
 
 #: tui_ncurses.cpp:241
 msgid "CPU tab:"
-msgstr ""
+msgstr "CPU 탭:"
 
 #: tui_ncurses.cpp:242
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
+msgstr "'next page' 키를 눌러 모니터하는 코어 타입의 숫자를 줄입니다."
 
 #: tui_ncurses.cpp:243
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
+msgstr "'previous page' 키를 눌러 모니터하는 코어 타입의 숫자를 늘립니다."
 
 #: tui_ncurses.cpp:244
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr ""
+msgstr "'아래' 키를 눌러 모니터하는 CPU 코어의 숫자를 줄입니다."
 
 #: tui_ncurses.cpp:245
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr ""
+msgstr "'위' 키를 눌러 모니터하는 CPU 코어의 숫자를 늘립니다."
 
 #: tui_ncurses.cpp:247
 msgid "Caches tab:"
-msgstr ""
+msgstr "캐시 탭:"
 
 #: tui_ncurses.cpp:248
 msgid "Press 'down' key to switch to previous test."
-msgstr ""
+msgstr "'아래' 키를 눌러 이전 테스트로 변환합니다."
 
 #: tui_ncurses.cpp:249
 msgid "Press 'up' key to switch to next test."
-msgstr ""
+msgstr "'위' 키를 눌러 다음 테스트로 변환합니다."
 
 #: tui_ncurses.cpp:251
 msgid "Bench tab:"
-msgstr ""
+msgstr "벤치 탭:"
 
 #: tui_ncurses.cpp:252
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
+msgstr "'아래' 키를 눌러 벤치마크 기간을 줄입니다."
 
 #: tui_ncurses.cpp:253
 msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
+msgstr "'위' 키를 눌러 벤치마크 기간을 늘립니다."
 
 #: tui_ncurses.cpp:254
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
+msgstr "'next page' 키를 눌러 사용할 스레드의 수를 줄입니다."
 
 #: tui_ncurses.cpp:255
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
+msgstr "'previous page' 키를 눌러 사용할 스레드의 수를 늘립니다."
 
 #: tui_ncurses.cpp:256
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
+msgstr "'s' 키를 눌러 소수 벤치마크 (느림)의 시작/정지."
 
 #: tui_ncurses.cpp:257
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
+msgstr "'f' 키를 눌러 소수 벤치마크 (빠름)의 시작/정지."
 
 #: tui_ncurses.cpp:259
 msgid "Graphics tab:"
-msgstr ""
+msgstr "그래픽스 탭:"
 
 #: tui_ncurses.cpp:260
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr ""
+msgstr "'아래' 키를 눌러 이전 그래픽카드로 변환합니다."
 
 #: tui_ncurses.cpp:261
 msgid "Press 'up' key to switch to next graphic card."
-msgstr ""
+msgstr "'위' 키를 눌러 다음 그래픽카드로 변환합니다."
 
 #: tui_ncurses.cpp:263
 msgid "Press any key to exit this help."
-msgstr ""
+msgstr "아무 키나 눌러서 도움말을 종료합니다."
 
 #: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
-msgstr ""
+msgstr "NCurses TUI를 시작하는 중…"
 
 #: tui_ncurses.cpp:649
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
-msgstr ""
+msgstr "치명적 에러: terminfo 데이터베이스를 찾을 수 없습니다 (TERMINFO 환경변수를 "
+"설정해주세요)"
 
 #: tui_ncurses.cpp:654
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "터미널 %s의 셋업에 실패했습니다 (에러 %i); %s로 돌아갑니다"
 
 #: util.cpp:172
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "'%s'의 위치 %i에서 유닛을 찾을 수 없습니다"
 
 #: util.cpp:235
 #, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr ""
+msgstr "파일 '%s'를 여는 도중 에러가 발생했습니다"
 
 #: util.cpp:273
 #, c-format
 msgid "an error occurred while running command '%s'"
-msgstr ""
+msgstr "커맨드 '%s'의 실행 중 에러가 발생했습니다"
 
 #: util.cpp:396
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity()는 이 운영체제에서 지원되지 않습니다"
 
 #: data.hpp:103 data.hpp:244 data.hpp:332
 msgid "Vendor"
-msgstr ""
+msgstr "벤더"
 
 #: data.hpp:104
 msgid "Code Name"
-msgstr ""
+msgstr "코드네임"
 
 #: data.hpp:105
 msgid "Package"
-msgstr ""
+msgstr "패키지"
 
 #: data.hpp:106
 msgid "Technology"
-msgstr ""
+msgstr "테크놀로지"
 
 #: data.hpp:107 data.hpp:268
 msgid "Voltage"
-msgstr ""
+msgstr "전압"
 
 #: data.hpp:108
 msgid "Specification"
-msgstr ""
+msgstr "사양"
 
 #: data.hpp:109
 msgid "Family"
-msgstr ""
+msgstr "패밀리"
 
 #: data.hpp:110
 msgid "Disp. Family"
-msgstr ""
+msgstr "Disp. 패밀리"
 
 #: data.hpp:111 data.hpp:224 data.hpp:245 data.hpp:335
 msgid "Model"
-msgstr ""
+msgstr "모델"
 
 #: data.hpp:112
 msgid "Disp. Model"
-msgstr ""
+msgstr "Disp. 모델"
 
 #: data.hpp:113
 msgid "Temp."
-msgstr ""
+msgstr "온도."
 
 #: data.hpp:114
 msgid "Stepping"
-msgstr ""
+msgstr "스텝핑"
 
 #: data.hpp:115
 msgid "Instructions"
-msgstr ""
+msgstr "명령"
 
 #: data.hpp:125
 msgid "L1 Data"
-msgstr ""
+msgstr "L1 데이터"
 
 #: data.hpp:126
 msgid "L1 Inst."
-msgstr ""
+msgstr "L1 명령"
 
 #: data.hpp:127
 msgid "Level 2"
-msgstr ""
+msgstr "레벨 2"
 
 #: data.hpp:128
 msgid "Level 3"
-msgstr ""
+msgstr "레벨 3"
 
 #: data.hpp:137 cpu-x-gtk-3.12.ui:1232
 msgid "Cores"
-msgstr ""
+msgstr "코어"
 
 #: data.hpp:138 data.hpp:408 cpu-x-gtk-3.12.ui:1252
 msgid "Threads"
-msgstr ""
+msgstr "스레드"
 
 #: data.hpp:155
 msgid "Core Speed"
-msgstr ""
+msgstr "코어 스피드"
 
 #: data.hpp:156
 msgid "Multiplier"
-msgstr ""
+msgstr "배수"
 
 #: data.hpp:157
 msgid "Bus Speed"
-msgstr ""
+msgstr "버스 스피드"
 
 #: data.hpp:158 data.hpp:341
 msgid "Usage"
-msgstr ""
+msgstr "사용량"
 
 #: data.hpp:188 data.hpp:265
 msgid "Size"
-msgstr ""
+msgstr "사이즈"
 
 #: data.hpp:189 data.hpp:267
 msgid "Speed"
-msgstr ""
+msgstr "스피드"
 
 #: data.hpp:223 data.hpp:259
 msgid "Manufacturer"
-msgstr ""
+msgstr "제조사"
 
 #: data.hpp:225
 msgid "Revision"
-msgstr ""
+msgstr "리비전"
 
 #: data.hpp:233
 msgid "Brand"
-msgstr ""
+msgstr "브랜드"
 
 #: data.hpp:234
 msgid "Version"
-msgstr ""
+msgstr "버전"
 
 #: data.hpp:235
 msgid "Date"
-msgstr ""
+msgstr "날짜"
 
 #: data.hpp:236
 msgid "ROM Size"
-msgstr ""
+msgstr "ROM 사이즈"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "파츠 번호"
 
 #: data.hpp:261
 msgid "Type"
-msgstr ""
+msgstr "타입"
 
 #: data.hpp:262
 msgid "Type Detail"
-msgstr ""
+msgstr "타입 상세"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "디바이스 위치"
 
 #: data.hpp:264
 msgid "Bank Locator"
-msgstr ""
+msgstr "뱅크 위치"
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "랭크"
 
 #: data.hpp:292
 msgid "Name"
-msgstr ""
+msgstr "이름"
 
 #: data.hpp:293
 msgid "Kernel"
-msgstr ""
+msgstr "커널"
 
 #: data.hpp:294
 msgid "Hostname"
-msgstr ""
+msgstr "호스트명"
 
 #: data.hpp:295
 msgid "Uptime"
-msgstr ""
+msgstr "가동시간"
 
 #: data.hpp:303
 msgid "Used"
-msgstr ""
+msgstr "사용됨"
 
 #: data.hpp:304
 msgid "Buffers"
-msgstr ""
+msgstr "버퍼"
 
 #: data.hpp:305
 msgid "Cached"
-msgstr ""
+msgstr "캐시됨"
 
 #: data.hpp:306
 msgid "Free"
-msgstr ""
+msgstr "프리"
 
 #: data.hpp:307
 msgid "Swap"
-msgstr ""
+msgstr "스왑"
 
 #: data.hpp:333
 msgid "Driver"
-msgstr ""
+msgstr "드라이버"
 
 #: data.hpp:334
 msgid "UMD Version"
-msgstr ""
+msgstr "UMD 버전"
 
 #: data.hpp:336
 msgid "Compute Unit"
-msgstr ""
+msgstr "계산 유닛"
 
 #: data.hpp:337
 msgid "Device ID"
-msgstr ""
+msgstr "디바이스 ID"
 
 #: data.hpp:338
 msgid "VBIOS Version"
-msgstr ""
+msgstr "VBIOS 버전"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
 #: data.hpp:339 cpu-x-gtk-3.12.ui:5807
 msgid "Interface"
-msgstr ""
+msgstr "인터페이스"
 
 #: data.hpp:340
 msgid "Temperature"
-msgstr ""
+msgstr "온도"
 
 #: data.hpp:342
 msgid "Core Voltage"
-msgstr ""
+msgstr "코어 전압"
 
 #: data.hpp:343
 msgid "Power Avg"
-msgstr ""
+msgstr "평균 전력"
 
 #: data.hpp:344
 msgid "Core Clock"
-msgstr ""
+msgstr "코어 클럭"
 
 #: data.hpp:345
 msgid "Memory Clock"
-msgstr ""
+msgstr "메모리 클럭"
 
 #: data.hpp:346
 msgid "Memory Used"
-msgstr ""
+msgstr "메모리 사용량"
 
 #: data.hpp:347
 msgid "Resizable BAR"
-msgstr ""
+msgstr "Resizable BAR"
 
 #: data.hpp:348
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: data.hpp:349
 msgid "OpenGL Version"
-msgstr ""
+msgstr "OpenGL 버전"
 
 #: data.hpp:350
 msgid "Vulkan Version"
-msgstr ""
+msgstr "Vulkan 버전"
 
 #: data.hpp:351
 msgid "OpenCL Version"
-msgstr ""
+msgstr "OpenCL 버전"
 
 #: data.hpp:387
 msgid "Score"
-msgstr ""
+msgstr "스코어"
 
 #: data.hpp:388
 msgid "Run"
-msgstr ""
+msgstr "실행"
 
 #: data.hpp:407
 msgid "Duration"
-msgstr ""
+msgstr "지속시간"
 
 #: util.hpp:77
 msgid "bytes"
@@ -1408,37 +1412,37 @@ msgstr "디폴트 탭"
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5839
 msgid "Default CPU core"
-msgstr ""
+msgstr "디폴트 CPU 코어"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Default cache test"
-msgstr ""
+msgstr "디폴트 캐시 테스트"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5895
 msgid "Print CPUID values in decimal"
-msgstr ""
+msgstr "CPUID값을 10진수로 출력"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5928
 msgid "Default graphic card"
-msgstr ""
+msgstr "디폴트 그래픽 카드"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5952
 msgid "Default core type"
-msgstr ""
+msgstr "디폴트 코어 타입"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5976
 msgid "Default memory stick"
-msgstr ""
+msgstr "디폴트 메모리 스틱"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
-msgstr ""
+msgstr "시작"
 
 #, fuzzy
 #~| msgid "could not reallocate memory"
