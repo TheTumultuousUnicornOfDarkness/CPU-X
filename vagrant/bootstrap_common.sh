@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PROVIDER="$1"
 source /etc/os-release
 
 if [[ "$ID" == "ubuntu" ]]; then
@@ -8,7 +9,10 @@ if [[ "$ID" == "ubuntu" ]]; then
 	apt-get update -y
 	apt-get upgrade -y
 	apt-get install -y --no-install-recommends ubuntu-desktop unity-lens-applications unity-lens-files fonts-inconsolata gdm3 gnome-terminal firefox dbus-x11 console-data
-	apt-get install -y --no-install-recommends virtualbox-guest-utils virtualbox-guest-x11
+	case "$PROVIDER" in
+		virtualbox) apt-get install -y --no-install-recommends virtualbox-guest-utils virtualbox-guest-x11;;
+		libvirt)    apt-get install -y --no-install-recommends qemu-guest-agent spice-vdagent; systemctl enable qemu-guest-agent;;
+	esac
 
 	echo "/usr/sbin/gdm3" > /etc/X11/default-display-manager
 	systemctl enable --now gdm3.service
@@ -19,10 +23,14 @@ if [[ "$ID" == "ubuntu" ]]; then
 	GDM_DEFAULT_SESSION="Ubuntu"
 elif [[ "$ID" == "fedora" ]]; then
 	dnf update -y
-	dnf -y group install "Basic Desktop" GNOME --allowerasing
-	dnf install -y levien-inconsolata-fonts firefox xdg-user-dirs dbus-x11 polkit-gnome gnome-tweak-tool virtualbox-guest-additions
-	usermod -a -G wheel vagrant
+	dnf -y group install GNOME --allowerasing
+	dnf install -y levien-inconsolata-fonts firefox xdg-user-dirs dbus-x11 polkit-gnome gnome-tweak-tool
+	case "$PROVIDER" in
+		virtualbox) dnf install -y virtualbox-guest-additions;;
+		libvirt)    dnf install -y qemu-guest-agent spice-vdagent; systemctl enable qemu-guest-agent;;
+	esac
 
+	usermod -a -G wheel vagrant
 	GDM_CONFIG_DIR="/etc/gdm"
 	GDM_DEFAULT_SESSION="GNOME"
 else
@@ -48,6 +56,7 @@ systemctl set-default graphical.target
 systemctl restart gdm
 
 # Vagrant user
+passwd --delete vagrant
 su - vagrant -c "xdg-user-dirs-update --force"
 su - vagrant -c "dbus-launch gsettings set org.gnome.desktop.input-sources sources '[]'"
 su - vagrant -c "dbus-launch gsettings set org.gnome.desktop.screensaver lock-enabled false"
