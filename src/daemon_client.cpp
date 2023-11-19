@@ -64,17 +64,21 @@ const char *start_daemon(bool graphical)
 
 	MSG_VERBOSE("%s", _("Starting daemon in background…"));
 #ifdef FLATPAK
-	std::string line, app_path;
+	std::string line, app_path, ld_library_path, ld_linux_path;
 	std::ifstream stream("/.flatpak-info");
-	std::regex regex("^app-path=(.*?)$");
+	std::regex app_path_regex("^app-path=(.*?)$");
+	std::regex runtime_path_regex("^runtime-path=(.*?)$");
 	std::smatch match;
 
 	while(std::getline(stream, line))
 	{
-		if(std::regex_search(line, match, regex))
-		{
+		if(std::regex_search(line, match, app_path_regex))
 			app_path = match[1].str() + "/lib/" + PRGNAME_LOW + "/" + DAEMON_EXEC;
-			break;
+		else if(std::regex_search(line, match, runtime_path_regex))
+		{
+			std::string runtime_path = match[1].str() + "/lib/x86_64-linux-gnu";
+			ld_library_path          = "LD_LIBRARY_PATH=" + runtime_path;
+			ld_linux_path            = runtime_path + "/ld-linux-x86-64.so.2";
 		}
 	}
 
@@ -107,6 +111,11 @@ const char *start_daemon(bool graphical)
 #endif /* FLATPAK */
 				"pkexec",
 				"--disable-internal-agent",
+#ifdef FLATPAK
+				"env", // Add LD_LIBRARY_PATH environment variable
+				ld_library_path.c_str(), // libraries in Flatpak runtime
+				ld_linux_path.c_str(), // ld-linux in Flatpak runtime
+#endif /* FLATPAK */
 				daemon_exec,
 				daemon_args,
 				nullptr
@@ -120,6 +129,9 @@ const char *start_daemon(bool graphical)
 #ifdef FLATPAK
 				"flatpak-spawn",
 				"--host",
+				"env", // Add LD_LIBRARY_PATH environment variable
+				ld_library_path.c_str(), // libraries in Flatpak runtime
+				ld_linux_path.c_str(), // ld-linux in Flatpak runtime
 #endif /* FLATPAK */
 				daemon_exec,
 				daemon_args,
@@ -136,6 +148,11 @@ const char *start_daemon(bool graphical)
 				"--host",
 #endif /* FLATPAK */
 				"pkexec",
+#ifdef FLATPAK
+				"env", // Add LD_LIBRARY_PATH environment variable
+				ld_library_path.c_str(), // libraries in Flatpak runtime
+				ld_linux_path.c_str(), // ld-linux in Flatpak runtime
+#endif /* FLATPAK */
 				daemon_exec,
 				daemon_args,
 				nullptr
