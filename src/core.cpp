@@ -742,7 +742,7 @@ static int set_gpu_user_mode_driver([[maybe_unused]] Data::Graphics::Card &card)
 	if((err = glfwGetError(&description)) != GLFW_NO_ERROR)
 		goto clean;
 
-	gl_ver = reinterpret_cast<const char *>(glGetString(GL_VERSION));
+	gl_ver   = reinterpret_cast<const char *>(glGetString(GL_VERSION));
 	glsl_ver = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	if(gl_ver.empty() || glsl_ver.empty())
@@ -751,7 +751,6 @@ static int set_gpu_user_mode_driver([[maybe_unused]] Data::Graphics::Card &card)
 		description = "glGetString";
 		goto clean;
 	}
-	card.opengl_version.value = glsl_ver;
 
 	switch(card.driver)
 	{
@@ -770,9 +769,12 @@ static int set_gpu_user_mode_driver([[maybe_unused]] Data::Graphics::Card &card)
 	}
 
 	if(umd_index != std::string::npos)
+	{
 		card.user_mode_driver.value = gl_ver.substr(umd_index);
+		card.opengl_version.value   = glsl_ver;
+	}
 	else
-		MSG_WARNING(_("Your GPU user mode driver is unknown: %s"), gl_ver.c_str());
+		MSG_WARNING(_("Your GPU user mode driver is unknown for vendor %s: %s"), reinterpret_cast<const char *>(glGetString(GL_VENDOR)), gl_ver.c_str());
 
 clean:
 	if(err)
