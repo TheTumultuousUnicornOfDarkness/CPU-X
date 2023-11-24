@@ -1366,10 +1366,6 @@ static int find_devices(Data &data)
 	pci_cleanup(pacc);
 	if(!chipset_found)
 		MSG_ERROR("%s", _("failed to find chipset vendor and model"));
-	if(data.graphics.cards.size() == 0)
-		MSG_ERROR("%s", _("failed to find graphic card vendor and model"));
-	else
-		Options::set_selected_gpu(Options::get_selected_gpu(), data.graphics.cards.size());
 
 #if 0 // For testing purposes
 	while(data.graphics.cards.size() < 8)
@@ -1382,6 +1378,11 @@ static int find_devices(Data &data)
 		data.graphics.cards[card_index].model.value            = string_format("Model %u", card_index);
 	}
 #endif /* 0 */
+
+	if(data.graphics.cards.size() == 0)
+		MSG_ERROR("%s", _("failed to find graphic card vendor and model"));
+	else
+		Options::set_selected_gpu(Options::get_selected_gpu(), data.graphics.cards.size());
 
 	return (chipset_found == false) + (data.graphics.cards.size() == 0);
 }

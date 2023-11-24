@@ -1096,7 +1096,7 @@ void GtkData::change_active_card()
 	if(card < 0)
 		return;
 
-	Options::set_selected_type(card, this->data.graphics.cards.size());
+	Options::set_selected_gpu(card, this->data.graphics.cards.size());
 	this->grefresh();
 }
 
