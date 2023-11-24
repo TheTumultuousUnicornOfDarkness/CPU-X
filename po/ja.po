@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2023-10-08 10:46+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-11-24 16:11+0000\n"
 "PO-Revision-Date: 2023-11-13 07:39+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -113,134 +113,135 @@ msgstr "パス %s にグラフィック カードに使用するカーネル ド
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "不明な GPU カーネル ドライバー: %s"
 
-#: core.cpp:771
-#, c-format
-msgid "Your GPU user mode driver is unknown: %s"
+#: core.cpp:777
+#, fuzzy, c-format
+#| msgid "Your GPU user mode driver is unknown: %s"
+msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "不明なユーザー モードの GPU ドライバー: %s"
 
-#: core.cpp:775
+#: core.cpp:781
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW の取得に失敗（%i）: %s"
 
-#: core.cpp:906
+#: core.cpp:914
 msgid "Finding Vulkan API version"
 msgstr "Vulkan API バージョンの検索"
 
-#: core.cpp:918
+#: core.cpp:926
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "vkCreateInstance の呼び出しに失敗しました（%s）"
 
-#: core.cpp:921
+#: core.cpp:929
 #, c-format
 msgid "%s is not supported"
 msgstr "%s はサポートされていません"
 
-#: core.cpp:929
+#: core.cpp:937
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "vkEnumeratePhysicalDevices の呼び出しに失敗しました（%s）"
 
-#: core.cpp:936
+#: core.cpp:944
 msgid "No available Vulkan devices"
 msgstr "利用可能な Vulkan デバイスがありません"
 
-#: core.cpp:944
+#: core.cpp:952
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "利用可能な物理デバイスがありません（%s）"
 
-#: core.cpp:1007
+#: core.cpp:1015
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "デバイス %u の Vulkan を作成できませんでした（%s）"
 
-#: core.cpp:1011
+#: core.cpp:1019
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID のみ"
 "を使用してください"
 
-#: core.cpp:1043 core.cpp:1356
+#: core.cpp:1051 core.cpp:1364
 msgid "Enabled"
 msgstr "有効"
 
-#: core.cpp:1043 core.cpp:1356
+#: core.cpp:1051 core.cpp:1364
 msgid "Disabled"
 msgstr "無効"
 
-#: core.cpp:1080
+#: core.cpp:1088
 msgid "Finding OpenCL API version"
 msgstr "VulkanOpenCL API バージョンの確認"
 
-#: core.cpp:1084
+#: core.cpp:1092
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL に対応するプラットフォームはありません（%s）"
 
-#: core.cpp:1094
+#: core.cpp:1102
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s）"
 
-#: core.cpp:1107
+#: core.cpp:1115
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "プラットフォーム %u の名前の取得に失敗しました（%s）"
 
-#: core.cpp:1115
+#: core.cpp:1123
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "プラットフォーム %u のバージョンの取得に失敗しました（%s）"
 
-#: core.cpp:1123
+#: core.cpp:1131
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗しました（%s）"
 
-#: core.cpp:1123
+#: core.cpp:1131
 msgid "0 device"
 msgstr "0 デバイス"
 
-#: core.cpp:1132
+#: core.cpp:1140
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗しました（%s）"
 
-#: core.cpp:1152
+#: core.cpp:1160
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "デバイス %u の名前の取得に失敗しました（%s）"
 
-#: core.cpp:1160
+#: core.cpp:1168
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
 
-#: core.cpp:1182
+#: core.cpp:1190
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応です"
 
-#: core.cpp:1193
+#: core.cpp:1201
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応です"
 
-#: core.cpp:1201 core.cpp:1221 core.cpp:1254
+#: core.cpp:1209 core.cpp:1229 core.cpp:1262
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応です"
 
-#: core.cpp:1242
+#: core.cpp:1250
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -250,214 +251,215 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応で"
 "す"
 
-#: core.cpp:1265
+#: core.cpp:1273
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
 
-#: core.cpp:1287
+#: core.cpp:1295
 msgid "Finding devices"
 msgstr "デバイスを識別中"
 
-#: core.cpp:1299
+#: core.cpp:1307
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
 
-#: core.cpp:1342
+#: core.cpp:1350
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "不明な GPU ベンダー : %s（0x %X）"
 
-#: core.cpp:1362
+#: core.cpp:1370
 msgid "failed to find chipset vendor and model"
 msgstr "チップセットのベンダーとモデルの判別に失敗しました"
 
-#: core.cpp:1364
+#: core.cpp:1385
 msgid "failed to find graphic card vendor and model"
 msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
 
-#: core.cpp:1472
+#: core.cpp:1487
 msgid "Retrieving GPU clocks"
 msgstr "GPU クロックを取得中"
 
-#: core.cpp:1485
+#: core.cpp:1500
 msgid "None"
 msgstr "None"
 
-#: core.cpp:1494
+#: core.cpp:1509
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s の DRM パスが不明です"
 
-#: core.cpp:1501
+#: core.cpp:1516
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s のカード番号が不明です"
 
-#: core.cpp:1526
+#: core.cpp:1541
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (現在) / %s (最大)"
 
-#: core.cpp:1634
+#: core.cpp:1650
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s のドライバーは周波数を報告しません"
 
-#: core.cpp:1652
+#: core.cpp:1671
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s "
-"のすべての監視データの取得）"
+msgstr ""
+"すべての OpenCL プラットフォームの取得に失敗しました（%s のすべての監視データ"
+"の取得）"
 
-#: core.cpp:1673
+#: core.cpp:1694
 msgid "Identifying running system"
 msgstr "実行中のシステムの識別中"
 
-#: core.cpp:1676
+#: core.cpp:1697
 msgid "failed to identify running system"
 msgstr "実行中のシステムの識別に失敗しました"
 
-#: core.cpp:1728 core.cpp:1757
+#: core.cpp:1749 core.cpp:1778
 msgid "Calling libprocps"
 msgstr "libprocps の呼び出し中"
 
-#: core.cpp:1731
+#: core.cpp:1752
 msgid "unable to get system uptime"
 msgstr "システム稼働時間を取得できません"
 
-#: core.cpp:1737
+#: core.cpp:1758
 msgid "unable to create meminfo structure"
 msgstr "meminfo ストラクチャを作成できません"
 
-#: core.cpp:1783
+#: core.cpp:1804
 msgid "Calling libstatgrab"
 msgstr "libstatgrab を呼び出し中"
 
-#: core.cpp:1831
+#: core.cpp:1852
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
-#: core.cpp:1894
+#: core.cpp:1915
 msgid "Updating benchmark status"
 msgstr "ベンチマーク状態を更新中"
 
-#: core.cpp:1897
+#: core.cpp:1918
 msgid "Active"
 msgstr "動作中"
 
-#: core.cpp:1900
+#: core.cpp:1921
 #, c-format
 msgid "(%u hours left)"
 msgstr "（残り %u 時間）"
 
-#: core.cpp:1902
+#: core.cpp:1923
 #, c-format
 msgid "(%u minutes left)"
 msgstr "（残り %u 分）"
 
-#: core.cpp:1904
+#: core.cpp:1925
 #, c-format
 msgid "(%u seconds left)"
 msgstr "（残り %u 秒）"
 
-#: core.cpp:1908 core.cpp:1963 core.cpp:1964
+#: core.cpp:1929 core.cpp:1984 core.cpp:1985
 msgid "Inactive"
 msgstr "休止中"
 
-#: core.cpp:1911
+#: core.cpp:1932
 #, c-format
 msgid "in %u hours"
 msgstr "/ %u 時間"
 
-#: core.cpp:1913
+#: core.cpp:1934
 #, c-format
 msgid "in %u minutes"
 msgstr "/ %u 分"
 
-#: core.cpp:1915
+#: core.cpp:1936
 #, c-format
 msgid "in %u seconds"
 msgstr "/ %u 秒"
 
-#: core.cpp:1932
+#: core.cpp:1953
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "%u スレッドでベンチマークを開始します"
 
-#: core.cpp:1955
+#: core.cpp:1976
 msgid "an error occurred while starting benchmark"
 msgstr "ベンチマーク開始時にエラーが発生しました"
 
-#: core.cpp:1981
+#: core.cpp:2002
 msgid "Finding CPU package in fallback mode"
 msgstr "fallback モードで CPU パッケージを識別中"
 
-#: core.cpp:2011
+#: core.cpp:2032
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
 
-#: core.cpp:2031
+#: core.cpp:2052
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "fallback モードで CPU 倍率を計算中"
 
-#: core.cpp:2051
+#: core.cpp:2072
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "fallback モードでマザーボード情報を取得中"
 
-#: core.cpp:2064
+#: core.cpp:2085
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "マザーボード情報の取得に失敗（fallback モード）"
 
-#: core.cpp:2106
+#: core.cpp:2127
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallback モードで CPU 温度の取得"
 
-#: core.cpp:2152
+#: core.cpp:2173
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU 温度の取得に失敗（fallback モード）"
 
-#: core.cpp:2167
+#: core.cpp:2188
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallback モードで CPU 電圧の取得"
 
-#: core.cpp:2179
+#: core.cpp:2200
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU 電圧の取得に失敗（fallback モード）"
 
-#: core.cpp:2193
+#: core.cpp:2214
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallback モードでCPU クロック周波数の取得"
 
-#: core.cpp:2199
+#: core.cpp:2220
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
 
-#: daemon_client.cpp:47
+#: daemon_client.cpp:65
 msgid "Starting daemon in background…"
 msgstr "バックグラウンドでデーモンを起動…"
 
-#: daemon_client.cpp:86
+#: daemon_client.cpp:172
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr "pkexec: 認証を取得できません（ダイアログが閉じられました）"
 
-#: daemon_client.cpp:89
+#: daemon_client.cpp:175
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec: 認証を取得できません（認証されていません）"
 
-#: daemon_client.cpp:92
+#: daemon_client.cpp:178
 msgid "pkexec: command not found"
 msgstr "pkexec: コマンドが見つかりません"
 
-#: daemon_client.cpp:95
+#: daemon_client.cpp:181
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: 予期しないエラーコード"
 
-#: daemon_client.cpp:125
+#: daemon_client.cpp:211
 msgid "Connecting to daemon…"
 msgstr "デーモンに接続…"
 
@@ -651,59 +653,61 @@ msgstr "デーモンの起動"
 msgid "Connected to daemon"
 msgstr "デーモンに接続"
 
-#: gui_gtk.cpp:405
+#: gui_gtk.cpp:406
 msgid "No polkit authentication agent found"
 msgstr "Polkit 認証エージェントが見つかりません"
 
-#: gui_gtk.cpp:409
+#: gui_gtk.cpp:411
 msgid "Ask password to start daemon in background"
 msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要"
 
-#: gui_gtk.cpp:413
+#: gui_gtk.cpp:415
 msgid "Settings"
 msgstr "設定"
 
-#: gui_gtk.cpp:632
+#: gui_gtk.cpp:634
 msgid "BaseFamily"
 msgstr "ベース ファミリー"
 
-#: gui_gtk.cpp:633
+#: gui_gtk.cpp:635
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:634
+#: gui_gtk.cpp:636
 msgid "BaseModel"
 msgstr "ベース モデル"
 
-#: gui_gtk.cpp:635
+#: gui_gtk.cpp:637
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:845
+#: gui_gtk.cpp:847
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
-msgstr "メモリデバイスが配置されている、物理的にラベル付けされたソケットまたはボード"
+msgstr ""
+"メモリデバイスが配置されている、物理的にラベル付けされたソケットまたはボード"
 "の位置を特定する"
 
-#: gui_gtk.cpp:846
+#: gui_gtk.cpp:848
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr "メモリデバイスが配置されている、物理的にラベル付けされたバンクを特定する"
+msgstr ""
+"メモリデバイスが配置されている、物理的にラベル付けされたバンクを特定する"
 
-#: gui_gtk.cpp:1050
+#: gui_gtk.cpp:1052
 msgid "User Mode Driver Version"
 msgstr "ユーザー モードのドライバーのバージョン"
 
-#: gui_gtk.cpp:1064
+#: gui_gtk.cpp:1066
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan レイトレーシング"
 
-#: gui_gtk.cpp:1258
+#: gui_gtk.cpp:1260
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI の起動…"
 
-#: gui_gtk.cpp:1270
+#: gui_gtk.cpp:1272
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder での UI のインポートに失敗"
 
@@ -809,8 +813,9 @@ msgstr "バスクロックを適用する"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
-msgstr "libcpuid が報告する CPU の値（'temp', 'volt', 'freq' "
-"をカンマ区切りにした値）を無視する"
+msgstr ""
+"libcpuid が報告する CPU の値（'temp', 'volt', 'freq' をカンマ区切りにした値）"
+"を無視する"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
@@ -851,7 +856,7 @@ msgstr "%s ライセンスを見てください: <%s>\n"
 msgid "-- %-9s version: %s"
 msgstr "-- %-9s バージョン: %s"
 
-#: main.cpp:379
+#: main.cpp:381
 #, c-format
 msgid ""
 "\n"
@@ -860,7 +865,7 @@ msgstr ""
 "\n"
 "何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
 
-#: main.cpp:381
+#: main.cpp:383
 #, c-format
 msgid ""
 "\n"
@@ -870,11 +875,11 @@ msgstr ""
 "\n"
 "何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
 
-#: main.cpp:405
+#: main.cpp:407
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "ここで新しい問題をテンプレートを使って報告することが出来ます。"
 
-#: main.cpp:447
+#: main.cpp:449
 msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
@@ -891,24 +896,27 @@ msgstr ""
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
-msgstr "選択した帯域幅テスト（%u）は有効な数値ではありません（%u "
-"がこのシステムの最大値です）"
+msgstr ""
+"選択した帯域幅テスト（%u）は有効な数値ではありません（%u がこのシステムの最大"
+"値です）"
 
 #: options.cpp:168
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr "選択した RAM スティック（%u）は有効な数値ではありません（%u "
-"がこのシステムの最大値です）"
+msgstr ""
+"選択した RAM スティック（%u）は有効な数値ではありません（%u がこのシステムの"
+"最大値です）"
 
 #: options.cpp:188
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr "選択したグラフィックカード（%u）は有効な番号ではありません（%u "
-"がこのシステムの最大値です）"
+msgstr ""
+"選択したグラフィックカード（%u）は有効な番号ではありません（%u がこのシステム"
+"の最大値です）"
 
 #: options.cpp:204
 #, c-format
@@ -1062,22 +1070,22 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 "ターミナル %s のセットアップに失敗しました（エラー%i）; %sにFalbackします"
 
-#: util.cpp:172
+#: util.cpp:189
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "「%s」の %i 番目の文字列にはユニットがない"
 
-#: util.cpp:235
+#: util.cpp:252
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "ファイル '%s' を開くときにエラーが発生しました"
 
-#: util.cpp:273
+#: util.cpp:297
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "コマンド '%s' の実行中にエラーが発生しました"
 
-#: util.cpp:396
+#: util.cpp:437
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 "set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
