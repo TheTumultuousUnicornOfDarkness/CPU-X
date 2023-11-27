@@ -18,10 +18,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-11-24 16:11+0000\n"
-"PO-Revision-Date: 2023-10-18 09:01+0000\n"
+"PO-Revision-Date: 2023-11-30 00:18+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -30,9 +30,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.1\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -124,13 +124,12 @@ msgstr "В ядре нет драйвера для видеокарты по а�
 #: core.cpp:693
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Неизвестный драйвер ядра ГП: %s"
+msgstr "Ваш драйвер ядра ГП неизвестен: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Неизвестный драйвер пользовательского режима ГП: %s"
+msgstr "Ваш драйвер ГП пользовательского режима неизвестен производителю %s: %s"
 
 #: core.cpp:781
 #, c-format
@@ -679,8 +678,8 @@ msgstr "Базовое семейство"
 #: gui_gtk.cpp:635
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
-"Отображаемое («истинное») семейство ЦП (вычисляется как расширенное "
-"семейство + базовое семейство)"
+"Отображаемое («истинное») семейство ЦП (вычисляется как базовое семейство + "
+"расширенное семейство)"
 
 #: gui_gtk.cpp:636
 msgid "BaseModel"
@@ -843,7 +842,7 @@ msgstr "Выводить сообщение только если ЦП отсу�
 #: main.cpp:126
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Использование: %s ДИСПЛЕЙ [ОПЦИИ]\n"
+msgstr "Использование: %s ВЫВЕСТИ [ПАРАМЕТРЫ]\n"
 
 #: main.cpp:127
 msgid "Available DISPLAY:"
