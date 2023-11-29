@@ -6,11 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-11-24 16:11+0000\n"
-"PO-Revision-Date: 2023-11-21 10:04+0000\n"
-"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"PO-Revision-Date: 2023-11-30 00:18+0000\n"
+"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -109,10 +109,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Din GPU-kärndrivrutin är okänd: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Din drivrutin för GPU-användarläge är okänd: %s"
+msgstr "Din drivrutin för GPU-användarläge är okänd för leverantören %s: %s"
 
 #: core.cpp:781
 #, c-format
