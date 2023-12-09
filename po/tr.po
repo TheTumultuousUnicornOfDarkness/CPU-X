@@ -19,11 +19,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-11-24 16:11+0000\n"
-"PO-Revision-Date: 2023-10-17 06:23+0000\n"
-"Last-Translator: Ensar Melih Bulut <muhammedensarozketen@gmail.com>\n"
+"PO-Revision-Date: 2023-12-09 12:10+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -122,10 +122,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "GPU kullanıcı modu sürücünüz bilinmiyor: %s"
+msgstr "%s markası için GPU kullanıcı modu sürücünüz bilinmiyor: %s"
 
 #: core.cpp:781
 #, c-format
