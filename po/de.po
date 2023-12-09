@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-10-11 17:18+0000\n"
+"PO-Revision-Date: 2023-12-10 08:16+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -121,10 +121,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Ihr GPU-Kerneltreiber ist unbekannt: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Ihr GPU-Benutzermodustreiber ist unbekannt: %s"
+msgstr "Ihr GPU-Benutzermodustreiber ist für den Lieferant %s unbekannt: %s"
 
 #: core.cpp:781
 #, c-format
