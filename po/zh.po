@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-11-24 16:11+0000\n"
+"POT-Creation-Date: 2023-12-09 13:09+0100\n"
 "PO-Revision-Date: 2023-10-10 13:01+0000\n"
 "Last-Translator: A1ive <10670106+a1ive@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
@@ -1379,7 +1379,9 @@ msgstr "刷新时间"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-msgid "Theme"
+#, fuzzy
+#| msgid "Theme"
+msgid "Text theme"
 msgstr "主题"
 
 #. Setting: automatic GUI theme
@@ -1389,13 +1391,13 @@ msgstr "自动"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
-msgid "Light"
-msgstr "浅色"
+msgid "Blue for light theme"
+msgstr ""
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
-msgid "Dark"
-msgstr "深色"
+msgid "Yellow for dark theme"
+msgstr ""
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
@@ -1441,6 +1443,12 @@ msgstr "默认内存条"
 #: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
 msgstr "启动"
+
+#~ msgid "Light"
+#~ msgstr "浅色"
+
+#~ msgid "Dark"
+#~ msgstr "深色"
 
 #~ msgid "Calculating CPU multipliers"
 #~ msgstr "正在计算 CPU 倍频"

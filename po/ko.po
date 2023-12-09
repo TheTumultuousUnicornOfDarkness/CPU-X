@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2023-11-24 16:11+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2023-12-09 13:09+0100\n"
 "PO-Revision-Date: 2023-11-30 00:18+0000\n"
 "Last-Translator: Kim YuKyeom <dbrua1222@naver.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
@@ -1394,7 +1394,9 @@ msgstr "새로고침 간격"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-msgid "Theme"
+#, fuzzy
+#| msgid "Theme"
+msgid "Text theme"
 msgstr "테마"
 
 #. Setting: automatic GUI theme
@@ -1404,13 +1406,13 @@ msgstr "자동"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
-msgid "Light"
-msgstr "라이트"
+msgid "Blue for light theme"
+msgstr ""
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
-msgid "Dark"
-msgstr "다크"
+msgid "Yellow for dark theme"
+msgstr ""
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
@@ -1456,6 +1458,12 @@ msgstr "디폴트 메모리 스틱"
 #: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
 msgstr "시작"
+
+#~ msgid "Light"
+#~ msgstr "라이트"
+
+#~ msgid "Dark"
+#~ msgstr "다크"
 
 #, fuzzy
 #~| msgid "could not reallocate memory"

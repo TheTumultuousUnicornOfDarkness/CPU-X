@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-11-24 16:11+0000\n"
+"POT-Creation-Date: 2023-12-09 13:09+0100\n"
 "PO-Revision-Date: 2023-10-17 18:16+0000\n"
 "Last-Translator: griffi-gh <prasol258@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -1473,7 +1473,9 @@ msgstr "Час оновлення"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-msgid "Theme"
+#, fuzzy
+#| msgid "Theme"
+msgid "Text theme"
 msgstr "Тема"
 
 #. Setting: automatic GUI theme
@@ -1483,13 +1485,13 @@ msgstr "Автоматична"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
-msgid "Light"
-msgstr "Світла"
+msgid "Blue for light theme"
+msgstr ""
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
-msgid "Dark"
-msgstr "Темна"
+msgid "Yellow for dark theme"
+msgstr ""
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
@@ -1539,6 +1541,12 @@ msgstr "Тип ядра за замовчуванням"
 #: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
 msgstr "Початова"
+
+#~ msgid "Light"
+#~ msgstr "Світла"
+
+#~ msgid "Dark"
+#~ msgstr "Темна"
 
 #~ msgid "Calculating CPU multipliers"
 #~ msgstr "Розрахунок множників процесора"
