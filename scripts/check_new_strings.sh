@@ -14,9 +14,15 @@ if [[ "$(git show -s --format='%ce' "$SHA")" == "hosted@weblate.org" ]]; then
 fi
 
 for file in $(git show --pretty="" --name-only "$SHA"); do
-	if [[ "$file" =~ \.(c|h|cpp|hpp|ui)$ ]]; then
-		if git show "$SHA" "$file" | grep -E '^(\+|\-)' | grep -E -qw '_\(|N_\('; then
-			git show "$SHA" "$file" > /dev/stderr
+	if [[ "$file" =~ \.(c|h|cpp|hpp)$ ]]; then
+		if git show --unified=0 "$SHA" "$file" | grep -E -qw '_\(|N_\('; then
+			git --no-pager show "$SHA" "$file" > /dev/stderr
+			echo "REGEN"
+			exit 0
+		fi
+	elif [[ "$file" =~ \.(ui)$ ]]; then
+		if git show --unified=0 "$SHA" "$file" | grep -E -qw 'translatable="yes"'; then
+			git --no-pager show "$SHA" "$file" > /dev/stderr
 			echo "REGEN"
 			exit 0
 		fi
