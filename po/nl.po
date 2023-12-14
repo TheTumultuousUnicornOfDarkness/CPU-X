@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-11-15 23:52+0000\n"
+"PO-Revision-Date: 2023-12-14 19:17+0000\n"
 "Last-Translator: 跨性别 <github@lgbt.sh>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
 "nl/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -111,10 +111,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Uw GPU kernel-stuurprogramma is onbekend: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Uw GPU gebruikersmodusstuurprogramma is onbekend: %s"
+msgstr "Uw GPU gebruikersmodusstuurprogramma is onbekend: %s: %s"
 
 #: core.cpp:781
 #, c-format
@@ -542,7 +541,7 @@ msgstr "Stick %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
-msgstr ""
+msgstr "Sticks"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -604,10 +603,8 @@ msgstr ""
 "over CPU, moederbord en meer verzameld."
 
 #: data.cpp:744
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "Over"
+msgstr "Over CPU-X"
 
 #: data.cpp:745
 #, c-format
@@ -640,7 +637,7 @@ msgstr "Dit programma komt met ABSOLUUT GEEN GARANTIE"
 #: gui_gtk.cpp:61
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Kan het pad voor '%s' niet vinden"
 
 #: gui_gtk.cpp:400
 msgid "Start daemon"
@@ -660,7 +657,7 @@ msgstr "Vraag wachtwoord om daemon op de achtergrond te starten"
 
 #: gui_gtk.cpp:415
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: gui_gtk.cpp:634
 msgid "BaseFamily"
@@ -685,10 +682,13 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Identificeer de fysiek gelabelde socket of kaartpositie waar het "
+"geheugenapparaat zich bevindt"
 
 #: gui_gtk.cpp:848
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
+"Identificeer de fysiek gelabelde bank waar het geheugenapparaat zich bevindt"
 
 #: gui_gtk.cpp:1052
 msgid "User Mode Driver Version"
@@ -729,6 +729,7 @@ msgstr "Voer embedded commando bandwidth uit en beëindig het programma"
 #: main.cpp:68
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
+"Ingestelde temperatuureenheid (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
@@ -752,10 +753,8 @@ msgstr ""
 "Stel aangepaste bandbreedte test in voor CPU cache snelheid (Geheel getal)"
 
 #: main.cpp:74
-#, fuzzy
-#| msgid "Select default graphic card (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Selecteer standaard grafische kaart (Geheel getal)"
+msgstr "Selecteer standaard geheugenstick (geheel getal)"
 
 #: main.cpp:75
 msgid "Select default graphic card (integer)"
@@ -812,6 +811,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
+"Negeer CPU-waarden gerapporteerd door libcpuid (door komma's gescheiden "
+"waarden tussen 'temp', 'volt' en 'freq')"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
@@ -893,40 +894,31 @@ msgstr ""
 "deze CPU)"
 
 #: options.cpp:145
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
-"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor "
-"deze CPU)"
+"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor dut "
+"system)"
 
 #: options.cpp:168
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor "
-"deze CPU)"
+"Geselecteerde RAM stick (%u) is geen geldig getal (%u is het maximum voor "
+"dit systeem)"
 
 #: options.cpp:188
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-#| "type of core)"
+#, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Geselecteerde CPU-kern (%u) is geen geldig getal (%u is het maximum voor dit "
-"type kern)"
+"Geselecteerde grafische kaart (%u) is geen geldig getal (%u is het maximum "
+"voor dit systeem)"
 
 #: options.cpp:204
 #, c-format
@@ -943,14 +935,9 @@ msgstr ""
 "type kern)"
 
 #: options.cpp:284
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
-"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor "
-"deze CPU)"
+msgstr "Geselecteerde tabblad (%u) is geen geldig getal (%u is het maximum)"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
@@ -1107,16 +1094,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr "kan geen eenheid vinden in string '%s' op positie %i"
 
 #: util.cpp:252
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "Er trad een fout op tijdens het openen van het bestand '%s' (%s)"
+msgstr "Er trad een fout op tijdens het openen van het bestand '%s'"
 
 #: util.cpp:297
-#, fuzzy, c-format
-#| msgid "an error occurred while running command '%s' (%s)"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "Er trad een fout op tijdens het uitvoeren van het commando '%s' (%s)"
+msgstr "Er trad een fout op tijdens het uitvoeren van het commando '%s'"
 
 #: util.cpp:437
 msgid "set_cpu_affinity() not supported on this operating system"
@@ -1248,37 +1233,31 @@ msgstr "Rom grootte"
 
 #: data.hpp:260
 msgid "Part Number"
-msgstr ""
+msgstr "Onderdeel nummer"
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type"
-msgstr "Type #%i"
+msgstr "Type"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "Type #%i"
+msgstr "Type Detail"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "Apparaatzoeker"
 
 #: data.hpp:264
 msgid "Bank Locator"
-msgstr ""
+msgstr "Bankzoeker"
 
 #: data.hpp:266
 msgid "Rank"
-msgstr ""
+msgstr "Rang"
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "Code Name"
+msgstr "Naam"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1325,10 +1304,8 @@ msgid "Compute Unit"
 msgstr "Rekeneenheid"
 
 #: data.hpp:337
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
-msgstr "ApparaatID"
+msgstr "Apparaat ID"
 
 #: data.hpp:338
 msgid "VBIOS Version"
@@ -1353,14 +1330,10 @@ msgid "Power Avg"
 msgstr "Gem. Vermogen"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "Geheugenklok"
+msgstr "Kernklok"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "Geheugenklok"
 
@@ -1455,10 +1428,8 @@ msgstr "Verversingstijd"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "Thema"
+msgstr "Tekst thema"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5760
@@ -1468,19 +1439,17 @@ msgstr "Automatisch"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
 msgid "Blue for light theme"
-msgstr ""
+msgstr "Blauw voor licht thema"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "Geel voor donker thema"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Temperatuur"
+msgstr "Temperatuureenheid"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
@@ -1514,10 +1483,8 @@ msgstr "Standaard kerntype"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5976
-#, fuzzy
-#| msgid "Default core type"
 msgid "Default memory stick"
-msgstr "Standaard kerntype"
+msgstr "Standaard geheugenstick"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6004
