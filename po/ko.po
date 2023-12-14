@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-11-30 00:18+0000\n"
+"PO-Revision-Date: 2023-12-14 10:43+0000\n"
 "Last-Translator: Kim YuKyeom <dbrua1222@naver.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ko/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3-rc\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -550,7 +550,7 @@ msgstr "운영체제"
 
 #: data.cpp:587 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
-msgstr "그래픽스"
+msgstr "그래픽"
 
 #: data.cpp:621
 #, c-format
@@ -1023,7 +1023,7 @@ msgstr "'f' 키를 눌러 소수 벤치마크 (빠름)의 시작/정지."
 
 #: tui_ncurses.cpp:259
 msgid "Graphics tab:"
-msgstr "그래픽스 탭:"
+msgstr "그래픽 탭:"
 
 #: tui_ncurses.cpp:260
 msgid "Press 'down' key to switch to previous graphic card."
@@ -1394,10 +1394,8 @@ msgstr "새로고침 간격"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "테마"
+msgstr "텍스트 테마"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5760
@@ -1407,12 +1405,12 @@ msgstr "자동"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
 msgid "Blue for light theme"
-msgstr ""
+msgstr "라이트 테마의 파랑"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "다크 테마의 노랑"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
