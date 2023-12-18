@@ -1554,9 +1554,9 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 				// temperature obtained above
 				FOPEN_TO_ITEM(usage,         "%s", amdgpu_gpu_busy_file.c_str()); // Linux 4.19+ (22 October 2018)
 				FOPEN_TO_ITEM(core_voltage,  "%s/in0_input",                   card.hwmon_path.c_str());
-    				if(file_exists(amdgpu_power1_input))
+    			if(file_exists(amdgpu_power1_input))
 				    FOPEN_TO_ITEM(power_avg, "%s", amdgpu_power1_input.c_str());
-    				if(file_exists(amdgpu_power1_average))	//still in Linux 6.6 pre-release
+    			else if(file_exists(amdgpu_power1_average))	//still in Linux 6.6 pre-release
 				    FOPEN_TO_ITEM(power_avg, "%s", amdgpu_power1_average.c_str());
 				FOPEN_TO_ITEM(core_clock,    "%s/freq1_input",                 card.hwmon_path.c_str());
 				if(file_exists(amdgpu_mem_clock)) // there is no memory frequency for iGPU
