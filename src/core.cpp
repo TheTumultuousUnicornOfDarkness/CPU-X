@@ -1545,16 +1545,18 @@ static int gpu_monitoring([[maybe_unused]] Data &data)
 		{
 			case GpuDrv::GPUDRV_AMDGPU:
 			{
-				const std::string amdgpu_gpu_busy_file = (!card.drm_path.empty()) ? card.drm_path + "/device/gpu_busy_percent" : std::string();
-				const std::string amdgpu_mem_clock     = card.hwmon_path + "/freq2_input";
-				const std::string amdgpu_power1_average= card.hwmon_path + "/power1_average";
+				const std::string amdgpu_gpu_busy_file  = (!card.drm_path.empty()) ? card.drm_path + "/device/gpu_busy_percent" : std::string();
+				const std::string amdgpu_mem_clock      = card.hwmon_path + "/freq2_input";
+				const std::string amdgpu_power1_average = card.hwmon_path + "/power1_average";
+				const std::string amdgpu_power1_input   = card.hwmon_path + "/power1_input";
 				MSG_DEBUG("gpu_monitoring: amdgpu: amdgpu_gpu_busy_file=%s", amdgpu_gpu_busy_file.c_str());
 				FOPEN_TO_ITEM(vbios_version, "%s/device/vbios_version",        card.drm_path.c_str());
 				// temperature obtained above
 				FOPEN_TO_ITEM(usage,         "%s", amdgpu_gpu_busy_file.c_str()); // Linux 4.19+ (22 October 2018)
 				FOPEN_TO_ITEM(core_voltage,  "%s/in0_input",                   card.hwmon_path.c_str());
-				FOPEN_TO_ITEM(power_avg,     "%s/power1_input",              card.hwmon_path.c_str());
-    				 if(file_exists(amdgpu_power1_average))	//still in Linux 6.6 pre-release
+    				if(file_exists(amdgpu_power1_input))
+				    FOPEN_TO_ITEM(power_avg, "%s", amdgpu_power1_input.c_str());
+    				if(file_exists(amdgpu_power1_average))	//still in Linux 6.6 pre-release
 				    FOPEN_TO_ITEM(power_avg, "%s", amdgpu_power1_average.c_str());
 				FOPEN_TO_ITEM(core_clock,    "%s/freq1_input",                 card.hwmon_path.c_str());
 				if(file_exists(amdgpu_mem_clock)) // there is no memory frequency for iGPU
