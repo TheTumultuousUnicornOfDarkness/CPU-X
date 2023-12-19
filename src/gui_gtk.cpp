@@ -22,6 +22,7 @@
 */
 
 #include <unistd.h>
+#include <optional>
 #include <gtkmm.h>
 #include <gtkmm/messagedialog.h>
 #include <giomm/settings.h>
@@ -72,16 +73,12 @@ static void set_frame_name(const Frame &frame)
 	EXT_FRAME(frame)->name->set_text(frame.name);
 }
 
-static void set_label_name_and_value(const Label &label)
+static void set_label_name_and_value(const Label &label, const std::optional<std::string> &tooltip = std::nullopt)
 {
 	EXT_LABEL(label)->name->set_text(label.name);
+	EXT_LABEL(label)->name->set_tooltip_text(tooltip ? _(tooltip.value().c_str()) : label.name);
 	EXT_LABEL(label)->value->set_text(label.value);
-}
-
-static void set_label_name_and_value(const Label &label, const std::string tooltip)
-{
-	set_label_name_and_value(label);
-	EXT_LABEL(label)->name->set_tooltip_text(_(tooltip.c_str()));
+	EXT_LABEL(label)->value->set_tooltip_text(label.value);
 }
 
 
