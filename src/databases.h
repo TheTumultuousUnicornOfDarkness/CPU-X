@@ -161,6 +161,7 @@ const Technology_DB technology_amd[] =
 	{ -1,           1,          25,           "7 nm" }, // Zen 3 (Milan)
 	{ -1,          68,          25,           "7 nm" }, // Zen 3 (Rembrandt)
 	{ -1,           8,          25,           "7 nm" }, // Zen 3 (Chagall)
+	{ -1,          24,          25,           "5 nm" }, // Zen 4 (Storm Peak)
 	{ -1,          97,          25,           "5 nm" }, // Zen 4 (Raphael/Dragon Range)
 	{ -1,          17,          25,           "5 nm" }, // Zen 4 (Genoa)
 	{ -1,         116,          25,           "5 nm" }, // Zen 4 (Phoenix)
@@ -275,6 +276,7 @@ const Package_DB package_amd[] =
 	{ "Rembrandt",                      NULL,            "FP7 (BGA-1140)"   },
 	/* Zen 4 */
 	{ "Genoa",                          NULL,            "SP5 (LGA-6096)"   },
+	{ "Storm Peak",                     NULL,            "sTR5 (LGA-4844)"  },
 	{ "Raphael",                        NULL,            "AM5 (LGA-1718)"   },
 	{ "Dragon Range",                   NULL,            "FL1 (BGA)"        },
 	{ "Phoenix",                        NULL,            "FP7/FP8"          },
