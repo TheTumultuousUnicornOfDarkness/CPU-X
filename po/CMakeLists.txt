@@ -46,7 +46,7 @@ if(GETTEXT_FOUND)
 			"cpu-x-gtk-3.12.ui"
 		COMMAND	msgcat --indent --directory=${CMAKE_CURRENT_BINARY_DIR} source_c.pot source_ui.pot --output-file="${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
 		COMMAND sed --in-place "s/SOME DESCRIPTIVE TITLE./CPU-X translations template/" "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
-		COMMAND sed --in-place "s/\\(C\\) YEAR/© 2014-2023/"  "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
+		COMMAND sed --in-place "s/\\(C\\) YEAR/© 2014-2024/"  "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
 	)
 	GETTEXT_CONVERT_TRANSLATIONS(${pot_file} ALL ${po_files})
