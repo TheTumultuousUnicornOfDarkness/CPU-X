@@ -11,14 +11,15 @@
 # Hugel <qihu@nfschina.com>, 2022.
 # yangyangdaji <1504305527@qq.com>, 2022.
 # Hou Qiyao <ryanhou24@gmail.com>, 2023.
+# Codefoxy Ch <test.foxcat@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-03-26 21:41+0000\n"
-"Last-Translator: Hou Qiyao <ryanhou24@gmail.com>\n"
+"PO-Revision-Date: 2024-01-04 11:09+0000\n"
+"Last-Translator: Codefoxy Ch <test.foxcat@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -71,17 +72,17 @@ msgstr "調用dmidecode"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s（已配置）"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s（最大）"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s（最少）"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -89,7 +90,7 @@ msgstr "正在計算 CPU 使用率"
 
 #: core.cpp:546
 msgid "Calling bandwidth"
-msgstr "調用bandwidth"
+msgstr "調用帶寬"
 
 #: core.cpp:613
 #, c-format
@@ -99,6 +100,8 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"pci_access 未正確初始化：這是使用較低 libpci 版本建立 %s 時的常見問題。\n"
+"檢查您的系統上是否存在 libpci %s 版本函式庫。否則，請重建 %s。"
 
 #: core.cpp:657
 #, c-format
@@ -111,15 +114,14 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "無法得知您的 GPU 核心驅動程式：%s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "未知的使用者 GPU 驅動程式：%s"
+msgstr "供應商 %s 未知您的 GPU 使用者模式驅動程式：%s"
 
 #: core.cpp:781
 #, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "呼叫 libcpuid 失敗 (%i):(%s)"
+msgstr "呼叫 GLFW 失敗 (%i):(%s)"
 
 #: core.cpp:914
 msgid "Finding Vulkan API version"
@@ -133,7 +135,7 @@ msgstr "呼叫 vkCreateInstance 失敗 (%s)"
 #: core.cpp:929
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "不支援 %s"
 
 #: core.cpp:937
 #, c-format
@@ -157,21 +159,19 @@ msgstr "無法為設備 %u (%s) 創建 Vulkan"
 #: core.cpp:1019
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
+msgstr "%s不支援 在裝置 %u，僅使用 deviceID 進行匹配"
 
 #: core.cpp:1051 core.cpp:1364
 msgid "Enabled"
-msgstr "開啟"
+msgstr "啟用"
 
 #: core.cpp:1051 core.cpp:1364
 msgid "Disabled"
 msgstr "關閉"
 
 #: core.cpp:1088
-#, fuzzy
-#| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
-msgstr "查找 Vulkan API 版本"
+msgstr "查找 OpenCL API 版本"
 
 #: core.cpp:1092
 #, c-format
@@ -200,7 +200,7 @@ msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
 
 #: core.cpp:1131
 msgid "0 device"
-msgstr "0 設備"
+msgstr "正在尋找裝置"
 
 #: core.cpp:1140
 #, c-format
@@ -232,8 +232,7 @@ msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_GFXIP_MAJOR
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr "「%s %s」的 OpenCL 驅動程式並不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.cpp:1250
 #, c-format
