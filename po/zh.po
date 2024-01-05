@@ -9,26 +9,26 @@
 # Forbidden <10278743+f0rb1d@users.noreply.github.com>, 2020.
 # Eric <spice2wolf@gmail.com>, 2021.
 # Eric <alchemillatruth@purelymail.com>, 2022.
-# yangyangdaji <1504305527@qq.com>, 2022, 2023.
+# yangyangdaji <1504305527@qq.com>, 2022, 2023, 2024.
 # Eric <hamburger1024@mailbox.org>, 2022.
 # Hou Qiyao <ryanhou24@gmail.com>, 2023.
 # A1ive <10670106+a1ive@users.noreply.github.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-10-10 13:01+0000\n"
-"Last-Translator: A1ive <10670106+a1ive@users.noreply.github.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"PO-Revision-Date: 2024-01-06 01:10+0000\n"
+"Last-Translator: yangyangdaji <1504305527@qq.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -115,10 +115,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "你的 GPU 内核驱动未知：%s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "你的 GPU 用户模式驱动未知：%s"
+msgstr "您的 GPU 用户模式驱动程序对于供应商 %s 是未知的: %s"
 
 #: core.cpp:781
 #, c-format
@@ -1379,10 +1378,8 @@ msgstr "刷新时间"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "主题"
+msgstr "文本主题"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5760
@@ -1392,12 +1389,12 @@ msgstr "自动"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
 msgid "Blue for light theme"
-msgstr ""
+msgstr "蓝色为亮色主题"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "黄色代表暗色主题"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
