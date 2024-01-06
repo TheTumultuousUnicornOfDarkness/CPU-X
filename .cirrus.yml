@@ -1,9 +1,9 @@
 task:
-  name: FreeBSD
+  name: FreeBSD # https://www.freebsd.org/releases
   freebsd_instance: # https://cirrus-ci.org/guide/FreeBSD/#list-of-available-image-families
     matrix:
-      image_family: freebsd-12-3
       image_family: freebsd-13-2
+      image_family: freebsd-14-0
   env:
     IGNORE_OSVERSION: yes # supress package installation error on FreeBSD-13
 
