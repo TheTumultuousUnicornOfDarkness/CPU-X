@@ -9,24 +9,25 @@
 # WaldiS <sto@tutanota.de>, 2020, 2021, 2022, 2023.
 # Jacek <uaie_wljjw94@jyplo.com>, 2022.
 # Eryk Michalak <gnu.ewm@protonmail.com>, 2023.
+# Rcvrvugyvgvb <xzdfrlhz@duck.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-11-03 19:35+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2024-01-12 22:06+0000\n"
+"Last-Translator: Rcvrvugyvgvb <xzdfrlhz@duck.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
+"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -117,8 +118,7 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Nieznany sterownik jądra GPU: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU: %s"
 
@@ -300,7 +300,7 @@ msgstr "Numer karty %s jest nieznany"
 #: core.cpp:1541
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (prąd) / %s (maks.)"
 
 #: core.cpp:1650
 #, c-format
@@ -477,7 +477,7 @@ msgstr "P-core"
 
 #: data.cpp:188
 msgid "E-core"
-msgstr "E-core"
+msgstr "E-rdzeń"
 
 #: data.cpp:189 data.cpp:192
 msgid "Core"
@@ -502,7 +502,6 @@ msgid "%d %s, %d-way"
 msgstr "%d %s, %d-sposób"
 
 #: data.cpp:263
-#, fuzzy
 msgid "Count"
 msgstr "Licznik"
 
@@ -543,11 +542,12 @@ msgstr "Pamięć"
 #: data.cpp:483
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Przyklej %u"
 
 #: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+#, fuzzy
 msgid "Sticks"
-msgstr ""
+msgstr "Patyk"
 
 #: data.cpp:541 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -686,16 +686,14 @@ msgstr ""
 "(ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.cpp:847
-#, fuzzy
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
-"Zidentyfikuj fizycznie oznaczone gniazdo lub pozycję płyty, na której "
-"znajduje się urządzenie pamięci"
+"Zidentyfikować fizycznie oznaczone gniazdo lub pozycję na płycie, w której "
+"znajduje się urządzenie pamięci."
 
 #: gui_gtk.cpp:848
-#, fuzzy
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Zidentyfikuj fizycznie oznaczony bank, w którym znajduje się urządzenie "
@@ -1242,7 +1240,6 @@ msgid "ROM Size"
 msgstr "ROM Rozmiar"
 
 #: data.hpp:260
-#, fuzzy
 msgid "Part Number"
 msgstr "Numer części"
 
@@ -1263,7 +1260,6 @@ msgid "Bank Locator"
 msgstr "Lokalizator banku"
 
 #: data.hpp:266
-#, fuzzy
 msgid "Rank"
 msgstr "Pozycja"
 
@@ -1440,10 +1436,8 @@ msgstr "Czas odświeżenia"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "Kompozycja"
+msgstr "Motyw tekstowy"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5760
@@ -1453,12 +1447,12 @@ msgstr "Automatyczny"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
 msgid "Blue for light theme"
-msgstr ""
+msgstr "Niebieski dla jasnego motywu"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5762
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "Żółty dla ciemnego motywu"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
