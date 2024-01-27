@@ -6,7 +6,7 @@
 # Mr Talon63 <pantalon63@gmail.com>, 2019.
 # kakiremora <piotrek.pastuszak2003@gmail.com>, 2020.
 # Michal Biesiada <blade-14@o2.pl>, 2020.
-# WaldiS <sto@tutanota.de>, 2020, 2021, 2022, 2023.
+# WaldiS <sto@tutanota.de>, 2020, 2021, 2022, 2023, 2024.
 # Jacek <uaie_wljjw94@jyplo.com>, 2022.
 # Eryk Michalak <gnu.ewm@protonmail.com>, 2023.
 # Rcvrvugyvgvb <xzdfrlhz@duck.com>, 2024.
@@ -16,8 +16,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2024-01-12 22:06+0000\n"
-"Last-Translator: Rcvrvugyvgvb <xzdfrlhz@duck.com>\n"
+"PO-Revision-Date: 2024-01-28 21:01+0000\n"
+"Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
@@ -118,9 +118,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Nieznany sterownik jądra GPU: %s"
 
 #: core.cpp:777
-#, c-format
+#, c-format, fuzzy
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU: %s"
+msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU %s: %s"
 
 #: core.cpp:781
 #, c-format
@@ -690,8 +690,8 @@ msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
-"Zidentyfikować fizycznie oznaczone gniazdo lub pozycję na płycie, w której "
-"znajduje się urządzenie pamięci."
+"Zidentyfikuj fizycznie oznaczone gniazdo lub pozycję płyty, na której "
+"znajduje się urządzenie pamięci"
 
 #: gui_gtk.cpp:848
 msgid "Identify the physically labeled bank where the memory device is located"
