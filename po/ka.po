@@ -1,14 +1,14 @@
 # CPU-X translations template
 # Copyright © 2014-2024 TheTumultuousUnicornOfDarkness
 # This file is distributed under the same license as the cpu-x package.
-# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2023-12-09 13:09+0100\n"
-"PO-Revision-Date: 2023-02-22 18:37+0000\n"
+"PO-Revision-Date: 2024-02-18 20:59+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 5.4\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -488,10 +488,9 @@ msgid "Clocks"
 msgstr "საათები"
 
 #: data.cpp:379 data.cpp:383
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "ლ%i ქეში"
+msgstr "L%u კეში"
 
 #: data.cpp:385
 #, c-format
@@ -540,10 +539,9 @@ msgid "Graphics"
 msgstr "გრაფიკა"
 
 #: data.cpp:621
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "ბარათი %i"
+msgstr "ბარათი %u"
 
 #: data.cpp:625 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
