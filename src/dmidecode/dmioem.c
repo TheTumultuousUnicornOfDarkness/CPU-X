@@ -161,11 +161,12 @@ static void dmi_print_hp_net_iface_rec(u8 id, u8 bus, u8 dev, const u8 *mac)
 	}
 }
 
-typedef enum { G6 = 6, G7, G8, G9, G10, G10P } dmi_hpegen_t;
+typedef enum { G6 = 6, G7, G8, G9, G10, G10P, G11 } dmi_hpegen_t;
 
 static int dmi_hpegen(const char *s)
 {
 	struct { const char *name; dmi_hpegen_t gen; } table[] = {
+		{ "Gen11",	G11 },
 		{ "Gen10 Plus",	G10P },
 		{ "Gen10",	G10 },
 		{ "Gen9",	G9 },
@@ -187,25 +188,21 @@ static int dmi_hpegen(const char *s)
 	return (dmi_vendor == VENDOR_HPE) ? G10P : G6;
 }
 
-static void dmi_hp_240_attr(u64 defined, u64 set)
+static void dmi_hp_197_qdf(const u8 *qdf)
 {
-	static const char *attributes[] = {
-		"Updatable",
-		"Reset Required",
-		"Authentication Required",
-		"In Use",
-		"UEFI Image",
-	};
-	unsigned int i;
+	char str[7];
+	int i, j, len = 6;
 
-	pr_list_start("Attributes Defined/Set", NULL);
-	for (i = 0; i < ARRAY_SIZE(attributes); i++)
+	if (!is_printable(qdf, len))
+		return;
+
+	for (i = 0, j = 0;  i < len;  i++)
 	{
-		if (!(defined.l & (1UL << i)))
-			continue;
-		pr_list_item("%s: %s", attributes[i], set.l & (1UL << i) ? "Yes" : "No");
+		if (qdf[i] != ' ')
+			str[j++] = qdf[i];
 	}
-	pr_list_end();
+	str[j] = '\0';
+	pr_attr("QDF/S-SPEC", "%s", str);
 }
 
 static void dmi_hp_203_assoc_hndl(const char *fname, u16 num)
@@ -291,7 +288,13 @@ static void dmi_hp_203_devloc(const char *fname, unsigned int code)
 		"USB",
 		"Dynamic Smart Array Controller",
 		"URL",
-		"NVMe Drive Bay" /* 0x0F */
+		"NVMe Drive Bay", /* 0x0F */
+		"NVDIMM Processor",
+		"NVDIMM Board",
+		"NVMe Riser",
+		"NVDIMM Name Space",
+		"VROC SATA",
+		"VROC NVMe", /* 0x15 */
 	};
 
 	if (code < ARRAY_SIZE(location))
@@ -361,8 +364,9 @@ static void dmi_hp_216_fw_type(u16 code)
 		"Secondary System Programmable Logic Device",
 		"CPU MEZZ Programmable Logic Device", /* 0x37 */
 		"Intel Artic Sound -M Accelerator Models Firmware",
-		"Ampere System Control Processor (SCP – PMPro+SMPro)",
+		"Ampere System Control Processor (SCP - PMPro+SMPro)",
 		"Intel CFR information", /* 0x3A */
+		"OCP cards",
 	};
 
 	if (code < ARRAY_SIZE(type))
@@ -384,8 +388,10 @@ static void dmi_hp_216_version(u8 format, u8 *data)
 		pr_attr(name, "No Version Data");
 		break;
 	case 1:
-		pr_attr(name, "%c.%d.%d", data[0] & (1 << 7) ? 'B' : 'R',
-					  data[0] & 0x7, data[1] & 0x7);
+		if (data[0] >> 7)
+			pr_attr(name, "0x%02X B.0x%02X", data[1] & 0x7F, data[0] & 0x7F);
+		else
+			pr_attr(name, "0x%02X", data[1] & 0x7F);
 		break;
 	case 2:
 		pr_attr(name, "%d.%d", data[0] >> 4, data[0] & 0x0f);
@@ -580,6 +586,8 @@ static void dmi_hp_238_loc(const char *fname, unsigned int code)
 		"USB Hub for NAND Controller",
 		"Reserved",
 		"Debug Port", /* 0x07 */
+		"Reserved",
+		"OCP USB", /* 0x09 */
 	};
 
 	if (code < ARRAY_SIZE(location))
@@ -619,6 +627,106 @@ static void dmi_hp_238_speed(const char *fname, unsigned int code)
 	pr_attr(fname, "%s", str);
 }
 
+static void dmi_hp_239_usb_device(u8 class, u8 subclass, u8 protocol)
+{
+	/* https://www.usb.org/defined-class-codes */
+	/* https://www.usb.org/sites/default/files/Mass_Storage_Specification_Overview_v1.4_2-19-2010.pdf */
+	const char *str = "Reserved";
+	if (class == 0x08)
+	{
+		static const char * const sub_class_name[] = {
+			"SCSI command set not reported", /* 0x00 */
+			"RBC",
+			"ATAPI",
+			"Obsolete",
+			"UFI",
+			"Obsolete",
+			"SCSI",
+			"LSD FS",
+			"IEEE 1667" /* 0x08 */
+		};
+		pr_attr("USB Class", "%s", "Mass Storage");
+		if (subclass == 0xFF)
+		{
+			str = "Vendor Specific";
+		}
+		else if (subclass < ARRAY_SIZE(sub_class_name))
+		{
+			str = sub_class_name[subclass];
+		}
+		pr_attr("USB SubClass", "%s", str);
+
+		switch (protocol) {
+		case 0x00:
+			str = "CBI w/ completion interrupt";
+			break;
+		case 0x01:
+			str = "CBI w/o completion interrupt";
+			break;
+		case 0x02:
+			str = "Obsolete";
+			break;
+		case 0x50:
+			str = "Bulk-Only";
+			break;
+		case 0x62:
+			str = "UAS";
+			break;
+		case 0xFF:
+			str = "Vendor Specific";
+			break;
+		default:
+			str = "Reserved";
+		}
+		pr_attr("USB Protocol", "%s", str);
+	}
+	else if (class == 0x09 && subclass == 0)
+	{
+		pr_attr("USB Class", "%s", "HUB");
+		switch (protocol) {
+		case 0:
+			str = "Full Speed";
+			break;
+		case 1:
+			str = "Hi-Speed w/ single TT";
+			break;
+		case 2:
+			str = "Hi-Speed w/ multiple TT";
+			break;
+		default:
+			str = "Reserved";
+		}
+		pr_attr("USB Protocol", str);
+	}
+	else
+	{
+		pr_attr("USB Class", "0x%02x", class);
+		pr_attr("USB SubClass", "0x%02x", subclass);
+		pr_attr("USB Protocol", "0x%02x", protocol);
+	}
+}
+
+static void dmi_hp_240_attr(u64 defined, u64 set)
+{
+	static const char *attributes[] = {
+		"Updatable",
+		"Reset Required",
+		"Authentication Required",
+		"In Use",
+		"UEFI Image",
+	};
+	unsigned int i;
+
+	pr_list_start("Attributes Defined/Set", NULL);
+	for (i = 0; i < ARRAY_SIZE(attributes); i++)
+	{
+		if (!(defined.l & (1UL << i)))
+			continue;
+		pr_list_item("%s: %s", attributes[i], set.l & (1UL << i) ? "Yes" : "No");
+	}
+	pr_list_end();
+}
+
 static void dmi_hp_242_hdd_type(u8 code)
 {
 	const char *str = "Reserved";
@@ -651,8 +759,17 @@ static void dmi_hp_242_form_factor(u8 code)
 		"MicroSSD",
 		"CFast", /* 0x09 */
 	};
+	static const char * const form2[] = {
+		"EDSFF Unknown", /* 0x20 */
+		"EDSFF 1U Short",
+		"EDSFF 1U Long",
+		"EDSFF E3 Short",
+		"EDSFF E3 Long", /* 0x24 */
+	};
 	if (code < ARRAY_SIZE(form))
 		str = form[code];
+	else if (code >= 0x20 && code < 0x20 + ARRAY_SIZE(form2))
+		str = form2[code - 0x20];
 
 	pr_attr("Form Factor", "%s", str);
 }
@@ -663,6 +780,31 @@ static void dmi_hp_242_speed(const char *attr, u16 speed)
 		pr_attr(attr, "%hu Gbit/s", speed);
 	else
 		pr_attr(attr, "%s", "Unknown");
+}
+
+static void dmi_hp_245_pcie_riser(const struct dmi_header *h)
+{
+	const char *str = "Reserved";
+	u8 *data = h->data;
+
+	pr_attr("Board Type", "PCIe Riser");
+	if (h->length < 0x09) return;
+	switch (data[0x05])
+	{
+		case 1: str = "Primary"; break;
+		case 2: str = "Secondary"; break;
+		case 3: str = "Tertiary"; break;
+		case 4: str = "Quaternary"; break;
+		case 10: str = "Front"; break;
+	}
+	pr_attr("Riser Position", "%s", str);
+	pr_attr("Riser ID", "%d", data[0x06]);
+	if (data[0x07])
+	{
+		str = (data[0x07] >> 7) ? "B." : "";
+		pr_attr("CPLD Version", "%s0x%02X", str, (data[0x07] & 0x7F));
+	}
+	pr_attr("Riser Name", dmi_string(h, data[0x08]));
 }
 
 static int dmi_decode_hp(const struct dmi_header *h)
@@ -698,6 +840,69 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			pr_attr("Parallel Port", "%s", feat & (1 << 2) ? "Enabled" : "Disabled");
 			pr_attr("Floppy Disk Port", "%s", feat & (1 << 3) ? "Enabled" : "Disabled");
 			pr_attr("Virtual Serial Port", "%s", feat & (1 << 4) ? "Enabled" : "Disabled");
+			break;
+
+		case 197:
+			/*
+			 * Vendor Specific: HPE Processor Specific Information
+			 *
+			 * Processor Information structure (Type 197) for each possibly installed
+			 * physical processor to go along with each standard Processor Info
+			 * Record (Type 4).  The Type 197 record will be ignored for Processor
+			 * slots that are empty (specified in the Type 4 records).
+			 *
+			 * Processor Wattage value will be filled in with information gotten from
+			 * the CPUID instruction or possibly estimated based on CPU Family/Type.
+			 *
+			 * Designator bytes will be 0FFh if the location of the processor does not
+			 * use it.  If a system has processor slots, but no sockets, then the value
+			 * in the Socket Designator will be 0FFh. A system would have one or the
+			 * other, or both.
+			 *
+			 * Offset |  Name      | Width | Description
+			 * -------+------------+-------+-------------
+			 *  0x00  | Type       | BYTE  | 0xC5, Processor Information
+			 *  0x01  | Length     | BYTE  | Length of structure
+			 *  0x02  | Handle     | WORD  | Unique handle
+			 *  0x04  | Assoc Dev  | WORD  | Handle of Associated Type 4 Record
+			 *  0x06  | APIC ID    | BYTE  | Processor local APIC ID
+			 *  0x07  | OEM Status | BYTE  | Bits: 0: BSP, 1: x2APIC, 2: Therm Margining
+			 *  0x08  | Phys Slot  | BYTE  | Matches silk screen
+			 *  0x09  | Phys Socket| BYTE  | Matches silk screen
+			 *  0x0A  | Max Wattage| WORD  | Rated max wattage of the processor
+			 *  0x0C  | x2APIC ID  | DWORD | Processor x2APIC (if OEM Status -> x2APIC)
+			 *  0x10  | Proc UUID  | QWORD | Processor Unique Identifier
+			 *  0x18  | Conn Speed | WORD  | Interconnect speed in MT/s
+			 *  0x1A  | QDF/S-SPEC |6 BYTES| Processor QDF/S-SPEC Numbers (Intel only)
+			 *  0x20  | Reserved   | DWORD | Gen11 Reserved
+			 */
+			pr_handle_name("%s Processor Specific Information", company);
+			if (h->length < 0x0A) break;
+			if (!(opt.flags & FLAG_QUIET))
+				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x04));
+			pr_attr("APIC ID", "%u", data[0x06]);
+			feat = data[0x07];
+			pr_attr("BSP", "%s", feat & 0x01 ? "Yes" : "No");
+			pr_attr("x2APIC", "%s", feat & 0x02 ? "Yes" : "No");
+			pr_attr("Advanced Thermal Margining", "%s", feat & 0x04 ? "Yes" : "No");
+			if (data[0x08] != 0xFF)
+				pr_attr("Physical Slot", "%d", data[0x08]);
+			if (data[0x09] != 0xFF)
+				pr_attr("Physical Socket", "%d", data[0x09]);
+			if (h->length < 0x0C) break;
+			if (WORD(data + 0x0A))
+				pr_attr("Maximum Power", "%d W", WORD(data + 0x0A));
+			if (h->length < 0x10) break;
+			if (feat & 0x02)
+				pr_attr("x2APIC ID", "0x%08x", DWORD(data + 0x0C));
+			if (h->length < 0x18) break;
+			if (DWORD(data + 0x10) || DWORD(data + 0x14))
+				pr_attr("UUID", "0x%08x%08x", DWORD(data + 0x14), DWORD(data + 0x10));
+			if (h->length < 0x1A) break;
+			if (WORD(data + 0x18))
+				pr_attr("Interconnect Speed", "%d MT/s", WORD(data + 0x18));
+			if (h->length < 0x20) break;
+			dmi_hp_197_qdf(data + 0x1A);
 			break;
 
 		case 199:
@@ -789,6 +994,10 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			}
 			dmi_hp_203_assoc_hndl("Parent Handle", WORD(data + 0x12));
 			pr_attr("Flags", "0x%04X", WORD(data + 0x14));
+			if (WORD(data + 0x14) & 0x01)
+				pr_subattr("Peer Bifurcated Device", "Yes");
+			if (WORD(data + 0x14) & 0x02)
+				pr_subattr("Upstream Device", "Yes");
 			dmi_hp_203_devtyp("Device Type", data[0x16]);
 			dmi_hp_203_devloc("Device Location", data[0x17]);
 			pr_attr("Device Instance", "%d", data[0x18]);
@@ -853,6 +1062,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *
 			 * Type 221: is deprecated in the latest docs
 			 */
+			if (gen >= G8 && h->type == 221) return 0;
 			pr_handle_name("%s %s", company, h->type == 221 ?
 				       "BIOS iSCSI NIC PCI and MAC Information" :
 				       "BIOS PXE NIC PCI and MAC Information");
@@ -875,6 +1085,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *
 			 * Source: hpwdt kernel driver
 			 */
+			if (gen >= G9) return 0;
 			pr_handle_name("%s 64-bit CRU Information", company);
 			if (h->length < 0x18) break;
 			if (is_printable(data + 0x04, 4))
@@ -1064,6 +1275,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x13  | A2 Bays    | BYTE  | (deprecated) Number of SAS drive bays behind port 0xA2
 			 *  0x14  | Name       | STRING| (deprecated) Backplane Name
 			 */
+			if (gen >= G11) return 0;
 			pr_handle_name("%s HDD Backplane FRU Information", company);
 			if (h->length < 0x08) break;
 			pr_attr("FRU I2C Address", "0x%X raw(0x%X)", data[0x4] >> 1, data[0x4]);
@@ -1094,7 +1306,8 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x06  | Manufacture|STRING | DIMM Manufacturer
 			 *  0x07  | Part Number|STRING | DIMM Manufacturer's Part Number
 			 *  0x08  | Serial Num |STRING | DIMM Vendor Serial Number
-			 *  0x09  | Spare Part |STRING | DIMM Spare Part Number
+			 *  0x09  | Man Date   | BYTE  | DIMM Manufacture Date (YEAR) in BCD
+			 *  0x0A  | Man Date   | BYTE  | DIMM Manufacture Date (WEEK) in BCD
 			 */
 			if (gen < G9) return 0;
 			pr_handle_name("%s DIMM Vendor Information", company);
@@ -1105,8 +1318,9 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			pr_attr("DIMM Manufacturer Part Number", "%s", dmi_string(h, data[0x07]));
 			if (h->length < 0x09) break;
 			pr_attr("DIMM Vendor Serial Number", "%s", dmi_string(h, data[0x08]));
-			if (h->length < 0x0A) break;
-			pr_attr("DIMM Spare Part Number", "%s", dmi_string(h, data[0x09]));
+			if (h->length < 0x0B) break;
+			if (WORD(data + 0x09))
+				pr_attr("DIMM Manufacture Date", "20%02x-W%02x", data[0x09], data[0x0A]);
 			break;
 
 		case 238:
@@ -1144,6 +1358,54 @@ static int dmi_decode_hp(const struct dmi_header *h)
 				pr_attr("Parent Hub Port Instance", "N/A");
 			dmi_hp_238_speed("Port Speed Capability", data[0xD]);
 			pr_attr("Device Path", "%s", dmi_string(h, data[0xE]));
+			break;
+
+		case 239:
+			/*
+			 * Vendor Specific: HPE USB Device Correlation Record
+			 *
+			 * This record provides a mechanism for software to correlate USB device
+			 * information provided in SMBIOS record Type 8 and Type 238. It
+			 * additionally provides device specific data that is typically not
+			 * available in SMBIOS to allow HP tools to understand how these device
+			 * entries correlate to both UEFI and Legacy USB Boot entries. This record
+			 * will only contain information for a device detected by the BIOS during
+			 * POST and does not comprehend a hot plug event after the system has
+			 * booted. This record will only be supported on UEFI Based systems.
+			 *
+			 * Offset |  Name      | Width | Description
+			 * -------+------------+-------+------------
+			 *  0x00  | Type       | BYTE  | 0xEF, HP Device Correlation Record
+			 *  0x01  | Length     | BYTE  | Length of structure
+			 *  0x02  | Handle     | WORD  | Unique handle
+			 *  0x04  | Hand Assoc | WORD  | Handle to map to Type 238
+			 *  0x06  | Vendor ID  | WORD  | Vendor ID of detected USB Device
+			 *  0x08  | Flags      | WORD  | Bit[0] - Indicates presence of SD card
+			 *  0x0A  | Class      | BYTE  | USB Device Class per USB HID Dev Spec
+			 *  0x0B  | Sub Class  | BYTE  | USB Device SubClass per USB HID Dev Spec
+			 *  0x0C  | Protocol   | BYTE  | Device Protocol per USB HID Dev Spec
+			 *  0x0D  | Product ID | WORD  | USB Product ID
+			 *  0x0F  | Capacity   | DWORD | USB Device Capacity (if apropos) in Mbytes
+			 *  0x13  | Device Path| STRING| UEFI Device Path
+			 *  0x14  | Device Name| STRING| UEFI Device Structured Name
+			 *  0x15  | UEFI Name  | STRING| Device Name
+			 *  0x16  | Location   | STRING| USB Device Location
+			 */
+			if (gen < G9) return 0;
+			pr_handle_name("%s USB Device Correlation Record", company);
+			if (h->length < 0x17) break;
+			if (!(opt.flags & FLAG_QUIET))
+				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x04));
+			pr_attr("USB Vendor ID", "0x%04x", WORD(data + 0x06));
+			pr_attr("Embedded SD Card", "%s", data[0x08] & 0x01 ? "Present" : "Empty");
+			dmi_hp_239_usb_device(data[0x0A], data[0x0B], data[0x0C]);
+			pr_attr("USB Product ID", "0x%04x", WORD(data + 0x0D));
+			if (DWORD(data + 0x0F))
+				pr_attr("USB Capacity", "%u MB", DWORD(data + 0x0F));
+			pr_attr("UEFI Device Path", "%s", dmi_string(h, data[0x13]));
+			pr_attr("UEFI Device Name", "%s", dmi_string(h, data[0x14]));
+			pr_attr("Device Name", "%s", dmi_string(h, data[0x15]));
+			pr_attr("Device Location", "%s", dmi_string(h, data[0x16]));
 			break;
 
 		case 240:
@@ -1264,6 +1526,40 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			dmi_hp_242_speed("Negotiated Speed", WORD(data + 0x3A));
 			dmi_hp_242_speed("Capable Speed", WORD(data + 0x3C));
 			break;
+
+		case 245:
+			/*
+			 * Vendor Specific: HPE Extension Board Inventory Record
+			 *
+			 * This record provides a mechanism for software to retrieve installed
+			 * Extension Boards in system, such as Riser Cards, etc. Each extension
+			 * board discovered at system boot time has a corresponding record
+			 * produced in SMBIOS Type 245. This record is currently applicable
+			 * for ML, DL and Alletra series servers in Gen11 and will be backward
+			 * compatible with next generations
+			 *
+			 * This is a variant record. Definition of fields 0x05 ... vary based
+			 * upon field 0x04 Board Type.
+			 *
+			 * Offset |  Name      | Width | Description
+			 * ---------------------------------------
+			 *  0x00  | Type       | BYTE  | 0xF5, Extension Board Inventory Record
+			 *  0x01  | Length     | BYTE  | Length of structure
+			 *  0x02  | Handle     | WORD  | Unique handle
+			 *  0x04  | Board Type | WORD  | 0: PCIe Riser, Other Reserved
+			 *
+			 *  If Board Type == 0
+			 *  0x05  | Riser Pos  | WORD  |
+			 *  0x06  | Riser ID   | BYTE  |
+			 *  0x07  | CPLD Vers  | BTYE  | 0-> No CPLD. Bits [7][6:0] Release:Vers
+			 *  0x08  | Riser Name | STRING|
+			 */
+			pr_handle_name("%s ProLiant Extension Board Inventory Record", company);
+			if (h->length < 0x05) break;
+			if (data[0x04] == 0)
+				dmi_hp_245_pcie_riser(h);
+			break;
+
 		default:
 			return 0;
 	}

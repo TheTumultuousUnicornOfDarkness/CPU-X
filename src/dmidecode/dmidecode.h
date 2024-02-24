@@ -40,6 +40,7 @@ enum cpuid_type
 	cpuid_arm_soc_id,
 	cpuid_x86_intel,
 	cpuid_x86_amd,
+	cpuid_loongarch,
 };
 
 extern enum cpuid_type cpuid_type;

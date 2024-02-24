@@ -22,7 +22,7 @@
 #endif
 
 /* Use memory alignment workaround or not */
-#ifdef __ia64__
+#if defined(__ia64__) || defined(__arm__)
 #define ALIGNMENT_WORKAROUND
 #endif
 

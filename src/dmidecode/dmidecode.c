@@ -57,7 +57,9 @@
  *    Family "2.0", Level 00, Revision 00.43, January 26, 2015
  *    https://trustedcomputinggroup.org/pc-client-platform-tpm-profile-ptp-specification/
  *  - "RedFish Host Interface Specification" (DMTF DSP0270)
- *    https://www.dmtf.org/sites/default/files/DSP0270_1.0.1.pdf
+ *    https://www.dmtf.org/sites/default/files/standards/documents/DSP0270_1.3.0.pdf
+ *  - LoongArch Reference Manual, volume 1
+ *    https://loongson.github.io/LoongArch-Documentation/LoongArch-Vol1-EN.html#_cpucfg
  */
 
 #include <fcntl.h>
@@ -69,7 +71,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-#ifdef __FreeBSD__
+#if defined(__FreeBSD__) || defined(__DragonFly__)
 #include <errno.h>
 #include <kenv.h>
 #endif
@@ -98,7 +100,7 @@ static const char *bad_index = "";
 
 enum cpuid_type cpuid_type = cpuid_none;
 
-#define SUPPORTED_SMBIOS_VER 0x030500
+#define SUPPORTED_SMBIOS_VER 0x030600
 
 #define FLAG_NO_FILE_OFFSET     (1 << 0)
 #define FLAG_STOP_AT_EOT        (1 << 1)
@@ -1054,6 +1056,7 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 
 		{ 0x100, "ARMv7" },
 		{ 0x101, "ARMv8" },
+		{ 0x102, "ARMv9" },
 		{ 0x104, "SH-3" },
 		{ 0x105, "SH-4" },
 		{ 0x118, "ARM" },
@@ -1068,6 +1071,24 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x200, "RV32" },
 		{ 0x201, "RV64" },
 		{ 0x202, "RV128" },
+
+		{ 0x258, "LoongArch" },
+		{ 0x259, "Loongson 1" },
+		{ 0x25A, "Loongson 2" },
+		{ 0x25B, "Loongson 3" },
+		{ 0x25C, "Loongson 2K" },
+		{ 0x25D, "Loongson 3A" },
+		{ 0x25E, "Loongson 3B" },
+		{ 0x25F, "Loongson 3C" },
+		{ 0x260, "Loongson 3D" },
+		{ 0x261, "Loongson 3E" },
+		{ 0x262, "Dual-Core Loongson 2K 2xxx" },
+		{ 0x26C, "Quad-Core Loongson 3A 5xxx" },
+		{ 0x26D, "Multi-Core Loongson 3A 5xxx" },
+		{ 0x26E, "Quad-Core Loongson 3B 5xxx" },
+		{ 0x26F, "Multi-Core Loongson 3B 5xxx" },
+		{ 0x270, "Multi-Core Loongson 3C 5xxx" },
+		{ 0x271, "Multi-Core Loongson 3D 5xxx" },
 	};
 	/*
 	 * Note to developers: when adding entries to this list, check if
@@ -1153,7 +1174,7 @@ static enum cpuid_type dmi_get_cpuid_type(const struct dmi_header *h)
 		else
 			return cpuid_80486;
 	}
-	else if ((type >= 0x100 && type <= 0x101) /* ARM */
+	else if ((type >= 0x100 && type <= 0x102) /* ARM */
 	      || (type >= 0x118 && type <= 0x119)) /* ARM */
 	{
 		/*
@@ -1186,6 +1207,9 @@ static enum cpuid_type dmi_get_cpuid_type(const struct dmi_header *h)
 	      || (type >= 0xB6 && type <= 0xB7) /* AMD */
 	      || (type >= 0xE4 && type <= 0xEF)) /* AMD */
 		return cpuid_x86_amd;
+	else if ((type >= 0x258 && type <= 0x262) /* Loongarch */
+	      || (type >= 0x26C && type <= 0x271)) /* Loongarch */
+		return cpuid_loongarch;
 
 	/* neither X86 nor ARM */
 	return cpuid_none;
@@ -1282,6 +1306,11 @@ void dmi_print_cpuid(void (*print_cb)(const char *name, const char *format, ...)
 				 ((eax >> 8) & 0xF) + (((eax >> 8) & 0xF) == 0xF ? (eax >> 20) & 0xFF : 0),
 				 ((eax >> 4) & 0xF) | (((eax >> 8) & 0xF) == 0xF ? (eax >> 12) & 0xF0 : 0),
 				 eax & 0xF);
+			break;
+
+		case cpuid_loongarch: /* LoongArch Reference Manual, volume 1 */
+			eax = DWORD(p);
+			print_cb(label, "Processor Identity 0x%08x\n", eax);
 			break;
 		default:
 			return;
@@ -1495,10 +1524,27 @@ static const char *dmi_processor_upgrade(u8 code)
 		"Socket BGA1528",
 		"Socket LGA4189",
 		"Socket LGA1200",
-		"Socket LGA4677" /* 0x3F */
+		"Socket LGA4677",
+		"Socket LGA1700",
+		"Socket BGA1744",
+		"Socket BGA1781",
+		"Socket BGA1211",
+		"Socket BGA2422",
+		"Socket LGA1211",
+		"Socket LGA2422",
+		"Socket LGA5773",
+		"Socket BGA5773",
+		"Socket AM5",
+		"Socket SP5",
+		"Socket SP6",
+		"Socket BGA883",
+		"Socket BGA1190",
+		"Socket BGA4129",
+		"Socket LGA4710",
+		"Socket LGA7529" /* 0x50 */
 	};
 
-	if (code >= 0x01 && code <= 0x3F)
+	if (code >= 0x01 && code <= 0x50)
 		return upgrade[code - 0x01];
 	return out_of_spec;
 }
@@ -2019,14 +2065,16 @@ static const char *dmi_port_type(u8 code)
 		"Modem Port",
 		"Network Port",
 		"SATA",
-		"SAS" /* 0x21 */
+		"SAS",
+		"MFDP (Multi-Function Display Port)",
+		"Thunderbolt" /* 0x23 */
 	};
 	static const char *type_0xA0[] = {
 		"8251 Compatible", /* 0xA0 */
 		"8251 FIFO Compatible" /* 0xA1 */
 	};
 
-	if (code <= 0x21)
+	if (code <= 0x23)
 		return type[code];
 	if (code >= 0xA0 && code <= 0xA1)
 		return type_0xA0[code - 0xA0];
@@ -2142,47 +2190,29 @@ static const char *dmi_slot_type(u8 code)
 	return out_of_spec;
 }
 
-/* If hide_unknown is set, return NULL instead of "Other" or "Unknown" */
-static const char *dmi_slot_bus_width(u8 code, int hide_unknown)
+static const char *dmi_slot_bus_width(u8 code)
 {
 	/* 7.10.2 */
 	static const char *width[] = {
 		"Other", /* 0x01 */
 		"Unknown",
-		"8-bit",
-		"16-bit",
-		"32-bit",
-		"64-bit",
-		"128-bit",
-		"x1",
-		"x2",
-		"x4",
-		"x8",
-		"x12",
-		"x16",
-		"x32" /* 0x0E */
+		"8 bit",
+		"16 bit",
+		"32 bit",
+		"64 bit",
+		"128 bit",
+		"1x or x1",
+		"2x or x2",
+		"4x or x4",
+		"8x or x8",
+		"12x or x12",
+		"16x or x16",
+		"32x or x32" /* 0x0E */
 	};
 
 	if (code >= 0x01 && code <= 0x0E)
-	{
-		if (code <= 0x02 && hide_unknown)
-			return NULL;
 		return width[code - 0x01];
-	}
 	return out_of_spec;
-}
-
-static void dmi_slot_type_with_width(u8 type, u8 width)
-{
-	const char *type_str, *width_str;
-
-	type_str = dmi_slot_type(type);
-	width_str = dmi_slot_bus_width(width, 1);
-
-	if (width_str)
-		pr_attr("Type", "%s %s", width_str, type_str);
-	else
-		pr_attr("Type", "%s", type_str);
 }
 
 static const char *dmi_slot_current_usage(u8 code)
@@ -2394,7 +2424,7 @@ static void dmi_slot_physical_width(u8 code)
 {
 	if (code)
 		pr_attr("Slot Physical Width", "%s",
-			dmi_slot_bus_width(code, 0));
+			dmi_slot_bus_width(code));
 }
 
 static void dmi_slot_pitch(u16 code)
@@ -2720,7 +2750,7 @@ static const char *dmi_memory_array_location(u8 code)
 		"PC-98/C24 Add-on Card",
 		"PC-98/E Add-on Card",
 		"PC-98/Local Bus Add-on Card",
-		"CXL Flexbus 1.0" /* 0xA4 */
+		"CXL Add-on Card" /* 0xA4 */
 	};
 
 	if (code >= 0x01 && code <= 0x0A)
@@ -2955,10 +2985,11 @@ static const char *dmi_memory_device_type(u8 code)
 		"HBM",
 		"HBM2",
 		"DDR5",
-		"LPDDR5" /* 0x23 */
+		"LPDDR5",
+		"HBM3" /* 0x24 */
 	};
 
-	if (code >= 0x01 && code <= 0x23)
+	if (code >= 0x01 && code <= 0x24)
 		return type[code - 0x01];
 	return out_of_spec;
 }
@@ -3997,7 +4028,7 @@ static const char *dmi_protocol_record_type(u8 type)
 }
 
 /*
- * DSP0270: 8.6: Protocol IP Assignment types
+ * DSP0270: 8.4.2: Protocol IP Assignment types
  */
 static const char *dmi_protocol_assignment_type(u8 type)
 {
@@ -4015,7 +4046,7 @@ static const char *dmi_protocol_assignment_type(u8 type)
 }
 
 /*
- * DSP0270: 8.6: Protocol IP Address type
+ * DSP0270: 8.4.3: Protocol IP Address type
  */
 static const char *dmi_address_type(u8 type)
 {
@@ -4031,7 +4062,7 @@ static const char *dmi_address_type(u8 type)
 }
 
 /*
- *  DSP0270: 8.6 Protocol Address decode
+ *  DSP0270: 8.4.3 Protocol Address decode
  */
 static const char *dmi_address_decode(u8 *data, char *storage, u8 addrtype)
 {
@@ -4043,7 +4074,7 @@ static const char *dmi_address_decode(u8 *data, char *storage, u8 addrtype)
 }
 
 /*
- * DSP0270: 8.5: Parse the protocol record format
+ * DSP0270: 8.4: Parse the protocol record format
  */
 static void dmi_parse_protocol_record(u8 *rec)
 {
@@ -4058,11 +4089,11 @@ static void dmi_parse_protocol_record(u8 *rec)
 	const char *hname;
 	char attr[38];
 
-	/* DSP0270: 8.5: Protocol Identifier */
+	/* DSP0270: 8.4: Protocol Identifier */
 	rid = rec[0x0];
-	/* DSP0270: 8.5: Protocol Record Length */
+	/* DSP0270: 8.4: Protocol Record Length */
 	rlen = rec[0x1];
-	/* DSP0270: 8.5: Protocol Record Data */
+	/* DSP0270: 8.4: Protocol Record Data */
 	rdata = &rec[0x2];
 
 	pr_attr("Protocol ID", "%02x (%s)", rid,
@@ -4071,7 +4102,7 @@ static void dmi_parse_protocol_record(u8 *rec)
 	/*
 	 * Don't decode anything other than Redfish for now
 	 * Note 0x4 is Redfish over IP in 7.43.2
-	 * and DSP0270: 8.5
+	 * and DSP0270: 8.4
 	 */
 	if (rid != 0x4)
 		return;
@@ -4085,7 +4116,7 @@ static void dmi_parse_protocol_record(u8 *rec)
 		return;
 
 	/*
-	 * DSP0270: 8.6: Redfish Over IP Service UUID
+	 * DSP0270: 8.4.1: Redfish Over IP Service UUID
 	 * Note: ver is hardcoded to 0x311 here just for
 	 * convenience.  It could get passed from the SMBIOS
 	 * header, but that's a lot of passing of pointers just
@@ -4098,7 +4129,7 @@ static void dmi_parse_protocol_record(u8 *rec)
 	dmi_system_uuid(pr_subattr, "Service UUID", &rdata[0], 0x311);
 
 	/*
-	 * DSP0270: 8.6: Redfish Over IP Host IP Assignment Type
+	 * DSP0270: 8.4.1: Redfish Over IP Host IP Assignment Type
 	 * Note, using decimal indices here, as the DSP0270
 	 * uses decimal, so as to make it more comparable
 	 */
@@ -4106,34 +4137,34 @@ static void dmi_parse_protocol_record(u8 *rec)
 	pr_subattr("Host IP Assignment Type", "%s",
 		dmi_protocol_assignment_type(assign_val));
 
-	/* DSP0270: 8.6: Redfish Over IP Host Address format */
+	/* DSP0270: 8.4.1: Redfish Over IP Host Address format */
 	addrtype = rdata[17];
 	addrstr = dmi_address_type(addrtype);
 	pr_subattr("Host IP Address Format", "%s",
 		addrstr);
 
-	/* DSP0270: 8.6 IP Assignment types */
+	/* DSP0270: 8.4.1 IP Assignment types */
 	/* We only use the Host IP Address and Mask if the assignment type is static */
 	if (assign_val == 0x1 || assign_val == 0x3)
 	{
-		/* DSP0270: 8.6: the Host IPv[4|6] Address */
+		/* DSP0270: 8.4.1: the Host IPv[4|6] Address */
 		sprintf(attr, "%s Address", addrstr);
 		pr_subattr(attr, "%s",
 			dmi_address_decode(&rdata[18], buf, addrtype));
 
-		/* DSP0270: 8.6: Prints the Host IPv[4|6] Mask */
+		/* DSP0270: 8.4.1: Prints the Host IPv[4|6] Mask */
 		sprintf(attr, "%s Mask", addrstr);
 		pr_subattr(attr, "%s",
 			dmi_address_decode(&rdata[34], buf, addrtype));
 	}
 
-	/* DSP0270: 8.6: Get the Redfish Service IP Discovery Type */
+	/* DSP0270: 8.4.1: Get the Redfish Service IP Discovery Type */
 	assign_val = rdata[50];
 	/* Redfish Service IP Discovery type mirrors Host IP Assignment type */
 	pr_subattr("Redfish Service IP Discovery Type", "%s",
 		dmi_protocol_assignment_type(assign_val));
 
-	/* DSP0270: 8.6: Get the Redfish Service IP Address Format */
+	/* DSP0270: 8.4.1: Get the Redfish Service IP Address Format */
 	addrtype = rdata[51];
 	addrstr = dmi_address_type(addrtype);
 	pr_subattr("Redfish Service IP Address Format", "%s",
@@ -4144,30 +4175,30 @@ static void dmi_parse_protocol_record(u8 *rec)
 		u16 port;
 		u32 vlan;
 
-		/* DSP0270: 8.6: Prints the Redfish IPv[4|6] Service Address */
+		/* DSP0270: 8.4.1: Prints the Redfish IPv[4|6] Service Address */
 		sprintf(attr, "%s Redfish Service Address", addrstr);
 		pr_subattr(attr, "%s",
 			dmi_address_decode(&rdata[52], buf,
 			addrtype));
 
-		/* DSP0270: 8.6: Prints the Redfish IPv[4|6] Service Mask */
+		/* DSP0270: 8.4.1: Prints the Redfish IPv[4|6] Service Mask */
 		sprintf(attr, "%s Redfish Service Mask", addrstr);
 		pr_subattr(attr, "%s",
 			dmi_address_decode(&rdata[68], buf,
 			addrtype));
 
-		/* DSP0270: 8.6: Redfish vlan and port info */
+		/* DSP0270: 8.4.1: Redfish vlan and port info */
 		port = WORD(&rdata[84]);
 		vlan = DWORD(&rdata[86]);
 		pr_subattr("Redfish Service Port", "%hu", port);
 		pr_subattr("Redfish Service Vlan", "%u", vlan);
 	}
 
-	/* DSP0270: 8.6: Redfish host length and name */
+	/* DSP0270: 8.4.1: Redfish host length and name */
 	hlen = rdata[90];
 
 	/*
-	 * DSP0270: 8.6: The length of the host string + 91 (the minimum
+	 * DSP0270: 8.4.1: The length of the host string + 91 (the minimum
 	 * size of a protocol record) cannot exceed the record length
 	 * (rec[0x1])
 	 */
@@ -4188,13 +4219,37 @@ static const char *dmi_parse_device_type(u8 type)
 	const char *devname[] = {
 		"USB",		/* 0x2 */
 		"PCI/PCIe",	/* 0x3 */
+		"USB v2",	/* 0x4 */
+		"PCI/PCIe v2",	/* 0x5 */
 	};
 
-	if (type >= 0x2 && type <= 0x3)
+	if (type >= 0x2 && type <= 0x5)
 		return devname[type - 0x2];
 	if (type >= 0x80)
 		return "OEM";
 	return out_of_spec;
+}
+
+/*
+ * DSP0270: 8.3.7: Device Characteristics
+ */
+static void dmi_device_characteristics(u16 code)
+{
+	const char *characteristics[] = {
+		"Credential bootstrapping via IPMI is supported", /* 0 */
+		/* Reserved */
+	};
+
+	if ((code & 0x1) == 0)
+		pr_list_item("None");
+	else
+	{
+		int i;
+
+		for (i = 0; i < 1; i++)
+			if (code & (1 << i))
+				pr_list_item("%s", characteristics[i]);
+	}
 }
 
 static void dmi_parse_controller_structure(const struct dmi_header *h)
@@ -4239,7 +4294,7 @@ static void dmi_parse_controller_structure(const struct dmi_header *h)
 
 	if (len != 0)
 	{
-		/* DSP0270: 8.3 Table 2: Device Type */
+		/* DSP0270: 8.3.1 Table 3: Device Type values */
 		type = data[0x6];
 
 		pr_attr("Device Type", "%s",
@@ -4276,7 +4331,84 @@ static void dmi_parse_controller_structure(const struct dmi_header *h)
 			pr_attr("SubDeviceID", "0x%04x",
 				WORD(&pcidata[0x6]));
 		}
-		else if (type == 0x4 && len >= 5)
+		else if (type == 0x4 && len >= 0x0d)
+		{
+			/* USB Device Type v2 - need at least 12 bytes */
+			u8 *usbdata = &data[7];
+			/* USB Device Descriptor v2: idVendor */
+			pr_attr("idVendor", "0x%04x",
+				WORD(&usbdata[0x1]));
+			/* USB Device Descriptor v2: idProduct */
+			pr_attr("idProduct", "0x%04x",
+				WORD(&usbdata[0x3]));
+
+			/*
+			 * USB Serial number is here, but its useless, don't
+			 * bother decoding it
+			 */
+
+			/* USB Device Descriptor v2: MAC Address */
+			pr_attr("MAC Address", "%02x:%02x:%02x:%02x:%02x:%02x",
+				usbdata[0x6], usbdata[0x7], usbdata[0x8],
+				usbdata[0x9], usbdata[0xa], usbdata[0xb]);
+
+			/* DSP0270 v1.3.0 support */
+			if (len >= 0x11)
+			{
+				/* USB Device Descriptor v2: Device Characteristics */
+				pr_list_start("Device Characteristics", NULL);
+				dmi_device_characteristics(WORD(&usbdata[0xc]));
+				pr_list_end();
+
+				/* USB Device Descriptor v2: Credential Bootstrapping Handle */
+				if (WORD(&usbdata[0x0c]) & 0x1)
+				{
+					pr_attr("Credential Bootstrapping Handle", "0x%04x",
+							WORD(&usbdata[0xe]));
+				}
+			}
+		}
+		else if (type == 0x5 && len >= 0x14)
+		{
+			/* PCI Device Type v2 - Need at least 19 bytes */
+			u8 *pcidata = &data[0x7];
+			/* PCI Device Descriptor v2: VendorID */
+			pr_attr("VendorID", "0x%04x",
+				WORD(&pcidata[0x1]));
+			/* PCI Device Descriptor v2: DeviceID */
+			pr_attr("DeviceID", "0x%04x",
+				WORD(&pcidata[0x3]));
+			/* PCI Device Descriptor v2: PCI SubvendorID */
+			pr_attr("SubVendorID", "0x%04x",
+				WORD(&pcidata[0x5]));
+			/* PCI Device Descriptor v2: PCI SubdeviceID */
+			pr_attr("SubDeviceID", "0x%04x",
+				WORD(&pcidata[0x7]));
+			/* PCI Device Descriptor v2: MAC Address */
+			pr_attr("MAC Address", "%02x:%02x:%02x:%02x:%02x:%02x",
+				pcidata[0x9], pcidata[0xa], pcidata[0xb],
+				pcidata[0xc], pcidata[0xd], pcidata[0xe]);
+			/* PCI Device Descriptor v2:
+			 *		Segment Group Number, Bus Number, Device/Function Number
+			 */
+			dmi_slot_segment_bus_func(WORD(&pcidata[0xf]), pcidata[0x11], pcidata[0x12]);
+
+			/* DSP0270 v1.3.0 support */
+			if (len >= 0x18)
+			{
+				/* PCI Device Descriptor v2: Device Characteristics */
+				pr_list_start("Device Characteristics", NULL);
+				dmi_device_characteristics(WORD(&pcidata[0x13]) );
+				pr_list_end();
+				/* PCI Device Descriptor v2: Credential Bootstrapping Handle */
+				if (WORD(&pcidata[0x13]) & 0x1)
+				{
+					pr_attr("Credential Bootstrapping Handle", "0x%04x",
+							WORD(&pcidata[0x15]));
+				}
+			}
+		}
+		else if (type >= 0x80 && len >= 5)
 		{
 			/* OEM Device Type - Need at least 4 bytes */
 			u8 *oemdata = &data[0x7];
@@ -4289,7 +4421,7 @@ static void dmi_parse_controller_structure(const struct dmi_header *h)
 	}
 
 	/*
-	 * DSP0270: 8.2 and 8.5: Protocol record count and protocol records
+	 * DSP0270: 8.2 and 8.4: Protocol record count and protocol records
 	 * Move to the Protocol Count.
 	 */
 	data = &data[total_read];
@@ -4332,7 +4464,7 @@ static void dmi_parse_controller_structure(const struct dmi_header *h)
 			dmi_parse_protocol_record(rec);
 
 			/*
-			 * DSP0270: 8.6
+			 * DSP0270: 8.4.1
 			 * Each record is rec[1] bytes long, starting at the
 			 * data byte immediately following the length field.
 			 * That means we need to add the byte for the rec id,
@@ -4635,6 +4767,9 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 				pr_attr("Thread Count", "%u",
 					h->length >= 0x30 && data[0x25] == 0xFF ?
 					WORD(data + 0x2E) : data[0x25]);
+			if (h->length >= 0x32 && WORD(data + 0x30) != 0)
+				pr_attr("Thread Enabled", "%u",
+					WORD(data + 0x30));
 			dmi_processor_characteristics("Characteristics",
 						      WORD(data + 0x26));
 			break;
@@ -4732,7 +4867,8 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			if (h->length < 0x0C) break;
 			pr_attr("Designation", "%s",
 				dmi_string(h, data[0x04]));
-			dmi_slot_type_with_width(data[0x05], data[0x06]);
+			pr_attr("Type", "%s", dmi_slot_type(data[0x05]));
+			pr_attr("Data Bus Width", "%s", dmi_slot_bus_width(data[0x06]));
 			pr_attr("Current Usage", "%s",
 				dmi_slot_current_usage(data[0x07]));
 			pr_attr("Length", "%s",
@@ -4745,7 +4881,7 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			if (h->length < 0x11) break;
 			dmi_slot_segment_bus_func(WORD(data + 0x0D), data[0x0F], data[0x10]);
 			if (h->length < 0x13) break;
-			pr_attr("Data Bus Width", "%u", data[0x11]);
+			pr_attr("Data Bus Width (Base)", "%u", data[0x11]);
 			pr_attr("Peer Devices", "%u", data[0x12]);
 			if (h->length < 0x13 + data[0x12] * 5) break;
 			dmi_slot_peers(data[0x12], data + 0x13);
@@ -5967,14 +6103,14 @@ static void overwrite_smbios3_address(u8 *buf)
 	buf[0x17] = 0;
 }
 
-static int smbios3_decode(u8 *buf, const char *devmem, u32 flags)
+static int smbios3_decode(u8 *buf, size_t buf_len, const char *devmem, u32 flags)
 {
 	u32 ver, len;
 	u64 offset;
 	u8 *table;
 
 	/* Don't let checksum run beyond the buffer */
-	if (buf[0x06] > 0x20)
+	if (buf[0x06] > buf_len)
 	{
 		fprintf(stderr,
 			"Entry point length too large (%u bytes, expected %u).\n",
@@ -6048,14 +6184,14 @@ static void dmi_fixup_version(u16 *ver)
 	}
 }
 
-static int smbios_decode(u8 *buf, const char *devmem, u32 flags)
+static int smbios_decode(u8 *buf, size_t buf_len, const char *devmem, u32 flags)
 {
 	u16 ver, num;
 	u32 len;
 	u8 *table;
 
 	/* Don't let checksum run beyond the buffer */
-	if (buf[0x05] > 0x20)
+	if (buf[0x05] > buf_len)
 	{
 		fprintf(stderr,
 			"Entry point length too large (%u bytes, expected %u).\n",
@@ -6159,7 +6295,7 @@ static int address_from_efi(off_t *address)
 	FILE *efi_systab;
 	const char *filename;
 	char linebuf[64];
-#elif defined(__FreeBSD__)
+#elif defined(__FreeBSD__) || defined(__DragonFly__)
 	char addrstr[KENV_MVALLEN + 1];
 #endif
 	const char *eptype;
@@ -6197,11 +6333,14 @@ static int address_from_efi(off_t *address)
 
 	if (ret == EFI_NO_SMBIOS)
 		fprintf(stderr, "%s: SMBIOS entry point missing\n", filename);
-#elif defined(__FreeBSD__)
+#elif defined(__FreeBSD__) || defined(__DragonFly__)
 	/*
 	 * On FreeBSD, SMBIOS anchor base address in UEFI mode is exposed
 	 * via kernel environment:
 	 * https://svnweb.freebsd.org/base?view=revision&revision=307326
+	 *
+	 * DragonFly BSD adopted the same method as FreeBSD, see commit
+	 * 5e488df32cb01056a5b714a522e51c69ab7b4612
 	 */
 	ret = kenv(KENV_GET, "hint.smbios.0.mem", addrstr, sizeof(addrstr));
 	if (ret == -1)
@@ -6279,6 +6418,12 @@ int dmidecode(int quiet, void *cpux_pdata)
 		goto exit_free;
 	}
 
+	if (opt.flags & FLAG_LIST)
+	{
+		/* Already handled in parse_command_line() */
+		goto exit_free;
+	}
+
 	if (opt.flags & FLAG_HELP)
 	{
 		print_help();
@@ -6295,25 +6440,33 @@ int dmidecode(int quiet, void *cpux_pdata)
 		pr_comment("%s %s\n", argv[0], VERSION);
 
 	/* Read from dump if so instructed */
+	size = 0x20;
 	if (opt.flags & FLAG_FROM_DUMP)
 	{
 		if (!(opt.flags & FLAG_QUIET))
 			pr_info("Reading SMBIOS/DMI data from file %s.",
 				opt.dumpfile);
-		if ((buf = mem_chunk(0, 0x20, opt.dumpfile)) == NULL)
+		if ((buf = read_file(0, &size, opt.dumpfile)) == NULL)
 		{
 			ret = 1;
 			goto exit_free;
 		}
 
+		/* Truncated entry point can't be processed */
+		if (size < 0x20)
+		{
+			ret = 1;
+			goto done;
+		}
+
 		if (memcmp(buf, "_SM3_", 5) == 0)
 		{
-			if (smbios3_decode(buf, opt.dumpfile, 0))
+			if (smbios3_decode(buf, size, opt.dumpfile, 0))
 				found++;
 		}
 		else if (memcmp(buf, "_SM_", 4) == 0)
 		{
-			if (smbios_decode(buf, opt.dumpfile, 0))
+			if (smbios_decode(buf, size, opt.dumpfile, 0))
 				found++;
 		}
 		else if (memcmp(buf, "_DMI_", 5) == 0)
@@ -6329,7 +6482,6 @@ int dmidecode(int quiet, void *cpux_pdata)
 	 * contain one of several types of entry points, so read enough for
 	 * the largest one, then determine what type it contains.
 	 */
-	size = 0x20;
 	if (!(opt.flags & FLAG_NO_SYSFS)
 	 && (buf = read_file(0, &size, SYS_ENTRY_FILE)) != NULL)
 	{
@@ -6337,12 +6489,12 @@ int dmidecode(int quiet, void *cpux_pdata)
 			pr_info("Getting SMBIOS data from sysfs.");
 		if (size >= 24 && memcmp(buf, "_SM3_", 5) == 0)
 		{
-			if (smbios3_decode(buf, SYS_TABLE_FILE, FLAG_NO_FILE_OFFSET))
+			if (smbios3_decode(buf, size, SYS_TABLE_FILE, FLAG_NO_FILE_OFFSET))
 				found++;
 		}
 		else if (size >= 31 && memcmp(buf, "_SM_", 4) == 0)
 		{
-			if (smbios_decode(buf, SYS_TABLE_FILE, FLAG_NO_FILE_OFFSET))
+			if (smbios_decode(buf, size, SYS_TABLE_FILE, FLAG_NO_FILE_OFFSET))
 				found++;
 		}
 		else if (size >= 15 && memcmp(buf, "_DMI_", 5) == 0)
@@ -6379,12 +6531,12 @@ int dmidecode(int quiet, void *cpux_pdata)
 
 	if (memcmp(buf, "_SM3_", 5) == 0)
 	{
-		if (smbios3_decode(buf, opt.devmem, 0))
+		if (smbios3_decode(buf, 0x20, opt.devmem, 0))
 			found++;
 	}
 	else if (memcmp(buf, "_SM_", 4) == 0)
 	{
-		if (smbios_decode(buf, opt.devmem, 0))
+		if (smbios_decode(buf, 0x20, opt.devmem, 0))
 			found++;
 	}
 	goto done;
@@ -6405,7 +6557,7 @@ memory_scan:
 	{
 		if (memcmp(buf + fp, "_SM3_", 5) == 0)
 		{
-			if (smbios3_decode(buf + fp, opt.devmem, 0))
+			if (smbios3_decode(buf + fp, 0x20, opt.devmem, 0))
 			{
 				found++;
 				goto done;
@@ -6418,7 +6570,7 @@ memory_scan:
 	{
 		if (memcmp(buf + fp, "_SM_", 4) == 0 && fp <= 0xFFE0)
 		{
-			if (smbios_decode(buf + fp, opt.devmem, 0))
+			if (smbios_decode(buf + fp, 0x20, opt.devmem, 0))
 			{
 				found++;
 				goto done;

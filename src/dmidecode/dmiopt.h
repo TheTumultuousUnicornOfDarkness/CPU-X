@@ -50,6 +50,7 @@ extern struct opt opt;
 #define FLAG_FROM_DUMP          (1 << 5)
 #define FLAG_NO_SYSFS           (1 << 6)
 #define FLAG_NO_QUIRKS          (1 << 7)
+#define FLAG_LIST               (1 << 8)
 
 int parse_command_line(int argc, char * const argv[]);
 void print_help(void);

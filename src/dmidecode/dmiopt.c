@@ -265,6 +265,7 @@ static u32 parse_opt_handle(const char *arg)
 int parse_command_line(int argc, char * const argv[])
 {
 	int option;
+	unsigned int i;
 	const char *optstring = "d:hqs:t:uH:V";
 	struct option longopts[] = {
 		{ "dev-mem", required_argument, NULL, 'd' },
@@ -279,6 +280,8 @@ int parse_command_line(int argc, char * const argv[])
 		{ "handle", required_argument, NULL, 'H' },
 		{ "oem-string", required_argument, NULL, 'O' },
 		{ "no-sysfs", no_argument, NULL, 'S' },
+		{ "list-strings", no_argument, NULL, 'L' },
+		{ "list-types", no_argument, NULL, 'T' },
 		{ "version", no_argument, NULL, 'V' },
 		{ NULL, 0, NULL, 0 }
 	};
@@ -332,6 +335,16 @@ int parse_command_line(int argc, char * const argv[])
 			case 'S':
 				opt.flags |= FLAG_NO_SYSFS;
 				break;
+			case 'L':
+				for (i = 0; i < ARRAY_SIZE(opt_string_keyword); i++)
+					fprintf(stdout, "%s\n", opt_string_keyword[i].keyword);
+				opt.flags |= FLAG_LIST;
+				return 0;
+			case 'T':
+				for (i = 0; i < ARRAY_SIZE(opt_type_keyword); i++)
+					fprintf(stdout, "%s\n", opt_type_keyword[i].keyword);
+				opt.flags |= FLAG_LIST;
+				return 0;
 			case 'V':
 				opt.flags |= FLAG_VERSION;
 				break;
@@ -377,7 +390,9 @@ void print_help(void)
 		" -q, --quiet            Less verbose output\n"
 		"     --no-quirks        Decode everything without quirks\n"
 		" -s, --string KEYWORD   Only display the value of the given DMI string\n"
+		"     --list-strings     List available string keywords and exit\n"
 		" -t, --type TYPE        Only display the entries of given type\n"
+		"     --list-types       List available type keywords and exit\n"
 		" -H, --handle HANDLE    Only display the entry of given handle\n"
 		" -u, --dump             Do not decode the entries\n"
 		"     --dump-bin FILE    Dump the DMI data to a binary file\n"
