@@ -13,7 +13,7 @@ git clone https://git.savannah.gnu.org/git/dmidecode.git "$DMIDECODE_DIR"
 cd "$DMIDECODE_DIR" || exit 255
 
 # Retrieve informations about repo
-VER=$(git describe --abbrev=0 | sed 's/^dmidecode-//;s/-/./')
+VER=$(git describe --abbrev=0 --tags | sed 's/^dmidecode-//;s/-/./')
 DATE=$(git show -s --format=%cd --date=format:%Y%m%d)
 NEW_HASH=$(git rev-parse HEAD)
 NEW_HASH_SHORT=$(git rev-parse --short HEAD)
