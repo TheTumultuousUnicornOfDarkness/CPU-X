@@ -53,6 +53,22 @@ if(WITH_LIBCPUID)
 		link_directories(${LIBCPUID_LIBRARY_DIRS})
 		add_definitions(${LIBCPUID_CFLAGS_OTHER})
 		set(CMAKE_REQUIRED_LIBRARIES ${LIBCPUID_LIBRARIES})
+		check_c_source_compiles(
+			"
+			#include <stdio.h>
+			#include <libcpuid/libcpuid.h>
+
+			int main()
+			{
+				printf(\"%i\", PURPOSE_LP_EFFICIENCY);
+				return 0;
+			}
+			"
+			HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY
+		)
+		if(HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY)
+			add_definitions(-DHAS_LIBCPUID_PURPOSE_LP_EFFICIENCY)
+		endif(HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY)
 	endif(LIBCPUID_FOUND)
 endif(WITH_LIBCPUID)
 

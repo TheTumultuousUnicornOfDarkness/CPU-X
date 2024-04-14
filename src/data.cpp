@@ -184,9 +184,12 @@ const std::string Data::Cpu::CpuType::get_core_type_name()
 #if HAS_LIBCPUID
 	switch(this->purpose)
 	{
-		case PURPOSE_PERFORMANCE: return _("P-core");
-		case PURPOSE_EFFICIENCY:  return _("E-core");
-		default:                  return _("Core");
+		case PURPOSE_PERFORMANCE:    return _("P-core");
+		case PURPOSE_EFFICIENCY:     return _("E-core");
+# if HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY
+		case PURPOSE_LP_EFFICIENCY:  return _("LP E-core");
+# endif /* HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY */
+		default:                     return _("Core");
 	}
 #endif /* HAS_LIBCPUID */
 	return _("Core");
