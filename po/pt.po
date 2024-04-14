@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2023-12-09 13:09+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-04-14 15:21+0000\n"
 "PO-Revision-Date: 2024-01-07 11:06+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
@@ -36,7 +36,7 @@ msgstr ""
 "A sua CPU não existe na base de dados ==> %s, modelo: %i, ext. modelo: %i, "
 "ext. família: %i"
 
-#: core.cpp:189 data.cpp:150 data.cpp:342
+#: core.cpp:189 data.cpp:150 data.cpp:345
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -309,139 +309,139 @@ msgstr "O número da placa para %s é desconhecido"
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (atual) / %s (max)"
 
-#: core.cpp:1650
+#: core.cpp:1656
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "O driver para %s não reporta frequências"
 
-#: core.cpp:1671
+#: core.cpp:1677
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "Houve uma falha ao recuperar todos os dados de monitoramento para %s"
 
-#: core.cpp:1694
+#: core.cpp:1700
 msgid "Identifying running system"
 msgstr "A identificar o sistema operativo em execução"
 
-#: core.cpp:1697
+#: core.cpp:1703
 msgid "failed to identify running system"
 msgstr "não foi possível identificar o sistema operativo em execução"
 
-#: core.cpp:1749 core.cpp:1778
+#: core.cpp:1755 core.cpp:1784
 msgid "Calling libprocps"
 msgstr "A chamar libprocps"
 
-#: core.cpp:1752
+#: core.cpp:1758
 msgid "unable to get system uptime"
 msgstr "não foi possível obter o tempo de atividade do sistema"
 
-#: core.cpp:1758
+#: core.cpp:1764
 msgid "unable to create meminfo structure"
 msgstr "não foi possível criar a estrutura meminfo"
 
-#: core.cpp:1804
+#: core.cpp:1810
 msgid "Calling libstatgrab"
 msgstr "A chamar libstatgrab"
 
-#: core.cpp:1852
+#: core.cpp:1858
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dias, %i horas, %i minutos, %i segundos"
 
-#: core.cpp:1915
+#: core.cpp:1921
 msgid "Updating benchmark status"
 msgstr "A atualizar o estado da performance"
 
-#: core.cpp:1918
+#: core.cpp:1924
 msgid "Active"
 msgstr "Ativo"
 
-#: core.cpp:1921
+#: core.cpp:1927
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u horas restantes)"
 
-#: core.cpp:1923
+#: core.cpp:1929
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutos restantes)"
 
-#: core.cpp:1925
+#: core.cpp:1931
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u segundos restantes)"
 
-#: core.cpp:1929 core.cpp:1984 core.cpp:1985
+#: core.cpp:1935 core.cpp:1990 core.cpp:1991
 msgid "Inactive"
 msgstr "Inativo"
 
-#: core.cpp:1932
+#: core.cpp:1938
 #, c-format
 msgid "in %u hours"
 msgstr "em %u horas"
 
-#: core.cpp:1934
+#: core.cpp:1940
 #, c-format
 msgid "in %u minutes"
 msgstr "em %u minutos"
 
-#: core.cpp:1936
+#: core.cpp:1942
 #, c-format
 msgid "in %u seconds"
 msgstr "em %u segundos"
 
-#: core.cpp:1953
+#: core.cpp:1959
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "A iniciar o benchmark com %u threads"
 
-#: core.cpp:1976
+#: core.cpp:1982
 msgid "an error occurred while starting benchmark"
 msgstr "ocorreu um erro enquanto iniciava o teste de performance"
 
-#: core.cpp:2002
+#: core.cpp:2008
 msgid "Finding CPU package in fallback mode"
 msgstr "Encontrando o pacote da CPU em modo fallback"
 
-#: core.cpp:2032
+#: core.cpp:2038
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "O soquete da sua CPU não consta na base de dados ==> %s, nome de código: %s"
 
-#: core.cpp:2052
+#: core.cpp:2058
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Calculando multiplicadores da CPU em modo fallback"
 
-#: core.cpp:2072
+#: core.cpp:2078
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Recuperando informações da placa-mãe em modo fallback"
 
-#: core.cpp:2085
+#: core.cpp:2091
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "falhou ao recuperar informações da placa-mãe (modo fallback)"
 
-#: core.cpp:2127
+#: core.cpp:2133
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Recuperando a temperatura da CPU em modo fallback"
 
-#: core.cpp:2173
+#: core.cpp:2179
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "falhou ao recuperar a temperatura da CPU (modo fallback)"
 
-#: core.cpp:2188
+#: core.cpp:2194
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Recuperando a voltagem da CPU em modo fallback"
 
-#: core.cpp:2200
+#: core.cpp:2206
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "falhou ao recuperar a voltagem da CPU (modo fallback)"
 
-#: core.cpp:2214
+#: core.cpp:2220
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Recuperando a frequência da CPU em modo fallback"
 
-#: core.cpp:2220
+#: core.cpp:2226
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 
@@ -487,126 +487,132 @@ msgstr "P-core"
 msgid "E-core"
 msgstr "E-core"
 
-#: data.cpp:189 data.cpp:192
+#: data.cpp:190
+#, fuzzy
+#| msgid "E-core"
+msgid "LP E-core"
+msgstr "E-core"
+
+#: data.cpp:192 data.cpp:195
 msgid "Core"
 msgstr "Núcleo"
 
-#: data.cpp:208 cpu-x-gtk-3.12.ui:746
+#: data.cpp:211 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "Processador"
 
-#: data.cpp:240 data.cpp:329 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:243 data.cpp:332 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "Caches"
 
-#: data.cpp:247
+#: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%2d x %4d %s, %2d-via"
 
-#: data.cpp:249
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-via"
 
-#: data.cpp:263
+#: data.cpp:266
 msgid "Count"
 msgstr "Contagem"
 
-#: data.cpp:276 cpu-x-gtk-3.12.ui:968
+#: data.cpp:279 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Frequências"
 
-#: data.cpp:379 data.cpp:383
+#: data.cpp:382 data.cpp:386
 #, c-format
 msgid "L%u Cache"
 msgstr "L%u Cache"
 
-#: data.cpp:385
+#: data.cpp:388
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s associativa, %d-%s tamanho da linha"
 
-#: data.cpp:398
+#: data.cpp:401
 msgid "Test"
 msgstr "Testar"
 
-#: data.cpp:409 data.cpp:423 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:412 data.cpp:426 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "Placa-mãe"
 
-#: data.cpp:437 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:440 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:452 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:455 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "Chipset"
 
-#: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:470 data.cpp:572 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "Memória"
 
-#: data.cpp:483
+#: data.cpp:486
 #, c-format
 msgid "Stick %u"
 msgstr "Vara %u"
 
-#: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:490 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
 msgstr "Sticks"
 
-#: data.cpp:541 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:544 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "Sistema"
 
-#: data.cpp:554 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:557 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "Sistema operativo"
 
-#: data.cpp:587 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:590 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: data.cpp:621
+#: data.cpp:624
 #, c-format
 msgid "Card %u"
 msgstr "Placa %u"
 
-#: data.cpp:625 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:628 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr "Placas"
 
-#: data.cpp:672 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:675 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "Bench"
 
-#: data.cpp:685
+#: data.cpp:688
 msgid "Not started"
 msgstr "Não iniciado"
 
-#: data.cpp:688 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:691 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr "Números primos (lento)"
 
-#: data.cpp:692 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:695 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr "Números primos (rápido)"
 
-#: data.cpp:696 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:699 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "Parâmetros"
 
-#: data.cpp:721 data.cpp:727
+#: data.cpp:724 data.cpp:730
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
 
-#: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:737 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "Sobre"
 
-#: data.cpp:739
+#: data.cpp:742
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -615,84 +621,84 @@ msgstr ""
 "%s é um programa de código livre que recolhe\n"
 "informações sobre o processador, a placa-mãe e mais."
 
-#: data.cpp:744
+#: data.cpp:747
 msgid "About CPU-X"
 msgstr "Sobre CPU-X"
 
-#: data.cpp:745
+#: data.cpp:748
 #, c-format
 msgid "Version %s"
 msgstr "Versão %s"
 
-#: data.cpp:746
+#: data.cpp:749
 #, c-format
 msgid "Author: %s"
 msgstr "Autor: %s"
 
-#: data.cpp:747
+#: data.cpp:750
 #, c-format
 msgid "Site: %s"
 msgstr "Site: %s"
 
-#: data.cpp:751 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:754 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "Licença"
 
-#: data.cpp:753
+#: data.cpp:756
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Este programa é distribuído nos termos da licença %s"
 
-#: data.cpp:754 main.cpp:176
+#: data.cpp:757 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Este programa é fornecido ABSOLUTAMENTE SEM NENHUMA GARANTIA"
 
-#: gui_gtk.cpp:61
+#: gui_gtk.cpp:62
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Não é possível encontrar caminho para o ficheiro '%s'"
 
-#: gui_gtk.cpp:400
+#: gui_gtk.cpp:397
 msgid "Start daemon"
 msgstr "Iniciar daemon"
 
-#: gui_gtk.cpp:403
+#: gui_gtk.cpp:400
 msgid "Connected to daemon"
 msgstr "A conectar ao daemon"
 
-#: gui_gtk.cpp:406
+#: gui_gtk.cpp:403
 msgid "No polkit authentication agent found"
 msgstr "Nenhum agente de autenticação polkit foi encontrado"
 
-#: gui_gtk.cpp:411
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "Pedir palavra-passe para iniciar o daemon em segundo plano"
 
-#: gui_gtk.cpp:415
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr "Configurações"
 
-#: gui_gtk.cpp:634
+#: gui_gtk.cpp:631
 msgid "BaseFamily"
 msgstr "FamíliaBase"
 
-#: gui_gtk.cpp:635
+#: gui_gtk.cpp:632
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Mostrar a família da CPU (\"true\") (calculada como "
 "FamíliaBase+FamíliaExtendida)"
 
-#: gui_gtk.cpp:636
+#: gui_gtk.cpp:633
 msgid "BaseModel"
 msgstr "ModeloBase"
 
-#: gui_gtk.cpp:637
+#: gui_gtk.cpp:634
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Mostrar o modelo da CPU (\"true\") (calculada como "
 "(ModeloExtendido<<4)+ModeloBase)"
 
-#: gui_gtk.cpp:847
+#: gui_gtk.cpp:844
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -700,25 +706,25 @@ msgstr ""
 "Identifique o soquete com uma etiqueta física ou a posição da placa onde o "
 "dispositivo de memória está localizado"
 
-#: gui_gtk.cpp:848
+#: gui_gtk.cpp:845
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identifique o banco físico marcado onde o dispositivo de memória está "
 "localizado"
 
-#: gui_gtk.cpp:1052
+#: gui_gtk.cpp:1049
 msgid "User Mode Driver Version"
 msgstr "User Mode Driver Version"
 
-#: gui_gtk.cpp:1066
+#: gui_gtk.cpp:1063
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1260
+#: gui_gtk.cpp:1257
 msgid "Starting GTK GUI…"
 msgstr "A iniciar a interface gráfica GTK…"
 
-#: gui_gtk.cpp:1272
+#: gui_gtk.cpp:1269
 msgid "failed to import UI in GtkBuilder"
 msgstr "Falha ao importar a interface do utilizador no GtkBuilder"
 

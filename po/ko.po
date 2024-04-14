@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2023-12-09 13:09+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-04-14 15:21+0000\n"
 "PO-Revision-Date: 2024-03-16 17:02+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
@@ -33,7 +33,7 @@ msgstr ""
 "이 CPU는 데이터베이스에 정보가 없습니다 ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 
-#: core.cpp:189 data.cpp:150 data.cpp:342
+#: core.cpp:189 data.cpp:150 data.cpp:345
 msgid "unknown"
 msgstr "알 수 없음"
 
@@ -295,138 +295,138 @@ msgstr "%s의 카드 번호를 알 수 없습니다"
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (현재) / %s (최대)"
 
-#: core.cpp:1650
+#: core.cpp:1656
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s의 드라이버가 주파수를 응답하지 않습니다"
 
-#: core.cpp:1671
+#: core.cpp:1677
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "%s의 모든 모니터링 데이터를 얻어오는 데 실패했습니다"
 
-#: core.cpp:1694
+#: core.cpp:1700
 msgid "Identifying running system"
 msgstr "실행중인 시스템 식별 중"
 
-#: core.cpp:1697
+#: core.cpp:1703
 msgid "failed to identify running system"
 msgstr "실행중인 시스템의 식별을 실패했습니다"
 
-#: core.cpp:1749 core.cpp:1778
+#: core.cpp:1755 core.cpp:1784
 msgid "Calling libprocps"
 msgstr "libprocps 호출 중"
 
-#: core.cpp:1752
+#: core.cpp:1758
 msgid "unable to get system uptime"
 msgstr "시스템의 가동 시간을 가져올 수 없습니다"
 
-#: core.cpp:1758
+#: core.cpp:1764
 msgid "unable to create meminfo structure"
 msgstr "meminfo 구조를 생성할 수 없습니다"
 
-#: core.cpp:1804
+#: core.cpp:1810
 msgid "Calling libstatgrab"
 msgstr "libstatgrab 호출 중"
 
-#: core.cpp:1852
+#: core.cpp:1858
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 일 %i 시간 %i 분 %i 초"
 
-#: core.cpp:1915
+#: core.cpp:1921
 msgid "Updating benchmark status"
 msgstr "벤치마크 상태 갱신 중"
 
-#: core.cpp:1918
+#: core.cpp:1924
 msgid "Active"
 msgstr "작동중"
 
-#: core.cpp:1921
+#: core.cpp:1927
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u 시간 남음)"
 
-#: core.cpp:1923
+#: core.cpp:1929
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u 분 남음)"
 
-#: core.cpp:1925
+#: core.cpp:1931
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u 초 남음)"
 
-#: core.cpp:1929 core.cpp:1984 core.cpp:1985
+#: core.cpp:1935 core.cpp:1990 core.cpp:1991
 msgid "Inactive"
 msgstr "정지중"
 
-#: core.cpp:1932
+#: core.cpp:1938
 #, c-format
 msgid "in %u hours"
 msgstr "%u 시간 내"
 
-#: core.cpp:1934
+#: core.cpp:1940
 #, c-format
 msgid "in %u minutes"
 msgstr "%u 분 내"
 
-#: core.cpp:1936
+#: core.cpp:1942
 #, c-format
 msgid "in %u seconds"
 msgstr "%u 초 내"
 
-#: core.cpp:1953
+#: core.cpp:1959
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "%u 스레드로 벤치마크를 시작 중"
 
-#: core.cpp:1976
+#: core.cpp:1982
 msgid "an error occurred while starting benchmark"
 msgstr "벤치마크를 시작하는 중에 에러가 발생했습니다"
 
-#: core.cpp:2002
+#: core.cpp:2008
 msgid "Finding CPU package in fallback mode"
 msgstr "fallback 모드에서 CPU 패키지 검색 중"
 
-#: core.cpp:2032
+#: core.cpp:2038
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "이 CPU 소켓은 데이터베이스에 존재하지 않습니다 ==> %s, 코드네임: %s"
 
-#: core.cpp:2052
+#: core.cpp:2058
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "fallback 모드에서 CPU 배수 계산 중"
 
-#: core.cpp:2072
+#: core.cpp:2078
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "fallback 모드에서 마더보드의 정보를 얻어오는 중"
 
-#: core.cpp:2085
+#: core.cpp:2091
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "마더보드의 정보를 얻어오는 데 실패했습니다 (fallback 모드)"
 
-#: core.cpp:2127
+#: core.cpp:2133
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallback 모드에서 CPU 온도 얻어오는 중"
 
-#: core.cpp:2173
+#: core.cpp:2179
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU 온도를 얻어오는 데 실패했습니다 (fallback 모드)"
 
-#: core.cpp:2188
+#: core.cpp:2194
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallback 모드에서 CPU 전압 얻어오는 중"
 
-#: core.cpp:2200
+#: core.cpp:2206
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU 전압을 얻어오는 데 실패했습니다 (fallback 모드)"
 
-#: core.cpp:2214
+#: core.cpp:2220
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallback 모드에서 CPU 클럭 얻어오는 중"
 
-#: core.cpp:2220
+#: core.cpp:2226
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU 클럭을 얻어오는 데 실패했습니다 (fallback 모드)"
 
@@ -471,126 +471,132 @@ msgstr "P-코어"
 msgid "E-core"
 msgstr "E-코어"
 
-#: data.cpp:189 data.cpp:192
+#: data.cpp:190
+#, fuzzy
+#| msgid "E-core"
+msgid "LP E-core"
+msgstr "E-코어"
+
+#: data.cpp:192 data.cpp:195
 msgid "Core"
 msgstr "코어"
 
-#: data.cpp:208 cpu-x-gtk-3.12.ui:746
+#: data.cpp:211 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "프로세서"
 
-#: data.cpp:240 data.cpp:329 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:243 data.cpp:332 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "캐쉬"
 
-#: data.cpp:247
+#: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%2d x %4d %s, %2d-way"
 
-#: data.cpp:249
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-way"
 
-#: data.cpp:263
+#: data.cpp:266
 msgid "Count"
 msgstr "카운트"
 
-#: data.cpp:276 cpu-x-gtk-3.12.ui:968
+#: data.cpp:279 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "클럭"
 
-#: data.cpp:379 data.cpp:383
+#: data.cpp:382 data.cpp:386
 #, c-format
 msgid "L%u Cache"
 msgstr "L%u 캐쉬"
 
-#: data.cpp:385
+#: data.cpp:388
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s 연관, %d-%s 행 크기"
 
-#: data.cpp:398
+#: data.cpp:401
 msgid "Test"
 msgstr "시험"
 
-#: data.cpp:409 data.cpp:423 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:412 data.cpp:426 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "마더보드"
 
-#: data.cpp:437 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:440 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "바이오스"
 
-#: data.cpp:452 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:455 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "칩셋"
 
-#: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:470 data.cpp:572 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "메모리"
 
-#: data.cpp:483
+#: data.cpp:486
 #, c-format
 msgid "Stick %u"
 msgstr "스틱 %u"
 
-#: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:490 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
 msgstr "스틱"
 
-#: data.cpp:541 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:544 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "시스템"
 
-#: data.cpp:554 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:557 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "운영체제"
 
-#: data.cpp:587 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:590 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr "그래픽"
 
-#: data.cpp:621
+#: data.cpp:624
 #, c-format
 msgid "Card %u"
 msgstr "카드 %u"
 
-#: data.cpp:625 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:628 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr "카드"
 
-#: data.cpp:672 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:675 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "측정"
 
-#: data.cpp:685
+#: data.cpp:688
 msgid "Not started"
 msgstr "시작되지 않음"
 
-#: data.cpp:688 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:691 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr "소수 (저속)"
 
-#: data.cpp:692 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:695 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr "소수 (고속)"
 
-#: data.cpp:696 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:699 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "매개변수"
 
-#: data.cpp:721 data.cpp:727
+#: data.cpp:724 data.cpp:730
 #, c-format
 msgid "%u mins"
 msgstr "%u 분"
 
-#: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:737 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "정보"
 
-#: data.cpp:739
+#: data.cpp:742
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -599,103 +605,103 @@ msgstr ""
 "%s는 CPU나 마더보드 등의 정보를\n"
 "수집하는 무료 소프트웨어입니다."
 
-#: data.cpp:744
+#: data.cpp:747
 msgid "About CPU-X"
 msgstr "CPU-X 정보"
 
-#: data.cpp:745
+#: data.cpp:748
 #, c-format
 msgid "Version %s"
 msgstr "버전 %s"
 
-#: data.cpp:746
+#: data.cpp:749
 #, c-format
 msgid "Author: %s"
 msgstr "저자: %s"
 
-#: data.cpp:747
+#: data.cpp:750
 #, c-format
 msgid "Site: %s"
 msgstr "사이트: %s"
 
-#: data.cpp:751 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:754 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "저작권"
 
-#: data.cpp:753
+#: data.cpp:756
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "이 소프트웨어는 %s에 의거해 배포되고 있습니다"
 
-#: data.cpp:754 main.cpp:176
+#: data.cpp:757 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "이 프로그램은 자기 책임 하에 사용해주세요"
 
-#: gui_gtk.cpp:61
+#: gui_gtk.cpp:62
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' 파일의 경로를 찾을 수 없습니다"
 
-#: gui_gtk.cpp:400
+#: gui_gtk.cpp:397
 msgid "Start daemon"
 msgstr "데몬 시작"
 
-#: gui_gtk.cpp:403
+#: gui_gtk.cpp:400
 msgid "Connected to daemon"
 msgstr "데몬에 연결"
 
-#: gui_gtk.cpp:406
+#: gui_gtk.cpp:403
 msgid "No polkit authentication agent found"
 msgstr "polkit 인증 에이전트를 찾을 수 없습니다"
 
-#: gui_gtk.cpp:411
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "백그라운드에서 데몬을 시작하려면 비밀번호가 요구됩니다"
 
-#: gui_gtk.cpp:415
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr "설정"
 
-#: gui_gtk.cpp:634
+#: gui_gtk.cpp:631
 msgid "BaseFamily"
 msgstr "기본계열"
 
-#: gui_gtk.cpp:635
+#: gui_gtk.cpp:632
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU 디스플레이 (\"true\") 패밀리 (BaseFamily+ExtendedFamily로 계산됨)"
 
-#: gui_gtk.cpp:636
+#: gui_gtk.cpp:633
 msgid "BaseModel"
 msgstr "기본모델"
 
-#: gui_gtk.cpp:637
+#: gui_gtk.cpp:634
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr "CPU 디스플레이 (\"true\") 모델 ((ExtendedModel<<4)+BaseMode로 계산됨)"
 
-#: gui_gtk.cpp:847
+#: gui_gtk.cpp:844
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 "메모리 디바이스가 위치한, 물리적 라벨이 붙은 소켓이나 보드 위치를 특정함"
 
-#: gui_gtk.cpp:848
+#: gui_gtk.cpp:845
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "메모리 디바이스가 위치한, 물리적 라벨이 붙은 뱅크를 특정함"
 
-#: gui_gtk.cpp:1052
+#: gui_gtk.cpp:1049
 msgid "User Mode Driver Version"
 msgstr "사용자 방식 드라이버 버전"
 
-#: gui_gtk.cpp:1066
+#: gui_gtk.cpp:1063
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan 레이 추적"
 
-#: gui_gtk.cpp:1260
+#: gui_gtk.cpp:1257
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI 시작 중…"
 
-#: gui_gtk.cpp:1272
+#: gui_gtk.cpp:1269
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder의 UI를 import하는 데 실패했습니다"
 

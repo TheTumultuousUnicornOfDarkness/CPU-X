@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2023-12-09 13:09+0100\n"
+"POT-Creation-Date: 2024-04-14 15:21+0000\n"
 "PO-Revision-Date: 2022-01-13 02:56+0000\n"
 "Last-Translator: Daniel <danny3@tutanota.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -33,7 +33,7 @@ msgstr ""
 "Procesorul dumneavoastră nu este prezent în baza de date ==> %s, model: %i, "
 "model extins: %i, familie extinsă: %i"
 
-#: core.cpp:189 data.cpp:150 data.cpp:342
+#: core.cpp:189 data.cpp:150 data.cpp:345
 msgid "unknown"
 msgstr ""
 
@@ -309,143 +309,143 @@ msgstr ""
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1650
+#: core.cpp:1656
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Ghidatorul pentru placa video %u nu raportează frecvențele"
 
-#: core.cpp:1671
+#: core.cpp:1677
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "a eșuat obținerea tuturor platformelor OpenCL (%s)"
 
-#: core.cpp:1694
+#: core.cpp:1700
 msgid "Identifying running system"
 msgstr "Se identifică sistemul actual"
 
-#: core.cpp:1697
+#: core.cpp:1703
 msgid "failed to identify running system"
 msgstr "a eșuat identificarea sistemului actual"
 
-#: core.cpp:1749 core.cpp:1778
+#: core.cpp:1755 core.cpp:1784
 msgid "Calling libprocps"
 msgstr "Se apelează libprocps"
 
-#: core.cpp:1752
+#: core.cpp:1758
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.cpp:1758
+#: core.cpp:1764
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.cpp:1804
+#: core.cpp:1810
 msgid "Calling libstatgrab"
 msgstr "Se apelează libstatgrab"
 
-#: core.cpp:1852
+#: core.cpp:1858
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i zile, %i ore, %i minute, %i secunde"
 
-#: core.cpp:1915
+#: core.cpp:1921
 msgid "Updating benchmark status"
 msgstr "Se actualizează starea testării performanței"
 
-#: core.cpp:1918
+#: core.cpp:1924
 msgid "Active"
 msgstr "Activ"
 
-#: core.cpp:1921
+#: core.cpp:1927
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u ore rămase)"
 
-#: core.cpp:1923
+#: core.cpp:1929
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minute rămase)"
 
-#: core.cpp:1925
+#: core.cpp:1931
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u secunde rămase)"
 
-#: core.cpp:1929 core.cpp:1984 core.cpp:1985
+#: core.cpp:1935 core.cpp:1990 core.cpp:1991
 msgid "Inactive"
 msgstr "Inactiv"
 
-#: core.cpp:1932
+#: core.cpp:1938
 #, c-format
 msgid "in %u hours"
 msgstr "în %u ore"
 
-#: core.cpp:1934
+#: core.cpp:1940
 #, c-format
 msgid "in %u minutes"
 msgstr "în %u minute"
 
-#: core.cpp:1936
+#: core.cpp:1942
 #, c-format
 msgid "in %u seconds"
 msgstr "în %u secunde"
 
-#: core.cpp:1953
+#: core.cpp:1959
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Se pornește testarea performanței"
 
-#: core.cpp:1976
+#: core.cpp:1982
 msgid "an error occurred while starting benchmark"
 msgstr "a apărut o eroare la pornirea testării performanței"
 
-#: core.cpp:2002
+#: core.cpp:2008
 msgid "Finding CPU package in fallback mode"
 msgstr "Se găsește pachetul procesorului în modul de rezervă"
 
-#: core.cpp:2032
+#: core.cpp:2038
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Soclul procesorului dumneavoastră nu este în baza de date ==> %s, numele de "
 "cod: %s"
 
-#: core.cpp:2052
+#: core.cpp:2058
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Se calculează multiplicatorii procesorului în modul de rezervă"
 
-#: core.cpp:2072
+#: core.cpp:2078
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Se obțin informațiile plăcii de bază în modul de rezervă"
 
-#: core.cpp:2085
+#: core.cpp:2091
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "a eșuat obținerea informațiilor plăcii de bază (în modul de rezervă)"
 
-#: core.cpp:2127
+#: core.cpp:2133
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Se obține temperatura procesorului în modul de rezervă"
 
-#: core.cpp:2173
+#: core.cpp:2179
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "a eșuat obținerea temperaturii procesorului (în modul de rezervă)"
 
-#: core.cpp:2188
+#: core.cpp:2194
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Se obține voltajul procesorului în modul de rezervă"
 
-#: core.cpp:2200
+#: core.cpp:2206
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "a eșuat obținerea voltajului procesorului (în modul de rezervă)"
 
-#: core.cpp:2214
+#: core.cpp:2220
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Se obține frecvența procesorului în modul de rezervă"
 
-#: core.cpp:2220
+#: core.cpp:2226
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "a eșuat obținerea frecvenței procesorului (în modul de rezervă)"
 
@@ -498,131 +498,137 @@ msgstr "Scor"
 msgid "E-core"
 msgstr "Scor"
 
-#: data.cpp:189 data.cpp:192
+#: data.cpp:190
+#, fuzzy
+#| msgid "Score"
+msgid "LP E-core"
+msgstr "Scor"
+
+#: data.cpp:192 data.cpp:195
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Core"
 msgstr "Nuclee"
 
-#: data.cpp:208 cpu-x-gtk-3.12.ui:746
+#: data.cpp:211 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "Procesor"
 
-#: data.cpp:240 data.cpp:329 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:243 data.cpp:332 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "Memorii tampon"
 
-#: data.cpp:247
+#: data.cpp:250
 #, fuzzy, c-format
 #| msgid "%d x %d %s, %d-way"
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%d x %d %s, %d-căi"
 
-#: data.cpp:249
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-căi"
 
-#: data.cpp:263
+#: data.cpp:266
 msgid "Count"
 msgstr ""
 
-#: data.cpp:276 cpu-x-gtk-3.12.ui:968
+#: data.cpp:279 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Tactările"
 
-#: data.cpp:379 data.cpp:383
+#: data.cpp:382 data.cpp:386
 #, fuzzy, c-format
 #| msgid "L%i Cache"
 msgid "L%u Cache"
 msgstr "Memoria tampon de nivel %i"
 
-#: data.cpp:385
+#: data.cpp:388
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "în %s asociativă, dimensiune line de %d-%s"
 
-#: data.cpp:398
+#: data.cpp:401
 msgid "Test"
 msgstr "Testare"
 
-#: data.cpp:409 data.cpp:423 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:412 data.cpp:426 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "Placa de bază"
 
-#: data.cpp:437 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:440 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "Sistemul Intrare/Ieșire de bază (BIOS)"
 
-#: data.cpp:452 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:455 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "Cipsetul"
 
-#: data.cpp:467 data.cpp:569 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:470 data.cpp:572 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "Memoria"
 
-#: data.cpp:483
+#: data.cpp:486
 #, c-format
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:487 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:490 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:541 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:544 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "Sistemul"
 
-#: data.cpp:554 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:557 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "Sistemul de operare"
 
-#: data.cpp:587 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:590 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr "Plăcile video"
 
-#: data.cpp:621
+#: data.cpp:624
 #, fuzzy, c-format
 #| msgid "Card %i"
 msgid "Card %u"
 msgstr "Placa %i"
 
-#: data.cpp:625 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:628 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr "Plăcile video"
 
-#: data.cpp:672 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:675 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "Testarea performanței"
 
-#: data.cpp:685
+#: data.cpp:688
 msgid "Not started"
 msgstr "Neînceput"
 
-#: data.cpp:688 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:691 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr "Numere prime (încet)"
 
-#: data.cpp:692 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:695 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr "Numere prime (repede)"
 
-#: data.cpp:696 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:699 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "Parametrii"
 
-#: data.cpp:721 data.cpp:727
+#: data.cpp:724 data.cpp:730
 #, c-format
 msgid "%u mins"
 msgstr "%u minute"
 
-#: data.cpp:734 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:737 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "Despre"
 
-#: data.cpp:739
+#: data.cpp:742
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -631,108 +637,108 @@ msgstr ""
 "%s este un program liber care adună informațiile\n"
 " despre procesor, placa de bază și alte dispozitive."
 
-#: data.cpp:744
+#: data.cpp:747
 #, fuzzy
 #| msgid "About"
 msgid "About CPU-X"
 msgstr "Despre"
 
-#: data.cpp:745
+#: data.cpp:748
 #, c-format
 msgid "Version %s"
 msgstr "Versiunea %s"
 
-#: data.cpp:746
+#: data.cpp:749
 #, c-format
 msgid "Author: %s"
 msgstr "Autorul: %s"
 
-#: data.cpp:747
+#: data.cpp:750
 #, c-format
 msgid "Site: %s"
 msgstr "Situl web: %s"
 
-#: data.cpp:751 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:754 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "Licența"
 
-#: data.cpp:753
+#: data.cpp:756
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Acest program este distribuit sub termenii licenței %s"
 
-#: data.cpp:754 main.cpp:176
+#: data.cpp:757 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Acest program vine cu ABSOLUT NICIO GARANȚIE"
 
-#: gui_gtk.cpp:61
+#: gui_gtk.cpp:62
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:400
+#: gui_gtk.cpp:397
 msgid "Start daemon"
 msgstr "Pornește daemon-ul"
 
-#: gui_gtk.cpp:403
+#: gui_gtk.cpp:400
 msgid "Connected to daemon"
 msgstr "Connectat la daemon"
 
-#: gui_gtk.cpp:406
+#: gui_gtk.cpp:403
 msgid "No polkit authentication agent found"
 msgstr "Nu a fost găsit niciu agent de autentificare polkit"
 
-#: gui_gtk.cpp:411
+#: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
 msgstr "Cere parola la pornirea daemon-ului pe fundal"
 
-#: gui_gtk.cpp:415
+#: gui_gtk.cpp:412
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:634
+#: gui_gtk.cpp:631
 msgid "BaseFamily"
 msgstr "Familia de bază"
 
-#: gui_gtk.cpp:635
+#: gui_gtk.cpp:632
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Pentru procesor afișează (adevărat - „true”) familia (compusă ca Famila de "
 "bază + Familia extinsă)"
 
-#: gui_gtk.cpp:636
+#: gui_gtk.cpp:633
 msgid "BaseModel"
 msgstr "Modelul de bază"
 
-#: gui_gtk.cpp:637
+#: gui_gtk.cpp:634
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Pentru procesor afișează (adevărat - „true”) modelul (compus ca (modelul "
 "extins<<4)+Modelul de bază)"
 
-#: gui_gtk.cpp:847
+#: gui_gtk.cpp:844
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:848
+#: gui_gtk.cpp:845
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1052
+#: gui_gtk.cpp:1049
 msgid "User Mode Driver Version"
 msgstr "Versiune ghidator mod utilizator"
 
-#: gui_gtk.cpp:1066
+#: gui_gtk.cpp:1063
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1260
+#: gui_gtk.cpp:1257
 msgid "Starting GTK GUI…"
 msgstr "Se pornește interfața grafică de tip GTK…"
 
-#: gui_gtk.cpp:1272
+#: gui_gtk.cpp:1269
 msgid "failed to import UI in GtkBuilder"
 msgstr "a eșuat importarea interfeței grafice în unealta GtkBuilder"
 
