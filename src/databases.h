@@ -244,16 +244,37 @@ const Package_DB package_intel[] =
 const Package_DB package_amd[] =
 {
 	//Codename                          Model            Socket
+	/* K8 */
 	{ "Athlon 64 FX X2 (Toledo)",       NULL,            "939 (PGA-ZIF)"  },
+	{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
+	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
+	/* K10 */
+	  /* Desktop */
+	{ "Kuma",                          NULL,             "AM2+ (PGA-940)" }, // 2008-2009, 65 nm
+	{ "Agena",                         NULL,             "AM2+ (PGA-940)" }, // 2007-2008, 65 nm
+	{ "Toliman",                       NULL,             "AM2+ (PGA-940)" }, // 2008, 65 nm
+	{ "Thuban",                        NULL,             "AM3 (PGA-938)"  }, // 2010, 45 nm
+	{ "Zosma",                         NULL,             "AM3 (PGA-938)"  }, // 2010-2011, 45 nm
+	{ "Deneb",          "AMD Phenom(tm) II X4 920",      "AM2+ (PGA-940)" }, // 2009, 45 nm
+	{ "Deneb",          "AMD Phenom(tm) II X4 940",      "AM2+ (PGA-940)" }, // 2009, 45 nm
+	{ "Deneb",                         NULL,             "AM3 (PGA-938)"  }, // 2009-2011, 45 nm
+	{ "Propus",                        NULL,             "AM3 (PGA-938)"  }, // 2009-2011, 45 nm
+	{ "Heka",           "AMD Phenom(tm) II X3 715",      "AM2+ (PGA-940)" }, // 2009, 45 nm
+	{ "Heka",                          NULL,             "AM3 (PGA-938)"  }, // 2009-2010, 45 nm
+	{ "Callisto",                      NULL,             "AM3 (PGA-938)"  }, // 2009-2011, 45 nm
+	{ "Rana",                          NULL,             "AM3 (PGA-938)"  }, // 2009-2011, 45 nm
+	{ "Sargas",                        NULL,             "AM3 (PGA-938)"  }, // 2009-2011, 45 nm
+	{ "Regor",                         NULL,             "AM3 (PGA-938)"  }, // 2009-2013, 45 nm
+	  /* Mobile */
+	{ "Caspian",                       NULL,             "S1g3 (PGA-638)" }, // 2009-2010, 45 nm
+	{ "Champlain",                     NULL,             "S1g4 (PGA-638)" }, // 2010-2011, 45 nm
+	{ "Geneva",                        NULL,             "S1g4 (PGA-638)" }, // 2010-2011, 45 nm
+	/* Bulldozer */
+	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
+	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
 	{ "Kabini X4",                      "Athlon",        "AM1 (PGA-ZIF)"  },
 	{ "Kabini X4",                      "Sempron",       "AM1 (PGA-ZIF)"  },
 	{ "Trinity X4",                     NULL,            "FM2 (PGA-ZIF)"  },
-	{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
-	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
-	{ "Deneb",    "AMD Phenom(tm) II X4 945",            "AM3 (PGA-938)"  },
-	{ "Athlon II X4 (Propus)",          NULL,            "AM3 (PGA-938)"  },
-	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
-	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
 	/* Zen */
 	{ "Naples",                         NULL,            "SP3 (LGA-4094)"   },
 	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
