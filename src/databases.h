@@ -245,9 +245,9 @@ const Package_DB package_amd[] =
 {
 	//Codename                          Model            Socket
 	/* K8 */
-	{ "Athlon 64 FX X2 (Toledo)",       NULL,            "939 (PGA-ZIF)"  },
-	{ "Turion X2",                      "TL",            "S1g1 (PGA-ZIF)" },
-	{ "Turion X2",                      "TK",            "S1g1 (PGA-ZIF)" },
+	{ "Athlon 64 FX X2 (Toledo)",       NULL,            "939 (PGA-939)"  },
+	{ "Turion X2",                      "TL",            "S1g1 (PGA-638)" },
+	{ "Turion X2",                      "TK",            "S1g1 (PGA-638)" },
 	/* K10 */
 	  /* Desktop */
 	{ "Kuma",                          NULL,             "AM2+ (PGA-940)" }, // 2008-2009, 65 nm
@@ -272,9 +272,9 @@ const Package_DB package_amd[] =
 	/* Bulldozer */
 	{ "Zambezi",                        NULL,            "AM3+ (PGA-942)" },
 	{ "Vishera",                        NULL,            "AM3+ (PGA-942)" },
-	{ "Kabini X4",                      "Athlon",        "AM1 (PGA-ZIF)"  },
-	{ "Kabini X4",                      "Sempron",       "AM1 (PGA-ZIF)"  },
-	{ "Trinity X4",                     NULL,            "FM2 (PGA-ZIF)"  },
+	{ "Kabini X4",                      "Athlon",        "AM1 (PGA-721)"  },
+	{ "Kabini X4",                      "Sempron",       "AM1 (PGA-721)"  },
+	{ "Trinity X4",                     NULL,            "FM2 (PGA-904)"  },
 	/* Zen */
 	{ "Naples",                         NULL,            "SP3 (LGA-4094)"   },
 	{ "Whitehaven",                     NULL,            "SP3r2 (LGA-4094)" },
