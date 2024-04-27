@@ -215,6 +215,7 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i5-1135G7",      "FCBGA 1449"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-1165G7",      "FCBGA 1449"     },
 	{ NULL,                             "Intel(R) Core(TM) i7-11700K",      "LGA 1200"       },
+	{ NULL,                             "Intel(R) Core(TM) i9-11900K",      "LGA 1200"       },
 	{ NULL,                             "Intel(R) Core(TM) i3-1220P",       "FCBGA 1744"     },
 	{ NULL,                             "Intel(R) Core(TM) i5-12400",       "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i7-12700H",      "FCBGA 1744"     },
