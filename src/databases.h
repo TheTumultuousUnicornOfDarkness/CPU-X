@@ -108,6 +108,7 @@ const Technology_DB technology_intel[] =
 	{ 15,          79,          -1,          "14 nm" }, // Broadwell-E
 	{ 15,         143,          -1,        "Intel 7" }, // Sapphire Rapids-WS / Sapphire Rapids-SP
 	{ 15,         191,          -1,        "Intel 7" }, // Raptor Lake-S ("Golden Cove" cores)
+	{ 15,         207,          -1,        "Intel 7" }, // Emerald Rapids-SP
 	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
 };
