@@ -33,8 +33,7 @@ jobs:
       with:
         tag_name: continuous
         delete_release: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create continuous release
       uses: ncipollo/release-action@v1
