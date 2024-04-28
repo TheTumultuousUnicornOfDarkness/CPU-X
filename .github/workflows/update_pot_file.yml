@@ -46,7 +46,7 @@ jobs:
     - name: Generate new POT file
       run: ninja -C build genpot
 
-    - uses: EndBug/add-and-commit@v7
+    - uses: EndBug/add-and-commit@v9
       with:
         add: 'po'
         message: 'Regen POT file'
