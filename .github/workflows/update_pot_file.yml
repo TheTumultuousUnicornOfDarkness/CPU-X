@@ -15,7 +15,7 @@ jobs:
       output1: ${{ steps.step1.outputs.check_ret }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: '0'
 
@@ -30,7 +30,7 @@ jobs:
     if: ${{ needs.check_new_string.outputs.output1 == 'REGEN' }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - uses: abbbi/github-actions-tune@v1
 
@@ -50,5 +50,5 @@ jobs:
       with:
         add: 'po'
         message: 'Regen POT file'
-        pull_strategy: '--ff-only'
+        pull: '--ff-only'
         push: true
