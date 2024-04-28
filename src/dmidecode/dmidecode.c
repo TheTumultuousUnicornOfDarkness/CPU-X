@@ -2,7 +2,7 @@
  * DMI Decode
  *
  *   Copyright (C) 2000-2002 Alan Cox <alan@redhat.com>
- *   Copyright (C) 2002-2020 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2002-2024 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -100,7 +100,7 @@ static const char *bad_index = "";
 
 enum cpuid_type cpuid_type = cpuid_none;
 
-#define SUPPORTED_SMBIOS_VER 0x030600
+#define SUPPORTED_SMBIOS_VER 0x030700
 
 #define FLAG_NO_FILE_OFFSET     (1 << 0)
 #define FLAG_STOP_AT_EOT        (1 << 1)
@@ -863,6 +863,7 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x13, "M2" },
 		{ 0x14, "Celeron M" },
 		{ 0x15, "Pentium 4 HT" },
+		{ 0x16, "Intel" },
 
 		{ 0x18, "Duron" },
 		{ 0x19, "K5" },
@@ -1057,6 +1058,7 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x100, "ARMv7" },
 		{ 0x101, "ARMv8" },
 		{ 0x102, "ARMv9" },
+		{ 0x103, "ARM" },
 		{ 0x104, "SH-3" },
 		{ 0x105, "SH-4" },
 		{ 0x118, "ARM" },
@@ -2330,12 +2332,13 @@ static void dmi_slot_characteristics(const char *attr, u8 code1, u8 code2)
 		"PCIe slot bifurcation is supported",
 		"Async/surprise removal is supported",
 		"Flexbus slot, CXL 1.0 capable",
-		"Flexbus slot, CXL 2.0 capable" /* 6 */
+		"Flexbus slot, CXL 2.0 capable",
+		"Flexbus slot, CXL 3.0 capable" /* 7 */
 	};
 
 	if (code1 & (1 << 0))
 		pr_attr(attr, "Unknown");
-	else if ((code1 & 0xFE) == 0 && (code2 & 0x07) == 0)
+	else if ((code1 & 0xFE) == 0 && code2 == 0)
 		pr_attr(attr, "None");
 	else
 	{
@@ -2345,7 +2348,7 @@ static void dmi_slot_characteristics(const char *attr, u8 code1, u8 code2)
 		for (i = 1; i <= 7; i++)
 			if (code1 & (1 << i))
 				pr_list_item("%s", characteristics1[i - 1]);
-		for (i = 0; i <= 6; i++)
+		for (i = 0; i <= 7; i++)
 			if (code2 & (1 << i))
 				pr_list_item("%s", characteristics2[i]);
 		pr_list_end();
@@ -3152,6 +3155,8 @@ static void dmi_memory_manufacturer_id(const char *attr, u16 code)
 {
 	/* 7.18.8 */
 	/* 7.18.10 */
+	/* 7.18.15 */
+	/* 7.17.17 */
 	/* LSB is 7-bit Odd Parity number of continuation codes */
 	if (code == 0)
 		pr_attr(attr, "Unknown");
@@ -3180,6 +3185,45 @@ static void dmi_memory_size(const char *attr, u64 code)
 		pr_attr(attr, "None");
 	else
 		dmi_print_memory_size(attr, code, 0);
+}
+
+static void dmi_memory_revision(const char *attr_type, u16 code, u8 mem_type)
+{
+	/* 7.18.16 */
+	/* 7.18.18 */
+	char attr[22];
+
+	if (code == 0xFF00)
+	{
+		snprintf(attr, sizeof(attr), "%s Revision Number", attr_type);
+		pr_attr(attr, "Unknown");
+	}
+	else if (mem_type == 0x22 || mem_type == 0x23)	/* DDR5 */
+	{
+		u8 dev_type = (code >> 8) & 0x0F;
+		u8 dev_rev = code & 0xFF;
+
+		if (code & 0x8000)			/* Installed */
+		{
+			snprintf(attr, sizeof(attr), "%s Device Type",
+				 attr_type);
+			pr_attr(attr, "%hu", dev_type);
+			snprintf(attr, sizeof(attr), "%s Device Revision",
+				 attr_type);
+			pr_attr(attr, "%hu.%hu", dev_rev >> 4, dev_rev & 0x0F);
+		}
+		else
+		{
+			snprintf(attr, sizeof(attr), "%s Device Type",
+				 attr_type);
+			pr_attr(attr, "Not Installed");
+		}
+	}
+	else						/* Generic fallback */
+	{
+		snprintf(attr, sizeof(attr), "%s Revision Number", attr_type);
+		pr_attr(attr, "0x%04x", code);
+	}
 }
 
 /*
@@ -5075,6 +5119,15 @@ static void dmi_decode(const struct dmi_header *h, u16 ver)
 			dmi_memory_size("Cache Size", QWORD(data + 0x44));
 			if (h->length < 0x54) break;
 			dmi_memory_size("Logical Size", QWORD(data + 0x4C));
+			if (h->length < 0x64) break;
+			dmi_memory_manufacturer_id("PMIC0 Manufacturer ID",
+						   WORD(data + 0x5C));
+			dmi_memory_revision("PMIC0", WORD(data + 0x5E),
+					    data[0x12]);
+			dmi_memory_manufacturer_id("RCD Manufacturer ID",
+						   WORD(data + 0x60));
+			dmi_memory_revision("RCD", WORD(data + 0x62),
+					    data[0x12]);
 			break;
 
 		case 18: /* 7.19 32-bit Memory Error Information */

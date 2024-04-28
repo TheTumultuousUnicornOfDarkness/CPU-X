@@ -1,3 +1,22 @@
+Version 3.6 (Wed Apr 24 2024)
+  - [PORTABILITY] Use -DALIGNMENT_WORKAROUND on arm.
+  - [PORTABILITY] Read SMBIOS entry point via kenv on DragonFly BSD.
+  - Support for SMBIOS 3.6.0. This includes new memory device types, new
+    processor upgrades, and Loongarch support.
+  - Support for SMBIOS 3.7.0. This includes new port types, new processor
+    upgrades, new slot characteristics and new fields for memory modules.
+  - Add bash completion.
+  - Decode HPE OEM records 197, 239 and 245.
+  - Implement options --list-strings and --list-types.
+  - Update HPE OEM records 203, 212, 216, 221, 233, 236, 237, 238 and 242.
+  - Update Redfish support.
+  - Bug fixes:
+    Fix option --from-dump for user root
+    Fix enabled slot characteristics not being printed
+  - Minor improvements:
+    Print slot width on its own line
+    Use standard strings for slot width
+
 Version 3.5 (Tue Mar 14 2023)
   - Decode HPE OEM records 216, 224, 230, 238 and 242.
   - Fortify entry point length checks.

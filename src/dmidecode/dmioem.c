@@ -2,7 +2,8 @@
  * Decoding of OEM-specific entries
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2007-2020 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2007-2024 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2017-2024 Jerry Hoemann <jerry.hoemann@hpe.com>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -367,6 +368,7 @@ static void dmi_hp_216_fw_type(u16 code)
 		"Ampere System Control Processor (SCP - PMPro+SMPro)",
 		"Intel CFR information", /* 0x3A */
 		"OCP cards",
+		"DC-SCM CPLD",
 	};
 
 	if (code < ARRAY_SIZE(type))
@@ -1245,6 +1247,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x07  | Dev No | BYTE  | PCI Device/Function No
 			 *  0x08  |   MAC  | 32B   | MAC addr padded w/ 0s
 			 *  0x28  | Port No| BYTE  | Each NIC maps to a Port
+			 *  0x29  | DevPath| STRING| UEFI Device Path of network port
 			 */
 			pr_handle_name("%s BIOS PXE NIC PCI and MAC Information",
 				       company);
@@ -1255,6 +1258,8 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			nic = h->length > 0x28 ? data[0x28] : 0xFF;
 			dmi_print_hp_net_iface_rec(nic, data[0x06], data[0x07],
 						   &data[0x08]);
+			if (h->length < 0x2A) break;
+			pr_attr("UEFI Device Path", "%s", dmi_string(h, data[0x29]));
 			break;
 
 		case 236:
