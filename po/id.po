@@ -10,17 +10,17 @@
 # whenwesober <naomi16i_1298q@cikuh.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Reno Sifana Paksi <renosifana.paksi@gmail.com>, 2022.
-# Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>, 2023.
+# Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>, 2023, 2024.
 # MagicalAlchemist <Mhaidyaqrobin@gmail.com>, 2023.
 # AlihBahasa <AlihBahasa@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2024-03-14 04:01+0000\n"
-"Last-Translator: AlihBahasa <AlihBahasa@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2024-05-01 15:07+0000\n"
+"Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
 "Language: id\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -120,10 +120,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Pengandar kernel GPU Anda tidak diketahui: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Pengandar mode pengguna GPU Anda tidak diketahui: %s"
+msgstr "Pengandar mode pengguna GPU Anda tidak diketahui untuk vendor %s: %s"
 
 #: core.cpp:781
 #, c-format
@@ -485,10 +484,8 @@ msgid "E-core"
 msgstr "Inti-E"
 
 #: data.cpp:190
-#, fuzzy
-#| msgid "E-core"
 msgid "LP E-core"
-msgstr "Inti-E"
+msgstr "LP E-core"
 
 #: data.cpp:192 data.cpp:195
 msgid "Core"
@@ -1438,10 +1435,8 @@ msgstr "Waktu penyegaran"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "Tema"
+msgstr "Tema teks"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5760
