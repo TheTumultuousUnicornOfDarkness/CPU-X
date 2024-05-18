@@ -8,26 +8,26 @@
 # Michal Biesiada <blade-14@o2.pl>, 2020.
 # WaldiS <sto@tutanota.de>, 2020, 2021, 2022, 2023, 2024.
 # Jacek <uaie_wljjw94@jyplo.com>, 2022.
-# Eryk Michalak <gnu.ewm@protonmail.com>, 2023.
+# Eryk Michalak <gnu.ewm@protonmail.com>, 2023, 2024.
 # Rcvrvugyvgvb <xzdfrlhz@duck.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2024-02-03 15:01+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2024-05-19 23:01+0000\n"
+"Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
+"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -480,10 +480,8 @@ msgid "E-core"
 msgstr "E-rdzeń"
 
 #: data.cpp:190
-#, fuzzy
-#| msgid "E-core"
 msgid "LP E-core"
-msgstr "E-rdzeń"
+msgstr "Rdzeń LP E"
 
 #: data.cpp:192 data.cpp:195
 msgid "Core"
@@ -551,9 +549,8 @@ msgid "Stick %u"
 msgstr "Przyklej %u"
 
 #: data.cpp:490 cpu-x-gtk-3.12.ui:3134
-#, fuzzy
 msgid "Sticks"
-msgstr "Patyk"
+msgstr "Patyki"
 
 #: data.cpp:544 cpu-x-gtk-3.12.ui:3780
 msgid "System"
