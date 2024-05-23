@@ -2,14 +2,14 @@
 # Copyright © 2014-2024 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
 # K.B.Dharun Krishna <kbdharunkrishna@gmail.com>, 2022, 2023.
-# "K.B.Dharun Krishna" <kbdharunkrishna@gmail.com>, 2023.
+# "K.B.Dharun Krishna" <kbdharunkrishna@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2023-11-15 23:52+0000\n"
+"PO-Revision-Date: 2024-05-23 17:09+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -109,10 +109,10 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "உங்கள் GPU கர்னல் இயக்கி தெரியவில்லை: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "உங்கள் GPU பயனர் பயன்முறை இயக்கி தெரியவில்லை: %s"
+msgstr ""
+"%s: %s என்ற விற்பனையாளருக்கு உங்கள் GPU பயனர் பயன்முறை இயக்கி தெரியவில்லை"
 
 #: core.cpp:781
 #, c-format
@@ -297,10 +297,9 @@ msgid "Driver for %s doesn't report frequencies"
 msgstr "%s க்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
 
 #: core.cpp:1677
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "அனைத்து OpenCL இயங்குதளங்களையும் (%s) பெற முடியவில்லை"
+msgstr "%s க்கான அனைத்து கண்காணிப்புத் தரவையும் மீட்டெடுக்க முடியவில்லை"
 
 #: core.cpp:1700
 msgid "Identifying running system"
