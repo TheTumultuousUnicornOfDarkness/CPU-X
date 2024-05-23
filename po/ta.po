@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2024-05-23 17:09+0000\n"
+"PO-Revision-Date: 2024-05-24 14:17+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ta/>\n"
@@ -373,10 +373,9 @@ msgid "in %u seconds"
 msgstr "%u வினாடிகளில்"
 
 #: core.cpp:1959
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "பெஞ்ச்மார்க் தொடங்குகிறது"
+msgstr "%u இழைகளுடன் தொடக்கப் புள்ளி தொடங்குகிறது"
 
 #: core.cpp:1982
 msgid "an error occurred while starting benchmark"
@@ -428,14 +427,12 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU அதிர்வெண்ணை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
 #: daemon_client.cpp:65
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "பின்னணியில் டீமனைத் தொடங்க கடவுச்சொல்லைக் கேட்கவும்"
+msgstr "பின்னணியில் டீமான் தொடங்குகிறது…"
 
 #: daemon_client.cpp:172
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: அங்கீகாரம் பெற முடியவில்லை (உரையாடல் நிராகரிக்கப்பட்டது)"
 
 #: daemon_client.cpp:175
 msgid "pkexec: authorization could not be obtained (not authorized)"
