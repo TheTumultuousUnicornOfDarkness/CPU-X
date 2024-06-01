@@ -167,7 +167,8 @@ const Technology_DB technology_amd[] =
 	{ -1,          24,          25,           "5 nm" }, // Zen 4 (Storm Peak)
 	{ -1,          97,          25,           "5 nm" }, // Zen 4 (Raphael/Dragon Range)
 	{ -1,          17,          25,           "5 nm" }, // Zen 4 (Genoa)
-	{ -1,         116,          25,           "5 nm" }, // Zen 4 (Phoenix)
+	{ -1,         116,          25,           "4 nm" }, // Zen 4 (Phoenix)
+	{ -1,         117,          25,           "4 nm" }, // Zen 4 (Phoenix/Hawk Point)
 	{ -1,         120,          25,           "4 nm" }, // Zen 4 (Z1)
 	{ -2,          -2,          -2,             NULL }
 	//Model        E. Model     E. Family   Process
@@ -307,6 +308,7 @@ const Package_DB package_amd[] =
 	{ "Raphael",                        NULL,            "AM5 (LGA-1718)"   },
 	{ "Dragon Range",                   NULL,            "FL1 (BGA)"        },
 	{ "Phoenix",                        NULL,            "FP7/FP8"          },
+	{ "Hawk Point",                     NULL,            "FP7/FP8"          },
 	{ NULL,                             NULL,            NULL               }
 	//Codename                          Model            Socket
 };
