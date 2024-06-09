@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2024-04-17 08:03+0000\n"
-"Last-Translator: tabby <tabby4442@gmail.com>\n"
+"PO-Revision-Date: 2024-06-10 15:09+0000\n"
+"Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ko/>\n"
 "Language: ko\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -31,8 +31,8 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"이 CPU는 데이터베이스에 정보가 없습니다 ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
+"CPU는 데이터베이스에 정보가 없습니다 ==> %s, model: %i, ext. model: %i, ext. "
+"family: %i"
 
 #: core.cpp:189 data.cpp:150 data.cpp:345
 msgid "unknown"
@@ -66,7 +66,7 @@ msgstr "dmidecode 호출 중"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr "%s (구성)"
+msgstr "%s (구성됨)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
@@ -102,12 +102,12 @@ msgstr ""
 #: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr "경로 %s에 그래픽카드를 사용하기 위한 커널 드라이버가 없습니다"
+msgstr "경로 %s에 그래픽 카드를 사용하기 위한 커널 드라이버가 없습니다"
 
 #: core.cpp:693
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "이 GPU의 커널 드라이버를 알 수 없음: %s"
+msgstr "GPU 커널 드라이버를 알 수 없음: %s"
 
 #: core.cpp:777
 #, c-format
@@ -150,13 +150,12 @@ msgstr "사용 가능한 물리 장치가 없습니다 (%s)"
 #: core.cpp:1015
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "디바이스 %u의 Vulkan 생성에 실패했습니다 (%s)"
+msgstr "장치를 위해 Vulkan을 생성하는 데 실패함 %u (%s)"
 
 #: core.cpp:1019
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"%s는 디바이스 %u에서 지원되지 않습니다. 디바이스ID만을 사용해서 매칭해주세요"
+msgstr "%s는 장치 %u에서 지원하지 않으며, 일치하는 deviceID만을 사용하세요"
 
 #: core.cpp:1051 core.cpp:1364
 msgid "Enabled"
@@ -183,57 +182,54 @@ msgstr "모든 OpenCL 플랫폼을 가져오는 데 실패했습니다 (%s)"
 #: core.cpp:1115
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "플랫폼 %u의 이름을 가져오는 데 실패했습니다 (%s)"
+msgstr "플랫폼을 위해 이름을 가져오는 데 실패했습니다 %u (%s)"
 
 #: core.cpp:1123
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "플랫폿 %u의 버전을 가져오는 데 실패했습니다 (%s)"
+msgstr "플랫폼을 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
 
 #: core.cpp:1131
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "플랫폼 '%s %s'의 OpenCL 디바이스 수를 찾는 데 실패했습니다 (%s)"
+msgstr "플랫폼을 위해 OpenCL 장치 수를 찾는 데 실패했습니다 '%s %s' (%s)"
 
 #: core.cpp:1131
 msgid "0 device"
-msgstr "0 디바이스"
+msgstr "0 장치"
 
 #: core.cpp:1140
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "플랫폼 '%s %s'의 모든 OpenCL 디바이스를 가져오는 데 실패했습니다 (%s)"
+msgstr "플랫폼을 위해 모든 OpenCL 장치를 가져오는 데 실패했습니다 '%s %s' (%s)"
 
 #: core.cpp:1160
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "디바이스 %u의 이름을 가져오는 데 실패했습니다 (%s)"
+msgstr "장치를 위한 이름을 가져오는 데 실패했습니다 %u (%s)"
 
 #: core.cpp:1168
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "디바이스 %u의 버전을 가져오는 데 실패했습니다 (%s)"
+msgstr "장치를 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
 
 #: core.cpp:1190
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
-"'%s %s'의 OpenCL 드라이버는 CL_DEVICE_TOPOLOGY_AMD를 지원하지 않습니다 (%s)"
+msgstr "'%s %s'용 OpenCL 드라이버는 CL_DEVICE_TOPOLOGY_AMD를 지원하지 않습니다 (%s)"
 
 #: core.cpp:1201
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
-"'%s %s'의 OpenCL 드라이버는 CL_DEVICE_GFXIP_MAJOR_AMD를 지원하지 않습니다 "
+msgstr "'%s %s'용 OpenCL 드라이버는 CL_DEVICE_GFXIP_MAJOR_AMD를 지원하지 않습니다 "
 "(%s)"
 
 #: core.cpp:1209 core.cpp:1229 core.cpp:1262
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"'%s %s'의 OpenCL 드라이버는 CL_DEVICE_MAX_COMPUTE_UNITS를 지원하지 않습니다 "
+msgstr "'%s %s'용 OpenCL 드라이버는 CL_DEVICE_MAX_COMPUTE_UNITS를 지원하지 않습니다 "
 "(%s)"
 
 #: core.cpp:1250
@@ -242,9 +238,9 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
-"'%s %s'의 OpenCL 드라이버는 CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s), CL_DEVICE_PCI_SLOT_ID_NV (%s)를 지원하지 않습니"
-"다"
+"'%s %s'용 OpenCL 드라이버는 CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) 또는 CL_DEVICE_PCI_SLOT_ID_NV (%s)를 지원하지 "
+"않습니다"
 
 #: core.cpp:1273
 #, c-format
@@ -253,12 +249,12 @@ msgstr "OpenCL이 GPU 제조사 (0x%X)를 지원하지 않습니다"
 
 #: core.cpp:1295
 msgid "Finding devices"
-msgstr "디바이스 검색 중"
+msgstr "장치 검색 중"
 
 #: core.cpp:1307
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "디바이스 검색 제외 (%s 디바이스의 잘못된 권한)"
+msgstr "장치 검색 제외 (%s 장치에서 잘못된 권한)"
 
 #: core.cpp:1350
 #, c-format
@@ -275,11 +271,11 @@ msgstr "그래픽카드의 제조사와 모델을 찾는 데 실패함"
 
 #: core.cpp:1487
 msgid "Retrieving GPU clocks"
-msgstr "GPU 클럭을 얻어오는 중"
+msgstr "GPU 클럭 검색 중"
 
 #: core.cpp:1500
 msgid "None"
-msgstr "None"
+msgstr "없음"
 
 #: core.cpp:1509
 #, c-format
@@ -304,7 +300,7 @@ msgstr "%s의 드라이버가 주파수를 응답하지 않습니다"
 #: core.cpp:1677
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "%s의 모든 모니터링 데이터를 얻어오는 데 실패했습니다"
+msgstr "%s의 모든 모니터링 자료를 검색하는 데 실패했습니다"
 
 #: core.cpp:1700
 msgid "Identifying running system"
@@ -312,7 +308,7 @@ msgstr "실행중인 시스템 식별 중"
 
 #: core.cpp:1703
 msgid "failed to identify running system"
-msgstr "실행중인 시스템의 식별을 실패했습니다"
+msgstr "실행중인 시스템을 식별하는 데 실패했습니다"
 
 #: core.cpp:1755 core.cpp:1784
 msgid "Calling libprocps"
@@ -324,7 +320,7 @@ msgstr "시스템의 가동 시간을 가져올 수 없습니다"
 
 #: core.cpp:1764
 msgid "unable to create meminfo structure"
-msgstr "meminfo 구조를 생성할 수 없습니다"
+msgstr "meminfo 구조를 생성 할 수 없습니다"
 
 #: core.cpp:1810
 msgid "Calling libstatgrab"
@@ -333,11 +329,11 @@ msgstr "libstatgrab 호출 중"
 #: core.cpp:1858
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i 일 %i 시간 %i 분 %i 초"
+msgstr "%i 일, %i 시간, %i, 분 %i 초"
 
 #: core.cpp:1921
 msgid "Updating benchmark status"
-msgstr "벤치마크 상태 갱신 중"
+msgstr "측정 상태 최신화 중"
 
 #: core.cpp:1924
 msgid "Active"
@@ -380,20 +376,20 @@ msgstr "%u 초 내"
 #: core.cpp:1959
 #, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "%u 스레드로 벤치마크를 시작 중"
+msgstr "%u 쓰레드로 측정을 시작 중"
 
 #: core.cpp:1982
 msgid "an error occurred while starting benchmark"
-msgstr "벤치마크를 시작하는 중에 에러가 발생했습니다"
+msgstr "측정 시작 중에 오류가 발생했습니다"
 
 #: core.cpp:2008
 msgid "Finding CPU package in fallback mode"
-msgstr "fallback 모드에서 CPU 패키지 검색 중"
+msgstr "fallback 방식에서 CPU 패키지 검색 중"
 
 #: core.cpp:2038
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "이 CPU 소켓은 데이터베이스에 존재하지 않습니다 ==> %s, 코드네임: %s"
+msgstr "CPU 소켓이 데이터베이스에 존재하지 않습니다 ==> %s, 코드네임: %s"
 
 #: core.cpp:2058
 msgid "Calculating CPU multipliers in fallback mode"
@@ -401,39 +397,39 @@ msgstr "fallback 모드에서 CPU 배수 계산 중"
 
 #: core.cpp:2078
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "fallback 모드에서 마더보드의 정보를 얻어오는 중"
+msgstr "fallback 방식에서 마더보드 정보를 검색 중"
 
 #: core.cpp:2091
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "마더보드의 정보를 얻어오는 데 실패했습니다 (fallback 모드)"
+msgstr "마더보드 정보를 검색하는 데 실패했습니다 (fallback 방식)"
 
 #: core.cpp:2133
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "fallback 모드에서 CPU 온도 얻어오는 중"
+msgstr "fallback 방식에서 CPU 온도 검색 중"
 
 #: core.cpp:2179
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "CPU 온도를 얻어오는 데 실패했습니다 (fallback 모드)"
+msgstr "CPU 온도를 검색하는 데 실패했습니다 (fallback 방식)"
 
 #: core.cpp:2194
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "fallback 모드에서 CPU 전압 얻어오는 중"
+msgstr "fallback 방식에서 CPU 전압을 검색 중"
 
 #: core.cpp:2206
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "CPU 전압을 얻어오는 데 실패했습니다 (fallback 모드)"
+msgstr "CPU 전압을 검색 중 실패했습니다 (fallback 방식)"
 
 #: core.cpp:2220
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "fallback 모드에서 CPU 클럭 얻어오는 중"
+msgstr "fallback 방식에서 CPU 주파수를 검색 중"
 
 #: core.cpp:2226
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "CPU 클럭을 얻어오는 데 실패했습니다 (fallback 모드)"
+msgstr "CPU 주파수 검색 중 실패했습니다 (fallback 방식)"
 
 #: daemon_client.cpp:65
 msgid "Starting daemon in background…"
-msgstr "백그라운드에서 데몬을 시작하는 중…"
+msgstr "백그라운드에서 데몬을 시작 중…"
 
 #: daemon_client.cpp:172
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -449,7 +445,7 @@ msgstr "pkexec: 명령어를 찾을 수 없습니다"
 
 #: daemon_client.cpp:181
 msgid "pkexec: unexpected error code"
-msgstr "pkexec: 예기치 않은 에러 코드"
+msgstr "pkexec: 예기치 않은 오류 코드"
 
 #: daemon_client.cpp:211
 msgid "Connecting to daemon…"
@@ -482,7 +478,7 @@ msgstr "코어"
 
 #: data.cpp:211 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
-msgstr "프로세서"
+msgstr "중앙처리장치"
 
 #: data.cpp:243 data.cpp:332 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
@@ -491,12 +487,12 @@ msgstr "캐쉬"
 #: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%2d x %4d %s, %2d-way"
+msgstr "%2d x %4d %s, %2d-방식"
 
 #: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
-msgstr "%d %s, %d-way"
+msgstr "%d %s, %d-방식"
 
 #: data.cpp:266
 msgid "Count"
@@ -988,15 +984,15 @@ msgstr "'위' 키를 눌러 모니터하는 CPU 코어의 숫자를 늘립니다
 
 #: tui_ncurses.cpp:247
 msgid "Caches tab:"
-msgstr "캐시 탭:"
+msgstr "캐쉬 탭:"
 
 #: tui_ncurses.cpp:248
 msgid "Press 'down' key to switch to previous test."
-msgstr "'아래' 키를 눌러 이전 테스트로 변환합니다."
+msgstr "'아래' 키를 눌러 이전 시험으로 변환합니다."
 
 #: tui_ncurses.cpp:249
 msgid "Press 'up' key to switch to next test."
-msgstr "'위' 키를 눌러 다음 테스트로 변환합니다."
+msgstr "'위' 키를 눌러 다음 시험으로 변환합니다."
 
 #: tui_ncurses.cpp:251
 msgid "Bench tab:"
