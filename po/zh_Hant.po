@@ -12,14 +12,15 @@
 # yangyangdaji <1504305527@qq.com>, 2022.
 # Hou Qiyao <ryanhou24@gmail.com>, 2023.
 # Codefoxy Ch <test.foxcat@gmail.com>, 2024.
+# hugoalh <hugoalh@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2024-01-06 01:10+0000\n"
-"Last-Translator: Codefoxy Ch <test.foxcat@gmail.com>\n"
+"PO-Revision-Date: 2024-06-10 15:09+0000\n"
+"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -294,10 +295,9 @@ msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s（目前）/%s（最大值）"
 
 #: core.cpp:1656
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "GPU驅動程式 %u 未回報頻率"
+msgstr "%s 的驅動程式沒有報告頻率"
 
 #: core.cpp:1677
 #, fuzzy, c-format
@@ -377,10 +377,9 @@ msgid "in %u seconds"
 msgstr "在 %u 秒鐘內"
 
 #: core.cpp:1959
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "正在開始效能測試"
+msgstr "正在使用 %u 個執行緒開始效能測試"
 
 #: core.cpp:1982
 msgid "an error occurred while starting benchmark"
@@ -453,7 +452,7 @@ msgstr ""
 
 #: daemon_client.cpp:211
 msgid "Connecting to daemon…"
-msgstr ""
+msgstr "正在連接至守護程式…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -483,8 +482,6 @@ msgid "LP E-core"
 msgstr "分數"
 
 #: data.cpp:192 data.cpp:195
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
 msgstr "核心"
 
@@ -516,10 +513,9 @@ msgid "Clocks"
 msgstr "時脈"
 
 #: data.cpp:382 data.cpp:386
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "L%i 快取"
+msgstr "L%u 快取"
 
 #: data.cpp:388
 #, c-format
@@ -565,16 +561,16 @@ msgstr "作業系統"
 
 #: data.cpp:590 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
-msgstr ""
+msgstr "圖形"
 
 #: data.cpp:624
 #, c-format
 msgid "Card %u"
-msgstr ""
+msgstr "卡 %u"
 
 #: data.cpp:628 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
-msgstr ""
+msgstr "卡"
 
 #: data.cpp:675 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
@@ -615,10 +611,8 @@ msgstr ""
 "的自由軟體。"
 
 #: data.cpp:747
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "關於"
+msgstr "關於 CPU-X"
 
 #: data.cpp:748
 #, c-format
@@ -655,11 +649,11 @@ msgstr ""
 
 #: gui_gtk.cpp:397
 msgid "Start daemon"
-msgstr ""
+msgstr "啟動守護程式"
 
 #: gui_gtk.cpp:400
 msgid "Connected to daemon"
-msgstr ""
+msgstr "已連接至守護程式"
 
 #: gui_gtk.cpp:403
 msgid "No polkit authentication agent found"
@@ -671,7 +665,7 @@ msgstr ""
 
 #: gui_gtk.cpp:412
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: gui_gtk.cpp:631
 #, fuzzy
@@ -709,7 +703,7 @@ msgstr "用戶模式驅動程序版本"
 
 #: gui_gtk.cpp:1063
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Vulkan 光線追蹤"
 
 #: gui_gtk.cpp:1257
 msgid "Starting GTK GUI…"
@@ -781,15 +775,15 @@ msgstr ""
 
 #: main.cpp:77
 msgid "Verbose output"
-msgstr ""
+msgstr "詳細輸出"
 
 #: main.cpp:78
 msgid "Print help and exit"
-msgstr ""
+msgstr "列印幫助並退出"
 
 #: main.cpp:79
 msgid "Print version and exit"
-msgstr ""
+msgstr "列印版本並退出"
 
 #: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
@@ -797,7 +791,7 @@ msgstr ""
 
 #: main.cpp:81
 msgid "Disable colored output"
-msgstr ""
+msgstr "停用彩色輸出"
 
 #: main.cpp:82
 msgid "Print information for debugging"
@@ -840,11 +834,11 @@ msgstr ""
 
 #: main.cpp:127
 msgid "Available DISPLAY:"
-msgstr ""
+msgstr "可用的顯示："
 
 #: main.cpp:135
 msgid "Available OPTIONS:"
-msgstr ""
+msgstr "可用的選項："
 
 #: main.cpp:144
 msgid "Influenceable environment variables:"
@@ -962,31 +956,23 @@ msgstr ""
 
 #: tui_ncurses.cpp:235
 msgid "Global keys:"
-msgstr ""
+msgstr "全域按鍵："
 
 #: tui_ncurses.cpp:236
-#, fuzzy
-#| msgid "\tPress 'left' key to switch in left tab.\n"
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "\t按「左」鍵切換至左邊的分頁。\n"
+msgstr "按「左」鍵或「Tab」鍵切換至左邊的分頁。"
 
 #: tui_ncurses.cpp:237
-#, fuzzy
-#| msgid "\tPress 'right' key to switch in right tab.\n"
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "\t按「右」鍵切換至右邊的分頁。\n"
+msgstr "按「右」鍵或「Shift + Tab」鍵切換至右邊的分頁。"
 
 #: tui_ncurses.cpp:238
-#, fuzzy
-#| msgid "\tPress 'h' key to see this help.\n"
 msgid "Press 'h' key to see this help."
-msgstr "\t按「h」鍵查看此幫助。\n"
+msgstr "按「h」鍵查看此幫助。"
 
 #: tui_ncurses.cpp:239
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'q' key to exit."
-msgstr "\t按「q」鍵退出。\n"
+msgstr "按「q」鍵退出。"
 
 #: tui_ncurses.cpp:241
 msgid "CPU tab:"
@@ -1005,60 +991,44 @@ msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr "\t按「上」鍵增加要監視的核心數。\n"
 
 #: tui_ncurses.cpp:244
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "\t按「下」鍵減少要監視的核心數。\n"
+msgstr "按「下」鍵減少要監視的中央處理器核心數。"
 
 #: tui_ncurses.cpp:245
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "\t按「上」鍵增加要監視的核心數。\n"
+msgstr "按「上」鍵增加要監視的中央處理器核心數。"
 
 #: tui_ncurses.cpp:247
 msgid "Caches tab:"
 msgstr "快取分頁："
 
 #: tui_ncurses.cpp:248
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous test."
-msgstr "\t按「下」鍵切換至上一項測試。\n"
+msgstr "按「下」鍵切換至上一項測試。"
 
 #: tui_ncurses.cpp:249
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next test."
-msgstr "\t按「上」鍵切換至下一項測試。\n"
+msgstr "按「上」鍵切換至下一項測試。"
 
 #: tui_ncurses.cpp:251
 msgid "Bench tab:"
 msgstr "效能測試分頁："
 
 #: tui_ncurses.cpp:252
-#, fuzzy
-#| msgid "\tPress 'down' key to decrement benchmark duration.\n"
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "\t按「下」鍵減少效能測試持續的時間。\n"
+msgstr "按「下」鍵減少效能測試持續的時間。"
 
 #: tui_ncurses.cpp:253
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\t按「上」鍵增加效能測試持續的時間。\n"
+msgstr "按「上」鍵增加效能測試持續的時間。"
 
 #: tui_ncurses.cpp:254
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr "\t按「下一頁」鍵減少要使用的線程數。\n"
+msgstr "按「下一頁」鍵減少要使用的線程數。"
 
 #: tui_ncurses.cpp:255
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "\t按「上一頁」鍵增加要使用的線程數。\n"
+msgstr "按「上一頁」鍵增加要使用的線程數。"
 
 #: tui_ncurses.cpp:256
 #, fuzzy
@@ -1094,7 +1064,7 @@ msgstr "按任意鍵退出幫助。"
 
 #: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
-msgstr ""
+msgstr "正在啟動 NCurses TUI…"
 
 #: tui_ncurses.cpp:649
 msgid ""
@@ -1201,8 +1171,6 @@ msgid "Level 3"
 msgstr "L3 快取"
 
 #: data.hpp:137 cpu-x-gtk-3.12.ui:1232
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
 msgstr "核心"
 
@@ -1228,7 +1196,7 @@ msgstr "用量"
 
 #: data.hpp:188 data.hpp:265
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: data.hpp:189 data.hpp:267
 msgid "Speed"
@@ -1263,20 +1231,16 @@ msgid "Part Number"
 msgstr ""
 
 #: data.hpp:261
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type"
-msgstr "類型 #%i"
+msgstr "類型"
 
 #: data.hpp:262
-#, fuzzy
-#| msgid "Type #%i"
 msgid "Type Detail"
-msgstr "類型 #%i"
+msgstr "類型詳細資訊"
 
 #: data.hpp:263
 msgid "Device Locator"
-msgstr ""
+msgstr "裝置定位器"
 
 #: data.hpp:264
 msgid "Bank Locator"
@@ -1287,10 +1251,8 @@ msgid "Rank"
 msgstr ""
 
 #: data.hpp:292
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "代號"
+msgstr "名稱"
 
 #: data.hpp:293
 msgid "Kernel"
@@ -1306,7 +1268,7 @@ msgstr "上線時間"
 
 #: data.hpp:303
 msgid "Used"
-msgstr ""
+msgstr "已使用"
 
 #: data.hpp:304
 msgid "Buffers"
@@ -1318,21 +1280,19 @@ msgstr "快取"
 
 #: data.hpp:306
 msgid "Free"
-msgstr ""
+msgstr "可用"
 
 #: data.hpp:307
 msgid "Swap"
-msgstr ""
+msgstr "交換"
 
 #: data.hpp:333
 msgid "Driver"
-msgstr "驅動"
+msgstr "驅動程式"
 
 #: data.hpp:334
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "版本"
+msgstr "UMD 版本"
 
 #: data.hpp:336
 msgid "Compute Unit"
@@ -1340,77 +1300,61 @@ msgstr ""
 
 #: data.hpp:337
 msgid "Device ID"
-msgstr ""
+msgstr "裝置 ID"
 
 #: data.hpp:338
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "版本"
+msgstr "VBIOS 版本"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
 #: data.hpp:339 cpu-x-gtk-3.12.ui:5807
 msgid "Interface"
-msgstr ""
+msgstr "介面"
 
 #: data.hpp:340
 msgid "Temperature"
 msgstr "溫度"
 
 #: data.hpp:342
-#, fuzzy
-#| msgid "Voltage"
 msgid "Core Voltage"
-msgstr "電壓"
+msgstr "核心電壓"
 
 #: data.hpp:343
 msgid "Power Avg"
-msgstr ""
+msgstr "平均功率"
 
 #: data.hpp:344
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Core Clock"
-msgstr "記憶體時脈"
+msgstr "核心時脈"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "記憶體時脈"
 
 #: data.hpp:346
-#, fuzzy
-#| msgid "Memory"
 msgid "Memory Used"
-msgstr "記憶體"
+msgstr "記憶體已使用"
 
 #: data.hpp:347
 msgid "Resizable BAR"
-msgstr ""
+msgstr "可調整大小的 BAR"
 
 #: data.hpp:348
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: data.hpp:349
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "版本"
+msgstr "OpenGL 版本"
 
 #: data.hpp:350
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "版本"
+msgstr "Vulkan 版本"
 
 #: data.hpp:351
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "版本"
+msgstr "OpenCL 版本"
 
 #: data.hpp:387
 msgid "Score"
@@ -1451,28 +1395,22 @@ msgstr "TB"
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:89
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: util.hpp:91
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: util.hpp:93
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: util.hpp:95
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #: cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
@@ -1481,17 +1419,17 @@ msgstr "快取"
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5721
 msgid "Refresh time"
-msgstr ""
+msgstr "重新整理時間"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5745
 msgid "Text theme"
-msgstr ""
+msgstr "文字主題"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5760
 msgid "Automatic"
-msgstr ""
+msgstr "自動"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5761
@@ -1505,25 +1443,23 @@ msgstr ""
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "溫度"
+msgstr "溫度單位"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
 msgid "Default tab"
-msgstr ""
+msgstr "預設分頁"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5839
 msgid "Default CPU core"
-msgstr ""
+msgstr "預設中央處理器核心"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Default cache test"
-msgstr ""
+msgstr "預設快取測試"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:5895
@@ -1532,25 +1468,23 @@ msgstr ""
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5928
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Default graphic card"
-msgstr "設定預設分頁（整數）"
+msgstr "預設顯示卡"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5952
 msgid "Default core type"
-msgstr ""
+msgstr "預設核心類型"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:5976
 msgid "Default memory stick"
-msgstr ""
+msgstr "預設記憶棒"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6004
 msgid "Startup"
-msgstr ""
+msgstr "啟動"
 
 #~ msgid "Calculating CPU multipliers"
 #~ msgstr "正在計算 CPU 倍頻"
