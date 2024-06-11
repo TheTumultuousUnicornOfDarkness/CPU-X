@@ -45,13 +45,15 @@ runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/mis
 runCmd chmod --verbose a+x ./*.AppImage ./*.sh
 
 # Set useful variables for linuxdeploy
+[[ -n "$VERSION" ]] && export RELEASE="latest" || export RELEASE="continuous"
 export ARCH=x86_64
-export UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_REPOSITORY//\//|}|${VERSION:-"continuous"}|CPU-X-*$ARCH.AppImage.zsync"
-export VERBOSE=1
+export LDAI_UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_REPOSITORY//\//|}|${RELEASE}|CPU-X-*$ARCH.AppImage.zsync"
+export LDAI_VERBOSE=1
 #export DEBUG=1
 export DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1
 
 # Run linuxdeploy
+echo "LDAI_UPDATE_INFORMATION=$LDAI_UPDATE_INFORMATION"
 runCmd mkdir --parents --verbose "$WORKSPACE/AppImage" && runCmd cd "$_"
 runCmd "$BUNDLER" \
 	--appdir="$APPDIR" \
