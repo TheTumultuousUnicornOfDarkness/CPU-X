@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-04-14 15:21+0000\n"
-"PO-Revision-Date: 2024-06-06 02:09+0000\n"
+"PO-Revision-Date: 2024-06-19 10:09+0000\n"
 "Last-Translator: taotieren <admin@taotieren.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hans/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -610,7 +610,7 @@ msgstr "关于 CPU-X"
 #: data.cpp:748
 #, c-format
 msgid "Version %s"
-msgstr "%s 版"
+msgstr "版本 %s"
 
 #: data.cpp:749
 #, c-format
@@ -650,7 +650,7 @@ msgstr "连接到守护程序"
 
 #: gui_gtk.cpp:403
 msgid "No polkit authentication agent found"
-msgstr "找不到polkit身份验证代理"
+msgstr "找不到 polkit 身份验证代理"
 
 #: gui_gtk.cpp:408
 msgid "Ask password to start daemon in background"
@@ -802,8 +802,7 @@ msgstr "强制执行总线计时器"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
-msgstr ""
-"忽略 libcpuid 报告的 CPU值（'temp'，'volt' 和 'freq' 之间的逗号分隔值）"
+msgstr "忽略 libcpuid 报告的 CPU 值（'temp'，'volt' 和 'freq' 之间的逗号分隔值）"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
@@ -938,11 +937,11 @@ msgstr "全局按键："
 
 #: tui_ncurses.cpp:236
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "按“左”键或“tab”键切换到左标签。"
+msgstr "按 “左” 键或 “tab” 键切换到左标签。"
 
 #: tui_ncurses.cpp:237
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "按“右”键或“Shift + Tab”键切换到右标签。"
+msgstr "按 “右” 键或 “Shift + Tab” 键切换到右标签。"
 
 #: tui_ncurses.cpp:238
 msgid "Press 'h' key to see this help."
@@ -958,11 +957,11 @@ msgstr "CPU 选项卡："
 
 #: tui_ncurses.cpp:242
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "按“next page”键减少要监控的核心类型编号。"
+msgstr "按 “next page” 键减少要监控的核心类型编号。"
 
 #: tui_ncurses.cpp:243
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "按“previous page”键增加要监控的核心类型编号。"
+msgstr "按 “previous page” 键增加要监控的核心类型编号。"
 
 #: tui_ncurses.cpp:244
 msgid "Press 'down' key to decrease CPU core number to monitor."
@@ -978,7 +977,7 @@ msgstr "缓存选项卡："
 
 #: tui_ncurses.cpp:248
 msgid "Press 'down' key to switch to previous test."
-msgstr "按 'down' 键切换至上一项测试。"
+msgstr "按 “向下” 键切换至上一项测试。"
 
 #: tui_ncurses.cpp:249
 msgid "Press 'up' key to switch to next test."
@@ -990,11 +989,11 @@ msgstr "基准测试选项卡："
 
 #: tui_ncurses.cpp:252
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "按 'down' 键减少基准测试持续时间。"
+msgstr "按 “向下” 键减少基准测试持续时间。"
 
 #: tui_ncurses.cpp:253
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "按 'up' 键增加基准测试持续时间。"
+msgstr "按 “向上” 键增加基准测试持续时间。"
 
 #: tui_ncurses.cpp:254
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -1018,11 +1017,11 @@ msgstr "显卡选项卡："
 
 #: tui_ncurses.cpp:260
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "按 'down' 键切换至上一张显卡。"
+msgstr "按 “向下” 键切换至上一张显卡。"
 
 #: tui_ncurses.cpp:261
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "按 'up' 键切换至下一张显卡。"
+msgstr "按 “向上” 键切换至下一张显卡。"
 
 #: tui_ncurses.cpp:263
 msgid "Press any key to exit this help."
@@ -1036,7 +1035,7 @@ msgstr "正在启动 NCurses TU…"
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
-msgstr "严重错误：找不到terminfo数据库（请尝试将TERMINFO设置为环境变量）"
+msgstr "严重错误：找不到 terminfo 数据库（请尝试将TERMINFO设置为环境变量）"
 
 #: tui_ncurses.cpp:654
 #, c-format
@@ -1092,7 +1091,7 @@ msgstr "系列"
 
 #: data.hpp:110
 msgid "Disp. Family"
-msgstr "Disp。系列"
+msgstr "显示系列"
 
 #: data.hpp:111 data.hpp:224 data.hpp:245 data.hpp:335
 msgid "Model"
@@ -1100,7 +1099,7 @@ msgstr "型号"
 
 #: data.hpp:112
 msgid "Disp. Model"
-msgstr "Disp。型号"
+msgstr "显示型号"
 
 #: data.hpp:113
 msgid "Temp."
