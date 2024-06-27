@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-04-14 15:21+0000\n"
+"POT-Creation-Date: 2024-06-27 16:32+0000\n"
 "PO-Revision-Date: 2022-12-17 05:50+0000\n"
 "Last-Translator: Magnus Jørgensen <magnusmj@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/cpu-x/"
@@ -123,113 +123,113 @@ msgstr "kunne ikke kalde GLFW (%i): %s"
 msgid "Finding Vulkan API version"
 msgstr "Finder Vulkan API version"
 
-#: core.cpp:926
+#: core.cpp:930
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "kunne ikke kalde vkCreateInstance (%s)"
 
-#: core.cpp:929
+#: core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr "%s er ikke understøttet"
 
-#: core.cpp:937
+#: core.cpp:943
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "kunne ikke kalde vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:944
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr "Ingen tilgængelig Vulkan enhed"
 
-#: core.cpp:952
+#: core.cpp:959
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Ingen fysisk enhed tilgængelig (%s)"
 
-#: core.cpp:1015
+#: core.cpp:1022
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Kunne ikke oprette Vulkan til enheden %u (%s)"
 
-#: core.cpp:1019
+#: core.cpp:1026
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s er ikke understøttet for enheden %u, brug kun deviceID hvor det stemmer"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Enabled"
 msgstr "Aktiveret"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Disabled"
 msgstr "Deaktiveret"
 
-#: core.cpp:1088
+#: core.cpp:1095
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
 msgstr "Finder Vulkan API version"
 
-#: core.cpp:1092
+#: core.cpp:1099
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Der er ingen platform med OpenCL understøttelse (%s)"
 
-#: core.cpp:1102
+#: core.cpp:1109
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
 
-#: core.cpp:1115
+#: core.cpp:1122
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "kunne ikke tilgå navnet til platformen %u (%s)"
 
-#: core.cpp:1123
+#: core.cpp:1130
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "kunne ikke tilgå versionen af platformen %u (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "kunne ikke finde mængden af OpenCL enheder for platform '%s %s' (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 msgid "0 device"
 msgstr "0 enheder"
 
-#: core.cpp:1140
+#: core.cpp:1147
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "kunne ikke tilgå hver OpenCL enhed for platform '%s %s' (%s)"
 
-#: core.cpp:1160
+#: core.cpp:1167
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "kunne ikke tilgå navnet på enheden %u (%s)"
 
-#: core.cpp:1168
+#: core.cpp:1175
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "kunne ikke tilgå versionen for enheden %u (%s)"
 
-#: core.cpp:1190
+#: core.cpp:1197
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1201
+#: core.cpp:1208
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1209 core.cpp:1229 core.cpp:1262
+#: core.cpp:1216 core.cpp:1236 core.cpp:1269
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -237,7 +237,7 @@ msgstr ""
 "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_MAX_COMPUTE_UNITS "
 "(%s)"
 
-#: core.cpp:1250
+#: core.cpp:1257
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -246,191 +246,191 @@ msgstr ""
 "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) eller CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1273
+#: core.cpp:1280
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL er ikke understøttet med din GPU leverandør (0x%X)"
 
-#: core.cpp:1295
+#: core.cpp:1302
 msgid "Finding devices"
 msgstr "Finder enheder"
 
-#: core.cpp:1307
+#: core.cpp:1314
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
 
-#: core.cpp:1350
+#: core.cpp:1357
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU leverandør er ukendt: %s (0x%X)"
 
-#: core.cpp:1370
+#: core.cpp:1377
 msgid "failed to find chipset vendor and model"
 msgstr "kunne ikke finde chipset leverandør og model"
 
-#: core.cpp:1385
+#: core.cpp:1392
 msgid "failed to find graphic card vendor and model"
 msgstr "kunne ikke finde grafik kort leverandør og model"
 
-#: core.cpp:1487
+#: core.cpp:1494
 msgid "Retrieving GPU clocks"
 msgstr "Finder GPU frekvenser"
 
-#: core.cpp:1500
+#: core.cpp:1507
 msgid "None"
 msgstr "Ingen"
 
-#: core.cpp:1509
+#: core.cpp:1516
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.cpp:1516
+#: core.cpp:1523
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.cpp:1541
+#: core.cpp:1548
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1656
+#: core.cpp:1663
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Driveren til GPU %u rapporterer ikke frekvenser"
 
-#: core.cpp:1677
+#: core.cpp:1684
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
 
-#: core.cpp:1700
+#: core.cpp:1707
 msgid "Identifying running system"
 msgstr "Identificerer kørrende system"
 
-#: core.cpp:1703
+#: core.cpp:1710
 msgid "failed to identify running system"
 msgstr "kunne ikke identificere det kørrende system"
 
-#: core.cpp:1755 core.cpp:1784
+#: core.cpp:1762 core.cpp:1791
 msgid "Calling libprocps"
 msgstr "Kalder libprocps"
 
-#: core.cpp:1758
+#: core.cpp:1765
 msgid "unable to get system uptime"
 msgstr "kunne ikke tilgå systemets oppetid"
 
-#: core.cpp:1764
+#: core.cpp:1771
 msgid "unable to create meminfo structure"
 msgstr "kunne ikke danne meminfo struktur"
 
-#: core.cpp:1810
+#: core.cpp:1817
 msgid "Calling libstatgrab"
 msgstr "Kalder libstatgrab"
 
-#: core.cpp:1858
+#: core.cpp:1865
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dage, %i timer %i minutter %i sekunder"
 
-#: core.cpp:1921
+#: core.cpp:1928
 msgid "Updating benchmark status"
 msgstr "Opdaterer status af benchmark"
 
-#: core.cpp:1924
+#: core.cpp:1931
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.cpp:1927
+#: core.cpp:1934
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u timer tilbage)"
 
-#: core.cpp:1929
+#: core.cpp:1936
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutter tilbage)"
 
-#: core.cpp:1931
+#: core.cpp:1938
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekunder tilbage)"
 
-#: core.cpp:1935 core.cpp:1990 core.cpp:1991
+#: core.cpp:1942 core.cpp:1997 core.cpp:1998
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.cpp:1938
+#: core.cpp:1945
 #, c-format
 msgid "in %u hours"
 msgstr "om %u timer"
 
-#: core.cpp:1940
+#: core.cpp:1947
 #, c-format
 msgid "in %u minutes"
 msgstr "om %u minutter"
 
-#: core.cpp:1942
+#: core.cpp:1949
 #, c-format
 msgid "in %u seconds"
 msgstr "om %u sekunder"
 
-#: core.cpp:1959
+#: core.cpp:1966
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Starter benchmark"
 
-#: core.cpp:1982
+#: core.cpp:1989
 msgid "an error occurred while starting benchmark"
 msgstr "en fejl skete ved opstart af benchmark"
 
-#: core.cpp:2008
+#: core.cpp:2015
 msgid "Finding CPU package in fallback mode"
 msgstr "Finder CPU-pakken i tilbagefaldstilstand"
 
-#: core.cpp:2038
+#: core.cpp:2045
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din CPU-socket findes ikke i databasen ==> %s, kodenavn: %s"
 
-#: core.cpp:2058
+#: core.cpp:2065
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Beregner CPU-multiplikatorer i tilbagefaldstilstand"
 
-#: core.cpp:2078
+#: core.cpp:2085
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Finder bundkorts informationer i tilbagefaldstilstand"
 
-#: core.cpp:2091
+#: core.cpp:2098
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "kunne ikke hente bundkortoplysninger (tilbagefaldstilstand)"
 
-#: core.cpp:2133
+#: core.cpp:2140
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Henter CPU temperatur i tilbagefaldstilstand"
 
-#: core.cpp:2179
+#: core.cpp:2186
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "kunne ikke hente CPU temperature (tilbagefaldstilstand)"
 
-#: core.cpp:2194
+#: core.cpp:2201
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Henter CPU spænding i tilbagefaldstilstand"
 
-#: core.cpp:2206
+#: core.cpp:2213
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "kunne ikke hente CPU spænding (tilbagefaldstilstand)"
 
-#: core.cpp:2220
+#: core.cpp:2227
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Henter CPU frekvens i tilbagefaldstilstand"
 
-#: core.cpp:2226
+#: core.cpp:2233
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "kunne ikke hente CPU frekvens (tilbagefaldstilstand)"
 

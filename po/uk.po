@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-04-14 15:21+0000\n"
+"POT-Creation-Date: 2024-06-27 16:32+0000\n"
 "PO-Revision-Date: 2023-10-17 18:16+0000\n"
 "Last-Translator: griffi-gh <prasol258@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -134,120 +134,120 @@ msgstr "не вдалося викликати GLFW (%i): %s"
 msgid "Finding Vulkan API version"
 msgstr "Визначення версії API Vulkan"
 
-#: core.cpp:926
+#: core.cpp:930
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "не вдалося викликати vkCreateInstance (%s)"
 
-#: core.cpp:929
+#: core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr "%s не підтримується"
 
-#: core.cpp:937
+#: core.cpp:943
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "не вдалося викликати vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:944
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr "Немає доступних пристроїв Vulkan"
 
-#: core.cpp:952
+#: core.cpp:959
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Немає доступних фізичних пристроїв (%s)"
 
-#: core.cpp:1015
+#: core.cpp:1022
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Не вдалося створити Vulkan для пристрою %u (%s)"
 
-#: core.cpp:1019
+#: core.cpp:1026
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s не підтримується для пристрою %u, використовуйте для зіставлення лише "
 "deviceID"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Enabled"
 msgstr "Увімкнено"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Disabled"
 msgstr "Відключено"
 
-#: core.cpp:1088
+#: core.cpp:1095
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
 msgstr "Визначення версії API Vulkan"
 
-#: core.cpp:1092
+#: core.cpp:1099
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Немає платформи з підтримкою OpenCL (%s)"
 
-#: core.cpp:1102
+#: core.cpp:1109
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "не вдалося викликати усі платформи OpenCL (%s)"
 
-#: core.cpp:1115
+#: core.cpp:1122
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "не вдалося отримати для платформи %u (%s)"
 
-#: core.cpp:1123
+#: core.cpp:1130
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "не вдалося отримати версію для платформи %u (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "не вдалося визначити кількість пристроїв OpenCL для платформи '%s %s' (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 msgid "0 device"
 msgstr "0 пристрій"
 
-#: core.cpp:1140
+#: core.cpp:1147
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "не вдалось отримати всі пристрої OpenCL для платформи '%s %s' (%s)"
 
-#: core.cpp:1160
+#: core.cpp:1167
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "не вдалося отримати назву для пристрою %u (%s)"
 
-#: core.cpp:1168
+#: core.cpp:1175
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "не вдалося отримати версію для пристрою %u (%s)"
 
-#: core.cpp:1190
+#: core.cpp:1197
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1201
+#: core.cpp:1208
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1209 core.cpp:1229 core.cpp:1262
+#: core.cpp:1216 core.cpp:1236 core.cpp:1269
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1250
+#: core.cpp:1257
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -256,193 +256,193 @@ msgstr ""
 "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) чи CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1273
+#: core.cpp:1280
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL не підтримується вашим виробником (0x%X)"
 
-#: core.cpp:1295
+#: core.cpp:1302
 msgid "Finding devices"
 msgstr "Пошук пристроїв"
 
-#: core.cpp:1307
+#: core.cpp:1314
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
 
-#: core.cpp:1350
+#: core.cpp:1357
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Постачальник графічного процесора невідомий: %s (0x%X)"
 
-#: core.cpp:1370
+#: core.cpp:1377
 msgid "failed to find chipset vendor and model"
 msgstr "не вдалося знайти постачальника чи модель чіпсету"
 
-#: core.cpp:1385
+#: core.cpp:1392
 msgid "failed to find graphic card vendor and model"
 msgstr "не вдалося знайти постачальника та модель графічної карти"
 
-#: core.cpp:1487
+#: core.cpp:1494
 msgid "Retrieving GPU clocks"
 msgstr "Отримання частоти GPU"
 
-#: core.cpp:1500
+#: core.cpp:1507
 msgid "None"
 msgstr "Немає"
 
-#: core.cpp:1509
+#: core.cpp:1516
 #, fuzzy, c-format
 #| msgid "DRM path for GPU %u is unknown"
 msgid "DRM path for %s is unknown"
 msgstr "Шлях DRM для GPU %u невідомий"
 
-#: core.cpp:1516
+#: core.cpp:1523
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "Card number for %s is unknown"
 msgstr "Номер карти для GPU %u невідомий"
 
-#: core.cpp:1541
+#: core.cpp:1548
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (поточн.) / %s (макс.)"
 
-#: core.cpp:1656
+#: core.cpp:1663
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Драйвер для GPU %u не звітує частоти"
 
-#: core.cpp:1677
+#: core.cpp:1684
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "не вдалося викликати усі платформи OpenCL (%s)"
 
-#: core.cpp:1700
+#: core.cpp:1707
 msgid "Identifying running system"
 msgstr "Виявлення запущеної системи"
 
-#: core.cpp:1703
+#: core.cpp:1710
 msgid "failed to identify running system"
 msgstr "не вдалося визначити запущену систему"
 
-#: core.cpp:1755 core.cpp:1784
+#: core.cpp:1762 core.cpp:1791
 msgid "Calling libprocps"
 msgstr "Виклик libprocps"
 
-#: core.cpp:1758
+#: core.cpp:1765
 msgid "unable to get system uptime"
 msgstr "не вдається отримати час безвідмовної роботи системи"
 
-#: core.cpp:1764
+#: core.cpp:1771
 msgid "unable to create meminfo structure"
 msgstr "не вдалося створити структуру meminfo"
 
-#: core.cpp:1810
+#: core.cpp:1817
 msgid "Calling libstatgrab"
 msgstr "Виклик libstatgrab"
 
-#: core.cpp:1858
+#: core.cpp:1865
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i днів, %i годин, %i хвилин, %i секунд"
 
-#: core.cpp:1921
+#: core.cpp:1928
 msgid "Updating benchmark status"
 msgstr "Оновлення стану тестів"
 
-#: core.cpp:1924
+#: core.cpp:1931
 msgid "Active"
 msgstr "Активний"
 
-#: core.cpp:1927
+#: core.cpp:1934
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u годин лишилось)"
 
-#: core.cpp:1929
+#: core.cpp:1936
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u хвилин лишилось)"
 
-#: core.cpp:1931
+#: core.cpp:1938
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u секунд лишилося)"
 
-#: core.cpp:1935 core.cpp:1990 core.cpp:1991
+#: core.cpp:1942 core.cpp:1997 core.cpp:1998
 msgid "Inactive"
 msgstr "Неактивний"
 
-#: core.cpp:1938
+#: core.cpp:1945
 #, c-format
 msgid "in %u hours"
 msgstr "за %u годин"
 
-#: core.cpp:1940
+#: core.cpp:1947
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u хвилин"
 
-#: core.cpp:1942
+#: core.cpp:1949
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u секунд"
 
-#: core.cpp:1959
+#: core.cpp:1966
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Запустити тестування"
 
-#: core.cpp:1982
+#: core.cpp:1989
 msgid "an error occurred while starting benchmark"
 msgstr "помилка при запуску бенчмарку"
 
-#: core.cpp:2008
+#: core.cpp:2015
 msgid "Finding CPU package in fallback mode"
 msgstr "Пошук моделі маркування ЦП у аварійному режимі"
 
-#: core.cpp:2038
+#: core.cpp:2045
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ваш сокет процесора відсутній у базі даних ==> %s, кодове ім'я: %s"
 
-#: core.cpp:2058
+#: core.cpp:2065
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Підрахунок помножувачів процесора у аварійному режимі"
 
-#: core.cpp:2078
+#: core.cpp:2085
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Отримання інформації про материнську плату в аварійному режимі"
 
-#: core.cpp:2091
+#: core.cpp:2098
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не вдалося отримати інформацію про материнську плату (аварійний режим)"
 
-#: core.cpp:2133
+#: core.cpp:2140
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Отримання температури процесора в аварійному режимі"
 
-#: core.cpp:2179
+#: core.cpp:2186
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не вдалося отримати температуру процесора (аварійний режим)"
 
-#: core.cpp:2194
+#: core.cpp:2201
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Отримання робочої напруги процесора в аварійному режимі"
 
-#: core.cpp:2206
+#: core.cpp:2213
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
 
-#: core.cpp:2220
+#: core.cpp:2227
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Отримання частоти процесора в аварійному режимі"
 
-#: core.cpp:2226
+#: core.cpp:2233
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не вдалося отримати частоту процесора (аварійний режим)"
 

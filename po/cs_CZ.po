@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-04-14 15:21+0000\n"
+"POT-Creation-Date: 2024-06-27 16:32+0000\n"
 "PO-Revision-Date: 2022-11-03 07:08+0000\n"
 "Last-Translator: cosita official <kokosove18@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -133,125 +133,125 @@ msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 msgid "Finding Vulkan API version"
 msgstr "Hledám verzi Vulkan API"
 
-#: core.cpp:926
+#: core.cpp:930
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "nepodařilo se zavolat vkCreateInstance (%s)"
 
-#: core.cpp:929
+#: core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr "%s není podporován"
 
-#: core.cpp:937
+#: core.cpp:943
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "nepodařilo se zavolat vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:944
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr "Žádné dostupné Vulkan zařízení"
 
-#: core.cpp:952
+#: core.cpp:959
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Žádné dostupné fyzické zařízení (%s)"
 
-#: core.cpp:1015
+#: core.cpp:1022
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "nepodařil se vytvořit Vulkan pro zařízení %u (%s)"
 
-#: core.cpp:1019
+#: core.cpp:1026
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s není podporované pro zařízení %u, použijte pouze deviceID pro porovnání"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Enabled"
 msgstr "Zapnuto"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Disabled"
 msgstr "Vypnuto"
 
-#: core.cpp:1088
+#: core.cpp:1095
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
 msgstr "Hledám verzi Vulkan API"
 
-#: core.cpp:1092
+#: core.cpp:1099
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Není žádná platforma s podporou pro OpenCL (%s)"
 
-#: core.cpp:1102
+#: core.cpp:1109
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "nepodařilo se zavolat nástroj dmidecode"
 
-#: core.cpp:1115
+#: core.cpp:1122
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get name for platform %u (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core.cpp:1123
+#: core.cpp:1130
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to get version for platform %u (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "chyba při hledání počtu OpenCL zařízení pro platformu '%s %s' (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 #, fuzzy
 #| msgid "Finding devices"
 msgid "0 device"
 msgstr "Hledání zařízení"
 
-#: core.cpp:1140
+#: core.cpp:1147
 #, fuzzy, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "proběhla chyba při hledání všech OpenCL zařízení pro platformu '%s %s'  (%s)"
 
-#: core.cpp:1160
+#: core.cpp:1167
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core.cpp:1168
+#: core.cpp:1175
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "nepodařilo se zjistit ovladač grafické karty (%s)"
 
-#: core.cpp:1190
+#: core.cpp:1197
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "OpenCL ovladač pro '%s %s' nepodporuje CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1201
+#: core.cpp:1208
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "OpenCL ovladač pro '%s %s' nepodporuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1209 core.cpp:1229 core.cpp:1262
+#: core.cpp:1216 core.cpp:1236 core.cpp:1269
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "OpenCL ovladač '%s %s' nepodporuje CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1250
+#: core.cpp:1257
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -260,195 +260,195 @@ msgstr ""
 "OpenCL ovladač '%s %s' nepodporuje CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) nebo CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1273
+#: core.cpp:1280
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL není podporován vaším vendorem GPU (0x%X)"
 
-#: core.cpp:1295
+#: core.cpp:1302
 msgid "Finding devices"
 msgstr "Hledání zařízení"
 
-#: core.cpp:1307
+#: core.cpp:1314
 #, fuzzy, c-format
 #| msgid "Skip devices search (need to be root)"
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Přeskočit vyhledávání zařízení (je třeba mít práva správce systému – root)"
 
-#: core.cpp:1350
+#: core.cpp:1357
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Neznámý výrobce grafického čipu: %s (0x%X)"
 
-#: core.cpp:1370
+#: core.cpp:1377
 msgid "failed to find chipset vendor and model"
 msgstr "nepodařilo se určit výrobce a model čipové sady"
 
-#: core.cpp:1385
+#: core.cpp:1392
 msgid "failed to find graphic card vendor and model"
 msgstr "nepodařilo se určit výrobce a model grafického čipu"
 
-#: core.cpp:1487
+#: core.cpp:1494
 msgid "Retrieving GPU clocks"
 msgstr "Zjišťování taktů graf. čipu"
 
-#: core.cpp:1500
+#: core.cpp:1507
 msgid "None"
 msgstr "Žádný"
 
-#: core.cpp:1509
+#: core.cpp:1516
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.cpp:1516
+#: core.cpp:1523
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.cpp:1541
+#: core.cpp:1548
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1656
+#: core.cpp:1663
 #, fuzzy, c-format
 #| msgid "Driver for GPU %i doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Ovladač graf. čipu %i nehlásí takty"
 
-#: core.cpp:1677
+#: core.cpp:1684
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "nepodařilo se zavolat nástroj dmidecode"
 
-#: core.cpp:1700
+#: core.cpp:1707
 msgid "Identifying running system"
 msgstr "Rozpoznávání operačního systému, ve kterém je spuštěné"
 
-#: core.cpp:1703
+#: core.cpp:1710
 msgid "failed to identify running system"
 msgstr "nepodařilo se rozpoznat operační systém, ve kterém je spuštěné"
 
-#: core.cpp:1755 core.cpp:1784
+#: core.cpp:1762 core.cpp:1791
 msgid "Calling libprocps"
 msgstr "Zjišťování údajů prostřednictvím knihovny libprocps"
 
-#: core.cpp:1758
+#: core.cpp:1765
 msgid "unable to get system uptime"
 msgstr "chyba při hledání system uptime"
 
-#: core.cpp:1764
+#: core.cpp:1771
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.cpp:1810
+#: core.cpp:1817
 msgid "Calling libstatgrab"
 msgstr "Zjišťování údajů prostřednictvím knihovny libstatgrab"
 
-#: core.cpp:1858
+#: core.cpp:1865
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dnů, %i hodin, %i minut, %i sekund"
 
-#: core.cpp:1921
+#: core.cpp:1928
 msgid "Updating benchmark status"
 msgstr "Aktualizace stavu výkonostního testu"
 
-#: core.cpp:1924
+#: core.cpp:1931
 msgid "Active"
 msgstr "Aktivní"
 
-#: core.cpp:1927
+#: core.cpp:1934
 #, c-format
 msgid "(%u hours left)"
 msgstr "(zbývá %u hodin)"
 
-#: core.cpp:1929
+#: core.cpp:1936
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(zbývá %u minut)"
 
-#: core.cpp:1931
+#: core.cpp:1938
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(zbývá %u sekund)"
 
-#: core.cpp:1935 core.cpp:1990 core.cpp:1991
+#: core.cpp:1942 core.cpp:1997 core.cpp:1998
 msgid "Inactive"
 msgstr "Neaktivní"
 
-#: core.cpp:1938
+#: core.cpp:1945
 #, c-format
 msgid "in %u hours"
 msgstr "za %u hodin"
 
-#: core.cpp:1940
+#: core.cpp:1947
 #, c-format
 msgid "in %u minutes"
 msgstr "za %u minut"
 
-#: core.cpp:1942
+#: core.cpp:1949
 #, c-format
 msgid "in %u seconds"
 msgstr "za %u sekund"
 
-#: core.cpp:1959
+#: core.cpp:1966
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Spouštění výkonnostního testu"
 
-#: core.cpp:1982
+#: core.cpp:1989
 msgid "an error occurred while starting benchmark"
 msgstr "při spouštění výkonnostního testu se vyskytla chyba"
 
-#: core.cpp:2008
+#: core.cpp:2015
 msgid "Finding CPU package in fallback mode"
 msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
 
-#: core.cpp:2038
+#: core.cpp:2045
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
 
-#: core.cpp:2058
+#: core.cpp:2065
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Násobiče frekvence procesoru zjišťovány v náhradním režimu"
 
-#: core.cpp:2078
+#: core.cpp:2085
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Informace o základní desce zjišťovány v náhradním režimu"
 
-#: core.cpp:2091
+#: core.cpp:2098
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nepodařilo se získat informace o základní desce (náhradní režim)"
 
-#: core.cpp:2133
+#: core.cpp:2140
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Teplota procesoru zjišťována v náhradním režimu"
 
-#: core.cpp:2179
+#: core.cpp:2186
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nepodařilo se zjistit teplotu procesoru (náhradní režim)"
 
-#: core.cpp:2194
+#: core.cpp:2201
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Provozní napětí procesoru zjišťováno v náhradním režimu"
 
-#: core.cpp:2206
+#: core.cpp:2213
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
 
-#: core.cpp:2220
+#: core.cpp:2227
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
 
-#: core.cpp:2226
+#: core.cpp:2233
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
 

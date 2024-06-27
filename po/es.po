@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-04-14 15:21+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-06-27 16:32+0000\n"
 "PO-Revision-Date: 2024-04-18 23:03+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
@@ -135,121 +135,121 @@ msgstr "erróneo al invocar GLFW (%i): %s"
 msgid "Finding Vulkan API version"
 msgstr "Buscando la versión de la API de Vulkan"
 
-#: core.cpp:926
+#: core.cpp:930
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "error al llamar a vkCreateInstance (%s)"
 
-#: core.cpp:929
+#: core.cpp:934
 #, c-format
 msgid "%s is not supported"
 msgstr "%s no está soportado"
 
-#: core.cpp:937
+#: core.cpp:943
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "error al llamar a vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:944
+#: core.cpp:951
 msgid "No available Vulkan devices"
 msgstr "No hay dispositivos Vulkan disponibles"
 
-#: core.cpp:952
+#: core.cpp:959
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "No hay dispositivos físicos disponibles (%s)"
 
-#: core.cpp:1015
+#: core.cpp:1022
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Error al crear Vulkan para el dispositivo %u (%s)"
 
-#: core.cpp:1019
+#: core.cpp:1026
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s no está soportado para el dispositivo %u, use solo deviceID para emparejar"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Enabled"
 msgstr "Habilitado"
 
-#: core.cpp:1051 core.cpp:1364
+#: core.cpp:1058 core.cpp:1371
 msgid "Disabled"
 msgstr "Deshabilitado"
 
-#: core.cpp:1088
+#: core.cpp:1095
 msgid "Finding OpenCL API version"
 msgstr "Encontrar la versión de la API OpenCL"
 
-#: core.cpp:1092
+#: core.cpp:1099
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "No hay ninguna plataforma con capacidad OpenCL (%s)"
 
-#: core.cpp:1102
+#: core.cpp:1109
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "error al obtener todas las plataformas OpenCL (%s)"
 
-#: core.cpp:1115
+#: core.cpp:1122
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "No se pudo obtener el nombre de la plataforma%u%s"
 
-#: core.cpp:1123
+#: core.cpp:1130
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "error al obtener la versión para la plataforma %u (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "error al encontrar el número de dispositivos OpenCL para la plataforma «%s "
 "%s» (%s)"
 
-#: core.cpp:1131
+#: core.cpp:1138
 msgid "0 device"
 msgstr "0 dispositivos"
 
-#: core.cpp:1140
+#: core.cpp:1147
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "erróneo al obtener todos los dispositivos OpenCL para la plataforma «%s "
 "%s» (%s)"
 
-#: core.cpp:1160
+#: core.cpp:1167
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "erróneo al obtener nombre para el dispositivo %u (%s)"
 
-#: core.cpp:1168
+#: core.cpp:1175
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "erróneo al obtener la versión del dispositivo %u (%s)"
 
-#: core.cpp:1190
+#: core.cpp:1197
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Controlador OpenCL para «%s %s» no admite CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1201
+#: core.cpp:1208
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "Controlador OpenCL para «%s %s» no admite CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1209 core.cpp:1229 core.cpp:1262
+#: core.cpp:1216 core.cpp:1236 core.cpp:1269
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Controlador OpenCL para «%s %s» no admite CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1250
+#: core.cpp:1257
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -258,191 +258,191 @@ msgstr ""
 "Controlador OpenCL para «%s %s» no admite CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) o CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1273
+#: core.cpp:1280
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "Su proveedor de GPU no soporta OpenCL (0x%X)"
 
-#: core.cpp:1295
+#: core.cpp:1302
 msgid "Finding devices"
 msgstr "Buscando dispositivos"
 
-#: core.cpp:1307
+#: core.cpp:1314
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Omitir búsqueda de dispositivos (permisos equivocados en dispositivo %s)"
 
-#: core.cpp:1350
+#: core.cpp:1357
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Su proveedor de GPU es desconocido: %s (0x%X)"
 
-#: core.cpp:1370
+#: core.cpp:1377
 msgid "failed to find chipset vendor and model"
 msgstr "No se encontró el proveedor y el modelo del chipset"
 
-#: core.cpp:1385
+#: core.cpp:1392
 msgid "failed to find graphic card vendor and model"
 msgstr "no se pudo encontrar el proveedor de la tarjeta gráfica y el modelo"
 
-#: core.cpp:1487
+#: core.cpp:1494
 msgid "Retrieving GPU clocks"
 msgstr "Recuperando reloj de GPU"
 
-#: core.cpp:1500
+#: core.cpp:1507
 msgid "None"
 msgstr "Ninguno"
 
-#: core.cpp:1509
+#: core.cpp:1516
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "La ruta DRM para %s es desconocida"
 
-#: core.cpp:1516
+#: core.cpp:1523
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "El número de la tarjeta para %s es desconocido"
 
-#: core.cpp:1541
+#: core.cpp:1548
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (actual) / %s (máx)"
 
-#: core.cpp:1656
+#: core.cpp:1663
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "El controlador para %s no informa de las frecuencias"
 
-#: core.cpp:1677
+#: core.cpp:1684
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "no se han podido recuperar todos los datos de seguimiento de %s"
 
-#: core.cpp:1700
+#: core.cpp:1707
 msgid "Identifying running system"
 msgstr "Identificando el sistema en ejecución"
 
-#: core.cpp:1703
+#: core.cpp:1710
 msgid "failed to identify running system"
 msgstr "fallo al identificar el sistema en ejecución"
 
-#: core.cpp:1755 core.cpp:1784
+#: core.cpp:1762 core.cpp:1791
 msgid "Calling libprocps"
 msgstr "Llamar libprocps"
 
-#: core.cpp:1758
+#: core.cpp:1765
 msgid "unable to get system uptime"
 msgstr "no se pudo obtener el tiempo de actividad del sistema (uptime)"
 
-#: core.cpp:1764
+#: core.cpp:1771
 msgid "unable to create meminfo structure"
 msgstr "no se pudo crear la estructúra de meminfo"
 
-#: core.cpp:1810
+#: core.cpp:1817
 msgid "Calling libstatgrab"
 msgstr "Llamando a libstatgrab"
 
-#: core.cpp:1858
+#: core.cpp:1865
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i días, %i horas, %i minutos, %i segundos"
 
-#: core.cpp:1921
+#: core.cpp:1928
 msgid "Updating benchmark status"
 msgstr "Actualizar el estado del índice de referencia"
 
-#: core.cpp:1924
+#: core.cpp:1931
 msgid "Active"
 msgstr "Activo"
 
-#: core.cpp:1927
+#: core.cpp:1934
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u horas restantes)"
 
-#: core.cpp:1929
+#: core.cpp:1936
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutos restantes)"
 
-#: core.cpp:1931
+#: core.cpp:1938
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u segundos restantes)"
 
-#: core.cpp:1935 core.cpp:1990 core.cpp:1991
+#: core.cpp:1942 core.cpp:1997 core.cpp:1998
 msgid "Inactive"
 msgstr "Inactivo"
 
-#: core.cpp:1938
+#: core.cpp:1945
 #, c-format
 msgid "in %u hours"
 msgstr "en %u horas"
 
-#: core.cpp:1940
+#: core.cpp:1947
 #, c-format
 msgid "in %u minutes"
 msgstr "en %u minutos"
 
-#: core.cpp:1942
+#: core.cpp:1949
 #, c-format
 msgid "in %u seconds"
 msgstr "en %u segundos"
 
-#: core.cpp:1959
+#: core.cpp:1966
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "Iniciando el benchmark con %u hilos"
 
-#: core.cpp:1982
+#: core.cpp:1989
 msgid "an error occurred while starting benchmark"
 msgstr "un error ocurrió mientras se iniciaba el benchmark"
 
-#: core.cpp:2008
+#: core.cpp:2015
 msgid "Finding CPU package in fallback mode"
 msgstr "Encontrando paquete de CPU en modo de reserva"
 
-#: core.cpp:2038
+#: core.cpp:2045
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Su zócalo de CPU no se encuentra dentro de la base de datos ==> %s, nombre "
 "clave: %s"
 
-#: core.cpp:2058
+#: core.cpp:2065
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Calculando multiplicadores de CPU en modo de reserva"
 
-#: core.cpp:2078
+#: core.cpp:2085
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Recuperando información de la placa madre en modo de reserva"
 
-#: core.cpp:2091
+#: core.cpp:2098
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "fallo al recuperar la información de la placa madre (modo de reserva)"
 
-#: core.cpp:2133
+#: core.cpp:2140
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Recuperando la temperatura de la CPU en modo de reserva"
 
-#: core.cpp:2179
+#: core.cpp:2186
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "error al obtener temperatura de CPU (modo alternativo)"
 
-#: core.cpp:2194
+#: core.cpp:2201
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Obteniendo voltaje de CPU en el modo respaldo"
 
-#: core.cpp:2206
+#: core.cpp:2213
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "fallo al recuperar voltaje de CPU (modo respaldo)"
 
-#: core.cpp:2220
+#: core.cpp:2227
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Obteniendo frecuencia de CPU en modo reserva"
 
-#: core.cpp:2226
+#: core.cpp:2233
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "fallo al recuperar la frecuencia de la CPU (modo de reserva)"
 
