@@ -918,12 +918,17 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	createInfo.sType                   = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pNext                   = NULL;
 	createInfo.flags                   = 0;
+	createInfo.pApplicationInfo        = NULL;
+	createInfo.enabledLayerCount       = 0;
+	createInfo.ppEnabledLayerNames     = NULL;
 	createInfo.enabledExtensionCount   = (uint32_t) ext_create_info.size();
 	createInfo.ppEnabledExtensionNames = ext_create_info.data();
 
-	if((vk_err = vkCreateInstance(&createInfo, NULL, &instance)) != VK_SUCCESS)
+	vk_err = vkCreateInstance(&createInfo, NULL, &instance);
+	if(__sigabrt_received || (vk_err != VK_SUCCESS))
 	{
-		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), string_VkResult(vk_err));
+		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), __sigabrt_received ? "SIGABRT" : string_VkResult(vk_err));
+		__sigabrt_received = false;
 
 		if(vk_err == VK_ERROR_EXTENSION_NOT_PRESENT)
 			MSG_ERROR(_("%s is not supported"), VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
@@ -932,9 +937,11 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	}
 
 	/* Get number of devices */
-	if((vk_err = vkEnumeratePhysicalDevices(instance, &device_count, NULL)) != VK_SUCCESS)
+	vk_err = vkEnumeratePhysicalDevices(instance, &device_count, NULL);
+	if(__sigabrt_received || (vk_err != VK_SUCCESS))
 	{
-		MSG_ERROR(_("failed to call vkEnumeratePhysicalDevices (%s)"), string_VkResult(vk_err));
+		MSG_ERROR(_("failed to call vkEnumeratePhysicalDevices (%s)"), __sigabrt_received ? "SIGABRT" : string_VkResult(vk_err));
+		__sigabrt_received = false;
 		return 2;
 	}
 
