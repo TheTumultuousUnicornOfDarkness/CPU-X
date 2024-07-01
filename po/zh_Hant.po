@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-06-27 16:32+0000\n"
-"PO-Revision-Date: 2024-06-10 15:09+0000\n"
+"PO-Revision-Date: 2024-07-02 00:35+0000\n"
 "Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/zh_Hant/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -285,7 +285,7 @@ msgid "DRM path for %s is unknown"
 msgstr "%s 的 DRM 路徑未知"
 
 #: core.cpp:1523
-#, fuzzy, c-format
+#, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s 的卡號未知"
 
@@ -319,7 +319,7 @@ msgstr "正在呼叫 libprocps"
 
 #: core.cpp:1765
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "無法獲取系統運作時間"
 
 #: core.cpp:1771
 msgid "unable to create meminfo structure"
@@ -494,10 +494,9 @@ msgid "Caches"
 msgstr "快取"
 
 #: data.cpp:250
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s, %d 路"
+msgstr "%2d x %4d %s，%2d 路"
 
 #: data.cpp:252
 #, c-format
@@ -979,16 +978,12 @@ msgid "CPU tab:"
 msgstr "CPU分頁："
 
 #: tui_ncurses.cpp:242
-#, fuzzy
-#| msgid "\tPress 'down' key to decrease core number to monitor.\n"
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "\t按「下」鍵減少要監視的核心數。\n"
+msgstr "按下「Next Page」鍵以減少要監視的核心類型數目。"
 
 #: tui_ncurses.cpp:243
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "\t按「上」鍵增加要監視的核心數。\n"
+msgstr "按下「Previous Page」鍵以增加要監視的核心類型數目。"
 
 #: tui_ncurses.cpp:244
 msgid "Press 'down' key to decrease CPU core number to monitor."
@@ -1031,32 +1026,24 @@ msgid "Press 'previous page' key to increment number of threads to use."
 msgstr "按「上一頁」鍵增加要使用的線程數。"
 
 #: tui_ncurses.cpp:256
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "\t按「上」鍵增加要監視的核心數。\n"
+msgstr "按下「S」鍵以啟動／停止質數（慢速）基準測試。"
 
 #: tui_ncurses.cpp:257
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "\t按「上」鍵增加要監視的核心數。\n"
+msgstr "按下「F」鍵以啟動／停止質數（快速）基準測試。"
 
 #: tui_ncurses.cpp:259
 msgid "Graphics tab:"
 msgstr "圖形分頁："
 
 #: tui_ncurses.cpp:260
-#, fuzzy
-#| msgid "\tPress 'down' key to switch to previous test.\n"
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\t按「下」鍵切換至上一項測試。\n"
+msgstr "按下「下」鍵以切換至上一個顯示卡。"
 
 #: tui_ncurses.cpp:261
-#, fuzzy
-#| msgid "\tPress 'up' key' to switch to next test.\n"
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\t按「上」鍵切換至下一項測試。\n"
+msgstr "按下「上」鍵以切換至下一個顯示卡。"
 
 #: tui_ncurses.cpp:263
 msgid "Press any key to exit this help."
@@ -1083,16 +1070,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr ""
 
 #: util.cpp:252
-#, fuzzy, c-format
-#| msgid "an error occurred while compiling regex"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "編譯正則表達式時出錯"
+msgstr "開啟檔案「%s」時發生錯誤"
 
 #: util.cpp:297
-#, fuzzy, c-format
-#| msgid "an error occurred while starting benchmark"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "開始效能測試時有錯誤發生"
+msgstr "執行命令「%s」時發生錯誤"
 
 #: util.cpp:437
 msgid "set_cpu_affinity() not supported on this operating system"
