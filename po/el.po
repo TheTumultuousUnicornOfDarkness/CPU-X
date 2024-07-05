@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-06-27 16:32+0000\n"
-"PO-Revision-Date: 2024-07-05 19:28+0000\n"
+"PO-Revision-Date: 2024-07-05 20:25+0000\n"
 "Last-Translator: Christos Longros <chris.longros@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/cpu-x/translations/"
 "el/>\n"
@@ -285,7 +285,7 @@ msgstr ""
 #: core.cpp:1523
 #, c-format
 msgid "Card number for %s is unknown"
-msgstr ""
+msgstr "Ο αριθμός κάρτας για το %s είναι άγνωστος"
 
 #: core.cpp:1548
 #, c-format
@@ -295,24 +295,24 @@ msgstr ""
 #: core.cpp:1663
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr ""
+msgstr "Το πρόγραμμα οδήγησης για %s δεν αναφέρει συχνότητες"
 
 #: core.cpp:1684
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr ""
+msgstr "αποτυχία ανάκτησης όλων των δεδομένων παρακολούθησης για το %s"
 
 #: core.cpp:1707
 msgid "Identifying running system"
-msgstr ""
+msgstr "Προσδιορισμός τρέχοντος συστήματος"
 
 #: core.cpp:1710
 msgid "failed to identify running system"
-msgstr ""
+msgstr "αποτυχία προσδιορισμού τρέχοντος συστήματος"
 
 #: core.cpp:1762 core.cpp:1791
 msgid "Calling libprocps"
-msgstr ""
+msgstr "Κλήση libprocps"
 
 #: core.cpp:1765
 msgid "unable to get system uptime"
@@ -384,7 +384,7 @@ msgstr "προέκυψε σφάλμα κατά την εκκίνηση του be
 
 #: core.cpp:2015
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "Εύρεση πακέτου CPU σε λειτουργία εφεδρείας"
 
 #: core.cpp:2045
 #, c-format
@@ -394,39 +394,39 @@ msgstr ""
 
 #: core.cpp:2065
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
+msgstr "Υπολογισμός πολλαπλασιαστών CPU σε λειτουργία εφεδρείας"
 
 #: core.cpp:2085
 msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
+msgstr "Ανάκτηση πληροφοριών μητρικής κάρτας σε κατάσταση εφεδρείας"
 
 #: core.cpp:2098
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
+msgstr "αποτυχία ανάκτησης πληροφοριών μητρικής κάρτας (κατάσταση εφεδρείας)"
 
 #: core.cpp:2140
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "Ανάκτηση θερμοκρασίας CPU σε κατάσταση εφεδρείας"
 
 #: core.cpp:2186
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
+msgstr "αποτυχία ανάκτησης θερμοκρασίας CPU (κατάσταση εφεδρείας)"
 
 #: core.cpp:2201
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "Ανάκτηση τάσης CPU σε κατάσταση εφεδρείας"
 
 #: core.cpp:2213
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
+msgstr "αποτυχία ανάκτησης τάσης CPU (κατάσταση εφεδρείας)"
 
 #: core.cpp:2227
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "Ανάκτηση συχνότητας CPU σε λειτουργία εφεδρείας"
 
 #: core.cpp:2233
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "αποτυχία ανάκτησης συχνότητας CPU (λειτουργία εφεδρείας)"
 
 #: daemon_client.cpp:65
 msgid "Starting daemon in background…"
@@ -772,7 +772,7 @@ msgstr "Εκτύπωση έκδοσης και έξοδος"
 
 #: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
+msgstr "Εκτύπωση τιμών CPUID σε δεκαδική μορφή (η προεπιλογή είναι δεκαεξαδική)"
 
 #: main.cpp:81
 msgid "Disable colored output"
@@ -827,7 +827,7 @@ msgstr "Διαθέσιμες ΕΠΙΛΟΓΕΣ:"
 
 #: main.cpp:144
 msgid "Influenceable environment variables:"
-msgstr ""
+msgstr "Επηρεαζόμενες μεταβλητές περιβάλλοντος:"
 
 #: main.cpp:175
 msgid "This is free software: you are free to change and redistribute it."
@@ -851,6 +851,8 @@ msgid ""
 "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgstr ""
+"\n"
+"Ουπς, κάτι δεν πήγε καλά! Το %s έλαβε σήμα %d (%s) και κατέρρευσε."
 
 #: main.cpp:383
 #, c-format
@@ -859,6 +861,9 @@ msgid ""
 "Oops, something was wrong! %s has received signal %d (%s) and is trying to "
 "recover."
 msgstr ""
+"\n"
+"Ουπς, κάτι δεν πήγε καλά! Το %s έλαβε σήμα %d (%s) και προσπαθεί να "
+"ανακάμψει."
 
 #: main.cpp:407
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1074,7 +1079,7 @@ msgstr "Το set_cpu_affinity() δεν υποστηρίζεται σε αυτό 
 
 #: data.hpp:103 data.hpp:244 data.hpp:332
 msgid "Vendor"
-msgstr ""
+msgstr "Προμηθευτής"
 
 #: data.hpp:104
 msgid "Code Name"
@@ -1086,11 +1091,11 @@ msgstr "Πακέτο"
 
 #: data.hpp:106
 msgid "Technology"
-msgstr ""
+msgstr "Τεχνολογία"
 
 #: data.hpp:107 data.hpp:268
 msgid "Voltage"
-msgstr ""
+msgstr "Τάση"
 
 #: data.hpp:108
 msgid "Specification"
@@ -1258,11 +1263,11 @@ msgstr ""
 
 #: data.hpp:333
 msgid "Driver"
-msgstr ""
+msgstr "Οδηγός"
 
 #: data.hpp:334
 msgid "UMD Version"
-msgstr ""
+msgstr "Έκδοση UMD"
 
 #: data.hpp:336
 msgid "Compute Unit"
@@ -1288,7 +1293,7 @@ msgstr "Θερμοκρασία"
 
 #: data.hpp:342
 msgid "Core Voltage"
-msgstr ""
+msgstr "Τάση πυρήνα"
 
 #: data.hpp:343
 msgid "Power Avg"
@@ -1312,7 +1317,7 @@ msgstr ""
 
 #: data.hpp:348
 msgid "Vulkan RT"
-msgstr ""
+msgstr "Vulkan RT"
 
 #: data.hpp:349
 msgid "OpenGL Version"
@@ -1328,7 +1333,7 @@ msgstr "Έκδοση OpenCL"
 
 #: data.hpp:387
 msgid "Score"
-msgstr ""
+msgstr "Score"
 
 #: data.hpp:388
 msgid "Run"
@@ -1340,47 +1345,47 @@ msgstr "Διάρκεια"
 
 #: util.hpp:77
 msgid "bytes"
-msgstr ""
+msgstr "bytes"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: util.hpp:80
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: util.hpp:82
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: util.hpp:84
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: util.hpp:86
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:89
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: util.hpp:91
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: util.hpp:93
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: util.hpp:95
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #: cpu-x-gtk-3.12.ui:1184
 msgid "Cache"
