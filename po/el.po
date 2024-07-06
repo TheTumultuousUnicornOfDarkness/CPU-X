@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-06-27 16:32+0000\n"
-"PO-Revision-Date: 2024-07-05 20:25+0000\n"
+"PO-Revision-Date: 2024-07-06 08:58+0000\n"
 "Last-Translator: Christos Longros <chris.longros@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/cpu-x/translations/"
 "el/>\n"
@@ -70,12 +70,12 @@ msgstr ""
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (max)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -271,16 +271,16 @@ msgstr "Αποτυχία εύρεσης προμηθευτή και μοντέλ
 
 #: core.cpp:1494
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "Ανάκτηση ρολογιών GPU"
 
 #: core.cpp:1507
 msgid "None"
-msgstr ""
+msgstr "Κανένα"
 
 #: core.cpp:1516
 #, c-format
 msgid "DRM path for %s is unknown"
-msgstr ""
+msgstr "Ο κατάλογος DRM για το %s είναι άγνωστος"
 
 #: core.cpp:1523
 #, c-format
@@ -435,18 +435,19 @@ msgstr ""
 #: daemon_client.cpp:172
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr ""
+"pkexec: δεν κατέστη δυνατή η λήψη εξουσιοδότησης (ο διάλογος απορρίφθηκε)"
 
 #: daemon_client.cpp:175
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: δεν κατέστη δυνατή η λήψη εξουσιοδότησης (μη εξουσιοδοτημένος)"
 
 #: daemon_client.cpp:178
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: η εντολή δεν βρέθηκε"
 
 #: daemon_client.cpp:181
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: απροσδόκητος κωδικός σφάλματος"
 
 #: daemon_client.cpp:211
 msgid "Connecting to daemon…"
@@ -459,7 +460,7 @@ msgstr ""
 
 #: data.cpp:124 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: data.cpp:187
 msgid "P-core"
@@ -475,11 +476,11 @@ msgstr ""
 
 #: data.cpp:192 data.cpp:195
 msgid "Core"
-msgstr ""
+msgstr "Πυρήνας"
 
 #: data.cpp:211 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
-msgstr ""
+msgstr "Επεξεργαστής"
 
 #: data.cpp:243 data.cpp:332 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
@@ -498,7 +499,7 @@ msgstr "%d 2%s, 3%d-way"
 
 #: data.cpp:266
 msgid "Count"
-msgstr ""
+msgstr "Αριθμός"
 
 #: data.cpp:279 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
@@ -516,15 +517,15 @@ msgstr ""
 
 #: data.cpp:401
 msgid "Test"
-msgstr ""
+msgstr "Τεστ"
 
 #: data.cpp:412 data.cpp:426 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
-msgstr ""
+msgstr "Μητρική κάρτα"
 
 #: data.cpp:440 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: data.cpp:455 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
@@ -657,7 +658,7 @@ msgstr ""
 
 #: gui_gtk.cpp:412
 msgid "Settings"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: gui_gtk.cpp:631
 msgid "BaseFamily"
@@ -732,7 +733,7 @@ msgstr "Ορισμός προσαρμοσμένου χρόνου μεταξύ δ
 
 #: main.cpp:70
 msgid "Set default tab (integer)"
-msgstr ""
+msgstr "Ορισμός προεπιλεγμένης καρτέλας (ακέραιος αριθμός)"
 
 #: main.cpp:71
 msgid "Select core type to monitor (integer)"
@@ -803,6 +804,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt' and 'freq')"
 msgstr ""
+"Παράλειψη τιμών CPU που αναφέρονται από τη libcpuid (τιμές διαχωρισμένες με "
+"κόμμα μεταξύ 'temp', 'volt' και 'freq')"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
@@ -924,6 +927,7 @@ msgstr ""
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr ""
+"Η επιλεγμένη καρτέλα (%u) δεν είναι έγκυρος αριθμός (το %u είναι το μέγιστο)"
 
 #: tui_ncurses.cpp:111
 msgid "Window is too small!"
@@ -936,7 +940,7 @@ msgstr "Πατήστε 'h' για να δείτε τη βοήθεια."
 #: tui_ncurses.cpp:232
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "Καλώς ήρθατε στη βοήθεια του %s NCurses!\n"
 
 #: tui_ncurses.cpp:233
 msgid "This help describes how to use this Text-based User Interface."
@@ -964,7 +968,7 @@ msgstr "Πατήστε το πλήκτρο 'q' για έξοδο."
 
 #: tui_ncurses.cpp:241
 msgid "CPU tab:"
-msgstr ""
+msgstr "Καρτέλα CPU:"
 
 #: tui_ncurses.cpp:242
 msgid "Press 'next page' key to decrease core type number to monitor."
@@ -977,10 +981,14 @@ msgstr ""
 #: tui_ncurses.cpp:244
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
+"Πατήστε το πλήκτρο \"down\" για να μειώσετε τον αριθμό πυρήνων της CPU προς "
+"παρακολούθηση."
 
 #: tui_ncurses.cpp:245
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
+"Πατήστε το πλήκτρο 'up' για να αυξήσετε τον αριθμό πυρήνων της CPU προς "
+"παρακολούθηση."
 
 #: tui_ncurses.cpp:247
 msgid "Caches tab:"
@@ -1028,7 +1036,7 @@ msgstr ""
 
 #: tui_ncurses.cpp:259
 msgid "Graphics tab:"
-msgstr ""
+msgstr "Καρτέλα γραφικών:"
 
 #: tui_ncurses.cpp:260
 msgid "Press 'down' key to switch to previous graphic card."
@@ -1045,13 +1053,15 @@ msgstr "Πατήστε οποιοδήποτε πλήκτρο για να βγε�
 
 #: tui_ncurses.cpp:640
 msgid "Starting NCurses TUI…"
-msgstr ""
+msgstr "Εκκίνηση NCurses TUI…"
 
 #: tui_ncurses.cpp:649
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"FATAL ERROR: η βάση δεδομένων terminfo δεν βρέθηκε (προσπαθήστε να ορίσετε "
+"τη μεταβλητή περιβάλλοντος TERMINFO)"
 
 #: tui_ncurses.cpp:654
 #, c-format
@@ -1424,7 +1434,7 @@ msgstr "Μονάδα μέτρησης θερμοκρασίας"
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:5826
 msgid "Default tab"
-msgstr ""
+msgstr "Προεπιλεγμένη καρτέλα"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:5839
