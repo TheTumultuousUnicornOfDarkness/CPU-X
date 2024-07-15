@@ -11,14 +11,15 @@
 # willkali <willian.exercito@gmail.com>, 2023.
 # Ahm Asm <asm49995@gmail.com>, 2023.
 # ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>, 2024.
+# Abdullah Qadry <aa770532586@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-06-27 16:32+0000\n"
-"PO-Revision-Date: 2024-02-06 17:22+0000\n"
-"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2024-07-16 17:09+0000\n"
+"Last-Translator: Abdullah Qadry <aa770532586@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: core.cpp:135
 msgid "Finding CPU technology"
@@ -74,17 +75,17 @@ msgstr "استدعاء دميديكودي"
 #: core.cpp:454 core.cpp:473
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (تم تكوينه)"
 
 #: core.cpp:461 core.cpp:480
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (الحد الأقصى)"
 
 #: core.cpp:466
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (الحد الأدنى)"
 
 #: core.cpp:496
 msgid "Calculating CPU usage"
@@ -102,11 +103,14 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
+"لم تتم تهيئة pci_access بشكل صحيح: إنها مشكلة شائعة عندما يتم إنشاء %s "
+"باستخدام إصدار libpci أقل. تأكد من وجود مكتبة libpci %s على نظامك. بخلاف ذلك،"
+" يرجى إعادة بناء %s."
 
 #: core.cpp:657
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "لا يوجد برنامج تشغيل kernel قيد الاستخدام لبطاقة الرسومات في المسار %s"
 
 #: core.cpp:693
 #, fuzzy, c-format
@@ -115,28 +119,23 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
 
 #: core.cpp:777
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
+msgstr "برنامج تشغيل وضع مستخدم GPU الخاص بك غير معروف للمورد %s : %s"
 
 #: core.cpp:781
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr "تعذر استدعاء libcpuid (%s)"
+msgstr "فشل في استدعاء GLFW (%i): %s"
 
 #: core.cpp:914
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "الإصدار"
+msgstr "إصدار Vulkan API"
 
 #: core.cpp:930
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "فشل استدعاء دميديكودي"
+msgstr "فشل في استدعاء vkCreateInstance (%s)"
 
 #: core.cpp:934
 #, c-format
@@ -154,10 +153,9 @@ msgid "No available Vulkan devices"
 msgstr ""
 
 #: core.cpp:959
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "فشل استدعاء دميديكودي"
+msgstr "لا توجد أجهزة فعلية متوفرة (%s)"
 
 #: core.cpp:1022
 #, fuzzy, c-format
