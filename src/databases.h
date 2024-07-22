@@ -225,6 +225,7 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i7-12700KF",     "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i9-12900K",      "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i9-12900HK",     "BGA 1744"       },
+	{ NULL,                             "Intel(R) Core(TM) i5-13500T",      "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i5-13600K",      "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i7-13700K",      "LGA 1700"       },
 	{ NULL,                             "Intel(R) Core(TM) i9-13900K",      "LGA 1700"       },
