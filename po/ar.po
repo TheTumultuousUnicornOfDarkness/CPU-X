@@ -12,14 +12,15 @@
 # Ahm Asm <asm49995@gmail.com>, 2023.
 # ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>, 2024.
 # Abdullah Qadry <aa770532586@gmail.com>, 2024.
+# Mohammed al-Qubati <mhraqeeb@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-06-27 16:32+0000\n"
-"PO-Revision-Date: 2024-07-16 17:09+0000\n"
-"Last-Translator: Abdullah Qadry <aa770532586@gmail.com>\n"
+"PO-Revision-Date: 2024-08-09 18:47+0000\n"
+"Last-Translator: Mohammed al-Qubati <mhraqeeb@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
 "Language: ar\n"
@@ -113,10 +114,9 @@ msgid "No kernel driver in use for graphic card at path %s"
 msgstr "لا يوجد برنامج تشغيل kernel قيد الاستخدام لبطاقة الرسومات في المسار %s"
 
 #: core.cpp:693
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "تعريف وحدة معالجة الرسوميات غير معروف: %s"
+msgstr "نواة وحدة معالجة الرسوميات خاصتك غير معروف: %s"
 
 #: core.cpp:777
 #, c-format
@@ -140,17 +140,16 @@ msgstr "فشل في استدعاء vkCreateInstance (%s)"
 #: core.cpp:934
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s ليس مدعومًا"
 
 #: core.cpp:943
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "فشل استدعاء دميديكودي"
+msgstr "فشل استدعاء vkEnumeratePhysicalDevices (%s)"
 
 #: core.cpp:951
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "أجهزة فولكان غير متوفرة"
 
 #: core.cpp:959
 #, c-format
@@ -158,40 +157,36 @@ msgid "No available physical devices (%s)"
 msgstr "لا توجد أجهزة فعلية متوفرة (%s)"
 
 #: core.cpp:1022
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "تعذر استدعاء libcpuid (%s)"
+msgstr "تعذر إنشاء فولكان لجاهز (%s)"
 
 #: core.cpp:1026
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
+msgstr "%s ليس مدعومًا لجهاز %u، استخدم deviceID فقط للمطابقة"
 
 #: core.cpp:1058 core.cpp:1371
 msgid "Enabled"
-msgstr ""
+msgstr "مفعل"
 
 #: core.cpp:1058 core.cpp:1371
 msgid "Disabled"
-msgstr ""
+msgstr "معطل"
 
 #: core.cpp:1095
-#, fuzzy
-#| msgid "Version"
 msgid "Finding OpenCL API version"
-msgstr "الإصدار"
+msgstr "العثور على إصدار OpenCL API"
 
 #: core.cpp:1099
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "لا توجد منصة تدعم OpenCL (%s)"
 
 #: core.cpp:1109
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "فشل استدعاء دميديكودي"
+msgstr "فشل الحصول على كل منصات OpenCL (%s)"
 
 #: core.cpp:1122
 #, c-format
@@ -201,34 +196,31 @@ msgstr ""
 #: core.cpp:1130
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "فشل في الحصول على الإصدار للمنصة %u (%s)"
 
 #: core.cpp:1138
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "فشل في العثور على عدد أجهزة OpenCL للمنصة '%s%s' (%s)"
 
 #: core.cpp:1138
-#, fuzzy
-#| msgid "Finding devices"
 msgid "0 device"
-msgstr "العثور على الأجهزة"
+msgstr "0 جهاز"
 
 #: core.cpp:1147
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "فشل الحصول على كل أجهزة OpenCL لمنصة '%s%s' (%s)"
 
 #: core.cpp:1167
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "تعذر استدعاء libcpuid (%s)"
+msgstr "فشل الحصول على اسم جهاز %u (%s)"
 
 #: core.cpp:1175
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "فشل الحصول على الإصدار للجهاز %u (%s)"
 
 #: core.cpp:1197
 #, c-format
