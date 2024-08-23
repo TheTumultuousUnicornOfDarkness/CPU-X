@@ -863,8 +863,9 @@ void GtkData::fill_box_active_stick(Gtk::ComboBoxText *comboboxtext)
 	{
 		comboboxtext->remove_all();
 		for(unsigned i = 0; i < this->data.memory.sticks.size(); i++)
-			comboboxtext->append(this->data.memory.get_stick_formatted(i));
+			comboboxtext->append(this->data.memory.get_stick_formatted(i).substr(0, FOOTER_GTK_COMBO_BOX_TEXT_MAX_WIDTH));
 		comboboxtext->set_active(Options::get_selected_stick());
+		comboboxtext->set_tooltip_text(this->data.memory.get_stick_formatted(Options::get_selected_stick()));
 	}
 	else
 		comboboxtext->set_sensitive(false);
@@ -1080,8 +1081,9 @@ void GtkData::fill_box_active_card(Gtk::ComboBoxText *comboboxtext)
 	{
 		comboboxtext->remove_all();
 		for(unsigned i = 0; i < this->data.graphics.cards.size(); i++)
-			comboboxtext->append(this->data.graphics.get_card_formatted(i));
+			comboboxtext->append(this->data.graphics.get_card_formatted(i).substr(0, FOOTER_GTK_COMBO_BOX_TEXT_MAX_WIDTH));
 		comboboxtext->set_active(Options::get_selected_gpu());
+		comboboxtext->set_tooltip_text(this->data.graphics.get_card_formatted(Options::get_selected_gpu()));
 	}
 	else
 		comboboxtext->set_sensitive(false);

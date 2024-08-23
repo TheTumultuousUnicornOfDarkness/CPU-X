@@ -33,6 +33,7 @@
 #include "data.hpp"
 
 #define APPLICATION_ID "io.github." PRGUSERNAME "." PRGNAME_LOW // https://developer.gnome.org/documentation/tutorials/application-id.html#guidelines-for-choosing-an-application-id
+#define FOOTER_GTK_COMBO_BOX_TEXT_MAX_WIDTH 60
 
 
 enum GtkTheme

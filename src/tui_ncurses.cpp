@@ -329,7 +329,7 @@ static void ntab_cpu(WINDOW *win, Data &data)
 		if(indes_cur >= length)
 		{
 			instructions1.value = cpu_type.processor.instructions.value.substr(0, index_prev);
-			instructions2.value = cpu_type.processor.instructions.value.substr(index_prev + 1);
+			instructions2.value = cpu_type.processor.instructions.value.substr(index_prev + 1); // Skip the first whitespace
 			break;
 		}
 		indes_cur++;
@@ -443,7 +443,7 @@ static void ntab_memory(WINDOW *win, Data &data)
 
 	/* Sticks frame */
 	draw_frame(win, LINE_17, SizeInfo::start , LINE_19, SizeInfo::width - 1, data.memory.footer);
-	mvwprintwc(win, LINE_18, 4, Pairs::Colors::DEFAULT_COLOR, data.memory.get_selected_stick_formatted());
+	mvwprintwc(win, LINE_18, 4, Pairs::Colors::DEFAULT_COLOR, data.memory.get_selected_stick_formatted().substr(0, SizeInfo::width - 4));
 }
 
 /* Draw an usage bar in System tab */
@@ -515,34 +515,52 @@ static void ntab_graphics(WINDOW *win, Data &data)
 	if(data.graphics.cards.size() == 0)
 		return;
 
+	const unsigned length = SizeInfo::width - (SizeInfo::tb + 18);
 	const auto& card = data.graphics.get_selected_card();
+	std::string::size_type index_prev = 0, indes_cur = 0;
+	Label model1 = Label(card.model.name);
+	Label model2 = Label(card.model.name);
+
+	/* Split Model label in two parts */
+	while((indes_cur = card.model.value.find(" ", indes_cur)) != std::string::npos)
+	{
+		if(indes_cur >= length)
+		{
+			model1.value = card.model.value.substr(0, index_prev);
+			model2.value = card.model.value.substr(index_prev);
+			break;
+		}
+		indes_cur++;
+		index_prev = indes_cur;
+	}
 
 	/* Card frame */
-	draw_frame(win, LINE_0, SizeInfo::start, LINE_14, SizeInfo::width - 1, card);
+	draw_frame(win, LINE_0, SizeInfo::start, LINE_15, SizeInfo::width - 1, card);
 	mvwprintw2c(win, LINE_1,  SizeInfo::tb, "%13s", "%s", card.vendor);
 	mvwprintw2c(win, LINE_1,  SizeInfo::tm, "%18s", "%s", card.kernel_driver);
 	mvwprintw2c(win, LINE_2,  SizeInfo::tb, "%13s", "%s", card.user_mode_driver);
-	mvwprintw2c(win, LINE_3,  SizeInfo::tb, "%13s", "%s", card.model);
-	mvwprintw2c(win, LINE_4,  SizeInfo::tb, "%13s", "%s", card.comp_unit);
-	mvwprintw2c(win, LINE_4,  SizeInfo::tm, "%18s", "%s", card.device_id);
-	mvwprintw2c(win, LINE_5,  SizeInfo::tb, "%13s", "%s", card.vbios_version);
-	mvwprintw2c(win, LINE_6,  SizeInfo::tb, "%13s", "%s", card.interface);
-	mvwprintw2c(win, LINE_7,  SizeInfo::tb, "%13s", "%s", card.temperature);
-	mvwprintw2c(win, LINE_7,  SizeInfo::tm, "%18s", "%s", card.usage);
-	mvwprintw2c(win, LINE_8,  SizeInfo::tb, "%13s", "%s", card.core_voltage);
-	mvwprintw2c(win, LINE_8,  SizeInfo::tm, "%18s", "%s", card.power_avg);
-	mvwprintw2c(win, LINE_9,  SizeInfo::tb, "%13s", "%s", card.core_clock);
-	mvwprintw2c(win, LINE_9,  SizeInfo::tm, "%18s", "%s", card.mem_clock);
-	mvwprintw2c(win, LINE_10, SizeInfo::tb, "%13s", "%s", card.mem_used);
-	mvwprintw2c(win, LINE_11, SizeInfo::tb, "%13s", "%s", card.resizable_bar);
-	mvwprintw2c(win, LINE_11, SizeInfo::tm, "%18s", "%s", card.vulkan_rt);
-	mvwprintw2c(win, LINE_12, SizeInfo::tb, "%13s", "%s", card.opengl_version);
-	mvwprintw2c(win, LINE_12, SizeInfo::tm, "%18s", "%s", card.vulkan_version);
-	mvwprintw2c(win, LINE_13, SizeInfo::tb, "%13s", "%s", card.opencl_version);
+	mvwprintw2c(win, LINE_3,  SizeInfo::tb, "%13s", "%s", model1);
+	mvwprintwc (win, LINE_4,  SizeInfo::tb + 15, Pairs::Colors::LABEL_VALUE_COLOR, model2.value);
+	mvwprintw2c(win, LINE_5,  SizeInfo::tb, "%13s", "%s", card.comp_unit);
+	mvwprintw2c(win, LINE_5,  SizeInfo::tm, "%18s", "%s", card.device_id);
+	mvwprintw2c(win, LINE_6,  SizeInfo::tb, "%13s", "%s", card.vbios_version);
+	mvwprintw2c(win, LINE_7,  SizeInfo::tb, "%13s", "%s", card.interface);
+	mvwprintw2c(win, LINE_8,  SizeInfo::tb, "%13s", "%s", card.temperature);
+	mvwprintw2c(win, LINE_8,  SizeInfo::tm, "%18s", "%s", card.usage);
+	mvwprintw2c(win, LINE_9,  SizeInfo::tb, "%13s", "%s", card.core_voltage);
+	mvwprintw2c(win, LINE_9,  SizeInfo::tm, "%18s", "%s", card.power_avg);
+	mvwprintw2c(win, LINE_10, SizeInfo::tb, "%13s", "%s", card.core_clock);
+	mvwprintw2c(win, LINE_10, SizeInfo::tm, "%18s", "%s", card.mem_clock);
+	mvwprintw2c(win, LINE_11, SizeInfo::tb, "%13s", "%s", card.mem_used);
+	mvwprintw2c(win, LINE_12, SizeInfo::tb, "%13s", "%s", card.resizable_bar);
+	mvwprintw2c(win, LINE_12, SizeInfo::tm, "%18s", "%s", card.vulkan_rt);
+	mvwprintw2c(win, LINE_13, SizeInfo::tb, "%13s", "%s", card.opengl_version);
+	mvwprintw2c(win, LINE_13, SizeInfo::tm, "%18s", "%s", card.vulkan_version);
+	mvwprintw2c(win, LINE_14, SizeInfo::tb, "%13s", "%s", card.opencl_version);
 
 	/* Cards frame */
 	draw_frame(win, LINE_17, SizeInfo::start , LINE_19, SizeInfo::width - 1, data.graphics.footer);
-	mvwprintwc(win, LINE_18, 4, Pairs::Colors::DEFAULT_COLOR, data.graphics.get_selected_card_formatted());
+	mvwprintwc(win, LINE_18, 4, Pairs::Colors::DEFAULT_COLOR, data.graphics.get_selected_card_formatted().substr(0, SizeInfo::width - 4));
 }
 
 /* Bench tab */
