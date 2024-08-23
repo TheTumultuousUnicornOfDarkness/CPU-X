@@ -1427,37 +1427,65 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 {
 	int pcie_width   = 0;
 	uint8_t pcie_gen = 0;
-	std::string pcie_speed_raw, pcie_width_raw;
-	// Linux 4.13+ (3 September 2017)
-	const std::string link_speed_file = drm_path + "/device/" + type + "_link_speed";
-	const std::string link_width_file = drm_path + "/device/" + type + "_link_width";
+	float pcie_speed = 0.0;
+	const std::string pp_dpm_pcie_file = drm_path + "/device/" + "pp_dpm_pcie";
+	const std::string link_speed_file  = drm_path + "/device/" + type + "_link_speed";
+	const std::string link_width_file  = drm_path + "/device/" + type + "_link_width";
 
-	if(!file_exists(link_speed_file) || !file_exists(link_width_file))
-		return std::string();
-
-	if(fopen_to_str(pcie_speed_raw, "%s", link_speed_file.c_str()) || fopen_to_str(pcie_width_raw, "%s", link_width_file.c_str()))
-		return std::string();
-
-	try
+	/* Try to parse the pp_dpm_pcie file (AMDGPU) if present */
+	if(file_exists(pp_dpm_pcie_file))
 	{
-		/* Speed */
-		switch(std::stoi(pcie_speed_raw))
+		char current, line[40];
+		MSG_DEBUG("get_gpu_interface_info: opening '%s'", pp_dpm_pcie_file.c_str());
+		std::FILE* fp = std::fopen(pp_dpm_pcie_file.c_str(), "r");
+		if(fp)
 		{
-			case  2: pcie_gen = 1; break; // 2.5 GT/s
-			case  5: pcie_gen = 2; break;
-			case  8: pcie_gen = 3; break;
-			case 16: pcie_gen = 4; break;
-			case 32: pcie_gen = 5; break;
-			case 64: pcie_gen = 6; break;
-			default: pcie_gen = 0; break;
+			while(std::fgets(line, sizeof(line), fp) != nullptr) // parse all lines in pp_dpm_pcie file
+			{
+				if(type == "current") // look for line containing '*' at the end
+				{
+					if((std::sscanf(line, "%*d: %fGT/s, x%d %*dMhz %c", &pcie_speed, &pcie_width, &current) >= 3) && (current == '*'))
+						break; // break the loop when current link profile is found
+					else
+						pcie_width = 0; // reset values when sscanf() does not match pattern
+				}
+				else if(type == "max") // last line contains the max profile
+					std::sscanf(line, "%*d: %fGT/s, x%d %*dMhz", &pcie_speed, &pcie_width);
+				else // in case get_gpu_interface_info() is badly called
+					MSG_ERROR("get_gpu_interface_info: unknown type '%s'", type.c_str());
+			}
+			std::fclose(fp);
 		}
-
-		/* Width */
-		pcie_width = std::stoi(pcie_width_raw);
+		else
+			MSG_ERRNO("get_gpu_interface_info: failed to open '%s' file", pp_dpm_pcie_file.c_str());
 	}
-	catch(const std::exception& e)
+
+	/* Try to parse the {current,max}_link_{speed,width} files otherwise, present since Linux 4.13+ (3 September 2017) */
+	if((pcie_width == 0) && file_exists(link_speed_file) && file_exists(link_width_file))
 	{
-		return std::string();
+		std::string pcie_speed_raw, pcie_width_raw;
+		if(fopen_to_str(pcie_speed_raw, "%s", link_speed_file.c_str()) || fopen_to_str(pcie_width_raw, "%s", link_width_file.c_str()))
+			return std::string();
+		try
+		{
+			pcie_speed = std::stof(pcie_speed_raw);
+			pcie_width = std::stoi(pcie_width_raw);
+		}
+		catch(const std::exception& e)
+		{
+			return std::string();
+		}
+	}
+
+	switch(int(pcie_speed * 100)) // we multiply by 100 because switch statements do not support floats
+	{
+		case  250: pcie_gen = 1; break; // 2.5 GT/s is PCIe 1.0
+		case  500: pcie_gen = 2; break; // 5.0 GT/s is PCIe 2.0
+		case  800: pcie_gen = 3; break; // 8.0 GT/s is PCIe 3.0
+		case 1600: pcie_gen = 4; break; // 16.0 GT/s is PCIe 4.0
+		case 3200: pcie_gen = 5; break; // 32.0 GT/s is PCIe 5.0
+		case 6400: pcie_gen = 6; break; // 64.0 GT/s is PCIe 6.0
+		default:   pcie_gen = 0; break;
 	}
 
 	return string_format("Gen%1dx%d", pcie_gen, pcie_width);
