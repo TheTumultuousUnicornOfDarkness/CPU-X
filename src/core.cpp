@@ -25,6 +25,7 @@
 #include <sys/utsname.h>
 #include <cstring>
 #include <cmath>
+#include <clocale>
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -1436,10 +1437,12 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 	if(file_exists(pp_dpm_pcie_file))
 	{
 		char current, line[40];
+		const char *prev_loc = std::setlocale(LC_NUMERIC, nullptr); // for %f in sscanf
 		MSG_DEBUG("get_gpu_interface_info: opening '%s'", pp_dpm_pcie_file.c_str());
 		std::FILE* fp = std::fopen(pp_dpm_pcie_file.c_str(), "r");
 		if(fp)
 		{
+			std::setlocale(LC_NUMERIC, "C");
 			while(std::fgets(line, sizeof(line), fp) != nullptr) // parse all lines in pp_dpm_pcie file
 			{
 				if(type == "current") // look for line containing '*' at the end
@@ -1455,6 +1458,7 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 					MSG_ERROR("get_gpu_interface_info: unknown type '%s'", type.c_str());
 			}
 			std::fclose(fp);
+			std::setlocale(LC_NUMERIC, prev_loc);
 		}
 		else
 			MSG_ERRNO("get_gpu_interface_info: failed to open '%s' file", pp_dpm_pcie_file.c_str());
