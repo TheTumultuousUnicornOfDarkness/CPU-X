@@ -37,5 +37,5 @@ cmake -B build \
 echo "Build libcpuid"
 cmake --build build
 
-echo "Install CPU-X on system"
+echo "Install libcpuid on system"
 sudo ninja -C build install
