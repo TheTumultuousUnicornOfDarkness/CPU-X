@@ -320,22 +320,24 @@ static void ntab_cpu(WINDOW *win, Data &data)
 {
 	const unsigned length = SizeInfo::width - (SizeInfo::tb + 18);
 	const auto& cpu_type = data.cpu.get_selected_cpu_type();
-	std::string::size_type index_prev = 0, indes_cur = 0;
+	std::string::size_type index_prev = 0, index_cur = 0;
 	Label instructions1 = Label(cpu_type.processor.instructions.name);
 	Label instructions2 = Label(cpu_type.processor.instructions.name);
 
 	/* Split Intructions label in two parts */
-	while((indes_cur = cpu_type.processor.instructions.value.find(",", indes_cur)) != std::string::npos)
+	while((index_cur = cpu_type.processor.instructions.value.find(",", index_cur)) != std::string::npos)
 	{
-		if(indes_cur >= length)
+		if(index_cur >= length)
 		{
 			instructions1.value = cpu_type.processor.instructions.value.substr(0, index_prev);
 			instructions2.value = cpu_type.processor.instructions.value.substr(index_prev + 1); // Skip the first whitespace
 			break;
 		}
-		indes_cur++;
-		index_prev = indes_cur;
+		index_cur++;
+		index_prev = index_cur;
 	}
+	if(index_cur == std::string::npos)
+		instructions1.value = cpu_type.processor.instructions.value;
 
 	/* Processor frame */
 	draw_frame(win, LINE_0, SizeInfo::start , LINE_10, SizeInfo::width - 1, cpu_type.processor);
@@ -518,22 +520,24 @@ static void ntab_graphics(WINDOW *win, Data &data)
 
 	const unsigned length = SizeInfo::width - (SizeInfo::tb + 18);
 	const auto& card = data.graphics.get_selected_card();
-	std::string::size_type index_prev = 0, indes_cur = 0;
+	std::string::size_type index_prev = 0, index_cur = 0;
 	Label model1 = Label(card.model.name);
 	Label model2 = Label(card.model.name);
 
 	/* Split Model label in two parts */
-	while((indes_cur = card.model.value.find(" ", indes_cur)) != std::string::npos)
+	while((index_cur = card.model.value.find(" ", index_cur)) != std::string::npos)
 	{
-		if(indes_cur >= length)
+		if(index_cur >= length)
 		{
 			model1.value = card.model.value.substr(0, index_prev);
 			model2.value = card.model.value.substr(index_prev);
 			break;
 		}
-		indes_cur++;
-		index_prev = indes_cur;
+		index_cur++;
+		index_prev = index_cur;
 	}
+	if(index_cur == std::string::npos)
+		model1.value = card.model.value;
 
 	/* Card frame */
 	draw_frame(win, LINE_0, SizeInfo::start, LINE_15, SizeInfo::width - 1, card);
