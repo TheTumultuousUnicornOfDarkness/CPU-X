@@ -89,7 +89,7 @@ struct Data
 		char *cpuid_raw_file = NULL;
 #if HAS_LIBCPUID
 		cpu_vendor_t vendor;
-		int32_t ext_family;
+		std::string sensors_module_name {};
 #endif /* HAS_LIBCPUID */
 
 		struct CpuType : public MetaFrame

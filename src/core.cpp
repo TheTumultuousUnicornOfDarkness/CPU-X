@@ -248,6 +248,17 @@ static int call_libcpuid_static(Data &data)
 	}
 	cpuid_free_raw_data_array(&raw_data);
 
+	/* Find kernel module for CPU temperature (used by cputab_temp_fallback()) */
+	if(system_id.cpu_types[0].architecture == ARCHITECTURE_X86)
+	{
+		if(system_id.cpu_types[0].vendor == VENDOR_INTEL)
+			data.cpu.sensors_module_name = "coretemp";
+		else if((system_id.cpu_types[0].vendor == VENDOR_AMD) && (system_id.cpu_types[0].x86.ext_family <= 0x8))
+			data.cpu.sensors_module_name = "k8temp";
+		else if((system_id.cpu_types[0].vendor== VENDOR_AMD) && (system_id.cpu_types[0].x86.ext_family >= 0x10))
+			data.cpu.sensors_module_name = "k10temp";
+	}
+
 	/* Basically fill CPU tab */
 	for(uint8_t cpu_type = 0; cpu_type < system_id.num_cpu_types; cpu_type++)
 	{
@@ -258,7 +269,6 @@ static int call_libcpuid_static(Data &data)
 
 		/* Trivial assignments */
 		data.cpu.vendor                                            = cpu_id->vendor;
-		data.cpu.ext_family                                        = cpu_id->x86.ext_family;
 		data.cpu.cpu_types[cpu_type].purpose                       = cpu_id->purpose;
 		data.cpu.cpu_types[cpu_type].processor.architecture        = cpu_id->architecture;
 		data.cpu.cpu_types[cpu_type].processor.vendor.value        = cpuvendors.at(cpu_id->vendor);
@@ -2179,15 +2189,8 @@ static int cputab_temp_fallback(Data &data)
 # if HAS_LIBCPUID
 	static bool module_loaded = false;
 	/* Load kernel modules */
-	if(!module_loaded)
-	{
-		if(data.cpu.vendor == VENDOR_INTEL)
-			module_loaded = !load_module("coretemp", &data.socket_fd);
-		else if((data.cpu.vendor == VENDOR_AMD) && (data.cpu.ext_family <= 0x8))
-			module_loaded = !load_module("k8temp", &data.socket_fd);
-		else if((data.cpu.vendor== VENDOR_AMD) && (data.cpu.ext_family >= 0x10))
-			module_loaded = !load_module("k10temp", &data.socket_fd);
-	}
+	if(!module_loaded && !data.cpu.sensors_module_name.empty())
+		module_loaded = !load_module(data.cpu.sensors_module_name.c_str(), &data.socket_fd);
 # endif /* HAS_LIBCPUID */
 
 	/* Get sensor path */
