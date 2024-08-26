@@ -24,6 +24,9 @@
 #include <string>
 #include <iomanip>
 #include <memory>
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif /* HAS_LIBCPUID */
 #include "options.hpp"
 #include "util.hpp"
 #include "data.hpp"
@@ -186,9 +189,7 @@ const std::string Data::Cpu::CpuType::get_core_type_name()
 	{
 		case PURPOSE_PERFORMANCE:    return _("P-core");
 		case PURPOSE_EFFICIENCY:     return _("E-core");
-# if HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY
 		case PURPOSE_LP_EFFICIENCY:  return _("LP E-core");
-# endif /* HAS_LIBCPUID_PURPOSE_LP_EFFICIENCY */
 		default:                     return _("Core");
 	}
 #endif /* HAS_LIBCPUID */
@@ -229,12 +230,15 @@ std::ostream& operator<<(std::ostream& os, const Data::Cpu::CpuType::Processor& 
 	os << static_cast<const Label&>(processor.technology);
 	os << static_cast<const Label&>(processor.voltage);
 	os << static_cast<const Label&>(processor.specification);
-	os << static_cast<const Label&>(processor.family);
-	os << static_cast<const Label&>(processor.dispfamily);
-	os << static_cast<const Label&>(processor.model);
-	os << static_cast<const Label&>(processor.dispmodel);
+	if(processor.architecture == ARCHITECTURE_X86)
+	{
+		os << static_cast<const Label&>(processor.family);
+		os << static_cast<const Label&>(processor.dispfamily);
+		os << static_cast<const Label&>(processor.model);
+		os << static_cast<const Label&>(processor.dispmodel);
+		os << static_cast<const Label&>(processor.stepping);
+	}
 	os << static_cast<const Label&>(processor.temperature);
-	os << static_cast<const Label&>(processor.stepping);
 	os << static_cast<const Label&>(processor.instructions);
 	os << std::endl;
 	return os;

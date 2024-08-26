@@ -113,6 +113,9 @@ struct Data
 				Label temperature   {_("Temp.")};
 				Label stepping      {_("Stepping")};
 				Label instructions  {_("Instructions")};
+#if HAS_LIBCPUID
+				cpu_architecture_t architecture;
+#endif /* HAS_LIBCPUID */
 				std::string path_cpu_temperature {};
 				std::string path_cpu_voltage     {};
 

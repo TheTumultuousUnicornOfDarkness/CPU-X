@@ -130,7 +130,7 @@ static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cp
 	int i = -1;
 	const Technology_DB *db;
 
-	if(cpu_id->vendor < 0 || cpu_id->model < 0 || cpu_id->ext_model < 0 || cpu_id->ext_family < 0)
+	if(cpu_id->vendor < 0 || cpu_id->x86.model < 0 || cpu_id->x86.ext_model < 0 || cpu_id->x86.ext_family < 0)
 		RETURN_OR_EXIT(1);
 
 	MSG_VERBOSE("%s", _("Finding CPU technology"));
@@ -142,12 +142,12 @@ static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cp
 	}
 
 	MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => values to find",
-	          cpu_id->model, cpu_id->ext_model, cpu_id->ext_family);
+	          cpu_id->x86.model, cpu_id->x86.ext_model, cpu_id->x86.ext_family);
 	while(db[++i].cpu_model != -2)
 	{
-		if(((db[i].cpu_model      < 0) || (db[i].cpu_model      == cpu_id->model))     &&
-		   ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == cpu_id->ext_model)) &&
-		   ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == cpu_id->ext_family)))
+		if(((db[i].cpu_model      < 0) || (db[i].cpu_model      == cpu_id->x86.model))     &&
+		   ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == cpu_id->x86.ext_model)) &&
+		   ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == cpu_id->x86.ext_family)))
 		{
 			processor.technology.value = db[i].process;
 			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
@@ -160,7 +160,7 @@ static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cp
 	}
 
 	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
-	            processor.specification.value.c_str(), cpu_id->model, cpu_id->ext_model, cpu_id->ext_family);
+	            processor.specification.value.c_str(), cpu_id->x86.model, cpu_id->x86.ext_model, cpu_id->x86.ext_family);
 	RETURN_OR_EXIT(2);
 }
 #undef RETURN_OR_EXIT
@@ -258,16 +258,20 @@ static int call_libcpuid_static(Data &data)
 
 		/* Trivial assignments */
 		data.cpu.vendor                                            = cpu_id->vendor;
-		data.cpu.ext_family                                        = cpu_id->ext_family;
+		data.cpu.ext_family                                        = cpu_id->x86.ext_family;
 		data.cpu.cpu_types[cpu_type].purpose                       = cpu_id->purpose;
+		data.cpu.cpu_types[cpu_type].processor.architecture        = cpu_id->architecture;
 		data.cpu.cpu_types[cpu_type].processor.vendor.value        = cpuvendors.at(cpu_id->vendor);
 		data.cpu.cpu_types[cpu_type].processor.codename.value      = cpu_id->cpu_codename;
 		data.cpu.cpu_types[cpu_type].processor.specification.value = cpu_id->brand_str;
-		data.cpu.cpu_types[cpu_type].processor.family.value        = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->family);
-		data.cpu.cpu_types[cpu_type].processor.dispfamily.value    = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->ext_family);
-		data.cpu.cpu_types[cpu_type].processor.model.value         = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->model);
-		data.cpu.cpu_types[cpu_type].processor.dispmodel.value     = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->ext_model);
-		data.cpu.cpu_types[cpu_type].processor.stepping.value      = std::to_string(cpu_id->stepping);
+		if(cpu_id->architecture == ARCHITECTURE_X86)
+		{
+			data.cpu.cpu_types[cpu_type].processor.family.value        = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->x86.family);
+			data.cpu.cpu_types[cpu_type].processor.dispfamily.value    = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->x86.ext_family);
+			data.cpu.cpu_types[cpu_type].processor.model.value         = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->x86.model);
+			data.cpu.cpu_types[cpu_type].processor.dispmodel.value     = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->x86.ext_model);
+			data.cpu.cpu_types[cpu_type].processor.stepping.value      = std::to_string(cpu_id->x86.stepping);
+		}
 		data.cpu.cpu_types[cpu_type].footer.cores.value            = std::to_string(cpu_id->num_cores);
 		data.cpu.cpu_types[cpu_type].footer.threads.value          = std::to_string(cpu_id->num_logical_cpus);
 		data.cpu.cpu_types[cpu_type].footer.num_threads            = cpu_id->num_logical_cpus;
