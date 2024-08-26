@@ -22,6 +22,7 @@
 */
 
 #include <unistd.h>
+#include <stdarg.h>
 #include <ncurses.h>
 #include <term.h>
 #include <cstdio>
@@ -148,7 +149,7 @@ static int mvwprintwc(WINDOW *win, int y, int x, Pairs::Colors pair, const char 
 
 	if(Options::get_color())
 		wattron(win, COLOR_PAIR(pair) | Pairs::get_attrs(pair));
-	ret = vwprintw(win, fmt, args);
+	ret = vw_printw(win, fmt, args);
 	if(Options::get_color())
 		wattroff(win, COLOR_PAIR(pair) | Pairs::get_attrs(pair));
 
