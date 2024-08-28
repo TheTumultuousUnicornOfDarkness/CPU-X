@@ -9,9 +9,10 @@ task:
 
   install_script:
     - pkg update -f
-    - pkg install -y cmake ninja pkgconf gettext nasm gtkmm30 ncurses libcpuid pciutils glfw opencl ocl-icd vulkan-loader vulkan-headers libstatgrab
+    - pkg install -y cmake ninja pkgconf gettext nasm gtkmm30 ncurses pciutils glfw opencl ocl-icd vulkan-loader vulkan-headers libstatgrab
 
   build_script:
+    - bash -x ./scripts/build_libcpuid.sh "Debug"
     - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_OPENCL=1
     - cmake --build build
     - cmake --install build

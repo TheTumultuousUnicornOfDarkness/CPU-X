@@ -8,20 +8,29 @@ if [[ $# -lt 1 ]]; then
 	exit 1
 fi
 
-if [[ "$ID" != "ubuntu" ]]; then
-	echo "$0: this script must be run on a Ubuntu system"
-	exit 1
-fi
-
 BUILD_TYPE="$1"
 BUILD_PATH="/tmp/libcpuid"
 
 echo "Install packages"
-sudo apt-get install -y -qq \
-	cmake \
-	ninja-build \
-	git \
-	g++
+case "$ID" in
+	freebsd)
+		sudo pkg install -y \
+			cmake \
+			ninja \
+			git
+		;;
+	ubuntu)
+		sudo apt-get install -y -qq \
+			cmake \
+			ninja-build \
+			git \
+			g++
+		;;
+	*)
+		echo "$ID is not supported by $0."
+		exit 1
+esac
+
 
 echo "Clone libcpuid Git repository"
 git clone https://github.com/anrieff/libcpuid.git "$BUILD_PATH"
