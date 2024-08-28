@@ -19,6 +19,7 @@ case "$ID" in
 			cmake \
 			ninja \
 			git
+		sudo ln -s /usr/local/lib/pkgconfig/libcpuid.pc /usr/local/libdata/pkgconfig/libcpuid.pc
 		;;
 	ubuntu)
 		CMAKE_INSTALL_PREFIX="/usr"
