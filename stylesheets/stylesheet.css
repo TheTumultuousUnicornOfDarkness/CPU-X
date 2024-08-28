@@ -10,19 +10,7 @@ by Jason Costello, @jsncostello
 MeyerWeb Reset
 *******************************************************************************/
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body {
   margin: 0;
   padding: 0;
   border: 0;
@@ -332,7 +320,7 @@ Full-Width Styles
   height:70px;
   text-indent: -5000px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat top left;
+  background: url(../images/sprite_download.svg) no-repeat top left;
 }
 
 .tar_download_link {
@@ -342,7 +330,7 @@ Full-Width Styles
   height:70px;
   text-indent: -5000px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat top right;
+  background: url(../images/sprite_download.svg) no-repeat top right;
   margin-left: 10px;
 }
 
@@ -353,15 +341,15 @@ Full-Width Styles
   height:70px;
   text-indent: -5000px;
   overflow: hidden;
-  background: url(../images/icon_portable.png) no-repeat;
+  background: url(../images/icon_portable.svg) no-repeat;
 }
 
 .zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat bottom left;
+  background: url(../images/sprite_download.svg) no-repeat bottom left;
 }
 
 .tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat bottom right;
+  background: url(../images/sprite_download.svg) no-repeat bottom right;
 }
 
 #main_content_wrap {
