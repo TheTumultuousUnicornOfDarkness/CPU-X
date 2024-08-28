@@ -14,12 +14,14 @@ BUILD_PATH="/tmp/libcpuid"
 echo "Install packages"
 case "$ID" in
 	freebsd)
+		CMAKE_INSTALL_PREFIX="/usr/local"
 		sudo pkg install -y \
 			cmake \
 			ninja \
 			git
 		;;
 	ubuntu)
+		CMAKE_INSTALL_PREFIX="/usr"
 		sudo apt-get install -y -qq \
 			cmake \
 			ninja-build \
@@ -31,7 +33,6 @@ case "$ID" in
 		exit 1
 esac
 
-
 echo "Clone libcpuid Git repository"
 git clone https://github.com/anrieff/libcpuid.git "$BUILD_PATH"
 cd "$BUILD_PATH"
@@ -40,7 +41,7 @@ echo "Run CMake"
 cmake -B build \
 	-GNinja \
 	-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
-	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
 	-DBUILD_SHARED_LIBS=OFF
 
 echo "Build libcpuid"
