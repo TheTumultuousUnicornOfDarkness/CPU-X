@@ -230,14 +230,18 @@ std::ostream& operator<<(std::ostream& os, const Data::Cpu::CpuType::Processor& 
 	os << static_cast<const Label&>(processor.technology);
 	os << static_cast<const Label&>(processor.voltage);
 	os << static_cast<const Label&>(processor.specification);
+#if HAS_LIBCPUID
 	if(processor.architecture == ARCHITECTURE_X86)
 	{
+#endif /* HAS_LIBCPUID */
 		os << static_cast<const Label&>(processor.family);
 		os << static_cast<const Label&>(processor.dispfamily);
 		os << static_cast<const Label&>(processor.model);
 		os << static_cast<const Label&>(processor.dispmodel);
 		os << static_cast<const Label&>(processor.stepping);
+#if HAS_LIBCPUID
 	}
+#endif /* HAS_LIBCPUID */
 	os << static_cast<const Label&>(processor.temperature);
 	os << static_cast<const Label&>(processor.instructions);
 	os << std::endl;
