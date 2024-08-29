@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-29 17:26+0000\n"
-"PO-Revision-Date: 2024-04-18 23:03+0000\n"
+"PO-Revision-Date: 2024-08-30 18:09+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 #: core.cpp:164
 #, c-format
@@ -40,14 +40,13 @@ msgstr ""
 "%i, familia ext.: %i"
 
 #: core.cpp:208
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
 msgstr ""
-"Su zócalo de CPU no se encuentra dentro de la base de datos ==> %s, nombre "
-"clave: %s"
+"Tu CPU no está presente en la base de datos ==> %s, número de pieza: 0x%x, "
+"nombre en clave: %s"
 
 #: core.cpp:215
 msgid "Finding CPU technology"
@@ -1186,11 +1185,11 @@ msgstr "Escalonado"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Implementador"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Variante"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
