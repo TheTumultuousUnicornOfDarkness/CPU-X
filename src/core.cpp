@@ -117,6 +117,9 @@ static int call_libcpuid_msr_debug(Data &data, uint16_t all_cpu_count)
 {
 	const DaemonCommand cmd = LIBCPUID_MSR_DEBUG;
 
+	if(data.cpu.cpu_types[Options::get_selected_type()].processor.architecture != ARCHITECTURE_X86)
+		return 1;
+
 	SEND_DATA(&data.socket_fd, &cmd, sizeof(DaemonCommand));
 	SEND_DATA(&data.socket_fd, &all_cpu_count, sizeof(uint16_t));
 
@@ -125,23 +128,22 @@ static int call_libcpuid_msr_debug(Data &data, uint16_t all_cpu_count)
 
 #define RETURN_OR_EXIT(e) { if(Options::get_debug_database()) exit(e); else return e; }
 /* Get CPU technology node */
-static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
+static int cpu_technology_x86(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
 {
 	int i = -1;
-	const Technology_DB *db;
+	const Technology_DB_x86 *db;
 
 	if(cpu_id->vendor < 0 || cpu_id->x86.model < 0 || cpu_id->x86.ext_model < 0 || cpu_id->x86.ext_family < 0)
 		RETURN_OR_EXIT(1);
 
-	MSG_VERBOSE("%s", _("Finding CPU technology"));
 	switch(cpu_id->vendor)
 	{
-		case VENDOR_AMD:   db = technology_amd;     break;
-		case VENDOR_INTEL: db = technology_intel;   break;
-		default:           db = technology_unknown; break;
+		case VENDOR_AMD:   db = technology_x86_amd;   break;
+		case VENDOR_INTEL: db = technology_x86_intel; break;
+		default:           RETURN_OR_EXIT(2);
 	}
 
-	MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => values to find",
+	MSG_DEBUG("cpu_technology_x86: model %3i, ext. model %3i, ext. family %3i => values to find",
 	          cpu_id->x86.model, cpu_id->x86.ext_model, cpu_id->x86.ext_family);
 	while(db[++i].cpu_model != -2)
 	{
@@ -150,18 +152,73 @@ static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cp
 		   ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == cpu_id->x86.ext_family)))
 		{
 			processor.technology.value = db[i].process;
-			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
+			MSG_DEBUG("cpu_technology_x86: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
 			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
 			RETURN_OR_EXIT(0);
 		}
 		else
-			MSG_DEBUG("cpu_technology: model %3i, ext. model %3i, ext. family %3i => entry #%03i does not match",
+			MSG_DEBUG("cpu_technology_x86: model %3i, ext. model %3i, ext. family %3i => entry #%03i does not match",
 			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
 	}
 
 	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
 	            processor.specification.value.c_str(), cpu_id->x86.model, cpu_id->x86.ext_model, cpu_id->x86.ext_family);
-	RETURN_OR_EXIT(2);
+	RETURN_OR_EXIT(3);
+}
+
+static int cpu_technology_arm(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
+{
+	int i = -1;
+	const Technology_DB_ARM *db;
+
+	if((cpu_id->arm.part_num == 0) || (std::strlen(cpu_id->cpu_codename) == 0))
+		RETURN_OR_EXIT(1);
+
+	switch(cpu_id->vendor)
+	{
+		case VENDOR_APPLE:    db = technology_arm_apple;    break;
+		case VENDOR_ARM:      db = technology_arm_arm;      break;
+		case VENDOR_QUALCOMM: db = technology_arm_qualcomm; break;
+		case VENDOR_SAMSUNG:  db = technology_arm_samsung;  break;
+		case VENDOR_NVIDIA:   db = technology_arm_nvidia;   break;
+		default:              RETURN_OR_EXIT(2);
+	}
+
+	MSG_DEBUG("cpu_technology_arm: part_num 0x%3x, cpu_codename %26s => values to find",
+	          cpu_id->arm.part_num, cpu_id->cpu_codename);
+	while(db[++i].part_num != -2)
+	{
+		const bool partnum_defined  = (db[i].part_num >  0);
+		const bool codename_defined = (db[i].codename != NULL);
+		const bool partnum_matchs   = partnum_defined  && (db[i].part_num == cpu_id->arm.part_num);
+		const bool codename_matchs  = codename_defined && (std::strcmp(db[i].codename, cpu_id->cpu_codename) == 0);
+
+		if((codename_matchs && partnum_matchs) || (codename_matchs && !partnum_defined) || (!codename_defined && partnum_matchs))
+		{
+			processor.technology.value = db[i].process;
+			MSG_DEBUG("cpu_technology_arm: part_num 0x%3x, cpu_codename %26s => entry #%03i matches",
+	          cpu_id->arm.part_num, cpu_id->cpu_codename, i);
+			RETURN_OR_EXIT(0);
+		}
+		else
+			MSG_DEBUG("cpu_technology_arm: part_num 0x%3x, cpu_codename %26s => entry #%03i does not match",
+	          cpu_id->arm.part_num, cpu_id->cpu_codename, i);
+	}
+
+	MSG_WARNING(_("Your CPU is not present in the database ==> %s, part number: 0x%x, codename: %s"),
+	            cpu_id->brand_str, cpu_id->arm.part_num, cpu_id->cpu_codename);
+	RETURN_OR_EXIT(3);
+}
+
+static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
+{
+	MSG_VERBOSE("%s", _("Finding CPU technology"));
+	switch(cpu_id->architecture)
+	{
+		case ARCHITECTURE_X86: return cpu_technology_x86(processor, cpu_id);
+		case ARCHITECTURE_ARM: return cpu_technology_arm(processor, cpu_id);
+		default: return 255;
+	}
 }
 #undef RETURN_OR_EXIT
 
@@ -174,23 +231,43 @@ static int call_libcpuid_static(Data &data)
 	struct cpu_id_t *cpu_id  = NULL;
 	struct cpu_raw_data_array_t raw_data;
 	struct system_id_t system_id;
+	const struct cpu_flags { const cpu_feature_t flag; const char *str; } *cpu_flags;
 
 	const std::unordered_map<cpu_vendor_t, std::string> cpuvendors =
 	{
-		{ VENDOR_INTEL,     "Intel"                  },
-		{ VENDOR_AMD,       "AMD"                    },
-		{ VENDOR_CYRIX,     "Cyrix"                  },
-		{ VENDOR_NEXGEN,    "NexGen"                 },
-		{ VENDOR_TRANSMETA, "Transmeta"              },
-		{ VENDOR_UMC,       "UMC"                    },
-		{ VENDOR_CENTAUR,   "Centaur"                },
-		{ VENDOR_RISE,      "Rise"                   },
-		{ VENDOR_SIS,       "SiS"                    },
-		{ VENDOR_NSC,       "National Semiconductor" },
-		{ VENDOR_UNKNOWN,   _("unknown")             }
+		{ VENDOR_INTEL,     "Intel"                               },
+		{ VENDOR_AMD,       "AMD"                                 },
+		{ VENDOR_CYRIX,     "Cyrix"                               },
+		{ VENDOR_NEXGEN,    "NexGen"                              },
+		{ VENDOR_TRANSMETA, "Transmeta"                           },
+		{ VENDOR_UMC,       "UMC"                                 },
+		{ VENDOR_CENTAUR,   "Centaur"                             },
+		{ VENDOR_RISE,      "Rise"                                },
+		{ VENDOR_SIS,       "SiS"                                 },
+		{ VENDOR_NSC,       "National Semiconductor"              },
+		{ VENDOR_HYGON,	    "Hygon"                               },
+		{ VENDOR_ARM,       "ARM Holdings"                        },
+		{ VENDOR_BROADCOM,  "Broadcom"                            },
+		{ VENDOR_CAVIUM,    "Cavium"                              },
+		{ VENDOR_DEC,       "Digital Equipment Corporation"       },
+		{ VENDOR_FUJITSU,   "Fujitsu"                             },
+		{ VENDOR_HISILICON, "HiSilicon"                           },
+		{ VENDOR_INFINEON,  "Infineon"                            },
+		{ VENDOR_FREESCALE, "Motorola or Freescale Semiconductor" },
+		{ VENDOR_NVIDIA,    "NVIDIA"                              },
+		{ VENDOR_APM,       "Applied Micro Circuits"              },
+		{ VENDOR_QUALCOMM,  "Qualcomm"                            },
+		{ VENDOR_SAMSUNG,   "Samsung"                             },
+		{ VENDOR_MARVELL,   "Marvell"                             },
+		{ VENDOR_APPLE,     "Apple"                               },
+		{ VENDOR_FARADAY,   "Faraday"                             },
+		{ VENDOR_MICROSOFT, "Microsoft"                           },
+		{ VENDOR_PHYTIUM,   "Phytium"                             },
+		{ VENDOR_AMPERE,    "Ampere Computing"                    },
+		{ VENDOR_UNKNOWN,   _("unknown")                          }
 	};
 
-	const struct { const cpu_feature_t flag; const char *str; } cpu_flags[] =
+	const struct cpu_flags cpu_flags_x86[] =
 	{
 		/* SIMD x86 */
 		{ CPU_FEATURE_MMX,      "MMX"    },
@@ -226,6 +303,49 @@ static int call_libcpuid_static(Data &data)
 		{ CPU_FEATURE_LM,       "x86-64" },
 		{ NUM_CPU_FEATURES,     NULL     }
 	};
+	const struct cpu_flags cpu_flags_arm[] =
+	{
+		{ CPU_FEATURE_THUMB,        "Thumb"    },
+		{ CPU_FEATURE_JAZELLE,      "Jazelle"  },
+		{ CPU_FEATURE_THUMB2,       "Thumb-2"  },
+		{ CPU_FEATURE_THUMBEE,      "ThumbEE"  },
+		{ CPU_FEATURE_FP,           "FP"       },
+		{ CPU_FEATURE_FP16,         "FP16"     },
+		{ CPU_FEATURE_ADVSIMD,      "Neon"     },
+		{ CPU_FEATURE_AES,          "AES"      },
+		{ CPU_FEATURE_PMULL,        "PMULL"    },
+		{ CPU_FEATURE_RDM,          "RDM"      },
+		{ CPU_FEATURE_DOTPROD,      "DOT"      },
+		{ CPU_FEATURE_RNG,          "RNG"      },
+		{ CPU_FEATURE_SHA1,         "SHA(1"    },
+		{ CPU_FEATURE_SHA3,         "3"        },
+		{ CPU_FEATURE_SHA256,       "256"      },
+		{ CPU_FEATURE_SHA512,       "512"      },
+		{ CPU_FEATURE_SHA1,         ")"        },
+		{ CPU_FEATURE_SM3,          "SM(3"     },
+		{ CPU_FEATURE_SM4,          "4"        },
+		{ CPU_FEATURE_SM3,          ")"        },
+		{ CPU_FEATURE_SVE,          "SVE(1"    },
+		{ CPU_FEATURE_SVE2,         "2"        },
+		{ CPU_FEATURE_SVE2P1,       "2.1"      },
+		{ CPU_FEATURE_SVE_AES,      "AES"      },
+		{ CPU_FEATURE_SVE_PMULL128, "PMULL128" },
+		{ CPU_FEATURE_SVE_SHA3,     "SHA3"     },
+		{ CPU_FEATURE_SVE_SM4,      "SM4"      },
+		{ CPU_FEATURE_SVE_B16B16,   "B16"      },
+		{ CPU_FEATURE_SVE,          ")"        },
+		{ CPU_FEATURE_SME,          "SME(1"    },
+		{ CPU_FEATURE_SME2,         "2"        },
+		{ CPU_FEATURE_SME2P1,       "2.1"      },
+		{ CPU_FEATURE_SME_F64F64,   "F64"      },
+		{ CPU_FEATURE_SME_I16I64,   "I16"      },
+		{ CPU_FEATURE_SME_F16F16,   "F16"      },
+		{ CPU_FEATURE_SME,          ")"        },
+		/* Virtualization */
+		{ CPU_FEATURE_VHE,          "VHE"      },
+		/* Other */
+		{ NUM_CPU_FEATURES,         NULL       }
+	};
 
 	/* Call libcpuid */
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving static data"));
@@ -251,6 +371,7 @@ static int call_libcpuid_static(Data &data)
 	/* Find kernel module for CPU temperature (used by cputab_temp_fallback()) */
 	if(system_id.cpu_types[0].architecture == ARCHITECTURE_X86)
 	{
+		cpu_flags = cpu_flags_x86;
 		if(system_id.cpu_types[0].vendor == VENDOR_INTEL)
 			data.cpu.sensors_module_name = "coretemp";
 		else if((system_id.cpu_types[0].vendor == VENDOR_AMD) && (system_id.cpu_types[0].x86.ext_family <= 0x8))
@@ -258,6 +379,8 @@ static int call_libcpuid_static(Data &data)
 		else if((system_id.cpu_types[0].vendor== VENDOR_AMD) && (system_id.cpu_types[0].x86.ext_family >= 0x10))
 			data.cpu.sensors_module_name = "k10temp";
 	}
+	else if(system_id.cpu_types[0].architecture == ARCHITECTURE_ARM)
+		cpu_flags = cpu_flags_arm;
 
 	/* Basically fill CPU tab */
 	for(uint8_t cpu_type = 0; cpu_type < system_id.num_cpu_types; cpu_type++)
@@ -271,7 +394,7 @@ static int call_libcpuid_static(Data &data)
 		data.cpu.vendor                                            = cpu_id->vendor;
 		data.cpu.cpu_types[cpu_type].purpose                       = cpu_id->purpose;
 		data.cpu.cpu_types[cpu_type].processor.architecture        = cpu_id->architecture;
-		data.cpu.cpu_types[cpu_type].processor.vendor.value        = cpuvendors.at(cpu_id->vendor);
+		data.cpu.cpu_types[cpu_type].processor.vendor.value        = (cpuvendors.find(cpu_id->vendor) != cpuvendors.end()) ? cpuvendors.at(cpu_id->vendor) : cpuvendors.at(VENDOR_UNKNOWN);
 		data.cpu.cpu_types[cpu_type].processor.codename.value      = cpu_id->cpu_codename;
 		data.cpu.cpu_types[cpu_type].processor.specification.value = cpu_id->brand_str;
 		if(cpu_id->architecture == ARCHITECTURE_X86)
@@ -281,6 +404,13 @@ static int call_libcpuid_static(Data &data)
 			data.cpu.cpu_types[cpu_type].processor.model.value         = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->x86.model);
 			data.cpu.cpu_types[cpu_type].processor.dispmodel.value     = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->x86.ext_model);
 			data.cpu.cpu_types[cpu_type].processor.stepping.value      = std::to_string(cpu_id->x86.stepping);
+		}
+		else if(cpu_id->architecture == ARCHITECTURE_ARM)
+		{
+			data.cpu.cpu_types[cpu_type].processor.implementer.value   = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->arm.implementer);
+			data.cpu.cpu_types[cpu_type].processor.variant.value       = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->arm.variant);
+			data.cpu.cpu_types[cpu_type].processor.partnum.value       = Data::Cpu::CpuType::Processor::format_cpuid_value(cpu_id->arm.part_num);
+			data.cpu.cpu_types[cpu_type].processor.revision.value      = std::to_string(cpu_id->arm.revision);
 		}
 		data.cpu.cpu_types[cpu_type].footer.cores.value            = std::to_string(cpu_id->num_cores);
 		data.cpu.cpu_types[cpu_type].footer.threads.value          = std::to_string(cpu_id->num_logical_cpus);
@@ -365,6 +495,9 @@ static int call_libcpuid_msr_static(Data &data)
 	const uint16_t current_core_id = data.cpu.get_selected_core_id();
 	MsrStaticData msg;
 
+	if(data.cpu.cpu_types[Options::get_selected_type()].processor.architecture != ARCHITECTURE_X86)
+		return 1;
+
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR static values"));
 	SEND_DATA(&data.socket_fd,  &cmd, sizeof(DaemonCommand));
 	SEND_DATA(&data.socket_fd,  &current_core_id, sizeof(current_core_id));
@@ -391,6 +524,9 @@ static int call_libcpuid_msr_dynamic(Data &data)
 	const uint16_t current_core_id = data.cpu.get_selected_core_id();
 	const DaemonCommand cmd = LIBCPUID_MSR_DYNAMIC;
 	MsrDynamicData msg;
+
+	if(data.cpu.cpu_types[Options::get_selected_type()].processor.architecture != ARCHITECTURE_X86)
+		return 1;
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR dynamic values"));
 	SEND_DATA(&data.socket_fd,  &cmd, sizeof(DaemonCommand));
@@ -2056,14 +2192,14 @@ static int cputab_package_fallback(Data &data)
 	const auto& cpu_type = data.cpu.get_selected_cpu_type();
 
 	if(cpu_type.processor.codename.value.empty() || cpu_type.processor.specification.value.empty())
-		return 2;
+		return 1;
 
 	MSG_VERBOSE("%s", _("Finding CPU package in fallback mode"));
 	switch(data.cpu.vendor)
 	{
 		case VENDOR_AMD:   db = package_amd;     break;
 		case VENDOR_INTEL: db = package_intel;   break;
-		default:           db = package_unknown; break;
+		default:           return 2;
 	}
 
 	MSG_DEBUG("cputab_package_fallback: codename %26s, specification %36s => values to find",
@@ -2092,7 +2228,7 @@ static int cputab_package_fallback(Data &data)
 		    cpu_type.processor.specification.value.c_str(), cpu_type.processor.codename.value.c_str());
 	for(auto& cpu_type : data.cpu.cpu_types)
 		cpu_type.processor.package.value.clear();
-	return 2;
+	return 3;
 }
 #endif /* HAS_LIBCPUID */
 

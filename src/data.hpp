@@ -106,12 +106,19 @@ struct Data
 				Label technology    {_("Technology")};
 				Label voltage       {_("Voltage")};
 				Label specification {_("Specification")};
+				/* x86 CPUs only */
 				Label family        {_("Family")};
 				Label dispfamily    {_("Disp. Family")};
 				Label model         {_("Model")};
 				Label dispmodel     {_("Disp. Model")};
-				Label temperature   {_("Temp.")};
 				Label stepping      {_("Stepping")};
+				/* ARM CPUs only */
+				Label implementer   {_("Implementer")};
+				Label variant       {_("Variant")};
+				Label partnum       {_("Part Number")};
+				Label revision      {_("Revision")};
+				/* All CPUs */
+				Label temperature   {_("Temp.")};
 				Label instructions  {_("Instructions")};
 #if HAS_LIBCPUID
 				cpu_architecture_t architecture;

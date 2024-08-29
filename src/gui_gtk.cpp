@@ -23,6 +23,7 @@
 
 #include <unistd.h>
 #include <optional>
+#include <unordered_map>
 #include <gtkmm.h>
 #include <gtkmm/messagedialog.h>
 #include <giomm/settings.h>
@@ -35,6 +36,10 @@
 #include "daemon.h"
 #include "daemon_client.hpp"
 #include "gui_gtk.hpp"
+
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
 
 using CacheLevels = Data::Caches::CpuType::CacheLevels;
 
@@ -159,12 +164,24 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 		cpu_type.processor.technology.   extend(new ExtLabel<Gtk::Label>(builder, "proc_tech"));
 		cpu_type.processor.voltage.      extend(new ExtLabel<Gtk::Label>(builder, "proc_volt"));
 		cpu_type.processor.specification.extend(new ExtLabel<Gtk::Label>(builder, "proc_spec"));
-		cpu_type.processor.family.       extend(new ExtLabel<Gtk::Label>(builder, "proc_fam"));
-		cpu_type.processor.dispfamily.   extend(new ExtLabel<Gtk::Label>(builder, "proc_extfam"));
-		cpu_type.processor.model.        extend(new ExtLabel<Gtk::Label>(builder, "proc_mod"));
-		cpu_type.processor.dispmodel.    extend(new ExtLabel<Gtk::Label>(builder, "proc_extmod"));
+#if HAS_LIBCPUID
+		if(cpu_type.processor.architecture == ARCHITECTURE_X86)
+		{
+			cpu_type.processor.family.    extend(new ExtLabel<Gtk::Label>(builder, "proc_fam"));
+			cpu_type.processor.dispfamily.extend(new ExtLabel<Gtk::Label>(builder, "proc_extfam"));
+			cpu_type.processor.model.     extend(new ExtLabel<Gtk::Label>(builder, "proc_mod"));
+			cpu_type.processor.dispmodel. extend(new ExtLabel<Gtk::Label>(builder, "proc_extmod"));
+			cpu_type.processor.stepping.  extend(new ExtLabel<Gtk::Label>(builder, "proc_step"));
+		}
+		else if(cpu_type.processor.architecture == ARCHITECTURE_ARM)
+		{
+			cpu_type.processor.implementer.extend(new ExtLabel<Gtk::Label>(builder, "proc_fam"));
+			cpu_type.processor.variant.    extend(new ExtLabel<Gtk::Label>(builder, "proc_mod"));
+			cpu_type.processor.partnum.    extend(new ExtLabel<Gtk::Label>(builder, "proc_extfam"));
+			cpu_type.processor.revision.   extend(new ExtLabel<Gtk::Label>(builder, "proc_extmod"));
+		}
+#endif /* HAS_LIBCPUID */
 		cpu_type.processor.temperature.  extend(new ExtLabel<Gtk::Label>(builder, "proc_temp"));
-		cpu_type.processor.stepping.     extend(new ExtLabel<Gtk::Label>(builder, "proc_step"));
 		cpu_type.processor.instructions. extend(new ExtLabel<Gtk::Label>(builder, "proc_instr"));
 		/* Caches frame */
 		cpu_type.caches.extend(new ExtFrame(builder, "cache_lab"));
@@ -335,40 +352,57 @@ void GtkData::set_colors()
 
 void GtkData::set_logos()
 {
-	bool set_unknown     = false;
-	const auto& cpu_type = this->data.cpu.get_selected_cpu_type();
 	const int prg_size   = 72;
+#if HAS_LIBCPUID
+	const auto& cpu_type = this->data.cpu.get_selected_cpu_type();
 	const int width      = EXT_LABEL(cpu_type.processor.specification)->value->get_allocated_width() - EXT_LABEL(cpu_type.processor.vendor)->value->get_allocated_width() - 6;
 	const int height     = (EXT_LABEL(cpu_type.processor.vendor)->value->get_allocated_height() + 4) * 4;
+
+	const std::unordered_map<cpu_vendor_t, std::string> logos =
+	{
+		{ VENDOR_INTEL,     "Intel.png"     },
+		{ VENDOR_AMD,       "AMD.png"       },
+		{ VENDOR_CYRIX,     "Cyrix.png"     },
+		{ VENDOR_NEXGEN,    "NexGen.png"    },
+		{ VENDOR_TRANSMETA, "Transmeta.png" },
+		{ VENDOR_UMC,       "UMC.png"       },
+		{ VENDOR_CENTAUR,   "Centaur.png"   },
+		{ VENDOR_RISE,      "Rise.png"      },
+		{ VENDOR_SIS,       "SiS.png"       },
+		{ VENDOR_NSC,       "NSC.png"       },
+		{ VENDOR_HYGON,	    "Hygon.png"     },
+		{ VENDOR_ARM,       "ARM.png"       },
+		{ VENDOR_BROADCOM,  "Broadcom.png"  },
+		{ VENDOR_CAVIUM,    "Cavium.png"    },
+		{ VENDOR_DEC,       "DEC.png"       },
+		{ VENDOR_FUJITSU,   "Fujitsu.png"   },
+		{ VENDOR_HISILICON, "HiSilicon.png" },
+		{ VENDOR_INFINEON,  "Infineon.png"  },
+		{ VENDOR_FREESCALE, "Freescale.png" },
+		{ VENDOR_NVIDIA,    "NVIDIA.png"    },
+		{ VENDOR_QUALCOMM,  "Qualcomm.png"  },
+		{ VENDOR_SAMSUNG,   "Samsung.png"   },
+		{ VENDOR_MARVELL,   "Marvell.png"   },
+		{ VENDOR_APPLE,     "Apple.png"     },
+		{ VENDOR_FARADAY,   "Faraday.png"   },
+		{ VENDOR_MICROSOFT, "Microsoft.png" },
+		{ VENDOR_PHYTIUM,   "Phytium.png"   },
+		{ VENDOR_AMPERE,    "Ampere.png"    },
+		{ VENDOR_UNKNOWN,   "Unknown.png"   }
+	};
 
 	/* CPU logo */
 	try
 	{
-		if(cpu_type.processor.vendor.value.size() > 0)
-		{
-			auto cpu_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path(cpu_type.processor.vendor.value + ".png"), width, height, true);
-			EXT_TAB_CPU(this->data.cpu)->logocpu->set(cpu_pixbuf);
-		}
-		else
-			set_unknown = true;
-	}
-	catch(...)
-	{
-		set_unknown = true;
-	}
-
-	try
-	{
-		if(set_unknown)
-		{
-			auto unknown_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path("Unknown.png"), width, height, true);
-			EXT_TAB_CPU(this->data.cpu)->logocpu->set(unknown_pixbuf);
-		}
+		auto logo_name  = (logos.find(this->data.cpu.vendor) != logos.end()) ? logos.at(this->data.cpu.vendor) : logos.at(VENDOR_UNKNOWN);
+		auto cpu_pixbuf = Gdk::Pixbuf::create_from_file(get_data_path(logo_name), width, height, true);
+		EXT_TAB_CPU(this->data.cpu)->logocpu->set(cpu_pixbuf);
 	}
 	catch(...)
 	{
 		MSG_ERRNO("%s", "failed to set CPU icon");
 	}
+#endif /* HAS_LIBCPUID */
 
 	/* Program logo */
 	try
@@ -628,12 +662,25 @@ void GtkData::gtab_cpu()
 	set_label_name_and_value(cpu_type.processor.technology);
 	set_label_name_and_value(cpu_type.processor.voltage);
 	set_label_name_and_value(cpu_type.processor.specification);
-	set_label_name_and_value(cpu_type.processor.family, _("BaseFamily"));
-	set_label_name_and_value(cpu_type.processor.dispfamily, _("CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"));
-	set_label_name_and_value(cpu_type.processor.model, _("BaseModel"));
-	set_label_name_and_value(cpu_type.processor.dispmodel, _("CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"));
+#if HAS_LIBCPUID
+	if(cpu_type.processor.architecture == ARCHITECTURE_X86)
+	{
+		set_label_name_and_value(cpu_type.processor.family, _("BaseFamily"));
+		set_label_name_and_value(cpu_type.processor.dispfamily, _("CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"));
+		set_label_name_and_value(cpu_type.processor.model, _("BaseModel"));
+		set_label_name_and_value(cpu_type.processor.dispmodel, _("CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"));
+		set_label_name_and_value(cpu_type.processor.stepping);
+	}
+	else if(cpu_type.processor.architecture == ARCHITECTURE_ARM)
+	{
+		set_label_name_and_value(cpu_type.processor.implementer);
+		set_label_name_and_value(cpu_type.processor.variant);
+		set_label_name_and_value(cpu_type.processor.partnum);
+		set_label_name_and_value(cpu_type.processor.revision);
+	}
+#endif /* HAS_LIBCPUID */
+
 	set_label_name_and_value(cpu_type.processor.temperature);
-	set_label_name_and_value(cpu_type.processor.stepping);
 	set_label_name_and_value(cpu_type.processor.instructions);
 
 	/* Clocks frame */

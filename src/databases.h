@@ -33,11 +33,16 @@ typedef struct
 	const int32_t cpu_ext_model;
 	const int32_t cpu_ext_family;
 	const char    *process;
-} Technology_DB;
+} Technology_DB_x86;
 
-const Technology_DB technology_unknown[] = { { -2, -2, -2, NULL } };
+typedef struct
+{
+	const int32_t part_num;
+	const char    *codename;
+	const char    *process;
+} Technology_DB_ARM;
 
-const Technology_DB technology_intel[] =
+const Technology_DB_x86 technology_x86_intel[] =
 {
 	//Model        E. Model     E. Family   Process
 	{  0,           0,          -1,        "0.18 µm" }, // P4 Willamette
@@ -113,7 +118,7 @@ const Technology_DB technology_intel[] =
 	//Model        E. Model     E. Family   Process
 };
 
-const Technology_DB technology_amd[] =
+const Technology_DB_x86 technology_x86_amd[] =
 {
 	//Model        E. Model     E. Family   Process
 	{  0,          16,          21,          "32 nm" }, // Bulldozer (Piledriver: Trinity)
@@ -176,6 +181,102 @@ const Technology_DB technology_amd[] =
 	//Model        E. Model     E. Family   Process
 };
 
+const Technology_DB_ARM technology_arm_apple[] =
+{
+	//       Codename      Process
+	{    -1, "Swift",     "32 nm"    },
+	{    -1, "Cyclone",   "28 nm"    },
+	{    -1, "Typhoon",   "20 nm"    },
+	{    -1, "Twister",   "16-14 nm" },
+	{    -1, "Zephyr",    "16-10 nm" },
+	{    -1, "Hurricane", "16-10 nm" },
+	{    -1, "Monsoon",   "10 nm"    },
+	{    -1, "Mistral",   "10 nm"    },
+	{    -1, "Vortex",    "7 nm"     },
+	{    -1, "Tempest",   "7 nm"     },
+	{    -1, "Lightning", "7 nm"     },
+	{    -1, "Thunder",   "7 nm"     },
+	{    -1, "Icestorm",  "5 nm"     },
+	{    -1, "Firestorm", "5 nm"     },
+	{    -1, "Blizzard",  "5 nm"     },
+	{    -1, "Avalanche", "5 nm"     },
+	{    -1, "Sawtooth",  "5 nm"     },
+	{    -1, "Everest",   "5 nm"     },
+	//       Codename      Process
+};
+
+const Technology_DB_ARM technology_arm_arm[] =
+{
+	//PartNum     Codename      Process
+	{ 0xc05,      NULL,         "40-28 nm" }, // Cortex-A5
+	{ 0xc07,      NULL,         "40-28 nm" }, // Cortex-A7
+	{ 0xc08,      NULL,         "65-45 nm" }, // Cortex-A8
+	{ 0xc09,      NULL,         "65-28 nm" }, // Cortex-A9
+	{ 0xc0d,      NULL,         "28 nm"    }, // Cortex-A12
+	{ 0xc0f,      NULL,         "32-20 nm" }, // Cortex-A15
+	{ 0xc0e,      NULL,         "28 nm"    }, // Cortex-A17
+	{ 0xd01,      NULL,         "28 nm"    }, // Cortex-A32
+	{ 0xd03,      NULL,         "28-10 nm" }, // Cortex-A53
+	{ 0xd04,      NULL,         "28-10 nm" }, // Cortex-A35
+	{ 0xd05,      NULL,         "28-5 nm"  }, // Cortex-A55
+	{ 0xd07,      NULL,         "28-14 nm" }, // Cortex-A57
+	{ 0xd08,      NULL,         "28-16 nm" }, // Cortex-A72
+	{ 0xd09,      NULL,         "28-10 nm" }, // Cortex-A73
+	{ 0xd0a,      NULL,         "28-10 nm" }, // Cortex-A75
+	{ 0xd0b,      NULL,         "10-7 nm"  }, // Cortex-A76
+	{ 0xd0c,      NULL,         "7 nm"     }, // Neoverse-N1
+	{ 0xd0d,      NULL,         "7 nm"     }, // Cortex-A77
+	{ 0xd40,      NULL,         "7 nm"     }, // Neoverse-V1
+	{ 0xd41,      NULL,         "5 nm"     }, // Cortex-A78
+	{ 0xd44,      NULL,         "10-5 nm"  }, // Cortex-X1
+	{ 0xd46,      NULL,         "7-5 nm"   }, // Cortex-A510
+	{ 0xd47,      NULL,         "7-5 nm"   }, // Cortex-A710
+	{ 0xd49,      NULL,         "5 nm"     }, // Neoverse-N2
+	{ 0xd4b,      NULL,         "5 nm"     }, // Cortex-A78C
+	{ 0xd4d,      NULL,         "7-5 nm"   }, // Cortex-A715
+	{ 0xd80,      NULL,         "3 nm"     }, // Cortex-A520
+	{ 0xd81,      NULL,         "3 nm"     }, // Cortex-A720
+	{ -2,         NULL,         NULL       }
+	//PartNum     Codename      Process
+};
+
+const Technology_DB_ARM technology_arm_qualcomm[] =
+{
+	//PartNum     Codename      Process
+	{ 0x00f,      NULL,         "65-45 nm" }, // Scorpion
+	{ 0x02d,      NULL,         "65-45 nm" }, // Scorpion
+	{ 0x04d,      NULL,         "28 nm"    }, // Krait
+	{ 0x06f,      NULL,         "28 nm"    }, // Krait
+	{ 0x201,      NULL,         "14 nm"    }, // Kryo
+	{ 0x205,      NULL,         "14 nm"    }, // Kryo
+	{ 0x211,      NULL,         "14 nm"    }, // Kryo
+	{ 0x801,      NULL,         "14-6 nm"  }, // Kryo-V2
+	{ 0x802,      NULL,         "10 nm"    }, // Kryo-3XX-Gold
+	{ 0x803,      NULL,         "10 nm"    }, // Kryo-3XX-Silver
+	{ 0x804,      NULL,         "11-7 nm"  }, // Kryo-4XX-Gold
+	{ 0x805,      NULL,         "8-7 nm"   }, // Kryo-4XX-Silver
+	{ 0xc00,      NULL,         "10 nm"    }, // Falkor
+	//PartNum     Codename      Process
+};
+
+const Technology_DB_ARM technology_arm_samsung[] =
+{
+	//PartNum     Codename      Process
+	{ 0x001,      NULL,         "14 nm" }, // Exynos M1
+	{ 0x002,      NULL,         "10 nm" }, // Exynos M3
+	{ 0x003,      NULL,         "8 nm"  }, // Exynos M4
+	{ 0x004,      NULL,         "7 nm"  }, // Exynos M5
+	//PartNum     Codename      Process
+};
+
+const Technology_DB_ARM technology_arm_nvidia[] =
+{
+	//PartNum     Codename      Process
+	{ 0x000,      NULL,         "28 nm" }, // Denver
+	{ 0x003,      NULL,         "16 nm" }, // Denver 2
+	{ 0x004,      NULL,         "12 nm" }, // Carmel
+	//PartNum     Codename      Process
+};
 
 /****************************** CPU Package ******************************/
 
@@ -184,8 +285,6 @@ typedef struct {
 	const char *model;
 	const char *socket;
 } Package_DB;
-
-const Package_DB package_unknown[] = { { NULL, NULL, NULL } };
 
 const Package_DB package_intel[] =
 {

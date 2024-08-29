@@ -39,6 +39,10 @@
 # include <libintl.h>
 #endif
 
+#if HAS_LIBCPUID
+# include <libcpuid/libcpuid.h>
+#endif
+
 
 /* Pairs class */
 
@@ -347,12 +351,24 @@ static void ntab_cpu(WINDOW *win, Data &data)
 	mvwprintw2c(win, LINE_4, SizeInfo::tb, "%14s", "%s", cpu_type.processor.technology);
 	mvwprintw2c(win, LINE_4, SizeInfo::tm, "%11s", "%s", cpu_type.processor.voltage);
 	mvwprintw2c(win, LINE_5, SizeInfo::tb, "%14s", "%s", cpu_type.processor.specification);
-	mvwprintw2c(win, LINE_6, SizeInfo::tb, "%14s", "%s", cpu_type.processor.family);
-	mvwprintw2c(win, LINE_6, SizeInfo::tm, "%11s", "%s", cpu_type.processor.model);
+#if HAS_LIBCPUID
+	if(cpu_type.processor.architecture == ARCHITECTURE_X86)
+	{
+		mvwprintw2c(win, LINE_6, SizeInfo::tb, "%14s", "%s", cpu_type.processor.family);
+		mvwprintw2c(win, LINE_6, SizeInfo::tm, "%11s", "%s", cpu_type.processor.model);
+		mvwprintw2c(win, LINE_7, SizeInfo::tb, "%14s", "%s", cpu_type.processor.dispfamily);
+		mvwprintw2c(win, LINE_7, SizeInfo::tm, "%11s", "%s", cpu_type.processor.dispmodel);
+		mvwprintw2c(win, LINE_7, SizeInfo::te, "%9s",  "%s", cpu_type.processor.stepping);
+	}
+	else if(cpu_type.processor.architecture == ARCHITECTURE_ARM)
+	{
+		mvwprintw2c(win, LINE_6, SizeInfo::tb, "%14s", "%s", cpu_type.processor.implementer);
+		mvwprintw2c(win, LINE_6, SizeInfo::tm, "%11s", "%s", cpu_type.processor.variant);
+		mvwprintw2c(win, LINE_7, SizeInfo::tb, "%14s", "%s", cpu_type.processor.partnum);
+		mvwprintw2c(win, LINE_7, SizeInfo::tm, "%11s", "%s", cpu_type.processor.revision);
+	}
+#endif /* HAS_LIBCPUID */
 	mvwprintw2c(win, LINE_6, SizeInfo::te, "%9s",  "%s", cpu_type.processor.temperature);
-	mvwprintw2c(win, LINE_7, SizeInfo::tb, "%14s", "%s", cpu_type.processor.dispfamily);
-	mvwprintw2c(win, LINE_7, SizeInfo::tm, "%11s", "%s", cpu_type.processor.dispmodel);
-	mvwprintw2c(win, LINE_7, SizeInfo::te, "%9s",  "%s", cpu_type.processor.stepping);
 	mvwprintw2c(win, LINE_8, SizeInfo::tb, "%14s", "%s", instructions1);
 	mvwprintwc (win, LINE_9, SizeInfo::tb + 16, Pairs::Colors::LABEL_VALUE_COLOR, instructions2.value);
 
