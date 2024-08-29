@@ -1,16 +1,16 @@
 # CPU-X translations template
 # Copyright © 2014-2024 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
-# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021, 2022, 2023.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021, 2022, 2023, 2024.
 # bittin1ddc447d824349b2 <bittin@reimu.nl>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-29 17:26+0000\n"
-"PO-Revision-Date: 2024-04-22 07:07+0000\n"
-"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
+"PO-Revision-Date: 2024-08-30 18:09+0000\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 #: core.cpp:164
 #, c-format
@@ -30,12 +30,12 @@ msgstr ""
 "family: %i"
 
 #: core.cpp:208
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Din CPU-sockel finns inte databasen ==> %s, kodnamn: %s"
+msgstr ""
+"Din CPU-sockel finns inte databasen ==> %s, delnummer: 0x%x, kodnamn: %s"
 
 #: core.cpp:215
 msgid "Finding CPU technology"
@@ -1132,11 +1132,11 @@ msgstr "Stepping"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Implementatör"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Variant"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
