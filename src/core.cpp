@@ -1587,7 +1587,7 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 	if(file_exists(pp_dpm_pcie_file))
 	{
 		char current, line[40];
-		const char *prev_loc = std::setlocale(LC_NUMERIC, nullptr); // for %f in sscanf
+		std::string prev_loc = std::setlocale(LC_NUMERIC, nullptr); // for %f in sscanf
 		MSG_DEBUG("get_gpu_interface_info: opening '%s'", pp_dpm_pcie_file.c_str());
 		std::FILE* fp = std::fopen(pp_dpm_pcie_file.c_str(), "r");
 		if(fp)
@@ -1608,7 +1608,7 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 					MSG_ERROR("get_gpu_interface_info: unknown type '%s'", type.c_str());
 			}
 			std::fclose(fp);
-			std::setlocale(LC_NUMERIC, prev_loc);
+			std::setlocale(LC_NUMERIC, prev_loc.c_str());
 		}
 		else
 			MSG_ERRNO("get_gpu_interface_info: failed to open '%s' file", pp_dpm_pcie_file.c_str());
