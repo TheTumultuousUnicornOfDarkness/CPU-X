@@ -117,7 +117,7 @@ static int call_libcpuid_msr_debug(Data &data, uint16_t all_cpu_count)
 {
 	const DaemonCommand cmd = LIBCPUID_MSR_DEBUG;
 
-	if(data.cpu.cpu_types[Options::get_selected_type()].processor.architecture != ARCHITECTURE_X86)
+	if(data.cpu.cpu_types[0].processor.architecture != ARCHITECTURE_X86)
 		return 1;
 
 	SEND_DATA(&data.socket_fd, &cmd, sizeof(DaemonCommand));
@@ -495,7 +495,7 @@ static int call_libcpuid_msr_static(Data &data)
 	const uint16_t current_core_id = data.cpu.get_selected_core_id();
 	MsrStaticData msg;
 
-	if(data.cpu.cpu_types[Options::get_selected_type()].processor.architecture != ARCHITECTURE_X86)
+	if(data.cpu.cpu_types[0].processor.architecture != ARCHITECTURE_X86)
 		return 1;
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR static values"));
@@ -525,7 +525,7 @@ static int call_libcpuid_msr_dynamic(Data &data)
 	const DaemonCommand cmd = LIBCPUID_MSR_DYNAMIC;
 	MsrDynamicData msg;
 
-	if(data.cpu.cpu_types[Options::get_selected_type()].processor.architecture != ARCHITECTURE_X86)
+	if(data.cpu.cpu_types[0].processor.architecture != ARCHITECTURE_X86)
 		return 1;
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR dynamic values"));
