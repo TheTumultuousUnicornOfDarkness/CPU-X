@@ -19,10 +19,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-29 17:26+0000\n"
-"PO-Revision-Date: 2024-04-16 03:01+0000\n"
+"PO-Revision-Date: 2024-08-30 18:09+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 #: core.cpp:164
 #, c-format
@@ -43,12 +43,11 @@ msgstr ""
 "genişletilmiş aile: %i"
 
 #: core.cpp:208
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
+msgstr "Veri tabanında CPU'nuz yok ==> %s, parça numarası: 0x%x, kod adı: %s"
 
 #: core.cpp:215
 msgid "Finding CPU technology"
@@ -1157,11 +1156,11 @@ msgstr "Basamak Seviyesi"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Uygulayıcı"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Çeşidi"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
