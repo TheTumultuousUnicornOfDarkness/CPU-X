@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-06-27 16:32+0000\n"
+"POT-Creation-Date: 2024-08-29 17:26+0000\n"
 "PO-Revision-Date: 2024-05-01 15:07+0000\n"
 "Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
@@ -30,11 +30,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.5.3-dev\n"
 
-#: core.cpp:135
-msgid "Finding CPU technology"
-msgstr "Mencari teknologi CPU"
-
-#: core.cpp:161
+#: core.cpp:164
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -43,59 +39,71 @@ msgstr ""
 "CPU Anda tidak ada dalam basis data ==> %s, model: %i, model luar: %i, "
 "keluarga luar: %i"
 
-#: core.cpp:189 data.cpp:150 data.cpp:345
+#: core.cpp:208
+#, fuzzy, c-format
+#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+msgid ""
+"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
+"%s"
+msgstr "Soket CPU Anda tidak ada dalam basis data ==> %s, nama kode: %s"
+
+#: core.cpp:215
+msgid "Finding CPU technology"
+msgstr "Mencari teknologi CPU"
+
+#: core.cpp:267 data.cpp:153 data.cpp:358
 msgid "unknown"
 msgstr "tidak dikenal"
 
-#: core.cpp:230
+#: core.cpp:351
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Memanggil libcpuid untuk mengambil data statis"
 
-#: core.cpp:245
+#: core.cpp:366
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "gagal memanggil libcpuid (%s)"
 
-#: core.cpp:340
+#: core.cpp:485
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Memanggil libcpuid untuk mengambil data dinamis"
 
-#: core.cpp:353
+#: core.cpp:501
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Memanggil libcpuid untuk mengambil nilai statik CPU MSR"
 
-#: core.cpp:380
+#: core.cpp:531
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Memanggil libcpuid untuk mengambil nilai dinamis MSR CPU"
 
-#: core.cpp:412
+#: core.cpp:563
 msgid "Calling dmidecode"
 msgstr "Memanggil dmidecode"
 
-#: core.cpp:454 core.cpp:473
+#: core.cpp:605 core.cpp:624
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (dikonfigurasi)"
 
-#: core.cpp:461 core.cpp:480
+#: core.cpp:612 core.cpp:631
 #, c-format
 msgid "%s (max)"
 msgstr "%s (maks)"
 
-#: core.cpp:466
+#: core.cpp:617
 #, c-format
 msgid "%s (min)"
 msgstr "%s (minimal)"
 
-#: core.cpp:496
+#: core.cpp:647
 msgid "Calculating CPU usage"
 msgstr "Menghitung penggunaan CPU"
 
-#: core.cpp:546
+#: core.cpp:697
 msgid "Calling bandwidth"
 msgstr "Memanggil lebar pita"
 
-#: core.cpp:613
+#: core.cpp:764
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -108,139 +116,139 @@ msgstr ""
 "Periksa apakah pustaka libpci %s ada pada sistem Anda. Jika tidak, silakan "
 "bangun ulang %s."
 
-#: core.cpp:657
+#: core.cpp:808
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 "Tidak ada pengandar kernel yang digunakan oleh kartu grafis pada lokasi %s"
 
-#: core.cpp:693
+#: core.cpp:844
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Pengandar kernel GPU Anda tidak diketahui: %s"
 
-#: core.cpp:777
+#: core.cpp:928
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "Pengandar mode pengguna GPU Anda tidak diketahui untuk vendor %s: %s"
 
-#: core.cpp:781
+#: core.cpp:932
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "gagal memanggil GLFW (%i): %s"
 
-#: core.cpp:914
+#: core.cpp:1065
 msgid "Finding Vulkan API version"
 msgstr "Menemukan versi API Vulkan"
 
-#: core.cpp:930
+#: core.cpp:1081
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "gagal memanggil vkCreateInstance (%s)"
 
-#: core.cpp:934
+#: core.cpp:1085
 #, c-format
 msgid "%s is not supported"
 msgstr "%s tidak didukung"
 
-#: core.cpp:943
+#: core.cpp:1094
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "gagal memanggil vkEnumeratePhysicalDevices (%s)"
 
-#: core.cpp:951
+#: core.cpp:1102
 msgid "No available Vulkan devices"
 msgstr "Tidak ada perangkat Vulkan yang tersedia"
 
-#: core.cpp:959
+#: core.cpp:1110
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Tidak ada perangkat fisik yang tersedia (%s)"
 
-#: core.cpp:1022
+#: core.cpp:1173
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Gagal membuat Vulkan untuk perangkat %u (%s)"
 
-#: core.cpp:1026
+#: core.cpp:1177
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s tidak didukung untuk perangkat %u, gunakan hanya deviceID untuk pencocokan"
 
-#: core.cpp:1058 core.cpp:1371
+#: core.cpp:1209 core.cpp:1522
 msgid "Enabled"
 msgstr "Diaktifkan"
 
-#: core.cpp:1058 core.cpp:1371
+#: core.cpp:1209 core.cpp:1522
 msgid "Disabled"
 msgstr "Dinonaktifkan"
 
-#: core.cpp:1095
+#: core.cpp:1246
 msgid "Finding OpenCL API version"
 msgstr "Temukan versi API OpenCL"
 
-#: core.cpp:1099
+#: core.cpp:1250
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Tidak terdapat platform dengan dukungan OpenCL (%s)"
 
-#: core.cpp:1109
+#: core.cpp:1260
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "gagal mendapatkan platform OpenCL (%s)"
 
-#: core.cpp:1122
+#: core.cpp:1273
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "gagal untuk mendapatkan nama untuk platform %u (%s)"
 
-#: core.cpp:1130
+#: core.cpp:1281
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "gagal untuk mendapatkan versi untuk platform %u (%s)"
 
-#: core.cpp:1138
+#: core.cpp:1289
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "gagal untuk mendapatkan jumlah dari perangkat OpenCL untuk platform '%s "
 "%s' (%s)"
 
-#: core.cpp:1138
+#: core.cpp:1289
 msgid "0 device"
 msgstr "0 perangkat"
 
-#: core.cpp:1147
+#: core.cpp:1298
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "gagal untuk mendapatkan semua perangkat OpenCL dari platform '%s %s' (%s)"
 
-#: core.cpp:1167
+#: core.cpp:1318
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "gagal untuk mendapatkan nama untuk perangkat %u (%s)"
 
-#: core.cpp:1175
+#: core.cpp:1326
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "gagal untuk mendapatkan versi untuk perangkat %u (%s)"
 
-#: core.cpp:1197
+#: core.cpp:1348
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1208
+#: core.cpp:1359
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1216 core.cpp:1236 core.cpp:1269
+#: core.cpp:1367 core.cpp:1387 core.cpp:1420
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -248,7 +256,7 @@ msgstr ""
 "Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_MAX_COMPUTE_UNITS "
 "(%s)"
 
-#: core.cpp:1257
+#: core.cpp:1408
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -257,188 +265,188 @@ msgstr ""
 "Pengandar OpenCL untuk '%s %s' tidak mendukung CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s), atau CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1280
+#: core.cpp:1431
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL tidak didukung oleh vendor GPU Anda (0x%X)"
 
-#: core.cpp:1302
+#: core.cpp:1453
 msgid "Finding devices"
 msgstr "Menemukan perangkat"
 
-#: core.cpp:1314
+#: core.cpp:1465
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Lewati pencarian perangkat (kesalahan izin pada perangkat %s)"
 
-#: core.cpp:1357
+#: core.cpp:1508
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Vendor GPU Anda tidak diketahui: %s (0x%X)"
 
-#: core.cpp:1377
+#: core.cpp:1528
 msgid "failed to find chipset vendor and model"
 msgstr "gagal menemukan vendor dan model chipset"
 
-#: core.cpp:1392
+#: core.cpp:1543
 msgid "failed to find graphic card vendor and model"
 msgstr "gagal menemukan vendor dan model kartu grafis"
 
-#: core.cpp:1494
+#: core.cpp:1676
 msgid "Retrieving GPU clocks"
 msgstr "Mengambil GPU clock"
 
-#: core.cpp:1507
+#: core.cpp:1689
 msgid "None"
 msgstr "Tidak ada"
 
-#: core.cpp:1516
+#: core.cpp:1698
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "Lokasi DRM untuk %s tidak diketahui"
 
-#: core.cpp:1523
+#: core.cpp:1705
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "Nomor kartu %s tidak diketahui"
 
-#: core.cpp:1548
+#: core.cpp:1730
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (saat ini) %s (maks)"
 
-#: core.cpp:1663
+#: core.cpp:1845
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Driver untuk %s tidak dapat melaporkan frekuensi"
 
-#: core.cpp:1684
+#: core.cpp:1866
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "Tidak dapat mengambil semua data pemantauan untuk %s"
 
-#: core.cpp:1707
+#: core.cpp:1889
 msgid "Identifying running system"
 msgstr "Mengidentifikasi sistem yang berjalan"
 
-#: core.cpp:1710
+#: core.cpp:1892
 msgid "failed to identify running system"
 msgstr "gagal mengidentifikasi sistem yang sedang berjalan"
 
-#: core.cpp:1762 core.cpp:1791
+#: core.cpp:1944 core.cpp:1973
 msgid "Calling libprocps"
 msgstr "Memanggil libprocps"
 
-#: core.cpp:1765
+#: core.cpp:1947
 msgid "unable to get system uptime"
 msgstr "tidak bisa mendapatkan waktu aktif sistem"
 
-#: core.cpp:1771
+#: core.cpp:1953
 msgid "unable to create meminfo structure"
 msgstr "tidak dapat membuat struktur meminfo"
 
-#: core.cpp:1817
+#: core.cpp:1999
 msgid "Calling libstatgrab"
 msgstr "Memanggil libstatgrab"
 
-#: core.cpp:1865
+#: core.cpp:2047
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i hari, %i jam, %i menit, %i detik"
 
-#: core.cpp:1928
+#: core.cpp:2110
 msgid "Updating benchmark status"
 msgstr "Memperbarui status pengukuran"
 
-#: core.cpp:1931
+#: core.cpp:2113
 msgid "Active"
 msgstr "Aktif"
 
-#: core.cpp:1934
+#: core.cpp:2116
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u jam lagi)"
 
-#: core.cpp:1936
+#: core.cpp:2118
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u menit lagi)"
 
-#: core.cpp:1938
+#: core.cpp:2120
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u detik lagi)"
 
-#: core.cpp:1942 core.cpp:1997 core.cpp:1998
+#: core.cpp:2124 core.cpp:2179 core.cpp:2180
 msgid "Inactive"
 msgstr "Tidak aktif"
 
-#: core.cpp:1945
+#: core.cpp:2127
 #, c-format
 msgid "in %u hours"
 msgstr "dalam %u jam"
 
-#: core.cpp:1947
+#: core.cpp:2129
 #, c-format
 msgid "in %u minutes"
 msgstr "dalam %u menit"
 
-#: core.cpp:1949
+#: core.cpp:2131
 #, c-format
 msgid "in %u seconds"
 msgstr "dalam %u detik"
 
-#: core.cpp:1966
+#: core.cpp:2148
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "Mulai benchmark dengan %u thread"
 
-#: core.cpp:1989
+#: core.cpp:2171
 msgid "an error occurred while starting benchmark"
 msgstr "Terjadi kesalahan saat memulai pengukuran"
 
-#: core.cpp:2015
+#: core.cpp:2197
 msgid "Finding CPU package in fallback mode"
 msgstr "Menemukan paket CPU dalam mode fallback"
 
-#: core.cpp:2045
+#: core.cpp:2227
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Soket CPU Anda tidak ada dalam basis data ==> %s, nama kode: %s"
 
-#: core.cpp:2065
+#: core.cpp:2247
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Menghitung pengali CPU dalam mode fallback"
 
-#: core.cpp:2085
+#: core.cpp:2267
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Mengambil informasi papan induk di mode fallback"
 
-#: core.cpp:2098
+#: core.cpp:2280
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "gagal mengambil informasi papan induk (mode fallback)"
 
-#: core.cpp:2140
+#: core.cpp:2322
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Mengambil suhu CPU di mode fallback"
 
-#: core.cpp:2186
+#: core.cpp:2361
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "gagal mengambil suhu CPU (mode fallback)"
 
-#: core.cpp:2201
+#: core.cpp:2376
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Mengambil tegangan CPU di mode fallback"
 
-#: core.cpp:2213
+#: core.cpp:2388
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "gagal mengambil tegangan CPU (mode fallback)"
 
-#: core.cpp:2227
+#: core.cpp:2402
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Mengambil frekuensi CPU di mode fallback"
 
-#: core.cpp:2233
+#: core.cpp:2408
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "gagal mengambil frekuensi CPU (mode fallback)"
 
@@ -471,142 +479,142 @@ msgstr "Menghubungkan ke daemon…"
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: kasus %i tidak ditangani"
 
-#: data.cpp:124 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1370
 msgid "CPU"
 msgstr "CPU"
 
-#: data.cpp:187
+#: data.cpp:190
 msgid "P-core"
 msgstr "Inti-P"
 
-#: data.cpp:188
+#: data.cpp:191
 msgid "E-core"
 msgstr "Inti-E"
 
-#: data.cpp:190
+#: data.cpp:192
 msgid "LP E-core"
 msgstr "LP E-core"
 
-#: data.cpp:192 data.cpp:195
+#: data.cpp:193 data.cpp:196
 msgid "Core"
 msgstr "Inti"
 
-#: data.cpp:211 cpu-x-gtk-3.12.ui:746
+#: data.cpp:212 cpu-x-gtk-3.12.ui:746
 msgid "Processor"
 msgstr "Prosesor"
 
-#: data.cpp:243 data.cpp:332 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:256 data.cpp:345 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "Tembolok"
 
-#: data.cpp:250
+#: data.cpp:263
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%2d x %4d %s, %2d-arah"
 
-#: data.cpp:252
+#: data.cpp:265
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d -arah"
 
-#: data.cpp:266
+#: data.cpp:279
 msgid "Count"
 msgstr "Hitungan"
 
-#: data.cpp:279 cpu-x-gtk-3.12.ui:968
+#: data.cpp:292 cpu-x-gtk-3.12.ui:968
 msgid "Clocks"
 msgstr "Clock"
 
-#: data.cpp:382 data.cpp:386
+#: data.cpp:395 data.cpp:399
 #, c-format
 msgid "L%u Cache"
 msgstr "Tembolok L%u"
 
-#: data.cpp:388
+#: data.cpp:401
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s asosiatif, ukuran baris %d-%s"
 
-#: data.cpp:401
+#: data.cpp:414
 msgid "Test"
 msgstr "Tes"
 
-#: data.cpp:412 data.cpp:426 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:425 data.cpp:439 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "Papan Induk"
 
-#: data.cpp:440 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:453 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:455 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:468 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "Chipset"
 
-#: data.cpp:470 data.cpp:572 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:483 data.cpp:585 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "Memori"
 
-#: data.cpp:486
+#: data.cpp:499
 #, c-format
 msgid "Stick %u"
 msgstr "Batang %u"
 
-#: data.cpp:490 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:503 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
 msgstr "Batang"
 
-#: data.cpp:544 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:557 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "Sistem"
 
-#: data.cpp:557 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:570 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "Sistem Operasi"
 
-#: data.cpp:590 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:603 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr "Grafis"
 
-#: data.cpp:624
+#: data.cpp:637
 #, c-format
 msgid "Card %u"
 msgstr "Kartu %u"
 
-#: data.cpp:628 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:641 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr "Kartu"
 
-#: data.cpp:675 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:688 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "Pengukuran"
 
-#: data.cpp:688
+#: data.cpp:701
 msgid "Not started"
 msgstr "Belum dimulai"
 
-#: data.cpp:691 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:704 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr "Bilangan prima (lambat)"
 
-#: data.cpp:695 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:708 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr "Bilangan prima (cepat)"
 
-#: data.cpp:699 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:712 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "Parameter"
 
-#: data.cpp:724 data.cpp:730
+#: data.cpp:737 data.cpp:743
 #, c-format
 msgid "%u mins"
 msgstr "%u menit"
 
-#: data.cpp:737 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:750 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "Tentang"
 
-#: data.cpp:742
+#: data.cpp:755
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -615,84 +623,84 @@ msgstr ""
 "%s adalah perangkat lunak gratis yang mengumpulkan informasi\n"
 "CPU, papan induk, dan lainnya."
 
-#: data.cpp:747
+#: data.cpp:760
 msgid "About CPU-X"
 msgstr "Tentang CPU-X"
 
-#: data.cpp:748
+#: data.cpp:761
 #, c-format
 msgid "Version %s"
 msgstr "Versi %s"
 
-#: data.cpp:749
+#: data.cpp:762
 #, c-format
 msgid "Author: %s"
 msgstr "Pembuat: %s"
 
-#: data.cpp:750
+#: data.cpp:763
 #, c-format
 msgid "Site: %s"
 msgstr "Situs: %s"
 
-#: data.cpp:754 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:767 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "Lisensi"
 
-#: data.cpp:756
+#: data.cpp:769
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Perangkat lunak ini didistribusikan di bawah aturan %s"
 
-#: data.cpp:757 main.cpp:176
+#: data.cpp:770 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Program ini hadir dengan TANPA JAMINAN APA PUN"
 
-#: gui_gtk.cpp:62
+#: gui_gtk.cpp:67
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Jalur untuk berkas '%s' tidak dapat ditemukan"
 
-#: gui_gtk.cpp:397
+#: gui_gtk.cpp:431
 msgid "Start daemon"
 msgstr "Memulai daemon"
 
-#: gui_gtk.cpp:400
+#: gui_gtk.cpp:434
 msgid "Connected to daemon"
 msgstr "Terhubung ke daemon"
 
-#: gui_gtk.cpp:403
+#: gui_gtk.cpp:437
 msgid "No polkit authentication agent found"
 msgstr "Agen autentikasi polkit tidak ditemukan"
 
-#: gui_gtk.cpp:408
+#: gui_gtk.cpp:442
 msgid "Ask password to start daemon in background"
 msgstr "Meminta kata sandi untuk memulai daemon di latar belakang"
 
-#: gui_gtk.cpp:412
+#: gui_gtk.cpp:446
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: gui_gtk.cpp:631
+#: gui_gtk.cpp:668
 msgid "BaseFamily"
 msgstr "KeluargaDasar"
 
-#: gui_gtk.cpp:632
+#: gui_gtk.cpp:669
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Tampilan CPU (\"benar\") keluarga (dihitung sebagai "
 "KeluargaDasar+KeluargaBesar)"
 
-#: gui_gtk.cpp:633
+#: gui_gtk.cpp:670
 msgid "BaseModel"
 msgstr "ModelDasar"
 
-#: gui_gtk.cpp:634
+#: gui_gtk.cpp:671
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Model tampilan CPU (\"benar\") (dihitung sebagai "
 "(ExtendedModel<<4)+ModelDasar)"
 
-#: gui_gtk.cpp:844
+#: gui_gtk.cpp:891
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -700,24 +708,24 @@ msgstr ""
 "Tentukan lokasi soket atau papan yang ditandai secara fisik dimana perangkat "
 "memori berada"
 
-#: gui_gtk.cpp:845
+#: gui_gtk.cpp:892
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Tentukan bank yang diberi tag secara fisik tempat perangkat memori berada"
 
-#: gui_gtk.cpp:1049
+#: gui_gtk.cpp:1097
 msgid "User Mode Driver Version"
 msgstr "Versi Pengandar Mode Pengguna"
 
-#: gui_gtk.cpp:1063
+#: gui_gtk.cpp:1111
 msgid "Vulkan Ray Tracing"
 msgstr "Pelacakan Sinar Vulkan"
 
-#: gui_gtk.cpp:1257
+#: gui_gtk.cpp:1306
 msgid "Starting GTK GUI…"
 msgstr "Memulai GUI GTK…"
 
-#: gui_gtk.cpp:1269
+#: gui_gtk.cpp:1318
 msgid "failed to import UI in GtkBuilder"
 msgstr "gagal mengimpor UI dalam GtkBuilder"
 
@@ -952,137 +960,137 @@ msgstr ""
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Tab yang dipilih (%u) bukan angka yang valid (%u adalah maksimum)"
 
-#: tui_ncurses.cpp:111
+#: tui_ncurses.cpp:116
 msgid "Window is too small!"
 msgstr "Jendela terlalu kecil!"
 
-#: tui_ncurses.cpp:119
+#: tui_ncurses.cpp:124
 msgid "Press 'h' to see help."
 msgstr "Tekan 'h' untuk melihat bantuan."
 
-#: tui_ncurses.cpp:232
+#: tui_ncurses.cpp:237
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
 msgstr "Selamat datang di %s bantuan NCurses!\n"
 
-#: tui_ncurses.cpp:233
+#: tui_ncurses.cpp:238
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
 "Bantuan ini menjelaskan cara menggunakan Antarmuka Pengguna Berbasis Teks."
 
-#: tui_ncurses.cpp:235
+#: tui_ncurses.cpp:240
 msgid "Global keys:"
 msgstr "Kunci global:"
 
-#: tui_ncurses.cpp:236
+#: tui_ncurses.cpp:241
 msgid "Press 'left' key or 'tab' key to switch in left tab."
 msgstr "Tekan tombol 'kiri' atau tombol 'tab' untuk beralih ke tab kiri."
 
-#: tui_ncurses.cpp:237
+#: tui_ncurses.cpp:242
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr ""
 "Tekan tombol 'kanan' atau tombol 'shift + tab' untuk beralih ke tab kanan."
 
-#: tui_ncurses.cpp:238
+#: tui_ncurses.cpp:243
 msgid "Press 'h' key to see this help."
 msgstr "Tekan tombol 'h' untuk melihat bantuan ini."
 
-#: tui_ncurses.cpp:239
+#: tui_ncurses.cpp:244
 msgid "Press 'q' key to exit."
 msgstr "Tekan 'q' untuk keluar."
 
-#: tui_ncurses.cpp:241
+#: tui_ncurses.cpp:246
 msgid "CPU tab:"
 msgstr "Tab CPU:"
 
-#: tui_ncurses.cpp:242
+#: tui_ncurses.cpp:247
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
 "Tekan tombol 'halaman berikutnya' untuk mengurangi nomor jenis inti yang "
 "akan dipantau."
 
-#: tui_ncurses.cpp:243
+#: tui_ncurses.cpp:248
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr ""
 "Tekan tombol 'halaman sebelumnya' untuk menambah nomor tipe inti yang akan "
 "dipantau."
 
-#: tui_ncurses.cpp:244
+#: tui_ncurses.cpp:249
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
 "Tekan tombol 'bawah' untuk mengurangi jumlah inti CPU yang akan dipantau."
 
-#: tui_ncurses.cpp:245
+#: tui_ncurses.cpp:250
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr "Tekan tombol 'atas' untuk menambah jumlah inti CPU yang akan dipantau."
 
-#: tui_ncurses.cpp:247
+#: tui_ncurses.cpp:252
 msgid "Caches tab:"
 msgstr "Tab tembolok:"
 
-#: tui_ncurses.cpp:248
+#: tui_ncurses.cpp:253
 msgid "Press 'down' key to switch to previous test."
 msgstr "Tekan tombol 'bawah' untuk beralih ke tes sebelumnya."
 
-#: tui_ncurses.cpp:249
+#: tui_ncurses.cpp:254
 msgid "Press 'up' key to switch to next test."
 msgstr "Tekan tombol 'atas' untuk beralih ke tes berikutnya."
 
-#: tui_ncurses.cpp:251
+#: tui_ncurses.cpp:256
 msgid "Bench tab:"
 msgstr "Tab pengukuran:"
 
-#: tui_ncurses.cpp:252
+#: tui_ncurses.cpp:257
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr "Tekan tombol 'bawah' untuk mengurangi durasi pengukuran."
 
-#: tui_ncurses.cpp:253
+#: tui_ncurses.cpp:258
 msgid "Press 'up' key to increment benchmark duration."
 msgstr "Tekan tombol 'atas' untuk menambah durasi pengukuran."
 
-#: tui_ncurses.cpp:254
+#: tui_ncurses.cpp:259
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
 "Tekan tombol 'next page' untuk mengurangi jumlah thread yang akan digunakan."
 
-#: tui_ncurses.cpp:255
+#: tui_ncurses.cpp:260
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
 "Tekan tombol 'halaman sebelumnya' untuk menambah jumlah thread yang akan "
 "digunakan."
 
-#: tui_ncurses.cpp:256
+#: tui_ncurses.cpp:261
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
 "Tekan 's' untuk memulai/menghentikan pengukuran bilangan prima (lambat)."
 
-#: tui_ncurses.cpp:257
+#: tui_ncurses.cpp:262
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
 "Tekan tombol 'f' untuk memulai/menghentikan pengukuran bilangan prima "
 "(cepat)."
 
-#: tui_ncurses.cpp:259
+#: tui_ncurses.cpp:264
 msgid "Graphics tab:"
 msgstr "Tab grafis:"
 
-#: tui_ncurses.cpp:260
+#: tui_ncurses.cpp:265
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr "Tekan tombol 'bawah' untuk beralih ke kartu grafis sebelumnya."
 
-#: tui_ncurses.cpp:261
+#: tui_ncurses.cpp:266
 msgid "Press 'up' key to switch to next graphic card."
 msgstr "Tekan tombol 'atas' untuk beralih ke kartu grafis berikutnya."
 
-#: tui_ncurses.cpp:263
+#: tui_ncurses.cpp:268
 msgid "Press any key to exit this help."
 msgstr "Tekan sembarang tombol untuk keluar dari bantuan ini."
 
-#: tui_ncurses.cpp:640
+#: tui_ncurses.cpp:679
 msgid "Starting NCurses TUI…"
 msgstr "Memulai NCurses TUI…"
 
-#: tui_ncurses.cpp:649
+#: tui_ncurses.cpp:688
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1090,7 +1098,7 @@ msgstr ""
 "KESALAHAN FATAL: basis data terminfo tidak dapat ditemukan (coba atur "
 "variabel lingkungan TERMINFO)"
 
-#: tui_ncurses.cpp:654
+#: tui_ncurses.cpp:693
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Gagal menyiapkan terminal %s (err=%i); kembali ke %s"
@@ -1114,7 +1122,7 @@ msgstr "terjadi kesalahan saat menjalankan perintah '%s'"
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() tidak didukung pada sistem operasi ini"
 
-#: data.hpp:103 data.hpp:244 data.hpp:332
+#: data.hpp:103 data.hpp:254 data.hpp:342
 msgid "Vendor"
 msgstr "Vendor"
 
@@ -1130,7 +1138,7 @@ msgstr "Paket"
 msgid "Technology"
 msgstr "Teknologi"
 
-#: data.hpp:107 data.hpp:268
+#: data.hpp:107 data.hpp:278
 msgid "Voltage"
 msgstr "Tegangan"
 
@@ -1138,245 +1146,253 @@ msgstr "Tegangan"
 msgid "Specification"
 msgstr "Spesifikasi"
 
-#: data.hpp:109
+#: data.hpp:110
 msgid "Family"
 msgstr "Keluarga"
 
-#: data.hpp:110
+#: data.hpp:111
 msgid "Disp. Family"
 msgstr "Tampilkan Keluarga"
 
-#: data.hpp:111 data.hpp:224 data.hpp:245 data.hpp:335
+#: data.hpp:112 data.hpp:234 data.hpp:255 data.hpp:345
 msgid "Model"
 msgstr "Model"
 
-#: data.hpp:112
+#: data.hpp:113
 msgid "Disp. Model"
 msgstr "Tampilkan Model"
-
-#: data.hpp:113
-msgid "Temp."
-msgstr "Suhu"
 
 #: data.hpp:114
 msgid "Stepping"
 msgstr "Melangkah"
 
-#: data.hpp:115
-msgid "Instructions"
-msgstr "Instruksi"
+#: data.hpp:116
+msgid "Implementer"
+msgstr ""
 
-#: data.hpp:125
-msgid "L1 Data"
-msgstr "Data L1"
+#: data.hpp:117
+msgid "Variant"
+msgstr ""
 
-#: data.hpp:126
-msgid "L1 Inst."
-msgstr "Instruksi L1"
-
-#: data.hpp:127
-msgid "Level 2"
-msgstr "Level 2"
-
-#: data.hpp:128
-msgid "Level 3"
-msgstr "Level 3"
-
-#: data.hpp:137 cpu-x-gtk-3.12.ui:1232
-msgid "Cores"
-msgstr "Inti"
-
-#: data.hpp:138 data.hpp:408 cpu-x-gtk-3.12.ui:1252
-msgid "Threads"
-msgstr "Thread"
-
-#: data.hpp:155
-msgid "Core Speed"
-msgstr "Kecepatan Inti"
-
-#: data.hpp:156
-msgid "Multiplier"
-msgstr "Pengali"
-
-#: data.hpp:157
-msgid "Bus Speed"
-msgstr "Kecepatan Bus"
-
-#: data.hpp:158 data.hpp:341
-msgid "Usage"
-msgstr "Pengunaan"
-
-#: data.hpp:188 data.hpp:265
-msgid "Size"
-msgstr "Ukuran"
-
-#: data.hpp:189 data.hpp:267
-msgid "Speed"
-msgstr "Kecepatan"
-
-#: data.hpp:223 data.hpp:259
-msgid "Manufacturer"
-msgstr "Manufaktur"
-
-#: data.hpp:225
-msgid "Revision"
-msgstr "Revisi"
-
-#: data.hpp:233
-msgid "Brand"
-msgstr "Merek"
-
-#: data.hpp:234
-msgid "Version"
-msgstr "Versi"
-
-#: data.hpp:235
-msgid "Date"
-msgstr "Tanggal"
-
-#: data.hpp:236
-msgid "ROM Size"
-msgstr "Ukuran ROM"
-
-#: data.hpp:260
+#: data.hpp:118 data.hpp:270
 msgid "Part Number"
 msgstr "Nomor Bagian"
 
-#: data.hpp:261
+#: data.hpp:119 data.hpp:235
+msgid "Revision"
+msgstr "Revisi"
+
+#: data.hpp:121
+msgid "Temp."
+msgstr "Suhu"
+
+#: data.hpp:122
+msgid "Instructions"
+msgstr "Instruksi"
+
+#: data.hpp:135
+msgid "L1 Data"
+msgstr "Data L1"
+
+#: data.hpp:136
+msgid "L1 Inst."
+msgstr "Instruksi L1"
+
+#: data.hpp:137
+msgid "Level 2"
+msgstr "Level 2"
+
+#: data.hpp:138
+msgid "Level 3"
+msgstr "Level 3"
+
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1232
+msgid "Cores"
+msgstr "Inti"
+
+#: data.hpp:148 data.hpp:418 cpu-x-gtk-3.12.ui:1252
+msgid "Threads"
+msgstr "Thread"
+
+#: data.hpp:165
+msgid "Core Speed"
+msgstr "Kecepatan Inti"
+
+#: data.hpp:166
+msgid "Multiplier"
+msgstr "Pengali"
+
+#: data.hpp:167
+msgid "Bus Speed"
+msgstr "Kecepatan Bus"
+
+#: data.hpp:168 data.hpp:351
+msgid "Usage"
+msgstr "Pengunaan"
+
+#: data.hpp:198 data.hpp:275
+msgid "Size"
+msgstr "Ukuran"
+
+#: data.hpp:199 data.hpp:277
+msgid "Speed"
+msgstr "Kecepatan"
+
+#: data.hpp:233 data.hpp:269
+msgid "Manufacturer"
+msgstr "Manufaktur"
+
+#: data.hpp:243
+msgid "Brand"
+msgstr "Merek"
+
+#: data.hpp:244
+msgid "Version"
+msgstr "Versi"
+
+#: data.hpp:245
+msgid "Date"
+msgstr "Tanggal"
+
+#: data.hpp:246
+msgid "ROM Size"
+msgstr "Ukuran ROM"
+
+#: data.hpp:271
 msgid "Type"
 msgstr "Tipe"
 
-#: data.hpp:262
+#: data.hpp:272
 msgid "Type Detail"
 msgstr "Tipe Detail"
 
-#: data.hpp:263
+#: data.hpp:273
 msgid "Device Locator"
 msgstr "Pencari Perangkat"
 
-#: data.hpp:264
+#: data.hpp:274
 msgid "Bank Locator"
 msgstr "Pencari Lokasi Bank"
 
-#: data.hpp:266
+#: data.hpp:276
 msgid "Rank"
 msgstr "Pangkat"
 
-#: data.hpp:292
+#: data.hpp:302
 msgid "Name"
 msgstr "Nama"
 
-#: data.hpp:293
+#: data.hpp:303
 msgid "Kernel"
 msgstr "Kernel"
 
-#: data.hpp:294
+#: data.hpp:304
 msgid "Hostname"
 msgstr "Nama host"
 
-#: data.hpp:295
+#: data.hpp:305
 msgid "Uptime"
 msgstr "Waktu aktif"
 
-#: data.hpp:303
+#: data.hpp:313
 msgid "Used"
 msgstr "Digunakan"
 
-#: data.hpp:304
+#: data.hpp:314
 msgid "Buffers"
 msgstr "Bufer"
 
-#: data.hpp:305
+#: data.hpp:315
 msgid "Cached"
 msgstr "Dalam tembolok"
 
-#: data.hpp:306
+#: data.hpp:316
 msgid "Free"
 msgstr "Gratis"
 
-#: data.hpp:307
+#: data.hpp:317
 msgid "Swap"
 msgstr "Tukar"
 
-#: data.hpp:333
+#: data.hpp:343
 msgid "Driver"
 msgstr "Pengandar"
 
-#: data.hpp:334
+#: data.hpp:344
 msgid "UMD Version"
 msgstr "Versi UMD"
 
-#: data.hpp:336
+#: data.hpp:346
 msgid "Compute Unit"
 msgstr "Unit Komputasi"
 
-#: data.hpp:337
+#: data.hpp:347
 msgid "Device ID"
 msgstr "ID Perangkat"
 
-#: data.hpp:338
+#: data.hpp:348
 msgid "VBIOS Version"
 msgstr "Versi VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:339 cpu-x-gtk-3.12.ui:5807
+#: data.hpp:349 cpu-x-gtk-3.12.ui:5807
 msgid "Interface"
 msgstr "Antarmuka"
 
-#: data.hpp:340
+#: data.hpp:350
 msgid "Temperature"
 msgstr "Suhu"
 
-#: data.hpp:342
+#: data.hpp:352
 msgid "Core Voltage"
 msgstr "Tegangan Inti"
 
-#: data.hpp:343
+#: data.hpp:353
 msgid "Power Avg"
 msgstr "Daya Rata-rata"
 
-#: data.hpp:344
+#: data.hpp:354
 msgid "Core Clock"
 msgstr "Clock Inti"
 
-#: data.hpp:345
+#: data.hpp:355
 msgid "Memory Clock"
 msgstr "Clock Memori"
 
-#: data.hpp:346
+#: data.hpp:356
 msgid "Memory Used"
 msgstr "Memori yang Digunakan"
 
-#: data.hpp:347
+#: data.hpp:357
 msgid "Resizable BAR"
 msgstr "ReBAR"
 
-#: data.hpp:348
+#: data.hpp:358
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: data.hpp:349
+#: data.hpp:359
 msgid "OpenGL Version"
 msgstr "Versi OpenGL"
 
-#: data.hpp:350
+#: data.hpp:360
 msgid "Vulkan Version"
 msgstr "Versi Vulkan"
 
-#: data.hpp:351
+#: data.hpp:361
 msgid "OpenCL Version"
 msgstr "Versi OpenCL"
 
-#: data.hpp:387
+#: data.hpp:397
 msgid "Score"
 msgstr "Skor"
 
-#: data.hpp:388
+#: data.hpp:398
 msgid "Run"
 msgstr "Jalankan"
 
-#: data.hpp:407
+#: data.hpp:417
 msgid "Duration"
 msgstr "Durasi"
 
