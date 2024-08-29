@@ -19,7 +19,7 @@ msgstr ""
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-29 17:26+0000\n"
 "PO-Revision-Date: 2024-08-30 18:09+0000\n"
-"Last-Translator: nelsonhef <nelsonhf@outlook.com>\n"
+"Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -39,12 +39,13 @@ msgstr ""
 "ext. família: %i"
 
 #: core.cpp:208
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "O soquete da sua CPU não consta no banco de dados ==> %s, codinome: %s"
+msgstr ""
+"A sua CPU não consta no banco de dados ==> %s, número de peça: 0x%x, "
+"codinome: %s"
 
 #: core.cpp:215
 msgid "Finding CPU technology"
@@ -1192,11 +1193,11 @@ msgstr "Passo"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Responsável pela implementação"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Variação"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
