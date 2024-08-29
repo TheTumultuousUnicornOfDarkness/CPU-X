@@ -2264,6 +2264,9 @@ static int motherboardtab_fallback([[maybe_unused]] Data &data)
 	int err = 0;
 
 #ifdef __linux__
+	if (!fs::is_directory(SYS_DMI))
+		return 1;
+
 	MSG_VERBOSE("%s", _("Retrieving motherboard information in fallback mode"));
 	/* Frame Board */
 	err += fopen_to_str(data.motherboard.board.manufacturer.value, "%s/%s", SYS_DMI, "board_vendor");
@@ -2345,6 +2348,15 @@ static int cputab_temp_fallback(Data &data)
 				cpu_type.processor.temperature.value = string_with_temperature_unit(tmp / 1e3);
 		}
 	}
+	else if(command_exists("vcgencmd"))
+	{
+		if(!(err = popen_to_str(temperature, "vcgencmd measure_temp | cut -d= -f2 | cut -d\"'\" -f1")))
+		{
+			const double tmp = std::stod(temperature);
+			if(tmp > 0.0)
+				cpu_type.processor.temperature.value = string_with_temperature_unit(tmp);
+		}
+	}
 
 #else /* __linux__ */
 	/* Tested on FreeBSD 12: https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues/121#issuecomment-575985765 */
@@ -2380,8 +2392,15 @@ static int cputab_volt_fallback([[maybe_unused]] Data &data)
 
 	/* Get voltage */
 	if(!cpu_type.processor.path_cpu_voltage.empty())
+	{
 		if(!(err = fopen_to_str(voltage, "%s", cpu_type.processor.path_cpu_voltage.c_str())))
 			cpu_type.processor.voltage.value = string_format("%.3f V", std::stod(voltage) / 1e3);
+	}
+	else if(command_exists("vcgencmd"))
+	{
+		if(!(err = popen_to_str(voltage, "vcgencmd measure_volts core | cut -d= -f2")))
+			cpu_type.processor.voltage.value = voltage;
+	}
 #endif /* __linux__ */
 
 	if(err)
@@ -2402,6 +2421,11 @@ static int cputab_freq_fallback([[maybe_unused]] Data &data)
 	MSG_VERBOSE("%s", _("Retrieving CPU frequency in fallback mode"));
 	if(!(err = fopen_to_str(freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, current_core_id)))
 		data.cpu.clocks.set_cpu_freq(std::round(std::stod(freq) / 1e3));
+	else if(command_exists("vcgencmd"))
+	{
+		if(!(err = popen_to_str(freq, "vcgencmd measure_clock arm | cut -d= -f2")))
+			data.cpu.clocks.set_cpu_freq(std::round(std::stod(freq) / 1e6));
+	}
 #endif /* __linux__ */
 
 	if(err)

@@ -295,12 +295,18 @@ Data::Cpu::Clocks::Clocks() : Frame(_("Clocks"))
 
 void Data::Cpu::Clocks::set_cpu_freq(int cpu_freq)
 {
+	if(cpu_freq <= 0)
+		return;
+
 	this->cpu_freq         = cpu_freq;
 	this->core_speed.value = string_format("%4i MHz", this->cpu_freq);
 }
 
 void Data::Cpu::Clocks::set_bus_freq(double bus_freq)
 {
+	if(bus_freq <= 0.0)
+		return;
+
 	this->bus_freq        = bus_freq;
 	this->bus_speed.value = string_format("%.2f MHz", this->bus_freq);
 }
