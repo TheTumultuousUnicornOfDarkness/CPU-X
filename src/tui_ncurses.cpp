@@ -316,7 +316,6 @@ static void main_win(WINDOW *win, Data &data)
 			mvwprintwc(win, TABS_LINE, cpt, Pairs::Colors::INACTIVE_TAB_COLOR, tab_list[i]->name);
 		cpt += tab_list[i]->name.size() + 2;
 	}
-
 }
 
 /* CPU tab */
@@ -420,6 +419,9 @@ static void ntab_caches(WINDOW *win, Data &data)
 /* Motherboard tab */
 static void ntab_motherboard(WINDOW *win, Data &data)
 {
+	if(!data.motherboard.visible)
+		return;
+
 	/* Motherboard frame */
 	draw_frame(win, LINE_0, SizeInfo::start , LINE_4, SizeInfo::width - 1, data.motherboard.board);
 	mvwprintw2c(win, LINE_1, SizeInfo::tb, "%13s", "%s", data.motherboard.board.manufacturer);

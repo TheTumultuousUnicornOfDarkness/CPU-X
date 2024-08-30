@@ -146,8 +146,11 @@ struct GtkData
 	/* Tab Motherboard */
 	struct ExtTabMotherboard : public ExtTab
 	{
+		Gtk::Box *boxmotherboard = nullptr;
+
 		ExtTabMotherboard(Glib::RefPtr<Gtk::Builder> builder);
 	};
+#define EXT_TAB_MOTHERBOARD(motherboard) static_cast<ExtTabMotherboard*>(motherboard.ext)
 	void gtab_motherboard();
 
 	/* Tab Memory */

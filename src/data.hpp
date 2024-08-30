@@ -228,6 +228,8 @@ struct Data
 
 	struct Motherboard : public Tab
 	{
+		bool visible = true;
+
 		struct Board : public Frame
 		{
 			Label manufacturer {_("Manufacturer")};

@@ -434,11 +434,14 @@ Data::Motherboard::Motherboard() : Tab(_("Motherboard"))
 
 std::ostream& operator<<(std::ostream& os, const Data::Motherboard& motherboard)
 {
-	os << static_cast<const Tab&>(motherboard);
-	os << static_cast<const Data::Motherboard::Board&>(motherboard.board);
-	os << static_cast<const Data::Motherboard::Bios&>(motherboard.bios);
-	os << static_cast<const Data::Motherboard::Chipset&>(motherboard.chipset);
-	os << std::endl;
+	if(motherboard.visible)
+	{
+		os << static_cast<const Tab&>(motherboard);
+		os << static_cast<const Data::Motherboard::Board&>(motherboard.board);
+		os << static_cast<const Data::Motherboard::Bios&>(motherboard.bios);
+		os << static_cast<const Data::Motherboard::Chipset&>(motherboard.chipset);
+		os << std::endl;
+	}
 	return os;
 }
 

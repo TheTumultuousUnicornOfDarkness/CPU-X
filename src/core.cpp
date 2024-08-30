@@ -2271,8 +2271,11 @@ static int motherboardtab_fallback([[maybe_unused]] Data &data)
 	int err = 0;
 
 #ifdef __linux__
-	if (!fs::is_directory(SYS_DMI))
+	if(!fs::is_directory(SYS_DMI))
+	{
+		data.motherboard.visible = false;
 		return 1;
+	}
 
 	MSG_VERBOSE("%s", _("Retrieving motherboard information in fallback mode"));
 	/* Frame Board */
@@ -2284,6 +2287,9 @@ static int motherboardtab_fallback([[maybe_unused]] Data &data)
 	err += fopen_to_str(data.motherboard.bios.brand.value,   "%s/%s", SYS_DMI, "bios_vendor");
 	err += fopen_to_str(data.motherboard.bios.version.value, "%s/%s", SYS_DMI, "bios_version");
 	err += fopen_to_str(data.motherboard.bios.date.value,    "%s/%s", SYS_DMI, "bios_date");
+#else
+	data.motherboard.visible = false;
+	return 1;
 #endif /* __linux__ */
 
 	if(err)

@@ -836,10 +836,18 @@ void GtkData::change_active_test()
 
 GtkData::ExtTabMotherboard::ExtTabMotherboard(Glib::RefPtr<Gtk::Builder> builder) : ExtTab(builder, "motherboardlabel")
 {
+	builder->get_widget("motherboard_box", this->boxmotherboard);
 }
 
 void GtkData::gtab_motherboard()
 {
+	/* Hide tab if there is no data about motherboard */
+	if(!this->data.motherboard.visible)
+	{
+		EXT_TAB_MOTHERBOARD(this->data.motherboard)->boxmotherboard->hide();
+		return;
+	}
+
 	set_tab_name(this->data.motherboard);
 
 	/* Motherboard frame */
