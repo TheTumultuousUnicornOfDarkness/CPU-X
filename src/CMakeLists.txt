@@ -251,6 +251,8 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DSOCKET_NAME="${DAEMON_SOCKET}"
 )
 
+set(OTHER_LIBRARIES "-latomic")
+
 # Link libraries
 target_link_libraries(${APP_EXEC}
 	${Intl_LIBRARIES}
