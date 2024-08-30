@@ -140,18 +140,18 @@ if(WITH_DMIDECODE)
 endif(WITH_DMIDECODE)
 
 # Bandwidth
-if(WITH_BANDWIDTH)
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86" AND WITH_BANDWIDTH)
 	add_subdirectory(bandwidth)
 	if(BANDWIDTH_FOUND)
 		include_directories(bandwidth)
 		set(BANDWIDTH_LIBRARIES "bandwidth")
 	endif(BANDWIDTH_FOUND)
-endif(WITH_BANDWIDTH)
+endif(CMAKE_SYSTEM_PROCESSOR MATCHES "x86" AND WITH_BANDWIDTH)
 
 
 ### FINAL CONFIG
 
-message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration **${ColourReset}")
+message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration (${CMAKE_SYSTEM_PROCESSOR}) **${ColourReset}")
 
 # UI libraries
 print_config("GTK"                 "${GTK3_VERSION}"        GTK3_FOUND        WITH_GTK)
