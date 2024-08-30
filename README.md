@@ -1,5 +1,7 @@
+<p align="middle">
+<img src="./data/icons/header.svg" />
+</p>
 
-[![Logo](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/blob/master/data/icons/CPU-X_22x22.png?raw=true)](https://thetumultuousunicornofdarkness.github.io/CPU-X/)
 [![GitHub release](https://img.shields.io/github/release/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/tags)
 [![GitHub commits](https://img.shields.io/github/commits-since/TheTumultuousUnicornOfDarkness/CPU-X/latest.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/commits/master)
 [![GitHub downloads](https://img.shields.io/github/downloads/TheTumultuousUnicornOfDarkness/CPU-X/latest/total.svg)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases/latest)
@@ -20,6 +22,7 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 **:warning: There are no milestones for this project, read [this announcement](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/future-of-project) for more details.**
 
 ***
+
 
 # Table of contents
 - [Table of contents](#table-of-contents)
