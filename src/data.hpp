@@ -88,14 +88,14 @@ struct Data
 	{
 		char *cpuid_raw_file = NULL;
 #if HAS_LIBCPUID
-		cpu_vendor_t vendor;
+		cpu_vendor_t vendor = VENDOR_UNKNOWN;
 		std::string sensors_module_name {};
 #endif /* HAS_LIBCPUID */
 
 		struct CpuType : public MetaFrame
 		{
 #if HAS_LIBCPUID
-			cpu_purpose_t purpose;
+			cpu_purpose_t purpose = PURPOSE_GENERAL;
 #endif /* HAS_LIBCPUID */
 
 			struct Processor : public Frame
@@ -121,7 +121,7 @@ struct Data
 				Label temperature   {_("Temp.")};
 				Label instructions  {_("Instructions")};
 #if HAS_LIBCPUID
-				cpu_architecture_t architecture;
+				cpu_architecture_t architecture = ARCHITECTURE_UNKNOWN;
 #endif /* HAS_LIBCPUID */
 				std::string path_cpu_temperature {};
 				std::string path_cpu_voltage     {};
