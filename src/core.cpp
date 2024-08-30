@@ -1924,7 +1924,7 @@ static int system_static(Data &data)
 	if(!err)
 	{
 		/* Name label */
-		data.system.os.kernel.value = string_format("%s %s", name.sysname, name.release);
+		data.system.os.name.value = string_format("%s %s", name.sysname, name.release);
 
 		/* Kernel label */
 		data.system.os.kernel.value = string_format("%s", name.version);
