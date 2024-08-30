@@ -115,9 +115,10 @@ static int err_func(int (*func)(Data &), Data &data)
 /* MSRs static values provided by libcpuid */
 static int call_libcpuid_msr_debug(Data &data, uint16_t all_cpu_count)
 {
+	auto& cpu_type = data.cpu.get_selected_cpu_type();
 	const DaemonCommand cmd = LIBCPUID_MSR_DEBUG;
 
-	if(data.cpu.cpu_types[0].processor.architecture != ARCHITECTURE_X86)
+	if(cpu_type.processor.architecture != ARCHITECTURE_X86)
 		return 1;
 
 	SEND_DATA(&data.socket_fd, &cmd, sizeof(DaemonCommand));
@@ -355,32 +356,12 @@ static int call_libcpuid_static(Data &data)
 		err = cpuid_get_all_raw_data(&raw_data);
 	else
 		err = cpuid_deserialize_all_raw_data(&raw_data, data.cpu.cpuid_raw_file);
-	if(Options::get_issue())
-	{
-		cpuid_serialize_all_raw_data(&raw_data, "");
-		if(DAEMON_UP) call_libcpuid_msr_debug(data, raw_data.num_raw);
-	}
 
 	if(err || cpu_identify_all(&raw_data, &system_id))
 	{
 		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
 		return 1;
 	}
-	cpuid_free_raw_data_array(&raw_data);
-
-	/* Find kernel module for CPU temperature (used by cputab_temp_fallback()) */
-	if(system_id.cpu_types[0].architecture == ARCHITECTURE_X86)
-	{
-		cpu_flags = cpu_flags_x86;
-		if(system_id.cpu_types[0].vendor == VENDOR_INTEL)
-			data.cpu.sensors_module_name = "coretemp";
-		else if((system_id.cpu_types[0].vendor == VENDOR_AMD) && (system_id.cpu_types[0].x86.ext_family <= 0x8))
-			data.cpu.sensors_module_name = "k8temp";
-		else if((system_id.cpu_types[0].vendor== VENDOR_AMD) && (system_id.cpu_types[0].x86.ext_family >= 0x10))
-			data.cpu.sensors_module_name = "k10temp";
-	}
-	else if(system_id.cpu_types[0].architecture == ARCHITECTURE_ARM)
-		cpu_flags = cpu_flags_arm;
 
 	/* Basically fill CPU tab */
 	for(uint8_t cpu_type = 0; cpu_type < system_id.num_cpu_types; cpu_type++)
@@ -389,6 +370,25 @@ static int call_libcpuid_static(Data &data)
 		cpu_purpose = cpu_purpose_str(cpu_id->purpose);
 		data.cpu.grow_cpu_types_vector(cpu_type, cpu_purpose);
 		data.caches.grow_cpu_types_vector(cpu_type, cpu_purpose);
+
+		/* Find kernel module for CPU temperature (used by cputab_temp_fallback()) only for the first type */
+		if(cpu_type == 0)
+		{
+			if(cpu_id->architecture == ARCHITECTURE_X86)
+			{
+				cpu_flags = cpu_flags_x86;
+				if(cpu_id->vendor == VENDOR_INTEL)
+					data.cpu.sensors_module_name = "coretemp";
+				else if((cpu_id->vendor == VENDOR_AMD) && (cpu_id->x86.ext_family <= 0x8))
+					data.cpu.sensors_module_name = "k8temp";
+				else if((cpu_id->vendor == VENDOR_AMD) && (cpu_id->x86.ext_family >= 0x10))
+					data.cpu.sensors_module_name = "k10temp";
+			}
+			else if(cpu_id->architecture == ARCHITECTURE_ARM)
+			{
+				cpu_flags = cpu_flags_arm;
+			}
+		}
 
 		/* Trivial assignments */
 		data.cpu.vendor                                            = cpu_id->vendor;
@@ -473,6 +473,12 @@ static int call_libcpuid_static(Data &data)
 	}
 	Options::set_selected_type(Options::get_selected_type(), system_id.num_cpu_types);
 	Options::set_selected_core(Options::get_selected_core(), data.cpu.get_selected_cpu_type().footer.num_threads);
+	if(Options::get_issue())
+	{
+		cpuid_serialize_all_raw_data(&raw_data, "");
+		if(DAEMON_UP) call_libcpuid_msr_debug(data, raw_data.num_raw);
+	}
+	cpuid_free_raw_data_array(&raw_data);
 	cpuid_free_system_id(&system_id);
 
 	return err;
@@ -491,11 +497,12 @@ static int call_libcpuid_dynamic(Data &data)
 /* MSRs static values provided by libcpuid */
 static int call_libcpuid_msr_static(Data &data)
 {
+	auto& cpu_type = data.cpu.get_selected_cpu_type();
 	const DaemonCommand cmd = LIBCPUID_MSR_STATIC;
 	const uint16_t current_core_id = data.cpu.get_selected_core_id();
 	MsrStaticData msg;
 
-	if(data.cpu.cpu_types[0].processor.architecture != ARCHITECTURE_X86)
+	if(cpu_type.processor.architecture != ARCHITECTURE_X86)
 		return 1;
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR static values"));
@@ -525,7 +532,7 @@ static int call_libcpuid_msr_dynamic(Data &data)
 	const DaemonCommand cmd = LIBCPUID_MSR_DYNAMIC;
 	MsrDynamicData msg;
 
-	if(data.cpu.cpu_types[0].processor.architecture != ARCHITECTURE_X86)
+	if(cpu_type.processor.architecture != ARCHITECTURE_X86)
 		return 1;
 
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving CPU MSR dynamic values"));
