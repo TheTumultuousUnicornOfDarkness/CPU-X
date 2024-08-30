@@ -40,6 +40,7 @@ esac
 echo "Install packages"
 sudo apt-get update -y -qq
 sudo apt-get install -y -qq \
+	valgrind
 	gcc-10 \
 	g++-10 \
 	cmake \
