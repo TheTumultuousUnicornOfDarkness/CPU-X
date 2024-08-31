@@ -2273,7 +2273,7 @@ static int motherboardtab_fallback([[maybe_unused]] Data &data)
 #ifdef __linux__
 	if(!fs::is_directory(SYS_DMI))
 	{
-		data.motherboard.visible = false;
+		Options::set_page_visibility(TAB_MOTHERBOARD, false);
 		return 1;
 	}
 
@@ -2288,7 +2288,7 @@ static int motherboardtab_fallback([[maybe_unused]] Data &data)
 	err += fopen_to_str(data.motherboard.bios.version.value, "%s/%s", SYS_DMI, "bios_version");
 	err += fopen_to_str(data.motherboard.bios.date.value,    "%s/%s", SYS_DMI, "bios_date");
 #else
-	data.motherboard.visible = false;
+	Options::set_page_visibility(TAB_MOTHERBOARD, false);
 	return 1;
 #endif /* __linux__ */
 

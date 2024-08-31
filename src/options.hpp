@@ -25,6 +25,8 @@
 #define _OPTIONS_HPP_
 
 #include <cstdint>
+#include <array>
+#include "data.hpp"
 
 /* Options definition */
 #define OUT_GTK               (1 << 0)
@@ -40,7 +42,7 @@ enum OptKeymap
 	EMACS,
 	INVERTED_T,
 	VIM,
-	LASTKEYMAP
+	LAST_KEYMAP
 };
 
 enum OptTempUnit
@@ -49,12 +51,20 @@ enum OptTempUnit
 	FAHRENHEIT,
 	KELVIN,
 	RANKINE,
-	LASTTEMPUNIT
+	LAST_TEMP_UNIT
 };
 
 enum TabNumber
 {
-	TAB_CPU, TAB_CACHES, TAB_MOTHERBOARD, TAB_MEMORY, TAB_SYSTEM, TAB_GRAPHICS, TAB_BENCH, TAB_ABOUT
+	TAB_CPU,
+	TAB_CACHES,
+	TAB_MOTHERBOARD,
+	TAB_MEMORY,
+	TAB_SYSTEM,
+	TAB_GRAPHICS,
+	TAB_BENCH,
+	TAB_ABOUT,
+	LAST_TAB_NUMBER
 };
 
 class Options
@@ -79,6 +89,10 @@ public:
 	static bool get_fallback_cpu_volt();
 	static void set_fallback_cpu_freq(bool fallback_cpu_freq);
 	static bool get_fallback_cpu_freq();
+	static void init_page_visibility();
+	static void set_page_visibility(TabNumber page, bool visible);
+	static void set_page_visibility_auto(Data &data);
+	static bool get_page_visibility(TabNumber page);
 	static bool set_selected_page(TabNumber selected_page);
 	static bool set_selected_page_next();
 	static bool set_selected_page_prev();
@@ -125,6 +139,9 @@ private:
 	static inline TabNumber selected_page = TAB_CPU;
 	static inline OptKeymap keymap        = ARROWS;
 	static inline OptTempUnit temp_unit   = CELSIUS;
+
+	static inline std::array<bool, LAST_TAB_NUMBER> page_visible {};
+
 	Options() = delete;
 	~Options() = delete;
 };

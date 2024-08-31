@@ -775,7 +775,7 @@ void GtkData::gtab_caches()
 	static bool is_init = false;
 
 	/* Hide tab if there is no cache */
-	if(cpu_type.caches.size() == 0)
+	if(!Options::get_page_visibility(TAB_CACHES))
 	{
 		EXT_TAB_CACHES(this->data.caches)->gridcaches->hide();
 		return;
@@ -842,7 +842,7 @@ GtkData::ExtTabMotherboard::ExtTabMotherboard(Glib::RefPtr<Gtk::Builder> builder
 void GtkData::gtab_motherboard()
 {
 	/* Hide tab if there is no data about motherboard */
-	if(!this->data.motherboard.visible)
+	if(!Options::get_page_visibility(TAB_MOTHERBOARD))
 	{
 		EXT_TAB_MOTHERBOARD(this->data.motherboard)->boxmotherboard->hide();
 		return;
@@ -881,7 +881,7 @@ GtkData::ExtTabMemory::ExtTabMemory(Glib::RefPtr<Gtk::Builder> builder) : ExtTab
 void GtkData::gtab_memory()
 {
 	/* Hide tab if there is no sticks */
-	if(this->data.memory.sticks.size() == 0)
+	if(!Options::get_page_visibility(TAB_MEMORY))
 	{
 		EXT_TAB_MEMORY(this->data.memory)->scrolledsticks->hide();
 		return;
@@ -1089,7 +1089,7 @@ GtkData::ExtTabGraphics::ExtTabGraphics(Glib::RefPtr<Gtk::Builder> builder) : Ex
 void GtkData::gtab_graphics()
 {
 	/* Hide tab if there is no cards */
-	if(this->data.graphics.cards.size() == 0)
+	if(!Options::get_page_visibility(TAB_GRAPHICS))
 	{
 		EXT_TAB_GRAPHICS(this->data.graphics)->scrolledcards->hide();
 		return;

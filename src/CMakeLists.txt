@@ -206,6 +206,8 @@ add_executable(${DAEMON_EXEC}
 	daemon_server.cpp
 	daemon_server.hpp
 	daemon.h
+	data.cpp
+	data.hpp
 	logger.cpp
 	logger.hpp
 	options.cpp

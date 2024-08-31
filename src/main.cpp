@@ -470,6 +470,7 @@ int main(int argc, char *argv[])
 	/* Init variables */
 	std::forward_list<std::string> args(argv, argv + argc);
 	Data data; // Note: must be done after set_locales() to translate all labels
+	Options::init_page_visibility();
 
 	/* Parse options */
 #if HAS_GTK
@@ -488,6 +489,10 @@ int main(int argc, char *argv[])
 
 	/* Retrieve data */
 	fill_labels(data);
+
+	/* Update pages visibility */
+	Options::set_page_visibility_auto(data);
+	Options::set_selected_page(Options::get_selected_page());
 
 	/* Show data */
 	if(HAS_GTK && Options::output_type_is(OUT_GTK))

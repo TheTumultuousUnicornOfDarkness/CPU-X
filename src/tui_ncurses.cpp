@@ -74,7 +74,7 @@ static int convert_char(int ch)
 	static int modifier = 0;
 	const int ch_mod = modifier ? ch & modifier : ch;
 
-	const int keymaps[][LASTKEYMAP] =
+	const int keymaps[][LAST_KEYMAP] =
 	{
 		//Arrow       Emacs       Inverted-T  Vim
 		{ KEY_LEFT,   CTRL('b'),  'j',        'h'          },
@@ -277,7 +277,7 @@ static void print_help()
 static void main_win(WINDOW *win, Data &data)
 {
 	int cpt = 2;
-	const std::array<Tab*, 8> tab_list =
+	const std::array<Tab*, LAST_TAB_NUMBER> tab_list =
 	{
 		&data.cpu,
 		&data.caches,
@@ -303,18 +303,21 @@ static void main_win(WINDOW *win, Data &data)
 
 	for(int i = 1; i < SizeInfo::width - 1; i++)
 		mvwprintwc(win, TABS_LINE, i, Pairs::Colors::INACTIVE_TAB_COLOR, " ");
-	for(uint8_t i = 0; i < tab_list.size(); i++)
+	for(TabNumber t = TabNumber(0); t < LAST_TAB_NUMBER; t = TabNumber(t + 1))
 	{
-		if(static_cast<TabNumber>(i) == Options::get_selected_page())
+		if(!Options::get_page_visibility(t))
+			continue;
+
+		if(t == Options::get_selected_page())
 		{
 			if(Options::get_color())
-				mvwprintwc(win, TABS_LINE, cpt, Pairs::Colors::ACTIVE_TAB_COLOR, tab_list[i]->name);
+				mvwprintwc(win, TABS_LINE, cpt, Pairs::Colors::ACTIVE_TAB_COLOR, tab_list[t]->name);
 			else
-				mvwprintw(win, TABS_LINE, cpt++, "[%s]", tab_list[i]->name.c_str());
+				mvwprintw(win, TABS_LINE, cpt++, "[%s]", tab_list[t]->name.c_str());
 		}
 		else
-			mvwprintwc(win, TABS_LINE, cpt, Pairs::Colors::INACTIVE_TAB_COLOR, tab_list[i]->name);
-		cpt += tab_list[i]->name.size() + 2;
+			mvwprintwc(win, TABS_LINE, cpt, Pairs::Colors::INACTIVE_TAB_COLOR, tab_list[t]->name);
+		cpt += tab_list[t]->name.size() + 2;
 	}
 }
 
@@ -419,9 +422,6 @@ static void ntab_caches(WINDOW *win, Data &data)
 /* Motherboard tab */
 static void ntab_motherboard(WINDOW *win, Data &data)
 {
-	if(!data.motherboard.visible)
-		return;
-
 	/* Motherboard frame */
 	draw_frame(win, LINE_0, SizeInfo::start , LINE_4, SizeInfo::width - 1, data.motherboard.board);
 	mvwprintw2c(win, LINE_1, SizeInfo::tb, "%13s", "%s", data.motherboard.board.manufacturer);
@@ -444,9 +444,6 @@ static void ntab_motherboard(WINDOW *win, Data &data)
 /* Memory tab */
 static void ntab_memory(WINDOW *win, Data &data)
 {
-	if(data.memory.sticks.size() == 0)
-		return;
-
 	const auto& stick = data.memory.get_selected_stick();
 
 	/* Card frame */
@@ -533,9 +530,6 @@ static void ntab_system(WINDOW *win, Data &data)
 /* Graphics tab */
 static void ntab_graphics(WINDOW *win, Data &data)
 {
-	if(data.graphics.cards.size() == 0)
-		return;
-
 	const unsigned length = SizeInfo::width - (SizeInfo::tb + 18);
 	const auto& card = data.graphics.get_selected_card();
 	std::string::size_type index_prev = 0, index_cur = 0;

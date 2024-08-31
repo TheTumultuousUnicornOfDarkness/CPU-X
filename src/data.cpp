@@ -368,7 +368,7 @@ Data::Caches::CpuType& Data::Caches::get_selected_cpu_type()
 
 std::ostream& operator<<(std::ostream& os, const Data::Caches& caches)
 {
-	if(caches.cpu_types.size() > 0)
+	if(Options::get_page_visibility(TAB_CACHES))
 	{
 		os << static_cast<const Tab&>(caches);
 		for(auto& cpu_type : caches.cpu_types)
@@ -392,9 +392,8 @@ void Data::Caches::CpuType::grow_caches_vector_with_cache_size(uint8_t level, ui
 
 std::ostream& operator<<(std::ostream& os, const Data::Caches::CpuType& cpu_type)
 {
-	if(cpu_type.caches.size() > 0)
-		for(auto& cache : cpu_type.caches)
-			os << static_cast<const Data::Caches::CpuType::Cache&>(cache);
+	for(auto& cache : cpu_type.caches)
+		os << static_cast<const Data::Caches::CpuType::Cache&>(cache);
 	return os;
 }
 
@@ -434,7 +433,7 @@ Data::Motherboard::Motherboard() : Tab(_("Motherboard"))
 
 std::ostream& operator<<(std::ostream& os, const Data::Motherboard& motherboard)
 {
-	if(motherboard.visible)
+	if(Options::get_page_visibility(TAB_MOTHERBOARD))
 	{
 		os << static_cast<const Tab&>(motherboard);
 		os << static_cast<const Data::Motherboard::Board&>(motherboard.board);
@@ -495,7 +494,7 @@ Data::Memory::Memory() : Tab(_("Memory"))
 
 std::ostream& operator<<(std::ostream& os, const Data::Memory& memory)
 {
-	if(memory.sticks.size() > 0)
+	if(Options::get_page_visibility(TAB_MEMORY))
 	{
 		os << static_cast<const Tab&>(memory);
 		for(auto& stick : memory.sticks)
@@ -633,7 +632,7 @@ Data::Graphics::Card& Data::Graphics::get_selected_card()
 
 std::ostream& operator<<(std::ostream& os, const Data::Graphics& graphics)
 {
-	if(graphics.cards.size() > 0)
+	if(Options::get_page_visibility(TAB_GRAPHICS))
 	{
 		os << static_cast<const Tab&>(graphics);
 		for(auto& card : graphics.cards)

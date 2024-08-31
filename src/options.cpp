@@ -24,6 +24,7 @@
 #include <cstdint>
 #include "util.hpp"
 #include "options.hpp"
+#include "data.hpp"
 
 #if HAS_BANDWIDTH
 # include "bandwidth/libbandwidth.h"
@@ -265,6 +266,28 @@ uint16_t Options::get_refr_time()
 	return Options::refr_time;
 }
 
+void Options::init_page_visibility()
+{
+	Options::page_visible.fill(true);
+}
+
+void Options::set_page_visibility(TabNumber page, bool visible)
+{
+	Options::page_visible[page] = visible;
+}
+
+void Options::set_page_visibility_auto(Data &data)
+{
+	Options::set_page_visibility(TAB_CACHES,   (data.caches.get_selected_cpu_type().caches.size() > 0));
+	Options::set_page_visibility(TAB_MEMORY,   (data.memory.sticks.size()                         > 0));
+	Options::set_page_visibility(TAB_GRAPHICS, (data.graphics.cards.size()                        > 0));
+}
+
+bool Options::get_page_visibility(TabNumber page)
+{
+	return Options::page_visible[page];
+}
+
 bool Options::set_selected_page(TabNumber selected_page)
 {
 	switch(selected_page)
@@ -277,8 +300,17 @@ bool Options::set_selected_page(TabNumber selected_page)
 		case TAB_GRAPHICS:
 		case TAB_BENCH:
 		case TAB_ABOUT:
-			Options::selected_page = selected_page;
-			return true;
+			if(Options::get_page_visibility(selected_page))
+			{
+				Options::selected_page = selected_page;
+				return true;
+			}
+			else
+			{
+				Options::selected_page = TAB_CPU;
+				MSG_WARNING(_("Selected tab (%u) is not visible"), selected_page);
+				return false;
+			}
 		default:
 			Options::selected_page = TAB_CPU;
 			MSG_WARNING(_("Selected tab (%u) is not a valid number (%u is the maximum)"), selected_page, TAB_ABOUT);
@@ -288,9 +320,12 @@ bool Options::set_selected_page(TabNumber selected_page)
 
 bool Options::set_selected_page_next()
 {
-	if(Options::selected_page < TAB_ABOUT)
+	if(Options::selected_page < TabNumber(LAST_TAB_NUMBER - 1))
 	{
-		Options::selected_page = TabNumber(Options::selected_page + 1);
+		do
+		{
+			Options::selected_page = TabNumber(Options::selected_page + 1);
+		} while((Options::selected_page < TabNumber(LAST_TAB_NUMBER - 1)) && !Options::get_page_visibility(Options::selected_page));
 		return true;
 	}
 	else
@@ -299,9 +334,12 @@ bool Options::set_selected_page_next()
 
 bool Options::set_selected_page_prev()
 {
-	if(Options::selected_page > TAB_CPU)
+	if(Options::selected_page > TabNumber(0))
 	{
-		Options::selected_page = TabNumber(Options::selected_page - 1);
+		do
+		{
+			Options::selected_page = TabNumber(Options::selected_page - 1);
+		} while((Options::selected_page > TabNumber(0)) && !Options::get_page_visibility(Options::selected_page));
 		return true;
 	}
 	else
