@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-08-29 17:26+0000\n"
+"POT-Creation-Date: 2024-08-31 10:55+0000\n"
 "PO-Revision-Date: 2024-05-24 14:17+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.6-dev\n"
 
-#: core.cpp:164
+#: core.cpp:165
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -29,7 +29,7 @@ msgstr ""
 "உங்கள் CPU தரவுத்தளத்தில் இல்லை ==> %s, மாதிரி: %i, ext. மாதிரி: %i, ext. குடும்பம்: "
 "%i"
 
-#: core.cpp:208
+#: core.cpp:209
 #, fuzzy, c-format
 #| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgid ""
@@ -37,63 +37,63 @@ msgid ""
 "%s"
 msgstr "உங்கள் CPU சாக்கெட் தரவுத்தளத்தில் இல்லை ==> %s, குறியீட்டு பெயர்: %s"
 
-#: core.cpp:215
+#: core.cpp:216
 msgid "Finding CPU technology"
 msgstr "CPU தொழில்நுட்பத்தைக் கண்டறிதல்"
 
-#: core.cpp:267 data.cpp:153 data.cpp:358
+#: core.cpp:268 data.cpp:153 data.cpp:364
 msgid "unknown"
 msgstr "தெரியவில்லை"
 
-#: core.cpp:351
+#: core.cpp:352
 msgid "Calling libcpuid for retrieving static data"
 msgstr "நிலையான தரவை மீட்டெடுக்க libcpuid ஐ அழைக்கிறது"
 
-#: core.cpp:366
+#: core.cpp:362
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) ஐ அழைக்க முடியவில்லை"
 
-#: core.cpp:485
+#: core.cpp:491
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "டைனமிக் தரவை மீட்டெடுக்க libcpuid ஐ அழைக்கிறது"
 
-#: core.cpp:501
+#: core.cpp:508
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "CPU MSR நிலையான மதிப்புகளை மீட்டெடுக்க libcpuid ஐ அழைக்கிறது"
 
-#: core.cpp:531
+#: core.cpp:538
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "CPU MSR டைனமிக் மதிப்புகளை மீட்டெடுக்க libcpuid ஐ அழைக்கிறது"
 
-#: core.cpp:563
+#: core.cpp:570
 msgid "Calling dmidecode"
 msgstr "dmidecode ஐ அழைக்கிறது"
 
-#: core.cpp:605 core.cpp:624
+#: core.cpp:612 core.cpp:631
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (கட்டமைக்கப்பட்டது)"
 
-#: core.cpp:612 core.cpp:631
+#: core.cpp:619 core.cpp:638
 #, c-format
 msgid "%s (max)"
 msgstr "%s (அதிகபட்சம்)"
 
-#: core.cpp:617
+#: core.cpp:624
 #, c-format
 msgid "%s (min)"
 msgstr "%s (குறைந்தபட்சம்)"
 
-#: core.cpp:647
+#: core.cpp:654
 msgid "Calculating CPU usage"
 msgstr "CPU பயன்பாட்டைக் கணக்கிடுகிறது"
 
-#: core.cpp:697
+#: core.cpp:704
 msgid "Calling bandwidth"
 msgstr "அலைவரிசையை அழைக்கிறது"
 
-#: core.cpp:764
+#: core.cpp:771
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -106,140 +106,140 @@ msgstr ""
 "உங்கள் கணினியில் libpci %s நூலகம் உள்ளதா எனச் சரிபார்க்கவும். இல்லையெனில், %s ஐ மீண்டும் "
 "உருவாக்கவும்."
 
-#: core.cpp:808
+#: core.cpp:815
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "பாதை %s இல் கிராஃபிக் கார்டுக்கு கர்னல் இயக்கி இல்லை"
 
-#: core.cpp:844
+#: core.cpp:851
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "உங்கள் GPU கர்னல் இயக்கி தெரியவில்லை: %s"
 
-#: core.cpp:928
+#: core.cpp:935
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "%s: %s என்ற விற்பனையாளருக்கு உங்கள் GPU பயனர் பயன்முறை இயக்கி தெரியவில்லை"
 
-#: core.cpp:932
+#: core.cpp:939
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW ஐ அழைப்பதில் தோல்வி (%i): %s"
 
-#: core.cpp:1065
+#: core.cpp:1072
 msgid "Finding Vulkan API version"
 msgstr "Vulkan API பதிப்பைக் கண்டறிதல்"
 
-#: core.cpp:1081
+#: core.cpp:1088
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "vkCreateInstance (%s) ஐ அழைக்க முடியவில்லை"
 
-#: core.cpp:1085
+#: core.cpp:1092
 #, c-format
 msgid "%s is not supported"
 msgstr "%s ஆதரிக்கப்படவில்லை"
 
-#: core.cpp:1094
+#: core.cpp:1101
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "vkEnumeratePhysicalDevices (%s) ஐ அழைக்க முடியவில்லை"
 
-#: core.cpp:1102
+#: core.cpp:1109
 msgid "No available Vulkan devices"
 msgstr "Vulkan சாதனங்கள் இல்லை"
 
-#: core.cpp:1110
+#: core.cpp:1117
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "இயற்பியல் சாதனங்கள் இல்லை (%s)"
 
-#: core.cpp:1173
+#: core.cpp:1180
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "%u (%s) சாதனத்திற்கான வல்கனை (Vulkan) உருவாக்குவதில் தோல்வி"
 
-#: core.cpp:1177
+#: core.cpp:1184
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s ஆதரிக்கப்படவில்லை %u சாதனத்திர்கு , பொருத்துவதற்கு சாதன ஐடியை மட்டும் பயன்படுத்தவும்"
 
-#: core.cpp:1209 core.cpp:1522
+#: core.cpp:1216 core.cpp:1529
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
 
-#: core.cpp:1209 core.cpp:1522
+#: core.cpp:1216 core.cpp:1529
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
 
-#: core.cpp:1246
+#: core.cpp:1253
 msgid "Finding OpenCL API version"
 msgstr "OpenCL API பதிப்பைக் கண்டறிதல்"
 
-#: core.cpp:1250
+#: core.cpp:1257
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL ஆதரவுடன் எந்த தளமும் இல்லை (%s)"
 
-#: core.cpp:1260
+#: core.cpp:1267
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "அனைத்து OpenCL இயங்குதளங்களையும் (%s) பெற முடியவில்லை"
 
-#: core.cpp:1273
+#: core.cpp:1280
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "%u (%s) இயங்குதளத்திற்கான பெயரைப் பெற முடியவில்லை"
 
-#: core.cpp:1281
+#: core.cpp:1288
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "இயங்குதளம் %u (%s)க்கான பதிப்பைப் பெறுவதில் தோல்வி"
 
-#: core.cpp:1289
+#: core.cpp:1296
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "'%s %s' (%s) இயங்குதளத்திற்கான OpenCL சாதனங்களின் எண்ணிக்கையைக் கண்டறிய முடியவில்லை"
 
-#: core.cpp:1289
+#: core.cpp:1296
 msgid "0 device"
 msgstr "0 சாதனம்"
 
-#: core.cpp:1298
+#: core.cpp:1305
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "'%s %s' (%s) இயங்குதளத்திற்கான அனைத்து OpenCL சாதனங்களையும் பெறுவதில் தோல்வி"
 
-#: core.cpp:1318
+#: core.cpp:1325
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "%u (%s) சாதனத்திற்கான பெயரைப் பெறுவதில் தோல்வி"
 
-#: core.cpp:1326
+#: core.cpp:1333
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "%u (%s) சாதனத்திற்கான பதிப்பைப் பெறுவதில் தோல்வி"
 
-#: core.cpp:1348
+#: core.cpp:1355
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_TOPOLOGY_AMD (%s) ஐ ஆதரிக்காது"
 
-#: core.cpp:1359
+#: core.cpp:1366
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_GFXIP_MAJOR_AMD (%s) ஐ ஆதரிக்காது"
 
-#: core.cpp:1367 core.cpp:1387 core.cpp:1420
+#: core.cpp:1374 core.cpp:1394 core.cpp:1427
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "'%s %s' க்கான OpenCL இயக்கி CL_DEVICE_MAX_COMPUTE_UNITS (%s) ஐ ஆதரிக்காது"
 
-#: core.cpp:1408
+#: core.cpp:1415
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -248,188 +248,188 @@ msgstr ""
 "'%s %s'க்கான OpenCL இயக்கி CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) அல்லது CL_DEVICE_PCI_SLOT_ID_NV (%s) ஐ ஆதரிக்காது"
 
-#: core.cpp:1431
+#: core.cpp:1438
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "உங்கள் GPU விற்பனையாளருடன் OpenCL ஆதரிக்கப்படவில்லை (0x%X)"
 
-#: core.cpp:1453
+#: core.cpp:1460
 msgid "Finding devices"
 msgstr "சாதனங்களைக் கண்டறிதல்"
 
-#: core.cpp:1465
+#: core.cpp:1472
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "சாதனத் தேடலைத் தவிர்க்கவும் (%s சாதனத்தில் தவறான அனுமதிகள்)"
 
-#: core.cpp:1508
+#: core.cpp:1515
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "உங்கள் GPU விற்பனையாளர் தெரியவில்லை: %s (0x%X)"
 
-#: core.cpp:1528
+#: core.cpp:1535
 msgid "failed to find chipset vendor and model"
 msgstr "சிப்செட் விற்பனையாளரையும் மாதிரியையும் கண்டுபிடிக்க முடியவில்லை"
 
-#: core.cpp:1543
+#: core.cpp:1550
 msgid "failed to find graphic card vendor and model"
 msgstr "கிராஃபிக் கார்டு விற்பனையாளரையும் மாடலையும் கண்டுபிடிக்க முடியவில்லை"
 
-#: core.cpp:1676
+#: core.cpp:1683
 msgid "Retrieving GPU clocks"
 msgstr "GPU கடிகாரங்களை மீட்டெடுக்கிறது"
 
-#: core.cpp:1689
+#: core.cpp:1696
 msgid "None"
 msgstr "எதுவும் இல்லை"
 
-#: core.cpp:1698
+#: core.cpp:1705
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s க்கான DRM பாதை தெரியவில்லை"
 
-#: core.cpp:1705
+#: core.cpp:1712
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s க்கான கார்டு எண் தெரியவில்லை"
 
-#: core.cpp:1730
+#: core.cpp:1737
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (தற்போதைய) / %s (அதிகபட்சம்)"
 
-#: core.cpp:1845
+#: core.cpp:1852
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s க்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
 
-#: core.cpp:1866
+#: core.cpp:1873
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "%s க்கான அனைத்து கண்காணிப்புத் தரவையும் மீட்டெடுக்க முடியவில்லை"
 
-#: core.cpp:1889
+#: core.cpp:1896
 msgid "Identifying running system"
 msgstr "இயங்கும் அமைப்பைக் கண்டறிதல்"
 
-#: core.cpp:1892
+#: core.cpp:1899
 msgid "failed to identify running system"
 msgstr "இயங்கும் அமைப்பை அடையாளம் காண முடியவில்லை"
 
-#: core.cpp:1944 core.cpp:1973
+#: core.cpp:1951 core.cpp:1980
 msgid "Calling libprocps"
 msgstr "libprocps ஐ அழைக்கிறது"
 
-#: core.cpp:1947
+#: core.cpp:1954
 msgid "unable to get system uptime"
 msgstr "கணினி இயக்க நேரத்தைப் பெற முடியவில்லை"
 
-#: core.cpp:1953
+#: core.cpp:1960
 msgid "unable to create meminfo structure"
 msgstr "meminfo அமைப்பை உருவாக்க முடியவில்லை"
 
-#: core.cpp:1999
+#: core.cpp:2006
 msgid "Calling libstatgrab"
 msgstr "libstatgrab ஐ அழைக்கிறது"
 
-#: core.cpp:2047
+#: core.cpp:2054
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i நாட்களில், %i மணிநேரத்தில், %i நிமிடங்களில், %i நொடிகளில்"
 
-#: core.cpp:2110
+#: core.cpp:2117
 msgid "Updating benchmark status"
 msgstr "பெஞ்ச்மார்க் நிலையை மேம்படுத்துகிறது"
 
-#: core.cpp:2113
+#: core.cpp:2120
 msgid "Active"
 msgstr "செயலில் உள்ளது"
 
-#: core.cpp:2116
+#: core.cpp:2123
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u மணிநேரம் மீதமுள்ளது)"
 
-#: core.cpp:2118
+#: core.cpp:2125
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u நிமிடங்கள் மீதமுள்ளன)"
 
-#: core.cpp:2120
+#: core.cpp:2127
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u வினாடிகள் மீதமுள்ளன)"
 
-#: core.cpp:2124 core.cpp:2179 core.cpp:2180
+#: core.cpp:2131 core.cpp:2186 core.cpp:2187
 msgid "Inactive"
 msgstr "செயலற்றது"
 
-#: core.cpp:2127
+#: core.cpp:2134
 #, c-format
 msgid "in %u hours"
 msgstr "%u மணிநேரத்தில்"
 
-#: core.cpp:2129
+#: core.cpp:2136
 #, c-format
 msgid "in %u minutes"
 msgstr "%u நிமிடங்களில்"
 
-#: core.cpp:2131
+#: core.cpp:2138
 #, c-format
 msgid "in %u seconds"
 msgstr "%u வினாடிகளில்"
 
-#: core.cpp:2148
+#: core.cpp:2155
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "%u இழைகளுடன் தொடக்கப் புள்ளி தொடங்குகிறது"
 
-#: core.cpp:2171
+#: core.cpp:2178
 msgid "an error occurred while starting benchmark"
 msgstr "பெஞ்ச்மார்க் தொடங்கும் போது பிழை ஏற்பட்டது"
 
-#: core.cpp:2197
+#: core.cpp:2204
 msgid "Finding CPU package in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU தொகுப்பைக் கண்டறிதல்"
 
-#: core.cpp:2227
+#: core.cpp:2234
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "உங்கள் CPU சாக்கெட் தரவுத்தளத்தில் இல்லை ==> %s, குறியீட்டு பெயர்: %s"
 
-#: core.cpp:2247
+#: core.cpp:2254
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU பெருக்கிகளைக் கணக்கிடுகிறது"
 
-#: core.cpp:2267
+#: core.cpp:2280
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் மதர்போர்டு தகவலை மீட்டெடுக்கிறது"
 
-#: core.cpp:2280
+#: core.cpp:2296
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "மதர்போர்டு தகவலை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core.cpp:2322
+#: core.cpp:2338
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU வெப்பநிலையை மீட்டெடுக்கிறது"
 
-#: core.cpp:2361
+#: core.cpp:2386
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU வெப்பநிலையை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core.cpp:2376
+#: core.cpp:2401
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU மின்னழுத்தத்தை மீட்டெடுக்கிறது"
 
-#: core.cpp:2388
+#: core.cpp:2420
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU மின்னழுத்தத்தை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core.cpp:2402
+#: core.cpp:2434
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "ஃபால்பேக் பயன்முறையில் CPU அலைவரிசையை மீட்டெடுக்கிறது"
 
-#: core.cpp:2408
+#: core.cpp:2445
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU அதிர்வெண்ணை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
@@ -488,7 +488,7 @@ msgstr ""
 msgid "Processor"
 msgstr "செயலி"
 
-#: data.cpp:256 data.cpp:345 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:1968
 msgid "Caches"
 msgstr "தற்காலிக சேமிப்புகள்"
 
@@ -511,98 +511,98 @@ msgstr ""
 msgid "Clocks"
 msgstr "கடிகாரங்கள்"
 
-#: data.cpp:395 data.cpp:399
+#: data.cpp:400 data.cpp:404
 #, fuzzy, c-format
 #| msgid "L%i Cache"
 msgid "L%u Cache"
 msgstr "L%i தற்காலிக சேமிப்பு"
 
-#: data.cpp:401
+#: data.cpp:406
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s அசோசியேட்டிவ், %d-%s வரி அளவு"
 
-#: data.cpp:414
+#: data.cpp:419
 msgid "Test"
 msgstr "சோதனை"
 
-#: data.cpp:425 data.cpp:439 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
 msgid "Motherboard"
 msgstr "மதர்போர்டு"
 
-#: data.cpp:453 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2367
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:468 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:476 cpu-x-gtk-3.12.ui:2498
 msgid "Chipset"
 msgstr "சிப்செட்"
 
-#: data.cpp:483 data.cpp:585 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:491 data.cpp:593 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
 msgid "Memory"
 msgstr "நினைவு"
 
-#: data.cpp:499
+#: data.cpp:507
 #, c-format
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:503 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:511 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:557 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:565 cpu-x-gtk-3.12.ui:3780
 msgid "System"
 msgstr "அமைப்பு"
 
-#: data.cpp:570 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:578 cpu-x-gtk-3.12.ui:3380
 msgid "Operating System"
 msgstr "இயக்க முறைமை"
 
-#: data.cpp:603 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:611 cpu-x-gtk-3.12.ui:4960
 msgid "Graphics"
 msgstr "வரைகலை"
 
-#: data.cpp:637
+#: data.cpp:645
 #, fuzzy, c-format
 #| msgid "Card %i"
 msgid "Card %u"
 msgstr "அட்டை %i"
 
-#: data.cpp:641 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:649 cpu-x-gtk-3.12.ui:4938
 msgid "Cards"
 msgstr "அட்டைகள்"
 
-#: data.cpp:688 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:696 cpu-x-gtk-3.12.ui:5300
 msgid "Bench"
 msgstr "விசுப்பலகை"
 
-#: data.cpp:701
+#: data.cpp:709
 msgid "Not started"
 msgstr "துவங்கவில்லை"
 
-#: data.cpp:704 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:712 cpu-x-gtk-3.12.ui:5070
 msgid "Prime numbers (slow)"
 msgstr "முதன்மை எண்கள் (மெதுவாக)"
 
-#: data.cpp:708 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:716 cpu-x-gtk-3.12.ui:5178
 msgid "Prime numbers (fast)"
 msgstr "முதன்மை எண்கள் (வேகமாக)"
 
-#: data.cpp:712 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:720 cpu-x-gtk-3.12.ui:5281
 msgid "Parameters"
 msgstr "அளவுருக்கள்"
 
-#: data.cpp:737 data.cpp:743
+#: data.cpp:745 data.cpp:751
 #, c-format
 msgid "%u mins"
 msgstr "%u நிமிடங்கள்"
 
-#: data.cpp:750 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:758 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
 msgid "About"
 msgstr "பற்றி"
 
-#: data.cpp:755
+#: data.cpp:763
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -611,37 +611,37 @@ msgstr ""
 "%s என்பது தகவல்களை சேகரிக்கும் இலவச மென்பொருள் \n"
 "CPU, மதர்போர்டு மற்றும் பலவற்றில்."
 
-#: data.cpp:760
+#: data.cpp:768
 #, fuzzy
 #| msgid "About"
 msgid "About CPU-X"
 msgstr "பற்றி"
 
-#: data.cpp:761
+#: data.cpp:769
 #, c-format
 msgid "Version %s"
 msgstr "பதிப்பு %s"
 
-#: data.cpp:762
+#: data.cpp:770
 #, c-format
 msgid "Author: %s"
 msgstr "ஆசிரியர்: %s"
 
-#: data.cpp:763
+#: data.cpp:771
 #, c-format
 msgid "Site: %s"
 msgstr "தளம்: %s"
 
-#: data.cpp:767 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:775 cpu-x-gtk-3.12.ui:5533
 msgid "License"
 msgstr "உரிமம்"
 
-#: data.cpp:769
+#: data.cpp:777
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr ""
 
-#: data.cpp:770 main.cpp:176
+#: data.cpp:778 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr ""
 
@@ -689,29 +689,29 @@ msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU காட்சி (\"உண்மை\") மாதிரி ((ExtendedModel<<4)+BaseModel என கணக்கிடப்பட்டது)"
 
-#: gui_gtk.cpp:891
+#: gui_gtk.cpp:899
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:892
+#: gui_gtk.cpp:900
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1097
+#: gui_gtk.cpp:1105
 msgid "User Mode Driver Version"
 msgstr "பயனர் பயன்முறை இயக்கி பதிப்பு"
 
-#: gui_gtk.cpp:1111
+#: gui_gtk.cpp:1119
 msgid "Vulkan Ray Tracing"
 msgstr "வல்கன் ரே டிரேசிங்"
 
-#: gui_gtk.cpp:1306
+#: gui_gtk.cpp:1314
 msgid "Starting GTK GUI…"
 msgstr "GTK GUIஐத் தொடங்குகிறது…"
 
-#: gui_gtk.cpp:1318
+#: gui_gtk.cpp:1326
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder இல் UI ஐ இறக்குமதி செய்ய முடியவில்லை"
 
@@ -879,7 +879,27 @@ msgstr ""
 msgid "an error occurred while setting locale"
 msgstr ""
 
-#: options.cpp:124
+#: options.cpp:156
+#, fuzzy, c-format
+#| msgid ""
+#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
+#| "CPU)"
+msgid "Selected tab (%u) is not visible"
+msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
+"அதிகபட்சம்)"
+
+#: options.cpp:161
+#, fuzzy, c-format
+#| msgid ""
+#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
+#| "CPU)"
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
+"அதிகபட்சம்)"
+
+#: options.cpp:210
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -887,7 +907,7 @@ msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
 "அதிகபட்சம்)"
 
-#: options.cpp:145
+#: options.cpp:231
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -899,7 +919,7 @@ msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
 "அதிகபட்சம்)"
 
-#: options.cpp:168
+#: options.cpp:254
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -911,7 +931,7 @@ msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
 "அதிகபட்சம்)"
 
-#: options.cpp:188
+#: options.cpp:274
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -923,28 +943,18 @@ msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட CPU கோர் (%u) செல்லுபடியாகும் எண் அல்ல (இந்த வகை மையத்திற்கு %u தான் "
 "அதிகபட்சம்)"
 
-#: options.cpp:204
+#: options.cpp:290
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr ""
 
-#: options.cpp:210
+#: options.cpp:296
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட CPU கோர் (%u) செல்லுபடியாகும் எண் அல்ல (இந்த வகை மையத்திற்கு %u தான் "
-"அதிகபட்சம்)"
-
-#: options.cpp:284
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
-msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
-"தேர்ந்தெடுக்கப்பட்ட CPU வகை (%u) செல்லுபடியாகும் எண் அல்ல (இந்த CPU க்கு %u தான் "
 "அதிகபட்சம்)"
 
 #: tui_ncurses.cpp:116
@@ -1060,17 +1070,17 @@ msgstr ""
 msgid "Press any key to exit this help."
 msgstr ""
 
-#: tui_ncurses.cpp:679
+#: tui_ncurses.cpp:675
 msgid "Starting NCurses TUI…"
 msgstr ""
 
-#: tui_ncurses.cpp:688
+#: tui_ncurses.cpp:684
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
 
-#: tui_ncurses.cpp:693
+#: tui_ncurses.cpp:689
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
