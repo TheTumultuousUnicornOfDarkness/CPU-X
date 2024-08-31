@@ -251,7 +251,9 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DSOCKET_NAME="${DAEMON_SOCKET}"
 )
 
-set(OTHER_LIBRARIES "-latomic")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	set(OTHER_LIBRARIES "-latomic")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Link libraries
 target_link_libraries(${APP_EXEC}
