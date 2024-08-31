@@ -198,6 +198,9 @@ add_executable(${APP_EXEC}
 	util.cpp
 	util.hpp
 )
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	target_link_options(${APP_EXEC} PRIVATE -latomic)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 add_executable(${DAEMON_EXEC}
 	daemon_server.cpp
@@ -251,9 +254,6 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DSOCKET_NAME="${DAEMON_SOCKET}"
 )
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set(OTHER_LIBRARIES "-latomic")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Link libraries
 target_link_libraries(${APP_EXEC}
@@ -275,11 +275,9 @@ target_link_libraries(${APP_EXEC}
 	${LIBSTATGRAB_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
-	${OTHER_LIBRARIES}
 )
 
 target_link_libraries(${DAEMON_EXEC}
-	${DAEMON_FLAGS}
 	${Intl_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
 	std::filesystem
