@@ -7,16 +7,17 @@
 # J. Lavoie <j.lavoie@net-c.ca>, 2021.
 # Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, 2021, 2023.
 # Axel Blanchardon <axel.blanchardon@gmail.com>, 2022.
-# The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-of-darkness@gmx.com>, 2023.
+# The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-of-darkness@gmx.com>, 2023, 2024.
 # Dac Opec <vladimir@kolisz.xyz>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-05-23 17:09+0000\n"
-"Last-Translator: Dac Opec <vladimir@kolisz.xyz>\n"
+"PO-Revision-Date: 2024-09-01 12:09+0000\n"
+"Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
+"of-darkness@gmx.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -36,14 +37,13 @@ msgstr ""
 "%i, modèle ét. : %i, famille ét. : %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
 msgstr ""
-"Votre support de processeur n'est pas présent dans la base de données ==> "
-"%s, nom de code : %s"
+"Votre processeur n'est pas présent dans la base de données ==> %s, numéro de "
+"référence : 0x%x, nom de code : %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -510,10 +510,8 @@ msgid "E-core"
 msgstr "Cœur-E"
 
 #: data.cpp:192
-#, fuzzy
-#| msgid "E-core"
 msgid "LP E-core"
-msgstr "LP Cœur-efficient"
+msgstr "Cœur-E LP"
 
 #: data.cpp:193 data.cpp:196
 msgid "Core"
@@ -935,11 +933,9 @@ msgid "an error occurred while setting locale"
 msgstr "une erreur est survenue lors de la définition des locales"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr ""
-"L'onglet sélectionné (%u) n'est pas un nombre valide (%u est le maximum)"
+msgstr "L'onglet sélectionné (%u) n'est pas visible"
 
 #: options.cpp:161
 #, c-format
@@ -1219,11 +1215,11 @@ msgstr "Révision"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Réalisateur"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Variante"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
