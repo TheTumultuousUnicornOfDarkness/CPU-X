@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-04-21 00:07+0000\n"
+"PO-Revision-Date: 2024-09-02 16:09+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -36,13 +36,11 @@ msgstr ""
 "%i、拡張ファミリー：%i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr ""
-"この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
+msgstr "この CPU はデータベースに存在しません ==> %s, パーツ番号: 0x%x, コード名: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -897,10 +895,9 @@ msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "選択したタブ（%u）は有効な数値ではありません（%u は最大値です）"
+msgstr "選択したタブ (%u) は表示されません"
 
 #: options.cpp:161
 #, c-format
@@ -1155,11 +1152,11 @@ msgstr "ステッピング"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "実装者"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "バリアント"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
