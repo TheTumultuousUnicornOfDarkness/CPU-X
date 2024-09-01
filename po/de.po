@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-04-21 00:07+0000\n"
+"PO-Revision-Date: 2024-09-02 16:09+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -41,12 +41,13 @@ msgstr ""
 "%i, ext. Familie: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Ihr CPU-Sockel ist nicht in der Datenbank vorhanden ➜ %s, Codename: %s"
+msgstr ""
+"Ihre CPU ist nicht in der Datenbank vorhanden ==> %s,  Teilenummer: 0x%x, "
+"Codename: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -914,10 +915,9 @@ msgid "an error occurred while setting locale"
 msgstr "Setzen des Gebietsschemas ist fehlgeschlagen"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "Ausgewählter Tab (%u) ist keine gültige Zahl (%u ist der Höchstwert)"
+msgstr "Ausgewählter Tab (%u) ist nicht sichtbar"
 
 #: options.cpp:161
 #, c-format
@@ -1196,7 +1196,7 @@ msgstr ""
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Variante"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
