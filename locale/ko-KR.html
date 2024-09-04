@@ -60,15 +60,37 @@
     </div>
   </header>
   <div class="m-4">
-    <h1>CPU-X</h1>
-    <h4>CPU-X는 CPU, 마더보드 등에 대한 정보를 수집하는 무료 소프트웨어입니다.</h4>
-    <h1 class="mt-4">다운로드</h1>
-    <a href="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/zipball/master"><img src="../images/icon_zip.svg"
-        alt="zip icon" /></a>
-    <a href="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/tarball/master"><img src="../images/icon_targz.svg"
-        alt="tar.gz icon" /></a>
-    <a href="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases/latest"><img
-        src="../images/icon_portable.svg" alt="portable icon" /></a>
+    <div class="px-4 py-5 text-center">
+      <img class="d-block mx-auto mb-4"
+        src="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/raw/master/data/icons/CPU-X_72x72.png" alt="">
+      <h1 class="display-5 fw-bold text-body-emphasis">CPU-X</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">CPU-X는 CPU, 마더보드 등에 대한 정보를 수집하는 무료 소프트웨어입니다.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">다운로드</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">다운로드</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <a href="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/zipball/master"><img
+                src="../images/icon_zip.svg" alt="zip icon" /></a>
+            <a href="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/tarball/master"><img
+                src="../images/icon_targz.svg" alt="tar.gz icon" /></a>
+            <a href="https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/releases/latest"><img
+                src="../images/icon_portable.svg" alt="portable icon" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
     <h4 class="mt-3">CPU-X는 시스템 프로파일링 및 모니터링 응용 프로그램이지만 CPU-X는 GNU/Linux 및 FreeBSD용으로 설계된 무료, 오픈 소스 소프트웨어입니다.</h4>
     <h5>GTK를 사용하여 그래픽 모드로 사용하거나 NCurses를 사용하여 텍스트 기반 모드로 사용할 수 있습니다. 명령줄에서 덤프 모드가 있습니다.</h5>
     <h5>CPU-X는 다음과 관련된 정보를 보고합니다:</h5>
