@@ -18,10 +18,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-04-16 03:01+0000\n"
+"PO-Revision-Date: 2024-09-06 10:09+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -30,9 +30,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -44,12 +44,12 @@ msgstr ""
 "семейство: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Вашего сокета ЦП нет в базе данных ==> %s, кодовое имя: %s"
+msgstr ""
+"Вашего ЦП нет в базе данных ==> %s, номер изделия: 0x%x, кодовое имя: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -915,10 +915,9 @@ msgid "an error occurred while setting locale"
 msgstr "ошибка при установке локализации"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "Выбранная вкладка (%u) не является допустимым числом (%u — максимум)"
+msgstr "Выбранная вкладка (%u) не видна"
 
 #: options.cpp:161
 #, c-format
@@ -1182,15 +1181,15 @@ msgstr "Степпинг"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Исполнитель"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Вариант"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
-msgstr "Номер части"
+msgstr "Номер изделия"
 
 #: data.hpp:119 data.hpp:235
 msgid "Revision"
