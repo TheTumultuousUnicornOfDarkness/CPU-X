@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-06-03 09:09+0000\n"
+"PO-Revision-Date: 2024-09-12 17:09+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -32,12 +32,13 @@ msgstr ""
 "famiglia estesa: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Il socket della tua CPU non è nel database ==> %s, nome in codice: %s"
+msgstr ""
+"La tua CPU non è presente nel database ==> %s, codice: 0x%x, nome in codice: "
+"%s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -905,10 +906,9 @@ msgid "an error occurred while setting locale"
 msgstr "è intervenuto un errore mentre si impostava la localizzazione"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "La scheda selezionata (%u) non valida (%u è il massimo)"
+msgstr "La scheda selezionata (%u) non è visibile"
 
 #: options.cpp:161
 #, c-format
@@ -1166,12 +1166,13 @@ msgid "Stepping"
 msgstr "Revisione"
 
 #: data.hpp:116
+#, fuzzy
 msgid "Implementer"
-msgstr ""
+msgstr "Implementatore"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Variante"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
@@ -1470,6 +1471,7 @@ msgstr "Tema scuro giallo"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5775
+#, fuzzy
 msgid "Temperature unit"
 msgstr "Temperatura"
 
