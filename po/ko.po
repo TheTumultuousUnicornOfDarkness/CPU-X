@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-08-30 18:09+0000\n"
-"Last-Translator: Hyeonho Kang <hyeonhokang10@o365.ice.go.kr>\n"
+"PO-Revision-Date: 2024-09-12 17:09+0000\n"
+"Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ko/>\n"
 "Language: ko\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.1-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -36,9 +36,7 @@ msgstr ""
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr ""
-"당신의 CPU 소켓이 데이터베이스에 존재하지 않습니다 ==> %s, 파트넘버: 0x%x, 코"
-"드네임: %s"
+msgstr "CPU가 데이터베이스에 존재하지 않습니다 ==> %s, 부품 번호: 0x%x, 코드명: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -887,10 +885,9 @@ msgid "an error occurred while setting locale"
 msgstr "로케일 설정 중 오류가 발생했습니다"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "선택한 탭 (%u)은 유효한 수치가 아닙니다 (%u가 최대치입니다)"
+msgstr "선택한 탭 (%u)은 볼 수 없습니다"
 
 #: options.cpp:161
 #, c-format
@@ -1139,11 +1136,11 @@ msgstr "스텝핑"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "구현자"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "변형"
 
 #: data.hpp:118 data.hpp:270
 msgid "Part Number"
