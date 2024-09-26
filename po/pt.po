@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-09-21 23:40+0000\n"
+"PO-Revision-Date: 2024-09-27 15:15+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
@@ -118,18 +118,20 @@ msgstr ""
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
-"Nenhum driver do kernel em utilização para a placa de vídeo no caminho %s"
+"Nenhum controlador do kernel em utilização para a placa de vídeo no caminho "
+"%s"
 
 #: core.cpp:851
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "O driver da sua GPU é desconhecido: %s"
+msgstr "O controlador da sua GPU é desconhecido: %s"
 
 #: core.cpp:935
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr ""
-"O driver de modo de utilizador da GPU é desconhecido ao fornecedor %s: %s"
+"O controlador de modo de utilizador da GPU é desconhecido ao fornecedor %s: "
+"%s"
 
 #: core.cpp:939
 #, c-format
@@ -240,22 +242,23 @@ msgstr "houve uma falha ao obter a versão para o dispositivo %u (%s)"
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
-"O driver OpenCL para '%s %s' não é compatível com CL_DEVICE_TOPOLOGY_AMD (%s)"
+"O controlador OpenCL para '%s %s' não é compatível com "
+"CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.cpp:1366
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
-"O driver OpenCL para '%s %s' não é compatível com CL_DEVICE_GFXIP_MAJOR_AMD "
-"(%s)"
+"O controlador OpenCL para '%s %s' não é compatível com "
+"CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.cpp:1374 core.cpp:1394 core.cpp:1427
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
-"O driver OpenCL para '%s %s' não é compatível com "
+"O controlador OpenCL para '%s %s' não é compatível com "
 "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.cpp:1415
@@ -264,8 +267,9 @@ msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
-"O driver OpenCL para '%s %s' não é compatível com CL_DEVICE_PCI_DOMAIN_ID_NV "
-"(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) ou CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+"O controlador OpenCL para '%s %s' não é compatível com "
+"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) ou "
+"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.cpp:1438
 #, c-format
@@ -321,7 +325,7 @@ msgstr "PCIe %s (atual) / %s (max)"
 #: core.cpp:1852
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "O driver para %s não reporta frequências"
+msgstr "O controlador para %s não reporta frequências"
 
 #: core.cpp:1873
 #, c-format
@@ -567,7 +571,7 @@ msgstr "Vara %u"
 
 #: data.cpp:511 cpu-x-gtk-3.12.ui:3134
 msgid "Sticks"
-msgstr "Sticks"
+msgstr "Pentes de memória RAM"
 
 #: data.cpp:565 cpu-x-gtk-3.12.ui:3780
 msgid "System"
@@ -721,7 +725,7 @@ msgstr ""
 
 #: gui_gtk.cpp:1105
 msgid "User Mode Driver Version"
-msgstr "User Mode Driver Version"
+msgstr "Versão do controlador do modo de utilizador"
 
 #: gui_gtk.cpp:1119
 msgid "Vulkan Ray Tracing"
@@ -1146,7 +1150,7 @@ msgstr "set_cpu_affinity() não é compatível neste sistema operativo"
 
 #: data.hpp:103 data.hpp:254 data.hpp:342
 msgid "Vendor"
-msgstr "Fabricante"
+msgstr "Fornecedor"
 
 #: data.hpp:104
 msgid "Code Name"
@@ -1218,7 +1222,7 @@ msgstr "L1 Data"
 
 #: data.hpp:136
 msgid "L1 Inst."
-msgstr "L1 Instruções"
+msgstr "L1 Inst."
 
 #: data.hpp:137
 msgid "Level 2"
@@ -1338,7 +1342,7 @@ msgstr "Swap"
 
 #: data.hpp:343
 msgid "Driver"
-msgstr "Driver"
+msgstr "Controlador"
 
 #: data.hpp:344
 msgid "UMD Version"
