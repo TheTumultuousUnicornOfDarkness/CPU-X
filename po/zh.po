@@ -14,22 +14,23 @@
 # Hou Qiyao <ryanhou24@gmail.com>, 2023.
 # A1ive <10670106+a1ive@users.noreply.github.com>, 2023.
 # taotieren <admin@taotieren.com>, 2024.
+# Lily Chou <lily-develop@outlook.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-08-31 10:55+0000\n"
-"PO-Revision-Date: 2024-06-19 10:09+0000\n"
-"Last-Translator: taotieren <admin@taotieren.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/zh_Hans/>\n"
+"PO-Revision-Date: 2024-10-03 06:16+0000\n"
+"Last-Translator: Lily Chou <lily-develop@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -39,12 +40,11 @@ msgid ""
 msgstr "数据库中没有您的 CPU ==> %s，型号： %i，扩展型号： %i，扩展系列： %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
+msgstr "您的CPU不在数据库内==>%s，料号：0x%x，代号%s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
