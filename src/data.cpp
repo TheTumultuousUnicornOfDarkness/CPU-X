@@ -469,6 +469,7 @@ std::ostream& operator<<(std::ostream& os, const Data::Motherboard::Bios& bios)
 	os << static_cast<const Label&>(bios.version);
 	os << static_cast<const Label&>(bios.date);
 	os << static_cast<const Label&>(bios.romsize);
+	os << static_cast<const Label&>(bios.efi_pk);
 	os << std::endl;
 	return os;
 }

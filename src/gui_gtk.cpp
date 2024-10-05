@@ -229,6 +229,7 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 	this->data.motherboard.bios.version.extend(new ExtLabel<Gtk::Label>(builder, "bios_vers"));
 	this->data.motherboard.bios.date.   extend(new ExtLabel<Gtk::Label>(builder, "bios_date"));
 	this->data.motherboard.bios.romsize.extend(new ExtLabel<Gtk::Label>(builder, "bios_rom"));
+	this->data.motherboard.bios.efi_pk. extend(new ExtLabel<Gtk::Label>(builder, "bios_pk"));
 	/* Chipset frame */
 	this->data.motherboard.chipset.extend(new ExtFrame(builder, "chip_lab"));
 	this->data.motherboard.chipset.vendor.extend(new ExtLabel<Gtk::Label>(builder, "chip_vend"));
@@ -862,6 +863,7 @@ void GtkData::gtab_motherboard()
 	set_label_name_and_value(this->data.motherboard.bios.version);
 	set_label_name_and_value(this->data.motherboard.bios.date);
 	set_label_name_and_value(this->data.motherboard.bios.romsize);
+	set_label_name_and_value(this->data.motherboard.bios.efi_pk, _("EFI Platform Key certificate information"));
 
 	/* Chipset frame */
 	set_frame_name(this->data.motherboard.chipset);

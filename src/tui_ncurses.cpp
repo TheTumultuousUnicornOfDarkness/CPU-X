@@ -429,16 +429,17 @@ static void ntab_motherboard(WINDOW *win, Data &data)
 	mvwprintw2c(win, LINE_3, SizeInfo::tb, "%13s", "%s", data.motherboard.board.revision);
 
 	/* BIOS frame */
-	draw_frame(win, LINE_5, SizeInfo::start , LINE_10, SizeInfo::width - 1, data.motherboard.bios);
+	draw_frame(win, LINE_5, SizeInfo::start , LINE_11, SizeInfo::width - 1, data.motherboard.bios);
 	mvwprintw2c(win, LINE_6, SizeInfo::tb, "%13s", "%s", data.motherboard.bios.brand);
 	mvwprintw2c(win, LINE_7, SizeInfo::tb, "%13s", "%s", data.motherboard.bios.version);
 	mvwprintw2c(win, LINE_8, SizeInfo::tb, "%13s", "%s", data.motherboard.bios.date);
 	mvwprintw2c(win, LINE_9, SizeInfo::tb, "%13s", "%s", data.motherboard.bios.romsize);
+	mvwprintw2c(win, LINE_10, SizeInfo::tb, "%13s", "%s", data.motherboard.bios.efi_pk);
 
 	/* Chipset frame */
-	draw_frame(win, LINE_11, SizeInfo::start , LINE_14, SizeInfo::width - 1, data.motherboard.chipset);
-	mvwprintw2c(win, LINE_12, SizeInfo::tb, "%13s", "%s", data.motherboard.chipset.vendor);
-	mvwprintw2c(win, LINE_13, SizeInfo::tb, "%13s", "%s", data.motherboard.chipset.model);
+	draw_frame(win, LINE_12, SizeInfo::start , LINE_15, SizeInfo::width - 1, data.motherboard.chipset);
+	mvwprintw2c(win, LINE_13, SizeInfo::tb, "%13s", "%s", data.motherboard.chipset.vendor);
+	mvwprintw2c(win, LINE_14, SizeInfo::tb, "%13s", "%s", data.motherboard.chipset.model);
 }
 
 /* Memory tab */

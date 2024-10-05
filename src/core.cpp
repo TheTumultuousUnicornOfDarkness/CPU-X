@@ -745,6 +745,24 @@ static int call_bandwidth([[maybe_unused]] Data &data)
 }
 #endif /* HAS_BANDWIDTH */
 
+static int efi_readvar(Data &data)
+{
+	int err = 0;
+	std::string pk_subject, pk_issuer;
+
+	if(!command_exists("efi-readvar"))
+		return 1;
+
+	/* Get Platform Key (PK) X509 information */
+	err += popen_to_str(pk_subject, "efi-readvar -v PK | grep -A1 Subject: | tail -n-1 | cut -d= -f2");
+	err += popen_to_str(pk_issuer,  "efi-readvar -v PK | grep -A1 Issuer:  | tail -n-1 | cut -d= -f2");
+
+	if(!err)
+		data.motherboard.bios.efi_pk.value = string_format(_("%s (subject) / %s (issuer)"), pk_subject.c_str(), pk_issuer.c_str());
+
+	return err;
+}
+
 #if HAS_LIBPCI
 /* Check is GPU is enabled */
 static bool gpu_is_on([[maybe_unused]] std::string device_path)
@@ -2501,6 +2519,7 @@ int fill_labels(Data &data)
 	err += find_devices(data);
 #endif
 
+	err += efi_readvar         (data);
 	err += system_static       (data);
 	err += fallback_mode_static(data);
 

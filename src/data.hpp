@@ -244,6 +244,7 @@ struct Data
 			Label version {_("Version")};
 			Label date    {_("Date")};
 			Label romsize {_("ROM Size")};
+			Label efi_pk  {_("EFI PK")};
 
 			Bios();
 			friend std::ostream& operator<<(std::ostream& os, const Bios& bios);
