@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-08-31 10:55+0000\n"
+"POT-Creation-Date: 2024-10-05 09:33+0000\n"
 "PO-Revision-Date: 2022-02-17 13:58+0000\n"
 "Last-Translator: Sarang Bhaisare <sarangbhaisare@gmail.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
@@ -93,7 +93,12 @@ msgstr "सीपीयू वापराची गणना करत आह�
 msgid "Calling bandwidth"
 msgstr "कॉलिंग बँडविड्थ"
 
-#: core.cpp:771
+#: core.cpp:761
+#, c-format
+msgid "%s (subject) / %s (issuer)"
+msgstr ""
+
+#: core.cpp:789
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -102,154 +107,154 @@ msgid ""
 "rebuild %s."
 msgstr ""
 
-#: core.cpp:815
+#: core.cpp:833
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "पथ %s वर ग्राफिक कार्ड करीता कर्नल ड्राइव्हर वापरात नाही"
 
-#: core.cpp:851
+#: core.cpp:869
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "आपला GPU कर्नल ड्राइव्हर अज्ञात आहे: %s"
 
-#: core.cpp:935
+#: core.cpp:953
 #, fuzzy, c-format
 #| msgid "Your GPU user mode driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "आपला GPU वापरकर्ता मोड ड्राइव्हर अज्ञात आहे: %s"
 
-#: core.cpp:939
+#: core.cpp:957
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW (%i): %s वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1072
+#: core.cpp:1090
 #, fuzzy
 #| msgid "Version"
 msgid "Finding Vulkan API version"
 msgstr "आवृत्ती"
 
-#: core.cpp:1088
+#: core.cpp:1106
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1092
+#: core.cpp:1110
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.cpp:1101
+#: core.cpp:1119
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1109
+#: core.cpp:1127
 msgid "No available Vulkan devices"
 msgstr ""
 
-#: core.cpp:1117
+#: core.cpp:1135
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "No available physical devices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1180
+#: core.cpp:1198
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1184
+#: core.cpp:1202
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.cpp:1216 core.cpp:1529
+#: core.cpp:1234 core.cpp:1547
 msgid "Enabled"
 msgstr "सक्षम केले आहे"
 
-#: core.cpp:1216 core.cpp:1529
+#: core.cpp:1234 core.cpp:1547
 msgid "Disabled"
 msgstr "अक्षम केले आहे"
 
-#: core.cpp:1253
+#: core.cpp:1271
 #, fuzzy
 #| msgid "Version"
 msgid "Finding OpenCL API version"
 msgstr "आवृत्ती"
 
-#: core.cpp:1257
+#: core.cpp:1275
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL समर्थनासह कोणतेही प्लॅटफॉर्म नाही (%s)"
 
-#: core.cpp:1267
+#: core.cpp:1285
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core.cpp:1280
+#: core.cpp:1298
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "प्लॅटफॉर्म %u (%s) चे नाव मिळविण्यात अयशस्वी"
 
-#: core.cpp:1288
+#: core.cpp:1306
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
-#: core.cpp:1296
+#: core.cpp:1314
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "व्यासपीठासाठी ओपन सीएल उपकरणांची संख्या शोधण्यात अयशस्वी '%s %s' (%s)"
 
-#: core.cpp:1296
+#: core.cpp:1314
 #, fuzzy
 #| msgid "Finding devices"
 msgid "0 device"
 msgstr "उपकरणे शोधत आहे"
 
-#: core.cpp:1305
+#: core.cpp:1323
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "व्यासपीठासाठी ओपन सीएल सर्व उपकरणे मिळविण्यात अयशस्वी '%s %s' (%s)"
 
-#: core.cpp:1325
+#: core.cpp:1343
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1333
+#: core.cpp:1351
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
 
-#: core.cpp:1355
+#: core.cpp:1373
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_TOPOLOGY_AMD (%s) ला समर्थन देत नाही"
 
-#: core.cpp:1366
+#: core.cpp:1384
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_GFXIP_MAJOR_AMD (%s) ला समर्थन देत नाही"
 
-#: core.cpp:1374 core.cpp:1394 core.cpp:1427
+#: core.cpp:1392 core.cpp:1412 core.cpp:1445
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_MAX_COMPUTE_UNITS (%s) ला समर्थन देत नाही"
 
-#: core.cpp:1415
+#: core.cpp:1433
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -259,191 +264,191 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) किंवा CL_DEVICE_PCI_SLOT_ID_NV (%s) ला समर्थन देत "
 "नाही"
 
-#: core.cpp:1438
+#: core.cpp:1456
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "तुमच्या चित्रक प्रक्रीयक एकक(GPU) विक्रेत्यासह ओपन सीएल समर्थित नाही (0x%X)"
 
-#: core.cpp:1460
+#: core.cpp:1478
 msgid "Finding devices"
 msgstr "उपकरणे शोधत आहे"
 
-#: core.cpp:1472
+#: core.cpp:1490
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
 
-#: core.cpp:1515
+#: core.cpp:1533
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "आपला GPU विक्रेता अज्ञात आहे: %s (0x%X)"
 
-#: core.cpp:1535
+#: core.cpp:1553
 msgid "failed to find chipset vendor and model"
 msgstr "चिपसेट विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core.cpp:1550
+#: core.cpp:1568
 msgid "failed to find graphic card vendor and model"
 msgstr "ग्राफिक कार्ड विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core.cpp:1683
+#: core.cpp:1701
 msgid "Retrieving GPU clocks"
 msgstr "GPU घड्याळे प्राप्त करीत आहे"
 
-#: core.cpp:1696
+#: core.cpp:1714
 msgid "None"
 msgstr "काहीही नाही"
 
-#: core.cpp:1705
+#: core.cpp:1723
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.cpp:1712
+#: core.cpp:1730
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.cpp:1737
+#: core.cpp:1755
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1852
+#: core.cpp:1870
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "GPU %u साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
 
-#: core.cpp:1873
+#: core.cpp:1891
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core.cpp:1896
+#: core.cpp:1914
 msgid "Identifying running system"
 msgstr "कार्यरत प्रणाली ओळखत आहे"
 
-#: core.cpp:1899
+#: core.cpp:1917
 msgid "failed to identify running system"
 msgstr "चालू प्रणाली ओळखण्यात अयशस्वी"
 
-#: core.cpp:1951 core.cpp:1980
+#: core.cpp:1969 core.cpp:1998
 msgid "Calling libprocps"
 msgstr "libprocps ला कॉल करीत आहे"
 
-#: core.cpp:1954
+#: core.cpp:1972
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.cpp:1960
+#: core.cpp:1978
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.cpp:2006
+#: core.cpp:2024
 msgid "Calling libstatgrab"
 msgstr "libstatgrab ला कॉल करीत आहे"
 
-#: core.cpp:2054
+#: core.cpp:2072
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
 
-#: core.cpp:2117
+#: core.cpp:2135
 msgid "Updating benchmark status"
 msgstr "बेंचमार्क स्थिती अद्यतनित करीत आहे"
 
-#: core.cpp:2120
+#: core.cpp:2138
 msgid "Active"
 msgstr "सक्रीय"
 
-#: core.cpp:2123
+#: core.cpp:2141
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u तास बाकी)"
 
-#: core.cpp:2125
+#: core.cpp:2143
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u मिनिटे बाकी)"
 
-#: core.cpp:2127
+#: core.cpp:2145
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u सेकंद शिल्लक)"
 
-#: core.cpp:2131 core.cpp:2186 core.cpp:2187
+#: core.cpp:2149 core.cpp:2204 core.cpp:2205
 msgid "Inactive"
 msgstr "निष्क्रीय"
 
-#: core.cpp:2134
+#: core.cpp:2152
 #, c-format
 msgid "in %u hours"
 msgstr "%u तासात"
 
-#: core.cpp:2136
+#: core.cpp:2154
 #, c-format
 msgid "in %u minutes"
 msgstr "%u मिनिटात"
 
-#: core.cpp:2138
+#: core.cpp:2156
 #, c-format
 msgid "in %u seconds"
 msgstr "%u सेकंदात"
 
-#: core.cpp:2155
+#: core.cpp:2173
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "बेंचमार्क सुरू करीत आहे"
 
-#: core.cpp:2178
+#: core.cpp:2196
 msgid "an error occurred while starting benchmark"
 msgstr "बेंचमार्क सुरू करताना एक त्रुटी आली"
 
-#: core.cpp:2204
+#: core.cpp:2222
 msgid "Finding CPU package in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
 
-#: core.cpp:2234
+#: core.cpp:2252
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित नाही"
 
-#: core.cpp:2254
+#: core.cpp:2272
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू मल्टिप्लायर्सची गणना करत आहे"
 
-#: core.cpp:2280
+#: core.cpp:2298
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये मदरबोर्ड माहिती पुनर्प्राप्त करीत आहे"
 
-#: core.cpp:2296
+#: core.cpp:2314
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "मदरबोर्ड माहिती पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
-#: core.cpp:2338
+#: core.cpp:2356
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू तापमान प्राप्त करत आहे"
 
-#: core.cpp:2386
+#: core.cpp:2404
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "सीपीयू तापमान (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.cpp:2401
+#: core.cpp:2419
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू व्होल्टेज पुनर्प्राप्त करीत आहे"
 
-#: core.cpp:2420
+#: core.cpp:2438
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "सीपीयू व्होल्टेज (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.cpp:2434
+#: core.cpp:2452
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू वारंवारता पुनर्प्राप्त करीत आहे"
 
-#: core.cpp:2445
+#: core.cpp:2463
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "सीपीयू वारंवारता पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
@@ -480,7 +485,7 @@ msgstr "डिमनशी कनेक्ट केले"
 msgid "request_handler: case %i not handled"
 msgstr "विनंती_हांडलर: केस %i हाताळले नाही"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
 msgid "CPU"
 msgstr "सीपीयू"
 
@@ -508,11 +513,11 @@ msgstr "गुण"
 msgid "Core"
 msgstr "कोअर"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:746
+#: data.cpp:212 cpu-x-gtk-3.12.ui:770
 msgid "Processor"
 msgstr "प्रोसेसर"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
 msgid "Caches"
 msgstr "कॅशे"
 
@@ -531,7 +536,7 @@ msgstr "%d %s,%d-वे"
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:968
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
 msgid "Clocks"
 msgstr "घड्याळे"
 
@@ -550,85 +555,85 @@ msgstr "%s सहकारी,%d-%s लाइन आकार"
 msgid "Test"
 msgstr "चाचणी"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
 msgid "Motherboard"
 msgstr "मदरबोर्ड"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:476 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
 msgid "Chipset"
 msgstr "चिपसेट"
 
-#: data.cpp:491 data.cpp:593 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
 msgid "Memory"
 msgstr "स्मृती"
 
-#: data.cpp:507
+#: data.cpp:508
 #, c-format
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:511 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:565 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
 msgid "System"
 msgstr "प्रणाली"
 
-#: data.cpp:578 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
 msgid "Operating System"
 msgstr "ऑपरेटिंग सिस्टम"
 
-#: data.cpp:611 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
 msgid "Graphics"
 msgstr "ग्राफिक्स"
 
-#: data.cpp:645
+#: data.cpp:646
 #, fuzzy, c-format
 #| msgid "Card %i"
 msgid "Card %u"
 msgstr "कार्ड %i"
 
-#: data.cpp:649 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "कार्ड %i"
 
-#: data.cpp:696 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
 msgid "Bench"
 msgstr "बेन्च"
 
-#: data.cpp:709
+#: data.cpp:710
 msgid "Not started"
 msgstr "सुरू झाले नाही"
 
-#: data.cpp:712 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
 msgid "Prime numbers (slow)"
 msgstr "मूळ संख्या(हळु)"
 
-#: data.cpp:716 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
 msgid "Prime numbers (fast)"
 msgstr "मूळ संख्या (जलद)"
 
-#: data.cpp:720 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
 msgid "Parameters"
 msgstr "घटक"
 
-#: data.cpp:745 data.cpp:751
+#: data.cpp:746 data.cpp:752
 #, c-format
 msgid "%u mins"
 msgstr "%u मि"
 
-#: data.cpp:758 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
 msgid "About"
 msgstr "बद्दल"
 
-#: data.cpp:763
+#: data.cpp:764
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -637,37 +642,37 @@ msgstr ""
 "%s हे एक विनामूल्य सॉफ्टवेअर आहे जे\n"
 "सीपीयू, मदरबोर्ड आणि बरेच काहीची माहिती एकत्रित करते."
 
-#: data.cpp:768
+#: data.cpp:769
 #, fuzzy
 #| msgid "About"
 msgid "About CPU-X"
 msgstr "बद्दल"
 
-#: data.cpp:769
+#: data.cpp:770
 #, c-format
 msgid "Version %s"
 msgstr "आवृत्ती %s"
 
-#: data.cpp:770
+#: data.cpp:771
 #, c-format
 msgid "Author: %s"
 msgstr "लेखक: %s"
 
-#: data.cpp:771
+#: data.cpp:772
 #, c-format
 msgid "Site: %s"
 msgstr "साइट: %s"
 
-#: data.cpp:775 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
 msgid "License"
 msgstr "परवाना"
 
-#: data.cpp:777
+#: data.cpp:778
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "हे सॉफ्टवेअर %s च्या अटी अंतर्गत वितरीत केले गेले आहे"
 
-#: data.cpp:778 main.cpp:176
+#: data.cpp:779 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "हा प्रोग्राम पूर्णपणे कोणतीही हमी देत नाही"
 
@@ -676,69 +681,73 @@ msgstr "हा प्रोग्राम पूर्णपणे कोणत
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:431
+#: gui_gtk.cpp:432
 msgid "Start daemon"
 msgstr "डिमन प्रारंभ करा"
 
-#: gui_gtk.cpp:434
+#: gui_gtk.cpp:435
 msgid "Connected to daemon"
 msgstr "डिमनशी कनेक्ट केले"
 
-#: gui_gtk.cpp:437
+#: gui_gtk.cpp:438
 msgid "No polkit authentication agent found"
 msgstr "कोणताही पोलकिट ऑथेंटिकेशन एजंट सापडला नाही"
 
-#: gui_gtk.cpp:442
+#: gui_gtk.cpp:443
 msgid "Ask password to start daemon in background"
 msgstr "पार्श्वभूमीवर डिमन सुरू करण्यासाठी संकेतशब्द विचारा"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:447
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:668
+#: gui_gtk.cpp:669
 msgid "BaseFamily"
 msgstr "मुळ कुटूंब"
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:670
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "मध्यवर्ती प्रक्रीयक एकक(CPU) प्रदर्शक(Display) (\"खरे\") कुटूंब (मुळ कुटूंब+विस्तारित कुटुंब "
 "म्हणून गणना)"
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:671
 msgid "BaseModel"
 msgstr "प्रतिकृती"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:672
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.cpp:899
+#: gui_gtk.cpp:866
+msgid "EFI Platform Key certificate information"
+msgstr ""
+
+#: gui_gtk.cpp:901
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:900
+#: gui_gtk.cpp:902
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1105
+#: gui_gtk.cpp:1107
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "आवृत्ती"
 
-#: gui_gtk.cpp:1119
+#: gui_gtk.cpp:1121
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1314
+#: gui_gtk.cpp:1316
 msgid "Starting GTK GUI…"
 msgstr "जीटीके जीयूआय प्रारंभ करीत आहे …"
 
-#: gui_gtk.cpp:1326
+#: gui_gtk.cpp:1328
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder मध्ये UI आयात करण्यात अयशस्वी"
 
@@ -800,7 +809,7 @@ msgstr "डीफॉल्ट टॅब सेट करा (पूर्णा�
 msgid "Select default graphic card (integer)"
 msgstr "डीफॉल्ट टॅब सेट करा (पूर्णांक)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:5910
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
 msgid "Start and connect to daemon"
 msgstr "डिमन प्रारंभ करा आणि कनेक्ट करा"
 
@@ -1160,11 +1169,11 @@ msgstr ""
 "\n"
 "या मदतीमधून बाहेर पडण्यासाठी कोणतीही की दाबा.\n"
 
-#: tui_ncurses.cpp:675
+#: tui_ncurses.cpp:676
 msgid "Starting NCurses TUI…"
 msgstr "एनकर्स टीयूआय प्रारंभ करीत आहे…"
 
-#: tui_ncurses.cpp:684
+#: tui_ncurses.cpp:685
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1172,7 +1181,7 @@ msgstr ""
 "FATAL ERROR: टर्मिनफो डेटाबेस सापडू शकला नाही (TERMINFO पर्यावरण व्हेरिएबल सेट "
 "करण्याचा प्रयत्न करा)"
 
-#: tui_ncurses.cpp:689
+#: tui_ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "%s टर्मिनल स्थापित करण्यात अपयशी (err=%i); %s मागे पडतोय"
@@ -1198,7 +1207,7 @@ msgstr "'%s' (%s) कमांड चालू करताना त्रु�
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
-#: data.hpp:103 data.hpp:254 data.hpp:342
+#: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
 msgstr "विक्रेता"
 
@@ -1214,7 +1223,7 @@ msgstr "पॅकेज"
 msgid "Technology"
 msgstr "तंत्रज्ञान"
 
-#: data.hpp:107 data.hpp:278
+#: data.hpp:107 data.hpp:279
 msgid "Voltage"
 msgstr "विद्युतदाब"
 
@@ -1232,7 +1241,7 @@ msgstr "परिवार"
 msgid "Disp. Family"
 msgstr "Ext. परिवार"
 
-#: data.hpp:112 data.hpp:234 data.hpp:255 data.hpp:345
+#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
 msgid "Model"
 msgstr "मॉडेल"
 
@@ -1254,7 +1263,7 @@ msgstr ""
 msgid "Variant"
 msgstr ""
 
-#: data.hpp:118 data.hpp:270
+#: data.hpp:118 data.hpp:271
 msgid "Part Number"
 msgstr ""
 
@@ -1286,13 +1295,13 @@ msgstr "पातळी 2"
 msgid "Level 3"
 msgstr "पातळी 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1232
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Cores"
 msgstr "कोअर"
 
-#: data.hpp:148 data.hpp:418 cpu-x-gtk-3.12.ui:1252
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
 msgid "Threads"
 msgstr "थ्रेड"
 
@@ -1308,19 +1317,19 @@ msgstr "गुणक"
 msgid "Bus Speed"
 msgstr "बस गती"
 
-#: data.hpp:168 data.hpp:351
+#: data.hpp:168 data.hpp:352
 msgid "Usage"
 msgstr "वापर"
 
-#: data.hpp:198 data.hpp:275
+#: data.hpp:198 data.hpp:276
 msgid "Size"
 msgstr "आकार"
 
-#: data.hpp:199 data.hpp:277
+#: data.hpp:199 data.hpp:278
 msgid "Speed"
 msgstr "वेग"
 
-#: data.hpp:233 data.hpp:269
+#: data.hpp:233 data.hpp:270
 msgid "Manufacturer"
 msgstr "निर्माता"
 
@@ -1340,87 +1349,91 @@ msgstr "तारीख"
 msgid "ROM Size"
 msgstr "रॉम आकार"
 
-#: data.hpp:271
+#: data.hpp:247
+msgid "EFI PK"
+msgstr ""
+
+#: data.hpp:272
 #, fuzzy
 #| msgid "Core #%i"
 msgid "Type"
 msgstr "कोर #%i"
 
-#: data.hpp:272
+#: data.hpp:273
 #, fuzzy
 #| msgid "Core #%i"
 msgid "Type Detail"
 msgstr "कोर #%i"
 
-#: data.hpp:273
+#: data.hpp:274
 msgid "Device Locator"
 msgstr ""
 
-#: data.hpp:274
+#: data.hpp:275
 msgid "Bank Locator"
 msgstr ""
 
-#: data.hpp:276
+#: data.hpp:277
 msgid "Rank"
 msgstr ""
 
-#: data.hpp:302
+#: data.hpp:303
 #, fuzzy
 #| msgid "Code Name"
 msgid "Name"
 msgstr "सांकेतिक नाव"
 
-#: data.hpp:303
+#: data.hpp:304
 msgid "Kernel"
 msgstr "कर्नल"
 
-#: data.hpp:304
+#: data.hpp:305
 msgid "Hostname"
 msgstr "होस्टनाव"
 
-#: data.hpp:305
+#: data.hpp:306
 msgid "Uptime"
 msgstr "अपटाइम"
 
-#: data.hpp:313
+#: data.hpp:314
 msgid "Used"
 msgstr "वापरलेले"
 
-#: data.hpp:314
+#: data.hpp:315
 msgid "Buffers"
 msgstr "बफर"
 
-#: data.hpp:315
+#: data.hpp:316
 msgid "Cached"
 msgstr "कॅश"
 
-#: data.hpp:316
+#: data.hpp:317
 msgid "Free"
 msgstr "मॊकळी"
 
-#: data.hpp:317
+#: data.hpp:318
 msgid "Swap"
 msgstr "स्वॅप"
 
-#: data.hpp:343
+#: data.hpp:344
 msgid "Driver"
 msgstr "ड्रायव्हर"
 
-#: data.hpp:344
+#: data.hpp:345
 #, fuzzy
 #| msgid "Version"
 msgid "UMD Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:346
+#: data.hpp:347
 msgid "Compute Unit"
 msgstr ""
 
-#: data.hpp:347
+#: data.hpp:348
 msgid "Device ID"
 msgstr ""
 
-#: data.hpp:348
+#: data.hpp:349
 #, fuzzy
 #| msgid "Version"
 msgid "VBIOS Version"
@@ -1428,77 +1441,77 @@ msgstr "आवृत्ती"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:349 cpu-x-gtk-3.12.ui:5807
+#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
 msgid "Interface"
 msgstr ""
 
-#: data.hpp:350
+#: data.hpp:351
 msgid "Temperature"
 msgstr "तापमान"
 
-#: data.hpp:352
+#: data.hpp:353
 #, fuzzy
 #| msgid "Voltage"
 msgid "Core Voltage"
 msgstr "विद्युतदाब"
 
-#: data.hpp:353
+#: data.hpp:354
 msgid "Power Avg"
 msgstr ""
 
-#: data.hpp:354
+#: data.hpp:355
 #, fuzzy
 #| msgid "Memory clock"
 msgid "Core Clock"
 msgstr "स्मृती घड्याळ"
 
-#: data.hpp:355
+#: data.hpp:356
 #, fuzzy
 #| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "स्मृती घड्याळ"
 
-#: data.hpp:356
+#: data.hpp:357
 #, fuzzy
 #| msgid "Memory"
 msgid "Memory Used"
 msgstr "स्मृती"
 
-#: data.hpp:357
+#: data.hpp:358
 msgid "Resizable BAR"
 msgstr ""
 
-#: data.hpp:358
+#: data.hpp:359
 msgid "Vulkan RT"
 msgstr ""
 
-#: data.hpp:359
+#: data.hpp:360
 #, fuzzy
 #| msgid "Version"
 msgid "OpenGL Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:360
+#: data.hpp:361
 #, fuzzy
 #| msgid "Version"
 msgid "Vulkan Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:361
+#: data.hpp:362
 #, fuzzy
 #| msgid "Version"
 msgid "OpenCL Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:397
+#: data.hpp:398
 msgid "Score"
 msgstr "गुण"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Run"
 msgstr "चालवा"
 
-#: data.hpp:417
+#: data.hpp:418
 msgid "Duration"
 msgstr "कालावधी"
 
@@ -1552,81 +1565,81 @@ msgstr "जीबी"
 msgid "TiB"
 msgstr "टीबी"
 
-#: cpu-x-gtk-3.12.ui:1184
+#: cpu-x-gtk-3.12.ui:1224
 msgid "Cache"
 msgstr "कॅशे"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5721
+#: cpu-x-gtk-3.12.ui:5886
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5745
+#: cpu-x-gtk-3.12.ui:5910
 msgid "Text theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5760
+#: cpu-x-gtk-3.12.ui:5925
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5761
+#: cpu-x-gtk-3.12.ui:5926
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5762
+#: cpu-x-gtk-3.12.ui:5927
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5775
+#: cpu-x-gtk-3.12.ui:5940
 #, fuzzy
 #| msgid "Temperature"
 msgid "Temperature unit"
 msgstr "तापमान"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5826
+#: cpu-x-gtk-3.12.ui:5991
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5839
+#: cpu-x-gtk-3.12.ui:6004
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5852
+#: cpu-x-gtk-3.12.ui:6017
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5895
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5928
+#: cpu-x-gtk-3.12.ui:6093
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Default graphic card"
 msgstr "डीफॉल्ट टॅब सेट करा (पूर्णांक)"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5952
+#: cpu-x-gtk-3.12.ui:6117
 msgid "Default core type"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5976
+#: cpu-x-gtk-3.12.ui:6141
 msgid "Default memory stick"
 msgstr ""
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6169
 msgid "Startup"
 msgstr ""
 

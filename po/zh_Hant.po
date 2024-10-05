@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-08-31 10:55+0000\n"
+"POT-Creation-Date: 2024-10-05 09:33+0000\n"
 "PO-Revision-Date: 2024-07-02 00:35+0000\n"
 "Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -101,7 +101,12 @@ msgstr "正在計算 CPU 使用率"
 msgid "Calling bandwidth"
 msgstr "調用帶寬"
 
-#: core.cpp:771
+#: core.cpp:761
+#, c-format
+msgid "%s (subject) / %s (issuer)"
+msgstr ""
+
+#: core.cpp:789
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -112,138 +117,138 @@ msgstr ""
 "pci_access 未正確初始化：這是使用較低 libpci 版本建立 %s 時的常見問題。\n"
 "檢查您的系統上是否存在 libpci %s 版本函式庫。否則，請重建 %s。"
 
-#: core.cpp:815
+#: core.cpp:833
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "路徑 %s 沒有顯示卡核心驅動程式正在使用"
 
-#: core.cpp:851
+#: core.cpp:869
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "無法得知您的 GPU 核心驅動程式：%s"
 
-#: core.cpp:935
+#: core.cpp:953
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "供應商 %s 未知您的 GPU 使用者模式驅動程式：%s"
 
-#: core.cpp:939
+#: core.cpp:957
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "呼叫 GLFW 失敗 (%i):(%s)"
 
-#: core.cpp:1072
+#: core.cpp:1090
 msgid "Finding Vulkan API version"
 msgstr "查找 Vulkan API 版本"
 
-#: core.cpp:1088
+#: core.cpp:1106
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "呼叫 vkCreateInstance 失敗 (%s)"
 
-#: core.cpp:1092
+#: core.cpp:1110
 #, c-format
 msgid "%s is not supported"
 msgstr "不支援 %s"
 
-#: core.cpp:1101
+#: core.cpp:1119
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "呼叫 vkEnumeratePhysicalDevices 失敗 (%s)"
 
-#: core.cpp:1109
+#: core.cpp:1127
 msgid "No available Vulkan devices"
 msgstr "沒有可用的 Vulkan 設備"
 
-#: core.cpp:1117
+#: core.cpp:1135
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "沒有可用的物理設備（%s）"
 
-#: core.cpp:1180
+#: core.cpp:1198
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "無法為設備 %u (%s) 創建 Vulkan"
 
-#: core.cpp:1184
+#: core.cpp:1202
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr "%s不支援 在裝置 %u，僅使用 deviceID 進行匹配"
 
-#: core.cpp:1216 core.cpp:1529
+#: core.cpp:1234 core.cpp:1547
 msgid "Enabled"
 msgstr "啟用"
 
-#: core.cpp:1216 core.cpp:1529
+#: core.cpp:1234 core.cpp:1547
 msgid "Disabled"
 msgstr "關閉"
 
-#: core.cpp:1253
+#: core.cpp:1271
 msgid "Finding OpenCL API version"
 msgstr "查找 OpenCL API 版本"
 
-#: core.cpp:1257
+#: core.cpp:1275
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "沒有受 OpenCL 支援的平台 (%s)"
 
-#: core.cpp:1267
+#: core.cpp:1285
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 
-#: core.cpp:1280
+#: core.cpp:1298
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "擷取平台名稱時失敗 %u (%s)"
 
-#: core.cpp:1288
+#: core.cpp:1306
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "擷取平台版本號數時失敗 %u (%s)"
 
-#: core.cpp:1296
+#: core.cpp:1314
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
 
-#: core.cpp:1296
+#: core.cpp:1314
 msgid "0 device"
 msgstr "正在尋找裝置"
 
-#: core.cpp:1305
+#: core.cpp:1323
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "擷取平台上全部 OpenCL 裝置時失敗 '%s %s' (%s)"
 
-#: core.cpp:1325
+#: core.cpp:1343
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "擷取裝置名稱時失敗 %u (%s)"
 
-#: core.cpp:1333
+#: core.cpp:1351
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "取得裝置版本資訊時失敗%u (%s)"
 
-#: core.cpp:1355
+#: core.cpp:1373
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1366
+#: core.cpp:1384
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1374 core.cpp:1394 core.cpp:1427
+#: core.cpp:1392 core.cpp:1412 core.cpp:1445
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "「%s %s」的 OpenCL 驅動程式並不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1415
+#: core.cpp:1433
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -252,189 +257,189 @@ msgstr ""
 "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_PCI_DOMAIN_ID_NV (%s)， "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) 或是 CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1438
+#: core.cpp:1456
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "您的顯示卡供應商 (0x%X) 不支援 OpenCL"
 
-#: core.cpp:1460
+#: core.cpp:1478
 msgid "Finding devices"
 msgstr "正在尋找裝置"
 
-#: core.cpp:1472
+#: core.cpp:1490
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
 
-#: core.cpp:1515
+#: core.cpp:1533
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "無法得知您的 GPU 供應商：%s (0x%X)"
 
-#: core.cpp:1535
+#: core.cpp:1553
 msgid "failed to find chipset vendor and model"
 msgstr "找不到晶片組供應商及型號"
 
-#: core.cpp:1550
+#: core.cpp:1568
 msgid "failed to find graphic card vendor and model"
 msgstr "找不到顯示卡供應商及型號"
 
-#: core.cpp:1683
+#: core.cpp:1701
 msgid "Retrieving GPU clocks"
 msgstr "正在取得 GPU 時脈"
 
-#: core.cpp:1696
+#: core.cpp:1714
 msgid "None"
 msgstr "無"
 
-#: core.cpp:1705
+#: core.cpp:1723
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s 的 DRM 路徑未知"
 
-#: core.cpp:1712
+#: core.cpp:1730
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s 的卡號未知"
 
-#: core.cpp:1737
+#: core.cpp:1755
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s（目前）/%s（最大值）"
 
-#: core.cpp:1852
+#: core.cpp:1870
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s 的驅動程式沒有報告頻率"
 
-#: core.cpp:1873
+#: core.cpp:1891
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 
-#: core.cpp:1896
+#: core.cpp:1914
 msgid "Identifying running system"
 msgstr "正在辨識作業環境系統"
 
-#: core.cpp:1899
+#: core.cpp:1917
 msgid "failed to identify running system"
 msgstr "辨識作業環境系統失敗"
 
-#: core.cpp:1951 core.cpp:1980
+#: core.cpp:1969 core.cpp:1998
 msgid "Calling libprocps"
 msgstr "正在呼叫 libprocps"
 
-#: core.cpp:1954
+#: core.cpp:1972
 msgid "unable to get system uptime"
 msgstr "無法獲取系統運作時間"
 
-#: core.cpp:1960
+#: core.cpp:1978
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.cpp:2006
+#: core.cpp:2024
 msgid "Calling libstatgrab"
 msgstr "正在呼叫 libstatgrab"
 
-#: core.cpp:2054
+#: core.cpp:2072
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天， %i 小時， %i 分鐘， %i 秒"
 
-#: core.cpp:2117
+#: core.cpp:2135
 msgid "Updating benchmark status"
 msgstr "正在更新benchmark狀態"
 
-#: core.cpp:2120
+#: core.cpp:2138
 msgid "Active"
 msgstr "活動中"
 
-#: core.cpp:2123
+#: core.cpp:2141
 #, c-format
 msgid "(%u hours left)"
 msgstr "(剩下 %u 小時)"
 
-#: core.cpp:2125
+#: core.cpp:2143
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(剩下 %u 分鐘)"
 
-#: core.cpp:2127
+#: core.cpp:2145
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(剩下 %u 秒鐘)"
 
-#: core.cpp:2131 core.cpp:2186 core.cpp:2187
+#: core.cpp:2149 core.cpp:2204 core.cpp:2205
 msgid "Inactive"
 msgstr "未啟動"
 
-#: core.cpp:2134
+#: core.cpp:2152
 #, c-format
 msgid "in %u hours"
 msgstr "在 %u 小時內"
 
-#: core.cpp:2136
+#: core.cpp:2154
 #, c-format
 msgid "in %u minutes"
 msgstr "在 %u 分鐘內"
 
-#: core.cpp:2138
+#: core.cpp:2156
 #, c-format
 msgid "in %u seconds"
 msgstr "在 %u 秒鐘內"
 
-#: core.cpp:2155
+#: core.cpp:2173
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "正在使用 %u 個執行緒開始效能測試"
 
-#: core.cpp:2178
+#: core.cpp:2196
 msgid "an error occurred while starting benchmark"
 msgstr "開始效能測試時有錯誤發生"
 
-#: core.cpp:2204
+#: core.cpp:2222
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core.cpp:2234
+#: core.cpp:2252
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
 
-#: core.cpp:2254
+#: core.cpp:2272
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr ""
 
-#: core.cpp:2280
+#: core.cpp:2298
 msgid "Retrieving motherboard information in fallback mode"
 msgstr ""
 
-#: core.cpp:2296
+#: core.cpp:2314
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr ""
 
-#: core.cpp:2338
+#: core.cpp:2356
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr ""
 
-#: core.cpp:2386
+#: core.cpp:2404
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr ""
 
-#: core.cpp:2401
+#: core.cpp:2419
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr ""
 
-#: core.cpp:2420
+#: core.cpp:2438
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr ""
 
-#: core.cpp:2434
+#: core.cpp:2452
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr ""
 
-#: core.cpp:2445
+#: core.cpp:2463
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
@@ -467,7 +472,7 @@ msgstr "正在連接至守護程式…"
 msgid "request_handler: case %i not handled"
 msgstr ""
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
 msgid "CPU"
 msgstr "CPU"
 
@@ -493,11 +498,11 @@ msgstr "分數"
 msgid "Core"
 msgstr "核心"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:746
+#: data.cpp:212 cpu-x-gtk-3.12.ui:770
 msgid "Processor"
 msgstr "處理器"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
 msgid "Caches"
 msgstr "快取"
 
@@ -515,7 +520,7 @@ msgstr "%d %s, %d 路"
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:968
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
 msgid "Clocks"
 msgstr "時脈"
 
@@ -533,82 +538,82 @@ msgstr "%s 組合，%d-%s 行大小"
 msgid "Test"
 msgstr "測試"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
 msgid "Motherboard"
 msgstr "主機板"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:476 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
 msgid "Chipset"
 msgstr "晶片組"
 
-#: data.cpp:491 data.cpp:593 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
 msgid "Memory"
 msgstr "記憶體"
 
-#: data.cpp:507
+#: data.cpp:508
 #, c-format
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:511 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:565 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
 msgid "System"
 msgstr "系統"
 
-#: data.cpp:578 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
 msgid "Operating System"
 msgstr "作業系統"
 
-#: data.cpp:611 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
 msgid "Graphics"
 msgstr "圖形"
 
-#: data.cpp:645
+#: data.cpp:646
 #, c-format
 msgid "Card %u"
 msgstr "卡 %u"
 
-#: data.cpp:649 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
 msgid "Cards"
 msgstr "卡"
 
-#: data.cpp:696 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
 msgid "Bench"
 msgstr "效能測試"
 
-#: data.cpp:709
+#: data.cpp:710
 msgid "Not started"
 msgstr "未開始"
 
-#: data.cpp:712 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
 msgid "Prime numbers (slow)"
 msgstr ""
 
-#: data.cpp:716 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
 msgid "Prime numbers (fast)"
 msgstr ""
 
-#: data.cpp:720 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
 msgid "Parameters"
 msgstr "參數"
 
-#: data.cpp:745 data.cpp:751
+#: data.cpp:746 data.cpp:752
 #, c-format
 msgid "%u mins"
 msgstr "%u 分鐘"
 
-#: data.cpp:758 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
 msgid "About"
 msgstr "關於"
 
-#: data.cpp:763
+#: data.cpp:764
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -617,35 +622,35 @@ msgstr ""
 "%s 是一款蒐集CPU、主機板等資訊\n"
 "的自由軟體。"
 
-#: data.cpp:768
+#: data.cpp:769
 msgid "About CPU-X"
 msgstr "關於 CPU-X"
 
-#: data.cpp:769
+#: data.cpp:770
 #, c-format
 msgid "Version %s"
 msgstr "%s 版"
 
-#: data.cpp:770
+#: data.cpp:771
 #, c-format
 msgid "Author: %s"
 msgstr "作者：%s"
 
-#: data.cpp:771
+#: data.cpp:772
 #, c-format
 msgid "Site: %s"
 msgstr "網站：%s"
 
-#: data.cpp:775 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
 msgid "License"
 msgstr "授權條款"
 
-#: data.cpp:777
+#: data.cpp:778
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr ""
 
-#: data.cpp:778 main.cpp:176
+#: data.cpp:779 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr ""
 
@@ -654,69 +659,73 @@ msgstr ""
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:431
+#: gui_gtk.cpp:432
 msgid "Start daemon"
 msgstr "啟動守護程式"
 
-#: gui_gtk.cpp:434
+#: gui_gtk.cpp:435
 msgid "Connected to daemon"
 msgstr "已連接至守護程式"
 
-#: gui_gtk.cpp:437
+#: gui_gtk.cpp:438
 msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.cpp:442
+#: gui_gtk.cpp:443
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:447
 msgid "Settings"
 msgstr "設定"
 
-#: gui_gtk.cpp:668
+#: gui_gtk.cpp:669
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "系列"
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:670
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:671
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "型號"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:672
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.cpp:899
+#: gui_gtk.cpp:866
+msgid "EFI Platform Key certificate information"
+msgstr ""
+
+#: gui_gtk.cpp:901
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:900
+#: gui_gtk.cpp:902
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1105
+#: gui_gtk.cpp:1107
 msgid "User Mode Driver Version"
 msgstr "用戶模式驅動程序版本"
 
-#: gui_gtk.cpp:1119
+#: gui_gtk.cpp:1121
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan 光線追蹤"
 
-#: gui_gtk.cpp:1314
+#: gui_gtk.cpp:1316
 msgid "Starting GTK GUI…"
 msgstr "正在啟動GTK圖形使用者介面…"
 
-#: gui_gtk.cpp:1326
+#: gui_gtk.cpp:1328
 msgid "failed to import UI in GtkBuilder"
 msgstr ""
 
@@ -776,7 +785,7 @@ msgstr "設定預設分頁（整數）"
 msgid "Select default graphic card (integer)"
 msgstr "設定預設分頁（整數）"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:5910
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
 msgid "Start and connect to daemon"
 msgstr ""
 
@@ -1065,17 +1074,17 @@ msgstr "按下「上」鍵以切換至下一個顯示卡。"
 msgid "Press any key to exit this help."
 msgstr "按任意鍵退出幫助。"
 
-#: tui_ncurses.cpp:675
+#: tui_ncurses.cpp:676
 msgid "Starting NCurses TUI…"
 msgstr "正在啟動 NCurses TUI…"
 
-#: tui_ncurses.cpp:684
+#: tui_ncurses.cpp:685
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
 
-#: tui_ncurses.cpp:689
+#: tui_ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
@@ -1099,7 +1108,7 @@ msgstr "執行命令「%s」時發生錯誤"
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
-#: data.hpp:103 data.hpp:254 data.hpp:342
+#: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
 msgstr "供應商"
 
@@ -1115,7 +1124,7 @@ msgstr "封裝"
 msgid "Technology"
 msgstr "製程"
 
-#: data.hpp:107 data.hpp:278
+#: data.hpp:107 data.hpp:279
 msgid "Voltage"
 msgstr "電壓"
 
@@ -1133,7 +1142,7 @@ msgstr "系列"
 msgid "Disp. Family"
 msgstr "延伸系列"
 
-#: data.hpp:112 data.hpp:234 data.hpp:255 data.hpp:345
+#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
 msgid "Model"
 msgstr "型號"
 
@@ -1155,7 +1164,7 @@ msgstr ""
 msgid "Variant"
 msgstr ""
 
-#: data.hpp:118 data.hpp:270
+#: data.hpp:118 data.hpp:271
 msgid "Part Number"
 msgstr ""
 
@@ -1187,11 +1196,11 @@ msgstr "L2 快取"
 msgid "Level 3"
 msgstr "L3 快取"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1232
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
 msgid "Cores"
 msgstr "核心"
 
-#: data.hpp:148 data.hpp:418 cpu-x-gtk-3.12.ui:1252
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
 msgid "Threads"
 msgstr "線程"
 
@@ -1207,19 +1216,19 @@ msgstr "倍頻"
 msgid "Bus Speed"
 msgstr "匯流排速度"
 
-#: data.hpp:168 data.hpp:351
+#: data.hpp:168 data.hpp:352
 msgid "Usage"
 msgstr "用量"
 
-#: data.hpp:198 data.hpp:275
+#: data.hpp:198 data.hpp:276
 msgid "Size"
 msgstr "大小"
 
-#: data.hpp:199 data.hpp:277
+#: data.hpp:199 data.hpp:278
 msgid "Speed"
 msgstr "速度"
 
-#: data.hpp:233 data.hpp:269
+#: data.hpp:233 data.hpp:270
 msgid "Manufacturer"
 msgstr "製造商"
 
@@ -1239,141 +1248,145 @@ msgstr "日期"
 msgid "ROM Size"
 msgstr "唯讀記憶體容量"
 
-#: data.hpp:271
+#: data.hpp:247
+msgid "EFI PK"
+msgstr ""
+
+#: data.hpp:272
 msgid "Type"
 msgstr "類型"
 
-#: data.hpp:272
+#: data.hpp:273
 msgid "Type Detail"
 msgstr "類型詳細資訊"
 
-#: data.hpp:273
+#: data.hpp:274
 msgid "Device Locator"
 msgstr "裝置定位器"
 
-#: data.hpp:274
+#: data.hpp:275
 msgid "Bank Locator"
 msgstr ""
 
-#: data.hpp:276
+#: data.hpp:277
 msgid "Rank"
 msgstr ""
 
-#: data.hpp:302
+#: data.hpp:303
 msgid "Name"
 msgstr "名稱"
 
-#: data.hpp:303
+#: data.hpp:304
 msgid "Kernel"
 msgstr "核心"
 
-#: data.hpp:304
+#: data.hpp:305
 msgid "Hostname"
 msgstr "主機名稱"
 
-#: data.hpp:305
+#: data.hpp:306
 msgid "Uptime"
 msgstr "上線時間"
 
-#: data.hpp:313
+#: data.hpp:314
 msgid "Used"
 msgstr "已使用"
 
-#: data.hpp:314
+#: data.hpp:315
 msgid "Buffers"
 msgstr "緩衝"
 
-#: data.hpp:315
+#: data.hpp:316
 msgid "Cached"
 msgstr "快取"
 
-#: data.hpp:316
+#: data.hpp:317
 msgid "Free"
 msgstr "可用"
 
-#: data.hpp:317
+#: data.hpp:318
 msgid "Swap"
 msgstr "交換"
 
-#: data.hpp:343
+#: data.hpp:344
 msgid "Driver"
 msgstr "驅動程式"
 
-#: data.hpp:344
+#: data.hpp:345
 msgid "UMD Version"
 msgstr "UMD 版本"
 
-#: data.hpp:346
+#: data.hpp:347
 msgid "Compute Unit"
 msgstr ""
 
-#: data.hpp:347
+#: data.hpp:348
 msgid "Device ID"
 msgstr "裝置 ID"
 
-#: data.hpp:348
+#: data.hpp:349
 msgid "VBIOS Version"
 msgstr "VBIOS 版本"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:349 cpu-x-gtk-3.12.ui:5807
+#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
 msgid "Interface"
 msgstr "介面"
 
-#: data.hpp:350
+#: data.hpp:351
 msgid "Temperature"
 msgstr "溫度"
 
-#: data.hpp:352
+#: data.hpp:353
 msgid "Core Voltage"
 msgstr "核心電壓"
 
-#: data.hpp:353
+#: data.hpp:354
 msgid "Power Avg"
 msgstr "平均功率"
 
-#: data.hpp:354
+#: data.hpp:355
 msgid "Core Clock"
 msgstr "核心時脈"
 
-#: data.hpp:355
+#: data.hpp:356
 msgid "Memory Clock"
 msgstr "記憶體時脈"
 
-#: data.hpp:356
+#: data.hpp:357
 msgid "Memory Used"
 msgstr "記憶體已使用"
 
-#: data.hpp:357
+#: data.hpp:358
 msgid "Resizable BAR"
 msgstr "可調整大小的 BAR"
 
-#: data.hpp:358
+#: data.hpp:359
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: data.hpp:359
+#: data.hpp:360
 msgid "OpenGL Version"
 msgstr "OpenGL 版本"
 
-#: data.hpp:360
+#: data.hpp:361
 msgid "Vulkan Version"
 msgstr "Vulkan 版本"
 
-#: data.hpp:361
+#: data.hpp:362
 msgid "OpenCL Version"
 msgstr "OpenCL 版本"
 
-#: data.hpp:397
+#: data.hpp:398
 msgid "Score"
 msgstr "分數"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Run"
 msgstr "執行"
 
-#: data.hpp:417
+#: data.hpp:418
 msgid "Duration"
 msgstr "持續時間"
 
@@ -1421,77 +1434,77 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
-#: cpu-x-gtk-3.12.ui:1184
+#: cpu-x-gtk-3.12.ui:1224
 msgid "Cache"
 msgstr "快取"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5721
+#: cpu-x-gtk-3.12.ui:5886
 msgid "Refresh time"
 msgstr "重新整理時間"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5745
+#: cpu-x-gtk-3.12.ui:5910
 msgid "Text theme"
 msgstr "文字主題"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5760
+#: cpu-x-gtk-3.12.ui:5925
 msgid "Automatic"
 msgstr "自動"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5761
+#: cpu-x-gtk-3.12.ui:5926
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5762
+#: cpu-x-gtk-3.12.ui:5927
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5775
+#: cpu-x-gtk-3.12.ui:5940
 msgid "Temperature unit"
 msgstr "溫度單位"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5826
+#: cpu-x-gtk-3.12.ui:5991
 msgid "Default tab"
 msgstr "預設分頁"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5839
+#: cpu-x-gtk-3.12.ui:6004
 msgid "Default CPU core"
 msgstr "預設中央處理器核心"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5852
+#: cpu-x-gtk-3.12.ui:6017
 msgid "Default cache test"
 msgstr "預設快取測試"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5895
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5928
+#: cpu-x-gtk-3.12.ui:6093
 msgid "Default graphic card"
 msgstr "預設顯示卡"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5952
+#: cpu-x-gtk-3.12.ui:6117
 msgid "Default core type"
 msgstr "預設核心類型"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5976
+#: cpu-x-gtk-3.12.ui:6141
 msgid "Default memory stick"
 msgstr "預設記憶棒"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6169
 msgid "Startup"
 msgstr "啟動"
 

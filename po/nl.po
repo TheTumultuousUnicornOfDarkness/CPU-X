@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-08-31 10:55+0000\n"
+"POT-Creation-Date: 2024-10-05 09:33+0000\n"
 "PO-Revision-Date: 2024-04-18 23:03+0000\n"
 "Last-Translator: Mikachu <micah.sh@proton.me>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -97,7 +97,12 @@ msgstr "Bezig met berekenen van CPU-verbruik"
 msgid "Calling bandwidth"
 msgstr "Bandwidth aanroepen"
 
-#: core.cpp:771
+#: core.cpp:761
+#, c-format
+msgid "%s (subject) / %s (issuer)"
+msgstr ""
+
+#: core.cpp:789
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -110,129 +115,129 @@ msgstr ""
 "Controleer of de libpci %s bibliotheek aanwezig is op uw systeem. Anders, "
 "herbouw alstublieft %s."
 
-#: core.cpp:815
+#: core.cpp:833
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Geen kernel-stuurprogramma in gebruik voor grafische kaart op pad %s"
 
-#: core.cpp:851
+#: core.cpp:869
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Uw GPU kernel-stuurprogramma is onbekend: %s"
 
-#: core.cpp:935
+#: core.cpp:953
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "Uw GPU gebruikersmodusstuurprogramma is onbekend: %s: %s"
 
-#: core.cpp:939
+#: core.cpp:957
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "Kon GLFW niet aanroepen (%i): %s"
 
-#: core.cpp:1072
+#: core.cpp:1090
 msgid "Finding Vulkan API version"
 msgstr "Zoeken naar Vulkan API versie"
 
-#: core.cpp:1088
+#: core.cpp:1106
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "Kon vkCreateInstance niet aanroepen (%s)"
 
-#: core.cpp:1092
+#: core.cpp:1110
 #, c-format
 msgid "%s is not supported"
 msgstr "%s wordt niet ondersteund"
 
-#: core.cpp:1101
+#: core.cpp:1119
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "kon vkEnumeratePhysicalDevices niet aanroepen (%s)"
 
-#: core.cpp:1109
+#: core.cpp:1127
 msgid "No available Vulkan devices"
 msgstr "Geen beschikbare Vulkan apparaten"
 
-#: core.cpp:1117
+#: core.cpp:1135
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "Geen beschikbare fysieke apparaten (%s)"
 
-#: core.cpp:1180
+#: core.cpp:1198
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Kon Vulkan niet aanmaken voor apparaat %u (%s)"
 
-#: core.cpp:1184
+#: core.cpp:1202
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s is niet ondersteund voor apparaat %u, gebruik alleen deviceID voor "
 "matching"
 
-#: core.cpp:1216 core.cpp:1529
+#: core.cpp:1234 core.cpp:1547
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: core.cpp:1216 core.cpp:1529
+#: core.cpp:1234 core.cpp:1547
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
-#: core.cpp:1253
+#: core.cpp:1271
 msgid "Finding OpenCL API version"
 msgstr "Zoeken naar OpenCL API versie"
 
-#: core.cpp:1257
+#: core.cpp:1275
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Er is geen platform met OpenCL ondersteuning (%s)"
 
-#: core.cpp:1267
+#: core.cpp:1285
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "Kon niet alle OpenCL platformen krijgen (%s)"
 
-#: core.cpp:1280
+#: core.cpp:1298
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "Kon niet de naam krijgen voor platform %u (%s)"
 
-#: core.cpp:1288
+#: core.cpp:1306
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "Kon niet de versie krijgen voor platform %u (%s)"
 
-#: core.cpp:1296
+#: core.cpp:1314
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "Kon niet het aantal OpenCL apparaten vinden voor platform '%s %s' (%s)"
 
-#: core.cpp:1296
+#: core.cpp:1314
 msgid "0 device"
 msgstr "0 apparaten"
 
-#: core.cpp:1305
+#: core.cpp:1323
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "Kon niet alle OpenCL apparaten krijgen voor platfrom '%s %s' (%s)"
 
-#: core.cpp:1325
+#: core.cpp:1343
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "Kon niet de naam krijgen voor apparaat %u (%s)"
 
-#: core.cpp:1333
+#: core.cpp:1351
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "Kon niet de versie krijgen voor apparaat %u (%s)"
 
-#: core.cpp:1355
+#: core.cpp:1373
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_TOPOLGY_AMD(%s) niet"
 
-#: core.cpp:1366
+#: core.cpp:1384
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -240,7 +245,7 @@ msgstr ""
 "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_GFXIP_MAJOR_AMD (%s) "
 "niet"
 
-#: core.cpp:1374 core.cpp:1394 core.cpp:1427
+#: core.cpp:1392 core.cpp:1412 core.cpp:1445
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -248,7 +253,7 @@ msgstr ""
 "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_MAX_COMPUTE_UNITS "
 "(%s) niet"
 
-#: core.cpp:1415
+#: core.cpp:1433
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -257,189 +262,189 @@ msgstr ""
 "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s) niet"
 
-#: core.cpp:1438
+#: core.cpp:1456
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL wordt niet ondersteund door uw GPU fabrikant (0x%X)"
 
-#: core.cpp:1460
+#: core.cpp:1478
 msgid "Finding devices"
 msgstr "Zoeken naar apparaten"
 
-#: core.cpp:1472
+#: core.cpp:1490
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Zoeken naar apparaten overslaan (verkeerde rechten op %s device)"
 
-#: core.cpp:1515
+#: core.cpp:1533
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Uw GPU fabrikant is onbekend: %s (0x%X)"
 
-#: core.cpp:1535
+#: core.cpp:1553
 msgid "failed to find chipset vendor and model"
 msgstr "Kon niet de chipsetfabrikant en model vinden"
 
-#: core.cpp:1550
+#: core.cpp:1568
 msgid "failed to find graphic card vendor and model"
 msgstr "Kon niet de grafische kaart fabrikant en model vinden"
 
-#: core.cpp:1683
+#: core.cpp:1701
 msgid "Retrieving GPU clocks"
 msgstr "GPU klokken ophalen"
 
-#: core.cpp:1696
+#: core.cpp:1714
 msgid "None"
 msgstr "Geen"
 
-#: core.cpp:1705
+#: core.cpp:1723
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "DRM pad voor GPU %s is onbekend"
 
-#: core.cpp:1712
+#: core.cpp:1730
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "Kaartnummer voor GPU %s is onbekend"
 
-#: core.cpp:1737
+#: core.cpp:1755
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (huidig) / %s (max)"
 
-#: core.cpp:1852
+#: core.cpp:1870
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Stuurprogramma voor GPU %s meldt geen frequenties"
 
-#: core.cpp:1873
+#: core.cpp:1891
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "Kon niet alle monitorgegevens ophalen voor (%s)"
 
-#: core.cpp:1896
+#: core.cpp:1914
 msgid "Identifying running system"
 msgstr "Lopend systeem wordt geïdentificeerd"
 
-#: core.cpp:1899
+#: core.cpp:1917
 msgid "failed to identify running system"
 msgstr "Kon het lopende besturingssysteem niet identificeren"
 
-#: core.cpp:1951 core.cpp:1980
+#: core.cpp:1969 core.cpp:1998
 msgid "Calling libprocps"
 msgstr "Libprocps aanroepen"
 
-#: core.cpp:1954
+#: core.cpp:1972
 msgid "unable to get system uptime"
 msgstr "De bedrijfstijd van het systeem kan niet worden bepaald"
 
-#: core.cpp:1960
+#: core.cpp:1978
 msgid "unable to create meminfo structure"
 msgstr "Meminfo structuur kan niet gemaakt worden"
 
-#: core.cpp:2006
+#: core.cpp:2024
 msgid "Calling libstatgrab"
 msgstr "Libstatgrab aanroepen"
 
-#: core.cpp:2054
+#: core.cpp:2072
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dagen, %i uren, %i minuten, %i seconden"
 
-#: core.cpp:2117
+#: core.cpp:2135
 msgid "Updating benchmark status"
 msgstr "Benchmark status wordt bijgewerkt"
 
-#: core.cpp:2120
+#: core.cpp:2138
 msgid "Active"
 msgstr "Actief"
 
-#: core.cpp:2123
+#: core.cpp:2141
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u uren over)"
 
-#: core.cpp:2125
+#: core.cpp:2143
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minuten over)"
 
-#: core.cpp:2127
+#: core.cpp:2145
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u seconden over)"
 
-#: core.cpp:2131 core.cpp:2186 core.cpp:2187
+#: core.cpp:2149 core.cpp:2204 core.cpp:2205
 msgid "Inactive"
 msgstr "Inactief"
 
-#: core.cpp:2134
+#: core.cpp:2152
 #, c-format
 msgid "in %u hours"
 msgstr "in %u uren"
 
-#: core.cpp:2136
+#: core.cpp:2154
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u minuten"
 
-#: core.cpp:2138
+#: core.cpp:2156
 #, c-format
 msgid "in %u seconds"
 msgstr "in %u seconden"
 
-#: core.cpp:2155
+#: core.cpp:2173
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "Benchmark aan het starten met %u threads"
 
-#: core.cpp:2178
+#: core.cpp:2196
 msgid "an error occurred while starting benchmark"
 msgstr "er is een fout opgetreden tijdens het starten van de benchmark"
 
-#: core.cpp:2204
+#: core.cpp:2222
 msgid "Finding CPU package in fallback mode"
 msgstr "CPU pakket zoeken in back-up modus"
 
-#: core.cpp:2234
+#: core.cpp:2252
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Uw CPU aansluiting is niet aanwezig in de database ==> %s, codename: %s"
 
-#: core.cpp:2254
+#: core.cpp:2272
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "CPU multiplicators in back-up modus berekenen"
 
-#: core.cpp:2280
+#: core.cpp:2298
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Moederbord informatie ophalen in back-up modus"
 
-#: core.cpp:2296
+#: core.cpp:2314
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Kon moederbord informatie niet ophalen (back-up modus)"
 
-#: core.cpp:2338
+#: core.cpp:2356
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "CPU temperatuur ophalen in back-up modus"
 
-#: core.cpp:2386
+#: core.cpp:2404
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Kon CPU temperatuur niet ophalen (back-up modus)"
 
-#: core.cpp:2401
+#: core.cpp:2419
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "CPU spanning ophalen in back-up modus"
 
-#: core.cpp:2420
+#: core.cpp:2438
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Kon CPU spanning niet ophalen (back-up modus)"
 
-#: core.cpp:2434
+#: core.cpp:2452
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "CPU frequentie ophalen in back-up modus"
 
-#: core.cpp:2445
+#: core.cpp:2463
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Kon CPU frequentie niet ophalen (back-up modus)"
 
@@ -472,7 +477,7 @@ msgstr "Verbinden met daemon…"
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: geval %i niet verwerkt"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1370
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
 msgid "CPU"
 msgstr "CPU"
 
@@ -492,11 +497,11 @@ msgstr "LP E-Kern"
 msgid "Core"
 msgstr "Kern"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:746
+#: data.cpp:212 cpu-x-gtk-3.12.ui:770
 msgid "Processor"
 msgstr "Processor"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:1968
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
 msgid "Caches"
 msgstr "Caches"
 
@@ -514,7 +519,7 @@ msgstr "%d %s, %d-voudig"
 msgid "Count"
 msgstr "Tel"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:968
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
 msgid "Clocks"
 msgstr "Klokken"
 
@@ -532,82 +537,82 @@ msgstr "%s associatief, %d-%s regelgrootte"
 msgid "Test"
 msgstr "Test"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2146 cpu-x-gtk-3.12.ui:2517
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
 msgid "Motherboard"
 msgstr "Moederbord"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2367
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:476 cpu-x-gtk-3.12.ui:2498
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
 msgid "Chipset"
 msgstr "Chipset"
 
-#: data.cpp:491 data.cpp:593 cpu-x-gtk-3.12.ui:3156 cpu-x-gtk-3.12.ui:3761
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
 msgid "Memory"
 msgstr "Geheugen"
 
-#: data.cpp:507
+#: data.cpp:508
 #, c-format
 msgid "Stick %u"
 msgstr "Stick %u"
 
-#: data.cpp:511 cpu-x-gtk-3.12.ui:3134
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
 msgid "Sticks"
 msgstr "Sticks"
 
-#: data.cpp:565 cpu-x-gtk-3.12.ui:3780
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
 msgid "System"
 msgstr "Systeem"
 
-#: data.cpp:578 cpu-x-gtk-3.12.ui:3380
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
 msgid "Operating System"
 msgstr "Besturingssysteem"
 
-#: data.cpp:611 cpu-x-gtk-3.12.ui:4960
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: data.cpp:645
+#: data.cpp:646
 #, c-format
 msgid "Card %u"
 msgstr "Kaart %u"
 
-#: data.cpp:649 cpu-x-gtk-3.12.ui:4938
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
 msgid "Cards"
 msgstr "Kaarten"
 
-#: data.cpp:696 cpu-x-gtk-3.12.ui:5300
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
 msgid "Bench"
 msgstr "Bench"
 
-#: data.cpp:709
+#: data.cpp:710
 msgid "Not started"
 msgstr "Niet gestart"
 
-#: data.cpp:712 cpu-x-gtk-3.12.ui:5070
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
 msgid "Prime numbers (slow)"
 msgstr "Priemgetallen (langzaam)"
 
-#: data.cpp:716 cpu-x-gtk-3.12.ui:5178
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
 msgid "Prime numbers (fast)"
 msgstr "Priemgetallen (snel)"
 
-#: data.cpp:720 cpu-x-gtk-3.12.ui:5281
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
 msgid "Parameters"
 msgstr "Parameters"
 
-#: data.cpp:745 data.cpp:751
+#: data.cpp:746 data.cpp:752
 #, c-format
 msgid "%u mins"
 msgstr "%u minuten"
 
-#: data.cpp:758 cpu-x-gtk-3.12.ui:5444 cpu-x-gtk-3.12.ui:5552
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
 msgid "About"
 msgstr "Over"
 
-#: data.cpp:763
+#: data.cpp:764
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -616,35 +621,35 @@ msgstr ""
 "%s is een Gratis software die informatie\n"
 "over CPU, moederbord en meer verzameld."
 
-#: data.cpp:768
+#: data.cpp:769
 msgid "About CPU-X"
 msgstr "Over CPU-X"
 
-#: data.cpp:769
+#: data.cpp:770
 #, c-format
 msgid "Version %s"
 msgstr "Versie %s"
 
-#: data.cpp:770
+#: data.cpp:771
 #, c-format
 msgid "Author: %s"
 msgstr "Auteur: %s"
 
-#: data.cpp:771
+#: data.cpp:772
 #, c-format
 msgid "Site: %s"
 msgstr "Site: %s"
 
-#: data.cpp:775 cpu-x-gtk-3.12.ui:5533
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
 msgid "License"
 msgstr "Licentie"
 
-#: data.cpp:777
+#: data.cpp:778
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Deze software wordt verspreid onder de voorwaarden van %s"
 
-#: data.cpp:778 main.cpp:176
+#: data.cpp:779 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dit programma komt met ABSOLUUT GEEN GARANTIE"
 
@@ -653,45 +658,49 @@ msgstr "Dit programma komt met ABSOLUUT GEEN GARANTIE"
 msgid "Cannot find path for '%s' file"
 msgstr "Kan het pad voor '%s' niet vinden"
 
-#: gui_gtk.cpp:431
+#: gui_gtk.cpp:432
 msgid "Start daemon"
 msgstr "Start daemon"
 
-#: gui_gtk.cpp:434
+#: gui_gtk.cpp:435
 msgid "Connected to daemon"
 msgstr "Verbonden met daemon"
 
-#: gui_gtk.cpp:437
+#: gui_gtk.cpp:438
 msgid "No polkit authentication agent found"
 msgstr "Geen polkit authenticatieagent gevonden"
 
-#: gui_gtk.cpp:442
+#: gui_gtk.cpp:443
 msgid "Ask password to start daemon in background"
 msgstr "Vraag wachtwoord om daemon op de achtergrond te starten"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:447
 msgid "Settings"
 msgstr "Instellingen"
 
-#: gui_gtk.cpp:668
+#: gui_gtk.cpp:669
 msgid "BaseFamily"
 msgstr "BaseFamily"
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:670
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "CPU weergave (\"true\") CPU familie(berekend als BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:671
 msgid "BaseModel"
 msgstr "BaseModel"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:672
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU weergave (\"true\") model (berekend als (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:899
+#: gui_gtk.cpp:866
+msgid "EFI Platform Key certificate information"
+msgstr ""
+
+#: gui_gtk.cpp:901
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -699,24 +708,24 @@ msgstr ""
 "Identificeer de fysiek gelabelde socket of kaartpositie waar het "
 "geheugenapparaat zich bevindt"
 
-#: gui_gtk.cpp:900
+#: gui_gtk.cpp:902
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identificeer de fysiek gelabelde bank waar het geheugenapparaat zich bevindt"
 
-#: gui_gtk.cpp:1105
+#: gui_gtk.cpp:1107
 msgid "User Mode Driver Version"
 msgstr "Gebruikersmodus Stuurprogramma Versie"
 
-#: gui_gtk.cpp:1119
+#: gui_gtk.cpp:1121
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1314
+#: gui_gtk.cpp:1316
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI wordt gestart…"
 
-#: gui_gtk.cpp:1326
+#: gui_gtk.cpp:1328
 msgid "failed to import UI in GtkBuilder"
 msgstr "Kon UI niet importeren in GtkBuilder"
 
@@ -774,7 +783,7 @@ msgstr "Selecteer standaard geheugenstick (geheel getal)"
 msgid "Select default graphic card (integer)"
 msgstr "Selecteer standaard grafische kaart (Geheel getal)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:5910
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
 msgid "Start and connect to daemon"
 msgstr "Start en verbind met daemon"
 
@@ -1091,11 +1100,11 @@ msgstr ""
 msgid "Press any key to exit this help."
 msgstr "Druk op een toets om deze hulp af te sluiten."
 
-#: tui_ncurses.cpp:675
+#: tui_ncurses.cpp:676
 msgid "Starting NCurses TUI…"
 msgstr "NCurses TUI wordt gestart…"
 
-#: tui_ncurses.cpp:684
+#: tui_ncurses.cpp:685
 msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
@@ -1103,7 +1112,7 @@ msgstr ""
 "FATALE FOUT: terminfo database kon niet gevonden worden (probeer de "
 "omgevingsvariabele TERMINFO in te stellen)"
 
-#: tui_ncurses.cpp:689
+#: tui_ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Kon %s terminal (Fout=%i) niet instellen; Terugvallen naar %s"
@@ -1127,7 +1136,7 @@ msgstr "Er trad een fout op tijdens het uitvoeren van het commando '%s'"
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() wordt niet ondersteund op dit besturingssysteem"
 
-#: data.hpp:103 data.hpp:254 data.hpp:342
+#: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
 msgstr "Fabrikant"
 
@@ -1143,7 +1152,7 @@ msgstr "Pakket"
 msgid "Technology"
 msgstr "Technologie"
 
-#: data.hpp:107 data.hpp:278
+#: data.hpp:107 data.hpp:279
 msgid "Voltage"
 msgstr "Spanning"
 
@@ -1159,7 +1168,7 @@ msgstr "Familie"
 msgid "Disp. Family"
 msgstr "Weergave Familie"
 
-#: data.hpp:112 data.hpp:234 data.hpp:255 data.hpp:345
+#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
 msgid "Model"
 msgstr "Model"
 
@@ -1179,7 +1188,7 @@ msgstr ""
 msgid "Variant"
 msgstr ""
 
-#: data.hpp:118 data.hpp:270
+#: data.hpp:118 data.hpp:271
 msgid "Part Number"
 msgstr "Onderdeel nummer"
 
@@ -1211,11 +1220,11 @@ msgstr "Level 2"
 msgid "Level 3"
 msgstr "Level 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1232
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
 msgid "Cores"
 msgstr "Kernen"
 
-#: data.hpp:148 data.hpp:418 cpu-x-gtk-3.12.ui:1252
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
 msgid "Threads"
 msgstr "Threads"
 
@@ -1231,19 +1240,19 @@ msgstr "Multiplicator"
 msgid "Bus Speed"
 msgstr "Bussnelheid"
 
-#: data.hpp:168 data.hpp:351
+#: data.hpp:168 data.hpp:352
 msgid "Usage"
 msgstr "Verbruik"
 
-#: data.hpp:198 data.hpp:275
+#: data.hpp:198 data.hpp:276
 msgid "Size"
 msgstr "Grootte"
 
-#: data.hpp:199 data.hpp:277
+#: data.hpp:199 data.hpp:278
 msgid "Speed"
 msgstr "Snelheid"
 
-#: data.hpp:233 data.hpp:269
+#: data.hpp:233 data.hpp:270
 msgid "Manufacturer"
 msgstr "Fabrikant"
 
@@ -1263,141 +1272,145 @@ msgstr "Datum"
 msgid "ROM Size"
 msgstr "Rom grootte"
 
-#: data.hpp:271
+#: data.hpp:247
+msgid "EFI PK"
+msgstr ""
+
+#: data.hpp:272
 msgid "Type"
 msgstr "Type"
 
-#: data.hpp:272
+#: data.hpp:273
 msgid "Type Detail"
 msgstr "Type Detail"
 
-#: data.hpp:273
+#: data.hpp:274
 msgid "Device Locator"
 msgstr "Apparaatzoeker"
 
-#: data.hpp:274
+#: data.hpp:275
 msgid "Bank Locator"
 msgstr "Bankzoeker"
 
-#: data.hpp:276
+#: data.hpp:277
 msgid "Rank"
 msgstr "Rang"
 
-#: data.hpp:302
+#: data.hpp:303
 msgid "Name"
 msgstr "Naam"
 
-#: data.hpp:303
+#: data.hpp:304
 msgid "Kernel"
 msgstr "Kernel"
 
-#: data.hpp:304
+#: data.hpp:305
 msgid "Hostname"
 msgstr "Hostnaam"
 
-#: data.hpp:305
+#: data.hpp:306
 msgid "Uptime"
 msgstr "Bedrijfstijd"
 
-#: data.hpp:313
+#: data.hpp:314
 msgid "Used"
 msgstr "Gebruikt"
 
-#: data.hpp:314
+#: data.hpp:315
 msgid "Buffers"
 msgstr "Buffers"
 
-#: data.hpp:315
+#: data.hpp:316
 msgid "Cached"
 msgstr "Cached"
 
-#: data.hpp:316
+#: data.hpp:317
 msgid "Free"
 msgstr "Vrij"
 
-#: data.hpp:317
+#: data.hpp:318
 msgid "Swap"
 msgstr "Swap"
 
-#: data.hpp:343
+#: data.hpp:344
 msgid "Driver"
 msgstr "Stuurprogramma"
 
-#: data.hpp:344
+#: data.hpp:345
 msgid "UMD Version"
 msgstr "UMD versie"
 
-#: data.hpp:346
+#: data.hpp:347
 msgid "Compute Unit"
 msgstr "Rekeneenheid"
 
-#: data.hpp:347
+#: data.hpp:348
 msgid "Device ID"
 msgstr "Apparaat ID"
 
-#: data.hpp:348
+#: data.hpp:349
 msgid "VBIOS Version"
 msgstr "VBIOS versie"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:349 cpu-x-gtk-3.12.ui:5807
+#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
 msgid "Interface"
 msgstr "Interface"
 
-#: data.hpp:350
+#: data.hpp:351
 msgid "Temperature"
 msgstr "Temperatuur"
 
-#: data.hpp:352
+#: data.hpp:353
 msgid "Core Voltage"
 msgstr "Kernspanning"
 
-#: data.hpp:353
+#: data.hpp:354
 msgid "Power Avg"
 msgstr "Gem. Vermogen"
 
-#: data.hpp:354
+#: data.hpp:355
 msgid "Core Clock"
 msgstr "Kernklok"
 
-#: data.hpp:355
+#: data.hpp:356
 msgid "Memory Clock"
 msgstr "Geheugenklok"
 
-#: data.hpp:356
+#: data.hpp:357
 msgid "Memory Used"
 msgstr "Geheugen gebruikt"
 
-#: data.hpp:357
+#: data.hpp:358
 msgid "Resizable BAR"
 msgstr "Aanpasbare BAR"
 
-#: data.hpp:358
+#: data.hpp:359
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: data.hpp:359
+#: data.hpp:360
 msgid "OpenGL Version"
 msgstr "OpenGL Versie"
 
-#: data.hpp:360
+#: data.hpp:361
 msgid "Vulkan Version"
 msgstr "Vulkan Versie"
 
-#: data.hpp:361
+#: data.hpp:362
 msgid "OpenCL Version"
 msgstr "OpenCL Versie"
 
-#: data.hpp:397
+#: data.hpp:398
 msgid "Score"
 msgstr "Score"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Run"
 msgstr "Uitvoeren"
 
-#: data.hpp:417
+#: data.hpp:418
 msgid "Duration"
 msgstr "Duur"
 
@@ -1445,77 +1458,77 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
-#: cpu-x-gtk-3.12.ui:1184
+#: cpu-x-gtk-3.12.ui:1224
 msgid "Cache"
 msgstr "Cache"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5721
+#: cpu-x-gtk-3.12.ui:5886
 msgid "Refresh time"
 msgstr "Verversingstijd"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5745
+#: cpu-x-gtk-3.12.ui:5910
 msgid "Text theme"
 msgstr "Tekst thema"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5760
+#: cpu-x-gtk-3.12.ui:5925
 msgid "Automatic"
 msgstr "Automatisch"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5761
+#: cpu-x-gtk-3.12.ui:5926
 msgid "Blue for light theme"
 msgstr "Blauw voor licht thema"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5762
+#: cpu-x-gtk-3.12.ui:5927
 msgid "Yellow for dark theme"
 msgstr "Geel voor donker thema"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5775
+#: cpu-x-gtk-3.12.ui:5940
 msgid "Temperature unit"
 msgstr "Temperatuureenheid"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5826
+#: cpu-x-gtk-3.12.ui:5991
 msgid "Default tab"
 msgstr "Standaard tab"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5839
+#: cpu-x-gtk-3.12.ui:6004
 msgid "Default CPU core"
 msgstr "Standaard CPU kern"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:5852
+#: cpu-x-gtk-3.12.ui:6017
 msgid "Default cache test"
 msgstr "Standaard cache test"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:5895
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Print CPUID values in decimal"
 msgstr "Druk CPUID waardes af in decimalen"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5928
+#: cpu-x-gtk-3.12.ui:6093
 msgid "Default graphic card"
 msgstr "Standaard grafische kaart"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:5952
+#: cpu-x-gtk-3.12.ui:6117
 msgid "Default core type"
 msgstr "Standaard kerntype"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:5976
+#: cpu-x-gtk-3.12.ui:6141
 msgid "Default memory stick"
 msgstr "Standaard geheugenstick"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6169
 msgid "Startup"
 msgstr "Opstart"
 
