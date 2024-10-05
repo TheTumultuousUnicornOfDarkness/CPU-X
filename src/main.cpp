@@ -203,6 +203,19 @@ static std::vector<std::string> get_arguments_from_environment(std::string binar
 	return args;
 }
 
+static bool check_required_argument_is_digit(const std::string binary_name)
+{
+	if((optarg != NULL) && std::isdigit(optarg[0]))
+		return true;
+	else
+	{
+		help(binary_name);
+		exit(EXIT_FAILURE);
+	}
+
+	return false;
+}
+
 /* Parse arguments and set some flags */
 static void parse_arguments(std::forward_list<std::string> &cmd_args)
 {
@@ -266,6 +279,11 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 				Options::set_output_type(OUT_BANDWIDTH);
 				break;
 			case 'u':
+				if(optarg == NULL)
+				{
+					help(binary_name);
+					exit(EXIT_FAILURE);
+				}
 				switch(std::tolower(optarg[0]))
 				{
 					case 'c': Options::set_temp_unit(CELSIUS);    break;
@@ -276,25 +294,32 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 				}
 				break;
 			case 'r':
-				Options::set_refr_time(std::stoul(optarg));
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_refr_time(std::stoul(optarg));
 				break;
 			case 't':
-				Options::set_selected_page(static_cast<TabNumber>(std::stoul(optarg)));
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_selected_page(static_cast<TabNumber>(std::stoul(optarg)));
 				break;
 			case 'p':
-				Options::set_selected_type(std::stoul(optarg), -1);
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_selected_type(std::stoul(optarg), -1);
 				break;
 			case 'c':
-				Options::set_selected_core(std::stoul(optarg), -1);
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_selected_core(std::stoul(optarg), -1);
 				break;
 			case 'b':
-				Options::set_selected_test(std::stoul(optarg));
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_selected_test(std::stoul(optarg));
 				break;
 			case 's':
-				Options::set_selected_stick(std::stoul(optarg), -1);
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_selected_stick(std::stoul(optarg), -1);
 				break;
 			case 'g':
-				Options::set_selected_gpu(std::stoul(optarg), -1);
+				if(check_required_argument_is_digit(binary_name))
+					Options::set_selected_gpu(std::stoul(optarg), -1);
 				break;
 			case 'd':
 				Options::set_with_daemon(true);
@@ -341,6 +366,11 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 				}
 				else if(!strcmp(longopts[longindex].name, "keymap"))
 				{
+					if(optarg == NULL)
+					{
+						help(binary_name);
+						exit(EXIT_FAILURE);
+					}
 					switch(std::tolower(optarg[0]))
 					{
 						case 'a': Options::set_keymap(ARROWS);     break;
