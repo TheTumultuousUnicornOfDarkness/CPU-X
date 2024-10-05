@@ -298,6 +298,7 @@ const Package_DB package_intel[] =
 	{ NULL,                             "Intel(R) Core(TM) i5-2500K CPU",   "LGA 1155"       },
 	{ NULL,                             "Intel(R) Celeron(R) CPU G550T",    "LGA 1155"       },
 	{ NULL,                             "Intel(R) Core(TM) i5-2520M CPU",   "rPGA 988B"      },
+	{ NULL,                             "Intel(R) Core(TM) i5-3360M CPU",   "rPGA 988B"      },	
 	{ NULL,                             "Intel(R) Xeon(R) CPU E31275",      "LGA 1155"       },
 	{ NULL,                             "Intel(R) Core(TM) i7-2860QM CPU",  "rPGA 988B"      },
 	{ NULL,                             "Intel(R) Core(TM) i7-3740QM CPU",  "rPGA 988B"      },
