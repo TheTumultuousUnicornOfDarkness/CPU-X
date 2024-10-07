@@ -22,12 +22,11 @@ endif(WITH_GTK)
 
 # NCurses
 if(WITH_NCURSES)
+	pkg_check_modules(NCURSES ncursesw)
 	# Assume ncurses from the base on FreeBSD
-	if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+	if(NOT NCURSES_FOUND AND ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
 		set(NCURSES_FOUND 1)
 		set(NCURSES_LIBRARIES "-l:libncursesw.so")
-	else()
-		pkg_check_modules(NCURSES ncursesw)
 	endif()
 	if(NCURSES_FOUND)
 		include_directories(${NCURSES_INCLUDE_DIRS})
