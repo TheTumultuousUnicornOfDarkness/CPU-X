@@ -199,7 +199,7 @@ add_executable(${APP_EXEC}
 	util.hpp
 )
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	target_link_options(${APP_EXEC} PRIVATE -latomic)
+	set(OTHER_LIBRARIES "-latomic")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 add_executable(${DAEMON_EXEC}
@@ -277,6 +277,7 @@ target_link_libraries(${APP_EXEC}
 	${LIBSTATGRAB_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
+	${OTHER_LIBRARIES}
 )
 
 target_link_libraries(${DAEMON_EXEC}
