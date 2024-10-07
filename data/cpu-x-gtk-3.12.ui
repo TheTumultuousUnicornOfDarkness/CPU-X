@@ -734,6 +734,7 @@
                                         <property name="can-focus">True</property>
                                         <property name="label">
 </property>
+                                        <property name="justify">center</property>
                                         <property name="wrap">True</property>
                                         <property name="selectable">True</property>
                                         <property name="ellipsize">end</property>
@@ -3978,12 +3979,14 @@
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="hexpand">True</property>
+                                            <property name="label">
+    </property>
                                             <property name="justify">center</property>
                                             <property name="wrap">True</property>
                                             <property name="selectable">True</property>
                                             <property name="ellipsize">end</property>
                                             <property name="width-chars">40</property>
-                                            <property name="max-width-chars">80</property>
+                                            <property name="max-width-chars">40</property>
                                             <property name="lines">2</property>
                                             <attributes>
                                               <attribute name="stretch" value="ultra-condensed"/>
