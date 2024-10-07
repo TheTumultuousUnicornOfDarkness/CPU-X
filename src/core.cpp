@@ -1939,6 +1939,8 @@ static int system_static(Data &data)
 		data.system.os.kernel.value = string_format("%s %s", name.sysname, name.release);
 
 #else /* __linux__ */
+	size_t name_index = std::string::npos;
+
 	if(!err)
 	{
 		/* Name label */
@@ -1946,6 +1948,9 @@ static int system_static(Data &data)
 
 		/* Kernel label */
 		data.system.os.kernel.value = string_format("%s", name.version);
+		name_index = data.system.os.kernel.value.find(data.system.os.name.value);
+		if(name_index != std::string::npos)
+			data.system.os.kernel.value.erase(name_index, data.system.os.name.value.length() + 1);
 	}
 
 #endif /* __linux__ */
