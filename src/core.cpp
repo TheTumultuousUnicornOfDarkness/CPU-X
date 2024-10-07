@@ -1256,6 +1256,7 @@ static int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [
 	return 0;
 }
 
+#define OPENCL_INFO_BUFFER_SIZE 1024
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
 static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[maybe_unused]] struct pci_dev *dev)
@@ -1264,8 +1265,7 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 
 #if HAS_OpenCL
 	bool gpu_found = false;
-	size_t size_ret;
-	char platform_name[MAXSTR] = "", platform_version[MAXSTR] = "";
+	char platform_name[OPENCL_INFO_BUFFER_SIZE] = "", platform_version[OPENCL_INFO_BUFFER_SIZE] = "";
 	cl_uint num_pf = 0;
 
 	MSG_VERBOSE("%s", _("Finding OpenCL API version"));
@@ -1292,16 +1292,16 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 		cl_uint num_ocl_dev = 0;
 		MSG_DEBUG("Looping into OpenCL platform %u", i);
 
-		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_NAME, sizeof(platform_name), platform_name, &size_ret); // get platform name
-		if((ret_cl != CL_SUCCESS) || (size_ret == 0))
+		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_NAME, sizeof(platform_name), platform_name, NULL); // get platform name
+		if(ret_cl != CL_SUCCESS)
 		{
 			MSG_ERROR(_("failed to get name for platform %u (%s)"), i, opencl_error(ret_cl));
 			continue;
 		}
 		MSG_DEBUG("OpenCL platform %u: name is '%s'", i, platform_name);
 
-		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_VERSION, sizeof(platform_version), platform_version, &size_ret); // get platform version
-		if((ret_cl != CL_SUCCESS) || (size_ret == 0))
+		ret_cl = clGetPlatformInfo(platforms[i], CL_PLATFORM_VERSION, sizeof(platform_version), platform_version, NULL); // get platform version
+		if(ret_cl != CL_SUCCESS)
 		{
 			MSG_ERROR(_("failed to get version for platform %u (%s)"), i, opencl_error(ret_cl));
 			continue;
@@ -1329,7 +1329,7 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 			cl_uint ocl_vendor;
 			uint32_t comp_unit = 0;
 			std::string comp_unit_type;
-			char device_name[MAXSTR] = "", device_version[MAXSTR] = "";
+			char device_name[OPENCL_INFO_BUFFER_SIZE] = "", device_version[OPENCL_INFO_BUFFER_SIZE] = "";
 			MSG_DEBUG("Looping into OpenCL platform %u, device %u", i, j);
 
 			CLINFO(devices[j], CL_DEVICE_VENDOR_ID, ocl_vendor);
@@ -1337,16 +1337,16 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 				continue;
 			MSG_DEBUG("OpenCL platform %u, device %u: found vendor 0x%X", i, j, ocl_vendor);
 
-			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_NAME, sizeof(device_name), device_name, &size_ret);
-			if((ret_cl != CL_SUCCESS) || (size_ret == 0))
+			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_NAME, sizeof(device_name), device_name, NULL);
+			if(ret_cl != CL_SUCCESS)
 			{
 				MSG_ERROR(_("failed to get name for device %u (%s)"), j, opencl_error(ret_cl));
 				continue;
 			}
 			MSG_DEBUG("OpenCL platform %u, device %u: name is '%s'", i, j, device_name);
 
-			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_VERSION, sizeof(device_version), device_version, &size_ret);
-			if((ret_cl != CL_SUCCESS) || (size_ret == 0))
+			ret_cl = clGetDeviceInfo(devices[j], CL_DEVICE_VERSION, sizeof(device_version), device_version, NULL);
+			if(ret_cl != CL_SUCCESS)
 			{
 				MSG_ERROR(_("failed to get version for device %u (%s)"), j, opencl_error(ret_cl));
 				continue;
@@ -1354,9 +1354,13 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 			MSG_DEBUG("OpenCL platform %u, device %u: version is '%s'", i, j, device_version);
 
 			/* Set OpenCL version */
-			const std::string cl_version = device_version;
-			const size_t cl_index = cl_version.find_last_of("OpenCL");
-			card.opencl_version.value = (cl_index != std::string::npos) ? cl_version.substr(cl_index + 2) : cl_version;
+			card.opencl_version.value = device_version;
+			const size_t cl_index = card.opencl_version.value.find("OpenCL");
+			if(cl_index != std::string::npos)
+				card.opencl_version.value.erase(cl_index, 6 + 1); // 6 = "OpenCL" string
+			const size_t mesa_index = card.opencl_version.value.find("Mesa");
+			if(mesa_index != std::string::npos)
+				card.opencl_version.value.erase(mesa_index, std::string::npos);
 
 			/* Get compute units depending on vendor */
 			switch (ocl_vendor)
@@ -1462,6 +1466,8 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 
 	return ret_cl;
 }
+#undef OPENCL_INFO_BUFFER_SIZE
+#undef CLINFO
 
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
