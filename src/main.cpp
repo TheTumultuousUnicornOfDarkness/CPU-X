@@ -181,7 +181,7 @@ static void version(bool full_header)
 	for(i = 0; libs_ver[i].lib != NULL; i++)
 	{
 		if(libs_ver[i].has_mod)
-			MSG_STDOUT(_("-- %-9s version: %s"), libs_ver[i].lib, libs_ver[i].version);
+			MSG_STDOUT(_("-- %-11s version: %s"), libs_ver[i].lib, libs_ver[i].version);
 	}
 }
 
