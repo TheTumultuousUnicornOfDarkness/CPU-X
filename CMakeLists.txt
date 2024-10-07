@@ -62,11 +62,11 @@ option(WITH_OPENCL        "Use OpenCL library"                                  
 option(WITH_LIBPROCPS     "Use Libprocps library"                                             ON)
 option(WITH_LIBSTATGRAB   "Use Libstatgrab library"                                           ON)
 option(WITH_DMIDECODE     "Built-in Dmidecode"                                                ON)
-if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86")
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
 	option(WITH_BANDWIDTH "Built-in Bandwidth"                                                ON) # Bandwidth is only supported on x86 CPUs (requires cache size)
 else()
 	set(WITH_BANDWIDTH OFF)
-endif(CMAKE_SYSTEM_PROCESSOR MATCHES "x86")
+endif(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
 option(FORCE_LIBSTATGRAB  "Force use of Libstatgrab instead of Libprocps (GNU/Linux system)"  OFF)
 option(FLATPAK            "Enable workarounds for Flatpak"                                    OFF)
 
