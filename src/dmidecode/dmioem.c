@@ -38,6 +38,7 @@ enum DMI_VENDORS
 {
 	VENDOR_UNKNOWN,
 	VENDOR_ACER,
+	VENDOR_DELL,
 	VENDOR_HP,
 	VENDOR_HPE,
 	VENDOR_IBM,
@@ -56,6 +57,8 @@ void dmi_set_vendor(const char *v, const char *p)
 {
 	const struct { const char *str; enum DMI_VENDORS id; } vendor[] = {
 		{ "Acer",			VENDOR_ACER },
+		{ "Dell Computer Corporation",	VENDOR_DELL },
+		{ "Dell Inc.",			VENDOR_DELL },
 		{ "HP",				VENDOR_HP },
 		{ "Hewlett-Packard",		VENDOR_HP },
 		{ "HPE",			VENDOR_HPE },
@@ -126,6 +129,118 @@ static int dmi_decode_acer(const struct dmi_header *h)
 		default:
 			return 0;
 	}
+	return 1;
+}
+
+/*
+ * Dell-specific data structures are decoded here.
+ */
+
+static void dmi_dell_bios_flags(u64 flags)
+{
+	/*
+	 * TODO: The meaning of the other bits is unknown.
+	 */
+	pr_attr("ACPI WMI Supported", "%s", (flags.l & (1 << 1)) ? "Yes" : "No");
+}
+
+static void dmi_dell_indexed_io_access(const struct dmi_header *h)
+{
+	static const char *checksum_types[] = {
+		"Word Checksum",
+		"Byte Checksum",
+		"CRC Checksum",
+		"Negative Word Checksum",	/* 0x03 */
+	};
+	int tokens = (h->length - 0x0C) / 0x05;
+	const char *str = out_of_spec;
+	u8 *data = h->data;
+	u8 *token;
+	u8 type;
+
+	pr_attr("Index Port", "0x%04hx", WORD(data + 0x04));
+	pr_attr("Data Port", "0x%04hx", WORD(data + 0x06));
+
+	type = data[0x08];
+	if (type < ARRAY_SIZE(checksum_types))
+		str = checksum_types[type];
+
+	pr_attr("Type", "%s", str);
+	pr_attr("Checked Range Start Index", "0x%02hhx", data[0x09]);
+	pr_attr("Checked Range End Index", "0x%02hhx", data[0x0a]);
+	pr_attr("Check Value Index", "0x%02hhx", data[0x0b]);
+
+	/*
+	 * Final token seems to be a terminator, so we ignore it.
+	 */
+	if (tokens <= 1)
+		return;
+
+	pr_list_start("Tokens", NULL);
+	for (int i = 0; i < tokens - 1; i++)
+	{
+		token = data + 0x0C + 0x05 * i;
+                pr_list_item("0x%04hx (location 0x%02hhx, AND mask 0x%02hhx, OR mask 0x%02hhx)",
+                             WORD(token + 0x00), token[0x02], token[0x03], token[0x04]);
+	}
+	pr_list_end();
+}
+
+static void dmi_dell_token_interface(const struct dmi_header *h)
+{
+	int tokens = (h->length - 0x0B) / 0x06;
+	u8 *data = h->data;
+	u8 *token;
+
+	pr_attr("Command I/O Address", "0x%04x", WORD(data + 0x04));
+	pr_attr("Command I/O Code", "0x%02x", data[0x06]);
+	pr_attr("Supported Command Classes Bitmap", "0x%08x", DWORD(data + 0x07));
+
+	/*
+	 * Final token is a terminator, so we ignore it.
+	 */
+	if (tokens <= 1)
+		return;
+
+	pr_list_start("Tokens", NULL);
+	for (int i = 0; i < tokens - 1; i++)
+	{
+		token = data + 0x0B + 0x06 * i;
+		pr_list_item("0x%04hx (location 0x%04hx, value 0x%04hx)",
+			     WORD(token + 0x00), WORD(token + 0x02),
+			     WORD(token + 0x04));
+	}
+	pr_list_end();
+}
+
+static int dmi_decode_dell(const struct dmi_header *h)
+{
+	u8 *data = h->data;
+
+	switch (h->type)
+	{
+		case 177:
+			pr_handle_name("Dell BIOS Flags");
+			if (h->length < 0x0C) break;
+			dmi_dell_bios_flags(QWORD(data + 0x04));
+			break;
+
+		case 212:
+			pr_handle_name("Dell Indexed I/O Access");
+			if (h->length < 0x0C) break;
+			dmi_dell_indexed_io_access(h);
+			break;
+
+		case 218:
+			pr_handle_name("Dell Token Interface");
+			if (h->length < 0x0B) break;
+			dmi_dell_token_interface(h);
+			break;
+
+		default:
+			return 0;
+	}
+
 	return 1;
 }
 
@@ -261,7 +376,8 @@ static void dmi_hp_203_devtyp(const char *fname, unsigned int code)
 		"Dynamic Smart Array Controller",
 		"File",
 		"NVME Hard Drive",
-		"NVDIMM" /* 0x11 */
+		"NVDIMM", /* 0x11 */
+		"Embedded GPU"
 	};
 
 	if (code < ARRAY_SIZE(type))
@@ -363,12 +479,15 @@ static void dmi_hp_216_fw_type(u16 code)
 		"Intel SATA VROC",
 		"Intel SPS Firmware",
 		"Secondary System Programmable Logic Device",
-		"CPU MEZZ Programmable Logic Device", /* 0x37 */
+		"CPU Mezzanine Board CPLD", /* 0x37 */
 		"Intel Artic Sound -M Accelerator Models Firmware",
 		"Ampere System Control Processor (SCP - PMPro+SMPro)",
 		"Intel CFR information", /* 0x3A */
 		"OCP cards",
 		"DC-SCM CPLD",
+		"Power Distribution Board CPLD",
+		"PCIe Switch Board CPLD",
+		"Sideband Board CPLD",
 	};
 
 	if (code < ARRAY_SIZE(type))
@@ -545,6 +664,7 @@ static void dmi_hp_224_chipid(u16 code)
 		"Nationz TPM",
 		"STMicroGen10 Plus TPM",
 		"STMicroGen11 TPM", /* 0x05 */
+		"STMicroGen12 TPM",
 	};
 	if ((code & 0xff) < ARRAY_SIZE(chipid))
 		str = chipid[code & 0xff];
@@ -1346,14 +1466,20 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x0C  | Parent Hub | BYTE  | Instance number of internal Hub
 			 *  0x0D  | Port Speed | BYTE  | Enumerated value of speed configured by BIOS
 			 *  0x0E  | Device Path| STRING| UEFI Device Path of USB endpoint
+			 *  0x0F  | PCI Seg    | WORD  | PCI Segment number of the USB controller
 			 */
 			if (gen < G9) return 0;
 			pr_handle_name("%s Proliant USB Port Connector Correlation Record", company);
 			if (h->length < 0x0F) break;
 			if (!(opt.flags & FLAG_QUIET))
 				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x4));
-			pr_attr("PCI Device", "%02x:%02x.%x", data[0x6],
-				data[0x7] >> 3, data[0x7] & 0x7);
+			if (h->length < 0x11)
+				pr_attr("PCI Device", "%02x:%02x.%x", data[0x6],
+					data[0x7] >> 3, data[0x7] & 0x7);
+			else
+				pr_attr("PCI Device", "%04x:%02x:%02x.%x",
+					WORD(data + 0xF), data[0x6],
+					data[0x7] >> 3, data[0x7] & 0x7);
 			dmi_hp_238_loc("Location", data[0x8]);
 			dmi_hp_238_flags("Management Port", WORD(data + 0x9));
 			pr_attr("Port Instance", "%d", data[0xB]);
@@ -1702,6 +1828,8 @@ int dmi_decode_oem(const struct dmi_header *h)
 			return dmi_decode_hp(h);
 		case VENDOR_ACER:
 			return dmi_decode_acer(h);
+		case VENDOR_DELL:
+			return dmi_decode_dell(h);
 		case VENDOR_IBM:
 		case VENDOR_LENOVO:
 			return dmi_decode_ibm_lenovo(h);

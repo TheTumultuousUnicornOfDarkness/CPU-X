@@ -23,6 +23,8 @@
 
 #include "types.h"
 
+#define out_of_spec "<OUT OF SPEC>"
+
 struct dmi_header
 {
 	u8 type;

@@ -95,7 +95,6 @@
 DmidecodeData *cpux_data;
 #define STR_LEN 24
 
-#define out_of_spec "<OUT OF SPEC>"
 static const char *bad_index = "";
 
 enum cpuid_type cpuid_type = cpuid_none;
