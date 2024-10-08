@@ -92,7 +92,9 @@ static bool nice_mode = false;
 #define NICE_DURATION (2)
 #define MAX_CPU_TEMP (50)
 
+#if NETWORK_MODE
 static int network_port = NETWORK_DEFAULT_PORTNUM;
+#endif /* NETWORK_MODE */
 
 enum {
 	NO_SSE2,
@@ -1619,6 +1621,7 @@ library_test ()
 	free (a2);
 }
 
+#if NETWORK_MODE
 //----------------------------------------------------------------------------
 // Name:	network_test_core
 // Purpose:	Performs the network test, talking to and receiving data
@@ -2066,6 +2069,7 @@ network_test (char **destinations, int n_destinations)
 
 	return true;
 }
+#endif /* NETWORK_MODE */
 
 //----------------------------------------------------------------------------
 // Name:	usage
@@ -2093,11 +2097,13 @@ bandwidth_main (int argc, const char **argv)
 	--argc;
 	++argv;
 
+#if NETWORK_MODE
 	bool network_mode = false;
 	bool network_leader = false; // false => transponder
 	// int network_destinations_size = 0;
 	int n_network_destinations = 0;
 	char **network_destinations = NULL;
+#endif /* NETWORK_MODE */
 	char graph_title [512] = {0};
 
 	i = 0;
@@ -2121,7 +2127,7 @@ bandwidth_main (int argc, const char **argv)
 				network_port = atoi (argv[i++]);
 		}
 		else
-#endif
+#endif /* NETWORK_MODE */
 		if (!strcmp ("--nice", s)) {
 			nice_mode = true;
 		}
@@ -2195,6 +2201,7 @@ bandwidth_main (int argc, const char **argv)
 	// Currently cannot combine memory tests
 	// & network tests.
 	//
+#if NETWORK_MODE
 	if (network_mode) {
 		if (network_leader) {
 		        graph = BMPGraphing_new (GRAPH_WIDTH, GRAPH_HEIGHT, MODE_X_AXIS_LINEAR);
@@ -2219,6 +2226,7 @@ bandwidth_main (int argc, const char **argv)
 
 		return 0;
 	}
+#endif /* NETWORK_MODE */
 
 #ifdef x86
 	uint32_t ecx = get_cpuid1_ecx ();
