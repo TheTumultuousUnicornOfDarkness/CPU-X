@@ -16,13 +16,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-08 15:47+0000\n"
-"PO-Revision-Date: 2024-10-06 10:16+0000\n"
+"PO-Revision-Date: 2024-10-09 08:38+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -895,10 +895,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "Consulte a %s licença: <%s>\n"
 
 #: main.cpp:184
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s versão: %s"
+msgstr "-- %-11s versão: %s"
 
 #: main.cpp:411
 #, c-format
@@ -1482,10 +1481,8 @@ msgid "TiB"
 msgstr "TiB"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "É necessário privilégios de root para funcionar corretamente"
+msgstr "É necessário ter privilégios para coletar algumas informações"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
