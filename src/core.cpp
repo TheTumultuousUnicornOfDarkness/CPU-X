@@ -1673,7 +1673,7 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 		default:   pcie_gen = 0; break;
 	}
 
-	return string_format("Gen%1dx%d", pcie_gen, pcie_width);
+	return ((pcie_gen == 0) || (pcie_width == 0)) ? std::string() : string_format("Gen%1dx%d", pcie_gen, pcie_width);
 }
 #endif /* __linux__ */
 
