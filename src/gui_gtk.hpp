@@ -28,6 +28,7 @@
 #include <gtkmm/builder.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
+#include <gtkmm/infobar.h>
 #include <gtkmm/label.h>
 #include <gtkmm/drawingarea.h>
 #include "data.hpp"
@@ -79,8 +80,10 @@ struct GtkData
 
 	/* Common */
 	Gtk::Window *mainwindow = nullptr;
+	Gtk::InfoBar *daemoninfobar = nullptr;
 	Gtk::Button *daemonbutton = nullptr;
 	Gtk::Label *labprgver = nullptr;
+	Gtk::Button *closebutton = nullptr;
 	Gtk::Notebook *notebook = nullptr;
 	sigc::connection refresh_handle;
 

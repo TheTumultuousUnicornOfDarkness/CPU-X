@@ -131,8 +131,10 @@ void GtkData::get_widgets(Glib::RefPtr<Gtk::Builder> builder)
 {
 	/* Common */
 	builder->get_widget("mainwindow", this->mainwindow);
+	builder->get_widget("daemoninfobar", this->daemoninfobar);
 	builder->get_widget("daemonbutton", this->daemonbutton);
 	builder->get_widget("labprgver", this->labprgver);
+	builder->get_widget("closebutton", this->closebutton);
 	builder->get_widget("header_notebook", this->notebook);
 
 	/* Settings */
@@ -430,12 +432,14 @@ void GtkData::set_all_labels()
 	notebook->set_current_page(Options::get_selected_page());
 	this->labprgver->set_text(this->data.about.about.version);
 	this->daemonbutton->set_label(_("Start daemon"));
-	this->daemonbutton->set_sensitive(false);
 	if(DAEMON_UP)
-		this->daemonbutton->set_tooltip_text(_("Connected to daemon"));
+		this->daemoninfobar->hide();
 #ifndef FLATPAK
 	else if(WEXITSTATUS(pkcheck) > 2)
+	{
+		this->daemonbutton->set_sensitive(false);
 		this->daemonbutton->set_tooltip_text(_("No polkit authentication agent found"));
+	}
 #endif /* !FLATPAK */
 	else
 	{
@@ -509,10 +513,17 @@ void GtkData::set_signals()
 		Options::set_selected_page(static_cast<TabNumber>(page_number));
 	});
 
-	/* Show settings window */
-	this->settingsbutton->signal_clicked().connect([this]
+	/* Handle daemon InfoBar buttons */
+	this->daemoninfobar->signal_response().connect([this](int response_id)
 	{
-		this->settingswindow->show();
+		switch(response_id)
+		{
+			case Gtk::ResponseType::RESPONSE_CLOSE:
+				this->daemoninfobar->hide();
+				break;
+			default:
+				break;
+		}
 	});
 
 	/* Start daemon and reload CPU-X */
@@ -531,6 +542,18 @@ void GtkData::set_signals()
 			dialog.run();
 			this->daemonbutton->set_sensitive(true);
 		}
+	});
+
+	/* Show settings window */
+	this->settingsbutton->signal_clicked().connect([this]
+	{
+		this->settingswindow->show();
+	});
+
+	/* Exit CPU-X */
+	this->closebutton->signal_clicked().connect([this]
+	{
+		app->quit();
 	});
 
 	EXT_TAB_CPU(this->data.cpu)->activetype->signal_changed().connect(sigc::mem_fun(*this, &GtkData::change_active_type));
