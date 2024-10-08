@@ -19,10 +19,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-08 15:47+0000\n"
-"PO-Revision-Date: 2024-10-06 10:16+0000\n"
+"PO-Revision-Date: 2024-10-09 08:38+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -871,10 +871,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "%s lisansına bakın: <%s>\n"
 
 #: main.cpp:184
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s sürümü: %s"
+msgstr "-- %-11s sürümü: %s"
 
 #: main.cpp:411
 #, c-format
@@ -1444,10 +1443,8 @@ msgid "TiB"
 msgstr "TiB"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "Düzgün çalışması için Root (kök) yetki gerekiyor"
+msgstr "Bazı bilgileri toplamak için ayrıcalıklar gerekiyor"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
