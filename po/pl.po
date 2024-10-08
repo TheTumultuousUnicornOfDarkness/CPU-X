@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-05 09:33+0000\n"
+"POT-Creation-Date: 2024-10-08 15:47+0000\n"
 "PO-Revision-Date: 2024-05-19 23:01+0000\n"
 "Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
@@ -179,11 +179,11 @@ msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s nie jest obsługiwany dla urządzenia %u, użyj tylko deviceID aby dopasować"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Enabled"
 msgstr "Włączone"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Disabled"
 msgstr "Wyłączone"
 
@@ -237,26 +237,26 @@ msgstr "nie udało się uzyskać nazwy urządzenia %u (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "nie udało się pobrać wersji dla urządzenia %u (%s)"
 
-#: core.cpp:1373
+#: core.cpp:1377
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Sterownik OpenCL dla '%s %s'nie obsługuje CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1384
+#: core.cpp:1388
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1392 core.cpp:1412 core.cpp:1445
+#: core.cpp:1396 core.cpp:1416 core.cpp:1449
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1433
+#: core.cpp:1437
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -265,188 +265,188 @@ msgstr ""
 "Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) lub CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1456
+#: core.cpp:1460
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "Dostawca GPU nie obsługuje standardu OpenCL (0x%X)"
 
-#: core.cpp:1478
+#: core.cpp:1484
 msgid "Finding devices"
 msgstr "Wyszukiwanie urządzeń"
 
-#: core.cpp:1490
+#: core.cpp:1496
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
 
-#: core.cpp:1533
+#: core.cpp:1539
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Dostawca procesora GPU jest nieznany: %s (0x%X)"
 
-#: core.cpp:1553
+#: core.cpp:1559
 msgid "failed to find chipset vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu chipsetu"
 
-#: core.cpp:1568
+#: core.cpp:1574
 msgid "failed to find graphic card vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu GPU"
 
-#: core.cpp:1701
+#: core.cpp:1707
 msgid "Retrieving GPU clocks"
 msgstr "Pobieranie zegarów GPU"
 
-#: core.cpp:1714
+#: core.cpp:1720
 msgid "None"
 msgstr "Żaden"
 
-#: core.cpp:1723
+#: core.cpp:1729
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "Ścieżka DRM dla %s jest nieznana"
 
-#: core.cpp:1730
+#: core.cpp:1736
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "Numer karty %s jest nieznany"
 
-#: core.cpp:1755
+#: core.cpp:1761
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (prąd) / %s (maks.)"
 
-#: core.cpp:1870
+#: core.cpp:1876
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Sterownik dla %s nie raportuje częstotliwości"
 
-#: core.cpp:1891
+#: core.cpp:1897
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "nie udało się pobrać wszystkich danych monitorowania dla %s"
 
-#: core.cpp:1914
+#: core.cpp:1920
 msgid "Identifying running system"
 msgstr "Identyfikacja uruchomionego systemu"
 
-#: core.cpp:1917
+#: core.cpp:1923
 msgid "failed to identify running system"
 msgstr "nie udało się zidentyfikować uruchomionego systemu"
 
-#: core.cpp:1969 core.cpp:1998
+#: core.cpp:1980 core.cpp:2009
 msgid "Calling libprocps"
 msgstr "Wywołanie libprocps"
 
-#: core.cpp:1972
+#: core.cpp:1983
 msgid "unable to get system uptime"
 msgstr "nie można uzyskać czasu pracy systemu"
 
-#: core.cpp:1978
+#: core.cpp:1989
 msgid "unable to create meminfo structure"
 msgstr "nie można utworzyć struktury meminfo"
 
-#: core.cpp:2024
+#: core.cpp:2035
 msgid "Calling libstatgrab"
 msgstr "Wywołanie libstatgrab"
 
-#: core.cpp:2072
+#: core.cpp:2083
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dni, %i godzin, %i minut, %i sekund"
 
-#: core.cpp:2135
+#: core.cpp:2146
 msgid "Updating benchmark status"
 msgstr "Aktualizacja statusu benchmarku"
 
-#: core.cpp:2138
+#: core.cpp:2149
 msgid "Active"
 msgstr "Aktywny"
 
-#: core.cpp:2141
+#: core.cpp:2152
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u godzin pozostało)"
 
-#: core.cpp:2143
+#: core.cpp:2154
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minut pozostało)"
 
-#: core.cpp:2145
+#: core.cpp:2156
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(pozostało %u sekund)"
 
-#: core.cpp:2149 core.cpp:2204 core.cpp:2205
+#: core.cpp:2160 core.cpp:2215 core.cpp:2216
 msgid "Inactive"
 msgstr "Nieaktywny"
 
-#: core.cpp:2152
+#: core.cpp:2163
 #, c-format
 msgid "in %u hours"
 msgstr "w %u godzinach"
 
-#: core.cpp:2154
+#: core.cpp:2165
 #, c-format
 msgid "in %u minutes"
 msgstr "w %u minutach"
 
-#: core.cpp:2156
+#: core.cpp:2167
 #, c-format
 msgid "in %u seconds"
 msgstr "w %u sekundach"
 
-#: core.cpp:2173
+#: core.cpp:2184
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "Rozpoczęcie testu porównawczego z %u wątków"
 
-#: core.cpp:2196
+#: core.cpp:2207
 msgid "an error occurred while starting benchmark"
 msgstr "wystąpił błąd podczas uruchamiania benchmarku"
 
-#: core.cpp:2222
+#: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
 msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
 
-#: core.cpp:2252
+#: core.cpp:2263
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
 
-#: core.cpp:2272
+#: core.cpp:2283
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Obliczanie mnożnika CPU w trybie awaryjnym"
 
-#: core.cpp:2298
+#: core.cpp:2309
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Pozyskiwanie informacji o płycie głównej w trybie awaryjnym"
 
-#: core.cpp:2314
+#: core.cpp:2325
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nie udało się pobrać informacji o płycie głównej (tryb awaryjny)"
 
-#: core.cpp:2356
+#: core.cpp:2367
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Pozyskiwanie informacji o temperaturze CPU w trybie awaryjnym"
 
-#: core.cpp:2404
+#: core.cpp:2415
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nie udało się pobrać temperatury CPU (tryb awaryjny)"
 
-#: core.cpp:2419
+#: core.cpp:2430
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Pozyskiwanie napięcia CPU w trybie awaryjnym"
 
-#: core.cpp:2438
+#: core.cpp:2449
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nie udało się pozyskać napięcia CPU (tryb awaryjny)"
 
-#: core.cpp:2452
+#: core.cpp:2463
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Pobieranie częstotliwości procesora w trybie awaryjnym"
 
-#: core.cpp:2463
+#: core.cpp:2474
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
 
@@ -480,7 +480,7 @@ msgstr "Łączę się z demonem…"
 msgid "request_handler: case %i not handled"
 msgstr "moduł obsługi żądań: przypadek %i nie obsługiwany"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
 
@@ -500,11 +500,11 @@ msgstr "Rdzeń LP E"
 msgid "Core"
 msgstr "Rdzeń"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:770
+#: data.cpp:212 cpu-x-gtk-3.12.ui:837
 msgid "Processor"
 msgstr "Procesor"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
 msgstr "Pamięci Podręczne"
 
@@ -522,7 +522,7 @@ msgstr "%d %s, %d-sposób"
 msgid "Count"
 msgstr "Licznik"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
 msgid "Clocks"
 msgstr "Zegary"
 
@@ -540,19 +540,19 @@ msgstr "%s przemienne, %d-%s rozmiar linii"
 msgid "Test"
 msgstr "Testy"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
 msgstr "Płyta główna"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
 msgid "Chipset"
 msgstr "Chipset"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
 msgid "Memory"
 msgstr "Pamięć"
 
@@ -561,19 +561,19 @@ msgstr "Pamięć"
 msgid "Stick %u"
 msgstr "Przyklej %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
 msgstr "Patyki"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
 msgstr "System"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
 msgstr "System operacyjny"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
 msgid "Graphics"
 msgstr "Grafika"
 
@@ -582,11 +582,11 @@ msgstr "Grafika"
 msgid "Card %u"
 msgstr "Karta %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
 msgid "Cards"
 msgstr "Karty"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
 msgid "Bench"
 msgstr "Bench"
 
@@ -594,15 +594,15 @@ msgstr "Bench"
 msgid "Not started"
 msgstr "Nie uruchomiono"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
 msgid "Prime numbers (slow)"
 msgstr "Liczby pierwsze (wolno)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
 msgid "Prime numbers (fast)"
 msgstr "Liczby pierwsze (szybko)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
 msgid "Parameters"
 msgstr "Parametry"
 
@@ -611,7 +611,7 @@ msgstr "Parametry"
 msgid "%u mins"
 msgstr "%u min"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
 msgid "About"
 msgstr "O Programie"
 
@@ -643,7 +643,7 @@ msgstr "Autor: %s"
 msgid "Site: %s"
 msgstr "Strona domowa: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
 msgid "License"
 msgstr "Licencja"
 
@@ -661,51 +661,47 @@ msgstr "To oprogramowanie jest dostarczane bez ŻADNEJ GWARANCJI"
 msgid "Cannot find path for '%s' file"
 msgstr "Nie można znaleźć ścieżki do pliku'%s'"
 
-#: gui_gtk.cpp:432
+#: gui_gtk.cpp:434
 msgid "Start daemon"
 msgstr "Uruchom demon"
 
-#: gui_gtk.cpp:435
-msgid "Connected to daemon"
-msgstr "Połączony z demonem"
-
-#: gui_gtk.cpp:438
+#: gui_gtk.cpp:441
 msgid "No polkit authentication agent found"
 msgstr "Nie znaleziono agenta uwierzytelniającego polkit"
 
-#: gui_gtk.cpp:443
+#: gui_gtk.cpp:447
 msgid "Ask password to start daemon in background"
 msgstr "Pytaj o hasło, aby uruchomić demona w tle"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:451
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:692
 msgid "BaseFamily"
 msgstr "Rodzina bazowa"
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:693
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Rodzina wyświetlaczy CPU (\"true\") (obliczana jako "
 "BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:694
 msgid "BaseModel"
 msgstr "Model bazowy"
 
-#: gui_gtk.cpp:672
+#: gui_gtk.cpp:695
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Model wyświetlania procesora (\"true\") (obliczany jako "
 "(ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:866
+#: gui_gtk.cpp:889
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:901
+#: gui_gtk.cpp:924
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -713,25 +709,25 @@ msgstr ""
 "Zidentyfikuj fizycznie oznaczone gniazdo lub pozycję płyty, na której "
 "znajduje się urządzenie pamięci"
 
-#: gui_gtk.cpp:902
+#: gui_gtk.cpp:925
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Zidentyfikuj fizycznie oznaczony bank, w którym znajduje się urządzenie "
 "pamięci"
 
-#: gui_gtk.cpp:1107
+#: gui_gtk.cpp:1130
 msgid "User Mode Driver Version"
 msgstr "Tryb użytkownika Wersja sterownika"
 
-#: gui_gtk.cpp:1121
+#: gui_gtk.cpp:1144
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1316
+#: gui_gtk.cpp:1339
 msgid "Starting GTK GUI…"
 msgstr "Uruchamianie GTK GUI…"
 
-#: gui_gtk.cpp:1328
+#: gui_gtk.cpp:1351
 msgid "failed to import UI in GtkBuilder"
 msgstr "nie udało się zaimportować interfejsu z GtkBuilder"
 
@@ -790,7 +786,7 @@ msgstr "Wybierz domyślną kartę pamięci (liczba całkowita)"
 msgid "Select default graphic card (integer)"
 msgstr "Wybierz domyślną kartę graficzną (liczba całkowita)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
 msgid "Start and connect to daemon"
 msgstr "Uruchamianie i łączenie się z demonem"
 
@@ -880,11 +876,12 @@ msgid "See the %s license: <%s>\n"
 msgstr "Zobacz licencje %s: <%s>\n"
 
 #: main.cpp:184
-#, c-format
-msgid "-- %-9s version: %s"
+#, fuzzy, c-format
+#| msgid "-- %-9s version: %s"
+msgid "-- %-11s version: %s"
 msgstr "-- %-9s wersja: %s"
 
-#: main.cpp:381
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -893,7 +890,7 @@ msgstr ""
 "\n"
 "Ups, coś poszło nie tak! %s odebrał sygnał %d (%s) i uległ awarii."
 
-#: main.cpp:383
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -903,12 +900,12 @@ msgstr ""
 "\n"
 "Ups, coś poszło nie tak! %s odebrał sygnał %d (%s) i próbuje się odbudować."
 
-#: main.cpp:407
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Możesz otworzyć nowy problem tutaj, wypełniając szablon zgodnie z żądaniem:"
 
-#: main.cpp:449
+#: main.cpp:479
 msgid "an error occurred while setting locale"
 msgstr "wystąpił błąd podczas ustawiania ustawień regionalnych"
 
@@ -1225,11 +1222,11 @@ msgstr "Poziom 2"
 msgid "Level 3"
 msgstr "Poziom 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
 msgid "Cores"
 msgstr "Rdzenie"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
 msgid "Threads"
 msgstr "Wątki"
 
@@ -1359,7 +1356,7 @@ msgstr "Wersja VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
 msgid "Interface"
 msgstr "Wygląd"
 
@@ -1463,79 +1460,88 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
-#: cpu-x-gtk-3.12.ui:1224
+#: cpu-x-gtk-3.12.ui:56
+#, fuzzy
+#| msgid "Root privileges are required to work properly"
+msgid "Privileges are required to gather some information"
+msgstr "Do prawidłowego działania wymagane są prawa użytkownika root"
+
+#: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Pamięć podręczna"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5886
+#: cpu-x-gtk-3.12.ui:5955
 msgid "Refresh time"
 msgstr "Czas odświeżenia"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5979
 msgid "Text theme"
 msgstr "Motyw tekstowy"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5925
+#: cpu-x-gtk-3.12.ui:5994
 msgid "Automatic"
 msgstr "Automatyczny"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5926
+#: cpu-x-gtk-3.12.ui:5995
 msgid "Blue for light theme"
 msgstr "Niebieski dla jasnego motywu"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5927
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Yellow for dark theme"
 msgstr "Żółty dla ciemnego motywu"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5940
+#: cpu-x-gtk-3.12.ui:6009
 msgid "Temperature unit"
 msgstr "Jednostka temperatury"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5991
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default tab"
 msgstr "Domyślna karta"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default CPU core"
 msgstr "Domyślny rdzeń procesora"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6017
+#: cpu-x-gtk-3.12.ui:6086
 msgid "Default cache test"
 msgstr "Domyślny test pamięci podręcznej"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6129
 msgid "Print CPUID values in decimal"
 msgstr "Wydrukuj wartości CPUID w postaci dziesiętnej"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6093
+#: cpu-x-gtk-3.12.ui:6162
 msgid "Default graphic card"
 msgstr "Domyślna karta graficzna"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6117
+#: cpu-x-gtk-3.12.ui:6186
 msgid "Default core type"
 msgstr "Domyślny typ rdzenia"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6141
+#: cpu-x-gtk-3.12.ui:6210
 msgid "Default memory stick"
 msgstr "Domyślna karta pamięci"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6169
+#: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Uruchamianie"
+
+#~ msgid "Connected to daemon"
+#~ msgstr "Połączony z demonem"
 
 #~ msgid "Light"
 #~ msgstr "Jasny"
@@ -1686,9 +1692,6 @@ msgstr "Uruchamianie"
 
 #~ msgid "failed to allocate memory for benchmark"
 #~ msgstr "nie udało się przydzielić pamięci dla benchmarku"
-
-#~ msgid "Root privileges are required to work properly"
-#~ msgstr "Do prawidłowego działania wymagane są prawa użytkownika root"
 
 #~ msgid "Some information will not be retrievable"
 #~ msgstr "Niektóre informacje nie mogą być pozyskane"

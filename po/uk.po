@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-05 09:33+0000\n"
+"POT-Creation-Date: 2024-10-08 15:47+0000\n"
 "PO-Revision-Date: 2023-10-17 18:16+0000\n"
 "Last-Translator: griffi-gh <prasol258@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -183,11 +183,11 @@ msgstr ""
 "%s не підтримується для пристрою %u, використовуйте для зіставлення лише "
 "deviceID"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Enabled"
 msgstr "Увімкнено"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Disabled"
 msgstr "Відключено"
 
@@ -242,25 +242,25 @@ msgstr "не вдалося отримати назву для пристрою 
 msgid "failed to get version for device %u (%s)"
 msgstr "не вдалося отримати версію для пристрою %u (%s)"
 
-#: core.cpp:1373
+#: core.cpp:1377
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1384
+#: core.cpp:1388
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1392 core.cpp:1412 core.cpp:1445
+#: core.cpp:1396 core.cpp:1416 core.cpp:1449
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1433
+#: core.cpp:1437
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -269,193 +269,193 @@ msgstr ""
 "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) чи CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1456
+#: core.cpp:1460
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL не підтримується вашим виробником (0x%X)"
 
-#: core.cpp:1478
+#: core.cpp:1484
 msgid "Finding devices"
 msgstr "Пошук пристроїв"
 
-#: core.cpp:1490
+#: core.cpp:1496
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
 
-#: core.cpp:1533
+#: core.cpp:1539
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Постачальник графічного процесора невідомий: %s (0x%X)"
 
-#: core.cpp:1553
+#: core.cpp:1559
 msgid "failed to find chipset vendor and model"
 msgstr "не вдалося знайти постачальника чи модель чіпсету"
 
-#: core.cpp:1568
+#: core.cpp:1574
 msgid "failed to find graphic card vendor and model"
 msgstr "не вдалося знайти постачальника та модель графічної карти"
 
-#: core.cpp:1701
+#: core.cpp:1707
 msgid "Retrieving GPU clocks"
 msgstr "Отримання частоти GPU"
 
-#: core.cpp:1714
+#: core.cpp:1720
 msgid "None"
 msgstr "Немає"
 
-#: core.cpp:1723
+#: core.cpp:1729
 #, fuzzy, c-format
 #| msgid "DRM path for GPU %u is unknown"
 msgid "DRM path for %s is unknown"
 msgstr "Шлях DRM для GPU %u невідомий"
 
-#: core.cpp:1730
+#: core.cpp:1736
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "Card number for %s is unknown"
 msgstr "Номер карти для GPU %u невідомий"
 
-#: core.cpp:1755
+#: core.cpp:1761
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (поточн.) / %s (макс.)"
 
-#: core.cpp:1870
+#: core.cpp:1876
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Драйвер для GPU %u не звітує частоти"
 
-#: core.cpp:1891
+#: core.cpp:1897
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "не вдалося викликати усі платформи OpenCL (%s)"
 
-#: core.cpp:1914
+#: core.cpp:1920
 msgid "Identifying running system"
 msgstr "Виявлення запущеної системи"
 
-#: core.cpp:1917
+#: core.cpp:1923
 msgid "failed to identify running system"
 msgstr "не вдалося визначити запущену систему"
 
-#: core.cpp:1969 core.cpp:1998
+#: core.cpp:1980 core.cpp:2009
 msgid "Calling libprocps"
 msgstr "Виклик libprocps"
 
-#: core.cpp:1972
+#: core.cpp:1983
 msgid "unable to get system uptime"
 msgstr "не вдається отримати час безвідмовної роботи системи"
 
-#: core.cpp:1978
+#: core.cpp:1989
 msgid "unable to create meminfo structure"
 msgstr "не вдалося створити структуру meminfo"
 
-#: core.cpp:2024
+#: core.cpp:2035
 msgid "Calling libstatgrab"
 msgstr "Виклик libstatgrab"
 
-#: core.cpp:2072
+#: core.cpp:2083
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i днів, %i годин, %i хвилин, %i секунд"
 
-#: core.cpp:2135
+#: core.cpp:2146
 msgid "Updating benchmark status"
 msgstr "Оновлення стану тестів"
 
-#: core.cpp:2138
+#: core.cpp:2149
 msgid "Active"
 msgstr "Активний"
 
-#: core.cpp:2141
+#: core.cpp:2152
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u годин лишилось)"
 
-#: core.cpp:2143
+#: core.cpp:2154
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u хвилин лишилось)"
 
-#: core.cpp:2145
+#: core.cpp:2156
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u секунд лишилося)"
 
-#: core.cpp:2149 core.cpp:2204 core.cpp:2205
+#: core.cpp:2160 core.cpp:2215 core.cpp:2216
 msgid "Inactive"
 msgstr "Неактивний"
 
-#: core.cpp:2152
+#: core.cpp:2163
 #, c-format
 msgid "in %u hours"
 msgstr "за %u годин"
 
-#: core.cpp:2154
+#: core.cpp:2165
 #, c-format
 msgid "in %u minutes"
 msgstr "за %u хвилин"
 
-#: core.cpp:2156
+#: core.cpp:2167
 #, c-format
 msgid "in %u seconds"
 msgstr "за %u секунд"
 
-#: core.cpp:2173
+#: core.cpp:2184
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Запустити тестування"
 
-#: core.cpp:2196
+#: core.cpp:2207
 msgid "an error occurred while starting benchmark"
 msgstr "помилка при запуску бенчмарку"
 
-#: core.cpp:2222
+#: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
 msgstr "Пошук моделі маркування ЦП у аварійному режимі"
 
-#: core.cpp:2252
+#: core.cpp:2263
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Ваш сокет процесора відсутній у базі даних ==> %s, кодове ім'я: %s"
 
-#: core.cpp:2272
+#: core.cpp:2283
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Підрахунок помножувачів процесора у аварійному режимі"
 
-#: core.cpp:2298
+#: core.cpp:2309
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Отримання інформації про материнську плату в аварійному режимі"
 
-#: core.cpp:2314
+#: core.cpp:2325
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не вдалося отримати інформацію про материнську плату (аварійний режим)"
 
-#: core.cpp:2356
+#: core.cpp:2367
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Отримання температури процесора в аварійному режимі"
 
-#: core.cpp:2404
+#: core.cpp:2415
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не вдалося отримати температуру процесора (аварійний режим)"
 
-#: core.cpp:2419
+#: core.cpp:2430
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Отримання робочої напруги процесора в аварійному режимі"
 
-#: core.cpp:2438
+#: core.cpp:2449
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
 
-#: core.cpp:2452
+#: core.cpp:2463
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Отримання частоти процесора в аварійному режимі"
 
-#: core.cpp:2463
+#: core.cpp:2474
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не вдалося отримати частоту процесора (аварійний режим)"
 
@@ -492,7 +492,7 @@ msgstr "Підключення до демона"
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: випадок %i не опрацьовується"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "ЦП"
 
@@ -514,11 +514,11 @@ msgstr "Е-core"
 msgid "Core"
 msgstr "Ядро"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:770
+#: data.cpp:212 cpu-x-gtk-3.12.ui:837
 msgid "Processor"
 msgstr "Процесор"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
 msgstr "Кеші"
 
@@ -537,7 +537,7 @@ msgstr "%d %s, %d-канальний"
 msgid "Count"
 msgstr "Кількість"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
 msgid "Clocks"
 msgstr "Такти"
 
@@ -556,19 +556,19 @@ msgstr "%s асоціативний, %d-%s розмір кеш-смуги"
 msgid "Test"
 msgstr "Тест"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
 msgstr "Материнка"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
 msgid "Chipset"
 msgstr "Чіпсет"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
 msgid "Memory"
 msgstr "Пам'ять"
 
@@ -577,19 +577,19 @@ msgstr "Пам'ять"
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
 msgstr "Система"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
 msgstr "Операційна система"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
 msgid "Graphics"
 msgstr "Графіка"
 
@@ -599,11 +599,11 @@ msgstr "Графіка"
 msgid "Card %u"
 msgstr "Карта %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
 msgid "Cards"
 msgstr "Карти"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
 msgid "Bench"
 msgstr "Тест"
 
@@ -611,15 +611,15 @@ msgstr "Тест"
 msgid "Not started"
 msgstr "Не запущено"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
 msgid "Prime numbers (slow)"
 msgstr "Прості числа (повільно)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
 msgid "Prime numbers (fast)"
 msgstr "Прості числа (швидко)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
 msgid "Parameters"
 msgstr "Параметри"
 
@@ -628,7 +628,7 @@ msgstr "Параметри"
 msgid "%u mins"
 msgstr "%u хв."
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
 msgid "About"
 msgstr "Про програму"
 
@@ -662,7 +662,7 @@ msgstr "Автор: %s"
 msgid "Site: %s"
 msgstr "Сайт: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
 msgid "License"
 msgstr "Ліцензія"
 
@@ -680,73 +680,69 @@ msgstr "Дане программне забезпечення надаєтьс�
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:432
+#: gui_gtk.cpp:434
 msgid "Start daemon"
 msgstr "Активація демона"
 
-#: gui_gtk.cpp:435
-msgid "Connected to daemon"
-msgstr "Підключення до демона"
-
-#: gui_gtk.cpp:438
+#: gui_gtk.cpp:441
 msgid "No polkit authentication agent found"
 msgstr "Не знайдена аутентифікація агента polkit"
 
-#: gui_gtk.cpp:443
+#: gui_gtk.cpp:447
 msgid "Ask password to start daemon in background"
 msgstr "Потрібний пароль для запуску демона в фоновому режимі"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:451
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:692
 msgid "BaseFamily"
 msgstr "Базова Родина"
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:693
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Сімейство процесорів (\"правда\") (вираховується як розширена родина + "
 "базова родина)"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:694
 msgid "BaseModel"
 msgstr "Базова Модель"
 
-#: gui_gtk.cpp:672
+#: gui_gtk.cpp:695
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Відображена (\"дійсна\") модель процесора (вираховується як "
 "(РозширенаМодель<<4)+БазоваМодель)"
 
-#: gui_gtk.cpp:866
+#: gui_gtk.cpp:889
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:901
+#: gui_gtk.cpp:924
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:902
+#: gui_gtk.cpp:925
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1107
+#: gui_gtk.cpp:1130
 msgid "User Mode Driver Version"
 msgstr "Версія драйвера користувацького режиму"
 
-#: gui_gtk.cpp:1121
+#: gui_gtk.cpp:1144
 msgid "Vulkan Ray Tracing"
 msgstr "Трасування променів Vulkan"
 
-#: gui_gtk.cpp:1316
+#: gui_gtk.cpp:1339
 msgid "Starting GTK GUI…"
 msgstr "Запуск графічного інтерфейсу GTK…"
 
-#: gui_gtk.cpp:1328
+#: gui_gtk.cpp:1351
 msgid "failed to import UI in GtkBuilder"
 msgstr "не вдалося імпортувати інтерфейс в GtkBuilder"
 
@@ -804,7 +800,7 @@ msgstr "Оберіть графічну карту за замовчування
 msgid "Select default graphic card (integer)"
 msgstr "Оберіть графічну карту за замовчуванням (ціле число)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
 msgid "Start and connect to daemon"
 msgstr "Запуск і підключення до демону"
 
@@ -894,11 +890,12 @@ msgid "See the %s license: <%s>\n"
 msgstr "Переглянути ліцензію %s: <%s>\n"
 
 #: main.cpp:184
-#, c-format
-msgid "-- %-9s version: %s"
+#, fuzzy, c-format
+#| msgid "-- %-9s version: %s"
+msgid "-- %-11s version: %s"
 msgstr "-- %-9s версія: %s"
 
-#: main.cpp:381
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -907,7 +904,7 @@ msgstr ""
 "\n"
 "Йой, щось пішло не так! %s отримав сигнал %d (%s) і припинив роботу."
 
-#: main.cpp:383
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -917,12 +914,12 @@ msgstr ""
 "\n"
 "Йой, щось пішло не так! %s отримав сигнал %d (%s) і намагається відновитися."
 
-#: main.cpp:407
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Ви можете відкрити новий issue тут, заповнивши шаблон відповідно до запиту:"
 
-#: main.cpp:449
+#: main.cpp:479
 msgid "an error occurred while setting locale"
 msgstr "помилка при встановленні локалізації"
 
@@ -1257,11 +1254,11 @@ msgstr "Рівень 2"
 msgid "Level 3"
 msgstr "Рівень 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
 msgid "Cores"
 msgstr "Ядра"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
 msgid "Threads"
 msgstr "Потоки"
 
@@ -1399,7 +1396,7 @@ msgstr "Версія VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
 msgid "Interface"
 msgstr "Інтерфейс"
 
@@ -1507,85 +1504,92 @@ msgstr "ГіБ"
 msgid "TiB"
 msgstr "ТіБ"
 
-#: cpu-x-gtk-3.12.ui:1224
+#: cpu-x-gtk-3.12.ui:56
+msgid "Privileges are required to gather some information"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Кеш"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5886
+#: cpu-x-gtk-3.12.ui:5955
 msgid "Refresh time"
 msgstr "Час оновлення"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5979
 #, fuzzy
 #| msgid "Theme"
 msgid "Text theme"
 msgstr "Тема"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5925
+#: cpu-x-gtk-3.12.ui:5994
 msgid "Automatic"
 msgstr "Автоматична"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5926
+#: cpu-x-gtk-3.12.ui:5995
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5927
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5940
+#: cpu-x-gtk-3.12.ui:6009
 #, fuzzy
 #| msgid "Temperature"
 msgid "Temperature unit"
 msgstr "Температура"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5991
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default tab"
 msgstr "Вкладка за замовчуванням"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default CPU core"
 msgstr "Ядро процесора за замовчуванням"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6017
+#: cpu-x-gtk-3.12.ui:6086
 msgid "Default cache test"
 msgstr "Тест кешу за замовчуванням"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6129
 msgid "Print CPUID values in decimal"
 msgstr "Вивести значення CPUID у десятковому вигляді"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6093
+#: cpu-x-gtk-3.12.ui:6162
 msgid "Default graphic card"
 msgstr "Графічна карта за замовчуванням"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6117
+#: cpu-x-gtk-3.12.ui:6186
 msgid "Default core type"
 msgstr "Тип ядра за замовчуванням"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6141
+#: cpu-x-gtk-3.12.ui:6210
 #, fuzzy
 #| msgid "Default core type"
 msgid "Default memory stick"
 msgstr "Тип ядра за замовчуванням"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6169
+#: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Початова"
+
+#~ msgid "Connected to daemon"
+#~ msgstr "Підключення до демона"
 
 #~ msgid "Light"
 #~ msgstr "Світла"

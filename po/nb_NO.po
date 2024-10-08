@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-05 09:33+0000\n"
+"POT-Creation-Date: 2024-10-08 15:47+0000\n"
 "PO-Revision-Date: 2023-11-06 13:36+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -185,12 +185,12 @@ msgstr "klarte ikke å hente navn på enhet %u (%s)"
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 #, fuzzy
 msgid "Enabled"
 msgstr "Påskrudd"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Disabled"
 msgstr "Avskrudd"
 
@@ -246,27 +246,27 @@ msgstr "klarte ikke å hente navn på enhet %u (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "klarte ikke å hente enhetsversjon %u (%s)"
 
-#: core.cpp:1373
+#: core.cpp:1377
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core.cpp:1384
+#: core.cpp:1388
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core.cpp:1392 core.cpp:1412 core.cpp:1445
+#: core.cpp:1396 core.cpp:1416 core.cpp:1449
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core.cpp:1433
+#: core.cpp:1437
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -275,194 +275,194 @@ msgstr ""
 "OpenCL-driverrutine for «%s %s» støtter ikke CL_DEVICE_PCI_DOMAIN_ID_NV "
 "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) eller CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core.cpp:1456
+#: core.cpp:1460
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL støttes ikke med din GPU-leverandør (0x%X)"
 
-#: core.cpp:1478
+#: core.cpp:1484
 msgid "Finding devices"
 msgstr "Finner enheter"
 
-#: core.cpp:1490
+#: core.cpp:1496
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Hopp over søk etter enheter (feil tilganger på %s-enhet)"
 
-#: core.cpp:1533
+#: core.cpp:1539
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU-tilvirker er ukjent: %s (0x%X)"
 
-#: core.cpp:1553
+#: core.cpp:1559
 msgid "failed to find chipset vendor and model"
 msgstr "klarte ikke å finne brikkesetttilverker eller modell"
 
-#: core.cpp:1568
+#: core.cpp:1574
 msgid "failed to find graphic card vendor and model"
 msgstr "klarte ikke å finne grafikkorttilvirker eller modell"
 
-#: core.cpp:1701
+#: core.cpp:1707
 msgid "Retrieving GPU clocks"
 msgstr "Henter GPU-klokker"
 
-#: core.cpp:1714
+#: core.cpp:1720
 msgid "None"
 msgstr "Ingen"
 
-#: core.cpp:1723
+#: core.cpp:1729
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.cpp:1730
+#: core.cpp:1736
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.cpp:1755
+#: core.cpp:1761
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1870
+#: core.cpp:1876
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Driver for GPU %u rapporterer ikke frekvenser"
 
-#: core.cpp:1891
+#: core.cpp:1897
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "klarte ikke å hente alle OpenCL-plattformer (%s)"
 
-#: core.cpp:1914
+#: core.cpp:1920
 msgid "Identifying running system"
 msgstr "Identifiserer kjørende system"
 
-#: core.cpp:1917
+#: core.cpp:1923
 msgid "failed to identify running system"
 msgstr "klarte ikke å identifisere kjørende system"
 
-#: core.cpp:1969 core.cpp:1998
+#: core.cpp:1980 core.cpp:2009
 msgid "Calling libprocps"
 msgstr "Kaller libprocps"
 
-#: core.cpp:1972
+#: core.cpp:1983
 msgid "unable to get system uptime"
 msgstr "kunne ikke hente systemets oppetid"
 
-#: core.cpp:1978
+#: core.cpp:1989
 msgid "unable to create meminfo structure"
 msgstr "kunne ikke opprette struktur for minneinfo"
 
-#: core.cpp:2024
+#: core.cpp:2035
 msgid "Calling libstatgrab"
 msgstr "Kaller libstatgrab"
 
-#: core.cpp:2072
+#: core.cpp:2083
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dager, %i timer, %i minutter, %i sekunder"
 
-#: core.cpp:2135
+#: core.cpp:2146
 msgid "Updating benchmark status"
 msgstr "Oppdaterer ytelsesteststatus"
 
-#: core.cpp:2138
+#: core.cpp:2149
 msgid "Active"
 msgstr "Aktiv"
 
-#: core.cpp:2141
+#: core.cpp:2152
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u timer gjenstår)"
 
-#: core.cpp:2143
+#: core.cpp:2154
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u minutter gjenstår)"
 
-#: core.cpp:2145
+#: core.cpp:2156
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u sekunder gjenstår)"
 
-#: core.cpp:2149 core.cpp:2204 core.cpp:2205
+#: core.cpp:2160 core.cpp:2215 core.cpp:2216
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: core.cpp:2152
+#: core.cpp:2163
 #, c-format
 msgid "in %u hours"
 msgstr "om %u timer"
 
-#: core.cpp:2154
+#: core.cpp:2165
 #, c-format
 msgid "in %u minutes"
 msgstr "in %u minutter"
 
-#: core.cpp:2156
+#: core.cpp:2167
 #, c-format
 msgid "in %u seconds"
 msgstr "om %u sekunder"
 
-#: core.cpp:2173
+#: core.cpp:2184
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "Starter ytelsestest"
 
-#: core.cpp:2196
+#: core.cpp:2207
 msgid "an error occurred while starting benchmark"
 msgstr "En feil inntraff under oppstart av ytelsestest"
 
-#: core.cpp:2222
+#: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
 msgstr "Finner prosessor-pakke i tilbakefallsmodus"
 
-#: core.cpp:2252
+#: core.cpp:2263
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din prosessor-sokkel finnes ikke i databasen ➜ %s, kodenavn: %s"
 
-#: core.cpp:2272
+#: core.cpp:2283
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Regner ut prosessor-multiplikatorer i tilbakefallsmodus"
 
-#: core.cpp:2298
+#: core.cpp:2309
 #, fuzzy
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Henter hovedkortinformasjon i tilbakefallsmodus"
 
-#: core.cpp:2314
+#: core.cpp:2325
 #, fuzzy
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "Klarte ikke å hente hovedkortinformasjon (tilbakefallsmodus)"
 
-#: core.cpp:2356
+#: core.cpp:2367
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Henter prosessor-temperatur i tilbakefallsmodus"
 
-#: core.cpp:2404
+#: core.cpp:2415
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-temperatur (tilbakefallsmodus)"
 
-#: core.cpp:2419
+#: core.cpp:2430
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Henter prosessor-spenning i tilbakefallsmodus"
 
-#: core.cpp:2438
+#: core.cpp:2449
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-spenning (tilbakefallsmodus)"
 
-#: core.cpp:2452
+#: core.cpp:2463
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Henter prosessor-frekvens i tilbakefallsmodus"
 
-#: core.cpp:2463
+#: core.cpp:2474
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-frekvens (tilbakefallsmodus)"
 
@@ -499,7 +499,7 @@ msgstr "Tilkoblet nisse"
 msgid "request_handler: case %i not handled"
 msgstr "forespørselshåndterer: Tilfelle %i ikke håndtert"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "Prosessor"
 
@@ -527,11 +527,11 @@ msgstr "Poengsum"
 msgid "Core"
 msgstr "Kjerne(r)"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:770
+#: data.cpp:212 cpu-x-gtk-3.12.ui:837
 msgid "Processor"
 msgstr "Prosessor"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
 msgstr "Hurtiglagre"
 
@@ -550,7 +550,7 @@ msgstr "%d %s, %d-veis"
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
 msgid "Clocks"
 msgstr "Klokker"
 
@@ -569,19 +569,19 @@ msgstr "%s-tilknytning, %d-%s-bytelinjestørrelse"
 msgid "Test"
 msgstr "Test"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
 msgstr "Hovedkort"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
 msgid "Chipset"
 msgstr "Brikkesett"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
 msgid "Memory"
 msgstr "Minne"
 
@@ -590,19 +590,19 @@ msgstr "Minne"
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
 msgstr "System"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
 msgstr "Operativsystem"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
 msgid "Graphics"
 msgstr "Grafikk"
 
@@ -612,13 +612,13 @@ msgstr "Grafikk"
 msgid "Card %u"
 msgstr "Kort %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "Kort %i"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
 msgid "Bench"
 msgstr "Ytelsestest"
 
@@ -626,15 +626,15 @@ msgstr "Ytelsestest"
 msgid "Not started"
 msgstr "Ikke startet"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
 msgid "Prime numbers (slow)"
 msgstr "Primtall (tregt)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
 msgid "Prime numbers (fast)"
 msgstr "Primtall (raskt)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
 msgid "Parameters"
 msgstr "Parameter"
 
@@ -643,7 +643,7 @@ msgstr "Parameter"
 msgid "%u mins"
 msgstr "%u minutter"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
 msgid "About"
 msgstr "Om"
 
@@ -677,7 +677,7 @@ msgstr "Utvikler: %s"
 msgid "Site: %s"
 msgstr "Nettside: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
 #, fuzzy
 msgid "License"
 msgstr "Lisens"
@@ -696,80 +696,76 @@ msgstr "Dette programmet kommer deg i hende UTEN NOEN FORM FOR GARANTI"
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:432
+#: gui_gtk.cpp:434
 msgid "Start daemon"
 msgstr "Start nisse"
 
-#: gui_gtk.cpp:435
-msgid "Connected to daemon"
-msgstr "Tilkoblet nisse"
-
-#: gui_gtk.cpp:438
+#: gui_gtk.cpp:441
 msgid "No polkit authentication agent found"
 msgstr "Fant ingen polkit-identitetsbekreftelsesagent"
 
-#: gui_gtk.cpp:443
+#: gui_gtk.cpp:447
 msgid "Ask password to start daemon in background"
 msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:451
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:692
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "Familie"
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:693
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Representativ (ekte) prosessorfamilie, (utregnet som "
 "BaseFamily+ExtendeFamily)"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:694
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "Modell"
 
-#: gui_gtk.cpp:672
+#: gui_gtk.cpp:695
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Representativ (ekte) prosessormodell, (utregnet som "
 "(ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:866
+#: gui_gtk.cpp:889
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:901
+#: gui_gtk.cpp:924
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:902
+#: gui_gtk.cpp:925
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1107
+#: gui_gtk.cpp:1130
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "Versjon"
 
-#: gui_gtk.cpp:1121
+#: gui_gtk.cpp:1144
 msgid "Vulkan Ray Tracing"
 msgstr "Strålesporing (Vulkan)"
 
-#: gui_gtk.cpp:1316
+#: gui_gtk.cpp:1339
 #, fuzzy
 msgid "Starting GTK GUI…"
 msgstr "Starter grafisk GTK-brukergrensesnitt…"
 
-#: gui_gtk.cpp:1328
+#: gui_gtk.cpp:1351
 msgid "failed to import UI in GtkBuilder"
 msgstr "Klarte ikke å importere grensesnitt i GtkBuilder"
 
@@ -834,7 +830,7 @@ msgstr "Sett forvalgt fane (heltall)"
 msgid "Select default graphic card (integer)"
 msgstr "Sett forvalgt fane (heltall)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
 msgid "Start and connect to daemon"
 msgstr "Start og koble til nisse"
 
@@ -923,11 +919,12 @@ msgid "See the %s license: <%s>\n"
 msgstr "Vis %s-linsensen: <%s>\n"
 
 #: main.cpp:184
-#, c-format
-msgid "-- %-9s version: %s"
+#, fuzzy, c-format
+#| msgid "-- %-9s version: %s"
+msgid "-- %-11s version: %s"
 msgstr "-- %-9s versjon: %s"
 
-#: main.cpp:381
+#: main.cpp:411
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -940,7 +937,7 @@ msgstr ""
 "\n"
 "%s! %s has received signal %d (%s) and has crashed.%s"
 
-#: main.cpp:383
+#: main.cpp:413
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -954,12 +951,12 @@ msgstr ""
 "\n"
 "%s! %s has received signal %d (%s) and has crashed.%s"
 
-#: main.cpp:407
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Du kan åpne en ny problemrapport her ved å fylle ut malen som forespurt:"
 
-#: main.cpp:449
+#: main.cpp:479
 #, fuzzy
 msgid "an error occurred while setting locale"
 msgstr "Kunne ikke sette lokalitet"
@@ -1282,13 +1279,13 @@ msgstr "Nivå 2"
 msgid "Level 3"
 msgstr "Nivå 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Cores"
 msgstr "Kjerne(r)"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
 msgid "Threads"
 msgstr "Tråder"
 
@@ -1431,7 +1428,7 @@ msgstr "Versjon"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
 msgid "Interface"
 msgstr "Grensesnitt"
 
@@ -1552,91 +1549,99 @@ msgstr "GB"
 msgid "TiB"
 msgstr "TB"
 
-#: cpu-x-gtk-3.12.ui:1224
+#: cpu-x-gtk-3.12.ui:56
+#, fuzzy
+msgid "Privileges are required to gather some information"
+msgstr "Superbrukerprivilegier kreves for at ting skal virke"
+
+#: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Hurtiglager"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5886
+#: cpu-x-gtk-3.12.ui:5955
 #, fuzzy
 msgid "Refresh time"
 msgstr "Gjenoppfriskningstid"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5979
 #, fuzzy
 #| msgid "Theme"
 msgid "Text theme"
 msgstr "Drakt"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5925
+#: cpu-x-gtk-3.12.ui:5994
 msgid "Automatic"
 msgstr "Automatisk"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5926
+#: cpu-x-gtk-3.12.ui:5995
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5927
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5940
+#: cpu-x-gtk-3.12.ui:6009
 #, fuzzy
 #| msgid "Temperature"
 msgid "Temperature unit"
 msgstr "Temperatur"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5991
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default tab"
 msgstr "Forvalgt fane"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default CPU core"
 msgstr "Forvalgt prosessorkjerne"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6017
+#: cpu-x-gtk-3.12.ui:6086
 msgid "Default cache test"
 msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6129
 #, fuzzy
 msgid "Print CPUID values in decimal"
 msgstr "Skriv ut CPUID-verdier i desimalform (forvalget er heksadesimaler)"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6093
+#: cpu-x-gtk-3.12.ui:6162
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Default graphic card"
 msgstr "Sett forvalgt fane (heltall)"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6117
+#: cpu-x-gtk-3.12.ui:6186
 #, fuzzy
 #| msgid "Default cache test"
 msgid "Default core type"
 msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6141
+#: cpu-x-gtk-3.12.ui:6210
 #, fuzzy
 #| msgid "Default cache test"
 msgid "Default memory stick"
 msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6169
+#: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Oppstart"
+
+#~ msgid "Connected to daemon"
+#~ msgstr "Tilkoblet nisse"
 
 #~ msgid "Light"
 #~ msgstr "Lys"
@@ -1792,10 +1797,6 @@ msgstr "Oppstart"
 
 #~ msgid "failed to allocate memory for benchmark"
 #~ msgstr "Klarte ikke å tildele minne for ytelsestest"
-
-#, fuzzy
-#~ msgid "Root privileges are required to work properly"
-#~ msgstr "Superbrukerprivilegier kreves for at ting skal virke"
 
 #~ msgid "Some information will not be retrievable"
 #~ msgstr "Noe info kunne ikke innhentes"

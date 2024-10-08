@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-05 09:33+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-10-08 15:47+0000\n"
 "PO-Revision-Date: 2024-10-08 02:23+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -177,11 +177,11 @@ msgstr ""
 "%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID のみ"
 "を使用してください"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Enabled"
 msgstr "有効"
 
-#: core.cpp:1234 core.cpp:1547
+#: core.cpp:1234 core.cpp:1553
 msgid "Disabled"
 msgstr "無効"
 
@@ -235,26 +235,26 @@ msgstr "デバイス %u の名前の取得に失敗しました（%s）"
 msgid "failed to get version for device %u (%s)"
 msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
 
-#: core.cpp:1373
+#: core.cpp:1377
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応です"
 
-#: core.cpp:1384
+#: core.cpp:1388
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応です"
 
-#: core.cpp:1392 core.cpp:1412 core.cpp:1445
+#: core.cpp:1396 core.cpp:1416 core.cpp:1449
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応です"
 
-#: core.cpp:1433
+#: core.cpp:1437
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -264,191 +264,191 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応で"
 "す"
 
-#: core.cpp:1456
+#: core.cpp:1460
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
 
-#: core.cpp:1478
+#: core.cpp:1484
 msgid "Finding devices"
 msgstr "デバイスを識別中"
 
-#: core.cpp:1490
+#: core.cpp:1496
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
 
-#: core.cpp:1533
+#: core.cpp:1539
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "不明な GPU ベンダー : %s（0x %X）"
 
-#: core.cpp:1553
+#: core.cpp:1559
 msgid "failed to find chipset vendor and model"
 msgstr "チップセットのベンダーとモデルの判別に失敗しました"
 
-#: core.cpp:1568
+#: core.cpp:1574
 msgid "failed to find graphic card vendor and model"
 msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
 
-#: core.cpp:1701
+#: core.cpp:1707
 msgid "Retrieving GPU clocks"
 msgstr "GPU クロックを取得中"
 
-#: core.cpp:1714
+#: core.cpp:1720
 msgid "None"
 msgstr "None"
 
-#: core.cpp:1723
+#: core.cpp:1729
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s の DRM パスが不明です"
 
-#: core.cpp:1730
+#: core.cpp:1736
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s のカード番号が不明です"
 
-#: core.cpp:1755
+#: core.cpp:1761
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (現在) / %s (最大)"
 
-#: core.cpp:1870
+#: core.cpp:1876
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s のドライバーは周波数を報告しません"
 
-#: core.cpp:1891
+#: core.cpp:1897
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr ""
 "すべての OpenCL プラットフォームの取得に失敗しました（%s のすべての監視データ"
 "の取得）"
 
-#: core.cpp:1914
+#: core.cpp:1920
 msgid "Identifying running system"
 msgstr "実行中のシステムの識別中"
 
-#: core.cpp:1917
+#: core.cpp:1923
 msgid "failed to identify running system"
 msgstr "実行中のシステムの識別に失敗しました"
 
-#: core.cpp:1969 core.cpp:1998
+#: core.cpp:1980 core.cpp:2009
 msgid "Calling libprocps"
 msgstr "libprocps の呼び出し中"
 
-#: core.cpp:1972
+#: core.cpp:1983
 msgid "unable to get system uptime"
 msgstr "システム稼働時間を取得できません"
 
-#: core.cpp:1978
+#: core.cpp:1989
 msgid "unable to create meminfo structure"
 msgstr "meminfo ストラクチャを作成できません"
 
-#: core.cpp:2024
+#: core.cpp:2035
 msgid "Calling libstatgrab"
 msgstr "libstatgrab を呼び出し中"
 
-#: core.cpp:2072
+#: core.cpp:2083
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 日 %i 時間 %i 分 %i 秒"
 
-#: core.cpp:2135
+#: core.cpp:2146
 msgid "Updating benchmark status"
 msgstr "ベンチマーク状態を更新中"
 
-#: core.cpp:2138
+#: core.cpp:2149
 msgid "Active"
 msgstr "動作中"
 
-#: core.cpp:2141
+#: core.cpp:2152
 #, c-format
 msgid "(%u hours left)"
 msgstr "（残り %u 時間）"
 
-#: core.cpp:2143
+#: core.cpp:2154
 #, c-format
 msgid "(%u minutes left)"
 msgstr "（残り %u 分）"
 
-#: core.cpp:2145
+#: core.cpp:2156
 #, c-format
 msgid "(%u seconds left)"
 msgstr "（残り %u 秒）"
 
-#: core.cpp:2149 core.cpp:2204 core.cpp:2205
+#: core.cpp:2160 core.cpp:2215 core.cpp:2216
 msgid "Inactive"
 msgstr "休止中"
 
-#: core.cpp:2152
+#: core.cpp:2163
 #, c-format
 msgid "in %u hours"
 msgstr "/ %u 時間"
 
-#: core.cpp:2154
+#: core.cpp:2165
 #, c-format
 msgid "in %u minutes"
 msgstr "/ %u 分"
 
-#: core.cpp:2156
+#: core.cpp:2167
 #, c-format
 msgid "in %u seconds"
 msgstr "/ %u 秒"
 
-#: core.cpp:2173
+#: core.cpp:2184
 #, c-format
 msgid "Starting benchmark with %u threads"
 msgstr "%u スレッドでベンチマークを開始します"
 
-#: core.cpp:2196
+#: core.cpp:2207
 msgid "an error occurred while starting benchmark"
 msgstr "ベンチマーク開始時にエラーが発生しました"
 
-#: core.cpp:2222
+#: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
 msgstr "fallback モードで CPU パッケージを識別中"
 
-#: core.cpp:2252
+#: core.cpp:2263
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
 
-#: core.cpp:2272
+#: core.cpp:2283
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "fallback モードで CPU 倍率を計算中"
 
-#: core.cpp:2298
+#: core.cpp:2309
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "fallback モードでマザーボード情報を取得中"
 
-#: core.cpp:2314
+#: core.cpp:2325
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "マザーボード情報の取得に失敗（fallback モード）"
 
-#: core.cpp:2356
+#: core.cpp:2367
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallback モードで CPU 温度の取得"
 
-#: core.cpp:2404
+#: core.cpp:2415
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU 温度の取得に失敗（fallback モード）"
 
-#: core.cpp:2419
+#: core.cpp:2430
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallback モードで CPU 電圧の取得"
 
-#: core.cpp:2438
+#: core.cpp:2449
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU 電圧の取得に失敗（fallback モード）"
 
-#: core.cpp:2452
+#: core.cpp:2463
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallback モードでCPU クロック周波数の取得"
 
-#: core.cpp:2463
+#: core.cpp:2474
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
 
@@ -481,7 +481,7 @@ msgstr "デーモンに接続…"
 msgid "request_handler: case %i not handled"
 msgstr "request_handler: %i は未搭載"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1414
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
 
@@ -501,11 +501,11 @@ msgstr "LP Eコア"
 msgid "Core"
 msgstr "コア"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:770
+#: data.cpp:212 cpu-x-gtk-3.12.ui:837
 msgid "Processor"
 msgstr "プロセッサー"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2028
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
 msgstr "キャッシュ"
 
@@ -523,7 +523,7 @@ msgstr "%d %s, %d-way"
 msgid "Count"
 msgstr "カウント"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1000
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
 msgid "Clocks"
 msgstr "クロック"
 
@@ -541,19 +541,19 @@ msgstr "%s 連想, %d-%s 行サイズ"
 msgid "Test"
 msgstr "テスト"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2212 cpu-x-gtk-3.12.ui:2642
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
 msgstr "マザーボード"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2488
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2623
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
 msgid "Chipset"
 msgstr "チップセット"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3281 cpu-x-gtk-3.12.ui:3904
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
 msgid "Memory"
 msgstr "メモリー"
 
@@ -562,19 +562,19 @@ msgstr "メモリー"
 msgid "Stick %u"
 msgstr "スティック %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3259
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
 msgstr "スティック"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3923
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
 msgstr "システム"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3513
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
 msgstr "オペレーティングシステム"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5113
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
 msgid "Graphics"
 msgstr "グラフィック"
 
@@ -583,11 +583,11 @@ msgstr "グラフィック"
 msgid "Card %u"
 msgstr "カード %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5091
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
 msgid "Cards"
 msgstr "カード"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5465
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
 msgid "Bench"
 msgstr "ベンチマーク"
 
@@ -595,15 +595,15 @@ msgstr "ベンチマーク"
 msgid "Not started"
 msgstr "停止中"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5227
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
 msgid "Prime numbers (slow)"
 msgstr "素数（低速）"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5339
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
 msgid "Prime numbers (fast)"
 msgstr "素数（高速）"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5446
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
 msgid "Parameters"
 msgstr "パラメータ"
 
@@ -612,7 +612,7 @@ msgstr "パラメータ"
 msgid "%u mins"
 msgstr "%u 分"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5609 cpu-x-gtk-3.12.ui:5717
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
 msgid "About"
 msgstr "CPU-Xについて"
 
@@ -644,7 +644,7 @@ msgstr "作者: %s"
 msgid "Site: %s"
 msgstr "サイト: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5698
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
 msgid "License"
 msgstr "ライセンス"
 
@@ -662,48 +662,44 @@ msgstr "このプログラムは全て自己責任で使用してください"
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' ファイルのパスが見つかりません"
 
-#: gui_gtk.cpp:432
+#: gui_gtk.cpp:434
 msgid "Start daemon"
 msgstr "デーモンの起動"
 
-#: gui_gtk.cpp:435
-msgid "Connected to daemon"
-msgstr "デーモンに接続"
-
-#: gui_gtk.cpp:438
+#: gui_gtk.cpp:441
 msgid "No polkit authentication agent found"
 msgstr "Polkit 認証エージェントが見つかりません"
 
-#: gui_gtk.cpp:443
+#: gui_gtk.cpp:447
 msgid "Ask password to start daemon in background"
 msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:451
 msgid "Settings"
 msgstr "設定"
 
-#: gui_gtk.cpp:669
+#: gui_gtk.cpp:692
 msgid "BaseFamily"
 msgstr "ベース ファミリー"
 
-#: gui_gtk.cpp:670
+#: gui_gtk.cpp:693
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:671
+#: gui_gtk.cpp:694
 msgid "BaseModel"
 msgstr "ベース モデル"
 
-#: gui_gtk.cpp:672
+#: gui_gtk.cpp:695
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:866
+#: gui_gtk.cpp:889
 msgid "EFI Platform Key certificate information"
 msgstr "EFI Platform Key 証明書情報"
 
-#: gui_gtk.cpp:901
+#: gui_gtk.cpp:924
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -711,24 +707,24 @@ msgstr ""
 "メモリデバイスが配置されている、物理的にラベル付けされたソケットまたはボード"
 "の位置を特定する"
 
-#: gui_gtk.cpp:902
+#: gui_gtk.cpp:925
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "メモリデバイスが配置されている、物理的にラベル付けされたバンクを特定する"
 
-#: gui_gtk.cpp:1107
+#: gui_gtk.cpp:1130
 msgid "User Mode Driver Version"
 msgstr "ユーザー モードのドライバーのバージョン"
 
-#: gui_gtk.cpp:1121
+#: gui_gtk.cpp:1144
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan レイトレーシング"
 
-#: gui_gtk.cpp:1316
+#: gui_gtk.cpp:1339
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI の起動…"
 
-#: gui_gtk.cpp:1328
+#: gui_gtk.cpp:1351
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder での UI のインポートに失敗"
 
@@ -784,7 +780,7 @@ msgstr "デフォルトのメモリースティックを選択（整数）"
 msgid "Select default graphic card (integer)"
 msgstr "デフォルトのグラフィックカードの選択（整数）"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6075
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
 msgid "Start and connect to daemon"
 msgstr "起動時にデーモンを開始する"
 
@@ -873,11 +869,12 @@ msgid "See the %s license: <%s>\n"
 msgstr "%s ライセンスを見てください: <%s>\n"
 
 #: main.cpp:184
-#, c-format
-msgid "-- %-9s version: %s"
+#, fuzzy, c-format
+#| msgid "-- %-9s version: %s"
+msgid "-- %-11s version: %s"
 msgstr "-- %-9s バージョン: %s"
 
-#: main.cpp:381
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -886,7 +883,7 @@ msgstr ""
 "\n"
 "何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
 
-#: main.cpp:383
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -896,11 +893,11 @@ msgstr ""
 "\n"
 "何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
 
-#: main.cpp:407
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "ここで新しい問題をテンプレートを使って報告することが出来ます。"
 
-#: main.cpp:449
+#: main.cpp:479
 msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
@@ -1200,11 +1197,11 @@ msgstr "レベル2"
 msgid "Level 3"
 msgstr "レベル3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1272
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
 msgid "Cores"
 msgstr "コア"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1294
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
 msgid "Threads"
 msgstr "スレッド"
 
@@ -1334,7 +1331,7 @@ msgstr "VBIOS バージョン"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:5972
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
 msgid "Interface"
 msgstr "インターフェイス"
 
@@ -1438,79 +1435,86 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
-#: cpu-x-gtk-3.12.ui:1224
+#: cpu-x-gtk-3.12.ui:56
+msgid "Privileges are required to gather some information"
+msgstr ""
+
+#: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "キャッシュ"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5886
+#: cpu-x-gtk-3.12.ui:5955
 msgid "Refresh time"
 msgstr "更新間隔"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5910
+#: cpu-x-gtk-3.12.ui:5979
 msgid "Text theme"
 msgstr "テキストテーマ"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5925
+#: cpu-x-gtk-3.12.ui:5994
 msgid "Automatic"
 msgstr "自動"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5926
+#: cpu-x-gtk-3.12.ui:5995
 msgid "Blue for light theme"
 msgstr "ライトテーマの青色"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5927
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Yellow for dark theme"
 msgstr "ダークテーマの黄色"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5940
+#: cpu-x-gtk-3.12.ui:6009
 msgid "Temperature unit"
 msgstr "温度の単位"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:5991
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default tab"
 msgstr "デフォルトのタブ"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6004
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default CPU core"
 msgstr "デフォルトのCPUコア"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6017
+#: cpu-x-gtk-3.12.ui:6086
 msgid "Default cache test"
 msgstr "デフォルトのキャッシュテスト"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6129
 msgid "Print CPUID values in decimal"
 msgstr "CPUIDの値を10進数で表示する"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6093
+#: cpu-x-gtk-3.12.ui:6162
 msgid "Default graphic card"
 msgstr "デフォルトのグラフィックカード"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6117
+#: cpu-x-gtk-3.12.ui:6186
 msgid "Default core type"
 msgstr "デフォルトのコアタイプ"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6141
+#: cpu-x-gtk-3.12.ui:6210
 msgid "Default memory stick"
 msgstr "デフォルトのメモリースティック"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6169
+#: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "起動時"
+
+#~ msgid "Connected to daemon"
+#~ msgstr "デーモンに接続"
 
 #~ msgid "Light"
 #~ msgstr "Light"
