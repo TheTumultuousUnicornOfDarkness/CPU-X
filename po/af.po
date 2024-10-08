@@ -8,86 +8,93 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-05 09:33+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-10-08 13:00+0000\n"
+"Last-Translator: Shaun Botsis <shaunbotsis@gmail.com>\n"
+"Language-Team: Afrikaans <https://hosted.weblate.org/projects/cpu-x/"
+"translations/af/>\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: core.cpp:165
 #, c-format
 msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
 "model: %i, ext. family: %i"
 msgstr ""
+"Jou SVE is nie in die databasis teenwoordig nie ==> %s, model: %i, ext. "
+"model: %i, ext. family: %i"
 
 #: core.cpp:209
 #, c-format
 msgid "Your CPU is not present in the database ==> %s, part number: 0x%x, "
 "codename: %s"
 msgstr ""
+"Jou SVE is nie in die databasis teenwoordig nie ==> %s, part number: 0x%x, "
+"codename: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Besig om SVE-tegnologie te vind"
 
 #: core.cpp:268 data.cpp:153 data.cpp:364
 msgid "unknown"
-msgstr ""
+msgstr "onbekend"
 
 #: core.cpp:352
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Besig om libcpuid op te roep om statiese data te verkry"
 
 #: core.cpp:362
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "kon nie libcpuid oproep nie (%s)"
 
 #: core.cpp:491
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Besig om libcpuid op te roep om dinamiese data te verkry"
 
 #: core.cpp:508
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "Besig om libcpuid op te roep om SVE MSR statiese waardes te verkry"
 
 #: core.cpp:538
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "Besig om libcpuid op te roep om SVE MSR dinamiese waardes te verkry"
 
 #: core.cpp:570
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Besig om dmidecode op te roep"
 
 #: core.cpp:612 core.cpp:631
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (gekonfigureer)"
 
 #: core.cpp:619 core.cpp:638
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (maksimum)"
 
 #: core.cpp:624
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (minimum)"
 
 #: core.cpp:654
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Besig om SVE-gebruik te bereken"
 
 #: core.cpp:704
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Besig om bandwydte op te roep"
 
 #: core.cpp:761
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (onderwerp) / %s (uitreiker)"
 
 #: core.cpp:789
 #, c-format
@@ -96,76 +103,82 @@ msgid "pci_access is not properly initialized: it is a common issue when %s "
 "Check that libpci %s library is present on your system. Otherwise, "
 "please rebuild %s."
 msgstr ""
+"pci_access is nie behoorlik geïnisialiseer nie: dit is 'n algemene probleem "
+"wanneer %s gebou is met 'n laer libpci-weergawe.\n"
+"Maak seker dat libpci %s biblioteek op jou stelsel teenwoordig is. "
+"Andersins, herbou asseblief %s."
 
 #: core.cpp:833
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Geen kerneldrywer in gebruik vir grafiese kaart by pad %s"
 
 #: core.cpp:869
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr ""
+msgstr "Jou GPU-kerneldrywer is onbekend: %s"
 
 #: core.cpp:953
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr ""
+msgstr "Jou GPU-gebruikermodus-drywer is onbekend vir verskaffer %s: %s"
 
 #: core.cpp:957
 #, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr ""
+msgstr "kon nie GLFW oproep nie (%i): %s"
 
 #: core.cpp:1090
 msgid "Finding Vulkan API version"
-msgstr ""
+msgstr "Besig om Vulkan API-weergawe te vind"
 
 #: core.cpp:1106
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr ""
+msgstr "kon nie vkCreateInstance oproep nie (%s)"
 
 #: core.cpp:1110
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s word nie ondersteun nie"
 
 #: core.cpp:1119
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr ""
+msgstr "kon nie vkEnumeratePhysicalDevices oproep nie (%s)"
 
 #: core.cpp:1127
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Geen beskikbare Vulkan-toestelle"
 
 #: core.cpp:1135
 #, c-format
 msgid "No available physical devices (%s)"
-msgstr ""
+msgstr "Geen beskikbare fisiese toestelle (%s)"
 
 #: core.cpp:1198
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr ""
+msgstr "Kon nie Vulkan skep vir toestel %u nie (%s)"
 
 #: core.cpp:1202
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s word nie ondersteun vir toestel %u nie, gebruik slegs toestelID vir "
+"ooreenstemming"
 
 #: core.cpp:1234 core.cpp:1547
 msgid "Enabled"
-msgstr ""
+msgstr "Geaktiveer"
 
 #: core.cpp:1234 core.cpp:1547
 msgid "Disabled"
-msgstr ""
+msgstr "Gedeaktiveer"
 
 #: core.cpp:1271
 msgid "Finding OpenCL API version"
-msgstr ""
+msgstr "Besig om OpenCL API-weergawe te vind"
 
 #: core.cpp:1275
 #, c-format
