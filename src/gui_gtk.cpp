@@ -431,7 +431,6 @@ void GtkData::set_all_labels()
 	/* Common */
 	notebook->set_current_page(Options::get_selected_page());
 	this->labprgver->set_text(this->data.about.about.version);
-	this->daemonbutton->set_label(_("Start daemon"));
 	if(DAEMON_UP)
 		this->daemoninfobar->hide();
 #ifndef FLATPAK

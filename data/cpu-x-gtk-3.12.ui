@@ -26,7 +26,7 @@
                 <property name="layout-style">end</property>
                 <child>
                   <object class="GtkButton" id="daemonbutton">
-                    <property name="label">Start daemon</property>
+                    <property name="label" translatable="yes">Start daemon</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -5858,7 +5858,7 @@
             </child>
             <child>
               <object class="GtkButton" id="closebutton">
-                <property name="label">Close</property>
+                <property name="label" translatable="yes">Close</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
