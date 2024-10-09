@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2023-11-06 13:36+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -696,76 +696,72 @@ msgstr "Dette programmet kommer deg i hende UTEN NOEN FORM FOR GARANTI"
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Start nisse"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Fant ingen polkit-identitetsbekreftelsesagent"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Forespør passord for å starte nisse i bakgrunnen"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "Familie"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Representativ (ekte) prosessorfamilie, (utregnet som "
 "BaseFamily+ExtendeFamily)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "Modell"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Representativ (ekte) prosessormodell, (utregnet som "
 "(ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "Versjon"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Strålesporing (Vulkan)"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 #, fuzzy
 msgid "Starting GTK GUI…"
 msgstr "Starter grafisk GTK-brukergrensesnitt…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "Klarte ikke å importere grensesnitt i GtkBuilder"
 
@@ -1549,6 +1545,10 @@ msgstr "GB"
 msgid "TiB"
 msgstr "TB"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Start nisse"
+
 #: cpu-x-gtk-3.12.ui:56
 #, fuzzy
 msgid "Privileges are required to gather some information"
@@ -1557,6 +1557,10 @@ msgstr "Superbrukerprivilegier kreves for at ting skal virke"
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Hurtiglager"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

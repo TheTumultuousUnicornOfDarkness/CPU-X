@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2023-11-18 18:03+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
@@ -663,71 +663,67 @@ msgstr "Tämä ohjelma EI SISÄLLÄ MINKÄÄNLAISTA TAKUUTA"
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Käynnistä daemon"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Polkit-todennusagenttia ei löydy"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Kysy salasana taustapalvelun käynnistämiseksi"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Asetukset"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "Perhe"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "Malli"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 #, fuzzy
 #| msgid "UMD Version"
 msgid "User Mode Driver Version"
 msgstr "UMD-versio"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "Käynnistetään GTK-käyttöliittymä…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr ""
 
@@ -1438,6 +1434,10 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Käynnistä daemon"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr ""
@@ -1445,6 +1445,10 @@ msgstr ""
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Välimuisti"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

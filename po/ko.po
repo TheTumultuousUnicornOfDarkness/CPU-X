@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2024-09-29 13:15+0000\n"
 "Last-Translator: Hyeonho Kang <hyeonhokang10@o365.ice.go.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
@@ -654,66 +654,62 @@ msgstr "이 프로그램은 자기 책임 하에 사용해주세요"
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' 파일의 경로를 찾을 수 없습니다"
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "데몬 시작"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "polkit 인증 에이전트를 찾을 수 없습니다"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "백그라운드에서 데몬을 시작하려면 비밀번호가 요구됩니다"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "설정"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "기본계열"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU 디스플레이 (\"true\") 패밀리 (BaseFamily+ExtendedFamily로 계산됨)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "기본모델"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr "CPU 디스플레이 (\"true\") 모델 ((ExtendedModel<<4)+BaseMode로 계산됨)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 "메모리 디바이스가 위치한, 물리적 라벨이 붙은 소켓이나 보드 위치를 특정함"
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "메모리 디바이스가 위치한, 물리적 라벨이 붙은 뱅크를 특정함"
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "사용자 방식 드라이버 버전"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan 레이 추적"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI 시작 중…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder의 UI를 import하는 데 실패했습니다"
 
@@ -1419,6 +1415,10 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "데몬 시작"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr ""
@@ -1426,6 +1426,10 @@ msgstr ""
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "캐쉬"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

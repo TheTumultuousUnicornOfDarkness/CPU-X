@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2023-10-17 18:16+0000\n"
 "Last-Translator: griffi-gh <prasol258@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -680,69 +680,65 @@ msgstr "Дане программне забезпечення надаєтьс�
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Активація демона"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Не знайдена аутентифікація агента polkit"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Потрібний пароль для запуску демона в фоновому режимі"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "Базова Родина"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Сімейство процесорів (\"правда\") (вираховується як розширена родина + "
 "базова родина)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "Базова Модель"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Відображена (\"дійсна\") модель процесора (вираховується як "
 "(РозширенаМодель<<4)+БазоваМодель)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "Версія драйвера користувацького режиму"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Трасування променів Vulkan"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "Запуск графічного інтерфейсу GTK…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "не вдалося імпортувати інтерфейс в GtkBuilder"
 
@@ -1504,6 +1500,10 @@ msgstr "ГіБ"
 msgid "TiB"
 msgstr "ТіБ"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Активація демона"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr ""
@@ -1511,6 +1511,10 @@ msgstr ""
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Кеш"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

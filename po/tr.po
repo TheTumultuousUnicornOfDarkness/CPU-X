@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2024-10-09 08:38+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -662,47 +662,43 @@ msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' dosyasının yolu bulunamadı"
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Art alan hizmetini başlat"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Art alan hizmetini başlatmak için parola sor"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "TemelAile"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Görüntülenen (\"gerçek\") CPU ailesi (TemelAile+GenişletilmişAile olarak "
 "hesaplanır)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "TemelModel"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Görüntülenen (\"gerçek\") CPU modeli ((GenişletilmişModel<<4)+TemelModel "
 "olarak hesaplanır)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr "EFI Platform Anahtarı sertifika bilgileri"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -710,23 +706,23 @@ msgstr ""
 "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş soketi ya da kart "
 "konumunu tanımla"
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş bakoyu tanımla"
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "Kullanıcı Modu Sürücü Sürümü"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Işın Yansıma (Ray Tracing)"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI başlatılıyor…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
@@ -1442,6 +1438,10 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Art alan hizmetini başlat"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr "Bazı bilgileri toplamak için ayrıcalıklar gerekiyor"
@@ -1449,6 +1449,10 @@ msgstr "Bazı bilgileri toplamak için ayrıcalıklar gerekiyor"
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Önbellek"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

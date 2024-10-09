@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2024-10-09 08:38+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
@@ -649,44 +649,40 @@ msgstr "Detta program levereras UTAN NÅGRA SOM HELST GARANTIER"
 msgid "Cannot find path for '%s' file"
 msgstr "Kan inte hitta sökvägen för \"%s\""
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Starta tjänsten"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Ingen polkit-autentiseringsagent hittades"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Be om lösenord för att starta tjänsten i bakgrunden"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Inställningar"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "Basfamilj"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU-visningsfamilj (\"true\")(beräknad som BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "Basmodell"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU-visningsmodell (\"true\")(beräknad som (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr "Nyckelcertifikatinformation för EFI-plattformen"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -694,23 +690,23 @@ msgstr ""
 "Identifiera det fysiskt märkta uttaget eller kortposition där minnesenheten "
 "är placerad"
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "Identifiera det fysiskt märkta uttaget där minnesenheten finns"
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "Användarlägesversion"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray-spårning"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "Startar GTK-gui…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "kunde inte importera UI i GtkBuilder"
 
@@ -1418,6 +1414,10 @@ msgstr "GiB"
 msgid "TiB"
 msgstr "TiB"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Starta tjänsten"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr "Rättigheter krävs för att samla in viss information"
@@ -1425,6 +1425,10 @@ msgstr "Rättigheter krävs för att samla in viss information"
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Cache"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

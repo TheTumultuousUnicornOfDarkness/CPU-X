@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2024-10-09 08:38+0000\n"
 "Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -668,47 +668,43 @@ msgstr "Acest program vine cu ABSOLUT NICIO GARANȚIE"
 msgid "Cannot find path for '%s' file"
 msgstr "Nu se poate găsi ruta pentru fișierul „%s”"
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Pornește demonul"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Nu a fost găsit niciun agent de autentificare polkit"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Cere parola la pornirea demonului în fundal"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Configurări"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "Familia de bază"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Afișează familia („adevărată”) a CPU-ului (calculată ca Familia de "
 "bază+Familia extinsă)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "Modelul de bază"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Afișează modelul („adevărat”) al CPU-ului (compus ca (Modelul "
 "extins<<4)+Modelul de bază)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr "Informații despre certificatul cheii platformei EFI"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -716,25 +712,25 @@ msgstr ""
 "Identifică soclul etichetat fizic sau poziția plăcii în care se află "
 "dispozitivul de memorie"
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identifică bancul etichetat fizic în care este localizat dispozitivul de "
 "memorie"
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "Versiune controlor mod utilizator (UMD)"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Trasarea razelor Vulkan (Vulkan Ray Tracing)"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "Se pornește interfața grafică GTK…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "importarea interfeței grafice în GtkBuilder a eșuat"
 
@@ -1476,6 +1472,10 @@ msgstr "Gio"
 msgid "TiB"
 msgstr "Tio"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Pornește demonul"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr ""
@@ -1484,6 +1484,10 @@ msgstr ""
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Memoria tampon (cache)"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2024-09-06 10:09+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -669,47 +669,43 @@ msgstr "Эта программа предоставляется БЕЗ КАКИ
 msgid "Cannot find path for '%s' file"
 msgstr "Не удаётся найти путь для файла «%s»"
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Запустить демона"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Агент аутентификации polkit не найден"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Требуется пароль для запуска демона в фоновом режиме"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Настройки"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "Базовое семейство"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Отображаемое («истинное») семейство ЦП (вычисляется как базовое семейство + "
 "расширенное семейство)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "Базовая модель"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Отображаемая («истинная») модель ЦП (вычисляется как (расширенная модель << "
 "4) + базовая модель)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -717,24 +713,24 @@ msgstr ""
 "Определить физически помеченное положение сокета или платы, где находится "
 "устройство памяти"
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Определить физически обозначенный банк, где находится устройство памяти"
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "Версия драйвера пользовательского режима"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Трассировка лучей Vulkan"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "Запускается интерфейс GTK…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "не удалось импортировать интерфейс в GtkBuilder"
 
@@ -1463,6 +1459,10 @@ msgstr "ГиБ"
 msgid "TiB"
 msgstr "ТиБ"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Запустить демона"
+
 #: cpu-x-gtk-3.12.ui:56
 #, fuzzy
 #| msgid "Root privileges are required to work properly"
@@ -1472,6 +1472,10 @@ msgstr "Для корректной работы требуются права �
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Кэш"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955

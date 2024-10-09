@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-08 15:47+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-10-09 08:38+0000\n"
 "PO-Revision-Date: 2024-10-09 08:38+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
@@ -683,46 +683,42 @@ msgstr "Ce programme est distribué SANS AUCUNE GARANTIE"
 msgid "Cannot find path for '%s' file"
 msgstr "Impossible de trouver le chemin du fichier '%s'"
 
-#: gui_gtk.cpp:434
-msgid "Start daemon"
-msgstr "Démarrer le démon"
-
-#: gui_gtk.cpp:441
+#: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
 msgstr "Aucun agent d'authentification Polkit trouvé"
 
-#: gui_gtk.cpp:447
+#: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
 msgstr "Demander le mot de passe pour démarrer le démon en arrière-plan"
 
-#: gui_gtk.cpp:451
+#: gui_gtk.cpp:450
 msgid "Settings"
 msgstr "Réglages"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:691
 msgid "BaseFamily"
 msgstr "Famille de base"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "La famille CPU (« réelle ») affichée (calculée à partir de la famille de "
 "base et de la famille étendue)"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:693
 msgid "BaseModel"
 msgstr "Modèle de base"
 
-#: gui_gtk.cpp:695
+#: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Le modèle CPU (« réel ») affiché (calculé par (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:889
+#: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
 msgstr "Information sur le certificat de la clé de plate-forme de l'EFI"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:923
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -730,24 +726,24 @@ msgstr ""
 "Identifie la position de la carte ou du port physiquement étiqueté où se "
 "trouve le périphérique mémoire"
 
-#: gui_gtk.cpp:925
+#: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identifie le banc physiquement étiqueté où se trouve le périphérique mémoire"
 
-#: gui_gtk.cpp:1130
+#: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
 msgstr "Version du pilote mode utilisateur (UMD)"
 
-#: gui_gtk.cpp:1144
+#: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1339
+#: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
 msgstr "Démarrage de l'interface graphique GTK…"
 
-#: gui_gtk.cpp:1351
+#: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
 msgstr "échec lors de l'import de l'interface dans GtkBuilder"
 
@@ -1496,6 +1492,10 @@ msgstr "Gio"
 msgid "TiB"
 msgstr "Tio"
 
+#: cpu-x-gtk-3.12.ui:29
+msgid "Start daemon"
+msgstr "Démarrer le démon"
+
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
 msgstr "Des privilèges sont requis pour obtenir certaines informations"
@@ -1503,6 +1503,10 @@ msgstr "Des privilèges sont requis pour obtenir certaines informations"
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
 msgstr "Cache"
+
+#: cpu-x-gtk-3.12.ui:5861
+msgid "Close"
+msgstr ""
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955
