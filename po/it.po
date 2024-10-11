@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-09-12 17:09+0000\n"
+"PO-Revision-Date: 2024-10-11 23:10+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -696,7 +696,7 @@ msgstr ""
 
 #: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "EFI Platform Key informazioni sul certificato"
 
 #: gui_gtk.cpp:923
 msgid ""
@@ -871,10 +871,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "Visualizza la licenza %s: <%s>\n"
 
 #: main.cpp:184
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- versione %-9s: %s"
+msgstr "-- %-11s versione: %s"
 
 #: main.cpp:411
 #, c-format
@@ -1262,7 +1261,7 @@ msgstr "Dimensione ROM"
 
 #: data.hpp:247
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI PK"
 
 #: data.hpp:272
 msgid "Type"
@@ -1451,10 +1450,8 @@ msgid "Start daemon"
 msgstr "Avvia demone"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "Sono necessari i privilegi di root per funzionare correttamente"
+msgstr "Sono necessari privilegi elevati per accedere ad alcune informazioni"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
@@ -1462,7 +1459,7 @@ msgstr "Cache"
 
 #: cpu-x-gtk-3.12.ui:5861
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955
