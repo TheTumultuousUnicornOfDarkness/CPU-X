@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-09-02 16:09+0000\n"
+"PO-Revision-Date: 2024-10-13 02:16+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
@@ -880,10 +880,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "Siehe %s Lizenz: %s\n"
 
 #: main.cpp:184
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s Version: %s"
+msgstr "-- %-11s Version: %s"
 
 #: main.cpp:411
 #, c-format
@@ -1475,10 +1474,8 @@ msgid "Start daemon"
 msgstr "Daemon starten"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "Root-Rechte werden benötigt, um richtig zu funktionieren"
+msgstr "Zum Sammeln einiger Informationen sind Privilegien erforderlich"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
@@ -1486,7 +1483,7 @@ msgstr "Cache"
 
 #: cpu-x-gtk-3.12.ui:5861
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955
