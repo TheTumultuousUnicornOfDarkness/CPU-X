@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-08-09 18:47+0000\n"
+"PO-Revision-Date: 2024-10-17 19:15+0000\n"
 "Last-Translator: Mohammed al-Qubati <mhraqeeb@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ar/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 #: core.cpp:165
 #, c-format
@@ -41,16 +41,11 @@ msgstr ""
 "%i, ext. family: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr ""
-"لا يمكن ايجاد المعالج في قاعدة البيانات ==>%s, model: %i, ext. model: %i, "
-"ext. family: %i"
+msgstr "معالجك ليس في قاعدة البيانات ==> %s، رقم الجزء: 0x%x، الاسم الرمزي: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
