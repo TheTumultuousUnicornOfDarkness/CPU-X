@@ -8,86 +8,92 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-10-24 08:15+0000\n"
+"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
+"ga/>\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :("
+"n>6 && n<11) ? 3 : 4;\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: core.cpp:165
 #, c-format
 msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
 "model: %i, ext. family: %i"
 msgstr ""
+"Níl do LAP sa bhunachar sonraí ==> %s, múnla: %i, fo-líne. múnla: %i, fo-"
+"líne. teaghlach: %i"
 
 #: core.cpp:209
 #, c-format
 msgid "Your CPU is not present in the database ==> %s, part number: 0x%x, "
 "codename: %s"
-msgstr ""
+msgstr "Níl do LAP sa bhunachar sonraí ==> %s, páirtuimhir: 0x%x, códainm: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
-msgstr ""
+msgstr "Lorg teicneolaíocht LAP"
 
 #: core.cpp:268 data.cpp:153 data.cpp:364
 msgid "unknown"
-msgstr ""
+msgstr "anaithnid"
 
 #: core.cpp:352
 msgid "Calling libcpuid for retrieving static data"
-msgstr ""
+msgstr "Ag glaoch ar libcpuid chun sonraí statacha a aisghabháil"
 
 #: core.cpp:362
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr ""
+msgstr "theip glaoch ar libcpuid (%s)"
 
 #: core.cpp:491
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr ""
+msgstr "Ag glaoch ar libcpuid chun sonraí dinimiciúla a aisghabháil"
 
 #: core.cpp:508
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
+msgstr "Ag glaoch ar libcpuid chun luachanna statacha LAP MSR a aisghabháil"
 
 #: core.cpp:538
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
+msgstr "Ag glaoch ar libcpuid chun luachanna dinimiciúla LAP MSR a aisghabháil"
 
 #: core.cpp:570
 msgid "Calling dmidecode"
-msgstr ""
+msgstr "Dmidecode ag glaoch"
 
 #: core.cpp:612 core.cpp:631
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (cumraithe)"
 
 #: core.cpp:619 core.cpp:638
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (uas)"
 
 #: core.cpp:624
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (nóiméad)"
 
 #: core.cpp:654
 msgid "Calculating CPU usage"
-msgstr ""
+msgstr "Úsáid LAP á ríomh"
 
 #: core.cpp:704
 msgid "Calling bandwidth"
-msgstr ""
+msgstr "Ag glaoch bandaleithead"
 
 #: core.cpp:761
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (ábhar) / %s (eisitheoir)"
 
 #: core.cpp:789
 #, c-format
@@ -96,138 +102,151 @@ msgid "pci_access is not properly initialized: it is a common issue when %s "
 "Check that libpci %s library is present on your system. Otherwise, "
 "please rebuild %s."
 msgstr ""
+"Níl pci_access tosaithe i gceart: is fadhb choitianta é nuair a tógadh %s le "
+"leagan libpci níos ísle.\n"
+"Cinntigh go bhfuil leabharlann libpci %s i láthair ar do chóras. Seachas "
+"sin, atóg %s le do thoil."
 
 #: core.cpp:833
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr ""
+msgstr "Níl aon tiománaí eithne in úsáid don chárta grafaicí ag conair %s"
 
 #: core.cpp:869
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr ""
+msgstr "Tá do thiománaí eithne GPU anaithnid: %s"
 
 #: core.cpp:953
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr ""
+"Níl do thiománaí mód úsáideora GPU anaithnid le haghaidh díoltóir %s: %s"
 
 #: core.cpp:957
 #, c-format
 msgid "failed to call GLFW (%i): %s"
-msgstr ""
+msgstr "Theip ar GLFW a ghlaoch (%i): %s"
 
 #: core.cpp:1090
 msgid "Finding Vulkan API version"
-msgstr ""
+msgstr "Leagan API Vulkan á lorg"
 
 #: core.cpp:1106
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr ""
+msgstr "theip ar vkCreateInstance (%s) a ghlaoch"
 
 #: core.cpp:1110
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "Ní thacaítear le %s"
 
 #: core.cpp:1119
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr ""
+msgstr "theip ar vkEnumeratePhysicalDevices (%s) a ghlaoch"
 
 #: core.cpp:1127
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "Níl aon ghléasanna Vulkan ar fáil"
 
 #: core.cpp:1135
 #, c-format
 msgid "No available physical devices (%s)"
-msgstr ""
+msgstr "Níl gléasanna fisiceacha ar fáil (%s)"
 
 #: core.cpp:1198
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr ""
+msgstr "Theip ar chruthú Vulkan do ghléas %u (%s)"
 
 #: core.cpp:1202
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"Ní thacaítear le %s do ghléas %u, bain úsáid as ID gléis amháin le haghaidh "
+"meaitseála"
 
 #: core.cpp:1234 core.cpp:1553
 msgid "Enabled"
-msgstr ""
+msgstr "Cumasaithe"
 
 #: core.cpp:1234 core.cpp:1553
 msgid "Disabled"
-msgstr ""
+msgstr "Díchumasaithe"
 
 #: core.cpp:1271
 msgid "Finding OpenCL API version"
-msgstr ""
+msgstr "Ag lorg leagan OpenCL API"
 
 #: core.cpp:1275
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
+msgstr "Níl aon ardán le tacaíocht OpenCL (%s)"
 
 #: core.cpp:1285
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr ""
+msgstr "theip ar gach ardán OpenCL (%s) a fháil"
 
 #: core.cpp:1298
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr ""
+msgstr "theip ar ainm a fháil don ardán %u (%s)"
 
 #: core.cpp:1306
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr ""
+msgstr "theip ar an leagan a fháil don ardán %u (%s)"
 
 #: core.cpp:1314
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "theip ar líon na ngléasanna OpenCL a aimsiú don ardán '%s %s' (%s)"
 
 #: core.cpp:1314
 msgid "0 device"
-msgstr ""
+msgstr "0 gléas"
 
 #: core.cpp:1323
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
+msgstr "theip ar gach gléas OpenCL a fháil don ardán '%s %s' (%s)"
 
 #: core.cpp:1343
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr ""
+msgstr "theip ar ainm do ghléis %u (%s) a fháil"
 
 #: core.cpp:1351
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr ""
+msgstr "theip ar an leagan a fháil do ghléas %u (%s)"
 
 #: core.cpp:1377
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
 "(%s)"
 msgstr ""
+"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+"CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.cpp:1388
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
 "(%s)"
 msgstr ""
+"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+"CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core.cpp:1396 core.cpp:1416 core.cpp:1449
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support "
 "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
+"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core.cpp:1437
 #, c-format
@@ -235,598 +254,619 @@ msgid "OpenCL driver for '%s %s' does not support "
 "CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
 "CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
+"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) nó "
+"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core.cpp:1460
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
+msgstr "Ní thacaítear le OpenCL le do dhíoltóir GPU (0x%X)"
 
 #: core.cpp:1484
 msgid "Finding devices"
-msgstr ""
+msgstr "Feistí a aimsiú"
 
 #: core.cpp:1496
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
-msgstr ""
+msgstr "Gabh thar chuardaigh gléasanna (ceadanna míchearta ar ghléas %s)"
 
 #: core.cpp:1539
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr ""
+msgstr "Tá do díoltóir GPU anaithnid: %s (0x%X)"
 
 #: core.cpp:1559
 msgid "failed to find chipset vendor and model"
-msgstr ""
+msgstr "theip ar an díoltóir chipset agus samhail a aimsiú"
 
 #: core.cpp:1574
 msgid "failed to find graphic card vendor and model"
-msgstr ""
+msgstr "theip ar an díoltóir cárta grafaicí agus samhail a aimsiú"
 
 #: core.cpp:1707
 msgid "Retrieving GPU clocks"
-msgstr ""
+msgstr "Cloig GPU a aisghabháil"
 
 #: core.cpp:1720
 msgid "None"
-msgstr ""
+msgstr "Dada"
 
 #: core.cpp:1729
 #, c-format
 msgid "DRM path for %s is unknown"
-msgstr ""
+msgstr "Ní fios conair DRM do %s"
 
 #: core.cpp:1736
 #, c-format
 msgid "Card number for %s is unknown"
-msgstr ""
+msgstr "Ní fios uimhir chárta %s"
 
 #: core.cpp:1761
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (reatha) / %s (uas)"
 
 #: core.cpp:1876
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr ""
+msgstr "Ní thuairiscíonn an tiománaí le haghaidh %s minicíochtaí"
 
 #: core.cpp:1897
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr ""
+msgstr "theip ar aisghabháil na sonraí monatóireachta go léir le haghaidh %s"
 
 #: core.cpp:1920
 msgid "Identifying running system"
-msgstr ""
+msgstr "Córas reatha a aithint"
 
 #: core.cpp:1923
 msgid "failed to identify running system"
-msgstr ""
+msgstr "theip ar an gcóras reatha a aithint"
 
 #: core.cpp:1980 core.cpp:2009
 msgid "Calling libprocps"
-msgstr ""
+msgstr "Ag glaoch ar libprocps"
 
 #: core.cpp:1983
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "in ann aga fónaimh don chóras a fháil"
 
 #: core.cpp:1989
 msgid "unable to create meminfo structure"
-msgstr ""
+msgstr "in ann struchtúr meminfo a chruthú"
 
 #: core.cpp:2035
 msgid "Calling libstatgrab"
-msgstr ""
+msgstr "Ag glaoch ar libstatgrab"
 
 #: core.cpp:2083
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
+msgstr "%i laethanta, %i uaireanta, %i nóiméad, %i soicindí"
 
 #: core.cpp:2146
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "Stádas tagarmhairc á nuashonrú"
 
 #: core.cpp:2149
 msgid "Active"
-msgstr ""
+msgstr "Gníomhach"
 
 #: core.cpp:2152
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(%u uair fágtha)"
 
 #: core.cpp:2154
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(%u nóiméad fágtha)"
 
 #: core.cpp:2156
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(%u soicind fágtha)"
 
 #: core.cpp:2160 core.cpp:2215 core.cpp:2216
 msgid "Inactive"
-msgstr ""
+msgstr "Neamhghníomhach"
 
 #: core.cpp:2163
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "i %u uair an chloig"
 
 #: core.cpp:2165
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "i %u nóiméad"
 
 #: core.cpp:2167
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "i %u soicind"
 
 #: core.cpp:2184
 #, c-format
 msgid "Starting benchmark with %u threads"
-msgstr ""
+msgstr "Ag tosú tagarmhairc le snáitheanna %u"
 
 #: core.cpp:2207
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "tharla earráid agus tagarmharc á thosú"
 
 #: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "Pacáiste LAP a aimsiú i mód cúltaisce"
 
 #: core.cpp:2263
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr ""
+msgstr "Níl do soicéad LAP sa bhunachar sonraí ==> %s, códainm: %s"
 
 #: core.cpp:2283
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
+msgstr "Iolraitheoirí LAP á ríomh i mód aisfhillte"
 
 #: core.cpp:2309
 msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
+msgstr "Faisnéis motherboard a aisghabháil i mód cúltaca"
 
 #: core.cpp:2325
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
+msgstr "theip ar aisghabháil faisnéise motherboard (mód cúltaca)"
 
 #: core.cpp:2367
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "Ag fáil teocht an LAP i mód cúltaisce"
 
 #: core.cpp:2415
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
+msgstr "theip ar aisghabháil teocht an LAP (modh cúltaca)"
 
 #: core.cpp:2430
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "Voltas LAP a aisghabháil i mód aisfhillte"
 
 #: core.cpp:2449
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
+msgstr "theip ar an voltas LAP a aisghabháil (modh cúltaca)"
 
 #: core.cpp:2463
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "Minicíocht LAP á aisghabháil i mód cúltaise"
 
 #: core.cpp:2474
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "theip ar mhinicíocht LAP a aisghabháil (modh cúltaca)"
 
 #: daemon_client.cpp:65
 msgid "Starting daemon in background…"
-msgstr ""
+msgstr "Deamhan tosaithe sa chúlra…"
 
 #: daemon_client.cpp:172
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
+msgstr "pkexec: níorbh fhéidir údarú a fháil (díbhe an dialóg)"
 
 #: daemon_client.cpp:175
 msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
+msgstr "pkexec: níorbh fhéidir údarú a fháil (gan údarú)"
 
 #: daemon_client.cpp:178
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: níor aimsíodh an t-ordú"
 
 #: daemon_client.cpp:181
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: cód earráide gan choinne"
 
 #: daemon_client.cpp:211
 msgid "Connecting to daemon…"
-msgstr ""
+msgstr "Ag nascadh le deamhan…"
 
 #: daemon_server.cpp:261
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr ""
+msgstr "request_handler: cás %i gan láimhseáil"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
-msgstr ""
+msgstr "LAP"
 
 #: data.cpp:190
 msgid "P-core"
-msgstr ""
+msgstr "P-Cór"
 
 #: data.cpp:191
 msgid "E-core"
-msgstr ""
+msgstr "E-Cór"
 
 #: data.cpp:192
 msgid "LP E-core"
-msgstr ""
+msgstr "LP E-cór"
 
 #: data.cpp:193 data.cpp:196
 msgid "Core"
-msgstr ""
+msgstr "Cór"
 
 #: data.cpp:212 cpu-x-gtk-3.12.ui:837
 msgid "Processor"
-msgstr ""
+msgstr "Próiseálaí"
 
 #: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
-msgstr ""
+msgstr "Taiscí"
 
 #: data.cpp:263
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr ""
+msgstr "%2d x %4d %s, %2d-bhealach"
 
 #: data.cpp:265
 #, c-format
 msgid "%d %s, %d-way"
-msgstr ""
+msgstr "%d %s, %d-bhealach"
 
 #: data.cpp:279
 msgid "Count"
-msgstr ""
+msgstr "Áireamh"
 
 #: data.cpp:292 cpu-x-gtk-3.12.ui:1067
 msgid "Clocks"
-msgstr ""
+msgstr "Cloig"
 
 #: data.cpp:400 data.cpp:404
 #, c-format
 msgid "L%u Cache"
-msgstr ""
+msgstr "L%u Taisce"
 
 #: data.cpp:406
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr ""
+msgstr "%s comhthiomsaitheach, %d-%s méid líne"
 
 #: data.cpp:419
 msgid "Test"
-msgstr ""
+msgstr "Tástáil"
 
 #: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
-msgstr ""
+msgstr "Máthairchlár"
 
 #: data.cpp:461 cpu-x-gtk-3.12.ui:2555
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: data.cpp:477 cpu-x-gtk-3.12.ui:2690
 msgid "Chipset"
-msgstr ""
+msgstr "Foireann sliseanna"
 
 #: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
 msgid "Memory"
-msgstr ""
+msgstr "Cuimhne"
 
 #: data.cpp:508
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Bata %u"
 
 #: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
-msgstr ""
+msgstr "Bataí"
 
 #: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
-msgstr ""
+msgstr "Córas"
 
 #: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
-msgstr ""
+msgstr "Córas Oibriúcháin"
 
 #: data.cpp:612 cpu-x-gtk-3.12.ui:5182
 msgid "Graphics"
-msgstr ""
+msgstr "Grafaicí"
 
 #: data.cpp:646
 #, c-format
 msgid "Card %u"
-msgstr ""
+msgstr "Cárta %u"
 
 #: data.cpp:650 cpu-x-gtk-3.12.ui:5160
 msgid "Cards"
-msgstr ""
+msgstr "Cártaí"
 
 #: data.cpp:697 cpu-x-gtk-3.12.ui:5534
 msgid "Bench"
-msgstr ""
+msgstr "Binse"
 
 #: data.cpp:710
 msgid "Not started"
-msgstr ""
+msgstr "Gan tús"
 
 #: data.cpp:713 cpu-x-gtk-3.12.ui:5296
 msgid "Prime numbers (slow)"
-msgstr ""
+msgstr "Príomhuimhreacha (mall)"
 
 #: data.cpp:717 cpu-x-gtk-3.12.ui:5408
 msgid "Prime numbers (fast)"
-msgstr ""
+msgstr "Príomhuimhreacha (tapa)"
 
 #: data.cpp:721 cpu-x-gtk-3.12.ui:5515
 msgid "Parameters"
-msgstr ""
+msgstr "Paraiméadair"
 
 #: data.cpp:746 data.cpp:752
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u nóim"
 
 #: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
 msgid "About"
-msgstr ""
+msgstr "Maidir"
 
 #: data.cpp:764
 #, c-format
 msgid "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
+"Is bogearraí saor in aisce é %s a bhailíonn eolas\n"
+"ar LAP, motherboard agus níos mó."
 
 #: data.cpp:769
 msgid "About CPU-X"
-msgstr ""
+msgstr "Maidir le CPU-X"
 
 #: data.cpp:770
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Leagan %s"
 
 #: data.cpp:771
 #, c-format
 msgid "Author: %s"
-msgstr ""
+msgstr "Údar: %s"
 
 #: data.cpp:772
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Suíomh: %s"
 
 #: data.cpp:776 cpu-x-gtk-3.12.ui:5767
 msgid "License"
-msgstr ""
+msgstr "Ceadúnas"
 
 #: data.cpp:778
 #, c-format
 msgid "This software is distributed under the terms of %s"
-msgstr ""
+msgstr "Scaiptear an bogearra seo faoi théarmaí %s"
 
 #: data.cpp:779 main.cpp:176
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
+msgstr "Tagann an clár seo le NÍL BARÁNTA GO LÁIDIR"
 
 #: gui_gtk.cpp:67
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Ní féidir conair a aimsiú don chomhad '%s'"
 
 #: gui_gtk.cpp:440
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "Níor aimsíodh aon ghníomhaire fíordheimhnithe polkit"
 
 #: gui_gtk.cpp:446
 msgid "Ask password to start daemon in background"
-msgstr ""
+msgstr "Iarr pasfhocal chun deamhan a thosú sa chúlra"
 
 #: gui_gtk.cpp:450
 msgid "Settings"
-msgstr ""
+msgstr "Socruithe"
 
 #: gui_gtk.cpp:691
 msgid "BaseFamily"
-msgstr ""
+msgstr "BunTeaghlach"
 
 #: gui_gtk.cpp:692
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Teaghlach taispeána LAP (\"fíor\") (ríofa mar Theaghlach Base+Teaghlach "
+"Breisithe)"
 
 #: gui_gtk.cpp:693
 msgid "BaseModel"
-msgstr ""
+msgstr "BunMhúnla"
 
 #: gui_gtk.cpp:694
 msgid "CPU display (\"true\") model (computed as "
 "(ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Samhail taispeána LAP (\"fíor\") (arna ríomh mar (Samhail "
+"Leathnaithe<<4)+BaseModel)"
 
 #: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "Ardán EFI Eolas teastais eochair"
 
 #: gui_gtk.cpp:923
 msgid "Identify the physically-labeled socket or board position where the "
 "memory device is located"
 msgstr ""
+"Sainaithin suíomh an tsoicéid nó an chláir atá lipéadaithe go fisiciúil ina "
+"bhfuil an gléas cuimhne suite"
 
 #: gui_gtk.cpp:924
 msgid "Identify the physically labeled bank where the memory device is "
 "located"
 msgstr ""
+"Sainaithin an banc atá lipéadaithe go fisiciúil ina bhfuil an gléas cuimhne "
+"suite"
 
 #: gui_gtk.cpp:1129
 msgid "User Mode Driver Version"
-msgstr ""
+msgstr "Mód úsáideora Leagan tiománaí"
 
 #: gui_gtk.cpp:1143
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Rianú Vulkan Ray"
 
 #: gui_gtk.cpp:1338
 msgid "Starting GTK GUI…"
-msgstr ""
+msgstr "Ag tosú GTK GUI…"
 
 #: gui_gtk.cpp:1350
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "theip ar UI a iompórtáil i GtkBuilder"
 
 #: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
+msgstr "Tosaigh comhéadan grafach úsáideora (GUI) (réamhshocraithe)"
 
 #: main.cpp:64
 msgid "Start text-based user interface (TUI)"
-msgstr ""
+msgstr "Tosaigh comhéadan úsáideora téacsbhunaithe (TUI)"
 
 #: main.cpp:65
 msgid "Dump all data on standard output and exit"
-msgstr ""
+msgstr "Dumpáil na sonraí go léir ar aschur caighdeánach agus scoir"
 
 #: main.cpp:66
 msgid "Run embedded command dmidecode and exit"
-msgstr ""
+msgstr "Rith dmidecode ordú leabaithe agus scoir"
 
 #: main.cpp:67
 msgid "Run embedded command bandwidth and exit"
-msgstr ""
+msgstr "Rith bandaleithead ordú leabaithe agus scoir"
 
 #: main.cpp:68
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-msgstr ""
+msgstr "Socraigh aonaid teochta (c[elsius] |f[ahrenheit] |k[elvin]|r[ankine])"
 
 #: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr ""
+msgstr "Socraigh am saincheaptha idir dhá athnuachan (i soicindí)"
 
 #: main.cpp:70
 msgid "Set default tab (integer)"
-msgstr ""
+msgstr "Socraigh cluaisín réamhshocraithe (slánuimhir)"
 
 #: main.cpp:71
 msgid "Select core type to monitor (integer)"
-msgstr ""
+msgstr "Roghnaigh croíchineál le monatóireacht a dhéanamh (slánuimhir)"
 
 #: main.cpp:72
 msgid "Select CPU core to monitor (integer)"
-msgstr ""
+msgstr "Roghnaigh croí CPU chun monatóireacht a dhéanamh (slánuimhir)"
 
 #: main.cpp:73
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
+"Socraigh tástáil bandaleithead saincheaptha le haghaidh luas taisce LAP "
+"(slánuimhir)"
 
 #: main.cpp:74
 msgid "Select default memory stick (integer)"
-msgstr ""
+msgstr "Roghnaigh bata cuimhne réamhshocraithe (slánuimhir)"
 
 #: main.cpp:75
 msgid "Select default graphic card (integer)"
-msgstr ""
+msgstr "Roghnaigh cárta grafaicí réamhshocraithe (slánuimhir)"
 
 #: main.cpp:76 cpu-x-gtk-3.12.ui:6144
 msgid "Start and connect to daemon"
-msgstr ""
+msgstr "Tosaigh agus ceangail leis an deamhan"
 
 #: main.cpp:77
 msgid "Verbose output"
-msgstr ""
+msgstr "Aschur briathra"
 
 #: main.cpp:78
 msgid "Print help and exit"
-msgstr ""
+msgstr "Cabhair a phriontáil agus scoir"
 
 #: main.cpp:79
 msgid "Print version and exit"
-msgstr ""
+msgstr "Leagan priontála agus scoir"
 
 #: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
+"Priontáil luachanna CPUID i deachúlacha (heicsidheachúlach an réamhshocrú)"
 
 #: main.cpp:81
 msgid "Disable colored output"
-msgstr ""
+msgstr "Díchumasaigh aschur daite"
 
 #: main.cpp:82
 msgid "Print information for debugging"
-msgstr ""
+msgstr "Priontáil eolas le haghaidh dífhabhtaithe"
 
 #: main.cpp:83
 msgid "Print required information to paste in an issue"
-msgstr ""
+msgstr "Priontáil an fhaisnéis atá ag teastáil chun ceist a ghreamú"
 
 #: main.cpp:84
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
 "v[im])"
 msgstr ""
+"Socraigh eochairmhapáil don mhód NCurses "
+"(a[saigheada]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.cpp:95
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Cuir argóintí na n-orduithe réamhshocraithe leis"
 
 #: main.cpp:96
 msgid "Enforce the bus clock"
-msgstr ""
+msgstr "Cuir clog an bhus i bhfeidhm"
 
 #: main.cpp:97
 msgid "Ignore CPU values reported by libcpuid (comma-separated values among "
 "'temp', 'volt' and 'freq')"
 msgstr ""
+"Déan neamhaird de luachanna LAP arna dtuairisciú ag libcpuid (luachanna "
+"camóg-scartha idir 'temp', 'volt' agus 'freq')"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
-msgstr ""
+msgstr "Léigh sonraí amh CPUID ó chomhad tugtha"
 
 #: main.cpp:99
 msgid "Only print a message if CPU is not present in the database"
-msgstr ""
+msgstr "Ná priontáil ach teachtaireacht mura bhfuil LAP sa bhunachar sonraí"
 
 #: main.cpp:126
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
+msgstr "Úsáid: %s DISPLAY [OPTIONS]\n"
 
 #: main.cpp:127
 msgid "Available DISPLAY:"
-msgstr ""
+msgstr "Ar fáil TAISPEÁINT:"
 
 #: main.cpp:135
 msgid "Available OPTIONS:"
-msgstr ""
+msgstr "ROGHANNA Ar Fáil:"
 
 #: main.cpp:144
 msgid "Influenceable environment variables:"
-msgstr ""
+msgstr "Athróga timpeallachta a bhfuil tionchar acu:"
 
 #: main.cpp:175
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
+"Is bogearraí saor in aisce é seo: tá cead agat é a athrú agus a athdháileadh."
 
 #: main.cpp:177
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr ""
+msgstr "Féach ar an gceadúnas %s: <%s>\n"
 
 #: main.cpp:184
 #, c-format
 msgid "-- %-11s version: %s"
-msgstr ""
+msgstr "-- leagan %-11s: %s"
 
 #: main.cpp:411
 #, c-format
@@ -834,6 +874,9 @@ msgid "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and has "
 "crashed."
 msgstr ""
+"\n"
+"Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s agus tá sé "
+"tuairteála."
 
 #: main.cpp:413
 #, c-format
@@ -841,610 +884,649 @@ msgid "\n"
 "Oops, something was wrong! %s has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
+"\n"
+"Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s agus tá sé "
+"ag iarraidh é a athshlánú."
 
 #: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Is féidir leat eagrán nua a oscailt anseo, tríd an teimpléad a líonadh mar a "
+"iarrtar:"
 
 #: main.cpp:479
 msgid "an error occurred while setting locale"
-msgstr ""
+msgstr "tharla earráid agus locale á shocrú"
 
 #: options.cpp:156
 #, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr ""
+msgstr "Níl an cluaisín roghnaithe (%u) le feiceáil"
 
 #: options.cpp:161
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr ""
+"Ní uimhir bhailí é an cluaisín roghnaithe (%u) (is é %u u an t-uasmhéid)"
 
 #: options.cpp:210
 #, c-format
 msgid "Selected CPU type (%u) is not a valid number (%u is the maximum for "
 "this CPU)"
 msgstr ""
+"Ní uimhir bhailí í an cineál CPU roghnaithe (%u) (is é %u an t-uasmhéid don "
+"LAP seo)"
 
 #: options.cpp:231
 #, c-format
 msgid "Selected bandwidth test (%u) is not a valid number (%u is the "
 "maximum for this system)"
 msgstr ""
+"Ní uimhir bhailí í an tástáil bandaleithead roghnaithe (%u) (is é %u an t-"
+"uasmhéid don chóras seo)"
 
 #: options.cpp:254
 #, c-format
 msgid "Selected RAM stick (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
+"Ní uimhir bhailí í an mhaide RAM roghnaithe (%u) (is é %u an t-uasmhéid don "
+"chóras seo)"
 
 #: options.cpp:274
 #, c-format
 msgid "Selected graphic card (%u) is not a valid number (%u is the maximum "
 "for this system)"
 msgstr ""
+"Ní uimhir bhailí é an cárta grafach roghnaithe (%u) (is é %u an t-uasmhéid "
+"don chóras seo)"
 
 #: options.cpp:290
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "theip ar an nasc LAP a athrú go croí %u"
 
 #: options.cpp:296
 #, c-format
 msgid "Selected CPU core (%u) is not a valid number (%u is the maximum for "
 "this type of core)"
 msgstr ""
+"Ní uimhir bhailí é croí roghnaithe an LAP (%u) (is é %u an t-uasmhéid don "
+"chineál seo croí)"
 
 #: tui_ncurses.cpp:116
 msgid "Window is too small!"
-msgstr ""
+msgstr "Fuinneog ró-bheag!"
 
 #: tui_ncurses.cpp:124
 msgid "Press 'h' to see help."
-msgstr ""
+msgstr "Brúigh 'h' chun cabhair a fheiceáil."
 
 #: tui_ncurses.cpp:237
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "Fáilte i gcabhair %s NCurses!\n"
 
 #: tui_ncurses.cpp:238
 msgid "This help describes how to use this Text-based User Interface."
 msgstr ""
+"Déanann an chabhair seo cur síos ar conas an Comhéadan Úsáideora "
+"Téacsbhunaithe seo a úsáid."
 
 #: tui_ncurses.cpp:240
 msgid "Global keys:"
-msgstr ""
+msgstr "Eochracha domhanda:"
 
 #: tui_ncurses.cpp:241
 msgid "Press 'left' key or 'tab' key to switch in left tab."
 msgstr ""
+"Brúigh eochair 'clé' nó eochair 'táb' chun athrú isteach sa chluaisín ar "
+"chlé."
 
 #: tui_ncurses.cpp:242
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr ""
+"Brúigh eochair 'ceart' nó 'shift + tab' chun athrú sa chluaisín ar dheis."
 
 #: tui_ncurses.cpp:243
 msgid "Press 'h' key to see this help."
-msgstr ""
+msgstr "Brúigh 'h' chun an chabhair seo a fheiceáil."
 
 #: tui_ncurses.cpp:244
 msgid "Press 'q' key to exit."
-msgstr ""
+msgstr "Brúigh 'q' chun imeacht."
 
 #: tui_ncurses.cpp:246
 msgid "CPU tab:"
-msgstr ""
+msgstr "Cluaisín LAP:"
 
 #: tui_ncurses.cpp:247
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
+"Brúigh an eochair 'an chéad leathanach eile' chun uimhir chroíchineál a "
+"laghdú chun monatóireacht a dhéanamh."
 
 #: tui_ncurses.cpp:248
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr ""
+"Brúigh an eochair 'leathanach roimhe seo' chun an uimhir chroíchineál a "
+"mhéadú chun monatóireacht a dhéanamh."
 
 #: tui_ncurses.cpp:249
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
+"Brúigh 'síos' eochair chun croíuimhir LAP a laghdú chun monatóireacht a "
+"dhéanamh."
 
 #: tui_ncurses.cpp:250
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
+"Brúigh 'suas' eochair chun croíuimhir LAP a mhéadú chun monatóireacht a "
+"dhéanamh."
 
 #: tui_ncurses.cpp:252
 msgid "Caches tab:"
-msgstr ""
+msgstr "Cluaisín Taisce:"
 
 #: tui_ncurses.cpp:253
 msgid "Press 'down' key to switch to previous test."
-msgstr ""
+msgstr "Brúigh an eochair 'síos' chun athrú go dtí an tástáil roimhe seo."
 
 #: tui_ncurses.cpp:254
 msgid "Press 'up' key to switch to next test."
-msgstr ""
+msgstr "Brúigh an eochair 'suas' chun athrú go dtí an chéad triail eile."
 
 #: tui_ncurses.cpp:256
 msgid "Bench tab:"
-msgstr ""
+msgstr "Cluaisín binse:"
 
 #: tui_ncurses.cpp:257
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
+msgstr "Brúigh an eochair 'síos' chun fad tagarmharcála a laghdú."
 
 #: tui_ncurses.cpp:258
 msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
+msgstr "Brúigh an eochair 'suas' chun fad tagarmhairc incriminte a fháil."
 
 #: tui_ncurses.cpp:259
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
+"Brúigh 'an chéad leathanach eile' chun líon na snáitheanna atá le húsáid a "
+"laghdú."
 
 #: tui_ncurses.cpp:260
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
+"Brúigh an eochair 'leathanach roimhe seo' chun líon na snáitheanna a úsáid "
+"incrimint."
 
 #: tui_ncurses.cpp:261
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
+msgstr "Brúigh 's' chun tagarmharcáil phríomhuimhreacha (mall) a thosú/stopadh."
 
 #: tui_ncurses.cpp:262
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
+"Brúigh an eochair 'f' chun tagarmharcáil uimhreacha príomhúla (tapa) a "
+"thosú/stad."
 
 #: tui_ncurses.cpp:264
 msgid "Graphics tab:"
-msgstr ""
+msgstr "Cluaisín grafaice:"
 
 #: tui_ncurses.cpp:265
 msgid "Press 'down' key to switch to previous graphic card."
 msgstr ""
+"Brúigh an eochair 'síos' chun athrú go dtí an cárta grafaicí roimhe seo."
 
 #: tui_ncurses.cpp:266
 msgid "Press 'up' key to switch to next graphic card."
 msgstr ""
+"Brúigh an eochair 'suas' chun athrú go dtí an chéad chárta grafaicí eile."
 
 #: tui_ncurses.cpp:268
 msgid "Press any key to exit this help."
-msgstr ""
+msgstr "Brúigh eochair ar bith chun éirí as an gcabhair seo."
 
 #: tui_ncurses.cpp:676
 msgid "Starting NCurses TUI…"
-msgstr ""
+msgstr "Ag tosú NCurses TUI…"
 
 #: tui_ncurses.cpp:685
 msgid "FATAL ERROR: terminfo database could not be found (try to set "
 "TERMINFO environment variable)"
 msgstr ""
+"EARRÁID FATAL: níorbh fhéidir an bunachar sonraí terminfo a aimsiú (déan "
+"iarracht athróg timpeallachta TERMINFO a shocrú)"
 
 #: tui_ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Theip ar shocrú teirminéal %s (err=%i); ag titim ar ais go %s"
 
 #: util.cpp:189
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "Ní féidir aonad sa teaghrán '%s' a aimsiú ag suíomh %i"
 
 #: util.cpp:252
 #, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr ""
+msgstr "tharla earráid agus comhad '%s' á oscailt"
 
 #: util.cpp:297
 #, c-format
 msgid "an error occurred while running command '%s'"
-msgstr ""
+msgstr "tharla earráid agus an t-ordú '%s' á rith"
 
 #: util.cpp:437
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() gan tacaíocht ar an gcóras oibriúcháin seo"
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
-msgstr ""
+msgstr "Díoltóir"
 
 #: data.hpp:104
 msgid "Code Name"
-msgstr ""
+msgstr "Ainm an Chóid"
 
 #: data.hpp:105
 msgid "Package"
-msgstr ""
+msgstr "Pacáiste"
 
 #: data.hpp:106
 msgid "Technology"
-msgstr ""
+msgstr "Teicneolaíocht"
 
 #: data.hpp:107 data.hpp:279
 msgid "Voltage"
-msgstr ""
+msgstr "Voltas"
 
 #: data.hpp:108
 msgid "Specification"
-msgstr ""
+msgstr "Sonraíocht"
 
 #: data.hpp:110
 msgid "Family"
-msgstr ""
+msgstr "Teaghlaigh"
 
 #: data.hpp:111
 msgid "Disp. Family"
-msgstr ""
+msgstr "Teaghlaigh ar taispeáint"
 
 #: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
 msgid "Model"
-msgstr ""
+msgstr "Múnla"
 
 #: data.hpp:113
 msgid "Disp. Model"
-msgstr ""
+msgstr "Múnla Taispeána"
 
 #: data.hpp:114
 msgid "Stepping"
-msgstr ""
+msgstr "Céimniú"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Feidhmeannach"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Rogha"
 
 #: data.hpp:118 data.hpp:271
 msgid "Part Number"
-msgstr ""
+msgstr "Uimhir Pháirt"
 
 #: data.hpp:119 data.hpp:235
 msgid "Revision"
-msgstr ""
+msgstr "Athbhreithniú"
 
 #: data.hpp:121
 msgid "Temp."
-msgstr ""
+msgstr "Teocht."
 
 #: data.hpp:122
 msgid "Instructions"
-msgstr ""
+msgstr "Treoracha"
 
 #: data.hpp:135
 msgid "L1 Data"
-msgstr ""
+msgstr "Sonraí L1"
 
 #: data.hpp:136
 msgid "L1 Inst."
-msgstr ""
+msgstr "Treoir L1"
 
 #: data.hpp:137
 msgid "Level 2"
-msgstr ""
+msgstr "Leibhéal 2"
 
 #: data.hpp:138
 msgid "Level 3"
-msgstr ""
+msgstr "Leibhéal 3"
 
 #: data.hpp:147 cpu-x-gtk-3.12.ui:1339
 msgid "Cores"
-msgstr ""
+msgstr "Córa"
 
 #: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
 msgid "Threads"
-msgstr ""
+msgstr "Snáithe"
 
 #: data.hpp:165
 msgid "Core Speed"
-msgstr ""
+msgstr "Luas Cór"
 
 #: data.hpp:166
 msgid "Multiplier"
-msgstr ""
+msgstr "Iolraitheoir"
 
 #: data.hpp:167
 msgid "Bus Speed"
-msgstr ""
+msgstr "Luas Bus"
 
 #: data.hpp:168 data.hpp:352
 msgid "Usage"
-msgstr ""
+msgstr "Úsáid"
 
 #: data.hpp:198 data.hpp:276
 msgid "Size"
-msgstr ""
+msgstr "Méid"
 
 #: data.hpp:199 data.hpp:278
 msgid "Speed"
-msgstr ""
+msgstr "Luas"
 
 #: data.hpp:233 data.hpp:270
 msgid "Manufacturer"
-msgstr ""
+msgstr "Monaróir"
 
 #: data.hpp:243
 msgid "Brand"
-msgstr ""
+msgstr "Branda"
 
 #: data.hpp:244
 msgid "Version"
-msgstr ""
+msgstr "Leagan"
 
 #: data.hpp:245
 msgid "Date"
-msgstr ""
+msgstr "Dáta"
 
 #: data.hpp:246
 msgid "ROM Size"
-msgstr ""
+msgstr "Méid ROM"
 
 #: data.hpp:247
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI PK"
 
 #: data.hpp:272
 msgid "Type"
-msgstr ""
+msgstr "Cineál"
 
 #: data.hpp:273
 msgid "Type Detail"
-msgstr ""
+msgstr "Cineál Sonraigh"
 
 #: data.hpp:274
 msgid "Device Locator"
-msgstr ""
+msgstr "Aimsitheoir Gléas"
 
 #: data.hpp:275
 msgid "Bank Locator"
-msgstr ""
+msgstr "Aimsitheoir Bainc"
 
 #: data.hpp:277
 msgid "Rank"
-msgstr ""
+msgstr "Rang"
 
 #: data.hpp:303
 msgid "Name"
-msgstr ""
+msgstr "Ainm"
 
 #: data.hpp:304
 msgid "Kernel"
-msgstr ""
+msgstr "Eithneach"
 
 #: data.hpp:305
 msgid "Hostname"
-msgstr ""
+msgstr "Óstainm"
 
 #: data.hpp:306
 msgid "Uptime"
-msgstr ""
+msgstr "Aga fónaimh"
 
 #: data.hpp:314
 msgid "Used"
-msgstr ""
+msgstr "Úsáidte"
 
 #: data.hpp:315
 msgid "Buffers"
-msgstr ""
+msgstr "Maoláin"
 
 #: data.hpp:316
 msgid "Cached"
-msgstr ""
+msgstr "i dtaisce"
 
 #: data.hpp:317
 msgid "Free"
-msgstr ""
+msgstr "Saor"
 
 #: data.hpp:318
 msgid "Swap"
-msgstr ""
+msgstr "Babhtáil"
 
 #: data.hpp:344
 msgid "Driver"
-msgstr ""
+msgstr "Tiománaí"
 
 #: data.hpp:345
 msgid "UMD Version"
-msgstr ""
+msgstr "Leagan UMD"
 
 #: data.hpp:347
 msgid "Compute Unit"
-msgstr ""
+msgstr "Aonad Comhoibrithe"
 
 #: data.hpp:348
 msgid "Device ID"
-msgstr ""
+msgstr "ID an ghléis"
 
 #: data.hpp:349
 msgid "VBIOS Version"
-msgstr ""
+msgstr "Leagan VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
 #: data.hpp:350 cpu-x-gtk-3.12.ui:6041
 msgid "Interface"
-msgstr ""
+msgstr "Comhéadan"
 
 #: data.hpp:351
 msgid "Temperature"
-msgstr ""
+msgstr "Teocht"
 
 #: data.hpp:353
 msgid "Core Voltage"
-msgstr ""
+msgstr "Voltas Córa"
 
 #: data.hpp:354
 msgid "Power Avg"
-msgstr ""
+msgstr "Cumhacht Meánlíon"
 
 #: data.hpp:355
 msgid "Core Clock"
-msgstr ""
+msgstr "Clog Córa"
 
 #: data.hpp:356
 msgid "Memory Clock"
-msgstr ""
+msgstr "Clog Cuimhne"
 
 #: data.hpp:357
 msgid "Memory Used"
-msgstr ""
+msgstr "Cuimhne Úsáidte"
 
 #: data.hpp:358
 msgid "Resizable BAR"
-msgstr ""
+msgstr "BAR inathraithe"
 
 #: data.hpp:359
 msgid "Vulkan RT"
-msgstr ""
+msgstr "RT Vulcán"
 
 #: data.hpp:360
 msgid "OpenGL Version"
-msgstr ""
+msgstr "Leagan OpenGL"
 
 #: data.hpp:361
 msgid "Vulkan Version"
-msgstr ""
+msgstr "Leagan Vulkan"
 
 #: data.hpp:362
 msgid "OpenCL Version"
-msgstr ""
+msgstr "Leagan OpenCL"
 
 #: data.hpp:398
 msgid "Score"
-msgstr ""
+msgstr "Scór"
 
 #: data.hpp:399
 msgid "Run"
-msgstr ""
+msgstr "Rith"
 
 #: data.hpp:418
 msgid "Duration"
-msgstr ""
+msgstr "Fad"
 
 #: util.hpp:77
 msgid "bytes"
-msgstr ""
+msgstr "bearta"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: util.hpp:80
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: util.hpp:82
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: util.hpp:84
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: util.hpp:86
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:89
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: util.hpp:91
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: util.hpp:93
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: util.hpp:95
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
-msgstr ""
+msgstr "Tosaigh deamhan"
 
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
-msgstr ""
+msgstr "Tá pribhléidí ag teastáil chun roinnt faisnéise a bhailiú"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
-msgstr ""
+msgstr "Taisce"
 
 #: cpu-x-gtk-3.12.ui:5861
 msgid "Close"
-msgstr ""
+msgstr "Dún"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955
 msgid "Refresh time"
-msgstr ""
+msgstr "Am Athnuachtha"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5979
 msgid "Text theme"
-msgstr ""
+msgstr "Téama téacs"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5994
 msgid "Automatic"
-msgstr ""
+msgstr "Uathoibríoch"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5995
 msgid "Blue for light theme"
-msgstr ""
+msgstr "Gorm le haghaidh téama éadrom"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5996
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "Buí le haghaidh téama dorcha"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:6009
 msgid "Temperature unit"
-msgstr ""
+msgstr "Aonad teochta"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6060
 msgid "Default tab"
-msgstr ""
+msgstr "Cluaisín réamhshocraithe"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6073
 msgid "Default CPU core"
-msgstr ""
+msgstr "Cór Réamhshocraithe CPU"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:6086
 msgid "Default cache test"
-msgstr ""
+msgstr "Tástáil taisce réamhshocraithe"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6129
 msgid "Print CPUID values in decimal"
-msgstr ""
+msgstr "Priontáil luachanna CPUID i deachúlacha"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6162
 msgid "Default graphic card"
-msgstr ""
+msgstr "Cárta grafaicí réamhshocraithe"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6186
 msgid "Default core type"
-msgstr ""
+msgstr "Tionchar Cór Réamhshocraithe"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6210
 msgid "Default memory stick"
-msgstr ""
+msgstr "Bata Cuimhne Réamhshocraithe"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
-msgstr ""
+msgstr "Tosaithe"
