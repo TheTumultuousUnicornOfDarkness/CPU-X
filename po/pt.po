@@ -9,11 +9,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-10-08 02:23+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2024-10-24 08:15+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -104,7 +104,7 @@ msgstr "A chamar a largura de banda"
 #: core.cpp:761
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (assunto) / %s (emitente)"
 
 #: core.cpp:789
 #, c-format
@@ -886,10 +886,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "Veja a licença %s em: <%s>\n"
 
 #: main.cpp:184
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s versão: %s"
+msgstr "-- %-11s versão: %s"
 
 #: main.cpp:411
 #, c-format
@@ -1477,10 +1476,8 @@ msgid "Start daemon"
 msgstr "Iniciar daemon"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "É necessário privilégios de root para funcionar corretamente"
+msgstr "Os privilégios são necessários para recolher algumas informações"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
@@ -1488,7 +1485,7 @@ msgstr "Cache"
 
 #: cpu-x-gtk-3.12.ui:5861
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955
