@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-10-27 18:00+0000\n"
+"PO-Revision-Date: 2024-11-08 20:00+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
 "n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.8.2\n"
 
 #: core.cpp:165
 #, c-format
@@ -39,12 +39,13 @@ msgstr ""
 "ext. family: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
+msgstr ""
+"Twój procesor nie znajduje się w bazie danych ==> %s, numer części: 0x%x, "
+"nazwa kodowa: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -695,7 +696,7 @@ msgstr ""
 
 #: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "Informacje o certyfikacie EFI Platform Key"
 
 #: gui_gtk.cpp:923
 msgid ""
@@ -1182,7 +1183,7 @@ msgstr ""
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Wariant"
 
 #: data.hpp:118 data.hpp:271
 msgid "Part Number"
