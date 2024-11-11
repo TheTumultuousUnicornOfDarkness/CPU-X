@@ -12,17 +12,17 @@
 # yangyangdaji <1504305527@qq.com>, 2022, 2023, 2024.
 # Eric <hamburger1024@mailbox.org>, 2022.
 # Hou Qiyao <ryanhou24@gmail.com>, 2023.
-# A1ive <10670106+a1ive@users.noreply.github.com>, 2023.
+# A1ive <10670106+a1ive@users.noreply.github.com>, 2023, 2024.
 # taotieren <admin@taotieren.com>, 2024.
 # Lily Chou <lily-develop@outlook.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-10-03 06:16+0000\n"
-"Last-Translator: Lily Chou <lily-develop@outlook.com>\n"
+"PO-Revision-Date: 2024-11-12 08:00+0000\n"
+"Last-Translator: A1ive <10670106+a1ive@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.8.2\n"
 
 #: core.cpp:165
 #, c-format
@@ -849,10 +849,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "查看 %s 许可协议：<%s>\n"
 
 #: main.cpp:184
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s 版本：%s"
+msgstr "-- %-11s 版本：%s"
 
 #: main.cpp:411
 #, c-format
@@ -882,10 +881,9 @@ msgid "an error occurred while setting locale"
 msgstr "本地化设置时出错"
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "所选标签页 (%u) 不是有效数字（%u 是最大值）"
+msgstr "所选标签页 (%u) 不可见（%u 是最大值）"
 
 #: options.cpp:161
 #, c-format
@@ -1405,10 +1403,8 @@ msgid "Start daemon"
 msgstr "启动守护进程"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "需要 root 权限以正常工作"
+msgstr "需要权限以获取一些信息"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
@@ -1416,7 +1412,7 @@ msgstr "缓存"
 
 #: cpu-x-gtk-3.12.ui:5861
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5955
