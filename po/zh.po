@@ -15,14 +15,15 @@
 # A1ive <10670106+a1ive@users.noreply.github.com>, 2023, 2024.
 # taotieren <admin@taotieren.com>, 2024.
 # Lily Chou <lily-develop@outlook.com>, 2024.
+# qx100 <oa1gozib1@mozmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2024-11-12 08:00+0000\n"
-"Last-Translator: A1ive <10670106+a1ive@users.noreply.github.com>\n"
+"PO-Revision-Date: 2024-11-15 04:00+0000\n"
+"Last-Translator: qx100 <oa1gozib1@mozmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
@@ -30,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -105,7 +106,7 @@ msgstr "正在调用 bandwidth"
 #: core.cpp:761
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s（主体）/%s（发行人）"
 
 #: core.cpp:789
 #, c-format
@@ -683,7 +684,7 @@ msgstr "CPU 显示 (\"true\") 型号 (计算为 (ExtendedModel<<4)+BaseModel)"
 
 #: gui_gtk.cpp:888
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "EFI 平台密钥证书信息"
 
 #: gui_gtk.cpp:923
 msgid ""
@@ -883,7 +884,7 @@ msgstr "本地化设置时出错"
 #: options.cpp:156
 #, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "所选标签页 (%u) 不可见（%u 是最大值）"
+msgstr "所选标签页 (%u) 不可见"
 
 #: options.cpp:161
 #, c-format
@@ -1122,11 +1123,11 @@ msgstr "步进"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "执行器"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "变体编号"
 
 #: data.hpp:118 data.hpp:271
 msgid "Part Number"
@@ -1214,7 +1215,7 @@ msgstr "ROM 大小"
 
 #: data.hpp:247
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI 平台密钥"
 
 #: data.hpp:272
 msgid "Type"
