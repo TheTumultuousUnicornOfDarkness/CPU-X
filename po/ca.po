@@ -2,14 +2,15 @@
 # Copyright © 2014-2024 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
 # Sergi Font <sfont@tuta.io>, 2021.
+# Joan Aymà <joanayma@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-10-09 08:38+0000\n"
-"PO-Revision-Date: 2021-08-12 17:34+0000\n"
-"Last-Translator: Sergi Font <sfont@tuta.io>\n"
+"PO-Revision-Date: 2024-11-16 18:00+0000\n"
+"Last-Translator: Joan Aymà <joanayma@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ca/>\n"
 "Language: ca\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -29,16 +30,13 @@ msgstr ""
 "%i, ext. família: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
-#| "%i, ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
 msgstr ""
-"La teva CPU no és present a la base de dades ==> %s, model: %i, ext. model: "
-"%i, ext. família: %i"
+"La teva CPU no és present a la base de dades ==> %s, número de peça: 0x%x, "
+"nom en clau: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -46,7 +44,7 @@ msgstr "Cercant la tecnologia de la CPU"
 
 #: core.cpp:268 data.cpp:153 data.cpp:364
 msgid "unknown"
-msgstr ""
+msgstr "desconegut"
 
 #: core.cpp:352
 msgid "Calling libcpuid for retrieving static data"
@@ -76,17 +74,17 @@ msgstr "Cridant dmidecode"
 #: core.cpp:612 core.cpp:631
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (configurat)"
 
 #: core.cpp:619 core.cpp:638
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (màx)"
 
 #: core.cpp:624
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (mín)"
 
 #: core.cpp:654
 msgid "Calculating CPU usage"
@@ -99,7 +97,7 @@ msgstr "Cridant l'ample de banda"
 #: core.cpp:761
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (assumpte) / %s (emissor)"
 
 #: core.cpp:789
 #, c-format
@@ -154,36 +152,35 @@ msgstr "No s'ha pogut cridar libcpuid (%s)"
 
 #: core.cpp:1127
 msgid "No available Vulkan devices"
-msgstr ""
+msgstr "No hi ha dispositius Vulkan disponibles"
 
 #: core.cpp:1135
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
-msgstr "No s'ha pogut cridar libcpuid (%s)"
+msgstr "No hi ha dispositius físics disponibles (%s)"
 
 #: core.cpp:1198
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "no s'ha obtingut el nom del dispositiu %u (%s)"
+msgstr "Ha faltat al crear el Vulkan pel dispositiu %u (%s)"
 
 #: core.cpp:1202
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s no és suportat pel dispositiu %u, utilitza només deviceID per emparellar"
 
 #: core.cpp:1234 core.cpp:1553
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitat"
 
 #: core.cpp:1234 core.cpp:1553
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitat"
 
 #: core.cpp:1271
 msgid "Finding OpenCL API version"
-msgstr ""
+msgstr "Buscant la versió de la API de OpenCL"
 
 #: core.cpp:1275
 #, c-format
@@ -213,7 +210,7 @@ msgstr ""
 
 #: core.cpp:1314
 msgid "0 device"
-msgstr ""
+msgstr "0 dispositius"
 
 #: core.cpp:1323
 #, c-format
@@ -234,7 +231,7 @@ msgstr "no s'ha obtingut la versió pel dispositiu %u (%s)"
 #: core.cpp:1377
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
+msgstr "El controlador OpenCL de '%s %s' no suporta CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core.cpp:1388
 #, c-format
