@@ -1360,9 +1360,8 @@ int start_gui_gtk(Data &data)
 		GtkData gdata(builder, data);
 		return app->run(*gdata.mainwindow);
 	}
-	catch(const Gtk::BuilderError& e)
+	catch(...)
 	{
-		std::cerr << e.what() << std::endl;
 		MSG_ERROR("%s", _("failed to import UI in GtkBuilder"));
 		return EXIT_FAILURE;
 	}
