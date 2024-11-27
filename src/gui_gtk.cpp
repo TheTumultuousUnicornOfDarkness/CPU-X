@@ -49,19 +49,35 @@ using CacheLevels = Data::Caches::CpuType::CacheLevels;
 Glib::RefPtr<Gtk::Application> app;
 static Glib::RefPtr<Gio::Settings> settings;
 
+/* Check if file exists at path */
+static inline bool check_data_path(const std::string file, const std::string full_path)
+{
+	if(Glib::file_test(full_path, Glib::FILE_TEST_EXISTS))
+	{
+		MSG_DEBUG("check_data_path: file=%s ==> %s found", file.c_str(), full_path.c_str());
+		return true;
+	}
+	else
+	{
+		MSG_DEBUG("check_data_path: file=%s ==> %s does not exist", file.c_str(), full_path.c_str());
+		return false;
+	}
+}
+
 /* Search file location in standard paths */
 static const std::string get_data_path(const std::string &file)
 {
+	/* Try to open file under CPU_X_DATA_DIRECTORY (CMake variable) */
+	std::string full_path = std::string(CPUX_DATA_DIRECTORY) + "/" + file;
+	if(check_data_path(file, full_path))
+		return full_path;
+
+	/* Fallback to system data directories */
 	for(const auto& dir : Glib::get_system_data_dirs())
 	{
-		const std::string full_path = dir + "/" + PRGNAME_LOW + "/" + file;
-		if(Glib::file_test(full_path, Glib::FILE_TEST_EXISTS))
-		{
-			MSG_DEBUG("get_data_path: file=%s ==> %s found", file.c_str(), full_path.c_str());
+		full_path = dir + "/" + PRGNAME_LOW + "/" + file;
+		if(check_data_path(file, full_path))
 			return full_path;
-		}
-		else
-			MSG_DEBUG("get_data_path: file=%s ==> %s does not exist", file.c_str(), full_path.c_str());
 	}
 
 	MSG_ERROR(_("Cannot find path for '%s' file"), file.c_str());
