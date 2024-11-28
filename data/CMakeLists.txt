@@ -37,9 +37,10 @@ if(WITH_GTK)
 	)
 
 	# Install policy rule
+	pkg_get_variable(POLKIT_ACTION_DIR polkit-gobject-1 actiondir)
 	install(FILES
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy
-		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions/
+		DESTINATION ${POLKIT_ACTION_DIR}
 	)
 
 	# Install schema file
