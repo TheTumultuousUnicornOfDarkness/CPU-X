@@ -15,9 +15,10 @@ jobs:
     runs-on: ${{ matrix.os.label }}
     strategy:
       matrix:
-        os: # https://github.com/actions/virtual-environments/tree/main/images/linux
+        os: # https://github.com/actions/runner-images/tree/main/images/ubuntu
           - { label: ubuntu-20.04 }
           - { label: ubuntu-22.04 }
+          - { label: ubuntu-24.04 }
 
     steps:
     - uses: actions/checkout@v4

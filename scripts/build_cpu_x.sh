@@ -27,10 +27,16 @@ fi
 
 case "$VERSION_ID" in
 	"20.04") # Focal Fossa
-		PACKAGES=('libncurses-dev' 'libncursesw6' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		GCC_VER=10
+		PACKAGES=('gcc-10' 'g++-10' 'libprocps-dev' 'libprocps8')
 		;;
 	"22.04") # Jammy Jellyfish
-		PACKAGES=('libncurses-dev' 'libncursesw6' 'libpci3' 'libprocps8' 'libglfw3-dev' 'libglfw3' 'libglvnd-dev' 'libvulkan-dev' 'ocl-icd-opencl-dev')
+		GCC_VER=12
+		PACKAGES=('gcc-12' 'g++-12' 'libprocps-dev' 'libprocps8')
+		;;
+	"24.04") # Noble Numbat
+		GCC_VER=14
+		PACKAGES=('gcc-14' 'g++-14' 'libproc2-dev' 'libproc2-0')
 		;;
 	*)
 		echo "Unsupported Ubuntu version: $VERSION_ID" ; exit 1
@@ -41,30 +47,34 @@ echo "Install packages"
 sudo apt-get update -y -qq
 sudo apt-get install -y -qq \
 	valgrind \
-	gcc-10 \
-	g++-10 \
+	dpkg-dev \
+	gawk \
+	mawk \
+	"gcc-$GCC_VER" \
+	"g++-$GCC_VER" \
 	cmake \
 	ninja-build \
 	nasm \
 	gettext \
+	libpolkit-gobject-1-dev \
 	adwaita-icon-theme \
-	"${PACKAGES[@]}" \
 	libgtkmm-3.0-1v5 \
 	libgtkmm-3.0-dev \
+	libncursesw6 \
+	libncurses-dev \
+	libpci3 \
 	libpci-dev \
+	libglfw3 \
+	libglfw3-dev \
+	libvulkan-dev \
+	libglvnd-dev \
 	opencl-headers \
 	ocl-icd-libopencl1 \
 	ocl-icd-opencl-dev \
-	libprocps-dev \
-	libpolkit-gobject-1-dev \
-	dpkg-dev \
-	gawk \
-	mawk
+	"${PACKAGES[@]}"
 
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
+sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-$GCC_VER" 9001 # It's Over 9000
+sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/g++-$GCC_VER" 9002 # It's Over 9000
 
 echo "Run CMake"
 cmake -S "$SRC_DIR" \
