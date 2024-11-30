@@ -56,6 +56,7 @@ sudo apt-get install -y -qq \
 	ocl-icd-libopencl1 \
 	ocl-icd-opencl-dev \
 	libprocps-dev \
+	libpolkit-gobject-1-dev \
 	dpkg-dev \
 	gawk \
 	mawk
