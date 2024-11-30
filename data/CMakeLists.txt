@@ -38,6 +38,9 @@ if(WITH_GTK)
 
 	# Install policy rule
 	pkg_get_variable(POLKIT_ACTION_DIR polkit-gobject-1 actiondir)
+	if(${POLKIT_ACTION_DIR} STREQUAL "")
+		set(POLKIT_ACTION_DIR "${CMAKE_INSTALL_FULL_DATADIR}/polkit-1/actions/")
+	endif(${POLKIT_ACTION_DIR} STREQUAL "")
 	install(FILES
 		${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy
 		DESTINATION ${POLKIT_ACTION_DIR}
