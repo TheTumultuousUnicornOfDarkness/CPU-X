@@ -28,7 +28,7 @@ jobs:
       run: bash -x ./scripts/build_libcpuid.sh "Debug"
 
     - name: Build CPU-X
-      run: bash ./scripts/build_ubuntu.sh "Debug" "$GITHUB_WORKSPACE"
+      run: bash ./scripts/build_cpu_x.sh "Debug" "$GITHUB_WORKSPACE"
 
     - name: Run tests
       run: ninja -C build test

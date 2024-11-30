@@ -23,7 +23,7 @@ jobs:
       run: bash -x ./scripts/build_libcpuid.sh "$BUILD_TYPE"
 
     - name: Build CPU-X
-      run: bash -x ./scripts/build_ubuntu.sh "$BUILD_TYPE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+      run: bash -x ./scripts/build_cpu_x.sh "$BUILD_TYPE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
       run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
