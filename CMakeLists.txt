@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
-cmake_policy(SET CMP0048 NEW)
-if(POLICY CMP0075)
-	cmake_policy(SET CMP0075 NEW)
+# https://cmake.org/cmake/help/latest/policy/CMP0177.html
+if(POLICY CMP0177)
+	cmake_policy(SET CMP0177 NEW)
 endif()
 project(cpu-x
 	VERSION "5.1.0"

@@ -48,7 +48,7 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 
 These dependencies are needed to **build** CPU-X:
 * A C++ compiler ([GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/))
-* [CMake](https://www.cmake.org/)
+* [CMake](https://www.cmake.org/) (version 3.12 or newer is needed)  
 * [Pkg-Config](https://www.freedesktop.org/wiki/Software/pkg-config/) / [Pkgconf](https://github.com/pkgconf/pkgconf)
 * [NASM](https://www.nasm.us/) (for x86 CPUs only)
 
