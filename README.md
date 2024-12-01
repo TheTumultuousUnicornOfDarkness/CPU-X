@@ -19,7 +19,8 @@ CPU-X is a system profiling and monitoring application (similar to [CPU-Z for Wi
 This software is written in C++ and built with [CMake](https://www.cmake.org/) tool.  
 It can be used in graphical mode by using GTK or in text-based mode by using NCurses. A dump mode is present from command line.  
 
-**:warning: There are no milestones for this project, read [this announcement](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/future-of-project) for more details.**
+> [!IMPORTANT]
+> There are no milestones for this project, read [this announcement](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/future-of-project) for more details.
 
 ***
 
@@ -123,7 +124,8 @@ More informations are available on Wiki, like screenshots, troubleshooting and t
 ## Bugs/Improvements/Request features
 
 Please [open a new issue](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues/new/choose) and fill the appropriate template. Note that text between `<!-- ... -->` is not displayed.  
-:warning: **Incomplete reports may be closed without justification.**
+> [!WARNING]
+> Incomplete reports may be closed without justification.
 
 ## Translate CPU-X
 

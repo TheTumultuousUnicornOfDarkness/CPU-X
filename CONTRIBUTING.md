@@ -55,7 +55,8 @@ The file structure in the `src` directory is the following:
 ### Add new labels
 
 Adding new labels to CPU-X is a little bit complex, but don't worry: this sub-section explains how to achieve that.  
-:warning: Note: this guide does not explain how to add a new tab.
+> [!NOTE]
+> This guide does not explain how to add a new tab.
 
 **1. In core**
 
@@ -68,7 +69,8 @@ Adding new labels to CPU-X is a little bit complex, but don't worry: this sub-se
   ```c
   data.system.os.kernel.value = "XXX";
   ```
-  :bulb: `fill_labels()` and `do_refresh()` are the calling functions.
+  > [!TIP]
+  > `fill_labels()` and `do_refresh()` are the calling functions.
 - Finally, in `data.cpp` file, print the label in the appropriate `operator<<` overload.
 
 **2. In NCurses TUI**
