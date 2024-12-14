@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2022-11-03 07:08+0000\n"
 "Last-Translator: cosita official <kokosove18@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -442,27 +442,27 @@ msgstr "Informace o základní desce zjišťovány v náhradním režimu"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "nepodařilo se získat informace o základní desce (náhradní režim)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Teplota procesoru zjišťována v náhradním režimu"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "nepodařilo se zjistit teplotu procesoru (náhradní režim)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Provozní napětí procesoru zjišťováno v náhradním režimu"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
 
@@ -683,78 +683,78 @@ msgstr "Licence"
 msgid "This software is distributed under the terms of %s"
 msgstr "Tento software je šířen za podmínek licence %s"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Na tuto aplikaci nejsou poskytovány VŮBEC ŽÁDNÉ ZÁRUKY"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr ""
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr ""
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 #, fuzzy
 #| msgid "Family"
 msgid "BaseFamily"
 msgstr "Řada"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 #, fuzzy
 #| msgid "Model"
 msgid "BaseModel"
 msgstr "Model"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "Verze"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 #, fuzzy
 #| msgid "Starting GTK GUI..."
 msgid "Starting GTK GUI…"
 msgstr "Spouštění GTK grafického uživatelského rozhraní…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr ""
 "nepodařilo se importovat definici uživatelské rozhraní ve formátu GtkBuilder"
@@ -865,7 +865,7 @@ msgstr "Vynutit takt sběrnice"
 #: main.cpp:97
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 
 #: main.cpp:98
@@ -878,16 +878,16 @@ msgstr "Načíst nezpracovaná CPUID data ze zadaného souboru"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Pokud procesor není v databázi, pouze vypsat hlášení"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Použití: %s ZOBRAZENÍ [PŘEDVOLBY]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "ZOBRAZENÍ k dispozici:"
 
-#: main.cpp:135
+#: main.cpp:136
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -897,7 +897,7 @@ msgstr ""
 "\n"
 "PŘEDVOLBY k dispozici:"
 
-#: main.cpp:144
+#: main.cpp:145
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -907,22 +907,22 @@ msgstr ""
 "\n"
 "Ovlivnitelné proměnné prostředí:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Toto je svobodný software: můžete ho upravovat a šířit dál."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Viz licence %s: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, fuzzy, c-format
 #| msgid "-- %-9s version: %s"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s verze: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -931,7 +931,7 @@ msgstr ""
 "\n"
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a crashlo.%s"
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -942,15 +942,15 @@ msgstr ""
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a pokouší se o nápravu."
 "%s"
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "při nastavování místních a jazykových nastavení došlo k chybě"
 
-#: options.cpp:156
+#: options.cpp:166
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -960,7 +960,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:161
+#: options.cpp:171
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -970,7 +970,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -978,7 +978,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -990,7 +990,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1002,7 +1002,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1014,12 +1014,12 @@ msgstr ""
 "Vybrané jádro procesoru (%u) není správné číslo (%u je maximum pro tento typ "
 "jádra)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr ""
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-10-09 22:31+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -428,27 +428,27 @@ msgstr "Yedek modda anakart bilgisi alınıyor"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "anakart bilgisi alınamadı (yedek modu)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Yedek modda CPU sıcaklığı alınıyor"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU sıcaklığı alınamadı (yedek mod)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Yedek modda CPU gerilimi alınıyor"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU gerilimi alınamadı (yedek mod)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Yedek modda CPU frekansı alınıyor"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 
@@ -653,52 +653,52 @@ msgstr "Lisans"
 msgid "This software is distributed under the terms of %s"
 msgstr "Bu yazılım %s koşulları altında dağıtılmıştır"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' dosyasının yolu bulunamadı"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "Art alan hizmetini başlatmak için parola sor"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "TemelAile"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Görüntülenen (\"gerçek\") CPU ailesi (TemelAile+GenişletilmişAile olarak "
 "hesaplanır)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "TemelModel"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Görüntülenen (\"gerçek\") CPU modeli ((GenişletilmişModel<<4)+TemelModel "
 "olarak hesaplanır)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr "EFI Platform Anahtarı sertifika bilgileri"
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -706,23 +706,23 @@ msgstr ""
 "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş soketi ya da kart "
 "konumunu tanımla"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş bakoyu tanımla"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "Kullanıcı Modu Sürücü Sürümü"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Işın Yansıma (Ray Tracing)"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI başlatılıyor…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
@@ -825,9 +825,13 @@ msgid "Enforce the bus clock"
 msgstr "Veri yolu saatini zorla"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "Libcpuid tarafından bildirilen CPU değerlerini görmezden gel ('temp', 'volt' "
 "ve 'freq' arasında virgülle ayrılmış değerler)"
@@ -840,38 +844,38 @@ msgstr "Belirtilen bir dosyadan CPUID ham verilerini oku"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Yalnızca veri tabanında CPU yoksa bir mesaj yazdır"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Kullanım: %s EKRAN [SEÇENEKLER]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "Kullanılabilir EKRAN:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "Kullanılabilir SEÇENEKLER:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "Etkilenebilir ortam değişkenleri:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Bu bir özgür yazılımdır: değiştirmek ve yeniden dağıtmakta özgürsünüz."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s lisansına bakın: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s sürümü: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -880,7 +884,7 @@ msgstr ""
 "\n"
 "Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -891,32 +895,32 @@ msgstr ""
 "Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve kurtarmaya "
 "çalışıyor."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "Şablonu istendiği gibi doldurarak burada yeni bir sorun açabilirsiniz:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "yerel ayar yapılırken bir hata oluştu"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "Seçilen sekme (%u) görünür değil"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Seçilen sekme (%u) geçerli bir sayı değil (%u azami değerdir)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
 "Seçilen CPU türü (%u) geçerli bir sayı değil (%u bu CPU için azami değerdir)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -925,7 +929,7 @@ msgstr ""
 "Seçilen bant genişliği türü (%u) geçerli bir sayı değil (%u bu sistem için "
 "azami değerdir)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -934,7 +938,7 @@ msgstr ""
 "Seçilen RAM türü (%u) geçerli bir sayı değil (%u bu sistem için azami "
 "değerdir)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -943,12 +947,12 @@ msgstr ""
 "Seçilen grafik kartı (%u) geçerli bir sayı değil (%u bu sistem için azami "
 "sayıdır)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "Çekirdek %u için CPU benzeşimi değiştirilemedi"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

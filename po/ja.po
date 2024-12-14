@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-10-09 22:31+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -428,27 +428,27 @@ msgstr "fallback モードでマザーボード情報を取得中"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "マザーボード情報の取得に失敗（fallback モード）"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallback モードで CPU 温度の取得"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU 温度の取得に失敗（fallback モード）"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallback モードで CPU 電圧の取得"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU 電圧の取得に失敗（fallback モード）"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallback モードでCPU クロック周波数の取得"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
 
@@ -653,49 +653,49 @@ msgstr "ライセンス"
 msgid "This software is distributed under the terms of %s"
 msgstr "このソフトウェアは%sのもとで配布されています"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "このプログラムは全て自己責任で使用してください"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' ファイルのパスが見つかりません"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Polkit 認証エージェントが見つかりません"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "設定"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "ベース ファミリー"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "ベース モデル"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr "EFI Platform Key 証明書情報"
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -703,24 +703,24 @@ msgstr ""
 "メモリデバイスが配置されている、物理的にラベル付けされたソケットまたはボード"
 "の位置を特定する"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "メモリデバイスが配置されている、物理的にラベル付けされたバンクを特定する"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "ユーザー モードのドライバーのバージョン"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan レイトレーシング"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI の起動…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder での UI のインポートに失敗"
 
@@ -823,9 +823,13 @@ msgid "Enforce the bus clock"
 msgstr "バスクロックを適用する"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "libcpuid が報告する CPU の値（'temp', 'volt', 'freq' をカンマ区切りにした値）"
 "を無視する"
@@ -838,38 +842,38 @@ msgstr "生のCPUIDデータを与えられたファイルから読み込みま�
 msgid "Only print a message if CPU is not present in the database"
 msgstr "CPUがデータベースに存在しない場合のみメッセージを出力します"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "使い方: %s 表示（オプション）\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "利用可能な表示方法:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "利用可能なオプション:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "影響力のある環境変数:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "これはフリーソフトウェアです: 自由に変更して再配布することができます。"
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s ライセンスを見てください: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s バージョン: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -878,7 +882,7 @@ msgstr ""
 "\n"
 "何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -888,25 +892,25 @@ msgstr ""
 "\n"
 "何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "ここで新しい問題をテンプレートを使って報告することが出来ます。"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "選択したタブ (%u) は表示されません"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "選択したタブ（%u）は有効な数値ではありません（%u は最大値です）"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -914,7 +918,7 @@ msgstr ""
 "選択した CPU タイプ（%u）は有効な数値ではありません（%u がこの CPU の最大値で"
 "す）"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -923,7 +927,7 @@ msgstr ""
 "選択した帯域幅テスト（%u）は有効な数値ではありません（%u がこのシステムの最大"
 "値です）"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -932,7 +936,7 @@ msgstr ""
 "選択した RAM スティック（%u）は有効な数値ではありません（%u がこのシステムの"
 "最大値です）"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -941,12 +945,12 @@ msgstr ""
 "選択したグラフィックカード（%u）は有効な番号ではありません（%u がこのシステム"
 "の最大値です）"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "CPU アフィニティをコア %u に変更できませんでした"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

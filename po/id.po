@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-05-01 15:07+0000\n"
 "Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
@@ -431,27 +431,27 @@ msgstr "Mengambil informasi papan induk di mode fallback"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "gagal mengambil informasi papan induk (mode fallback)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Mengambil suhu CPU di mode fallback"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "gagal mengambil suhu CPU (mode fallback)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Mengambil tegangan CPU di mode fallback"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "gagal mengambil tegangan CPU (mode fallback)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Mengambil frekuensi CPU di mode fallback"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "gagal mengambil frekuensi CPU (mode fallback)"
 
@@ -656,52 +656,52 @@ msgstr "Lisensi"
 msgid "This software is distributed under the terms of %s"
 msgstr "Perangkat lunak ini didistribusikan di bawah aturan %s"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Program ini hadir dengan TANPA JAMINAN APA PUN"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Jalur untuk berkas '%s' tidak dapat ditemukan"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Agen autentikasi polkit tidak ditemukan"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "Meminta kata sandi untuk memulai daemon di latar belakang"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "KeluargaDasar"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Tampilan CPU (\"benar\") keluarga (dihitung sebagai "
 "KeluargaDasar+KeluargaBesar)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "ModelDasar"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Model tampilan CPU (\"benar\") (dihitung sebagai "
 "(ExtendedModel<<4)+ModelDasar)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -709,24 +709,24 @@ msgstr ""
 "Tentukan lokasi soket atau papan yang ditandai secara fisik dimana perangkat "
 "memori berada"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Tentukan bank yang diberi tag secara fisik tempat perangkat memori berada"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "Versi Pengandar Mode Pengguna"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Pelacakan Sinar Vulkan"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "Memulai GUI GTK…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "gagal mengimpor UI dalam GtkBuilder"
 
@@ -829,9 +829,13 @@ msgid "Enforce the bus clock"
 msgstr "Terapkan bus clock"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "Abaikan Nilai CPU yang dilaporkan oleh libcpuid (nilai koma-terpisah antara "
 "'temp', 'volt' and 'freq')"
@@ -844,41 +848,41 @@ msgstr "Baca data mentah CPUID dari berkas tertentu"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Hanya mencetak pesan jika CPU tidak ada dalam basis data"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Penggunaan: %s MENAMPILKAN [OPSI]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "TAMPILAN yang tersedia:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "OPSI yang Tersedia:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "Variabel lingkungan yang dapat dipengaruhi:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Ini adalah perangkat lunak gratis: Anda bebas untuk mengubah dan "
 "mendistribusikannya kembali."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Lihat %s lisensi: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, fuzzy, c-format
 #| msgid "-- %-9s version: %s"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s versi: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -887,7 +891,7 @@ msgstr ""
 "\n"
 "Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan mengalami gangguan."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -898,28 +902,28 @@ msgstr ""
 "Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan sedang mencoba "
 "untuk pulih."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Anda dapat membuka isu baru di sini, dengan mengisi templat seperti yang "
 "diminta:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "terjadi kesalahan saat mengatur lokasi"
 
-#: options.cpp:156
+#: options.cpp:166
 #, fuzzy, c-format
 #| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgid "Selected tab (%u) is not visible"
 msgstr "Tab yang dipilih (%u) bukan angka yang valid (%u adalah maksimum)"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Tab yang dipilih (%u) bukan angka yang valid (%u adalah maksimum)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -927,7 +931,7 @@ msgstr ""
 "Jenis CPU yang dipilih (%u) bukan merupakan angka yang valid (%u adalah "
 "angka maksimum untuk CPU ini)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -936,7 +940,7 @@ msgstr ""
 "Tes bandwidth yang dipilih (%u) bukan merupakan angka yang valid (%u adalah "
 "angka maksimum untuk sistem ini)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -945,7 +949,7 @@ msgstr ""
 "Modul RAM yang dipilih (%u) bukan angka yang valid (%u adalah jumlah "
 "maksimum untuk sistem ini)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -954,12 +958,12 @@ msgstr ""
 "Kartu grafis yang dipilih (%u) bukan angka yang valid (%u adalah jumlah "
 "maksimum untuk sistem ini)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "gagal mengubah afinitas CPU ke inti %u"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

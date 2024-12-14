@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-12-14 14:42+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -30,8 +30,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 5.9-rc\n"
 
 #: core.cpp:165
@@ -435,27 +435,27 @@ msgstr "Получение информации о материнской пла
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "не удалось получить информацию о материнской плате (режим с откатом)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Получение температуры ЦП в режиме с откатом"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "не удалось получить температуру ЦП (режим с откатом)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Получение напряжения ЦП в режиме с откатом"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "не удалось получить напряжение ЦП (режим с откатом)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Получение частоты ЦП в режиме с откатом"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не удалось получить частоту ЦП (режим с откатом)"
 
@@ -660,52 +660,52 @@ msgstr "Лицензия"
 msgid "This software is distributed under the terms of %s"
 msgstr "Эта программа распространяется на условиях %s"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Эта программа предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Не удаётся найти путь для файла «%s»"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Агент аутентификации polkit не найден"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "Требуется пароль для запуска демона в фоновом режиме"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "Настройки"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "Базовое семейство"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Отображаемое («истинное») семейство ЦП (вычисляется как базовое семейство + "
 "расширенное семейство)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "Базовая модель"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Отображаемая («истинная») модель ЦП (вычисляется как (расширенная модель << "
 "4) + базовая модель)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr "Сведения о сертификате EFI Platform Key"
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -713,24 +713,24 @@ msgstr ""
 "Определить физически помеченное положение сокета или платы, где находится "
 "устройство памяти"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Определить физически обозначенный банк, где находится устройство памяти"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "Версия драйвера пользовательского режима"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Трассировка лучей Vulkan"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "Запускается интерфейс GTK…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "не удалось импортировать интерфейс в GtkBuilder"
 
@@ -838,9 +838,13 @@ msgid "Enforce the bus clock"
 msgstr "Принудительно установить тактовую частоту шины"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "Игнорировать значения процессора, сообщённые libcpuid (значения, разделённые "
 "запятыми, среди «temp», «volt» и «freq»)"
@@ -853,40 +857,40 @@ msgstr "Прочитать сырые данные CPUID из заданного
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Выводить сообщение только если ЦП отсутствует в базе данных"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Использование: %s ВЫВЕСТИ [ПАРАМЕТРЫ]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "Доступный ДИСПЛЕЙ:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "Доступные ОПЦИИ:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "Затрагиваемые переменные окружения:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Это свободное программное обеспечение. Вы можете изменять и распространять "
 "его."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Посмотреть лицензию %s: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s версия: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -895,7 +899,7 @@ msgstr ""
 "\n"
 "Ой, что-то пошло не так! %s получил сигнал %d (%s) и аварийно завершился."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -905,27 +909,27 @@ msgstr ""
 "\n"
 "Ой, что-то пошло не так! %s получил сигнал %d (%s) и пытается восстановиться."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Здесь вы можете создать новый отчет об ошибке, заполнив шаблон следующим "
 "образом:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "ошибка при установке локализации"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "Выбранная вкладка (%u) не видна"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Выбранная вкладка (%u) не является допустимым числом (%u — максимум)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -933,7 +937,7 @@ msgstr ""
 "Выбранный тип ЦП (%u) не является допустимым числом (%u — максимум для этого "
 "ЦП)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -942,7 +946,7 @@ msgstr ""
 "Выбранная проверка пропускной способности (%u) не является допустимым числом "
 "(%u — максимум для этой системы)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -951,7 +955,7 @@ msgstr ""
 "Выбранная планка оперативной памяти (%u) не является допустимым числом (%u — "
 "максимум для этой системы)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -960,12 +964,12 @@ msgstr ""
 "Выбранная видеокарта (%u) не является допустимым числом (%u — максимум для "
 "этой системы)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "не удалось изменить привязку ЦП к ядру %u"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

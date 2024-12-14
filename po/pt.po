@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-10-24 08:15+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
@@ -439,27 +439,27 @@ msgstr "Recuperando informações da placa-mãe em modo fallback"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "falhou ao recuperar informações da placa-mãe (modo fallback)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Recuperando a temperatura da CPU em modo fallback"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "falhou ao recuperar a temperatura da CPU (modo fallback)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Recuperando a voltagem da CPU em modo fallback"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "falhou ao recuperar a voltagem da CPU (modo fallback)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Recuperando a frequência da CPU em modo fallback"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 
@@ -665,52 +665,52 @@ msgstr "Licença"
 msgid "This software is distributed under the terms of %s"
 msgstr "Este programa é distribuído nos termos da licença %s"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Este programa é fornecido ABSOLUTAMENTE SEM NENHUMA GARANTIA"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Não é possível encontrar caminho para o ficheiro '%s'"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Nenhum agente de autenticação polkit foi encontrado"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "Pedir palavra-passe para iniciar o daemon em segundo plano"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "Configurações"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "FamíliaBase"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Mostrar a família da CPU (\"true\") (calculada como "
 "FamíliaBase+FamíliaExtendida)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "ModeloBase"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Mostrar o modelo da CPU (\"true\") (calculada como "
 "(ModeloExtendido<<4)+ModeloBase)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr "Informações do certificado da chave da plataforma EFI"
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -718,25 +718,25 @@ msgstr ""
 "Identifique o soquete com uma etiqueta física ou a posição da placa onde o "
 "dispositivo de memória está localizado"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identifique o banco físico marcado onde o dispositivo de memória está "
 "localizado"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "Versão do controlador do modo de utilizador"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray Tracing"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "A iniciar a interface gráfica GTK…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "Falha ao importar a interface do utilizador no GtkBuilder"
 
@@ -843,9 +843,13 @@ msgid "Enforce the bus clock"
 msgstr "Forçar a velocidade do bus"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "Ignorar os valores informados da CPU pela libcpuid (valores separados por "
 "vírgula entre 'temp', 'volt' e 'freq')"
@@ -858,39 +862,39 @@ msgstr "Ler dados crus do CPUID de um determinado ficheiro"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Mostrar apenas uma mensagem caso a CPU não exista na base de dados"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Utilização: %s ECRÃ [OPÇÕES]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "ECRÃ disponível:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "OPÇÕES disponíveis:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "Variáveis de ambiente influenciáveis:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Isto é um programa livre: tem a liberdade de o alterar e redistribuí-lo."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Veja a licença %s em: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s versão: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -899,7 +903,7 @@ msgstr ""
 "\n"
 "Oops, alguma coisa está errada! %s recebeu o sinal %d (%s) e saiu."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -910,26 +914,26 @@ msgstr ""
 "Oops, alguma coisa está errada! %s recebeu o sinal %d (%s) e está a tentar "
 "recuperar."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Pode reportar o problema aqui, preenchendo o modelo conforme solicitado:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "ocorreu um erro ao definir as configurações locsis"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "O separador selecionado (%u) não está visível"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "O registo selecionado (%u) não é um número válido (%u é o máximo)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -937,7 +941,7 @@ msgstr ""
 "O tipo da CPU selecionada (%u) não é um número válido (%u é o máximo para "
 "esta CPU)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -946,7 +950,7 @@ msgstr ""
 "O teste de largura de banda selecionado (%u) não é um número válido (%u é o "
 "máximo para esse sistema)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -955,7 +959,7 @@ msgstr ""
 "A placa de RAM selecionada (%u) não é um número válido (%u é o máximo para "
 "esse sistema)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -964,12 +968,12 @@ msgstr ""
 "A placa gráfica selecionada (%u) não é um número válido (%u é o máximo para "
 "este sistema)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "houve uma falha ao alterar a afinidade da CPU para o núcleo %u"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

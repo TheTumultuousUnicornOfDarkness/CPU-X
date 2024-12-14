@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-10-13 02:16+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
@@ -415,27 +415,27 @@ msgstr "Hämtar moderkortsinformation i nödfallsläge"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "kunde inte hämta moderkortsinformation (nödfallsläge)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Hämtar CPU-temperatur i nödfallsläge"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "kunde inte hämta CPU-temperatur (nödfallsläge)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Hämtar CPU-spänning i nödfallsläge"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "kunde inte hämta CPU-spänning (nödfallsläge)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Hämtar CPU-frekvens i nödfallsläge"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "kunde inte hämta CPU-frekvens (nödfallsläge)"
 
@@ -640,49 +640,49 @@ msgstr "Licens"
 msgid "This software is distributed under the terms of %s"
 msgstr "Denna mjukvara distribueras under villkoren för %s"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Detta program levereras UTAN NÅGRA SOM HELST GARANTIER"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Kan inte hitta sökvägen för \"%s\""
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Ingen polkit-autentiseringsagent hittades"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "Be om lösenord för att starta tjänsten i bakgrunden"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "Inställningar"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "Basfamilj"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU-visningsfamilj (\"true\")(beräknad som BaseFamily+ExtendedFamily)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "Basmodell"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "CPU-visningsmodell (\"true\")(beräknad som (ExtendedModel<<4)+BaseModel)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr "Nyckelcertifikatinformation för EFI-plattformen"
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -690,23 +690,23 @@ msgstr ""
 "Identifiera det fysiskt märkta uttaget eller kortposition där minnesenheten "
 "är placerad"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "Identifiera det fysiskt märkta uttaget där minnesenheten finns"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "Användarlägesversion"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan Ray-spårning"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "Startar GTK-gui…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "kunde inte importera UI i GtkBuilder"
 
@@ -808,9 +808,13 @@ msgid "Enforce the bus clock"
 msgstr "Framtvinga bussfrekvens"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "Ignorera CPU-värden som rapporterats av libcpuid (komma-separerade värden "
 "bland \"temp\", \"volt\" och \"freq\")"
@@ -823,38 +827,38 @@ msgstr "Läs CPUID-rådata från en given fil"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Skriv bara ut ett meddelande om CPU:n inte finns med i databasen"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Användning: %s DISPLAY [OPTIONS]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "Tillgänglig SKÄRM:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "Tillgängliga ALTERNATIV:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "Påverkbara miljövariabler:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Detta är fri mjukvara: Du får ändra och återdistribuera den."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Se %s-licensen: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s version: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -863,7 +867,7 @@ msgstr ""
 "\n"
 "Hoppsan, något gick snett! %s har mottagit signal %d (%s) och har kraschat."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -874,26 +878,26 @@ msgstr ""
 "Hoppsan, något gick snett! %s har mottagit signal %d (%s) och försöker "
 "återställa."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Du kan öppna ett nytt ärende här, genom att fylla i mallen enligt begäran:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "ett fel uppstod vid inställning av språk"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "Vald flik (%u) är inte synlig"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Vald flik (%u) är inte ett giltigt tal (%u är max)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -901,7 +905,7 @@ msgstr ""
 "Vald CPU-typ (%u) är inte ett giltigt antal (%u är det maximala antalet för "
 "den här CPU:n)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -910,7 +914,7 @@ msgstr ""
 "Valt bandbreddstest (%u) är inte ett giltigt tal (%u är det maximala antalet "
 "för det här systemet)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -919,7 +923,7 @@ msgstr ""
 "Vald RAM-sticka (%u) är inte ett giltigt tal (%u är det maximala antalet för "
 "den här CPU:n)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -928,12 +932,12 @@ msgstr ""
 "Valt grafikkort (%u) är inte ett giltigt tal (%u är det maximala antalet för "
 "det här systemet)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "det gick inte att ändra CPU-tillhörighet för kärna %u"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

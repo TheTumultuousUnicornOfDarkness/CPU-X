@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-11-12 18:53+0000\n"
 "Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -434,27 +434,27 @@ msgstr "Se obțin informațiile plăcii de bază în modul de rezervă"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "obținerea informațiilor plăcii de bază (în modul de rezervă) a eșuat"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Se obține temperatura procesorului în modul de rezervă"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "obținerea temperaturii procesorului (în modul de rezervă) a eșuat"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Se obține voltajul procesorului în modul de rezervă"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "obținerea voltajului procesorului (în modul de rezervă) a eșuat"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Se obține frecvența procesorului în modul de rezervă"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "obținerea frecvenței procesorului (în modul de rezervă) a eșuat"
 
@@ -659,52 +659,52 @@ msgstr "Licența"
 msgid "This software is distributed under the terms of %s"
 msgstr "Acest program este distribuit sub termenii licenței %s"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Acest program vine cu ABSOLUT NICIO GARANȚIE"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "Nu se poate găsi ruta pentru fișierul „%s”"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "Nu a fost găsit niciun agent de autentificare polkit"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "Cere parola la pornirea demonului în fundal"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "Configurări"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "Familia de bază"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "Afișează familia („adevărată”) a CPU-ului (calculată ca Familia de "
 "bază+Familia extinsă)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "Modelul de bază"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 "Afișează modelul („adevărat”) al CPU-ului (compus ca (Modelul "
 "extins<<4)+Modelul de bază)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr "Informații despre certificatul cheii platformei EFI"
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
@@ -712,25 +712,25 @@ msgstr ""
 "Identifică soclul etichetat fizic sau poziția plăcii în care se află "
 "dispozitivul de memorie"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 "Identifică bancul etichetat fizic în care este localizat dispozitivul de "
 "memorie"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "Versiune controlor mod utilizator (UMD)"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Trasarea razelor Vulkan (Vulkan Ray Tracing)"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "Se pornește interfața grafică GTK…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "importarea interfeței grafice în GtkBuilder a eșuat"
 
@@ -840,9 +840,13 @@ msgid "Enforce the bus clock"
 msgstr "Impune frecvența de lucru a magistralei"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "Ignoră valorile CPU raportate de libcpuid (valori separate prin virgulă "
 "între „temp”, „volt” și „freq”)"
@@ -855,39 +859,39 @@ msgstr "Citește datele brute CPUID dintr-un fișier dat"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "Afișează doar un mesaj dacă CPU-ul nu este prezent în baza de date"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Utilizare: %s AFIȘARE [OPȚIUNI]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "AFIȘARE disponibilă:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "OPȚIUNI disponibile:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "Variabile de mediu influențabile:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Acesta este software liber: sunteți liber să îl modificați și redistribui."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Vedeți licența %s: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s versiunea: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -896,7 +900,7 @@ msgstr ""
 "\n"
 "Opa, ceva a fost greșit! %s a primit semnalul %d (%s) și s-a prăbușit."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -907,28 +911,28 @@ msgstr ""
 "Opa, ceva a fost greșit! %s a primit semnalul %d (%s) și încearcă să se "
 "recupereze."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Puteți deschide un nou raport de eroare aici, completând modelul solicitat:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr ""
 "o eroare a apărut în timp ce se stabilea configurația regională utilizată în "
 "acest sistem"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "Fila selectată (%u) nu este vizibilă"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Fila selectată (%u) nu este un număr valid (%u este valoarea maximă)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -936,7 +940,7 @@ msgstr ""
 "Tipul de CPU selectat (%u) nu este un număr valid (%u este valoarea maximă "
 "pentru acest CPU)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -945,7 +949,7 @@ msgstr ""
 "Testul bandwidth selectat (%u) nu este un număr valid (%u este valoarea "
 "maximă pentru acest sistem)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -954,7 +958,7 @@ msgstr ""
 "Stick-ul de memorie RAM selectat (%u) nu este un număr valid (%u este "
 "valoarea maximă pentru acest sistem)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -963,12 +967,12 @@ msgstr ""
 "Placa grafică selectată (%u) nu este un număr valid (%u este valoarea maximă "
 "pentru acest sistem)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "schimbarea afinității CPU pentru nucleul %u a eșuat"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "

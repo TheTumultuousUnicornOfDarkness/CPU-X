@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-10-09 08:38+0000\n"
+"POT-Creation-Date: 2024-12-14 14:42+0000\n"
 "PO-Revision-Date: 2024-09-29 13:15+0000\n"
 "Last-Translator: Hyeonho Kang <hyeonhokang10@o365.ice.go.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
@@ -420,27 +420,27 @@ msgstr "fallback 방식에서 마더보드 정보를 검색 중"
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "마더보드 정보를 검색하는 데 실패했습니다 (fallback 방식)"
 
-#: core.cpp:2367
+#: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "fallback 방식에서 CPU 온도 검색 중"
 
-#: core.cpp:2415
+#: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "CPU 온도를 검색하는 데 실패했습니다 (fallback 방식)"
 
-#: core.cpp:2430
+#: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "fallback 방식에서 CPU 전압을 검색 중"
 
-#: core.cpp:2449
+#: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "CPU 전압을 검색 중 실패했습니다 (fallback 방식)"
 
-#: core.cpp:2463
+#: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "fallback 방식에서 CPU 주파수를 검색 중"
 
-#: core.cpp:2474
+#: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU 주파수 검색 중 실패했습니다 (fallback 방식)"
 
@@ -645,71 +645,71 @@ msgstr "저작권"
 msgid "This software is distributed under the terms of %s"
 msgstr "이 소프트웨어는 %s에 의거해 배포되고 있습니다"
 
-#: data.cpp:779 main.cpp:176
+#: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "이 프로그램은 자기 책임 하에 사용해주세요"
 
-#: gui_gtk.cpp:67
+#: gui_gtk.cpp:83
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr "'%s' 파일의 경로를 찾을 수 없습니다"
 
-#: gui_gtk.cpp:440
+#: gui_gtk.cpp:456
 msgid "No polkit authentication agent found"
 msgstr "polkit 인증 에이전트를 찾을 수 없습니다"
 
-#: gui_gtk.cpp:446
+#: gui_gtk.cpp:462
 msgid "Ask password to start daemon in background"
 msgstr "백그라운드에서 데몬을 시작하려면 비밀번호가 요구됩니다"
 
-#: gui_gtk.cpp:450
+#: gui_gtk.cpp:466
 msgid "Settings"
 msgstr "설정"
 
-#: gui_gtk.cpp:691
+#: gui_gtk.cpp:707
 msgid "BaseFamily"
 msgstr "기본계열"
 
-#: gui_gtk.cpp:692
+#: gui_gtk.cpp:708
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr "CPU 디스플레이 (\"true\") 패밀리 (BaseFamily+ExtendedFamily로 계산됨)"
 
-#: gui_gtk.cpp:693
+#: gui_gtk.cpp:709
 msgid "BaseModel"
 msgstr "기본모델"
 
-#: gui_gtk.cpp:694
+#: gui_gtk.cpp:710
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr "CPU 디스플레이 (\"true\") 모델 ((ExtendedModel<<4)+BaseMode로 계산됨)"
 
-#: gui_gtk.cpp:888
+#: gui_gtk.cpp:904
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:923
+#: gui_gtk.cpp:939
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 "메모리 디바이스가 위치한, 물리적 라벨이 붙은 소켓이나 보드 위치를 특정함"
 
-#: gui_gtk.cpp:924
+#: gui_gtk.cpp:940
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr "메모리 디바이스가 위치한, 물리적 라벨이 붙은 뱅크를 특정함"
 
-#: gui_gtk.cpp:1129
+#: gui_gtk.cpp:1145
 msgid "User Mode Driver Version"
 msgstr "사용자 방식 드라이버 버전"
 
-#: gui_gtk.cpp:1143
+#: gui_gtk.cpp:1159
 msgid "Vulkan Ray Tracing"
 msgstr "Vulkan 레이 추적"
 
-#: gui_gtk.cpp:1338
+#: gui_gtk.cpp:1354
 msgid "Starting GTK GUI…"
 msgstr "GTK GUI 시작 중…"
 
-#: gui_gtk.cpp:1350
+#: gui_gtk.cpp:1365
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder의 UI를 import하는 데 실패했습니다"
 
@@ -811,9 +811,13 @@ msgid "Enforce the bus clock"
 msgstr "버스 클럭 적용"
 
 #: main.cpp:97
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt' and 'freq')"
+"'volt', 'freq' and 'mult')"
 msgstr ""
 "libcpuid가 보고하는 CPU 수치 ('temp', 'volt', 'freq'를 ,로 구분한 수치)를 무"
 "시합니다"
@@ -826,39 +830,39 @@ msgstr "주어진 파일에서 CPUID의 단순 자료를 읽어옵니다"
 msgid "Only print a message if CPU is not present in the database"
 msgstr "CPU가 데이터베이스에 존재하지 않을 경우에만 메시지를 출력합니다"
 
-#: main.cpp:126
+#: main.cpp:127
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "사용법: %s DISPLAY [OPTIONS]\n"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Available DISPLAY:"
 msgstr "사용 가능한 화면:"
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Available OPTIONS:"
 msgstr "사용 가능한 옵션:"
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Influenceable environment variables:"
 msgstr "영향을 줄 수 있는 환경 변수:"
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "자유 소프트웨어입니다: 당신은 변경 및 재배포가 자유롭습니다."
 
-#: main.cpp:177
+#: main.cpp:178
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s 저작권을 참고하세요: <%s>\n"
 
-#: main.cpp:184
+#: main.cpp:185
 #, fuzzy, c-format
 #| msgid "-- %-9s version: %s"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s 버전: %s"
 
-#: main.cpp:411
+#: main.cpp:412
 #, c-format
 msgid ""
 "\n"
@@ -868,7 +872,7 @@ msgstr ""
 "이런, 무언가가 잘못되었습니다! %s 가 시그널 %d (%s)를 받아 충돌이 발생했습니"
 "다."
 
-#: main.cpp:413
+#: main.cpp:414
 #, c-format
 msgid ""
 "\n"
@@ -879,32 +883,32 @@ msgstr ""
 "이런, 무언가가 잘못되었습니다! %s 가 시그널 %d (%s)를 받아 복구를 시도하고 있"
 "습니다."
 
-#: main.cpp:437
+#: main.cpp:438
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "여기서 주어진 템플릿을 채워 새 issue를 열 수 있습니다:"
 
-#: main.cpp:479
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "로케일 설정 중 오류가 발생했습니다"
 
-#: options.cpp:156
+#: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "선택한 탭 (%u)은 볼 수 없습니다"
 
-#: options.cpp:161
+#: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "선택한 탭 (%u)은 유효한 수치가 아닙니다 (%u가 최대치입니다)"
 
-#: options.cpp:210
+#: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
 "선택한 CPU 타입 (%u)은 유효한 수치가 아닙니다 (%u가 이 CPU의 최대치입니다)"
 
-#: options.cpp:231
+#: options.cpp:241
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -913,7 +917,7 @@ msgstr ""
 "선택한 대역폭 테스트 (%u)는 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입"
 "니다)"
 
-#: options.cpp:254
+#: options.cpp:264
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -921,7 +925,7 @@ msgid ""
 msgstr ""
 "선택한 RAM 스틱 (%u)은 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입니다)"
 
-#: options.cpp:274
+#: options.cpp:284
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -930,12 +934,12 @@ msgstr ""
 "선택한 그래픽 카드 (%u)는 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입니"
 "다)"
 
-#: options.cpp:290
+#: options.cpp:300
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "CPU affinity를 코어 %u로 변경하는 데 실패했습니다"
 
-#: options.cpp:296
+#: options.cpp:306
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
