@@ -111,6 +111,16 @@ bool Options::get_fallback_cpu_freq()
 	return Options::fallback_cpu_freq;
 }
 
+void Options::set_fallback_cpu_mult(bool fallback_cpu_mult)
+{
+	Options::fallback_cpu_mult = fallback_cpu_mult;
+}
+
+bool Options::get_fallback_cpu_mult()
+{
+	return Options::fallback_cpu_mult;
+}
+
 void Options::init_page_visibility()
 {
 	Options::page_visible.fill(true);

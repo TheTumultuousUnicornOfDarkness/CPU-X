@@ -94,7 +94,7 @@ static const std::list<struct EnvVar> cpux_env_vars =
 {
 	{ true,            "CPUX_ARGS",                N_("Add default command line arguments")                         },
 	{ true,            "CPUX_BCLK",                N_("Enforce the bus clock")                                      },
-	{ true,            "CPUX_FORCE_CPU_FALLBACK",  N_("Ignore CPU values reported by libcpuid (comma-separated values among 'temp', 'volt' and 'freq')") },
+	{ true,            "CPUX_FORCE_CPU_FALLBACK",  N_("Ignore CPU values reported by libcpuid (comma-separated values among 'temp', 'volt', 'freq' and 'mult')") },
 	{ HAS_LIBCPUID,    "CPUX_CPUID_RAW",           N_("Read CPUID raw data from a given file")                      },
 	{ HAS_LIBCPUID,    "CPUX_DEBUG_DATABASE",      N_("Only print a message if CPU is not present in the database") },
 };
@@ -110,6 +110,7 @@ static void check_environment_variables(Data &data)
 		Options::set_fallback_cpu_temp(force_cpu_fallback.find("temp") != std::string::npos);
 		Options::set_fallback_cpu_volt(force_cpu_fallback.find("volt") != std::string::npos);
 		Options::set_fallback_cpu_freq(force_cpu_fallback.find("freq") != std::string::npos);
+		Options::set_fallback_cpu_mult(force_cpu_fallback.find("mult") != std::string::npos);
 	}
 	if(std::getenv("CPUX_CPUID_RAW"))
 		data.cpu.cpuid_raw_file = std::getenv("CPUX_CPUID_RAW");

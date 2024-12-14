@@ -89,6 +89,8 @@ public:
 	static bool get_fallback_cpu_volt();
 	static void set_fallback_cpu_freq(bool fallback_cpu_freq);
 	static bool get_fallback_cpu_freq();
+	static void set_fallback_cpu_mult(bool fallback_cpu_mult);
+	static bool get_fallback_cpu_mult();
 	static void init_page_visibility();
 	static void set_page_visibility(TabNumber page, bool visible);
 	static void set_page_visibility_auto(Data &data);
@@ -126,6 +128,7 @@ private:
 	static inline bool fallback_cpu_temp = false;
 	static inline bool fallback_cpu_volt = false;
 	static inline bool fallback_cpu_freq = false;
+	static inline bool fallback_cpu_mult = false;
 
 	static inline uint8_t selected_type  = 0;
 	static inline uint8_t selected_test  = 0;

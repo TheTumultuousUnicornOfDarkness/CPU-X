@@ -2340,7 +2340,8 @@ static int fallback_mode_static(Data &data)
 		err += cputab_package_fallback(data);
 #endif /* HAS_LIBCPUID */
 
-	if((data.cpu.clocks.cpu_min_mult <= 0.0) || (data.cpu.clocks.cpu_max_mult <= 0.0))
+	static bool use_fallback_mult = Options::get_fallback_cpu_mult();
+	if((data.cpu.clocks.cpu_min_mult <= 0.0) || (data.cpu.clocks.cpu_max_mult <= 0.0) || use_fallback_mult)
 		err += cputab_multipliers_fallback(data);
 
 	if(data.motherboard.board.manufacturer.value.empty() ||
