@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-10-09 22:31+0000\n"
+"PO-Revision-Date: 2024-12-15 17:00+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.9-rc\n"
 
 #: core.cpp:165
 #, c-format
@@ -823,16 +823,11 @@ msgid "Enforce the bus clock"
 msgstr "バスクロックを適用する"
 
 #: main.cpp:97
-#, fuzzy
-#| msgid ""
-#| "Ignore CPU values reported by libcpuid (comma-separated values among "
-#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
-msgstr ""
-"libcpuid が報告する CPU の値（'temp', 'volt', 'freq' をカンマ区切りにした値）"
-"を無視する"
+msgstr "libcpuid が報告する CPU の値（'temp', 'volt', 'freq', 'mult' "
+"をカンマ区切りにした値）を無視する"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
