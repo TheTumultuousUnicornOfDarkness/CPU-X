@@ -18,10 +18,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-12-14 14:42+0000\n"
+"PO-Revision-Date: 2024-12-17 12:00+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -30,9 +30,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.9-rc\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.9\n"
 
 #: core.cpp:165
 #, c-format
@@ -838,16 +838,12 @@ msgid "Enforce the bus clock"
 msgstr "Принудительно установить тактовую частоту шины"
 
 #: main.cpp:97
-#, fuzzy
-#| msgid ""
-#| "Ignore CPU values reported by libcpuid (comma-separated values among "
-#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
-"Игнорировать значения процессора, сообщённые libcpuid (значения, разделённые "
-"запятыми, среди «temp», «volt» и «freq»)"
+"Игнорировать значения процессора, сообщаемые libcpuid (значения, разделённые "
+"запятыми, среди «temp», «volt», «freq» и «mult»)"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
