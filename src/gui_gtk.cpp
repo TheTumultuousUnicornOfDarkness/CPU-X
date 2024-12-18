@@ -67,10 +67,12 @@ static inline bool check_data_path(const std::string file, const std::string ful
 /* Search file location in standard paths */
 static const std::string get_data_path(const std::string &file)
 {
+#if not defined (APPIMAGE) && not defined (FLATPAK)
 	/* Try to open file under CPU_X_DATA_DIRECTORY (CMake variable) */
 	std::string full_path = std::string(CPUX_DATA_DIRECTORY) + "/" + file;
 	if(check_data_path(file, full_path))
 		return full_path;
+#endif
 
 	/* Fallback to system data directories */
 	for(const auto& dir : Glib::get_system_data_dirs())
