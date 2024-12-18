@@ -63,7 +63,7 @@ const char *start_daemon(bool graphical)
 	char const *daemon_args = get_daemon_socket();
 
 	MSG_VERBOSE("%s", _("Starting daemon in background…"));
-#ifdef FLATPAK
+#if defined (FLATPAK)
 	std::string line, app_path, ld_library_path, ld_linux_path;
 	std::ifstream stream("/.flatpak-info");
 	std::regex app_path_regex("^app-path=(.*?)$");
@@ -83,9 +83,9 @@ const char *start_daemon(bool graphical)
 	}
 
 	char const *daemon_exec = app_path.c_str();
-#else
+#elif defined (APPIMAGE)
 	char const *appdir      = std::getenv("APPDIR");
-	char const *daemon_exec = (appdir == NULL) ? DAEMON_PATH : DAEMON_TMP_EXEC;
+	char const *daemon_exec = DAEMON_TMP_EXEC;
 
 	/* Hack to allow pkexec to run daemon (when running from AppImage) */
 	if(appdir != NULL)
@@ -94,6 +94,10 @@ const char *start_daemon(bool graphical)
 		MSG_DEBUG("start_daemon: copy '%s' to '%s'", appdir_daemon_path.c_str(), daemon_exec);
 		fs::copy(appdir_daemon_path, daemon_exec, fs::copy_options::overwrite_existing);
 	}
+	else
+		MSG_ERROR("%s", _("APPDIR environment variable is not set, cannot copy the daemon to the temporary directory"));
+#else
+	char const *daemon_exec = DAEMON_PATH;
 #endif /* FLATPAK */
 
 	pid = fork();

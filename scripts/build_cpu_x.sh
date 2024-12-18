@@ -18,7 +18,7 @@ SRC_DIR="$2"
 if [[ $# -ge 3 ]]; then
 	# AppImage build
 	DST_DIR="$3"
-	CMAKE_EXTRA_OPTIONS=""
+	CMAKE_EXTRA_OPTIONS="-DAPPIMAGE"
 else
 	# Standard build
 	DST_DIR=""

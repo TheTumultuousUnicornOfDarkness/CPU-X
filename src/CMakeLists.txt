@@ -229,6 +229,13 @@ if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2) # When Libstatgrab is used
 	add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
 endif()
 
+# AppImage workarounds
+if(APPIMAGE)
+	add_definitions(-DAPPIMAGE
+		-DDAEMON_TMP_EXEC="/tmp/${DAEMON_EXEC}"
+	)
+endif(APPIMAGE)
+
 # Flatpak workarounds
 if(FLATPAK)
 	add_definitions(-DFLATPAK)
@@ -251,7 +258,6 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DCPUX_DATA_DIRECTORY="${CPU_X_DATA_DIRECTORY}"
 	-DTERMINFODIR="/lib/terminfo"
 	-DDAEMON_EXEC="${DAEMON_EXEC}"
-	-DDAEMON_TMP_EXEC="/tmp/${DAEMON_EXEC}"
 	-DDAEMON_PATH="${DAEMON_PATH}"
 	-DSOCKET_NAME="${DAEMON_SOCKET}"
 )

@@ -70,6 +70,7 @@ else()
 	set(WITH_BANDWIDTH OFF)
 endif(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
 option(FORCE_LIBSTATGRAB  "Force use of Libstatgrab instead of Libprocps (GNU/Linux system)"  OFF)
+option(APPIMAGE           "Enable workarounds for AppImage"                                   OFF)
 option(FLATPAK            "Enable workarounds for Flatpak"                                    OFF)
 
 # Colours

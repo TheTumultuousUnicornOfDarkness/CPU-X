@@ -379,8 +379,9 @@ clean:
 	fs::remove(argv[1]);
 	close(listen_socket);
 
-	if(std::getenv("APPDIR") != NULL)
-		fs::remove(DAEMON_TMP_EXEC);
+#ifdef APPIMAGE
+	fs::remove(DAEMON_TMP_EXEC);
+#endif /* APPIMAGE */
 
 	return err;
 }
