@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the CPU-X package.
 # Davide Neri <davnerix@gmail.com>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
-# Pierfrancesco Passerini <p.passerini@gmail.com>, 2020, 2021, 2022, 2023, 2024.
+# Pierfrancesco Passerini <p.passerini@gmail.com>, 2020, 2021, 2022, 2023, 2024, 2025.
 # J. Lavoie <j.lavoie@net-c.ca>, 2021.
 # Frankie McEyes <mceyes@protonmail.com>, 2022, 2023.
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-12-22 19:00+0000\n"
+"PO-Revision-Date: 2025-01-07 18:03+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -110,9 +110,9 @@ msgid ""
 "rebuild %s."
 msgstr ""
 "pci_access non inizializzato correttamente: è un problema comune quando %s "
-"viene compilato con una versione precedente di libpci.\n"
+"viene compilato con una versione obsoleta di libpci.\n"
 "Controlla che la libreria libpci %s sia presente nel tuo sistema. "
-"Altrimenti, ricompila %s."
+"Altrimenti, ricompila la versione %s."
 
 #: core.cpp:833
 #, c-format
@@ -354,7 +354,7 @@ msgstr "%i giorni, %i ore, %i minuti, %i secondi"
 
 #: core.cpp:2146
 msgid "Updating benchmark status"
-msgstr "Aggiornano lo stato dei benchmark"
+msgstr "Aggiornamento dei benchmark"
 
 #: core.cpp:2149
 msgid "Active"
@@ -401,7 +401,7 @@ msgstr "Inizio benchmark con %u thread"
 
 #: core.cpp:2207
 msgid "an error occurred while starting benchmark"
-msgstr "è intervenuto un errore all'avvio del benchmark"
+msgstr "si è verificato un errore all'avvio del benchmark"
 
 #: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
@@ -428,7 +428,7 @@ msgstr ""
 
 #: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Recupero della temperatura della CPU in modalità alternativa"
+msgstr "Lettura temperatura CPU in modalità alternativa"
 
 #: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
@@ -572,7 +572,7 @@ msgstr "Sistema"
 
 #: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
-msgstr "Sistema operativo"
+msgstr "Sistema Operativo"
 
 #: data.cpp:612 cpu-x-gtk-3.12.ui:5182
 msgid "Graphics"
@@ -585,11 +585,11 @@ msgstr "Scheda %u"
 
 #: data.cpp:650 cpu-x-gtk-3.12.ui:5160
 msgid "Cards"
-msgstr "Schede %i"
+msgstr "Schede"
 
 #: data.cpp:697 cpu-x-gtk-3.12.ui:5534
 msgid "Bench"
-msgstr "Bench"
+msgstr "Benchmark"
 
 #: data.cpp:710
 msgid "Not started"
@@ -736,7 +736,7 @@ msgstr "Avvio dell'interfaccia utente testuale (TUI)"
 
 #: main.cpp:65
 msgid "Dump all data on standard output and exit"
-msgstr "Scarica tutti i dati sull'output standard ed esci"
+msgstr "Scarica tutti i dati sullo standard output ed esci"
 
 #: main.cpp:66
 msgid "Run embedded command dmidecode and exit"
@@ -749,15 +749,15 @@ msgstr "Esegui il comando incorporato bandwidth ed esci"
 #: main.cpp:68
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
-"Impostare l'unità di temperatura (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+"Unità di misura della temperatura (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:69
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr "Imposta intervallo personalizzato tra due aggiornamenti (in secondi)"
+msgstr "Imposta un intervallo personalizzato di aggiornamenti (in secondi)"
 
 #: main.cpp:70
 msgid "Set default tab (integer)"
-msgstr "Imposta scheda di default (intero)"
+msgstr "Imposta la scheda predefinita (intero)"
 
 #: main.cpp:71
 msgid "Select core type to monitor (integer)"
@@ -770,8 +770,7 @@ msgstr "Scegli core CPU da monitorare (intero)"
 #: main.cpp:73
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
-"Imposta test della larghezza di banda personalizzato per la velocità della "
-"cache della CPU (intero)"
+"Test personalizzato della larghezza di banda della cache della CPU (intero)"
 
 #: main.cpp:74
 msgid "Select default memory stick (integer)"
@@ -791,33 +790,33 @@ msgstr "Output esteso"
 
 #: main.cpp:78
 msgid "Print help and exit"
-msgstr "Stampa la guida ed esci"
+msgstr "Mostra la guida ed esce"
 
 #: main.cpp:79
 msgid "Print version and exit"
-msgstr "Stampa il numero di versione ed esci"
+msgstr "Mostra la versione ed esce"
 
 #: main.cpp:80
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr "Stampa i valori CPUID in decimale (predefinito in esadecimale)"
+msgstr "Mostra i valori CPUID in decimale (predefinito in esadecimale)"
 
 #: main.cpp:81
 msgid "Disable colored output"
-msgstr "Disattiva l'output colorato"
+msgstr "Disattiva output colorato"
 
 #: main.cpp:82
 msgid "Print information for debugging"
-msgstr "Stampa le informazioni per il debug"
+msgstr "Mostra le informazioni per il debug"
 
 #: main.cpp:83
 msgid "Print required information to paste in an issue"
-msgstr "Stampa le informazioni necessarie da includere in una segnalazione"
+msgstr "Mostra le informazioni da includere in una segnalazione"
 
 #: main.cpp:84
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
-"Imposta la mappatura dei tasti per la modalità NCurses (a[rrows]|e[macs]|"
-"i[nverted-T]|v[im])"
+"Imposta la mappa dei tasti per la modalità NCurses (a[rrows]|e[macs]|i"
+"[nverted-T]|v[im])"
 
 #: main.cpp:95
 msgid "Add default command line arguments"
@@ -841,7 +840,7 @@ msgstr "Leggi i dati grezzi di CPUID da un determinato file"
 
 #: main.cpp:99
 msgid "Only print a message if CPU is not present in the database"
-msgstr "Stampa un messaggio solo se la CPU non è nel database"
+msgstr "Mostra un messaggio se la CPU non è presente nel database"
 
 #: main.cpp:127
 #, c-format
@@ -904,7 +903,7 @@ msgstr ""
 
 #: main.cpp:480
 msgid "an error occurred while setting locale"
-msgstr "è intervenuto un errore mentre si impostava la localizzazione"
+msgstr "si è verificato un errore nella scelta della localizzazione"
 
 #: options.cpp:166
 #, c-format
@@ -1040,15 +1039,15 @@ msgstr "Premi il tasto 'su' per passare al prossimo test."
 
 #: tui_ncurses.cpp:256
 msgid "Bench tab:"
-msgstr "Scheda bench:"
+msgstr "Scheda benchmark:"
 
 #: tui_ncurses.cpp:257
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Premi il tasto 'giù' per diminuire la durata del benchmark."
+msgstr "Premi freccia 'giù' per diminuire la durata del benchmark."
 
 #: tui_ncurses.cpp:258
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "Premi il tasto 'su' per aumentare la durata del benchmark."
+msgstr "Premi freccia 'su' per aumentare la durata del benchmark."
 
 #: tui_ncurses.cpp:259
 msgid "Press 'next page' key to decrement number of threads to use."
@@ -1095,8 +1094,8 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
-"ERRORE FATALE: impossibile trovare il database terminfo (provare ad "
-"impostare la variabile di ambiente TERMINFO)"
+"ERRORE FATALE: impossibile trovare il database terminfo (prova ad impostare "
+"la variabile di ambiente TERMINFO)"
 
 #: tui_ncurses.cpp:690
 #, c-format
@@ -1245,7 +1244,7 @@ msgstr "Produttore"
 
 #: data.hpp:243
 msgid "Brand"
-msgstr "Marca"
+msgstr "Produttore"
 
 #: data.hpp:244
 msgid "Version"
@@ -1257,7 +1256,7 @@ msgstr "Data"
 
 #: data.hpp:246
 msgid "ROM Size"
-msgstr "Dimensione ROM"
+msgstr "Capacità ROM"
 
 #: data.hpp:247
 msgid "EFI PK"
@@ -1309,7 +1308,7 @@ msgstr "Buffer"
 
 #: data.hpp:316
 msgid "Cached"
-msgstr "In cache"
+msgstr "Cache"
 
 #: data.hpp:317
 msgid "Free"
@@ -1469,7 +1468,7 @@ msgstr "Intervallo di aggiornamento"
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5979
 msgid "Text theme"
-msgstr "Tema testo"
+msgstr "Colore del testo"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5994
@@ -1479,17 +1478,17 @@ msgstr "Automatico"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5995
 msgid "Blue for light theme"
-msgstr "Tema chiaro blu"
+msgstr "Blu chiaro"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5996
 msgid "Yellow for dark theme"
-msgstr "Tema scuro giallo"
+msgstr "Giallo scuro"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:6009
 msgid "Temperature unit"
-msgstr "Scala della temperatura"
+msgstr "Unità di misura della temperatura"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6060
@@ -1504,12 +1503,12 @@ msgstr "Core CPU predefinito"
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:6086
 msgid "Default cache test"
-msgstr "Test cache predefinito"
+msgstr "Test predefinito della cache"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6129
 msgid "Print CPUID values in decimal"
-msgstr "Stampa i valori CPUID in decimale"
+msgstr "Mostra i valori CPUID in decimale"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6162
@@ -1519,7 +1518,7 @@ msgstr "Scheda grafica predefinita"
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6186
 msgid "Default core type"
-msgstr "Tipo di core predefinito"
+msgstr "Core predefinito"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6210
