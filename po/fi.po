@@ -4,14 +4,15 @@
 # Riku Viitanen <riku.viitanen@protonmail.com>, 2020.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2021, 2022, 2023.
 # LINUX-SAUNA <linuxsauna@protonmail.com>, 2022.
+# Ricky Tigg <ricky.tigg@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2023-11-18 18:03+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2025-01-15 12:00+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
 "Language: fi\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -31,16 +32,13 @@ msgstr ""
 "ext. family: %i"
 
 #: core.cpp:209
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
-#| "%i, ext. family: %i"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
 msgstr ""
-"Suorittimesi tietoja ei ole tietokannassa ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
+"Suorittimesi ei ole esillä tietokannassa ==> %s, osanumero: 0x%x, koodinimi: "
+"%s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -123,10 +121,9 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Näytönohjaimen kernel-ajuri on tuntematon: %s"
 
 #: core.cpp:953
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Tuntematon näytönohjaimen ajuri: %s"
+msgstr "GPU-käyttäjätila-ajurisi on tuntematon toimittajalle %s: %s"
 
 #: core.cpp:957
 #, c-format
@@ -164,10 +161,9 @@ msgid "No available physical devices (%s)"
 msgstr "Ei käytettävissä olevia fyysisiä laitteita (%s)"
 
 #: core.cpp:1198
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "Vulkanin luominen laitteelle %u (%s) epäonnistui"
 
 #: core.cpp:1202
 #, c-format
@@ -224,10 +220,9 @@ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 
 #: core.cpp:1343
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "laitteelle %u (%s) nimen saaminen epäonnistui"
 
 #: core.cpp:1351
 #, c-format
@@ -273,10 +268,9 @@ msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 
 #: core.cpp:1539
-#, fuzzy, c-format
-#| msgid "Your GPU driver is unknown: %s"
+#, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "Tuntematon näytönohjaimen ajuri: %s"
+msgstr "GPU-toimittajasi on tuntematon: %s (0x%X)"
 
 #: core.cpp:1559
 msgid "failed to find chipset vendor and model"
@@ -310,10 +304,9 @@ msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
 #: core.cpp:1876
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "GPU %u:n ajuri ei raportoi taajuuksia"
+msgstr "Ajuri %s:lle ei ilmoita taajuuksia"
 
 #: core.cpp:1897
 #, fuzzy, c-format
@@ -393,10 +386,9 @@ msgid "in %u seconds"
 msgstr "%u sekunnissa"
 
 #: core.cpp:2184
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Aloitetaan suorituskykymittausta"
+msgstr "Aloitetaan suorituskykymittausta %u säikeellä"
 
 #: core.cpp:2207
 msgid "an error occurred while starting benchmark"
@@ -870,10 +862,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "Lue lisenssi (%s): <%s>\n"
 
 #: main.cpp:185
-#, fuzzy, c-format
-#| msgid "Version %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "Versio %s"
+msgstr "-- %-11s versio: %s"
 
 #: main.cpp:412
 #, c-format
@@ -1091,16 +1082,14 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr ""
 
 #: util.cpp:252
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "tiedoston '%s' avaaminen epäonnistui (%s)"
+msgstr "tapahtui virhe avattaessa tiedostoa '%s'"
 
 #: util.cpp:297
-#, fuzzy, c-format
-#| msgid "an error occurred while running command '%s' (%s)"
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "komennon '%s' suoritaminen epäonnistui (%s)"
+msgstr "tapahtui virhe suoritettaessa komentoa '%s'"
 
 #: util.cpp:437
 msgid "set_cpu_affinity() not supported on this operating system"
