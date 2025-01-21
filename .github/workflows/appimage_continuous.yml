@@ -52,6 +52,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit: ${{ github.sha }}
+        workflow: appimage_continuous.yml
         name: linux-aarch64
         path: AppImage/
 
@@ -60,6 +61,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit: ${{ github.sha }}
+        workflow: appimage_continuous.yml
         name: linux-x86_64
         path: AppImage/
 

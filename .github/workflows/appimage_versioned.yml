@@ -57,6 +57,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit: ${{ github.sha }}
+        workflow: appimage_versioned.yml
         name: linux-aarch64
         path: AppImage/
 
@@ -65,7 +66,9 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit: ${{ github.sha }}
+        workflow: appimage_versioned.yml
         name: linux-x86_64
+        path: AppImage/
 
     - name: Create versioned release
       uses: ncipollo/release-action@v1
