@@ -71,6 +71,7 @@ sudo apt-get install -y -qq \
 	opencl-headers \
 	ocl-icd-libopencl1 \
 	ocl-icd-opencl-dev \
+	libfuse2 \
 	"${PACKAGES[@]}"
 
 sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-$GCC_VER" 9001 # It's Over 9000
