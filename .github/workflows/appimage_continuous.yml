@@ -52,6 +52,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         path: AppImage/
+        merge-multiple: true
+
+    - name: Display structure of downloaded files
+      run: ls -R AppImage/
 
     - name: Delete previous continuous release
       uses: dev-drprasad/delete-tag-and-release@v1.1
