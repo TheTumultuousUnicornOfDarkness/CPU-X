@@ -23,13 +23,14 @@ fi
 WORKSPACE="$1"
 APPDIR="$2"
 WGET_ARGS=(--continue --no-verbose)
+ARCH="$(uname -m)"
 
 # Reset arguments
 set --
 
 # Download linuxdeploy and plugins
 BUNDLER="$WORKSPACE/linuxdeploy.AppImage"
-runCmd wget "${WGET_ARGS[@]}" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" --output-document="$BUNDLER" \
+runCmd wget "${WGET_ARGS[@]}" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-${ARCH}.AppImage" --output-document="$BUNDLER" \
 	&& set -- "$@" --output appimage
 runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh" \
 	&& set -- "$@" --plugin gtk
@@ -46,7 +47,6 @@ runCmd chmod --verbose a+x ./*.AppImage ./*.sh
 
 # Set useful variables for linuxdeploy
 [[ -n "$VERSION" ]] && export RELEASE="latest" || export RELEASE="continuous"
-export ARCH=x86_64
 export LDAI_UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_REPOSITORY//\//|}|${RELEASE}|CPU-X-*$ARCH.AppImage.zsync"
 export LDAI_VERBOSE=1
 #export DEBUG=1

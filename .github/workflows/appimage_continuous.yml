@@ -11,8 +11,15 @@ env:
 
 jobs:
   linux-appimage-continuous:
-    name: Linux x64_64 (Continuous)
-    runs-on: ubuntu-20.04
+    name: Linux ${{ matrix.os.arch }} (Continuous)
+    runs-on: ${{ matrix.os.label }}
+    strategy:
+      matrix:
+        os:
+          # x86_64 (https://github.com/actions/runner-images/tree/main/images/ubuntu)
+          - { arch: x86_64, label: ubuntu-22.04 }
+          # ARM64 (https://github.com/actions/partner-runner-images)
+          - { arch: aarch64, label: ubuntu-22.04-arm }
 
     steps:
     - uses: actions/checkout@v4
