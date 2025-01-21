@@ -10,8 +10,8 @@ env:
   BUILD_TYPE: RelWithDebInfo
 
 jobs:
-  linux-appimage-continuous:
-    name: Linux ${{ matrix.os.arch }} (Continuous)
+  linux-appimage-continuous-build:
+    name: Linux ${{ matrix.os.arch }} (Continuous build)
     runs-on: ${{ matrix.os.label }}
     strategy:
       matrix:
@@ -35,6 +35,34 @@ jobs:
     - name: Package CPU-X as an AppImage
       run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-${{ matrix.os.arch }}
+        path: AppImage/CPU-X-${{ matrix.os.arch }}.AppImage*
+
+
+  linux-appimage-continuous-release:
+    name: Linux (Continuous release)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Linux AArch64 artifacts
+      uses: dawidd6/action-download-artifact@v6
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        commit: ${{ github.sha }}
+        name: linux-aarch64
+        path: AppImage/
+
+    - name: Download Linux x86_64 artifacts
+      uses: dawidd6/action-download-artifact@v6
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        commit: ${{ github.sha }}
+        name: linux-x86_64
+        path: AppImage/
+
     - name: Delete previous continuous release
       uses: dev-drprasad/delete-tag-and-release@v1.1
       with:
@@ -49,8 +77,6 @@ jobs:
         artifacts: "AppImage/CPU-X-*.AppImage*"
         body: |
           :heavy_check_mark:CPU-X AppImage built from latest commit ([${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})). See [known issues](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/appimage).
-
-          :scroll: Build log: https://github.com/${{ github.repository }}/commit/${{ github.sha }}/checks?check_suite_id=${{ github.run_id }}
         commit: ${{ github.sha }}
         draft: false
         name: Continuous build
