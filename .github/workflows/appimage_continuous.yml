@@ -48,22 +48,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download Linux AArch64 artifacts
-      uses: dawidd6/action-download-artifact@v6
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        commit: ${{ github.sha }}
-        workflow: appimage_continuous.yml
-        name: linux-aarch64
-        path: AppImage/
-
-    - name: Download Linux x86_64 artifacts
-      uses: dawidd6/action-download-artifact@v6
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        commit: ${{ github.sha }}
-        workflow: appimage_continuous.yml
-        name: linux-x86_64
         path: AppImage/
 
     - name: Delete previous continuous release
