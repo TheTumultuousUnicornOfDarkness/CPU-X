@@ -44,6 +44,7 @@ jobs:
 
   linux-appimage-continuous-release:
     name: Linux (Continuous release)
+    needs: linux-appimage-continuous-build
     runs-on: ubuntu-latest
 
     steps:

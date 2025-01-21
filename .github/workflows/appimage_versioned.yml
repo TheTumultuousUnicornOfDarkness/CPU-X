@@ -49,6 +49,7 @@ jobs:
 
   linux-appimage-versioned-release:
     name: Linux (Versioned release)
+    needs: linux-appimage-versioned-build
     runs-on: ubuntu-latest
 
     steps:
