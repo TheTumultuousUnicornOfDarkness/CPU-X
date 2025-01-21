@@ -76,9 +76,14 @@ const char *start_daemon(bool graphical)
 			app_path = match[1].str() + "/lib/" + PRGNAME_LOW + "/" + DAEMON_EXEC;
 		else if(std::regex_search(line, match, runtime_path_regex))
 		{
+# if defined(__x86_64__)
 			std::string runtime_path = match[1].str() + "/lib/x86_64-linux-gnu";
-			ld_library_path          = "LD_LIBRARY_PATH=" + runtime_path;
 			ld_linux_path            = runtime_path + "/ld-linux-x86-64.so.2";
+# elif defined(__aarch64__)
+			std::string runtime_path = match[1].str() + "/lib/aarch64-linux-gnu";
+			ld_linux_path            = runtime_path + "/ld-linux-aarch64.so.1";
+# endif
+			ld_library_path          = "LD_LIBRARY_PATH=" + runtime_path;
 		}
 	}
 
