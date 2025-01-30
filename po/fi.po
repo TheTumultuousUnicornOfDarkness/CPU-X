@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2025-01-15 12:00+0000\n"
+"PO-Revision-Date: 2025-01-31 16:02+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
@@ -440,10 +440,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
 #: daemon_client.cpp:65
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "Kysy salasana taustapalvelun käynnistämiseksi"
+msgstr "Käynnistetään demonia taustalla…"
 
 #: daemon_client.cpp:172
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -462,10 +460,8 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: odottamaton virhekoodi"
 
 #: daemon_client.cpp:211
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "Yhdistetty daemoniin"
+msgstr "Yhdistetään demoniin…"
 
 #: daemon_server.cpp:261
 #, c-format
@@ -960,16 +956,16 @@ msgid "Global keys:"
 msgstr ""
 
 #: tui_ncurses.cpp:241
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "\tPaina 'q' poistuaksesi.\n"
+msgstr ""
+"Siirry vasemmalle välilehdelle painamalla vasenta näppäintä tai "
+"sarkainnäppäintä."
 
 #: tui_ncurses.cpp:242
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "\tPaina 'q' poistuaksesi.\n"
+msgstr ""
+"Paina 'oikea'-näppäintä tai 'vaihto+sarkain' -näppäimiä vaihtaaksesi "
+"oikeanpuoleiseen välilehteen."
 
 #: tui_ncurses.cpp:243
 msgid "Press 'h' key to see this help."
@@ -996,10 +992,8 @@ msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
 
 #: tui_ncurses.cpp:250
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "\tPaina 'q' poistuaksesi.\n"
+msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
 
 #: tui_ncurses.cpp:252
 msgid "Caches tab:"
@@ -1010,10 +1004,8 @@ msgid "Press 'down' key to switch to previous test."
 msgstr ""
 
 #: tui_ncurses.cpp:254
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press 'up' key to switch to next test."
-msgstr "\tPaina 'q' poistuaksesi.\n"
+msgstr "Paina 'ylös'-näppäintä siirtyäksesi seuraavaan testiin."
 
 #: tui_ncurses.cpp:256
 msgid "Bench tab:"
@@ -1056,10 +1048,8 @@ msgid "Press 'up' key to switch to next graphic card."
 msgstr ""
 
 #: tui_ncurses.cpp:268
-#, fuzzy
-#| msgid "\tPress 'q' key to exit.\n"
 msgid "Press any key to exit this help."
-msgstr "\tPaina 'q' poistuaksesi.\n"
+msgstr "Poistu tästä ohjeesta painamalla mitä tahansa näppäintä."
 
 #: tui_ncurses.cpp:676
 msgid "Starting NCurses TUI…"
@@ -1161,7 +1151,7 @@ msgstr "Revisio"
 
 #: data.hpp:121
 msgid "Temp."
-msgstr "Lämpötila"
+msgstr "Lämpötila."
 
 #: data.hpp:122
 msgid "Instructions"
@@ -1333,7 +1323,7 @@ msgstr "Ytimen jännite"
 
 #: data.hpp:354
 msgid "Power Avg"
-msgstr "Kulutus keskim."
+msgstr "Keskimääräinen kulutus"
 
 #: data.hpp:355
 msgid "Core Clock"
