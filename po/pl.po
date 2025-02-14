@@ -6,17 +6,17 @@
 # Mr Talon63 <pantalon63@gmail.com>, 2019.
 # kakiremora <piotrek.pastuszak2003@gmail.com>, 2020.
 # Michal Biesiada <blade-14@o2.pl>, 2020.
-# WaldiS <sto@tutanota.de>, 2020, 2021, 2022, 2023, 2024.
+# WaldiS <sto@tutanota.de>, 2020, 2021, 2022, 2023, 2024, 2025.
 # Jacek <uaie_wljjw94@jyplo.com>, 2022.
 # Eryk Michalak <gnu.ewm@protonmail.com>, 2023, 2024.
 # Rcvrvugyvgvb <xzdfrlhz@duck.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-11-08 20:00+0000\n"
+"PO-Revision-Date: 2025-02-15 03:42+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -24,10 +24,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
+"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.10\n"
 
 #: core.cpp:165
 #, c-format
@@ -104,9 +104,9 @@ msgid "Calling bandwidth"
 msgstr "Wywołanie bandwidth"
 
 #: core.cpp:761
-#, c-format
+#, c-format, fuzzy
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (subject) / %s (issuer)"
 
 #: core.cpp:789
 #, c-format
@@ -1182,8 +1182,9 @@ msgid "Stepping"
 msgstr "Krok"
 
 #: data.hpp:116
+#, fuzzy
 msgid "Implementer"
-msgstr ""
+msgstr "Wdrażający"
 
 #: data.hpp:117
 msgid "Variant"
@@ -1275,7 +1276,7 @@ msgstr "ROM Rozmiar"
 
 #: data.hpp:247
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI PK"
 
 #: data.hpp:272
 msgid "Type"
