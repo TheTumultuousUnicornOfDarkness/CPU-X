@@ -8,7 +8,7 @@
 # anonymous <noreply@weblate.org>, 2020.
 # Martin Beer <der_baer@yadim.dismail.de>, 2020.
 # nautilusx <mail.ka@mailbox.org>, 2020.
-# nautilusx <translate@disroot.org>, 2021, 2022, 2023, 2024.
+# nautilusx <translate@disroot.org>, 2021, 2022, 2023, 2024, 2025.
 # sm_moshi <meya@posteo.se>, 2021.
 # Alex <alexander.simm@posteo.de>, 2022.
 # sal0max <msal.coding@gmail.com>, 2022.
@@ -17,11 +17,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-11-06 14:00+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2025-02-21 18:02+0000\n"
+"Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -836,16 +836,12 @@ msgid "Enforce the bus clock"
 msgstr "Bustaktung erzwingen"
 
 #: main.cpp:97
-#, fuzzy
-#| msgid ""
-#| "Ignore CPU values reported by libcpuid (comma-separated values among "
-#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
 "Von libcpuid gemeldete CPU-Werte ignorieren (kommagetrennte Werte zwischen "
-"'temp', 'volt' und 'freq')"
+"'temp', 'volt', 'freq' und 'mult')"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
@@ -1289,7 +1285,7 @@ msgstr "ROM-Größe"
 
 #: data.hpp:247
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI PK"
 
 #: data.hpp:272
 msgid "Type"
