@@ -183,6 +183,9 @@ std::string get_device_path_drm(std::string device_path);
 /* Find system path for device to hwmon */
 std::string get_device_path_hwmon(std::string device_path);
 
+/* Get PCI device name for DRI_PRIME */
+std::string get_device_name_dri_prime(std::string device_path);
+
 /* Find sensor path for CPU temperature depending on kernel driver */
 std::string get_sensor_path_cpu_temperature_driver(uint16_t current_core_id);
 

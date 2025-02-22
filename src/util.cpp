@@ -479,6 +479,18 @@ std::string get_device_path_hwmon(std::string device_path)
 	return ret;
 }
 
+/* Get PCI device name for DRI_PRIME */
+std::string get_device_name_dri_prime(std::string device_path)
+{
+	const fs::path pci_filename = fs::path(device_path).filename();
+	std::string ret("pci-" + pci_filename.string());
+	std::replace(ret.begin(), ret.end(), ':', '_');
+	std::replace(ret.begin(), ret.end(), '.', '_');
+	MSG_DEBUG("get_device_name_dri_prime: device_path=%s ==> ret=%s", device_path.c_str(), ret.c_str());
+
+	return ret;
+}
+
 /* Find sensor path for CPU temperature depending on kernel driver */
 std::string get_sensor_path_cpu_temperature_driver(uint16_t current_core_id)
 {

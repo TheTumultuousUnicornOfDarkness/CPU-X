@@ -900,6 +900,24 @@ static int set_gpu_user_mode_driver([[maybe_unused]] Data::Graphics::Card &card)
 	std::string gl_ver, glsl_ver;
 	GLFWwindow *win = NULL;
 
+	switch(card.driver)
+	{
+		case GpuDrv::GPUDRV_AMDGPU:
+		case GpuDrv::GPUDRV_INTEL:
+		case GpuDrv::GPUDRV_RADEON:
+		case GpuDrv::GPUDRV_NOUVEAU:
+		case GpuDrv::GPUDRV_NOUVEAU_BUMBLEBEE:
+			setenv("DRI_PRIME", get_device_name_dri_prime(card.device_path).c_str(), 1);
+			break;
+		case GpuDrv::GPUDRV_NVIDIA:
+		case GpuDrv::GPUDRV_NVIDIA_BUMBLEBEE:
+			setenv("__NV_PRIME_RENDER_OFFLOAD", "1", 1);
+			setenv("__GLX_VENDOR_LIBRARY_NAME", "nvidia", 1);
+			break;
+		default:
+			break;
+	}
+
 	if(glfwInit() == GLFW_FALSE)
 	{
 		err = glfwGetError(&description);
@@ -938,6 +956,7 @@ static int set_gpu_user_mode_driver([[maybe_unused]] Data::Graphics::Card &card)
 			umd_index = gl_ver.find("Mesa");
 			break;
 		case GpuDrv::GPUDRV_NVIDIA:
+		case GpuDrv::GPUDRV_NVIDIA_BUMBLEBEE:
 			umd_index = gl_ver.find("NVIDIA");
 			break;
 		default:
@@ -953,10 +972,14 @@ static int set_gpu_user_mode_driver([[maybe_unused]] Data::Graphics::Card &card)
 		MSG_WARNING(_("Your GPU user mode driver is unknown for vendor %s: %s"), reinterpret_cast<const char *>(glGetString(GL_VENDOR)), gl_ver.c_str());
 
 clean:
+	unsetenv("DRI_PRIME");
+	unsetenv("__NV_PRIME_RENDER_OFFLOAD");
+	unsetenv("__GLX_VENDOR_LIBRARY_NAME");
 	if(err)
 		MSG_ERROR(_("failed to call GLFW (%i): %s"), err, description);
 	if(win != NULL)
 		glfwDestroyWindow(win);
+	glfwTerminate();
 #endif /* HAS_LIBGLFW */
 
 	return err;
