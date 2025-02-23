@@ -177,6 +177,7 @@ const Technology_DB_x86 technology_x86_amd[] =
 	{ -1,         117,          25,           "4 nm" }, // Zen 4 (Phoenix/Hawk Point)
 	{ -1,         120,          25,           "4 nm" }, // Zen 4 (Z1)
 	{ -1,           2,          26,           "4 nm" }, // Zen 5 (Turin)
+	{ -1,          17,          26,           "3 nm" }, // Zen 5 (Turin Dense)
 	{ -1,          36,          26,           "4 nm" }, // Zen 5 (Strix Point)
 	{ -1,          68,          26,           "4 nm" }, // Zen 4 (Granite Ridge)
 	{ -2,          -2,          -2,             NULL }
