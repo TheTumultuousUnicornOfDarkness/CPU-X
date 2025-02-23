@@ -46,13 +46,15 @@ jobs:
       run: bash -x ./scripts/build_cpu_x.sh "$BUILD_TYPE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
-      run: bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+      run: |
+        bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
+        ls -l AppImage/
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: linux-${{ matrix.os.arch }}
-        path: AppImage/CPU-X-v${{ env.VERSION }}-${{ matrix.os.arch }}.AppImage*
+        path: AppImage/CPU-X-*
 
 
   linux-appimage-versioned-release:
