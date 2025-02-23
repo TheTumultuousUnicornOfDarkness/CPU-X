@@ -82,9 +82,13 @@ These dependencies are needed to **build²** and **run** CPU-X:
 ### From repositories
 
 In alphabetical order:
+- [ArchLinux](https://archlinux.org/packages/extra/x86_64/cpu-x): `pacman -S cpu-x`
 - [Debian (since version 11 "Bullseye")](https://packages.debian.org/search?searchon=names&keywords=cpu-x): `apt install cpu-x`
 - [Fedora (since version 30)](https://src.fedoraproject.org/rpms/cpu-x): `dnf install cpu-x`
 - [FreeBSD (since version 11)](https://www.freshports.org/sysutils/cpu-x): `pkg install cpu-x`
+- [Gentoo](https://packages.gentoo.org/packages/sys-apps/cpu-x): `emerge -g cpu-x`
+- [Manjaro](https://manjaristas.org/branch_compare?q=cpu-x): `pacman -S cpu-x`
+- [NixOS (since version 21.11)](https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/cp/cpu-x/package.nix): `nix-env -iA nixos.cpu-x`
 - [OpenMandriva Lx (since version 4.0 "Nitrogen")](https://github.com/OpenMandrivaAssociation/cpu-x): `dnf install cpu-x`
 - [openSUSE Leap (since version 15.2 from **utilities** project)](https://software.opensuse.org//download.html?project=utilities&package=cpu-x): `zypper install cpu-x`
 - [Solus](https://packages.getsol.us/shannon/c/cpu-x/): `eopkg install cpu-x`
