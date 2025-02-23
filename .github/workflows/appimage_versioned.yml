@@ -5,6 +5,10 @@ on:
     tags:
       - v*
   workflow_dispatch:
+    inputs:
+      version:
+        description: "The version to release"
+        required: true
 
 env:
   BUILD_TYPE: Release
@@ -28,8 +32,12 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "VERSION=${GITHUB_REF_NAME/v/}" >> $GITHUB_ENV
-        echo "CHANGELOG_TAG=${GITHUB_REF_NAME//./}---$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        TAG="${GITHUB_REF_NAME:-$MANUAL_TAG}"
+        echo "Using tag '${TAG}'"
+        echo "VERSION=${TAG/v/}" >> $GITHUB_ENV
+        echo "CHANGELOG_TAG=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      env:
+        MANUAL_TAG: ${{ inputs.version }}
 
     - name: Build libcpuid
       run: bash -x ./scripts/build_libcpuid.sh "$BUILD_TYPE"
