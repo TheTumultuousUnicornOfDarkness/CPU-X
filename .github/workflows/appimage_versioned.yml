@@ -32,7 +32,7 @@ jobs:
 
     - name: Set environment variables
       run: |
-        TAG="${GITHUB_REF_NAME:-$MANUAL_TAG}"
+        TAG="${MANUAL_TAG:-$GITHUB_REF_NAME}"
         echo "Using tag '${TAG}'"
         echo "VERSION=${TAG/v/}" >> $GITHUB_ENV
         echo "CHANGELOG_TAG=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_ENV
@@ -88,8 +88,8 @@ jobs:
 
           ## Binary
 
-          - **AppImage (ARM64)**: CPU-X-v${{ env.VERSION }}-aarch64.AppImage (**libfuse2** package is required)
-          - **AppImage (x86_64)**: CPU-X-v${{ env.VERSION }}-x86_64.AppImage (**libfuse2** package is required)
+          - **AppImage (ARM64)**: CPU-X-${{ env.VERSION }}-aarch64.AppImage (**libfuse2** package is required)
+          - **AppImage (x86_64)**: CPU-X-${{ env.VERSION }}-x86_64.AppImage (**libfuse2** package is required)
 
           *Note: a Polkit Authentication agent is mandatory to start daemon from GUI.*
 
