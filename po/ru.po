@@ -15,14 +15,15 @@
 # Alexey Dokuchaev <danfe@nsu.ru>, 2023.
 # Артём Котлубай <artemkotlubai@yandex.ru>, 2023.
 # Aleksandr Melman <alexmelman88@gmail.com>, 2023.
+# qtm <qtm@users.noreply.hosted.weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-12-17 12:00+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2025-02-25 20:13+0000\n"
+"Last-Translator: qtm <qtm@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -30,9 +31,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.9\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -40,7 +41,7 @@ msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
 "ext. family: %i"
 msgstr ""
-"Ваш ЦП отсутствует в базе данных ==> %s, модель: %i, доп. модель: %i, доп. "
+"ЦП отсутствует в базе данных ==> %s, модель: %i, доп. модель: %i, доп. "
 "семейство: %i"
 
 #: core.cpp:209
@@ -49,7 +50,7 @@ msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
 msgstr ""
-"Вашего ЦП нет в базе данных ==> %s, номер изделия: 0x%x, кодовое имя: %s"
+"ЦП отсутствует в базе данных ==> %s, номер изделия: 0x%x, кодовое имя: %s"
 
 #: core.cpp:216
 msgid "Finding CPU technology"
@@ -126,8 +127,8 @@ msgid ""
 msgstr ""
 "pci_access не был правильно загружен: это частая проблема, когда %s был "
 "собран с более ранней версией libpci.\n"
-"Проверьте, что библиотека libpci %s присутствует в вашей системе. В "
-"противном случае, пожалуйста, пересоберите %s."
+"Проверьте, что библиотека libpci %s присутствует в системе. В противном "
+"случае, пожалуйста, пересоберите %s."
 
 #: core.cpp:833
 #, c-format
@@ -137,13 +138,12 @@ msgstr "В ядре нет драйвера для видеокарты по а�
 #: core.cpp:869
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Ваш драйвер ядра ГП неизвестен: %s"
+msgstr "Драйвер ядра ГП неизвестен: %s"
 
 #: core.cpp:953
 #, c-format
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr ""
-"Ваш драйвер ГП пользовательского режима неизвестен производителю %s: %s"
+msgstr "Драйвер ГП в пользовательском режиме неизвестен производителю %s: %s"
 
 #: core.cpp:957
 #, c-format
@@ -277,7 +277,7 @@ msgstr ""
 #: core.cpp:1460
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "OpenCL не поддерживается вашим производителем ГП (0x%X)"
+msgstr "OpenCL не поддерживается производителем ГП (0x%X)"
 
 #: core.cpp:1484
 msgid "Finding devices"
@@ -408,7 +408,7 @@ msgstr "за %u с"
 #: core.cpp:2184
 #, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Запускается бенчмарк с %u потоками"
+msgstr "Запуск бенчмарка с %u потоками"
 
 #: core.cpp:2207
 msgid "an error occurred while starting benchmark"
@@ -416,48 +416,48 @@ msgstr "ошибка при запуске бенчмарка"
 
 #: core.cpp:2233
 msgid "Finding CPU package in fallback mode"
-msgstr "Поиск корпусировки ЦП в режиме с откатом"
+msgstr "Поиск корпусировки ЦП в запасном режиме"
 
 #: core.cpp:2263
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Вашего сокета ЦП нет в базе данных ==> %s, кодовое имя: %s"
+msgstr "Сокет ЦП отсутствует в базе данных ==> %s, кодовое имя: %s"
 
 #: core.cpp:2283
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Подсчёт множителей ЦП в режиме c откатом"
+msgstr "Подсчёт множителей ЦП в запасном режиме"
 
 #: core.cpp:2309
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "Получение информации о материнской плате в режиме с откатом"
+msgstr "Получение информации о материнской плате в запасном режиме"
 
 #: core.cpp:2325
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "не удалось получить информацию о материнской плате (режим с откатом)"
+msgstr "не удалось получить информацию о материнской плате (запасной режим)"
 
 #: core.cpp:2368
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Получение температуры ЦП в режиме с откатом"
+msgstr "Получение температуры ЦП в запасном режиме"
 
 #: core.cpp:2416
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "не удалось получить температуру ЦП (режим с откатом)"
+msgstr "не удалось получить температуру ЦП (запасной режим)"
 
 #: core.cpp:2431
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Получение напряжения ЦП в режиме с откатом"
+msgstr "Получение напряжения ЦП в запасном режиме"
 
 #: core.cpp:2450
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "не удалось получить напряжение ЦП (режим с откатом)"
+msgstr "не удалось получить напряжение ЦП (запасной режим)"
 
 #: core.cpp:2464
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Получение частоты ЦП в режиме с откатом"
+msgstr "Получение частоты ЦП в запасном режиме"
 
 #: core.cpp:2475
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "не удалось получить частоту ЦП (режим с откатом)"
+msgstr "не удалось получить частоту ЦП (запасной режим)"
 
 #: daemon_client.cpp:65
 msgid "Starting daemon in background…"
@@ -477,7 +477,7 @@ msgstr "pkexec: команда не найдена"
 
 #: daemon_client.cpp:181
 msgid "pkexec: unexpected error code"
-msgstr "pkexec: непредвиденный код ошибки"
+msgstr "pkexec: неожиданный код ошибки"
 
 #: daemon_client.cpp:211
 msgid "Connecting to daemon…"
@@ -567,11 +567,11 @@ msgstr "Память"
 #: data.cpp:508
 #, c-format
 msgid "Stick %u"
-msgstr "Планка %u"
+msgstr "Модуль %u"
 
 #: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
-msgstr "Планки"
+msgstr "Модули"
 
 #: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
@@ -783,7 +783,7 @@ msgstr ""
 
 #: main.cpp:74
 msgid "Select default memory stick (integer)"
-msgstr "Выбрать планку памяти по умолчанию (целое число)"
+msgstr "Выберите модуль памяти по умолчанию (целое число)"
 
 #: main.cpp:75
 msgid "Select default graphic card (integer)"
@@ -842,8 +842,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
-"Игнорировать значения процессора, сообщаемые libcpuid (значения, разделённые "
-"запятыми, среди «temp», «volt», «freq» и «mult»)"
+"Игнорировать показатели процессора, сообщаемые libcpuid (разделённые "
+"запятыми, выбранные из списка: «temp», «volt», «freq» и «mult»)"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
@@ -948,7 +948,7 @@ msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Выбранная планка оперативной памяти (%u) не является допустимым числом (%u — "
+"Выбранный модуль оперативной памяти (%u) не является допустимым числом (%u — "
 "максимум для этой системы)"
 
 #: options.cpp:284
@@ -1537,7 +1537,7 @@ msgstr "Тип ядра по умолчанию"
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6210
 msgid "Default memory stick"
-msgstr "Карта памяти по умолчанию"
+msgstr "Модуль памяти по умолчанию"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6238
