@@ -5,19 +5,18 @@
 # Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>, 2020.
 # Julien Humbert <julroy67@gmail.com>, 2020.
 # J. Lavoie <j.lavoie@net-c.ca>, 2021.
-# Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, 2021, 2023.
+# Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>, 2021, 2023, 2025.
 # Axel Blanchardon <axel.blanchardon@gmail.com>, 2022.
 # The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-of-darkness@gmx.com>, 2023, 2024.
 # Dac Opec <vladimir@kolisz.xyz>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2024-12-14 14:42+0000\n"
-"PO-Revision-Date: 2024-10-09 22:31+0000\n"
-"Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
-"of-darkness@gmx.com>\n"
+"PO-Revision-Date: 2025-03-07 09:19+0000\n"
+"Last-Translator: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -25,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: core.cpp:165
 #, c-format
@@ -852,16 +851,12 @@ msgid "Enforce the bus clock"
 msgstr "Impose la fréquence du bus"
 
 #: main.cpp:97
-#, fuzzy
-#| msgid ""
-#| "Ignore CPU values reported by libcpuid (comma-separated values among "
-#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
 "Ignore les valeurs processeur rapporté par libcpuid (liste de valeurs "
-"séparées par des virgules parmi 'temp', 'volt' et 'freq')"
+"séparées par des virgules parmi 'temp', 'volt', 'freq' et 'mult')"
 
 #: main.cpp:98
 msgid "Read CPUID raw data from a given file"
