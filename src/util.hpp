@@ -102,9 +102,6 @@
 #define SYS_DEBUG             "/sys/kernel/debug"
 #define SYS_DEBUG_DRI         SYS_DEBUG"/dri"
 
-/* FreeBSD-specific paths definition */
-#define DEV_PCI               "/dev/pci"
-
 /* Devices vendor ID */
 #define DEV_VENDOR_ID_AMD    0x1002
 #define DEV_VENDOR_ID_INTEL  0x8086

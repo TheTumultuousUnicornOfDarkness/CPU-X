@@ -45,6 +45,12 @@
 # include "dmidecode/libdmidecode.h"
 #endif
 
+#if HAS_LIBPCI
+extern "C" {
+# include <pci/pci.h>
+}
+#endif
+
 namespace fs = std::filesystem;
 static bool quit_loop  = false;
 static ThreadsInfo ti;
@@ -165,7 +171,7 @@ static int __find_devices(int *fd)
 	MSG_DEBUG("%s: fd=%i", __func__, *fd);
 #ifdef __FreeBSD__
 	std::error_code fs_code;
-	fs::permissions(DEV_PCI, fs::perms::owner_read | fs::perms::owner_write | fs::perms::group_read | fs::perms::group_write | fs::perms::others_read | fs::perms::others_write, fs::perm_options::add, fs_code); // 0666
+	fs::permissions(PCI_PATH_FBSD_DEVICE, fs::perms::owner_read | fs::perms::owner_write | fs::perms::group_read | fs::perms::group_write | fs::perms::others_read | fs::perms::others_write, fs::perm_options::add, fs_code); // 0666
 	if(fs_code)
 		ret = 1;
 #endif /* __FreeBSD__ */

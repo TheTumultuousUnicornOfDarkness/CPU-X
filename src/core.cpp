@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <sys/utsname.h>
 #include <cstring>
+#include <cstdarg>
 #include <cmath>
 #include <clocale>
 #include <fstream>
@@ -1492,6 +1493,44 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 #undef OPENCL_INFO_BUFFER_SIZE
 #undef CLINFO
 
+static void pcilib_msg_error(char *str, ...)
+{
+	char *buff = NULL;
+	va_list aptr;
+
+	va_start(aptr, str);
+	vasprintf(&buff, str, aptr);
+	va_end(aptr);
+	MSG_ERROR("pcilib: %s", buff);
+	free(buff);
+
+	exit(EXIT_FAILURE);
+}
+
+static void pcilib_msg_warning(char *str, ...)
+{
+	char *buff = NULL;
+	va_list aptr;
+
+	va_start(aptr, str);
+	vasprintf(&buff, str, aptr);
+	va_end(aptr);
+	MSG_WARNING("pcilib: %s", buff);
+	free(buff);
+}
+
+static void pcilib_msg_debug(char *str, ...)
+{
+	char *buff = NULL;
+	va_list aptr;
+
+	va_start(aptr, str);
+	vasprintf(&buff, str, aptr);
+	va_end(aptr);
+	MSG_DEBUG("pcilib: %s", buff);
+	free(buff);
+}
+
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
 /* Find some PCI devices, like chipset and GPU */
@@ -1505,23 +1544,44 @@ static int find_devices(Data &data)
 	struct pci_dev *dev;
 
 	MSG_VERBOSE("%s", _("Finding devices"));
-	pacc = pci_alloc(); /* Get the pci_access structure */
-#ifdef __FreeBSD__
+#if defined (__linux__) || defined (__gnu_linux__)
+	if(access(PCI_PATH_SYS_BUS_PCI, R_OK) || access(PCI_PATH_PROC_BUS_PCI, R_OK))
+	{
+		MSG_WARNING("%s", _("Skip devices search (PCI device does not exist)"));
+		return 1;
+	}
+#elif defined (__FreeBSD__) || defined (__DragonFly__)
 	int ret = -1;
 	const DaemonCommand cmd = ACCESS_DEV_PCI;
-	if(DAEMON_UP && access(DEV_PCI, W_OK))
+	if(DAEMON_UP && access(PCI_PATH_FBSD_DEVICE, W_OK))
 	{
 		SEND_DATA(&data.socket_fd,  &cmd, sizeof(DaemonCommand));
 		RECEIVE_DATA(&data.socket_fd, &ret, sizeof(int));
 	}
-	if(ret && access(DEV_PCI, W_OK))
+	if(ret && access(PCI_PATH_FBSD_DEVICE, W_OK))
 	{
-		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)"), DEV_PCI);
+		MSG_WARNING(_("Skip devices search (wrong permissions on %s device)"), PCI_PATH_FBSD_DEVICE);
 		return 1;
 	}
-#endif /* __FreeBSD__ */
-	pci_init(pacc);	    /* Initialize the PCI library */
-	pci_scan_bus(pacc); /* We want to get the list of devices */
+#else
+	MSG_WARNING("This operating system is not officially supported by %s.", PRGNAME);
+#endif
+
+	/* Get the pci_access structure */
+	MSG_DEBUG("%s", "find_devices: pci_alloc");
+	pacc = pci_alloc();
+	pacc->error     = pcilib_msg_error;
+	pacc->warning   = pcilib_msg_warning;
+	pacc->debug     = pcilib_msg_debug;
+	pacc->debugging = Logger::get_verbosity() == LOG_DEBUG;
+
+	/* Initialize the PCI library */
+	MSG_DEBUG("%s", "find_devices: pci_init");
+	pci_init(pacc);
+
+	/* We want to get the list of devices */
+	MSG_DEBUG("%s", "find_devices: pci_scan_bus");
+	pci_scan_bus(pacc);
 
 	/* Iterate over all devices */
 	for(dev = pacc->devices; dev != NULL; dev = dev->next)
@@ -1577,6 +1637,7 @@ static int find_devices(Data &data)
 		}
 	}
 
+	MSG_DEBUG("%s", "find_devices: pci_cleanup");
 	pci_cleanup(pacc);
 	if(!chipset_found)
 		MSG_ERROR("%s", _("failed to find chipset vendor and model"));
