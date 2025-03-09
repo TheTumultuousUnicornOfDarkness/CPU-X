@@ -10,14 +10,15 @@
 # CakesTwix <cakestwix1@gmail.com>, 2023.
 # griffi-gh <prasol258@gmail.com>, 2023.
 # Максим Горпиніч <mgorpinic2005@gmail.com>, 2024.
+# Максим Горпиніч <maksimgorpinic2005a@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-09 11:36+0000\n"
-"PO-Revision-Date: 2024-12-22 19:00+0000\n"
-"Last-Translator: Максим Горпиніч <mgorpinic2005@gmail.com>\n"
+"PO-Revision-Date: 2025-03-09 19:05+0000\n"
+"Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: core.cpp:166
 #, c-format
@@ -278,10 +279,8 @@ msgid "Finding devices"
 msgstr "Пошук пристроїв"
 
 #: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
+msgstr "Пропустити пошук пристроїв (пристрій PCI не існує)"
 
 #: core.cpp:1563
 #, c-format
@@ -468,6 +467,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"Змінна середовища APPDIR не встановлена, неможливо скопіювати демон у "
+"тимчасовий каталог"
 
 #: daemon_client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
