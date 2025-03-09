@@ -9,26 +9,26 @@
 # Samuel Carvalho de Araújo <samuelnegro12345@gmail.com>, 2020.
 # André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2020.
 # LL Magical <lolayami2004@gmail.com>, 2020.
-# Wellington Terumi Uemura <wellingtonuemura@gmail.com>, 2021, 2022, 2023, 2024.
+# Wellington Terumi Uemura <wellingtonuemura@gmail.com>, 2021, 2022, 2023, 2024, 2025.
 # Matheus Mösken Diegues <dmosken2015@gmail.com>, 2024.
 # nelsonhef <nelsonhf@outlook.com>, 2024.
 # Nelson Kerber Hennemann Filho <nelsonhf@outlook.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-09 11:36+0000\n"
-"PO-Revision-Date: 2024-12-17 12:00+0000\n"
+"PO-Revision-Date: 2025-03-09 19:05+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: core.cpp:166
 #, c-format
@@ -286,10 +286,8 @@ msgid "Finding devices"
 msgstr "Localizando os dispositivos"
 
 #: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Ignore a busca dos dispositivos (permissões erradas no dispositivo %s)"
+msgstr "Ignorar a pesquisa de dispositivos (o dispositivo PCI não existe)"
 
 #: core.cpp:1563
 #, c-format
@@ -483,6 +481,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"A variável de ambiente APPDIR não está definida, não é possível copiar o "
+"daemon para o diretório temporário"
 
 #: daemon_client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
