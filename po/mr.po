@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2024-12-14 14:42+0000\n"
+"POT-Creation-Date: 2025-03-09 11:36+0000\n"
 "PO-Revision-Date: 2025-02-04 16:02+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10-dev\n"
 
-#: core.cpp:165
+#: core.cpp:166
 #, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
@@ -29,7 +29,7 @@ msgstr ""
 "आपला सीपीयू डेटाबेसमध्ये उपस्थित नाही==>%s,मॉडेल: %i, ext. मॉडेल: %i, ext. परिवार: "
 "%i मध्ये नाही"
 
-#: core.cpp:209
+#: core.cpp:210
 #, fuzzy, c-format
 #| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgid ""
@@ -37,68 +37,68 @@ msgid ""
 "%s"
 msgstr "आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित नाही"
 
-#: core.cpp:216
+#: core.cpp:217
 msgid "Finding CPU technology"
 msgstr "CPU तंत्रज्ञान शोधत आहे"
 
-#: core.cpp:268 data.cpp:153 data.cpp:364
+#: core.cpp:269 data.cpp:153 data.cpp:364
 msgid "unknown"
 msgstr ""
 
-#: core.cpp:352
+#: core.cpp:353
 msgid "Calling libcpuid for retrieving static data"
 msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core.cpp:362
+#: core.cpp:363
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:491
+#: core.cpp:492
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core.cpp:508
+#: core.cpp:509
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
 
-#: core.cpp:538
+#: core.cpp:539
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
 
-#: core.cpp:570
+#: core.cpp:571
 msgid "Calling dmidecode"
 msgstr "डीमिडेकोडला कॉल करीत आहे"
 
-#: core.cpp:612 core.cpp:631
+#: core.cpp:613 core.cpp:632
 #, c-format
 msgid "%s (configured)"
 msgstr ""
 
-#: core.cpp:619 core.cpp:638
+#: core.cpp:620 core.cpp:639
 #, c-format
 msgid "%s (max)"
 msgstr ""
 
-#: core.cpp:624
+#: core.cpp:625
 #, c-format
 msgid "%s (min)"
 msgstr ""
 
-#: core.cpp:654
+#: core.cpp:655
 msgid "Calculating CPU usage"
 msgstr "सीपीयू वापराची गणना करत आहे"
 
-#: core.cpp:704
+#: core.cpp:705
 msgid "Calling bandwidth"
 msgstr "कॉलिंग बँडविड्थ"
 
-#: core.cpp:761
+#: core.cpp:762
 #, c-format
 msgid "%s (subject) / %s (issuer)"
 msgstr ""
 
-#: core.cpp:789
+#: core.cpp:790
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -107,154 +107,154 @@ msgid ""
 "rebuild %s."
 msgstr ""
 
-#: core.cpp:833
+#: core.cpp:834
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "पथ %s वर ग्राफिक कार्ड करीता कर्नल ड्राइव्हर वापरात नाही"
 
-#: core.cpp:869
+#: core.cpp:870
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "आपला GPU कर्नल ड्राइव्हर अज्ञात आहे: %s"
 
-#: core.cpp:953
+#: core.cpp:973
 #, fuzzy, c-format
 #| msgid "Your GPU user mode driver is unknown: %s"
 msgid "Your GPU user mode driver is unknown for vendor %s: %s"
 msgstr "आपला GPU वापरकर्ता मोड ड्राइव्हर अज्ञात आहे: %s"
 
-#: core.cpp:957
+#: core.cpp:980
 #, c-format
 msgid "failed to call GLFW (%i): %s"
 msgstr "GLFW (%i): %s वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1090
+#: core.cpp:1114
 #, fuzzy
 #| msgid "Version"
 msgid "Finding Vulkan API version"
 msgstr "आवृत्ती"
 
-#: core.cpp:1106
+#: core.cpp:1130
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1110
+#: core.cpp:1134
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core.cpp:1119
+#: core.cpp:1143
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1127
+#: core.cpp:1151
 msgid "No available Vulkan devices"
 msgstr ""
 
-#: core.cpp:1135
+#: core.cpp:1159
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "No available physical devices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1198
+#: core.cpp:1222
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1202
+#: core.cpp:1226
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core.cpp:1234 core.cpp:1553
+#: core.cpp:1258 core.cpp:1636
 msgid "Enabled"
 msgstr "सक्षम केले आहे"
 
-#: core.cpp:1234 core.cpp:1553
+#: core.cpp:1258 core.cpp:1636
 msgid "Disabled"
 msgstr "अक्षम केले आहे"
 
-#: core.cpp:1271
+#: core.cpp:1295
 #, fuzzy
 #| msgid "Version"
 msgid "Finding OpenCL API version"
 msgstr "आवृत्ती"
 
-#: core.cpp:1275
+#: core.cpp:1299
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL समर्थनासह कोणतेही प्लॅटफॉर्म नाही (%s)"
 
-#: core.cpp:1285
+#: core.cpp:1309
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core.cpp:1298
+#: core.cpp:1322
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "प्लॅटफॉर्म %u (%s) चे नाव मिळविण्यात अयशस्वी"
 
-#: core.cpp:1306
+#: core.cpp:1330
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
-#: core.cpp:1314
+#: core.cpp:1338
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "व्यासपीठासाठी ओपन सीएल उपकरणांची संख्या शोधण्यात अयशस्वी '%s %s' (%s)"
 
-#: core.cpp:1314
+#: core.cpp:1338
 #, fuzzy
 #| msgid "Finding devices"
 msgid "0 device"
 msgstr "उपकरणे शोधत आहे"
 
-#: core.cpp:1323
+#: core.cpp:1347
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "व्यासपीठासाठी ओपन सीएल सर्व उपकरणे मिळविण्यात अयशस्वी '%s %s' (%s)"
 
-#: core.cpp:1343
+#: core.cpp:1367
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core.cpp:1351
+#: core.cpp:1375
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
 
-#: core.cpp:1377
+#: core.cpp:1401
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_TOPOLOGY_AMD (%s) ला समर्थन देत नाही"
 
-#: core.cpp:1388
+#: core.cpp:1412
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_GFXIP_MAJOR_AMD (%s) ला समर्थन देत नाही"
 
-#: core.cpp:1396 core.cpp:1416 core.cpp:1449
+#: core.cpp:1420 core.cpp:1440 core.cpp:1473
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_MAX_COMPUTE_UNITS (%s) ला समर्थन देत नाही"
 
-#: core.cpp:1437
+#: core.cpp:1461
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -264,191 +264,197 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) किंवा CL_DEVICE_PCI_SLOT_ID_NV (%s) ला समर्थन देत "
 "नाही"
 
-#: core.cpp:1460
+#: core.cpp:1484
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "तुमच्या चित्रक प्रक्रीयक एकक(GPU) विक्रेत्यासह ओपन सीएल समर्थित नाही (0x%X)"
 
-#: core.cpp:1484
+#: core.cpp:1546
 msgid "Finding devices"
 msgstr "उपकरणे शोधत आहे"
 
-#: core.cpp:1496
+#: core.cpp:1550
+#, fuzzy
+#| msgid "Skip devices search (wrong permissions on %s device)"
+msgid "Skip devices search (PCI device does not exist)"
+msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
+
+#: core.cpp:1563
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
 
-#: core.cpp:1539
+#: core.cpp:1622
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "आपला GPU विक्रेता अज्ञात आहे: %s (0x%X)"
 
-#: core.cpp:1559
+#: core.cpp:1643
 msgid "failed to find chipset vendor and model"
 msgstr "चिपसेट विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core.cpp:1574
+#: core.cpp:1658
 msgid "failed to find graphic card vendor and model"
 msgstr "ग्राफिक कार्ड विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core.cpp:1707
+#: core.cpp:1791
 msgid "Retrieving GPU clocks"
 msgstr "GPU घड्याळे प्राप्त करीत आहे"
 
-#: core.cpp:1720
+#: core.cpp:1804
 msgid "None"
 msgstr "काहीही नाही"
 
-#: core.cpp:1729
+#: core.cpp:1813
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core.cpp:1736
+#: core.cpp:1820
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core.cpp:1761
+#: core.cpp:1845
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core.cpp:1876
+#: core.cpp:1960
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "GPU %u साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
 
-#: core.cpp:1897
+#: core.cpp:1981
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core.cpp:1920
+#: core.cpp:2004
 msgid "Identifying running system"
 msgstr "कार्यरत प्रणाली ओळखत आहे"
 
-#: core.cpp:1923
+#: core.cpp:2007
 msgid "failed to identify running system"
 msgstr "चालू प्रणाली ओळखण्यात अयशस्वी"
 
-#: core.cpp:1980 core.cpp:2009
+#: core.cpp:2064 core.cpp:2093
 msgid "Calling libprocps"
 msgstr "libprocps ला कॉल करीत आहे"
 
-#: core.cpp:1983
+#: core.cpp:2067
 msgid "unable to get system uptime"
 msgstr ""
 
-#: core.cpp:1989
+#: core.cpp:2073
 msgid "unable to create meminfo structure"
 msgstr ""
 
-#: core.cpp:2035
+#: core.cpp:2119
 msgid "Calling libstatgrab"
 msgstr "libstatgrab ला कॉल करीत आहे"
 
-#: core.cpp:2083
+#: core.cpp:2167
 #, c-format
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
 
-#: core.cpp:2146
+#: core.cpp:2230
 msgid "Updating benchmark status"
 msgstr "बेंचमार्क स्थिती अद्यतनित करीत आहे"
 
-#: core.cpp:2149
+#: core.cpp:2233
 msgid "Active"
 msgstr "सक्रीय"
 
-#: core.cpp:2152
+#: core.cpp:2236
 #, c-format
 msgid "(%u hours left)"
 msgstr "(%u तास बाकी)"
 
-#: core.cpp:2154
+#: core.cpp:2238
 #, c-format
 msgid "(%u minutes left)"
 msgstr "(%u मिनिटे बाकी)"
 
-#: core.cpp:2156
+#: core.cpp:2240
 #, c-format
 msgid "(%u seconds left)"
 msgstr "(%u सेकंद शिल्लक)"
 
-#: core.cpp:2160 core.cpp:2215 core.cpp:2216
+#: core.cpp:2244 core.cpp:2299 core.cpp:2300
 msgid "Inactive"
 msgstr "निष्क्रीय"
 
-#: core.cpp:2163
+#: core.cpp:2247
 #, c-format
 msgid "in %u hours"
 msgstr "%u तासात"
 
-#: core.cpp:2165
+#: core.cpp:2249
 #, c-format
 msgid "in %u minutes"
 msgstr "%u मिनिटात"
 
-#: core.cpp:2167
+#: core.cpp:2251
 #, c-format
 msgid "in %u seconds"
 msgstr "%u सेकंदात"
 
-#: core.cpp:2184
+#: core.cpp:2268
 #, fuzzy, c-format
 #| msgid "Starting benchmark"
 msgid "Starting benchmark with %u threads"
 msgstr "बेंचमार्क सुरू करीत आहे"
 
-#: core.cpp:2207
+#: core.cpp:2291
 msgid "an error occurred while starting benchmark"
 msgstr "बेंचमार्क सुरू करताना एक त्रुटी आली"
 
-#: core.cpp:2233
+#: core.cpp:2317
 msgid "Finding CPU package in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
 
-#: core.cpp:2263
+#: core.cpp:2347
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित नाही"
 
-#: core.cpp:2283
+#: core.cpp:2367
 msgid "Calculating CPU multipliers in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू मल्टिप्लायर्सची गणना करत आहे"
 
-#: core.cpp:2309
+#: core.cpp:2393
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये मदरबोर्ड माहिती पुनर्प्राप्त करीत आहे"
 
-#: core.cpp:2325
+#: core.cpp:2409
 msgid "failed to retrieve motherboard information (fallback mode)"
 msgstr "मदरबोर्ड माहिती पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
-#: core.cpp:2368
+#: core.cpp:2452
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू तापमान प्राप्त करत आहे"
 
-#: core.cpp:2416
+#: core.cpp:2500
 msgid "failed to retrieve CPU temperature (fallback mode)"
 msgstr "सीपीयू तापमान (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.cpp:2431
+#: core.cpp:2515
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू व्होल्टेज पुनर्प्राप्त करीत आहे"
 
-#: core.cpp:2450
+#: core.cpp:2534
 msgid "failed to retrieve CPU voltage (fallback mode)"
 msgstr "सीपीयू व्होल्टेज (फॉलबॅक मोड) पुनर्प्राप्त करण्यात अयशस्वी"
 
-#: core.cpp:2464
+#: core.cpp:2548
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू वारंवारता पुनर्प्राप्त करीत आहे"
 
-#: core.cpp:2475
+#: core.cpp:2559
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "सीपीयू वारंवारता पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
@@ -458,29 +464,35 @@ msgstr "सीपीयू वारंवारता पुनर्प्र�
 msgid "Starting daemon in background…"
 msgstr "पार्श्वभूमीवर डिमन सुरू करण्यासाठी संकेतशब्द विचारा"
 
-#: daemon_client.cpp:172
+#: daemon_client.cpp:103
+msgid ""
+"APPDIR environment variable is not set, cannot copy the daemon to the "
+"temporary directory"
+msgstr ""
+
+#: daemon_client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
 msgstr "pkexec: अधिकृतता प्राप्त होऊ शकली नाही (संवाद फेटाळला)"
 
-#: daemon_client.cpp:175
+#: daemon_client.cpp:184
 msgid "pkexec: authorization could not be obtained (not authorized)"
 msgstr "pkexec: अधिकृतता मिळू शकली नाही (अधिकृत नाही)"
 
-#: daemon_client.cpp:178
+#: daemon_client.cpp:187
 msgid "pkexec: command not found"
 msgstr "pkexec: कमांड आढळली नाही"
 
-#: daemon_client.cpp:181
+#: daemon_client.cpp:190
 msgid "pkexec: unexpected error code"
 msgstr "pkexec: अनपेक्षित त्रुटी कोड"
 
-#: daemon_client.cpp:211
+#: daemon_client.cpp:220
 #, fuzzy
 #| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
 msgstr "डिमनशी कनेक्ट केले"
 
-#: daemon_server.cpp:261
+#: daemon_server.cpp:267
 #, c-format
 msgid "request_handler: case %i not handled"
 msgstr "विनंती_हांडलर: केस %i हाताळले नाही"
@@ -676,70 +688,70 @@ msgstr "हे सॉफ्टवेअर %s च्या अटी अंत�
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "हा प्रोग्राम पूर्णपणे कोणतीही हमी देत नाही"
 
-#: gui_gtk.cpp:83
+#: gui_gtk.cpp:87
 #, c-format
 msgid "Cannot find path for '%s' file"
 msgstr ""
 
-#: gui_gtk.cpp:456
+#: gui_gtk.cpp:460
 msgid "No polkit authentication agent found"
 msgstr "कोणताही पोलकिट ऑथेंटिकेशन एजंट सापडला नाही"
 
-#: gui_gtk.cpp:462
+#: gui_gtk.cpp:466
 msgid "Ask password to start daemon in background"
 msgstr "पार्श्वभूमीवर डिमन सुरू करण्यासाठी संकेतशब्द विचारा"
 
-#: gui_gtk.cpp:466
+#: gui_gtk.cpp:470
 msgid "Settings"
 msgstr ""
 
-#: gui_gtk.cpp:707
+#: gui_gtk.cpp:711
 msgid "BaseFamily"
 msgstr "मुळ कुटूंब"
 
-#: gui_gtk.cpp:708
+#: gui_gtk.cpp:712
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
 "मध्यवर्ती प्रक्रीयक एकक(CPU) प्रदर्शक(Display) (\"खरे\") कुटूंब (मुळ कुटूंब+विस्तारित कुटुंब "
 "म्हणून गणना)"
 
-#: gui_gtk.cpp:709
+#: gui_gtk.cpp:713
 msgid "BaseModel"
 msgstr "प्रतिकृती"
 
-#: gui_gtk.cpp:710
+#: gui_gtk.cpp:714
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
-#: gui_gtk.cpp:904
+#: gui_gtk.cpp:908
 msgid "EFI Platform Key certificate information"
 msgstr ""
 
-#: gui_gtk.cpp:939
+#: gui_gtk.cpp:943
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
 
-#: gui_gtk.cpp:940
+#: gui_gtk.cpp:944
 msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
-#: gui_gtk.cpp:1145
+#: gui_gtk.cpp:1149
 #, fuzzy
 #| msgid "Version"
 msgid "User Mode Driver Version"
 msgstr "आवृत्ती"
 
-#: gui_gtk.cpp:1159
+#: gui_gtk.cpp:1163
 msgid "Vulkan Ray Tracing"
 msgstr ""
 
-#: gui_gtk.cpp:1354
+#: gui_gtk.cpp:1358
 msgid "Starting GTK GUI…"
 msgstr "जीटीके जीयूआय प्रारंभ करीत आहे …"
 
-#: gui_gtk.cpp:1365
+#: gui_gtk.cpp:1369
 msgid "failed to import UI in GtkBuilder"
 msgstr "GtkBuilder मध्ये UI आयात करण्यात अयशस्वी"
 
