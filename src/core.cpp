@@ -1493,7 +1493,7 @@ static int set_gpu_compute_unit([[maybe_unused]] Data::Graphics::Card &card, [[m
 #undef OPENCL_INFO_BUFFER_SIZE
 #undef CLINFO
 
-static void PCI_NONRET pcilib_msg_error(char *str, ...)
+PCI_NONRET static void pcilib_msg_error(char *str, ...)
 {
 	char *buff = NULL;
 	va_list aptr;
