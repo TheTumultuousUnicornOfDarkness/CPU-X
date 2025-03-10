@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-09 11:36+0000\n"
-"PO-Revision-Date: 2025-02-09 02:36+0000\n"
+"PO-Revision-Date: 2025-03-10 01:46+0000\n"
 "Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ro/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: core.cpp:166
 #, c-format
@@ -281,10 +281,8 @@ msgid "Finding devices"
 msgstr "Se detectează dispozitivele"
 
 #: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Omite căutarea dispozitivelor (permisiuni greșite pe dispozitivul %s)"
+msgstr "Omite căutarea dispozitivelor (dispozitivul PCI nu există)"
 
 #: core.cpp:1563
 #, c-format
@@ -473,6 +471,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"Variabila de mediu APPDIR nu este definită, nu se poate copia demonul în "
+"directorul temporar"
 
 #: daemon_client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
