@@ -1,15 +1,15 @@
 # CPU-X translations template
 # Copyright © 2014-2025 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the cpu-x package.
-# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021, 2022, 2023, 2024.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021, 2022, 2023, 2024, 2025.
 # bittin1ddc447d824349b2 <bittin@reimu.nl>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-09 11:36+0000\n"
-"PO-Revision-Date: 2024-12-15 17:00+0000\n"
+"PO-Revision-Date: 2025-03-10 14:49+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-rc\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: core.cpp:166
 #, c-format
@@ -264,10 +264,8 @@ msgid "Finding devices"
 msgstr "Söker enheter"
 
 #: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Hoppa över enhetssök (fel behörigheter på %s)"
+msgstr "Hoppa över enhetssök (Det finns ingen PCI-ebhet)"
 
 #: core.cpp:1563
 #, c-format
