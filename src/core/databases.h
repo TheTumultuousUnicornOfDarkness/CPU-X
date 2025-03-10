@@ -18,11 +18,11 @@
 
 /*
 * PROJECT CPU-X
-* FILE databases.h
+* FILE core/databases.h
 */
 
-#ifndef _DATABASES_H_
-#define _DATABASES_H_
+#ifndef _CORE_DATABASES_H_
+#define _CORE_DATABASES_H_
 
 
 /****************************** CPU Technology ******************************/
@@ -431,4 +431,4 @@ const Package_DB package_amd[] =
 };
 
 
-#endif /* _DATABASES_H_ */
+#endif /* _CORE_DATABASES_H_ */

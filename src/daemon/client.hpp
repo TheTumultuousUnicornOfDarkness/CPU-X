@@ -18,43 +18,21 @@
 
 /*
 * PROJECT CPU-X
-* FILE core.hpp
+* FILE daemon/client.hpp
 */
 
-#ifndef _CORE_HPP_
-#define _CORE_HPP_
-
-#include "data.hpp"
+#ifndef _DAEMON_CLIENT_HPP_
+#define _DAEMON_CLIENT_HPP_
 
 
-/***************************** External headers *****************************/
+/* Start daemon in background */
+const char *start_daemon(bool graphical);
 
-/* Load and apply settings from GSettings */
-void load_settings(void);
+/* Check if daemon is running */
+bool daemon_is_alive(void);
 
-/* Start CPU-X in GTK mode */
-int start_gui_gtk(Data &data);
-
-/* Start CPU-X in NCurses mode */
-void start_tui_ncurses(Data &data);
+/* Establish connection to daemon */
+int connect_to_daemon(int &socket_fd);
 
 
-/************************* Public functions *************************/
-
-/* Fill labels by calling core functions */
-int fill_labels(Data &data);
-
-/* Refresh some labels */
-int do_refresh(Data &data, TabNumber tab_number);
-
-/* Call Dmidecode through CPU-X but do nothing else */
-int run_dmidecode(void);
-
-/* Call Bandwidth through CPU-X but do nothing else */
-int run_bandwidth(void);
-
-/* Perform a multithreaded benchmark (compute prime numbers) */
-void start_benchmarks(Data &data);
-
-
-#endif /* _CORE_HPP_ */
+#endif /* _DAEMON_CLIENT_HPP_ */

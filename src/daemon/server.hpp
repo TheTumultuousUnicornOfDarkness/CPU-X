@@ -18,21 +18,27 @@
 
 /*
 * PROJECT CPU-X
-* FILE daemon_client.hpp
+* FILE daemon/server.hpp
 */
 
-#ifndef _DAEMON_CLIENT_HPP_
-#define _DAEMON_CLIENT_HPP_
+#ifndef _DAEMON_SERVER_HPP_
+#define _DAEMON_SERVER_HPP_
+
+#include <thread>
+#include <mutex>
+#include <vector>
+
+#define POLL_TIMEOUT (5 * 1000) // 5 seconds
+#define NFDS         1
+#define LOG_FILE     "/tmp/cpu-x-daemon.log"
 
 
-/* Start daemon in background */
-const char *start_daemon(bool graphical);
-
-/* Check if daemon is running */
-bool daemon_is_alive(void);
-
-/* Establish connection to daemon */
-int connect_to_daemon(int &socket_fd);
+struct ThreadsInfo
+{
+	uint16_t running_threads = 0;
+	std::mutex mutex;
+	std::vector<std::thread> threads {};
+};
 
 
-#endif /* _DAEMON_CLIENT_HPP_ */
+#endif /* _DAEMON_SERVER_HPP_ */

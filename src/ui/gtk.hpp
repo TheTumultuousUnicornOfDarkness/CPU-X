@@ -18,11 +18,11 @@
 
 /*
 * PROJECT CPU-X
-* FILE gui_gtk.hpp
+* FILE ui/gtk.hpp
 */
 
-#ifndef _GUI_GTK_HPP_
-#define _GUI_GTK_HPP_
+#ifndef _UI_GTK_HPP_
+#define _UI_GTK_HPP_
 
 #include <gtkmm/window.h>
 #include <gtkmm/builder.h>
@@ -245,4 +245,4 @@ struct SettingsWindow
 };
 
 
-#endif /* _GUI_GTK_HPP_ */
+#endif /* _UI_GTK_HPP_ */

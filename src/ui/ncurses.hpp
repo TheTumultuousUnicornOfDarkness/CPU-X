@@ -18,11 +18,11 @@
 
 /*
 * PROJECT CPU-X
-* FILE tui_ncurses.h
+* FILE ui/ncurses.hpp
 */
 
-#ifndef _TUI_NCURSES_HPP_
-#define _TUI_NCURSES_HPP_
+#ifndef _UI_NCURSES_HPP_
+#define _UI_NCURSES_HPP_
 
 
 #include <ncurses.h>
@@ -141,4 +141,4 @@ struct SizeInfo
 };
 
 
-#endif /* _TUI_NCURSES_HPP_ */
+#endif /* _UI_NCURSES_HPP_ */

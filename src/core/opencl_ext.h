@@ -16,11 +16,12 @@
 
 /*
 * PROJECT CPU-X
-* FILE opencl_ext.h
+* FILE core/opencl_ext.h
 */
 
-#ifndef _OPENCL_EXT_H_
-#define _OPENCL_EXT_H_
+#ifndef _CORE_OPENCL_EXT_H_
+#define _CORE_OPENCL_EXT_H_
+
 
 /* https://stackoverflow.com/a/60890691 */
 #define CaseReturnString(x) case x: return #x;
@@ -119,4 +120,4 @@ typedef union
 #define CL_DEVICE_PCI_SLOT_ID_NV                    0x4009
 #define CL_DEVICE_PCI_DOMAIN_ID_NV                  0x400A
 
-#endif /* _OPENCL_EXT_H_ */
+#endif /* _CORE_OPENCL_EXT_H_ */

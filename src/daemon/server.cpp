@@ -18,7 +18,7 @@
 
 /*
 * PROJECT CPU-X
-* FILE daemon_server.cpp
+* FILE daemon/server.cpp
 */
 
 #include <unistd.h>
@@ -31,7 +31,7 @@
 #include <filesystem>
 #include "util.hpp"
 #include "daemon.h"
-#include "daemon_server.hpp"
+#include "server.hpp"
 
 #ifdef __linux__
 # include <sys/mount.h>
@@ -42,7 +42,7 @@
 #endif
 
 #if HAS_DMIDECODE
-# include "dmidecode/libdmidecode.h"
+# include "core/dmidecode/libdmidecode.h"
 #endif
 
 #if HAS_LIBPCI
