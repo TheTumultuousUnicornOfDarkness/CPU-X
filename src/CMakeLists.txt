@@ -1,4 +1,13 @@
-### FIND NEEDED LIBRAIRIES
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+
+### TIP: CMake commands orders
+# - link_directories: The command will apply only to targets created after it is called.
+# - add_executable: Adds an executable target called <name> to be built from the source files listed in the command invocation.
+#                   (The source files can be omitted here if they are added later using target_sources().)
+# - target_sources: The named <target> must have been created by a command such as add_executable().
+
+
+### FIND REQUIRED LIBRAIRIES
 
 # GTK3+
 if(WITH_GTK)
@@ -8,12 +17,6 @@ if(WITH_GTK)
 		include_directories(${GTK3_INCLUDE_DIRS})
 		link_directories(${GTK3_LIBRARY_DIRS})
 		add_definitions(${GTK3_CFLAGS_OTHER})
-		add_library(gui_gtk STATIC
-			gui_gtk.cpp
-			gui_gtk.hpp
-			${GRESOURCES}
-		)
-		set(GTK3_LIBRARIES "gui_gtk" ${GTK3_LIBRARIES})
 	else(GTK3_FOUND)
 		message("${BoldYellow}GTK3+ GUI will not be build:${ColourReset} ${Yellow}GTK ${MINIMUM_GTK_VERSION} or higher is needed.${ColourReset}")
 		message("${Yellow}Set ${BoldYellow}PKG_CONFIG_PATH${ColourReset}${Yellow} environment variable if development files are installed.${ColourReset}")
@@ -31,11 +34,6 @@ if(WITH_NCURSES)
 	if(NCURSES_FOUND)
 		include_directories(${NCURSES_INCLUDE_DIRS})
 		link_directories(${NCURSES_LIBRARY_DIRS})
-		add_library(tui_ncurses STATIC
-			tui_ncurses.cpp
-			tui_ncurses.hpp
-		)
-		set(NCURSES_LIBRARIES "tui_ncurses" ${NCURSES_LIBRARIES})
 	endif(NCURSES_FOUND)
 endif(WITH_NCURSES)
 
@@ -73,8 +71,8 @@ if(WITH_LIBGLFW)
 		include_directories(${LIBGL_INCLUDE_DIRS} ${LIBGLFW_INCLUDE_DIRS})
 		link_directories(${LIBGL_LIBRARY_DIRS} ${LIBGLFW_LIBRARY_DIRS})
 		add_definitions(${LIBGL_CFLAGS_OTHER} ${LIBGLFW_CFLAGS_OTHER})
+		set(LIBOPENGL_LIBRARIES ${LIBGL_LIBRARIES} ${LIBGLFW_LIBRARIES})
 	endif(LIBGL_FOUND AND LIBGLFW_FOUND)
-
 endif(WITH_LIBGLFW)
 
 # Vulkan
@@ -98,6 +96,7 @@ if(WITH_OPENCL)
 endif(WITH_OPENCL)
 
 # Libprocps
+set(LIBSYSTEM_LIBRARIES)
 set(LIBSYSTEM 0)
 set(LIBPROC2 -1)
 if(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
@@ -106,6 +105,7 @@ if(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTAT
 		include_directories(${LIBPROC2_INCLUDE_DIRS})
 		link_directories(${LIBPROC2_LIBRARY_DIRS})
 		add_definitions(${LIBPROC2_CFLAGS_OTHER})
+		set(LIBSYSTEM_LIBRARIES ${LIBPROC2_LIBRARIES})
 		set(LIBSYSTEM 1)
 		set(LIBPROC2 1)
 	else()
@@ -116,6 +116,7 @@ if(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTAT
 		include_directories(${LIBPROCPS_INCLUDE_DIRS})
 		link_directories(${LIBPROCPS_LIBRARY_DIRS})
 		add_definitions(${LIBPROCPS_CFLAGS_OTHER})
+		set(LIBSYSTEM_LIBRARIES ${LIBPROCPS_LIBRARIES})
 		set(LIBSYSTEM 1)
 	endif(LIBPROCPS_FOUND)
 endif(WITH_LIBPROCPS AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
@@ -127,22 +128,23 @@ if(WITH_LIBSTATGRAB AND (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBST
 		include_directories(${LIBSTATGRAB_INCLUDE_DIRS})
 		link_directories(${LIBSTATGRAB_LIBRARY_DIRS})
 		add_definitions(${LIBSTATGRAB_CFLAGS_OTHER})
+		set(LIBSYSTEM_LIBRARIES ${LIBSTATGRAB_LIBRARIES})
 		set(LIBSYSTEM 2)
 	endif(LIBSTATGRAB_FOUND)
 endif(WITH_LIBSTATGRAB AND (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR FORCE_LIBSTATGRAB))
 
 # Dmidecode
 if(WITH_DMIDECODE)
-	add_subdirectory(dmidecode)
-	include_directories(dmidecode)
+	add_subdirectory(core/dmidecode)
+	include_directories(core/dmidecode)
 	set(DMIDECODE_LIBRARIES "dmidecode")
 endif(WITH_DMIDECODE)
 
 # Bandwidth
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)" AND WITH_BANDWIDTH)
-	add_subdirectory(bandwidth)
+	add_subdirectory(core/bandwidth)
 	if(BANDWIDTH_FOUND)
-		include_directories(bandwidth)
+		include_directories(core/bandwidth)
 		set(BANDWIDTH_LIBRARIES "bandwidth")
 	endif(BANDWIDTH_FOUND)
 endif(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)" AND WITH_BANDWIDTH)
@@ -161,8 +163,8 @@ print_config("GETTEXT"             0                        GETTEXT_FOUND     WI
 print_config("LIBCPUID"            "${LIBCPUID_VERSION}"    LIBCPUID_FOUND    WITH_LIBCPUID)
 print_config("LIBPCI"              "${LIBPCI_VERSION}"      LIBPCI_FOUND      WITH_LIBPCI)
 print_config("LIBGLFW"             "${LIBGLFW_VERSION}"     LIBGLFW_FOUND     WITH_LIBGLFW)
-print_config("Vulkan"              "${VULKAN_VERSION}"      VULKAN_FOUND      WITH_VULKAN)
-print_config("OpenCL"              "${OPENCL_VERSION}"      OPENCL_FOUND      WITH_OPENCL)
+print_config("VULKAN"              "${VULKAN_VERSION}"      VULKAN_FOUND      WITH_VULKAN)
+print_config("OPENCL"              "${OPENCL_VERSION}"      OPENCL_FOUND      WITH_OPENCL)
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
 	if(${LIBPROC2} EQUAL 1)
 		print_config("LIBPROC2"    "${LIBPROC2_VERSION}"    LIBPROC2_FOUND    WITH_LIBPROCPS)
@@ -178,15 +180,17 @@ print_config("DMIDECODE"           "${DMIDECODE_VERSION}"   1                 WI
 print_config("BANDWIDTH"           "${BANDWIDTH_VERSION}"   BANDWIDTH_FOUND   WITH_BANDWIDTH)
 
 
-### MAIN BINARY
+### BINARIES
 
-# Executable
+# Executables
 add_executable(${APP_EXEC}
-	core.cpp
-	core.hpp
-	daemon_client.cpp
-	daemon_client.hpp
-	daemon.h
+	core/benchmarks.cpp
+	core/core.cpp
+	core/core.hpp
+	core/internal.hpp
+	daemon/client.cpp
+	daemon/client.hpp
+	daemon/daemon.h
 	data.cpp
 	data.hpp
 	logger.cpp
@@ -197,14 +201,11 @@ add_executable(${APP_EXEC}
 	util.cpp
 	util.hpp
 )
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set(OTHER_LIBRARIES "-latomic")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 add_executable(${DAEMON_EXEC}
-	daemon_server.cpp
-	daemon_server.hpp
-	daemon.h
+	daemon/server.cpp
+	daemon/server.hpp
+	daemon/daemon.h
 	data.cpp
 	data.hpp
 	logger.cpp
@@ -214,6 +215,107 @@ add_executable(${DAEMON_EXEC}
 	util.cpp
 	util.hpp
 )
+
+
+# Additional source files
+# GTK3+
+if(WITH_GTK AND GTK3_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		ui/gtk.cpp
+		ui/gtk.hpp
+	)
+endif(WITH_GTK AND GTK3_FOUND)
+
+# NCurses
+if(WITH_NCURSES AND NCURSES_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		ui/ncurses.cpp
+		ui/ncurses.hpp
+	)
+endif(WITH_NCURSES AND NCURSES_FOUND)
+
+# Libcpuid
+if(WITH_LIBCPUID AND LIBCPUID_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/libcpuid.cpp
+		core/databases.h
+	)
+	target_sources(${DAEMON_EXEC}
+		PRIVATE
+		core/libcpuid.cpp
+		core/databases.h
+	)
+endif(WITH_LIBCPUID AND LIBCPUID_FOUND)
+
+# Libpci
+if(WITH_LIBPCI AND LIBPCI_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/libpci.cpp
+	)
+endif(WITH_LIBPCI AND LIBPCI_FOUND)
+
+# Libglfw
+if(WITH_LIBGLFW AND LIBGL_FOUND AND LIBGLFW_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/libopengl.cpp
+	)
+endif(WITH_LIBGLFW AND LIBGL_FOUND AND LIBGLFW_FOUND)
+
+# Vulkan
+if(WITH_VULKAN AND VULKAN_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/libvulkan.cpp
+	)
+endif(WITH_VULKAN AND VULKAN_FOUND)
+
+# OpenCL
+if(WITH_OPENCL AND OPENCL_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/libopencl.cpp
+		core/opencl_ext.h
+	)
+endif(WITH_OPENCL AND OPENCL_FOUND)
+
+# Libsystem (libproc2/libprocps/libstatgrab)
+if(${LIBSYSTEM} GREATER 0)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/libsystem.cpp
+	)
+endif(${LIBSYSTEM} GREATER 0)
+
+# Dmidecode
+if(WITH_DMIDECODE)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/dmidecode/libdmidecode.cpp
+		core/dmidecode/libdmidecode.h
+	)
+	target_sources(${DAEMON_EXEC}
+		PRIVATE
+		core/dmidecode/libdmidecode.cpp
+		core/dmidecode/libdmidecode.h
+	)
+endif(WITH_DMIDECODE)
+
+# Bandwidth
+if(WITH_BANDWIDTH AND BANDWIDTH_FOUND)
+	target_sources(${APP_EXEC}
+		PRIVATE
+		core/bandwidth/libbandwidth.cpp
+		core/bandwidth/libbandwidth.h
+	)
+endif(WITH_BANDWIDTH AND BANDWIDTH_FOUND)
+
+
+### DEFINITIONS & LINK
 
 # Libsystem extra-definitions
 if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 1) # When Libprocps is used
@@ -228,6 +330,11 @@ if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2) # When Libstatgrab is used
 	add_definitions(-DHAS_LIBPROC2=0  -DLIBPROC2_VERSION=NULL)
 	add_definitions(-DHAS_LIBPROCPS=0 -DLIBPROCPS_VERSION=NULL)
 endif()
+
+# ARM CPUs workarounds
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	set(OTHER_LIBRARIES "-latomic")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # AppImage workarounds
 if(APPIMAGE)
@@ -262,7 +369,6 @@ add_definitions(-DPRGVER="${PROJECT_VERSION}"
 	-DSOCKET_NAME="${DAEMON_SOCKET}"
 )
 
-
 # Link libraries
 target_link_libraries(${APP_EXEC}
 	${Intl_LIBRARIES}
@@ -274,13 +380,10 @@ target_link_libraries(${APP_EXEC}
 	${NCURSES_LIBRARIES}
 	${LIBCPUID_LIBRARIES}
 	${LIBPCI_LIBRARIES}
-	${LIBGL_LIBRARIES}
-	${LIBGLFW_LIBRARIES}
+	${LIBOPENGL_LIBRARIES}
 	${VULKAN_LIBRARIES}
 	${OPENCL_LIBRARIES}
-	${LIBPROC2_LIBRARIES}
-	${LIBPROCPS_LIBRARIES}
-	${LIBSTATGRAB_LIBRARIES}
+	${LIBSYSTEM_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
 	${OTHER_LIBRARIES}
@@ -297,5 +400,6 @@ target_link_libraries(${DAEMON_EXEC}
 
 
 ### INSTALLATION
+
 install(TARGETS ${APP_EXEC}    DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}/)
 install(TARGETS ${DAEMON_EXEC} DESTINATION ${CMAKE_INSTALL_FULL_LIBEXECDIR}/)

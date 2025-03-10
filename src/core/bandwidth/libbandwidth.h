@@ -18,7 +18,7 @@
 
 /*
 * PROJECT CPU-X
-* FILE libbandwidth.h
+* FILE core/bandwidth/libbandwidth.h
 */
 
 #ifndef _LIBBANDWIDTH_H_

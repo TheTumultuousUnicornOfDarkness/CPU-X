@@ -18,7 +18,7 @@
 
 /*
 * PROJECT CPU-X
-* FILE tui_ncurses.cpp
+* FILE ui/ncurses.cpp
 */
 
 #include <unistd.h>
@@ -32,8 +32,8 @@
 #include <array>
 #include "options.hpp"
 #include "data.hpp"
-#include "core.hpp"
-#include "tui_ncurses.hpp"
+#include "core/core.hpp"
+#include "ui/ncurses.hpp"
 
 #if HAS_GETTEXT
 # include <libintl.h>

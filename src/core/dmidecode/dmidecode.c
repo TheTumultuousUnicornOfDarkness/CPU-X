@@ -85,7 +85,7 @@
 #include "dmioutput.h"
 
 /* CPU-X */
-#include "../daemon.h"
+#include "../../daemon/daemon.h"
 #if HAS_GETTEXT
 # define _(msg)               gettext(msg)
 #else

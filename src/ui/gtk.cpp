@@ -18,7 +18,7 @@
 
 /*
 * PROJECT CPU-X
-* FILE gui_gtk.cpp
+* FILE ui/gtk.cpp
 */
 
 #include <unistd.h>
@@ -32,10 +32,10 @@
 #include "options.hpp"
 #include "util.hpp"
 #include "data.hpp"
-#include "core.hpp"
-#include "daemon.h"
-#include "daemon_client.hpp"
-#include "gui_gtk.hpp"
+#include "core/core.hpp"
+#include "daemon/daemon.h"
+#include "daemon/client.hpp"
+#include "ui/gtk.hpp"
 
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>

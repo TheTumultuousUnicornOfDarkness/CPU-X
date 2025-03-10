@@ -18,27 +18,43 @@
 
 /*
 * PROJECT CPU-X
-* FILE daemon_server.hpp
+* FILE core/core.hpp
 */
 
-#ifndef _DAEMON_SERVER_HPP_
-#define _DAEMON_SERVER_HPP_
+#ifndef _CORE_CORE_HPP_
+#define _CORE_CORE_HPP_
 
-#include <thread>
-#include <mutex>
-#include <vector>
-
-#define POLL_TIMEOUT (5 * 1000) // 5 seconds
-#define NFDS         1
-#define LOG_FILE     "/tmp/cpu-x-daemon.log"
+#include "data.hpp"
 
 
-struct ThreadsInfo
-{
-	uint16_t running_threads = 0;
-	std::mutex mutex;
-	std::vector<std::thread> threads {};
-};
+/***************************** External headers *****************************/
+
+/* Load and apply settings from GSettings */
+void load_settings(void);
+
+/* Start CPU-X in GTK mode */
+int start_gui_gtk(Data &data);
+
+/* Start CPU-X in NCurses mode */
+void start_tui_ncurses(Data &data);
 
 
-#endif /* _DAEMON_SERVER_HPP_ */
+/************************* Public functions *************************/
+
+/* Fill labels by calling core functions */
+int fill_labels(Data &data);
+
+/* Refresh some labels */
+int do_refresh(Data &data, TabNumber tab_number);
+
+/* Call Dmidecode through CPU-X but do nothing else */
+int run_dmidecode(void);
+
+/* Call Bandwidth through CPU-X but do nothing else */
+int run_bandwidth(void);
+
+/* Perform a multithreaded benchmark (compute prime numbers) */
+void start_benchmarks(Data &data);
+
+
+#endif /* _CORE_CORE_HPP_ */

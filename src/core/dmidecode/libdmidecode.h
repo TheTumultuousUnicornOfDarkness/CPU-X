@@ -18,7 +18,7 @@
 
 /*
 * PROJECT CPU-X
-* FILE dmidecode.h
+* FILE core/dmidecode/libdmidecode.h
 */
 
 #ifndef _LIBDMIDECODE_H_

@@ -27,7 +27,7 @@
 #include "data.hpp"
 
 #if HAS_BANDWIDTH
-# include "bandwidth/libbandwidth.h"
+# include "core/bandwidth/libbandwidth.h"
 #endif
 
 

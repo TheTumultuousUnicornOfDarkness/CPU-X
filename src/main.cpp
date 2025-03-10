@@ -39,9 +39,9 @@
 #include "options.hpp"
 #include "util.hpp"
 #include "data.hpp"
-#include "core.hpp"
-#include "daemon.h"
-#include "daemon_client.hpp"
+#include "core/core.hpp"
+#include "daemon/daemon.h"
+#include "daemon/client.hpp"
 
 #define LOG_FILE "/tmp/cpu-x.log"
 
@@ -159,8 +159,8 @@ static void version(bool full_header)
 		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
 		{ HAS_LIBGLFW,     "LIBGLFW",     LIBGLFW_VERSION     },
-		{ HAS_Vulkan,      "VULKAN",      Vulkan_VERSION      },
-		{ HAS_OpenCL,      "OPENCL",      OpenCL_VERSION      },
+		{ HAS_VULKAN,      "VULKAN",      VULKAN_VERSION      },
+		{ HAS_OPENCL,      "OPENCL",      OPENCL_VERSION      },
 		{ HAS_LIBPROC2,    "LIBPROC2",    LIBPROC2_VERSION    },
 		{ HAS_LIBPROCPS,   "LIBPROCPS",   LIBPROCPS_VERSION   },
 		{ HAS_LIBSTATGRAB, "LIBSTATGRAB", LIBSTATGRAB_VERSION },

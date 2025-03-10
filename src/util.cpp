@@ -34,7 +34,7 @@
 #include <optional>
 #include "options.hpp"
 #include "util.hpp"
-#include "daemon.h"
+#include "daemon/daemon.h"
 
 namespace fs = std::filesystem;
 

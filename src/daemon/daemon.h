@@ -18,11 +18,11 @@
 
 /*
 * PROJECT CPU-X
-* FILE daemon.h
+* FILE daemon/daemon.h
 */
 
-#ifndef _DAEMON_H_
-#define _DAEMON_H_
+#ifndef _DAEMON_DAEMON_H_
+#define _DAEMON_DAEMON_H_
 
 #define DAEMON_UP (data.socket_fd >= 0)
 
@@ -120,4 +120,4 @@ typedef struct
 } DmidecodeData;
 
 
-#endif /* _DAEMON_H_ */
+#endif /* _DAEMON_DAEMON_H_ */

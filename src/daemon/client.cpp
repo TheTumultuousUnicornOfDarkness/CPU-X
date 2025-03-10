@@ -18,7 +18,7 @@
 
 /*
 * PROJECT CPU-X
-* FILE daemon_client.cpp
+* FILE daemon/client.cpp
 */
 
 #include <unistd.h>
@@ -32,7 +32,7 @@
 #include <sys/un.h>
 #include "util.hpp"
 #include "daemon.h"
-#include "daemon_client.hpp"
+#include "client.hpp"
 
 namespace fs = std::filesystem;
 
