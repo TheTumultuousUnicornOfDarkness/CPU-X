@@ -6,16 +6,16 @@
 # Takuro Onoue <kusanaginoturugi@gmail.com>, 2020, 2023.
 # Umio Yasuno <coelacanth_dream@pm.me>, 2021, 2023.
 # Kyotaro Iijima <kyotaro.eyes@gmail.com>, 2022.
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022, 2023, 2024.
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022, 2023, 2024, 2025.
 # Kenryu Shibata <kenryushibata@gmail.com>, 2022, 2024.
 # Miyu Sakatsuki <miyu-sakatsuki@outlook.jp>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-09 11:36+0000\n"
-"PO-Revision-Date: 2024-12-15 17:00+0000\n"
+"PO-Revision-Date: 2025-03-12 05:11+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.9-rc\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: core.cpp:166
 #, c-format
@@ -274,10 +274,8 @@ msgid "Finding devices"
 msgstr "デバイスを識別中"
 
 #: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
+msgstr "デバイス検索をスキップ (PCI デバイスが存在しません)"
 
 #: core.cpp:1563
 #, c-format
@@ -466,7 +464,8 @@ msgstr "バックグラウンドでデーモンを起動…"
 msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
-msgstr ""
+msgstr "APPDIR "
+"環境変数が設定されていないため、デーモンを一時ディレクトリにコピーできません"
 
 #: daemon_client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
