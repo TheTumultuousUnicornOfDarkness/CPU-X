@@ -570,7 +570,7 @@ void GtkData::set_signals()
 	});
 
 	/* Exit CPU-X */
-	this->closebutton->signal_clicked().connect([this]
+	this->closebutton->signal_clicked().connect([]
 	{
 		app->quit();
 	});
