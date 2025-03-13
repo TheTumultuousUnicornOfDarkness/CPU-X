@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2025-03-09 19:05+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
@@ -25,478 +25,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
-"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Generator: Weblate 5.10.3-dev\n"
-
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Twój CPU nie jest obecny w bazie danych ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-
-#: core.cpp:210
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr ""
-"Twój procesor nie znajduje się w bazie danych ==> %s, numer części: 0x%x, "
-"nazwa kodowa: %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "Wyszukiwanie technologi procesora"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "nieznany"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Wywołanie libcpuid w celu pobierania danych statycznych"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "nie udało się wywołać libcpuid (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Wywołanie libcpuid w celu pobierania danych dynamicznych"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Wywołanie libcpuid w celu pobrania statycznych danych z CPU MSR"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Wywołanie libcpuid w celu pobrania dynamicznych danych z CPU MSR"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "Wywołanie dmidecode"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr "%s (konfiguracji)"
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr "%s (max)"
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr "%s (min)"
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "Obliczanie użycia procesora"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "Wywołanie bandwidth"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr "%s (podmiot) / %s (wydawca)"
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"pci_access nie jest poprawnie zainicjowany: jest to częsty problem, gdy %s "
-"został zbudowany z niższą wersją libpci.\n"
-"Sprawdź, czy biblioteka libpci %s jest obecna w Twoim systemie. W przeciwnym "
-"razie należy przebudować %s."
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Brak sterownika jądra dla karty graficznej przy ścieżce %s"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Nieznany sterownik jądra GPU: %s"
-
-#: core.cpp:973
-#, c-format
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU %s: %s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "nie udało się wywołać GLFW (%i): %s"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "Szukanie wersji API Vulkan"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "nie udało się wywołać vkCreateInstance (%s)"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "%s nie jest obsługiwany"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "nie udało się wywołać vkEnumeratePhysicalDevices (%s)"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "Brak dostępnych urządzeń Vulkan"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "Brak dostępnych urządzeń fizycznych (%s)"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "Nie udało się stworzyć Vulkan dla urządzenia %u (%s)"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"%s nie jest obsługiwany dla urządzenia %u, użyj tylko deviceID aby dopasować"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "Włączone"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "Wyłączone"
-
-#: core.cpp:1295
-msgid "Finding OpenCL API version"
-msgstr "Szukanie wersji OpenCL API"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr "Nie ma platformy obsługującej OpenCL (%s)"
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr "nie udało się uzyskać wszystkich platform OpenCL (%s)"
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr "nie udało się uzyskać nazwy platformy %u (%s)"
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr "nie udało się pobrać wersji na platformę %u (%s)"
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
-"nie udało się znaleźć liczby urządzeń OpenCL dla platformy '%s %s' (%s)"
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr "0 urządzenie"
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
-"nie udało się pobrać wszystkich urządzeń OpenCL na platformę '%s %s' (%s)"
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr "nie udało się uzyskać nazwy urządzenia %u (%s)"
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr "nie udało się pobrać wersji dla urządzenia %u (%s)"
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "Sterownik OpenCL dla '%s %s'nie obsługuje CL_DEVICE_TOPOLOGY_AMD (%s)"
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
-"Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-"Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) lub CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "Dostawca GPU nie obsługuje standardu OpenCL (0x%X)"
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr "Wyszukiwanie urządzeń"
-
-#: core.cpp:1550
-msgid "Skip devices search (PCI device does not exist)"
-msgstr "Pomiń wyszukiwanie urządzeń (urządzenie PCI nie istnieje)"
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "Dostawca procesora GPU jest nieznany: %s (0x%X)"
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr "nie udało się znaleźć producenta i modelu chipsetu"
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr "nie udało się znaleźć producenta i modelu GPU"
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr "Pobieranie zegarów GPU"
-
-#: core.cpp:1804
-msgid "None"
-msgstr "Żaden"
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr "Ścieżka DRM dla %s jest nieznana"
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr "Numer karty %s jest nieznany"
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr "PCIe %s (prąd) / %s (maks.)"
-
-#: core.cpp:1960
-#, c-format
-msgid "Driver for %s doesn't report frequencies"
-msgstr "Sterownik dla %s nie raportuje częstotliwości"
-
-#: core.cpp:1981
-#, c-format
-msgid "failed to retrieve all monitoring data for %s"
-msgstr "nie udało się pobrać wszystkich danych monitorowania dla %s"
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr "Identyfikacja uruchomionego systemu"
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr "nie udało się zidentyfikować uruchomionego systemu"
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr "Wywołanie libprocps"
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr "nie można uzyskać czasu pracy systemu"
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr "nie można utworzyć struktury meminfo"
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr "Wywołanie libstatgrab"
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i dni, %i godzin, %i minut, %i sekund"
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr "Aktualizacja statusu benchmarku"
-
-#: core.cpp:2233
-msgid "Active"
-msgstr "Aktywny"
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr "(%u godzin pozostało)"
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr "(%u minut pozostało)"
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr "(pozostało %u sekund)"
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr "Nieaktywny"
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr "w %u godzinach"
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr "w %u minutach"
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr "w %u sekundach"
-
-#: core.cpp:2268
-#, c-format
-msgid "Starting benchmark with %u threads"
-msgstr "Rozpoczęcie testu porównawczego z %u wątków"
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr "wystąpił błąd podczas uruchamiania benchmarku"
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Obliczanie mnożnika CPU w trybie awaryjnym"
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "Pozyskiwanie informacji o płycie głównej w trybie awaryjnym"
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "nie udało się pobrać informacji o płycie głównej (tryb awaryjny)"
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Pozyskiwanie informacji o temperaturze CPU w trybie awaryjnym"
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "nie udało się pobrać temperatury CPU (tryb awaryjny)"
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Pozyskiwanie napięcia CPU w trybie awaryjnym"
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "nie udało się pozyskać napięcia CPU (tryb awaryjny)"
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Pobieranie częstotliwości procesora w trybie awaryjnym"
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
-
-#: daemon_client.cpp:65
-msgid "Starting daemon in background…"
-msgstr "Uruchamianie demona w tle…"
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-"Zmienna środowiskowa APPDIR nie jest ustawiona, nie można skopiować demona "
-"do katalogu tymczasowego"
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
-"pkexec: nie można uzyskać autoryzacji (okno dialogowe zostało odrzucone)"
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: nie można było uzyskać autoryzacji (nie autoryzowano)"
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr "pkexec: nie znaleziono polecenia"
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr "pkexec: nieoczekiwany kod błędu"
-
-#: daemon_client.cpp:220
-msgid "Connecting to daemon…"
-msgstr "Łączę się z demonem…"
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "moduł obsługi żądań: przypadek %i nie obsługiwany"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "nieznany"
 
 #: data.cpp:190
 msgid "P-core"
@@ -669,77 +209,6 @@ msgstr "To oprogramowanie jest rozpowszechniane na warunkach %s"
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "To oprogramowanie jest dostarczane bez ŻADNEJ GWARANCJI"
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr "Nie można znaleźć ścieżki do pliku'%s'"
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr "Nie znaleziono agenta uwierzytelniającego polkit"
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr "Pytaj o hasło, aby uruchomić demona w tle"
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr "Ustawienia"
-
-#: gui_gtk.cpp:711
-msgid "BaseFamily"
-msgstr "Rodzina bazowa"
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-"Rodzina wyświetlaczy CPU (\"true\") (obliczana jako "
-"BaseFamily+ExtendedFamily)"
-
-#: gui_gtk.cpp:713
-msgid "BaseModel"
-msgstr "Model bazowy"
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-"Model wyświetlania procesora (\"true\") (obliczany jako "
-"(ExtendedModel<<4)+BaseModel)"
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr "Informacje o certyfikacie EFI Platform Key"
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-"Zidentyfikuj fizycznie oznaczone gniazdo lub pozycję płyty, na której "
-"znajduje się urządzenie pamięci"
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
-"Zidentyfikuj fizycznie oznaczony bank, w którym znajduje się urządzenie "
-"pamięci"
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr "Tryb użytkownika Wersja sterownika"
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr "Vulkan Ray Tracing"
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr "Uruchamianie GTK GUI…"
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
-msgstr "nie udało się zaimportować interfejsu z GtkBuilder"
 
 #: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
@@ -976,156 +445,6 @@ msgid ""
 msgstr ""
 "Wybrany rdzeń procesora (%u) nie jest prawidłową liczbą (%u jest maksymalną "
 "liczbą dla tego typu rdzenia)"
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr "Okno jest za małe!"
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr "Naciśnij „h”, aby wyświetlić pomoc."
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr "Witamy w pomocy %s NCurses!\n"
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-"W tej pomocy opisano sposób korzystania z tekstowego interfejsu użytkownika."
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr "Klucze globalne:"
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
-"Naciśnij klawisz „w lewo” lub klawisz „tab”, aby przełączyć się na lewą "
-"kartę."
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
-"Naciśnij klawisz „w prawo” lub klawisze „shift + tab”, aby przełączyć się na "
-"prawą kartę."
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr "Naciśnij klawisz „h”, aby wyświetlić pomoc."
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr "Nacisnąć klawisz \"q\", aby wyjść."
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr "Zakładka CPU:"
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
-"Naciśnij klawisz „następna strona”, aby zmniejszyć numer typu rdzenia do "
-"monitorowania."
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
-"Naciśnij klawisz „poprzednia strona”, aby zwiększyć numer typu rdzenia do "
-"monitorowania."
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr ""
-"Naciśnij \"w dół\", aby zmniejszyć liczbę rdzeni procesora do monitorowania."
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr ""
-"Naciśnij \"w górę\", aby zwiększyć liczbę rdzeni procesora do monitorowania."
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr "Karta Pamięć Podręczna:"
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr "Naciśnij klawisz „w dół”, aby wrócić do poprzedniego testu."
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr "Naciśnij klawisz „w górę”, aby przejść do następnego testu."
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr "Karta testy wydajności:"
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
-"Naciśnij klawisz „w dół”, aby zmniejszyć czas trwania testu porównawczego."
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
-"Naciśnij klawisz „w górę”, aby zwiększyć czas trwania testu porównawczego."
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-"Naciśnij przycisk „następna strona”, aby zmniejszyć liczbę używanych wątków."
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-"Naciśnij przycisk „poprzednia strona”, aby zwiększyć liczbę używanych wątków."
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-"Naciśnij klawisz 's', aby rozpocząć/zatrzymać test wydajności liczenia liczb "
-"pierwszych (powoli)."
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-"Naciśnij klawisz 'f', aby uruchomić/zatrzymać test wydajności zliczania "
-"liczb pierwszych (szybko)."
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr "Karta Grafika:"
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr ""
-"Naciśnij klawisz 'w dół', aby przełączyć się na poprzednią kartę graficzną."
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr "Naciśnij klawisz „w górę”, aby przejść do następnej karty graficznej."
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr "Naciśnij dowolny klawisz, aby zamknąć pomoc."
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr "Uruchamianie NCurses TUI…"
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-"Błąd krytyczny: nie można było znaleźć bazy danych terminfo (spróbuj ustawić "
-"zmienną środowiskową TERMINFO)"
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "Nie można skonfigurować terminala %s (err=%i); powrót do %s"
 
 #: util.cpp:189
 #, c-format
@@ -1553,6 +872,561 @@ msgstr "Domyślna karta pamięci"
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Uruchamianie"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Twój CPU nie jest obecny w bazie danych ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Twój procesor nie znajduje się w bazie danych ==> %s, numer części: 0x%x, "
+#~ "nazwa kodowa: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Wyszukiwanie technologi procesora"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "Wywołanie libcpuid w celu pobierania danych statycznych"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "nie udało się wywołać libcpuid (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "Wywołanie libcpuid w celu pobierania danych dynamicznych"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr "Wywołanie libcpuid w celu pobrania statycznych danych z CPU MSR"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr "Wywołanie libcpuid w celu pobrania dynamicznych danych z CPU MSR"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "Wywołanie dmidecode"
+
+#, c-format
+#~ msgid "%s (configured)"
+#~ msgstr "%s (konfiguracji)"
+
+#, c-format
+#~ msgid "%s (max)"
+#~ msgstr "%s (max)"
+
+#, c-format
+#~ msgid "%s (min)"
+#~ msgstr "%s (min)"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "Obliczanie użycia procesora"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "Wywołanie bandwidth"
+
+#, c-format
+#~ msgid "%s (subject) / %s (issuer)"
+#~ msgstr "%s (podmiot) / %s (wydawca)"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "pci_access nie jest poprawnie zainicjowany: jest to częsty problem, gdy "
+#~ "%s został zbudowany z niższą wersją libpci.\n"
+#~ "Sprawdź, czy biblioteka libpci %s jest obecna w Twoim systemie. W "
+#~ "przeciwnym razie należy przebudować %s."
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "Brak sterownika jądra dla karty graficznej przy ścieżce %s"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "Nieznany sterownik jądra GPU: %s"
+
+#, c-format
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr "Nieznany sterownik trybu użytkownika Twojego układu GPU %s: %s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "nie udało się wywołać GLFW (%i): %s"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "Szukanie wersji API Vulkan"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "nie udało się wywołać vkCreateInstance (%s)"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "%s nie jest obsługiwany"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "nie udało się wywołać vkEnumeratePhysicalDevices (%s)"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "Brak dostępnych urządzeń Vulkan"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "Brak dostępnych urządzeń fizycznych (%s)"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "Nie udało się stworzyć Vulkan dla urządzenia %u (%s)"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr ""
+#~ "%s nie jest obsługiwany dla urządzenia %u, użyj tylko deviceID aby "
+#~ "dopasować"
+
+#~ msgid "Enabled"
+#~ msgstr "Włączone"
+
+#~ msgid "Disabled"
+#~ msgstr "Wyłączone"
+
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "Szukanie wersji OpenCL API"
+
+#, c-format
+#~ msgid "There is no platform with OpenCL support (%s)"
+#~ msgstr "Nie ma platformy obsługującej OpenCL (%s)"
+
+#, c-format
+#~ msgid "failed to get all OpenCL platforms (%s)"
+#~ msgstr "nie udało się uzyskać wszystkich platform OpenCL (%s)"
+
+#, c-format
+#~ msgid "failed to get name for platform %u (%s)"
+#~ msgstr "nie udało się uzyskać nazwy platformy %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for platform %u (%s)"
+#~ msgstr "nie udało się pobrać wersji na platformę %u (%s)"
+
+#, c-format
+#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr ""
+#~ "nie udało się znaleźć liczby urządzeń OpenCL dla platformy '%s %s' (%s)"
+
+#~ msgid "0 device"
+#~ msgstr "0 urządzenie"
+
+#, c-format
+#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr ""
+#~ "nie udało się pobrać wszystkich urządzeń OpenCL na platformę '%s %s' (%s)"
+
+#, c-format
+#~ msgid "failed to get name for device %u (%s)"
+#~ msgstr "nie udało się uzyskać nazwy urządzenia %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for device %u (%s)"
+#~ msgstr "nie udało się pobrać wersji dla urządzenia %u (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#~ msgstr ""
+#~ "Sterownik OpenCL dla '%s %s'nie obsługuje CL_DEVICE_TOPOLOGY_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+#~ msgstr ""
+#~ "Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+#~ msgstr ""
+#~ "Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+#~ msgstr ""
+#~ "Sterownik OpenCL dla '%s %s' nie obsługuje CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) lub CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+
+#, c-format
+#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+#~ msgstr "Dostawca GPU nie obsługuje standardu OpenCL (0x%X)"
+
+#~ msgid "Finding devices"
+#~ msgstr "Wyszukiwanie urządzeń"
+
+#~ msgid "Skip devices search (PCI device does not exist)"
+#~ msgstr "Pomiń wyszukiwanie urządzeń (urządzenie PCI nie istnieje)"
+
+#, c-format
+#~ msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
+
+#, c-format
+#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
+#~ msgstr "Dostawca procesora GPU jest nieznany: %s (0x%X)"
+
+#~ msgid "failed to find chipset vendor and model"
+#~ msgstr "nie udało się znaleźć producenta i modelu chipsetu"
+
+#~ msgid "failed to find graphic card vendor and model"
+#~ msgstr "nie udało się znaleźć producenta i modelu GPU"
+
+#~ msgid "Retrieving GPU clocks"
+#~ msgstr "Pobieranie zegarów GPU"
+
+#~ msgid "None"
+#~ msgstr "Żaden"
+
+#, c-format
+#~ msgid "DRM path for %s is unknown"
+#~ msgstr "Ścieżka DRM dla %s jest nieznana"
+
+#, c-format
+#~ msgid "Card number for %s is unknown"
+#~ msgstr "Numer karty %s jest nieznany"
+
+#, c-format
+#~ msgid "PCIe %s (current) / %s (max)"
+#~ msgstr "PCIe %s (prąd) / %s (maks.)"
+
+#, c-format
+#~ msgid "Driver for %s doesn't report frequencies"
+#~ msgstr "Sterownik dla %s nie raportuje częstotliwości"
+
+#, c-format
+#~ msgid "failed to retrieve all monitoring data for %s"
+#~ msgstr "nie udało się pobrać wszystkich danych monitorowania dla %s"
+
+#~ msgid "Identifying running system"
+#~ msgstr "Identyfikacja uruchomionego systemu"
+
+#~ msgid "failed to identify running system"
+#~ msgstr "nie udało się zidentyfikować uruchomionego systemu"
+
+#~ msgid "Calling libprocps"
+#~ msgstr "Wywołanie libprocps"
+
+#~ msgid "unable to get system uptime"
+#~ msgstr "nie można uzyskać czasu pracy systemu"
+
+#~ msgid "unable to create meminfo structure"
+#~ msgstr "nie można utworzyć struktury meminfo"
+
+#~ msgid "Calling libstatgrab"
+#~ msgstr "Wywołanie libstatgrab"
+
+#, c-format
+#~ msgid "%i days, %i hours, %i minutes, %i seconds"
+#~ msgstr "%i dni, %i godzin, %i minut, %i sekund"
+
+#~ msgid "Updating benchmark status"
+#~ msgstr "Aktualizacja statusu benchmarku"
+
+#~ msgid "Active"
+#~ msgstr "Aktywny"
+
+#, c-format
+#~ msgid "(%u hours left)"
+#~ msgstr "(%u godzin pozostało)"
+
+#, c-format
+#~ msgid "(%u minutes left)"
+#~ msgstr "(%u minut pozostało)"
+
+#, c-format
+#~ msgid "(%u seconds left)"
+#~ msgstr "(pozostało %u sekund)"
+
+#~ msgid "Inactive"
+#~ msgstr "Nieaktywny"
+
+#, c-format
+#~ msgid "in %u hours"
+#~ msgstr "w %u godzinach"
+
+#, c-format
+#~ msgid "in %u minutes"
+#~ msgstr "w %u minutach"
+
+#, c-format
+#~ msgid "in %u seconds"
+#~ msgstr "w %u sekundach"
+
+#, c-format
+#~ msgid "Starting benchmark with %u threads"
+#~ msgstr "Rozpoczęcie testu porównawczego z %u wątków"
+
+#~ msgid "an error occurred while starting benchmark"
+#~ msgstr "wystąpił błąd podczas uruchamiania benchmarku"
+
+#~ msgid "Finding CPU package in fallback mode"
+#~ msgstr "Wyszukiwanie rodzaju układu CPU w trybie awaryjnym"
+
+#, c-format
+#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgstr "Twojego gniazda CPU nie ma w bazie ==> %s, codename: %s"
+
+#~ msgid "Calculating CPU multipliers in fallback mode"
+#~ msgstr "Obliczanie mnożnika CPU w trybie awaryjnym"
+
+#~ msgid "Retrieving motherboard information in fallback mode"
+#~ msgstr "Pozyskiwanie informacji o płycie głównej w trybie awaryjnym"
+
+#~ msgid "failed to retrieve motherboard information (fallback mode)"
+#~ msgstr "nie udało się pobrać informacji o płycie głównej (tryb awaryjny)"
+
+#~ msgid "Retrieving CPU temperature in fallback mode"
+#~ msgstr "Pozyskiwanie informacji o temperaturze CPU w trybie awaryjnym"
+
+#~ msgid "failed to retrieve CPU temperature (fallback mode)"
+#~ msgstr "nie udało się pobrać temperatury CPU (tryb awaryjny)"
+
+#~ msgid "Retrieving CPU voltage in fallback mode"
+#~ msgstr "Pozyskiwanie napięcia CPU w trybie awaryjnym"
+
+#~ msgid "failed to retrieve CPU voltage (fallback mode)"
+#~ msgstr "nie udało się pozyskać napięcia CPU (tryb awaryjny)"
+
+#~ msgid "Retrieving CPU frequency in fallback mode"
+#~ msgstr "Pobieranie częstotliwości procesora w trybie awaryjnym"
+
+#~ msgid "failed to retrieve CPU frequency (fallback mode)"
+#~ msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
+
+#~ msgid "Starting daemon in background…"
+#~ msgstr "Uruchamianie demona w tle…"
+
+#~ msgid ""
+#~ "APPDIR environment variable is not set, cannot copy the daemon to the "
+#~ "temporary directory"
+#~ msgstr ""
+#~ "Zmienna środowiskowa APPDIR nie jest ustawiona, nie można skopiować "
+#~ "demona do katalogu tymczasowego"
+
+#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+#~ msgstr ""
+#~ "pkexec: nie można uzyskać autoryzacji (okno dialogowe zostało odrzucone)"
+
+#~ msgid "pkexec: authorization could not be obtained (not authorized)"
+#~ msgstr "pkexec: nie można było uzyskać autoryzacji (nie autoryzowano)"
+
+#~ msgid "pkexec: command not found"
+#~ msgstr "pkexec: nie znaleziono polecenia"
+
+#~ msgid "pkexec: unexpected error code"
+#~ msgstr "pkexec: nieoczekiwany kod błędu"
+
+#~ msgid "Connecting to daemon…"
+#~ msgstr "Łączę się z demonem…"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "moduł obsługi żądań: przypadek %i nie obsługiwany"
+
+#, c-format
+#~ msgid "Cannot find path for '%s' file"
+#~ msgstr "Nie można znaleźć ścieżki do pliku'%s'"
+
+#~ msgid "No polkit authentication agent found"
+#~ msgstr "Nie znaleziono agenta uwierzytelniającego polkit"
+
+#~ msgid "Ask password to start daemon in background"
+#~ msgstr "Pytaj o hasło, aby uruchomić demona w tle"
+
+#~ msgid "Settings"
+#~ msgstr "Ustawienia"
+
+#~ msgid "BaseFamily"
+#~ msgstr "Rodzina bazowa"
+
+#~ msgid ""
+#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+#~ msgstr ""
+#~ "Rodzina wyświetlaczy CPU (\"true\") (obliczana jako "
+#~ "BaseFamily+ExtendedFamily)"
+
+#~ msgid "BaseModel"
+#~ msgstr "Model bazowy"
+
+#~ msgid ""
+#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+#~ msgstr ""
+#~ "Model wyświetlania procesora (\"true\") (obliczany jako "
+#~ "(ExtendedModel<<4)+BaseModel)"
+
+#~ msgid "EFI Platform Key certificate information"
+#~ msgstr "Informacje o certyfikacie EFI Platform Key"
+
+#~ msgid ""
+#~ "Identify the physically-labeled socket or board position where the memory "
+#~ "device is located"
+#~ msgstr ""
+#~ "Zidentyfikuj fizycznie oznaczone gniazdo lub pozycję płyty, na której "
+#~ "znajduje się urządzenie pamięci"
+
+#~ msgid ""
+#~ "Identify the physically labeled bank where the memory device is located"
+#~ msgstr ""
+#~ "Zidentyfikuj fizycznie oznaczony bank, w którym znajduje się urządzenie "
+#~ "pamięci"
+
+#~ msgid "User Mode Driver Version"
+#~ msgstr "Tryb użytkownika Wersja sterownika"
+
+#~ msgid "Vulkan Ray Tracing"
+#~ msgstr "Vulkan Ray Tracing"
+
+#~ msgid "Starting GTK GUI…"
+#~ msgstr "Uruchamianie GTK GUI…"
+
+#~ msgid "failed to import UI in GtkBuilder"
+#~ msgstr "nie udało się zaimportować interfejsu z GtkBuilder"
+
+#~ msgid "Window is too small!"
+#~ msgstr "Okno jest za małe!"
+
+#~ msgid "Press 'h' to see help."
+#~ msgstr "Naciśnij „h”, aby wyświetlić pomoc."
+
+#, c-format
+#~ msgid "Welcome in %s NCurses help!\n"
+#~ msgstr "Witamy w pomocy %s NCurses!\n"
+
+#~ msgid "This help describes how to use this Text-based User Interface."
+#~ msgstr ""
+#~ "W tej pomocy opisano sposób korzystania z tekstowego interfejsu "
+#~ "użytkownika."
+
+#~ msgid "Global keys:"
+#~ msgstr "Klucze globalne:"
+
+#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
+#~ msgstr ""
+#~ "Naciśnij klawisz „w lewo” lub klawisz „tab”, aby przełączyć się na lewą "
+#~ "kartę."
+
+#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+#~ msgstr ""
+#~ "Naciśnij klawisz „w prawo” lub klawisze „shift + tab”, aby przełączyć się "
+#~ "na prawą kartę."
+
+#~ msgid "Press 'h' key to see this help."
+#~ msgstr "Naciśnij klawisz „h”, aby wyświetlić pomoc."
+
+#~ msgid "Press 'q' key to exit."
+#~ msgstr "Nacisnąć klawisz \"q\", aby wyjść."
+
+#~ msgid "CPU tab:"
+#~ msgstr "Zakładka CPU:"
+
+#~ msgid "Press 'next page' key to decrease core type number to monitor."
+#~ msgstr ""
+#~ "Naciśnij klawisz „następna strona”, aby zmniejszyć numer typu rdzenia do "
+#~ "monitorowania."
+
+#~ msgid "Press 'previous page' key to increase core type number to monitor."
+#~ msgstr ""
+#~ "Naciśnij klawisz „poprzednia strona”, aby zwiększyć numer typu rdzenia do "
+#~ "monitorowania."
+
+#~ msgid "Press 'down' key to decrease CPU core number to monitor."
+#~ msgstr ""
+#~ "Naciśnij \"w dół\", aby zmniejszyć liczbę rdzeni procesora do "
+#~ "monitorowania."
+
+#~ msgid "Press 'up' key to increase CPU core number to monitor."
+#~ msgstr ""
+#~ "Naciśnij \"w górę\", aby zwiększyć liczbę rdzeni procesora do "
+#~ "monitorowania."
+
+#~ msgid "Caches tab:"
+#~ msgstr "Karta Pamięć Podręczna:"
+
+#~ msgid "Press 'down' key to switch to previous test."
+#~ msgstr "Naciśnij klawisz „w dół”, aby wrócić do poprzedniego testu."
+
+#~ msgid "Press 'up' key to switch to next test."
+#~ msgstr "Naciśnij klawisz „w górę”, aby przejść do następnego testu."
+
+#~ msgid "Bench tab:"
+#~ msgstr "Karta testy wydajności:"
+
+#~ msgid "Press 'down' key to decrement benchmark duration."
+#~ msgstr ""
+#~ "Naciśnij klawisz „w dół”, aby zmniejszyć czas trwania testu porównawczego."
+
+#~ msgid "Press 'up' key to increment benchmark duration."
+#~ msgstr ""
+#~ "Naciśnij klawisz „w górę”, aby zwiększyć czas trwania testu porównawczego."
+
+#~ msgid "Press 'next page' key to decrement number of threads to use."
+#~ msgstr ""
+#~ "Naciśnij przycisk „następna strona”, aby zmniejszyć liczbę używanych "
+#~ "wątków."
+
+#~ msgid "Press 'previous page' key to increment number of threads to use."
+#~ msgstr ""
+#~ "Naciśnij przycisk „poprzednia strona”, aby zwiększyć liczbę używanych "
+#~ "wątków."
+
+#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+#~ msgstr ""
+#~ "Naciśnij klawisz 's', aby rozpocząć/zatrzymać test wydajności liczenia "
+#~ "liczb pierwszych (powoli)."
+
+#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+#~ msgstr ""
+#~ "Naciśnij klawisz 'f', aby uruchomić/zatrzymać test wydajności zliczania "
+#~ "liczb pierwszych (szybko)."
+
+#~ msgid "Graphics tab:"
+#~ msgstr "Karta Grafika:"
+
+#~ msgid "Press 'down' key to switch to previous graphic card."
+#~ msgstr ""
+#~ "Naciśnij klawisz 'w dół', aby przełączyć się na poprzednią kartę "
+#~ "graficzną."
+
+#~ msgid "Press 'up' key to switch to next graphic card."
+#~ msgstr ""
+#~ "Naciśnij klawisz „w górę”, aby przejść do następnej karty graficznej."
+
+#~ msgid "Press any key to exit this help."
+#~ msgstr "Naciśnij dowolny klawisz, aby zamknąć pomoc."
+
+#~ msgid "Starting NCurses TUI…"
+#~ msgstr "Uruchamianie NCurses TUI…"
+
+#~ msgid ""
+#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+#~ "environment variable)"
+#~ msgstr ""
+#~ "Błąd krytyczny: nie można było znaleźć bazy danych terminfo (spróbuj "
+#~ "ustawić zmienną środowiskową TERMINFO)"
+
+#, c-format
+#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+#~ msgstr "Nie można skonfigurować terminala %s (err=%i); powrót do %s"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "Połączony z demonem"

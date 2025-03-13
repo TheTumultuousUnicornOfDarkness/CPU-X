@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2024-12-28 15:00+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -34,469 +34,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10-dev\n"
 
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Veri tabanında CPU'nuz yok ==> %s, model: %i, genişletilmiş model: %i, "
-"genişletilmiş aile: %i"
-
-#: core.cpp:210
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr "Veri tabanında CPU'nuz yok ==> %s, parça numarası: 0x%x, kod adı: %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "İşlemci teknolojisi bulunuyor"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "bilinmeyen"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Statik veri almak için libcpuid çağrılıyor"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "libcpuid çağrılamadı (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Dinamik veri almak için libcpuid çağrılıyor"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "CPU MSR statik değerlerini almak için libcpuid çağrılıyor"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "CPU MSR dinamik değerlerini almak için libcpuid çağrılıyor"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "dmidecode çağrılıyor"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr "%s (yapılandırıldı)"
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr "%s (azami)"
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr "%s (asgari)"
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "CPU kullanımı hesaplanıyor"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "Bant genişliği çağrılıyor"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr "%s (konu) / %s (veren)"
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"pci_access düzgün başlatılmadı: bu, %s daha düşük bir libpci sürümüyle "
-"derlendiğinde görülen yaygın bir sorundur.\n"
-"Sisteminizde libpci %s kütüphanesinin bulunup bulunmadığına bakın. Aksi "
-"takdirde, lütfen %s'i yeniden derleyin."
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "%s yolundaki grafik kartı için kullanılan çekirdek sürücüsü yok"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
-
-#: core.cpp:973
-#, c-format
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "%s markası için GPU kullanıcı modu sürücünüz bilinmiyor: %s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "GLFW çağrılamadı (%i): %s"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "Vulkan API sürümü bulunuyor"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "vkCreateInstance çağrılamadı (%s)"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "%s desteklenmiyor"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "vkEnumeratePhysicalDevices çağrılamadı (%s)"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "Kullanılabilir Vulkan aygıtı yok"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "Kullanılabilir fiziksel aygıt yok (%s)"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "Aygıt %u için Vulkan oluşturulamadı (%s)"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"%s, aygıt %u için desteklenmiyor, eşleştirme için yalnızca aygıt kimliğini "
-"kullanın"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "Etkinleştirildi"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "Devre dışı"
-
-#: core.cpp:1295
-msgid "Finding OpenCL API version"
-msgstr "OpenCL API sürümü bulunuyor"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr "OpenCL desteğine sahip bir platform yok (%s)"
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr "tüm OpenCL platformları alınamadı (%s)"
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr "%u. platformun adı alınamadı (%s)"
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr "%u .platform için sürüm alınamadı (%s)"
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "'%s %s' platformu için OpenCL aygıtlarının sayısı bulunamadı (%s)"
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr "0 aygıt"
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "'%s %s' platformu için tüm OpenCL aygıtları alınamadı (%s)"
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr "%u. aygıtın adı alınamadı (%s)"
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr "%u. aygıt için sürüm alınamadı (%s)"
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "'%s %s' için OpenCL sürücüsü CL_DEVICE_TOPOLOGY_AMD desteklemiyor (%s)"
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
-"'%s %s' için OpenCL sürücüsü CL_DEVICE_GFXIP_MAJOR_AMD desteklemiyor (%s)"
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"'%s %s' için OpenCL sürücüsü CL_DEVICE_MAX_COMPUTE_UNITS desteklemiyor (%s)"
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-"'%s %s' için OpenCL sürücüsü CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) veya CL_DEVICE_PCI_SLOT_ID_NV (%s) desteklemiyor"
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "GPU markanız OpenCL'yi desteklenmiyor (0x%X)"
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr "Aygıtlar bulunuyor"
-
-#: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
-msgid "Skip devices search (PCI device does not exist)"
-msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr "yonga seti satıcısı ve model bulunamadı"
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr "ekran kartı marka ve modeli bulunamadı"
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr "GPU saatleri alınıyor"
-
-#: core.cpp:1804
-msgid "None"
-msgstr "Hiçbiri"
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr "%s için DRM yolu bilinmiyor"
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr "%s için kart numarası bilinmiyor"
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr "PCIe %s (geçerli) / %s (azami)"
-
-#: core.cpp:1960
-#, c-format
-msgid "Driver for %s doesn't report frequencies"
-msgstr "%s sürücüsü frekansları bildirmiyor"
-
-#: core.cpp:1981
-#, c-format
-msgid "failed to retrieve all monitoring data for %s"
-msgstr "%s için tüm izmele verileri alınamadı"
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr "İşletim sistemi tanımlanıyor"
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr "işletim sistemi tanımlanamadı"
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr "libprocps çağrılıyor"
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr "sistem çalışma süresi alınamıyor"
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr "meminfo yapısı oluşturulamıyor"
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr "libstatgrab çağrılıyor"
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i gün, %i saat, %i dakika, %i saniye"
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr "Karşılaştırma durumu güncelleniyor"
-
-#: core.cpp:2233
-msgid "Active"
-msgstr "Etkin"
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr "(%u saat kaldı)"
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr "(%u dakika kaldı)"
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr "(%u saniye kaldı)"
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr "Etkin değil"
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr "%u saat içinde"
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr "%u dakika içinde"
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr "%u saniye içinde"
-
-#: core.cpp:2268
-#, c-format
-msgid "Starting benchmark with %u threads"
-msgstr "Karşılaştırma %u iş parçacığıyla başlatılıyor"
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr "karşılaştırma başlatılırken hata oluştu"
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr "Yedek modda CPU paketi bulunuyor"
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Yedek modda CPU çarpanları hesaplanıyor"
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "Yedek modda anakart bilgisi alınıyor"
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "anakart bilgisi alınamadı (yedek modu)"
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Yedek modda CPU sıcaklığı alınıyor"
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "CPU sıcaklığı alınamadı (yedek mod)"
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Yedek modda CPU gerilimi alınıyor"
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "CPU gerilimi alınamadı (yedek mod)"
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Yedek modda CPU frekansı alınıyor"
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "CPU frekansı alınamadı (yedek mod)"
-
-#: daemon_client.cpp:65
-msgid "Starting daemon in background…"
-msgstr "Art alan hizmeti arka planda başlatılıyor…"
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: yetkilendirme alınamadı (iletişim kutusu kapatıldı)"
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: yetkilendirme alınamadı (yetkilendirilmedi)"
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr "pkexec: komut bulunamadı"
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr "pkexec: beklenmedik hata kodu"
-
-#: daemon_client.cpp:220
-msgid "Connecting to daemon…"
-msgstr "Art alan hizmetine bağlanılıyor…"
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: %i durumu işlemedi"
-
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "bilinmeyen"
 
 #: data.cpp:190
 msgid "P-core"
@@ -669,75 +213,6 @@ msgstr "Bu yazılım %s koşulları altında dağıtılmıştır"
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr "'%s' dosyasının yolu bulunamadı"
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr "Art alan hizmetini başlatmak için parola sor"
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr "Ayarlar"
-
-#: gui_gtk.cpp:711
-msgid "BaseFamily"
-msgstr "TemelAile"
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-"Görüntülenen (\"gerçek\") CPU ailesi (TemelAile+GenişletilmişAile olarak "
-"hesaplanır)"
-
-#: gui_gtk.cpp:713
-msgid "BaseModel"
-msgstr "TemelModel"
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-"Görüntülenen (\"gerçek\") CPU modeli ((GenişletilmişModel<<4)+TemelModel "
-"olarak hesaplanır)"
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr "EFI Platform Anahtarı sertifika bilgileri"
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-"Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş soketi ya da kart "
-"konumunu tanımla"
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş bakoyu tanımla"
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr "Kullanıcı Modu Sürücü Sürümü"
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr "Vulkan Işın Yansıma (Ray Tracing)"
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr "GTK GUI başlatılıyor…"
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
-msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
 
 #: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
@@ -969,146 +444,6 @@ msgid ""
 msgstr ""
 "Seçilen CPU çekirdeği (%u) geçerli bir sayı değil (%u bu çekirdek türü için "
 "azami sayıdır)"
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr "Pencere çok küçük!"
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr "Yardımı görmek için 'h' tuşuna basın."
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr "%s NCurses yardımına hoş geldiniz!\n"
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-"Bu yardım, metin tabanlı kullanıcı arayüzünün nasıl kullanılacağını açıklar."
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr "Genel tuşlar:"
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Sol sekmeye geçmek için 'sol' veya 'tab' tuşuna basın."
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "Sağ sekmeye geçmek için 'sağ' veya 'shift + tab' tuşuna basın."
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr "Bu yardımı görmek için 'h' tuşuna basın."
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr "Çıkmak için 'q' tuşuna basın."
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr "CPU sekmesi:"
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
-"İzlenecek çekirdek türü sayısını azaltmak için 'sonraki sayfa' tuşuna basın."
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
-"İzlenecek çekirdek türü sayısını arttırmak için 'önceki sayfa' tuşuna basın."
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "İzlenecek CPU çekirdek sayısını azaltmak için 'aşağı' tuşuna basın."
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "İzlenecek CPU çekirdek sayısını artırmak için 'yukarı' tuşuna basın."
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr "Önbellek sekmesi:"
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr "Önceki teste geçmek için 'aşağı' tuşuna basın."
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr "Sonraki teste geçmek için 'yukarı' tuşuna basın."
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr "Karşılaştırma sekmesi:"
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Karşılaştırma süresini azaltmak için 'aşağı' tuşuna basın."
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr "Karşılaştırma süresini artırmak için 'yukarı' tuşuna basın."
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-"Kullanılacak iş parçacığı sayısını azaltmak için 'sonraki sayfa' tuşuna "
-"basın."
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-"Kullanılacak iş parçacığı sayısını artırmak için 'önceki sayfa' tuşuna basın."
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-"Asal sayıları (yavaş) karşılaştırmayı başlatmak/durdurmak için 's' tuşuna "
-"basın."
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-"Asal sayıları (hızlı) karşılaştırmayı başlatmak/durdurmak için 'f' tuşuna "
-"basın."
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr "Grafikler sekmesi:"
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Önceki grafik kartına geçmek için 'aşağı' tuşuna basın."
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr "Sonraki grafik kartına geçmek için 'yukarı' tuşuna basın."
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr "Yardımdan çıkmak için herhangi bir tuşa basın."
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr "NCurses metin tabanlı arayüzü başlatılıyor…"
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-"ÖNEMLİ HATA: terminfo veri tabanı bulunamadı (TERMINFO ortam değişkenini "
-"ayarlamayı deneyin)"
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "%s terminali ayarlanamadı (err=%i); yedek olarak %s kullanılıyor"
 
 #: util.cpp:189
 #, c-format
@@ -1536,6 +871,540 @@ msgstr "Öntanımlı bellek çubuğu"
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Başlangıç"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Veri tabanında CPU'nuz yok ==> %s, model: %i, genişletilmiş model: %i, "
+#~ "genişletilmiş aile: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Veri tabanında CPU'nuz yok ==> %s, parça numarası: 0x%x, kod adı: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "İşlemci teknolojisi bulunuyor"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "Statik veri almak için libcpuid çağrılıyor"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "libcpuid çağrılamadı (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "Dinamik veri almak için libcpuid çağrılıyor"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr "CPU MSR statik değerlerini almak için libcpuid çağrılıyor"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr "CPU MSR dinamik değerlerini almak için libcpuid çağrılıyor"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "dmidecode çağrılıyor"
+
+#, c-format
+#~ msgid "%s (configured)"
+#~ msgstr "%s (yapılandırıldı)"
+
+#, c-format
+#~ msgid "%s (max)"
+#~ msgstr "%s (azami)"
+
+#, c-format
+#~ msgid "%s (min)"
+#~ msgstr "%s (asgari)"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "CPU kullanımı hesaplanıyor"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "Bant genişliği çağrılıyor"
+
+#, c-format
+#~ msgid "%s (subject) / %s (issuer)"
+#~ msgstr "%s (konu) / %s (veren)"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "pci_access düzgün başlatılmadı: bu, %s daha düşük bir libpci sürümüyle "
+#~ "derlendiğinde görülen yaygın bir sorundur.\n"
+#~ "Sisteminizde libpci %s kütüphanesinin bulunup bulunmadığına bakın. Aksi "
+#~ "takdirde, lütfen %s'i yeniden derleyin."
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "%s yolundaki grafik kartı için kullanılan çekirdek sürücüsü yok"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
+
+#, c-format
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr "%s markası için GPU kullanıcı modu sürücünüz bilinmiyor: %s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "GLFW çağrılamadı (%i): %s"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "Vulkan API sürümü bulunuyor"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "vkCreateInstance çağrılamadı (%s)"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "%s desteklenmiyor"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "vkEnumeratePhysicalDevices çağrılamadı (%s)"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "Kullanılabilir Vulkan aygıtı yok"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "Kullanılabilir fiziksel aygıt yok (%s)"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "Aygıt %u için Vulkan oluşturulamadı (%s)"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr ""
+#~ "%s, aygıt %u için desteklenmiyor, eşleştirme için yalnızca aygıt "
+#~ "kimliğini kullanın"
+
+#~ msgid "Enabled"
+#~ msgstr "Etkinleştirildi"
+
+#~ msgid "Disabled"
+#~ msgstr "Devre dışı"
+
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "OpenCL API sürümü bulunuyor"
+
+#, c-format
+#~ msgid "There is no platform with OpenCL support (%s)"
+#~ msgstr "OpenCL desteğine sahip bir platform yok (%s)"
+
+#, c-format
+#~ msgid "failed to get all OpenCL platforms (%s)"
+#~ msgstr "tüm OpenCL platformları alınamadı (%s)"
+
+#, c-format
+#~ msgid "failed to get name for platform %u (%s)"
+#~ msgstr "%u. platformun adı alınamadı (%s)"
+
+#, c-format
+#~ msgid "failed to get version for platform %u (%s)"
+#~ msgstr "%u .platform için sürüm alınamadı (%s)"
+
+#, c-format
+#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "'%s %s' platformu için OpenCL aygıtlarının sayısı bulunamadı (%s)"
+
+#~ msgid "0 device"
+#~ msgstr "0 aygıt"
+
+#, c-format
+#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "'%s %s' platformu için tüm OpenCL aygıtları alınamadı (%s)"
+
+#, c-format
+#~ msgid "failed to get name for device %u (%s)"
+#~ msgstr "%u. aygıtın adı alınamadı (%s)"
+
+#, c-format
+#~ msgid "failed to get version for device %u (%s)"
+#~ msgstr "%u. aygıt için sürüm alınamadı (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#~ msgstr ""
+#~ "'%s %s' için OpenCL sürücüsü CL_DEVICE_TOPOLOGY_AMD desteklemiyor (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+#~ msgstr ""
+#~ "'%s %s' için OpenCL sürücüsü CL_DEVICE_GFXIP_MAJOR_AMD desteklemiyor (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+#~ msgstr ""
+#~ "'%s %s' için OpenCL sürücüsü CL_DEVICE_MAX_COMPUTE_UNITS desteklemiyor "
+#~ "(%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+#~ msgstr ""
+#~ "'%s %s' için OpenCL sürücüsü CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+#~ "CL_DEVICE_PCI_BUS_ID_NV (%s) veya CL_DEVICE_PCI_SLOT_ID_NV (%s) "
+#~ "desteklemiyor"
+
+#, c-format
+#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+#~ msgstr "GPU markanız OpenCL'yi desteklenmiyor (0x%X)"
+
+#~ msgid "Finding devices"
+#~ msgstr "Aygıtlar bulunuyor"
+
+#, fuzzy
+#~| msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgid "Skip devices search (PCI device does not exist)"
+#~ msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
+
+#, c-format
+#~ msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
+
+#, c-format
+#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
+#~ msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
+
+#~ msgid "failed to find chipset vendor and model"
+#~ msgstr "yonga seti satıcısı ve model bulunamadı"
+
+#~ msgid "failed to find graphic card vendor and model"
+#~ msgstr "ekran kartı marka ve modeli bulunamadı"
+
+#~ msgid "Retrieving GPU clocks"
+#~ msgstr "GPU saatleri alınıyor"
+
+#~ msgid "None"
+#~ msgstr "Hiçbiri"
+
+#, c-format
+#~ msgid "DRM path for %s is unknown"
+#~ msgstr "%s için DRM yolu bilinmiyor"
+
+#, c-format
+#~ msgid "Card number for %s is unknown"
+#~ msgstr "%s için kart numarası bilinmiyor"
+
+#, c-format
+#~ msgid "PCIe %s (current) / %s (max)"
+#~ msgstr "PCIe %s (geçerli) / %s (azami)"
+
+#, c-format
+#~ msgid "Driver for %s doesn't report frequencies"
+#~ msgstr "%s sürücüsü frekansları bildirmiyor"
+
+#, c-format
+#~ msgid "failed to retrieve all monitoring data for %s"
+#~ msgstr "%s için tüm izmele verileri alınamadı"
+
+#~ msgid "Identifying running system"
+#~ msgstr "İşletim sistemi tanımlanıyor"
+
+#~ msgid "failed to identify running system"
+#~ msgstr "işletim sistemi tanımlanamadı"
+
+#~ msgid "Calling libprocps"
+#~ msgstr "libprocps çağrılıyor"
+
+#~ msgid "unable to get system uptime"
+#~ msgstr "sistem çalışma süresi alınamıyor"
+
+#~ msgid "unable to create meminfo structure"
+#~ msgstr "meminfo yapısı oluşturulamıyor"
+
+#~ msgid "Calling libstatgrab"
+#~ msgstr "libstatgrab çağrılıyor"
+
+#, c-format
+#~ msgid "%i days, %i hours, %i minutes, %i seconds"
+#~ msgstr "%i gün, %i saat, %i dakika, %i saniye"
+
+#~ msgid "Updating benchmark status"
+#~ msgstr "Karşılaştırma durumu güncelleniyor"
+
+#~ msgid "Active"
+#~ msgstr "Etkin"
+
+#, c-format
+#~ msgid "(%u hours left)"
+#~ msgstr "(%u saat kaldı)"
+
+#, c-format
+#~ msgid "(%u minutes left)"
+#~ msgstr "(%u dakika kaldı)"
+
+#, c-format
+#~ msgid "(%u seconds left)"
+#~ msgstr "(%u saniye kaldı)"
+
+#~ msgid "Inactive"
+#~ msgstr "Etkin değil"
+
+#, c-format
+#~ msgid "in %u hours"
+#~ msgstr "%u saat içinde"
+
+#, c-format
+#~ msgid "in %u minutes"
+#~ msgstr "%u dakika içinde"
+
+#, c-format
+#~ msgid "in %u seconds"
+#~ msgstr "%u saniye içinde"
+
+#, c-format
+#~ msgid "Starting benchmark with %u threads"
+#~ msgstr "Karşılaştırma %u iş parçacığıyla başlatılıyor"
+
+#~ msgid "an error occurred while starting benchmark"
+#~ msgstr "karşılaştırma başlatılırken hata oluştu"
+
+#~ msgid "Finding CPU package in fallback mode"
+#~ msgstr "Yedek modda CPU paketi bulunuyor"
+
+#, c-format
+#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgstr "Veri tabanında CPU soketiniz yok ==> %s, kod adı: %s"
+
+#~ msgid "Calculating CPU multipliers in fallback mode"
+#~ msgstr "Yedek modda CPU çarpanları hesaplanıyor"
+
+#~ msgid "Retrieving motherboard information in fallback mode"
+#~ msgstr "Yedek modda anakart bilgisi alınıyor"
+
+#~ msgid "failed to retrieve motherboard information (fallback mode)"
+#~ msgstr "anakart bilgisi alınamadı (yedek modu)"
+
+#~ msgid "Retrieving CPU temperature in fallback mode"
+#~ msgstr "Yedek modda CPU sıcaklığı alınıyor"
+
+#~ msgid "failed to retrieve CPU temperature (fallback mode)"
+#~ msgstr "CPU sıcaklığı alınamadı (yedek mod)"
+
+#~ msgid "Retrieving CPU voltage in fallback mode"
+#~ msgstr "Yedek modda CPU gerilimi alınıyor"
+
+#~ msgid "failed to retrieve CPU voltage (fallback mode)"
+#~ msgstr "CPU gerilimi alınamadı (yedek mod)"
+
+#~ msgid "Retrieving CPU frequency in fallback mode"
+#~ msgstr "Yedek modda CPU frekansı alınıyor"
+
+#~ msgid "failed to retrieve CPU frequency (fallback mode)"
+#~ msgstr "CPU frekansı alınamadı (yedek mod)"
+
+#~ msgid "Starting daemon in background…"
+#~ msgstr "Art alan hizmeti arka planda başlatılıyor…"
+
+#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+#~ msgstr "pkexec: yetkilendirme alınamadı (iletişim kutusu kapatıldı)"
+
+#~ msgid "pkexec: authorization could not be obtained (not authorized)"
+#~ msgstr "pkexec: yetkilendirme alınamadı (yetkilendirilmedi)"
+
+#~ msgid "pkexec: command not found"
+#~ msgstr "pkexec: komut bulunamadı"
+
+#~ msgid "pkexec: unexpected error code"
+#~ msgstr "pkexec: beklenmedik hata kodu"
+
+#~ msgid "Connecting to daemon…"
+#~ msgstr "Art alan hizmetine bağlanılıyor…"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: %i durumu işlemedi"
+
+#, c-format
+#~ msgid "Cannot find path for '%s' file"
+#~ msgstr "'%s' dosyasının yolu bulunamadı"
+
+#~ msgid "No polkit authentication agent found"
+#~ msgstr "Hiçbir polkit kimlik doğrulama aracısı bulunamadı"
+
+#~ msgid "Ask password to start daemon in background"
+#~ msgstr "Art alan hizmetini başlatmak için parola sor"
+
+#~ msgid "Settings"
+#~ msgstr "Ayarlar"
+
+#~ msgid "BaseFamily"
+#~ msgstr "TemelAile"
+
+#~ msgid ""
+#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+#~ msgstr ""
+#~ "Görüntülenen (\"gerçek\") CPU ailesi (TemelAile+GenişletilmişAile olarak "
+#~ "hesaplanır)"
+
+#~ msgid "BaseModel"
+#~ msgstr "TemelModel"
+
+#~ msgid ""
+#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+#~ msgstr ""
+#~ "Görüntülenen (\"gerçek\") CPU modeli ((GenişletilmişModel<<4)+TemelModel "
+#~ "olarak hesaplanır)"
+
+#~ msgid "EFI Platform Key certificate information"
+#~ msgstr "EFI Platform Anahtarı sertifika bilgileri"
+
+#~ msgid ""
+#~ "Identify the physically-labeled socket or board position where the memory "
+#~ "device is located"
+#~ msgstr ""
+#~ "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş soketi ya da kart "
+#~ "konumunu tanımla"
+
+#~ msgid ""
+#~ "Identify the physically labeled bank where the memory device is located"
+#~ msgstr ""
+#~ "Bellek aygıtının bulunduğu fiziksel olarak etiketlenmiş bakoyu tanımla"
+
+#~ msgid "User Mode Driver Version"
+#~ msgstr "Kullanıcı Modu Sürücü Sürümü"
+
+#~ msgid "Vulkan Ray Tracing"
+#~ msgstr "Vulkan Işın Yansıma (Ray Tracing)"
+
+#~ msgid "Starting GTK GUI…"
+#~ msgstr "GTK GUI başlatılıyor…"
+
+#~ msgid "failed to import UI in GtkBuilder"
+#~ msgstr "GtkBuilder'da kullanıcı arayüzü içe aktarılamadı"
+
+#~ msgid "Window is too small!"
+#~ msgstr "Pencere çok küçük!"
+
+#~ msgid "Press 'h' to see help."
+#~ msgstr "Yardımı görmek için 'h' tuşuna basın."
+
+#, c-format
+#~ msgid "Welcome in %s NCurses help!\n"
+#~ msgstr "%s NCurses yardımına hoş geldiniz!\n"
+
+#~ msgid "This help describes how to use this Text-based User Interface."
+#~ msgstr ""
+#~ "Bu yardım, metin tabanlı kullanıcı arayüzünün nasıl kullanılacağını "
+#~ "açıklar."
+
+#~ msgid "Global keys:"
+#~ msgstr "Genel tuşlar:"
+
+#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
+#~ msgstr "Sol sekmeye geçmek için 'sol' veya 'tab' tuşuna basın."
+
+#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+#~ msgstr "Sağ sekmeye geçmek için 'sağ' veya 'shift + tab' tuşuna basın."
+
+#~ msgid "Press 'h' key to see this help."
+#~ msgstr "Bu yardımı görmek için 'h' tuşuna basın."
+
+#~ msgid "Press 'q' key to exit."
+#~ msgstr "Çıkmak için 'q' tuşuna basın."
+
+#~ msgid "CPU tab:"
+#~ msgstr "CPU sekmesi:"
+
+#~ msgid "Press 'next page' key to decrease core type number to monitor."
+#~ msgstr ""
+#~ "İzlenecek çekirdek türü sayısını azaltmak için 'sonraki sayfa' tuşuna "
+#~ "basın."
+
+#~ msgid "Press 'previous page' key to increase core type number to monitor."
+#~ msgstr ""
+#~ "İzlenecek çekirdek türü sayısını arttırmak için 'önceki sayfa' tuşuna "
+#~ "basın."
+
+#~ msgid "Press 'down' key to decrease CPU core number to monitor."
+#~ msgstr "İzlenecek CPU çekirdek sayısını azaltmak için 'aşağı' tuşuna basın."
+
+#~ msgid "Press 'up' key to increase CPU core number to monitor."
+#~ msgstr ""
+#~ "İzlenecek CPU çekirdek sayısını artırmak için 'yukarı' tuşuna basın."
+
+#~ msgid "Caches tab:"
+#~ msgstr "Önbellek sekmesi:"
+
+#~ msgid "Press 'down' key to switch to previous test."
+#~ msgstr "Önceki teste geçmek için 'aşağı' tuşuna basın."
+
+#~ msgid "Press 'up' key to switch to next test."
+#~ msgstr "Sonraki teste geçmek için 'yukarı' tuşuna basın."
+
+#~ msgid "Bench tab:"
+#~ msgstr "Karşılaştırma sekmesi:"
+
+#~ msgid "Press 'down' key to decrement benchmark duration."
+#~ msgstr "Karşılaştırma süresini azaltmak için 'aşağı' tuşuna basın."
+
+#~ msgid "Press 'up' key to increment benchmark duration."
+#~ msgstr "Karşılaştırma süresini artırmak için 'yukarı' tuşuna basın."
+
+#~ msgid "Press 'next page' key to decrement number of threads to use."
+#~ msgstr ""
+#~ "Kullanılacak iş parçacığı sayısını azaltmak için 'sonraki sayfa' tuşuna "
+#~ "basın."
+
+#~ msgid "Press 'previous page' key to increment number of threads to use."
+#~ msgstr ""
+#~ "Kullanılacak iş parçacığı sayısını artırmak için 'önceki sayfa' tuşuna "
+#~ "basın."
+
+#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+#~ msgstr ""
+#~ "Asal sayıları (yavaş) karşılaştırmayı başlatmak/durdurmak için 's' tuşuna "
+#~ "basın."
+
+#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+#~ msgstr ""
+#~ "Asal sayıları (hızlı) karşılaştırmayı başlatmak/durdurmak için 'f' tuşuna "
+#~ "basın."
+
+#~ msgid "Graphics tab:"
+#~ msgstr "Grafikler sekmesi:"
+
+#~ msgid "Press 'down' key to switch to previous graphic card."
+#~ msgstr "Önceki grafik kartına geçmek için 'aşağı' tuşuna basın."
+
+#~ msgid "Press 'up' key to switch to next graphic card."
+#~ msgstr "Sonraki grafik kartına geçmek için 'yukarı' tuşuna basın."
+
+#~ msgid "Press any key to exit this help."
+#~ msgstr "Yardımdan çıkmak için herhangi bir tuşa basın."
+
+#~ msgid "Starting NCurses TUI…"
+#~ msgstr "NCurses metin tabanlı arayüzü başlatılıyor…"
+
+#~ msgid ""
+#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+#~ "environment variable)"
+#~ msgstr ""
+#~ "ÖNEMLİ HATA: terminfo veri tabanı bulunamadı (TERMINFO ortam değişkenini "
+#~ "ayarlamayı deneyin)"
+
+#, c-format
+#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+#~ msgstr "%s terminali ayarlanamadı (err=%i); yedek olarak %s kullanılıyor"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "Art alan hizmetine bağlanıldı"

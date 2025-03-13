@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2024-10-08 13:00+0000\n"
 "Last-Translator: Shaun Botsis <shaunbotsis@gmail.com>\n"
 "Language-Team: Afrikaans <https://hosted.weblate.org/projects/cpu-x/"
@@ -19,465 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.8-dev\n"
 
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Jou SVE is nie in die databasis teenwoordig nie ==> %s, model: %i, ext. "
-"model: %i, ext. family: %i"
-
-#: core.cpp:210
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr ""
-"Jou SVE is nie in die databasis teenwoordig nie ==> %s, part number: 0x%x, "
-"codename: %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "Besig om SVE-tegnologie te vind"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "onbekend"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Besig om libcpuid op te roep om statiese data te verkry"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "kon nie libcpuid oproep nie (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Besig om libcpuid op te roep om dinamiese data te verkry"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Besig om libcpuid op te roep om SVE MSR statiese waardes te verkry"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Besig om libcpuid op te roep om SVE MSR dinamiese waardes te verkry"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "Besig om dmidecode op te roep"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr "%s (gekonfigureer)"
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr "%s (maksimum)"
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr "%s (minimum)"
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "Besig om SVE-gebruik te bereken"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "Besig om bandwydte op te roep"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr "%s (onderwerp) / %s (uitreiker)"
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"pci_access is nie behoorlik geïnisialiseer nie: dit is 'n algemene probleem "
-"wanneer %s gebou is met 'n laer libpci-weergawe.\n"
-"Maak seker dat libpci %s biblioteek op jou stelsel teenwoordig is. "
-"Andersins, herbou asseblief %s."
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Geen kerneldrywer in gebruik vir grafiese kaart by pad %s"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Jou GPU-kerneldrywer is onbekend: %s"
-
-#: core.cpp:973
-#, c-format
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Jou GPU-gebruikermodus-drywer is onbekend vir verskaffer %s: %s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "kon nie GLFW oproep nie (%i): %s"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "Besig om Vulkan API-weergawe te vind"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "kon nie vkCreateInstance oproep nie (%s)"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "%s word nie ondersteun nie"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "kon nie vkEnumeratePhysicalDevices oproep nie (%s)"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "Geen beskikbare Vulkan-toestelle"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "Geen beskikbare fisiese toestelle (%s)"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "Kon nie Vulkan skep vir toestel %u nie (%s)"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"%s word nie ondersteun vir toestel %u nie, gebruik slegs toestelID vir "
-"ooreenstemming"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "Geaktiveer"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "Gedeaktiveer"
-
-#: core.cpp:1295
-msgid "Finding OpenCL API version"
-msgstr "Besig om OpenCL API-weergawe te vind"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr ""
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr ""
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr ""
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr ""
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr ""
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr ""
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr ""
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr ""
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr ""
-
-#: core.cpp:1550
-msgid "Skip devices search (PCI device does not exist)"
-msgstr ""
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr ""
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr ""
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr ""
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr ""
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr ""
-
-#: core.cpp:1804
-msgid "None"
-msgstr ""
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr ""
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr ""
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr ""
-
-#: core.cpp:1960
-#, c-format
-msgid "Driver for %s doesn't report frequencies"
-msgstr ""
-
-#: core.cpp:1981
-#, c-format
-msgid "failed to retrieve all monitoring data for %s"
-msgstr ""
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr ""
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr ""
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr ""
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr ""
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr ""
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr ""
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr ""
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr ""
-
-#: core.cpp:2233
-msgid "Active"
-msgstr ""
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr ""
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr ""
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr ""
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr ""
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr ""
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr ""
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr ""
-
-#: core.cpp:2268
-#, c-format
-msgid "Starting benchmark with %u threads"
-msgstr ""
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr ""
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr ""
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr ""
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
-
-#: daemon_client.cpp:65
-msgid "Starting daemon in background…"
-msgstr ""
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr ""
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr ""
-
-#: daemon_client.cpp:220
-msgid "Connecting to daemon…"
-msgstr ""
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr ""
-
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr ""
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "onbekend"
 
 #: data.cpp:190
 msgid "P-core"
@@ -647,69 +195,6 @@ msgstr ""
 
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr ""
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr ""
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr ""
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr ""
-
-#: gui_gtk.cpp:711
-msgid "BaseFamily"
-msgstr ""
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-
-#: gui_gtk.cpp:713
-msgid "BaseModel"
-msgstr ""
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr ""
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr ""
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr ""
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr ""
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
 msgstr ""
 
 #: main.cpp:63
@@ -923,134 +408,6 @@ msgstr ""
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
-msgstr ""
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr ""
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr ""
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr ""
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr ""
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr ""
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr ""
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr ""
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr ""
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr ""
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr ""
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr ""
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr ""
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr ""
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr ""
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr ""
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr ""
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr ""
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr ""
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr ""
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 
 #: util.cpp:189
@@ -1479,3 +836,132 @@ msgstr ""
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Jou SVE is nie in die databasis teenwoordig nie ==> %s, model: %i, ext. "
+#~ "model: %i, ext. family: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Jou SVE is nie in die databasis teenwoordig nie ==> %s, part number: "
+#~ "0x%x, codename: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Besig om SVE-tegnologie te vind"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "Besig om libcpuid op te roep om statiese data te verkry"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "kon nie libcpuid oproep nie (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "Besig om libcpuid op te roep om dinamiese data te verkry"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr "Besig om libcpuid op te roep om SVE MSR statiese waardes te verkry"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr "Besig om libcpuid op te roep om SVE MSR dinamiese waardes te verkry"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "Besig om dmidecode op te roep"
+
+#, c-format
+#~ msgid "%s (configured)"
+#~ msgstr "%s (gekonfigureer)"
+
+#, c-format
+#~ msgid "%s (max)"
+#~ msgstr "%s (maksimum)"
+
+#, c-format
+#~ msgid "%s (min)"
+#~ msgstr "%s (minimum)"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "Besig om SVE-gebruik te bereken"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "Besig om bandwydte op te roep"
+
+#, c-format
+#~ msgid "%s (subject) / %s (issuer)"
+#~ msgstr "%s (onderwerp) / %s (uitreiker)"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "pci_access is nie behoorlik geïnisialiseer nie: dit is 'n algemene "
+#~ "probleem wanneer %s gebou is met 'n laer libpci-weergawe.\n"
+#~ "Maak seker dat libpci %s biblioteek op jou stelsel teenwoordig is. "
+#~ "Andersins, herbou asseblief %s."
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "Geen kerneldrywer in gebruik vir grafiese kaart by pad %s"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "Jou GPU-kerneldrywer is onbekend: %s"
+
+#, c-format
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr "Jou GPU-gebruikermodus-drywer is onbekend vir verskaffer %s: %s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "kon nie GLFW oproep nie (%i): %s"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "Besig om Vulkan API-weergawe te vind"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "kon nie vkCreateInstance oproep nie (%s)"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "%s word nie ondersteun nie"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "kon nie vkEnumeratePhysicalDevices oproep nie (%s)"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "Geen beskikbare Vulkan-toestelle"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "Geen beskikbare fisiese toestelle (%s)"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "Kon nie Vulkan skep vir toestel %u nie (%s)"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr ""
+#~ "%s word nie ondersteun vir toestel %u nie, gebruik slegs toestelID vir "
+#~ "ooreenstemming"
+
+#~ msgid "Enabled"
+#~ msgstr "Geaktiveer"
+
+#~ msgid "Disabled"
+#~ msgstr "Gedeaktiveer"
+
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "Besig om OpenCL API-weergawe te vind"

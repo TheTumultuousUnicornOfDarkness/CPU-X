@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2025-03-09 19:05+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -29,475 +29,13 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.10.3-dev\n"
 
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Ваш процесор відсутній у базі даних ==> %s, модель: %i, загальн. модель: %i, "
-"загальн. сімейство: %i"
-
-#: core.cpp:210
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr ""
-"Ваш процесор відсутній у базі даних ==> %s, номер частини: 0x%x, кодова "
-"назва: %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "Пошук технології процесора"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "невідомо"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Виклик libcpuid для отримання статичних даних"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "не вдалося викликати libcpuid (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Виклик libcpuid для отримання динамічних даних"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr ""
-"Виклик libcpuid для отримання статичних значень моделезалежних реєстрів "
-"процесора"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr ""
-"Виклик libcpuid для отримання динамічних значень моделезалежних реєстрів "
-"процесора"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "Виклик dmidecode"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr "%s (налаштовано)"
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr "%s (макс.)"
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr "%s (мін.)"
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "Розрахунок завантаження процесора"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "Виклик пропускної спроможності"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr "%s (тема) / %s (емітент)"
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"pci_access не ініціалізовано належним чином: це поширена проблема, коли %s "
-"було зібрано з нижчою версією libpci.\n"
-"Перевірте наявність бібліотеки libpci %s у вашій системі. В іншому випадку, "
-"будь ласка, перезберіть %s."
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Немає драйвера ядра для відео карти за адресою %s"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Невідомий драйвер ядра GPU: %s"
-
-#: core.cpp:973
-#, c-format
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Ваш драйвер режиму користувача GPU невідомий для постачальника %s: %s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "не вдалося викликати GLFW (%i): %s"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "Визначення версії API Vulkan"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "не вдалося викликати vkCreateInstance (%s)"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "%s не підтримується"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "не вдалося викликати vkEnumeratePhysicalDevices (%s)"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "Немає доступних пристроїв Vulkan"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "Немає доступних фізичних пристроїв (%s)"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "Не вдалося створити Vulkan для пристрою %u (%s)"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"%s не підтримується для пристрою %u, використовуйте для зіставлення лише "
-"deviceID"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "Увімкнено"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "Відключено"
-
-#: core.cpp:1295
-msgid "Finding OpenCL API version"
-msgstr "Пошук версії OpenCL API"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr "Немає платформи з підтримкою OpenCL (%s)"
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr "не вдалося викликати усі платформи OpenCL (%s)"
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr "не вдалося отримати для платформи %u (%s)"
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr "не вдалося отримати версію для платформи %u (%s)"
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr ""
-"не вдалося визначити кількість пристроїв OpenCL для платформи '%s %s' (%s)"
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr "0 пристрій"
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "не вдалось отримати всі пристрої OpenCL для платформи '%s %s' (%s)"
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr "не вдалося отримати назву для пристрою %u (%s)"
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr "не вдалося отримати версію для пристрою %u (%s)"
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_TOPOLOGY_AMD (%s)"
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-"Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) чи CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "OpenCL не підтримується вашим виробником (0x%X)"
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr "Пошук пристроїв"
-
-#: core.cpp:1550
-msgid "Skip devices search (PCI device does not exist)"
-msgstr "Пропустити пошук пристроїв (пристрій PCI не існує)"
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "Постачальник графічного процесора невідомий: %s (0x%X)"
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr "не вдалося знайти постачальника чи модель чіпсету"
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr "не вдалося знайти постачальника та модель графічної карти"
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr "Отримання частоти GPU"
-
-#: core.cpp:1804
-msgid "None"
-msgstr "Немає"
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr "Шлях DRM для %s невідомий"
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr "Номер картки для %s невідомий"
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr "PCIe %s (поточн.) / %s (макс.)"
-
-#: core.cpp:1960
-#, c-format
-msgid "Driver for %s doesn't report frequencies"
-msgstr "Драйвер для %s не повідомляє частоти"
-
-#: core.cpp:1981
-#, c-format
-msgid "failed to retrieve all monitoring data for %s"
-msgstr "не вдалося отримати всі дані моніторингу для %s"
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr "Виявлення запущеної системи"
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr "не вдалося визначити запущену систему"
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr "Виклик libprocps"
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr "не вдається отримати час безвідмовної роботи системи"
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr "не вдалося створити структуру meminfo"
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr "Виклик libstatgrab"
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i днів, %i годин, %i хвилин, %i секунд"
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr "Оновлення стану тестів"
-
-#: core.cpp:2233
-msgid "Active"
-msgstr "Активний"
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr "(%u годин лишилось)"
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr "(%u хвилин лишилось)"
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr "(%u секунд лишилося)"
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr "Неактивний"
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr "за %u годин"
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr "за %u хвилин"
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr "за %u секунд"
-
-#: core.cpp:2268
-#, c-format
-msgid "Starting benchmark with %u threads"
-msgstr "Початок тестування з %u потоків"
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr "помилка при запуску бенчмарку"
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr "Пошук моделі маркування ЦП у аварійному режимі"
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Ваш сокет процесора відсутній у базі даних ==> %s, кодове ім'я: %s"
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Підрахунок помножувачів процесора у аварійному режимі"
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "Отримання інформації про материнську плату в аварійному режимі"
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "не вдалося отримати інформацію про материнську плату (аварійний режим)"
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Отримання температури процесора в аварійному режимі"
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "не вдалося отримати температуру процесора (аварійний режим)"
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Отримання робочої напруги процесора в аварійному режимі"
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Отримання частоти процесора в аварійному режимі"
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "не вдалося отримати частоту процесора (аварійний режим)"
-
-#: daemon_client.cpp:65
-msgid "Starting daemon in background…"
-msgstr "Запуск демона у фоновому режимі…"
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-"Змінна середовища APPDIR не встановлена, неможливо скопіювати демон у "
-"тимчасовий каталог"
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: не вдається отримати авторизацію (вимкнутий діалог)"
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: не вдається отримати авторизацію (немає авторизації)"
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr "pkexec: команду не знайдено"
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr "pkexec: неочікуваний код помилки"
-
-#: daemon_client.cpp:220
-msgid "Connecting to daemon…"
-msgstr "Підключення до демона…"
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: випадок %i не опрацьовується"
-
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "ЦП"
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "невідомо"
 
 #: data.cpp:190
 msgid "P-core"
@@ -670,75 +208,6 @@ msgstr "Дане програмне забезпечення поширюєть�
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Дане программне забезпечення надається БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ"
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr "Не вдається знайти шлях до файлу \"%s\""
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr "Не знайдена аутентифікація агента polkit"
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr "Потрібний пароль для запуску демона в фоновому режимі"
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr "Налаштування"
-
-#: gui_gtk.cpp:711
-msgid "BaseFamily"
-msgstr "Базова Родина"
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-"Сімейство процесорів (\"правда\") (вираховується як розширена родина + "
-"базова родина)"
-
-#: gui_gtk.cpp:713
-msgid "BaseModel"
-msgstr "Базова Модель"
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-"Відображена (\"дійсна\") модель процесора (вираховується як "
-"(РозширенаМодель<<4)+БазоваМодель)"
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr "Інформація про сертифікат ключа платформи EFI"
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-"Визначте розетку з фізичною міткою або позицію плати, де розташований "
-"пристрій пам’яті"
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr "Визначте фізично позначений банк, де знаходиться пристрій пам’яті"
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr "Версія драйвера користувацького режиму"
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr "Трасування променів Vulkan"
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr "Запуск графічного інтерфейсу GTK…"
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
-msgstr "не вдалося імпортувати інтерфейс в GtkBuilder"
 
 #: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
@@ -975,154 +444,6 @@ msgid ""
 msgstr ""
 "Вибране ядро процесора (%u) не є дійсним числом (%u є максимальним для цього "
 "типу ядра)"
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr "Вікно є надто малим!"
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr "Натисніть 'h' для отримання допомоги."
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr "Ласкаво просимо до %s допомоги NCurses!\n"
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr "Ця справка описує використання текстового інтерфейсу корстувача."
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr "Глобальні клавіші:"
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
-"Натисніть клавішу \"ліворуч\" або \"табуляція\", щоб переключитися на ліву "
-"вкладку."
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
-"Натисніть клавішу \"вправо\" або \"shift + табуляція\", щоб переключитися на "
-"праву вкладку."
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr "Натисніть клавішу 'h' для виклику цієї допомоги."
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr "Натисніть клавішу 'q', щоб вийти."
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr "Вкладка \"ЦП\":"
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
-"Натисніть клавішу \"next page\", щоб зменшити номер типу ядра для "
-"моніторингу."
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
-"Натисніть клавішу \"попередня сторінка\", щоб збільшити номер типу ядра для "
-"моніторингу."
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr ""
-"Натисніть клавішу \"вниз\", щоб зменшити кількості ядер для моніторингу."
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr ""
-"Натисніть клавішу \"вгору\", щоб збільшити кількість ядер для моніторингу."
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr "Вкладка \"Кеші\":"
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr "Натисніть клавішу \"вниз\", щоб перейти до попереднього тесту."
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступного тесту."
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr "Вкладка \"Тест\":"
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Натисніть клавішу \"вниз\" для змешення тривалості тесту."
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr "Натисніть клавішу \"вгору\" для збільшення тривалості тесту."
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-"Натисніть клавішу 'наступна сторінка' для зменшення кількості пов'язаних "
-"сторінок."
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-"Натисніть клавішу 'попередня сторінка' для збільшення кількості пов'язаних "
-"сторінок."
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-"Натисніть клавішу \"s\" щоб запустити/зупинити тест продуктивності \"прості "
-"числа (повільно)\"."
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-"Натисніть клавішу \"f\" щоб запустити/зупинити тест продуктивності \"прості "
-"числа (швидко)\"."
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr "Графіки:"
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Натисніть клавішу \"вниз\", щоб перейти до попередньої відеокарти."
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступної відеокарти."
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr "Натисніть будь-яку клавішу, щоб вийти з вікна допомоги."
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr "Запуск текстового інтерфейсу NCurses…"
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-"КРИТИЧНА ПОМИЛКА: неможливо знайти базу даних terminfo (спробуй встановити "
-"змінну середовища TERMINFO)"
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "Неможливо встановити %s термінал (err=%i); поворот до %s"
 
 #: util.cpp:189
 #, c-format
@@ -1550,6 +871,552 @@ msgstr "Карта пам'яті за замовчуванням"
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Початова"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Ваш процесор відсутній у базі даних ==> %s, модель: %i, загальн. модель: "
+#~ "%i, загальн. сімейство: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Ваш процесор відсутній у базі даних ==> %s, номер частини: 0x%x, кодова "
+#~ "назва: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Пошук технології процесора"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "Виклик libcpuid для отримання статичних даних"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "не вдалося викликати libcpuid (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "Виклик libcpuid для отримання динамічних даних"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr ""
+#~ "Виклик libcpuid для отримання статичних значень моделезалежних реєстрів "
+#~ "процесора"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr ""
+#~ "Виклик libcpuid для отримання динамічних значень моделезалежних реєстрів "
+#~ "процесора"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "Виклик dmidecode"
+
+#, c-format
+#~ msgid "%s (configured)"
+#~ msgstr "%s (налаштовано)"
+
+#, c-format
+#~ msgid "%s (max)"
+#~ msgstr "%s (макс.)"
+
+#, c-format
+#~ msgid "%s (min)"
+#~ msgstr "%s (мін.)"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "Розрахунок завантаження процесора"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "Виклик пропускної спроможності"
+
+#, c-format
+#~ msgid "%s (subject) / %s (issuer)"
+#~ msgstr "%s (тема) / %s (емітент)"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "pci_access не ініціалізовано належним чином: це поширена проблема, коли "
+#~ "%s було зібрано з нижчою версією libpci.\n"
+#~ "Перевірте наявність бібліотеки libpci %s у вашій системі. В іншому "
+#~ "випадку, будь ласка, перезберіть %s."
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "Немає драйвера ядра для відео карти за адресою %s"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "Невідомий драйвер ядра GPU: %s"
+
+#, c-format
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr ""
+#~ "Ваш драйвер режиму користувача GPU невідомий для постачальника %s: %s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "не вдалося викликати GLFW (%i): %s"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "Визначення версії API Vulkan"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "не вдалося викликати vkCreateInstance (%s)"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "%s не підтримується"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "не вдалося викликати vkEnumeratePhysicalDevices (%s)"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "Немає доступних пристроїв Vulkan"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "Немає доступних фізичних пристроїв (%s)"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "Не вдалося створити Vulkan для пристрою %u (%s)"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr ""
+#~ "%s не підтримується для пристрою %u, використовуйте для зіставлення лише "
+#~ "deviceID"
+
+#~ msgid "Enabled"
+#~ msgstr "Увімкнено"
+
+#~ msgid "Disabled"
+#~ msgstr "Відключено"
+
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "Пошук версії OpenCL API"
+
+#, c-format
+#~ msgid "There is no platform with OpenCL support (%s)"
+#~ msgstr "Немає платформи з підтримкою OpenCL (%s)"
+
+#, c-format
+#~ msgid "failed to get all OpenCL platforms (%s)"
+#~ msgstr "не вдалося викликати усі платформи OpenCL (%s)"
+
+#, c-format
+#~ msgid "failed to get name for platform %u (%s)"
+#~ msgstr "не вдалося отримати для платформи %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for platform %u (%s)"
+#~ msgstr "не вдалося отримати версію для платформи %u (%s)"
+
+#, c-format
+#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr ""
+#~ "не вдалося визначити кількість пристроїв OpenCL для платформи '%s %s' (%s)"
+
+#~ msgid "0 device"
+#~ msgstr "0 пристрій"
+
+#, c-format
+#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "не вдалось отримати всі пристрої OpenCL для платформи '%s %s' (%s)"
+
+#, c-format
+#~ msgid "failed to get name for device %u (%s)"
+#~ msgstr "не вдалося отримати назву для пристрою %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for device %u (%s)"
+#~ msgstr "не вдалося отримати версію для пристрою %u (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#~ msgstr "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_TOPOLOGY_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+#~ msgstr ""
+#~ "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+#~ msgstr ""
+#~ "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+#~ msgstr ""
+#~ "Драйвер OpenCL для '%s %s' не підтримує CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+#~ "CL_DEVICE_PCI_BUS_ID_NV (%s) чи CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+
+#, c-format
+#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+#~ msgstr "OpenCL не підтримується вашим виробником (0x%X)"
+
+#~ msgid "Finding devices"
+#~ msgstr "Пошук пристроїв"
+
+#~ msgid "Skip devices search (PCI device does not exist)"
+#~ msgstr "Пропустити пошук пристроїв (пристрій PCI не існує)"
+
+#, c-format
+#~ msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgstr "Пропустити пошук пристроїв (невірні права на пристрої %s)"
+
+#, c-format
+#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
+#~ msgstr "Постачальник графічного процесора невідомий: %s (0x%X)"
+
+#~ msgid "failed to find chipset vendor and model"
+#~ msgstr "не вдалося знайти постачальника чи модель чіпсету"
+
+#~ msgid "failed to find graphic card vendor and model"
+#~ msgstr "не вдалося знайти постачальника та модель графічної карти"
+
+#~ msgid "Retrieving GPU clocks"
+#~ msgstr "Отримання частоти GPU"
+
+#~ msgid "None"
+#~ msgstr "Немає"
+
+#, c-format
+#~ msgid "DRM path for %s is unknown"
+#~ msgstr "Шлях DRM для %s невідомий"
+
+#, c-format
+#~ msgid "Card number for %s is unknown"
+#~ msgstr "Номер картки для %s невідомий"
+
+#, c-format
+#~ msgid "PCIe %s (current) / %s (max)"
+#~ msgstr "PCIe %s (поточн.) / %s (макс.)"
+
+#, c-format
+#~ msgid "Driver for %s doesn't report frequencies"
+#~ msgstr "Драйвер для %s не повідомляє частоти"
+
+#, c-format
+#~ msgid "failed to retrieve all monitoring data for %s"
+#~ msgstr "не вдалося отримати всі дані моніторингу для %s"
+
+#~ msgid "Identifying running system"
+#~ msgstr "Виявлення запущеної системи"
+
+#~ msgid "failed to identify running system"
+#~ msgstr "не вдалося визначити запущену систему"
+
+#~ msgid "Calling libprocps"
+#~ msgstr "Виклик libprocps"
+
+#~ msgid "unable to get system uptime"
+#~ msgstr "не вдається отримати час безвідмовної роботи системи"
+
+#~ msgid "unable to create meminfo structure"
+#~ msgstr "не вдалося створити структуру meminfo"
+
+#~ msgid "Calling libstatgrab"
+#~ msgstr "Виклик libstatgrab"
+
+#, c-format
+#~ msgid "%i days, %i hours, %i minutes, %i seconds"
+#~ msgstr "%i днів, %i годин, %i хвилин, %i секунд"
+
+#~ msgid "Updating benchmark status"
+#~ msgstr "Оновлення стану тестів"
+
+#~ msgid "Active"
+#~ msgstr "Активний"
+
+#, c-format
+#~ msgid "(%u hours left)"
+#~ msgstr "(%u годин лишилось)"
+
+#, c-format
+#~ msgid "(%u minutes left)"
+#~ msgstr "(%u хвилин лишилось)"
+
+#, c-format
+#~ msgid "(%u seconds left)"
+#~ msgstr "(%u секунд лишилося)"
+
+#~ msgid "Inactive"
+#~ msgstr "Неактивний"
+
+#, c-format
+#~ msgid "in %u hours"
+#~ msgstr "за %u годин"
+
+#, c-format
+#~ msgid "in %u minutes"
+#~ msgstr "за %u хвилин"
+
+#, c-format
+#~ msgid "in %u seconds"
+#~ msgstr "за %u секунд"
+
+#, c-format
+#~ msgid "Starting benchmark with %u threads"
+#~ msgstr "Початок тестування з %u потоків"
+
+#~ msgid "an error occurred while starting benchmark"
+#~ msgstr "помилка при запуску бенчмарку"
+
+#~ msgid "Finding CPU package in fallback mode"
+#~ msgstr "Пошук моделі маркування ЦП у аварійному режимі"
+
+#, c-format
+#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgstr "Ваш сокет процесора відсутній у базі даних ==> %s, кодове ім'я: %s"
+
+#~ msgid "Calculating CPU multipliers in fallback mode"
+#~ msgstr "Підрахунок помножувачів процесора у аварійному режимі"
+
+#~ msgid "Retrieving motherboard information in fallback mode"
+#~ msgstr "Отримання інформації про материнську плату в аварійному режимі"
+
+#~ msgid "failed to retrieve motherboard information (fallback mode)"
+#~ msgstr ""
+#~ "не вдалося отримати інформацію про материнську плату (аварійний режим)"
+
+#~ msgid "Retrieving CPU temperature in fallback mode"
+#~ msgstr "Отримання температури процесора в аварійному режимі"
+
+#~ msgid "failed to retrieve CPU temperature (fallback mode)"
+#~ msgstr "не вдалося отримати температуру процесора (аварійний режим)"
+
+#~ msgid "Retrieving CPU voltage in fallback mode"
+#~ msgstr "Отримання робочої напруги процесора в аварійному режимі"
+
+#~ msgid "failed to retrieve CPU voltage (fallback mode)"
+#~ msgstr "не вдалося отримати робочу напругу процесора (аварійний режим)"
+
+#~ msgid "Retrieving CPU frequency in fallback mode"
+#~ msgstr "Отримання частоти процесора в аварійному режимі"
+
+#~ msgid "failed to retrieve CPU frequency (fallback mode)"
+#~ msgstr "не вдалося отримати частоту процесора (аварійний режим)"
+
+#~ msgid "Starting daemon in background…"
+#~ msgstr "Запуск демона у фоновому режимі…"
+
+#~ msgid ""
+#~ "APPDIR environment variable is not set, cannot copy the daemon to the "
+#~ "temporary directory"
+#~ msgstr ""
+#~ "Змінна середовища APPDIR не встановлена, неможливо скопіювати демон у "
+#~ "тимчасовий каталог"
+
+#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+#~ msgstr "pkexec: не вдається отримати авторизацію (вимкнутий діалог)"
+
+#~ msgid "pkexec: authorization could not be obtained (not authorized)"
+#~ msgstr "pkexec: не вдається отримати авторизацію (немає авторизації)"
+
+#~ msgid "pkexec: command not found"
+#~ msgstr "pkexec: команду не знайдено"
+
+#~ msgid "pkexec: unexpected error code"
+#~ msgstr "pkexec: неочікуваний код помилки"
+
+#~ msgid "Connecting to daemon…"
+#~ msgstr "Підключення до демона…"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: випадок %i не опрацьовується"
+
+#, c-format
+#~ msgid "Cannot find path for '%s' file"
+#~ msgstr "Не вдається знайти шлях до файлу \"%s\""
+
+#~ msgid "No polkit authentication agent found"
+#~ msgstr "Не знайдена аутентифікація агента polkit"
+
+#~ msgid "Ask password to start daemon in background"
+#~ msgstr "Потрібний пароль для запуску демона в фоновому режимі"
+
+#~ msgid "Settings"
+#~ msgstr "Налаштування"
+
+#~ msgid "BaseFamily"
+#~ msgstr "Базова Родина"
+
+#~ msgid ""
+#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+#~ msgstr ""
+#~ "Сімейство процесорів (\"правда\") (вираховується як розширена родина + "
+#~ "базова родина)"
+
+#~ msgid "BaseModel"
+#~ msgstr "Базова Модель"
+
+#~ msgid ""
+#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+#~ msgstr ""
+#~ "Відображена (\"дійсна\") модель процесора (вираховується як "
+#~ "(РозширенаМодель<<4)+БазоваМодель)"
+
+#~ msgid "EFI Platform Key certificate information"
+#~ msgstr "Інформація про сертифікат ключа платформи EFI"
+
+#~ msgid ""
+#~ "Identify the physically-labeled socket or board position where the memory "
+#~ "device is located"
+#~ msgstr ""
+#~ "Визначте розетку з фізичною міткою або позицію плати, де розташований "
+#~ "пристрій пам’яті"
+
+#~ msgid ""
+#~ "Identify the physically labeled bank where the memory device is located"
+#~ msgstr "Визначте фізично позначений банк, де знаходиться пристрій пам’яті"
+
+#~ msgid "User Mode Driver Version"
+#~ msgstr "Версія драйвера користувацького режиму"
+
+#~ msgid "Vulkan Ray Tracing"
+#~ msgstr "Трасування променів Vulkan"
+
+#~ msgid "Starting GTK GUI…"
+#~ msgstr "Запуск графічного інтерфейсу GTK…"
+
+#~ msgid "failed to import UI in GtkBuilder"
+#~ msgstr "не вдалося імпортувати інтерфейс в GtkBuilder"
+
+#~ msgid "Window is too small!"
+#~ msgstr "Вікно є надто малим!"
+
+#~ msgid "Press 'h' to see help."
+#~ msgstr "Натисніть 'h' для отримання допомоги."
+
+#, c-format
+#~ msgid "Welcome in %s NCurses help!\n"
+#~ msgstr "Ласкаво просимо до %s допомоги NCurses!\n"
+
+#~ msgid "This help describes how to use this Text-based User Interface."
+#~ msgstr "Ця справка описує використання текстового інтерфейсу корстувача."
+
+#~ msgid "Global keys:"
+#~ msgstr "Глобальні клавіші:"
+
+#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
+#~ msgstr ""
+#~ "Натисніть клавішу \"ліворуч\" або \"табуляція\", щоб переключитися на "
+#~ "ліву вкладку."
+
+#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+#~ msgstr ""
+#~ "Натисніть клавішу \"вправо\" або \"shift + табуляція\", щоб переключитися "
+#~ "на праву вкладку."
+
+#~ msgid "Press 'h' key to see this help."
+#~ msgstr "Натисніть клавішу 'h' для виклику цієї допомоги."
+
+#~ msgid "Press 'q' key to exit."
+#~ msgstr "Натисніть клавішу 'q', щоб вийти."
+
+#~ msgid "CPU tab:"
+#~ msgstr "Вкладка \"ЦП\":"
+
+#~ msgid "Press 'next page' key to decrease core type number to monitor."
+#~ msgstr ""
+#~ "Натисніть клавішу \"next page\", щоб зменшити номер типу ядра для "
+#~ "моніторингу."
+
+#~ msgid "Press 'previous page' key to increase core type number to monitor."
+#~ msgstr ""
+#~ "Натисніть клавішу \"попередня сторінка\", щоб збільшити номер типу ядра "
+#~ "для моніторингу."
+
+#~ msgid "Press 'down' key to decrease CPU core number to monitor."
+#~ msgstr ""
+#~ "Натисніть клавішу \"вниз\", щоб зменшити кількості ядер для моніторингу."
+
+#~ msgid "Press 'up' key to increase CPU core number to monitor."
+#~ msgstr ""
+#~ "Натисніть клавішу \"вгору\", щоб збільшити кількість ядер для моніторингу."
+
+#~ msgid "Caches tab:"
+#~ msgstr "Вкладка \"Кеші\":"
+
+#~ msgid "Press 'down' key to switch to previous test."
+#~ msgstr "Натисніть клавішу \"вниз\", щоб перейти до попереднього тесту."
+
+#~ msgid "Press 'up' key to switch to next test."
+#~ msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступного тесту."
+
+#~ msgid "Bench tab:"
+#~ msgstr "Вкладка \"Тест\":"
+
+#~ msgid "Press 'down' key to decrement benchmark duration."
+#~ msgstr "Натисніть клавішу \"вниз\" для змешення тривалості тесту."
+
+#~ msgid "Press 'up' key to increment benchmark duration."
+#~ msgstr "Натисніть клавішу \"вгору\" для збільшення тривалості тесту."
+
+#~ msgid "Press 'next page' key to decrement number of threads to use."
+#~ msgstr ""
+#~ "Натисніть клавішу 'наступна сторінка' для зменшення кількості пов'язаних "
+#~ "сторінок."
+
+#~ msgid "Press 'previous page' key to increment number of threads to use."
+#~ msgstr ""
+#~ "Натисніть клавішу 'попередня сторінка' для збільшення кількості "
+#~ "пов'язаних сторінок."
+
+#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+#~ msgstr ""
+#~ "Натисніть клавішу \"s\" щоб запустити/зупинити тест продуктивності "
+#~ "\"прості числа (повільно)\"."
+
+#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+#~ msgstr ""
+#~ "Натисніть клавішу \"f\" щоб запустити/зупинити тест продуктивності "
+#~ "\"прості числа (швидко)\"."
+
+#~ msgid "Graphics tab:"
+#~ msgstr "Графіки:"
+
+#~ msgid "Press 'down' key to switch to previous graphic card."
+#~ msgstr "Натисніть клавішу \"вниз\", щоб перейти до попередньої відеокарти."
+
+#~ msgid "Press 'up' key to switch to next graphic card."
+#~ msgstr "Натисніть клавішу \"вгору\", щоб перейти до наступної відеокарти."
+
+#~ msgid "Press any key to exit this help."
+#~ msgstr "Натисніть будь-яку клавішу, щоб вийти з вікна допомоги."
+
+#~ msgid "Starting NCurses TUI…"
+#~ msgstr "Запуск текстового інтерфейсу NCurses…"
+
+#~ msgid ""
+#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+#~ "environment variable)"
+#~ msgstr ""
+#~ "КРИТИЧНА ПОМИЛКА: неможливо знайти базу даних terminfo (спробуй "
+#~ "встановити змінну середовища TERMINFO)"
+
+#, c-format
+#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+#~ msgstr "Неможливо встановити %s термінал (err=%i); поворот до %s"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "Підключення до демона"

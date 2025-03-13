@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2024-07-02 00:35+0000\n"
 "Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -30,463 +30,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.7-dev\n"
 
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%i"
-
-#: core.cpp:210
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "正在尋找 CPU 技術"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "未知"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "正在呼叫 libcpuid 以取得靜態資料"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "呼叫 libcpuid 失敗 (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "正在呼叫 libcpuid 以取得動態資料"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "正在呼叫 libcpuid 以取得 CPU MSR 靜態值"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "調用dmidecode"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr "%s（已配置）"
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr "%s（最大）"
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr "%s（最少）"
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "正在計算 CPU 使用率"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "調用帶寬"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr ""
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"pci_access 未正確初始化：這是使用較低 libpci 版本建立 %s 時的常見問題。\n"
-"檢查您的系統上是否存在 libpci %s 版本函式庫。否則，請重建 %s。"
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "路徑 %s 沒有顯示卡核心驅動程式正在使用"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "無法得知您的 GPU 核心驅動程式：%s"
-
-#: core.cpp:973
-#, c-format
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "供應商 %s 未知您的 GPU 使用者模式驅動程式：%s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "呼叫 GLFW 失敗 (%i):(%s)"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "查找 Vulkan API 版本"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "呼叫 vkCreateInstance 失敗 (%s)"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "不支援 %s"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "呼叫 vkEnumeratePhysicalDevices 失敗 (%s)"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "沒有可用的 Vulkan 設備"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "沒有可用的物理設備（%s）"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "無法為設備 %u (%s) 創建 Vulkan"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr "%s不支援 在裝置 %u，僅使用 deviceID 進行匹配"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "啟用"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "關閉"
-
-#: core.cpp:1295
-msgid "Finding OpenCL API version"
-msgstr "查找 OpenCL API 版本"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr "沒有受 OpenCL 支援的平台 (%s)"
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr "擷取平台名稱時失敗 %u (%s)"
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr "擷取平台版本號數時失敗 %u (%s)"
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr "正在尋找裝置"
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "擷取平台上全部 OpenCL 裝置時失敗 '%s %s' (%s)"
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr "擷取裝置名稱時失敗 %u (%s)"
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr "取得裝置版本資訊時失敗%u (%s)"
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_TOPOLOGY_AMD (%s)"
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr "「%s %s」的 OpenCL 驅動程式並不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-"提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_PCI_DOMAIN_ID_NV (%s)， "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) 或是 CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "您的顯示卡供應商 (0x%X) 不支援 OpenCL"
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr "正在尋找裝置"
-
-#: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
-msgid "Skip devices search (PCI device does not exist)"
-msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "無法得知您的 GPU 供應商：%s (0x%X)"
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr "找不到晶片組供應商及型號"
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr "找不到顯示卡供應商及型號"
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr "正在取得 GPU 時脈"
-
-#: core.cpp:1804
-msgid "None"
-msgstr "無"
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr "%s 的 DRM 路徑未知"
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr "%s 的卡號未知"
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr "PCIe %s（目前）/%s（最大值）"
-
-#: core.cpp:1960
-#, c-format
-msgid "Driver for %s doesn't report frequencies"
-msgstr "%s 的驅動程式沒有報告頻率"
-
-#: core.cpp:1981
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
-msgid "failed to retrieve all monitoring data for %s"
-msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr "正在辨識作業環境系統"
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr "辨識作業環境系統失敗"
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr "正在呼叫 libprocps"
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr "無法獲取系統運作時間"
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr ""
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr "正在呼叫 libstatgrab"
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i 天， %i 小時， %i 分鐘， %i 秒"
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr "正在更新benchmark狀態"
-
-#: core.cpp:2233
-msgid "Active"
-msgstr "活動中"
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr "(剩下 %u 小時)"
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr "(剩下 %u 分鐘)"
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr "(剩下 %u 秒鐘)"
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr "未啟動"
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr "在 %u 小時內"
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr "在 %u 分鐘內"
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr "在 %u 秒鐘內"
-
-#: core.cpp:2268
-#, c-format
-msgid "Starting benchmark with %u threads"
-msgstr "正在使用 %u 個執行緒開始效能測試"
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr "開始效能測試時有錯誤發生"
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr ""
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr ""
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr ""
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr ""
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
-
-#: daemon_client.cpp:65
-msgid "Starting daemon in background…"
-msgstr ""
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr ""
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr ""
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr ""
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr ""
-
-#: daemon_client.cpp:220
-msgid "Connecting to daemon…"
-msgstr "正在連接至守護程式…"
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr ""
-
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "未知"
 
 #: data.cpp:190
 #, fuzzy
@@ -664,73 +214,6 @@ msgstr ""
 
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr ""
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr ""
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr ""
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr "設定"
-
-#: gui_gtk.cpp:711
-#, fuzzy
-#| msgid "Family"
-msgid "BaseFamily"
-msgstr "系列"
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-
-#: gui_gtk.cpp:713
-#, fuzzy
-#| msgid "Model"
-msgid "BaseModel"
-msgstr "型號"
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr ""
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr "用戶模式驅動程序版本"
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr "Vulkan 光線追蹤"
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr "正在啟動GTK圖形使用者介面…"
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
 msgstr ""
 
 #: main.cpp:63
@@ -965,134 +448,6 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr "所選 CPU 核心 (%u) 不是有效數字（%u 是此類核心的最大值）"
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr ""
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr "按「h」查看幫助。"
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr ""
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr "全域按鍵："
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "按「左」鍵或「Tab」鍵切換至左邊的分頁。"
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr "按「右」鍵或「Shift + Tab」鍵切換至右邊的分頁。"
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr "按「h」鍵查看此幫助。"
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr "按「q」鍵退出。"
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr "CPU分頁："
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "按下「Next Page」鍵以減少要監視的核心類型數目。"
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "按下「Previous Page」鍵以增加要監視的核心類型數目。"
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "按「下」鍵減少要監視的中央處理器核心數。"
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "按「上」鍵增加要監視的中央處理器核心數。"
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr "快取分頁："
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr "按「下」鍵切換至上一項測試。"
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr "按「上」鍵切換至下一項測試。"
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr "效能測試分頁："
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr "按「下」鍵減少效能測試持續的時間。"
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr "按「上」鍵增加效能測試持續的時間。"
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr "按「下一頁」鍵減少要使用的線程數。"
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "按「上一頁」鍵增加要使用的線程數。"
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "按下「S」鍵以啟動／停止質數（慢速）基準測試。"
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "按下「F」鍵以啟動／停止質數（快速）基準測試。"
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr "圖形分頁："
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr "按下「下」鍵以切換至上一個顯示卡。"
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr "按下「上」鍵以切換至下一個顯示卡。"
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr "按任意鍵退出幫助。"
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr "正在啟動 NCurses TUI…"
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
 
 #: util.cpp:189
 #, c-format
@@ -1524,6 +879,404 @@ msgstr "預設記憶棒"
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "啟動"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%i"
+
+#, fuzzy, c-format
+#~| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "正在尋找 CPU 技術"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "正在呼叫 libcpuid 以取得靜態資料"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "呼叫 libcpuid 失敗 (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "正在呼叫 libcpuid 以取得動態資料"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr "正在呼叫 libcpuid 以取得 CPU MSR 靜態值"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "調用dmidecode"
+
+#, c-format
+#~ msgid "%s (configured)"
+#~ msgstr "%s（已配置）"
+
+#, c-format
+#~ msgid "%s (max)"
+#~ msgstr "%s（最大）"
+
+#, c-format
+#~ msgid "%s (min)"
+#~ msgstr "%s（最少）"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "正在計算 CPU 使用率"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "調用帶寬"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "pci_access 未正確初始化：這是使用較低 libpci 版本建立 %s 時的常見問題。\n"
+#~ "檢查您的系統上是否存在 libpci %s 版本函式庫。否則，請重建 %s。"
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "路徑 %s 沒有顯示卡核心驅動程式正在使用"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "無法得知您的 GPU 核心驅動程式：%s"
+
+#, c-format
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr "供應商 %s 未知您的 GPU 使用者模式驅動程式：%s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "呼叫 GLFW 失敗 (%i):(%s)"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "查找 Vulkan API 版本"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "呼叫 vkCreateInstance 失敗 (%s)"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "不支援 %s"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "呼叫 vkEnumeratePhysicalDevices 失敗 (%s)"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "沒有可用的 Vulkan 設備"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "沒有可用的物理設備（%s）"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "無法為設備 %u (%s) 創建 Vulkan"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr "%s不支援 在裝置 %u，僅使用 deviceID 進行匹配"
+
+#~ msgid "Enabled"
+#~ msgstr "啟用"
+
+#~ msgid "Disabled"
+#~ msgstr "關閉"
+
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "查找 OpenCL API 版本"
+
+#, c-format
+#~ msgid "There is no platform with OpenCL support (%s)"
+#~ msgstr "沒有受 OpenCL 支援的平台 (%s)"
+
+#, c-format
+#~ msgid "failed to get all OpenCL platforms (%s)"
+#~ msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
+
+#, c-format
+#~ msgid "failed to get name for platform %u (%s)"
+#~ msgstr "擷取平台名稱時失敗 %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for platform %u (%s)"
+#~ msgstr "擷取平台版本號數時失敗 %u (%s)"
+
+#, c-format
+#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "尋找平台上 OpenCL 裝置號碼時失敗 '%s %s' (%s)"
+
+#~ msgid "0 device"
+#~ msgstr "正在尋找裝置"
+
+#, c-format
+#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "擷取平台上全部 OpenCL 裝置時失敗 '%s %s' (%s)"
+
+#, c-format
+#~ msgid "failed to get name for device %u (%s)"
+#~ msgstr "擷取裝置名稱時失敗 %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for device %u (%s)"
+#~ msgstr "取得裝置版本資訊時失敗%u (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#~ msgstr "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_TOPOLOGY_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+#~ msgstr ""
+#~ "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+#~ msgstr ""
+#~ "「%s %s」的 OpenCL 驅動程式並不支援 CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+#~ msgstr ""
+#~ "提供給 '%s %s' 之 OpenCL 驅動程式不支援 CL_DEVICE_PCI_DOMAIN_ID_NV (%s)， "
+#~ "CL_DEVICE_PCI_BUS_ID_NV (%s) 或是 CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+
+#, c-format
+#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+#~ msgstr "您的顯示卡供應商 (0x%X) 不支援 OpenCL"
+
+#~ msgid "Finding devices"
+#~ msgstr "正在尋找裝置"
+
+#, fuzzy
+#~| msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgid "Skip devices search (PCI device does not exist)"
+#~ msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
+
+#, c-format
+#~ msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
+
+#, c-format
+#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
+#~ msgstr "無法得知您的 GPU 供應商：%s (0x%X)"
+
+#~ msgid "failed to find chipset vendor and model"
+#~ msgstr "找不到晶片組供應商及型號"
+
+#~ msgid "failed to find graphic card vendor and model"
+#~ msgstr "找不到顯示卡供應商及型號"
+
+#~ msgid "Retrieving GPU clocks"
+#~ msgstr "正在取得 GPU 時脈"
+
+#~ msgid "None"
+#~ msgstr "無"
+
+#, c-format
+#~ msgid "DRM path for %s is unknown"
+#~ msgstr "%s 的 DRM 路徑未知"
+
+#, c-format
+#~ msgid "Card number for %s is unknown"
+#~ msgstr "%s 的卡號未知"
+
+#, c-format
+#~ msgid "PCIe %s (current) / %s (max)"
+#~ msgstr "PCIe %s（目前）/%s（最大值）"
+
+#, c-format
+#~ msgid "Driver for %s doesn't report frequencies"
+#~ msgstr "%s 的驅動程式沒有報告頻率"
+
+#, fuzzy, c-format
+#~| msgid "failed to get all OpenCL platforms (%s)"
+#~ msgid "failed to retrieve all monitoring data for %s"
+#~ msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
+
+#~ msgid "Identifying running system"
+#~ msgstr "正在辨識作業環境系統"
+
+#~ msgid "failed to identify running system"
+#~ msgstr "辨識作業環境系統失敗"
+
+#~ msgid "Calling libprocps"
+#~ msgstr "正在呼叫 libprocps"
+
+#~ msgid "unable to get system uptime"
+#~ msgstr "無法獲取系統運作時間"
+
+#~ msgid "Calling libstatgrab"
+#~ msgstr "正在呼叫 libstatgrab"
+
+#, c-format
+#~ msgid "%i days, %i hours, %i minutes, %i seconds"
+#~ msgstr "%i 天， %i 小時， %i 分鐘， %i 秒"
+
+#~ msgid "Updating benchmark status"
+#~ msgstr "正在更新benchmark狀態"
+
+#~ msgid "Active"
+#~ msgstr "活動中"
+
+#, c-format
+#~ msgid "(%u hours left)"
+#~ msgstr "(剩下 %u 小時)"
+
+#, c-format
+#~ msgid "(%u minutes left)"
+#~ msgstr "(剩下 %u 分鐘)"
+
+#, c-format
+#~ msgid "(%u seconds left)"
+#~ msgstr "(剩下 %u 秒鐘)"
+
+#~ msgid "Inactive"
+#~ msgstr "未啟動"
+
+#, c-format
+#~ msgid "in %u hours"
+#~ msgstr "在 %u 小時內"
+
+#, c-format
+#~ msgid "in %u minutes"
+#~ msgstr "在 %u 分鐘內"
+
+#, c-format
+#~ msgid "in %u seconds"
+#~ msgstr "在 %u 秒鐘內"
+
+#, c-format
+#~ msgid "Starting benchmark with %u threads"
+#~ msgstr "正在使用 %u 個執行緒開始效能測試"
+
+#~ msgid "an error occurred while starting benchmark"
+#~ msgstr "開始效能測試時有錯誤發生"
+
+#, c-format
+#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
+
+#~ msgid "Connecting to daemon…"
+#~ msgstr "正在連接至守護程式…"
+
+#~ msgid "Settings"
+#~ msgstr "設定"
+
+#, fuzzy
+#~| msgid "Family"
+#~ msgid "BaseFamily"
+#~ msgstr "系列"
+
+#, fuzzy
+#~| msgid "Model"
+#~ msgid "BaseModel"
+#~ msgstr "型號"
+
+#~ msgid "User Mode Driver Version"
+#~ msgstr "用戶模式驅動程序版本"
+
+#~ msgid "Vulkan Ray Tracing"
+#~ msgstr "Vulkan 光線追蹤"
+
+#~ msgid "Starting GTK GUI…"
+#~ msgstr "正在啟動GTK圖形使用者介面…"
+
+#~ msgid "Press 'h' to see help."
+#~ msgstr "按「h」查看幫助。"
+
+#~ msgid "Global keys:"
+#~ msgstr "全域按鍵："
+
+#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
+#~ msgstr "按「左」鍵或「Tab」鍵切換至左邊的分頁。"
+
+#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+#~ msgstr "按「右」鍵或「Shift + Tab」鍵切換至右邊的分頁。"
+
+#~ msgid "Press 'h' key to see this help."
+#~ msgstr "按「h」鍵查看此幫助。"
+
+#~ msgid "Press 'q' key to exit."
+#~ msgstr "按「q」鍵退出。"
+
+#~ msgid "CPU tab:"
+#~ msgstr "CPU分頁："
+
+#~ msgid "Press 'next page' key to decrease core type number to monitor."
+#~ msgstr "按下「Next Page」鍵以減少要監視的核心類型數目。"
+
+#~ msgid "Press 'previous page' key to increase core type number to monitor."
+#~ msgstr "按下「Previous Page」鍵以增加要監視的核心類型數目。"
+
+#~ msgid "Press 'down' key to decrease CPU core number to monitor."
+#~ msgstr "按「下」鍵減少要監視的中央處理器核心數。"
+
+#~ msgid "Press 'up' key to increase CPU core number to monitor."
+#~ msgstr "按「上」鍵增加要監視的中央處理器核心數。"
+
+#~ msgid "Caches tab:"
+#~ msgstr "快取分頁："
+
+#~ msgid "Press 'down' key to switch to previous test."
+#~ msgstr "按「下」鍵切換至上一項測試。"
+
+#~ msgid "Press 'up' key to switch to next test."
+#~ msgstr "按「上」鍵切換至下一項測試。"
+
+#~ msgid "Bench tab:"
+#~ msgstr "效能測試分頁："
+
+#~ msgid "Press 'down' key to decrement benchmark duration."
+#~ msgstr "按「下」鍵減少效能測試持續的時間。"
+
+#~ msgid "Press 'up' key to increment benchmark duration."
+#~ msgstr "按「上」鍵增加效能測試持續的時間。"
+
+#~ msgid "Press 'next page' key to decrement number of threads to use."
+#~ msgstr "按「下一頁」鍵減少要使用的線程數。"
+
+#~ msgid "Press 'previous page' key to increment number of threads to use."
+#~ msgstr "按「上一頁」鍵增加要使用的線程數。"
+
+#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+#~ msgstr "按下「S」鍵以啟動／停止質數（慢速）基準測試。"
+
+#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+#~ msgstr "按下「F」鍵以啟動／停止質數（快速）基準測試。"
+
+#~ msgid "Graphics tab:"
+#~ msgstr "圖形分頁："
+
+#~ msgid "Press 'down' key to switch to previous graphic card."
+#~ msgstr "按下「下」鍵以切換至上一個顯示卡。"
+
+#~ msgid "Press 'up' key to switch to next graphic card."
+#~ msgstr "按下「上」鍵以切換至下一個顯示卡。"
+
+#~ msgid "Press any key to exit this help."
+#~ msgstr "按任意鍵退出幫助。"
+
+#~ msgid "Starting NCurses TUI…"
+#~ msgstr "正在啟動 NCurses TUI…"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "已連接至守護程式"

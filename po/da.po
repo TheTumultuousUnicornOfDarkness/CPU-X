@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2022-12-17 05:50+0000\n"
 "Last-Translator: Magnus Jørgensen <magnusmj@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/cpu-x/"
@@ -20,481 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.15\n"
 
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Din CPU er ikke stil stede i databasen ==> %s, model: %i, ext. model: %i, "
-"ext. familie: %i"
-
-#: core.cpp:210
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr "Din CPU-socket findes ikke i databasen ==> %s, kodenavn: %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "Finder CPU-teknologi"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "ukendt"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Kalder libcpuid til hentning af statiske data"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "kunne ikke kalde libcpuid (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Kalder libcpuid til hentning af dynamiske data"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Kalder libcpuid til hentning af statiske CPU-MSR-værdier"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Kalder libcpuid til hentning af dynamiske CPU-MSR-værdier"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "Kalder dmidecode"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr ""
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr ""
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr ""
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "Beregner CPU-brug"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "Opkaldsbåndbredde"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr ""
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"pci_access er ikke korrekt initialiseret: det er normalt et problem når %s "
-"er bygget med en lavere libpci version.\n"
-"Verificer at libpci %s bibliotek er tilstede på dit system. Ellers, venligst "
-"genopbygge %s."
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Ingen kernedriver i brug til grafikkort ved stien %s"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Din GPU-driver er ukendt: %s"
-
-#: core.cpp:973
-#, fuzzy, c-format
-#| msgid "Your GPU user mode driver is unknown: %s"
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr "Din GPU-driver er ukendt: %s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "kunne ikke kalde GLFW (%i): %s"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "Finder Vulkan API version"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "kunne ikke kalde vkCreateInstance (%s)"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "%s er ikke understøttet"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "kunne ikke kalde vkEnumeratePhysicalDevices (%s)"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "Ingen tilgængelig Vulkan enhed"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "Ingen fysisk enhed tilgængelig (%s)"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "Kunne ikke oprette Vulkan til enheden %u (%s)"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"%s er ikke understøttet for enheden %u, brug kun deviceID hvor det stemmer"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "Aktiveret"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "Deaktiveret"
-
-#: core.cpp:1295
-#, fuzzy
-#| msgid "Finding Vulkan API version"
-msgid "Finding OpenCL API version"
-msgstr "Finder Vulkan API version"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr "Der er ingen platform med OpenCL understøttelse (%s)"
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr "kunne ikke tilgå navnet til platformen %u (%s)"
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr "kunne ikke tilgå versionen af platformen %u (%s)"
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "kunne ikke finde mængden af OpenCL enheder for platform '%s %s' (%s)"
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr "0 enheder"
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "kunne ikke tilgå hver OpenCL enhed for platform '%s %s' (%s)"
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr "kunne ikke tilgå navnet på enheden %u (%s)"
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr "kunne ikke tilgå versionen for enheden %u (%s)"
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
-"OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_TOPOLOGY_AMD (%s)"
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
-"OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_MAX_COMPUTE_UNITS "
-"(%s)"
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-"OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_PCI_DOMAIN_ID_NV "
-"(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) eller CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "OpenCL er ikke understøttet med din GPU leverandør (0x%X)"
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr "Finder enheder"
-
-#: core.cpp:1550
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
-msgid "Skip devices search (PCI device does not exist)"
-msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "Din GPU leverandør er ukendt: %s (0x%X)"
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr "kunne ikke finde chipset leverandør og model"
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr "kunne ikke finde grafik kort leverandør og model"
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr "Finder GPU frekvenser"
-
-#: core.cpp:1804
-msgid "None"
-msgstr "Ingen"
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr ""
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr ""
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr ""
-
-#: core.cpp:1960
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
-msgid "Driver for %s doesn't report frequencies"
-msgstr "Driveren til GPU %u rapporterer ikke frekvenser"
-
-#: core.cpp:1981
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
-msgid "failed to retrieve all monitoring data for %s"
-msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr "Identificerer kørrende system"
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr "kunne ikke identificere det kørrende system"
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr "Kalder libprocps"
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr "kunne ikke tilgå systemets oppetid"
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr "kunne ikke danne meminfo struktur"
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr "Kalder libstatgrab"
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i dage, %i timer %i minutter %i sekunder"
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr "Opdaterer status af benchmark"
-
-#: core.cpp:2233
-msgid "Active"
-msgstr "Aktiv"
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr "(%u timer tilbage)"
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr "(%u minutter tilbage)"
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr "(%u sekunder tilbage)"
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr "Inaktiv"
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr "om %u timer"
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr "om %u minutter"
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr "om %u sekunder"
-
-#: core.cpp:2268
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
-msgid "Starting benchmark with %u threads"
-msgstr "Starter benchmark"
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr "en fejl skete ved opstart af benchmark"
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr "Finder CPU-pakken i tilbagefaldstilstand"
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Din CPU-socket findes ikke i databasen ==> %s, kodenavn: %s"
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Beregner CPU-multiplikatorer i tilbagefaldstilstand"
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "Finder bundkorts informationer i tilbagefaldstilstand"
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "kunne ikke hente bundkortoplysninger (tilbagefaldstilstand)"
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Henter CPU temperatur i tilbagefaldstilstand"
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "kunne ikke hente CPU temperature (tilbagefaldstilstand)"
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Henter CPU spænding i tilbagefaldstilstand"
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "kunne ikke hente CPU spænding (tilbagefaldstilstand)"
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Henter CPU frekvens i tilbagefaldstilstand"
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "kunne ikke hente CPU frekvens (tilbagefaldstilstand)"
-
-#: daemon_client.cpp:65
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
-msgid "Starting daemon in background…"
-msgstr "Forespørg adgangskode til at starte baggrundsprogram i bagrunden"
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: autorisation kunne ikke opnås (dialog afvist)"
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: autorisation kunne ikke opnås (ikke godkendt)"
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr "pkexec: kommando ikke fundet"
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr "pkexec: uventet fejl kode"
-
-#: daemon_client.cpp:220
-#, fuzzy
-#| msgid "Connected to daemon"
-msgid "Connecting to daemon…"
-msgstr "Forbundet til baggrundsprogram"
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: tilfælde %i er ikke håndteret"
-
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "ukendt"
 
 #: data.cpp:190
 msgid "P-core"
@@ -674,71 +206,6 @@ msgstr "Denne software er udgivet under vilkårene for %s"
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dette program leveres HELT UDEN GARANTI"
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr ""
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr "Ingen polkit autentifikationsagent fundet"
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr "Forespørg adgangskode til at starte baggrundsprogram i bagrunden"
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr ""
-
-#: gui_gtk.cpp:711
-msgid "BaseFamily"
-msgstr "Basisfamillie"
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-"CPU udstilling (\"sand\") familie (beregnet som Basisfamilie+Udvidetfamilie)"
-
-#: gui_gtk.cpp:713
-msgid "BaseModel"
-msgstr "Basismodel"
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-"CPU udstilling (\"sand\") model (beregnet som (UdvidetModel<<4)+Basismodel)"
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr ""
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr "Bruger tilstands driver version"
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr "Vulkan Ray Tracing"
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr "Starter GTK Brugergrænseflade…"
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
-msgstr "kunne ikke importerer brugergrænseflade i GtkBuilder"
 
 #: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
@@ -985,139 +452,6 @@ msgid ""
 msgstr ""
 "Valgte CPU kerne (%u) er ikke et gyldigt tal (%u er maximum for denne type "
 "af kerne)"
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr "Vinduet er for lille!"
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr "Tryk 'h' for at se hjælp."
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr "Velkommen til %s NCurses hjælp!\n"
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-"Denne hjælp beskriver hvordan du bruger denne tekstbaserede "
-"brugergrænseflade."
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr "Globale taster:"
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr "Tryk 'venstre' tast eller 'tab' tast for at skifte i venstre fane."
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
-"Tryk 'højre' tast eller 'skift + tab' taster for at skifte i højre fane."
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr "Tryk 'h' tast for at se denne hjælp."
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr "Tryk 'q' tast for at afslutte."
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr "CPU fane:"
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "Tryk 'Page Down' tast for at reducere kernetypenummeret der overvåges."
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "Tryk 'Page Up' tast for at øge kernetypenummeret der overvåges."
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "Tryk 'ned' tast for at reducere CPU kerne antallet der skal overvåges."
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr "Tryk 'op' tast for at øge CPU kerne antallet der skal overvåges."
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr "Cache fane:"
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr "Tryk 'ned' tast for at skifte til forrige test."
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr "Tryk 'op' tast for at skifte til næste test."
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr "Benchmark fane:"
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Tryk 'ned' tast for at reducere benchmark varighed."
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr "Tryk 'op' tast for at øge benchmark varighed."
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr "Tryk 'Page Down' tast for at reducere antallet af brugte tråde."
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "Tryk 'Page Up' tast for at øge antallet af tråde."
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "Tryk 's' tast for at starte/stoppe primtal (langsom) benchmark."
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "Tryk 'f' tast for at starte/stoppe primtal (hurtig) benchmark."
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr "Grafik fane:"
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Tryk 'ned' tast for at skrifte til forrige grafikkort."
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr "Tryk 'op' tast for at skifte til næste grafikkort."
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr "Tryk en vilkårlig tast for at afslutte denne hjælp."
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr "Starter NCurses TUI…"
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-"FATAL FEJL: terminfo databasen kunne ikke blive fundet (prøv at sætte "
-"TERINFO miljøvariablen)"
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "Kunne ikke sætte %s terminal (fejl=%i); falder tilbage til %s"
 
 #: util.cpp:189
 #, c-format
@@ -1565,6 +899,490 @@ msgstr "Standard kerne type"
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Opstart"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Din CPU er ikke stil stede i databasen ==> %s, model: %i, ext. model: %i, "
+#~ "ext. familie: %i"
+
+#, fuzzy, c-format
+#~| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr "Din CPU-socket findes ikke i databasen ==> %s, kodenavn: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Finder CPU-teknologi"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "Kalder libcpuid til hentning af statiske data"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "kunne ikke kalde libcpuid (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "Kalder libcpuid til hentning af dynamiske data"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr "Kalder libcpuid til hentning af statiske CPU-MSR-værdier"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr "Kalder libcpuid til hentning af dynamiske CPU-MSR-værdier"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "Kalder dmidecode"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "Beregner CPU-brug"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "Opkaldsbåndbredde"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "pci_access er ikke korrekt initialiseret: det er normalt et problem når "
+#~ "%s er bygget med en lavere libpci version.\n"
+#~ "Verificer at libpci %s bibliotek er tilstede på dit system. Ellers, "
+#~ "venligst genopbygge %s."
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "Ingen kernedriver i brug til grafikkort ved stien %s"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "Din GPU-driver er ukendt: %s"
+
+#, fuzzy, c-format
+#~| msgid "Your GPU user mode driver is unknown: %s"
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr "Din GPU-driver er ukendt: %s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "kunne ikke kalde GLFW (%i): %s"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "Finder Vulkan API version"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "kunne ikke kalde vkCreateInstance (%s)"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "%s er ikke understøttet"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "kunne ikke kalde vkEnumeratePhysicalDevices (%s)"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "Ingen tilgængelig Vulkan enhed"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "Ingen fysisk enhed tilgængelig (%s)"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "Kunne ikke oprette Vulkan til enheden %u (%s)"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr ""
+#~ "%s er ikke understøttet for enheden %u, brug kun deviceID hvor det stemmer"
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiveret"
+
+#~ msgid "Disabled"
+#~ msgstr "Deaktiveret"
+
+#, fuzzy
+#~| msgid "Finding Vulkan API version"
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "Finder Vulkan API version"
+
+#, c-format
+#~ msgid "There is no platform with OpenCL support (%s)"
+#~ msgstr "Der er ingen platform med OpenCL understøttelse (%s)"
+
+#, c-format
+#~ msgid "failed to get all OpenCL platforms (%s)"
+#~ msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
+
+#, c-format
+#~ msgid "failed to get name for platform %u (%s)"
+#~ msgstr "kunne ikke tilgå navnet til platformen %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for platform %u (%s)"
+#~ msgstr "kunne ikke tilgå versionen af platformen %u (%s)"
+
+#, c-format
+#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr ""
+#~ "kunne ikke finde mængden af OpenCL enheder for platform '%s %s' (%s)"
+
+#~ msgid "0 device"
+#~ msgstr "0 enheder"
+
+#, c-format
+#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "kunne ikke tilgå hver OpenCL enhed for platform '%s %s' (%s)"
+
+#, c-format
+#~ msgid "failed to get name for device %u (%s)"
+#~ msgstr "kunne ikke tilgå navnet på enheden %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for device %u (%s)"
+#~ msgstr "kunne ikke tilgå versionen for enheden %u (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#~ msgstr ""
+#~ "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_TOPOLOGY_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+#~ msgstr ""
+#~ "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_GFXIP_MAJOR_AMD "
+#~ "(%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+#~ msgstr ""
+#~ "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+#~ msgstr ""
+#~ "OpenCL driveren for '%s %s' understøtter ikke CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) eller CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+
+#, c-format
+#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+#~ msgstr "OpenCL er ikke understøttet med din GPU leverandør (0x%X)"
+
+#~ msgid "Finding devices"
+#~ msgstr "Finder enheder"
+
+#, fuzzy
+#~| msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgid "Skip devices search (PCI device does not exist)"
+#~ msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
+
+#, c-format
+#~ msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
+
+#, c-format
+#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
+#~ msgstr "Din GPU leverandør er ukendt: %s (0x%X)"
+
+#~ msgid "failed to find chipset vendor and model"
+#~ msgstr "kunne ikke finde chipset leverandør og model"
+
+#~ msgid "failed to find graphic card vendor and model"
+#~ msgstr "kunne ikke finde grafik kort leverandør og model"
+
+#~ msgid "Retrieving GPU clocks"
+#~ msgstr "Finder GPU frekvenser"
+
+#~ msgid "None"
+#~ msgstr "Ingen"
+
+#, fuzzy, c-format
+#~| msgid "Driver for GPU %u doesn't report frequencies"
+#~ msgid "Driver for %s doesn't report frequencies"
+#~ msgstr "Driveren til GPU %u rapporterer ikke frekvenser"
+
+#, fuzzy, c-format
+#~| msgid "failed to get all OpenCL platforms (%s)"
+#~ msgid "failed to retrieve all monitoring data for %s"
+#~ msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
+
+#~ msgid "Identifying running system"
+#~ msgstr "Identificerer kørrende system"
+
+#~ msgid "failed to identify running system"
+#~ msgstr "kunne ikke identificere det kørrende system"
+
+#~ msgid "Calling libprocps"
+#~ msgstr "Kalder libprocps"
+
+#~ msgid "unable to get system uptime"
+#~ msgstr "kunne ikke tilgå systemets oppetid"
+
+#~ msgid "unable to create meminfo structure"
+#~ msgstr "kunne ikke danne meminfo struktur"
+
+#~ msgid "Calling libstatgrab"
+#~ msgstr "Kalder libstatgrab"
+
+#, c-format
+#~ msgid "%i days, %i hours, %i minutes, %i seconds"
+#~ msgstr "%i dage, %i timer %i minutter %i sekunder"
+
+#~ msgid "Updating benchmark status"
+#~ msgstr "Opdaterer status af benchmark"
+
+#~ msgid "Active"
+#~ msgstr "Aktiv"
+
+#, c-format
+#~ msgid "(%u hours left)"
+#~ msgstr "(%u timer tilbage)"
+
+#, c-format
+#~ msgid "(%u minutes left)"
+#~ msgstr "(%u minutter tilbage)"
+
+#, c-format
+#~ msgid "(%u seconds left)"
+#~ msgstr "(%u sekunder tilbage)"
+
+#~ msgid "Inactive"
+#~ msgstr "Inaktiv"
+
+#, c-format
+#~ msgid "in %u hours"
+#~ msgstr "om %u timer"
+
+#, c-format
+#~ msgid "in %u minutes"
+#~ msgstr "om %u minutter"
+
+#, c-format
+#~ msgid "in %u seconds"
+#~ msgstr "om %u sekunder"
+
+#, fuzzy, c-format
+#~| msgid "Starting benchmark"
+#~ msgid "Starting benchmark with %u threads"
+#~ msgstr "Starter benchmark"
+
+#~ msgid "an error occurred while starting benchmark"
+#~ msgstr "en fejl skete ved opstart af benchmark"
+
+#~ msgid "Finding CPU package in fallback mode"
+#~ msgstr "Finder CPU-pakken i tilbagefaldstilstand"
+
+#, c-format
+#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgstr "Din CPU-socket findes ikke i databasen ==> %s, kodenavn: %s"
+
+#~ msgid "Calculating CPU multipliers in fallback mode"
+#~ msgstr "Beregner CPU-multiplikatorer i tilbagefaldstilstand"
+
+#~ msgid "Retrieving motherboard information in fallback mode"
+#~ msgstr "Finder bundkorts informationer i tilbagefaldstilstand"
+
+#~ msgid "failed to retrieve motherboard information (fallback mode)"
+#~ msgstr "kunne ikke hente bundkortoplysninger (tilbagefaldstilstand)"
+
+#~ msgid "Retrieving CPU temperature in fallback mode"
+#~ msgstr "Henter CPU temperatur i tilbagefaldstilstand"
+
+#~ msgid "failed to retrieve CPU temperature (fallback mode)"
+#~ msgstr "kunne ikke hente CPU temperature (tilbagefaldstilstand)"
+
+#~ msgid "Retrieving CPU voltage in fallback mode"
+#~ msgstr "Henter CPU spænding i tilbagefaldstilstand"
+
+#~ msgid "failed to retrieve CPU voltage (fallback mode)"
+#~ msgstr "kunne ikke hente CPU spænding (tilbagefaldstilstand)"
+
+#~ msgid "Retrieving CPU frequency in fallback mode"
+#~ msgstr "Henter CPU frekvens i tilbagefaldstilstand"
+
+#~ msgid "failed to retrieve CPU frequency (fallback mode)"
+#~ msgstr "kunne ikke hente CPU frekvens (tilbagefaldstilstand)"
+
+#, fuzzy
+#~| msgid "Ask password to start daemon in background"
+#~ msgid "Starting daemon in background…"
+#~ msgstr "Forespørg adgangskode til at starte baggrundsprogram i bagrunden"
+
+#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+#~ msgstr "pkexec: autorisation kunne ikke opnås (dialog afvist)"
+
+#~ msgid "pkexec: authorization could not be obtained (not authorized)"
+#~ msgstr "pkexec: autorisation kunne ikke opnås (ikke godkendt)"
+
+#~ msgid "pkexec: command not found"
+#~ msgstr "pkexec: kommando ikke fundet"
+
+#~ msgid "pkexec: unexpected error code"
+#~ msgstr "pkexec: uventet fejl kode"
+
+#, fuzzy
+#~| msgid "Connected to daemon"
+#~ msgid "Connecting to daemon…"
+#~ msgstr "Forbundet til baggrundsprogram"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: tilfælde %i er ikke håndteret"
+
+#~ msgid "No polkit authentication agent found"
+#~ msgstr "Ingen polkit autentifikationsagent fundet"
+
+#~ msgid "Ask password to start daemon in background"
+#~ msgstr "Forespørg adgangskode til at starte baggrundsprogram i bagrunden"
+
+#~ msgid "BaseFamily"
+#~ msgstr "Basisfamillie"
+
+#~ msgid ""
+#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+#~ msgstr ""
+#~ "CPU udstilling (\"sand\") familie (beregnet som "
+#~ "Basisfamilie+Udvidetfamilie)"
+
+#~ msgid "BaseModel"
+#~ msgstr "Basismodel"
+
+#~ msgid ""
+#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+#~ msgstr ""
+#~ "CPU udstilling (\"sand\") model (beregnet som "
+#~ "(UdvidetModel<<4)+Basismodel)"
+
+#~ msgid "User Mode Driver Version"
+#~ msgstr "Bruger tilstands driver version"
+
+#~ msgid "Vulkan Ray Tracing"
+#~ msgstr "Vulkan Ray Tracing"
+
+#~ msgid "Starting GTK GUI…"
+#~ msgstr "Starter GTK Brugergrænseflade…"
+
+#~ msgid "failed to import UI in GtkBuilder"
+#~ msgstr "kunne ikke importerer brugergrænseflade i GtkBuilder"
+
+#~ msgid "Window is too small!"
+#~ msgstr "Vinduet er for lille!"
+
+#~ msgid "Press 'h' to see help."
+#~ msgstr "Tryk 'h' for at se hjælp."
+
+#, c-format
+#~ msgid "Welcome in %s NCurses help!\n"
+#~ msgstr "Velkommen til %s NCurses hjælp!\n"
+
+#~ msgid "This help describes how to use this Text-based User Interface."
+#~ msgstr ""
+#~ "Denne hjælp beskriver hvordan du bruger denne tekstbaserede "
+#~ "brugergrænseflade."
+
+#~ msgid "Global keys:"
+#~ msgstr "Globale taster:"
+
+#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
+#~ msgstr "Tryk 'venstre' tast eller 'tab' tast for at skifte i venstre fane."
+
+#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+#~ msgstr ""
+#~ "Tryk 'højre' tast eller 'skift + tab' taster for at skifte i højre fane."
+
+#~ msgid "Press 'h' key to see this help."
+#~ msgstr "Tryk 'h' tast for at se denne hjælp."
+
+#~ msgid "Press 'q' key to exit."
+#~ msgstr "Tryk 'q' tast for at afslutte."
+
+#~ msgid "CPU tab:"
+#~ msgstr "CPU fane:"
+
+#~ msgid "Press 'next page' key to decrease core type number to monitor."
+#~ msgstr ""
+#~ "Tryk 'Page Down' tast for at reducere kernetypenummeret der overvåges."
+
+#~ msgid "Press 'previous page' key to increase core type number to monitor."
+#~ msgstr "Tryk 'Page Up' tast for at øge kernetypenummeret der overvåges."
+
+#~ msgid "Press 'down' key to decrease CPU core number to monitor."
+#~ msgstr ""
+#~ "Tryk 'ned' tast for at reducere CPU kerne antallet der skal overvåges."
+
+#~ msgid "Press 'up' key to increase CPU core number to monitor."
+#~ msgstr "Tryk 'op' tast for at øge CPU kerne antallet der skal overvåges."
+
+#~ msgid "Caches tab:"
+#~ msgstr "Cache fane:"
+
+#~ msgid "Press 'down' key to switch to previous test."
+#~ msgstr "Tryk 'ned' tast for at skifte til forrige test."
+
+#~ msgid "Press 'up' key to switch to next test."
+#~ msgstr "Tryk 'op' tast for at skifte til næste test."
+
+#~ msgid "Bench tab:"
+#~ msgstr "Benchmark fane:"
+
+#~ msgid "Press 'down' key to decrement benchmark duration."
+#~ msgstr "Tryk 'ned' tast for at reducere benchmark varighed."
+
+#~ msgid "Press 'up' key to increment benchmark duration."
+#~ msgstr "Tryk 'op' tast for at øge benchmark varighed."
+
+#~ msgid "Press 'next page' key to decrement number of threads to use."
+#~ msgstr "Tryk 'Page Down' tast for at reducere antallet af brugte tråde."
+
+#~ msgid "Press 'previous page' key to increment number of threads to use."
+#~ msgstr "Tryk 'Page Up' tast for at øge antallet af tråde."
+
+#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+#~ msgstr "Tryk 's' tast for at starte/stoppe primtal (langsom) benchmark."
+
+#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+#~ msgstr "Tryk 'f' tast for at starte/stoppe primtal (hurtig) benchmark."
+
+#~ msgid "Graphics tab:"
+#~ msgstr "Grafik fane:"
+
+#~ msgid "Press 'down' key to switch to previous graphic card."
+#~ msgstr "Tryk 'ned' tast for at skrifte til forrige grafikkort."
+
+#~ msgid "Press 'up' key to switch to next graphic card."
+#~ msgstr "Tryk 'op' tast for at skifte til næste grafikkort."
+
+#~ msgid "Press any key to exit this help."
+#~ msgstr "Tryk en vilkårlig tast for at afslutte denne hjælp."
+
+#~ msgid "Starting NCurses TUI…"
+#~ msgstr "Starter NCurses TUI…"
+
+#~ msgid ""
+#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+#~ "environment variable)"
+#~ msgstr ""
+#~ "FATAL FEJL: terminfo databasen kunne ikke blive fundet (prøv at sætte "
+#~ "TERINFO miljøvariablen)"
+
+#, c-format
+#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+#~ msgstr "Kunne ikke sætte %s terminal (fejl=%i); falder tilbage til %s"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "Forbundet til baggrundsprogram"

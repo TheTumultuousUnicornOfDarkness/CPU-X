@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-09 11:36+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-03-13 19:54+0000\n"
 "PO-Revision-Date: 2025-03-09 22:41+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -16,479 +16,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :("
-"n>6 && n<11) ? 3 : 4;\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :"
+"(n>6 && n<11) ? 3 : 4;\n"
 "X-Generator: Weblate 5.10.3-dev\n"
-
-#: core.cpp:166
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Níl do LAP sa bhunachar sonraí ==> %s, múnla: %i, fo-líne. múnla: %i, fo-"
-"líne. teaghlach: %i"
-
-#: core.cpp:210
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr "Níl do LAP sa bhunachar sonraí ==> %s, páirtuimhir: 0x%x, códainm: %s"
-
-#: core.cpp:217
-msgid "Finding CPU technology"
-msgstr "Lorg teicneolaíocht LAP"
-
-#: core.cpp:269 data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "anaithnid"
-
-#: core.cpp:353
-msgid "Calling libcpuid for retrieving static data"
-msgstr "Ag glaoch ar libcpuid chun sonraí statacha a aisghabháil"
-
-#: core.cpp:363
-#, c-format
-msgid "failed to call libcpuid (%s)"
-msgstr "theip glaoch ar libcpuid (%s)"
-
-#: core.cpp:492
-msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Ag glaoch ar libcpuid chun sonraí dinimiciúla a aisghabháil"
-
-#: core.cpp:509
-msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Ag glaoch ar libcpuid chun luachanna statacha LAP MSR a aisghabháil"
-
-#: core.cpp:539
-msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Ag glaoch ar libcpuid chun luachanna dinimiciúla LAP MSR a aisghabháil"
-
-#: core.cpp:571
-msgid "Calling dmidecode"
-msgstr "Dmidecode ag glaoch"
-
-#: core.cpp:613 core.cpp:632
-#, c-format
-msgid "%s (configured)"
-msgstr "%s (cumraithe)"
-
-#: core.cpp:620 core.cpp:639
-#, c-format
-msgid "%s (max)"
-msgstr "%s (uas)"
-
-#: core.cpp:625
-#, c-format
-msgid "%s (min)"
-msgstr "%s (nóiméad)"
-
-#: core.cpp:655
-msgid "Calculating CPU usage"
-msgstr "Úsáid LAP á ríomh"
-
-#: core.cpp:705
-msgid "Calling bandwidth"
-msgstr "Ag glaoch bandaleithead"
-
-#: core.cpp:762
-#, c-format
-msgid "%s (subject) / %s (issuer)"
-msgstr "%s (ábhar) / %s (eisitheoir)"
-
-#: core.cpp:790
-#, c-format
-msgid ""
-"pci_access is not properly initialized: it is a common issue when %s was "
-"built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, please "
-"rebuild %s."
-msgstr ""
-"Níl pci_access tosaithe i gceart: is fadhb choitianta é nuair a tógadh %s le "
-"leagan libpci níos ísle.\n"
-"Cinntigh go bhfuil leabharlann libpci %s i láthair ar do chóras. Seachas "
-"sin, atóg %s le do thoil."
-
-#: core.cpp:834
-#, c-format
-msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Níl aon tiománaí eithne in úsáid don chárta grafaicí ag conair %s"
-
-#: core.cpp:870
-#, c-format
-msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Tá do thiománaí eithne GPU anaithnid: %s"
-
-#: core.cpp:973
-#, c-format
-msgid "Your GPU user mode driver is unknown for vendor %s: %s"
-msgstr ""
-"Níl do thiománaí mód úsáideora GPU anaithnid le haghaidh díoltóir %s: %s"
-
-#: core.cpp:980
-#, c-format
-msgid "failed to call GLFW (%i): %s"
-msgstr "Theip ar GLFW a ghlaoch (%i): %s"
-
-#: core.cpp:1114
-msgid "Finding Vulkan API version"
-msgstr "Leagan API Vulkan á lorg"
-
-#: core.cpp:1130
-#, c-format
-msgid "failed to call vkCreateInstance (%s)"
-msgstr "theip ar vkCreateInstance (%s) a ghlaoch"
-
-#: core.cpp:1134
-#, c-format
-msgid "%s is not supported"
-msgstr "Ní thacaítear le %s"
-
-#: core.cpp:1143
-#, c-format
-msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "theip ar vkEnumeratePhysicalDevices (%s) a ghlaoch"
-
-#: core.cpp:1151
-msgid "No available Vulkan devices"
-msgstr "Níl aon ghléasanna Vulkan ar fáil"
-
-#: core.cpp:1159
-#, c-format
-msgid "No available physical devices (%s)"
-msgstr "Níl gléasanna fisiceacha ar fáil (%s)"
-
-#: core.cpp:1222
-#, c-format
-msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "Theip ar chruthú Vulkan do ghléas %u (%s)"
-
-#: core.cpp:1226
-#, c-format
-msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
-"Ní thacaítear le %s do ghléas %u, bain úsáid as ID gléis amháin le haghaidh "
-"meaitseála"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Enabled"
-msgstr "Cumasaithe"
-
-#: core.cpp:1258 core.cpp:1636
-msgid "Disabled"
-msgstr "Díchumasaithe"
-
-#: core.cpp:1295
-msgid "Finding OpenCL API version"
-msgstr "Ag lorg leagan OpenCL API"
-
-#: core.cpp:1299
-#, c-format
-msgid "There is no platform with OpenCL support (%s)"
-msgstr "Níl aon ardán le tacaíocht OpenCL (%s)"
-
-#: core.cpp:1309
-#, c-format
-msgid "failed to get all OpenCL platforms (%s)"
-msgstr "theip ar gach ardán OpenCL (%s) a fháil"
-
-#: core.cpp:1322
-#, c-format
-msgid "failed to get name for platform %u (%s)"
-msgstr "theip ar ainm a fháil don ardán %u (%s)"
-
-#: core.cpp:1330
-#, c-format
-msgid "failed to get version for platform %u (%s)"
-msgstr "theip ar an leagan a fháil don ardán %u (%s)"
-
-#: core.cpp:1338
-#, c-format
-msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-msgstr "theip ar líon na ngléasanna OpenCL a aimsiú don ardán '%s %s' (%s)"
-
-#: core.cpp:1338
-msgid "0 device"
-msgstr "0 gléas"
-
-#: core.cpp:1347
-#, c-format
-msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-msgstr "theip ar gach gléas OpenCL a fháil don ardán '%s %s' (%s)"
-
-#: core.cpp:1367
-#, c-format
-msgid "failed to get name for device %u (%s)"
-msgstr "theip ar ainm do ghléis %u (%s) a fháil"
-
-#: core.cpp:1375
-#, c-format
-msgid "failed to get version for device %u (%s)"
-msgstr "theip ar an leagan a fháil do ghléas %u (%s)"
-
-#: core.cpp:1401
-#, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
-"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
-"CL_DEVICE_TOPOLOGY_AMD (%s)"
-
-#: core.cpp:1412
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-msgstr ""
-"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
-"CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-
-#: core.cpp:1420 core.cpp:1440 core.cpp:1473
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-msgstr ""
-"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
-"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
-
-#: core.cpp:1461
-#, c-format
-msgid ""
-"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
-"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-msgstr ""
-"Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
-"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) nó "
-"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-
-#: core.cpp:1484
-#, c-format
-msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "Ní thacaítear le OpenCL le do dhíoltóir GPU (0x%X)"
-
-#: core.cpp:1546
-msgid "Finding devices"
-msgstr "Feistí a aimsiú"
-
-#: core.cpp:1550
-msgid "Skip devices search (PCI device does not exist)"
-msgstr "Léim cuardach gléasanna (níl an gléas PCI ann)"
-
-#: core.cpp:1563
-#, c-format
-msgid "Skip devices search (wrong permissions on %s device)"
-msgstr "Gabh thar chuardaigh gléasanna (ceadanna míchearta ar ghléas %s)"
-
-#: core.cpp:1622
-#, c-format
-msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "Tá do díoltóir GPU anaithnid: %s (0x%X)"
-
-#: core.cpp:1643
-msgid "failed to find chipset vendor and model"
-msgstr "theip ar an díoltóir chipset agus samhail a aimsiú"
-
-#: core.cpp:1658
-msgid "failed to find graphic card vendor and model"
-msgstr "theip ar an díoltóir cárta grafaicí agus samhail a aimsiú"
-
-#: core.cpp:1791
-msgid "Retrieving GPU clocks"
-msgstr "Cloig GPU a aisghabháil"
-
-#: core.cpp:1804
-msgid "None"
-msgstr "Dada"
-
-#: core.cpp:1813
-#, c-format
-msgid "DRM path for %s is unknown"
-msgstr "Ní fios conair DRM do %s"
-
-#: core.cpp:1820
-#, c-format
-msgid "Card number for %s is unknown"
-msgstr "Ní fios uimhir chárta %s"
-
-#: core.cpp:1845
-#, c-format
-msgid "PCIe %s (current) / %s (max)"
-msgstr "PCIe %s (reatha) / %s (uas)"
-
-#: core.cpp:1960
-#, c-format
-msgid "Driver for %s doesn't report frequencies"
-msgstr "Ní thuairiscíonn an tiománaí le haghaidh %s minicíochtaí"
-
-#: core.cpp:1981
-#, c-format
-msgid "failed to retrieve all monitoring data for %s"
-msgstr "theip ar aisghabháil na sonraí monatóireachta go léir le haghaidh %s"
-
-#: core.cpp:2004
-msgid "Identifying running system"
-msgstr "Córas reatha a aithint"
-
-#: core.cpp:2007
-msgid "failed to identify running system"
-msgstr "theip ar an gcóras reatha a aithint"
-
-#: core.cpp:2064 core.cpp:2093
-msgid "Calling libprocps"
-msgstr "Ag glaoch ar libprocps"
-
-#: core.cpp:2067
-msgid "unable to get system uptime"
-msgstr "in ann aga fónaimh don chóras a fháil"
-
-#: core.cpp:2073
-msgid "unable to create meminfo structure"
-msgstr "in ann struchtúr meminfo a chruthú"
-
-#: core.cpp:2119
-msgid "Calling libstatgrab"
-msgstr "Ag glaoch ar libstatgrab"
-
-#: core.cpp:2167
-#, c-format
-msgid "%i days, %i hours, %i minutes, %i seconds"
-msgstr "%i laethanta, %i uaireanta, %i nóiméad, %i soicindí"
-
-#: core.cpp:2230
-msgid "Updating benchmark status"
-msgstr "Stádas tagarmhairc á nuashonrú"
-
-#: core.cpp:2233
-msgid "Active"
-msgstr "Gníomhach"
-
-#: core.cpp:2236
-#, c-format
-msgid "(%u hours left)"
-msgstr "(%u uair fágtha)"
-
-#: core.cpp:2238
-#, c-format
-msgid "(%u minutes left)"
-msgstr "(%u nóiméad fágtha)"
-
-#: core.cpp:2240
-#, c-format
-msgid "(%u seconds left)"
-msgstr "(%u soicind fágtha)"
-
-#: core.cpp:2244 core.cpp:2299 core.cpp:2300
-msgid "Inactive"
-msgstr "Neamhghníomhach"
-
-#: core.cpp:2247
-#, c-format
-msgid "in %u hours"
-msgstr "i %u uair an chloig"
-
-#: core.cpp:2249
-#, c-format
-msgid "in %u minutes"
-msgstr "i %u nóiméad"
-
-#: core.cpp:2251
-#, c-format
-msgid "in %u seconds"
-msgstr "i %u soicind"
-
-#: core.cpp:2268
-#, c-format
-msgid "Starting benchmark with %u threads"
-msgstr "Ag tosú tagarmhairc le snáitheanna %u"
-
-#: core.cpp:2291
-msgid "an error occurred while starting benchmark"
-msgstr "tharla earráid agus tagarmharc á thosú"
-
-#: core.cpp:2317
-msgid "Finding CPU package in fallback mode"
-msgstr "Pacáiste LAP a aimsiú i mód cúltaisce"
-
-#: core.cpp:2347
-#, c-format
-msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgstr "Níl do soicéad LAP sa bhunachar sonraí ==> %s, códainm: %s"
-
-#: core.cpp:2367
-msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Iolraitheoirí LAP á ríomh i mód aisfhillte"
-
-#: core.cpp:2393
-msgid "Retrieving motherboard information in fallback mode"
-msgstr "Faisnéis motherboard a aisghabháil i mód cúltaca"
-
-#: core.cpp:2409
-msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "theip ar aisghabháil faisnéise motherboard (mód cúltaca)"
-
-#: core.cpp:2452
-msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Ag fáil teocht an LAP i mód cúltaisce"
-
-#: core.cpp:2500
-msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "theip ar aisghabháil teocht an LAP (modh cúltaca)"
-
-#: core.cpp:2515
-msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Voltas LAP a aisghabháil i mód aisfhillte"
-
-#: core.cpp:2534
-msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "theip ar an voltas LAP a aisghabháil (modh cúltaca)"
-
-#: core.cpp:2548
-msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Minicíocht LAP á aisghabháil i mód cúltaise"
-
-#: core.cpp:2559
-msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "theip ar mhinicíocht LAP a aisghabháil (modh cúltaca)"
-
-#: daemon_client.cpp:65
-msgid "Starting daemon in background…"
-msgstr "Deamhan tosaithe sa chúlra…"
-
-#: daemon_client.cpp:103
-msgid ""
-"APPDIR environment variable is not set, cannot copy the daemon to the "
-"temporary directory"
-msgstr ""
-"Níl athróg timpeallachta APPDIR socraithe, ní féidir an deamhan a chóipeáil "
-"go dtí an eolaire sealadach"
-
-#: daemon_client.cpp:181
-msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-msgstr "pkexec: níorbh fhéidir údarú a fháil (díbhe an dialóg)"
-
-#: daemon_client.cpp:184
-msgid "pkexec: authorization could not be obtained (not authorized)"
-msgstr "pkexec: níorbh fhéidir údarú a fháil (gan údarú)"
-
-#: daemon_client.cpp:187
-msgid "pkexec: command not found"
-msgstr "pkexec: níor aimsíodh an t-ordú"
-
-#: daemon_client.cpp:190
-msgid "pkexec: unexpected error code"
-msgstr "pkexec: cód earráide gan choinne"
-
-#: daemon_client.cpp:220
-msgid "Connecting to daemon…"
-msgstr "Ag nascadh le deamhan…"
-
-#: daemon_server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: cás %i gan láimhseáil"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "LAP"
+
+#: data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "anaithnid"
 
 #: data.cpp:190
 msgid "P-core"
@@ -661,77 +199,6 @@ msgstr "Scaiptear an bogearra seo faoi théarmaí %s"
 #: data.cpp:779 main.cpp:177
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Tagann an clár seo le NÍL BARÁNTA GO LÁIDIR"
-
-#: gui_gtk.cpp:87
-#, c-format
-msgid "Cannot find path for '%s' file"
-msgstr "Ní féidir conair a aimsiú don chomhad '%s'"
-
-#: gui_gtk.cpp:460
-msgid "No polkit authentication agent found"
-msgstr "Níor aimsíodh aon ghníomhaire fíordheimhnithe polkit"
-
-#: gui_gtk.cpp:466
-msgid "Ask password to start daemon in background"
-msgstr "Iarr pasfhocal chun deamhan a thosú sa chúlra"
-
-#: gui_gtk.cpp:470
-msgid "Settings"
-msgstr "Socruithe"
-
-#: gui_gtk.cpp:711
-msgid "BaseFamily"
-msgstr "BunTeaghlach"
-
-#: gui_gtk.cpp:712
-msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-msgstr ""
-"Teaghlach taispeána LAP (\"fíor\") (ríofa mar Theaghlach Base+Teaghlach "
-"Breisithe)"
-
-#: gui_gtk.cpp:713
-msgid "BaseModel"
-msgstr "BunMhúnla"
-
-#: gui_gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-msgstr ""
-"Samhail taispeána LAP (\"fíor\") (arna ríomh mar (Samhail "
-"Leathnaithe<<4)+BaseModel)"
-
-#: gui_gtk.cpp:908
-msgid "EFI Platform Key certificate information"
-msgstr "Ardán EFI Eolas teastais eochair"
-
-#: gui_gtk.cpp:943
-msgid ""
-"Identify the physically-labeled socket or board position where the memory "
-"device is located"
-msgstr ""
-"Sainaithin suíomh an tsoicéid nó an chláir atá lipéadaithe go fisiciúil ina "
-"bhfuil an gléas cuimhne suite"
-
-#: gui_gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
-"Sainaithin an banc atá lipéadaithe go fisiciúil ina bhfuil an gléas cuimhne "
-"suite"
-
-#: gui_gtk.cpp:1149
-msgid "User Mode Driver Version"
-msgstr "Mód úsáideora Leagan tiománaí"
-
-#: gui_gtk.cpp:1163
-msgid "Vulkan Ray Tracing"
-msgstr "Rianú Vulkan Ray"
-
-#: gui_gtk.cpp:1358
-msgid "Starting GTK GUI…"
-msgstr "Ag tosú GTK GUI…"
-
-#: gui_gtk.cpp:1369
-msgid "failed to import UI in GtkBuilder"
-msgstr "theip ar UI a iompórtáil i GtkBuilder"
 
 #: main.cpp:63
 msgid "Start graphical user interface (GUI) (default)"
@@ -972,158 +439,6 @@ msgid ""
 msgstr ""
 "Ní uimhir bhailí é croí roghnaithe an LAP (%u) (is é %u an t-uasmhéid don "
 "chineál seo croí)"
-
-#: tui_ncurses.cpp:116
-msgid "Window is too small!"
-msgstr "Fuinneog ró-bheag!"
-
-#: tui_ncurses.cpp:124
-msgid "Press 'h' to see help."
-msgstr "Brúigh 'h' chun cabhair a fheiceáil."
-
-#: tui_ncurses.cpp:237
-#, c-format
-msgid "Welcome in %s NCurses help!\n"
-msgstr "Fáilte i gcabhair %s NCurses!\n"
-
-#: tui_ncurses.cpp:238
-msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
-"Déanann an chabhair seo cur síos ar conas an Comhéadan Úsáideora "
-"Téacsbhunaithe seo a úsáid."
-
-#: tui_ncurses.cpp:240
-msgid "Global keys:"
-msgstr "Eochracha domhanda:"
-
-#: tui_ncurses.cpp:241
-msgid "Press 'left' key or 'tab' key to switch in left tab."
-msgstr ""
-"Brúigh eochair 'clé' nó eochair 'táb' chun athrú isteach sa chluaisín ar "
-"chlé."
-
-#: tui_ncurses.cpp:242
-msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-msgstr ""
-"Brúigh eochair 'ceart' nó 'shift + tab' chun athrú sa chluaisín ar dheis."
-
-#: tui_ncurses.cpp:243
-msgid "Press 'h' key to see this help."
-msgstr "Brúigh 'h' chun an chabhair seo a fheiceáil."
-
-#: tui_ncurses.cpp:244
-msgid "Press 'q' key to exit."
-msgstr "Brúigh 'q' chun imeacht."
-
-#: tui_ncurses.cpp:246
-msgid "CPU tab:"
-msgstr "Cluaisín LAP:"
-
-#: tui_ncurses.cpp:247
-msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr ""
-"Brúigh an eochair 'an chéad leathanach eile' chun uimhir chroíchineál a "
-"laghdú chun monatóireacht a dhéanamh."
-
-#: tui_ncurses.cpp:248
-msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr ""
-"Brúigh an eochair 'leathanach roimhe seo' chun an uimhir chroíchineál a "
-"mhéadú chun monatóireacht a dhéanamh."
-
-#: tui_ncurses.cpp:249
-msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr ""
-"Brúigh 'síos' eochair chun croíuimhir LAP a laghdú chun monatóireacht a "
-"dhéanamh."
-
-#: tui_ncurses.cpp:250
-msgid "Press 'up' key to increase CPU core number to monitor."
-msgstr ""
-"Brúigh 'suas' eochair chun croíuimhir LAP a mhéadú chun monatóireacht a "
-"dhéanamh."
-
-#: tui_ncurses.cpp:252
-msgid "Caches tab:"
-msgstr "Cluaisín Taisce:"
-
-#: tui_ncurses.cpp:253
-msgid "Press 'down' key to switch to previous test."
-msgstr "Brúigh an eochair 'síos' chun athrú go dtí an tástáil roimhe seo."
-
-#: tui_ncurses.cpp:254
-msgid "Press 'up' key to switch to next test."
-msgstr "Brúigh an eochair 'suas' chun athrú go dtí an chéad triail eile."
-
-#: tui_ncurses.cpp:256
-msgid "Bench tab:"
-msgstr "Cluaisín binse:"
-
-#: tui_ncurses.cpp:257
-msgid "Press 'down' key to decrement benchmark duration."
-msgstr "Brúigh an eochair 'síos' chun fad tagarmharcála a laghdú."
-
-#: tui_ncurses.cpp:258
-msgid "Press 'up' key to increment benchmark duration."
-msgstr "Brúigh an eochair 'suas' chun fad tagarmhairc incriminte a fháil."
-
-#: tui_ncurses.cpp:259
-msgid "Press 'next page' key to decrement number of threads to use."
-msgstr ""
-"Brúigh 'an chéad leathanach eile' chun líon na snáitheanna atá le húsáid a "
-"laghdú."
-
-#: tui_ncurses.cpp:260
-msgid "Press 'previous page' key to increment number of threads to use."
-msgstr ""
-"Brúigh an eochair 'leathanach roimhe seo' chun líon na snáitheanna a úsáid "
-"incrimint."
-
-#: tui_ncurses.cpp:261
-msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr ""
-"Brúigh 's' chun tagarmharcáil phríomhuimhreacha (mall) a thosú/stopadh."
-
-#: tui_ncurses.cpp:262
-msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr ""
-"Brúigh an eochair 'f' chun tagarmharcáil uimhreacha príomhúla (tapa) a thosú/"
-"stad."
-
-#: tui_ncurses.cpp:264
-msgid "Graphics tab:"
-msgstr "Cluaisín grafaice:"
-
-#: tui_ncurses.cpp:265
-msgid "Press 'down' key to switch to previous graphic card."
-msgstr ""
-"Brúigh an eochair 'síos' chun athrú go dtí an cárta grafaicí roimhe seo."
-
-#: tui_ncurses.cpp:266
-msgid "Press 'up' key to switch to next graphic card."
-msgstr ""
-"Brúigh an eochair 'suas' chun athrú go dtí an chéad chárta grafaicí eile."
-
-#: tui_ncurses.cpp:268
-msgid "Press any key to exit this help."
-msgstr "Brúigh eochair ar bith chun éirí as an gcabhair seo."
-
-#: tui_ncurses.cpp:676
-msgid "Starting NCurses TUI…"
-msgstr "Ag tosú NCurses TUI…"
-
-#: tui_ncurses.cpp:685
-msgid ""
-"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-"environment variable)"
-msgstr ""
-"EARRÁID FATAL: níorbh fhéidir an bunachar sonraí terminfo a aimsiú (déan "
-"iarracht athróg timpeallachta TERMINFO a shocrú)"
-
-#: tui_ncurses.cpp:690
-#, c-format
-msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "Theip ar shocrú teirminéal %s (err=%i); ag titim ar ais go %s"
 
 #: util.cpp:189
 #, c-format
@@ -1551,3 +866,555 @@ msgstr "Bata Cuimhne Réamhshocraithe"
 #: cpu-x-gtk-3.12.ui:6238
 msgid "Startup"
 msgstr "Tosaithe"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Níl do LAP sa bhunachar sonraí ==> %s, múnla: %i, fo-líne. múnla: %i, fo-"
+#~ "líne. teaghlach: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Níl do LAP sa bhunachar sonraí ==> %s, páirtuimhir: 0x%x, códainm: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Lorg teicneolaíocht LAP"
+
+#~ msgid "Calling libcpuid for retrieving static data"
+#~ msgstr "Ag glaoch ar libcpuid chun sonraí statacha a aisghabháil"
+
+#, c-format
+#~ msgid "failed to call libcpuid (%s)"
+#~ msgstr "theip glaoch ar libcpuid (%s)"
+
+#~ msgid "Calling libcpuid for retrieving dynamic data"
+#~ msgstr "Ag glaoch ar libcpuid chun sonraí dinimiciúla a aisghabháil"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
+#~ msgstr "Ag glaoch ar libcpuid chun luachanna statacha LAP MSR a aisghabháil"
+
+#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+#~ msgstr ""
+#~ "Ag glaoch ar libcpuid chun luachanna dinimiciúla LAP MSR a aisghabháil"
+
+#~ msgid "Calling dmidecode"
+#~ msgstr "Dmidecode ag glaoch"
+
+#, c-format
+#~ msgid "%s (configured)"
+#~ msgstr "%s (cumraithe)"
+
+#, c-format
+#~ msgid "%s (max)"
+#~ msgstr "%s (uas)"
+
+#, c-format
+#~ msgid "%s (min)"
+#~ msgstr "%s (nóiméad)"
+
+#~ msgid "Calculating CPU usage"
+#~ msgstr "Úsáid LAP á ríomh"
+
+#~ msgid "Calling bandwidth"
+#~ msgstr "Ag glaoch bandaleithead"
+
+#, c-format
+#~ msgid "%s (subject) / %s (issuer)"
+#~ msgstr "%s (ábhar) / %s (eisitheoir)"
+
+#, c-format
+#~ msgid ""
+#~ "pci_access is not properly initialized: it is a common issue when %s was "
+#~ "built with a lower libpci version.\n"
+#~ "Check that libpci %s library is present on your system. Otherwise, please "
+#~ "rebuild %s."
+#~ msgstr ""
+#~ "Níl pci_access tosaithe i gceart: is fadhb choitianta é nuair a tógadh %s "
+#~ "le leagan libpci níos ísle.\n"
+#~ "Cinntigh go bhfuil leabharlann libpci %s i láthair ar do chóras. Seachas "
+#~ "sin, atóg %s le do thoil."
+
+#, c-format
+#~ msgid "No kernel driver in use for graphic card at path %s"
+#~ msgstr "Níl aon tiománaí eithne in úsáid don chárta grafaicí ag conair %s"
+
+#, c-format
+#~ msgid "Your GPU kernel driver is unknown: %s"
+#~ msgstr "Tá do thiománaí eithne GPU anaithnid: %s"
+
+#, c-format
+#~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
+#~ msgstr ""
+#~ "Níl do thiománaí mód úsáideora GPU anaithnid le haghaidh díoltóir %s: %s"
+
+#, c-format
+#~ msgid "failed to call GLFW (%i): %s"
+#~ msgstr "Theip ar GLFW a ghlaoch (%i): %s"
+
+#~ msgid "Finding Vulkan API version"
+#~ msgstr "Leagan API Vulkan á lorg"
+
+#, c-format
+#~ msgid "failed to call vkCreateInstance (%s)"
+#~ msgstr "theip ar vkCreateInstance (%s) a ghlaoch"
+
+#, c-format
+#~ msgid "%s is not supported"
+#~ msgstr "Ní thacaítear le %s"
+
+#, c-format
+#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#~ msgstr "theip ar vkEnumeratePhysicalDevices (%s) a ghlaoch"
+
+#~ msgid "No available Vulkan devices"
+#~ msgstr "Níl aon ghléasanna Vulkan ar fáil"
+
+#, c-format
+#~ msgid "No available physical devices (%s)"
+#~ msgstr "Níl gléasanna fisiceacha ar fáil (%s)"
+
+#, c-format
+#~ msgid "Failed to create Vulkan for device %u (%s)"
+#~ msgstr "Theip ar chruthú Vulkan do ghléas %u (%s)"
+
+#, c-format
+#~ msgid "%s is not supported for device %u, use only deviceID for matching"
+#~ msgstr ""
+#~ "Ní thacaítear le %s do ghléas %u, bain úsáid as ID gléis amháin le "
+#~ "haghaidh meaitseála"
+
+#~ msgid "Enabled"
+#~ msgstr "Cumasaithe"
+
+#~ msgid "Disabled"
+#~ msgstr "Díchumasaithe"
+
+#~ msgid "Finding OpenCL API version"
+#~ msgstr "Ag lorg leagan OpenCL API"
+
+#, c-format
+#~ msgid "There is no platform with OpenCL support (%s)"
+#~ msgstr "Níl aon ardán le tacaíocht OpenCL (%s)"
+
+#, c-format
+#~ msgid "failed to get all OpenCL platforms (%s)"
+#~ msgstr "theip ar gach ardán OpenCL (%s) a fháil"
+
+#, c-format
+#~ msgid "failed to get name for platform %u (%s)"
+#~ msgstr "theip ar ainm a fháil don ardán %u (%s)"
+
+#, c-format
+#~ msgid "failed to get version for platform %u (%s)"
+#~ msgstr "theip ar an leagan a fháil don ardán %u (%s)"
+
+#, c-format
+#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "theip ar líon na ngléasanna OpenCL a aimsiú don ardán '%s %s' (%s)"
+
+#~ msgid "0 device"
+#~ msgstr "0 gléas"
+
+#, c-format
+#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+#~ msgstr "theip ar gach gléas OpenCL a fháil don ardán '%s %s' (%s)"
+
+#, c-format
+#~ msgid "failed to get name for device %u (%s)"
+#~ msgstr "theip ar ainm do ghléis %u (%s) a fháil"
+
+#, c-format
+#~ msgid "failed to get version for device %u (%s)"
+#~ msgstr "theip ar an leagan a fháil do ghléas %u (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#~ msgstr ""
+#~ "Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+#~ "CL_DEVICE_TOPOLOGY_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+#~ msgstr ""
+#~ "Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+#~ "CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
+#~ "(%s)"
+#~ msgstr ""
+#~ "Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+#~ "CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+
+#, c-format
+#~ msgid ""
+#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
+#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+#~ msgstr ""
+#~ "Ní thacaíonn an tiománaí OpenCL le haghaidh '%s %s' le "
+#~ "CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) nó "
+#~ "CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+
+#, c-format
+#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+#~ msgstr "Ní thacaítear le OpenCL le do dhíoltóir GPU (0x%X)"
+
+#~ msgid "Finding devices"
+#~ msgstr "Feistí a aimsiú"
+
+#~ msgid "Skip devices search (PCI device does not exist)"
+#~ msgstr "Léim cuardach gléasanna (níl an gléas PCI ann)"
+
+#, c-format
+#~ msgid "Skip devices search (wrong permissions on %s device)"
+#~ msgstr "Gabh thar chuardaigh gléasanna (ceadanna míchearta ar ghléas %s)"
+
+#, c-format
+#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
+#~ msgstr "Tá do díoltóir GPU anaithnid: %s (0x%X)"
+
+#~ msgid "failed to find chipset vendor and model"
+#~ msgstr "theip ar an díoltóir chipset agus samhail a aimsiú"
+
+#~ msgid "failed to find graphic card vendor and model"
+#~ msgstr "theip ar an díoltóir cárta grafaicí agus samhail a aimsiú"
+
+#~ msgid "Retrieving GPU clocks"
+#~ msgstr "Cloig GPU a aisghabháil"
+
+#~ msgid "None"
+#~ msgstr "Dada"
+
+#, c-format
+#~ msgid "DRM path for %s is unknown"
+#~ msgstr "Ní fios conair DRM do %s"
+
+#, c-format
+#~ msgid "Card number for %s is unknown"
+#~ msgstr "Ní fios uimhir chárta %s"
+
+#, c-format
+#~ msgid "PCIe %s (current) / %s (max)"
+#~ msgstr "PCIe %s (reatha) / %s (uas)"
+
+#, c-format
+#~ msgid "Driver for %s doesn't report frequencies"
+#~ msgstr "Ní thuairiscíonn an tiománaí le haghaidh %s minicíochtaí"
+
+#, c-format
+#~ msgid "failed to retrieve all monitoring data for %s"
+#~ msgstr ""
+#~ "theip ar aisghabháil na sonraí monatóireachta go léir le haghaidh %s"
+
+#~ msgid "Identifying running system"
+#~ msgstr "Córas reatha a aithint"
+
+#~ msgid "failed to identify running system"
+#~ msgstr "theip ar an gcóras reatha a aithint"
+
+#~ msgid "Calling libprocps"
+#~ msgstr "Ag glaoch ar libprocps"
+
+#~ msgid "unable to get system uptime"
+#~ msgstr "in ann aga fónaimh don chóras a fháil"
+
+#~ msgid "unable to create meminfo structure"
+#~ msgstr "in ann struchtúr meminfo a chruthú"
+
+#~ msgid "Calling libstatgrab"
+#~ msgstr "Ag glaoch ar libstatgrab"
+
+#, c-format
+#~ msgid "%i days, %i hours, %i minutes, %i seconds"
+#~ msgstr "%i laethanta, %i uaireanta, %i nóiméad, %i soicindí"
+
+#~ msgid "Updating benchmark status"
+#~ msgstr "Stádas tagarmhairc á nuashonrú"
+
+#~ msgid "Active"
+#~ msgstr "Gníomhach"
+
+#, c-format
+#~ msgid "(%u hours left)"
+#~ msgstr "(%u uair fágtha)"
+
+#, c-format
+#~ msgid "(%u minutes left)"
+#~ msgstr "(%u nóiméad fágtha)"
+
+#, c-format
+#~ msgid "(%u seconds left)"
+#~ msgstr "(%u soicind fágtha)"
+
+#~ msgid "Inactive"
+#~ msgstr "Neamhghníomhach"
+
+#, c-format
+#~ msgid "in %u hours"
+#~ msgstr "i %u uair an chloig"
+
+#, c-format
+#~ msgid "in %u minutes"
+#~ msgstr "i %u nóiméad"
+
+#, c-format
+#~ msgid "in %u seconds"
+#~ msgstr "i %u soicind"
+
+#, c-format
+#~ msgid "Starting benchmark with %u threads"
+#~ msgstr "Ag tosú tagarmhairc le snáitheanna %u"
+
+#~ msgid "an error occurred while starting benchmark"
+#~ msgstr "tharla earráid agus tagarmharc á thosú"
+
+#~ msgid "Finding CPU package in fallback mode"
+#~ msgstr "Pacáiste LAP a aimsiú i mód cúltaisce"
+
+#, c-format
+#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgstr "Níl do soicéad LAP sa bhunachar sonraí ==> %s, códainm: %s"
+
+#~ msgid "Calculating CPU multipliers in fallback mode"
+#~ msgstr "Iolraitheoirí LAP á ríomh i mód aisfhillte"
+
+#~ msgid "Retrieving motherboard information in fallback mode"
+#~ msgstr "Faisnéis motherboard a aisghabháil i mód cúltaca"
+
+#~ msgid "failed to retrieve motherboard information (fallback mode)"
+#~ msgstr "theip ar aisghabháil faisnéise motherboard (mód cúltaca)"
+
+#~ msgid "Retrieving CPU temperature in fallback mode"
+#~ msgstr "Ag fáil teocht an LAP i mód cúltaisce"
+
+#~ msgid "failed to retrieve CPU temperature (fallback mode)"
+#~ msgstr "theip ar aisghabháil teocht an LAP (modh cúltaca)"
+
+#~ msgid "Retrieving CPU voltage in fallback mode"
+#~ msgstr "Voltas LAP a aisghabháil i mód aisfhillte"
+
+#~ msgid "failed to retrieve CPU voltage (fallback mode)"
+#~ msgstr "theip ar an voltas LAP a aisghabháil (modh cúltaca)"
+
+#~ msgid "Retrieving CPU frequency in fallback mode"
+#~ msgstr "Minicíocht LAP á aisghabháil i mód cúltaise"
+
+#~ msgid "failed to retrieve CPU frequency (fallback mode)"
+#~ msgstr "theip ar mhinicíocht LAP a aisghabháil (modh cúltaca)"
+
+#~ msgid "Starting daemon in background…"
+#~ msgstr "Deamhan tosaithe sa chúlra…"
+
+#~ msgid ""
+#~ "APPDIR environment variable is not set, cannot copy the daemon to the "
+#~ "temporary directory"
+#~ msgstr ""
+#~ "Níl athróg timpeallachta APPDIR socraithe, ní féidir an deamhan a "
+#~ "chóipeáil go dtí an eolaire sealadach"
+
+#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+#~ msgstr "pkexec: níorbh fhéidir údarú a fháil (díbhe an dialóg)"
+
+#~ msgid "pkexec: authorization could not be obtained (not authorized)"
+#~ msgstr "pkexec: níorbh fhéidir údarú a fháil (gan údarú)"
+
+#~ msgid "pkexec: command not found"
+#~ msgstr "pkexec: níor aimsíodh an t-ordú"
+
+#~ msgid "pkexec: unexpected error code"
+#~ msgstr "pkexec: cód earráide gan choinne"
+
+#~ msgid "Connecting to daemon…"
+#~ msgstr "Ag nascadh le deamhan…"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: cás %i gan láimhseáil"
+
+#, c-format
+#~ msgid "Cannot find path for '%s' file"
+#~ msgstr "Ní féidir conair a aimsiú don chomhad '%s'"
+
+#~ msgid "No polkit authentication agent found"
+#~ msgstr "Níor aimsíodh aon ghníomhaire fíordheimhnithe polkit"
+
+#~ msgid "Ask password to start daemon in background"
+#~ msgstr "Iarr pasfhocal chun deamhan a thosú sa chúlra"
+
+#~ msgid "Settings"
+#~ msgstr "Socruithe"
+
+#~ msgid "BaseFamily"
+#~ msgstr "BunTeaghlach"
+
+#~ msgid ""
+#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+#~ msgstr ""
+#~ "Teaghlach taispeána LAP (\"fíor\") (ríofa mar Theaghlach Base+Teaghlach "
+#~ "Breisithe)"
+
+#~ msgid "BaseModel"
+#~ msgstr "BunMhúnla"
+
+#~ msgid ""
+#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+#~ msgstr ""
+#~ "Samhail taispeána LAP (\"fíor\") (arna ríomh mar (Samhail "
+#~ "Leathnaithe<<4)+BaseModel)"
+
+#~ msgid "EFI Platform Key certificate information"
+#~ msgstr "Ardán EFI Eolas teastais eochair"
+
+#~ msgid ""
+#~ "Identify the physically-labeled socket or board position where the memory "
+#~ "device is located"
+#~ msgstr ""
+#~ "Sainaithin suíomh an tsoicéid nó an chláir atá lipéadaithe go fisiciúil "
+#~ "ina bhfuil an gléas cuimhne suite"
+
+#~ msgid ""
+#~ "Identify the physically labeled bank where the memory device is located"
+#~ msgstr ""
+#~ "Sainaithin an banc atá lipéadaithe go fisiciúil ina bhfuil an gléas "
+#~ "cuimhne suite"
+
+#~ msgid "User Mode Driver Version"
+#~ msgstr "Mód úsáideora Leagan tiománaí"
+
+#~ msgid "Vulkan Ray Tracing"
+#~ msgstr "Rianú Vulkan Ray"
+
+#~ msgid "Starting GTK GUI…"
+#~ msgstr "Ag tosú GTK GUI…"
+
+#~ msgid "failed to import UI in GtkBuilder"
+#~ msgstr "theip ar UI a iompórtáil i GtkBuilder"
+
+#~ msgid "Window is too small!"
+#~ msgstr "Fuinneog ró-bheag!"
+
+#~ msgid "Press 'h' to see help."
+#~ msgstr "Brúigh 'h' chun cabhair a fheiceáil."
+
+#, c-format
+#~ msgid "Welcome in %s NCurses help!\n"
+#~ msgstr "Fáilte i gcabhair %s NCurses!\n"
+
+#~ msgid "This help describes how to use this Text-based User Interface."
+#~ msgstr ""
+#~ "Déanann an chabhair seo cur síos ar conas an Comhéadan Úsáideora "
+#~ "Téacsbhunaithe seo a úsáid."
+
+#~ msgid "Global keys:"
+#~ msgstr "Eochracha domhanda:"
+
+#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
+#~ msgstr ""
+#~ "Brúigh eochair 'clé' nó eochair 'táb' chun athrú isteach sa chluaisín ar "
+#~ "chlé."
+
+#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+#~ msgstr ""
+#~ "Brúigh eochair 'ceart' nó 'shift + tab' chun athrú sa chluaisín ar dheis."
+
+#~ msgid "Press 'h' key to see this help."
+#~ msgstr "Brúigh 'h' chun an chabhair seo a fheiceáil."
+
+#~ msgid "Press 'q' key to exit."
+#~ msgstr "Brúigh 'q' chun imeacht."
+
+#~ msgid "CPU tab:"
+#~ msgstr "Cluaisín LAP:"
+
+#~ msgid "Press 'next page' key to decrease core type number to monitor."
+#~ msgstr ""
+#~ "Brúigh an eochair 'an chéad leathanach eile' chun uimhir chroíchineál a "
+#~ "laghdú chun monatóireacht a dhéanamh."
+
+#~ msgid "Press 'previous page' key to increase core type number to monitor."
+#~ msgstr ""
+#~ "Brúigh an eochair 'leathanach roimhe seo' chun an uimhir chroíchineál a "
+#~ "mhéadú chun monatóireacht a dhéanamh."
+
+#~ msgid "Press 'down' key to decrease CPU core number to monitor."
+#~ msgstr ""
+#~ "Brúigh 'síos' eochair chun croíuimhir LAP a laghdú chun monatóireacht a "
+#~ "dhéanamh."
+
+#~ msgid "Press 'up' key to increase CPU core number to monitor."
+#~ msgstr ""
+#~ "Brúigh 'suas' eochair chun croíuimhir LAP a mhéadú chun monatóireacht a "
+#~ "dhéanamh."
+
+#~ msgid "Caches tab:"
+#~ msgstr "Cluaisín Taisce:"
+
+#~ msgid "Press 'down' key to switch to previous test."
+#~ msgstr "Brúigh an eochair 'síos' chun athrú go dtí an tástáil roimhe seo."
+
+#~ msgid "Press 'up' key to switch to next test."
+#~ msgstr "Brúigh an eochair 'suas' chun athrú go dtí an chéad triail eile."
+
+#~ msgid "Bench tab:"
+#~ msgstr "Cluaisín binse:"
+
+#~ msgid "Press 'down' key to decrement benchmark duration."
+#~ msgstr "Brúigh an eochair 'síos' chun fad tagarmharcála a laghdú."
+
+#~ msgid "Press 'up' key to increment benchmark duration."
+#~ msgstr "Brúigh an eochair 'suas' chun fad tagarmhairc incriminte a fháil."
+
+#~ msgid "Press 'next page' key to decrement number of threads to use."
+#~ msgstr ""
+#~ "Brúigh 'an chéad leathanach eile' chun líon na snáitheanna atá le húsáid "
+#~ "a laghdú."
+
+#~ msgid "Press 'previous page' key to increment number of threads to use."
+#~ msgstr ""
+#~ "Brúigh an eochair 'leathanach roimhe seo' chun líon na snáitheanna a "
+#~ "úsáid incrimint."
+
+#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+#~ msgstr ""
+#~ "Brúigh 's' chun tagarmharcáil phríomhuimhreacha (mall) a thosú/stopadh."
+
+#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+#~ msgstr ""
+#~ "Brúigh an eochair 'f' chun tagarmharcáil uimhreacha príomhúla (tapa) a "
+#~ "thosú/stad."
+
+#~ msgid "Graphics tab:"
+#~ msgstr "Cluaisín grafaice:"
+
+#~ msgid "Press 'down' key to switch to previous graphic card."
+#~ msgstr ""
+#~ "Brúigh an eochair 'síos' chun athrú go dtí an cárta grafaicí roimhe seo."
+
+#~ msgid "Press 'up' key to switch to next graphic card."
+#~ msgstr ""
+#~ "Brúigh an eochair 'suas' chun athrú go dtí an chéad chárta grafaicí eile."
+
+#~ msgid "Press any key to exit this help."
+#~ msgstr "Brúigh eochair ar bith chun éirí as an gcabhair seo."
+
+#~ msgid "Starting NCurses TUI…"
+#~ msgstr "Ag tosú NCurses TUI…"
+
+#~ msgid ""
+#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+#~ "environment variable)"
+#~ msgstr ""
+#~ "EARRÁID FATAL: níorbh fhéidir an bunachar sonraí terminfo a aimsiú (déan "
+#~ "iarracht athróg timpeallachta TERMINFO a shocrú)"
+
+#, c-format
+#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+#~ msgstr "Theip ar shocrú teirminéal %s (err=%i); ag titim ar ais go %s"
