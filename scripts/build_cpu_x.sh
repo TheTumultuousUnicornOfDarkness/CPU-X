@@ -64,8 +64,8 @@ sudo apt-get install -y -qq \
 	libncurses-dev \
 	libpci3 \
 	libpci-dev \
-	libglfw3 \
-	libglfw3-dev \
+	libglvnd0 \
+	libglvnd-dev \
 	libvulkan-dev \
 	libglvnd-dev \
 	opencl-headers \

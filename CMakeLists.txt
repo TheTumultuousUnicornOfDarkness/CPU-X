@@ -58,7 +58,7 @@ option(WITH_NCURSES       "Build support for TUI in NCurses"                    
 option(WITH_GETTEXT       "Build support for internationalization"                            ON)
 option(WITH_LIBCPUID      "Use Libcpuid library"                                              ON)
 option(WITH_LIBPCI        "Use Libpci library"                                                ON)
-option(WITH_LIBGLFW       "Use Libglfw library"                                               ON)
+option(WITH_LIBEGL        "Use Libegl library"                                                ON)
 option(WITH_VULKAN        "Use Vulkan library"                                                ON)
 option(WITH_OPENCL        "Use OpenCL library"                                                OFF) # Disabled due to issues (#238, #258, #264)
 option(WITH_LIBPROCPS     "Use Libprocps library"                                             ON)
