@@ -158,7 +158,7 @@ static void version(bool full_header)
 		{ HAS_NCURSES,     "NCURSES",     NCURSES_VERSION     },
 		{ HAS_LIBCPUID,    "LIBCPUID",    LIBCPUID_VERSION    },
 		{ HAS_LIBPCI,      "LIBPCI",      LIBPCI_VERSION      },
-		{ HAS_LIBGLFW,     "LIBGLFW",     LIBGLFW_VERSION     },
+		{ HAS_LIBEGL,      "LIBEGL",      LIBEGL_VERSION      },
 		{ HAS_VULKAN,      "VULKAN",      VULKAN_VERSION      },
 		{ HAS_OPENCL,      "OPENCL",      OPENCL_VERSION      },
 		{ HAS_LIBPROC2,    "LIBPROC2",    LIBPROC2_VERSION    },

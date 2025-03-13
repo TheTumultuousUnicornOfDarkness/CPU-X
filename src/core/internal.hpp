@@ -77,8 +77,8 @@ int set_gpu_compute_unit(Data::Graphics::Card &card, struct pci_dev *dev);
 
 /***************************** Libopengl *****************************/
 
-/* Set the GPU User Mode Driver (UMD) */
-int set_gpu_user_mode_driver(Data::Graphics::Card &card);
+/* Set the OpenGL version for GPU */
+int set_gpu_opengl_version(Data::Graphics::Card &card);
 
 
 /***************************** Libpci *****************************/

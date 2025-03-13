@@ -9,7 +9,7 @@ task:
 
   install_script:
     - pkg update -f
-    - pkg install -y bash cmake ninja pkgconf gettext nasm gtkmm30 ncurses pciutils glfw opencl ocl-icd vulkan-loader vulkan-headers libstatgrab
+    - pkg install -y bash cmake ninja pkgconf gettext nasm gtkmm30 ncurses pciutils libglvnd opencl ocl-icd vulkan-loader vulkan-headers libstatgrab
 
   build_script:
     - bash -x ./scripts/build_libcpuid.sh "Debug"

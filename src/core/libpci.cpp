@@ -305,9 +305,9 @@ int find_devices(Data &data)
 			data.graphics.cards[card_index].model.value     = DEVICE_PRODUCT_STR(dev);
 			data.graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%04X", dev->vendor_id, dev->device_id);
 			set_gpu_kernel_driver(data.graphics.cards[card_index]);
-#if HAS_LIBGLFW
-			set_gpu_user_mode_driver(data.graphics.cards[card_index]);
-#endif /* HAS_LIBGLFW */
+#if HAS_LIBEGL
+			set_gpu_opengl_version(data.graphics.cards[card_index]);
+#endif /* HAS_LIBEGL */
 #if HAS_VULKAN
 			set_gpu_vulkan_version(data.graphics.cards[card_index], dev);
 #endif /* HAS_VULKAN */
