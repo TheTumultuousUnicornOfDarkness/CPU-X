@@ -34,118 +34,104 @@ extern "C" {
 }
 
 
-static inline const char* string_VkResult(VkResult input_value)
+#define CASE_STR(value) case value: return #value;
+static inline const char* vk_get_error_string(VkResult vk_err)
 {
-	switch(input_value)
+	/* VkResult: https://registry.khronos.org/vulkan/specs/latest/man/html/VkResult.html */
+	switch(vk_err)
 	{
-		/*case VK_ERROR_COMPRESSION_EXHAUSTED_EXT:
-			return "VK_ERROR_COMPRESSION_EXHAUSTED_EXT";*/
-		case VK_ERROR_DEVICE_LOST:
-			return "VK_ERROR_DEVICE_LOST";
-		case VK_ERROR_EXTENSION_NOT_PRESENT:
-			return "VK_ERROR_EXTENSION_NOT_PRESENT";
-		case VK_ERROR_FEATURE_NOT_PRESENT:
-			return "VK_ERROR_FEATURE_NOT_PRESENT";
-		case VK_ERROR_FORMAT_NOT_SUPPORTED:
-			return "VK_ERROR_FORMAT_NOT_SUPPORTED";
-#if (VK_HEADER_VERSION >150)
-		case VK_ERROR_FRAGMENTATION:
-			return "VK_ERROR_FRAGMENTATION";
-		case VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT:
-			return "VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT";
-		case VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS:
-			return "VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS";
-		case VK_ERROR_UNKNOWN:
-			return "VK_ERROR_UNKNOWN";
+		CASE_STR(VK_SUCCESS)
+		CASE_STR(VK_NOT_READY)
+		CASE_STR(VK_TIMEOUT)
+		CASE_STR(VK_EVENT_SET)
+		CASE_STR(VK_EVENT_RESET)
+		CASE_STR(VK_INCOMPLETE)
+		CASE_STR(VK_ERROR_OUT_OF_HOST_MEMORY)
+		CASE_STR(VK_ERROR_OUT_OF_DEVICE_MEMORY)
+		CASE_STR(VK_ERROR_INITIALIZATION_FAILED)
+		CASE_STR(VK_ERROR_DEVICE_LOST)
+		CASE_STR(VK_ERROR_MEMORY_MAP_FAILED)
+		CASE_STR(VK_ERROR_LAYER_NOT_PRESENT)
+		CASE_STR(VK_ERROR_EXTENSION_NOT_PRESENT)
+		CASE_STR(VK_ERROR_FEATURE_NOT_PRESENT)
+		CASE_STR(VK_ERROR_INCOMPATIBLE_DRIVER)
+		CASE_STR(VK_ERROR_TOO_MANY_OBJECTS)
+		CASE_STR(VK_ERROR_FORMAT_NOT_SUPPORTED)
+		CASE_STR(VK_ERROR_FRAGMENTED_POOL)
+		CASE_STR(VK_ERROR_UNKNOWN)
+#ifdef VK_VERSION_1_1
+		CASE_STR(VK_ERROR_OUT_OF_POOL_MEMORY)
+		CASE_STR(VK_ERROR_INVALID_EXTERNAL_HANDLE)
 #endif
-		case VK_ERROR_FRAGMENTED_POOL:
-			return "VK_ERROR_FRAGMENTED_POOL";
-#ifdef VK_ENABLE_BETA_EXTENSIONS
-		case VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR:
-			return "VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR";
-#endif /* VK_ENABLE_BETA_EXTENSIONS */
-		case VK_ERROR_INCOMPATIBLE_DISPLAY_KHR:
-			return "VK_ERROR_INCOMPATIBLE_DISPLAY_KHR";
-		case VK_ERROR_INCOMPATIBLE_DRIVER:
-			return "VK_ERROR_INCOMPATIBLE_DRIVER";
-		case VK_ERROR_INITIALIZATION_FAILED:
-			return "VK_ERROR_INITIALIZATION_FAILED";
-		case VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT:
-			return "VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT";
-		case VK_ERROR_INVALID_EXTERNAL_HANDLE:
-			return "VK_ERROR_INVALID_EXTERNAL_HANDLE";
-		case VK_ERROR_INVALID_SHADER_NV:
-			return "VK_ERROR_INVALID_SHADER_NV";
-		case VK_ERROR_LAYER_NOT_PRESENT:
-			return "VK_ERROR_LAYER_NOT_PRESENT";
-		case VK_ERROR_MEMORY_MAP_FAILED:
-			return "VK_ERROR_MEMORY_MAP_FAILED";
-		case VK_ERROR_NATIVE_WINDOW_IN_USE_KHR:
-			return "VK_ERROR_NATIVE_WINDOW_IN_USE_KHR";
-		/*case VK_ERROR_NOT_PERMITTED_KHR:
-			return "VK_ERROR_NOT_PERMITTED_KHR";*/
-		case VK_ERROR_OUT_OF_DATE_KHR:
-			return "VK_ERROR_OUT_OF_DATE_KHR";
-		case VK_ERROR_OUT_OF_DEVICE_MEMORY:
-			return "VK_ERROR_OUT_OF_DEVICE_MEMORY";
-		case VK_ERROR_OUT_OF_HOST_MEMORY:
-			return "VK_ERROR_OUT_OF_HOST_MEMORY";
-		case VK_ERROR_OUT_OF_POOL_MEMORY:
-			return "VK_ERROR_OUT_OF_POOL_MEMORY";
-		case VK_ERROR_SURFACE_LOST_KHR:
-			return "VK_ERROR_SURFACE_LOST_KHR";
-		case VK_ERROR_TOO_MANY_OBJECTS:
-			return "VK_ERROR_TOO_MANY_OBJECTS";
-		case VK_ERROR_VALIDATION_FAILED_EXT:
-			return "VK_ERROR_VALIDATION_FAILED_EXT";
-#ifdef VK_ENABLE_BETA_EXTENSIONS
-		case VK_ERROR_VIDEO_PICTURE_LAYOUT_NOT_SUPPORTED_KHR:
-			return "VK_ERROR_VIDEO_PICTURE_LAYOUT_NOT_SUPPORTED_KHR";
-#endif /* VK_ENABLE_BETA_EXTENSIONS */
-#ifdef VK_ENABLE_BETA_EXTENSIONS
-		case VK_ERROR_VIDEO_PROFILE_CODEC_NOT_SUPPORTED_KHR:
-			return "VK_ERROR_VIDEO_PROFILE_CODEC_NOT_SUPPORTED_KHR";
-#endif /* VK_ENABLE_BETA_EXTENSIONS */
-#ifdef VK_ENABLE_BETA_EXTENSIONS
-		case VK_ERROR_VIDEO_PROFILE_FORMAT_NOT_SUPPORTED_KHR:
-			return "VK_ERROR_VIDEO_PROFILE_FORMAT_NOT_SUPPORTED_KHR";
-#endif /* VK_ENABLE_BETA_EXTENSIONS */
-#ifdef VK_ENABLE_BETA_EXTENSIONS
-		case VK_ERROR_VIDEO_PROFILE_OPERATION_NOT_SUPPORTED_KHR:
-			return "VK_ERROR_VIDEO_PROFILE_OPERATION_NOT_SUPPORTED_KHR";
-#endif /* VK_ENABLE_BETA_EXTENSIONS */
-#ifdef VK_ENABLE_BETA_EXTENSIONS
-		case VK_ERROR_VIDEO_STD_VERSION_NOT_SUPPORTED_KHR:
-			return "VK_ERROR_VIDEO_STD_VERSION_NOT_SUPPORTED_KHR";
-#endif /* VK_ENABLE_BETA_EXTENSIONS */
-		case VK_EVENT_RESET:
-			return "VK_EVENT_RESET";
-		case VK_EVENT_SET:
-			return "VK_EVENT_SET";
-		case VK_INCOMPLETE:
-			return "VK_INCOMPLETE";
-		case VK_NOT_READY:
-			return "VK_NOT_READY";
-		/*case VK_OPERATION_DEFERRED_KHR:
-			return "VK_OPERATION_DEFERRED_KHR";
-		case VK_OPERATION_NOT_DEFERRED_KHR:
-			return "VK_OPERATION_NOT_DEFERRED_KHR";
-		case VK_PIPELINE_COMPILE_REQUIRED:
-			return "VK_PIPELINE_COMPILE_REQUIRED";*/
-		case VK_SUBOPTIMAL_KHR:
-			return "VK_SUBOPTIMAL_KHR";
-		case VK_SUCCESS:
-			return "VK_SUCCESS";
-		/*case VK_THREAD_DONE_KHR:
-			return "VK_THREAD_DONE_KHR";
-		case VK_THREAD_IDLE_KHR:
-			return "VK_THREAD_IDLE_KHR";*/
-		case VK_TIMEOUT:
-			return "VK_TIMEOUT";
-		default:
-			return "Unhandled VkResult";
+#ifdef VK_VERSION_1_2
+		CASE_STR(VK_ERROR_FRAGMENTATION)
+		CASE_STR(VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS)
+#endif
+#ifdef VK_VERSION_1_3
+		CASE_STR(VK_PIPELINE_COMPILE_REQUIRED)
+#endif
+#ifdef VK_VERSION_1_4
+		CASE_STR(VK_ERROR_NOT_PERMITTED)
+#endif
+#ifdef VK_KHR_surface
+		CASE_STR(VK_ERROR_SURFACE_LOST_KHR)
+		CASE_STR(VK_ERROR_NATIVE_WINDOW_IN_USE_KHR)
+#endif
+#ifdef VK_KHR_swapchain
+		CASE_STR(VK_SUBOPTIMAL_KHR)
+		CASE_STR(VK_ERROR_OUT_OF_DATE_KHR)
+#endif
+#ifdef VK_KHR_display_swapchain
+		CASE_STR(VK_ERROR_INCOMPATIBLE_DISPLAY_KHR)
+#endif
+#ifdef VK_EXT_debug_report
+		CASE_STR(VK_ERROR_VALIDATION_FAILED_EXT)
+#endif
+#ifdef VK_NV_glsl_shader
+		CASE_STR(VK_ERROR_INVALID_SHADER_NV)
+#endif
+#ifdef VK_KHR_video_queue
+		CASE_STR(VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR)
+		CASE_STR(VK_ERROR_VIDEO_PICTURE_LAYOUT_NOT_SUPPORTED_KHR)
+		CASE_STR(VK_ERROR_VIDEO_PROFILE_OPERATION_NOT_SUPPORTED_KHR)
+		CASE_STR(VK_ERROR_VIDEO_PROFILE_FORMAT_NOT_SUPPORTED_KHR)
+		CASE_STR(VK_ERROR_VIDEO_PROFILE_CODEC_NOT_SUPPORTED_KHR)
+		CASE_STR(VK_ERROR_VIDEO_STD_VERSION_NOT_SUPPORTED_KHR)
+#endif
+#ifdef VK_EXT_image_drm_format_modifier
+		CASE_STR(VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT)
+#endif
+#ifdef VK_EXT_full_screen_exclusive
+		CASE_STR(VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT)
+#endif
+#ifdef VK_KHR_deferred_host_operations
+		CASE_STR(VK_THREAD_IDLE_KHR)
+		CASE_STR(VK_THREAD_DONE_KHR)
+		CASE_STR(VK_OPERATION_DEFERRED_KHR)
+		CASE_STR(VK_OPERATION_NOT_DEFERRED_KHR)
+#endif
+#ifdef VK_KHR_video_encode_queue
+		CASE_STR(VK_ERROR_INVALID_VIDEO_STD_PARAMETERS_KHR)
+#endif
+#ifdef VK_EXT_image_compression_control
+		CASE_STR(VK_ERROR_COMPRESSION_EXHAUSTED_EXT)
+#endif
+#ifdef VK_EXT_shader_object
+		/* VK_ERROR_INCOMPATIBLE_SHADER_BINARY_EXT is a deprecated alias */
+# ifdef VK_INCOMPATIBLE_SHADER_BINARY_EXT
+		CASE_STR(VK_INCOMPATIBLE_SHADER_BINARY_EXT)
+# else
+		CASE_STR(VK_ERROR_INCOMPATIBLE_SHADER_BINARY_EXT)
+# endif
+#endif
+#ifdef VK_KHR_pipeline_binary
+		CASE_STR(VK_PIPELINE_BINARY_MISSING_KHR)
+		CASE_STR(VK_ERROR_NOT_ENOUGH_SPACE_KHR)
+#endif
+		default: return "Unhandled VkResult";
 	}
 }
+#undef CASE_STR
 
 /* Set the Vulkan version for GPU */
 int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_unused]] struct pci_dev *dev)
@@ -173,7 +159,7 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 	vk_err = vkCreateInstance(&createInfo, NULL, &instance);
 	if(__sigabrt_received || (vk_err != VK_SUCCESS))
 	{
-		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), __sigabrt_received ? "SIGABRT" : string_VkResult(vk_err));
+		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), __sigabrt_received ? "SIGABRT" : vk_get_error_string(vk_err));
 		__sigabrt_received = false;
 
 		if(vk_err == VK_ERROR_EXTENSION_NOT_PRESENT)
@@ -186,7 +172,7 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 	vk_err = vkEnumeratePhysicalDevices(instance, &device_count, NULL);
 	if(__sigabrt_received || (vk_err != VK_SUCCESS))
 	{
-		MSG_ERROR(_("failed to call vkEnumeratePhysicalDevices (%s)"), __sigabrt_received ? "SIGABRT" : string_VkResult(vk_err));
+		MSG_ERROR(_("failed to call vkEnumeratePhysicalDevices (%s)"), __sigabrt_received ? "SIGABRT" : vk_get_error_string(vk_err));
 		__sigabrt_received = false;
 		return 2;
 	}
@@ -202,7 +188,7 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 	devices.resize(device_count);
 	if((vk_err = vkEnumeratePhysicalDevices(instance, &device_count, devices.data())) != VK_SUCCESS)
 	{
-		MSG_WARNING(_("No available physical devices (%s)"), string_VkResult(vk_err));
+		MSG_WARNING(_("No available physical devices (%s)"), vk_get_error_string(vk_err));
 		return 4;
 	}
 
@@ -265,7 +251,7 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 		VkDevice vk_dev_bus_info{};
 		if((vk_err = vkCreateDevice(devices[i], &check_pci_bus_info, NULL, &vk_dev_bus_info)) != VK_SUCCESS)
 		{
-			MSG_WARNING(_("Failed to create Vulkan for device %u (%s)"), i, string_VkResult(vk_err));
+			MSG_WARNING(_("Failed to create Vulkan for device %u (%s)"), i, vk_get_error_string(vk_err));
 
 			if(vk_err == VK_ERROR_EXTENSION_NOT_PRESENT)
 			{
