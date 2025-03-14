@@ -11,7 +11,26 @@ if(WITH_GTK)
 
 	# Set config
 	file(MAKE_DIRECTORY ${CMAKE_DATA_OUTPUT_DIRECTORY})
-	configure_file(io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in       ${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x.desktop)
+	if(GETTEXT_FOUND)
+		set(TMP_DESKTOP_FILE_FILENAME    "${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in")
+		set(OUTPUT_DESKTOP_FILE_FILENAME "${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x.desktop")
+		add_custom_command(
+			OUTPUT "${OUTPUT_DESKTOP_FILE_FILENAME}"
+			DEPENDS "${TMP_DESKTOP_FILE_FILENAME}"
+			COMMAND ${GETTEXT_MSGFMT_EXECUTABLE}
+				--desktop
+				--template="${TMP_DESKTOP_FILE_FILENAME}"
+				-d "${CMAKE_SOURCE_DIR}/po"
+				--output-file="${OUTPUT_DESKTOP_FILE_FILENAME}"
+		)
+		add_custom_target (
+			gendesktop ALL DEPENDS
+			"${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x.desktop"
+		)
+	else()
+		set(TMP_DESKTOP_FILE_FILENAME "${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x.desktop")
+	endif(GETTEXT_FOUND)
+	configure_file(io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in       ${TMP_DESKTOP_FILE_FILENAME})
 	configure_file(io.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy.in ${CMAKE_DATA_OUTPUT_DIRECTORY}/io.github.thetumultuousunicornofdarkness.cpu-x-daemon.policy)
 
 	# Install UIs

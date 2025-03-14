@@ -44,7 +44,20 @@ if(GETTEXT_FOUND)
 			--directory="../data"
 			--from-code="utf-8"
 			"cpu-x-gtk-3.12.ui"
-		COMMAND	msgcat --indent --directory=${CMAKE_CURRENT_BINARY_DIR} source_c.pot source_ui.pot --output-file="${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
+		COMMAND xgettext
+			--language=Desktop
+			--keyword --keyword=Comment --keyword=Keywords --indent
+			--package-name=${CMAKE_PROJECT_NAME}
+			--package-version=${PROJECT_VERSION}
+			--default-domain=${CMAKE_PROJECT_NAME}
+			--msgid-bugs-address=https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/issues
+			--copyright-holder=TheTumultuousUnicornOfDarkness
+			--output-dir=${CMAKE_CURRENT_BINARY_DIR}
+			--output=source_desktop.pot
+			--directory="../data"
+			--from-code="utf-8"
+			"io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in"
+		COMMAND	msgcat --indent --directory=${CMAKE_CURRENT_BINARY_DIR} source_c.pot source_ui.pot source_desktop.pot --output-file="${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
 		COMMAND sed --in-place "s/SOME DESCRIPTIVE TITLE./CPU-X translations template/" "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
 		COMMAND sed --in-place "s/\\(C\\) YEAR/© 2014-2025/"  "${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
