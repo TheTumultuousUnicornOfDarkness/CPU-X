@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-14 17:13+0000\n"
+"POT-Creation-Date: 2025-03-13 20:54+0100\n"
 "PO-Revision-Date: 2025-03-09 22:41+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -117,7 +117,7 @@ msgstr "Córas"
 msgid "Operating System"
 msgstr "Córas Oibriúcháin"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
 msgstr "Grafaicí"
 
@@ -126,11 +126,11 @@ msgstr "Grafaicí"
 msgid "Card %u"
 msgstr "Cárta %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
 msgid "Cards"
 msgstr "Cártaí"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
 msgstr "Binse"
 
@@ -138,15 +138,15 @@ msgstr "Binse"
 msgid "Not started"
 msgstr "Gan tús"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
 msgid "Prime numbers (slow)"
 msgstr "Príomhuimhreacha (mall)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
 msgid "Prime numbers (fast)"
 msgstr "Príomhuimhreacha (tapa)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
 msgid "Parameters"
 msgstr "Paraiméadair"
 
@@ -155,7 +155,7 @@ msgstr "Paraiméadair"
 msgid "%u mins"
 msgstr "%u nóim"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
 msgstr "Maidir"
 
@@ -187,7 +187,7 @@ msgstr "Údar: %s"
 msgid "Site: %s"
 msgstr "Suíomh: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 msgid "License"
 msgstr "Ceadúnas"
 
@@ -254,7 +254,7 @@ msgstr "Roghnaigh bata cuimhne réamhshocraithe (slánuimhir)"
 msgid "Select default graphic card (integer)"
 msgstr "Roghnaigh cárta grafaicí réamhshocraithe (slánuimhir)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
 msgid "Start and connect to daemon"
 msgstr "Tosaigh agus ceangail leis an deamhan"
 
@@ -677,7 +677,7 @@ msgstr "Leagan VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
 msgstr "Comhéadan"
 
@@ -793,79 +793,93 @@ msgstr "Tá pribhléidí ag teastáil chun roinnt faisnéise a bhailiú"
 msgid "Cache"
 msgstr "Taisce"
 
-#: cpu-x-gtk-3.12.ui:5861
+#: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
 msgstr "Dún"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5955
+#: cpu-x-gtk-3.12.ui:5942
 msgid "Refresh time"
 msgstr "Am Athnuachtha"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5966
 msgid "Text theme"
 msgstr "Téama téacs"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5994
+#: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
 msgstr "Uathoibríoch"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5995
+#: cpu-x-gtk-3.12.ui:5982
 msgid "Blue for light theme"
 msgstr "Gorm le haghaidh téama éadrom"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:5983
 msgid "Yellow for dark theme"
 msgstr "Buí le haghaidh téama dorcha"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:6009
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
 msgstr "Aonad teochta"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
 msgstr "Cluaisín réamhshocraithe"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default CPU core"
 msgstr "Cór Réamhshocraithe CPU"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6086
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default cache test"
 msgstr "Tástáil taisce réamhshocraithe"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6129
+#: cpu-x-gtk-3.12.ui:6116
 msgid "Print CPUID values in decimal"
 msgstr "Priontáil luachanna CPUID i deachúlacha"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6162
+#: cpu-x-gtk-3.12.ui:6149
 msgid "Default graphic card"
 msgstr "Cárta grafaicí réamhshocraithe"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6186
+#: cpu-x-gtk-3.12.ui:6173
 msgid "Default core type"
 msgstr "Tionchar Cór Réamhshocraithe"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6210
+#: cpu-x-gtk-3.12.ui:6197
 msgid "Default memory stick"
 msgstr "Bata Cuimhne Réamhshocraithe"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6238
+#: cpu-x-gtk-3.12.ui:6225
 msgid "Startup"
 msgstr "Tosaithe"
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#, fuzzy
+#| msgid ""
+#| "%s is a Free software that gathers information\n"
+#| "on CPU, motherboard and more."
+msgid "Gathers information on CPU, motherboard and more"
+msgstr ""
+"Is bogearraí saor in aisce é %s a bhailíonn eolas\n"
+"ar LAP, motherboard agus níos mó."
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
+msgstr ""
 
 #, c-format
 #~ msgid ""

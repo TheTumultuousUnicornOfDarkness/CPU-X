@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-14 17:13+0000\n"
+"POT-Creation-Date: 2025-03-13 20:54+0100\n"
 "PO-Revision-Date: 2020-07-11 09:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Latvian <https://hosted.weblate.org/projects/cpu-x/"
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Operating System"
 msgstr ""
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
 msgstr ""
 
@@ -127,11 +127,11 @@ msgstr ""
 msgid "Card %u"
 msgstr ""
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
 msgid "Cards"
 msgstr ""
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
 msgstr ""
 
@@ -139,15 +139,15 @@ msgstr ""
 msgid "Not started"
 msgstr "Nav palaists"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
 msgid "Prime numbers (slow)"
 msgstr ""
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
 msgid "Prime numbers (fast)"
 msgstr ""
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
 msgid "Parameters"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "%u mins"
 msgstr "%u minūtes"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
 msgstr ""
 
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Site: %s"
 msgstr ""
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 msgid "License"
 msgstr ""
 
@@ -255,7 +255,7 @@ msgstr "nav atrasts grafiskā akseleratora draiveris (%s)"
 msgid "Select default graphic card (integer)"
 msgstr "nav atrasts grafiskā akseleratora draiveris (%s)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
 msgid "Start and connect to daemon"
 msgstr ""
 
@@ -653,7 +653,7 @@ msgstr ""
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
 msgstr ""
 
@@ -769,80 +769,88 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
-#: cpu-x-gtk-3.12.ui:5861
+#: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
 msgstr ""
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5955
+#: cpu-x-gtk-3.12.ui:5942
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5966
 msgid "Text theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5994
+#: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5995
+#: cpu-x-gtk-3.12.ui:5982
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:5983
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:6009
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
 msgstr ""
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6086
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6129
+#: cpu-x-gtk-3.12.ui:6116
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6162
+#: cpu-x-gtk-3.12.ui:6149
 #, fuzzy
 #| msgid "failed to find graphic card driver (%s)"
 msgid "Default graphic card"
 msgstr "nav atrasts grafiskā akseleratora draiveris (%s)"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6186
+#: cpu-x-gtk-3.12.ui:6173
 msgid "Default core type"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6210
+#: cpu-x-gtk-3.12.ui:6197
 msgid "Default memory stick"
 msgstr ""
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6238
+#: cpu-x-gtk-3.12.ui:6225
 msgid "Startup"
+msgstr ""
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+msgid "Gathers information on CPU, motherboard and more"
+msgstr ""
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 
 #, fuzzy, c-format

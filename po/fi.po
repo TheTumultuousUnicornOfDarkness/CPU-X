@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-14 17:13+0000\n"
+"POT-Creation-Date: 2025-03-13 20:54+0100\n"
 "PO-Revision-Date: 2025-02-14 05:33+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
@@ -121,7 +121,7 @@ msgstr "Järjestelmä"
 msgid "Operating System"
 msgstr "Käyttöjärjestelmä"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
 msgstr "Grafiikka"
 
@@ -130,11 +130,11 @@ msgstr "Grafiikka"
 msgid "Card %u"
 msgstr "Kortti %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
 msgid "Cards"
 msgstr "Kortit"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
 msgstr "Mittaus"
 
@@ -142,15 +142,15 @@ msgstr "Mittaus"
 msgid "Not started"
 msgstr "Ei aloitettu"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
 msgid "Prime numbers (slow)"
 msgstr "Alkuluvut (hidas)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
 msgid "Prime numbers (fast)"
 msgstr "Alkuluvut (nopea)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
 msgid "Parameters"
 msgstr "Parametrit"
 
@@ -159,7 +159,7 @@ msgstr "Parametrit"
 msgid "%u mins"
 msgstr "%u minuuttia"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
 msgstr "Tietoa"
 
@@ -191,7 +191,7 @@ msgstr "Kehittäjä: %s"
 msgid "Site: %s"
 msgstr "Sivusto: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 msgid "License"
 msgstr "Lisenssi"
 
@@ -262,7 +262,7 @@ msgstr "Valitse tarkkailtava suoritinydin (numero)"
 msgid "Select default graphic card (integer)"
 msgstr "Valitse tarkkailtava suoritinydin (numero)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
 msgid "Start and connect to daemon"
 msgstr "Käynnistä ja yhdistä taustapalveluun"
 
@@ -666,7 +666,7 @@ msgstr "VBIOS-versio"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
 msgstr "Liitäntä"
 
@@ -782,81 +782,95 @@ msgstr ""
 msgid "Cache"
 msgstr "Välimuisti"
 
-#: cpu-x-gtk-3.12.ui:5861
+#: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
 msgstr ""
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5955
+#: cpu-x-gtk-3.12.ui:5942
 msgid "Refresh time"
 msgstr "Päivitysaika"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5966
 #, fuzzy
 #| msgid "Theme"
 msgid "Text theme"
 msgstr "Teema"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5994
+#: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
 msgstr "Automaattinen"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5995
+#: cpu-x-gtk-3.12.ui:5982
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:5983
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:6009
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
 msgstr "Lämpötilan yksikkö"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
 msgstr "Oletusarvoinen välilehti"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default CPU core"
 msgstr "Oletusarvoinen suoritinydin"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6086
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default cache test"
 msgstr "Oletusarvoinen välimuistitesti"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6129
+#: cpu-x-gtk-3.12.ui:6116
 msgid "Print CPUID values in decimal"
 msgstr "Tulosta CPUID-arvot desimaaleissa"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6162
+#: cpu-x-gtk-3.12.ui:6149
 msgid "Default graphic card"
 msgstr "Oletusarvoinen grafiikkatyyppi"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6186
+#: cpu-x-gtk-3.12.ui:6173
 msgid "Default core type"
 msgstr "Oletusarvoinen ydintyyppi"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6210
+#: cpu-x-gtk-3.12.ui:6197
 msgid "Default memory stick"
 msgstr "Oletusarvoinen muistikampa"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6238
+#: cpu-x-gtk-3.12.ui:6225
 msgid "Startup"
 msgstr "Käynnistys"
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#, fuzzy
+#| msgid ""
+#| "%s is a Free software that gathers information\n"
+#| "on CPU, motherboard and more."
+msgid "Gathers information on CPU, motherboard and more"
+msgstr ""
+"%s on vapaa ohjelmisto joka kerää tietoa\n"
+"suorittimesta, emolevystä ja muusta."
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
+msgstr ""
 
 #, c-format
 #~ msgid ""

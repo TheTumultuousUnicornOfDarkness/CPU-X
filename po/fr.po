@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-14 17:13+0000\n"
+"POT-Creation-Date: 2025-03-13 20:54+0100\n"
 "PO-Revision-Date: 2025-03-07 09:19+0000\n"
 "Last-Translator: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
@@ -123,7 +123,7 @@ msgstr "Système"
 msgid "Operating System"
 msgstr "Système d'exploitation"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
 msgstr "Graphiques"
 
@@ -132,11 +132,11 @@ msgstr "Graphiques"
 msgid "Card %u"
 msgstr "Carte %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
 msgid "Cards"
 msgstr "Cartes"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
 msgstr "Bench"
 
@@ -144,15 +144,15 @@ msgstr "Bench"
 msgid "Not started"
 msgstr "Non démarré"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
 msgid "Prime numbers (slow)"
 msgstr "Nombres premier (lent)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
 msgid "Prime numbers (fast)"
 msgstr "Nombres premier (rapide)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
 msgid "Parameters"
 msgstr "Paramètres"
 
@@ -161,7 +161,7 @@ msgstr "Paramètres"
 msgid "%u mins"
 msgstr "%u min"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
 msgstr "À propos"
 
@@ -193,7 +193,7 @@ msgstr "Auteur : %s"
 msgid "Site: %s"
 msgstr "Site : %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 msgid "License"
 msgstr "Licence"
 
@@ -263,7 +263,7 @@ msgstr "Définit la barrette mémoire par défaut (entier)"
 msgid "Select default graphic card (integer)"
 msgstr "Définit la carte graphique par défaut (entier)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
 msgid "Start and connect to daemon"
 msgstr "Démarrer le démon et s'y connecter"
 
@@ -689,7 +689,7 @@ msgstr "Version VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
 msgstr "Interface"
 
@@ -805,79 +805,87 @@ msgstr "Des privilèges sont requis pour obtenir certaines informations"
 msgid "Cache"
 msgstr "Cache"
 
-#: cpu-x-gtk-3.12.ui:5861
+#: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
 msgstr "Fermer"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5955
+#: cpu-x-gtk-3.12.ui:5942
 msgid "Refresh time"
 msgstr "Temps de rafraîchissement"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5966
 msgid "Text theme"
 msgstr "Thème du texte"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5994
+#: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
 msgstr "Automatique"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5995
+#: cpu-x-gtk-3.12.ui:5982
 msgid "Blue for light theme"
 msgstr "Bleu pour les thèmes clairs"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:5983
 msgid "Yellow for dark theme"
 msgstr "Jaune pour les thèmes sombres"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:6009
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
 msgstr "Unité de température"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
 msgstr "Onglet par défaut"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default CPU core"
 msgstr "Cœur du processeur par défaut"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6086
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default cache test"
 msgstr "Test de cache par défaut"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6129
+#: cpu-x-gtk-3.12.ui:6116
 msgid "Print CPUID values in decimal"
 msgstr "Affiche les valeurs CPUID en décimal"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6162
+#: cpu-x-gtk-3.12.ui:6149
 msgid "Default graphic card"
 msgstr "Carte graphique par défaut"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6186
+#: cpu-x-gtk-3.12.ui:6173
 msgid "Default core type"
 msgstr "Type de cœur par défaut"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6210
+#: cpu-x-gtk-3.12.ui:6197
 msgid "Default memory stick"
 msgstr "Barrette de mémoire par défaut"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6238
+#: cpu-x-gtk-3.12.ui:6225
 msgid "Startup"
 msgstr "Démarrage"
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+msgid "Gathers information on CPU, motherboard and more"
+msgstr "Récolte des informations sur le CPU, la carte-mère et plus"
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
+msgstr ""
 
 #, c-format
 #~ msgid ""
@@ -1740,7 +1748,3 @@ msgstr "Démarrage"
 #~ "\n"
 #~ "\n"
 #~ "%s va être mis à jour."
-
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
-msgid   "Gathers information on CPU, motherboard and more"
-msgstr  "Récolte des informations sur le CPU, la carte-mère et plus"

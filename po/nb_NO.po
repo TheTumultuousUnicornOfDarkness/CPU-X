@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-14 17:13+0000\n"
+"POT-Creation-Date: 2025-03-13 20:54+0100\n"
 "PO-Revision-Date: 2023-11-06 13:36+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -128,7 +128,7 @@ msgstr "System"
 msgid "Operating System"
 msgstr "Operativsystem"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
 msgstr "Grafikk"
 
@@ -138,13 +138,13 @@ msgstr "Grafikk"
 msgid "Card %u"
 msgstr "Kort %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "Kort %i"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
 msgstr "Ytelsestest"
 
@@ -152,15 +152,15 @@ msgstr "Ytelsestest"
 msgid "Not started"
 msgstr "Ikke startet"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
 msgid "Prime numbers (slow)"
 msgstr "Primtall (tregt)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
 msgid "Prime numbers (fast)"
 msgstr "Primtall (raskt)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
 msgid "Parameters"
 msgstr "Parameter"
 
@@ -169,7 +169,7 @@ msgstr "Parameter"
 msgid "%u mins"
 msgstr "%u minutter"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
 msgstr "Om"
 
@@ -203,7 +203,7 @@ msgstr "Utvikler: %s"
 msgid "Site: %s"
 msgstr "Nettside: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 #, fuzzy
 msgid "License"
 msgstr "Lisens"
@@ -278,7 +278,7 @@ msgstr "Sett forvalgt fane (heltall)"
 msgid "Select default graphic card (integer)"
 msgstr "Sett forvalgt fane (heltall)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
 msgid "Start and connect to daemon"
 msgstr "Start og koble til nisse"
 
@@ -715,7 +715,7 @@ msgstr "Versjon"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
 msgstr "Grensesnitt"
 
@@ -849,91 +849,105 @@ msgstr "Superbrukerprivilegier kreves for at ting skal virke"
 msgid "Cache"
 msgstr "Hurtiglager"
 
-#: cpu-x-gtk-3.12.ui:5861
+#: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
 msgstr ""
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5955
+#: cpu-x-gtk-3.12.ui:5942
 #, fuzzy
 msgid "Refresh time"
 msgstr "Gjenoppfriskningstid"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5966
 #, fuzzy
 #| msgid "Theme"
 msgid "Text theme"
 msgstr "Drakt"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5994
+#: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
 msgstr "Automatisk"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5995
+#: cpu-x-gtk-3.12.ui:5982
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:5983
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:6009
+#: cpu-x-gtk-3.12.ui:5996
 #, fuzzy
 #| msgid "Temperature"
 msgid "Temperature unit"
 msgstr "Temperatur"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
 msgstr "Forvalgt fane"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default CPU core"
 msgstr "Forvalgt prosessorkjerne"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6086
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default cache test"
 msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6129
+#: cpu-x-gtk-3.12.ui:6116
 #, fuzzy
 msgid "Print CPUID values in decimal"
 msgstr "Skriv ut CPUID-verdier i desimalform (forvalget er heksadesimaler)"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6162
+#: cpu-x-gtk-3.12.ui:6149
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Default graphic card"
 msgstr "Sett forvalgt fane (heltall)"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6186
+#: cpu-x-gtk-3.12.ui:6173
 #, fuzzy
 #| msgid "Default cache test"
 msgid "Default core type"
 msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6210
+#: cpu-x-gtk-3.12.ui:6197
 #, fuzzy
 #| msgid "Default cache test"
 msgid "Default memory stick"
 msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6238
+#: cpu-x-gtk-3.12.ui:6225
 msgid "Startup"
 msgstr "Oppstart"
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#, fuzzy
+#| msgid ""
+#| "%s is a Free software that gathers information\n"
+#| "on CPU, motherboard and more."
+msgid "Gathers information on CPU, motherboard and more"
+msgstr ""
+"%s er fri programvare som henter info om\n"
+"prosessor, hovedkort, med mer."
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
+msgstr ""
 
 #, c-format
 #~ msgid ""

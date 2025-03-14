@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-14 17:13+0000\n"
+"POT-Creation-Date: 2025-03-13 20:54+0100\n"
 "PO-Revision-Date: 2024-12-15 17:00+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -118,7 +118,7 @@ msgstr "அமைப்பு"
 msgid "Operating System"
 msgstr "இயக்க முறைமை"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5182
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
 msgstr "வரைகலை"
 
@@ -127,11 +127,11 @@ msgstr "வரைகலை"
 msgid "Card %u"
 msgstr "அட்டை %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5160
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
 msgid "Cards"
 msgstr "அட்டைகள்"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5534
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
 msgstr "விசுப்பலகை"
 
@@ -139,15 +139,15 @@ msgstr "விசுப்பலகை"
 msgid "Not started"
 msgstr "துவங்கவில்லை"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5296
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
 msgid "Prime numbers (slow)"
 msgstr "முதன்மை எண்கள் (மெதுவாக)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5408
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
 msgid "Prime numbers (fast)"
 msgstr "முதன்மை எண்கள் (வேகமாக)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5515
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
 msgid "Parameters"
 msgstr "அளவுருக்கள்"
 
@@ -156,7 +156,7 @@ msgstr "அளவுருக்கள்"
 msgid "%u mins"
 msgstr "%u நிமிடங்கள்"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5678 cpu-x-gtk-3.12.ui:5786
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
 msgstr "பற்றி"
 
@@ -188,7 +188,7 @@ msgstr "ஆசிரியர்: %s"
 msgid "Site: %s"
 msgstr "தளம்: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5767
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 msgid "License"
 msgstr "உரிமம்"
 
@@ -253,7 +253,7 @@ msgstr "தேர்ந்தெடு இயல்புநிலை memory sti
 msgid "Select default graphic card (integer)"
 msgstr "தேர்ந்தெடு இயல்புநிலை graphic card (integer)"
 
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6144
+#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
 msgid "Start and connect to daemon"
 msgstr "தொடங்கு and இணை பெறுநர் daemon"
 
@@ -666,7 +666,7 @@ msgstr "VBIOS பதிப்பு"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6041
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
 msgstr "இடைமுகம்"
 
@@ -782,79 +782,93 @@ msgstr "சில தகவல்களை சேகரிக்க சலுக
 msgid "Cache"
 msgstr "தற்காலிக சேமிப்பு"
 
-#: cpu-x-gtk-3.12.ui:5861
+#: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
 msgstr "மூடு"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5955
+#: cpu-x-gtk-3.12.ui:5942
 msgid "Refresh time"
 msgstr "நேரத்தைப் புதுப்பிக்கவும்"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5979
+#: cpu-x-gtk-3.12.ui:5966
 msgid "Text theme"
 msgstr "உரை கருப்பொருள்"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5994
+#: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
 msgstr "தானியங்கி"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5995
+#: cpu-x-gtk-3.12.ui:5982
 msgid "Blue for light theme"
 msgstr "ஒளி கருப்பொருளுக்கு நீலம்"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:5983
 msgid "Yellow for dark theme"
 msgstr "இருண்ட கருப்பொருளுக்கு மஞ்சள்"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:6009
+#: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
 msgstr "வெப்பநிலை அலகு"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
 msgstr "இயல்புநிலை தாவல்"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6060
 msgid "Default CPU core"
 msgstr "இயல்புநிலை சிபியு கோர்"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6086
+#: cpu-x-gtk-3.12.ui:6073
 msgid "Default cache test"
 msgstr "இயல்புநிலை கேச் சோதனை"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6129
+#: cpu-x-gtk-3.12.ui:6116
 msgid "Print CPUID values in decimal"
 msgstr "CPUID மதிப்புகளை தசமத்தில் அச்சிடுக"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6162
+#: cpu-x-gtk-3.12.ui:6149
 msgid "Default graphic card"
 msgstr "இயல்புநிலை கிராஃபிக் அட்டை"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6186
+#: cpu-x-gtk-3.12.ui:6173
 msgid "Default core type"
 msgstr "இயல்புநிலை கோர் வகை"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6210
+#: cpu-x-gtk-3.12.ui:6197
 msgid "Default memory stick"
 msgstr "இயல்புநிலை நினைவக குச்சி"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6238
+#: cpu-x-gtk-3.12.ui:6225
 msgid "Startup"
 msgstr "தொடங்கு"
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#, fuzzy
+#| msgid ""
+#| "%s is a Free software that gathers information\n"
+#| "on CPU, motherboard and more."
+msgid "Gathers information on CPU, motherboard and more"
+msgstr ""
+"%s என்பது தகவல்களை சேகரிக்கும் இலவச மென்பொருள் \n"
+"CPU, மதர்போர்டு மற்றும் பலவற்றில்."
+
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
+msgstr ""
 
 #, c-format
 #~ msgid ""
