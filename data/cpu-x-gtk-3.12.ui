@@ -4884,88 +4884,29 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card_gl_vk_ver">
+                                      <object class="GtkAspectFrame" id="card_framgl_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="margin-top">1</property>
+                                        <property name="margin-bottom">1</property>
+                                        <property name="label-xalign">0</property>
+                                        <property name="shadow-type">in</property>
                                         <child>
-                                          <object class="GtkAspectFrame" id="card_framgl_ver">
+                                          <object class="GtkLabel" id="card_valgl_ver">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="margin-top">1</property>
-                                            <property name="margin-bottom">1</property>
-                                            <property name="label-xalign">0</property>
-                                            <property name="shadow-type">in</property>
-                                            <child>
-                                              <object class="GtkLabel" id="card_valgl_ver">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="justify">center</property>
-                                                <property name="selectable">True</property>
-                                                <property name="ellipsize">end</property>
-                                                <property name="width-chars">13</property>
-                                                <property name="single-line-mode">True</property>
-                                                <property name="max-width-chars">13</property>
-                                                <property name="lines">1</property>
-                                              </object>
-                                            </child>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">False</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkAspectFrame" id="card_framvk_ver">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="margin-top">1</property>
-                                            <property name="margin-bottom">1</property>
-                                            <property name="label-xalign">0</property>
-                                            <property name="shadow-type">in</property>
-                                            <child>
-                                              <object class="GtkLabel" id="card_valvk_ver">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="justify">center</property>
-                                                <property name="selectable">True</property>
-                                                <property name="ellipsize">end</property>
-                                                <property name="width-chars">13</property>
-                                                <property name="single-line-mode">True</property>
-                                                <property name="max-width-chars">13</property>
-                                                <property name="lines">1</property>
-                                              </object>
-                                            </child>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">False</property>
-                                            <property name="pack-type">end</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkLabel" id="card_labvk_ver">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="halign">end</property>
-                                            <property name="margin-right">4</property>
-                                            <property name="margin-end">4</property>
-                                            <property name="margin-top">1</property>
-                                            <property name="margin-bottom">1</property>
-                                            <property name="mnemonic-widget">card_valdid_rid</property>
+                                            <property name="hexpand">True</property>
+                                            <property name="justify">center</property>
+                                            <property name="selectable">True</property>
                                             <property name="ellipsize">end</property>
+                                            <property name="width-chars">40</property>
                                             <property name="single-line-mode">True</property>
-                                            <property name="max-width-chars">15</property>
+                                            <property name="max-width-chars">40</property>
                                             <property name="lines">1</property>
+                                            <attributes>
+                                              <attribute name="stretch" value="ultra-condensed"/>
+                                            </attributes>
                                           </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="padding">2</property>
-                                            <property name="pack-type">end</property>
-                                            <property name="position">2</property>
-                                          </packing>
                                         </child>
                                       </object>
                                       <packing>
@@ -4994,9 +4935,37 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkBox" id="card_cl_ver">
+                                      <object class="GtkBox" id="card_vk_cl_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkAspectFrame" id="card_framvk_ver">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-top">1</property>
+                                            <property name="margin-bottom">1</property>
+                                            <property name="label-xalign">0</property>
+                                            <property name="shadow-type">in</property>
+                                            <child>
+                                              <object class="GtkLabel" id="card_valvk_ver">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="justify">center</property>
+                                                <property name="selectable">True</property>
+                                                <property name="ellipsize">end</property>
+                                                <property name="width-chars">13</property>
+                                                <property name="single-line-mode">True</property>
+                                                <property name="max-width-chars">13</property>
+                                                <property name="lines">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
                                         <child>
                                           <object class="GtkAspectFrame" id="card_framcl_ver">
                                             <property name="visible">True</property>
@@ -5022,14 +4991,32 @@
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">False</property>
-                                            <property name="position">0</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">1</property>
                                           </packing>
                                         </child>
                                         <child>
-                                          <placeholder/>
-                                        </child>
-                                        <child>
-                                          <placeholder/>
+                                          <object class="GtkLabel" id="card_labcl_ver">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="halign">end</property>
+                                            <property name="margin-right">4</property>
+                                            <property name="margin-end">4</property>
+                                            <property name="margin-top">1</property>
+                                            <property name="margin-bottom">1</property>
+                                            <property name="mnemonic-widget">card_valdid_rid</property>
+                                            <property name="ellipsize">end</property>
+                                            <property name="single-line-mode">True</property>
+                                            <property name="max-width-chars">15</property>
+                                            <property name="lines">1</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="padding">2</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">2</property>
+                                          </packing>
                                         </child>
                                       </object>
                                       <packing>
@@ -5038,7 +5025,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="card_labcl_ver">
+                                      <object class="GtkLabel" id="card_labvk_ver">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">end</property>

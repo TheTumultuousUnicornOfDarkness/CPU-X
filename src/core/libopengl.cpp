@@ -244,8 +244,7 @@ static int egl_info_display(Data::Graphics::Card &card, bool &gpu_found, EGLDisp
 	}
 
 	EGLConfig config = egl_choose_config(display, EGL_OPENGL_BIT);
-	//TODO: Update OpenGL label to display Core + Compatibility profile version
-	//[[maybe_unused]] const auto [gl_version_core,   umd_core,   vendor_core]   = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT);
+	[[maybe_unused]] const auto [gl_version_core,   umd_core,   vendor_core]   = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT);
 	[[maybe_unused]] const auto [gl_version_compat, umd_compat, vendor_compat] = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_COMPATIBILITY_PROFILE_BIT);
 
 	gpu_found = (card.vendor.value == vendor_compat);
@@ -253,7 +252,7 @@ static int egl_info_display(Data::Graphics::Card &card, bool &gpu_found, EGLDisp
 	{
 		MSG_DEBUG("%s", "EGL device matches card");
 		card.user_mode_driver.value = umd_compat;
-		card.opengl_version.value   = gl_version_compat;
+		card.opengl_version.value   = string_format("%s (Core) / %s (Compatibility)", gl_version_core.c_str(), gl_version_compat.c_str());
 	}
 	else
 		MSG_DEBUG("EGL device ignored: found '%s' but is expecting '%s'", vendor_compat.c_str(), card.vendor.value.c_str());

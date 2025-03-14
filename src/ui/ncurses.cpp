@@ -573,8 +573,8 @@ static void ntab_graphics(WINDOW *win, Data &data)
 	mvwprintw2c(win, LINE_12, SizeInfo::tb, "%13s", "%s", card.resizable_bar);
 	mvwprintw2c(win, LINE_12, SizeInfo::tm, "%18s", "%s", card.vulkan_rt);
 	mvwprintw2c(win, LINE_13, SizeInfo::tb, "%13s", "%s", card.opengl_version);
-	mvwprintw2c(win, LINE_13, SizeInfo::tm, "%18s", "%s", card.vulkan_version);
-	mvwprintw2c(win, LINE_14, SizeInfo::tb, "%13s", "%s", card.opencl_version);
+	mvwprintw2c(win, LINE_14, SizeInfo::tb, "%13s", "%s", card.vulkan_version);
+	mvwprintw2c(win, LINE_14, SizeInfo::tm, "%18s", "%s", card.opencl_version);
 
 	/* Cards frame */
 	draw_frame(win, LINE_17, SizeInfo::start , LINE_19, SizeInfo::width - 1, data.graphics.footer);
