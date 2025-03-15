@@ -99,7 +99,7 @@ int system_dynamic(Data &data);
 /***************************** Libvulkan *****************************/
 
 /* Set the Vulkan version for GPU */
-int set_gpu_vulkan_version(Data::Graphics::Card &card, struct pci_dev *dev);
+int set_gpu_vulkan_version(std::string card_vendor, struct pci_dev *dev, int pfd_out);
 
 
 #endif /* _CORE_INTERNAL_HPP_ */

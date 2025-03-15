@@ -134,9 +134,10 @@ static inline const char* vk_get_error_string(VkResult vk_err)
 #undef CASE_STR
 
 /* Set the Vulkan version for GPU */
-int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_unused]] struct pci_dev *dev)
+int set_gpu_vulkan_version(std::string card_vendor, struct pci_dev *dev, int pfd_out)
 {
 	uint32_t device_count = 0;
+	uint64_t vram_size = 0;
 	bool gpu_found = false;
 	bool use_device_id = false;
 	VkResult vk_err;
@@ -157,23 +158,19 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 	createInfo.ppEnabledExtensionNames = ext_create_info.data();
 
 	vk_err = vkCreateInstance(&createInfo, NULL, &instance);
-	if(__sigabrt_received || (vk_err != VK_SUCCESS))
+	if(vk_err != VK_SUCCESS)
 	{
-		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), __sigabrt_received ? "SIGABRT" : vk_get_error_string(vk_err));
-		__sigabrt_received = false;
-
+		MSG_ERROR(_("failed to call vkCreateInstance (%s)"), vk_get_error_string(vk_err));
 		if(vk_err == VK_ERROR_EXTENSION_NOT_PRESENT)
 			MSG_ERROR(_("%s is not supported"), VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
-
 		return 1;
 	}
 
 	/* Get number of devices */
 	vk_err = vkEnumeratePhysicalDevices(instance, &device_count, NULL);
-	if(__sigabrt_received || (vk_err != VK_SUCCESS))
+	if(vk_err != VK_SUCCESS)
 	{
-		MSG_ERROR(_("failed to call vkEnumeratePhysicalDevices (%s)"), __sigabrt_received ? "SIGABRT" : vk_get_error_string(vk_err));
-		__sigabrt_received = false;
+		MSG_ERROR(_("failed to call vkEnumeratePhysicalDevices (%s)"), vk_get_error_string(vk_err));
 		return 2;
 	}
 
@@ -283,16 +280,18 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 		vkGetPhysicalDeviceMemoryProperties2(devices[i], &heap_info);
 		for(uint32_t heap = 0; heap < heap_info.memoryProperties.memoryHeapCount; heap++)
 			if(VK_MEMORY_HEAP_DEVICE_LOCAL_BIT == heap_info.memoryProperties.memoryHeaps[heap].flags)
-				card.vram_size = heap_info.memoryProperties.memoryHeaps[heap].size;
+				vram_size = heap_info.memoryProperties.memoryHeaps[heap].size;
+		write(pfd_out, &vram_size, sizeof(vram_size));
 
 #ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 		VkDevice vk_dev_rt{};
-		card.vulkan_rt.value = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS) ? _("Enabled") : _("Disabled");
-		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, card.vulkan_rt.value.c_str());
+		const std::string vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS) ? _("Enabled") : _("Disabled");
+		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, vulkan_rt.c_str());
+		write_string_to_pipe(vulkan_rt, pfd_out);
 		vkDestroyDevice(vk_dev_rt, NULL);
 #endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
-		card.vulkan_version.value = string_format("%d.%d.%d",
+		const std::string vulkan_version = string_format("%d.%d.%d",
 #if(VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
 			VK_API_VERSION_MAJOR(prop2.properties.apiVersion),
 			VK_API_VERSION_MINOR(prop2.properties.apiVersion),
@@ -303,10 +302,22 @@ int set_gpu_vulkan_version([[maybe_unused]] Data::Graphics::Card &card, [[maybe_
 			VK_VERSION_PATCH(prop2.properties.apiVersion)
 #endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
 		);
-		MSG_DEBUG("Vulkan device %lu: version is '%s'", i, card.vulkan_version.value.c_str());
+		MSG_DEBUG("Vulkan device %lu: version is '%s'", i, vulkan_version.c_str());
+		write_string_to_pipe(vulkan_version, pfd_out);
 		gpu_found = true;
 	}
 	vkDestroyInstance(instance, NULL);
+
+	if(!gpu_found)
+	{
+		uint64_t vram_size = 0;
+		MSG_WARNING(_("Unable to find Vulkan driver for vendor %s"), card_vendor.c_str());
+		write(pfd_out, &vram_size, sizeof(vram_size)); // VRAM size
+#ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
+		write_string_to_pipe(std::string(), pfd_out); // Vulkan RT
+#endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
+		write_string_to_pipe(std::string(), pfd_out); // Vulkan version
+	}
 
 	return 0;
 }
