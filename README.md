@@ -72,7 +72,7 @@ These dependencies are needed to **build²** and **run** CPU-X:
 * [Pciutils](https://mj.ucw.cz/sw/pciutils/)  
 * [EGL](https://www.khronos.org/egl/) (version 1.5 or newer is needed), with [OpenGL](https://www.opengl.org/)  
 * [Vulkan](https://www.vulkan.org/)  
-* [OpenCL](https://www.khronos.org/opencl/) (version 1.2 or newer is needed), **disabled by default** (enable with `-DWITH_OPENCL=1` during CMake invocation)  
+* [OpenCL](https://www.khronos.org/opencl/) (version 1.2 or newer is needed)  
 * [Procps-ng](https://sourceforge.net/projects/procps-ng/) (Linux) / [Libstatgrab](https://www.i-scream.org/libstatgrab/) (*BSD)  
 
 **²**On some GNU/Linux distributions, the appropriate **-dev** or **-devel** package is needed.

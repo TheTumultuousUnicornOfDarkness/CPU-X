@@ -22,7 +22,7 @@ if [[ $# -ge 3 ]]; then
 else
 	# Standard build
 	DST_DIR=""
-	CMAKE_EXTRA_OPTIONS="-DWITH_OPENCL=1"
+	CMAKE_EXTRA_OPTIONS=""
 fi
 
 case "$VERSION_ID" in
