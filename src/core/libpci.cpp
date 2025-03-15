@@ -211,15 +211,83 @@ static void pcilib_msg_debug(char *str, ...)
 
 #define DEVICE_VENDOR_STR(d)  pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_VENDOR, d->vendor_id, d->device_id)
 #define DEVICE_PRODUCT_STR(d) pci_lookup_name(pacc, buff, MAXSTR, PCI_LOOKUP_DEVICE, d->vendor_id, d->device_id)
+static bool set_chipset_information(struct pci_access *pacc, struct pci_dev *dev, Data::Motherboard::Chipset &chipset)
+{
+	char buff[MAXSTR] = "";
+
+	chipset.vendor.value = DEVICE_VENDOR_STR(dev);
+	chipset.model.value  = DEVICE_PRODUCT_STR(dev);
+
+	return true;
+}
+
+static void set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Data::Graphics &graphics)
+{
+	const uint8_t card_index = graphics.cards.size();
+	uint64_t bar_size = 0;
+	char buff[MAXSTR] = "";
+	std::string gpu_vendor;
+
+	switch(dev->vendor_id)
+	{
+		case DEV_VENDOR_ID_AMD:
+			gpu_vendor = "AMD";
+			bar_size   = dev->size[0];
+			break;
+		case DEV_VENDOR_ID_INTEL:
+			gpu_vendor = "Intel";
+			bar_size   = dev->size[2];
+			break;
+		case DEV_VENDOR_ID_NVIDIA:
+			gpu_vendor = "NVIDIA";
+			bar_size   = dev->size[1];
+			break;
+		default:
+			gpu_vendor = DEVICE_VENDOR_STR(dev);
+			MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor.c_str(), dev->vendor_id);
+	}
+
+	graphics.grow_cards_vector();
+	graphics.cards[card_index].device_path     = get_gpu_device_path(dev);
+	graphics.cards[card_index].vendor.value    = gpu_vendor;
+	graphics.cards[card_index].model.value     = DEVICE_PRODUCT_STR(dev);
+	graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%04X", dev->vendor_id, dev->device_id);
+	set_gpu_kernel_driver(graphics.cards[card_index]);
+#if HAS_LIBEGL
+	set_gpu_opengl_version(graphics.cards[card_index]);
+#endif /* HAS_LIBEGL */
+#if HAS_VULKAN
+	set_gpu_vulkan_version(graphics.cards[card_index], dev);
+#endif /* HAS_VULKAN */
+#if HAS_OPENCL
+	set_gpu_compute_unit(graphics.cards[card_index], dev);
+#endif /* HAS_OPENCL */
+	if(graphics.cards[card_index].vram_size > 0)
+		graphics.cards[card_index].mem_used.value = string_format("??? / %lu %s", (graphics.cards[card_index].vram_size >> 20), UNIT_MIB);
+	if((graphics.cards[card_index].vram_size > 0) && (bar_size > 0))
+		graphics.cards[card_index].resizable_bar.value = ((graphics.cards[card_index].vram_size * 9 / 10) < bar_size) ? _("Enabled") : _("Disabled");
+
+#if 0 // For testing purposes
+	while(graphics.cards.size() < 8)
+	{
+		const uint8_t card_index = graphics.cards.size();
+		graphics.grow_cards_vector();
+		graphics.cards[card_index].vendor.value           = string_format("Vendor %u", card_index);
+		graphics.cards[card_index].kernel_driver.value    = string_format("Driver %u", card_index);
+		graphics.cards[card_index].user_mode_driver.value = string_format("UMB %u", card_index);
+		graphics.cards[card_index].model.value            = string_format("Model %u", card_index);
+	}
+#endif /* 0 */
+}
+#undef DEVICE_VENDOR_STR
+#undef DEVICE_PRODUCT_STR
+
 /* Find some PCI devices, like chipset and GPU */
 int find_devices(Data &data)
 {
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/example.c */
 	bool chipset_found = false;
-	std::string gpu_vendor;
-	char buff[MAXSTR] = "";
 	struct pci_access *pacc;
-	struct pci_dev *dev;
 
 	MSG_VERBOSE("%s", _("Finding devices"));
 #if defined (__linux__) || defined (__gnu_linux__)
@@ -262,81 +330,20 @@ int find_devices(Data &data)
 	pci_scan_bus(pacc);
 
 	/* Iterate over all devices */
-	for(dev = pacc->devices; dev != NULL; dev = dev->next)
+	for(auto dev = pacc->devices; dev != NULL; dev = dev->next)
 	{
 		pci_fill_info(dev, PCI_FILL_IDENT | PCI_FILL_BASES | PCI_FILL_CLASS);
-
-		/* Looking for chipset */
+		/* Looking for chipset or GPU */
 		if(!chipset_found && (dev->device_class == PCI_CLASS_BRIDGE_ISA))
-		{
-			chipset_found                         = true;
-			data.motherboard.chipset.vendor.value = DEVICE_VENDOR_STR(dev);
-			data.motherboard.chipset.model.value  = DEVICE_PRODUCT_STR(dev);
-		}
-
-		/* Looking for GPU */
-		if((dev->device_class >> 8) == PCI_BASE_CLASS_DISPLAY)
-		{
-			uint64_t bar_size = 0;
-			const uint8_t card_index = data.graphics.cards.size();
-			data.graphics.grow_cards_vector();
-
-			switch(dev->vendor_id)
-			{
-				case DEV_VENDOR_ID_AMD:
-					gpu_vendor = "AMD";
-					bar_size   = dev->size[0];
-					break;
-				case DEV_VENDOR_ID_INTEL:
-					gpu_vendor = "Intel";
-					bar_size   = dev->size[2];
-					break;
-				case DEV_VENDOR_ID_NVIDIA:
-					gpu_vendor = "NVIDIA";
-					bar_size   = dev->size[1];
-					break;
-				default:
-					gpu_vendor = DEVICE_VENDOR_STR(dev);
-					MSG_WARNING(_("Your GPU vendor is unknown: %s (0x%X)"), gpu_vendor.c_str(), dev->vendor_id);
-			}
-
-			data.graphics.cards[card_index].device_path     = get_gpu_device_path(dev);
-			data.graphics.cards[card_index].vendor.value    = gpu_vendor;
-			data.graphics.cards[card_index].model.value     = DEVICE_PRODUCT_STR(dev);
-			data.graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%04X", dev->vendor_id, dev->device_id);
-			set_gpu_kernel_driver(data.graphics.cards[card_index]);
-#if HAS_LIBEGL
-			set_gpu_opengl_version(data.graphics.cards[card_index]);
-#endif /* HAS_LIBEGL */
-#if HAS_VULKAN
-			set_gpu_vulkan_version(data.graphics.cards[card_index], dev);
-#endif /* HAS_VULKAN */
-#if HAS_OPENCL
-			set_gpu_compute_unit(data.graphics.cards[card_index], dev);
-#endif /* HAS_OPENCL */
-			if(data.graphics.cards[card_index].vram_size > 0)
-				data.graphics.cards[card_index].mem_used.value = string_format("??? / %lu %s", (data.graphics.cards[card_index].vram_size >> 20), UNIT_MIB);
-			if((data.graphics.cards[card_index].vram_size > 0) && (bar_size > 0))
-				data.graphics.cards[card_index].resizable_bar.value = ((data.graphics.cards[card_index].vram_size * 9 / 10) < bar_size) ? _("Enabled") : _("Disabled");
-		}
+			chipset_found = set_chipset_information(pacc, dev, data.motherboard.chipset);
+		else if((dev->device_class >> 8) == PCI_BASE_CLASS_DISPLAY)
+			set_gpu_information(pacc, dev, data.graphics);
 	}
 
 	MSG_DEBUG("%s", "find_devices: pci_cleanup");
 	pci_cleanup(pacc);
 	if(!chipset_found)
 		MSG_ERROR("%s", _("failed to find chipset vendor and model"));
-
-#if 0 // For testing purposes
-	while(data.graphics.cards.size() < 8)
-	{
-		const uint8_t card_index = data.graphics.cards.size();
-		data.graphics.grow_cards_vector();
-		data.graphics.cards[card_index].vendor.value           = string_format("Vendor %u", card_index);
-		data.graphics.cards[card_index].kernel_driver.value    = string_format("Driver %u", card_index);
-		data.graphics.cards[card_index].user_mode_driver.value = string_format("UMB %u", card_index);
-		data.graphics.cards[card_index].model.value            = string_format("Model %u", card_index);
-	}
-#endif /* 0 */
 
 	if(data.graphics.cards.size() == 0)
 		MSG_ERROR("%s", _("failed to find graphic card vendor and model"));
@@ -345,8 +352,6 @@ int find_devices(Data &data)
 
 	return (chipset_found == false) + (data.graphics.cards.size() == 0);
 }
-#undef DEVICE_VENDOR_STR
-#undef DEVICE_PRODUCT_STR
 
 #ifdef __linux__
 /* Check access on /sys/kernel/debug/dri */
