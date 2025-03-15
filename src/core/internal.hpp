@@ -71,8 +71,8 @@ int cputab_package_fallback(Data &data);
 
 /***************************** Libopencl *****************************/
 
-/* Set number of Compute Unit (CU) / Workgroup Processor (WGP) / Execution Unit (EU) / Streaming Multiprocessor (SM) for a GPU */
-int set_gpu_compute_unit(Data::Graphics::Card &card, struct pci_dev *dev);
+/* Set the OpenCL version and Compute Unit (CU) / Workgroup Processor (WGP) / Execution Unit (EU) / Streaming Multiprocessor (SM) for a GPU */
+int set_gpu_opencl_version(std::string card_vendor, struct pci_dev *pci_dev, int pfd_out);
 
 
 /***************************** Libopengl *****************************/
