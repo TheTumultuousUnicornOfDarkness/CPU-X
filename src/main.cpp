@@ -45,8 +45,6 @@
 
 #define LOG_FILE "/tmp/cpu-x.log"
 
-bool __sigabrt_received = false;
-
 
 /************************* Options-related functions *************************/
 
@@ -457,7 +455,6 @@ static void sighandler_fatal(int signum)
 /* Action on SIGABRT */
 static void sighandler_abrt(int signum)
 {
-	__sigabrt_received = true;
 	common_sighandler(signum, false);
 }
 
