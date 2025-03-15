@@ -153,6 +153,12 @@ std::string string_set_size_unit(char *str_src);
 /* Get a string containing temperature with proper unit */
 std::string string_with_temperature_unit(const double temp_celsius);
 
+/* Write a string to a pipe */
+void write_string_to_pipe(std::string str, int pfd_out);
+
+/* Read a string from a pipe */
+std::string read_string_from_pipe(int pfd_in);
+
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...);
 
