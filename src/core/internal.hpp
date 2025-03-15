@@ -27,7 +27,6 @@
 #include "data.hpp"
 
 using GpuDrv = Data::Graphics::Card::GpuDrv;
-extern bool __sigabrt_received;
 
 
 /***************************** Bandwidth *****************************/
