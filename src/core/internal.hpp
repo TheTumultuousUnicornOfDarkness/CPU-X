@@ -78,7 +78,7 @@ int set_gpu_compute_unit(Data::Graphics::Card &card, struct pci_dev *dev);
 /***************************** Libopengl *****************************/
 
 /* Set the OpenGL version for GPU */
-int set_gpu_opengl_version(Data::Graphics::Card &card);
+int set_gpu_opengl_version(std::string card_vendor, int pfd_out);
 
 
 /***************************** Libpci *****************************/

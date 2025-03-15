@@ -25,6 +25,8 @@
 #include <filesystem>
 #include <unordered_map>
 #include <algorithm>
+#include <unistd.h>
+#include <sys/wait.h>
 #include "util.hpp"
 #include "options.hpp"
 #include "data.hpp"
@@ -221,8 +223,57 @@ static bool set_chipset_information(struct pci_access *pacc, struct pci_dev *dev
 	return true;
 }
 
-static void set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Data::Graphics &graphics)
+#if HAS_LIBEGL
+static int set_gpu_opengl_version_dedicated_process(Data::Graphics::Card &card)
 {
+	int pfds[2];
+	pid_t pid;
+
+	if(pipe(pfds) != 0)
+	{
+		MSG_ERRNO("%s", _("failed to create pipe"));
+		return 1;
+	}
+
+	if((pid = fork()) < 0)
+	{
+		MSG_ERRNO("%s", _("failed to create process"));
+		return 2;
+	}
+
+	if(pid != 0)
+	{
+		/* Parent process */
+		int status;
+		MSG_DEBUG("Child process %i created with success for OpenGL", pid);
+		close(pfds[STDOUT_FILENO]);
+		const int ret = waitpid(pid, &status, 0);
+		if((ret > 0) && WIFEXITED(status))
+		{
+			MSG_DEBUG("PID %i terminated normally for OpenGL", pid);
+			card.user_mode_driver.value = read_string_from_pipe(pfds[STDIN_FILENO]);
+			card.opengl_version.value   = read_string_from_pipe(pfds[STDIN_FILENO]);
+		}
+		else
+			MSG_DEBUG("PID %i terminated abnormally for OpenGL", pid);
+		close(pfds[STDIN_FILENO]);
+	}
+	else
+	{
+		/* Child process */
+		close(pfds[STDIN_FILENO]);
+		const int err = set_gpu_opengl_version(card.vendor.value, pfds[STDOUT_FILENO]);
+		close(pfds[STDOUT_FILENO]);
+		exit(err);
+	}
+
+	return 0;
+}
+#endif /* HAS_LIBEGL */
+
+static int set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Data::Graphics &graphics)
+{
+	int err = 0;
 	const uint8_t card_index = graphics.cards.size();
 	uint64_t bar_size = 0;
 	char buff[MAXSTR] = "";
@@ -252,9 +303,10 @@ static void set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Da
 	graphics.cards[card_index].vendor.value    = gpu_vendor;
 	graphics.cards[card_index].model.value     = DEVICE_PRODUCT_STR(dev);
 	graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%04X", dev->vendor_id, dev->device_id);
-	set_gpu_kernel_driver(graphics.cards[card_index]);
+	err = set_gpu_kernel_driver(graphics.cards[card_index]);
+
 #if HAS_LIBEGL
-	set_gpu_opengl_version(graphics.cards[card_index]);
+	err += set_gpu_opengl_version_dedicated_process(graphics.cards[card_index]);
 #endif /* HAS_LIBEGL */
 #if HAS_VULKAN
 	set_gpu_vulkan_version(graphics.cards[card_index], dev);
@@ -262,6 +314,7 @@ static void set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Da
 #if HAS_OPENCL
 	set_gpu_compute_unit(graphics.cards[card_index], dev);
 #endif /* HAS_OPENCL */
+
 	if(graphics.cards[card_index].vram_size > 0)
 		graphics.cards[card_index].mem_used.value = string_format("??? / %lu %s", (graphics.cards[card_index].vram_size >> 20), UNIT_MIB);
 	if((graphics.cards[card_index].vram_size > 0) && (bar_size > 0))
@@ -278,6 +331,8 @@ static void set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Da
 		graphics.cards[card_index].model.value            = string_format("Model %u", card_index);
 	}
 #endif /* 0 */
+
+	return err;
 }
 #undef DEVICE_VENDOR_STR
 #undef DEVICE_PRODUCT_STR

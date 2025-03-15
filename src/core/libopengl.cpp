@@ -212,7 +212,7 @@ static EGLConfig egl_choose_config(EGLDisplay display, EGLint api_bitmask)
 }
 #undef MAX_CONFIGS
 
-static int egl_info_display(Data::Graphics::Card &card, bool &gpu_found, EGLDisplay display)
+static int egl_info_display(std::string card_vendor, int pfd_out, bool &gpu_found, EGLDisplay display)
 {
 	EGLint major, minor;
 
@@ -247,15 +247,15 @@ static int egl_info_display(Data::Graphics::Card &card, bool &gpu_found, EGLDisp
 	[[maybe_unused]] const auto [gl_version_core,   umd_core,   vendor_core]   = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT);
 	[[maybe_unused]] const auto [gl_version_compat, umd_compat, vendor_compat] = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_COMPATIBILITY_PROFILE_BIT);
 
-	gpu_found = (card.vendor.value == vendor_compat);
+	gpu_found = (card_vendor == vendor_compat);
 	if(gpu_found)
 	{
 		MSG_DEBUG("%s", "EGL device matches card");
-		card.user_mode_driver.value = umd_compat;
-		card.opengl_version.value   = string_format("%s (Core) / %s (Compatibility)", gl_version_core.c_str(), gl_version_compat.c_str());
+		write_string_to_pipe(umd_compat, pfd_out);
+		write_string_to_pipe(string_format("%s (Core) / %s (Compatibility)", gl_version_core.c_str(), gl_version_compat.c_str()), pfd_out);
 	}
 	else
-		MSG_DEBUG("EGL device ignored: found '%s' but is expecting '%s'", vendor_compat.c_str(), card.vendor.value.c_str());
+		MSG_DEBUG("EGL device ignored: found '%s' but is expecting '%s'", vendor_compat.c_str(), card_vendor.c_str());
 
 	if(eglTerminate(display) != EGL_TRUE)
 		MSG_WARNING(_("failed to destroy EGL display (%s)"), egl_get_error_string());
@@ -263,7 +263,7 @@ static int egl_info_display(Data::Graphics::Card &card, bool &gpu_found, EGLDisp
 	return 0;
 }
 
-static int egl_info_device(Data::Graphics::Card &card, bool &gpu_found, EGLDeviceEXT device)
+static int egl_info_device(std::string card_vendor, int pfd_out, bool &gpu_found, EGLDeviceEXT device)
 {
 	PFNEGLGETPLATFORMDISPLAYEXTPROC getPlatformDisplay = (PFNEGLGETPLATFORMDISPLAYEXTPROC) eglGetProcAddress("eglGetPlatformDisplayEXT");
 
@@ -274,11 +274,11 @@ static int egl_info_device(Data::Graphics::Card &card, bool &gpu_found, EGLDevic
 		return 1;
 	}
 
-	return egl_info_display(card, gpu_found, display);
+	return egl_info_display(card_vendor, pfd_out, gpu_found, display);
 }
 
 /* Set the OpenGL version for GPU */
-int set_gpu_opengl_version(Data::Graphics::Card &card)
+int set_gpu_opengl_version(std::string card_vendor, int pfd_out)
 {
 	int err = 0;
 	bool gpu_found = false;
@@ -310,11 +310,15 @@ int set_gpu_opengl_version(Data::Graphics::Card &card)
 	for(EGLint i = 0; (i < max_devices) && !gpu_found; i++)
 	{
 		MSG_DEBUG("Looping into EGL device %i", i);
-		err = egl_info_device(card, gpu_found, devices[i]);
+		err = egl_info_device(card_vendor, pfd_out, gpu_found, devices[i]);
 	}
 
 	if(!gpu_found)
-		MSG_WARNING(_("Your GPU user mode driver is unknown for vendor %s"), card.vendor.value.c_str());
+	{
+		MSG_WARNING(_("Unable to find OpenGL driver for vendor %s"), card_vendor.c_str());
+		write_string_to_pipe(std::string(), pfd_out); // UMD
+		write_string_to_pipe(std::string(), pfd_out); // OpenGL version
+	}
 
 	return err;
 }
