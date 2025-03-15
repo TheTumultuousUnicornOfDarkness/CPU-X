@@ -9,11 +9,12 @@ task:
 
   install_script:
     - pkg update -f
-    - pkg install -y bash cmake ninja pkgconf gettext nasm gtkmm30 ncurses pciutils libglvnd opencl ocl-icd vulkan-loader vulkan-headers libstatgrab
+    - pkg install -y bash cmake ninja pkgconf gettext nasm gtkmm30 ncurses pciutils libglvnd opencl ocl-icd pocl vulkan-loader vulkan-headers libstatgrab
+    - sed -i .orig "/Requires: OpenCL-Headers/d" /usr/local/libdata/pkgconfig/OpenCL.pc # workaround for OpenCL headers
 
   build_script:
     - bash -x ./scripts/build_libcpuid.sh "Debug"
-    - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWITH_OPENCL=1
+    - cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr
     - cmake --build build
     - cmake --install build
 
