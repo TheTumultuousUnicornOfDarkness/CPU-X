@@ -233,6 +233,30 @@ std::string string_with_temperature_unit(const double temp_celsius)
 	return ret;
 }
 
+/* Write a string to a pipe */
+void write_string_to_pipe(std::string str, int pfd_out)
+{
+	std::string::size_type size = str.size();
+	write(pfd_out, &size, sizeof(size));
+	write(pfd_out, str.c_str(), str.size());
+}
+
+/* Read a string from a pipe */
+std::string read_string_from_pipe(int pfd_in)
+{
+	std::string::size_type size = 0;
+	ssize_t read_bytes;
+
+	read_bytes = read(pfd_in, &size, sizeof(size));
+	if((read_bytes <= 0) && (size <= 0))
+		return std::string();
+
+	std::string str(size, ' ');
+	read_bytes = read(pfd_in, str.data(), size);
+
+	return (read_bytes > 0) ? str : std::string();
+}
+
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...)
 {
