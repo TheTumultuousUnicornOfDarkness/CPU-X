@@ -326,6 +326,54 @@ static int set_gpu_vulkan_version_dedicated_process(Data::Graphics::Card &card, 
 }
 #endif /* HAS_VULKAN */
 
+#if HAS_OPENCL
+static int set_gpu_opencl_version_dedicated_process(Data::Graphics::Card &card, struct pci_dev *dev)
+{
+	int pfds[2];
+	pid_t pid;
+
+	if(pipe(pfds) != 0)
+	{
+		MSG_ERRNO("%s", _("failed to create pipe"));
+		return 1;
+	}
+
+	if((pid = fork()) < 0)
+	{
+		MSG_ERRNO("%s", _("failed to create process"));
+		return 2;
+	}
+
+	if(pid != 0)
+	{
+		/* Parent process */
+		int status;
+		MSG_DEBUG("Child process %i created with success for OpenCL", pid);
+		close(pfds[STDOUT_FILENO]);
+		const int ret = waitpid(pid, &status, 0);
+		if((ret > 0) && WIFEXITED(status))
+		{
+			MSG_DEBUG("PID %i terminated normally for OpenCL", pid);
+			card.opencl_version.value = read_string_from_pipe(pfds[STDIN_FILENO]);
+			card.comp_unit.value      = read_string_from_pipe(pfds[STDIN_FILENO]);
+		}
+		else
+			MSG_DEBUG("PID %i terminated abnormally for OpenCL", pid);
+		close(pfds[STDIN_FILENO]);
+	}
+	else
+	{
+		/* Child process */
+		close(pfds[STDIN_FILENO]);
+		const int err = set_gpu_opencl_version(card.vendor.value, dev, pfds[STDOUT_FILENO]);
+		close(pfds[STDOUT_FILENO]);
+		exit(err);
+	}
+
+	return 0;
+}
+#endif /* HAS_OPENCL */
+
 static int set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Data::Graphics &graphics)
 {
 	int err = 0;
@@ -367,7 +415,7 @@ static int set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Dat
 	err += set_gpu_vulkan_version_dedicated_process(graphics.cards[card_index], dev);
 #endif /* HAS_VULKAN */
 #if HAS_OPENCL
-	set_gpu_compute_unit(graphics.cards[card_index], dev);
+	err += set_gpu_opencl_version_dedicated_process(graphics.cards[card_index], dev);
 #endif /* HAS_OPENCL */
 
 	if(graphics.cards[card_index].vram_size > 0)
