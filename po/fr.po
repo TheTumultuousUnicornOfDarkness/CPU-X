@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-16 10:57+0000\n"
+"PO-Revision-Date: 2025-03-16 11:10+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
@@ -268,28 +268,28 @@ msgstr ""
 #: core/libopencl.cpp:201
 #, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "impossible d’obtenir le nom pour le périphérique %u (%s)"
+msgstr "échec lors de la récupération du nom du périphérique %u (%s)"
 
 #: core/libopencl.cpp:209
 #, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "impossible d’obtenir la version pour le périphérique %u (%s)"
+msgstr "échec lors de la récupération de la version du périphérique %u (%s)"
 
 #: core/libopencl.cpp:241
 #, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "impossible d'obtenir le nom de la plateforme %u (%s)"
+msgstr "échec lors de la récupération du nom de la plateforme %u (%s)"
 
 #: core/libopencl.cpp:249
 #, c-format
 msgid "failed to get version for platform %u (%s)"
-msgstr "impossible d'obtenir la version pour la plate-forme %u (%s)"
+msgstr "échec lors de la récupération de la version de la plateforme %u (%s)"
 
 #: core/libopencl.cpp:257
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
-"impossible de déterminer le nombre de périphériques OpenCL pour la "
+"échec lors de la récupération du nombre de périphériques OpenCL pour la "
 "plateforme « %s %s » (%s)"
 
 #: core/libopencl.cpp:257
@@ -300,8 +300,8 @@ msgstr "0 périphérique"
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
-"impossible d’obtenir tous les périphériques OpenCL pour la plateforme « %s "
-"%s » (%s)"
+"échec lors de la récupération de tous les périphériques OpenCL pour la "
+"plateforme « %s %s » (%s)"
 
 #: core/libopencl.cpp:283
 msgid "Finding OpenCL API version"
@@ -315,7 +315,7 @@ msgstr "Il n'y a pas de plateforme prenant en charge OpenCL (%s)"
 #: core/libopencl.cpp:296
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "impossible d'obtenir toutes les plateformes OpenCL (%s)"
+msgstr "échec lors de la récupération de toutes les plateformes OpenCL (%s)"
 
 #: core/libopencl.cpp:305
 #, c-format
@@ -554,6 +554,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"La variable d'environnement APPDIR n'est pas définie, impossible de copier "
+"le démon dans le répertoire temporaire"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
