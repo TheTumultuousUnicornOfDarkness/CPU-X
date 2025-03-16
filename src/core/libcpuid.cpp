@@ -270,6 +270,10 @@ int call_libcpuid_static(Data &data)
 	MSG_VERBOSE("%s", _("Calling libcpuid for retrieving static data"));
 	if(Options::get_issue())
 		cpuid_set_verbosiness_level(2);
+#if defined(__arm__) || defined(__aarch64__)
+	if(!cpuid_present())
+		load_module("cpuid", &data.socket_fd); // https://github.com/anrieff/libcpuid/tree/master/drivers/arm
+#endif /* defined(__arm__) || defined(__aarch64__) */
 	if(data.cpu.cpuid_raw_file == NULL)
 		err = cpuid_get_all_raw_data(&raw_data);
 	else
