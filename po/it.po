@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-01-07 18:03+0000\n"
+"PO-Revision-Date: 2025-03-16 17:41+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -20,17 +20,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "Chiamata a bandwidth"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(la versione %s è disponibile)"
+msgstr "(non disponibile)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -139,10 +137,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "impossibile recuperare la frequenza della CPU (modalità alternativa)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "sconosciuto"
+msgstr "Sconosciuto"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -306,76 +302,71 @@ msgstr "impossibile ottenere le piattaforme OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Non trovo un driver OpenCL per il fornitore %s"
 
 #: core/libopengl.cpp:172
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "impossibile recuperare le frequenze della GPU"
+msgstr "creazione contesto EGL non riuscito"
 
 #: core/libopengl.cpp:183
 #, fuzzy, c-format
 #| msgid "failed to get version for device %u (%s)"
 msgid "failed to destroy EGL context (%s)"
-msgstr "Impossibile ottenere la versione della periferica %u (%s)"
+msgstr "distruzione contesto EGL (%s) non riuscito"
 
 #: core/libopengl.cpp:206
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "errore nella chiamata a libcpuid (%s)"
+msgstr "chiamata eglChooseConfig (%s) non riuscita"
 
 #: core/libopengl.cpp:221
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglInitialize (%s)"
-msgstr "errore nella chiamata a libcpuid (%s)"
+msgstr "chiamata eglInitialize (%s) non riuscita"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL non ha client API OpenGL"
 
 #: core/libopengl.cpp:242
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglBindAPI (%s)"
-msgstr "errore nella chiamata a libcpuid (%s)"
+msgstr "errore nella chiamata a eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
-msgstr "Impossibile ottenere la versione della piattaforma %u (%s)"
+msgstr "distruzione display EGL (%s) non riuscita"
 
 #: core/libopengl.cpp:273
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "impossibile ottenere le piattaforme OpenCL (%s)"
+msgstr "chiamata getPlatformDisplay (%s) non riuscita"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Verifica versione API OpenCL"
+msgstr "Verifica versione API OpenGL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "chiamata a vkEnumeratePhysicalDevices (%s) fallita"
+msgstr "chiamata queryDevices (%s) non riuscita"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Nessun dispositivo Vulkan disponibile"
+msgstr "Nessun dispositivo EGL disponibile"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Non ho trovato driver OpenGL per il fornitore %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -401,16 +392,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Il driver (kernel) della GPU è sconosciuto: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "impossibile eseguire wordexp (%i)"
+msgstr "creare pipe non riuscita"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "impossibile recuperare le frequenze della GPU"
+msgstr "creazione processo non riuscita"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -430,12 +417,8 @@ msgid "Finding devices"
 msgstr "Ricerca delle periferiche"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr ""
-"Ignora la ricerca delle periferiche (autorizzazioni errate sul dispositivo "
-"%s )"
+msgstr "Ignora ricerca periferiche (dispositivi PCI non presenti)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -549,17 +532,20 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Non ho trovato driver Vulkan per il fornitore %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
 msgstr "Avvia il demone in background…"
 
 #: daemon/client.cpp:103
+#, fuzzy
 msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"La variabile di ambiente APPDIR non è impostata, non può copiare il demone "
+"nella directory temporanea"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1638,18 +1624,13 @@ msgid "Startup"
 msgstr "Avvio"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s è un software libero che raccoglie informazioni\n"
-"su CPU, scheda grafica ed altro."
+msgstr "Raccoglie informazioni su CPU, scheda madre ed altro"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#, fuzzy
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;sistema;core;velocità;ora;valutazione;Intel;AMD;scheda madre;"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
