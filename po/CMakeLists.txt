@@ -15,6 +15,13 @@ file(GLOB
 if(GETTEXT_FOUND)
 	set(GETTEXT_FOUND ON PARENT_SCOPE)
 	include(gettext_create_translations)
+	file(GLOB_RECURSE CPP_FILES
+		RELATIVE "${CMAKE_SOURCE_DIR}/src"
+		"${CMAKE_SOURCE_DIR}/src/*.c"
+		"${CMAKE_SOURCE_DIR}/src/*.cpp"
+		"${CMAKE_SOURCE_DIR}/src/*.h"
+		"${CMAKE_SOURCE_DIR}/src/*.hpp"
+	)
 	add_custom_target(genpot
 		COMMAND xgettext
 			--language=C++
@@ -27,9 +34,9 @@ if(GETTEXT_FOUND)
 			--copyright-holder=TheTumultuousUnicornOfDarkness
 			--output-dir=${CMAKE_CURRENT_BINARY_DIR}
 			--output=source_c.pot
-			--directory="../src"
+			--directory="${CMAKE_SOURCE_DIR}/src"
 			--from-code="utf-8"
-			"*.cpp" "data.hpp" "util.hpp"
+			${CPP_FILES}
 		COMMAND xgettext
 			--language=Glade
 			--keyword=translatable --indent
@@ -41,7 +48,7 @@ if(GETTEXT_FOUND)
 			--copyright-holder=TheTumultuousUnicornOfDarkness
 			--output-dir=${CMAKE_CURRENT_BINARY_DIR}
 			--output=source_ui.pot
-			--directory="../data"
+			--directory="${CMAKE_SOURCE_DIR}/data"
 			--from-code="utf-8"
 			"cpu-x-gtk-3.12.ui"
 		COMMAND xgettext
@@ -54,7 +61,7 @@ if(GETTEXT_FOUND)
 			--copyright-holder=TheTumultuousUnicornOfDarkness
 			--output-dir=${CMAKE_CURRENT_BINARY_DIR}
 			--output=source_desktop.pot
-			--directory="../data"
+			--directory="${CMAKE_SOURCE_DIR}/data"
 			--from-code="utf-8"
 			"io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in"
 		COMMAND	msgcat --indent --directory=${CMAKE_CURRENT_BINARY_DIR} source_c.pot source_ui.pot source_desktop.pot --output-file="${CMAKE_CURRENT_SOURCE_DIR}/${pot_file}"
