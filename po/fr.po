@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-16 10:17+0000\n"
+"PO-Revision-Date: 2025-03-16 10:57+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
@@ -32,10 +32,8 @@ msgid "Calling bandwidth"
 msgstr "Appel bandwidth"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(la version %s est disponible)"
+msgstr "(indisponible)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -148,10 +146,8 @@ msgstr ""
 "échec lors de la récupération de la fréquence du processeur (mode de secours)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "inconnu"
+msgstr "Inconnu"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -324,76 +320,63 @@ msgstr "impossible d'obtenir toutes les plateformes OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Impossible de trouver le pilote OpenCL pour le vendeur %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "échec lors de la récupération des fréquences de la carte graphique"
+msgstr "échec lors de la création du contexte EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "impossible d’obtenir la version pour le périphérique %u (%s)"
+msgstr "échec lors de la destruction du contexte EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "échec lors de l'appel de libcpuid (%s)"
+msgstr "échec lors de l'appel de eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "échec lors de l'appel de libcpuid (%s)"
+msgstr "échec lors de l'appel de eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL ne supporte pas OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "échec lors de l'appel de libcpuid (%s)"
+msgstr "échec lors de l'appel de eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "impossible d'obtenir la version pour la plate-forme %u (%s)"
+msgstr "échec lors de la destruction de l'affichage EGL (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "impossible d'obtenir toutes les plateformes OpenCL (%s)"
+msgstr "échec lors de l'appel à getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Recherche de la version de l'API OpenCL"
+msgstr "Recherche de la version de l'API OpenGL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "échec lors de l'appel de vkEnumeratePhysicalDevices (%s)"
+msgstr "échec lors de l'appel à queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Aucun périphérique compatible Vulkan disponible"
+msgstr "Aucun périphérique compatible EGL disponible"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Impossible de trouver le pilote OpenGL pour le vendeur %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -419,16 +402,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Le pilote noyau de votre carte-graphique est inconnu : %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "échec lors de l'appel de wordexp (%i)"
+msgstr "échec lors de la création du tube"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "échec lors de la récupération des fréquences de la carte graphique"
+msgstr "échec lors de la création du processus"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -448,12 +427,8 @@ msgid "Finding devices"
 msgstr "Recherche des périphériques"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr ""
-"Saute la recherche des périphériques (mauvaises permissions pour le "
-"périphérique %s)"
+msgstr "Saute la recherche des périphériques (le périphérique PCI n'existe pas)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -568,7 +543,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Impossible de trouver le pilote Vulkan pour le vendeur %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
