@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-13 20:54+0100\n"
+"POT-Creation-Date: 2025-03-15 20:28+0100\n"
 "PO-Revision-Date: 2025-03-12 05:11+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -26,13 +26,567 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.10.3-dev\n"
 
+#: core/bandwidth/libbandwidth.cpp:54
+msgid "Calling bandwidth"
+msgstr "帯域幅を呼び出し中"
+
+#: core/bandwidth/main.c:2992
+msgid "(unavailable)"
+msgstr ""
+
+#: core/benchmarks.cpp:92
+msgid "Updating benchmark status"
+msgstr "ベンチマーク状態を更新中"
+
+#: core/benchmarks.cpp:95
+msgid "Active"
+msgstr "動作中"
+
+#: core/benchmarks.cpp:98
+#, c-format
+msgid "(%u hours left)"
+msgstr "（残り %u 時間）"
+
+#: core/benchmarks.cpp:100
+#, c-format
+msgid "(%u minutes left)"
+msgstr "（残り %u 分）"
+
+#: core/benchmarks.cpp:102
+#, c-format
+msgid "(%u seconds left)"
+msgstr "（残り %u 秒）"
+
+#: core/benchmarks.cpp:106 core/benchmarks.cpp:161 core/benchmarks.cpp:162
+msgid "Inactive"
+msgstr "休止中"
+
+#: core/benchmarks.cpp:109
+#, c-format
+msgid "in %u hours"
+msgstr "/ %u 時間"
+
+#: core/benchmarks.cpp:111
+#, c-format
+msgid "in %u minutes"
+msgstr "/ %u 分"
+
+#: core/benchmarks.cpp:113
+#, c-format
+msgid "in %u seconds"
+msgstr "/ %u 秒"
+
+#: core/benchmarks.cpp:130
+#, c-format
+msgid "Starting benchmark with %u threads"
+msgstr "%u スレッドでベンチマークを開始します"
+
+#: core/benchmarks.cpp:153
+msgid "an error occurred while starting benchmark"
+msgstr "ベンチマーク開始時にエラーが発生しました"
+
+#: core/core.cpp:67
+msgid "Calculating CPU usage"
+msgstr "CPU 使用率の計算中"
+
+#: core/core.cpp:109
+#, c-format
+msgid "%s (subject) / %s (issuer)"
+msgstr "%s (件名) / %s (発行者)"
+
+#: core/core.cpp:120
+msgid "Identifying running system"
+msgstr "実行中のシステムの識別中"
+
+#: core/core.cpp:123
+msgid "failed to identify running system"
+msgstr "実行中のシステムの識別に失敗しました"
+
+#: core/core.cpp:182
+msgid "Calculating CPU multipliers in fallback mode"
+msgstr "fallback モードで CPU 倍率を計算中"
+
+#: core/core.cpp:208
+msgid "Retrieving motherboard information in fallback mode"
+msgstr "fallback モードでマザーボード情報を取得中"
+
+#: core/core.cpp:224
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr "マザーボード情報の取得に失敗（fallback モード）"
+
+#: core/core.cpp:267
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr "fallback モードで CPU 温度の取得"
+
+#: core/core.cpp:315
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr "CPU 温度の取得に失敗（fallback モード）"
+
+#: core/core.cpp:330
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr "fallback モードで CPU 電圧の取得"
+
+#: core/core.cpp:349
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr "CPU 電圧の取得に失敗（fallback モード）"
+
+#: core/core.cpp:363
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr "fallback モードでCPU クロック周波数の取得"
+
+#: core/core.cpp:374
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
+
+#: core/dmidecode/dmidecode.c:5785
+#, fuzzy
+#| msgid "unknown"
+msgid "Unknown"
+msgstr "不明"
+
+#: core/dmidecode/libdmidecode.cpp:47
+msgid "Calling dmidecode"
+msgstr "dmidecode を呼び出し中"
+
+#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#, c-format
+msgid "%s (configured)"
+msgstr "%s (設定値)"
+
+#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#, c-format
+msgid "%s (max)"
+msgstr "%s (最大)"
+
+#: core/dmidecode/libdmidecode.cpp:101
+#, c-format
+msgid "%s (min)"
+msgstr "%s (最小)"
+
+#: core/libcpuid.cpp:83
+#, c-format
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
+msgstr ""
+"この CPU はデータベースに登録がありません ==> %s、モデル: %i、拡張モデル："
+"%i、拡張ファミリー：%i"
+
+#: core/libcpuid.cpp:127
+#, c-format
+msgid ""
+"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
+"%s"
+msgstr ""
+"この CPU はデータベースに存在しません ==> %s, パーツ番号: 0x%x, コード名: %s"
+
+#: core/libcpuid.cpp:134
+msgid "Finding CPU technology"
+msgstr "CPUテクノロジーの識別中"
+
+#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "不明"
+
+#: core/libcpuid.cpp:270
+msgid "Calling libcpuid for retrieving static data"
+msgstr "静的データを取得するため libcpuid を呼び出し中"
+
+#: core/libcpuid.cpp:280
+#, c-format
+msgid "failed to call libcpuid (%s)"
+msgstr "libcpuid の取得に失敗（%s）"
+
+#: core/libcpuid.cpp:409
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr "動的データを取得するため libcpuid を呼び出し中"
+
+#: core/libcpuid.cpp:426
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr "CPUMSR静的値を取得するために libcpuid を呼び出しています"
+
+#: core/libcpuid.cpp:456
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr "CPU の MSR ダイナミックの値を取得するため libcpuid を呼び出し中"
+
+#: core/libcpuid.cpp:485
+msgid "Finding CPU package in fallback mode"
+msgstr "fallback モードで CPU パッケージを識別中"
+
+#: core/libcpuid.cpp:515
+#, c-format
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+msgstr ""
+"この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
+
+#: core/libopencl.cpp:56
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+msgstr "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応です"
+
+#: core/libopencl.cpp:71
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+msgstr ""
+"'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応です"
+
+#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr ""
+"'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応です"
+
+#: core/libopencl.cpp:136
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgstr ""
+"'%s %s´の OpenCL ドライバは、CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
+"CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応で"
+"す"
+
+#: core/libopencl.cpp:175
+#, c-format
+msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
+
+#: core/libopencl.cpp:201
+#, c-format
+msgid "failed to get name for device %u (%s)"
+msgstr "デバイス %u の名前の取得に失敗しました（%s）"
+
+#: core/libopencl.cpp:209
+#, c-format
+msgid "failed to get version for device %u (%s)"
+msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
+
+#: core/libopencl.cpp:241
+#, c-format
+msgid "failed to get name for platform %u (%s)"
+msgstr "プラットフォーム %u の名前の取得に失敗しました（%s）"
+
+#: core/libopencl.cpp:249
+#, c-format
+msgid "failed to get version for platform %u (%s)"
+msgstr "プラットフォーム %u のバージョンの取得に失敗しました（%s）"
+
+#: core/libopencl.cpp:257
+#, c-format
+msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+"プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗しました（%s）"
+
+#: core/libopencl.cpp:257
+msgid "0 device"
+msgstr "0 デバイス"
+
+#: core/libopencl.cpp:266
+#, c-format
+msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+"プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗しました（%s）"
+
+#: core/libopencl.cpp:283
+msgid "Finding OpenCL API version"
+msgstr "VulkanOpenCL API バージョンの確認"
+
+#: core/libopencl.cpp:287
+#, c-format
+msgid "There is no platform with OpenCL support (%s)"
+msgstr "OpenCL に対応するプラットフォームはありません（%s）"
+
+#: core/libopencl.cpp:296
+#, c-format
+msgid "failed to get all OpenCL platforms (%s)"
+msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s）"
+
+#: core/libopencl.cpp:305
+#, c-format
+msgid "Unable to find OpenCL driver for vendor %s"
+msgstr ""
+
+#: core/libopengl.cpp:172
+#, fuzzy
+#| msgid "failed to retrieve GPU clocks"
+msgid "failed to create EGL context"
+msgstr "GPU クロックの取得に失敗しました"
+
+#: core/libopengl.cpp:183
+#, fuzzy, c-format
+#| msgid "failed to get version for device %u (%s)"
+msgid "failed to destroy EGL context (%s)"
+msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
+
+#: core/libopengl.cpp:206
+#, fuzzy, c-format
+#| msgid "failed to call libcpuid (%s)"
+msgid "failed to call eglChooseConfig (%s)"
+msgstr "libcpuid の取得に失敗（%s）"
+
+#: core/libopengl.cpp:221
+#, fuzzy, c-format
+#| msgid "failed to call libcpuid (%s)"
+msgid "failed to call eglInitialize (%s)"
+msgstr "libcpuid の取得に失敗（%s）"
+
+#: core/libopengl.cpp:236
+msgid "EGL has not OpenGL client API"
+msgstr ""
+
+#: core/libopengl.cpp:242
+#, fuzzy, c-format
+#| msgid "failed to call libcpuid (%s)"
+msgid "failed to call eglBindAPI (%s)"
+msgstr "libcpuid の取得に失敗（%s）"
+
+#: core/libopengl.cpp:261
+#, fuzzy, c-format
+#| msgid "failed to get version for platform %u (%s)"
+msgid "failed to destroy EGL display (%s)"
+msgstr "プラットフォーム %u のバージョンの取得に失敗しました（%s）"
+
+#: core/libopengl.cpp:273
+#, fuzzy, c-format
+#| msgid "failed to get all OpenCL platforms (%s)"
+msgid "failed to call getPlatformDisplay (%s)"
+msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s）"
+
+#: core/libopengl.cpp:289
+#, fuzzy
+#| msgid "Finding OpenCL API version"
+msgid "Finding OpenGL API version"
+msgstr "VulkanOpenCL API バージョンの確認"
+
+#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#, fuzzy, c-format
+#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+msgid "failed to call queryDevices (%s)"
+msgstr "vkEnumeratePhysicalDevices の呼び出しに失敗しました（%s）"
+
+#: core/libopengl.cpp:299
+#, fuzzy
+#| msgid "No available Vulkan devices"
+msgid "No available EGL devices"
+msgstr "利用可能な Vulkan デバイスがありません"
+
+#: core/libopengl.cpp:318
+#, c-format
+msgid "Unable to find OpenGL driver for vendor %s"
+msgstr ""
+
+#: core/libpci.cpp:73
+#, c-format
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
+msgstr ""
+"pciアクセスが正常に初期化されませんでした: これはlibpicの%sのバージョンが低い"
+"時に起こる一般的な問題です。\n"
+"あなたのシステムにlibpci %s ライブラリが存在することを確かめてください。そう"
+"でなければ%sを再ビルドして下さい。"
+
+#: core/libpci.cpp:117
+#, c-format
+msgid "No kernel driver in use for graphic card at path %s"
+msgstr "パス %s にグラフィック カードに使用するカーネル ドライバがありません"
+
+#: core/libpci.cpp:153
+#, c-format
+msgid "Your GPU kernel driver is unknown: %s"
+msgstr "不明な GPU カーネル ドライバー: %s"
+
+#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#, fuzzy
+#| msgid "failed to call wordexp (%i)"
+msgid "failed to create pipe"
+msgstr "wordexp の取得に失敗 （%i）"
+
+#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#, fuzzy
+#| msgid "failed to retrieve GPU clocks"
+msgid "failed to create process"
+msgstr "GPU クロックの取得に失敗しました"
+
+#: core/libpci.cpp:401
+#, c-format
+msgid "Your GPU vendor is unknown: %s (0x%X)"
+msgstr "不明な GPU ベンダー : %s（0x %X）"
+
+#: core/libpci.cpp:424 core/libvulkan.cpp:288
+msgid "Enabled"
+msgstr "有効"
+
+#: core/libpci.cpp:424 core/libvulkan.cpp:288
+msgid "Disabled"
+msgstr "無効"
+
+#: core/libpci.cpp:450
+msgid "Finding devices"
+msgstr "デバイスを識別中"
+
+#: core/libpci.cpp:454
+msgid "Skip devices search (PCI device does not exist)"
+msgstr "デバイス検索をスキップ (PCI デバイスが存在しません)"
+
+#: core/libpci.cpp:467
+#, c-format
+msgid "Skip devices search (wrong permissions on %s device)"
+msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
+
+#: core/libpci.cpp:504
+msgid "failed to find chipset vendor and model"
+msgstr "チップセットのベンダーとモデルの判別に失敗しました"
+
+#: core/libpci.cpp:507
+msgid "failed to find graphic card vendor and model"
+msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
+
+#: core/libpci.cpp:638
+msgid "Retrieving GPU clocks"
+msgstr "GPU クロックを取得中"
+
+#: core/libpci.cpp:651
+msgid "None"
+msgstr "None"
+
+#: core/libpci.cpp:660
+#, c-format
+msgid "DRM path for %s is unknown"
+msgstr "%s の DRM パスが不明です"
+
+#: core/libpci.cpp:667
+#, c-format
+msgid "Card number for %s is unknown"
+msgstr "%s のカード番号が不明です"
+
+#: core/libpci.cpp:692
+#, c-format
+msgid "PCIe %s (current) / %s (max)"
+msgstr "PCIe %s (現在) / %s (最大)"
+
+#: core/libpci.cpp:807
+#, c-format
+msgid "Driver for %s doesn't report frequencies"
+msgstr "%s のドライバーは周波数を報告しません"
+
+#: core/libpci.cpp:828
+#, c-format
+msgid "failed to retrieve all monitoring data for %s"
+msgstr ""
+"すべての OpenCL プラットフォームの取得に失敗しました（%s のすべての監視データ"
+"の取得）"
+
+#: core/libsystem.cpp:51 core/libsystem.cpp:80
+msgid "Calling libprocps"
+msgstr "libprocps の呼び出し中"
+
+#: core/libsystem.cpp:54
+msgid "unable to get system uptime"
+msgstr "システム稼働時間を取得できません"
+
+#: core/libsystem.cpp:60
+msgid "unable to create meminfo structure"
+msgstr "meminfo ストラクチャを作成できません"
+
+#: core/libsystem.cpp:106
+msgid "Calling libstatgrab"
+msgstr "libstatgrab を呼び出し中"
+
+#: core/libsystem.cpp:154
+#, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr "%i 日 %i 時間 %i 分 %i 秒"
+
+#: core/libvulkan.cpp:147
+msgid "Finding Vulkan API version"
+msgstr "Vulkan API バージョンの検索"
+
+#: core/libvulkan.cpp:163
+#, c-format
+msgid "failed to call vkCreateInstance (%s)"
+msgstr "vkCreateInstance の呼び出しに失敗しました（%s）"
+
+#: core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr "%s はサポートされていません"
+
+#: core/libvulkan.cpp:173
+#, c-format
+msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+msgstr "vkEnumeratePhysicalDevices の呼び出しに失敗しました（%s）"
+
+#: core/libvulkan.cpp:180
+msgid "No available Vulkan devices"
+msgstr "利用可能な Vulkan デバイスがありません"
+
+#: core/libvulkan.cpp:188
+#, c-format
+msgid "No available physical devices (%s)"
+msgstr "利用可能な物理デバイスがありません（%s）"
+
+#: core/libvulkan.cpp:251
+#, c-format
+msgid "Failed to create Vulkan for device %u (%s)"
+msgstr "デバイス %u の Vulkan を作成できませんでした（%s）"
+
+#: core/libvulkan.cpp:255
+#, c-format
+msgid "%s is not supported for device %u, use only deviceID for matching"
+msgstr ""
+"%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID のみ"
+"を使用してください"
+
+#: core/libvulkan.cpp:314
+#, c-format
+msgid "Unable to find Vulkan driver for vendor %s"
+msgstr ""
+
+#: daemon/client.cpp:65
+msgid "Starting daemon in background…"
+msgstr "バックグラウンドでデーモンを起動…"
+
+#: daemon/client.cpp:103
+msgid ""
+"APPDIR environment variable is not set, cannot copy the daemon to the "
+"temporary directory"
+msgstr ""
+"APPDIR 環境変数が設定されていないため、デーモンを一時ディレクトリにコピーでき"
+"ません"
+
+#: daemon/client.cpp:181
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr "pkexec: 認証を取得できません（ダイアログが閉じられました）"
+
+#: daemon/client.cpp:184
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr "pkexec: 認証を取得できません（認証されていません）"
+
+#: daemon/client.cpp:187
+msgid "pkexec: command not found"
+msgstr "pkexec: コマンドが見つかりません"
+
+#: daemon/client.cpp:190
+msgid "pkexec: unexpected error code"
+msgstr "pkexec: 予期しないエラーコード"
+
+#: daemon/client.cpp:220
+msgid "Connecting to daemon…"
+msgstr "デーモンに接続…"
+
+#: daemon/server.cpp:267
+#, c-format
+msgid "request_handler: case %i not handled"
+msgstr "request_handler: %i は未搭載"
+
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
-
-#: data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "不明"
 
 #: data.cpp:190
 msgid "P-core"
@@ -202,260 +756,9 @@ msgstr "ライセンス"
 msgid "This software is distributed under the terms of %s"
 msgstr "このソフトウェアは%sのもとで配布されています"
 
-#: data.cpp:779 main.cpp:177
+#: data.cpp:779 main.cpp:175
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "このプログラムは全て自己責任で使用してください"
-
-#: main.cpp:63
-msgid "Start graphical user interface (GUI) (default)"
-msgstr "グラフィカルユーザインタフェース（GUI）を開始する（デフォルト）"
-
-#: main.cpp:64
-msgid "Start text-based user interface (TUI)"
-msgstr "テキストユーザインタフェース（TUI）を開始する"
-
-#: main.cpp:65
-msgid "Dump all data on standard output and exit"
-msgstr "全てのデータを取得し、標準出力して終了します"
-
-#: main.cpp:66
-msgid "Run embedded command dmidecode and exit"
-msgstr "埋め込みコマンド dmidecode を実行して終了します"
-
-#: main.cpp:67
-msgid "Run embedded command bandwidth and exit"
-msgstr "埋め込みコマンド bandwidth を実行して終了します"
-
-#: main.cpp:68
-msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-msgstr "温度の単位を設定する (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-
-#: main.cpp:69
-msgid "Set custom time between two refreshes (in seconds)"
-msgstr "更新の間隔を設定します（秒）"
-
-#: main.cpp:70
-msgid "Set default tab (integer)"
-msgstr "デフォルトのタブを設定します（整数）"
-
-#: main.cpp:71
-msgid "Select core type to monitor (integer)"
-msgstr "モニターするコアタイプを選択します（整数）"
-
-#: main.cpp:72
-msgid "Select CPU core to monitor (integer)"
-msgstr "モニターするCPUコアを選択します（整数）"
-
-#: main.cpp:73
-msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数）"
-
-#: main.cpp:74
-msgid "Select default memory stick (integer)"
-msgstr "デフォルトのメモリースティックを選択（整数）"
-
-#: main.cpp:75
-msgid "Select default graphic card (integer)"
-msgstr "デフォルトのグラフィックカードの選択（整数）"
-
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
-msgid "Start and connect to daemon"
-msgstr "起動時にデーモンを開始する"
-
-#: main.cpp:77
-msgid "Verbose output"
-msgstr "詳細な出力を有効化します"
-
-#: main.cpp:78
-msgid "Print help and exit"
-msgstr "ヘルプメッセージを表示して終了します"
-
-#: main.cpp:79
-msgid "Print version and exit"
-msgstr "バージョンを表示して終了します"
-
-#: main.cpp:80
-msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
-
-#: main.cpp:81
-msgid "Disable colored output"
-msgstr "色のついた出力を無効化します"
-
-#: main.cpp:82
-msgid "Print information for debugging"
-msgstr "デバッグのための情報を表示します"
-
-#: main.cpp:83
-msgid "Print required information to paste in an issue"
-msgstr "Issueに貼り付けるために必要な情報を表示します"
-
-#: main.cpp:84
-msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
-msgstr ""
-"NCursesモードのキーマッピングを設定します(a[rrows]|e[macs]|i[nverted-T]|"
-"v[im])"
-
-#: main.cpp:95
-msgid "Add default command line arguments"
-msgstr "デフォルトのコマンドライン引数を追加します"
-
-#: main.cpp:96
-msgid "Enforce the bus clock"
-msgstr "バスクロックを適用する"
-
-#: main.cpp:97
-msgid ""
-"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt', 'freq' and 'mult')"
-msgstr ""
-"libcpuid が報告する CPU の値（'temp', 'volt', 'freq', 'mult' をカンマ区切りに"
-"した値）を無視する"
-
-#: main.cpp:98
-msgid "Read CPUID raw data from a given file"
-msgstr "生のCPUIDデータを与えられたファイルから読み込みます"
-
-#: main.cpp:99
-msgid "Only print a message if CPU is not present in the database"
-msgstr "CPUがデータベースに存在しない場合のみメッセージを出力します"
-
-#: main.cpp:127
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "使い方: %s 表示（オプション）\n"
-
-#: main.cpp:128
-msgid "Available DISPLAY:"
-msgstr "利用可能な表示方法:"
-
-#: main.cpp:136
-msgid "Available OPTIONS:"
-msgstr "利用可能なオプション:"
-
-#: main.cpp:145
-msgid "Influenceable environment variables:"
-msgstr "影響力のある環境変数:"
-
-#: main.cpp:176
-msgid "This is free software: you are free to change and redistribute it."
-msgstr "これはフリーソフトウェアです: 自由に変更して再配布することができます。"
-
-#: main.cpp:178
-#, c-format
-msgid "See the %s license: <%s>\n"
-msgstr "%s ライセンスを見てください: <%s>\n"
-
-#: main.cpp:185
-#, c-format
-msgid "-- %-11s version: %s"
-msgstr "-- %-11s バージョン: %s"
-
-#: main.cpp:412
-#, c-format
-msgid ""
-"\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
-msgstr ""
-"\n"
-"何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
-
-#: main.cpp:414
-#, c-format
-msgid ""
-"\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
-msgstr ""
-"\n"
-"何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
-
-#: main.cpp:438
-msgid "You can open a new issue here, by filling the template as requested:"
-msgstr "ここで新しい問題をテンプレートを使って報告することが出来ます。"
-
-#: main.cpp:480
-msgid "an error occurred while setting locale"
-msgstr "ロケールの設定中にエラーが発生しました"
-
-#: options.cpp:166
-#, c-format
-msgid "Selected tab (%u) is not visible"
-msgstr "選択したタブ (%u) は表示されません"
-
-#: options.cpp:171
-#, c-format
-msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr "選択したタブ（%u）は有効な数値ではありません（%u は最大値です）"
-
-#: options.cpp:220
-#, c-format
-msgid ""
-"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
-"選択した CPU タイプ（%u）は有効な数値ではありません（%u がこの CPU の最大値で"
-"す）"
-
-#: options.cpp:241
-#, c-format
-msgid ""
-"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
-"this system)"
-msgstr ""
-"選択した帯域幅テスト（%u）は有効な数値ではありません（%u がこのシステムの最大"
-"値です）"
-
-#: options.cpp:264
-#, c-format
-msgid ""
-"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
-"system)"
-msgstr ""
-"選択した RAM スティック（%u）は有効な数値ではありません（%u がこのシステムの"
-"最大値です）"
-
-#: options.cpp:284
-#, c-format
-msgid ""
-"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
-"system)"
-msgstr ""
-"選択したグラフィックカード（%u）は有効な番号ではありません（%u がこのシステム"
-"の最大値です）"
-
-#: options.cpp:300
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr "CPU アフィニティをコア %u に変更できませんでした"
-
-#: options.cpp:306
-#, c-format
-msgid ""
-"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-"type of core)"
-msgstr ""
-"選択した CPU コア（%u）は有効な数値ではありません（%u がこのタイプのコアの最"
-"大値です）"
-
-#: util.cpp:189
-#, c-format
-msgid "cannot find unit in '%s' string at position %i"
-msgstr "「%s」の %i 番目の文字列にはユニットがない"
-
-#: util.cpp:252
-#, c-format
-msgid "an error occurred while opening file '%s'"
-msgstr "ファイル '%s' を開くときにエラーが発生しました"
-
-#: util.cpp:297
-#, c-format
-msgid "an error occurred while running command '%s'"
-msgstr "コマンド '%s' の実行中にエラーが発生しました"
-
-#: util.cpp:437
-msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
-"set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
@@ -735,6 +1038,457 @@ msgstr "実行"
 msgid "Duration"
 msgstr "デュレーション"
 
+#: main.cpp:61
+msgid "Start graphical user interface (GUI) (default)"
+msgstr "グラフィカルユーザインタフェース（GUI）を開始する（デフォルト）"
+
+#: main.cpp:62
+msgid "Start text-based user interface (TUI)"
+msgstr "テキストユーザインタフェース（TUI）を開始する"
+
+#: main.cpp:63
+msgid "Dump all data on standard output and exit"
+msgstr "全てのデータを取得し、標準出力して終了します"
+
+#: main.cpp:64
+msgid "Run embedded command dmidecode and exit"
+msgstr "埋め込みコマンド dmidecode を実行して終了します"
+
+#: main.cpp:65
+msgid "Run embedded command bandwidth and exit"
+msgstr "埋め込みコマンド bandwidth を実行して終了します"
+
+#: main.cpp:66
+msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+msgstr "温度の単位を設定する (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+
+#: main.cpp:67
+msgid "Set custom time between two refreshes (in seconds)"
+msgstr "更新の間隔を設定します（秒）"
+
+#: main.cpp:68
+msgid "Set default tab (integer)"
+msgstr "デフォルトのタブを設定します（整数）"
+
+#: main.cpp:69
+msgid "Select core type to monitor (integer)"
+msgstr "モニターするコアタイプを選択します（整数）"
+
+#: main.cpp:70
+msgid "Select CPU core to monitor (integer)"
+msgstr "モニターするCPUコアを選択します（整数）"
+
+#: main.cpp:71
+msgid "Set custom bandwidth test for CPU caches speed (integer)"
+msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数）"
+
+#: main.cpp:72
+msgid "Select default memory stick (integer)"
+msgstr "デフォルトのメモリースティックを選択（整数）"
+
+#: main.cpp:73
+msgid "Select default graphic card (integer)"
+msgstr "デフォルトのグラフィックカードの選択（整数）"
+
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+msgid "Start and connect to daemon"
+msgstr "起動時にデーモンを開始する"
+
+#: main.cpp:75
+msgid "Verbose output"
+msgstr "詳細な出力を有効化します"
+
+#: main.cpp:76
+msgid "Print help and exit"
+msgstr "ヘルプメッセージを表示して終了します"
+
+#: main.cpp:77
+msgid "Print version and exit"
+msgstr "バージョンを表示して終了します"
+
+#: main.cpp:78
+msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
+
+#: main.cpp:79
+msgid "Disable colored output"
+msgstr "色のついた出力を無効化します"
+
+#: main.cpp:80
+msgid "Print information for debugging"
+msgstr "デバッグのための情報を表示します"
+
+#: main.cpp:81
+msgid "Print required information to paste in an issue"
+msgstr "Issueに貼り付けるために必要な情報を表示します"
+
+#: main.cpp:82
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
+msgstr ""
+"NCursesモードのキーマッピングを設定します(a[rrows]|e[macs]|i[nverted-T]|"
+"v[im])"
+
+#: main.cpp:93
+msgid "Add default command line arguments"
+msgstr "デフォルトのコマンドライン引数を追加します"
+
+#: main.cpp:94
+msgid "Enforce the bus clock"
+msgstr "バスクロックを適用する"
+
+#: main.cpp:95
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt', 'freq' and 'mult')"
+msgstr ""
+"libcpuid が報告する CPU の値（'temp', 'volt', 'freq', 'mult' をカンマ区切りに"
+"した値）を無視する"
+
+#: main.cpp:96
+msgid "Read CPUID raw data from a given file"
+msgstr "生のCPUIDデータを与えられたファイルから読み込みます"
+
+#: main.cpp:97
+msgid "Only print a message if CPU is not present in the database"
+msgstr "CPUがデータベースに存在しない場合のみメッセージを出力します"
+
+#: main.cpp:125
+#, c-format
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "使い方: %s 表示（オプション）\n"
+
+#: main.cpp:126
+msgid "Available DISPLAY:"
+msgstr "利用可能な表示方法:"
+
+#: main.cpp:134
+msgid "Available OPTIONS:"
+msgstr "利用可能なオプション:"
+
+#: main.cpp:143
+msgid "Influenceable environment variables:"
+msgstr "影響力のある環境変数:"
+
+#: main.cpp:174
+msgid "This is free software: you are free to change and redistribute it."
+msgstr "これはフリーソフトウェアです: 自由に変更して再配布することができます。"
+
+#: main.cpp:176
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr "%s ライセンスを見てください: <%s>\n"
+
+#: main.cpp:183
+#, c-format
+msgid "-- %-11s version: %s"
+msgstr "-- %-11s バージョン: %s"
+
+#: main.cpp:410
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+msgstr ""
+"\n"
+"何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
+
+#: main.cpp:412
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
+"recover."
+msgstr ""
+"\n"
+"何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
+
+#: main.cpp:436
+msgid "You can open a new issue here, by filling the template as requested:"
+msgstr "ここで新しい問題をテンプレートを使って報告することが出来ます。"
+
+#: main.cpp:477
+msgid "an error occurred while setting locale"
+msgstr "ロケールの設定中にエラーが発生しました"
+
+#: options.cpp:166
+#, c-format
+msgid "Selected tab (%u) is not visible"
+msgstr "選択したタブ (%u) は表示されません"
+
+#: options.cpp:171
+#, c-format
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr "選択したタブ（%u）は有効な数値ではありません（%u は最大値です）"
+
+#: options.cpp:220
+#, c-format
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
+msgstr ""
+"選択した CPU タイプ（%u）は有効な数値ではありません（%u がこの CPU の最大値で"
+"す）"
+
+#: options.cpp:241
+#, c-format
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
+msgstr ""
+"選択した帯域幅テスト（%u）は有効な数値ではありません（%u がこのシステムの最大"
+"値です）"
+
+#: options.cpp:264
+#, c-format
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+"選択した RAM スティック（%u）は有効な数値ではありません（%u がこのシステムの"
+"最大値です）"
+
+#: options.cpp:284
+#, c-format
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+"選択したグラフィックカード（%u）は有効な番号ではありません（%u がこのシステム"
+"の最大値です）"
+
+#: options.cpp:300
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr "CPU アフィニティをコア %u に変更できませんでした"
+
+#: options.cpp:306
+#, c-format
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
+msgstr ""
+"選択した CPU コア（%u）は有効な数値ではありません（%u がこのタイプのコアの最"
+"大値です）"
+
+#: ui/gtk.cpp:87
+#, c-format
+msgid "Cannot find path for '%s' file"
+msgstr "'%s' ファイルのパスが見つかりません"
+
+#: ui/gtk.cpp:460
+msgid "No polkit authentication agent found"
+msgstr "Polkit 認証エージェントが見つかりません"
+
+#: ui/gtk.cpp:466
+msgid "Ask password to start daemon in background"
+msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要"
+
+#: ui/gtk.cpp:470
+msgid "Settings"
+msgstr "設定"
+
+#: ui/gtk.cpp:711
+msgid "BaseFamily"
+msgstr "ベース ファミリー"
+
+#: ui/gtk.cpp:712
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+
+#: ui/gtk.cpp:713
+msgid "BaseModel"
+msgstr "ベース モデル"
+
+#: ui/gtk.cpp:714
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+"CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+
+#: ui/gtk.cpp:908
+msgid "EFI Platform Key certificate information"
+msgstr "EFI Platform Key 証明書情報"
+
+#: ui/gtk.cpp:943
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
+msgstr ""
+"メモリデバイスが配置されている、物理的にラベル付けされたソケットまたはボード"
+"の位置を特定する"
+
+#: ui/gtk.cpp:944
+msgid "Identify the physically labeled bank where the memory device is located"
+msgstr ""
+"メモリデバイスが配置されている、物理的にラベル付けされたバンクを特定する"
+
+#: ui/gtk.cpp:1149
+msgid "User Mode Driver Version"
+msgstr "ユーザー モードのドライバーのバージョン"
+
+#: ui/gtk.cpp:1163
+msgid "Vulkan Ray Tracing"
+msgstr "Vulkan レイトレーシング"
+
+#: ui/gtk.cpp:1358
+msgid "Starting GTK GUI…"
+msgstr "GTK GUI の起動…"
+
+#: ui/gtk.cpp:1369
+msgid "failed to import UI in GtkBuilder"
+msgstr "GtkBuilder での UI のインポートに失敗"
+
+#: ui/ncurses.cpp:116
+msgid "Window is too small!"
+msgstr "ウィンドウが小さすぎます！"
+
+#: ui/ncurses.cpp:124
+msgid "Press 'h' to see help."
+msgstr "ヘルプの表示は「h」キーを押す。"
+
+#: ui/ncurses.cpp:237
+#, c-format
+msgid "Welcome in %s NCurses help!\n"
+msgstr "%sのNCursesヘルプへようこそ\n"
+
+#: ui/ncurses.cpp:238
+msgid "This help describes how to use this Text-based User Interface."
+msgstr ""
+"このヘルプでは、テキスト ベースのユーザー インターフェイスの使用方法について"
+"説明します。"
+
+#: ui/ncurses.cpp:240
+msgid "Global keys:"
+msgstr "グローバル キー:"
+
+#: ui/ncurses.cpp:241
+msgid "Press 'left' key or 'tab' key to switch in left tab."
+msgstr "「左」キーまたは「Tab」キーで左タブに切り替えます。"
+
+#: ui/ncurses.cpp:242
+msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+msgstr "「右」キーまたは「Shift + Tab」キーで右タブに切り替えます。"
+
+#: ui/ncurses.cpp:243
+msgid "Press 'h' key to see this help."
+msgstr "「h」キーで、ヘルプの表示。"
+
+#: ui/ncurses.cpp:244
+msgid "Press 'q' key to exit."
+msgstr "「q」キーで、で終了。"
+
+#: ui/ncurses.cpp:246
+msgid "CPU tab:"
+msgstr "CPU タブ:"
+
+#: ui/ncurses.cpp:247
+msgid "Press 'next page' key to decrease core type number to monitor."
+msgstr "「PageDown」キーで、モニターするコア タイプの数字を減らします。"
+
+#: ui/ncurses.cpp:248
+msgid "Press 'previous page' key to increase core type number to monitor."
+msgstr "「PageUp」キーで、モニターするコア タイプの数字を増やします。"
+
+#: ui/ncurses.cpp:249
+msgid "Press 'down' key to decrease CPU core number to monitor."
+msgstr "「下」キーで、モニターするCPUコアの数字を減らします。"
+
+#: ui/ncurses.cpp:250
+msgid "Press 'up' key to increase CPU core number to monitor."
+msgstr "「上」キーで、モニターするCPUコアの数字を増やします。"
+
+#: ui/ncurses.cpp:252
+msgid "Caches tab:"
+msgstr "キャッシュ タブ:"
+
+#: ui/ncurses.cpp:253
+msgid "Press 'down' key to switch to previous test."
+msgstr "下矢印キーで、前のテストに切り替わります。"
+
+#: ui/ncurses.cpp:254
+msgid "Press 'up' key to switch to next test."
+msgstr "「上」キーで、次のテストに切り替えます。"
+
+#: ui/ncurses.cpp:256
+msgid "Bench tab:"
+msgstr "ベンチ タブ:"
+
+#: ui/ncurses.cpp:257
+msgid "Press 'down' key to decrement benchmark duration."
+msgstr "下矢印キーで、ベンチマーク期間 の減少。"
+
+#: ui/ncurses.cpp:258
+msgid "Press 'up' key to increment benchmark duration."
+msgstr "上矢印キーで、ベンチマーク期間 の増加。"
+
+#: ui/ncurses.cpp:259
+msgid "Press 'next page' key to decrement number of threads to use."
+msgstr "「次のページ」キーで、使用するスレッド数の減少。"
+
+#: ui/ncurses.cpp:260
+msgid "Press 'previous page' key to increment number of threads to use."
+msgstr "「前のページ」キーで、使用するスレッド数の増加。"
+
+#: ui/ncurses.cpp:261
+msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+msgstr "「s」キーで、素数ベンチマーク（遅く）の始動/停止。"
+
+#: ui/ncurses.cpp:262
+msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+msgstr "「f」キーで、素数ベンチマーク（早く）の始動/停止。"
+
+#: ui/ncurses.cpp:264
+msgid "Graphics tab:"
+msgstr "グラフィック タブ:"
+
+#: ui/ncurses.cpp:265
+msgid "Press 'down' key to switch to previous graphic card."
+msgstr "下矢印キーで、前のグラフィックカードに切り替える。"
+
+#: ui/ncurses.cpp:266
+msgid "Press 'up' key to switch to next graphic card."
+msgstr "上矢印キーで、次のグラフィックカードに切り替える。"
+
+#: ui/ncurses.cpp:268
+msgid "Press any key to exit this help."
+msgstr "ヘルプの終了は、任意のキーを押します。"
+
+#: ui/ncurses.cpp:676
+msgid "Starting NCurses TUI…"
+msgstr "NCurses TUI を開始しています…"
+
+#: ui/ncurses.cpp:685
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
+msgstr ""
+"致命的なエラー: terminfoデータベースが見つかりませんでした（TERMINFO環境変数"
+"を設定してください）"
+
+#: ui/ncurses.cpp:690
+#, c-format
+msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+msgstr ""
+"ターミナル %s のセットアップに失敗しました（エラー%i）; %sにFalbackします"
+
+#: util.cpp:189
+#, c-format
+msgid "cannot find unit in '%s' string at position %i"
+msgstr "「%s」の %i 番目の文字列にはユニットがない"
+
+#: util.cpp:276
+#, c-format
+msgid "an error occurred while opening file '%s'"
+msgstr "ファイル '%s' を開くときにエラーが発生しました"
+
+#: util.cpp:321
+#, c-format
+msgid "an error occurred while running command '%s'"
+msgstr "コマンド '%s' の実行中にエラーが発生しました"
+
+#: util.cpp:461
+msgid "set_cpu_affinity() not supported on this operating system"
+msgstr ""
+"set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
+
 #: util.hpp:77
 msgid "bytes"
 msgstr "bytes"
@@ -875,90 +1629,9 @@ msgstr ""
 "%s はCPUやマザーボードなどの情報を\n"
 "収集する無料のソフトウェアです。"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
-
-#, c-format
-#~ msgid ""
-#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
-#~ "%i, ext. family: %i"
-#~ msgstr ""
-#~ "この CPU はデータベースに登録がありません ==> %s、モデル: %i、拡張モデル："
-#~ "%i、拡張ファミリー：%i"
-
-#, c-format
-#~ msgid ""
-#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
-#~ "codename: %s"
-#~ msgstr ""
-#~ "この CPU はデータベースに存在しません ==> %s, パーツ番号: 0x%x, コード名: "
-#~ "%s"
-
-#~ msgid "Finding CPU technology"
-#~ msgstr "CPUテクノロジーの識別中"
-
-#~ msgid "Calling libcpuid for retrieving static data"
-#~ msgstr "静的データを取得するため libcpuid を呼び出し中"
-
-#, c-format
-#~ msgid "failed to call libcpuid (%s)"
-#~ msgstr "libcpuid の取得に失敗（%s）"
-
-#~ msgid "Calling libcpuid for retrieving dynamic data"
-#~ msgstr "動的データを取得するため libcpuid を呼び出し中"
-
-#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
-#~ msgstr "CPUMSR静的値を取得するために libcpuid を呼び出しています"
-
-#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-#~ msgstr "CPU の MSR ダイナミックの値を取得するため libcpuid を呼び出し中"
-
-#~ msgid "Calling dmidecode"
-#~ msgstr "dmidecode を呼び出し中"
-
-#, c-format
-#~ msgid "%s (configured)"
-#~ msgstr "%s (設定値)"
-
-#, c-format
-#~ msgid "%s (max)"
-#~ msgstr "%s (最大)"
-
-#, c-format
-#~ msgid "%s (min)"
-#~ msgstr "%s (最小)"
-
-#~ msgid "Calculating CPU usage"
-#~ msgstr "CPU 使用率の計算中"
-
-#~ msgid "Calling bandwidth"
-#~ msgstr "帯域幅を呼び出し中"
-
-#, c-format
-#~ msgid "%s (subject) / %s (issuer)"
-#~ msgstr "%s (件名) / %s (発行者)"
-
-#, c-format
-#~ msgid ""
-#~ "pci_access is not properly initialized: it is a common issue when %s was "
-#~ "built with a lower libpci version.\n"
-#~ "Check that libpci %s library is present on your system. Otherwise, please "
-#~ "rebuild %s."
-#~ msgstr ""
-#~ "pciアクセスが正常に初期化されませんでした: これはlibpicの%sのバージョンが"
-#~ "低い時に起こる一般的な問題です。\n"
-#~ "あなたのシステムにlibpci %s ライブラリが存在することを確かめてください。そ"
-#~ "うでなければ%sを再ビルドして下さい。"
-
-#, c-format
-#~ msgid "No kernel driver in use for graphic card at path %s"
-#~ msgstr ""
-#~ "パス %s にグラフィック カードに使用するカーネル ドライバがありません"
-
-#, c-format
-#~ msgid "Your GPU kernel driver is unknown: %s"
-#~ msgstr "不明な GPU カーネル ドライバー: %s"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
@@ -967,449 +1640,6 @@ msgstr ""
 #, c-format
 #~ msgid "failed to call GLFW (%i): %s"
 #~ msgstr "GLFW の取得に失敗（%i）: %s"
-
-#~ msgid "Finding Vulkan API version"
-#~ msgstr "Vulkan API バージョンの検索"
-
-#, c-format
-#~ msgid "failed to call vkCreateInstance (%s)"
-#~ msgstr "vkCreateInstance の呼び出しに失敗しました（%s）"
-
-#, c-format
-#~ msgid "%s is not supported"
-#~ msgstr "%s はサポートされていません"
-
-#, c-format
-#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-#~ msgstr "vkEnumeratePhysicalDevices の呼び出しに失敗しました（%s）"
-
-#~ msgid "No available Vulkan devices"
-#~ msgstr "利用可能な Vulkan デバイスがありません"
-
-#, c-format
-#~ msgid "No available physical devices (%s)"
-#~ msgstr "利用可能な物理デバイスがありません（%s）"
-
-#, c-format
-#~ msgid "Failed to create Vulkan for device %u (%s)"
-#~ msgstr "デバイス %u の Vulkan を作成できませんでした（%s）"
-
-#, c-format
-#~ msgid "%s is not supported for device %u, use only deviceID for matching"
-#~ msgstr ""
-#~ "%s はデバイス %u ではサポートされていません。マッチさせるにはデバイス ID "
-#~ "のみを使用してください"
-
-#~ msgid "Enabled"
-#~ msgstr "有効"
-
-#~ msgid "Disabled"
-#~ msgstr "無効"
-
-#~ msgid "Finding OpenCL API version"
-#~ msgstr "VulkanOpenCL API バージョンの確認"
-
-#, c-format
-#~ msgid "There is no platform with OpenCL support (%s)"
-#~ msgstr "OpenCL に対応するプラットフォームはありません（%s）"
-
-#, c-format
-#~ msgid "failed to get all OpenCL platforms (%s)"
-#~ msgstr "すべての OpenCL プラットフォームの取得に失敗しました（%s）"
-
-#, c-format
-#~ msgid "failed to get name for platform %u (%s)"
-#~ msgstr "プラットフォーム %u の名前の取得に失敗しました（%s）"
-
-#, c-format
-#~ msgid "failed to get version for platform %u (%s)"
-#~ msgstr "プラットフォーム %u のバージョンの取得に失敗しました（%s）"
-
-#, c-format
-#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-#~ msgstr ""
-#~ "プラットフォーム '%s %s’ の OpenCL デバイス数の取得に失敗しました（%s）"
-
-#~ msgid "0 device"
-#~ msgstr "0 デバイス"
-
-#, c-format
-#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-#~ msgstr ""
-#~ "プラットフォーム '%s %s' のすべての OpenCL デバイスの取得に失敗しました"
-#~ "（%s）"
-
-#, c-format
-#~ msgid "failed to get name for device %u (%s)"
-#~ msgstr "デバイス %u の名前の取得に失敗しました（%s）"
-
-#, c-format
-#~ msgid "failed to get version for device %u (%s)"
-#~ msgstr "デバイス %u (%s) のバージョンの取得に失敗しました"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-#~ msgstr ""
-#~ "'%s %s' の OpenCLドライバは CL_DEVICE_TOPOLOGY_AMD (%s) に未対応です"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-#~ msgstr ""
-#~ "'%s %s' の OpenCLドライバは CL_DEVICE_GFXIP_MAJOR_AMD (%s) に未対応です"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
-#~ "(%s)"
-#~ msgstr ""
-#~ "'%s %s' の OpenCLドライバは CL_DEVICE_MAX_COMPUTE_UNITS (%s) に未対応です"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
-#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-#~ msgstr ""
-#~ "'%s %s´の OpenCL ドライバは、CL_DEVICE_PCI_DOMAIN_ID_NV (%s)、"
-#~ "CL_DEVICE_PCI_BUS_ID_NV (%s) または CL_DEVICE_PCI_SLOT_ID_NV (%s) に未対応"
-#~ "です"
-
-#, c-format
-#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-#~ msgstr "OPENCL は GPU ベンダー (0x%X) に未対応です"
-
-#~ msgid "Finding devices"
-#~ msgstr "デバイスを識別中"
-
-#~ msgid "Skip devices search (PCI device does not exist)"
-#~ msgstr "デバイス検索をスキップ (PCI デバイスが存在しません)"
-
-#, c-format
-#~ msgid "Skip devices search (wrong permissions on %s device)"
-#~ msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
-
-#, c-format
-#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
-#~ msgstr "不明な GPU ベンダー : %s（0x %X）"
-
-#~ msgid "failed to find chipset vendor and model"
-#~ msgstr "チップセットのベンダーとモデルの判別に失敗しました"
-
-#~ msgid "failed to find graphic card vendor and model"
-#~ msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
-
-#~ msgid "Retrieving GPU clocks"
-#~ msgstr "GPU クロックを取得中"
-
-#~ msgid "None"
-#~ msgstr "None"
-
-#, c-format
-#~ msgid "DRM path for %s is unknown"
-#~ msgstr "%s の DRM パスが不明です"
-
-#, c-format
-#~ msgid "Card number for %s is unknown"
-#~ msgstr "%s のカード番号が不明です"
-
-#, c-format
-#~ msgid "PCIe %s (current) / %s (max)"
-#~ msgstr "PCIe %s (現在) / %s (最大)"
-
-#, c-format
-#~ msgid "Driver for %s doesn't report frequencies"
-#~ msgstr "%s のドライバーは周波数を報告しません"
-
-#, c-format
-#~ msgid "failed to retrieve all monitoring data for %s"
-#~ msgstr ""
-#~ "すべての OpenCL プラットフォームの取得に失敗しました（%s のすべての監視"
-#~ "データの取得）"
-
-#~ msgid "Identifying running system"
-#~ msgstr "実行中のシステムの識別中"
-
-#~ msgid "failed to identify running system"
-#~ msgstr "実行中のシステムの識別に失敗しました"
-
-#~ msgid "Calling libprocps"
-#~ msgstr "libprocps の呼び出し中"
-
-#~ msgid "unable to get system uptime"
-#~ msgstr "システム稼働時間を取得できません"
-
-#~ msgid "unable to create meminfo structure"
-#~ msgstr "meminfo ストラクチャを作成できません"
-
-#~ msgid "Calling libstatgrab"
-#~ msgstr "libstatgrab を呼び出し中"
-
-#, c-format
-#~ msgid "%i days, %i hours, %i minutes, %i seconds"
-#~ msgstr "%i 日 %i 時間 %i 分 %i 秒"
-
-#~ msgid "Updating benchmark status"
-#~ msgstr "ベンチマーク状態を更新中"
-
-#~ msgid "Active"
-#~ msgstr "動作中"
-
-#, c-format
-#~ msgid "(%u hours left)"
-#~ msgstr "（残り %u 時間）"
-
-#, c-format
-#~ msgid "(%u minutes left)"
-#~ msgstr "（残り %u 分）"
-
-#, c-format
-#~ msgid "(%u seconds left)"
-#~ msgstr "（残り %u 秒）"
-
-#~ msgid "Inactive"
-#~ msgstr "休止中"
-
-#, c-format
-#~ msgid "in %u hours"
-#~ msgstr "/ %u 時間"
-
-#, c-format
-#~ msgid "in %u minutes"
-#~ msgstr "/ %u 分"
-
-#, c-format
-#~ msgid "in %u seconds"
-#~ msgstr "/ %u 秒"
-
-#, c-format
-#~ msgid "Starting benchmark with %u threads"
-#~ msgstr "%u スレッドでベンチマークを開始します"
-
-#~ msgid "an error occurred while starting benchmark"
-#~ msgstr "ベンチマーク開始時にエラーが発生しました"
-
-#~ msgid "Finding CPU package in fallback mode"
-#~ msgstr "fallback モードで CPU パッケージを識別中"
-
-#, c-format
-#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-#~ msgstr ""
-#~ "この CPU ソケットはデータベースに登録がありません ==> %s、コードネーム: %s"
-
-#~ msgid "Calculating CPU multipliers in fallback mode"
-#~ msgstr "fallback モードで CPU 倍率を計算中"
-
-#~ msgid "Retrieving motherboard information in fallback mode"
-#~ msgstr "fallback モードでマザーボード情報を取得中"
-
-#~ msgid "failed to retrieve motherboard information (fallback mode)"
-#~ msgstr "マザーボード情報の取得に失敗（fallback モード）"
-
-#~ msgid "Retrieving CPU temperature in fallback mode"
-#~ msgstr "fallback モードで CPU 温度の取得"
-
-#~ msgid "failed to retrieve CPU temperature (fallback mode)"
-#~ msgstr "CPU 温度の取得に失敗（fallback モード）"
-
-#~ msgid "Retrieving CPU voltage in fallback mode"
-#~ msgstr "fallback モードで CPU 電圧の取得"
-
-#~ msgid "failed to retrieve CPU voltage (fallback mode)"
-#~ msgstr "CPU 電圧の取得に失敗（fallback モード）"
-
-#~ msgid "Retrieving CPU frequency in fallback mode"
-#~ msgstr "fallback モードでCPU クロック周波数の取得"
-
-#~ msgid "failed to retrieve CPU frequency (fallback mode)"
-#~ msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
-
-#~ msgid "Starting daemon in background…"
-#~ msgstr "バックグラウンドでデーモンを起動…"
-
-#~ msgid ""
-#~ "APPDIR environment variable is not set, cannot copy the daemon to the "
-#~ "temporary directory"
-#~ msgstr ""
-#~ "APPDIR 環境変数が設定されていないため、デーモンを一時ディレクトリにコピー"
-#~ "できません"
-
-#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-#~ msgstr "pkexec: 認証を取得できません（ダイアログが閉じられました）"
-
-#~ msgid "pkexec: authorization could not be obtained (not authorized)"
-#~ msgstr "pkexec: 認証を取得できません（認証されていません）"
-
-#~ msgid "pkexec: command not found"
-#~ msgstr "pkexec: コマンドが見つかりません"
-
-#~ msgid "pkexec: unexpected error code"
-#~ msgstr "pkexec: 予期しないエラーコード"
-
-#~ msgid "Connecting to daemon…"
-#~ msgstr "デーモンに接続…"
-
-#, c-format
-#~ msgid "request_handler: case %i not handled"
-#~ msgstr "request_handler: %i は未搭載"
-
-#, c-format
-#~ msgid "Cannot find path for '%s' file"
-#~ msgstr "'%s' ファイルのパスが見つかりません"
-
-#~ msgid "No polkit authentication agent found"
-#~ msgstr "Polkit 認証エージェントが見つかりません"
-
-#~ msgid "Ask password to start daemon in background"
-#~ msgstr "バックグラウンドでデーモンを起動するためにパスワードが必要"
-
-#~ msgid "Settings"
-#~ msgstr "設定"
-
-#~ msgid "BaseFamily"
-#~ msgstr "ベース ファミリー"
-
-#~ msgid ""
-#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-#~ msgstr ""
-#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-
-#~ msgid "BaseModel"
-#~ msgstr "ベース モデル"
-
-#~ msgid ""
-#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-#~ msgstr ""
-#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-
-#~ msgid "EFI Platform Key certificate information"
-#~ msgstr "EFI Platform Key 証明書情報"
-
-#~ msgid ""
-#~ "Identify the physically-labeled socket or board position where the memory "
-#~ "device is located"
-#~ msgstr ""
-#~ "メモリデバイスが配置されている、物理的にラベル付けされたソケットまたはボー"
-#~ "ドの位置を特定する"
-
-#~ msgid ""
-#~ "Identify the physically labeled bank where the memory device is located"
-#~ msgstr ""
-#~ "メモリデバイスが配置されている、物理的にラベル付けされたバンクを特定する"
-
-#~ msgid "User Mode Driver Version"
-#~ msgstr "ユーザー モードのドライバーのバージョン"
-
-#~ msgid "Vulkan Ray Tracing"
-#~ msgstr "Vulkan レイトレーシング"
-
-#~ msgid "Starting GTK GUI…"
-#~ msgstr "GTK GUI の起動…"
-
-#~ msgid "failed to import UI in GtkBuilder"
-#~ msgstr "GtkBuilder での UI のインポートに失敗"
-
-#~ msgid "Window is too small!"
-#~ msgstr "ウィンドウが小さすぎます！"
-
-#~ msgid "Press 'h' to see help."
-#~ msgstr "ヘルプの表示は「h」キーを押す。"
-
-#, c-format
-#~ msgid "Welcome in %s NCurses help!\n"
-#~ msgstr "%sのNCursesヘルプへようこそ\n"
-
-#~ msgid "This help describes how to use this Text-based User Interface."
-#~ msgstr ""
-#~ "このヘルプでは、テキスト ベースのユーザー インターフェイスの使用方法につい"
-#~ "て説明します。"
-
-#~ msgid "Global keys:"
-#~ msgstr "グローバル キー:"
-
-#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
-#~ msgstr "「左」キーまたは「Tab」キーで左タブに切り替えます。"
-
-#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-#~ msgstr "「右」キーまたは「Shift + Tab」キーで右タブに切り替えます。"
-
-#~ msgid "Press 'h' key to see this help."
-#~ msgstr "「h」キーで、ヘルプの表示。"
-
-#~ msgid "Press 'q' key to exit."
-#~ msgstr "「q」キーで、で終了。"
-
-#~ msgid "CPU tab:"
-#~ msgstr "CPU タブ:"
-
-#~ msgid "Press 'next page' key to decrease core type number to monitor."
-#~ msgstr "「PageDown」キーで、モニターするコア タイプの数字を減らします。"
-
-#~ msgid "Press 'previous page' key to increase core type number to monitor."
-#~ msgstr "「PageUp」キーで、モニターするコア タイプの数字を増やします。"
-
-#~ msgid "Press 'down' key to decrease CPU core number to monitor."
-#~ msgstr "「下」キーで、モニターするCPUコアの数字を減らします。"
-
-#~ msgid "Press 'up' key to increase CPU core number to monitor."
-#~ msgstr "「上」キーで、モニターするCPUコアの数字を増やします。"
-
-#~ msgid "Caches tab:"
-#~ msgstr "キャッシュ タブ:"
-
-#~ msgid "Press 'down' key to switch to previous test."
-#~ msgstr "下矢印キーで、前のテストに切り替わります。"
-
-#~ msgid "Press 'up' key to switch to next test."
-#~ msgstr "「上」キーで、次のテストに切り替えます。"
-
-#~ msgid "Bench tab:"
-#~ msgstr "ベンチ タブ:"
-
-#~ msgid "Press 'down' key to decrement benchmark duration."
-#~ msgstr "下矢印キーで、ベンチマーク期間 の減少。"
-
-#~ msgid "Press 'up' key to increment benchmark duration."
-#~ msgstr "上矢印キーで、ベンチマーク期間 の増加。"
-
-#~ msgid "Press 'next page' key to decrement number of threads to use."
-#~ msgstr "「次のページ」キーで、使用するスレッド数の減少。"
-
-#~ msgid "Press 'previous page' key to increment number of threads to use."
-#~ msgstr "「前のページ」キーで、使用するスレッド数の増加。"
-
-#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-#~ msgstr "「s」キーで、素数ベンチマーク（遅く）の始動/停止。"
-
-#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-#~ msgstr "「f」キーで、素数ベンチマーク（早く）の始動/停止。"
-
-#~ msgid "Graphics tab:"
-#~ msgstr "グラフィック タブ:"
-
-#~ msgid "Press 'down' key to switch to previous graphic card."
-#~ msgstr "下矢印キーで、前のグラフィックカードに切り替える。"
-
-#~ msgid "Press 'up' key to switch to next graphic card."
-#~ msgstr "上矢印キーで、次のグラフィックカードに切り替える。"
-
-#~ msgid "Press any key to exit this help."
-#~ msgstr "ヘルプの終了は、任意のキーを押します。"
-
-#~ msgid "Starting NCurses TUI…"
-#~ msgstr "NCurses TUI を開始しています…"
-
-#~ msgid ""
-#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-#~ "environment variable)"
-#~ msgstr ""
-#~ "致命的なエラー: terminfoデータベースが見つかりませんでした（TERMINFO環境変"
-#~ "数を設定してください）"
-
-#, c-format
-#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-#~ msgstr ""
-#~ "ターミナル %s のセットアップに失敗しました（エラー%i）; %sにFalbackします"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "デーモンに接続"
@@ -1426,9 +1656,6 @@ msgstr ""
 #, c-format
 #~ msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 #~ msgstr "現在: PCIe Gen%1dx%d / 最大: Gen%1dx%d"
-
-#~ msgid "failed to retrieve GPU clocks"
-#~ msgstr "GPU クロックの取得に失敗しました"
 
 #, c-format
 #~ msgid "Core #%i"
@@ -1461,10 +1688,6 @@ msgstr ""
 
 #~ msgid "Ignore CPU frequency reported by libcpuid"
 #~ msgstr "libcpuidから取得したCPUクロックを無視します"
-
-#, c-format
-#~ msgid "failed to call wordexp (%i)"
-#~ msgstr "wordexp の取得に失敗 （%i）"
 
 #~ msgid "Press 'home' key to scroll up in a page."
 #~ msgstr "「Home」キーでページを上にスクロールします。"

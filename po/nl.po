@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-13 20:54+0100\n"
+"POT-Creation-Date: 2025-03-15 20:28+0100\n"
 "PO-Revision-Date: 2024-04-18 23:03+0000\n"
 "Last-Translator: Mikachu <micah.sh@proton.me>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -23,13 +23,566 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.5-dev\n"
 
+#: core/bandwidth/libbandwidth.cpp:54
+msgid "Calling bandwidth"
+msgstr "Bandwidth aanroepen"
+
+#: core/bandwidth/main.c:2992
+msgid "(unavailable)"
+msgstr ""
+
+#: core/benchmarks.cpp:92
+msgid "Updating benchmark status"
+msgstr "Benchmark status wordt bijgewerkt"
+
+#: core/benchmarks.cpp:95
+msgid "Active"
+msgstr "Actief"
+
+#: core/benchmarks.cpp:98
+#, c-format
+msgid "(%u hours left)"
+msgstr "(%u uren over)"
+
+#: core/benchmarks.cpp:100
+#, c-format
+msgid "(%u minutes left)"
+msgstr "(%u minuten over)"
+
+#: core/benchmarks.cpp:102
+#, c-format
+msgid "(%u seconds left)"
+msgstr "(%u seconden over)"
+
+#: core/benchmarks.cpp:106 core/benchmarks.cpp:161 core/benchmarks.cpp:162
+msgid "Inactive"
+msgstr "Inactief"
+
+#: core/benchmarks.cpp:109
+#, c-format
+msgid "in %u hours"
+msgstr "in %u uren"
+
+#: core/benchmarks.cpp:111
+#, c-format
+msgid "in %u minutes"
+msgstr "in %u minuten"
+
+#: core/benchmarks.cpp:113
+#, c-format
+msgid "in %u seconds"
+msgstr "in %u seconden"
+
+#: core/benchmarks.cpp:130
+#, c-format
+msgid "Starting benchmark with %u threads"
+msgstr "Benchmark aan het starten met %u threads"
+
+#: core/benchmarks.cpp:153
+msgid "an error occurred while starting benchmark"
+msgstr "er is een fout opgetreden tijdens het starten van de benchmark"
+
+#: core/core.cpp:67
+msgid "Calculating CPU usage"
+msgstr "Bezig met berekenen van CPU-verbruik"
+
+#: core/core.cpp:109
+#, c-format
+msgid "%s (subject) / %s (issuer)"
+msgstr ""
+
+#: core/core.cpp:120
+msgid "Identifying running system"
+msgstr "Lopend systeem wordt geïdentificeerd"
+
+#: core/core.cpp:123
+msgid "failed to identify running system"
+msgstr "Kon het lopende besturingssysteem niet identificeren"
+
+#: core/core.cpp:182
+msgid "Calculating CPU multipliers in fallback mode"
+msgstr "CPU multiplicators in back-up modus berekenen"
+
+#: core/core.cpp:208
+msgid "Retrieving motherboard information in fallback mode"
+msgstr "Moederbord informatie ophalen in back-up modus"
+
+#: core/core.cpp:224
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr "Kon moederbord informatie niet ophalen (back-up modus)"
+
+#: core/core.cpp:267
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr "CPU temperatuur ophalen in back-up modus"
+
+#: core/core.cpp:315
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr "Kon CPU temperatuur niet ophalen (back-up modus)"
+
+#: core/core.cpp:330
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr "CPU spanning ophalen in back-up modus"
+
+#: core/core.cpp:349
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr "Kon CPU spanning niet ophalen (back-up modus)"
+
+#: core/core.cpp:363
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr "CPU frequentie ophalen in back-up modus"
+
+#: core/core.cpp:374
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr "Kon CPU frequentie niet ophalen (back-up modus)"
+
+#: core/dmidecode/dmidecode.c:5785
+#, fuzzy
+#| msgid "unknown"
+msgid "Unknown"
+msgstr "onbekend"
+
+#: core/dmidecode/libdmidecode.cpp:47
+msgid "Calling dmidecode"
+msgstr "Dmidecode aanroepen"
+
+#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#, c-format
+msgid "%s (configured)"
+msgstr "%s (Geconfigureerd)"
+
+#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#, c-format
+msgid "%s (max)"
+msgstr "%s (max)"
+
+#: core/dmidecode/libdmidecode.cpp:101
+#, c-format
+msgid "%s (min)"
+msgstr "%s (min)"
+
+#: core/libcpuid.cpp:83
+#, c-format
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
+msgstr ""
+"Uw cpu is niet opgenomen in de databank. %s - model: %i - ext. model: %i - "
+"ext. familie: %i"
+
+#: core/libcpuid.cpp:127
+#, fuzzy, c-format
+#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+msgid ""
+"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
+"%s"
+msgstr ""
+"Uw CPU aansluiting is niet aanwezig in de database ==> %s, codename: %s"
+
+#: core/libcpuid.cpp:134
+msgid "Finding CPU technology"
+msgstr "Zoeken naar CPU-technologie"
+
+#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
+msgid "unknown"
+msgstr "onbekend"
+
+#: core/libcpuid.cpp:270
+msgid "Calling libcpuid for retrieving static data"
+msgstr "Libcpuid aanroepen om statische data op te halen"
+
+#: core/libcpuid.cpp:280
+#, c-format
+msgid "failed to call libcpuid (%s)"
+msgstr "libcpuid kan niet worden aangeroepen (%s)"
+
+#: core/libcpuid.cpp:409
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr "Libcpuid aanroepen om dynamische data op te halen"
+
+#: core/libcpuid.cpp:426
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr "Libcpuid aanroepen om statische CPU MSR warden op te halen"
+
+#: core/libcpuid.cpp:456
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr "Libcpuid aanroepen om dynamische CPU MSR waardenop te halen"
+
+#: core/libcpuid.cpp:485
+msgid "Finding CPU package in fallback mode"
+msgstr "CPU pakket zoeken in back-up modus"
+
+#: core/libcpuid.cpp:515
+#, c-format
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+msgstr ""
+"Uw CPU aansluiting is niet aanwezig in de database ==> %s, codename: %s"
+
+#: core/libopencl.cpp:56
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+msgstr ""
+"OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_TOPOLGY_AMD(%s) niet"
+
+#: core/libopencl.cpp:71
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+msgstr ""
+"OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_GFXIP_MAJOR_AMD (%s) "
+"niet"
+
+#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr ""
+"OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_MAX_COMPUTE_UNITS "
+"(%s) niet"
+
+#: core/libopencl.cpp:136
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgstr ""
+"OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_PCI_DOMAIN_ID_NV "
+"(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s) niet"
+
+#: core/libopencl.cpp:175
+#, c-format
+msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+msgstr "OpenCL wordt niet ondersteund door uw GPU fabrikant (0x%X)"
+
+#: core/libopencl.cpp:201
+#, c-format
+msgid "failed to get name for device %u (%s)"
+msgstr "Kon niet de naam krijgen voor apparaat %u (%s)"
+
+#: core/libopencl.cpp:209
+#, c-format
+msgid "failed to get version for device %u (%s)"
+msgstr "Kon niet de versie krijgen voor apparaat %u (%s)"
+
+#: core/libopencl.cpp:241
+#, c-format
+msgid "failed to get name for platform %u (%s)"
+msgstr "Kon niet de naam krijgen voor platform %u (%s)"
+
+#: core/libopencl.cpp:249
+#, c-format
+msgid "failed to get version for platform %u (%s)"
+msgstr "Kon niet de versie krijgen voor platform %u (%s)"
+
+#: core/libopencl.cpp:257
+#, c-format
+msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+msgstr "Kon niet het aantal OpenCL apparaten vinden voor platform '%s %s' (%s)"
+
+#: core/libopencl.cpp:257
+msgid "0 device"
+msgstr "0 apparaten"
+
+#: core/libopencl.cpp:266
+#, c-format
+msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+msgstr "Kon niet alle OpenCL apparaten krijgen voor platfrom '%s %s' (%s)"
+
+#: core/libopencl.cpp:283
+msgid "Finding OpenCL API version"
+msgstr "Zoeken naar OpenCL API versie"
+
+#: core/libopencl.cpp:287
+#, c-format
+msgid "There is no platform with OpenCL support (%s)"
+msgstr "Er is geen platform met OpenCL ondersteuning (%s)"
+
+#: core/libopencl.cpp:296
+#, c-format
+msgid "failed to get all OpenCL platforms (%s)"
+msgstr "Kon niet alle OpenCL platformen krijgen (%s)"
+
+#: core/libopencl.cpp:305
+#, c-format
+msgid "Unable to find OpenCL driver for vendor %s"
+msgstr ""
+
+#: core/libopengl.cpp:172
+#, fuzzy
+#| msgid "failed to retrieve GPU clocks"
+msgid "failed to create EGL context"
+msgstr "Kon de GPU klokken niet ophalen"
+
+#: core/libopengl.cpp:183
+#, fuzzy, c-format
+#| msgid "failed to get version for device %u (%s)"
+msgid "failed to destroy EGL context (%s)"
+msgstr "Kon niet de versie krijgen voor apparaat %u (%s)"
+
+#: core/libopengl.cpp:206
+#, fuzzy, c-format
+#| msgid "failed to call libcpuid (%s)"
+msgid "failed to call eglChooseConfig (%s)"
+msgstr "libcpuid kan niet worden aangeroepen (%s)"
+
+#: core/libopengl.cpp:221
+#, fuzzy, c-format
+#| msgid "failed to call libcpuid (%s)"
+msgid "failed to call eglInitialize (%s)"
+msgstr "libcpuid kan niet worden aangeroepen (%s)"
+
+#: core/libopengl.cpp:236
+msgid "EGL has not OpenGL client API"
+msgstr ""
+
+#: core/libopengl.cpp:242
+#, fuzzy, c-format
+#| msgid "failed to call libcpuid (%s)"
+msgid "failed to call eglBindAPI (%s)"
+msgstr "libcpuid kan niet worden aangeroepen (%s)"
+
+#: core/libopengl.cpp:261
+#, fuzzy, c-format
+#| msgid "failed to get version for platform %u (%s)"
+msgid "failed to destroy EGL display (%s)"
+msgstr "Kon niet de versie krijgen voor platform %u (%s)"
+
+#: core/libopengl.cpp:273
+#, fuzzy, c-format
+#| msgid "failed to get all OpenCL platforms (%s)"
+msgid "failed to call getPlatformDisplay (%s)"
+msgstr "Kon niet alle OpenCL platformen krijgen (%s)"
+
+#: core/libopengl.cpp:289
+#, fuzzy
+#| msgid "Finding OpenCL API version"
+msgid "Finding OpenGL API version"
+msgstr "Zoeken naar OpenCL API versie"
+
+#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#, fuzzy, c-format
+#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+msgid "failed to call queryDevices (%s)"
+msgstr "kon vkEnumeratePhysicalDevices niet aanroepen (%s)"
+
+#: core/libopengl.cpp:299
+#, fuzzy
+#| msgid "No available Vulkan devices"
+msgid "No available EGL devices"
+msgstr "Geen beschikbare Vulkan apparaten"
+
+#: core/libopengl.cpp:318
+#, c-format
+msgid "Unable to find OpenGL driver for vendor %s"
+msgstr ""
+
+#: core/libpci.cpp:73
+#, c-format
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
+msgstr ""
+"pci_acces is niet correct geïnitialiseerd: het is een veelvoorkomend "
+"probleem als %s gebouwd is met een lagere libpci versie.\n"
+"Controleer of de libpci %s bibliotheek aanwezig is op uw systeem. Anders, "
+"herbouw alstublieft %s."
+
+#: core/libpci.cpp:117
+#, c-format
+msgid "No kernel driver in use for graphic card at path %s"
+msgstr "Geen kernel-stuurprogramma in gebruik voor grafische kaart op pad %s"
+
+#: core/libpci.cpp:153
+#, c-format
+msgid "Your GPU kernel driver is unknown: %s"
+msgstr "Uw GPU kernel-stuurprogramma is onbekend: %s"
+
+#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#, fuzzy
+#| msgid "failed to call wordexp (%i)"
+msgid "failed to create pipe"
+msgstr "Kon wordexp niet aanroepen (%i)"
+
+#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#, fuzzy
+#| msgid "failed to retrieve GPU clocks"
+msgid "failed to create process"
+msgstr "Kon de GPU klokken niet ophalen"
+
+#: core/libpci.cpp:401
+#, c-format
+msgid "Your GPU vendor is unknown: %s (0x%X)"
+msgstr "Uw GPU fabrikant is onbekend: %s (0x%X)"
+
+#: core/libpci.cpp:424 core/libvulkan.cpp:288
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: core/libpci.cpp:424 core/libvulkan.cpp:288
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: core/libpci.cpp:450
+msgid "Finding devices"
+msgstr "Zoeken naar apparaten"
+
+#: core/libpci.cpp:454
+#, fuzzy
+#| msgid "Skip devices search (wrong permissions on %s device)"
+msgid "Skip devices search (PCI device does not exist)"
+msgstr "Zoeken naar apparaten overslaan (verkeerde rechten op %s device)"
+
+#: core/libpci.cpp:467
+#, c-format
+msgid "Skip devices search (wrong permissions on %s device)"
+msgstr "Zoeken naar apparaten overslaan (verkeerde rechten op %s device)"
+
+#: core/libpci.cpp:504
+msgid "failed to find chipset vendor and model"
+msgstr "Kon niet de chipsetfabrikant en model vinden"
+
+#: core/libpci.cpp:507
+msgid "failed to find graphic card vendor and model"
+msgstr "Kon niet de grafische kaart fabrikant en model vinden"
+
+#: core/libpci.cpp:638
+msgid "Retrieving GPU clocks"
+msgstr "GPU klokken ophalen"
+
+#: core/libpci.cpp:651
+msgid "None"
+msgstr "Geen"
+
+#: core/libpci.cpp:660
+#, c-format
+msgid "DRM path for %s is unknown"
+msgstr "DRM pad voor GPU %s is onbekend"
+
+#: core/libpci.cpp:667
+#, c-format
+msgid "Card number for %s is unknown"
+msgstr "Kaartnummer voor GPU %s is onbekend"
+
+#: core/libpci.cpp:692
+#, c-format
+msgid "PCIe %s (current) / %s (max)"
+msgstr "PCIe %s (huidig) / %s (max)"
+
+#: core/libpci.cpp:807
+#, c-format
+msgid "Driver for %s doesn't report frequencies"
+msgstr "Stuurprogramma voor GPU %s meldt geen frequenties"
+
+#: core/libpci.cpp:828
+#, c-format
+msgid "failed to retrieve all monitoring data for %s"
+msgstr "Kon niet alle monitorgegevens ophalen voor (%s)"
+
+#: core/libsystem.cpp:51 core/libsystem.cpp:80
+msgid "Calling libprocps"
+msgstr "Libprocps aanroepen"
+
+#: core/libsystem.cpp:54
+msgid "unable to get system uptime"
+msgstr "De bedrijfstijd van het systeem kan niet worden bepaald"
+
+#: core/libsystem.cpp:60
+msgid "unable to create meminfo structure"
+msgstr "Meminfo structuur kan niet gemaakt worden"
+
+#: core/libsystem.cpp:106
+msgid "Calling libstatgrab"
+msgstr "Libstatgrab aanroepen"
+
+#: core/libsystem.cpp:154
+#, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr "%i dagen, %i uren, %i minuten, %i seconden"
+
+#: core/libvulkan.cpp:147
+msgid "Finding Vulkan API version"
+msgstr "Zoeken naar Vulkan API versie"
+
+#: core/libvulkan.cpp:163
+#, c-format
+msgid "failed to call vkCreateInstance (%s)"
+msgstr "Kon vkCreateInstance niet aanroepen (%s)"
+
+#: core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr "%s wordt niet ondersteund"
+
+#: core/libvulkan.cpp:173
+#, c-format
+msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+msgstr "kon vkEnumeratePhysicalDevices niet aanroepen (%s)"
+
+#: core/libvulkan.cpp:180
+msgid "No available Vulkan devices"
+msgstr "Geen beschikbare Vulkan apparaten"
+
+#: core/libvulkan.cpp:188
+#, c-format
+msgid "No available physical devices (%s)"
+msgstr "Geen beschikbare fysieke apparaten (%s)"
+
+#: core/libvulkan.cpp:251
+#, c-format
+msgid "Failed to create Vulkan for device %u (%s)"
+msgstr "Kon Vulkan niet aanmaken voor apparaat %u (%s)"
+
+#: core/libvulkan.cpp:255
+#, c-format
+msgid "%s is not supported for device %u, use only deviceID for matching"
+msgstr ""
+"%s is niet ondersteund voor apparaat %u, gebruik alleen deviceID voor "
+"matching"
+
+#: core/libvulkan.cpp:314
+#, c-format
+msgid "Unable to find Vulkan driver for vendor %s"
+msgstr ""
+
+#: daemon/client.cpp:65
+msgid "Starting daemon in background…"
+msgstr "Daemon in de achtergrond aan het starten…"
+
+#: daemon/client.cpp:103
+msgid ""
+"APPDIR environment variable is not set, cannot copy the daemon to the "
+"temporary directory"
+msgstr ""
+
+#: daemon/client.cpp:181
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr "pkexec: autorisatie kon niet verkregen worden (dialoog afgewezen)"
+
+#: daemon/client.cpp:184
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr "pkexec: autorisatie kon niet verkregen worden (niet geautoriseerd)"
+
+#: daemon/client.cpp:187
+msgid "pkexec: command not found"
+msgstr "pkexec: commando niet gevonden"
+
+#: daemon/client.cpp:190
+msgid "pkexec: unexpected error code"
+msgstr "pkexec: onverwachte foutcode"
+
+#: daemon/client.cpp:220
+msgid "Connecting to daemon…"
+msgstr "Verbinden met daemon…"
+
+#: daemon/server.cpp:267
+#, c-format
+msgid "request_handler: case %i not handled"
+msgstr "request_handler: geval %i niet verwerkt"
+
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
 msgstr "CPU"
-
-#: data.cpp:153 data.cpp:364
-msgid "unknown"
-msgstr "onbekend"
 
 #: data.cpp:190
 msgid "P-core"
@@ -199,272 +752,9 @@ msgstr "Licentie"
 msgid "This software is distributed under the terms of %s"
 msgstr "Deze software wordt verspreid onder de voorwaarden van %s"
 
-#: data.cpp:779 main.cpp:177
+#: data.cpp:779 main.cpp:175
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Dit programma komt met ABSOLUUT GEEN GARANTIE"
-
-#: main.cpp:63
-msgid "Start graphical user interface (GUI) (default)"
-msgstr "Grafische Gebruikers Interface (GUI) starten (Standaard)"
-
-#: main.cpp:64
-msgid "Start text-based user interface (TUI)"
-msgstr "Tekstgebaseerde gebruikersinterface (TUI) starten"
-
-#: main.cpp:65
-msgid "Dump all data on standard output and exit"
-msgstr "Alle data dumpen naar de standaard uitvoer en beëindig het programma"
-
-#: main.cpp:66
-msgid "Run embedded command dmidecode and exit"
-msgstr "Voer embedded commando dmidecode uit en beëindig het programma"
-
-#: main.cpp:67
-msgid "Run embedded command bandwidth and exit"
-msgstr "Voer embedded commando bandwidth uit en beëindig het programma"
-
-#: main.cpp:68
-msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-msgstr ""
-"Ingestelde temperatuureenheid (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-
-#: main.cpp:69
-msgid "Set custom time between two refreshes (in seconds)"
-msgstr "Stel aangepaste tijd in tussen twee verversingen (in seconden)"
-
-#: main.cpp:70
-msgid "Set default tab (integer)"
-msgstr "Standaard tab instellen (Geheel getal)"
-
-#: main.cpp:71
-msgid "Select core type to monitor (integer)"
-msgstr "Selecteer een kern om te monitoren (Geheel getal)"
-
-#: main.cpp:72
-msgid "Select CPU core to monitor (integer)"
-msgstr "Selecteer CPU kern om te monitoren (Geheel getal)"
-
-#: main.cpp:73
-msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr ""
-"Stel aangepaste bandbreedte test in voor CPU cache snelheid (Geheel getal)"
-
-#: main.cpp:74
-msgid "Select default memory stick (integer)"
-msgstr "Selecteer standaard geheugenstick (geheel getal)"
-
-#: main.cpp:75
-msgid "Select default graphic card (integer)"
-msgstr "Selecteer standaard grafische kaart (Geheel getal)"
-
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
-msgid "Start and connect to daemon"
-msgstr "Start en verbind met daemon"
-
-#: main.cpp:77
-msgid "Verbose output"
-msgstr "Uitgebreide uitvoer"
-
-#: main.cpp:78
-msgid "Print help and exit"
-msgstr "Druk helptekst af en beëindig het programma"
-
-#: main.cpp:79
-msgid "Print version and exit"
-msgstr "Druk versie af en beëindig het programma"
-
-#: main.cpp:80
-msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr "Druk CPUID waardes af in decimale weergave (standaard is hexadecimaal)"
-
-#: main.cpp:81
-msgid "Disable colored output"
-msgstr "Gekleurde uitvoer uitschakelen"
-
-#: main.cpp:82
-msgid "Print information for debugging"
-msgstr "Druk informatie af voor foutopsporing"
-
-#: main.cpp:83
-msgid "Print required information to paste in an issue"
-msgstr "Druk vereiste informatie af om te plakken in een probleembericht"
-
-#: main.cpp:84
-msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
-msgstr ""
-"Sneltoetsen instellen voor NCurses modus (a[pijlen]|e[macs]|i[omgekeerde-T]|"
-"v[im])"
-
-#: main.cpp:95
-msgid "Add default command line arguments"
-msgstr "Voeg standaard commandoargumenten toe"
-
-#: main.cpp:96
-msgid "Enforce the bus clock"
-msgstr "Forceer busklok"
-
-#: main.cpp:97
-#, fuzzy
-#| msgid ""
-#| "Ignore CPU values reported by libcpuid (comma-separated values among "
-#| "'temp', 'volt' and 'freq')"
-msgid ""
-"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt', 'freq' and 'mult')"
-msgstr ""
-"Negeer CPU-waarden gerapporteerd door libcpuid (door komma's gescheiden "
-"waarden tussen 'temp', 'volt' en 'freq')"
-
-#: main.cpp:98
-msgid "Read CPUID raw data from a given file"
-msgstr "Lees ruwe CPUID data van een gegeven bestand"
-
-#: main.cpp:99
-msgid "Only print a message if CPU is not present in the database"
-msgstr "Druk alleen een bericht af als CPU niet aanwezig is in de database"
-
-#: main.cpp:127
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Gebruik: %s WEERGAVE [OPTIES]\n"
-
-#: main.cpp:128
-msgid "Available DISPLAY:"
-msgstr "Beschikbare WEERGAVE:"
-
-#: main.cpp:136
-msgid "Available OPTIONS:"
-msgstr "Beschikbare OPTIES:"
-
-#: main.cpp:145
-msgid "Influenceable environment variables:"
-msgstr "Aanpasbare omgevingsvariabelen:"
-
-#: main.cpp:176
-msgid "This is free software: you are free to change and redistribute it."
-msgstr ""
-"Dit is vrije software: u bent vrij om het te veranderen en verspreiden."
-
-#: main.cpp:178
-#, c-format
-msgid "See the %s license: <%s>\n"
-msgstr "Zie de %s licentie: %s\n"
-
-#: main.cpp:185
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
-msgid "-- %-11s version: %s"
-msgstr "-- %-9s versie: %s"
-
-#: main.cpp:412
-#, c-format
-msgid ""
-"\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
-msgstr ""
-"\n"
-"Oeps, er ging iets verkeerd! %s heeft het signaal %d (%s) ontvangen en is "
-"gecrasht."
-
-#: main.cpp:414
-#, c-format
-msgid ""
-"\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
-msgstr ""
-"\n"
-"Oeps, er ging iets fout! %s heeft het signaal %d (%s) ontvangen en probeert "
-"te herstellen."
-
-#: main.cpp:438
-msgid "You can open a new issue here, by filling the template as requested:"
-msgstr ""
-"U kunt hier een nieuw probleem openen, door het invullen van het sjabloon "
-"zoals gevraagd:"
-
-#: main.cpp:480
-msgid "an error occurred while setting locale"
-msgstr "Er is een fout opgetreden tijdens het instellen van de locale"
-
-#: options.cpp:166
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgid "Selected tab (%u) is not visible"
-msgstr "Geselecteerde tabblad (%u) is geen geldig getal (%u is het maximum)"
-
-#: options.cpp:171
-#, c-format
-msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr "Geselecteerde tabblad (%u) is geen geldig getal (%u is het maximum)"
-
-#: options.cpp:220
-#, c-format
-msgid ""
-"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
-"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor "
-"deze CPU)"
-
-#: options.cpp:241
-#, c-format
-msgid ""
-"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
-"this system)"
-msgstr ""
-"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor dut "
-"system)"
-
-#: options.cpp:264
-#, c-format
-msgid ""
-"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
-"system)"
-msgstr ""
-"Geselecteerde RAM stick (%u) is geen geldig getal (%u is het maximum voor "
-"dit systeem)"
-
-#: options.cpp:284
-#, c-format
-msgid ""
-"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
-"system)"
-msgstr ""
-"Geselecteerde grafische kaart (%u) is geen geldig getal (%u is het maximum "
-"voor dit systeem)"
-
-#: options.cpp:300
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr "Kon de CPU aansluiting niet veranderen naar kern %u"
-
-#: options.cpp:306
-#, c-format
-msgid ""
-"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-"type of core)"
-msgstr ""
-"Geselecteerde CPU-kern (%u) is geen geldig getal (%u is het maximum voor dit "
-"type kern)"
-
-#: util.cpp:189
-#, c-format
-msgid "cannot find unit in '%s' string at position %i"
-msgstr "kan geen eenheid vinden in string '%s' op positie %i"
-
-#: util.cpp:252
-#, c-format
-msgid "an error occurred while opening file '%s'"
-msgstr "Er trad een fout op tijdens het openen van het bestand '%s'"
-
-#: util.cpp:297
-#, c-format
-msgid "an error occurred while running command '%s'"
-msgstr "Er trad een fout op tijdens het uitvoeren van het commando '%s'"
-
-#: util.cpp:437
-msgid "set_cpu_affinity() not supported on this operating system"
-msgstr "set_cpu_affinity() wordt niet ondersteund op dit besturingssysteem"
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
@@ -744,6 +1034,486 @@ msgstr "Uitvoeren"
 msgid "Duration"
 msgstr "Duur"
 
+#: main.cpp:61
+msgid "Start graphical user interface (GUI) (default)"
+msgstr "Grafische Gebruikers Interface (GUI) starten (Standaard)"
+
+#: main.cpp:62
+msgid "Start text-based user interface (TUI)"
+msgstr "Tekstgebaseerde gebruikersinterface (TUI) starten"
+
+#: main.cpp:63
+msgid "Dump all data on standard output and exit"
+msgstr "Alle data dumpen naar de standaard uitvoer en beëindig het programma"
+
+#: main.cpp:64
+msgid "Run embedded command dmidecode and exit"
+msgstr "Voer embedded commando dmidecode uit en beëindig het programma"
+
+#: main.cpp:65
+msgid "Run embedded command bandwidth and exit"
+msgstr "Voer embedded commando bandwidth uit en beëindig het programma"
+
+#: main.cpp:66
+msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+msgstr ""
+"Ingestelde temperatuureenheid (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+
+#: main.cpp:67
+msgid "Set custom time between two refreshes (in seconds)"
+msgstr "Stel aangepaste tijd in tussen twee verversingen (in seconden)"
+
+#: main.cpp:68
+msgid "Set default tab (integer)"
+msgstr "Standaard tab instellen (Geheel getal)"
+
+#: main.cpp:69
+msgid "Select core type to monitor (integer)"
+msgstr "Selecteer een kern om te monitoren (Geheel getal)"
+
+#: main.cpp:70
+msgid "Select CPU core to monitor (integer)"
+msgstr "Selecteer CPU kern om te monitoren (Geheel getal)"
+
+#: main.cpp:71
+msgid "Set custom bandwidth test for CPU caches speed (integer)"
+msgstr ""
+"Stel aangepaste bandbreedte test in voor CPU cache snelheid (Geheel getal)"
+
+#: main.cpp:72
+msgid "Select default memory stick (integer)"
+msgstr "Selecteer standaard geheugenstick (geheel getal)"
+
+#: main.cpp:73
+msgid "Select default graphic card (integer)"
+msgstr "Selecteer standaard grafische kaart (Geheel getal)"
+
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+msgid "Start and connect to daemon"
+msgstr "Start en verbind met daemon"
+
+#: main.cpp:75
+msgid "Verbose output"
+msgstr "Uitgebreide uitvoer"
+
+#: main.cpp:76
+msgid "Print help and exit"
+msgstr "Druk helptekst af en beëindig het programma"
+
+#: main.cpp:77
+msgid "Print version and exit"
+msgstr "Druk versie af en beëindig het programma"
+
+#: main.cpp:78
+msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgstr "Druk CPUID waardes af in decimale weergave (standaard is hexadecimaal)"
+
+#: main.cpp:79
+msgid "Disable colored output"
+msgstr "Gekleurde uitvoer uitschakelen"
+
+#: main.cpp:80
+msgid "Print information for debugging"
+msgstr "Druk informatie af voor foutopsporing"
+
+#: main.cpp:81
+msgid "Print required information to paste in an issue"
+msgstr "Druk vereiste informatie af om te plakken in een probleembericht"
+
+#: main.cpp:82
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
+msgstr ""
+"Sneltoetsen instellen voor NCurses modus (a[pijlen]|e[macs]|i[omgekeerde-T]|"
+"v[im])"
+
+#: main.cpp:93
+msgid "Add default command line arguments"
+msgstr "Voeg standaard commandoargumenten toe"
+
+#: main.cpp:94
+msgid "Enforce the bus clock"
+msgstr "Forceer busklok"
+
+#: main.cpp:95
+#, fuzzy
+#| msgid ""
+#| "Ignore CPU values reported by libcpuid (comma-separated values among "
+#| "'temp', 'volt' and 'freq')"
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt', 'freq' and 'mult')"
+msgstr ""
+"Negeer CPU-waarden gerapporteerd door libcpuid (door komma's gescheiden "
+"waarden tussen 'temp', 'volt' en 'freq')"
+
+#: main.cpp:96
+msgid "Read CPUID raw data from a given file"
+msgstr "Lees ruwe CPUID data van een gegeven bestand"
+
+#: main.cpp:97
+msgid "Only print a message if CPU is not present in the database"
+msgstr "Druk alleen een bericht af als CPU niet aanwezig is in de database"
+
+#: main.cpp:125
+#, c-format
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr "Gebruik: %s WEERGAVE [OPTIES]\n"
+
+#: main.cpp:126
+msgid "Available DISPLAY:"
+msgstr "Beschikbare WEERGAVE:"
+
+#: main.cpp:134
+msgid "Available OPTIONS:"
+msgstr "Beschikbare OPTIES:"
+
+#: main.cpp:143
+msgid "Influenceable environment variables:"
+msgstr "Aanpasbare omgevingsvariabelen:"
+
+#: main.cpp:174
+msgid "This is free software: you are free to change and redistribute it."
+msgstr ""
+"Dit is vrije software: u bent vrij om het te veranderen en verspreiden."
+
+#: main.cpp:176
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr "Zie de %s licentie: %s\n"
+
+#: main.cpp:183
+#, fuzzy, c-format
+#| msgid "-- %-9s version: %s"
+msgid "-- %-11s version: %s"
+msgstr "-- %-9s versie: %s"
+
+#: main.cpp:410
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+msgstr ""
+"\n"
+"Oeps, er ging iets verkeerd! %s heeft het signaal %d (%s) ontvangen en is "
+"gecrasht."
+
+#: main.cpp:412
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
+"recover."
+msgstr ""
+"\n"
+"Oeps, er ging iets fout! %s heeft het signaal %d (%s) ontvangen en probeert "
+"te herstellen."
+
+#: main.cpp:436
+msgid "You can open a new issue here, by filling the template as requested:"
+msgstr ""
+"U kunt hier een nieuw probleem openen, door het invullen van het sjabloon "
+"zoals gevraagd:"
+
+#: main.cpp:477
+msgid "an error occurred while setting locale"
+msgstr "Er is een fout opgetreden tijdens het instellen van de locale"
+
+#: options.cpp:166
+#, fuzzy, c-format
+#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgid "Selected tab (%u) is not visible"
+msgstr "Geselecteerde tabblad (%u) is geen geldig getal (%u is het maximum)"
+
+#: options.cpp:171
+#, c-format
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr "Geselecteerde tabblad (%u) is geen geldig getal (%u is het maximum)"
+
+#: options.cpp:220
+#, c-format
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
+msgstr ""
+"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor "
+"deze CPU)"
+
+#: options.cpp:241
+#, c-format
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
+msgstr ""
+"Geselecteerde CPU type (%u) is geen geldig getal (%u is het maximum voor dut "
+"system)"
+
+#: options.cpp:264
+#, c-format
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+"Geselecteerde RAM stick (%u) is geen geldig getal (%u is het maximum voor "
+"dit systeem)"
+
+#: options.cpp:284
+#, c-format
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+"Geselecteerde grafische kaart (%u) is geen geldig getal (%u is het maximum "
+"voor dit systeem)"
+
+#: options.cpp:300
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr "Kon de CPU aansluiting niet veranderen naar kern %u"
+
+#: options.cpp:306
+#, c-format
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
+msgstr ""
+"Geselecteerde CPU-kern (%u) is geen geldig getal (%u is het maximum voor dit "
+"type kern)"
+
+#: ui/gtk.cpp:87
+#, c-format
+msgid "Cannot find path for '%s' file"
+msgstr "Kan het pad voor '%s' niet vinden"
+
+#: ui/gtk.cpp:460
+msgid "No polkit authentication agent found"
+msgstr "Geen polkit authenticatieagent gevonden"
+
+#: ui/gtk.cpp:466
+msgid "Ask password to start daemon in background"
+msgstr "Vraag wachtwoord om daemon op de achtergrond te starten"
+
+#: ui/gtk.cpp:470
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ui/gtk.cpp:711
+msgid "BaseFamily"
+msgstr "BaseFamily"
+
+#: ui/gtk.cpp:712
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+"CPU weergave (\"true\") CPU familie(berekend als BaseFamily+ExtendedFamily)"
+
+#: ui/gtk.cpp:713
+msgid "BaseModel"
+msgstr "BaseModel"
+
+#: ui/gtk.cpp:714
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+"CPU weergave (\"true\") model (berekend als (ExtendedModel<<4)+BaseModel)"
+
+#: ui/gtk.cpp:908
+msgid "EFI Platform Key certificate information"
+msgstr ""
+
+#: ui/gtk.cpp:943
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
+msgstr ""
+"Identificeer de fysiek gelabelde socket of kaartpositie waar het "
+"geheugenapparaat zich bevindt"
+
+#: ui/gtk.cpp:944
+msgid "Identify the physically labeled bank where the memory device is located"
+msgstr ""
+"Identificeer de fysiek gelabelde bank waar het geheugenapparaat zich bevindt"
+
+#: ui/gtk.cpp:1149
+msgid "User Mode Driver Version"
+msgstr "Gebruikersmodus Stuurprogramma Versie"
+
+#: ui/gtk.cpp:1163
+msgid "Vulkan Ray Tracing"
+msgstr "Vulkan Ray Tracing"
+
+#: ui/gtk.cpp:1358
+msgid "Starting GTK GUI…"
+msgstr "GTK GUI wordt gestart…"
+
+#: ui/gtk.cpp:1369
+msgid "failed to import UI in GtkBuilder"
+msgstr "Kon UI niet importeren in GtkBuilder"
+
+#: ui/ncurses.cpp:116
+msgid "Window is too small!"
+msgstr "Venster is te klein!"
+
+#: ui/ncurses.cpp:124
+msgid "Press 'h' to see help."
+msgstr "Druk op 'h' voor hulp."
+
+#: ui/ncurses.cpp:237
+#, c-format
+msgid "Welcome in %s NCurses help!\n"
+msgstr "Welkom bij de %s NCurses hulp!\n"
+
+#: ui/ncurses.cpp:238
+msgid "This help describes how to use this Text-based User Interface."
+msgstr ""
+"Deze hulp beschrijft het gebruikt van deze tekstgebaseerde "
+"gebruikersinterface."
+
+#: ui/ncurses.cpp:240
+msgid "Global keys:"
+msgstr "Globale toetsen:"
+
+#: ui/ncurses.cpp:241
+msgid "Press 'left' key or 'tab' key to switch in left tab."
+msgstr ""
+"Druk op de 'linker pijl' of 'tab' toets om naar het linker tab te wisselen."
+
+#: ui/ncurses.cpp:242
+msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+msgstr ""
+"Druk op de 'rechter pijl' of 'shift+tab' toets om naar het rechter tab te "
+"wisselen."
+
+#: ui/ncurses.cpp:243
+msgid "Press 'h' key to see this help."
+msgstr "Druk op de 'h' toets om deze hulp te zien."
+
+#: ui/ncurses.cpp:244
+msgid "Press 'q' key to exit."
+msgstr "Druk op de 'q' toets om af te sluiten."
+
+#: ui/ncurses.cpp:246
+msgid "CPU tab:"
+msgstr "CPU tab:"
+
+#: ui/ncurses.cpp:247
+msgid "Press 'next page' key to decrease core type number to monitor."
+msgstr ""
+"Druk op de \"page down\" toets om het te monitoren kerntypenummer te "
+"verlagen."
+
+#: ui/ncurses.cpp:248
+msgid "Press 'previous page' key to increase core type number to monitor."
+msgstr ""
+"Druk op de \"page up\" toets om het te monitoren kerntypenummer te verhogen."
+
+#: ui/ncurses.cpp:249
+msgid "Press 'down' key to decrease CPU core number to monitor."
+msgstr ""
+"Druk op de \"omlaag\" toets om het te monitoren CPU kernnummer te verlagen."
+
+#: ui/ncurses.cpp:250
+msgid "Press 'up' key to increase CPU core number to monitor."
+msgstr ""
+"Druk op de \"omhoog\" toets om het te monitoren CPU kernnummer te verhogen."
+
+#: ui/ncurses.cpp:252
+msgid "Caches tab:"
+msgstr "Caches tab:"
+
+#: ui/ncurses.cpp:253
+msgid "Press 'down' key to switch to previous test."
+msgstr "Druk op de \"omlaag\" toets om te wisselen naar de vorige test."
+
+#: ui/ncurses.cpp:254
+msgid "Press 'up' key to switch to next test."
+msgstr "Druk op de \"omhoog\" toets om te wisselen naar de volgende test."
+
+#: ui/ncurses.cpp:256
+msgid "Bench tab:"
+msgstr "Bench tab:"
+
+#: ui/ncurses.cpp:257
+msgid "Press 'down' key to decrement benchmark duration."
+msgstr "Druk op de \"omlaag\" toets om de benchmark duur te verlagen."
+
+#: ui/ncurses.cpp:258
+msgid "Press 'up' key to increment benchmark duration."
+msgstr "Druk op de \"omhoog\" toets om de benchmark duur te verhogen."
+
+#: ui/ncurses.cpp:259
+msgid "Press 'next page' key to decrement number of threads to use."
+msgstr ""
+"Druk op de \"page down\" toets om het aantal te gebruiken threads te "
+"verlagen."
+
+#: ui/ncurses.cpp:260
+msgid "Press 'previous page' key to increment number of threads to use."
+msgstr ""
+"Druk op de \"page up\" toets om het aantal te gebruiken threads te verhogen."
+
+#: ui/ncurses.cpp:261
+msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+msgstr ""
+"Druk op de \"s\" toets om de priemgetallen (langzaam) benchmark te starten/"
+"stoppen."
+
+#: ui/ncurses.cpp:262
+msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+msgstr ""
+"Druk op de \"f\" toets om de priemgetallen (snel) benchmark te starten/"
+"stoppen."
+
+#: ui/ncurses.cpp:264
+msgid "Graphics tab:"
+msgstr "Grafisch tab:"
+
+#: ui/ncurses.cpp:265
+msgid "Press 'down' key to switch to previous graphic card."
+msgstr ""
+"Druk op de \"omlaag\" toets om te wisselen naar de vorige grafische kaart."
+
+#: ui/ncurses.cpp:266
+msgid "Press 'up' key to switch to next graphic card."
+msgstr ""
+"Druk op de \"omhoog\" toets om te wisselen naar de volgende grafische kaart."
+
+#: ui/ncurses.cpp:268
+msgid "Press any key to exit this help."
+msgstr "Druk op een toets om deze hulp af te sluiten."
+
+#: ui/ncurses.cpp:676
+msgid "Starting NCurses TUI…"
+msgstr "NCurses TUI wordt gestart…"
+
+#: ui/ncurses.cpp:685
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
+msgstr ""
+"FATALE FOUT: terminfo database kon niet gevonden worden (probeer de "
+"omgevingsvariabele TERMINFO in te stellen)"
+
+#: ui/ncurses.cpp:690
+#, c-format
+msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+msgstr "Kon %s terminal (Fout=%i) niet instellen; Terugvallen naar %s"
+
+#: util.cpp:189
+#, c-format
+msgid "cannot find unit in '%s' string at position %i"
+msgstr "kan geen eenheid vinden in string '%s' op positie %i"
+
+#: util.cpp:276
+#, c-format
+msgid "an error occurred while opening file '%s'"
+msgstr "Er trad een fout op tijdens het openen van het bestand '%s'"
+
+#: util.cpp:321
+#, c-format
+msgid "an error occurred while running command '%s'"
+msgstr "Er trad een fout op tijdens het uitvoeren van het commando '%s'"
+
+#: util.cpp:461
+msgid "set_cpu_affinity() not supported on this operating system"
+msgstr "set_cpu_affinity() wordt niet ondersteund op dit besturingssysteem"
+
 #: util.hpp:77
 msgid "bytes"
 msgstr "bytes"
@@ -884,86 +1654,9 @@ msgstr ""
 "%s is een Gratis software die informatie\n"
 "over CPU, moederbord en meer verzameld."
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
-
-#, c-format
-#~ msgid ""
-#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
-#~ "%i, ext. family: %i"
-#~ msgstr ""
-#~ "Uw cpu is niet opgenomen in de databank. %s - model: %i - ext. model: %i "
-#~ "- ext. familie: %i"
-
-#, fuzzy, c-format
-#~| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-#~ msgid ""
-#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
-#~ "codename: %s"
-#~ msgstr ""
-#~ "Uw CPU aansluiting is niet aanwezig in de database ==> %s, codename: %s"
-
-#~ msgid "Finding CPU technology"
-#~ msgstr "Zoeken naar CPU-technologie"
-
-#~ msgid "Calling libcpuid for retrieving static data"
-#~ msgstr "Libcpuid aanroepen om statische data op te halen"
-
-#, c-format
-#~ msgid "failed to call libcpuid (%s)"
-#~ msgstr "libcpuid kan niet worden aangeroepen (%s)"
-
-#~ msgid "Calling libcpuid for retrieving dynamic data"
-#~ msgstr "Libcpuid aanroepen om dynamische data op te halen"
-
-#~ msgid "Calling libcpuid for retrieving CPU MSR static values"
-#~ msgstr "Libcpuid aanroepen om statische CPU MSR warden op te halen"
-
-#~ msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-#~ msgstr "Libcpuid aanroepen om dynamische CPU MSR waardenop te halen"
-
-#~ msgid "Calling dmidecode"
-#~ msgstr "Dmidecode aanroepen"
-
-#, c-format
-#~ msgid "%s (configured)"
-#~ msgstr "%s (Geconfigureerd)"
-
-#, c-format
-#~ msgid "%s (max)"
-#~ msgstr "%s (max)"
-
-#, c-format
-#~ msgid "%s (min)"
-#~ msgstr "%s (min)"
-
-#~ msgid "Calculating CPU usage"
-#~ msgstr "Bezig met berekenen van CPU-verbruik"
-
-#~ msgid "Calling bandwidth"
-#~ msgstr "Bandwidth aanroepen"
-
-#, c-format
-#~ msgid ""
-#~ "pci_access is not properly initialized: it is a common issue when %s was "
-#~ "built with a lower libpci version.\n"
-#~ "Check that libpci %s library is present on your system. Otherwise, please "
-#~ "rebuild %s."
-#~ msgstr ""
-#~ "pci_acces is niet correct geïnitialiseerd: het is een veelvoorkomend "
-#~ "probleem als %s gebouwd is met een lagere libpci versie.\n"
-#~ "Controleer of de libpci %s bibliotheek aanwezig is op uw systeem. Anders, "
-#~ "herbouw alstublieft %s."
-
-#, c-format
-#~ msgid "No kernel driver in use for graphic card at path %s"
-#~ msgstr ""
-#~ "Geen kernel-stuurprogramma in gebruik voor grafische kaart op pad %s"
-
-#, c-format
-#~ msgid "Your GPU kernel driver is unknown: %s"
-#~ msgstr "Uw GPU kernel-stuurprogramma is onbekend: %s"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
@@ -972,463 +1665,6 @@ msgstr ""
 #, c-format
 #~ msgid "failed to call GLFW (%i): %s"
 #~ msgstr "Kon GLFW niet aanroepen (%i): %s"
-
-#~ msgid "Finding Vulkan API version"
-#~ msgstr "Zoeken naar Vulkan API versie"
-
-#, c-format
-#~ msgid "failed to call vkCreateInstance (%s)"
-#~ msgstr "Kon vkCreateInstance niet aanroepen (%s)"
-
-#, c-format
-#~ msgid "%s is not supported"
-#~ msgstr "%s wordt niet ondersteund"
-
-#, c-format
-#~ msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-#~ msgstr "kon vkEnumeratePhysicalDevices niet aanroepen (%s)"
-
-#~ msgid "No available Vulkan devices"
-#~ msgstr "Geen beschikbare Vulkan apparaten"
-
-#, c-format
-#~ msgid "No available physical devices (%s)"
-#~ msgstr "Geen beschikbare fysieke apparaten (%s)"
-
-#, c-format
-#~ msgid "Failed to create Vulkan for device %u (%s)"
-#~ msgstr "Kon Vulkan niet aanmaken voor apparaat %u (%s)"
-
-#, c-format
-#~ msgid "%s is not supported for device %u, use only deviceID for matching"
-#~ msgstr ""
-#~ "%s is niet ondersteund voor apparaat %u, gebruik alleen deviceID voor "
-#~ "matching"
-
-#~ msgid "Enabled"
-#~ msgstr "Ingeschakeld"
-
-#~ msgid "Disabled"
-#~ msgstr "Uitgeschakeld"
-
-#~ msgid "Finding OpenCL API version"
-#~ msgstr "Zoeken naar OpenCL API versie"
-
-#, c-format
-#~ msgid "There is no platform with OpenCL support (%s)"
-#~ msgstr "Er is geen platform met OpenCL ondersteuning (%s)"
-
-#, c-format
-#~ msgid "failed to get all OpenCL platforms (%s)"
-#~ msgstr "Kon niet alle OpenCL platformen krijgen (%s)"
-
-#, c-format
-#~ msgid "failed to get name for platform %u (%s)"
-#~ msgstr "Kon niet de naam krijgen voor platform %u (%s)"
-
-#, c-format
-#~ msgid "failed to get version for platform %u (%s)"
-#~ msgstr "Kon niet de versie krijgen voor platform %u (%s)"
-
-#, c-format
-#~ msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
-#~ msgstr ""
-#~ "Kon niet het aantal OpenCL apparaten vinden voor platform '%s %s' (%s)"
-
-#~ msgid "0 device"
-#~ msgstr "0 apparaten"
-
-#, c-format
-#~ msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
-#~ msgstr "Kon niet alle OpenCL apparaten krijgen voor platfrom '%s %s' (%s)"
-
-#, c-format
-#~ msgid "failed to get name for device %u (%s)"
-#~ msgstr "Kon niet de naam krijgen voor apparaat %u (%s)"
-
-#, c-format
-#~ msgid "failed to get version for device %u (%s)"
-#~ msgstr "Kon niet de versie krijgen voor apparaat %u (%s)"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-#~ msgstr ""
-#~ "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_TOPOLGY_AMD(%s) "
-#~ "niet"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
-#~ msgstr ""
-#~ "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_GFXIP_MAJOR_AMD "
-#~ "(%s) niet"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS "
-#~ "(%s)"
-#~ msgstr ""
-#~ "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_MAX_COMPUTE_UNITS "
-#~ "(%s) niet"
-
-#, c-format
-#~ msgid ""
-#~ "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV "
-#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
-#~ msgstr ""
-#~ "OpenCL stuurprogramma voor '%s%s' ondersteunt CL_DEVICE_PCI_DOMAIN_ID_NV "
-#~ "(%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s) niet"
-
-#, c-format
-#~ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-#~ msgstr "OpenCL wordt niet ondersteund door uw GPU fabrikant (0x%X)"
-
-#~ msgid "Finding devices"
-#~ msgstr "Zoeken naar apparaten"
-
-#, fuzzy
-#~| msgid "Skip devices search (wrong permissions on %s device)"
-#~ msgid "Skip devices search (PCI device does not exist)"
-#~ msgstr "Zoeken naar apparaten overslaan (verkeerde rechten op %s device)"
-
-#, c-format
-#~ msgid "Skip devices search (wrong permissions on %s device)"
-#~ msgstr "Zoeken naar apparaten overslaan (verkeerde rechten op %s device)"
-
-#, c-format
-#~ msgid "Your GPU vendor is unknown: %s (0x%X)"
-#~ msgstr "Uw GPU fabrikant is onbekend: %s (0x%X)"
-
-#~ msgid "failed to find chipset vendor and model"
-#~ msgstr "Kon niet de chipsetfabrikant en model vinden"
-
-#~ msgid "failed to find graphic card vendor and model"
-#~ msgstr "Kon niet de grafische kaart fabrikant en model vinden"
-
-#~ msgid "Retrieving GPU clocks"
-#~ msgstr "GPU klokken ophalen"
-
-#~ msgid "None"
-#~ msgstr "Geen"
-
-#, c-format
-#~ msgid "DRM path for %s is unknown"
-#~ msgstr "DRM pad voor GPU %s is onbekend"
-
-#, c-format
-#~ msgid "Card number for %s is unknown"
-#~ msgstr "Kaartnummer voor GPU %s is onbekend"
-
-#, c-format
-#~ msgid "PCIe %s (current) / %s (max)"
-#~ msgstr "PCIe %s (huidig) / %s (max)"
-
-#, c-format
-#~ msgid "Driver for %s doesn't report frequencies"
-#~ msgstr "Stuurprogramma voor GPU %s meldt geen frequenties"
-
-#, c-format
-#~ msgid "failed to retrieve all monitoring data for %s"
-#~ msgstr "Kon niet alle monitorgegevens ophalen voor (%s)"
-
-#~ msgid "Identifying running system"
-#~ msgstr "Lopend systeem wordt geïdentificeerd"
-
-#~ msgid "failed to identify running system"
-#~ msgstr "Kon het lopende besturingssysteem niet identificeren"
-
-#~ msgid "Calling libprocps"
-#~ msgstr "Libprocps aanroepen"
-
-#~ msgid "unable to get system uptime"
-#~ msgstr "De bedrijfstijd van het systeem kan niet worden bepaald"
-
-#~ msgid "unable to create meminfo structure"
-#~ msgstr "Meminfo structuur kan niet gemaakt worden"
-
-#~ msgid "Calling libstatgrab"
-#~ msgstr "Libstatgrab aanroepen"
-
-#, c-format
-#~ msgid "%i days, %i hours, %i minutes, %i seconds"
-#~ msgstr "%i dagen, %i uren, %i minuten, %i seconden"
-
-#~ msgid "Updating benchmark status"
-#~ msgstr "Benchmark status wordt bijgewerkt"
-
-#~ msgid "Active"
-#~ msgstr "Actief"
-
-#, c-format
-#~ msgid "(%u hours left)"
-#~ msgstr "(%u uren over)"
-
-#, c-format
-#~ msgid "(%u minutes left)"
-#~ msgstr "(%u minuten over)"
-
-#, c-format
-#~ msgid "(%u seconds left)"
-#~ msgstr "(%u seconden over)"
-
-#~ msgid "Inactive"
-#~ msgstr "Inactief"
-
-#, c-format
-#~ msgid "in %u hours"
-#~ msgstr "in %u uren"
-
-#, c-format
-#~ msgid "in %u minutes"
-#~ msgstr "in %u minuten"
-
-#, c-format
-#~ msgid "in %u seconds"
-#~ msgstr "in %u seconden"
-
-#, c-format
-#~ msgid "Starting benchmark with %u threads"
-#~ msgstr "Benchmark aan het starten met %u threads"
-
-#~ msgid "an error occurred while starting benchmark"
-#~ msgstr "er is een fout opgetreden tijdens het starten van de benchmark"
-
-#~ msgid "Finding CPU package in fallback mode"
-#~ msgstr "CPU pakket zoeken in back-up modus"
-
-#, c-format
-#~ msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-#~ msgstr ""
-#~ "Uw CPU aansluiting is niet aanwezig in de database ==> %s, codename: %s"
-
-#~ msgid "Calculating CPU multipliers in fallback mode"
-#~ msgstr "CPU multiplicators in back-up modus berekenen"
-
-#~ msgid "Retrieving motherboard information in fallback mode"
-#~ msgstr "Moederbord informatie ophalen in back-up modus"
-
-#~ msgid "failed to retrieve motherboard information (fallback mode)"
-#~ msgstr "Kon moederbord informatie niet ophalen (back-up modus)"
-
-#~ msgid "Retrieving CPU temperature in fallback mode"
-#~ msgstr "CPU temperatuur ophalen in back-up modus"
-
-#~ msgid "failed to retrieve CPU temperature (fallback mode)"
-#~ msgstr "Kon CPU temperatuur niet ophalen (back-up modus)"
-
-#~ msgid "Retrieving CPU voltage in fallback mode"
-#~ msgstr "CPU spanning ophalen in back-up modus"
-
-#~ msgid "failed to retrieve CPU voltage (fallback mode)"
-#~ msgstr "Kon CPU spanning niet ophalen (back-up modus)"
-
-#~ msgid "Retrieving CPU frequency in fallback mode"
-#~ msgstr "CPU frequentie ophalen in back-up modus"
-
-#~ msgid "failed to retrieve CPU frequency (fallback mode)"
-#~ msgstr "Kon CPU frequentie niet ophalen (back-up modus)"
-
-#~ msgid "Starting daemon in background…"
-#~ msgstr "Daemon in de achtergrond aan het starten…"
-
-#~ msgid "pkexec: authorization could not be obtained (dialog dismissed)"
-#~ msgstr "pkexec: autorisatie kon niet verkregen worden (dialoog afgewezen)"
-
-#~ msgid "pkexec: authorization could not be obtained (not authorized)"
-#~ msgstr "pkexec: autorisatie kon niet verkregen worden (niet geautoriseerd)"
-
-#~ msgid "pkexec: command not found"
-#~ msgstr "pkexec: commando niet gevonden"
-
-#~ msgid "pkexec: unexpected error code"
-#~ msgstr "pkexec: onverwachte foutcode"
-
-#~ msgid "Connecting to daemon…"
-#~ msgstr "Verbinden met daemon…"
-
-#, c-format
-#~ msgid "request_handler: case %i not handled"
-#~ msgstr "request_handler: geval %i niet verwerkt"
-
-#, c-format
-#~ msgid "Cannot find path for '%s' file"
-#~ msgstr "Kan het pad voor '%s' niet vinden"
-
-#~ msgid "No polkit authentication agent found"
-#~ msgstr "Geen polkit authenticatieagent gevonden"
-
-#~ msgid "Ask password to start daemon in background"
-#~ msgstr "Vraag wachtwoord om daemon op de achtergrond te starten"
-
-#~ msgid "Settings"
-#~ msgstr "Instellingen"
-
-#~ msgid "BaseFamily"
-#~ msgstr "BaseFamily"
-
-#~ msgid ""
-#~ "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
-#~ msgstr ""
-#~ "CPU weergave (\"true\") CPU familie(berekend als "
-#~ "BaseFamily+ExtendedFamily)"
-
-#~ msgid "BaseModel"
-#~ msgstr "BaseModel"
-
-#~ msgid ""
-#~ "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
-#~ msgstr ""
-#~ "CPU weergave (\"true\") model (berekend als (ExtendedModel<<4)+BaseModel)"
-
-#~ msgid ""
-#~ "Identify the physically-labeled socket or board position where the memory "
-#~ "device is located"
-#~ msgstr ""
-#~ "Identificeer de fysiek gelabelde socket of kaartpositie waar het "
-#~ "geheugenapparaat zich bevindt"
-
-#~ msgid ""
-#~ "Identify the physically labeled bank where the memory device is located"
-#~ msgstr ""
-#~ "Identificeer de fysiek gelabelde bank waar het geheugenapparaat zich "
-#~ "bevindt"
-
-#~ msgid "User Mode Driver Version"
-#~ msgstr "Gebruikersmodus Stuurprogramma Versie"
-
-#~ msgid "Vulkan Ray Tracing"
-#~ msgstr "Vulkan Ray Tracing"
-
-#~ msgid "Starting GTK GUI…"
-#~ msgstr "GTK GUI wordt gestart…"
-
-#~ msgid "failed to import UI in GtkBuilder"
-#~ msgstr "Kon UI niet importeren in GtkBuilder"
-
-#~ msgid "Window is too small!"
-#~ msgstr "Venster is te klein!"
-
-#~ msgid "Press 'h' to see help."
-#~ msgstr "Druk op 'h' voor hulp."
-
-#, c-format
-#~ msgid "Welcome in %s NCurses help!\n"
-#~ msgstr "Welkom bij de %s NCurses hulp!\n"
-
-#~ msgid "This help describes how to use this Text-based User Interface."
-#~ msgstr ""
-#~ "Deze hulp beschrijft het gebruikt van deze tekstgebaseerde "
-#~ "gebruikersinterface."
-
-#~ msgid "Global keys:"
-#~ msgstr "Globale toetsen:"
-
-#~ msgid "Press 'left' key or 'tab' key to switch in left tab."
-#~ msgstr ""
-#~ "Druk op de 'linker pijl' of 'tab' toets om naar het linker tab te "
-#~ "wisselen."
-
-#~ msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
-#~ msgstr ""
-#~ "Druk op de 'rechter pijl' of 'shift+tab' toets om naar het rechter tab te "
-#~ "wisselen."
-
-#~ msgid "Press 'h' key to see this help."
-#~ msgstr "Druk op de 'h' toets om deze hulp te zien."
-
-#~ msgid "Press 'q' key to exit."
-#~ msgstr "Druk op de 'q' toets om af te sluiten."
-
-#~ msgid "CPU tab:"
-#~ msgstr "CPU tab:"
-
-#~ msgid "Press 'next page' key to decrease core type number to monitor."
-#~ msgstr ""
-#~ "Druk op de \"page down\" toets om het te monitoren kerntypenummer te "
-#~ "verlagen."
-
-#~ msgid "Press 'previous page' key to increase core type number to monitor."
-#~ msgstr ""
-#~ "Druk op de \"page up\" toets om het te monitoren kerntypenummer te "
-#~ "verhogen."
-
-#~ msgid "Press 'down' key to decrease CPU core number to monitor."
-#~ msgstr ""
-#~ "Druk op de \"omlaag\" toets om het te monitoren CPU kernnummer te "
-#~ "verlagen."
-
-#~ msgid "Press 'up' key to increase CPU core number to monitor."
-#~ msgstr ""
-#~ "Druk op de \"omhoog\" toets om het te monitoren CPU kernnummer te "
-#~ "verhogen."
-
-#~ msgid "Caches tab:"
-#~ msgstr "Caches tab:"
-
-#~ msgid "Press 'down' key to switch to previous test."
-#~ msgstr "Druk op de \"omlaag\" toets om te wisselen naar de vorige test."
-
-#~ msgid "Press 'up' key to switch to next test."
-#~ msgstr "Druk op de \"omhoog\" toets om te wisselen naar de volgende test."
-
-#~ msgid "Bench tab:"
-#~ msgstr "Bench tab:"
-
-#~ msgid "Press 'down' key to decrement benchmark duration."
-#~ msgstr "Druk op de \"omlaag\" toets om de benchmark duur te verlagen."
-
-#~ msgid "Press 'up' key to increment benchmark duration."
-#~ msgstr "Druk op de \"omhoog\" toets om de benchmark duur te verhogen."
-
-#~ msgid "Press 'next page' key to decrement number of threads to use."
-#~ msgstr ""
-#~ "Druk op de \"page down\" toets om het aantal te gebruiken threads te "
-#~ "verlagen."
-
-#~ msgid "Press 'previous page' key to increment number of threads to use."
-#~ msgstr ""
-#~ "Druk op de \"page up\" toets om het aantal te gebruiken threads te "
-#~ "verhogen."
-
-#~ msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-#~ msgstr ""
-#~ "Druk op de \"s\" toets om de priemgetallen (langzaam) benchmark te "
-#~ "starten/stoppen."
-
-#~ msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-#~ msgstr ""
-#~ "Druk op de \"f\" toets om de priemgetallen (snel) benchmark te starten/"
-#~ "stoppen."
-
-#~ msgid "Graphics tab:"
-#~ msgstr "Grafisch tab:"
-
-#~ msgid "Press 'down' key to switch to previous graphic card."
-#~ msgstr ""
-#~ "Druk op de \"omlaag\" toets om te wisselen naar de vorige grafische kaart."
-
-#~ msgid "Press 'up' key to switch to next graphic card."
-#~ msgstr ""
-#~ "Druk op de \"omhoog\" toets om te wisselen naar de volgende grafische "
-#~ "kaart."
-
-#~ msgid "Press any key to exit this help."
-#~ msgstr "Druk op een toets om deze hulp af te sluiten."
-
-#~ msgid "Starting NCurses TUI…"
-#~ msgstr "NCurses TUI wordt gestart…"
-
-#~ msgid ""
-#~ "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
-#~ "environment variable)"
-#~ msgstr ""
-#~ "FATALE FOUT: terminfo database kon niet gevonden worden (probeer de "
-#~ "omgevingsvariabele TERMINFO in te stellen)"
-
-#, c-format
-#~ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-#~ msgstr "Kon %s terminal (Fout=%i) niet instellen; Terugvallen naar %s"
 
 #~ msgid "Connected to daemon"
 #~ msgstr "Verbonden met daemon"
@@ -1445,9 +1681,6 @@ msgstr ""
 #, c-format
 #~ msgid "Current: PCIe Gen%1dx%d / Max: Gen%1dx%d"
 #~ msgstr "Huidig: PCIe Gen%1dx%d / Max: Gen%1dx%d"
-
-#~ msgid "failed to retrieve GPU clocks"
-#~ msgstr "Kon de GPU klokken niet ophalen"
 
 #, c-format
 #~ msgid "Core #%i"
@@ -1480,10 +1713,6 @@ msgstr ""
 
 #~ msgid "Ignore CPU frequency reported by libcpuid"
 #~ msgstr "Negeer gerapporteerde CPU frequentie van libcpuid"
-
-#, c-format
-#~ msgid "failed to call wordexp (%i)"
-#~ msgstr "Kon wordexp niet aanroepen (%i)"
 
 #~ msgid "Press 'home' key to scroll up in a page."
 #~ msgstr "Druk op de 'home' toets om omhoog te scrollen op een pagina."

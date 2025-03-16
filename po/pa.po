@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-13 20:54+0100\n"
+"POT-Creation-Date: 2025-03-15 20:28+0100\n"
 "PO-Revision-Date: 2020-07-05 01:41+0000\n"
 "Last-Translator: Aman ALam <alam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <https://hosted.weblate.org/projects/cpu-x/"
@@ -19,12 +19,526 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.2-dev\n"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
-msgid "CPU"
+#: core/bandwidth/libbandwidth.cpp:54
+msgid "Calling bandwidth"
 msgstr ""
 
-#: data.cpp:153 data.cpp:364
+#: core/bandwidth/main.c:2992
+msgid "(unavailable)"
+msgstr ""
+
+#: core/benchmarks.cpp:92
+msgid "Updating benchmark status"
+msgstr ""
+
+#: core/benchmarks.cpp:95
+msgid "Active"
+msgstr ""
+
+#: core/benchmarks.cpp:98
+#, c-format
+msgid "(%u hours left)"
+msgstr ""
+
+#: core/benchmarks.cpp:100
+#, c-format
+msgid "(%u minutes left)"
+msgstr ""
+
+#: core/benchmarks.cpp:102
+#, c-format
+msgid "(%u seconds left)"
+msgstr ""
+
+#: core/benchmarks.cpp:106 core/benchmarks.cpp:161 core/benchmarks.cpp:162
+msgid "Inactive"
+msgstr ""
+
+#: core/benchmarks.cpp:109
+#, c-format
+msgid "in %u hours"
+msgstr ""
+
+#: core/benchmarks.cpp:111
+#, c-format
+msgid "in %u minutes"
+msgstr ""
+
+#: core/benchmarks.cpp:113
+#, c-format
+msgid "in %u seconds"
+msgstr ""
+
+#: core/benchmarks.cpp:130
+#, c-format
+msgid "Starting benchmark with %u threads"
+msgstr ""
+
+#: core/benchmarks.cpp:153
+msgid "an error occurred while starting benchmark"
+msgstr ""
+
+#: core/core.cpp:67
+msgid "Calculating CPU usage"
+msgstr ""
+
+#: core/core.cpp:109
+#, c-format
+msgid "%s (subject) / %s (issuer)"
+msgstr ""
+
+#: core/core.cpp:120
+msgid "Identifying running system"
+msgstr ""
+
+#: core/core.cpp:123
+msgid "failed to identify running system"
+msgstr ""
+
+#: core/core.cpp:182
+msgid "Calculating CPU multipliers in fallback mode"
+msgstr ""
+
+#: core/core.cpp:208
+msgid "Retrieving motherboard information in fallback mode"
+msgstr ""
+
+#: core/core.cpp:224
+msgid "failed to retrieve motherboard information (fallback mode)"
+msgstr ""
+
+#: core/core.cpp:267
+msgid "Retrieving CPU temperature in fallback mode"
+msgstr ""
+
+#: core/core.cpp:315
+msgid "failed to retrieve CPU temperature (fallback mode)"
+msgstr ""
+
+#: core/core.cpp:330
+msgid "Retrieving CPU voltage in fallback mode"
+msgstr ""
+
+#: core/core.cpp:349
+msgid "failed to retrieve CPU voltage (fallback mode)"
+msgstr ""
+
+#: core/core.cpp:363
+msgid "Retrieving CPU frequency in fallback mode"
+msgstr ""
+
+#: core/core.cpp:374
+msgid "failed to retrieve CPU frequency (fallback mode)"
+msgstr ""
+
+#: core/dmidecode/dmidecode.c:5785
+msgid "Unknown"
+msgstr ""
+
+#: core/dmidecode/libdmidecode.cpp:47
+msgid "Calling dmidecode"
+msgstr ""
+
+#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#, c-format
+msgid "%s (configured)"
+msgstr ""
+
+#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#, c-format
+msgid "%s (max)"
+msgstr ""
+
+#: core/dmidecode/libdmidecode.cpp:101
+#, c-format
+msgid "%s (min)"
+msgstr ""
+
+#: core/libcpuid.cpp:83
+#, c-format
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
+msgstr ""
+
+#: core/libcpuid.cpp:127
+#, c-format
+msgid ""
+"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
+"%s"
+msgstr ""
+
+#: core/libcpuid.cpp:134
+msgid "Finding CPU technology"
+msgstr "CPU ਤਕਨਾਲੋਜੀ ਲੱਭੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
 msgid "unknown"
+msgstr ""
+
+#: core/libcpuid.cpp:270
+msgid "Calling libcpuid for retrieving static data"
+msgstr ""
+
+#: core/libcpuid.cpp:280
+#, c-format
+msgid "failed to call libcpuid (%s)"
+msgstr ""
+
+#: core/libcpuid.cpp:409
+msgid "Calling libcpuid for retrieving dynamic data"
+msgstr ""
+
+#: core/libcpuid.cpp:426
+msgid "Calling libcpuid for retrieving CPU MSR static values"
+msgstr ""
+
+#: core/libcpuid.cpp:456
+msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
+msgstr ""
+
+#: core/libcpuid.cpp:485
+msgid "Finding CPU package in fallback mode"
+msgstr ""
+
+#: core/libcpuid.cpp:515
+#, c-format
+msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+msgstr ""
+
+#: core/libopencl.cpp:56
+#, c-format
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:71
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:136
+#, c-format
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:175
+#, c-format
+msgid "OpenCL is not supported with your GPU vendor (0x%X)"
+msgstr ""
+
+#: core/libopencl.cpp:201
+#, c-format
+msgid "failed to get name for device %u (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:209
+#, c-format
+msgid "failed to get version for device %u (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:241
+#, c-format
+msgid "failed to get name for platform %u (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:249
+#, c-format
+msgid "failed to get version for platform %u (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:257
+#, c-format
+msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:257
+msgid "0 device"
+msgstr ""
+
+#: core/libopencl.cpp:266
+#, c-format
+msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:283
+msgid "Finding OpenCL API version"
+msgstr ""
+
+#: core/libopencl.cpp:287
+#, c-format
+msgid "There is no platform with OpenCL support (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:296
+#, c-format
+msgid "failed to get all OpenCL platforms (%s)"
+msgstr ""
+
+#: core/libopencl.cpp:305
+#, c-format
+msgid "Unable to find OpenCL driver for vendor %s"
+msgstr ""
+
+#: core/libopengl.cpp:172
+msgid "failed to create EGL context"
+msgstr ""
+
+#: core/libopengl.cpp:183
+#, c-format
+msgid "failed to destroy EGL context (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:206
+#, c-format
+msgid "failed to call eglChooseConfig (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:221
+#, c-format
+msgid "failed to call eglInitialize (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:236
+msgid "EGL has not OpenGL client API"
+msgstr ""
+
+#: core/libopengl.cpp:242
+#, c-format
+msgid "failed to call eglBindAPI (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:261
+#, c-format
+msgid "failed to destroy EGL display (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:273
+#, c-format
+msgid "failed to call getPlatformDisplay (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:289
+msgid "Finding OpenGL API version"
+msgstr ""
+
+#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#, c-format
+msgid "failed to call queryDevices (%s)"
+msgstr ""
+
+#: core/libopengl.cpp:299
+msgid "No available EGL devices"
+msgstr ""
+
+#: core/libopengl.cpp:318
+#, c-format
+msgid "Unable to find OpenGL driver for vendor %s"
+msgstr ""
+
+#: core/libpci.cpp:73
+#, c-format
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
+msgstr ""
+
+#: core/libpci.cpp:117
+#, c-format
+msgid "No kernel driver in use for graphic card at path %s"
+msgstr ""
+
+#: core/libpci.cpp:153
+#, c-format
+msgid "Your GPU kernel driver is unknown: %s"
+msgstr ""
+
+#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+msgid "failed to create pipe"
+msgstr ""
+
+#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+msgid "failed to create process"
+msgstr ""
+
+#: core/libpci.cpp:401
+#, c-format
+msgid "Your GPU vendor is unknown: %s (0x%X)"
+msgstr ""
+
+#: core/libpci.cpp:424 core/libvulkan.cpp:288
+msgid "Enabled"
+msgstr ""
+
+#: core/libpci.cpp:424 core/libvulkan.cpp:288
+msgid "Disabled"
+msgstr ""
+
+#: core/libpci.cpp:450
+msgid "Finding devices"
+msgstr ""
+
+#: core/libpci.cpp:454
+msgid "Skip devices search (PCI device does not exist)"
+msgstr ""
+
+#: core/libpci.cpp:467
+#, c-format
+msgid "Skip devices search (wrong permissions on %s device)"
+msgstr ""
+
+#: core/libpci.cpp:504
+msgid "failed to find chipset vendor and model"
+msgstr ""
+
+#: core/libpci.cpp:507
+msgid "failed to find graphic card vendor and model"
+msgstr ""
+
+#: core/libpci.cpp:638
+msgid "Retrieving GPU clocks"
+msgstr ""
+
+#: core/libpci.cpp:651
+msgid "None"
+msgstr ""
+
+#: core/libpci.cpp:660
+#, c-format
+msgid "DRM path for %s is unknown"
+msgstr ""
+
+#: core/libpci.cpp:667
+#, c-format
+msgid "Card number for %s is unknown"
+msgstr ""
+
+#: core/libpci.cpp:692
+#, c-format
+msgid "PCIe %s (current) / %s (max)"
+msgstr ""
+
+#: core/libpci.cpp:807
+#, c-format
+msgid "Driver for %s doesn't report frequencies"
+msgstr ""
+
+#: core/libpci.cpp:828
+#, c-format
+msgid "failed to retrieve all monitoring data for %s"
+msgstr ""
+
+#: core/libsystem.cpp:51 core/libsystem.cpp:80
+msgid "Calling libprocps"
+msgstr ""
+
+#: core/libsystem.cpp:54
+msgid "unable to get system uptime"
+msgstr ""
+
+#: core/libsystem.cpp:60
+msgid "unable to create meminfo structure"
+msgstr ""
+
+#: core/libsystem.cpp:106
+msgid "Calling libstatgrab"
+msgstr ""
+
+#: core/libsystem.cpp:154
+#, c-format
+msgid "%i days, %i hours, %i minutes, %i seconds"
+msgstr ""
+
+#: core/libvulkan.cpp:147
+msgid "Finding Vulkan API version"
+msgstr ""
+
+#: core/libvulkan.cpp:163
+#, c-format
+msgid "failed to call vkCreateInstance (%s)"
+msgstr ""
+
+#: core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr ""
+
+#: core/libvulkan.cpp:173
+#, c-format
+msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+msgstr ""
+
+#: core/libvulkan.cpp:180
+msgid "No available Vulkan devices"
+msgstr ""
+
+#: core/libvulkan.cpp:188
+#, c-format
+msgid "No available physical devices (%s)"
+msgstr ""
+
+#: core/libvulkan.cpp:251
+#, c-format
+msgid "Failed to create Vulkan for device %u (%s)"
+msgstr ""
+
+#: core/libvulkan.cpp:255
+#, c-format
+msgid "%s is not supported for device %u, use only deviceID for matching"
+msgstr ""
+
+#: core/libvulkan.cpp:314
+#, c-format
+msgid "Unable to find Vulkan driver for vendor %s"
+msgstr ""
+
+#: daemon/client.cpp:65
+msgid "Starting daemon in background…"
+msgstr ""
+
+#: daemon/client.cpp:103
+msgid ""
+"APPDIR environment variable is not set, cannot copy the daemon to the "
+"temporary directory"
+msgstr ""
+
+#: daemon/client.cpp:181
+msgid "pkexec: authorization could not be obtained (dialog dismissed)"
+msgstr ""
+
+#: daemon/client.cpp:184
+msgid "pkexec: authorization could not be obtained (not authorized)"
+msgstr ""
+
+#: daemon/client.cpp:187
+msgid "pkexec: command not found"
+msgstr ""
+
+#: daemon/client.cpp:190
+msgid "pkexec: unexpected error code"
+msgstr ""
+
+#: daemon/client.cpp:220
+msgid "Connecting to daemon…"
+msgstr ""
+
+#: daemon/server.cpp:267
+#, c-format
+msgid "request_handler: case %i not handled"
+msgstr ""
+
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
+msgid "CPU"
 msgstr ""
 
 #: data.cpp:190
@@ -194,240 +708,8 @@ msgstr ""
 msgid "This software is distributed under the terms of %s"
 msgstr ""
 
-#: data.cpp:779 main.cpp:177
+#: data.cpp:779 main.cpp:175
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
-msgstr ""
-
-#: main.cpp:63
-msgid "Start graphical user interface (GUI) (default)"
-msgstr ""
-
-#: main.cpp:64
-msgid "Start text-based user interface (TUI)"
-msgstr ""
-
-#: main.cpp:65
-msgid "Dump all data on standard output and exit"
-msgstr ""
-
-#: main.cpp:66
-msgid "Run embedded command dmidecode and exit"
-msgstr ""
-
-#: main.cpp:67
-msgid "Run embedded command bandwidth and exit"
-msgstr ""
-
-#: main.cpp:68
-msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-msgstr ""
-
-#: main.cpp:69
-msgid "Set custom time between two refreshes (in seconds)"
-msgstr ""
-
-#: main.cpp:70
-msgid "Set default tab (integer)"
-msgstr ""
-
-#: main.cpp:71
-msgid "Select core type to monitor (integer)"
-msgstr ""
-
-#: main.cpp:72
-msgid "Select CPU core to monitor (integer)"
-msgstr ""
-
-#: main.cpp:73
-msgid "Set custom bandwidth test for CPU caches speed (integer)"
-msgstr ""
-
-#: main.cpp:74
-msgid "Select default memory stick (integer)"
-msgstr ""
-
-#: main.cpp:75
-msgid "Select default graphic card (integer)"
-msgstr ""
-
-#: main.cpp:76 cpu-x-gtk-3.12.ui:6131
-msgid "Start and connect to daemon"
-msgstr ""
-
-#: main.cpp:77
-msgid "Verbose output"
-msgstr ""
-
-#: main.cpp:78
-msgid "Print help and exit"
-msgstr ""
-
-#: main.cpp:79
-msgid "Print version and exit"
-msgstr ""
-
-#: main.cpp:80
-msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr ""
-
-#: main.cpp:81
-msgid "Disable colored output"
-msgstr ""
-
-#: main.cpp:82
-msgid "Print information for debugging"
-msgstr ""
-
-#: main.cpp:83
-msgid "Print required information to paste in an issue"
-msgstr ""
-
-#: main.cpp:84
-msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
-msgstr ""
-
-#: main.cpp:95
-msgid "Add default command line arguments"
-msgstr ""
-
-#: main.cpp:96
-msgid "Enforce the bus clock"
-msgstr ""
-
-#: main.cpp:97
-msgid ""
-"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
-"'volt', 'freq' and 'mult')"
-msgstr ""
-
-#: main.cpp:98
-msgid "Read CPUID raw data from a given file"
-msgstr ""
-
-#: main.cpp:99
-msgid "Only print a message if CPU is not present in the database"
-msgstr ""
-
-#: main.cpp:127
-#, c-format
-msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr ""
-
-#: main.cpp:128
-msgid "Available DISPLAY:"
-msgstr ""
-
-#: main.cpp:136
-msgid "Available OPTIONS:"
-msgstr ""
-
-#: main.cpp:145
-msgid "Influenceable environment variables:"
-msgstr ""
-
-#: main.cpp:176
-msgid "This is free software: you are free to change and redistribute it."
-msgstr ""
-
-#: main.cpp:178
-#, c-format
-msgid "See the %s license: <%s>\n"
-msgstr ""
-
-#: main.cpp:185
-#, c-format
-msgid "-- %-11s version: %s"
-msgstr ""
-
-#: main.cpp:412
-#, c-format
-msgid ""
-"\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
-msgstr ""
-
-#: main.cpp:414
-#, c-format
-msgid ""
-"\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
-msgstr ""
-
-#: main.cpp:438
-msgid "You can open a new issue here, by filling the template as requested:"
-msgstr ""
-
-#: main.cpp:480
-msgid "an error occurred while setting locale"
-msgstr ""
-
-#: options.cpp:166
-#, c-format
-msgid "Selected tab (%u) is not visible"
-msgstr ""
-
-#: options.cpp:171
-#, c-format
-msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
-
-#: options.cpp:220
-#, c-format
-msgid ""
-"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
-msgstr ""
-
-#: options.cpp:241
-#, c-format
-msgid ""
-"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
-"this system)"
-msgstr ""
-
-#: options.cpp:264
-#, c-format
-msgid ""
-"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
-"system)"
-msgstr ""
-
-#: options.cpp:284
-#, c-format
-msgid ""
-"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
-"system)"
-msgstr ""
-
-#: options.cpp:300
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
-
-#: options.cpp:306
-#, c-format
-msgid ""
-"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
-"type of core)"
-msgstr ""
-
-#: util.cpp:189
-#, c-format
-msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
-
-#: util.cpp:252
-#, c-format
-msgid "an error occurred while opening file '%s'"
-msgstr ""
-
-#: util.cpp:297
-#, c-format
-msgid "an error occurred while running command '%s'"
-msgstr ""
-
-#: util.cpp:437
-msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
@@ -708,6 +990,429 @@ msgstr ""
 msgid "Duration"
 msgstr ""
 
+#: main.cpp:61
+msgid "Start graphical user interface (GUI) (default)"
+msgstr ""
+
+#: main.cpp:62
+msgid "Start text-based user interface (TUI)"
+msgstr ""
+
+#: main.cpp:63
+msgid "Dump all data on standard output and exit"
+msgstr ""
+
+#: main.cpp:64
+msgid "Run embedded command dmidecode and exit"
+msgstr ""
+
+#: main.cpp:65
+msgid "Run embedded command bandwidth and exit"
+msgstr ""
+
+#: main.cpp:66
+msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+msgstr ""
+
+#: main.cpp:67
+msgid "Set custom time between two refreshes (in seconds)"
+msgstr ""
+
+#: main.cpp:68
+msgid "Set default tab (integer)"
+msgstr ""
+
+#: main.cpp:69
+msgid "Select core type to monitor (integer)"
+msgstr ""
+
+#: main.cpp:70
+msgid "Select CPU core to monitor (integer)"
+msgstr ""
+
+#: main.cpp:71
+msgid "Set custom bandwidth test for CPU caches speed (integer)"
+msgstr ""
+
+#: main.cpp:72
+msgid "Select default memory stick (integer)"
+msgstr ""
+
+#: main.cpp:73
+msgid "Select default graphic card (integer)"
+msgstr ""
+
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+msgid "Start and connect to daemon"
+msgstr ""
+
+#: main.cpp:75
+msgid "Verbose output"
+msgstr ""
+
+#: main.cpp:76
+msgid "Print help and exit"
+msgstr ""
+
+#: main.cpp:77
+msgid "Print version and exit"
+msgstr ""
+
+#: main.cpp:78
+msgid "Print CPUID values in decimal (default is hexadeximal)"
+msgstr ""
+
+#: main.cpp:79
+msgid "Disable colored output"
+msgstr ""
+
+#: main.cpp:80
+msgid "Print information for debugging"
+msgstr ""
+
+#: main.cpp:81
+msgid "Print required information to paste in an issue"
+msgstr ""
+
+#: main.cpp:82
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
+msgstr ""
+
+#: main.cpp:93
+msgid "Add default command line arguments"
+msgstr ""
+
+#: main.cpp:94
+msgid "Enforce the bus clock"
+msgstr ""
+
+#: main.cpp:95
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt', 'freq' and 'mult')"
+msgstr ""
+
+#: main.cpp:96
+msgid "Read CPUID raw data from a given file"
+msgstr ""
+
+#: main.cpp:97
+msgid "Only print a message if CPU is not present in the database"
+msgstr ""
+
+#: main.cpp:125
+#, c-format
+msgid "Usage: %s DISPLAY [OPTIONS]\n"
+msgstr ""
+
+#: main.cpp:126
+msgid "Available DISPLAY:"
+msgstr ""
+
+#: main.cpp:134
+msgid "Available OPTIONS:"
+msgstr ""
+
+#: main.cpp:143
+msgid "Influenceable environment variables:"
+msgstr ""
+
+#: main.cpp:174
+msgid "This is free software: you are free to change and redistribute it."
+msgstr ""
+
+#: main.cpp:176
+#, c-format
+msgid "See the %s license: <%s>\n"
+msgstr ""
+
+#: main.cpp:183
+#, c-format
+msgid "-- %-11s version: %s"
+msgstr ""
+
+#: main.cpp:410
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+msgstr ""
+
+#: main.cpp:412
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
+"recover."
+msgstr ""
+
+#: main.cpp:436
+msgid "You can open a new issue here, by filling the template as requested:"
+msgstr ""
+
+#: main.cpp:477
+msgid "an error occurred while setting locale"
+msgstr ""
+
+#: options.cpp:166
+#, c-format
+msgid "Selected tab (%u) is not visible"
+msgstr ""
+
+#: options.cpp:171
+#, c-format
+msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+msgstr ""
+
+#: options.cpp:220
+#, c-format
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
+msgstr ""
+
+#: options.cpp:241
+#, c-format
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
+msgstr ""
+
+#: options.cpp:264
+#, c-format
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+
+#: options.cpp:284
+#, c-format
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
+msgstr ""
+
+#: options.cpp:300
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr ""
+
+#: options.cpp:306
+#, c-format
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
+msgstr ""
+
+#: ui/gtk.cpp:87
+#, c-format
+msgid "Cannot find path for '%s' file"
+msgstr ""
+
+#: ui/gtk.cpp:460
+msgid "No polkit authentication agent found"
+msgstr ""
+
+#: ui/gtk.cpp:466
+msgid "Ask password to start daemon in background"
+msgstr ""
+
+#: ui/gtk.cpp:470
+msgid "Settings"
+msgstr ""
+
+#: ui/gtk.cpp:711
+msgid "BaseFamily"
+msgstr ""
+
+#: ui/gtk.cpp:712
+msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
+msgstr ""
+
+#: ui/gtk.cpp:713
+msgid "BaseModel"
+msgstr ""
+
+#: ui/gtk.cpp:714
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
+msgstr ""
+
+#: ui/gtk.cpp:908
+msgid "EFI Platform Key certificate information"
+msgstr ""
+
+#: ui/gtk.cpp:943
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
+msgstr ""
+
+#: ui/gtk.cpp:944
+msgid "Identify the physically labeled bank where the memory device is located"
+msgstr ""
+
+#: ui/gtk.cpp:1149
+msgid "User Mode Driver Version"
+msgstr ""
+
+#: ui/gtk.cpp:1163
+msgid "Vulkan Ray Tracing"
+msgstr ""
+
+#: ui/gtk.cpp:1358
+msgid "Starting GTK GUI…"
+msgstr ""
+
+#: ui/gtk.cpp:1369
+msgid "failed to import UI in GtkBuilder"
+msgstr ""
+
+#: ui/ncurses.cpp:116
+msgid "Window is too small!"
+msgstr ""
+
+#: ui/ncurses.cpp:124
+msgid "Press 'h' to see help."
+msgstr ""
+
+#: ui/ncurses.cpp:237
+#, c-format
+msgid "Welcome in %s NCurses help!\n"
+msgstr ""
+
+#: ui/ncurses.cpp:238
+msgid "This help describes how to use this Text-based User Interface."
+msgstr ""
+
+#: ui/ncurses.cpp:240
+msgid "Global keys:"
+msgstr ""
+
+#: ui/ncurses.cpp:241
+msgid "Press 'left' key or 'tab' key to switch in left tab."
+msgstr ""
+
+#: ui/ncurses.cpp:242
+msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
+msgstr ""
+
+#: ui/ncurses.cpp:243
+msgid "Press 'h' key to see this help."
+msgstr ""
+
+#: ui/ncurses.cpp:244
+msgid "Press 'q' key to exit."
+msgstr ""
+
+#: ui/ncurses.cpp:246
+msgid "CPU tab:"
+msgstr ""
+
+#: ui/ncurses.cpp:247
+msgid "Press 'next page' key to decrease core type number to monitor."
+msgstr ""
+
+#: ui/ncurses.cpp:248
+msgid "Press 'previous page' key to increase core type number to monitor."
+msgstr ""
+
+#: ui/ncurses.cpp:249
+msgid "Press 'down' key to decrease CPU core number to monitor."
+msgstr ""
+
+#: ui/ncurses.cpp:250
+msgid "Press 'up' key to increase CPU core number to monitor."
+msgstr ""
+
+#: ui/ncurses.cpp:252
+msgid "Caches tab:"
+msgstr ""
+
+#: ui/ncurses.cpp:253
+msgid "Press 'down' key to switch to previous test."
+msgstr ""
+
+#: ui/ncurses.cpp:254
+msgid "Press 'up' key to switch to next test."
+msgstr ""
+
+#: ui/ncurses.cpp:256
+msgid "Bench tab:"
+msgstr ""
+
+#: ui/ncurses.cpp:257
+msgid "Press 'down' key to decrement benchmark duration."
+msgstr ""
+
+#: ui/ncurses.cpp:258
+msgid "Press 'up' key to increment benchmark duration."
+msgstr ""
+
+#: ui/ncurses.cpp:259
+msgid "Press 'next page' key to decrement number of threads to use."
+msgstr ""
+
+#: ui/ncurses.cpp:260
+msgid "Press 'previous page' key to increment number of threads to use."
+msgstr ""
+
+#: ui/ncurses.cpp:261
+msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
+msgstr ""
+
+#: ui/ncurses.cpp:262
+msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
+msgstr ""
+
+#: ui/ncurses.cpp:264
+msgid "Graphics tab:"
+msgstr ""
+
+#: ui/ncurses.cpp:265
+msgid "Press 'down' key to switch to previous graphic card."
+msgstr ""
+
+#: ui/ncurses.cpp:266
+msgid "Press 'up' key to switch to next graphic card."
+msgstr ""
+
+#: ui/ncurses.cpp:268
+msgid "Press any key to exit this help."
+msgstr ""
+
+#: ui/ncurses.cpp:676
+msgid "Starting NCurses TUI…"
+msgstr ""
+
+#: ui/ncurses.cpp:685
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
+msgstr ""
+
+#: ui/ncurses.cpp:690
+#, c-format
+msgid "Failed to set up %s terminal (err=%i); falling back to %s"
+msgstr ""
+
+#: util.cpp:189
+#, c-format
+msgid "cannot find unit in '%s' string at position %i"
+msgstr ""
+
+#: util.cpp:276
+#, c-format
+msgid "an error occurred while opening file '%s'"
+msgstr ""
+
+#: util.cpp:321
+#, c-format
+msgid "an error occurred while running command '%s'"
+msgstr ""
+
+#: util.cpp:461
+msgid "set_cpu_affinity() not supported on this operating system"
+msgstr ""
+
 #: util.hpp:77
 msgid "bytes"
 msgstr ""
@@ -842,9 +1547,6 @@ msgstr ""
 msgid "Gathers information on CPU, motherboard and more"
 msgstr ""
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:14
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
-
-#~ msgid "Finding CPU technology"
-#~ msgstr "CPU ਤਕਨਾਲੋਜੀ ਲੱਭੀ ਜਾ ਰਹੀ ਹੈ"
