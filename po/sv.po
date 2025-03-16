@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-15 07:07+0000\n"
+"PO-Revision-Date: 2025-03-16 17:41+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/sv/>\n"
@@ -26,7 +26,7 @@ msgstr "Anropar bandbredd"
 
 #: core/bandwidth/main.c:2992
 msgid "(unavailable)"
-msgstr ""
+msgstr "(otillgänglig)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -133,10 +133,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "kunde inte hämta CPU-frekvens (nödfallsläge)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "okänd"
+msgstr "Okänd"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -297,76 +295,63 @@ msgstr "kunde inte hämta alla OpenCL-plattformar (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Kan inte hitta OpenCL-drivrutin för leverantör %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "kunde inte hämta GPU-frekvenser"
+msgstr "Kunde inte skapa EGL-kontext"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "kunde inte hämta versionen för enheten %u (%s)"
+msgstr "Kunde inte förstöra EGL-kontext (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "kunde inte anropa libcpuid (%s)"
+msgstr "Kunde inte anropa eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "kunde inte anropa libcpuid (%s)"
+msgstr "Kunde inte anropa eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL har ingen OpenGL klient-API"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "kunde inte anropa libcpuid (%s)"
+msgstr "Kunde inte anropa eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "kunde inte hämta versionsinfo för plattformen %u (%s)"
+msgstr "Kunde inte förstöra EGL-display (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "kunde inte hämta alla OpenCL-plattformar (%s)"
+msgstr "Kunde inte anropa getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Hittar OpenCL API-version"
+msgstr "Hittar OpenGL API-version"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "kunde inte anropa vkEnumeratePhysicalDevices (%s)"
+msgstr "Kunde inte anropa queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Inga tillgängliga Vulkan-enheter"
+msgstr "Inga tillgängliga EGL-enheter"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Kan inte hitta OpenGL-drivrutin för leverantör %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -392,16 +377,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Din GPU-kärndrivrutin är okänd: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "kunde inte anropa wordexp (%i)"
+msgstr "Kunde inte skapa pipe"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "kunde inte hämta GPU-frekvenser"
+msgstr "Kunde inte skapa process"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -527,12 +508,12 @@ msgstr "Kunde inte skapa Vulkan för enhet %u (%s)"
 #: core/libvulkan.cpp:255
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr "%s stöds inte för enheten %u, använd endast deviceID för matchning."
+msgstr "%s stöds inte för enheten %u, använd endast deviceID för matchning"
 
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Kan inte hitta Vulkan-drivrutin för leverantör %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -543,6 +524,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"APPDIR miljövariabel är inte inställd, kan inte kopiera tjänsten till den "
+"tillfälliga katalogen"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
