@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-15 23:01+0000\n"
+"PO-Revision-Date: 2025-03-17 01:17+0000\n"
 "Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ro/>\n"
@@ -27,7 +27,7 @@ msgstr "Se apelează bandwidth"
 
 #: core/bandwidth/main.c:2992
 msgid "(unavailable)"
-msgstr ""
+msgstr "(indisponibil)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -134,10 +134,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "obținerea frecvenței procesorului (în modul de rezervă) a eșuat"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "necunoscută"
+msgstr "Necunoscută"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -310,76 +308,63 @@ msgstr "nu s-a reușit să se obțină toate platformele OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Nu se poate găsi controlorul OpenCL pentru fabricantul %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "a eșuat obținerea tactărilor plăcii video"
+msgstr "crearea contextului EGL a eșuat"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "obținerea versiunii dispozitivului %u (%s) a eșuat"
+msgstr "distrugerea contextului EGL (%s) a eșuat"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "apelul la libcpuid a eșuat (%s)"
+msgstr "apelul la eglChooseConfig (%s) a eșuat"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "apelul la libcpuid a eșuat (%s)"
+msgstr "apelul la eglInitialize (%s) a eșuat"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL nu dispune de API client OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "apelul la libcpuid a eșuat (%s)"
+msgstr "apelul la eglBindAPI (%s) a eșuat"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "obținerea versiunii platformei %u (%s) a eșuat"
+msgstr "distrugerea afișării EGL (%s) a eșuat"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "nu s-a reușit să se obțină toate platformele OpenCL (%s)"
+msgstr "apelul la getPlatformDisplay (%s) a eșuat"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Se detectează versiunea API OpenCL"
+msgstr "Se detectează versiunea API OpenGL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "apelul la vkEnumeratePhysicalDevices a eșuat (%s)"
+msgstr "apelul la queryDevices (%s) a eșuat"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Nu există dispozitive Vulkan disponibile"
+msgstr "Nu există dispozitive EGL disponibile"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Nu se poate găsi controlorul OpenGL pentru fabricantul %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -407,21 +392,17 @@ msgstr ""
 "Controlorul de nucleu pentru placa dumneavoastră video este necunoscut: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "a eșuat apelarea wordexp (%i)"
+msgstr "crearea conductei a eșuat"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "a eșuat obținerea tactărilor plăcii video"
+msgstr "crearea procesului a eșuat"
 
 #: core/libpci.cpp:401
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "Fabricantul plăcii dumneavoastră vide este necunoscut: %s (0x%X)"
+msgstr "Fabricantul plăcii dumneavoastră video este necunoscut: %s (0x%X)"
 
 #: core/libpci.cpp:424 core/libvulkan.cpp:288
 msgid "Enabled"
@@ -549,7 +530,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Nu se poate găsi controlorul Vulkan pentru fabricantul %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
