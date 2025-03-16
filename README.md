@@ -28,6 +28,8 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 # Table of contents
 - [Table of contents](#table-of-contents)
   - [Dependencies](#dependencies)
+    - [Operating systems](#operating-systems)
+    - [CPU architectures](#cpu-architectures)
     - [Build-only dependencies](#build-only-dependencies)
     - [Test dependencies](#test-dependencies)
     - [Build and run dependencies](#build-and-run-dependencies)
@@ -44,6 +46,28 @@ It can be used in graphical mode by using GTK or in text-based mode by using NCu
 ***
 
 ## Dependencies
+
+### Operating systems
+
+CPU-X supports:
+* GNU/Linux
+* FreeBSD
+
+> [!NOTE]
+> Other operating systems are not officially supported by CPU-X, some features are not available.
+
+### CPU architectures
+
+CPU-X runs on:
+- [x86](https://en.wikipedia.org/wiki/X86):
+  - 32-bit CPUs (IA-32, also known as i386, i486, i586 and i686)
+  - 64-bit CPUs (x86_64, also known as x64, AMD64, and Intel 64)
+- [ARM](https://en.wikipedia.org/wiki/ARM_architecture_family) (since v5.1.0):
+  - 32-bit CPUs (ARM32, also known as AArch32)
+  - 64-bit CPUs (ARM64, also known as AArch64)
+
+> [!NOTE]
+> Other CPU architectures are not supported by CPU-X.
 
 ### Build-only dependencies
 
