@@ -14,10 +14,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-15 06:54+0000\n"
+"PO-Revision-Date: 2025-03-16 13:33+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pl/>\n"
@@ -25,8 +25,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
+"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Generator: Weblate 5.11-dev\n"
 
@@ -35,10 +35,8 @@ msgid "Calling bandwidth"
 msgstr "Wywołanie bandwidth"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(wersja %s jest dostępna)"
+msgstr "(niedostępne)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -145,10 +143,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nie udało się pobrać częstotliwości procesora (tryb awaryjny)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "nieznany"
+msgstr "Nieznany"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -296,7 +292,7 @@ msgstr ""
 
 #: core/libopencl.cpp:283
 msgid "Finding OpenCL API version"
-msgstr "Szukanie wersji OpenCL API"
+msgstr "Wyszukiwanie wersji API OpenCL"
 
 #: core/libopencl.cpp:287
 #, c-format
@@ -311,76 +307,63 @@ msgstr "nie udało się uzyskać wszystkich platform OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Nie można znaleźć sterownika OpenCL dla producenta %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "nie udało się znaleźć zegarów GPU"
+msgstr "nie udało się utworzyć kontekstu EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "nie udało się pobrać wersji dla urządzenia %u (%s)"
+msgstr "nie udało się usunąć kontekstu EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "nie udało się wywołać libcpuid (%s)"
+msgstr "nie udało się wywołać eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "nie udało się wywołać libcpuid (%s)"
+msgstr "nie udało się wywołać eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL nie ma interfejsu API klienta OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "nie udało się wywołać libcpuid (%s)"
+msgstr "nie udało się wywołać eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "nie udało się pobrać wersji na platformę %u (%s)"
+msgstr "nie udało się usunąć wyświetlania EGL (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "nie udało się uzyskać wszystkich platform OpenCL (%s)"
+msgstr "nie udało się wywołać getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Szukanie wersji OpenCL API"
+msgstr "Wyszukiwanie wersji API OpenGL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "nie udało się wywołać vkEnumeratePhysicalDevices (%s)"
+msgstr "nie udało się wywołać queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Brak dostępnych urządzeń Vulkan"
+msgstr "Brak dostępnych urządzeń EGL"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Nie można znaleźć sterownika OpenGL dla producenta %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -406,16 +389,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Nieznany sterownik jądra GPU: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "nie udało się wywołać wordexp (%i)"
+msgstr "nie udało się utworzyć potoku"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "nie udało się znaleźć zegarów GPU"
+msgstr "nie udało się utworzyć procesu"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -472,7 +451,7 @@ msgstr "Numer karty %s jest nieznany"
 #: core/libpci.cpp:692
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr "PCIe %s (prąd) / %s (maks.)"
+msgstr "PCIe %s (bieżąca) / %s (maks.)"
 
 #: core/libpci.cpp:807
 #, c-format
@@ -507,7 +486,7 @@ msgstr "%i dni, %i godzin, %i minut, %i sekund"
 
 #: core/libvulkan.cpp:147
 msgid "Finding Vulkan API version"
-msgstr "Szukanie wersji API Vulkan"
+msgstr "Wyszukiwanie wersji API Vulkan"
 
 #: core/libvulkan.cpp:163
 #, c-format
@@ -547,7 +526,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Nie można znaleźć sterownika Vulkan dla producenta %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -585,7 +564,7 @@ msgstr "Łączę się z demonem…"
 #: daemon/server.cpp:267
 #, c-format
 msgid "request_handler: case %i not handled"
-msgstr "moduł obsługi żądań: przypadek %i nie obsługiwany"
+msgstr "moduł obsługi żądań: przypadek %i nieobsługiwany"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -613,17 +592,17 @@ msgstr "Procesor"
 
 #: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
-msgstr "Pamięci Podręczne"
+msgstr "Pamięci podręczne"
 
 #: data.cpp:263
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%2d x %4d %s, %2d-sposób"
+msgstr "%2d x %4d %s, %2d-drożna"
 
 #: data.cpp:265
 #, c-format
 msgid "%d %s, %d-way"
-msgstr "%d %s, %d-sposób"
+msgstr "%d %s, %d-drożna"
 
 #: data.cpp:279
 msgid "Count"
@@ -645,7 +624,7 @@ msgstr "%s przemienne, %d-%s rozmiar linii"
 
 #: data.cpp:419
 msgid "Test"
-msgstr "Testy"
+msgstr "Test"
 
 #: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
@@ -695,7 +674,7 @@ msgstr "Karty"
 
 #: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
-msgstr "Bench"
+msgstr "Testy"
 
 #: data.cpp:710
 msgid "Not started"
@@ -720,7 +699,7 @@ msgstr "%u min"
 
 #: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
-msgstr "O Programie"
+msgstr "O programie"
 
 #: data.cpp:764
 #, c-format
@@ -728,12 +707,12 @@ msgid ""
 "%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
-"%s jest darmowym programem który gromadzi informacje\n"
-"o CPU, płycie głównej i wiele więcej."
+"%s jest darmowym programem, który gromadzi informacje\n"
+"o procesorze, płycie głównej i nie tylko."
 
 #: data.cpp:769
 msgid "About CPU-X"
-msgstr "O Programie CPU-X"
+msgstr "O programie CPU-X"
 
 #: data.cpp:770
 #, c-format
@@ -773,7 +752,7 @@ msgstr "Nazwa kodowa"
 
 #: data.hpp:105
 msgid "Package"
-msgstr "Rodzaj Układu"
+msgstr "Rodzaj układu"
 
 #: data.hpp:106
 msgid "Technology"
@@ -793,7 +772,7 @@ msgstr "Rodzina"
 
 #: data.hpp:111
 msgid "Disp. Family"
-msgstr "Wyśw. Rodzina"
+msgstr "Wyśw. rodzina"
 
 #: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
 msgid "Model"
@@ -801,7 +780,7 @@ msgstr "Model"
 
 #: data.hpp:113
 msgid "Disp. Model"
-msgstr "Wyśw. Model"
+msgstr "Wyśw. model"
 
 #: data.hpp:114
 msgid "Stepping"
@@ -833,11 +812,11 @@ msgstr "Instrukcje"
 
 #: data.hpp:135
 msgid "L1 Data"
-msgstr "L1 Dane"
+msgstr "Dane L1"
 
 #: data.hpp:136
 msgid "L1 Inst."
-msgstr "L1 Instrukcja."
+msgstr "Instr. L1"
 
 #: data.hpp:137
 msgid "Level 2"
@@ -865,7 +844,7 @@ msgstr "Mnożnik"
 
 #: data.hpp:167
 msgid "Bus Speed"
-msgstr "Częstotliwość Szyny"
+msgstr "Częstotliwość szyny"
 
 #: data.hpp:168 data.hpp:352
 msgid "Usage"
@@ -897,7 +876,7 @@ msgstr "Data"
 
 #: data.hpp:246
 msgid "ROM Size"
-msgstr "ROM Rozmiar"
+msgstr "Rozmiar ROM-u"
 
 #: data.hpp:247
 msgid "EFI PK"
@@ -995,7 +974,7 @@ msgstr "Napięcie rdzenia"
 
 #: data.hpp:354
 msgid "Power Avg"
-msgstr "Moc śr"
+msgstr "Moc średnia"
 
 #: data.hpp:355
 msgid "Core Clock"
@@ -1003,7 +982,7 @@ msgstr "Zegar rdzenia"
 
 #: data.hpp:356
 msgid "Memory Clock"
-msgstr "Zegar Pamięci"
+msgstr "Zegar pamięci"
 
 #: data.hpp:357
 msgid "Memory Used"
@@ -1183,7 +1162,7 @@ msgstr "To jest wolne oprogramowanie: możesz je zmieniać i rozpowszechniać."
 #: main.cpp:176
 #, c-format
 msgid "See the %s license: <%s>\n"
-msgstr "Zobacz licencje %s: <%s>\n"
+msgstr "Zobacz licencję %s: <%s>\n"
 
 #: main.cpp:183
 #, c-format
@@ -1221,12 +1200,12 @@ msgstr "wystąpił błąd podczas ustawiania ustawień regionalnych"
 #: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "Wybrana zakładka (%u) nie jest widoczna"
+msgstr "Wybrana karta (%u) nie jest widoczna"
 
 #: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr "Wybrana zakładka (%u) nie jest prawidłową liczbą (%u to maksimum)"
+msgstr "Wybrana karta (%u) nie jest prawidłową liczbą (%u to maksimum)"
 
 #: options.cpp:220
 #, c-format
@@ -1334,11 +1313,11 @@ msgstr ""
 
 #: ui/gtk.cpp:1149
 msgid "User Mode Driver Version"
-msgstr "Tryb użytkownika Wersja sterownika"
+msgstr "Wersja sterownika trybu użytkownika"
 
 #: ui/gtk.cpp:1163
 msgid "Vulkan Ray Tracing"
-msgstr "Vulkan Ray Tracing"
+msgstr "Śledzenie promieni Vulkan"
 
 #: ui/gtk.cpp:1358
 msgid "Starting GTK GUI…"
@@ -1368,7 +1347,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:240
 msgid "Global keys:"
-msgstr "Klucze globalne:"
+msgstr "Klawisze globalne:"
 
 #: ui/ncurses.cpp:241
 msgid "Press 'left' key or 'tab' key to switch in left tab."
@@ -1392,7 +1371,7 @@ msgstr "Nacisnąć klawisz \"q\", aby wyjść."
 
 #: ui/ncurses.cpp:246
 msgid "CPU tab:"
-msgstr "Zakładka CPU:"
+msgstr "Karta CPU:"
 
 #: ui/ncurses.cpp:247
 msgid "Press 'next page' key to decrease core type number to monitor."
@@ -1418,7 +1397,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:252
 msgid "Caches tab:"
-msgstr "Karta Pamięć Podręczna:"
+msgstr "Karta Pamięci podręczne:"
 
 #: ui/ncurses.cpp:253
 msgid "Press 'down' key to switch to previous test."
@@ -1430,7 +1409,7 @@ msgstr "Naciśnij klawisz „w górę”, aby przejść do następnego testu."
 
 #: ui/ncurses.cpp:256
 msgid "Bench tab:"
-msgstr "Karta testy wydajności:"
+msgstr "Karta Testy:"
 
 #: ui/ncurses.cpp:257
 msgid "Press 'down' key to decrement benchmark duration."
