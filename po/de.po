@@ -17,11 +17,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-15 16:57+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2025-03-16 11:10+0000\n"
+"Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/cpu-x/"
 "translations/de/>\n"
 "Language: de\n"
@@ -36,10 +36,8 @@ msgid "Calling bandwidth"
 msgstr "Bandbreite aufrufen"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(Version %s ist verfügbar)"
+msgstr "(nicht verfügbar)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -146,10 +144,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Fehler beim Abrufen der CPU-Frequenz (alternativer Modus)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "unbekannt"
+msgstr "Unbekannt"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -365,10 +361,8 @@ msgid "failed to call getPlatformDisplay (%s)"
 msgstr "Fehler beim Aufrufen aller OpenCL Plattformen (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "OpenCL API-Version finden"
+msgstr "OpenGL API-Version finden"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
 #, fuzzy, c-format
@@ -377,10 +371,8 @@ msgid "failed to call queryDevices (%s)"
 msgstr "Fehler beim Aufrufen von vkEnumeratePhysicalDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Keine Vulkan-Geräte verfügbar"
+msgstr "Keine EGL-Geräte verfügbar"
 
 #: core/libopengl.cpp:318
 #, c-format
