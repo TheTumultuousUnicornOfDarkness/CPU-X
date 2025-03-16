@@ -8,6 +8,13 @@ project(cpu-x
 	LANGUAGES C CXX
 )
 
+if(NOT CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD")
+	message(WARNING "'${CMAKE_SYSTEM_NAME}' system is not officially supported by CPU-X, some features will not be available.")
+endif(NOT CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD")
+if(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)|^armv.*|aarch64")
+	message(FATAL_ERROR "'${CMAKE_SYSTEM_PROCESSOR}' processor is not supported by CPU-X.")
+endif(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)|^armv.*|aarch64")
+
 
 ### DEFAULT CONFIG
 
@@ -17,10 +24,10 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(GNUInstallDirs)
 # Avoid to put files under /usr/libexec or /usr/local/libexec on Linux when the path does not exist
 # On FreeBSD, /usr/local/libexec is missing under Poudriere (https://gitlab.com/FreeBSD/freebsd-ports/-/commit/eb6c9c8c4aa5981078c6b9b69527ecdaee5f22c9)
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT EXISTS ${CMAKE_INSTALL_FULL_LIBEXECDIR})
+if(CMAKE_SYSTEM_NAME MATCHES "Linux" AND NOT EXISTS ${CMAKE_INSTALL_FULL_LIBEXECDIR})
 	set(CMAKE_INSTALL_LIBEXECDIR      lib/${CMAKE_PROJECT_NAME})
 	set(CMAKE_INSTALL_FULL_LIBEXECDIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBEXECDIR})
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT EXISTS ${CMAKE_INSTALL_FULL_LIBEXECDIR})
+endif(CMAKE_SYSTEM_NAME MATCHES "Linux" AND NOT EXISTS ${CMAKE_INSTALL_FULL_LIBEXECDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/bin/)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib/)
 set(CMAKE_DATA_OUTPUT_DIRECTORY    ${CMAKE_BINARY_DIR}/output/data/)
@@ -28,11 +35,11 @@ set(CPU_X_DATA_DIRECTORY           ${CMAKE_INSTALL_FULL_DATADIR}/${CMAKE_PROJECT
 set(APP_EXEC                       ${CMAKE_PROJECT_NAME})
 set(DAEMON_EXEC                    ${CMAKE_PROJECT_NAME}-daemon)
 set(DAEMON_PATH                    ${CMAKE_INSTALL_FULL_LIBEXECDIR}/${DAEMON_EXEC})
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	set(DAEMON_SOCKET              "/run/cpu-x.sock")
 else()
 	set(DAEMON_SOCKET              "/var/run/cpu-x.sock")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+endif(CMAKE_SYSTEM_NAME MATCHES "Linux")
 if(CMAKE_SIZEOF_VOID_P EQUAL 4)
 	set(BITNESS "32")
 else(CMAKE_SIZEOF_VOID_P EQUAL 4)
@@ -48,9 +55,9 @@ set(CMAKE_EXE_LINKER_FLAGS    "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,noexecstack -Wl,
 
 include(CheckCCompilerFlag)
 check_c_compiler_flag("-no-pie" HAS_NO_PIE)
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND HAS_NO_PIE)
+if(CMAKE_SYSTEM_NAME MATCHES "Linux" AND HAS_NO_PIE)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND HAS_NO_PIE)
+endif(CMAKE_SYSTEM_NAME MATCHES "Linux" AND HAS_NO_PIE)
 
 # Options
 option(WITH_GTK           "Build support for GUI in GTK3+"                                    ON)
