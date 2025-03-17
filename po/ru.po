@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
 # TotalCaesar659 <x24cm5b8c54q6szxw@yandex.ru>, 2016,2018
-# Andrei Stepanov <adem4ik@gmail.com>, 2020, 2021, 2022, 2023, 2024.
+# Andrei Stepanov <adem4ik@gmail.com>, 2020, 2021, 2022, 2023, 2024, 2025.
 # Artem <KovalevArtem.ru@gmail.com>, 2020.
 # Alex <theavganec@gmail.com>, 2020.
 # Виктор Ерухин <official159ru@mail.ru>, 2021.
@@ -19,11 +19,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-02-25 20:13+0000\n"
-"Last-Translator: qtm <qtm@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-03-17 12:19+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -31,19 +31,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "Вызов bandwidth"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(доступна версия %s)"
+msgstr "(недоступно)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -150,10 +148,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не удалось получить частоту ЦП (запасной режим)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "неизвестно"
+msgstr "Неизвестно"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -317,76 +313,63 @@ msgstr "не удалось определить все платформы OpenC
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Невозможно найти драйвер OpenCL для производителя %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "не удалось получить частоту ГП"
+msgstr "не удалось создать контекст EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "не удалось определить версию устройства %u (%s)"
+msgstr "не удалось уничтожить контекст EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "не удалось вызвать libcpuid (%s)"
+msgstr "не удалось вызвать eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "не удалось вызвать libcpuid (%s)"
+msgstr "не удалось вызвать eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "У EGL нет API клиента OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "не удалось вызвать libcpuid (%s)"
+msgstr "не удалось вызвать eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "не удалось определить версию платформы %u (%s)"
+msgstr "не удалось уничтожить дисплей EGL (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "не удалось определить все платформы OpenCL (%s)"
+msgstr "не удалось вызвать getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Определяется версия API OpenCL"
+msgstr "Поиск версии API OpenCL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "не удалось вызвать vkEnumeratePhysicalDevices (%s)"
+msgstr "не удалось вызвать queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Нет доступных устройств Vulkan"
+msgstr "Нет доступных устройств EGL"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Невозможно найти драйвер OpenGL для производителя %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -412,16 +395,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Драйвер ядра ГП неизвестен: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "не удалось вызвать wordexp (%i)"
+msgstr "не удалось создать поток"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "не удалось получить частоту ГП"
+msgstr "не удалось создать процесс"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -441,10 +420,8 @@ msgid "Finding devices"
 msgstr "Поиск устройств"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Пропустить поиск устройств (некорректные права на устройстве %s)"
+msgstr "Пропустить поиск устройств (устройство PCI не существует)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -556,7 +533,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Невозможно найти драйвер Vulkan для производителя %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -567,6 +544,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"Переменная окружения APPDIR не установлена, невозможно скопировать демон во "
+"временный каталог"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1656,6 +1635,8 @@ msgstr "Сбор информации о процессоре, материнс�
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+"CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;процессор;система;ядро;скорость;тактовая;частота;"
+"материнская плата;"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
