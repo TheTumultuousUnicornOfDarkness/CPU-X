@@ -16,29 +16,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-09 19:05+0000\n"
+"PO-Revision-Date: 2025-03-18 04:41+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/cpu-"
-"x/translations/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"cpu-x/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "Invocando a largura de banda"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(versão %s está disponível)"
+msgstr "(não disponível)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -149,10 +147,8 @@ msgstr ""
 "houve uma falha durante a recuperação da frequência da CPU (modo fallback)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "desconhecido"
+msgstr "Desconhecido"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -320,76 +316,63 @@ msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Não foi possível encontrar o driver OpenCL para o fornecedor %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "Houve uma falha durante a obtenção da frequência da GPU"
+msgstr "houve uma falha na criação do contexto EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "houve uma falha ao obter a versão para o dispositivo %u (%s)"
+msgstr "houve uma falha ao destruir o contexto EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "Houve uma falha ao invocar o libcpuid (%s)"
+msgstr "Houve uma falha ao invocar eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "Houve uma falha ao invocar o libcpuid (%s)"
+msgstr "Houve uma falha ao invocar eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "O EGL não tem API de cliente OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "Houve uma falha ao invocar o libcpuid (%s)"
+msgstr "Houve uma falha ao invocar eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "houve uma falha ao obter a versão para a plataforma %u (%s)"
+msgstr "houve uma falha ao destruir a tela EGL (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
+msgstr "houve uma falha ao invocar getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Encontrando uma versão API OpenCL"
+msgstr "Localizando a versão da API OpenGL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "Houve uma falha ao chamar o vkEnumeratePhysicalDevices (%s)"
+msgstr "Houve uma falha ao invocar queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Nenhum dispositivo Vulkan está disponível"
+msgstr "Nenhum dispositivo EGL está disponível"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Não foi possível encontrar o controlador OpenGL para o fornecedor %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -417,16 +400,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "O driver da sua GPU é desconhecido: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "Houve uma falha ao invocar o wordexp (%i)"
+msgstr "houve uma falha ao criar o tubo"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "Houve uma falha durante a obtenção da frequência da GPU"
+msgstr "houve uma falha para criar o processo"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -562,7 +541,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Não foi possível encontrar o controlador Vulkan para o fornecedor %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -1672,7 +1651,7 @@ msgstr "Coleta informações sobre sua CPU, placa-mãe and mais"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
