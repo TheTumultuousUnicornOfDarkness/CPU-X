@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-09 22:41+0000\n"
+"PO-Revision-Date: 2025-03-19 15:45+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ga/>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :"
-"(n>6 && n<11) ? 3 : 4;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :("
+"n>6 && n<11) ? 3 : 4;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -26,7 +26,7 @@ msgstr "Ag glaoch bandaleithead"
 
 #: core/bandwidth/main.c:2992
 msgid "(unavailable)"
-msgstr ""
+msgstr "(gan fáil)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -133,10 +133,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "theip ar mhinicíocht LAP a aisghabháil (modh cúltaca)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "anaithnid"
+msgstr "Anaithnid"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -300,74 +298,63 @@ msgstr "theip ar gach ardán OpenCL (%s) a fháil"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Ní féidir tiománaí OpenCL a aimsiú don díoltóir %s"
 
 #: core/libopengl.cpp:172
 msgid "failed to create EGL context"
-msgstr ""
+msgstr "theip ar chruthú comhthéacs EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "theip ar an leagan a fháil do ghléas %u (%s)"
+msgstr "theip ar scriosadh comhthéacs EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "theip glaoch ar libcpuid (%s)"
+msgstr "theip glaoch ar eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "theip glaoch ar libcpuid (%s)"
+msgstr "theip ar ghlaoch ar eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "Níl API cliant OpenGL ag EGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "theip glaoch ar libcpuid (%s)"
+msgstr "theip glaoch ar eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "theip ar an leagan a fháil don ardán %u (%s)"
+msgstr "theip ar an taispeáint EGL (%s) a scriosadh"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "theip ar gach ardán OpenCL (%s) a fháil"
+msgstr "theip glaoch ar getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Ag lorg leagan OpenCL API"
+msgstr "Leagan API OpenGL á lorg"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "theip ar vkEnumeratePhysicalDevices (%s) a ghlaoch"
+msgstr "theip glaoch ar queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Níl aon ghléasanna Vulkan ar fáil"
+msgstr "Níl aon ghléasanna EGL ar fáil"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Ní féidir tiománaí OpenGL a aimsiú don díoltóir %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -393,16 +380,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Tá do thiománaí eithne GPU anaithnid: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to create pipe"
-msgstr "theip glaoch ar libcpuid (%s)"
+msgstr "theip ar phíopa a chruthú"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to call vkCreateInstance (%s)"
 msgid "failed to create process"
-msgstr "theip ar vkCreateInstance (%s) a ghlaoch"
+msgstr "theip ar an bpróiseas a chruthú"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -535,7 +518,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Ní féidir tiománaí Vulkan a aimsiú don díoltóir %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -1641,18 +1624,12 @@ msgid "Startup"
 msgstr "Tosaithe"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"Is bogearraí saor in aisce é %s a bhailíonn eolas\n"
-"ar LAP, motherboard agus níos mó."
+msgstr "Bailíonn sé eolas ar LAP, máthairchlár agus go leor eile"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "LAP;córas;croí;luas;clog;ráta;Intel;AMD;máthairchlár;"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
