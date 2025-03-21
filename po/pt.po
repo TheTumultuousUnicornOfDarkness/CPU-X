@@ -5,14 +5,14 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # Sérgio Morais <lalocas@protonmail.com>, 2021.
 # SC <lalocas@protonmail.com>, 2022.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022, 2023, 2024.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2024-12-24 18:00+0000\n"
+"PO-Revision-Date: 2025-03-21 15:04+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
@@ -21,17 +21,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "A chamar a largura de banda"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(está disponível a versão %s)"
+msgstr "(indisponível)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -138,10 +136,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "desconhecido"
+msgstr "Desconhecido"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
