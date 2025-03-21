@@ -1090,6 +1090,15 @@ static const char *dmi_processor_family(const struct dmi_header *h, u16 ver)
 		{ 0x26F, "Multi-Core Loongson 3B 5xxx" },
 		{ 0x270, "Multi-Core Loongson 3C 5xxx" },
 		{ 0x271, "Multi-Core Loongson 3D 5xxx" },
+
+		{ 0x300, "Core 3" },
+		{ 0x301, "Core 5" },
+		{ 0x302, "Core 7" },
+		{ 0x303, "Core 9" },
+		{ 0x304, "Core Ultra 3" },
+		{ 0x305, "Core Ultra 5" },
+		{ 0x306, "Core Ultra 7" },
+		{ 0x307, "Core Ultra 9" },
 	};
 	/*
 	 * Note to developers: when adding entries to this list, check if
@@ -1542,10 +1551,17 @@ static const char *dmi_processor_upgrade(u8 code)
 		"Socket BGA1190",
 		"Socket BGA4129",
 		"Socket LGA4710",
-		"Socket LGA7529" /* 0x50 */
+		"Socket LGA7529",
+		"Socket BGA1964",
+		"Socket BGA1792",
+		"Socket BGA2049",
+		"Socket BGA2551",
+		"Socket LGA1851",
+		"Socket BGA2114",
+		"Socket BGA2833" /* 0x57 */
 	};
 
-	if (code >= 0x01 && code <= 0x50)
+	if (code >= 0x01 && code <= 0x57)
 		return upgrade[code - 0x01];
 	return out_of_spec;
 }

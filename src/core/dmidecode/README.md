@@ -6,7 +6,7 @@ Distributed under the terms of the [GNU GPL v2](https://github.com/TheTumultuous
 
 This sofware has been patched to be used within CPU-X.  
 You can find the official web page of this project here: https://savannah.nongnu.org/projects/dmidecode/  
-This is based on dmidecode 3.6[b70f6ee](https://git.savannah.gnu.org/cgit/dmidecode.git/commit/?id=b70f6ee0f2e879deebc630da20d27d350407889e).
+This is based on dmidecode 3.6[525113b](https://git.savannah.gnu.org/cgit/dmidecode.git/commit/?id=525113bc79ad48bd7b20d9b983efbd226d1aac11).
 
 This software is used to retrieve following data:
 

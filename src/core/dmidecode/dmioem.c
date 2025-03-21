@@ -144,6 +144,24 @@ static void dmi_dell_bios_flags(u64 flags)
 	pr_attr("ACPI WMI Supported", "%s", (flags.l & (1 << 1)) ? "Yes" : "No");
 }
 
+static void dmi_dell_hotkeys(const struct dmi_header *h)
+{
+	int count = (h->length - 0x04) / 0x04;
+	u8 *hotkey = h->data + 0x04;
+
+	if (!count)
+		return;
+
+	pr_list_start("Hotkey Mappings", NULL);
+	for (int i = 0; i < count; i++)
+	{
+		pr_list_item("Scancode 0x%04hx -> Keycode 0x%04hx",
+			     WORD(hotkey + 0x00), WORD(hotkey + 0x02));
+		hotkey += 0x04;
+	}
+	pr_list_end();
+}
+
 static void dmi_dell_indexed_io_access(const struct dmi_header *h)
 {
 	static const char *checksum_types[] = {
@@ -223,6 +241,11 @@ static int dmi_decode_dell(const struct dmi_header *h)
 			pr_handle_name("Dell BIOS Flags");
 			if (h->length < 0x0C) break;
 			dmi_dell_bios_flags(QWORD(data + 0x04));
+			break;
+
+		case 178:
+			pr_handle_name("Dell Hotkeys");
+			dmi_dell_hotkeys(h);
 			break;
 
 		case 212:

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-CPUX_DIR="$(git rev-parse --show-toplevel)/src/dmidecode"
+CPUX_DIR="$(git rev-parse --show-toplevel)/src/core/dmidecode"
 DMIDECODE_DIR="/tmp/dmidecode"
 HASH_FILE="$CPUX_DIR/.hash"
 OLD_HASH=$(cat "$HASH_FILE")
@@ -26,3 +26,6 @@ sed -i "s/$OLD_HASH/$NEW_HASH/"                      "README.md"
 sed -i "s/$OLD_HASH_SHORT/$NEW_HASH_SHORT/"          "README.md"
 sed -i "s/VERSION \"[^ ]*\"/VERSION \"$VER.$DATE\"/" "CMakeLists.txt"
 patch --batch --no-backup-if-mismatch --input="$DMIDECODE_DIR/dmidecode.patch"
+
+# Commit
+git commit "$CPUX_DIR" -m "Patch dmidecode to version $VER commit $NEW_HASH_SHORT"
