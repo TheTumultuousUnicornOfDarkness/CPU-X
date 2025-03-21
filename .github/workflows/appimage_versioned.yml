@@ -25,17 +25,23 @@ jobs:
           # ARM64 (https://github.com/actions/partner-runner-images)
           - { arch: aarch64, label: ubuntu-22.04-arm }
 
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      changelog_tag: ${{ steps.version.outputs.changelog_tag }}
+
     steps:
     - uses: actions/checkout@v4
 
     - uses: abbbi/github-actions-tune@v1
 
     - name: Set environment variables
+      id: version
       run: |
         TAG="${MANUAL_TAG:-$GITHUB_REF_NAME}"
         echo "Using tag '${TAG}'"
-        echo "VERSION=${TAG/v/}" >> $GITHUB_ENV
-        echo "CHANGELOG_TAG=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        echo "TAG=$TAG" >> $GITHUB_ENV
+        echo "version=${TAG/v/}" >> $GITHUB_OUTPUT
+        echo "changelog_tag=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       env:
         MANUAL_TAG: ${{ inputs.version }}
 
@@ -108,3 +114,6 @@ jobs:
         skipIfReleaseExists: true
         tag: ${{ github.ref_name }}
         token: "${{ secrets.GITHUB_TOKEN }}"
+      env:
+        VERSION: ${{ needs.linux-appimage-versioned-build.outputs.version }}
+        CHANGELOG_TAG: ${{ needs.linux-appimage-versioned-build.outputs.changelog_tag }}
