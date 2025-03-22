@@ -16,14 +16,15 @@
 # taotieren <admin@taotieren.com>, 2024.
 # Lily Chou <lily-develop@outlook.com>, 2024.
 # qx100 <oa1gozib1@mozmail.com>, 2024.
+# 杨鹏 <596382932@qq.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2024-12-27 08:04+0000\n"
-"Last-Translator: qx100 <oa1gozib1@mozmail.com>\n"
+"PO-Revision-Date: 2025-03-22 01:32+0000\n"
+"Last-Translator: 杨鹏 <596382932@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
@@ -31,17 +32,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "正在调用 bandwidth"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(%s 版目前可用)"
+msgstr "不可用的"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -148,8 +147,6 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "未能检索 CPU 频率 (应急模式)"
 
 #: core/dmidecode/dmidecode.c:5785
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
 msgstr "未知"
 
@@ -306,35 +303,30 @@ msgstr "未能获得所有 OpenCL 平台（%s）"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "无法找到供应商 %s 的 OpenCL 驱动程序"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
 msgstr "无法检索 GPU 时钟"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
 msgstr "未能获得设备 %u 的版本（%s）"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "无法调用 libcpuid（%s）"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
 msgstr "无法调用 libcpuid（%s）"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL没有OpenGL客户端API"
 
 #: core/libopengl.cpp:242
 #, fuzzy, c-format
@@ -375,7 +367,7 @@ msgstr "没有可用的 Vulkan 设备"
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "无法找到供应商%s的OpenGL驱动程序"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -541,7 +533,7 @@ msgstr "%s 在设备 %u 上不受支持。仅使用 deviceID 进行匹配"
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "无法找到供应商 %s 的 Vulkan 驱动程序"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -551,7 +543,7 @@ msgstr "在背景中启动守护程序…"
 msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
-msgstr ""
+msgstr "APPDIR 环境变量未设置，无法将守护进程复制到临时目录"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1597,7 +1589,7 @@ msgstr "收集有关 CPU 和主板等的信息"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "中央处理器；系统；核心；速度；时钟；频率；英特尔；AMD；主板"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
