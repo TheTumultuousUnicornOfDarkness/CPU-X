@@ -8,12 +8,27 @@ project(cpu-x
 	LANGUAGES C CXX
 )
 
+# Check for x86 CPU
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$|(x86)|(X86)")
+	set(CPU_ISA_X86 TRUE)
+else()
+	set(CPU_ISA_X86 FALSE)
+endif(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$|(x86)|(X86)")
+
+# Check for ARM CPU
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^armv.*|aarch64")
+	set(CPU_ISA_ARM TRUE)
+else()
+	set(CPU_ISA_ARM FALSE)
+endif(CMAKE_SYSTEM_PROCESSOR MATCHES "^armv.*|aarch64")
+
+# Check if platform is supported
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD")
 	message(WARNING "'${CMAKE_SYSTEM_NAME}' system is not officially supported by CPU-X, some features will not be available.")
 endif(NOT CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD")
-if(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)|^armv.*|aarch64")
+if(NOT CPU_ISA_X86 AND NOT CPU_ISA_ARM)
 	message(FATAL_ERROR "'${CMAKE_SYSTEM_PROCESSOR}' processor is not supported by CPU-X.")
-endif(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)|^armv.*|aarch64")
+endif(NOT CPU_ISA_X86 AND NOT CPU_ISA_ARM)
 
 
 ### DEFAULT CONFIG
@@ -71,11 +86,11 @@ option(WITH_OPENCL        "Use OpenCL library"                                  
 option(WITH_LIBPROCPS     "Use Libprocps library"                                             ON)
 option(WITH_LIBSTATGRAB   "Use Libstatgrab library"                                           ON)
 option(WITH_DMIDECODE     "Built-in Dmidecode"                                                ON)
-if(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
+if(CPU_ISA_X86)
 	option(WITH_BANDWIDTH "Built-in Bandwidth"                                                ON) # Bandwidth is only supported on x86 CPUs (requires cache size)
 else()
 	set(WITH_BANDWIDTH OFF)
-endif(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
+endif(CPU_ISA_X86)
 option(FORCE_LIBSTATGRAB  "Force use of Libstatgrab instead of Libprocps (GNU/Linux system)"  OFF)
 option(APPIMAGE           "Enable workarounds for AppImage"                                   OFF)
 option(FLATPAK            "Enable workarounds for Flatpak"                                    OFF)

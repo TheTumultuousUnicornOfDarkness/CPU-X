@@ -141,13 +141,13 @@ if(WITH_DMIDECODE)
 endif(WITH_DMIDECODE)
 
 # Bandwidth
-if(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)" AND WITH_BANDWIDTH)
+if(CPU_ISA_X86 AND WITH_BANDWIDTH)
 	add_subdirectory(core/bandwidth)
 	if(BANDWIDTH_FOUND)
 		include_directories(core/bandwidth)
 		set(BANDWIDTH_LIBRARIES "bandwidth")
 	endif(BANDWIDTH_FOUND)
-endif(CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)" AND WITH_BANDWIDTH)
+endif(CPU_ISA_X86 AND WITH_BANDWIDTH)
 
 
 ### FINAL CONFIG
@@ -332,9 +332,9 @@ if(${LIBSYSTEM} EQUAL 0 OR ${LIBSYSTEM} EQUAL 2) # When Libstatgrab is used
 endif()
 
 # ARM CPUs workarounds
-if(CMAKE_SYSTEM_PROCESSOR MATCHES "^armv.*|aarch64" AND CMAKE_SYSTEM_NAME MATCHES "Linux")
+if(CPU_ISA_ARM AND CMAKE_SYSTEM_NAME MATCHES "Linux")
 	set(OTHER_LIBRARIES "-latomic")
-endif(CMAKE_SYSTEM_PROCESSOR MATCHES "^armv.*|aarch64" AND CMAKE_SYSTEM_NAME MATCHES "Linux")
+endif(CPU_ISA_ARM AND CMAKE_SYSTEM_NAME MATCHES "Linux")
 
 # AppImage workarounds
 if(APPIMAGE)
