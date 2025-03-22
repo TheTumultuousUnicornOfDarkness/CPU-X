@@ -9,11 +9,11 @@ project(cpu-x
 )
 
 # Check for x86 CPU
-if(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$|(x86)|(X86)")
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$|(x86)|(X86)|(amd64)|(AMD64)")
 	set(CPU_ISA_X86 TRUE)
 else()
 	set(CPU_ISA_X86 FALSE)
-endif(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$|(x86)|(X86)")
+endif(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$|(x86)|(X86)|(amd64)|(AMD64)")
 
 # Check for ARM CPU
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "^armv.*|aarch64")
