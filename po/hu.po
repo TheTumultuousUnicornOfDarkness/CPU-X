@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-22 18:02+0000\n"
+"PO-Revision-Date: 2025-03-23 00:22+0000\n"
 "Last-Translator: Raihwy <raihwy@outlook.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/hu/>\n"
@@ -79,7 +79,7 @@ msgstr ""
 
 #: core/benchmarks.cpp:153
 msgid "an error occurred while starting benchmark"
-msgstr ""
+msgstr "Hiba történt a benchmark indításakor"
 
 #: core/core.cpp:67
 msgid "Calculating CPU usage"
@@ -88,61 +88,55 @@ msgstr "CPU használat kiszámítása"
 #: core/core.cpp:109
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (tárgy) / %s (kiadó)"
 
 #: core/core.cpp:120
 msgid "Identifying running system"
-msgstr ""
+msgstr "Futó rendszer azonosítása"
 
 #: core/core.cpp:123
 msgid "failed to identify running system"
-msgstr ""
+msgstr "Nem sikerült azonosítani a futó rendszert"
 
 #: core/core.cpp:182
-#, fuzzy
-#| msgid "Calculating CPU multipliers"
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "CPU szorzók kiszámítása"
+msgstr "CPU szorzók számítása tartalék módban"
 
 #: core/core.cpp:208
 msgid "Retrieving motherboard information in fallback mode"
-msgstr ""
+msgstr "Alaplap információk lekérése tartalék módban"
 
 #: core/core.cpp:224
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "libcpuid hívása sikertelen (%s)"
+msgstr "Nem sikerült lekérni az alaplap információit (tartalék mód)"
 
 #: core/core.cpp:267
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "CPU hőmérséklet lekérése tartalék módban"
 
 #: core/core.cpp:315
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr ""
+msgstr "Nem sikerült lekérni a CPU hőmérsékletét (tartalék mód)"
 
 #: core/core.cpp:330
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "CPU feszültség lekérése tartalék módban"
 
 #: core/core.cpp:349
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "libcpuid hívása sikertelen (%s)"
+msgstr "Nem sikerült lekérni a CPU feszültségét (tartalék mód)"
 
 #: core/core.cpp:363
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "CPU frekvencia lekérése tartalék módban"
 
 #: core/core.cpp:374
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr ""
+msgstr "Nem sikerült lekérni a CPU frekvenciát (tartalék mód)"
 
 #: core/dmidecode/dmidecode.c:5785
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -151,17 +145,17 @@ msgstr "dmidecode hívása"
 #: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
 #, c-format
 msgid "%s (configured)"
-msgstr ""
+msgstr "%s (beállítva)"
 
 #: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
 #, c-format
 msgid "%s (max)"
-msgstr ""
+msgstr "%s (max)"
 
 #: core/dmidecode/libdmidecode.cpp:101
 #, c-format
 msgid "%s (min)"
-msgstr ""
+msgstr "%s (min)"
 
 #: core/libcpuid.cpp:83
 #, c-format
