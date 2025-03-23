@@ -183,7 +183,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add ELG dependency (#374)
+- Add EGL dependency (#374)
 - Display OpenGL Core and Compatibility profile versions
 - Translate Desktop Entry from Weblate
 - Run OpenGL/Vulkan/OpenCL in a child process (#375)
