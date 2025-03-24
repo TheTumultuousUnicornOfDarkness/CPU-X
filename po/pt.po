@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-15 20:28+0100\n"
-"PO-Revision-Date: 2025-03-21 15:04+0000\n"
+"PO-Revision-Date: 2025-03-25 03:50+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
@@ -109,7 +109,7 @@ msgstr "Recuperando informações da placa-mãe em modo fallback"
 
 #: core/core.cpp:224
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "falhou ao recuperar informações da placa-mãe (modo fallback)"
+msgstr "houve uma falha ao recuperar informações da placa-mãe (modo fallback)"
 
 #: core/core.cpp:267
 msgid "Retrieving CPU temperature in fallback mode"
@@ -117,7 +117,7 @@ msgstr "Recuperando a temperatura da CPU em modo fallback"
 
 #: core/core.cpp:315
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "falhou ao recuperar a temperatura da CPU (modo fallback)"
+msgstr "houve uma falha ao recuperar a temperatura da CPU (modo fallback)"
 
 #: core/core.cpp:330
 msgid "Retrieving CPU voltage in fallback mode"
@@ -125,7 +125,7 @@ msgstr "Recuperando a voltagem da CPU em modo fallback"
 
 #: core/core.cpp:349
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "falhou ao recuperar a voltagem da CPU (modo fallback)"
+msgstr "houve uma falha ao recuperar a voltagem da CPU (modo fallback)"
 
 #: core/core.cpp:363
 msgid "Retrieving CPU frequency in fallback mode"
@@ -133,7 +133,7 @@ msgstr "Recuperando a frequência da CPU em modo fallback"
 
 #: core/core.cpp:374
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "falhou ao recuperar a frequência da CPU (modo fallback)"
+msgstr "houve uma falha ao recuperar a frequência da CPU (modo fallback)"
 
 #: core/dmidecode/dmidecode.c:5785
 msgid "Unknown"
@@ -191,7 +191,7 @@ msgstr "A chamar libcpuid para recuperar dados estáticos"
 #: core/libcpuid.cpp:280
 #, c-format
 msgid "failed to call libcpuid (%s)"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "houve uma falha na chamada de libcpuid (%s)"
 
 #: core/libcpuid.cpp:409
 msgid "Calling libcpuid for retrieving dynamic data"
@@ -312,76 +312,63 @@ msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Não foi possível encontrar o controlador OpenCL para o fornecedor %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "não foi possível obter as velocidades da GPU"
+msgstr "houve uma falha ao criar o contexto EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "houve uma falha ao obter a versão para o dispositivo %u (%s)"
+msgstr "houve uma falha ao destruir o contexto EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "houve uma falha na chamada de eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "houve uma falha na chamada de eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL não tem API de cliente OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "falhou a chamada de libcpuid (%s)"
+msgstr "houve uma falha na chamada de eglBindAPI (%s)"
 
 #: core/libopengl.cpp:261
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "houve uma falha ao obter a versão para a plataforma %u (%s)"
+msgstr "houve uma falha ao destruir a exibição EGL (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "houve uma falha ao obter todas as plataformas OpenCL (%s)"
+msgstr "houve uma falha na chamada de getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:289
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Encontrando a versão da API do OpenCL"
+msgstr "A localizar a versão da API OpenGL"
 
 #: core/libopengl.cpp:292 core/libopengl.cpp:306
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "Houve uma falha ao chamar o vkEnumeratePhysicalDevices (%s)"
+msgstr "houve uma falha na chamada de queryDevices (%s)"
 
 #: core/libopengl.cpp:299
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Não há nenhum dispositivo físico Vulkan disponível"
+msgstr "Nenhum dispositivo EGL disponível"
 
 #: core/libopengl.cpp:318
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Não foi possível encontrar o controlador OpenGL para o fornecedor %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -409,16 +396,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "O controlador da sua GPU é desconhecido: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "Houve uma falha ao invocar o wordexp (%i)"
+msgstr "houve uma falha ao criar um \"pipe\""
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "não foi possível obter as velocidades da GPU"
+msgstr "houve uma falha ao criar processo"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -438,11 +421,8 @@ msgid "Finding devices"
 msgstr "A procurar dispositivos"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr ""
-"A ignorar pesquisa de dispositivos (permissões erradas no dispositivo %s)"
+msgstr "A ignorar pesquisa de dispositivos (o dispositivo PCI não existe)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -555,7 +535,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Não foi possível encontrar o controlador Vulkan para o fornecedor %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -566,6 +546,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"A variável de ambiente APPDIR não está definida, não é possível copiar o "
+"daemon para o diretório temporário"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -624,7 +606,7 @@ msgstr "Caches"
 #: data.cpp:263
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%2d x %4d %s, %2d-via"
+msgstr "%2d x %4d %s, %2d-caminho"
 
 #: data.cpp:265
 #, c-format
@@ -642,7 +624,7 @@ msgstr "Frequências"
 #: data.cpp:400 data.cpp:404
 #, c-format
 msgid "L%u Cache"
-msgstr "L%u Cache"
+msgstr "Cache L%u"
 
 #: data.cpp:406
 #, c-format
@@ -672,7 +654,7 @@ msgstr "Memória"
 #: data.cpp:508
 #, c-format
 msgid "Stick %u"
-msgstr "Vara %u"
+msgstr "Pente de memória %u"
 
 #: data.cpp:512 cpu-x-gtk-3.12.ui:3326
 msgid "Sticks"
@@ -739,7 +721,7 @@ msgstr ""
 
 #: data.cpp:769
 msgid "About CPU-X"
-msgstr "Sobre CPU-X"
+msgstr "Acerca do CPU-X"
 
 #: data.cpp:770
 #, c-format
@@ -915,7 +897,7 @@ msgstr "Tipo"
 
 #: data.hpp:273
 msgid "Type Detail"
-msgstr "Pormenor do tipo"
+msgstr "Detalhe do tipo"
 
 #: data.hpp:274
 msgid "Device Locator"
@@ -927,7 +909,7 @@ msgstr "Localizador de bancos"
 
 #: data.hpp:277
 msgid "Rank"
-msgstr "Posição"
+msgstr "Classificação"
 
 #: data.hpp:303
 msgid "Name"
@@ -1005,7 +987,7 @@ msgstr "Média da alimentação"
 
 #: data.hpp:355
 msgid "Core Clock"
-msgstr "Frequência principal"
+msgstr "Frequência do Núcleo"
 
 #: data.hpp:356
 msgid "Memory Clock"
@@ -1070,7 +1052,7 @@ msgstr "Executa o comando bandwidth embutido e sai"
 #: main.cpp:66
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
-"Defina a unidade de temperatura (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
+"Definir unidade de temperatura (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:67
 msgid "Set custom time between two refreshes (in seconds)"
@@ -1097,7 +1079,7 @@ msgstr ""
 
 #: main.cpp:72
 msgid "Select default memory stick (integer)"
-msgstr "Defina a memória padrão (valor inteiro)"
+msgstr "Selecionar o pente de memória padrão (valor inteiro)"
 
 #: main.cpp:73
 msgid "Select default graphic card (integer)"
@@ -1234,7 +1216,7 @@ msgstr "O separador selecionado (%u) não está visível"
 #: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr "O registo selecionado (%u) não é um número válido (%u é o máximo)"
+msgstr "O separador selecionado (%u) não é um número válido (%u é o máximo)"
 
 #: options.cpp:220
 #, c-format
@@ -1259,8 +1241,8 @@ msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"A placa de RAM selecionada (%u) não é um número válido (%u é o máximo para "
-"esse sistema)"
+"O pente de memória de RAM selecionado (%u) não é um número válido (%u é o "
+"máximo para este sistema)"
 
 #: options.cpp:284
 #, c-format
@@ -1650,7 +1632,7 @@ msgstr "Tipo de núcleo padrão"
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6197
 msgid "Default memory stick"
-msgstr "Placa da padrão da memória"
+msgstr "Pente de memória padrão"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6225
@@ -1658,18 +1640,12 @@ msgid "Startup"
 msgstr "Inicialização"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s é um programa de código livre que recolhe\n"
-"informações sobre o processador, a placa-mãe e mais."
+msgstr "Recolhe informações sobre a CPU, a placa-mãe e muito mais"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;sistema;núcleo;velocidade;relógio;taxa;Intel;AMD;placa-mãe;"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
