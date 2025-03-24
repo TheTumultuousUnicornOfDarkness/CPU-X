@@ -27,7 +27,7 @@ if(NOT CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD")
 	message(WARNING "'${CMAKE_SYSTEM_NAME}' system is not officially supported by CPU-X, some features will not be available.")
 endif(NOT CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD")
 if(NOT CPU_ISA_X86 AND NOT CPU_ISA_ARM)
-	message(FATAL_ERROR "'${CMAKE_SYSTEM_PROCESSOR}' processor is not supported by CPU-X.")
+	message(WARNING "'${CMAKE_SYSTEM_PROCESSOR}' processor is not officially supported by CPU-X, some features will not be available.")
 endif(NOT CPU_ISA_X86 AND NOT CPU_ISA_ARM)
 
 
