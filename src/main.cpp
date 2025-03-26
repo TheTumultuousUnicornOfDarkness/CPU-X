@@ -407,9 +407,9 @@ static void common_sighandler(int signum, bool need_stop)
 	/* Print the backtrace */
 	Logger::set_verbosity(LOG_ERROR); // disable DEBUG mode for popen_to_str()
 	if(need_stop)
-		MSG_ERROR(_("\nOops, something was wrong! %s has received signal %d (%s) and has crashed."), PRGNAME, signum, strsignal(signum));
+		MSG_ERROR(_("\nOops, something was wrong! %s (PID %i) has received signal %d (%s) and has crashed."), PRGNAME, getpid(), signum, strsignal(signum));
 	else
-		MSG_ERROR(_("\nOops, something was wrong! %s has received signal %d (%s) and is trying to recover."), PRGNAME, signum, strsignal(signum));
+		MSG_ERROR(_("\nOops, something was wrong! %s (PID %i) has received signal %d (%s) and is trying to recover."), PRGNAME, getpid(), signum, strsignal(signum));
 
 	MSG_ERROR("%s", "========================= Backtrace =========================");
 	PRGINFO(stderr);
@@ -506,6 +506,7 @@ int main(int argc, char *argv[])
 #endif /* HAS_GTK */
 	parse_arguments(args);
 	check_environment_variables(data);
+	MSG_DEBUG("Started %s with PID %i", PRGNAME, getppid());
 	if(Options::get_output_type() > OUT_NO_CPUX)
 		goto skip_init;
 
