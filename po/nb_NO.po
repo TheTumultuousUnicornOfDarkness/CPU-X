@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2023-11-06 13:36+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -139,7 +139,7 @@ msgstr "Henter prosessor-frekvens i tilbakefallsmodus"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-frekvens (tilbakefallsmodus)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 #, fuzzy
 #| msgid "unknown"
 msgid "Unknown"
@@ -193,31 +193,31 @@ msgstr "ukjent"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Kaller libcpuid for innhenting av statisk data"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "Klarte ikke å kalle libcpuid (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 #, fuzzy
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Kaller libcpuid for innhenting av dynamisk data …"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 #, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Kaller libcpuid for mottak av statiske CPU MSR-verdier …"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 #, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Kaller libcpuid for mottak av dynamiske CPU MSR-verdier …"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "Finner prosessor-pakke i tilbakefallsmodus"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
@@ -348,37 +348,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "Klarte ikke å kalle libcpuid (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "klarte ikke å hente plattformsversjon %u (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "klarte ikke å hente alle OpenCL-plattformer (%s)"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Version"
 msgid "Finding OpenGL API version"
 msgstr "Versjon"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call queryDevices (%s)"
 msgstr "kall til dmidecode mislyktes"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "There is no available physical device (%s)"
 msgid "No available EGL devices"
 msgstr "Ingen tilgjengelige fysiske enheter (%s)"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1265,7 +1265,8 @@ msgstr "-- %-9s versjon: %s"
 #| "crashed.%s"
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "%s! %s has received signal %d (%s) and has crashed.%s"
@@ -1278,8 +1279,8 @@ msgstr ""
 #| "crashed.%s"
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "%s! %s has received signal %d (%s) and has crashed.%s"
@@ -1747,7 +1748,7 @@ msgstr "Forvalgt hurtiglagertekst"
 msgid "Startup"
 msgstr "Oppstart"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 #, fuzzy
 #| msgid ""
 #| "%s is a Free software that gathers information\n"
@@ -1757,7 +1758,7 @@ msgstr ""
 "%s er fri programvare som henter info om\n"
 "prosessor, hovedkort, med mer."
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2022-12-17 05:50+0000\n"
 "Last-Translator: Magnus Jørgensen <magnusmj@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/cpu-x/"
@@ -133,7 +133,7 @@ msgstr "Henter CPU frekvens i tilbagefaldstilstand"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "kunne ikke hente CPU frekvens (tilbagefaldstilstand)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 #, fuzzy
 #| msgid "unknown"
 msgid "Unknown"
@@ -187,28 +187,28 @@ msgstr "ukendt"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Kalder libcpuid til hentning af statiske data"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "kunne ikke kalde libcpuid (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Kalder libcpuid til hentning af dynamiske data"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Kalder libcpuid til hentning af statiske CPU-MSR-værdier"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Kalder libcpuid til hentning af dynamiske CPU-MSR-værdier"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "Finder CPU-pakken i tilbagefaldstilstand"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din CPU-socket findes ikke i databasen ==> %s, kodenavn: %s"
@@ -337,37 +337,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "kunne ikke kalde libcpuid (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "kunne ikke tilgå versionen af platformen %u (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "kunne ikke tilgå alle OpenCL platforme (%s)"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenGL API version"
 msgstr "Finder Vulkan API version"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "kunne ikke kalde vkEnumeratePhysicalDevices (%s)"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "Ingen tilgængelig Vulkan enhed"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1201,20 +1201,28 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-9s version: %s"
 
 #: main.cpp:410
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "Hovsa, noget gik galt! %s har modtaget signalet %d (%s) og er nedbrudt."
 
 #: main.cpp:412
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
+#| "to recover."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "Hovsa, noget gik galt! %s har modtaget signalet %d (%s) og prøver at "
@@ -1656,7 +1664,7 @@ msgstr "Standard kerne type"
 msgid "Startup"
 msgstr "Opstart"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 #, fuzzy
 #| msgid ""
 #| "%s is a Free software that gathers information\n"
@@ -1666,7 +1674,7 @@ msgstr ""
 "%s er fri software er indsamler information\n"
 "om CPU, bundkort og andet."
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2025-02-04 16:02+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
@@ -135,7 +135,7 @@ msgstr "फॉलबॅक मोडमध्ये सीपीयू वार
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "सीपीयू वारंवारता पुनर्प्राप्त करण्यात अयशस्वी (फॉलबॅक मोड)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 msgid "Unknown"
 msgstr ""
 
@@ -187,28 +187,28 @@ msgstr ""
 msgid "Calling libcpuid for retrieving static data"
 msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित नाही"
@@ -341,37 +341,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Version"
 msgid "Finding OpenGL API version"
 msgstr "आवृत्ती"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call queryDevices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "failed to call dmidecode"
 msgid "No available EGL devices"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1244,7 +1244,8 @@ msgstr "--%-9s चे आवृत्ती: %s"
 #| "crashed.%s"
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "%s अरेरे, काहीतरी चूक झाली! %s ला सिग्नल %d (%s) प्राप्त झाला आहे आणि क्रॅश झाला आहे.%s"
@@ -1257,8 +1258,8 @@ msgstr ""
 #| "crashed.%s"
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "%s अरेरे, काहीतरी चूक झाली! %s ला सिग्नल %d (%s) प्राप्त झाला आहे आणि क्रॅश झाला आहे.%s"
@@ -1759,7 +1760,7 @@ msgstr ""
 msgid "Startup"
 msgstr ""
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 #, fuzzy
 #| msgid ""
 #| "%s is a Free software that gathers information\n"
@@ -1769,7 +1770,7 @@ msgstr ""
 "%s हे एक विनामूल्य सॉफ्टवेअर आहे जे\n"
 "सीपीयू, मदरबोर्ड आणि बरेच काहीची माहिती एकत्रित करते."
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 

@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2025-03-22 01:32+0000\n"
 "Last-Translator: 杨鹏 <596382932@qq.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -153,7 +153,7 @@ msgstr ""
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "取得 GPU 時脈頻率時失敗"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 #, fuzzy
 #| msgid "unknown"
 msgid "Unknown"
@@ -205,28 +205,28 @@ msgstr "未知"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "正在呼叫 libcpuid 以取得靜態資料"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "呼叫 libcpuid 失敗 (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "正在呼叫 libcpuid 以取得動態資料"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "正在呼叫 libcpuid 以取得 CPU MSR 靜態值"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
@@ -349,37 +349,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "呼叫 libcpuid 失敗 (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "擷取平台版本號數時失敗 %u (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
 msgstr "查找 OpenCL API 版本"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "呼叫 vkEnumeratePhysicalDevices 失敗 (%s)"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "沒有可用的 Vulkan 設備"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1202,15 +1202,16 @@ msgstr "%s 版"
 #, c-format
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 
 #: main.cpp:412
 #, c-format
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 
 #: main.cpp:436
@@ -1629,7 +1630,7 @@ msgstr "預設記憶棒"
 msgid "Startup"
 msgstr "啟動"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 #, fuzzy
 #| msgid ""
 #| "%s is a Free software that gathers information\n"
@@ -1639,7 +1640,7 @@ msgstr ""
 "%s 是一款蒐集CPU、主機板等資訊\n"
 "的自由軟體。"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 

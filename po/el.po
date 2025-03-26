@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2024-11-06 14:00+0000\n"
 "Last-Translator: Christos Longros <chris.longros@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -134,7 +134,7 @@ msgstr "Ανάκτηση συχνότητας CPU σε λειτουργία εφ
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "αποτυχία ανάκτησης συχνότητας CPU (λειτουργία εφεδρείας)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 #, fuzzy
 #| msgid "unknown"
 msgid "Unknown"
@@ -189,32 +189,32 @@ msgstr "άγνωστο"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Κλήση libcpuid για ανάκτηση στατιστικών"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "Αποτυχία κλήσης libcpuid (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Κλήση της libcpuid για ανάκτηση δυναμικών δεδομένων"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 #, fuzzy
 #| msgid "Calling libcpuid for retrieving static data"
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Κλήση libcpuid για ανάκτηση στατιστικών"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 #, fuzzy
 #| msgid "Calling libcpuid for retrieving dynamic data"
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Κλήση της libcpuid για ανάκτηση δυναμικών δεδομένων"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "Εύρεση πακέτου CPU σε λειτουργία εφεδρείας"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
@@ -342,37 +342,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "Αποτυχία κλήσης libcpuid (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "Αποτυχία απόκτησης έκδοσης για την πλατφόρμα %u (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "Αποτυχία απόκτησης όλων των πλατφορμών OpenCL (%s)"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
 msgstr "Εύρεση έκδοσης API OpenCL"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "Αποτυχία κλήσης vkEnumeratePhysicalDevices (%s)"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "Δεν υπάρχουν διαθέσιμες συσκευές Vulkan"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1188,20 +1188,28 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-9s έκδοση: %s"
 
 #: main.cpp:410
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "Ουπς, κάτι δεν πήγε καλά! Το %s έλαβε σήμα %d (%s) και κατέρρευσε."
 
 #: main.cpp:412
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
+#| "to recover."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "Ουπς, κάτι δεν πήγε καλά! Το %s έλαβε σήμα %d (%s) και προσπαθεί να "
@@ -1658,7 +1666,7 @@ msgstr "Προεπιλεγμένο memory stick"
 msgid "Startup"
 msgstr "Εκκίνηση"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 #, fuzzy
 #| msgid ""
 #| "%s is a Free software that gathers information\n"
@@ -1668,7 +1676,7 @@ msgstr ""
 "%s είναι ένα ελεύθερο λογισμικό που συλλέγει πληροφορίες\n"
 "σχετικά με τη CPU, τη μητρική κάρτα και άλλα."
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 

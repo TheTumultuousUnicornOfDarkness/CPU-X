@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2025-03-16 11:10+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
@@ -145,7 +145,7 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 "échec lors de la récupération de la fréquence du processeur (mode de secours)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -198,30 +198,30 @@ msgstr "inconnu"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Appel libcpuid pour récupérer les données statiques"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "échec lors de l'appel de libcpuid (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Appel libcpuid pour récupérer les données dynamiques"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Appel de libcpuid pour récupérer les valeurs statiques des MSR du processeur"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Appel de libcpuid pour récupérer les valeurs dynamiques des MSR du processeur"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "Recherche du support du processeur en mode de secours"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
@@ -350,30 +350,30 @@ msgstr "EGL ne supporte pas OpenGL"
 msgid "failed to call eglBindAPI (%s)"
 msgstr "échec lors de l'appel de eglBindAPI (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, c-format
 msgid "failed to destroy EGL display (%s)"
 msgstr "échec lors de la destruction de l'affichage EGL (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, c-format
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "échec lors de l'appel à getPlatformDisplay (%s)"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 msgid "Finding OpenGL API version"
 msgstr "Recherche de la version de l'API OpenGL"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, c-format
 msgid "failed to call queryDevices (%s)"
 msgstr "échec lors de l'appel à queryDevices (%s)"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 msgid "No available EGL devices"
 msgstr "Aucun périphérique compatible EGL disponible"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "Impossible de trouver le pilote OpenGL pour le vendeur %s"
@@ -428,7 +428,8 @@ msgstr "Recherche des périphériques"
 
 #: core/libpci.cpp:454
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Saute la recherche des périphériques (le périphérique PCI n'existe pas)"
+msgstr ""
+"Saute la recherche des périphériques (le périphérique PCI n'existe pas)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -1194,21 +1195,29 @@ msgid "-- %-11s version: %s"
 msgstr "-- Version de %-11s : %s"
 
 #: main.cpp:410
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "Oups, quelque chose s'est mal passé ! %s a reçu le signal %d (%s) et a "
 "planté."
 
 #: main.cpp:412
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
+#| "to recover."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "Oups, quelque chose s'est mal passé ! %s a reçu le signal %d (%s) et essaie "
@@ -1660,11 +1669,11 @@ msgstr "Barrette de mémoire par défaut"
 msgid "Startup"
 msgstr "Démarrage"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 msgid "Gathers information on CPU, motherboard and more"
 msgstr "Récolte des informations sur le CPU, la carte-mère et plus"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;système;cœur;vitesse;fréquence;cadence;Intel;AMD;carte-mère;"
 

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -128,7 +128,7 @@ msgstr ""
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr ""
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 msgid "Unknown"
 msgstr ""
 
@@ -177,28 +177,28 @@ msgstr ""
 msgid "Calling libcpuid for retrieving static data"
 msgstr ""
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr ""
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr ""
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr ""
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
@@ -313,30 +313,30 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr ""
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, c-format
 msgid "failed to destroy EGL display (%s)"
 msgstr ""
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, c-format
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr ""
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 msgid "Finding OpenGL API version"
 msgstr ""
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, c-format
 msgid "failed to call queryDevices (%s)"
 msgstr ""
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 msgid "No available EGL devices"
 msgstr ""
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1131,15 +1131,16 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 
 #: main.cpp:412
 #, c-format
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 
 #: main.cpp:436
@@ -1539,10 +1540,10 @@ msgstr ""
 msgid "Startup"
 msgstr ""
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 msgid "Gathers information on CPU, motherboard and more"
 msgstr ""
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""

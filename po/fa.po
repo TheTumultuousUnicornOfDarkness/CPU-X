@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -134,7 +134,7 @@ msgstr "در حال دریافت فرکانس پردازنده در حالت ج�
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "دریافت ناموفق فرکانس پردازنده (حالت جایگزینی)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 #, fuzzy
 #| msgid "unknown"
 msgid "Unknown"
@@ -188,29 +188,29 @@ msgstr "ناشناخته"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "در حال فراخوانی libcpuid برای دریافت اطلاعات ایستا"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "در حال فراخوانی کتابخانه شناسه پردازنده برای دریافت اطلاعات پویا"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر ایستای MSR پردازنده"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر پویای MSR پردازنده"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "در حال یافتن بسته پردازنده در حالت جایگزینی"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
@@ -341,37 +341,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "دریافت ناموفق نسخه پلتفرم %u (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenGL API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "هیچ دستگاه Vulkan موجود نیست"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1219,20 +1219,28 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-9s نسخه: %s"
 
 #: main.cpp:410
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s) رو دریافت کرد و متوقف شده است."
 
 #: main.cpp:412
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
+#| "to recover."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s)‌رو دریافت کرده و در حال تلاش برای بازیابی "
@@ -1679,7 +1687,7 @@ msgstr "تست کش پیش‌فرض"
 msgid "Startup"
 msgstr "راه‌اندازی"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 #, fuzzy
 #| msgid ""
 #| "%s is a Free software that gathers information\n"
@@ -1689,7 +1697,7 @@ msgstr ""
 "%s یک نرم افزار مجانی است که اطلاعاتی\n"
 "در مورد پردازنده، مادربرد و غیره جمع آوری می کند."
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 

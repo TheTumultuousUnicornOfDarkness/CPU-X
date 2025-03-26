@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-15 20:28+0100\n"
+"POT-Creation-Date: 2025-03-26 17:44+0000\n"
 "PO-Revision-Date: 2022-11-03 07:08+0000\n"
 "Last-Translator: cosita official <kokosove18@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -138,7 +138,7 @@ msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "nepodařilo se zjistit takt procesoru (náhradní režim)"
 
-#: core/dmidecode/dmidecode.c:5785
+#: core/dmidecode/dmidecode.c:5801
 #, fuzzy
 #| msgid "unknown"
 msgid "Unknown"
@@ -196,32 +196,32 @@ msgstr "neznámé"
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Získávání statických údajů prostřednictvím knihovny libcpuid"
 
-#: core/libcpuid.cpp:280
+#: core/libcpuid.cpp:284
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core/libcpuid.cpp:409
+#: core/libcpuid.cpp:413
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Získávání dynamických údajů prostřednictvím knihovny libcpuid"
 
-#: core/libcpuid.cpp:426
+#: core/libcpuid.cpp:430
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Získávání statických hodnot MSR registru procesoru prostřednictvím knihovny "
 "libcpuid"
 
-#: core/libcpuid.cpp:456
+#: core/libcpuid.cpp:460
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Získávání dynamických hodnot MSR registru procesoru prostřednictvím knihovny "
 "libcpuid"
 
-#: core/libcpuid.cpp:485
+#: core/libcpuid.cpp:489
 msgid "Finding CPU package in fallback mode"
 msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
 
-#: core/libcpuid.cpp:515
+#: core/libcpuid.cpp:519
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
@@ -356,37 +356,37 @@ msgstr ""
 msgid "failed to call eglBindAPI (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core/libopengl.cpp:261
+#: core/libopengl.cpp:267
 #, fuzzy, c-format
 #| msgid "failed to perform the Curl transfer (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 
-#: core/libopengl.cpp:273
+#: core/libopengl.cpp:279
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "nepodařilo se zavolat nástroj dmidecode"
 
-#: core/libopengl.cpp:289
+#: core/libopengl.cpp:295
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenGL API version"
 msgstr "Hledám verzi Vulkan API"
 
-#: core/libopengl.cpp:292 core/libopengl.cpp:306
+#: core/libopengl.cpp:298 core/libopengl.cpp:312
 #, fuzzy, c-format
 #| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "nepodařilo se zavolat vkEnumeratePhysicalDevices (%s)"
 
-#: core/libopengl.cpp:299
+#: core/libopengl.cpp:305
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "Žádné dostupné Vulkan zařízení"
 
-#: core/libopengl.cpp:318
+#: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -1266,20 +1266,28 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-9s verze: %s"
 
 #: main.cpp:410
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 "\n"
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a crashlo.%s"
 
 #: main.cpp:412
-#, c-format
+#, fuzzy, c-format
+#| msgid ""
+#| "\n"
+#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
+#| "to recover."
 msgid ""
 "\n"
-"Oops, something was wrong! %s has received signal %d (%s) and is trying to "
-"recover."
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
 msgstr ""
 "\n"
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a pokouší se o nápravu."
@@ -1806,11 +1814,11 @@ msgstr ""
 msgid "Startup"
 msgstr ""
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:3
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 msgid "Gathers information on CPU, motherboard and more"
 msgstr "Shromažďuje informace o procesoru, základní desce a další"
 
-#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:9
+#: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 
