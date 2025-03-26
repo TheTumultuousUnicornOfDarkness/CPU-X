@@ -247,7 +247,13 @@ static int egl_info_display(std::string card_vendor, int pfd_out, bool &gpu_foun
 	[[maybe_unused]] const auto [gl_version_core,   umd_core,   vendor_core]   = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT);
 	[[maybe_unused]] const auto [gl_version_compat, umd_compat, vendor_compat] = egl_get_gl_strings(display, config, khr_create_context, EGL_CONTEXT_OPENGL_COMPATIBILITY_PROFILE_BIT);
 
-	gpu_found = (card_vendor == vendor_compat);
+	/* Samples:
+	vendor_compat      | card_vendor | gpu_found
+	-------------------|-------------|----------
+	AMD                | AMD         | true (strings are equal)
+	NVIDIA Corporation | NVIDIA      | true (card_vendor is a substring of vendor_compat)
+	*/
+	gpu_found = vendor_compat.find(card_vendor) != std::string::npos;
 	if(gpu_found)
 	{
 		MSG_DEBUG("%s", "EGL device matches card");
