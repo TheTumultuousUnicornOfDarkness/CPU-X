@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-03-17 01:17+0000\n"
+"PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ro/>\n"
@@ -1177,32 +1177,26 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-11s versiunea: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Opa, ceva a fost greșit! %s a primit semnalul %d (%s) și s-a prăbușit."
+"Opa, ceva a fost greșit! %s (PID %i) a primit semnalul %d (%s) și s-a "
+"prăbușit."
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Opa, ceva a fost greșit! %s a primit semnalul %d (%s) și încearcă să se "
-"recupereze."
+"Opa, ceva a fost greșit! %s (PID %i) a primit semnalul %d (%s) și încearcă "
+"să se recupereze."
 
 #: main.cpp:436
 msgid "You can open a new issue here, by filling the template as requested:"
