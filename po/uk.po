@@ -14,10 +14,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-03-16 22:13+0000\n"
+"PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/uk/>\n"
@@ -1172,31 +1172,25 @@ msgid "-- %-11s version: %s"
 msgstr "-- Версія %-11s: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Йой, щось пішло не так! %s отримав сигнал %d (%s) і припинив роботу."
+"Ой, щось пішло не так! %s (PID %i) отримав сигнал %d (%s) і вийшов з ладу."
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Йой, щось пішло не так! %s отримав сигнал %d (%s) і намагається відновитися."
+"Ой, щось пішло не так! %s (PID %i) отримав сигнал %d (%s) і намагається "
+"відновитися."
 
 #: main.cpp:436
 msgid "You can open a new issue here, by filling the template as requested:"
