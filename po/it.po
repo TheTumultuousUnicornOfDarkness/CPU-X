@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-03-16 17:41+0000\n"
+"PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -539,13 +539,12 @@ msgid "Starting daemon in background…"
 msgstr "Avvia il demone in background…"
 
 #: daemon/client.cpp:103
-#, fuzzy
 msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
-"La variabile di ambiente APPDIR non è impostata, non può copiare il demone "
-"nella directory temporanea"
+"La variabile di ambiente APPDIR non è impostata, impossibile copiare il "
+"demone nella directory temporanea"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -1178,33 +1177,26 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-11s versione: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Oops, qualcosa è andato storto! %s ha ricevuto il segnale %d (%s) e si è "
-"bloccato."
+"Oops, qualcosa è andato storto! %s (PID %i) ha ricevuto il segnale %d (%s) e "
+"si è bloccato."
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Oops, qualcosa è andato storto! %s ha ricevuto il segnale %d (%s) e sta "
-"cercando una soluzione."
+"Oops, qualcosa è andato storto! %s (PID %i) ha ricevuto il segnale %d (%s) e "
+"sta cercando una soluzione."
 
 #: main.cpp:436
 msgid "You can open a new issue here, by filling the template as requested:"
