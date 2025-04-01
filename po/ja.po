@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-03-22 12:56+0000\n"
+"PO-Revision-Date: 2025-04-01 21:52+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ja/>\n"
@@ -1165,31 +1165,26 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-11s バージョン: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"何かが間違っています！%s はシグナル %d (%s)を受け取ってクラッシュしました。"
+"問題が発生しました！ %s (PID %i) がシグナル %d (%s) "
+"を受信してクラッシュしました。"
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"何かが間違っています！%s はシグナル %d (%s) を受け取り、回復を試みています。"
+"問題が発生しました！ %s (PID %i) はシグナル %d (%s) "
+"を受信し、回復を試みています。"
 
 #: main.cpp:436
 msgid "You can open a new issue here, by filling the template as requested:"
