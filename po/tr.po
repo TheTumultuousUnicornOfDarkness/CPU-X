@@ -17,14 +17,15 @@
 # Oğuz Ersen <oguz@ersen.moe>, 2022, 2023, 2024.
 # Ensar Melih Bulut <muhammedensarozketen@gmail.com>, 2023.
 # Sabri Ünal <yakushabb@gmail.com>, 2024.
+# mahmutozcan <mahmutozcan@protonmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2024-12-28 15:00+0000\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"PO-Revision-Date: 2025-04-01 03:15+0000\n"
+"Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -32,17 +33,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "Bant genişliği çağrılıyor"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(sürüm %s mevcut)"
+msgstr "(mevcut değil)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -149,10 +148,8 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU frekansı alınamadı (yedek mod)"
 
 #: core/dmidecode/dmidecode.c:5801
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "bilinmeyen"
+msgstr "Bilinmeyen"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
@@ -311,7 +308,7 @@ msgstr "tüm OpenCL platformları alınamadı (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "%ssağlayıcı için OpenCL sürücüsü bulunamadı"
 
 #: core/libopengl.cpp:172
 #, fuzzy
