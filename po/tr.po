@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-04-01 03:15+0000\n"
+"PO-Revision-Date: 2025-04-03 21:53+0000\n"
 "Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
@@ -317,22 +317,19 @@ msgid "failed to create EGL context"
 msgstr "GPU saatleri alınamadı"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "%u. aygıt için sürüm alınamadı (%s)"
+msgstr "EGL bağlamı yok edilemedi (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "libcpuid çağrılamadı (%s)"
+msgstr "eglChooseConfig çağrısı başarısız oldu (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "libcpuid çağrılamadı (%s)"
+msgstr "eglInitialize çağrısı başarısız oldu (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
