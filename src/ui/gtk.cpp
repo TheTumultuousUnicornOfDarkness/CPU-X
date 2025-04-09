@@ -1359,8 +1359,8 @@ int start_gui_gtk(Data &data)
 	try
 	{
 		app                = Gtk::Application::create(APPLICATION_ID, Gio::APPLICATION_NON_UNIQUE);
-		const auto builder = Gtk::Builder::create_from_file(get_data_path("cpu-x-gtk-3.12.ui"));
 		Glib::set_prgname(APPLICATION_ID);
+		const auto builder = Gtk::Builder::create_from_file(get_data_path("cpu-x-gtk-3.12.ui"));
 		GtkData gdata(builder, data);
 		return app->run(*gdata.mainwindow);
 	}
