@@ -1,6 +1,6 @@
 # Dmidecode: Desktop Management Interface table related utilities
 
-Distributed under the terms of the [GNU GPL v2](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/blob/master/src/dmidecode/LICENSE).
+Distributed under the terms of the [GNU GPL v2](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/blob/master/src/core/dmidecode/LICENSE).
 
 ### CPU-X NOTE
 

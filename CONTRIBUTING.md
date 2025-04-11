@@ -10,7 +10,7 @@ If you want to translate CPU-X in your native tongue, please visit the [Weblate 
 
 ## Update databases
 
-When new CPUs are out, we need to add them in databases. You can find databases [here](src/databases.h). Also, please note CPU codenames are defined in [libcpuid](https://github.com/anrieff/libcpuid).  
+When new CPUs are out, we need to add them in databases. You can find databases [here](src/core/databases.h). Also, please note CPU codenames are defined in [libcpuid](https://github.com/anrieff/libcpuid).  
 Dumps can be found on [InstLatx64 website](http://users.atw.hu/instlatx64/). Latest dumps can be found on [this Git mirror](https://github.com/InstLatx64/InstLatx64/commits/master).
 
 ## Develop
@@ -116,8 +116,8 @@ This section describe how to add a new option. You can take a look on [this comm
    * in `parse_arguments()`: retrieve value for option
 3. `data/io.github.thetumultuousunicornofdarkness.cpu-x.gschema.xml`: add a new key
 4. `data/cpu-x-gtk-3.12.ui`: open UI file in Glade and change Settings window
-5. `src/gui_gtk.hpp`: add a new widget in `struct GtkData`
-6. `src/gui_gtk.cpp`:
+5. `src/ui/gtk.hpp`: add a new widget in `struct GtkData`
+6. `src/ui/gtk.cpp`:
    * `get_widgets()`: map UI widget to a C++ object
    * `load_settings()`: map setting to an option
    * `bind_settings()`: bind schema value to a C++ object
