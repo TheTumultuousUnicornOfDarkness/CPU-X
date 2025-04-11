@@ -4,14 +4,15 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2019, 2020, 2021, 2022, 2023.
 # Michal Čihař <michal@cihar.com>, 2019.
 # L-M-H <lars.magnus@herland.priv.no>, 2022.
+# Telaneo <post@telaneo.net>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2023-11-06 13:36+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2025-04-11 18:55+0000\n"
+"Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -19,17 +20,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
 msgstr "Kaller båndbredde"
 
 #: core/bandwidth/main.c:2992
-#, fuzzy
-#| msgid "(version %s is available)"
 msgid "(unavailable)"
-msgstr "(versjon %s er tilgjengelig)"
+msgstr "(utilgjengelig)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -74,19 +73,17 @@ msgid "in %u seconds"
 msgstr "om %u sekunder"
 
 #: core/benchmarks.cpp:130
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Starter ytelsestest"
+msgstr "Starter ytelsestest med %u tråder"
 
 #: core/benchmarks.cpp:153
 msgid "an error occurred while starting benchmark"
 msgstr "En feil inntraff under oppstart av ytelsestest"
 
 #: core/core.cpp:67
-#, fuzzy
 msgid "Calculating CPU usage"
-msgstr "Regner ut prosessor-bruk …"
+msgstr "Regner ut prosessorbruk"
 
 #: core/core.cpp:109
 #, c-format
