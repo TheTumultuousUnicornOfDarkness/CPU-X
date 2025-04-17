@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-04-09 23:01+0000\n"
+"PO-Revision-Date: 2025-04-18 00:55+0000\n"
 "Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/es/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -679,7 +679,7 @@ msgstr "Tarjetas"
 
 #: data.cpp:697 cpu-x-gtk-3.12.ui:5521
 msgid "Bench"
-msgstr "Tests"
+msgstr "Desnivel"
 
 #: data.cpp:710
 msgid "Not started"
@@ -853,7 +853,7 @@ msgstr "Velocidad Bus"
 
 #: data.hpp:168 data.hpp:352
 msgid "Usage"
-msgstr "Uso"
+msgstr "Empleo"
 
 #: data.hpp:198 data.hpp:276
 msgid "Size"
@@ -905,7 +905,7 @@ msgstr "Localizador de los bancos"
 
 #: data.hpp:277
 msgid "Rank"
-msgstr "Rango"
+msgstr "Proporción"
 
 #: data.hpp:303
 msgid "Name"
@@ -957,7 +957,7 @@ msgstr "Unidad de Cómputo"
 
 #: data.hpp:348
 msgid "Device ID"
-msgstr "Identificación del dispositivo"
+msgstr "ID dispositivo"
 
 #: data.hpp:349
 msgid "VBIOS Version"
@@ -1147,7 +1147,7 @@ msgstr ""
 #: main.cpp:125
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
-msgstr "Uso: %s PANTALLA [OPCIONES]\n"
+msgstr "Modo de empleo: %s PANTALLA [OPCIONES]\n"
 
 #: main.cpp:126
 msgid "Available DISPLAY:"
@@ -1329,11 +1329,11 @@ msgstr "Ray Tracing (Vulkan)"
 
 #: ui/gtk.cpp:1358
 msgid "Starting GTK GUI…"
-msgstr "Inicializando la GUI GTK…"
+msgstr "Inicializando el IGU GTK…"
 
 #: ui/gtk.cpp:1369
 msgid "failed to import UI in GtkBuilder"
-msgstr "fallo al importar la IU en GtkBuilder"
+msgstr "incorrecto al importar la IU en GtkBuilder"
 
 #: ui/ncurses.cpp:116
 msgid "Window is too small!"
@@ -1360,21 +1360,21 @@ msgstr "Teclas globales:"
 #: ui/ncurses.cpp:241
 msgid "Press 'left' key or 'tab' key to switch in left tab."
 msgstr ""
-"Pulsa la tecla 'izquierda' o 'tabulador' para cambiar a la pestaña izquierda."
+"Pulse la tecla ‘izquierda’ o ‘tabulador’ para cambiar a la pestaña izquierda."
 
 #: ui/ncurses.cpp:242
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr ""
-"Presione la tecla 'derecha' o las teclas 'shift + tab' para cambiar a la "
+"Pulse la tecla ‘derecha’ o las teclas ‘mayús + tab’ para cambiar a la "
 "pestaña derecha."
 
 #: ui/ncurses.cpp:243
 msgid "Press 'h' key to see this help."
-msgstr "Presione la tecla 'h' para ver esta ayuda."
+msgstr "Pulse la tecla ‘h’ para ver esta ayuda."
 
 #: ui/ncurses.cpp:244
 msgid "Press 'q' key to exit."
-msgstr "Presione la tecla 'q' para salir."
+msgstr "Pulse la tecla ‘q’ para salir."
 
 #: ui/ncurses.cpp:246
 msgid "CPU tab:"
@@ -1383,76 +1383,74 @@ msgstr "Pestaña CPU:"
 #: ui/ncurses.cpp:247
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
-"Presione la tecla 'siguiente página' para disminuir el número de tipo de "
-"núcleo para monitorear."
+"Pulse la tecla 'siguiente página' para disminuir el número de tipo de núcleo "
+"para monitorear."
 
 #: ui/ncurses.cpp:248
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr ""
-"Presione la tecla 'página anterior' para aumentar el número de tipo de "
-"núcleo para monitorear."
+"Pulse la tecla 'anterior página' para aumentar el número de tipo de núcleo "
+"para monitorear."
 
 #: ui/ncurses.cpp:249
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
-"Presione la tecla 'abajo' para disminuir el número de núcleos de la CPU para "
+"Pulse la tecla 'bajar' para disminuir el número de núcleos de la CPU para "
 "monitorear."
 
 #: ui/ncurses.cpp:250
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
-"Presione la tecla 'arriba' para aumentar el número de núcleos de la CPU para "
+"Pulse la tecla ‘subir’ para aumentar el número de núcleos de la CPU para "
 "monitorear."
 
 #: ui/ncurses.cpp:252
 msgid "Caches tab:"
-msgstr "Pestaña cachés:"
+msgstr "Pestaña caché:"
 
 #: ui/ncurses.cpp:253
 msgid "Press 'down' key to switch to previous test."
-msgstr "Pulse la tecla \"abajo\" para pasar a la prueba anterior."
+msgstr "Pulse la tecla ‘abajo’ para pasar a la prueba anterior."
 
 #: ui/ncurses.cpp:254
 msgid "Press 'up' key to switch to next test."
-msgstr "Pulse la tecla 'arriba' para pasar a la siguiente prueba."
+msgstr "Pulse la tecla ‘arriba’ para pasar a la siguiente prueba."
 
 #: ui/ncurses.cpp:256
 msgid "Bench tab:"
-msgstr "Pestaña Cachés:"
+msgstr "Pestaña caché:"
 
 #: ui/ncurses.cpp:257
 msgid "Press 'down' key to decrement benchmark duration."
 msgstr ""
-"Presione la tecla 'abajo' para disminuir la duración del punto de referencia."
+"Pulse la tecla ‘bajar’ para disminuir la duración del punto de referencia."
 
 #: ui/ncurses.cpp:258
 msgid "Press 'up' key to increment benchmark duration."
 msgstr ""
-"Presione la tecla 'arriba' para aumentar la duración del punto de referencia."
+"Pulse la tecla ‘subir’ para aumentar la duración del punto de referencia."
 
 #: ui/ncurses.cpp:259
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
-"Presione la tecla 'página siguiente' para disminuir el número de hilos a "
-"usar."
+"Pulse la tecla ‘página siguiente’ para disminuir el número de hilos a usar."
 
 #: ui/ncurses.cpp:260
 msgid "Press 'previous page' key to increment number of threads to use."
 msgstr ""
-"Presione la tecla 'página anterior' para incrementar el número de hilos a "
-"usar."
+"Pulse la tecla ‘página anterior’ para incrementar el número de hilos a usar."
 
 #: ui/ncurses.cpp:261
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
 msgstr ""
-"Oprima la tecla «s» para iniciar/parar el banco de pruebas de números primos "
-"(lento)."
+"Pulse la tecla ‘s’ para iniciar/detener el banco de pruebas de números "
+"primos (lento)."
 
 #: ui/ncurses.cpp:262
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
 msgstr ""
-"Oprima la tecla «f» para iniciar/parar el banco de pruebas de números primos "
-"(rápido)."
+"Pulse la tecla ‘f’ para iniciar/detener el banco de pruebas de números "
+"primos (rápido)."
 
 #: ui/ncurses.cpp:264
 msgid "Graphics tab:"
@@ -1460,15 +1458,15 @@ msgstr "Pestaña gráfica:"
 
 #: ui/ncurses.cpp:265
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Pulsa la tecla \"abajo\" para cambiar a la tarjeta gráfica anterior."
+msgstr "Pulse la tecla ‘bajar’ para cambiar a la tarjeta gráfica anterior."
 
 #: ui/ncurses.cpp:266
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "Presione la tecla 'arriba' para pasar a la siguiente prueba."
+msgstr "Pulse la tecla ‘subir’ para pasar a la siguiente tarjeta gráfica."
 
 #: ui/ncurses.cpp:268
 msgid "Press any key to exit this help."
-msgstr "Oprima cualquier tecla para salir de esta ayuda."
+msgstr "Pulse cualquier tecla para salir de esta ayuda."
 
 #: ui/ncurses.cpp:676
 msgid "Starting NCurses TUI…"
@@ -1485,7 +1483,7 @@ msgstr ""
 #: ui/ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr "Error al fijar terminal %s (err=%i); devuelto a %s"
+msgstr "Incorrecto al fijar terminal %s (err=%i); devuelto a %s"
 
 #: util.cpp:189
 #, c-format
@@ -1560,7 +1558,7 @@ msgstr "Se requieren privilegios para recopilar cierta información"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
-msgstr "Cache"
+msgstr "Caché"
 
 #: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
@@ -1594,7 +1592,7 @@ msgstr "Amarillo para el tema oscuro"
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
-msgstr "Unidades de temperatura"
+msgstr "Unidad de temperatura"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6047
@@ -1614,7 +1612,7 @@ msgstr "Prueba caché predeterminada"
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6116
 msgid "Print CPUID values in decimal"
-msgstr "Escribe valores de CPUID en decimal"
+msgstr "Declara valores de CPUID en decimal"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6149
