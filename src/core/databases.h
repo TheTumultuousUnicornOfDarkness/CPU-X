@@ -99,6 +99,7 @@ const Technology_DB_x86 technology_x86_intel[] =
 	{ 13,          13,          -1,          "90 nm" }, // Pentium M Dothan
 	{ 13,          45,          -1,          "32 nm" }, // Sandy Bridge-E
 	{ 13,          61,          -1,          "14 nm" }, // Broadwell-U
+	{ 13,         189,          -1,       "TSMC N3B" }, // Lunar Lake-V (Compute tile)
 	{ 14,          14,          -1,          "65 nm" }, // Yonah (Core Solo)
 	{ 14,          30,          -1,          "45 nm" }, // Nehalem (Lynnfield)
 	{ 14,          62,          -1,          "22 nm" }, // Ivy Bridge-E
