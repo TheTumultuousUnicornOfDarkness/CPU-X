@@ -73,7 +73,7 @@ const Technology_DB_x86 technology_x86_intel[] =
 	{  7,          71,          -1,          "14 nm" }, // Broadwell
 	{  7,         151,          -1,        "Intel 7" }, // Alder Lake-S / Alder Lake-HX
 	{  7,         167,          -1,          "14 nm" }, // Rocket Lake
-	{  7,         183,          -1,        "Intel 7" }, // Raptor Lake-S / Raptor Lake-HX
+	{  7,         183,          -1,        "Intel 7" }, // Raptor Lake-S / Raptor Lake-HX / Raptor Lake-U
 	{  8,           0,           0,        "0.18 µm" }, // PIII Coppermine-T
 	{  8,           8,          -1,        "0.18 µm" }, // PIII Coppermine
 	{  9,           9,          -1,        "0.13 µm" }, // Pentium M Banias
