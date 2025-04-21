@@ -84,7 +84,7 @@ const Technology_DB_x86 technology_x86_intel[] =
 	{ 10,         106,          -1,          "10 nm" }, // Ice Lake-D / Ice Lake-W / Ice Lake-SP
 	{ 10,         122,          -1,          "14 nm" }, // Gemini Lake
 	{ 10,         138,          -1,          "10 nm" }, // Tremont (Lakefield)
-	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-H
+	{ 10,         154,          -1,        "Intel 7" }, // Alder Lake-P / Alder Lake-H / Alder Lake-PS
 	{ 10,         170,          -1,        "Intel 4" }, // Meteor Lake-H
 	{ 10,         186,          -1,        "Intel 7" }, // Raptor Lake-P / Raptor Lake-U / Raptor Lake-H
 	{ 11,          11,          -1,        "0.13 µm" }, // PIII Tualatine
