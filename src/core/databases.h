@@ -66,6 +66,7 @@ const Technology_DB_x86 technology_x86_intel[] =
 	{  6,          70,          -1,          "22 nm" }, // Haswell (Crystalwell, L4 cache)
 	{  6,         102,          -1,          "10 nm" }, // Cannon Lake
 	{  6,         150,          -1,          "10 nm" }, // Tremont (Elkhart Lake)
+	{  6,         181,          -1,       "TSMC N3B" }, // Arrow Lake-U (Compute Tile)
 	{  6,         198,          -1,       "TSMC N3B" }, // Arrow Lake-S (Compute Tile)
 	{  7,           7,          -1,        "0.25 µm" }, // PIII Katmai
 	{  7,          23,          -1,          "45 nm" }, // C2 Wolfdale / Yorkfield / Penryn
