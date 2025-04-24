@@ -3,14 +3,15 @@
 # THANOS SIOURDAKIS <siourdakisthanos@gmail.com>, 2019.
 # Efthymis <eft.t@icloud.com>, 2022.
 # Christos Longros <chris.longros@gmail.com>, 2024.
+# GiannosOB <giannos2105@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2024-11-06 14:00+0000\n"
-"Last-Translator: Christos Longros <chris.longros@gmail.com>\n"
+"PO-Revision-Date: 2025-04-24 15:52+0000\n"
+"Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/cpu-x/translations/"
 "el/>\n"
 "Language: el\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 #, fuzzy
@@ -169,13 +170,13 @@ msgstr ""
 "ext. model: 3%i, ext. family: 4%i"
 
 #: core/libcpuid.cpp:127
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
 msgstr ""
-"Το CPU socket σας δεν υπάρχει στη βάση δεδομένων ==> %s, κωδική ονομασία: %s"
+"Η CPU σας δεν υπάρχει στη βάση δεδομένων ==> %s, αριθμός εξαρτήματος: 0x%x, "
+"κωδική ονομασία: %s"
 
 #: core/libcpuid.cpp:134
 msgid "Finding CPU technology"
@@ -315,10 +316,9 @@ msgid "failed to create EGL context"
 msgstr ""
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "Αποτυχία απόκτησης έκδοσης της συσκευής %u (%s)"
+msgstr "απέτυχε να καταστρέψει το πλαίσιο EGL (%s)"
 
 #: core/libopengl.cpp:206
 #, fuzzy, c-format
@@ -343,10 +343,9 @@ msgid "failed to call eglBindAPI (%s)"
 msgstr "Αποτυχία κλήσης libcpuid (%s)"
 
 #: core/libopengl.cpp:267
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "Αποτυχία απόκτησης έκδοσης για την πλατφόρμα %u (%s)"
+msgstr "απέτυχε να καταστρέψει την οθόνη EGL (%s)"
 
 #: core/libopengl.cpp:279
 #, fuzzy, c-format
@@ -609,10 +608,9 @@ msgid "Caches"
 msgstr ""
 
 #: data.cpp:263
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x 2%d 3%s, 4%d-way"
+msgstr "%2d x %4d %s, %2d-way"
 
 #: data.cpp:265
 #, c-format
@@ -803,11 +801,11 @@ msgstr ""
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Υλοποιητής"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Παραλλαγή"
 
 #: data.hpp:118 data.hpp:271
 msgid "Part Number"
@@ -1182,37 +1180,29 @@ msgid "See the %s license: <%s>\n"
 msgstr "Δείτε την άδεια %s: <%s>\n"
 
 #: main.cpp:183
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s έκδοση: %s"
+msgstr "-- %-11s έκδοση: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Ουπς, κάτι δεν πήγε καλά! Το %s έλαβε σήμα %d (%s) και κατέρρευσε."
+"Ουπς, κάτι δεν πήγε καλά! Το %s (PID %i) έλαβε σήμα %d (%s) και κατέρρευσε."
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Ουπς, κάτι δεν πήγε καλά! Το %s έλαβε σήμα %d (%s) και προσπαθεί να "
+"Ουπς, κάτι δεν πήγε καλά! Το %s (PID %i) έλαβε σήμα %d (%s) και προσπαθεί να "
 "ανακάμψει."
 
 #: main.cpp:436
@@ -1226,11 +1216,9 @@ msgid "an error occurred while setting locale"
 msgstr "προέκυψε σφάλμα κατά τη ρύθμιση της τοπικής γλώσσας"
 
 #: options.cpp:166
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr ""
-"Η επιλεγμένη καρτέλα (%u) δεν είναι έγκυρος αριθμός (το %u είναι το μέγιστο)"
+msgstr "Η επιλεγμένη καρτέλα (%u) δεν είναι ορατή"
 
 #: options.cpp:171
 #, c-format
@@ -1667,14 +1655,8 @@ msgid "Startup"
 msgstr "Εκκίνηση"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s είναι ένα ελεύθερο λογισμικό που συλλέγει πληροφορίες\n"
-"σχετικά με τη CPU, τη μητρική κάρτα και άλλα."
+msgstr "Συγκεντρώνει πληροφορίες σχετικά με τη CPU, τη μητρική πλακέτα και άλλα"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
