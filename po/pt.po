@@ -6,14 +6,15 @@
 # Sérgio Morais <lalocas@protonmail.com>, 2021.
 # SC <lalocas@protonmail.com>, 2022.
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2022, 2023, 2024, 2025.
+# "Peter J. Mello" <admin@petermello.net>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-03-25 03:50+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
+"PO-Revision-Date: 2025-04-30 02:30+0000\n"
+"Last-Translator: \"Peter J. Mello\" <admin@petermello.net>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/cpu-x/"
 "translations/pt/>\n"
 "Language: pt\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -721,7 +722,7 @@ msgstr ""
 
 #: data.cpp:769
 msgid "About CPU-X"
-msgstr "Acerca do CPU-X"
+msgstr "Sobre a CPU-X"
 
 #: data.cpp:770
 #, c-format
@@ -793,7 +794,7 @@ msgstr "Most. Modelo"
 
 #: data.hpp:114
 msgid "Stepping"
-msgstr "Revisão"
+msgstr "Degrau"
 
 #: data.hpp:116
 msgid "Implementer"
@@ -987,7 +988,7 @@ msgstr "Média da alimentação"
 
 #: data.hpp:355
 msgid "Core Clock"
-msgstr "Frequência do Núcleo"
+msgstr "Frequência do núcleo"
 
 #: data.hpp:356
 msgid "Memory Clock"
@@ -1079,7 +1080,7 @@ msgstr ""
 
 #: main.cpp:72
 msgid "Select default memory stick (integer)"
-msgstr "Selecionar o pente de memória padrão (valor inteiro)"
+msgstr "Selecione o pente de memória padrão (valor inteiro)"
 
 #: main.cpp:73
 msgid "Select default graphic card (integer)"
@@ -1180,32 +1181,25 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-11s versão: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Oops, alguma coisa está errada! %s recebeu o sinal %d (%s) e saiu."
+"Oops, alguma coisa está errada! %s (PID %i) recebeu o sinal %d (%s) e falhou."
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Oops, alguma coisa está errada! %s recebeu o sinal %d (%s) e está a tentar "
-"recuperar."
+"Oops, alguma coisa está errada! %s (PID %i) recebeu o sinal %d (%s) e está a "
+"tentar recuperar."
 
 #: main.cpp:436
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1240,8 +1234,8 @@ msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
-"O teste de largura de banda selecionado (%u) não é um número válido (%u é o "
-"máximo para esse sistema)"
+"O teste da largura de banda selecionada (%u) não é um número válido (%u é o "
+"máximo para este sistema)"
 
 #: options.cpp:264
 #, c-format
@@ -1249,8 +1243,8 @@ msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"O pente de memória de RAM selecionado (%u) não é um número válido (%u é o "
-"máximo para este sistema)"
+"O pente de memória selecionado (%u) não é um número válido (%u é o máximo "
+"para este sistema)"
 
 #: options.cpp:284
 #, c-format
