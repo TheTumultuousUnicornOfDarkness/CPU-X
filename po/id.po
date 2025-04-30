@@ -10,16 +10,16 @@
 # whenwesober <naomi16i_1298q@cikuh.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Reno Sifana Paksi <renosifana.paksi@gmail.com>, 2022.
-# Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>, 2023, 2024.
+# Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>, 2023, 2024, 2025.
 # MagicalAlchemist <Mhaidyaqrobin@gmail.com>, 2023.
 # AlihBahasa <AlihBahasa@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2024-05-01 15:07+0000\n"
+"PO-Revision-Date: 2025-04-30 16:58+0000\n"
 "Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/id/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5.3-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -36,7 +36,7 @@ msgstr "Memanggil lebar pita"
 
 #: core/bandwidth/main.c:2992
 msgid "(unavailable)"
-msgstr ""
+msgstr "(tidak tersedia)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -96,7 +96,7 @@ msgstr "Menghitung penggunaan CPU"
 #: core/core.cpp:109
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (subjek) / %s (penerbit)"
 
 #: core/core.cpp:120
 msgid "Identifying running system"
@@ -311,76 +311,63 @@ msgstr "gagal mendapatkan platform OpenCL (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Tidak dapat menemukan pengandar OpenCL untuk vendor %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "gagal mengambil GPU clock"
+msgstr "gagal membuat konteks EGL"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "gagal untuk mendapatkan versi untuk perangkat %u (%s)"
+msgstr "gagal menghapus konteks EGL (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "gagal memanggil eglChooseCinfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "gagal memanggil eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL tidak memiliki OpenGL API klien"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "gagal memanggil libcpuid (%s)"
+msgstr "gagal memanggil eglBindAPI (%s)"
 
 #: core/libopengl.cpp:267
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "gagal untuk mendapatkan versi untuk platform %u (%s)"
+msgstr "gagal menghapus tampilan EGL (%s)"
 
 #: core/libopengl.cpp:279
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "gagal mendapatkan platform OpenCL (%s)"
+msgstr "gagal memanggil getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:295
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Temukan versi API OpenCL"
+msgstr "Menemukan versi API OpenGL"
 
 #: core/libopengl.cpp:298 core/libopengl.cpp:312
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "gagal memanggil vkEnumeratePhysicalDevices (%s)"
+msgstr "gagal memanggil queryDevices (%s)"
 
 #: core/libopengl.cpp:305
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Tidak ada perangkat Vulkan yang tersedia"
+msgstr "Tidak ada perangkat EGL yang tersedia"
 
 #: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "Tidak dapat menemukan pengandar OpenGL untuk vendor %s"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -407,16 +394,12 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Pengandar kernel GPU Anda tidak diketahui: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "gagal memanggil wordexp (%i)"
+msgstr "gagal membuat pipe"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "gagal mengambil GPU clock"
+msgstr "gagal membuat proses"
 
 #: core/libpci.cpp:401
 #, c-format
@@ -436,10 +419,8 @@ msgid "Finding devices"
 msgstr "Menemukan perangkat"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Lewati pencarian perangkat (kesalahan izin pada perangkat %s)"
+msgstr "Lewati pencarian perangkat (perangkat PCI tidak ada)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -550,7 +531,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Tidak dapat menemukan pengandar Vulkan untuk vendor %s"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -561,6 +542,8 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"Variabel lingkungan APPDIR tidak disetel, tidak dapat menyalin daemon ke "
+"direktori sementara"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -809,11 +792,11 @@ msgstr "Melangkah"
 
 #: data.hpp:116
 msgid "Implementer"
-msgstr ""
+msgstr "Pelaksana"
 
 #: data.hpp:117
 msgid "Variant"
-msgstr ""
+msgstr "Varian"
 
 #: data.hpp:118 data.hpp:271
 msgid "Part Number"
@@ -901,7 +884,7 @@ msgstr "Ukuran ROM"
 
 #: data.hpp:247
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI PK"
 
 #: data.hpp:272
 msgid "Type"
@@ -1140,16 +1123,12 @@ msgid "Enforce the bus clock"
 msgstr "Terapkan bus clock"
 
 #: main.cpp:95
-#, fuzzy
-#| msgid ""
-#| "Ignore CPU values reported by libcpuid (comma-separated values among "
-#| "'temp', 'volt' and 'freq')"
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
-"Abaikan Nilai CPU yang dilaporkan oleh libcpuid (nilai koma-terpisah antara "
-"'temp', 'volt' and 'freq')"
+"Abaikan nilai CPU yang dilaporkan oleh libcpuid (nilai dengan koma terpisah "
+"antara 'temp', 'volt', 'freq' dan 'mult')"
 
 #: main.cpp:96
 msgid "Read CPUID raw data from a given file"
@@ -1188,38 +1167,31 @@ msgid "See the %s license: <%s>\n"
 msgstr "Lihat %s lisensi: <%s>\n"
 
 #: main.cpp:183
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s versi: %s"
+msgstr "-- %-11s versi: %s"
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan mengalami gangguan."
+"Ups, ada yang salah! %s (PID %i) telah menerima sinyal %d (%s) dan mengalami "
+"gangguan."
 
 #: main.cpp:412
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Ups, ada yang salah! %s telah menerima sinyal %d (%s) dan sedang mencoba "
-"untuk pulih."
+"Ups, ada yang salah! %s (PID %i)telah menerima sinyal %d (%s) dan sedang "
+"mencoba untuk kembali pulih."
 
 #: main.cpp:436
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1232,10 +1204,9 @@ msgid "an error occurred while setting locale"
 msgstr "terjadi kesalahan saat mengatur lokasi"
 
 #: options.cpp:166
-#, fuzzy, c-format
-#| msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "Tab yang dipilih (%u) bukan angka yang valid (%u adalah maksimum)"
+msgstr "Tab yang dipilih (%u) tidak terlihat"
 
 #: options.cpp:171
 #, c-format
@@ -1330,7 +1301,7 @@ msgstr ""
 
 #: ui/gtk.cpp:908
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "Informasi sertifikat EFI Platform Key"
 
 #: ui/gtk.cpp:943
 msgid ""
@@ -1573,7 +1544,7 @@ msgstr "Memulai daemon"
 
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
-msgstr ""
+msgstr "Hak istimewa diperlukan untuk mengumpulkan beberapa informasi"
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
@@ -1581,7 +1552,7 @@ msgstr "Tembolok"
 
 #: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
-msgstr ""
+msgstr "Tutup"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5942
@@ -1654,18 +1625,12 @@ msgid "Startup"
 msgstr "Memulai"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s adalah perangkat lunak gratis yang mengumpulkan informasi\n"
-"CPU, papan induk, dan lainnya."
+msgstr "Mengumpulkan informasi CPU, papan induk, dan lainnya"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;sistem;inti; kecepatan;clock;rate;Intel;AMD;papan induk;"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
