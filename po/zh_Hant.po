@@ -14,14 +14,15 @@
 # Codefoxy Ch <test.foxcat@gmail.com>, 2024.
 # hugoalh <hugoalh@users.noreply.hosted.weblate.org>, 2024.
 # 杨鹏 <596382932@qq.com>, 2025.
+# neko0xff <neko_0xff@protonmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-03-26 17:44+0000\n"
-"PO-Revision-Date: 2025-03-22 01:32+0000\n"
-"Last-Translator: 杨鹏 <596382932@qq.com>\n"
+"PO-Revision-Date: 2025-04-30 16:58+0000\n"
+"Last-Translator: neko0xff <neko_0xff@protonmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -29,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -186,12 +187,11 @@ msgid ""
 msgstr "您的 CPU 不在資料庫中 ==>> %s，型號：%i，延伸型號：%i，擴充系列：%i"
 
 #: core/libcpuid.cpp:127
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "您的中央處理器插槽型式不在資料庫中 ==> %s，代號： %s"
+msgstr "您的 CPU 不在資料庫中 ==> %s, 部件號: 0x%x, 編號: %s"
 
 #: core/libcpuid.cpp:134
 msgid "Finding CPU technology"
@@ -325,7 +325,7 @@ msgstr "取得 GPU 時脈頻率時失敗"
 #, fuzzy, c-format
 #| msgid "failed to get version for device %u (%s)"
 msgid "failed to destroy EGL context (%s)"
-msgstr "取得裝置版本資訊時失敗%u (%s)"
+msgstr "取得裝置版本資訊時失敗(%s)"
 
 #: core/libopengl.cpp:206
 #, fuzzy, c-format
