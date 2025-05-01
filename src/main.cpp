@@ -356,6 +356,7 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 					Options::set_issue(true);
 					Options::set_output_type(OUT_DUMP);
 					Logger::set_verbosity(LOG_DEBUG);
+					MSG_STDOUT(_("Writing log to '%s' file..."), LOG_FILE);
 					std::setlocale(LC_ALL, "C");
 					std::freopen(LOG_FILE, "w", stdout);
 					std::setvbuf(stdout, NULL, _IONBF, 0);

@@ -264,7 +264,7 @@ static void request_handler(int fd)
 #endif /* HAS_LIBPCI */
 			case ACCESS_SYS_DEBUG:     __can_access_sys_debug_dri(&fd);  break;
 			case LOAD_MODULE:          __load_module(&fd);               break;
-			default: MSG_WARNING(_("request_handler: case %i not handled"), cmd);
+			default: MSG_WARNING("request_handler: case %i not handled", cmd);
 		}
 	}
 
@@ -313,6 +313,7 @@ int main(int argc, char *argv[])
 	/* Logs */
 	if(background)
 	{
+		MSG_STDOUT("Writing daemon log to '%s' file...", LOG_FILE);
 		std::freopen(LOG_FILE, "w", stdout);
 		std::setvbuf(stdout, NULL, _IONBF, 0);
 		dup2(STDOUT_FILENO, STDERR_FILENO);
