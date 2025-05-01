@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-04-03 21:53+0000\n"
 "Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -575,11 +575,6 @@ msgstr "pkexec: beklenmedik hata kodu"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Art alan hizmetine bağlanılıyor…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: %i durumu işlemedi"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1180,7 +1175,12 @@ msgstr "%s lisansına bakın: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s sürümü: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1193,7 +1193,7 @@ msgstr ""
 "\n"
 "Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü."
 
-#: main.cpp:412
+#: main.cpp:413
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1208,11 +1208,11 @@ msgstr ""
 "Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve kurtarmaya "
 "çalışıyor."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "Şablonu istendiği gibi doldurarak burada yeni bir sorun açabilirsiniz:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "yerel ayar yapılırken bir hata oluştu"
 
@@ -1645,6 +1645,10 @@ msgstr ""
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: %i durumu işlemedi"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

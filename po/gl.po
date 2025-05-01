@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-04-30 23:57+0000\n"
 "Last-Translator: xuars <yago.rana.gayoso@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/cpu-x/"
@@ -156,14 +156,16 @@ msgstr "%s (mín)"
 
 #: core/libcpuid.cpp:83
 #, c-format
-msgid "Your CPU is not present in the database ==> %s, model: %i, ext. "
-"model: %i, ext. family: %i"
+msgid ""
+"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
+"ext. family: %i"
 msgstr ""
 
 #: core/libcpuid.cpp:127
 #, c-format
-msgid "Your CPU is not present in the database ==> %s, part number: 0x%x, "
-"codename: %s"
+msgid ""
+"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
+"%s"
 msgstr ""
 
 #: core/libcpuid.cpp:134
@@ -206,27 +208,26 @@ msgstr ""
 
 #: core/libopencl.cpp:56
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD "
-"(%s)"
+msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 
 #: core/libopencl.cpp:71
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD "
-"(%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 
 #: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support "
-"CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 
 #: core/libopencl.cpp:136
 #, c-format
-msgid "OpenCL driver for '%s %s' does not support "
-"CL_DEVICE_PCI_DOMAIN_ID_NV (%s), CL_DEVICE_PCI_BUS_ID_NV (%s) or "
-"CL_DEVICE_PCI_SLOT_ID_NV (%s)"
+msgid ""
+"OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
 
 #: core/libopencl.cpp:175
@@ -345,10 +346,11 @@ msgstr ""
 
 #: core/libpci.cpp:73
 #, c-format
-msgid "pci_access is not properly initialized: it is a common issue when %s "
-"was built with a lower libpci version.\n"
-"Check that libpci %s library is present on your system. Otherwise, "
-"please rebuild %s."
+msgid ""
+"pci_access is not properly initialized: it is a common issue when %s was "
+"built with a lower libpci version.\n"
+"Check that libpci %s library is present on your system. Otherwise, please "
+"rebuild %s."
 msgstr ""
 
 #: core/libpci.cpp:117
@@ -505,8 +507,9 @@ msgid "Starting daemon in background…"
 msgstr ""
 
 #: daemon/client.cpp:103
-msgid "APPDIR environment variable is not set, cannot copy the daemon to "
-"the temporary directory"
+msgid ""
+"APPDIR environment variable is not set, cannot copy the daemon to the "
+"temporary directory"
 msgstr ""
 
 #: daemon/client.cpp:181
@@ -527,11 +530,6 @@ msgstr ""
 
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
-msgstr ""
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
 msgstr ""
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
@@ -671,7 +669,8 @@ msgstr ""
 
 #: data.cpp:764
 #, c-format
-msgid "%s is a Free software that gathers information\n"
+msgid ""
+"%s is a Free software that gathers information\n"
 "on CPU, motherboard and more."
 msgstr ""
 
@@ -1070,8 +1069,7 @@ msgid "Print required information to paste in an issue"
 msgstr ""
 
 #: main.cpp:82
-msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|"
-"v[im])"
+msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 
 #: main.cpp:93
@@ -1083,8 +1081,9 @@ msgid "Enforce the bus clock"
 msgstr ""
 
 #: main.cpp:95
-msgid "Ignore CPU values reported by libcpuid (comma-separated values among "
-"'temp', 'volt', 'freq' and 'mult')"
+msgid ""
+"Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
+"'volt', 'freq' and 'mult')"
 msgstr ""
 
 #: main.cpp:96
@@ -1126,25 +1125,32 @@ msgstr ""
 msgid "-- %-11s version: %s"
 msgstr ""
 
-#: main.cpp:410
+#: main.cpp:359
 #, c-format
-msgid "\n"
-"Oops, something was wrong! %s (PID %i) has received signal %d (%s) "
-"and has crashed."
+msgid "Writing log to '%s' file..."
 msgstr ""
 
-#: main.cpp:412
+#: main.cpp:411
 #, c-format
-msgid "\n"
-"Oops, something was wrong! %s (PID %i) has received signal %d (%s) "
-"and is trying to recover."
+msgid ""
+"\n"
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
+"crashed."
 msgstr ""
 
-#: main.cpp:436
+#: main.cpp:413
+#, c-format
+msgid ""
+"\n"
+"Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
+"trying to recover."
+msgstr ""
+
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr ""
 
@@ -1160,26 +1166,29 @@ msgstr ""
 
 #: options.cpp:220
 #, c-format
-msgid "Selected CPU type (%u) is not a valid number (%u is the maximum for "
-"this CPU)"
+msgid ""
+"Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
 
 #: options.cpp:241
 #, c-format
-msgid "Selected bandwidth test (%u) is not a valid number (%u is the "
-"maximum for this system)"
+msgid ""
+"Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
+"this system)"
 msgstr ""
 
 #: options.cpp:264
 #, c-format
-msgid "Selected RAM stick (%u) is not a valid number (%u is the maximum for "
-"this system)"
+msgid ""
+"Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
+"system)"
 msgstr ""
 
 #: options.cpp:284
 #, c-format
-msgid "Selected graphic card (%u) is not a valid number (%u is the maximum "
-"for this system)"
+msgid ""
+"Selected graphic card (%u) is not a valid number (%u is the maximum for this "
+"system)"
 msgstr ""
 
 #: options.cpp:300
@@ -1189,8 +1198,9 @@ msgstr ""
 
 #: options.cpp:306
 #, c-format
-msgid "Selected CPU core (%u) is not a valid number (%u is the maximum for "
-"this type of core)"
+msgid ""
+"Selected CPU core (%u) is not a valid number (%u is the maximum for this "
+"type of core)"
 msgstr ""
 
 #: ui/gtk.cpp:87
@@ -1223,8 +1233,7 @@ msgid "BaseModel"
 msgstr ""
 
 #: ui/gtk.cpp:714
-msgid "CPU display (\"true\") model (computed as "
-"(ExtendedModel<<4)+BaseModel)"
+msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
 
 #: ui/gtk.cpp:908
@@ -1232,13 +1241,13 @@ msgid "EFI Platform Key certificate information"
 msgstr ""
 
 #: ui/gtk.cpp:943
-msgid "Identify the physically-labeled socket or board position where the "
-"memory device is located"
+msgid ""
+"Identify the physically-labeled socket or board position where the memory "
+"device is located"
 msgstr ""
 
 #: ui/gtk.cpp:944
-msgid "Identify the physically labeled bank where the memory device is "
-"located"
+msgid "Identify the physically labeled bank where the memory device is located"
 msgstr ""
 
 #: ui/gtk.cpp:1149
@@ -1375,8 +1384,9 @@ msgid "Starting NCurses TUI…"
 msgstr ""
 
 #: ui/ncurses.cpp:685
-msgid "FATAL ERROR: terminfo database could not be found (try to set "
-"TERMINFO environment variable)"
+msgid ""
+"FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
+"environment variable)"
 msgstr ""
 
 #: ui/ncurses.cpp:690

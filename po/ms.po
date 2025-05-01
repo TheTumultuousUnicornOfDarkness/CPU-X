@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2021-11-02 07:37+0000\n"
 "Last-Translator: Kazuki278 <muadz.hakim.7@gmail.com>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -581,11 +581,6 @@ msgstr ""
 #| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
 msgstr "Bersambung pada daemon"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr ""
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1215,7 +1210,12 @@ msgstr ""
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s versi: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1223,7 +1223,7 @@ msgid ""
 "crashed."
 msgstr ""
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1231,11 +1231,11 @@ msgid ""
 "trying to recover."
 msgstr ""
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr ""
 

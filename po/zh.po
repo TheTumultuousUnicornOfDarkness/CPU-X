@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-04-09 23:01+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -551,11 +551,6 @@ msgstr "pkexec：意外的错误代码"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "连接到守护程序…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler：事件 %i 未处理"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1154,7 +1149,12 @@ msgstr "查看 %s 许可协议：<%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s 版本：%s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1164,7 +1164,7 @@ msgstr ""
 "\n"
 "遇到了错误！ %s (PID %i) 获得信号 %d（%s） 并崩溃。"
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1174,11 +1174,11 @@ msgstr ""
 "\n"
 "哦，出错了！ %s (PID %i) 已收到信号 %d（%s） 并在尝试恢复。"
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "你可以按要求填写模板，在此新开一个 issue："
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "本地化设置时出错"
 
@@ -1578,6 +1578,10 @@ msgstr "收集有关 CPU 和主板等的信息"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "中央处理器；系统；核心；速度；时钟；频率；英特尔；AMD；主板"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler：事件 %i 未处理"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

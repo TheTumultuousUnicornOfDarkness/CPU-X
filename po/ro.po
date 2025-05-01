@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/cpu-x/"
@@ -563,11 +563,6 @@ msgstr "pkexec: cod de eroare neașteptat"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Se efectuează conectarea la demon…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: cazul %i nu este gestionat"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1176,7 +1171,12 @@ msgstr "Vedeți licența %s: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s versiunea: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1187,7 +1187,7 @@ msgstr ""
 "Opa, ceva a fost greșit! %s (PID %i) a primit semnalul %d (%s) și s-a "
 "prăbușit."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1198,12 +1198,12 @@ msgstr ""
 "Opa, ceva a fost greșit! %s (PID %i) a primit semnalul %d (%s) și încearcă "
 "să se recupereze."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Puteți deschide un nou raport de eroare aici, completând modelul solicitat:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr ""
 "o eroare a apărut în timp ce se stabilea configurația regională utilizată în "
@@ -1650,6 +1650,10 @@ msgstr "Adună informații despre procesor, placa bază și multe altele"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;sistem;nucleu;viteză;ceas;rată;Intel;AMD; placa bază;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: cazul %i nu este gestionat"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

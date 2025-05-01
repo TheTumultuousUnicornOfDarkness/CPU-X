@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -588,11 +588,6 @@ msgstr "pkexec: کد خطای غیرمنتظره"
 #| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
 msgstr "ارتباط با برنامه پس زمینه برقرار شد"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: مورد %i رسیدگی نشده است"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1218,7 +1213,12 @@ msgstr "مشاهده مجوز %s: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s نسخه: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1231,7 +1231,7 @@ msgstr ""
 "\n"
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s) رو دریافت کرد و متوقف شده است."
 
-#: main.cpp:412
+#: main.cpp:413
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1246,11 +1246,11 @@ msgstr ""
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s)‌رو دریافت کرده و در حال تلاش برای بازیابی "
 "است."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "خطایی در هنگام تنظیم زبان رخ داده است"
 
@@ -1700,6 +1700,10 @@ msgstr ""
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: مورد %i رسیدگی نشده است"
 
 #, fuzzy, c-format
 #~| msgid "Your GPU user mode driver is unknown: %s"

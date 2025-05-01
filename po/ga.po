@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :("
-"n>6 && n<11) ? 3 : 4;\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :"
+"(n>6 && n<11) ? 3 : 4;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
@@ -551,11 +551,6 @@ msgstr "pkexec: cód earráide gan choinne"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Ag nascadh le deamhan…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: cás %i gan láimhseáil"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1160,7 +1155,12 @@ msgstr "Féach ar an gceadúnas %s: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- leagan %-11s: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1171,7 +1171,7 @@ msgstr ""
 "Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s (PID %i) "
 "agus tuairteála."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1182,13 +1182,13 @@ msgstr ""
 "Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s (PID %i) "
 "agus tá sé ag iarraidh é a athshlánú."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Is féidir leat eagrán nua a oscailt anseo, tríd an teimpléad a líonadh mar a "
 "iarrtar:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "tharla earráid agus locale á shocrú"
 
@@ -1631,6 +1631,10 @@ msgstr "Bailíonn sé eolas ar LAP, máthairchlár agus go leor eile"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "LAP;córas;croí;luas;clog;ráta;Intel;AMD;máthairchlár;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: cás %i gan láimhseáil"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

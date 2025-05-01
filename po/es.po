@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-04-18 00:55+0000\n"
 "Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
@@ -565,11 +565,6 @@ msgstr "pkexec: código de error inesperado"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Conectando a daemon…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: caso %i no gestionado"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1175,7 +1170,12 @@ msgstr "Ver la %s licencia: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s versión: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1185,7 +1185,7 @@ msgstr ""
 "\n"
 "Ups, ¡algo iba mal! %s (PID %i) ha recibido la señal %d (%s) y se ha caído."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1196,13 +1196,13 @@ msgstr ""
 "Ups, ¡algo iba mal! %s (PID %i) ha recibido la señal %d (%s) y está "
 "intentando recuperarse."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Puede abrir una nueva cuestión aquí, rellenando la plantilla como se "
 "solicita:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "se produjo un error al ajustar la configuración regional"
 
@@ -1641,6 +1641,10 @@ msgstr "Recopila información sobre CPU, placa madre y más"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;sistema;core;velocidad;reloj;tasa;Intel;AMD;placa madre;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: caso %i no gestionado"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

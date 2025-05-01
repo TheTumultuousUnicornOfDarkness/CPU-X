@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-04-30 16:58+0000\n"
 "Last-Translator: Taufik Adi Wicaksono <taufikadi.wicaksono@tutamail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/cpu-x/"
@@ -564,11 +564,6 @@ msgstr "pkexec: kode kesalahan tak terduga"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Menghubungkan ke daemon…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: kasus %i tidak ditangani"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1171,7 +1166,12 @@ msgstr "Lihat %s lisensi: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s versi: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1182,7 +1182,7 @@ msgstr ""
 "Ups, ada yang salah! %s (PID %i) telah menerima sinyal %d (%s) dan mengalami "
 "gangguan."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1193,13 +1193,13 @@ msgstr ""
 "Ups, ada yang salah! %s (PID %i)telah menerima sinyal %d (%s) dan sedang "
 "mencoba untuk kembali pulih."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Anda dapat membuka isu baru di sini, dengan mengisi templat seperti yang "
 "diminta:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "terjadi kesalahan saat mengatur lokasi"
 
@@ -1631,6 +1631,10 @@ msgstr "Mengumpulkan informasi CPU, papan induk, dan lainnya"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;sistem;inti; kecepatan;clock;rate;Intel;AMD;papan induk;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: kasus %i tidak ditangani"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

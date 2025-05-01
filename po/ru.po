@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -31,8 +31,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 5.11-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
@@ -566,11 +566,6 @@ msgstr "pkexec: неожиданный код ошибки"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Подключение к демону…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: %i не обрабатывается"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1178,7 +1173,12 @@ msgstr "Посмотреть лицензию %s: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s версия: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1189,7 +1189,7 @@ msgstr ""
 "Ой, что-то пошло не так! %s (PID %i) получил сигнал %d (%s) и аварийно "
 "завершился."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1200,13 +1200,13 @@ msgstr ""
 "Ой, что-то пошло не так! %s (PID %i) получил сигнал %d (%s) и пытается "
 "восстановиться."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Здесь вы можете создать новый отчет об ошибке, заполнив шаблон следующим "
 "образом:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "ошибка при установке локализации"
 
@@ -1640,6 +1640,10 @@ msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;процессор;система;"
 "ядро;скорость;тактовая;частота;материнская плата;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: %i не обрабатывается"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

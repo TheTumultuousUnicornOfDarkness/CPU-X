@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2024-04-18 23:03+0000\n"
 "Last-Translator: Mikachu <micah.sh@proton.me>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -574,11 +574,6 @@ msgstr "pkexec: onverwachte foutcode"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Verbinden met daemon…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: geval %i niet verwerkt"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1187,7 +1182,12 @@ msgstr "Zie de %s licentie: %s\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s versie: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1201,7 +1201,7 @@ msgstr ""
 "Oeps, er ging iets verkeerd! %s heeft het signaal %d (%s) ontvangen en is "
 "gecrasht."
 
-#: main.cpp:412
+#: main.cpp:413
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1216,13 +1216,13 @@ msgstr ""
 "Oeps, er ging iets fout! %s heeft het signaal %d (%s) ontvangen en probeert "
 "te herstellen."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "U kunt hier een nieuw probleem openen, door het invullen van het sjabloon "
 "zoals gevraagd:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "Er is een fout opgetreden tijdens het instellen van de locale"
 
@@ -1665,6 +1665,10 @@ msgstr ""
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: geval %i niet verwerkt"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

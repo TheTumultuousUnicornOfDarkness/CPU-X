@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-03-16 11:10+0000\n"
 "Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
 "of-darkness@gmx.com>\n"
@@ -579,11 +579,6 @@ msgstr "pkexec : code d'erreur inattendu"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Connexion au démon…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler : le cas %i n'est pas géré"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1194,7 +1189,12 @@ msgstr "Voir la licence %s : <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- Version de %-11s : %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1208,7 +1208,7 @@ msgstr ""
 "Oups, quelque chose s'est mal passé ! %s a reçu le signal %d (%s) et a "
 "planté."
 
-#: main.cpp:412
+#: main.cpp:413
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1223,13 +1223,13 @@ msgstr ""
 "Oups, quelque chose s'est mal passé ! %s a reçu le signal %d (%s) et essaie "
 "de se remettre."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Vous pouvez ouvrir un nouveau rapport de problèmes ici, en remplissant le "
 "modèle comme demandé :"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "une erreur est survenue lors de la définition des locales"
 
@@ -1676,6 +1676,10 @@ msgstr "Récolte des informations sur le CPU, la carte-mère et plus"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;système;cœur;vitesse;fréquence;cadence;Intel;AMD;carte-mère;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler : le cas %i n'est pas géré"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

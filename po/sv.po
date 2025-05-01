@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/cpu-x/"
@@ -546,11 +546,6 @@ msgstr "pkexec: Oväntad felkod"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Ansluter till tjänsten…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: Fall %i hanterades inte"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1150,7 +1145,12 @@ msgstr "Se %s-licensen: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s version: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1161,7 +1161,7 @@ msgstr ""
 "Hoppsan, något gick snett! %s (PID %i) har mottagit signal %d (%s) och har "
 "kraschat."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1172,12 +1172,12 @@ msgstr ""
 "Hoppsan, något gick snett! %s (PID %i) har mottagit signal %d (%s) och "
 "försöker återställa."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Du kan öppna ett nytt ärende här, genom att fylla i mallen enligt begäran:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "ett fel uppstod vid inställning av språk"
 
@@ -1593,6 +1593,10 @@ msgstr "Samlar in information om CPU, moderkort och mer."
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;system;kärna;hastighet;klocka;betyg;Intel;AMD; Moderkort;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: Fall %i hanterades inte"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2022-12-17 05:50+0000\n"
 "Last-Translator: Magnus Jørgensen <magnusmj@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/cpu-x/"
@@ -576,11 +576,6 @@ msgstr "pkexec: uventet fejl kode"
 #| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
 msgstr "Forbundet til baggrundsprogram"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: tilfælde %i er ikke håndteret"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1200,7 +1195,12 @@ msgstr "Se %s licensen: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s version: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1213,7 +1213,7 @@ msgstr ""
 "\n"
 "Hovsa, noget gik galt! %s har modtaget signalet %d (%s) og er nedbrudt."
 
-#: main.cpp:412
+#: main.cpp:413
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1228,11 +1228,11 @@ msgstr ""
 "Hovsa, noget gik galt! %s har modtaget signalet %d (%s) og prøver at "
 "gendanne sig."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "Du kan åbne en ny rapport har, ved at udfylde skabelonen som ønsket:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "en fejl skete under indstilling af regional data"
 
@@ -1677,6 +1677,10 @@ msgstr ""
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: tilfælde %i er ikke håndteret"
 
 #, fuzzy, c-format
 #~| msgid "Your GPU user mode driver is unknown: %s"

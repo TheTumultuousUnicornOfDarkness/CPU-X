@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-03-26 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-01 14:33+0000\n"
 "PO-Revision-Date: 2025-03-28 08:01+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -561,11 +561,6 @@ msgstr "pkexec: неочікуваний код помилки"
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
 msgstr "Підключення до демона…"
-
-#: daemon/server.cpp:267
-#, c-format
-msgid "request_handler: case %i not handled"
-msgstr "request_handler: випадок %i не опрацьовується"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
@@ -1171,7 +1166,12 @@ msgstr "Переглянути ліцензію %s: <%s>\n"
 msgid "-- %-11s version: %s"
 msgstr "-- Версія %-11s: %s"
 
-#: main.cpp:410
+#: main.cpp:359
+#, c-format
+msgid "Writing log to '%s' file..."
+msgstr ""
+
+#: main.cpp:411
 #, c-format
 msgid ""
 "\n"
@@ -1181,7 +1181,7 @@ msgstr ""
 "\n"
 "Ой, щось пішло не так! %s (PID %i) отримав сигнал %d (%s) і вийшов з ладу."
 
-#: main.cpp:412
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1192,12 +1192,12 @@ msgstr ""
 "Ой, щось пішло не так! %s (PID %i) отримав сигнал %d (%s) і намагається "
 "відновитися."
 
-#: main.cpp:436
+#: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Ви можете відкрити новий issue тут, заповнивши шаблон відповідно до запиту:"
 
-#: main.cpp:477
+#: main.cpp:478
 msgid "an error occurred while setting locale"
 msgstr "помилка при встановленні локалізації"
 
@@ -1632,6 +1632,10 @@ msgstr "Збирає інформацію про процесор, матери�
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "ЦП;система;ядро;швидкість;тактова частота;Intel;AMD;материнська плата;"
+
+#, c-format
+#~ msgid "request_handler: case %i not handled"
+#~ msgstr "request_handler: випадок %i не опрацьовується"
 
 #, c-format
 #~ msgid "Your GPU user mode driver is unknown for vendor %s: %s"
