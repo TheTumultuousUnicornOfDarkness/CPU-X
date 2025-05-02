@@ -16,14 +16,15 @@
 # Артём Котлубай <artemkotlubai@yandex.ru>, 2023.
 # Aleksandr Melman <alexmelman88@gmail.com>, 2023.
 # qtm <qtm@users.noreply.hosted.weblate.org>, 2025.
+# Maksim_220 Кабанов <law820314@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-01 14:33+0000\n"
-"PO-Revision-Date: 2025-03-28 08:01+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2025-05-02 15:43+0000\n"
+"Last-Translator: Maksim_220 Кабанов <law820314@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
 "Language: ru\n"
@@ -31,9 +32,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -598,12 +599,12 @@ msgstr "Кэш"
 #: data.cpp:263
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%2d x %4d %s, %2d-канал."
+msgstr "%2d x %4d %s, %2d-канал"
 
 #: data.cpp:265
 #, c-format
 msgid "%d %s, %d-way"
-msgstr "%d %s, %d-канал."
+msgstr "%d %s, %d-канал"
 
 #: data.cpp:279
 msgid "Count"
@@ -625,7 +626,7 @@ msgstr "%s ассоциатив., %d %s кэш-линии"
 
 #: data.cpp:419
 msgid "Test"
-msgstr "Тест"
+msgstr "Проверка"
 
 #: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
@@ -745,7 +746,7 @@ msgstr "Эта программа предоставляется БЕЗ КАКИ
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
-msgstr "Производитель"
+msgstr "Разработчик"
 
 #: data.hpp:104
 msgid "Code Name"
@@ -805,7 +806,7 @@ msgstr "Ревизия"
 
 #: data.hpp:121
 msgid "Temp."
-msgstr "Темп-ра"
+msgstr "Температура."
 
 #: data.hpp:122
 msgid "Instructions"
@@ -817,7 +818,7 @@ msgstr "Ур. 1 (данные)"
 
 #: data.hpp:136
 msgid "L1 Inst."
-msgstr "Ур. 1 (инстр.)"
+msgstr "Ур. 1 (инстр.)."
 
 #: data.hpp:137
 msgid "Level 2"
@@ -991,7 +992,7 @@ msgstr "Памяти занято"
 
 #: data.hpp:358
 msgid "Resizable BAR"
-msgstr "Resizable BAR"
+msgstr "Технология Resizable BAR"
 
 #: data.hpp:359
 msgid "Vulkan RT"
@@ -1176,7 +1177,7 @@ msgstr "-- %-11s версия: %s"
 #: main.cpp:359
 #, c-format
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "Запись журнала в файл '%s'..."
 
 #: main.cpp:411
 #, c-format
@@ -1633,7 +1634,7 @@ msgstr "Запуск"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 msgid "Gathers information on CPU, motherboard and more"
-msgstr "Собирает информацию о процессоре, материнской плате и т. д."
+msgstr "Собирает информацию о процессоре, материнской плате и многом другом"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
