@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-01 14:33+0000\n"
-"PO-Revision-Date: 2025-04-14 03:01+0000\n"
+"PO-Revision-Date: 2025-05-02 05:27+0000\n"
 "Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -103,14 +103,12 @@ msgid "Calculating CPU multipliers in fallback mode"
 msgstr "Regner ut prosessor-multiplikatorer i tilbakefallsmodus"
 
 #: core/core.cpp:208
-#, fuzzy
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Henter hovedkortinformasjon i tilbakefallsmodus"
 
 #: core/core.cpp:224
-#, fuzzy
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "Klarte ikke å hente hovedkortinformasjon (tilbakefallsmodus)"
+msgstr "klarte ikke å hente hovedkortinformasjon (tilbakefallsmodus)"
 
 #: core/core.cpp:267
 msgid "Retrieving CPU temperature in fallback mode"
@@ -137,17 +135,15 @@ msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "Klarte ikke å hente prosessor-frekvens (tilbakefallsmodus)"
 
 #: core/dmidecode/dmidecode.c:5801
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "ukjent"
+msgstr "Ukjent"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
 msgstr "Kaller dmidecode"
 
 #: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
-#, fuzzy, c-format
+#, c-format
 msgid "%s (configured)"
 msgstr "%s (konfigurert)"
 
@@ -171,12 +167,12 @@ msgstr ""
 "ekst. familie: %i"
 
 #: core/libcpuid.cpp:127
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid ""
 "Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
 "%s"
-msgstr "Din prosessor-sokkel finnes ikke i databasen ➜ %s, kodenavn: %s"
+msgstr ""
+"Din prosessor finnes ikke i databasen ==> %s, delenummer: 0x%x, kodenavn: %s"
 
 #: core/libcpuid.cpp:134
 msgid "Finding CPU technology"
@@ -196,17 +192,14 @@ msgid "failed to call libcpuid (%s)"
 msgstr "Klarte ikke å kalle libcpuid (%s)"
 
 #: core/libcpuid.cpp:413
-#, fuzzy
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Kaller libcpuid for innhenting av dynamisk data …"
+msgstr "Kaller libcpuid for innhenting av dynamiske data …"
 
 #: core/libcpuid.cpp:430
-#, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Kaller libcpuid for mottak av statiske CPU MSR-verdier …"
 
 #: core/libcpuid.cpp:460
-#, fuzzy
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Kaller libcpuid for mottak av dynamiske CPU MSR-verdier …"
 
@@ -215,8 +208,7 @@ msgid "Finding CPU package in fallback mode"
 msgstr "Finner prosessor-pakke i tilbakefallsmodus"
 
 #: core/libcpuid.cpp:519
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Din prosessor-sokkel finnes ikke i databasen ➜ %s, kodenavn: %s"
 
@@ -275,29 +267,25 @@ msgid "failed to get version for platform %u (%s)"
 msgstr "klarte ikke å hente plattformsversjon %u (%s)"
 
 #: core/libopencl.cpp:257
-#, fuzzy, c-format
+#, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "klarte ikke å finne antall OpenCL-enheter for plattformen «%s %s» (%s»"
 
 #: core/libopencl.cpp:257
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "Enhets-ID"
+msgstr "0-enhet"
 
 #: core/libopencl.cpp:266
-#, fuzzy, c-format
+#, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "klarte ikke å hente alle OpenCL-enheter for plattformen «%s %s» (%s)"
 
 #: core/libopencl.cpp:283
-#, fuzzy
-#| msgid "Version"
 msgid "Finding OpenCL API version"
-msgstr "Versjon"
+msgstr "Finner OpenCL API-versjon"
 
 #: core/libopencl.cpp:287
-#, fuzzy, c-format
+#, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "Det finnes ingen plattform med OpenCL-støtte (%s)"
 
@@ -309,13 +297,11 @@ msgstr "klarte ikke å hente alle OpenCL-plattformer (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "Kunne ikke finne OpenCL-driver for leverandøren %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "klarte ikke å hente GPU-klokker"
+msgstr "klarte ikke å lage EGL-kontekt"
 
 #: core/libopengl.cpp:183
 #, fuzzy, c-format
