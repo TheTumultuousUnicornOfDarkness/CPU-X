@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the cpu-x package.
 # Sergi Font <sfont@tuta.io>, 2021.
 # Joan Aymà <joanayma@gmail.com>, 2024.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-01 14:33+0000\n"
-"PO-Revision-Date: 2024-11-16 18:00+0000\n"
-"Last-Translator: Joan Aymà <joanayma@gmail.com>\n"
+"PO-Revision-Date: 2025-05-04 23:01+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ca/>\n"
 "Language: ca\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -26,49 +27,49 @@ msgstr "Cridant l'ample de banda"
 
 #: core/bandwidth/main.c:2992
 msgid "(unavailable)"
-msgstr ""
+msgstr "(no disponible)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
-msgstr ""
+msgstr "S’està actualitzant l’estat de la prova de rendiment"
 
 #: core/benchmarks.cpp:95
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #: core/benchmarks.cpp:98
 #, c-format
 msgid "(%u hours left)"
-msgstr ""
+msgstr "(queden %u hores)"
 
 #: core/benchmarks.cpp:100
 #, c-format
 msgid "(%u minutes left)"
-msgstr ""
+msgstr "(queden %u minuts)"
 
 #: core/benchmarks.cpp:102
 #, c-format
 msgid "(%u seconds left)"
-msgstr ""
+msgstr "(queden %u segons)"
 
 #: core/benchmarks.cpp:106 core/benchmarks.cpp:161 core/benchmarks.cpp:162
 msgid "Inactive"
-msgstr ""
+msgstr "Inactiu"
 
 #: core/benchmarks.cpp:109
 #, c-format
 msgid "in %u hours"
-msgstr ""
+msgstr "en %u hores"
 
 #: core/benchmarks.cpp:111
 #, c-format
 msgid "in %u minutes"
-msgstr ""
+msgstr "en %u minuts"
 
 #: core/benchmarks.cpp:113
 #, c-format
 msgid "in %u seconds"
-msgstr ""
+msgstr "en %u segons"
 
 #: core/benchmarks.cpp:130
 #, c-format
@@ -227,36 +228,30 @@ msgstr ""
 #: core/libopencl.cpp:56
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
-msgstr ""
-"El controlador OpenCL de '%s %s' no suporta CL_DEVICE_TOPOLOGY_AMD (%s)"
+msgstr "El controlador OpenCL de «%s %s» no admet CL_DEVICE_TOPOLOGY_AMD (%s)"
 
 #: core/libopencl.cpp:71
-#, fuzzy, c-format
-#| msgid ""
-#| "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
-"El controlador OpenCL de '%s %s' no suporta CL_DEVICE_TOPOLOGY_AMD (%s)"
+"El controlador OpenCL de «%s %s» no admet CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
 #: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
-#, fuzzy, c-format
-#| msgid ""
-#| "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
-"El controlador OpenCL de '%s %s' no suporta CL_DEVICE_TOPOLOGY_AMD (%s)"
+"El controlador OpenCL de «%s %s» no admet CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
 #: core/libopencl.cpp:136
-#, fuzzy, c-format
-#| msgid ""
-#| "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
+#, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) or CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 msgstr ""
-"El controlador OpenCL de '%s %s' no suporta CL_DEVICE_TOPOLOGY_AMD (%s)"
+"El controlador OpenCL de «%s %s» no admet CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
+"CL_DEVICE_PCI_BUS_ID_NV (%s) o CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
 #: core/libopencl.cpp:175
 #, c-format
@@ -306,7 +301,7 @@ msgstr "Buscant la versió de la API de OpenCL"
 #: core/libopencl.cpp:287
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
-msgstr "No hi ha una plataforma amb suport OpenCL (%s)"
+msgstr "No hi ha cap plataforma compatible amb OpenCL (%s)"
 
 #: core/libopencl.cpp:296
 #, c-format
@@ -329,26 +324,23 @@ msgid "failed to destroy EGL context (%s)"
 msgstr "no s'ha obtingut la versió pel dispositiu %u (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "No s'ha pogut cridar libcpuid (%s)"
+msgstr "no s’ha pogut cridar eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "No s'ha pogut cridar libcpuid (%s)"
+msgstr "no s’ha pogut cridar eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
 msgstr ""
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "No s'ha pogut cridar libcpuid (%s)"
+msgstr "no s’ha pogut cridar eglBindAPI (%s)"
 
 #: core/libopengl.cpp:267
 #, fuzzy, c-format
@@ -357,10 +349,9 @@ msgid "failed to destroy EGL display (%s)"
 msgstr "no s'ha obtingut la versió de la plataforma %u (%s)"
 
 #: core/libopengl.cpp:279
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "no s'ha obtingut totes les plataformes OpenCL (%s)"
+msgstr "no s’ha pogut cridar getPlatformDisplay (%s)"
 
 #: core/libopengl.cpp:295
 #, fuzzy
@@ -369,10 +360,9 @@ msgid "Finding OpenGL API version"
 msgstr "Buscant la versió de la API de OpenCL"
 
 #: core/libopengl.cpp:298 core/libopengl.cpp:312
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "No s'ha pogut cridar libcpuid (%s)"
+msgstr "no s’ha pogut cridar queryDevices (%s)"
 
 #: core/libopengl.cpp:305
 #, fuzzy
@@ -411,10 +401,8 @@ msgid "failed to create pipe"
 msgstr "No s'ha pogut cridar libcpuid (%s)"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to create process"
-msgstr "No s'ha pogut cridar libcpuid (%s)"
+msgstr "no s’ha pogut crear el procés"
 
 #: core/libpci.cpp:401
 #, fuzzy, c-format
@@ -489,11 +477,11 @@ msgstr "no s'ha obtingut totes les plataformes OpenCL (%s)"
 
 #: core/libsystem.cpp:51 core/libsystem.cpp:80
 msgid "Calling libprocps"
-msgstr ""
+msgstr "S’està cridant libprocps"
 
 #: core/libsystem.cpp:54
 msgid "unable to get system uptime"
-msgstr ""
+msgstr "no s’ha pogut obtenir el temps d’activitat del sistema"
 
 #: core/libsystem.cpp:60
 msgid "unable to create meminfo structure"
@@ -525,7 +513,7 @@ msgstr "No s'ha pogut cridar libcpuid (%s)"
 #: core/libvulkan.cpp:165
 #, c-format
 msgid "%s is not supported"
-msgstr ""
+msgstr "%s no s’admet"
 
 #: core/libvulkan.cpp:173
 #, fuzzy, c-format
@@ -578,11 +566,11 @@ msgstr ""
 
 #: daemon/client.cpp:187
 msgid "pkexec: command not found"
-msgstr ""
+msgstr "pkexec: no s’ha trobat l’ordre"
 
 #: daemon/client.cpp:190
 msgid "pkexec: unexpected error code"
-msgstr ""
+msgstr "pkexec: codi d’error inesperat"
 
 #: daemon/client.cpp:220
 msgid "Connecting to daemon…"
@@ -590,7 +578,7 @@ msgstr ""
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1481
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: data.cpp:190
 msgid "P-core"
@@ -610,11 +598,11 @@ msgstr ""
 
 #: data.cpp:212 cpu-x-gtk-3.12.ui:837
 msgid "Processor"
-msgstr ""
+msgstr "Processador"
 
 #: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
 msgid "Caches"
-msgstr ""
+msgstr "Memòries cau"
 
 #: data.cpp:263
 #, fuzzy, c-format
@@ -629,16 +617,16 @@ msgstr "%d %s, %d-way"
 
 #: data.cpp:279
 msgid "Count"
-msgstr ""
+msgstr "Recompte"
 
 #: data.cpp:292 cpu-x-gtk-3.12.ui:1067
 msgid "Clocks"
-msgstr ""
+msgstr "Rellotges"
 
 #: data.cpp:400 data.cpp:404
 #, c-format
 msgid "L%u Cache"
-msgstr ""
+msgstr "Memòria cau L%u"
 
 #: data.cpp:406
 #, c-format
@@ -647,7 +635,7 @@ msgstr "%s associatiu, %d-%s mida de la línia"
 
 #: data.cpp:419
 msgid "Test"
-msgstr ""
+msgstr "Prova"
 
 #: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
 msgid "Motherboard"
@@ -655,7 +643,7 @@ msgstr ""
 
 #: data.cpp:461 cpu-x-gtk-3.12.ui:2555
 msgid "BIOS"
-msgstr ""
+msgstr "BIOS"
 
 #: data.cpp:477 cpu-x-gtk-3.12.ui:2690
 msgid "Chipset"
@@ -663,7 +651,7 @@ msgstr ""
 
 #: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
 msgid "Memory"
-msgstr ""
+msgstr "Memòria"
 
 #: data.cpp:508
 #, c-format
@@ -676,11 +664,11 @@ msgstr ""
 
 #: data.cpp:566 cpu-x-gtk-3.12.ui:3990
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: data.cpp:579 cpu-x-gtk-3.12.ui:3580
 msgid "Operating System"
-msgstr ""
+msgstr "Sistema operatiu"
 
 #: data.cpp:612 cpu-x-gtk-3.12.ui:5169
 msgid "Graphics"
@@ -718,11 +706,11 @@ msgstr ""
 #: data.cpp:746 data.cpp:752
 #, c-format
 msgid "%u mins"
-msgstr ""
+msgstr "%u min"
 
 #: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
 msgid "About"
-msgstr ""
+msgstr "Quant a"
 
 #: data.cpp:764
 #, c-format
@@ -733,12 +721,12 @@ msgstr ""
 
 #: data.cpp:769
 msgid "About CPU-X"
-msgstr ""
+msgstr "Quant al CPU-X"
 
 #: data.cpp:770
 #, c-format
 msgid "Version %s"
-msgstr ""
+msgstr "Versió %s"
 
 #: data.cpp:771
 #, c-format
@@ -748,11 +736,11 @@ msgstr ""
 #: data.cpp:772
 #, c-format
 msgid "Site: %s"
-msgstr ""
+msgstr "Lloc: %s"
 
 #: data.cpp:776 cpu-x-gtk-3.12.ui:5754
 msgid "License"
-msgstr ""
+msgstr "Llicència"
 
 #: data.cpp:778
 #, c-format
@@ -769,15 +757,15 @@ msgstr ""
 
 #: data.hpp:104
 msgid "Code Name"
-msgstr ""
+msgstr "Nom en codi"
 
 #: data.hpp:105
 msgid "Package"
-msgstr ""
+msgstr "Paquet"
 
 #: data.hpp:106
 msgid "Technology"
-msgstr ""
+msgstr "Tecnologia"
 
 #: data.hpp:107 data.hpp:279
 msgid "Voltage"
@@ -785,11 +773,11 @@ msgstr ""
 
 #: data.hpp:108
 msgid "Specification"
-msgstr ""
+msgstr "Especificació"
 
 #: data.hpp:110
 msgid "Family"
-msgstr ""
+msgstr "Família"
 
 #: data.hpp:111
 msgid "Disp. Family"
@@ -797,7 +785,7 @@ msgstr ""
 
 #: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #: data.hpp:113
 msgid "Disp. Model"
@@ -829,11 +817,11 @@ msgstr ""
 
 #: data.hpp:122
 msgid "Instructions"
-msgstr ""
+msgstr "Instruccions"
 
 #: data.hpp:135
 msgid "L1 Data"
-msgstr ""
+msgstr "Dades L1"
 
 #: data.hpp:136
 msgid "L1 Inst."
@@ -841,11 +829,11 @@ msgstr ""
 
 #: data.hpp:137
 msgid "Level 2"
-msgstr ""
+msgstr "Nivell 2"
 
 #: data.hpp:138
 msgid "Level 3"
-msgstr ""
+msgstr "Nivell 3"
 
 #: data.hpp:147 cpu-x-gtk-3.12.ui:1339
 msgid "Cores"
@@ -869,35 +857,35 @@ msgstr ""
 
 #: data.hpp:168 data.hpp:352
 msgid "Usage"
-msgstr ""
+msgstr "Ús"
 
 #: data.hpp:198 data.hpp:276
 msgid "Size"
-msgstr ""
+msgstr "Mida"
 
 #: data.hpp:199 data.hpp:278
 msgid "Speed"
-msgstr ""
+msgstr "Velocitat"
 
 #: data.hpp:233 data.hpp:270
 msgid "Manufacturer"
-msgstr ""
+msgstr "Fabricant"
 
 #: data.hpp:243
 msgid "Brand"
-msgstr ""
+msgstr "Marca"
 
 #: data.hpp:244
 msgid "Version"
-msgstr ""
+msgstr "Versió"
 
 #: data.hpp:245
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: data.hpp:246
 msgid "ROM Size"
-msgstr ""
+msgstr "Mida de la ROM"
 
 #: data.hpp:247
 msgid "EFI PK"
@@ -905,7 +893,7 @@ msgstr ""
 
 #: data.hpp:272
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: data.hpp:273
 msgid "Type Detail"
@@ -925,7 +913,7 @@ msgstr ""
 
 #: data.hpp:303
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: data.hpp:304
 msgid "Kernel"
@@ -933,11 +921,11 @@ msgstr ""
 
 #: data.hpp:305
 msgid "Hostname"
-msgstr ""
+msgstr "Nom d’amfitrió"
 
 #: data.hpp:306
 msgid "Uptime"
-msgstr ""
+msgstr "Temps d’activitat"
 
 #: data.hpp:314
 msgid "Used"
@@ -961,7 +949,7 @@ msgstr ""
 
 #: data.hpp:344
 msgid "Driver"
-msgstr ""
+msgstr "Controlador"
 
 #: data.hpp:345
 msgid "UMD Version"
@@ -973,21 +961,21 @@ msgstr ""
 
 #: data.hpp:348
 msgid "Device ID"
-msgstr ""
+msgstr "Id. de dispositiu"
 
 #: data.hpp:349
 msgid "VBIOS Version"
-msgstr ""
+msgstr "Versió de VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
 #: data.hpp:350 cpu-x-gtk-3.12.ui:6028
 msgid "Interface"
-msgstr ""
+msgstr "Interfície"
 
 #: data.hpp:351
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 #: data.hpp:353
 msgid "Core Voltage"
@@ -1019,15 +1007,15 @@ msgstr ""
 
 #: data.hpp:360
 msgid "OpenGL Version"
-msgstr ""
+msgstr "Versió de l’OpenGL"
 
 #: data.hpp:361
 msgid "Vulkan Version"
-msgstr ""
+msgstr "Versió del Vulkan"
 
 #: data.hpp:362
 msgid "OpenCL Version"
-msgstr ""
+msgstr "Versió de l’OpenCL"
 
 #: data.hpp:398
 msgid "Score"
@@ -1039,7 +1027,7 @@ msgstr ""
 
 #: data.hpp:418
 msgid "Duration"
-msgstr ""
+msgstr "Durada"
 
 #: main.cpp:61
 msgid "Start graphical user interface (GUI) (default)"
@@ -1103,11 +1091,11 @@ msgstr ""
 
 #: main.cpp:76
 msgid "Print help and exit"
-msgstr ""
+msgstr "Mostra l’ajuda i surt"
 
 #: main.cpp:77
 msgid "Print version and exit"
-msgstr ""
+msgstr "Mostra la versió i surt"
 
 #: main.cpp:78
 msgid "Print CPUID values in decimal (default is hexadeximal)"
@@ -1185,7 +1173,7 @@ msgstr ""
 #: main.cpp:359
 #, c-format
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "S’està escrivint el registre en el fitxer «%s»…"
 
 #: main.cpp:411
 #, c-format
@@ -1214,18 +1202,20 @@ msgstr ""
 #: options.cpp:166
 #, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr ""
+msgstr "La pestanya seleccionada (%u) no és visible"
 
 #: options.cpp:171
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
+msgstr "La pestanya seleccionada (%u) no és un valor vàlid (%u és el màxim)"
 
 #: options.cpp:220
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"El tipus de CPU seleccionat (%u) no és un valor vàlid (%u és el màxim per a "
+"aquesta CPU)"
 
 #: options.cpp:241
 #, c-format
@@ -1263,11 +1253,11 @@ msgstr ""
 #: ui/gtk.cpp:87
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "No es pot trobar el camí del fitxer «%s»"
 
 #: ui/gtk.cpp:460
 msgid "No polkit authentication agent found"
-msgstr ""
+msgstr "No s’ha trobat cap agent d’autenticació polkit"
 
 #: ui/gtk.cpp:466
 msgid "Ask password to start daemon in background"
@@ -1275,7 +1265,7 @@ msgstr ""
 
 #: ui/gtk.cpp:470
 msgid "Settings"
-msgstr ""
+msgstr "Paràmetres"
 
 #: ui/gtk.cpp:711
 msgid "BaseFamily"
@@ -1309,11 +1299,11 @@ msgstr ""
 
 #: ui/gtk.cpp:1149
 msgid "User Mode Driver Version"
-msgstr ""
+msgstr "Versió del controlador en mode d’usuari"
 
 #: ui/gtk.cpp:1163
 msgid "Vulkan Ray Tracing"
-msgstr ""
+msgstr "Traçat de raigs del Vulkan"
 
 #: ui/gtk.cpp:1358
 msgid "Starting GTK GUI…"
@@ -1325,7 +1315,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:116
 msgid "Window is too small!"
-msgstr ""
+msgstr "La finestra és massa petita."
 
 #: ui/ncurses.cpp:124
 msgid "Press 'h' to see help."
@@ -1334,7 +1324,7 @@ msgstr ""
 #: ui/ncurses.cpp:237
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "Us donem la benvinguda a l’ajuda de l’NCurses %s.\n"
 
 #: ui/ncurses.cpp:238
 msgid "This help describes how to use this Text-based User Interface."
@@ -1342,7 +1332,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:240
 msgid "Global keys:"
-msgstr ""
+msgstr "Tecles globals:"
 
 #: ui/ncurses.cpp:241
 msgid "Press 'left' key or 'tab' key to switch in left tab."
@@ -1362,7 +1352,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:246
 msgid "CPU tab:"
-msgstr ""
+msgstr "Pestanya CPU:"
 
 #: ui/ncurses.cpp:247
 msgid "Press 'next page' key to decrease core type number to monitor."
@@ -1382,7 +1372,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:252
 msgid "Caches tab:"
-msgstr ""
+msgstr "Pestanya Memòries cau:"
 
 #: ui/ncurses.cpp:253
 msgid "Press 'down' key to switch to previous test."
@@ -1434,7 +1424,7 @@ msgstr ""
 
 #: ui/ncurses.cpp:268
 msgid "Press any key to exit this help."
-msgstr ""
+msgstr "Premeu qualsevol tecla per a sortir d’aquesta ajuda."
 
 #: ui/ncurses.cpp:676
 msgid "Starting NCurses TUI…"
@@ -1459,16 +1449,16 @@ msgstr ""
 #: util.cpp:276
 #, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr ""
+msgstr "s’ha produït un error en obrir el fitxer «%s»"
 
 #: util.cpp:321
 #, c-format
 msgid "an error occurred while running command '%s'"
-msgstr ""
+msgstr "s’ha produït un error en executar l’ordre «%s»"
 
 #: util.cpp:461
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() no s’admet en aquest sistema operatiu"
 
 #: util.hpp:77
 msgid "bytes"
@@ -1477,42 +1467,42 @@ msgstr ""
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: util.hpp:80
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #: util.hpp:82
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #: util.hpp:84
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #: util.hpp:86
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:89
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: util.hpp:91
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: util.hpp:93
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: util.hpp:95
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1524,26 +1514,26 @@ msgstr ""
 
 #: cpu-x-gtk-3.12.ui:1291
 msgid "Cache"
-msgstr ""
+msgstr "Memòria cau"
 
 #: cpu-x-gtk-3.12.ui:5848
 msgid "Close"
-msgstr ""
+msgstr "Tanca"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5942
 msgid "Refresh time"
-msgstr ""
+msgstr "Temps d’actualització"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5966
 msgid "Text theme"
-msgstr ""
+msgstr "Tema de text"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5981
 msgid "Automatic"
-msgstr ""
+msgstr "Automàtic"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5982
@@ -1558,12 +1548,12 @@ msgstr ""
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:5996
 msgid "Temperature unit"
-msgstr ""
+msgstr "Unitat de temperatura"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6047
 msgid "Default tab"
-msgstr ""
+msgstr "Pestanya per defecte"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6060
