@@ -81,8 +81,6 @@ public:
 	static bool get_issue();
 	static void set_with_daemon(bool with_daemon);
 	static bool get_with_daemon();
-	static void set_debug_database(bool debug_database);
-	static bool get_debug_database();
 	static void set_fallback_cpu_temp(bool fallback_cpu_temp);
 	static bool get_fallback_cpu_temp();
 	static void set_fallback_cpu_volt(bool fallback_cpu_volt);
@@ -124,7 +122,6 @@ private:
 	static inline bool color             = true;
 	static inline bool issue             = false;
 	static inline bool with_daemon       = false;
-	static inline bool debug_database    = false;
 	static inline bool fallback_cpu_temp = false;
 	static inline bool fallback_cpu_volt = false;
 	static inline bool fallback_cpu_freq = false;

@@ -71,16 +71,6 @@ bool Options::get_with_daemon()
 	return Options::with_daemon;
 }
 
-void Options::set_debug_database(bool debug_database)
-{
-	Options::debug_database = debug_database;
-}
-
-bool Options::get_debug_database()
-{
-	return Options::debug_database;
-}
-
 void Options::set_fallback_cpu_temp(bool fallback_cpu_temp)
 {
 	Options::fallback_cpu_temp = fallback_cpu_temp;

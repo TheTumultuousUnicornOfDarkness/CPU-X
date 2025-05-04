@@ -45,102 +45,6 @@ static int call_libcpuid_msr_debug(Data &data, uint16_t all_cpu_count)
 	return 0;
 }
 
-#define RETURN_OR_EXIT(e) { if(Options::get_debug_database()) exit(e); else return e; }
-/* Get CPU technology node */
-static int cpu_technology_x86(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
-{
-	int i = -1;
-	const Technology_DB_x86 *db;
-
-	if(cpu_id->vendor < 0 || cpu_id->x86.model < 0 || cpu_id->x86.ext_model < 0 || cpu_id->x86.ext_family < 0)
-		RETURN_OR_EXIT(1);
-
-	switch(cpu_id->vendor)
-	{
-		case VENDOR_AMD:   db = technology_x86_amd;   break;
-		case VENDOR_INTEL: db = technology_x86_intel; break;
-		default:           RETURN_OR_EXIT(2);
-	}
-
-	MSG_DEBUG("cpu_technology_x86: model %3i, ext. model %3i, ext. family %3i => values to find",
-	          cpu_id->x86.model, cpu_id->x86.ext_model, cpu_id->x86.ext_family);
-	while(db[++i].cpu_model != -2)
-	{
-		if(((db[i].cpu_model      < 0) || (db[i].cpu_model      == cpu_id->x86.model))     &&
-		   ((db[i].cpu_ext_model  < 0) || (db[i].cpu_ext_model  == cpu_id->x86.ext_model)) &&
-		   ((db[i].cpu_ext_family < 0) || (db[i].cpu_ext_family == cpu_id->x86.ext_family)))
-		{
-			processor.technology.value = db[i].process;
-			MSG_DEBUG("cpu_technology_x86: model %3i, ext. model %3i, ext. family %3i => entry #%03i matches",
-			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
-			RETURN_OR_EXIT(0);
-		}
-		else
-			MSG_DEBUG("cpu_technology_x86: model %3i, ext. model %3i, ext. family %3i => entry #%03i does not match",
-			          db[i].cpu_model, db[i].cpu_ext_model, db[i].cpu_ext_family, i);
-	}
-
-	MSG_WARNING(_("Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, ext. family: %i"),
-	            processor.specification.value.c_str(), cpu_id->x86.model, cpu_id->x86.ext_model, cpu_id->x86.ext_family);
-	RETURN_OR_EXIT(3);
-}
-
-static int cpu_technology_arm(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
-{
-	int i = -1;
-	const Technology_DB_ARM *db;
-
-	if((cpu_id->arm.part_num == 0) || (std::strlen(cpu_id->cpu_codename) == 0))
-		RETURN_OR_EXIT(1);
-
-	switch(cpu_id->vendor)
-	{
-		case VENDOR_APPLE:    db = technology_arm_apple;    break;
-		case VENDOR_ARM:      db = technology_arm_arm;      break;
-		case VENDOR_QUALCOMM: db = technology_arm_qualcomm; break;
-		case VENDOR_SAMSUNG:  db = technology_arm_samsung;  break;
-		case VENDOR_NVIDIA:   db = technology_arm_nvidia;   break;
-		default:              RETURN_OR_EXIT(2);
-	}
-
-	MSG_DEBUG("cpu_technology_arm: part_num 0x%3x, cpu_codename %26s => values to find",
-	          cpu_id->arm.part_num, cpu_id->cpu_codename);
-	while(db[++i].part_num != -2)
-	{
-		const bool partnum_defined  = (db[i].part_num >  0);
-		const bool codename_defined = (db[i].codename != NULL);
-		const bool partnum_matchs   = partnum_defined  && (db[i].part_num == cpu_id->arm.part_num);
-		const bool codename_matchs  = codename_defined && (std::strcmp(db[i].codename, cpu_id->cpu_codename) == 0);
-
-		if((codename_matchs && partnum_matchs) || (codename_matchs && !partnum_defined) || (!codename_defined && partnum_matchs))
-		{
-			processor.technology.value = db[i].process;
-			MSG_DEBUG("cpu_technology_arm: part_num 0x%3x, cpu_codename %26s => entry #%03i matches",
-	          cpu_id->arm.part_num, cpu_id->cpu_codename, i);
-			RETURN_OR_EXIT(0);
-		}
-		else
-			MSG_DEBUG("cpu_technology_arm: part_num 0x%3x, cpu_codename %26s => entry #%03i does not match",
-	          cpu_id->arm.part_num, cpu_id->cpu_codename, i);
-	}
-
-	MSG_WARNING(_("Your CPU is not present in the database ==> %s, part number: 0x%x, codename: %s"),
-	            cpu_id->brand_str, cpu_id->arm.part_num, cpu_id->cpu_codename);
-	RETURN_OR_EXIT(3);
-}
-
-static int cpu_technology(Data::Cpu::CpuType::Processor &processor, cpu_id_t *cpu_id)
-{
-	MSG_VERBOSE("%s", _("Finding CPU technology"));
-	switch(cpu_id->architecture)
-	{
-		case ARCHITECTURE_X86: return cpu_technology_x86(processor, cpu_id);
-		case ARCHITECTURE_ARM: return cpu_technology_arm(processor, cpu_id);
-		default: return 255;
-	}
-}
-#undef RETURN_OR_EXIT
-
 /* Static elements provided by libcpuid */
 int call_libcpuid_static(Data &data)
 {
@@ -318,6 +222,7 @@ int call_libcpuid_static(Data &data)
 		data.cpu.cpu_types[cpu_type].processor.architecture        = cpu_id->architecture;
 		data.cpu.cpu_types[cpu_type].processor.vendor.value        = (cpuvendors.find(cpu_id->vendor) != cpuvendors.end()) ? cpuvendors.at(cpu_id->vendor) : cpuvendors.at(VENDOR_UNKNOWN);
 		data.cpu.cpu_types[cpu_type].processor.codename.value      = cpu_id->cpu_codename;
+		data.cpu.cpu_types[cpu_type].processor.technology.value    = cpu_id->technology_node;
 		data.cpu.cpu_types[cpu_type].processor.specification.value = cpu_id->brand_str;
 		if(cpu_id->architecture == ARCHITECTURE_X86)
 		{
@@ -342,9 +247,6 @@ int call_libcpuid_static(Data &data)
 		/* Add core offset */
 		data.cpu.cpu_types[cpu_type].footer.core_id_offset = core_id_offset;
 		core_id_offset = cpu_id->num_logical_cpus;
-
-		/* Search in DB for CPU technology (depends on CPU vendor) */
-		err += cpu_technology(data.cpu.cpu_types[cpu_type].processor, cpu_id);
 
 		/* Cache level 1 (instruction) */
 		if(cpu_id->l1_instruction_cache > 0)

@@ -92,7 +92,7 @@ These dependencies are optional to **test** CPU-X:
 These dependencies are needed to **build²** and **run** CPU-X:
 * [Gtkmm3](https://www.gtkmm.org/en/index.html) (versions 3.12 to 3.24 are supported)  
 * [NCurses](https://www.gnu.org/software/ncurses/)  
-* [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.7.0 or newer is needed)  
+* [Libcpuid](http://libcpuid.sourceforge.net/) (version 0.8.0 or newer is needed)  
 * [Pciutils](https://mj.ucw.cz/sw/pciutils/)  
 * [EGL](https://www.khronos.org/egl/) (version 1.5 or newer is needed), with [OpenGL](https://www.opengl.org/)  
 * [Vulkan](https://www.vulkan.org/)  
