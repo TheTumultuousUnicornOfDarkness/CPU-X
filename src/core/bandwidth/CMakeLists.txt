@@ -6,19 +6,16 @@ project(bandwidth
 # Config (bandwidth)
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-strict-prototypes -Wno-sign-compare")
 
-find_program(NASM_FOUND nasm)
-if(NASM_FOUND)
-	enable_language(ASM_NASM)
-endif(NASM_FOUND)
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
 	set(NASM_FLAGS_DEBUG "-gdwarf")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
 
 # Build (bandwidth)
-if(CMAKE_ASM_NASM_INFOMATION_LOADED)
+check_language(ASM_NASM)
+if(CMAKE_ASM_NASM_COMPILER)
+	enable_language(ASM_NASM)
 	set(BANDWIDTH_FOUND ON PARENT_SCOPE)
 	message(STATUS "Using built-in ${PROJECT_NAME}, version ${PROJECT_VERSION}")
-
 
 	if(BITNESS EQUAL 32)
 		set(ROUTINES "routines-x86-32bit")
@@ -54,6 +51,6 @@ if(CMAKE_ASM_NASM_INFOMATION_LOADED)
 	target_link_libraries(bandwidth)
 	set(BANDWIDTH_VERSION ${PROJECT_VERSION} PARENT_SCOPE)
 
-else(CMAKE_ASM_NASM_INFOMATION_LOADED)
+else(CMAKE_ASM_NASM_COMPILER)
 	set(BANDWIDTH_FOUND OFF PARENT_SCOPE)
-endif(CMAKE_ASM_NASM_INFOMATION_LOADED)
+endif(CMAKE_ASM_NASM_COMPILER)
