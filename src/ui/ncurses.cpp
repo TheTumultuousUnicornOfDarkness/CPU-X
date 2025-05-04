@@ -351,7 +351,7 @@ static void ntab_cpu(WINDOW *win, Data &data)
 	mvwprintw2c(win, LINE_2, SizeInfo::tb, "%14s", "%s", cpu_type.processor.codename);
 	mvwprintw2c(win, LINE_3, SizeInfo::tb, "%14s", "%s", cpu_type.processor.package);
 	mvwprintw2c(win, LINE_4, SizeInfo::tb, "%14s", "%s", cpu_type.processor.technology);
-	mvwprintw2c(win, LINE_4, SizeInfo::tm, "%11s", "%s", cpu_type.processor.voltage);
+	mvwprintw2c(win, LINE_4, SizeInfo::te, "%9s",  "%s", cpu_type.processor.voltage);
 	mvwprintw2c(win, LINE_5, SizeInfo::tb, "%14s", "%s", cpu_type.processor.specification);
 #if HAS_LIBCPUID
 	if(cpu_type.processor.architecture == ARCHITECTURE_X86)

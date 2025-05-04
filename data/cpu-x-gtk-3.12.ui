@@ -402,9 +402,9 @@
                                                     <property name="justify">center</property>
                                                     <property name="selectable">True</property>
                                                     <property name="ellipsize">end</property>
-                                                    <property name="width-chars">9</property>
+                                                    <property name="width-chars">12</property>
                                                     <property name="single-line-mode">True</property>
-                                                    <property name="max-width-chars">9</property>
+                                                    <property name="max-width-chars">12</property>
                                                     <property name="lines">1</property>
                                                   </object>
                                                 </child>
@@ -448,10 +448,14 @@
                                               <object class="GtkLabel" id="proc_labvolt">
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">False</property>
+                                                <property name="margin-start">6</property>
+                                                <property name="margin-end">4</property>
                                                 <property name="margin-top">1</property>
                                                 <property name="margin-bottom">1</property>
                                                 <property name="mnemonic-widget">proc_valvolt</property>
+                                                <property name="ellipsize">end</property>
                                                 <property name="single-line-mode">True</property>
+                                                <property name="max-width-chars">9</property>
                                                 <property name="lines">1</property>
                                               </object>
                                               <packing>
