@@ -11,26 +11,20 @@ env:
 
 jobs:
   linux-appimage-continuous-build:
-    name: Linux ${{ matrix.os.arch }} (Continuous build)
-    runs-on: ${{ matrix.os.label }}
+    name: Linux ${{ matrix.arch }} (Continuous build)
+    runs-on: ${{ matrix.runs-on }}
     strategy:
       matrix:
-        os:
-          # x86_64 (https://github.com/actions/runner-images/tree/main/images/ubuntu)
-          - { arch: x86_64, label: ubuntu-22.04 }
-          # ARM64 (https://github.com/actions/partner-runner-images)
-          - { arch: aarch64, label: ubuntu-22.04-arm }
-
+        include:
+          - runs-on: ubuntu-latest
+            name: "AppImage build"
+            arch: x86_64
+          - runs-on: ubuntu-24.04-arm
+            name: "AppImage build"
+            arch: aarch64
+    container: ghcr.io/pkgforge-dev/archlinux:latest
     steps:
     - uses: actions/checkout@v4
-
-    - uses: abbbi/github-actions-tune@v1
-
-    - name: Build libcpuid
-      run: bash -x ./scripts/build_libcpuid.sh "$BUILD_TYPE"
-
-    - name: Build CPU-X
-      run: bash -x ./scripts/build_cpu_x.sh "$BUILD_TYPE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
       run: |
@@ -40,7 +34,7 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: linux-${{ matrix.os.arch }}
+        name: linux-${{ matrix.arch }}
         path: AppImage/CPU-X-*
 
 
