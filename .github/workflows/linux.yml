@@ -14,25 +14,34 @@ env:
 
 jobs:
   linux-build:
-    name: Linux ${{ matrix.os.arch }} (Build)
+    name: ${{ matrix.os.image }} ${{ matrix.os.arch }} (Build)
     runs-on: ${{ matrix.os.label }}
     strategy:
       matrix:
         os:
           # x86_64 (https://github.com/actions/runner-images/tree/main/images/ubuntu)
-          - { arch: x86_64, label: ubuntu-22.04 }
-          - { arch: x86_64, label: ubuntu-24.04 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: archlinux:base-devel }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:22.04 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:24.04 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:25.04 }
           # ARM64 (https://github.com/actions/partner-runner-images)
-          - { arch: aarch64, label: ubuntu-22.04-arm }
-          - { arch: aarch64, label: ubuntu-24.04-arm }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:22.04 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:24.04 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:25.04 }
+
+    container: ${{ matrix.os.image }}
 
     steps:
     - uses: actions/checkout@v4
 
-    - uses: abbbi/github-actions-tune@v1
-
     - name: Install prerequisites
-      run: sudo apt-get update -y -qq
+      run: |
+        if command -v pacman; then
+          pacman -Syu --noconfirm sudo
+        elif command -v apt-get; then
+          apt-get update -y -qq
+          apt-get install -y -qq sudo
+        fi
 
     - name: Build libcpuid
       run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"
@@ -46,7 +55,7 @@ jobs:
     - name: Run CPU-X
       run: |
         error=0
-        sudo CPUX_BCLK=100 valgrind cpu-x --issue-fmt || error=1
+        sudo CPUX_BCLK=100 cpu-x --issue-fmt || error=1
         cat /tmp/cpu-x.log
         cat /tmp/cpu-x-daemon.log
         exit $error

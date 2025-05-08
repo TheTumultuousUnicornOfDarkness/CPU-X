@@ -71,7 +71,6 @@ case "$ID" in
 			polkit \
 			procps-ng \
 			strace \
-			valgrind \
 			vulkan-headers \
 			vulkan-icd-loader
 		;;
@@ -100,15 +99,19 @@ case "$ID" in
 		case "$VERSION_ID" in
 			"20.04") # Focal Fossa
 				GCC_VER=10
-				UBUNTU_PACKAGES=('gcc-10' 'g++-10' 'libprocps-dev' 'libprocps8')
+				UBUNTU_PACKAGES=('libprocps-dev' 'libprocps8')
 				;;
 			"22.04") # Jammy Jellyfish
 				GCC_VER=12
-				UBUNTU_PACKAGES=('gcc-12' 'g++-12' 'libprocps-dev' 'libprocps8')
+				UBUNTU_PACKAGES=('libprocps-dev' 'libprocps8')
 				;;
 			"24.04") # Noble Numbat
 				GCC_VER=14
-				UBUNTU_PACKAGES=('gcc-14' 'g++-14' 'libproc2-dev' 'libproc2-0')
+				UBUNTU_PACKAGES=('libproc2-dev' 'libproc2-0')
+				;;
+			"25.04") # Plucky Puffin
+				GCC_VER=15
+				UBUNTU_PACKAGES=('libproc2-dev' 'libproc2-0')
 				;;
 			*)
 				echo "Unsupported Ubuntu version: $VERSION_ID"
@@ -116,7 +119,6 @@ case "$ID" in
 				;;
 		esac
 		sudo apt-get install -y -qq \
-			valgrind \
 			dpkg-dev \
 			gawk \
 			mawk \
