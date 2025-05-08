@@ -25,16 +25,15 @@ endif(WITH_GTK)
 
 # NCurses
 if(WITH_NCURSES)
-	pkg_check_modules(NCURSES ncursesw)
-	# Assume ncurses from the base on FreeBSD
-	if(NOT NCURSES_FOUND AND CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
-		set(NCURSES_FOUND 1)
-		set(NCURSES_LIBRARIES "-l:libncursesw.so")
-	endif()
-	if(NCURSES_FOUND)
-		include_directories(${NCURSES_INCLUDE_DIRS})
-		link_directories(${NCURSES_LIBRARY_DIRS})
-	endif(NCURSES_FOUND)
+	set(CURSES_NEED_NCURSES TRUE)
+	set(CURSES_NEED_WIDE TRUE)
+	if(NOT CURSES_FOUND AND CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+		set(CURSES_INCLUDE_PATH "/usr/local/include")
+	endif(NOT CURSES_FOUND AND CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+	find_package(Curses)
+	if(CURSES_FOUND)
+		include_directories(${CURSES_INCLUDE_DIRS})
+	endif(CURSES_FOUND)
 endif(WITH_NCURSES)
 
 # Gettext
@@ -65,34 +64,27 @@ endif(WITH_LIBPCI)
 
 # Libegl
 if(WITH_LIBEGL)
-	pkg_check_modules(LIBGL gl)
-	pkg_check_modules(LIBEGL egl>1.4)
-	if(LIBGL_FOUND AND LIBEGL_FOUND)
-		include_directories(${LIBGL_INCLUDE_DIRS} ${LIBEGL_INCLUDE_DIRS})
-		link_directories(${LIBGL_LIBRARY_DIRS} ${LIBEGL_LIBRARY_DIRS})
-		add_definitions(${LIBGL_CFLAGS_OTHER} ${LIBEGL_CFLAGS_OTHER})
-		set(LIBOPENGL_LIBRARIES ${LIBGL_LIBRARIES} ${LIBEGL_LIBRARIES})
-	endif(LIBGL_FOUND AND LIBEGL_FOUND)
+	find_package(OpenGL COMPONENTS OpenGL EGL)
+	if(OPENGL_FOUND AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
+		include_directories(${OPENGL_INCLUDE_DIRS} ${OPENGL_EGL_INCLUDE_DIRS})
+		set(LIBOPENGL_LIBRARIES OpenGL::OpenGL OpenGL::EGL)
+	endif(OPENGL_FOUND AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
 endif(WITH_LIBEGL)
 
 # Vulkan
 if(WITH_VULKAN)
-	pkg_check_modules(VULKAN vulkan)
-	if(VULKAN_FOUND)
-		include_directories(${VULKAN_INCLUDE_DIRS})
-		link_directories(${VULKAN_LIBRARY_DIRS})
-		add_definitions(${VULKAN_CFLAGS_OTHER})
-	endif(VULKAN_FOUND)
+	find_package(Vulkan)
+	if(Vulkan_FOUND)
+		include_directories(${Vulkan_INCLUDE_DIRS})
+	endif(Vulkan_FOUND)
 endif(WITH_VULKAN)
 
 # OpenCL
 if(WITH_OPENCL)
-	pkg_check_modules(OPENCL OpenCL)
-	if(OPENCL_FOUND)
-		include_directories(${LIBOPENCL_INCLUDE_DIRS} ${OpenCL_INCLUDE_DIRS})
-		link_directories(${LIBOPENCL_LIBRARY_DIRS} ${OpenCL_LIBRARY_DIRS})
-		add_definitions(${LIBOPENCL_CFLAGS_OTHER} ${OpenCL_CFLAGS_OTHER})
-	endif(OPENCL_FOUND)
+	find_package(OpenCL)
+	if(OpenCL_FOUND)
+		include_directories(${OpenCL_INCLUDE_DIRS})
+	endif(OpenCL_FOUND)
 endif(WITH_OPENCL)
 
 # Libprocps
@@ -156,15 +148,15 @@ message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration ($
 
 # UI libraries
 print_config("GTK"                 "${GTK3_VERSION}"        GTK3_FOUND        WITH_GTK)
-print_config("NCURSES"             "${NCURSES_VERSION}"     NCURSES_FOUND     WITH_NCURSES)
+print_config("NCURSES"             "${NCURSES_VERSION}"     CURSES_FOUND      WITH_NCURSES)
 
 # Other libraries
 print_config("GETTEXT"             0                        GETTEXT_FOUND     WITH_GETTEXT)
 print_config("LIBCPUID"            "${LIBCPUID_VERSION}"    LIBCPUID_FOUND    WITH_LIBCPUID)
 print_config("LIBPCI"              "${LIBPCI_VERSION}"      LIBPCI_FOUND      WITH_LIBPCI)
-print_config("LIBEGL"              "${LIBEGL_VERSION}"      LIBEGL_FOUND      WITH_LIBEGL)
-print_config("VULKAN"              "${VULKAN_VERSION}"      VULKAN_FOUND      WITH_VULKAN)
-print_config("OPENCL"              "${OPENCL_VERSION}"      OPENCL_FOUND      WITH_OPENCL)
+print_config("LIBEGL"              "${LIBEGL_VERSION}"      OpenGL_EGL_FOUND  WITH_LIBEGL)
+print_config("VULKAN"              "${VULKAN_VERSION}"      Vulkan_FOUND      WITH_VULKAN)
+print_config("OPENCL"              "${OPENCL_VERSION}"      OpenCL_FOUND      WITH_OPENCL)
 if(CMAKE_SYSTEM_NAME MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
 	if(${LIBPROC2} EQUAL 1)
 		print_config("LIBPROC2"    "${LIBPROC2_VERSION}"    LIBPROC2_FOUND    WITH_LIBPROCPS)
@@ -259,29 +251,29 @@ if(WITH_LIBPCI AND LIBPCI_FOUND)
 endif(WITH_LIBPCI AND LIBPCI_FOUND)
 
 # Libegl
-if(WITH_LIBEGL AND LIBGL_FOUND AND LIBEGL_FOUND)
+if(WITH_LIBEGL AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
 	target_sources(${APP_EXEC}
 		PRIVATE
 		core/libopengl.cpp
 	)
-endif(WITH_LIBEGL AND LIBGL_FOUND AND LIBEGL_FOUND)
+endif(WITH_LIBEGL AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
 
 # Vulkan
-if(WITH_VULKAN AND VULKAN_FOUND)
+if(WITH_VULKAN AND Vulkan_FOUND)
 	target_sources(${APP_EXEC}
 		PRIVATE
 		core/libvulkan.cpp
 	)
-endif(WITH_VULKAN AND VULKAN_FOUND)
+endif(WITH_VULKAN AND Vulkan_FOUND)
 
 # OpenCL
-if(WITH_OPENCL AND OPENCL_FOUND)
+if(WITH_OPENCL AND OpenCL_FOUND)
 	target_sources(${APP_EXEC}
 		PRIVATE
 		core/libopencl.cpp
 		core/opencl_ext.h
 	)
-endif(WITH_OPENCL AND OPENCL_FOUND)
+endif(WITH_OPENCL AND OpenCL_FOUND)
 
 # Libsystem (libproc2/libprocps/libstatgrab)
 if(${LIBSYSTEM} GREATER 0)
@@ -377,12 +369,12 @@ target_link_libraries(${APP_EXEC}
 	std::filesystem
 
 	${GTK3_LIBRARIES}
-	${NCURSES_LIBRARIES}
+	${CURSES_LIBRARIES}
 	${LIBCPUID_LIBRARIES}
 	${LIBPCI_LIBRARIES}
 	${LIBOPENGL_LIBRARIES}
-	${VULKAN_LIBRARIES}
-	${OPENCL_LIBRARIES}
+	${Vulkan_LIBRARIES}
+	${OpenCL_LIBRARIES}
 	${LIBSYSTEM_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
