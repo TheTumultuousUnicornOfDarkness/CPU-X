@@ -20,18 +20,22 @@ jobs:
       matrix:
         os:
           # x86_64 (https://github.com/actions/runner-images/tree/main/images/ubuntu)
-          # - { arch: x86_64,  label: ubuntu-24.04,     image: archlinux:base-devel }
-          # - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:22.04 }
-          # - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:24.04 }
-          # - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:25.04 }
-          #- { arch: x86_64,  label: ubuntu-24.04,     image: debian:11 }
-          #- { arch: x86_64,  label: ubuntu-24.04,     image: debian:12 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: archlinux:base-devel }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: debian:11 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: debian:12 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:40 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:41 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:22.04 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:24.04 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:25.04 }
           # ARM64 (https://github.com/actions/partner-runner-images)
-          # - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:22.04 }
-          # - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:24.04 }
-          # - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:25.04 }
-          - { arch: aarch64,  label: ubuntu-24.04-arm,     image: debian:11 }
-          - { arch: aarch64,  label: ubuntu-24.04-arm,     image: debian:12 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:11 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:12 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:40 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:41 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:22.04 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:24.04 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:25.04 }
 
     container: ${{ matrix.os.image }}
 
@@ -42,6 +46,9 @@ jobs:
       run: |
         if command -v pacman; then
           pacman -Syu --noconfirm sudo
+        elif command -v dnf; then
+          dnf update -y
+          dnf install -y sudo
         elif command -v apt-get; then
           apt-get update -y -qq
           apt-get install -y -qq sudo

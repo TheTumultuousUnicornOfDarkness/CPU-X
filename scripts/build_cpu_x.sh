@@ -112,6 +112,35 @@ case "$ID" in
 			"${DEBIAN_PACKAGES[@]}"
 		;;
 
+	fedora)
+		sudo dnf group install -y development-tools
+		sudo dnf install -y \
+			gcc-c++ \
+			cmake \
+			ninja-build \
+			pkgconf \
+			nasm \
+			gettext \
+			gettext-devel \
+			gtkmm3.0 \
+			gtkmm3.0-devel \
+			ncurses-libs \
+			ncurses-devel \
+			pciutils \
+			pciutils-devel \
+			libglvnd-opengl \
+			libglvnd-egl \
+			libglvnd-devel \
+			vulkan-loader \
+			vulkan-loader-devel \
+			vulkan-headers \
+			opencl-headers \
+			ocl-icd \
+			ocl-icd-devel \
+			procps-ng \
+			procps-ng-devel
+		;;
+
 	freebsd)
 		sudo pkg install -y \
 			cmake \

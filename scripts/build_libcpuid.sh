@@ -49,6 +49,14 @@ case "$ID" in
 			git
 		;;
 
+	fedora)
+		sudo dnf group install -y development-tools
+		sudo dnf install -y \
+			cmake \
+			ninja-build \
+			git
+		;;
+
 	freebsd)
 		CMAKE_INSTALL_PREFIX="/usr/local"
 		sudo pkg install -y \
@@ -61,10 +69,10 @@ case "$ID" in
 
 	ubuntu)
 		sudo apt-get install -y -qq \
+			gcc \
 			cmake \
 			ninja-build \
-			git \
-			g++
+			git
 		;;
 
 	*)
