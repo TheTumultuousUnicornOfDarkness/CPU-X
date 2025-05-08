@@ -1,98 +1,172 @@
 #!/bin/bash
 
 set -euo pipefail
-source /etc/os-release
 
-if [[ $# -lt 2 ]]; then
-	echo "$0: BUILD_TYPE SOURCE_DIRECTORY [INSTALL_DIRECTORY]"
+SRC_DIR=""
+BUILD_TYPE="Debug"
+INSTALL_DIR=""
+CMAKE_INSTALL_PREFIX="${CMAKE_INSTALL_PREFIX:-/usr}"
+CMAKE_INSTALL_LIBEXECDIR="${CMAKE_INSTALL_LIBEXECDIR:-/usr/bin}"
+CMAKE_EXTRA_OPTIONS=()
+
+display_help() {
+	echo "Usage: $(basename "$0") -s SRC_DIR [-t BUILD_TYPE] [-i INSTALL_DIR]"
+	echo -e "\nMandatory arguments:"
+	echo "  -s SRC_DIR      Path to the CPU-X source directory"
+	echo -e "\nOptional arguments:"
+	echo "  -t BUILD_TYPE   CMake build type (Debug (default), Release, RelWithDebInfo or MinSizeRel)"
+	echo "  -i INSTALL_DIR  Directory where to install files (default is root)"
+}
+
+while getopts "s:t:i:h" opt; do
+	case "$opt" in
+		s) SRC_DIR="$OPTARG";;
+		t) BUILD_TYPE="$OPTARG";;
+		i) INSTALL_DIR="$OPTARG"; CMAKE_EXTRA_OPTIONS+=('-DAPPIMAGE=1');;
+		h) display_help; exit 0;;
+		*) display_help; exit 1;;
+	esac
+done
+
+if [[ -z "$SRC_DIR" ]]; then
+	display_help
 	exit 1
 fi
 
-if [[ "$ID" != "ubuntu" ]]; then
-	echo "$0: this script must be run on a Ubuntu system"
-	exit 1
-fi
-
-BUILD_TYPE="$1"
-SRC_DIR="$2"
-if [[ $# -ge 3 ]]; then
-	# AppImage build
-	DST_DIR="$3"
-	CMAKE_EXTRA_OPTIONS="-DAPPIMAGE=1"
+if [[ -f "/etc/os-release" ]]; then
+	source "/etc/os-release"
+elif [[ -f "/usr/lib/os-release" ]]; then
+	source /usr/lib/os-release
 else
-	# Standard build
-	DST_DIR=""
-	CMAKE_EXTRA_OPTIONS=""
+	echo "os-release file is not present."
+	exit 1
 fi
+echo "Install packages for $ID"
+case "$ID" in
+	arch|archarm)
+		sudo pacman -S --noconfirm \
+			base-devel \
+			binutils \
+			cairomm \
+			cmake \
+			dconf \
+			findutils \
+			gawk \
+			gcc-libs \
+			git \
+			glib2 \
+			glibc \
+			glibmm \
+			gtkmm3 \
+			libglvnd \
+			libsigc++ \
+			nasm \
+			ncurses \
+			ninja \
+			opencl-headers \
+			opencl-icd-loader \
+			pangomm \
+			patchelf \
+			pciutils \
+			polkit \
+			procps-ng \
+			strace \
+			valgrind \
+			vulkan-headers \
+			vulkan-icd-loader
+		;;
 
-case "$VERSION_ID" in
-	"20.04") # Focal Fossa
-		GCC_VER=10
-		PACKAGES=('gcc-10' 'g++-10' 'libprocps-dev' 'libprocps8')
+	freebsd)
+		sudo pkg install -y \
+			cmake \
+			ninja \
+			pkgconf \
+			gettext \
+			nasm \
+			gtkmm30 \
+			ncurses \
+			pciutils \
+			libglvnd \
+			opencl \
+			ocl-icd \
+			vulkan-loader \
+			vulkan-headers \
+			libstatgrab
+		# workaround for OpenCL headers
+		sudo sed -i .orig "/Requires: OpenCL-Headers/d" /usr/local/libdata/pkgconfig/OpenCL.pc
 		;;
-	"22.04") # Jammy Jellyfish
-		GCC_VER=12
-		PACKAGES=('gcc-12' 'g++-12' 'libprocps-dev' 'libprocps8')
+
+	ubuntu)
+		case "$VERSION_ID" in
+			"20.04") # Focal Fossa
+				GCC_VER=10
+				UBUNTU_PACKAGES=('gcc-10' 'g++-10' 'libprocps-dev' 'libprocps8')
+				;;
+			"22.04") # Jammy Jellyfish
+				GCC_VER=12
+				UBUNTU_PACKAGES=('gcc-12' 'g++-12' 'libprocps-dev' 'libprocps8')
+				;;
+			"24.04") # Noble Numbat
+				GCC_VER=14
+				UBUNTU_PACKAGES=('gcc-14' 'g++-14' 'libproc2-dev' 'libproc2-0')
+				;;
+			*)
+				echo "Unsupported Ubuntu version: $VERSION_ID"
+				exit 1
+				;;
+		esac
+		sudo apt-get install -y -qq \
+			valgrind \
+			dpkg-dev \
+			gawk \
+			mawk \
+			"gcc-$GCC_VER" \
+			"g++-$GCC_VER" \
+			cmake \
+			ninja-build \
+			nasm \
+			gettext \
+			libpolkit-gobject-1-dev \
+			adwaita-icon-theme \
+			libgtkmm-3.0-1v5 \
+			libgtkmm-3.0-dev \
+			libncursesw6 \
+			libncurses-dev \
+			libpci3 \
+			libpci-dev \
+			libglvnd0 \
+			libglvnd-dev \
+			libvulkan-dev \
+			libglvnd-dev \
+			opencl-headers \
+			ocl-icd-libopencl1 \
+			ocl-icd-opencl-dev \
+			"${UBUNTU_PACKAGES[@]}"
+		sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-$GCC_VER" 9001 # It's Over 9000
+		sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/g++-$GCC_VER" 9002 # It's Over 9000
 		;;
-	"24.04") # Noble Numbat
-		GCC_VER=14
-		PACKAGES=('gcc-14' 'g++-14' 'libproc2-dev' 'libproc2-0')
-		;;
+
 	*)
-		echo "Unsupported Ubuntu version: $VERSION_ID" ; exit 1
-		;;
+		echo "ID '$ID' is not supported by $0."
+		exit 1
 esac
 
-echo "Install packages"
-sudo apt-get update -y -qq
-sudo apt-get install -y -qq \
-	valgrind \
-	dpkg-dev \
-	gawk \
-	mawk \
-	"gcc-$GCC_VER" \
-	"g++-$GCC_VER" \
-	cmake \
-	ninja-build \
-	nasm \
-	gettext \
-	libpolkit-gobject-1-dev \
-	adwaita-icon-theme \
-	libgtkmm-3.0-1v5 \
-	libgtkmm-3.0-dev \
-	libncursesw6 \
-	libncurses-dev \
-	libpci3 \
-	libpci-dev \
-	libglvnd0 \
-	libglvnd-dev \
-	libvulkan-dev \
-	libglvnd-dev \
-	opencl-headers \
-	ocl-icd-libopencl1 \
-	ocl-icd-opencl-dev \
-	libfuse2 \
-	"${PACKAGES[@]}"
-
-sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-$GCC_VER" 9001 # It's Over 9000
-sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/g++-$GCC_VER" 9002 # It's Over 9000
-
-echo "Run CMake"
+echo "Run CMake ($BUILD_TYPE)"
 cmake -S "$SRC_DIR" \
 	-B build \
 	-GNinja \
 	-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
-	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_INSTALL_LIBEXECDIR=/usr/bin \
-	$CMAKE_EXTRA_OPTIONS
+	-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
+	-DCMAKE_INSTALL_LIBEXECDIR="$CMAKE_INSTALL_LIBEXECDIR" \
+	"${CMAKE_EXTRA_OPTIONS[@]}"
 
 echo "Build CPU-X"
 cmake --build build
 
-if [[ -z "$DST_DIR" ]]; then
-	echo "Install CPU-X on system"
-	sudo ninja -C build install
+if [[ -z "$INSTALL_DIR" ]]; then
+	echo "Install CPU-X to system"
+	sudo cmake --install build
 else
-	echo "Install CPU-X in AppDir"
-	DESTDIR="$DST_DIR" ninja -C build install
+	echo "Install CPU-X to $INSTALL_DIR"
+	DESTDIR="$INSTALL_DIR" cmake --install build
 fi

@@ -1,44 +1,74 @@
 #!/bin/bash
 
 set -euo pipefail
-source /etc/os-release
 
-if [[ $# -lt 1 ]]; then
-	echo "$0: BUILD_TYPE"
+BUILD_PATH="$(mktemp --directory --tmpdir libcpuid-build.XXXXXX)"
+BUILD_TYPE="Debug"
+INSTALL_DIR=""
+CMAKE_INSTALL_PREFIX="${CMAKE_INSTALL_PREFIX:-/usr}"
+
+display_help() {
+	echo "Usage: $(basename "$0") [-t BUILD_TYPE] [-i INSTALL_DIR]"
+	echo -e "\nOptional arguments:"
+	echo "  -t BUILD_TYPE   CMake build type (Debug (default), Release, RelWithDebInfo or MinSizeRel)"
+	echo "  -i INSTALL_DIR  Directory where to install files (default is root)"
+}
+
+while getopts "t:i:h" opt; do
+	case "$opt" in
+		t) BUILD_TYPE="$OPTARG";;
+		i) INSTALL_DIR="$OPTARG";;
+		h) display_help; exit 0;;
+		*) display_help; exit 1;;
+	esac
+done
+
+if [[ -f "/etc/os-release" ]]; then
+	source "/etc/os-release"
+elif [[ -f "/usr/lib/os-release" ]]; then
+	source /usr/lib/os-release
+else
+	echo "os-release file is not present."
 	exit 1
 fi
-
-BUILD_TYPE="$1"
-BUILD_PATH="/tmp/libcpuid"
-
-echo "Install packages"
+echo "Install packages for $ID"
 case "$ID" in
+	arch|archarm)
+		sudo pacman -S --noconfirm \
+			base-devel \
+			cmake \
+			git \
+			ninja
+		;;
+
 	freebsd)
 		CMAKE_INSTALL_PREFIX="/usr/local"
 		sudo pkg install -y \
 			cmake \
 			ninja \
 			git
-		sudo ln -s /usr/local/lib/pkgconfig/libcpuid.pc /usr/local/libdata/pkgconfig/libcpuid.pc
+		# workaround for libcpuid
+		ln -s /usr/local/lib/pkgconfig/libcpuid.pc /usr/local/libdata/pkgconfig/libcpuid.pc
 		;;
+
 	ubuntu)
-		CMAKE_INSTALL_PREFIX="/usr"
 		sudo apt-get install -y -qq \
 			cmake \
 			ninja-build \
 			git \
 			g++
 		;;
+
 	*)
-		echo "$ID is not supported by $0."
+		echo "ID '$ID' is not supported by $0."
 		exit 1
 esac
 
-echo "Clone libcpuid Git repository"
+echo "Clone libcpuid Git repository to $BUILD_PATH"
 git clone https://github.com/anrieff/libcpuid.git "$BUILD_PATH"
 cd "$BUILD_PATH"
 
-echo "Run CMake"
+echo "Run CMake ($BUILD_TYPE)"
 cmake -B build \
 	-GNinja \
 	-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
@@ -48,5 +78,10 @@ cmake -B build \
 echo "Build libcpuid"
 cmake --build build
 
-echo "Install libcpuid on system"
-sudo ninja -C build install
+if [[ -z "$INSTALL_DIR" ]]; then
+	echo "Install libcpuid to system"
+	sudo cmake --install build
+else
+	echo "Install libcpuid to $INSTALL_DIR"
+	DESTDIR="$INSTALL_DIR" cmake --install build
+fi

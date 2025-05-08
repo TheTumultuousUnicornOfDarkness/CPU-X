@@ -9,6 +9,9 @@ on:
       - '*'
   workflow_dispatch:
 
+env:
+  BUILD_TYPE: Debug
+
 jobs:
   linux-build:
     name: Linux ${{ matrix.os.arch }} (Build)
@@ -28,11 +31,14 @@ jobs:
 
     - uses: abbbi/github-actions-tune@v1
 
+    - name: Install prerequisites
+      run: sudo apt-get update -y -qq
+
     - name: Build libcpuid
-      run: bash -x ./scripts/build_libcpuid.sh "Debug"
+      run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"
 
     - name: Build CPU-X
-      run: bash ./scripts/build_cpu_x.sh "Debug" "$GITHUB_WORKSPACE"
+      run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE"
 
     - name: Run tests
       run: ninja -C build test

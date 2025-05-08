@@ -1,116 +1,105 @@
 #!/bin/bash
 
-set -eo pipefail
+set -euo pipefail
 
-# Functions
-die() {
-	echo "[FATAL] $*"
-	exit 1
-}
+SRC_DIR=""
+APPDIR=""
+VERSION=""
+ARCH="$(uname -m)"
 
-runCmd() {
-	if ! "$@"; then
-		die "command failed: '$*'"
+download_file() {
+	local url="$1"
+	local file
+
+	if [[ -z "$url" ]]; then
+		echo "download_file: missing URL"
+		exit 1
+	fi
+
+	file="$(basename "$url")"
+	wget --continue --no-verbose "$url"
+	if grep --no-messages --quiet --ignore-case --extended-regexp 'executable|shell script' "$file"; then
+		chmod --verbose a+x "$file"
 	fi
 }
 
-# Constant variables
-if [[ $# -lt 2 ]]; then
-	echo "$0: WORKSPACE APPDIR"
+display_help() {
+	echo "Usage: $(basename "$0") -s SRC_DIR -a APPDIR [-v VERSION]"
+	echo -e "\nMandatory arguments:"
+	echo "  -s SRC_DIR      Path to the CPU-X source directory"
+	echo "  -a APPDIR       Path for AppDir"
+	echo -e "\nOptional arguments:"
+	echo "  -v VERSION      CPU-X version"
+}
+
+while getopts "s:a:h" opt; do
+	case "$opt" in
+		s) SRC_DIR="$(realpath "$OPTARG")";;
+		a) APPDIR="$(realpath "$OPTARG")";;
+		v) VERSION="$(realpath "$OPTARG")";;
+		h) display_help; exit 0;;
+		*) display_help; exit 1;;
+	esac
+done
+
+if [[ -z "$SRC_DIR" ]] || [[ -z "$APPDIR" ]]; then
+	display_help
 	exit 1
 fi
 
-# declare variables
-BUILD_TYPE="${BUILD_TYPE:-RelWithDebInfo}"
-WORKSPACE="$(realpath "$1")"
-APPDIR="$(realpath "$2")"
-WGET_ARGS=(--continue --no-verbose)
-ARCH="$(uname -m)"
-
-runCmd mkdir -p "$APPDIR"
-
-[[ -n "$VERSION" ]] && export RELEASE="latest" || export RELEASE="continuous"
+if [[ -n "$VERSION" ]]; then
+	export RELEASE="latest"
+	export VERSION
+else
+	export RELEASE="continuous"
+fi
 export UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_REPOSITORY//\//|}|${RELEASE}|CPU-X-*$ARCH.AppImage.zsync"
 echo "UPDATE_INFORMATION=$UPDATE_INFORMATION"
 
 # Install dependencies
-runCmd pacman -Syu --noconfirm \
-	base-devel \
-	binutils \
-	cairomm \
-	cmake \
-	dconf \
-	findutils \
-	gawk \
-	gcc-libs \
-	git \
-	glib2 \
-	glibc \
-	glibmm \
-	gtkmm3 \
-	libglvnd \
-	libsigc++ \
-	nasm \
-	ncurses \
-	ninja \
-	opencl-headers \
-	opencl-icd-loader \
-	pangomm \
-	patchelf \
-	pciutils \
-	polkit \
-	procps-ng \
-	strace \
-	valgrind \
-	vulkan-headers \
-	vulkan-icd-loader \
-	wget
-
-# install debloated packages
-if [ "$(uname -m)" = 'x86_64' ]; then
-	PKG_TYPE='x86_64.pkg.tar.zst'
+if [[ -f "/etc/os-release" ]]; then
+	source "/etc/os-release"
+elif [[ -f "/usr/lib/os-release" ]]; then
+	source /usr/lib/os-release
 else
-	PKG_TYPE='aarch64.pkg.tar.xz'
+	echo "os-release file is not present."
+	exit 1
 fi
+echo "Install packages for $ID"
+case "$ID" in
+	arch|archarm)
+		sudo pacman -S --noconfirm wget
+		# install debloated packages
+		case "$ARCH" in
+			x86_64) PKG_TYPE="x86_64.pkg.tar.zst";;
+			aarch64) PKG_TYPE="aarch64.pkg.tar.xz";;
+			*) echo "Arch '$ARCH' is not supported by $0."; exit 1;;
+		esac
+		pushd "/tmp"
+		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/libxml2-iculess-$PKG_TYPE"
+		sudo pacman -U --noconfirm "libxml2-iculess-$PKG_TYPE"
+		popd
+		;;
 
-LIBXML_URL="https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/libxml2-iculess-$PKG_TYPE"
-runCmd wget "${WGET_ARGS[@]}" "$LIBXML_URL" -O  /tmp/libxml2.pkg.tar.zst
-runCmd pacman -U --noconfirm /tmp/libxml2.pkg.tar.zst
-
-echo "Clone libcpuid Git repository"
-git clone https://github.com/anrieff/libcpuid.git /tmp/libcpuid && (
-	cd /tmp/libcpuid
-	echo "Run CMake to build libcpuid"
-	runCmd cmake -B build \
-		-GNinja \
-		-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DBUILD_SHARED_LIBS=OFF
-	runCmd cmake --build build
-	ninja -C build install
-)
-
-# Build CPU-X
-echo "Run CMake to build CPU-X"
-runCmd cmake -S . \
-	-B build \
-	-GNinja \
-	-DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
-	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_INSTALL_LIBEXECDIR=/usr/bin \
-	-DAPPIMAGE=1
-DESTDIR="$APPDIR" ninja -C build install
+	*)
+		echo "ID '$ID' is not supported by $0."
+		exit 1
+esac
 
 # Prepare AppDir
-runCmd cp --verbose "$APPDIR/usr/share/applications/io.github.thetumultuousunicornofdarkness.cpu-x.desktop" "$APPDIR"
-runCmd cp --verbose "$APPDIR/usr/share/icons/hicolor/256x256/apps/io.github.thetumultuousunicornofdarkness.cpu-x.png" "$APPDIR"
-runCmd mv --verbose "$APPDIR"/usr "$APPDIR"/shared
-runCmd ln -s ./ "$APPDIR"/usr
+mkdir --verbose --parents "$APPDIR"
+cp --verbose "$APPDIR/usr/share/applications/io.github.thetumultuousunicornofdarkness.cpu-x.desktop" "$APPDIR"
+cp --verbose "$APPDIR/usr/share/icons/hicolor/256x256/apps/io.github.thetumultuousunicornofdarkness.cpu-x.png" "$APPDIR"
+mv --verbose "$APPDIR"/usr "$APPDIR/shared"
+ln --verbose --symbolic "./" "$APPDIR/usr"
 
 # Bundle deps
-runCmd wget "${WGET_ARGS[@]}" "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin"
-runCmd chmod --verbose a+x ./lib4bin
-runCmd ./lib4bin -p -v -s -k \
+download_file "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin"
+./lib4bin \
+	--verbose \
+	--hard-links \
+	--strip \
+	--with-hooks \
 	--dst-dir "$APPDIR" \
 	"$APPDIR"/shared/bin/cpu-x \
 	/usr/lib/libcpuid.so* \
@@ -120,19 +109,22 @@ runCmd ./lib4bin -p -v -s -k \
 	/usr/lib/gvfs/* \
 	/usr/lib/gtk-*/*/immodules/*.so \
 	/usr/lib/gdk-pixbuf-*/*/loaders/*
-runCmd ./lib4bin -s --with-wrappe --dst-dir "$APPDIR"/bin "$APPDIR"/shared/bin/cpu-x-daemon
-
-runCmd cp -r "$APPDIR"/shared/share/* "$APPDIR"/share
-runCmd rm -rf "$APPDIR"/shared/share
-runCmd glib-compile-schemas "$APPDIR"/share/glib-*/schemas
-
-runCmd ln "$APPDIR"/sharun "$APPDIR"/AppRun
-runCmd "$APPDIR"/sharun -g
+./lib4bin \
+	--strip \
+	--with-wrappe \
+	--dst-dir "$APPDIR/bin" \
+	"$APPDIR/shared/bin/cpu-x-daemon"
+cp --verbose --recursive "$APPDIR/shared/share/"* "$APPDIR/share"
+rm --verbose --recursive --force "$APPDIR/shared/share"
+glib-compile-schemas "$APPDIR/share/glib-"*/schemas
+ln --verbose "$APPDIR/sharun" "$APPDIR/AppRun"
+"$APPDIR/sharun" --gen-lib-path
 
 # Make AppImage
-runCmd mkdir --parents --verbose "$WORKSPACE/AppImage" && runCmd cd "$_"
-runCmd wget "${WGET_ARGS[@]}" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
-runCmd wget "${WGET_ARGS[@]}" "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
-runCmd chmod --verbose a+x ./appimagetool-"$ARCH".AppImage
-APPIMAGE_EXTRACT_AND_RUN=1 ./appimagetool-"$ARCH".AppImage \
-	--no-appstream -u "$UPDATE_INFORMATION" "$APPDIR" --runtime-file ./uruntime-appimage-squashfs-lite-"$ARCH"
+mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
+download_file "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
+download_file "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
+APPIMAGE_EXTRACT_AND_RUN=1 "./appimagetool-$ARCH.AppImage" \
+	--updateinformation "$UPDATE_INFORMATION" \
+	--runtime-file "./uruntime-appimage-squashfs-lite-$ARCH" \
+	"$APPDIR"

@@ -15,17 +15,16 @@ env:
 
 jobs:
   linux-appimage-versioned-build:
-    name: Linux ${{ matrix.arch }} (Versioned build)
-    runs-on: ${{ matrix.runs-on }}
+    name: Linux ${{ matrix.os.arch }} (Versioned build)
+    runs-on: ${{ matrix.os.label }}
     strategy:
       matrix:
-        include:
-          - runs-on: ubuntu-latest
-            name: "AppImage build"
-            arch: x86_64
-          - runs-on: ubuntu-24.04-arm
-            name: "AppImage build"
-            arch: aarch64
+        os:
+          # x86_64 (https://github.com/actions/runner-images/tree/main/images/ubuntu)
+          - { arch: x86_64, label: ubuntu-24.04 }
+          # ARM64 (https://github.com/actions/partner-runner-images)
+          - { arch: aarch64, label: ubuntu-24.04-arm }
+
     container: ghcr.io/pkgforge-dev/archlinux:latest
 
     outputs:
@@ -41,21 +40,27 @@ jobs:
         TAG="${MANUAL_TAG:-$GITHUB_REF_NAME}"
         echo "Using tag '${TAG}'"
         echo "TAG=$TAG" >> $GITHUB_ENV
-        echo "VERSION=${TAG/v/}" >> $GITHUB_ENV
         echo "version=${TAG/v/}" >> $GITHUB_OUTPUT
         echo "changelog_tag=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       env:
         MANUAL_TAG: ${{ inputs.version }}
 
+    - name: Install prerequisites
+      run: pacman -Syu --noconfirm sudo
+
+    - name: Build libcpuid
+      run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
+
+    - name: Build CPU-X
+      run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
+
     - name: Package CPU-X as an AppImage
-      run: |
-        bash -x ./scripts/build_appimage.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/AppDir"
-        ls -l AppImage/
+      run: ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir"
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: linux-${{ matrix.arch }}
+        name: linux-${{ matrix.os.arch }}
         path: AppImage/CPU-X-*
 
 
@@ -72,7 +77,7 @@ jobs:
         merge-multiple: true
 
     - name: Display structure of downloaded files
-      run: ls -R AppImage/
+      run: ls -lhR AppImage/
 
     - name: Create versioned release
       uses: ncipollo/release-action@v1
