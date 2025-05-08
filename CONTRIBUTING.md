@@ -23,34 +23,48 @@ First of all, if you are interested to modify CPU-X source code, take a look at 
 
 The file structure in the `src` directory is the following:
 1. CPU-X core, where data are gathered:
-    - core.cpp
-    - core.hpp
-    - daemon_client.cpp
-    - daemon_client.hpp
-    - daemon.h
-    - databases.h
-    - data.cpp
-    - data.hpp
-    - logger.cpp
-    - logger.hpp
-    - main.cpp
-    - opencl_ext.h
-    - options.cpp
-    - options.hpp
-    - util.cpp
-    - util.hpp
-2. CPU-X daemon, doing operations that require privileges:
-    - daemon.h
-    - daemon_server.cpp
-    - daemon_server.hpp
-3. External projects, modified to be integrated within CPU-X (optional):
-    - bandwidth
-    - dmidecode
+```
+src
+└── core
+    ├── benchmarks.cpp
+    ├── core.cpp
+    ├── core.hpp
+    ├── databases.h
+    ├── internal.hpp
+    ├── libcpuid.cpp
+    ├── libopencl.cpp
+    ├── libopengl.cpp
+    ├── libpci.cpp
+    ├── libsystem.cpp
+    ├── libvulkan.cpp
+    └── opencl_ext.h
+```
+2. External projects, modified to be integrated within CPU-X (optional):
+```
+src
+└── core
+    ├── bandwidth
+    └── dmidecode
+```
+3. CPU-X daemon, doing operations that require privileges:
+```
+src
+└── daemon
+    ├── client.cpp
+    ├── client.hpp
+    ├── daemon.h
+    ├── server.cpp
+    └── server.hpp
+```
 4. User interfaces (optional):
-    - gui_gtk.cpp
-    - gui_gtk.hpp
-    - tui_ncurses.cpp
-    - tui_ncurses.hpp
+```
+src
+└── ui
+    ├── gtk.cpp
+    ├── gtk.hpp
+    ├── ncurses.cpp
+    └── ncurses.hpp
+```
 
 ### Add new labels
 
@@ -111,8 +125,8 @@ If nothing is broken, congratulations! :tada: You can open a new [pull request](
 This section describe how to add a new option. You can take a look on [this commit](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/commit/008e03cf95653e964a9e334347c297fef57ce82a).
 
 1. `src/options.hpp`: add new option in `class Options`. Values are private: you need to define a public setter and getter.
-2. `src/main.c`:
-   * in `struct cpux_options[]`: add a new line entry
+2. `src/main.cpp`:
+   * in `cpux_options` list: add a new line entry
    * in `parse_arguments()`: retrieve value for option
 3. `data/io.github.thetumultuousunicornofdarkness.cpu-x.gschema.xml`: add a new key
 4. `data/cpu-x-gtk-3.12.ui`: open UI file in Glade and change Settings window
