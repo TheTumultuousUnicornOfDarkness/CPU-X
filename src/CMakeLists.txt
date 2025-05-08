@@ -76,6 +76,7 @@ if(WITH_VULKAN)
 	find_package(Vulkan)
 	if(Vulkan_FOUND)
 		include_directories(${Vulkan_INCLUDE_DIRS})
+		set(LIBVUKLAN_LIBRARIES ${Vulkan_LIBRARIES})
 	endif(Vulkan_FOUND)
 endif(WITH_VULKAN)
 
@@ -84,6 +85,7 @@ if(WITH_OPENCL)
 	find_package(OpenCL)
 	if(OpenCL_FOUND)
 		include_directories(${OpenCL_INCLUDE_DIRS})
+		set(LIBOPENCL_LIBRARIES ${OpenCL_LIBRARIES})
 	endif(OpenCL_FOUND)
 endif(WITH_OPENCL)
 
@@ -373,8 +375,8 @@ target_link_libraries(${APP_EXEC}
 	${LIBCPUID_LIBRARIES}
 	${LIBPCI_LIBRARIES}
 	${LIBOPENGL_LIBRARIES}
-	${Vulkan_LIBRARIES}
-	${OpenCL_LIBRARIES}
+	${LIBVUKLAN_LIBRARIES}
+	${LIBOPENCL_LIBRARIES}
 	${LIBSYSTEM_LIBRARIES}
 	${DMIDECODE_LIBRARIES}
 	${BANDWIDTH_LIBRARIES}
