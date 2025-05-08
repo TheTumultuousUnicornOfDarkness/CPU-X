@@ -48,7 +48,6 @@ runCmd pacman -Syu --noconfirm \
 	glibc \
 	glibmm \
 	gtkmm3 \
-	libcpuid \
 	libglvnd \
 	libsigc++ \
 	nasm \
@@ -132,7 +131,7 @@ runCmd "$APPDIR"/sharun -g
 
 # Make AppImage
 runCmd mkdir --parents --verbose "$WORKSPACE/AppImage" && runCmd cd "$_"
-runCmd wget "${WGET_ARGS[@]}" "https://github.com/pkgforge-dev/appimagetool-uruntime/releases/download/continuous/appimagetool-$ARCH.AppImage"
+runCmd wget "${WGET_ARGS[@]}" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
 runCmd wget "${WGET_ARGS[@]}" "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
 runCmd chmod --verbose a+x ./appimagetool-"$ARCH".AppImage
 APPIMAGE_EXTRACT_AND_RUN=1 ./appimagetool-"$ARCH".AppImage \
