@@ -75,6 +75,43 @@ case "$ID" in
 			vulkan-icd-loader
 		;;
 
+	debian)
+		case "$VERSION_ID" in
+			"11") # Bullseye
+				DEBIAN_PACKAGES=('procps' 'libprocps-dev')
+				;;
+			"12") # Bookworm
+				DEBIAN_PACKAGES=('libproc2-0' 'libproc2-dev')
+				;;
+			*)
+				echo "Unsupported Debian version: $VERSION_ID"
+				exit 1
+				;;
+		esac
+		sudo apt-get install -y -qq \
+			build-essential \
+			cmake \
+			ninja-build \
+			pkgconf \
+			nasm \
+			gawk \
+			gettext \
+			libgtkmm-3.0-1v5 \
+			libgtkmm-3.0-dev \
+			libncurses6 \
+			libncurses-dev \
+			libpci3 \
+			libpci-dev \
+			libglvnd0 \
+			libglvnd-dev \
+			libvulkan1 \
+			libvulkan-dev \
+			opencl-c-headers \
+			ocl-icd-libopencl1 \
+			ocl-icd-opencl-dev \
+			"${DEBIAN_PACKAGES[@]}"
+		;;
+
 	freebsd)
 		sudo pkg install -y \
 			cmake \

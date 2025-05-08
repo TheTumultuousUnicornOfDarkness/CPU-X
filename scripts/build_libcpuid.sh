@@ -41,6 +41,14 @@ case "$ID" in
 			ninja
 		;;
 
+	debian)
+		sudo apt-get install -y -qq \
+			build-essential \
+			cmake \
+			ninja-build \
+			git
+		;;
+
 	freebsd)
 		CMAKE_INSTALL_PREFIX="/usr/local"
 		sudo pkg install -y \
