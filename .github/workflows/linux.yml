@@ -25,6 +25,7 @@ jobs:
           - { arch: x86_64,  label: ubuntu-24.04,     image: debian:12 }
           - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:40 }
           - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:41 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: opensuse/leap:15.6 }
           - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:22.04 }
           - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:24.04 }
           - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:25.04 }
@@ -33,6 +34,7 @@ jobs:
           - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:12 }
           - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:40 }
           - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:41 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: opensuse/leap:15.6 }
           - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:22.04 }
           - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:24.04 }
           - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:25.04 }
@@ -40,8 +42,6 @@ jobs:
     container: ${{ matrix.os.image }}
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Install prerequisites
       run: |
         if command -v pacman; then
@@ -49,10 +49,15 @@ jobs:
         elif command -v dnf; then
           dnf update -y
           dnf install -y sudo
+        elif command -v zypper; then
+          zypper update -y
+          zypper install -y sudo tar gzip
         elif command -v apt-get; then
           apt-get update -y -qq
           apt-get install -y -qq sudo
         fi
+
+    - uses: actions/checkout@v4
 
     - name: Build libcpuid
       run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"

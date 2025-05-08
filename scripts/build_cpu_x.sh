@@ -161,6 +161,34 @@ case "$ID" in
 		sudo sed -i .orig "/Requires: OpenCL-Headers/d" /usr/local/libdata/pkgconfig/OpenCL.pc
 		;;
 
+	opensuse-leap)
+		sudo zypper install -y -t pattern devel_basis
+		sudo zypper install -y \
+			gcc14-c++ \
+			libstdc++6-devel-gcc14 \
+			cmake \
+			ninja \
+			pkg-config \
+			nasm \
+			gettext-tools \
+			libgtkmm-3_0-1 \
+			gtkmm3-devel \
+			libncurses6 \
+			ncurses-devel \
+			pciutils \
+			pciutils-devel \
+			libglvnd \
+			libglvnd-devel \
+			vulkan \
+			vulkan-devel \
+			libOpenCL1 \
+			ocl-icd-devel \
+			libprocps8 \
+			procps-devel
+		sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-14" 9001
+		sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/g++-14" 9002
+		;;
+
 	ubuntu)
 		case "$VERSION_ID" in
 			"20.04") # Focal Fossa

@@ -67,6 +67,14 @@ case "$ID" in
 		ln -s /usr/local/lib/pkgconfig/libcpuid.pc /usr/local/libdata/pkgconfig/libcpuid.pc
 		;;
 
+	opensuse-leap)
+		sudo zypper install -y -t pattern devel_basis
+		sudo zypper install -y \
+			cmake \
+			ninja \
+			git
+		;;
+
 	ubuntu)
 		sudo apt-get install -y -qq \
 			gcc \
