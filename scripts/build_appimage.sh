@@ -36,7 +36,7 @@ while getopts "s:a:v:h" opt; do
 	case "$opt" in
 		s) SRC_DIR="$(realpath "$OPTARG")";;
 		a) APPDIR="$(realpath "$OPTARG")";;
-		v) VERSION="$(realpath "$OPTARG")";;
+		v) VERSION="$("$OPTARG")";;
 		h) display_help; exit 0;;
 		*) display_help; exit 1;;
 	esac
