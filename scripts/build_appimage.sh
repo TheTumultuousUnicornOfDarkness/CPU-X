@@ -4,8 +4,10 @@ set -euo pipefail
 
 SRC_DIR=""
 APPDIR=""
+GH_USERNAME=""
 VERSION=""
 ARCH="$(uname -m)"
+APPIMAGETOOL_OPTIONS=()
 
 download_file() {
 	local url="$1"
@@ -24,19 +26,21 @@ download_file() {
 }
 
 display_help() {
-	echo "Usage: $(basename "$0") -s SRC_DIR -a APPDIR [-v VERSION]"
+	echo "Usage: $(basename "$0") -s SRC_DIR -a APPDIR [-u GH_USERNAME] [-v VERSION]"
 	echo -e "\nMandatory arguments:"
 	echo "  -s SRC_DIR      Path to the CPU-X source directory"
 	echo "  -a APPDIR       Path for AppDir"
 	echo -e "\nOptional arguments:"
+	echo "  -u GH_USERNAME  GitHub repository owner name (for update information)"
 	echo "  -v VERSION      CPU-X version"
 }
 
-while getopts "s:a:v:h" opt; do
+while getopts "s:a:u:v:h" opt; do
 	case "$opt" in
 		s) SRC_DIR="$(realpath "$OPTARG")";;
 		a) APPDIR="$(realpath "$OPTARG")";;
-		v) VERSION="$("$OPTARG")";;
+		u) GH_USERNAME="$OPTARG";;
+		v) VERSION="$OPTARG";;
 		h) display_help; exit 0;;
 		*) display_help; exit 1;;
 	esac
@@ -47,14 +51,12 @@ if [[ -z "$SRC_DIR" ]] || [[ -z "$APPDIR" ]]; then
 	exit 1
 fi
 
-if [[ -n "$VERSION" ]]; then
-	export RELEASE="latest"
-	export VERSION
-else
-	export RELEASE="continuous"
+if [[ -n "$GH_USERNAME" ]]; then
+	[[ -n "$VERSION" ]] && release="latest" || release="continuous"
+	update_information="gh-releases-zsync|${GH_USERNAME}|${release}|CPU-X-*$ARCH.AppImage.zsync"
+	APPIMAGETOOL_OPTIONS+=("--updateinformation" "$update_information")
+	echo "UPDATE_INFORMATION=$update_information"
 fi
-export UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_REPOSITORY//\//|}|${RELEASE}|CPU-X-*$ARCH.AppImage.zsync"
-echo "UPDATE_INFORMATION=$UPDATE_INFORMATION"
 
 # Install dependencies
 if [[ -f "/etc/os-release" ]]; then
@@ -124,7 +126,7 @@ ln --verbose "$APPDIR/sharun" "$APPDIR/AppRun"
 mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
 download_file "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
 download_file "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
-APPIMAGE_EXTRACT_AND_RUN=1 "./appimagetool-$ARCH.AppImage" \
-	--updateinformation "$UPDATE_INFORMATION" \
+APPIMAGE_EXTRACT_AND_RUN=1 VERSION="$VERSION" "./appimagetool-$ARCH.AppImage" \
 	--runtime-file "./uruntime-appimage-squashfs-lite-$ARCH" \
+	"${APPIMAGETOOL_OPTIONS[@]}" \
 	"$APPDIR"
