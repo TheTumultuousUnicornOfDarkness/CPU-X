@@ -68,7 +68,7 @@ fi
 echo "Install packages for $ID"
 case "$ID" in
 	arch|archarm)
-		sudo pacman -S --noconfirm wget
+		sudo pacman -S --noconfirm wget appstream
 		# install debloated packages
 		case "$ARCH" in
 			x86_64) PKG_TYPE="x86_64.pkg.tar.zst";;

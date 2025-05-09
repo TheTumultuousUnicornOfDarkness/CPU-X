@@ -39,7 +39,7 @@ jobs:
       run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
-      run: ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir"
+      run: bash -x ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir"
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
