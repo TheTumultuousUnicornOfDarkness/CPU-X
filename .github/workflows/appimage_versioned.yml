@@ -40,6 +40,7 @@ jobs:
         TAG="${MANUAL_TAG:-$GITHUB_REF_NAME}"
         echo "Using tag '${TAG}'"
         echo "TAG=$TAG" >> $GITHUB_ENV
+        echo "VERSION=${TAG/v/}" >> $GITHUB_ENV
         echo "version=${TAG/v/}" >> $GITHUB_OUTPUT
         echo "changelog_tag=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       env:
@@ -55,7 +56,7 @@ jobs:
       run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
 
     - name: Package CPU-X as an AppImage
-      run: ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir"
+      run: ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir" -v "$VERSION"
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
