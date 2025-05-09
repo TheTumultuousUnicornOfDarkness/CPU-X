@@ -4,20 +4,17 @@ set -euo pipefail
 
 BUILD_PATH="$(mktemp --directory --tmpdir libcpuid-build.XXXXXX)"
 BUILD_TYPE="Debug"
-INSTALL_DIR=""
 CMAKE_INSTALL_PREFIX="${CMAKE_INSTALL_PREFIX:-/usr}"
 
 display_help() {
-	echo "Usage: $(basename "$0") [-t BUILD_TYPE] [-i INSTALL_DIR]"
+	echo "Usage: $(basename "$0") [-t BUILD_TYPE]"
 	echo -e "\nOptional arguments:"
 	echo "  -t BUILD_TYPE   CMake build type (Debug (default), Release, RelWithDebInfo or MinSizeRel)"
-	echo "  -i INSTALL_DIR  Directory where to install files (default is root)"
 }
 
 while getopts "t:i:h" opt; do
 	case "$opt" in
 		t) BUILD_TYPE="$OPTARG";;
-		i) INSTALL_DIR="$OPTARG";;
 		h) display_help; exit 0;;
 		*) display_help; exit 1;;
 	esac
@@ -102,10 +99,5 @@ cmake -B build \
 echo "Build libcpuid"
 cmake --build build
 
-if [[ -z "$INSTALL_DIR" ]]; then
-	echo "Install libcpuid to system"
-	sudo cmake --install build
-else
-	echo "Install libcpuid to $INSTALL_DIR"
-	DESTDIR="$INSTALL_DIR" cmake --install build
-fi
+echo "Install libcpuid to system"
+sudo cmake --install build

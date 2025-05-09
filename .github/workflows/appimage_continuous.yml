@@ -33,7 +33,7 @@ jobs:
       run: pacman -Syu --noconfirm sudo
 
     - name: Build libcpuid
-      run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
+      run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"
 
     - name: Build CPU-X
       run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
