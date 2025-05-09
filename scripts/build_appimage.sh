@@ -32,7 +32,7 @@ display_help() {
 	echo "  -v VERSION      CPU-X version"
 }
 
-while getopts "s:a:h" opt; do
+while getopts "s:a:v:h" opt; do
 	case "$opt" in
 		s) SRC_DIR="$(realpath "$OPTARG")";;
 		a) APPDIR="$(realpath "$OPTARG")";;
