@@ -115,6 +115,33 @@ set(BoldCyan    "${Esc}[1;36m")
 set(BoldWhite   "${Esc}[1;37m")
 
 
+### FUNCTIONS
+
+# Credits to jtanx: https://gist.github.com/jtanx/96ded5e050d5ee5b19804195ee5cf5f9
+# Function: pad_string(output str padchar length)
+# Add padding to a string
+# @output:  variable name for output string
+# @str:     input string
+# @padchar: character used for padding
+# @length:  padding length
+function(pad_string output str padchar length)
+	string(LENGTH "${str}" _strlen)
+	math(EXPR _strlen "${length} - ${_strlen}")
+	if(_strlen GREATER 0)
+		if(${CMAKE_VERSION} VERSION_LESS "3.14")
+			unset(_pad)
+			foreach(_i RANGE 1 ${_strlen}) # inclusive
+				string(APPEND _pad ${padchar})
+			endforeach()
+		else()
+			string(REPEAT ${padchar} ${_strlen} _pad)
+		endif()
+		string(APPEND str ${_pad})
+	endif()
+	set(${output} "${str}" PARENT_SCOPE)
+endfunction()
+
+
 ### MACROS
 
 # Macro: print_config(libname foundstate withstate)
@@ -125,17 +152,18 @@ set(BoldWhite   "${Esc}[1;37m")
 # @withstate:  the CMake option which allows to disable this feature (e.g. WITH_XXXXX)
 macro(print_config libname libver foundstate withstate)
 	if(${foundstate} AND ${withstate})
+		pad_string(lib_string ${libname} " " 15)
 		set(version_string)
 		if(NOT "${libver}" STREQUAL "")
 			set(version_string "(version is ${libver})")
 		endif(NOT "${libver}" STREQUAL "")
-		message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldGreen}enabled${ColourReset} ${version_string}")
+		message("${BoldCyan}**   ${lib_string}${ColourReset}\tsupport is ${BoldGreen}enabled${ColourReset} ${version_string}")
 		add_definitions(-DHAS_${libname}=1 -D${libname}_VERSION="${libver}")
 	else(${foundstate} AND ${withstate})
 		if(NOT ${withstate})
-			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disabled${ColourReset} (explicitly disabled)")
+			message("${BoldCyan}**   ${lib_string}${ColourReset}\tsupport is ${BoldRed}disabled${ColourReset} (explicitly disabled)")
 		elseif(NOT ${foundstate})
-			message("${BoldCyan}**   ${libname}${ColourReset}\tsupport is ${BoldRed}disabled${ColourReset} (not found by pkg-config)")
+			message("${BoldCyan}**   ${lib_string}${ColourReset}\tsupport is ${BoldRed}disabled${ColourReset} (not found)")
 		endif()
 		add_definitions(-DHAS_${libname}=0 -D${libname}_VERSION=NULL)
 	endif(${foundstate} AND ${withstate})
