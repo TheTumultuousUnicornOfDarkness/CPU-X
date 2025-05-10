@@ -6,7 +6,7 @@ Distributed under the terms of the [GNU GPL v2](https://raw.githubusercontent.co
 ### CPU-X NOTE
 
 This sofware has been patched to be used within CPU-X.  
-You can find the official web page of this project here: https://zsmith.co/bandwidth.html  
+You can find the official web page of this project here: https://zs3.me/bandwidth  
 This is based on bandwidth [1.5.1](https://zsmith.co/archives/bandwidth-1.5.1.tar.gz).
 
 This software is used to retrieve following data:
