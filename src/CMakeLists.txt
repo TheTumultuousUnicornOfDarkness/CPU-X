@@ -64,11 +64,12 @@ endif(WITH_LIBPCI)
 
 # Libegl
 if(WITH_LIBEGL)
+	pkg_check_modules(LIBEGL egl>1.4)
 	find_package(OpenGL COMPONENTS OpenGL EGL)
-	if(OPENGL_FOUND AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
+	if(LIBEGL_FOUND AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
 		include_directories(${OPENGL_INCLUDE_DIRS} ${OPENGL_EGL_INCLUDE_DIRS})
 		set(LIBOPENGL_LIBRARIES OpenGL::OpenGL OpenGL::EGL)
-	endif(OPENGL_FOUND AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
+	endif(LIBEGL_FOUND AND OpenGL_OpenGL_FOUND AND OpenGL_EGL_FOUND)
 endif(WITH_LIBEGL)
 
 # Vulkan
@@ -149,29 +150,29 @@ endif(CPU_ISA_X86 AND WITH_BANDWIDTH)
 message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration (${CMAKE_SYSTEM_PROCESSOR}) **${ColourReset}")
 
 # UI libraries
-print_config("GTK"                 "${GTK3_VERSION}"        GTK3_FOUND        WITH_GTK)
-print_config("NCURSES"             "${NCURSES_VERSION}"     CURSES_FOUND      WITH_NCURSES)
+print_config("GTK"                 "${GTK3_VERSION}"            GTK3_FOUND        WITH_GTK)
+print_config("NCURSES"             "${NCURSES_VERSION}"         CURSES_FOUND      WITH_NCURSES)
 
 # Other libraries
-print_config("GETTEXT"             0                        GETTEXT_FOUND     WITH_GETTEXT)
-print_config("LIBCPUID"            "${LIBCPUID_VERSION}"    LIBCPUID_FOUND    WITH_LIBCPUID)
-print_config("LIBPCI"              "${LIBPCI_VERSION}"      LIBPCI_FOUND      WITH_LIBPCI)
-print_config("LIBEGL"              "${LIBEGL_VERSION}"      OpenGL_EGL_FOUND  WITH_LIBEGL)
-print_config("VULKAN"              "${VULKAN_VERSION}"      Vulkan_FOUND      WITH_VULKAN)
-print_config("OPENCL"              "${OPENCL_VERSION}"      OpenCL_FOUND      WITH_OPENCL)
+print_config("GETTEXT"             "${GETTEXT_VERSION_STRING}"  GETTEXT_FOUND     WITH_GETTEXT)
+print_config("LIBCPUID"            "${LIBCPUID_VERSION}"        LIBCPUID_FOUND    WITH_LIBCPUID)
+print_config("LIBPCI"              "${LIBPCI_VERSION}"          LIBPCI_FOUND      WITH_LIBPCI)
+print_config("LIBEGL"              "${LIBEGL_VERSION}"          LIBEGL_FOUND      WITH_LIBEGL)
+print_config("VULKAN"              "${Vulkan_VERSION}"          Vulkan_FOUND      WITH_VULKAN)
+print_config("OPENCL"              "${OpenCL_VERSION_STRING}"   OpenCL_FOUND      WITH_OPENCL)
 if(CMAKE_SYSTEM_NAME MATCHES "Linux" AND NOT FORCE_LIBSTATGRAB)
 	if(${LIBPROC2} EQUAL 1)
-		print_config("LIBPROC2"    "${LIBPROC2_VERSION}"    LIBPROC2_FOUND    WITH_LIBPROCPS)
+		print_config("LIBPROC2"    "${LIBPROC2_VERSION}"        LIBPROC2_FOUND    WITH_LIBPROCPS)
 	else()
-		print_config("LIBPROCPS"   "${LIBPROCPS_VERSION}"   LIBPROCPS_FOUND   WITH_LIBPROCPS)
+		print_config("LIBPROCPS"   "${LIBPROCPS_VERSION}"       LIBPROCPS_FOUND   WITH_LIBPROCPS)
 	endif()
 else()
-	print_config("LIBSTATGRAB" "${LIBSTATGRAB_VERSION}" LIBSTATGRAB_FOUND WITH_LIBSTATGRAB)
+	print_config("LIBSTATGRAB"     "${LIBSTATGRAB_VERSION}"     LIBSTATGRAB_FOUND WITH_LIBSTATGRAB)
 endif()
 
 # Subprojects
-print_config("DMIDECODE"           "${DMIDECODE_VERSION}"   1                 WITH_DMIDECODE)
-print_config("BANDWIDTH"           "${BANDWIDTH_VERSION}"   BANDWIDTH_FOUND   WITH_BANDWIDTH)
+print_config("DMIDECODE"           "${DMIDECODE_VERSION}"       1                 WITH_DMIDECODE)
+print_config("BANDWIDTH"           "${BANDWIDTH_VERSION}"       BANDWIDTH_FOUND   WITH_BANDWIDTH)
 
 
 ### BINARIES
