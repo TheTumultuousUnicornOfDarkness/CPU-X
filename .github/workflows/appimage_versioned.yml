@@ -32,14 +32,13 @@ jobs:
       changelog_tag: ${{ steps.version.outputs.changelog_tag }}
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Set environment variables
       id: version
       run: |
+        echo "REPO_USERNAME=${GITHUB_REPOSITORY//\//|}" >> $GITHUB_ENV
+        echo "Repository username is '${REPO_USERNAME}'"
         TAG="${MANUAL_TAG:-$GITHUB_REF_NAME}"
         echo "Using tag '${TAG}'"
-        echo "TAG=$TAG" >> $GITHUB_ENV
         echo "VERSION=${TAG/v/}" >> $GITHUB_ENV
         echo "version=${TAG/v/}" >> $GITHUB_OUTPUT
         echo "changelog_tag=${TAG//./}---$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
@@ -49,14 +48,16 @@ jobs:
     - name: Install prerequisites
       run: pacman -Syu --noconfirm sudo
 
+    - uses: actions/checkout@v4
+
     - name: Build libcpuid
       run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"
 
     - name: Build CPU-X
       run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
 
-    - name: Package CPU-X as an AppImage
-      run: bash -x ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir" -u "${GITHUB_REPOSITORY//\//|}" -v "$VERSION"
+    - name: Create AppImage
+      run: ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir" -u "$REPO_USERNAME" -v "$VERSION"
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -112,11 +113,11 @@ jobs:
           -
         commit: ${{ github.sha }}
         draft: true
-        name: ${{ github.ref_name }}
+        name: ${{ env.VERSION }}
         prerelease: false
         replacesArtifacts: true
         skipIfReleaseExists: true
-        tag: ${{ github.ref_name }}
+        tag: ${{ env.VERSION }}
         token: "${{ secrets.GITHUB_TOKEN }}"
       env:
         VERSION: ${{ needs.linux-appimage-versioned-build.outputs.version }}

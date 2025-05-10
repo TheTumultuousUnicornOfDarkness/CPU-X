@@ -18,6 +18,7 @@ download_file() {
 		exit 1
 	fi
 
+	echo "Downloading $url..."
 	file="$(basename "$url")"
 	wget --continue --no-verbose "$url"
 	if grep --no-messages --quiet --ignore-case --extended-regexp 'executable|shell script' "$file"; then
@@ -55,7 +56,7 @@ if [[ -n "$GH_USERNAME" ]]; then
 	[[ -n "$VERSION" ]] && release="latest" || release="continuous"
 	update_information="gh-releases-zsync|${GH_USERNAME}|${release}|CPU-X-*$ARCH.AppImage.zsync"
 	APPIMAGETOOL_OPTIONS+=("--updateinformation" "$update_information")
-	echo "UPDATE_INFORMATION=$update_information"
+	echo "Update information: $update_information"
 fi
 
 # Install dependencies
@@ -88,14 +89,14 @@ case "$ID" in
 		exit 1
 esac
 
-# Prepare AppDir
+echo "Prepare '$APPDIR' AppDir"
 mkdir --verbose --parents "$APPDIR"
 cp --verbose "$APPDIR/usr/share/applications/io.github.thetumultuousunicornofdarkness.cpu-x.desktop" "$APPDIR"
 cp --verbose "$APPDIR/usr/share/icons/hicolor/256x256/apps/io.github.thetumultuousunicornofdarkness.cpu-x.png" "$APPDIR"
 mv --verbose "$APPDIR"/usr "$APPDIR/shared"
 ln --verbose --symbolic "./" "$APPDIR/usr"
 
-# Bundle deps
+echo "Bundle binaries in '$APPDIR' AppDir"
 download_file "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin"
 ./lib4bin \
 	--verbose \
@@ -122,7 +123,7 @@ glib-compile-schemas "$APPDIR/share/glib-"*/schemas
 ln --verbose "$APPDIR/sharun" "$APPDIR/AppRun"
 "$APPDIR/sharun" --gen-lib-path
 
-# Make AppImage
+echo "Create AppImage from '$APPDIR' AppDir"
 mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
 download_file "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
 download_file "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"

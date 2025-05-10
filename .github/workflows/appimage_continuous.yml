@@ -27,10 +27,15 @@ jobs:
     container: ghcr.io/pkgforge-dev/archlinux:latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Set environment variables
+      run: |
+        echo "REPO_USERNAME=${GITHUB_REPOSITORY//\//|}" >> $GITHUB_ENV
+        echo "Repository username is '${REPO_USERNAME}'"
 
     - name: Install prerequisites
       run: pacman -Syu --noconfirm sudo
+
+    - uses: actions/checkout@v4
 
     - name: Build libcpuid
       run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"
@@ -38,8 +43,8 @@ jobs:
     - name: Build CPU-X
       run: ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "$BUILD_TYPE" -i "$GITHUB_WORKSPACE/AppDir"
 
-    - name: Package CPU-X as an AppImage
-      run: bash -x ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir" -u "${GITHUB_REPOSITORY//\//|}"
+    - name: Create AppImage
+      run: ./scripts/build_appimage.sh -s "$GITHUB_WORKSPACE" -a "$GITHUB_WORKSPACE/AppDir" -u "$REPO_USERNAME"
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
