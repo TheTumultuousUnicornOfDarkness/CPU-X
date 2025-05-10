@@ -83,9 +83,8 @@ Adding new labels to CPU-X is a little bit complex, but don't worry: this sub-se
   ```c
   data.system.os.kernel.value = "XXX";
   ```
-
-  > [!TIP]
-  > `fill_labels()` and `do_refresh()` are the calling functions.
+> [!TIP]
+> `fill_labels()` and `do_refresh()` are the calling functions.
 - Finally, in `data.cpp` file, print the label in the appropriate `operator<<` overload.
 
 **2. In NCurses TUI**
