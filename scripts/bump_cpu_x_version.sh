@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/wiki/release-a-version
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 TEST_DIR="$(dirname "$(realpath "$0")")"
 

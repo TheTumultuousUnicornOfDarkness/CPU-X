@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script is used to check if there are new strings in source files
 
 set -euo pipefail

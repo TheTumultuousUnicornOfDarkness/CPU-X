@@ -12,8 +12,8 @@ task:
     - sudo pkg install -y bash
 
   build_script:
-    - bash ./scripts/build_libcpuid.sh
-    - bash ./scripts/build_cpu_x.sh -s "$(realpath .)"
+    - ./scripts/build_libcpuid.sh
+    - ./scripts/build_cpu_x.sh -s "$(realpath .)"
 
   run_script:
     - sudo CPUX_BCLK=100 cpu-x --issue-fmt
