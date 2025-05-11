@@ -18,14 +18,15 @@
 # Ensar Melih Bulut <muhammedensarozketen@gmail.com>, 2023.
 # Sabri Ünal <yakushabb@gmail.com>, 2024.
 # mahmutozcan <mahmutozcan@protonmail.com>, 2025.
+# Emre <emregokcew10@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-01 14:33+0000\n"
-"PO-Revision-Date: 2025-04-03 21:53+0000\n"
-"Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
+"PO-Revision-Date: 2025-05-12 13:01+0000\n"
+"Last-Translator: Emre <emregokcew10@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -33,7 +34,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -308,13 +309,11 @@ msgstr "tüm OpenCL platformları alınamadı (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr "%ssağlayıcı için OpenCL sürücüsü bulunamadı"
+msgstr "%s sağlayıcısı için OpenCL sürücüsü bulunamadı"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "GPU saatleri alınamadı"
+msgstr "EGL bağlamı oluşturulamadı"
 
 #: core/libopengl.cpp:183
 #, c-format
@@ -333,48 +332,40 @@ msgstr "eglInitialize çağrısı başarısız oldu (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL OpenGL istemci API'sine sahip değildir"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "libcpuid çağrılamadı (%s)"
+msgstr "eglBindAPI çağrılamadı (%s)"
 
 #: core/libopengl.cpp:267
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "%u .platform için sürüm alınamadı (%s)"
+msgstr "EGL ekranı yok edilemedi (%s)"
 
 #: core/libopengl.cpp:279
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "tüm OpenCL platformları alınamadı (%s)"
+msgstr "getPlatformDisplay çağrısı başarısız oldu (%s)"
 
 #: core/libopengl.cpp:295
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "OpenCL API sürümü bulunuyor"
+msgstr "OpenGL API sürümü bulunuyor"
 
 #: core/libopengl.cpp:298 core/libopengl.cpp:312
-#, fuzzy, c-format
-#| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "vkEnumeratePhysicalDevices çağrılamadı (%s)"
+msgstr "queryDevices çağrılamadı (%s)"
 
 #: core/libopengl.cpp:305
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Kullanılabilir Vulkan aygıtı yok"
+msgstr "Kullanılabilir EGL aygıtı yok"
 
 #: core/libopengl.cpp:324
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
-msgstr ""
+msgstr "%s sağlayıcısı için OpenGL sürücüsü bulunamıyor"
 
 #: core/libpci.cpp:73
 #, c-format
@@ -400,21 +391,17 @@ msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
-#, fuzzy
-#| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
-msgstr "wordexp çağrılamadı (%i)"
+msgstr "pipe oluşturulamadı"
 
 #: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "GPU saatleri alınamadı"
+msgstr "süreç oluşturulamadı"
 
 #: core/libpci.cpp:401
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
-msgstr "GPU satıcınız bilinmiyor: %s (0x%X)"
+msgstr "GPU markanız bilinmiyor: %s (0x%X)"
 
 #: core/libpci.cpp:424 core/libvulkan.cpp:288
 msgid "Enabled"
@@ -429,10 +416,8 @@ msgid "Finding devices"
 msgstr "Aygıtlar bulunuyor"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
+msgstr "Aygıt aramayı atla (PCI aygıtı mevcut değil)"
 
 #: core/libpci.cpp:467
 #, c-format
@@ -441,11 +426,11 @@ msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 
 #: core/libpci.cpp:504
 msgid "failed to find chipset vendor and model"
-msgstr "yonga seti satıcısı ve model bulunamadı"
+msgstr "yonga seti üreticisi ve model bulunamadı"
 
 #: core/libpci.cpp:507
 msgid "failed to find graphic card vendor and model"
-msgstr "ekran kartı marka ve modeli bulunamadı"
+msgstr "ekran kartı üreticisi ve modeli bulunamadı"
 
 #: core/libpci.cpp:638
 msgid "Retrieving GPU clocks"
@@ -544,7 +529,7 @@ msgstr ""
 #: core/libvulkan.cpp:314
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "%s üreticisi için Vulkan sürücüsü bulunamıyor"
 
 #: daemon/client.cpp:65
 msgid "Starting daemon in background…"
@@ -555,6 +540,7 @@ msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"APPDIR ortam değişkeni ayarlanmamış, daemon geçici dizine kopyalanamıyor"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -754,7 +740,7 @@ msgstr "Bu programın KESİNLİKLE HİÇBİR GARANTİSİ yoktur"
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
-msgstr "Satıcı"
+msgstr "Üretici"
 
 #: data.hpp:104
 msgid "Code Name"
@@ -1178,35 +1164,28 @@ msgstr "-- %-11s sürümü: %s"
 #: main.cpp:359
 #, c-format
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "Günlük '%s' dosyasına yazılıyor..."
 
 #: main.cpp:411
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve çöktü."
+"Oops, bir şeyler yanlıştı! %s (PID %i) %d (%s) sinyali aldı ve çöktü."
 
 #: main.cpp:413
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Hay aksi, birşeyler yanlış gitti! %s, %d (%s) sinyali aldı ve kurtarmaya "
-"çalışıyor."
+"Hay aksi, birşeyler yanlış gitti! %s (PID %i) %d (%s) sinyali aldı ve "
+"kurtarmaya çalışıyor."
 
 #: main.cpp:437
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1633,18 +1612,12 @@ msgid "Startup"
 msgstr "Başlangıç"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s CPU, anakart ve daha fazlası hakkında bilgi\n"
-"toplayan özgür bir yazılımdır."
+msgstr "İşlemci, anakart ve daha fazlası hakkında bilgi toplar"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;sistem;çekirdek;hız;saat;oran;Intel;AMD;anakart;"
 
 #, c-format
 #~ msgid "request_handler: case %i not handled"
