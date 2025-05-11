@@ -128,6 +128,8 @@ mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
 download_file "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
 download_file "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
 APPIMAGE_EXTRACT_AND_RUN=1 VERSION="$VERSION" "./appimagetool-$ARCH.AppImage" \
+	--mksquashfs-opt -Xcompression-level --mksquashfs-opt 22 \
+	--mksquashfs-opt -b --mksquashfs-opt 1M \
 	--runtime-file "./uruntime-appimage-squashfs-lite-$ARCH" \
 	"${APPIMAGETOOL_OPTIONS[@]}" \
 	"$APPDIR"
