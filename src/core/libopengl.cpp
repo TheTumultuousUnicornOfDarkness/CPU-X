@@ -64,7 +64,7 @@ static inline const char* egl_get_error_string()
 
 
 /* Following code is highly inspired by elginfo (from Mesa demos):
-https://gitlab.freedesktop.org/mesa/demos/-/blob/main/src/egl/opengl/eglinfo.c
+https://gitlab.freedesktop.org/mesa/demos/-/blob/main/src/egl/common/eglinfo.c
 */
 
 static std::tuple<std::string, std::string> parse_gl_version(std::string raw_gl_version)
