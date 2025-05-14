@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-01 14:33+0000\n"
-"PO-Revision-Date: 2025-05-02 05:27+0000\n"
+"PO-Revision-Date: 2025-05-14 13:58+0000\n"
 "Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -88,7 +88,7 @@ msgstr "Regner ut prosessorbruk"
 #: core/core.cpp:109
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s (subject) / %s (utgiver)"
 
 #: core/core.cpp:120
 msgid "Identifying running system"
@@ -304,38 +304,33 @@ msgid "failed to create EGL context"
 msgstr "klarte ikke å lage EGL-kontekt"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "klarte ikke å hente enhetsversjon %u (%s)"
+msgstr "klarte ikke å ødelegge EGL-kontekst (%s)"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "Klarte ikke å kalle libcpuid (%s)"
+msgstr "klarte ikke å kalle eglChooseConfig (%s)"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "Klarte ikke å kalle libcpuid (%s)"
+msgstr "klarte ikke å kalle eglInitialize (%s)"
 
 #: core/libopengl.cpp:236
 msgid "EGL has not OpenGL client API"
-msgstr ""
+msgstr "EGL har ikke OpenGL-klient-API-et"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "Klarte ikke å kalle libcpuid (%s)"
+msgstr "klarte ikke å kalle eglBindAPI (%s)"
 
 #: core/libopengl.cpp:267
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "klarte ikke å hente plattformsversjon %u (%s)"
+msgstr "klarte ikke å ødelegge EGL-display (%s)"
 
 #: core/libopengl.cpp:279
 #, fuzzy, c-format
