@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-05-01 14:33+0000\n"
+"POT-Creation-Date: 2025-05-15 16:08+0000\n"
 "PO-Revision-Date: 2022-11-03 07:08+0000\n"
 "Last-Translator: cosita official <kokosove18@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -163,65 +163,40 @@ msgstr ""
 msgid "%s (min)"
 msgstr ""
 
-#: core/libcpuid.cpp:83
-#, fuzzy, c-format
-#| msgid ""
-#| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
-#| "ext. family: %i"
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Váš procesor se nenachází v databázi ==> %s, model: %i, model podrobněji: "
-"%i, řada podrobněji: %i"
-
-#: core/libcpuid.cpp:127
-#, fuzzy, c-format
-#| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr ""
-"Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
-
-#: core/libcpuid.cpp:134
-msgid "Finding CPU technology"
-msgstr "Zjišťování technologie procesoru"
-
-#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
 msgid "unknown"
 msgstr "neznámé"
 
-#: core/libcpuid.cpp:270
+#: core/libcpuid.cpp:174
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Získávání statických údajů prostřednictvím knihovny libcpuid"
 
-#: core/libcpuid.cpp:284
+#: core/libcpuid.cpp:188
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
 
-#: core/libcpuid.cpp:413
+#: core/libcpuid.cpp:315
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Získávání dynamických údajů prostřednictvím knihovny libcpuid"
 
-#: core/libcpuid.cpp:430
+#: core/libcpuid.cpp:332
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Získávání statických hodnot MSR registru procesoru prostřednictvím knihovny "
 "libcpuid"
 
-#: core/libcpuid.cpp:460
+#: core/libcpuid.cpp:362
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Získávání dynamických hodnot MSR registru procesoru prostřednictvím knihovny "
 "libcpuid"
 
-#: core/libcpuid.cpp:489
+#: core/libcpuid.cpp:391
 msgid "Finding CPU package in fallback mode"
 msgstr "Typ pouzdra procesoru zjištován v náhradním režimu"
 
-#: core/libcpuid.cpp:519
+#: core/libcpuid.cpp:421
 #, fuzzy, c-format
 #| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
@@ -368,25 +343,30 @@ msgstr "Nepodařilo se provést přenos nástrojem Curl (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "nepodařilo se zavolat nástroj dmidecode"
 
-#: core/libopengl.cpp:295
+#: core/libopengl.cpp:300
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenGL API version"
 msgstr "Hledám verzi Vulkan API"
 
-#: core/libopengl.cpp:298 core/libopengl.cpp:312
+#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr "%s není podporován"
+
+#: core/libopengl.cpp:315 core/libopengl.cpp:329
 #, fuzzy, c-format
 #| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "nepodařilo se zavolat vkEnumeratePhysicalDevices (%s)"
 
-#: core/libopengl.cpp:305
+#: core/libopengl.cpp:322
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "Žádné dostupné Vulkan zařízení"
 
-#: core/libopengl.cpp:324
+#: core/libopengl.cpp:341
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -532,11 +512,6 @@ msgstr "Hledám verzi Vulkan API"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "nepodařilo se zavolat vkCreateInstance (%s)"
 
-#: core/libvulkan.cpp:165
-#, c-format
-msgid "%s is not supported"
-msgstr "%s není podporován"
-
 #: core/libvulkan.cpp:173
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
@@ -597,7 +572,7 @@ msgstr ""
 msgid "Connecting to daemon…"
 msgstr ""
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1485
 msgid "CPU"
 msgstr "Procesor"
 
@@ -625,11 +600,11 @@ msgstr "Výsledek"
 msgid "Core"
 msgstr "Jádra"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:837
+#: data.cpp:212 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "Procesor"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "Mezipaměti"
 
@@ -648,7 +623,7 @@ msgstr "%d %s, %d-cestná"
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "Takty"
 
@@ -668,19 +643,19 @@ msgstr "%s asociativní, %d-bytová velikost řádku"
 msgid "Test"
 msgstr "Test"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "Základní deska"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "BIOS/(U)EFI"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "Čipová sada"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "Operační paměť"
 
@@ -689,19 +664,19 @@ msgstr "Operační paměť"
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "Systém"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "Operační systém"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "Grafika"
 
@@ -711,13 +686,13 @@ msgstr "Grafika"
 msgid "Card %u"
 msgstr "Adaptér %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "Adaptér %i"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "Výkon. test"
 
@@ -725,15 +700,15 @@ msgstr "Výkon. test"
 msgid "Not started"
 msgstr "Není spuštěné"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "Prvočísla (důkladně)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "Prvočísla (zběžně)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "Parametry"
 
@@ -742,7 +717,7 @@ msgstr "Parametry"
 msgid "%u mins"
 msgstr "%u minut"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "O aplikaci"
 
@@ -776,7 +751,7 @@ msgstr "Autor: %s"
 msgid "Site: %s"
 msgstr "Webové stránky: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "Licence"
 
@@ -785,7 +760,7 @@ msgstr "Licence"
 msgid "This software is distributed under the terms of %s"
 msgstr "Tento software je šířen za podmínek licence %s"
 
-#: data.cpp:779 main.cpp:175
+#: data.cpp:779 main.cpp:172
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Na tuto aplikaci nejsou poskytovány VŮBEC ŽÁDNÉ ZÁRUKY"
 
@@ -877,13 +852,13 @@ msgstr "Druhé úrovně"
 msgid "Level 3"
 msgstr "Třetí úrovně"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1343
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Cores"
 msgstr "Jádra"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Vláken"
 
@@ -1023,7 +998,7 @@ msgstr "Verze"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr ""
 
@@ -1156,7 +1131,7 @@ msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 msgid "Select default graphic card (integer)"
 msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr ""
 
@@ -1210,22 +1185,16 @@ msgstr ""
 msgid "Read CPUID raw data from a given file"
 msgstr "Načíst nezpracovaná CPUID data ze zadaného souboru"
 
-#: main.cpp:97
-#, fuzzy
-#| msgid "Only print a message if CPU does not belong in database"
-msgid "Only print a message if CPU is not present in the database"
-msgstr "Pokud procesor není v databázi, pouze vypsat hlášení"
-
-#: main.cpp:125
+#: main.cpp:122
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Použití: %s ZOBRAZENÍ [PŘEDVOLBY]\n"
 
-#: main.cpp:126
+#: main.cpp:123
 msgid "Available DISPLAY:"
 msgstr "ZOBRAZENÍ k dispozici:"
 
-#: main.cpp:134
+#: main.cpp:131
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -1235,7 +1204,7 @@ msgstr ""
 "\n"
 "PŘEDVOLBY k dispozici:"
 
-#: main.cpp:143
+#: main.cpp:140
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -1245,27 +1214,27 @@ msgstr ""
 "\n"
 "Ovlivnitelné proměnné prostředí:"
 
-#: main.cpp:174
+#: main.cpp:171
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "Toto je svobodný software: můžete ho upravovat a šířit dál."
 
-#: main.cpp:176
+#: main.cpp:173
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Viz licence %s: <%s>\n"
 
-#: main.cpp:183
+#: main.cpp:180
 #, fuzzy, c-format
 #| msgid "-- %-9s version: %s"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s verze: %s"
 
-#: main.cpp:359
+#: main.cpp:356
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr ""
 
-#: main.cpp:411
+#: main.cpp:408
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1278,7 +1247,7 @@ msgstr ""
 "\n"
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a crashlo.%s"
 
-#: main.cpp:413
+#: main.cpp:410
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1293,15 +1262,15 @@ msgstr ""
 "%sJejda, něco se pokazilo! %s obdrželo signál %d (%s) a pokouší se o nápravu."
 "%s"
 
-#: main.cpp:437
+#: main.cpp:434
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:478
+#: main.cpp:475
 msgid "an error occurred while setting locale"
 msgstr "při nastavování místních a jazykových nastavení došlo k chybě"
 
-#: options.cpp:166
+#: options.cpp:156
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1311,7 +1280,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:171
+#: options.cpp:161
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1321,7 +1290,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:220
+#: options.cpp:210
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -1329,7 +1298,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:241
+#: options.cpp:231
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1341,7 +1310,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:264
+#: options.cpp:254
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1353,7 +1322,7 @@ msgstr ""
 "Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
 "procesor)"
 
-#: options.cpp:284
+#: options.cpp:274
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1365,12 +1334,12 @@ msgstr ""
 "Vybrané jádro procesoru (%u) není správné číslo (%u je maximum pro tento typ "
 "jádra)"
 
-#: options.cpp:300
+#: options.cpp:290
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr ""
 
-#: options.cpp:306
+#: options.cpp:296
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1732,85 +1701,85 @@ msgstr ""
 msgid "Privileges are required to gather some information"
 msgstr "Pro správné fungování je třeba oprávnění správce systému"
 
-#: cpu-x-gtk-3.12.ui:1291
+#: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
 msgstr "Mezipaměť"
 
-#: cpu-x-gtk-3.12.ui:5848
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
 msgstr ""
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5942
+#: cpu-x-gtk-3.12.ui:5946
 msgid "Refresh time"
 msgstr ""
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5966
+#: cpu-x-gtk-3.12.ui:5970
 msgid "Text theme"
 msgstr ""
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5981
+#: cpu-x-gtk-3.12.ui:5985
 msgid "Automatic"
 msgstr ""
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5982
+#: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5983
+#: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:6000
 #, fuzzy
 #| msgid "Temperature"
 msgid "Temperature unit"
 msgstr "Teplota"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6047
+#: cpu-x-gtk-3.12.ui:6051
 msgid "Default tab"
 msgstr ""
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6064
 msgid "Default CPU core"
 msgstr ""
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6077
 msgid "Default cache test"
 msgstr ""
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6116
+#: cpu-x-gtk-3.12.ui:6120
 msgid "Print CPUID values in decimal"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6149
+#: cpu-x-gtk-3.12.ui:6153
 #, fuzzy
 #| msgid "Set default tab (integer)"
 msgid "Default graphic card"
 msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6173
+#: cpu-x-gtk-3.12.ui:6177
 msgid "Default core type"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6197
+#: cpu-x-gtk-3.12.ui:6201
 msgid "Default memory stick"
 msgstr ""
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6225
+#: cpu-x-gtk-3.12.ui:6229
 msgid "Startup"
 msgstr ""
 
@@ -1821,6 +1790,33 @@ msgstr "Shromažďuje informace o procesoru, základní desce a další"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+
+#, fuzzy, c-format
+#~| msgid ""
+#~| "Your CPU does not belong in database ==> %s, model: %i, ext. model: %i, "
+#~| "ext. family: %i"
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Váš procesor se nenachází v databázi ==> %s, model: %i, model podrobněji: "
+#~ "%i, řada podrobněji: %i"
+
+#, fuzzy, c-format
+#~| msgid "Your CPU socket does not belong in database ==> %s, codename: %s"
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Patice vašeho procesoru se nenachází v databázi ==> %s, krycí název: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Zjišťování technologie procesoru"
+
+#, fuzzy
+#~| msgid "Only print a message if CPU does not belong in database"
+#~ msgid "Only print a message if CPU is not present in the database"
+#~ msgstr "Pokud procesor není v databázi, pouze vypsat hlášení"
 
 #, fuzzy, c-format
 #~| msgid "Your GPU driver is unknown: %s"

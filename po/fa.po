@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-05-01 14:33+0000\n"
+"POT-Creation-Date: 2025-05-15 16:08+0000\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -159,58 +159,37 @@ msgstr ""
 msgid "%s (min)"
 msgstr ""
 
-#: core/libcpuid.cpp:83
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"پردازنده شما در پایگاه داده یافت نشد ==> %s، مدل: %i، مدل اضافی: %i، خانواده "
-"اضافی: %i"
-
-#: core/libcpuid.cpp:127
-#, fuzzy, c-format
-#| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
-
-#: core/libcpuid.cpp:134
-msgid "Finding CPU technology"
-msgstr "در حال بررسی فناوری پردازنده"
-
-#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
 msgid "unknown"
 msgstr "ناشناخته"
 
-#: core/libcpuid.cpp:270
+#: core/libcpuid.cpp:174
 msgid "Calling libcpuid for retrieving static data"
 msgstr "در حال فراخوانی libcpuid برای دریافت اطلاعات ایستا"
 
-#: core/libcpuid.cpp:284
+#: core/libcpuid.cpp:188
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libcpuid.cpp:413
+#: core/libcpuid.cpp:315
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "در حال فراخوانی کتابخانه شناسه پردازنده برای دریافت اطلاعات پویا"
 
-#: core/libcpuid.cpp:430
+#: core/libcpuid.cpp:332
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر ایستای MSR پردازنده"
 
-#: core/libcpuid.cpp:460
+#: core/libcpuid.cpp:362
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر پویای MSR پردازنده"
 
-#: core/libcpuid.cpp:489
+#: core/libcpuid.cpp:391
 msgid "Finding CPU package in fallback mode"
 msgstr "در حال یافتن بسته پردازنده در حالت جایگزینی"
 
-#: core/libcpuid.cpp:519
+#: core/libcpuid.cpp:421
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
@@ -353,25 +332,30 @@ msgstr "دریافت ناموفق نسخه پلتفرم %u (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core/libopengl.cpp:295
+#: core/libopengl.cpp:300
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenGL API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core/libopengl.cpp:298 core/libopengl.cpp:312
+#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr "%s پشتیبانی نمی‌شود"
+
+#: core/libopengl.cpp:315 core/libopengl.cpp:329
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:305
+#: core/libopengl.cpp:322
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "هیچ دستگاه Vulkan موجود نیست"
 
-#: core/libopengl.cpp:324
+#: core/libopengl.cpp:341
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -517,11 +501,6 @@ msgstr "پیدا کردن نسخه Vulkan API"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libvulkan.cpp:165
-#, c-format
-msgid "%s is not supported"
-msgstr "%s پشتیبانی نمی‌شود"
-
 #: core/libvulkan.cpp:173
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
@@ -589,7 +568,7 @@ msgstr "pkexec: کد خطای غیرمنتظره"
 msgid "Connecting to daemon…"
 msgstr "ارتباط با برنامه پس زمینه برقرار شد"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1485
 msgid "CPU"
 msgstr "پردازنده"
 
@@ -615,11 +594,11 @@ msgstr "امتیاز"
 msgid "Core"
 msgstr "هسته (ها)"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:837
+#: data.cpp:212 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "پردازنده"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "کش"
 
@@ -638,7 +617,7 @@ msgstr "%d %s، %d-راه"
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "زمان سنج ها"
 
@@ -657,19 +636,19 @@ msgstr "%s وابسته, %d-%s اندازه خط"
 msgid "Test"
 msgstr "آزمون"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "مادربرد"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "بایوس"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "چیپست"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "حافظه"
 
@@ -678,19 +657,19 @@ msgstr "حافظه"
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "سیستم"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "سیستم عامل"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "گرافیک ها"
 
@@ -700,11 +679,11 @@ msgstr "گرافیک ها"
 msgid "Card %u"
 msgstr "کارت %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "کارت ها"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "نیمکت"
 
@@ -712,15 +691,15 @@ msgstr "نیمکت"
 msgid "Not started"
 msgstr "آغاز نشده"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "شماره های اولیه (آهسته)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "شماره های اولیه (سریع)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "پارامترها"
 
@@ -729,7 +708,7 @@ msgstr "پارامترها"
 msgid "%u mins"
 msgstr "%u دقیقه"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "درباره"
 
@@ -763,7 +742,7 @@ msgstr "نویسنده: %s"
 msgid "Site: %s"
 msgstr "سایت: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "مجوز"
 
@@ -772,7 +751,7 @@ msgstr "مجوز"
 msgid "This software is distributed under the terms of %s"
 msgstr "این نرم افزار تحت ضوابط %s توزیع شده است"
 
-#: data.cpp:779 main.cpp:175
+#: data.cpp:779 main.cpp:172
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "این برنامه به طور مطلق بدون ضمانت ارائه می شود"
 
@@ -860,11 +839,11 @@ msgstr "سطح 2"
 msgid "Level 3"
 msgstr "سطح 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1343
 msgid "Cores"
 msgstr "هسته‌ها"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "رشته ها"
 
@@ -1002,7 +981,7 @@ msgstr "نسخه VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "رابط"
 
@@ -1120,7 +1099,7 @@ msgstr "انتخاب کارت گرافیک پیش فرض (عددی)"
 msgid "Select default graphic card (integer)"
 msgstr "انتخاب کارت گرافیک پیش فرض (عددی)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "اجرا و اتصال به برنامه پس زمینه"
 
@@ -1176,49 +1155,45 @@ msgstr ""
 msgid "Read CPUID raw data from a given file"
 msgstr "خواندن اطلاعات خام CPUID از فایل دریافتی"
 
-#: main.cpp:97
-msgid "Only print a message if CPU is not present in the database"
-msgstr "در صورت نبودن پردازنده در پایگاه داده فقط یک پیغام نمایش داده شود"
-
-#: main.cpp:125
+#: main.cpp:122
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "مورد استفاده: %s [تنظیمات] نمایش\n"
 
-#: main.cpp:126
+#: main.cpp:123
 msgid "Available DISPLAY:"
 msgstr "نمایش در دسترس:"
 
-#: main.cpp:134
+#: main.cpp:131
 msgid "Available OPTIONS:"
 msgstr "تنظیمات در دسترس:"
 
-#: main.cpp:143
+#: main.cpp:140
 msgid "Influenceable environment variables:"
 msgstr "متغیر های محیطی تاثیرگذار:"
 
-#: main.cpp:174
+#: main.cpp:171
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "این نرم افزار مجانی است: شما مجاز به اعمال تغییرات و توزیع دوباره آن هستید."
 
-#: main.cpp:176
+#: main.cpp:173
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "مشاهده مجوز %s: <%s>\n"
 
-#: main.cpp:183
+#: main.cpp:180
 #, fuzzy, c-format
 #| msgid "-- %-9s version: %s"
 msgid "-- %-11s version: %s"
 msgstr "-- %-9s نسخه: %s"
 
-#: main.cpp:359
+#: main.cpp:356
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr ""
 
-#: main.cpp:411
+#: main.cpp:408
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1231,7 +1206,7 @@ msgstr ""
 "\n"
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s) رو دریافت کرد و متوقف شده است."
 
-#: main.cpp:413
+#: main.cpp:410
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -1246,15 +1221,15 @@ msgstr ""
 "مشکلی پیش اومده. %s سیگنال ‮%d (%s)‌رو دریافت کرده و در حال تلاش برای بازیابی "
 "است."
 
-#: main.cpp:437
+#: main.cpp:434
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 
-#: main.cpp:478
+#: main.cpp:475
 msgid "an error occurred while setting locale"
 msgstr "خطایی در هنگام تنظیم زبان رخ داده است"
 
-#: options.cpp:166
+#: options.cpp:156
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1262,7 +1237,7 @@ msgstr "خطایی در هنگام تنظیم زبان رخ داده است"
 msgid "Selected tab (%u) is not visible"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:171
+#: options.cpp:161
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1270,13 +1245,13 @@ msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u �
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:220
+#: options.cpp:210
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:241
+#: options.cpp:231
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1286,7 +1261,7 @@ msgid ""
 "this system)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:264
+#: options.cpp:254
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1296,7 +1271,7 @@ msgid ""
 "system)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:284
+#: options.cpp:274
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1307,12 +1282,12 @@ msgid ""
 msgstr ""
 "هسته پردازنده انتخابی (%u) عدد معتبری نیست (%u حداکثر برای این نوع هسته است)"
 
-#: options.cpp:300
+#: options.cpp:290
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr ""
 
-#: options.cpp:306
+#: options.cpp:296
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1603,87 +1578,87 @@ msgstr "اجرای برنامه در پس زمینه"
 msgid "Privileges are required to gather some information"
 msgstr ""
 
-#: cpu-x-gtk-3.12.ui:1291
+#: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
 msgstr "کش"
 
-#: cpu-x-gtk-3.12.ui:5848
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
 msgstr ""
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5942
+#: cpu-x-gtk-3.12.ui:5946
 msgid "Refresh time"
 msgstr "زمان تازه‌سازی"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5966
+#: cpu-x-gtk-3.12.ui:5970
 #, fuzzy
 #| msgid "Theme"
 msgid "Text theme"
 msgstr "تم"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5981
+#: cpu-x-gtk-3.12.ui:5985
 msgid "Automatic"
 msgstr "خودکار"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5982
+#: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
 msgstr ""
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5983
+#: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
 msgstr ""
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:6000
 #, fuzzy
 #| msgid "Temperature"
 msgid "Temperature unit"
 msgstr "دما"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6047
+#: cpu-x-gtk-3.12.ui:6051
 msgid "Default tab"
 msgstr "سربرگ پیش‌فرض"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6064
 msgid "Default CPU core"
 msgstr "هسته CPU پیش‌فرض"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6077
 msgid "Default cache test"
 msgstr "تست کش پیش‌فرض"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6116
+#: cpu-x-gtk-3.12.ui:6120
 msgid "Print CPUID values in decimal"
 msgstr "چاپ مقادیر CPUID به صورت اعشاری"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6149
+#: cpu-x-gtk-3.12.ui:6153
 msgid "Default graphic card"
 msgstr "کارت گرافیک پیش فرض"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6173
+#: cpu-x-gtk-3.12.ui:6177
 msgid "Default core type"
 msgstr ""
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6197
+#: cpu-x-gtk-3.12.ui:6201
 #, fuzzy
 #| msgid "Default cache test"
 msgid "Default memory stick"
 msgstr "تست کش پیش‌فرض"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6225
+#: cpu-x-gtk-3.12.ui:6229
 msgid "Startup"
 msgstr "راه‌اندازی"
 
@@ -1700,6 +1675,27 @@ msgstr ""
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "پردازنده شما در پایگاه داده یافت نشد ==> %s، مدل: %i، مدل اضافی: %i، "
+#~ "خانواده اضافی: %i"
+
+#, fuzzy, c-format
+#~| msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "در حال بررسی فناوری پردازنده"
+
+#~ msgid "Only print a message if CPU is not present in the database"
+#~ msgstr "در صورت نبودن پردازنده در پایگاه داده فقط یک پیغام نمایش داده شود"
 
 #, c-format
 #~ msgid "request_handler: case %i not handled"

@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-05-01 14:33+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-15 16:08+0000\n"
 "PO-Revision-Date: 2025-05-02 15:43+0000\n"
 "Last-Translator: Maksim_220 Кабанов <law820314@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -32,8 +32,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
@@ -171,61 +171,40 @@ msgstr "%s (макс.)"
 msgid "%s (min)"
 msgstr "%s (мин.)"
 
-#: core/libcpuid.cpp:83
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Ваш ЦП отсутствует в базе данных ==> %s, модель: %i, доп. модель: %i, доп. "
-"семейство: %i"
-
-#: core/libcpuid.cpp:127
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr ""
-"Ваш ЦП отсутствует в базе данных ==> %s, номер изделия: 0x%x, кодовое имя: %s"
-
-#: core/libcpuid.cpp:134
-msgid "Finding CPU technology"
-msgstr "Определяется технология ЦП"
-
-#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
 msgid "unknown"
 msgstr "неизвестно"
 
-#: core/libcpuid.cpp:270
+#: core/libcpuid.cpp:174
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Вызывается libcpuid для получения статических данных"
 
-#: core/libcpuid.cpp:284
+#: core/libcpuid.cpp:188
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "не удалось вызвать libcpuid (%s)"
 
-#: core/libcpuid.cpp:413
+#: core/libcpuid.cpp:315
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Вызывается libcpuid для получения динамических данных"
 
-#: core/libcpuid.cpp:430
+#: core/libcpuid.cpp:332
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "Вызывается libcpuid для получения статических значений моделезависимых "
 "регистров ЦП"
 
-#: core/libcpuid.cpp:460
+#: core/libcpuid.cpp:362
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr ""
 "Вызывается libcpuid для получения динамических значений моделезависимых "
 "регистров ЦП"
 
-#: core/libcpuid.cpp:489
+#: core/libcpuid.cpp:391
 msgid "Finding CPU package in fallback mode"
 msgstr "Поиск корпусировки ЦП в запасном режиме"
 
-#: core/libcpuid.cpp:519
+#: core/libcpuid.cpp:421
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Сокет вашего ЦП отсутствует в базе данных ==> %s, кодовое имя: %s"
@@ -354,20 +333,25 @@ msgstr "не удалось уничтожить дисплей EGL (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "не удалось вызвать getPlatformDisplay (%s)"
 
-#: core/libopengl.cpp:295
+#: core/libopengl.cpp:300
 msgid "Finding OpenGL API version"
 msgstr "Поиск версии API OpenCL"
 
-#: core/libopengl.cpp:298 core/libopengl.cpp:312
+#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr "%s не поддерживается"
+
+#: core/libopengl.cpp:315 core/libopengl.cpp:329
 #, c-format
 msgid "failed to call queryDevices (%s)"
 msgstr "не удалось вызвать queryDevices (%s)"
 
-#: core/libopengl.cpp:305
+#: core/libopengl.cpp:322
 msgid "No available EGL devices"
 msgstr "Нет доступных устройств EGL"
 
-#: core/libopengl.cpp:324
+#: core/libopengl.cpp:341
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "Невозможно найти драйвер OpenGL для производителя %s"
@@ -500,11 +484,6 @@ msgstr "Определение версии API Vulkan"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "не удалось вызвать vkCreateInstance (%s)"
 
-#: core/libvulkan.cpp:165
-#, c-format
-msgid "%s is not supported"
-msgstr "%s не поддерживается"
-
 #: core/libvulkan.cpp:173
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
@@ -568,7 +547,7 @@ msgstr "pkexec: неожиданный код ошибки"
 msgid "Connecting to daemon…"
 msgstr "Подключение к демону…"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1485
 msgid "CPU"
 msgstr "ЦП"
 
@@ -588,11 +567,11 @@ msgstr "LP E-ядро"
 msgid "Core"
 msgstr "Ядро"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:837
+#: data.cpp:212 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "Процессор"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "Кэш"
 
@@ -610,7 +589,7 @@ msgstr "%d %s, %d-канал"
 msgid "Count"
 msgstr "Число"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "Частоты"
 
@@ -628,19 +607,19 @@ msgstr "%s ассоциатив., %d %s кэш-линии"
 msgid "Test"
 msgstr "Проверка"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "Плата"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "Чипсет"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "Память"
 
@@ -649,19 +628,19 @@ msgstr "Память"
 msgid "Stick %u"
 msgstr "Модуль %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr "Модули"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "Система"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "Операционная система"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "Графика"
 
@@ -670,11 +649,11 @@ msgstr "Графика"
 msgid "Card %u"
 msgstr "Карта %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "Карты"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "Тест"
 
@@ -682,15 +661,15 @@ msgstr "Тест"
 msgid "Not started"
 msgstr "Не запускался"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "Простые числа (медленно)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "Простые числа (быстро)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "Параметры"
 
@@ -699,7 +678,7 @@ msgstr "Параметры"
 msgid "%u mins"
 msgstr "%u м"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "О программе"
 
@@ -731,7 +710,7 @@ msgstr "Автор: %s"
 msgid "Site: %s"
 msgstr "Сайт: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "Лицензия"
 
@@ -740,7 +719,7 @@ msgstr "Лицензия"
 msgid "This software is distributed under the terms of %s"
 msgstr "Эта программа распространяется на условиях %s"
 
-#: data.cpp:779 main.cpp:175
+#: data.cpp:779 main.cpp:172
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Эта программа предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
 
@@ -828,11 +807,11 @@ msgstr "Уровень 2"
 msgid "Level 3"
 msgstr "Уровень 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1343
 msgid "Cores"
 msgstr "Ядра"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Потоки"
 
@@ -962,7 +941,7 @@ msgstr "Версия VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -1077,7 +1056,7 @@ msgstr "Выберите модуль памяти по умолчанию (це
 msgid "Select default graphic card (integer)"
 msgstr "Выбрать графическую карту по умолчанию (целое число)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "Запускать демона и подключаться к нему"
 
@@ -1137,49 +1116,45 @@ msgstr ""
 msgid "Read CPUID raw data from a given file"
 msgstr "Прочитать сырые данные CPUID из заданного файла"
 
-#: main.cpp:97
-msgid "Only print a message if CPU is not present in the database"
-msgstr "Выводить сообщение только если ЦП отсутствует в базе данных"
-
-#: main.cpp:125
+#: main.cpp:122
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Использование: %s ВЫВЕСТИ [ПАРАМЕТРЫ]\n"
 
-#: main.cpp:126
+#: main.cpp:123
 msgid "Available DISPLAY:"
 msgstr "Доступный ДИСПЛЕЙ:"
 
-#: main.cpp:134
+#: main.cpp:131
 msgid "Available OPTIONS:"
 msgstr "Доступные ОПЦИИ:"
 
-#: main.cpp:143
+#: main.cpp:140
 msgid "Influenceable environment variables:"
 msgstr "Затрагиваемые переменные окружения:"
 
-#: main.cpp:174
+#: main.cpp:171
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Это свободное программное обеспечение. Вы можете изменять и распространять "
 "его."
 
-#: main.cpp:176
+#: main.cpp:173
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Посмотреть лицензию %s: <%s>\n"
 
-#: main.cpp:183
+#: main.cpp:180
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s версия: %s"
 
-#: main.cpp:359
+#: main.cpp:356
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr "Запись журнала в файл '%s'..."
 
-#: main.cpp:411
+#: main.cpp:408
 #, c-format
 msgid ""
 "\n"
@@ -1190,7 +1165,7 @@ msgstr ""
 "Ой, что-то пошло не так! %s (PID %i) получил сигнал %d (%s) и аварийно "
 "завершился."
 
-#: main.cpp:413
+#: main.cpp:410
 #, c-format
 msgid ""
 "\n"
@@ -1201,27 +1176,27 @@ msgstr ""
 "Ой, что-то пошло не так! %s (PID %i) получил сигнал %d (%s) и пытается "
 "восстановиться."
 
-#: main.cpp:437
+#: main.cpp:434
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Здесь вы можете создать новый отчет об ошибке, заполнив шаблон следующим "
 "образом:"
 
-#: main.cpp:478
+#: main.cpp:475
 msgid "an error occurred while setting locale"
 msgstr "ошибка при установке локализации"
 
-#: options.cpp:166
+#: options.cpp:156
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "Выбранная вкладка (%u) не видна"
 
-#: options.cpp:171
+#: options.cpp:161
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "Выбранная вкладка (%u) не является допустимым числом (%u — максимум)"
 
-#: options.cpp:220
+#: options.cpp:210
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -1229,7 +1204,7 @@ msgstr ""
 "Выбранный тип ЦП (%u) не является допустимым числом (%u — максимум для этого "
 "ЦП)"
 
-#: options.cpp:241
+#: options.cpp:231
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -1238,7 +1213,7 @@ msgstr ""
 "Выбранная проверка пропускной способности (%u) не является допустимым числом "
 "(%u — максимум для этой системы)"
 
-#: options.cpp:264
+#: options.cpp:254
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -1247,7 +1222,7 @@ msgstr ""
 "Выбранный модуль оперативной памяти (%u) не является допустимым числом (%u — "
 "максимум для этой системы)"
 
-#: options.cpp:284
+#: options.cpp:274
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -1256,12 +1231,12 @@ msgstr ""
 "Выбранная видеокарта (%u) не является допустимым числом (%u — максимум для "
 "этой системы)"
 
-#: options.cpp:300
+#: options.cpp:290
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "не удалось изменить привязку ЦП к ядру %u"
 
-#: options.cpp:306
+#: options.cpp:296
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1554,81 +1529,81 @@ msgstr "Запустить демона"
 msgid "Privileges are required to gather some information"
 msgstr "Для сбора некоторых сведений необходимы права"
 
-#: cpu-x-gtk-3.12.ui:1291
+#: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
 msgstr "Кэш"
 
-#: cpu-x-gtk-3.12.ui:5848
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
 msgstr "Закрыть"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5942
+#: cpu-x-gtk-3.12.ui:5946
 msgid "Refresh time"
 msgstr "Период обновления"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5966
+#: cpu-x-gtk-3.12.ui:5970
 msgid "Text theme"
 msgstr "Тема текста"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5981
+#: cpu-x-gtk-3.12.ui:5985
 msgid "Automatic"
 msgstr "Автоматическая"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5982
+#: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
 msgstr "Синяя для светлой темы"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5983
+#: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
 msgstr "Жёлтая для тёмной темы"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:6000
 msgid "Temperature unit"
 msgstr "Единица измерения температуры"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6047
+#: cpu-x-gtk-3.12.ui:6051
 msgid "Default tab"
 msgstr "Вкладка по умолчанию"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6064
 msgid "Default CPU core"
 msgstr "Ядро ЦП по умолчанию"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6077
 msgid "Default cache test"
 msgstr "Тест кэша по умолчанию"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6116
+#: cpu-x-gtk-3.12.ui:6120
 msgid "Print CPUID values in decimal"
 msgstr "Выводить значения CPUID в десятичном формате"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6149
+#: cpu-x-gtk-3.12.ui:6153
 msgid "Default graphic card"
 msgstr "Видеокарта по умолчанию"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6173
+#: cpu-x-gtk-3.12.ui:6177
 msgid "Default core type"
 msgstr "Тип ядра по умолчанию"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6197
+#: cpu-x-gtk-3.12.ui:6201
 msgid "Default memory stick"
 msgstr "Модуль памяти по умолчанию"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6225
+#: cpu-x-gtk-3.12.ui:6229
 msgid "Startup"
 msgstr "Запуск"
 
@@ -1641,6 +1616,28 @@ msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;процессор;система;"
 "ядро;скорость;тактовая;частота;материнская плата;"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Ваш ЦП отсутствует в базе данных ==> %s, модель: %i, доп. модель: %i, "
+#~ "доп. семейство: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Ваш ЦП отсутствует в базе данных ==> %s, номер изделия: 0x%x, кодовое "
+#~ "имя: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Определяется технология ЦП"
+
+#~ msgid "Only print a message if CPU is not present in the database"
+#~ msgstr "Выводить сообщение только если ЦП отсутствует в базе данных"
 
 #, c-format
 #~ msgid "request_handler: case %i not handled"

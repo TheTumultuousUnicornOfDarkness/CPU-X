@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-05-01 14:33+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-05-15 16:08+0000\n"
 "PO-Revision-Date: 2025-05-06 18:01+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :("
-"n>6 && n<11) ? 3 : 4;\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :"
+"(n>6 && n<11) ? 3 : 4;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
@@ -155,56 +155,36 @@ msgstr "%s (uas)"
 msgid "%s (min)"
 msgstr "%s (nóiméad)"
 
-#: core/libcpuid.cpp:83
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, model: %i, ext. model: %i, "
-"ext. family: %i"
-msgstr ""
-"Níl do LAP sa bhunachar sonraí ==> %s, múnla: %i, fo-líne. múnla: %i, fo-"
-"líne. teaghlach: %i"
-
-#: core/libcpuid.cpp:127
-#, c-format
-msgid ""
-"Your CPU is not present in the database ==> %s, part number: 0x%x, codename: "
-"%s"
-msgstr "Níl do LAP sa bhunachar sonraí ==> %s, páirtuimhir: 0x%x, códainm: %s"
-
-#: core/libcpuid.cpp:134
-msgid "Finding CPU technology"
-msgstr "Lorg teicneolaíocht LAP"
-
-#: core/libcpuid.cpp:186 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
 msgid "unknown"
 msgstr "anaithnid"
 
-#: core/libcpuid.cpp:270
+#: core/libcpuid.cpp:174
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Ag glaoch ar libcpuid chun sonraí statacha a aisghabháil"
 
-#: core/libcpuid.cpp:284
+#: core/libcpuid.cpp:188
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "theip glaoch ar libcpuid (%s)"
 
-#: core/libcpuid.cpp:413
+#: core/libcpuid.cpp:315
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Ag glaoch ar libcpuid chun sonraí dinimiciúla a aisghabháil"
 
-#: core/libcpuid.cpp:430
+#: core/libcpuid.cpp:332
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Ag glaoch ar libcpuid chun luachanna statacha LAP MSR a aisghabháil"
 
-#: core/libcpuid.cpp:460
+#: core/libcpuid.cpp:362
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Ag glaoch ar libcpuid chun luachanna dinimiciúla LAP MSR a aisghabháil"
 
-#: core/libcpuid.cpp:489
+#: core/libcpuid.cpp:391
 msgid "Finding CPU package in fallback mode"
 msgstr "Pacáiste LAP a aimsiú i mód cúltaisce"
 
-#: core/libcpuid.cpp:519
+#: core/libcpuid.cpp:421
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "Níl do soicéad LAP sa bhunachar sonraí ==> %s, códainm: %s"
@@ -338,20 +318,25 @@ msgstr "theip ar an taispeáint EGL (%s) a scriosadh"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "theip glaoch ar getPlatformDisplay (%s)"
 
-#: core/libopengl.cpp:295
+#: core/libopengl.cpp:300
 msgid "Finding OpenGL API version"
 msgstr "Leagan API OpenGL á lorg"
 
-#: core/libopengl.cpp:298 core/libopengl.cpp:312
+#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#, c-format
+msgid "%s is not supported"
+msgstr "Ní thacaítear le %s"
+
+#: core/libopengl.cpp:315 core/libopengl.cpp:329
 #, c-format
 msgid "failed to call queryDevices (%s)"
 msgstr "theip glaoch ar queryDevices (%s)"
 
-#: core/libopengl.cpp:305
+#: core/libopengl.cpp:322
 msgid "No available EGL devices"
 msgstr "Níl aon ghléasanna EGL ar fáil"
 
-#: core/libopengl.cpp:324
+#: core/libopengl.cpp:341
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "Ní féidir tiománaí OpenGL a aimsiú don díoltóir %s"
@@ -484,11 +469,6 @@ msgstr "Leagan API Vulkan á lorg"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "theip ar vkCreateInstance (%s) a ghlaoch"
 
-#: core/libvulkan.cpp:165
-#, c-format
-msgid "%s is not supported"
-msgstr "Ní thacaítear le %s"
-
 #: core/libvulkan.cpp:173
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
@@ -552,7 +532,7 @@ msgstr "pkexec: cód earráide gan choinne"
 msgid "Connecting to daemon…"
 msgstr "Ag nascadh le deamhan…"
 
-#: data.cpp:127 cpu-x-gtk-3.12.ui:1481
+#: data.cpp:127 cpu-x-gtk-3.12.ui:1485
 msgid "CPU"
 msgstr "LAP"
 
@@ -572,11 +552,11 @@ msgstr "LP E-cór"
 msgid "Core"
 msgstr "Cór"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:837
+#: data.cpp:212 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "Próiseálaí"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2095
+#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "Taiscí"
 
@@ -594,7 +574,7 @@ msgstr "%d %s, %d-bhealach"
 msgid "Count"
 msgstr "Áireamh"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1067
+#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "Cloig"
 
@@ -612,19 +592,19 @@ msgstr "%s comhthiomsaitheach, %d-%s méid líne"
 msgid "Test"
 msgstr "Tástáil"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2279 cpu-x-gtk-3.12.ui:2709
+#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "Máthairchlár"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2555
+#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2690
+#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "Foireann sliseanna"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3348 cpu-x-gtk-3.12.ui:3971
+#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "Cuimhne"
 
@@ -633,19 +613,19 @@ msgstr "Cuimhne"
 msgid "Stick %u"
 msgstr "Bata %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3326
+#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr "Bataí"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3990
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "Córas"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3580
+#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "Córas Oibriúcháin"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5169
+#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "Grafaicí"
 
@@ -654,11 +634,11 @@ msgstr "Grafaicí"
 msgid "Card %u"
 msgstr "Cárta %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5147
+#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "Cártaí"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5521
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "Binse"
 
@@ -666,15 +646,15 @@ msgstr "Binse"
 msgid "Not started"
 msgstr "Gan tús"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5283
+#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "Príomhuimhreacha (mall)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5395
+#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "Príomhuimhreacha (tapa)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5502
+#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "Paraiméadair"
 
@@ -683,7 +663,7 @@ msgstr "Paraiméadair"
 msgid "%u mins"
 msgstr "%u nóim"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5665 cpu-x-gtk-3.12.ui:5773
+#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "Maidir"
 
@@ -715,7 +695,7 @@ msgstr "Údar: %s"
 msgid "Site: %s"
 msgstr "Suíomh: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5754
+#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "Ceadúnas"
 
@@ -724,7 +704,7 @@ msgstr "Ceadúnas"
 msgid "This software is distributed under the terms of %s"
 msgstr "Scaiptear an bogearra seo faoi théarmaí %s"
 
-#: data.cpp:779 main.cpp:175
+#: data.cpp:779 main.cpp:172
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Tagann an clár seo le NÍL BARÁNTA GO LÁIDIR"
 
@@ -812,11 +792,11 @@ msgstr "Leibhéal 2"
 msgid "Level 3"
 msgstr "Leibhéal 3"
 
-#: data.hpp:147 cpu-x-gtk-3.12.ui:1339
+#: data.hpp:147 cpu-x-gtk-3.12.ui:1343
 msgid "Cores"
 msgstr "Córa"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1361
+#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Snáithe"
 
@@ -946,7 +926,7 @@ msgstr "Leagan VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6028
+#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "Comhéadan"
 
@@ -1060,7 +1040,7 @@ msgstr "Roghnaigh bata cuimhne réamhshocraithe (slánuimhir)"
 msgid "Select default graphic card (integer)"
 msgstr "Roghnaigh cárta grafaicí réamhshocraithe (slánuimhir)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6131
+#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "Tosaigh agus ceangail leis an deamhan"
 
@@ -1119,48 +1099,44 @@ msgstr ""
 msgid "Read CPUID raw data from a given file"
 msgstr "Léigh sonraí amh CPUID ó chomhad tugtha"
 
-#: main.cpp:97
-msgid "Only print a message if CPU is not present in the database"
-msgstr "Ná priontáil ach teachtaireacht mura bhfuil LAP sa bhunachar sonraí"
-
-#: main.cpp:125
+#: main.cpp:122
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Úsáid: %s DISPLAY [OPTIONS]\n"
 
-#: main.cpp:126
+#: main.cpp:123
 msgid "Available DISPLAY:"
 msgstr "Ar fáil TAISPEÁINT:"
 
-#: main.cpp:134
+#: main.cpp:131
 msgid "Available OPTIONS:"
 msgstr "ROGHANNA Ar Fáil:"
 
-#: main.cpp:143
+#: main.cpp:140
 msgid "Influenceable environment variables:"
 msgstr "Athróga timpeallachta a bhfuil tionchar acu:"
 
-#: main.cpp:174
+#: main.cpp:171
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Is bogearraí saor in aisce é seo: tá cead agat é a athrú agus a athdháileadh."
 
-#: main.cpp:176
+#: main.cpp:173
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Féach ar an gceadúnas %s: <%s>\n"
 
-#: main.cpp:183
+#: main.cpp:180
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- leagan %-11s: %s"
 
-#: main.cpp:359
+#: main.cpp:356
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr "Logáil á scríobh chuig comhad '%s'..."
 
-#: main.cpp:411
+#: main.cpp:408
 #, c-format
 msgid ""
 "\n"
@@ -1171,7 +1147,7 @@ msgstr ""
 "Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s (PID %i) "
 "agus tuairteála."
 
-#: main.cpp:413
+#: main.cpp:410
 #, c-format
 msgid ""
 "\n"
@@ -1182,28 +1158,28 @@ msgstr ""
 "Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s (PID %i) "
 "agus tá sé ag iarraidh é a athshlánú."
 
-#: main.cpp:437
+#: main.cpp:434
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Is féidir leat eagrán nua a oscailt anseo, tríd an teimpléad a líonadh mar a "
 "iarrtar:"
 
-#: main.cpp:478
+#: main.cpp:475
 msgid "an error occurred while setting locale"
 msgstr "tharla earráid agus locale á shocrú"
 
-#: options.cpp:166
+#: options.cpp:156
 #, c-format
 msgid "Selected tab (%u) is not visible"
 msgstr "Níl an cluaisín roghnaithe (%u) le feiceáil"
 
-#: options.cpp:171
+#: options.cpp:161
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr ""
 "Ní uimhir bhailí é an cluaisín roghnaithe (%u) (is é %u u an t-uasmhéid)"
 
-#: options.cpp:220
+#: options.cpp:210
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -1211,7 +1187,7 @@ msgstr ""
 "Ní uimhir bhailí í an cineál CPU roghnaithe (%u) (is é %u an t-uasmhéid don "
 "LAP seo)"
 
-#: options.cpp:241
+#: options.cpp:231
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -1220,7 +1196,7 @@ msgstr ""
 "Ní uimhir bhailí í an tástáil bandaleithead roghnaithe (%u) (is é %u an t-"
 "uasmhéid don chóras seo)"
 
-#: options.cpp:264
+#: options.cpp:254
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -1229,7 +1205,7 @@ msgstr ""
 "Ní uimhir bhailí í an mhaide RAM roghnaithe (%u) (is é %u an t-uasmhéid don "
 "chóras seo)"
 
-#: options.cpp:284
+#: options.cpp:274
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -1238,12 +1214,12 @@ msgstr ""
 "Ní uimhir bhailí é an cárta grafach roghnaithe (%u) (is é %u an t-uasmhéid "
 "don chóras seo)"
 
-#: options.cpp:300
+#: options.cpp:290
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
 msgstr "theip ar an nasc LAP a athrú go croí %u"
 
-#: options.cpp:306
+#: options.cpp:296
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1546,81 +1522,81 @@ msgstr "Tosaigh deamhan"
 msgid "Privileges are required to gather some information"
 msgstr "Tá pribhléidí ag teastáil chun roinnt faisnéise a bhailiú"
 
-#: cpu-x-gtk-3.12.ui:1291
+#: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
 msgstr "Taisce"
 
-#: cpu-x-gtk-3.12.ui:5848
+#: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
 msgstr "Dún"
 
 #. Setting: refresh time for UI
-#: cpu-x-gtk-3.12.ui:5942
+#: cpu-x-gtk-3.12.ui:5946
 msgid "Refresh time"
 msgstr "Am Athnuachtha"
 
 #. Setting: GUI theme
-#: cpu-x-gtk-3.12.ui:5966
+#: cpu-x-gtk-3.12.ui:5970
 msgid "Text theme"
 msgstr "Téama téacs"
 
 #. Setting: automatic GUI theme
-#: cpu-x-gtk-3.12.ui:5981
+#: cpu-x-gtk-3.12.ui:5985
 msgid "Automatic"
 msgstr "Uathoibríoch"
 
 #. Setting: light GUI theme
-#: cpu-x-gtk-3.12.ui:5982
+#: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
 msgstr "Gorm le haghaidh téama éadrom"
 
 #. Setting: dark GUI theme
-#: cpu-x-gtk-3.12.ui:5983
+#: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
 msgstr "Buí le haghaidh téama dorcha"
 
 #. Setting: temperature unit
-#: cpu-x-gtk-3.12.ui:5996
+#: cpu-x-gtk-3.12.ui:6000
 msgid "Temperature unit"
 msgstr "Aonad teochta"
 
 #. Setting: default tab at startup
-#: cpu-x-gtk-3.12.ui:6047
+#: cpu-x-gtk-3.12.ui:6051
 msgid "Default tab"
 msgstr "Cluaisín réamhshocraithe"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6060
+#: cpu-x-gtk-3.12.ui:6064
 msgid "Default CPU core"
 msgstr "Cór Réamhshocraithe CPU"
 
 #. Setting: default cache test at startup
-#: cpu-x-gtk-3.12.ui:6073
+#: cpu-x-gtk-3.12.ui:6077
 msgid "Default cache test"
 msgstr "Tástáil taisce réamhshocraithe"
 
 #. Setting: print CPUID values in decimal or hexadecimal
-#: cpu-x-gtk-3.12.ui:6116
+#: cpu-x-gtk-3.12.ui:6120
 msgid "Print CPUID values in decimal"
 msgstr "Priontáil luachanna CPUID i deachúlacha"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6149
+#: cpu-x-gtk-3.12.ui:6153
 msgid "Default graphic card"
 msgstr "Cárta grafaicí réamhshocraithe"
 
 #. Setting: default CPU core at startup
-#: cpu-x-gtk-3.12.ui:6173
+#: cpu-x-gtk-3.12.ui:6177
 msgid "Default core type"
 msgstr "Tionchar Cór Réamhshocraithe"
 
 #. Setting: default graphic card at startup
-#: cpu-x-gtk-3.12.ui:6197
+#: cpu-x-gtk-3.12.ui:6201
 msgid "Default memory stick"
 msgstr "Bata Cuimhne Réamhshocraithe"
 
 #. Setting: "Startup" tab
-#: cpu-x-gtk-3.12.ui:6225
+#: cpu-x-gtk-3.12.ui:6229
 msgid "Startup"
 msgstr "Tosaithe"
 
@@ -1631,6 +1607,27 @@ msgstr "Bailíonn sé eolas ar LAP, máthairchlár agus go leor eile"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "LAP;córas;croí;luas;clog;ráta;Intel;AMD;máthairchlár;"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, model: %i, ext. model: "
+#~ "%i, ext. family: %i"
+#~ msgstr ""
+#~ "Níl do LAP sa bhunachar sonraí ==> %s, múnla: %i, fo-líne. múnla: %i, fo-"
+#~ "líne. teaghlach: %i"
+
+#, c-format
+#~ msgid ""
+#~ "Your CPU is not present in the database ==> %s, part number: 0x%x, "
+#~ "codename: %s"
+#~ msgstr ""
+#~ "Níl do LAP sa bhunachar sonraí ==> %s, páirtuimhir: 0x%x, códainm: %s"
+
+#~ msgid "Finding CPU technology"
+#~ msgstr "Lorg teicneolaíocht LAP"
+
+#~ msgid "Only print a message if CPU is not present in the database"
+#~ msgstr "Ná priontáil ach teachtaireacht mura bhfuil LAP sa bhunachar sonraí"
 
 #, c-format
 #~ msgid "request_handler: case %i not handled"
