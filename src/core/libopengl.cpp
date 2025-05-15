@@ -226,10 +226,10 @@ static int egl_info_display(std::string card_vendor, int pfd_out, bool &gpu_foun
 	const std::string client_apis  = eglQueryString(display, EGL_CLIENT_APIS);
 	const bool khr_create_context  = (major == 1 && minor >= 4) && display_exts.find("EGL_KHR_create_context") != std::string::npos;
 	const bool has_opengl          = client_apis.find("OpenGL") != std::string::npos;
-	MSG_DEBUG("EGL extensions: %s",  display_exts.c_str());
-	MSG_DEBUG("EGL client APIs: %s", client_apis.c_str());
-	MSG_DEBUG("EGL KHR create context: %s", khr_create_context ? "true" : "false");
-	MSG_DEBUG("EGL has OpenGL: %s", has_opengl ? "true" : "false");
+	MSG_DEBUG("EGL display extensions: %s",  display_exts.c_str());
+	MSG_DEBUG("EGL display client APIs: %s", client_apis.c_str());
+	MSG_DEBUG("EGL display KHR create context: %s", khr_create_context ? "true" : "false");
+	MSG_DEBUG("EGL display has OpenGL: %s", has_opengl ? "true" : "false");
 
 	if(!has_opengl)
 	{
@@ -274,7 +274,7 @@ static int egl_info_device(std::string card_vendor, int pfd_out, bool &gpu_found
 	PFNEGLGETPLATFORMDISPLAYEXTPROC getPlatformDisplay = (PFNEGLGETPLATFORMDISPLAYEXTPROC) eglGetProcAddress("eglGetPlatformDisplayEXT");
 
 	EGLDisplay display = getPlatformDisplay(EGL_PLATFORM_DEVICE_EXT, device, NULL);
-	if(display == EGL_NO_DISPLAY)
+	if(!display || (display == EGL_NO_DISPLAY) || (eglGetError() != EGL_SUCCESS))
 	{
 		MSG_ERROR(_("failed to call getPlatformDisplay (%s)"), egl_get_error_string());
 		return 1;
@@ -291,26 +291,43 @@ int set_gpu_opengl_version(std::string card_vendor, int pfd_out)
 	EGLint max_devices, num_devices;
 	std::vector<EGLDeviceEXT> devices;
 	PFNEGLQUERYDEVICESEXTPROC queryDevices = (PFNEGLQUERYDEVICESEXTPROC) eglGetProcAddress("eglQueryDevicesEXT");
+	const std::list<std::string> required_exts = {
+		"EGL_EXT_client_extensions", // eglQueryDevicesEXT
+		"EGL_EXT_device_query", // eglQueryDevicesEXT
+		"EGL_EXT_client_extensions", // eglGetPlatformDisplayEXT
+	};
 
 	MSG_VERBOSE("%s", _("Finding OpenGL API version"));
+
+	const std::string client_ext = eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS);
+	MSG_DEBUG("EGL extensions: %s", client_ext.c_str());
+	for(auto& required_ext : required_exts)
+	{
+		if(client_ext.find(required_ext) == std::string::npos)
+		{
+			MSG_WARNING(_("%s is not supported"), required_ext.c_str());
+			return 1;
+		}
+	}
+
 	if(queryDevices(0, NULL, &max_devices) != EGL_TRUE)
 	{
 		MSG_ERROR(_("failed to call queryDevices (%s)"), egl_get_error_string());
-		return 1;
+		return 2;
 	}
 
 	MSG_DEBUG("EGL devices count: %u", max_devices);
 	if(max_devices == 0)
 	{
 		MSG_WARNING("%s", _("No available EGL devices"));
-		return 2;
+		return 3;
 	}
 
 	devices.resize(max_devices);
 	if(queryDevices(max_devices, devices.data(), &num_devices) != EGL_TRUE)
 	{
 		MSG_ERROR(_("failed to call queryDevices (%s)"), egl_get_error_string());
-		return 3;
+		return 4;
 	}
 
 	for(EGLint i = 0; (i < max_devices) && !gpu_found; i++)
