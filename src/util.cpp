@@ -60,10 +60,10 @@ void PrefixUnit::find_best_prefix(uint64_t value, PrefixUnit::Multipliers multip
 	}};
 	const std::array<struct Table, PrefixUnit::Multipliers::MULT_LAST> binary_prefixes
 	{{
-		{ MULT_NONE,  UNIT_B,  static_cast<uint64_t>(1)    },
-		{ MULT_K,     UNIT_KIB, static_cast<uint64_t>(1 << 10)  },
-		{ MULT_M,     UNIT_MIB, static_cast<uint64_t>(1 << 20)  },
-		{ MULT_G,     UNIT_GIB, static_cast<uint64_t>(1 << 30)  },
+		{ MULT_NONE,  UNIT_B,   static_cast<uint64_t>(1ULL)       },
+		{ MULT_K,     UNIT_KIB, static_cast<uint64_t>(1ULL << 10) },
+		{ MULT_M,     UNIT_MIB, static_cast<uint64_t>(1ULL << 20) },
+		{ MULT_G,     UNIT_GIB, static_cast<uint64_t>(1ULL << 30) },
 		{ MULT_T,     UNIT_TIB, static_cast<uint64_t>(1ULL << 40) },
 	}};
 	const std::array prefixes = use_si_prefixes ? si_prefixes : binary_prefixes;
