@@ -168,6 +168,9 @@ const Package_DB package_amd[] = {
 	{ "Turin",                    NULL,                       "SP5 (LGA-6096)"   },
 	{ "Granite Ridge",            NULL,                       "AM5 (LGA-1718)"   },
 	{ "Strix Point",              NULL,                       "FP8"              },
+	{ "Krackan Point",            NULL,                       "FP8"              },
+	{ "Strix Halo",               NULL,                       "FP11"             },
+
 	{ NULL,                       NULL,                       NULL               }
 	// Codename                          Model            Socket
 };
