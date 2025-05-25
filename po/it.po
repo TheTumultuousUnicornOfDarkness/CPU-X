@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-15 16:08+0000\n"
-"PO-Revision-Date: 2025-03-28 08:01+0000\n"
+"PO-Revision-Date: 2025-05-26 05:03+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/it/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -283,26 +283,21 @@ msgid "Unable to find OpenCL driver for vendor %s"
 msgstr "Non trovo un driver OpenCL per il fornitore %s"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
 msgstr "creazione contesto EGL non riuscito"
 
 #: core/libopengl.cpp:183
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
 msgstr "distruzione contesto EGL (%s) non riuscito"
 
 #: core/libopengl.cpp:206
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "chiamata eglChooseConfig (%s) non riuscita"
 
 #: core/libopengl.cpp:221
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
 msgstr "chiamata eglInitialize (%s) non riuscita"
 
@@ -311,20 +306,17 @@ msgid "EGL has not OpenGL client API"
 msgstr "EGL non ha client API OpenGL"
 
 #: core/libopengl.cpp:242
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
 msgstr "errore nella chiamata a eglBindAPI (%s)"
 
 #: core/libopengl.cpp:267
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
 msgstr "distruzione display EGL (%s) non riuscita"
 
 #: core/libopengl.cpp:279
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "chiamata getPlatformDisplay (%s) non riuscita"
 
@@ -724,7 +716,7 @@ msgstr "Questo programma è distribuito SENZA ALCUNA GARANZIA"
 
 #: data.hpp:103 data.hpp:255 data.hpp:343
 msgid "Vendor"
-msgstr "Produttore"
+msgstr "Fornitore"
 
 #: data.hpp:104
 msgid "Code Name"
@@ -844,8 +836,9 @@ msgid "Manufacturer"
 msgstr "Produttore"
 
 #: data.hpp:243
+#, fuzzy
 msgid "Brand"
-msgstr "Produttore"
+msgstr "Marca"
 
 #: data.hpp:244
 msgid "Version"
@@ -1146,9 +1139,9 @@ msgid "-- %-11s version: %s"
 msgstr "-- %-11s versione: %s"
 
 #: main.cpp:356
-#, c-format
+#, c-format, fuzzy
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "Scrivi log nel file '%s'..."
 
 #: main.cpp:408
 #, c-format
@@ -1604,7 +1597,7 @@ msgstr "Raccoglie informazioni su CPU, scheda madre ed altro"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 #, fuzzy
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr "CPU;sistema;core;velocità;ora;valutazione;Intel;AMD;scheda madre;"
+msgstr "CPU;sistema;core;velocità;clock;valutazione;Intel;AMD;scheda madre;"
 
 #, c-format
 #~ msgid ""
