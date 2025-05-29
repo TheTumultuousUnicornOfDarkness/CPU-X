@@ -12,12 +12,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-15 16:08+0000\n"
-"PO-Revision-Date: 2025-03-16 11:10+0000\n"
-"Last-Translator: The Tumultuous Unicorn Of Darkness <the-tumultuous-unicorn-"
-"of-darkness@gmx.com>\n"
+"PO-Revision-Date: 2025-05-30 06:01+0000\n"
+"Last-Translator: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -25,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -1164,36 +1163,29 @@ msgstr "-- Version de %-11s : %s"
 #: main.cpp:356
 #, c-format
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "Écriture du log dans le fichier « %s »…"
 
 #: main.cpp:408
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"Oups, quelque chose s'est mal passé ! %s a reçu le signal %d (%s) et a "
-"planté."
+"Oups, quelque chose s'est mal passé ! %s (PID %i) a reçu le signal %d (%s) "
+"et a planté."
 
 #: main.cpp:410
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"Oups, quelque chose s'est mal passé ! %s a reçu le signal %d (%s) et essaie "
-"de se remettre."
+"Oups, quelque chose s’est mal passé ! %s (PID %i) a reçu le signal %d (%s) "
+"et essaie de s’en remettre."
 
 #: main.cpp:434
 msgid "You can open a new issue here, by filling the template as requested:"
