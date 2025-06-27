@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-15 16:08+0000\n"
-"PO-Revision-Date: 2025-05-30 06:01+0000\n"
+"PO-Revision-Date: 2025-06-28 13:06+0000\n"
 "Last-Translator: Integral <integral@member.fsf.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hans/>\n"
@@ -34,7 +34,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -234,7 +234,7 @@ msgstr ""
 #: core/libopencl.cpp:175
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
-msgstr "Open 不受你的 GPU 厂商 (0x%X) 的支持"
+msgstr "GPU 厂商 (0x%X) 不支持 OpenCL"
 
 #: core/libopencl.cpp:201
 #, c-format
@@ -358,8 +358,8 @@ msgid ""
 "Check that libpci %s library is present on your system. Otherwise, please "
 "rebuild %s."
 msgstr ""
-"pci_access 未正确初始化：这一问题在 %s 由较低版本的 libpci 构建时很常见。\n"
-"检查你的系统中存在 libpci %s 库。否则请重新构建 %s。"
+"pci_access 未正确初始化：当 %s 用较低版本的 libpci 构建时，此问题很常见。\n"
+"检查系统中存在 libpci %s 库。否则请重新构建 %s。"
 
 #: core/libpci.cpp:117
 #, c-format
@@ -369,7 +369,7 @@ msgstr "路径 %s 中没有驱动图形卡的内核驱动程序"
 #: core/libpci.cpp:153
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "你的 GPU 内核驱动未知：%s"
+msgstr "GPU 内核驱动未知：%s"
 
 #: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
 msgid "failed to create pipe"
@@ -773,7 +773,7 @@ msgstr "版本修订"
 
 #: data.hpp:121
 msgid "Temp."
-msgstr "温度。"
+msgstr "温度"
 
 #: data.hpp:122
 msgid "Instructions"
@@ -1196,7 +1196,7 @@ msgstr "所选 RAM 内存条 (%u) 不是有效数字（%u 是此系统的最大�
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
-msgstr "所选 CPU 内核 (%u) 不是有效数字（%u 是此系统的最大值）"
+msgstr "所选显卡 (%u) 不是有效数字（%u 是此系统的最大值）"
 
 #: options.cpp:290
 #, c-format
@@ -1208,7 +1208,7 @@ msgstr "未能将 CPU 关联性更改为核心 %u"
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
-msgstr "所选 CPU 内核 (%u) 不是有效数字（%u 是此类内核的最大值）"
+msgstr "所选 CPU 核心 (%u) 不是有效数字（%u 是此类核心的最大值）"
 
 #: ui/gtk.cpp:87
 #, c-format
