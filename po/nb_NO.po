@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-15 16:08+0000\n"
-"PO-Revision-Date: 2025-06-05 03:01+0000\n"
+"PO-Revision-Date: 2025-08-09 08:02+0000\n"
 "Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -388,10 +388,8 @@ msgid "Finding devices"
 msgstr "Finner enheter"
 
 #: core/libpci.cpp:454
-#, fuzzy
-#| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
-msgstr "Hopp over søk etter enheter (feil tilganger på %s-enhet)"
+msgstr "Hopp over søk etter enheter (PCI-enhet eksisterer ikke)"
 
 #: core/libpci.cpp:467
 #, c-format
