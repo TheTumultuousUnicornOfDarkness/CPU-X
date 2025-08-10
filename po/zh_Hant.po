@@ -23,8 +23,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-15 16:08+0000\n"
-"PO-Revision-Date: 2025-07-02 02:01+0000\n"
-"Last-Translator: Deleted User <a0939461330@gmail.com>\n"
+"PO-Revision-Date: 2025-08-11 04:01+0000\n"
+"Last-Translator: neko0xff <neko_0xff@protonmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -100,7 +100,7 @@ msgstr "正在計算 CPU 使用率"
 #: core/core.cpp:109
 #, c-format
 msgid "%s (subject) / %s (issuer)"
-msgstr ""
+msgstr "%s（主體）/%s（發行人）"
 
 #: core/core.cpp:120
 msgid "Identifying running system"
@@ -111,52 +111,42 @@ msgid "failed to identify running system"
 msgstr "辨識作業環境系統失敗"
 
 #: core/core.cpp:182
-#, fuzzy
-#| msgid "Calculating CPU multipliers"
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "正在計算 CPU 倍頻"
+msgstr "在回退模式中計算 CPU 倍數"
 
 #: core/core.cpp:208
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "在回退模式下檢索主機板訊息"
 
 #: core/core.cpp:224
-#, fuzzy
-#| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
+msgstr "擷取主機板資訊失敗 (回退模式)"
 
 #: core/core.cpp:267
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr ""
+msgstr "在回退模式中擷取 CPU 溫度"
 
 #: core/core.cpp:315
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "failed to retrieve CPU temperature (fallback mode)"
+msgstr "檢測 CPU 溫度失敗 (回退模式)"
 
 #: core/core.cpp:330
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr ""
+msgstr "在回退模式中擷取 CPU 電壓"
 
 #: core/core.cpp:349
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "取得 GPU 時脈頻率時失敗"
+msgstr "檢索 CPU 電壓失敗 (回退模式)"
 
 #: core/core.cpp:363
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr ""
+msgstr "在回退模式中擷取 CPU 頻率"
 
 #: core/core.cpp:374
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "取得 GPU 時脈頻率時失敗"
+msgstr "檢測 CPU 頻率失敗 (回退模式)"
 
 #: core/dmidecode/dmidecode.c:5801
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
 msgstr "未知"
 
@@ -206,7 +196,7 @@ msgstr "正在呼叫 libcpuid 以取得 CPU MSR 動態值"
 
 #: core/libcpuid.cpp:391
 msgid "Finding CPU package in fallback mode"
-msgstr ""
+msgstr "在回退模式中尋找 CPU 套件"
 
 #: core/libcpuid.cpp:421
 #, c-format
@@ -295,13 +285,11 @@ msgstr "擷取全部 OpenCL 平台時失敗 (%s)"
 #: core/libopencl.cpp:305
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
-msgstr ""
+msgstr "無法找到供應商 %s 的 OpenCL 驅動程式"
 
 #: core/libopengl.cpp:172
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "取得 GPU 時脈頻率時失敗"
+msgstr "未能建立 EGL 內容"
 
 #: core/libopengl.cpp:183
 #, fuzzy, c-format
@@ -332,15 +320,14 @@ msgid "failed to call eglBindAPI (%s)"
 msgstr "呼叫 libcpuid 失敗 (%s)"
 
 #: core/libopengl.cpp:267
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "擷取平台版本號數時失敗"
+msgstr "銷毀 EGL 顯示器失敗 (%s)"
 
 #: core/libopengl.cpp:279
 #, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "擷取全部OpenCL平台時失敗"
+msgstr "呼叫 getPlatformDisplay (%s) 失敗"
 
 #: core/libopengl.cpp:300
 #, fuzzy
@@ -1164,10 +1151,9 @@ msgid "See the %s license: <%s>\n"
 msgstr ""
 
 #: main.cpp:180
-#, fuzzy, c-format
-#| msgid "Version %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "%s 版"
+msgstr "-- %-11s 版本：%s"
 
 #: main.cpp:356
 #, c-format
@@ -1199,12 +1185,9 @@ msgid "an error occurred while setting locale"
 msgstr ""
 
 #: options.cpp:156
-#, fuzzy, c-format
-#| msgid ""
-#| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
-#| "CPU)"
+#, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr "所選 CPU 類型 (%u) 不是有效數字（%u 是此 CPU 的最大值）"
+msgstr "選取的索引標籤 (%u) 不可見"
 
 #: options.cpp:161
 #, fuzzy, c-format
@@ -1607,14 +1590,8 @@ msgid "Startup"
 msgstr "啟動"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s 是一款蒐集CPU、主機板等資訊\n"
-"的自由軟體。"
+msgstr "收集 CPU、主機板等資訊"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
