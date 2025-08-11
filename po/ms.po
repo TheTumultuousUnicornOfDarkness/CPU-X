@@ -4,14 +4,15 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # Kazuki278 <muadz.hakim.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Amirul Azhj <amirulazhajzul00@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-05-15 16:08+0000\n"
-"PO-Revision-Date: 2021-11-02 07:37+0000\n"
-"Last-Translator: Kazuki278 <muadz.hakim.7@gmail.com>\n"
+"PO-Revision-Date: 2025-08-11 04:01+0000\n"
+"Last-Translator: Amirul Azhj <amirulazhajzul00@gmail.com>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ms/>\n"
 "Language: ms\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:54
 msgid "Calling bandwidth"
@@ -27,7 +28,7 @@ msgstr "Memanggil jalur lebar"
 
 #: core/bandwidth/main.c:2992
 msgid "(unavailable)"
-msgstr ""
+msgstr "(tidak tersedia)"
 
 #: core/benchmarks.cpp:92
 msgid "Updating benchmark status"
@@ -72,10 +73,9 @@ msgid "in %u seconds"
 msgstr "dalam tempoh %u saat"
 
 #: core/benchmarks.cpp:130
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Memulakan tanda aras"
+msgstr "Memulakan tanda aras dengan bebenang %u"
 
 #: core/benchmarks.cpp:153
 msgid "an error occurred while starting benchmark"
@@ -136,7 +136,7 @@ msgstr "gagal mendapatkan semula frekuensi CPU (mod jatuh-balik)"
 
 #: core/dmidecode/dmidecode.c:5801
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: core/dmidecode/libdmidecode.cpp:47
 msgid "Calling dmidecode"
