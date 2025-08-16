@@ -334,7 +334,7 @@ usage ()
 // Name:	main
 //----------------------------------------------------------------------------
 int
-bandwidth_main (int argc, const char **argv)
+bandwidth_main (int argc, char *const argv[])
 {
 	if (!argc)
 		return -1;

@@ -99,7 +99,7 @@ struct BandwidthData
 };
 
 
-int bandwidth_main(int argc, const char **argv);
+int bandwidth_main(int argc, char *const argv[]);
 int bandwidth_cpux(struct BandwidthData *bwd);
 
 

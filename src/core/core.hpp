@@ -52,7 +52,7 @@ int do_refresh(Data &data, TabNumber tab_number);
 int run_dmidecode(std::list<std::string> &args);
 
 /* Call Bandwidth through CPU-X but do nothing else */
-int run_bandwidth(void);
+int run_bandwidth(std::list<std::string> &args);
 
 /* Perform a multithreaded benchmark (compute prime numbers) */
 void start_benchmarks(Data &data);

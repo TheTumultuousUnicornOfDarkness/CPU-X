@@ -61,7 +61,7 @@ static const std::list<struct Getopt> cpux_options =
 	{ HAS_NCURSES,     'N', "ncurses",       no_argument,       N_("Start text-based user interface (TUI)")                    },
 	{ true,            'D', "dump",          no_argument,       N_("Dump all data on standard output and exit")                },
 	{ HAS_DMIDECODE,   'M', "dmidecode",     no_argument,       N_("Run embedded command dmidecode and exit (use '--dmidecode --help' to print arguments accepted by dmidecode)") },
-	{ HAS_BANDWIDTH,   'B', "bandwidth",     no_argument,       N_("Run embedded command bandwidth and exit")                  },
+	{ HAS_BANDWIDTH,   'B', "bandwidth",     no_argument,       N_("Run embedded command bandwidth and exit (use '--bandwidth --help' to print arguments accepted by bandwidth)") },
 	{ true,            'u', "temp-unit",     required_argument, N_("Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])") },
 	{ true,            'r', "refresh",       required_argument, N_("Set custom time between two refreshes (in seconds)")       },
 	{ true,            't', "tab",           required_argument, N_("Set default tab (integer)")                                },
@@ -275,7 +275,10 @@ static void parse_arguments(std::list<std::string> &cmd_args)
 				return;
 			case 'B':
 				Options::set_output_type(OUT_BANDWIDTH);
-				break;
+				cmd_args.remove("-B");
+				cmd_args.remove("--bandwidth");
+				optind = 1; // reset to 1 to scan a new argument vector
+				return;
 			case 'u':
 				if(optarg == NULL)
 				{
@@ -534,7 +537,7 @@ skip_init:
 	if(HAS_DMIDECODE && Options::output_type_is(OUT_DMIDECODE))
 		return run_dmidecode(args);
 	if(HAS_BANDWIDTH && Options::output_type_is(OUT_BANDWIDTH))
-		return run_bandwidth();
+		return run_bandwidth(args);
 
 	if(data.reload)
 		execvp(argv[0], argv);

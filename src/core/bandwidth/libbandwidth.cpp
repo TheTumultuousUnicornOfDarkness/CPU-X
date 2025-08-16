@@ -31,10 +31,11 @@
 
 
 /* Call Bandwidth through CPU-X but do nothing else */
-int run_bandwidth(void)
+int run_bandwidth(std::list<std::string> &args)
 {
-	const char *argv[] = { NULL, "--fastest", NULL };
-	return bandwidth_main(2, argv);
+	char **argv = transform_string_list_to_char_array("bandwidth (built-in with CPU-X)", args);
+
+	return bandwidth_main(args.size() + 1, argv);
 }
 
 /* Compute CPU cache speed */
