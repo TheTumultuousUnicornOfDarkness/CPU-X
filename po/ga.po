@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-05-15 16:08+0000\n"
+"POT-Creation-Date: 2025-08-16 17:47+0000\n"
 "PO-Revision-Date: 2025-05-06 18:01+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -20,11 +20,138 @@ msgstr ""
 "(n>6 && n<11) ? 3 : 4;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:54
+#: core/bandwidth/libbandwidth.cpp:55
 msgid "Calling bandwidth"
 msgstr "Ag glaoch bandaleithead"
 
-#: core/bandwidth/main.c:2992
+#: core/bandwidth/main.c:1467
+#, c-format
+msgid "Sequential %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1468
+msgid "Sequential 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1469
+msgid "Sequential 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1470
+msgid "Sequential 512-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1472
+#, c-format
+msgid "Sequential %i-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1473
+msgid "Sequential 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1474
+msgid "Sequential 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1475
+msgid "Sequential 512-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1477
+#, c-format
+msgid "Sequential %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1478
+msgid "Sequential 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1479
+msgid "Sequential 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1480
+msgid "Sequential 512-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1482
+#, c-format
+msgid "Sequential %i-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1483
+msgid "Sequential 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1484
+msgid "Sequential 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1485
+msgid "Sequential 512-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1487
+#, c-format
+msgid "Random %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1488
+msgid "Random 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1489
+msgid "Random 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1491
+msgid "Random 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1492
+msgid "Random 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1494
+#, c-format
+msgid "Random %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1495
+msgid "Random 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1496
+msgid "Random 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1498
+msgid "Random 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1499
+msgid "Random 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1501
+#, c-format
+msgid "Sequential %i-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1502
+msgid "Sequential 128-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1503
+msgid "Sequential 256-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1504
+msgid "Sequential 512-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1524
 msgid "(unavailable)"
 msgstr "(gan fáil)"
 
@@ -132,25 +259,25 @@ msgstr "Minicíocht LAP á aisghabháil i mód cúltaise"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "theip ar mhinicíocht LAP a aisghabháil (modh cúltaca)"
 
-#: core/dmidecode/dmidecode.c:5801
+#: core/dmidecode/dmidecode.c:5806
 msgid "Unknown"
 msgstr "Anaithnid"
 
-#: core/dmidecode/libdmidecode.cpp:47
+#: core/dmidecode/libdmidecode.cpp:50
 msgid "Calling dmidecode"
 msgstr "Dmidecode ag glaoch"
 
-#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#: core/dmidecode/libdmidecode.cpp:92 core/dmidecode/libdmidecode.cpp:111
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (cumraithe)"
 
-#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#: core/dmidecode/libdmidecode.cpp:99 core/dmidecode/libdmidecode.cpp:118
 #, c-format
 msgid "%s (max)"
 msgstr "%s (uas)"
 
-#: core/dmidecode/libdmidecode.cpp:101
+#: core/dmidecode/libdmidecode.cpp:104
 #, c-format
 msgid "%s (min)"
 msgstr "%s (nóiméad)"
@@ -704,7 +831,7 @@ msgstr "Ceadúnas"
 msgid "This software is distributed under the terms of %s"
 msgstr "Scaiptear an bogearra seo faoi théarmaí %s"
 
-#: data.cpp:779 main.cpp:172
+#: data.cpp:779 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Tagann an clár seo le NÍL BARÁNTA GO LÁIDIR"
 
@@ -986,108 +1113,112 @@ msgstr "Rith"
 msgid "Duration"
 msgstr "Fad"
 
-#: main.cpp:61
+#: main.cpp:60
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Tosaigh comhéadan grafach úsáideora (GUI) (réamhshocraithe)"
 
-#: main.cpp:62
+#: main.cpp:61
 msgid "Start text-based user interface (TUI)"
 msgstr "Tosaigh comhéadan úsáideora téacsbhunaithe (TUI)"
 
-#: main.cpp:63
+#: main.cpp:62
 msgid "Dump all data on standard output and exit"
 msgstr "Dumpáil na sonraí go léir ar aschur caighdeánach agus scoir"
 
+#: main.cpp:63
+msgid ""
+"Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
+"arguments accepted by dmidecode)"
+msgstr ""
+
 #: main.cpp:64
-msgid "Run embedded command dmidecode and exit"
-msgstr "Rith dmidecode ordú leabaithe agus scoir"
+msgid ""
+"Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
+"arguments accepted by bandwidth)"
+msgstr ""
 
 #: main.cpp:65
-msgid "Run embedded command bandwidth and exit"
-msgstr "Rith bandaleithead ordú leabaithe agus scoir"
-
-#: main.cpp:66
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr "Socraigh aonaid teochta (c[elsius] |f[ahrenheit] |k[elvin]|r[ankine])"
 
-#: main.cpp:67
+#: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Socraigh am saincheaptha idir dhá athnuachan (i soicindí)"
 
-#: main.cpp:68
+#: main.cpp:67
 msgid "Set default tab (integer)"
 msgstr "Socraigh cluaisín réamhshocraithe (slánuimhir)"
 
-#: main.cpp:69
+#: main.cpp:68
 msgid "Select core type to monitor (integer)"
 msgstr "Roghnaigh croíchineál le monatóireacht a dhéanamh (slánuimhir)"
 
-#: main.cpp:70
+#: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
 msgstr "Roghnaigh croí CPU chun monatóireacht a dhéanamh (slánuimhir)"
 
-#: main.cpp:71
+#: main.cpp:70
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Socraigh tástáil bandaleithead saincheaptha le haghaidh luas taisce LAP "
 "(slánuimhir)"
 
-#: main.cpp:72
+#: main.cpp:71
 msgid "Select default memory stick (integer)"
 msgstr "Roghnaigh bata cuimhne réamhshocraithe (slánuimhir)"
 
-#: main.cpp:73
+#: main.cpp:72
 msgid "Select default graphic card (integer)"
 msgstr "Roghnaigh cárta grafaicí réamhshocraithe (slánuimhir)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
+#: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "Tosaigh agus ceangail leis an deamhan"
 
-#: main.cpp:75
+#: main.cpp:74
 msgid "Verbose output"
 msgstr "Aschur briathra"
 
-#: main.cpp:76
+#: main.cpp:75
 msgid "Print help and exit"
 msgstr "Cabhair a phriontáil agus scoir"
 
-#: main.cpp:77
+#: main.cpp:76
 msgid "Print version and exit"
 msgstr "Leagan priontála agus scoir"
 
-#: main.cpp:78
+#: main.cpp:77
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "Priontáil luachanna CPUID i deachúlacha (heicsidheachúlach an réamhshocrú)"
 
-#: main.cpp:79
+#: main.cpp:78
 msgid "Disable colored output"
 msgstr "Díchumasaigh aschur daite"
 
-#: main.cpp:80
+#: main.cpp:79
 msgid "Print information for debugging"
 msgstr "Priontáil eolas le haghaidh dífhabhtaithe"
 
-#: main.cpp:81
+#: main.cpp:80
 msgid "Print required information to paste in an issue"
 msgstr "Priontáil an fhaisnéis atá ag teastáil chun ceist a ghreamú"
 
-#: main.cpp:82
+#: main.cpp:81
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Socraigh eochairmhapáil don mhód NCurses (a[saigheada]|e[macs]|i[nverted-T]|"
 "v[im])"
 
-#: main.cpp:93
+#: main.cpp:92
 msgid "Add default command line arguments"
 msgstr "Cuir argóintí na n-orduithe réamhshocraithe leis"
 
-#: main.cpp:94
+#: main.cpp:93
 msgid "Enforce the bus clock"
 msgstr "Cuir clog an bhus i bhfeidhm"
 
-#: main.cpp:95
+#: main.cpp:94
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
@@ -1095,48 +1226,48 @@ msgstr ""
 "Déan neamhaird de luachanna LAP arna dtuairisciú ag libcpuid (luachanna "
 "camóg-scartha idir 'temp', 'volt', 'freq' agus 'mult')"
 
-#: main.cpp:96
+#: main.cpp:95
 msgid "Read CPUID raw data from a given file"
 msgstr "Léigh sonraí amh CPUID ó chomhad tugtha"
 
-#: main.cpp:122
+#: main.cpp:121
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Úsáid: %s DISPLAY [OPTIONS]\n"
 
-#: main.cpp:123
+#: main.cpp:122
 msgid "Available DISPLAY:"
 msgstr "Ar fáil TAISPEÁINT:"
 
-#: main.cpp:131
+#: main.cpp:130
 msgid "Available OPTIONS:"
 msgstr "ROGHANNA Ar Fáil:"
 
-#: main.cpp:140
+#: main.cpp:139
 msgid "Influenceable environment variables:"
 msgstr "Athróga timpeallachta a bhfuil tionchar acu:"
 
-#: main.cpp:171
+#: main.cpp:170
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Is bogearraí saor in aisce é seo: tá cead agat é a athrú agus a athdháileadh."
 
-#: main.cpp:173
+#: main.cpp:172
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Féach ar an gceadúnas %s: <%s>\n"
 
-#: main.cpp:180
+#: main.cpp:179
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- leagan %-11s: %s"
 
-#: main.cpp:356
+#: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr "Logáil á scríobh chuig comhad '%s'..."
 
-#: main.cpp:408
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1147,7 +1278,7 @@ msgstr ""
 "Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s (PID %i) "
 "agus tuairteála."
 
-#: main.cpp:410
+#: main.cpp:415
 #, c-format
 msgid ""
 "\n"
@@ -1158,13 +1289,13 @@ msgstr ""
 "Úps, bhí rud éigin mícheart! Tá comhartha %d (%s) faighte ag %s (PID %i) "
 "agus tá sé ag iarraidh é a athshlánú."
 
-#: main.cpp:434
+#: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Is féidir leat eagrán nua a oscailt anseo, tríd an teimpléad a líonadh mar a "
 "iarrtar:"
 
-#: main.cpp:475
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "tharla earráid agus locale á shocrú"
 
@@ -1451,68 +1582,92 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Theip ar shocrú teirminéal %s (err=%i); ag titim ar ais go %s"
 
-#: util.cpp:189
+#: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "Ní féidir aonad sa teaghrán '%s' a aimsiú ag suíomh %i"
 
-#: util.cpp:276
+#: util.cpp:312
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "tharla earráid agus comhad '%s' á oscailt"
 
-#: util.cpp:321
+#: util.cpp:357
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "tharla earráid agus an t-ordú '%s' á rith"
 
-#: util.cpp:461
+#: util.cpp:497
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() gan tacaíocht ar an gcóras oibriúcháin seo"
 
-#: util.hpp:77
+#: util.hpp:78
 msgid "bytes"
 msgstr "bearta"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: util.hpp:80
+#: util.hpp:81
 msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: util.hpp:82
+#: util.hpp:83
 msgid "MB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: util.hpp:84
+#: util.hpp:85
 msgid "GB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: util.hpp:86
+#: util.hpp:87
 msgid "TB"
 msgstr "TB"
 
-#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
+msgid "PB"
+msgstr ""
+
+#. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
+#: util.hpp:91
+msgid "EB"
+msgstr ""
+
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#: util.hpp:94
 msgid "KiB"
 msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: util.hpp:91
+#: util.hpp:96
 msgid "MiB"
 msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: util.hpp:93
+#: util.hpp:98
 msgid "GiB"
 msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: util.hpp:95
+#: util.hpp:100
 msgid "TiB"
 msgstr "TiB"
+
+#. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
+#: util.hpp:102
+#, fuzzy
+#| msgid "KiB"
+msgid "PiB"
+msgstr "KiB"
+
+#. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
+#: util.hpp:104
+#, fuzzy
+#| msgid "KiB"
+msgid "EiB"
+msgstr "KiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1607,6 +1762,12 @@ msgstr "Bailíonn sé eolas ar LAP, máthairchlár agus go leor eile"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "LAP;córas;croí;luas;clog;ráta;Intel;AMD;máthairchlár;"
+
+#~ msgid "Run embedded command dmidecode and exit"
+#~ msgstr "Rith dmidecode ordú leabaithe agus scoir"
+
+#~ msgid "Run embedded command bandwidth and exit"
+#~ msgstr "Rith bandaleithead ordú leabaithe agus scoir"
 
 #, c-format
 #~ msgid ""

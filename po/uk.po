@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-05-15 16:08+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-08-16 17:47+0000\n"
 "PO-Revision-Date: 2025-05-16 18:41+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic4@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/cpu-x/"
@@ -30,11 +30,138 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:54
+#: core/bandwidth/libbandwidth.cpp:55
 msgid "Calling bandwidth"
 msgstr "Виклик пропускної спроможності"
 
-#: core/bandwidth/main.c:2992
+#: core/bandwidth/main.c:1467
+#, c-format
+msgid "Sequential %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1468
+msgid "Sequential 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1469
+msgid "Sequential 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1470
+msgid "Sequential 512-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1472
+#, c-format
+msgid "Sequential %i-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1473
+msgid "Sequential 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1474
+msgid "Sequential 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1475
+msgid "Sequential 512-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1477
+#, c-format
+msgid "Sequential %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1478
+msgid "Sequential 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1479
+msgid "Sequential 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1480
+msgid "Sequential 512-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1482
+#, c-format
+msgid "Sequential %i-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1483
+msgid "Sequential 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1484
+msgid "Sequential 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1485
+msgid "Sequential 512-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1487
+#, c-format
+msgid "Random %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1488
+msgid "Random 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1489
+msgid "Random 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1491
+msgid "Random 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1492
+msgid "Random 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1494
+#, c-format
+msgid "Random %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1495
+msgid "Random 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1496
+msgid "Random 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1498
+msgid "Random 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1499
+msgid "Random 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1501
+#, c-format
+msgid "Sequential %i-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1502
+msgid "Sequential 128-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1503
+msgid "Sequential 256-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1504
+msgid "Sequential 512-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1524
 msgid "(unavailable)"
 msgstr "(недоступний)"
 
@@ -142,25 +269,25 @@ msgstr "Отримання частоти процесора в аварійно
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не вдалося отримати частоту процесора (аварійний режим)"
 
-#: core/dmidecode/dmidecode.c:5801
+#: core/dmidecode/dmidecode.c:5806
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: core/dmidecode/libdmidecode.cpp:47
+#: core/dmidecode/libdmidecode.cpp:50
 msgid "Calling dmidecode"
 msgstr "Виклик dmidecode"
 
-#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#: core/dmidecode/libdmidecode.cpp:92 core/dmidecode/libdmidecode.cpp:111
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (налаштовано)"
 
-#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#: core/dmidecode/libdmidecode.cpp:99 core/dmidecode/libdmidecode.cpp:118
 #, c-format
 msgid "%s (max)"
 msgstr "%s (макс.)"
 
-#: core/dmidecode/libdmidecode.cpp:101
+#: core/dmidecode/libdmidecode.cpp:104
 #, c-format
 msgid "%s (min)"
 msgstr "%s (мін.)"
@@ -713,7 +840,7 @@ msgstr "Ліцензія"
 msgid "This software is distributed under the terms of %s"
 msgstr "Дане програмне забезпечення поширюється на умовах %s"
 
-#: data.cpp:779 main.cpp:172
+#: data.cpp:779 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Дане программне забезпечення надається БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ"
 
@@ -995,109 +1122,113 @@ msgstr "Запуск"
 msgid "Duration"
 msgstr "Тривалість"
 
-#: main.cpp:61
+#: main.cpp:60
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Запустити графічний інтерфейс (GUI) (за замовчуванням)"
 
-#: main.cpp:62
+#: main.cpp:61
 msgid "Start text-based user interface (TUI)"
 msgstr "Запустити текстовий інтерфейс (TUI)"
 
-#: main.cpp:63
+#: main.cpp:62
 msgid "Dump all data on standard output and exit"
 msgstr "Скинути всі дані на стандартнe виведення (stdout) і вийти"
 
+#: main.cpp:63
+msgid ""
+"Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
+"arguments accepted by dmidecode)"
+msgstr ""
+
 #: main.cpp:64
-msgid "Run embedded command dmidecode and exit"
-msgstr "Запустити вбудовану команду dmidecode і вийти"
+msgid ""
+"Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
+"arguments accepted by bandwidth)"
+msgstr ""
 
 #: main.cpp:65
-msgid "Run embedded command bandwidth and exit"
-msgstr "Запустити вбудовану команду bandwidth і вийти"
-
-#: main.cpp:66
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
 "Встановити одиниці вимірювання температури (к[ельсій]|ф[аренгейт]|к[ельвін]|"
 "р[анкін])"
 
-#: main.cpp:67
+#: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Встановити час між двома оновленнями (в секундах)"
 
-#: main.cpp:68
+#: main.cpp:67
 msgid "Set default tab (integer)"
 msgstr "Встановити вкладку за замовчуванням (ціле число)"
 
-#: main.cpp:69
+#: main.cpp:68
 msgid "Select core type to monitor (integer)"
 msgstr "Виберіть тип ядра для моніторингу (ціле число)"
 
-#: main.cpp:70
+#: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
 msgstr "Обрати ядро ЦП для моніторингу (ціле число)"
 
-#: main.cpp:71
+#: main.cpp:70
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "Встановити тест швидкості пропускної здатності кешу ЦП (ціле число)"
 
-#: main.cpp:72
+#: main.cpp:71
 msgid "Select default memory stick (integer)"
 msgstr "Виберіть карту пам’яті за замовчуванням (ціле число)"
 
-#: main.cpp:73
+#: main.cpp:72
 msgid "Select default graphic card (integer)"
 msgstr "Оберіть графічну карту за замовчуванням (ціле число)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
+#: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "Запуск і підключення до демону"
 
-#: main.cpp:75
+#: main.cpp:74
 msgid "Verbose output"
 msgstr "Розширений опис дій"
 
-#: main.cpp:76
+#: main.cpp:75
 msgid "Print help and exit"
 msgstr "Показати допомогу і вийти"
 
-#: main.cpp:77
+#: main.cpp:76
 msgid "Print version and exit"
 msgstr "Показати версію і вийти"
 
-#: main.cpp:78
+#: main.cpp:77
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "Показувати значення CPUID в десятковій системі (за замовчуванням - "
 "шістнадцяткова)"
 
-#: main.cpp:79
+#: main.cpp:78
 msgid "Disable colored output"
 msgstr "Вимкнути колірний вивід"
 
-#: main.cpp:80
+#: main.cpp:79
 msgid "Print information for debugging"
 msgstr "Показати інформацію для налагодження"
 
-#: main.cpp:81
+#: main.cpp:80
 msgid "Print required information to paste in an issue"
 msgstr "Показати інформацію, необхідну для вставки у звіт про прмилку"
 
-#: main.cpp:82
+#: main.cpp:81
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Встановити комбінації клавіш для режиму NCurses (a [rrows] | e [macs] | i "
 "[nverted-T] | v [im])"
 
-#: main.cpp:93
+#: main.cpp:92
 msgid "Add default command line arguments"
 msgstr "Додати аргументи командного рядка за замовчуванням"
 
-#: main.cpp:94
+#: main.cpp:93
 msgid "Enforce the bus clock"
 msgstr "Задати тактову частоту шини"
 
-#: main.cpp:95
+#: main.cpp:94
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
@@ -1105,48 +1236,48 @@ msgstr ""
 "Ігнорувати значення ЦП, які повідомляє libcpuid (значення, розділені комами "
 "серед «temp», «volt», «freq» і «mult»)"
 
-#: main.cpp:96
+#: main.cpp:95
 msgid "Read CPUID raw data from a given file"
 msgstr "Зчитати неопрацьовані дані CPUID з файлу"
 
-#: main.cpp:122
+#: main.cpp:121
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Використання: %s ПОКАЗАТИ [ОПЦІЇ]\n"
 
-#: main.cpp:123
+#: main.cpp:122
 msgid "Available DISPLAY:"
 msgstr "Доступний ДИСПЛЕЙ:"
 
-#: main.cpp:131
+#: main.cpp:130
 msgid "Available OPTIONS:"
 msgstr "Доступні ОПЦІЇ:"
 
-#: main.cpp:140
+#: main.cpp:139
 msgid "Influenceable environment variables:"
 msgstr "Змінні середовища, які можна корегувати:"
 
-#: main.cpp:171
+#: main.cpp:170
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Це вільне програмне забезпечення: Ви можете його змінювати і поширювати."
 
-#: main.cpp:173
+#: main.cpp:172
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Переглянути ліцензію %s: <%s>\n"
 
-#: main.cpp:180
+#: main.cpp:179
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- Версія %-11s: %s"
 
-#: main.cpp:356
+#: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr "Запис журналу у файл '%s'..."
 
-#: main.cpp:408
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1156,7 +1287,7 @@ msgstr ""
 "\n"
 "Ой, щось пішло не так! %s (PID %i) отримав сигнал %d (%s) і вийшов з ладу."
 
-#: main.cpp:410
+#: main.cpp:415
 #, c-format
 msgid ""
 "\n"
@@ -1167,12 +1298,12 @@ msgstr ""
 "Ой, щось пішло не так! %s (PID %i) отримав сигнал %d (%s) і намагається "
 "відновитися."
 
-#: main.cpp:434
+#: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Ви можете відкрити новий issue тут, заповнивши шаблон відповідно до запиту:"
 
-#: main.cpp:475
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "помилка при встановленні локалізації"
 
@@ -1451,68 +1582,92 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Неможливо встановити %s термінал (err=%i); поворот до %s"
 
-#: util.cpp:189
+#: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "не вдається знайти елемент в рядку '%s' на позиції %i"
 
-#: util.cpp:276
+#: util.cpp:312
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "сталася помилка під час відкриття файлу \"%s\""
 
-#: util.cpp:321
+#: util.cpp:357
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "сталася помилка під час виконання команди \"%s\""
 
-#: util.cpp:461
+#: util.cpp:497
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() не підтримується у цій операційній системі"
 
-#: util.hpp:77
+#: util.hpp:78
 msgid "bytes"
 msgstr "байти"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: util.hpp:80
+#: util.hpp:81
 msgid "kB"
 msgstr "кБ"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: util.hpp:82
+#: util.hpp:83
 msgid "MB"
 msgstr "МБ"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: util.hpp:84
+#: util.hpp:85
 msgid "GB"
 msgstr "ГБ"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: util.hpp:86
+#: util.hpp:87
 msgid "TB"
 msgstr "ТБ"
 
-#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
+msgid "PB"
+msgstr ""
+
+#. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
+#: util.hpp:91
+msgid "EB"
+msgstr ""
+
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#: util.hpp:94
 msgid "KiB"
 msgstr "КіБ"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: util.hpp:91
+#: util.hpp:96
 msgid "MiB"
 msgstr "МіБ"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: util.hpp:93
+#: util.hpp:98
 msgid "GiB"
 msgstr "ГіБ"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: util.hpp:95
+#: util.hpp:100
 msgid "TiB"
 msgstr "ТіБ"
+
+#. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
+#: util.hpp:102
+#, fuzzy
+#| msgid "KiB"
+msgid "PiB"
+msgstr "КіБ"
+
+#. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
+#: util.hpp:104
+#, fuzzy
+#| msgid "KiB"
+msgid "EiB"
+msgstr "КіБ"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1607,6 +1762,12 @@ msgstr "Збирає інформацію про процесор, матери�
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "ЦП;система;ядро;швидкість;тактова частота;Intel;AMD;материнська плата;"
+
+#~ msgid "Run embedded command dmidecode and exit"
+#~ msgstr "Запустити вбудовану команду dmidecode і вийти"
+
+#~ msgid "Run embedded command bandwidth and exit"
+#~ msgstr "Запустити вбудовану команду bandwidth і вийти"
 
 #, c-format
 #~ msgid ""

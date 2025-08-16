@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-05-15 16:08+0000\n"
+"POT-Creation-Date: 2025-08-16 17:47+0000\n"
 "PO-Revision-Date: 2025-04-28 12:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -21,11 +21,138 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:54
+#: core/bandwidth/libbandwidth.cpp:55
 msgid "Calling bandwidth"
 msgstr "அலைவரிசையை அழைக்கிறது"
 
-#: core/bandwidth/main.c:2992
+#: core/bandwidth/main.c:1467
+#, c-format
+msgid "Sequential %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1468
+msgid "Sequential 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1469
+msgid "Sequential 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1470
+msgid "Sequential 512-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1472
+#, c-format
+msgid "Sequential %i-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1473
+msgid "Sequential 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1474
+msgid "Sequential 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1475
+msgid "Sequential 512-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1477
+#, c-format
+msgid "Sequential %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1478
+msgid "Sequential 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1479
+msgid "Sequential 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1480
+msgid "Sequential 512-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1482
+#, c-format
+msgid "Sequential %i-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1483
+msgid "Sequential 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1484
+msgid "Sequential 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1485
+msgid "Sequential 512-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1487
+#, c-format
+msgid "Random %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1488
+msgid "Random 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1489
+msgid "Random 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1491
+msgid "Random 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1492
+msgid "Random 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1494
+#, c-format
+msgid "Random %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1495
+msgid "Random 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1496
+msgid "Random 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1498
+msgid "Random 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1499
+msgid "Random 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1501
+#, c-format
+msgid "Sequential %i-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1502
+msgid "Sequential 128-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1503
+msgid "Sequential 256-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1504
+msgid "Sequential 512-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1524
 msgid "(unavailable)"
 msgstr "(கிடைக்கவில்லை)"
 
@@ -133,25 +260,25 @@ msgstr "ஃபால்பேக் பயன்முறையில் CPU அ
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU அதிர்வெண்ணை மீட்டெடுக்க முடியவில்லை (ஃபால்பேக் பயன்முறை)"
 
-#: core/dmidecode/dmidecode.c:5801
+#: core/dmidecode/dmidecode.c:5806
 msgid "Unknown"
 msgstr "தெரியவில்லை"
 
-#: core/dmidecode/libdmidecode.cpp:47
+#: core/dmidecode/libdmidecode.cpp:50
 msgid "Calling dmidecode"
 msgstr "dmidecode ஐ அழைக்கிறது"
 
-#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#: core/dmidecode/libdmidecode.cpp:92 core/dmidecode/libdmidecode.cpp:111
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (கட்டமைக்கப்பட்டது)"
 
-#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#: core/dmidecode/libdmidecode.cpp:99 core/dmidecode/libdmidecode.cpp:118
 #, c-format
 msgid "%s (max)"
 msgstr "%s (அதிகபட்சம்)"
 
-#: core/dmidecode/libdmidecode.cpp:101
+#: core/dmidecode/libdmidecode.cpp:104
 #, c-format
 msgid "%s (min)"
 msgstr "%s (குறைந்தபட்சம்)"
@@ -698,7 +825,7 @@ msgstr "உரிமம்"
 msgid "This software is distributed under the terms of %s"
 msgstr "இந்த மென்பொருள் %s விதிமுறைகளின் கீழ் விநியோகிக்கப்படுகிறது"
 
-#: data.cpp:779 main.cpp:172
+#: data.cpp:779 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "This திட்டம் comes with ABSOLUTELY இல்லை WARRANTY"
 
@@ -980,104 +1107,108 @@ msgstr "ஓடு"
 msgid "Duration"
 msgstr "கால அளவு"
 
-#: main.cpp:61
+#: main.cpp:60
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "தொடங்கு graphical பயனர் இடைமுகம் (GUI) (default)"
 
-#: main.cpp:62
+#: main.cpp:61
 msgid "Start text-based user interface (TUI)"
 msgstr "தொடங்கு text-based பயனர் இடைமுகம் (TUI)"
 
-#: main.cpp:63
+#: main.cpp:62
 msgid "Dump all data on standard output and exit"
 msgstr "Dump அனைத்தும் தகவல்கள் on தரநிலை output and exit"
 
+#: main.cpp:63
+msgid ""
+"Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
+"arguments accepted by dmidecode)"
+msgstr ""
+
 #: main.cpp:64
-msgid "Run embedded command dmidecode and exit"
-msgstr "ஓடு embedded கட்டளை dmidecode and exit"
+msgid ""
+"Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
+"arguments accepted by bandwidth)"
+msgstr ""
 
 #: main.cpp:65
-msgid "Run embedded command bandwidth and exit"
-msgstr "ஓடு embedded கட்டளை பட்டை அகலம் and exit"
-
-#: main.cpp:66
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr "கணம் temperature அலகு (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
-#: main.cpp:67
+#: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "கணம் தனிப்பயன் time between two refreshes (in seconds)"
 
-#: main.cpp:68
+#: main.cpp:67
 msgid "Set default tab (integer)"
 msgstr "கணம் இயல்புநிலை தாவல் (integer)"
 
-#: main.cpp:69
+#: main.cpp:68
 msgid "Select core type to monitor (integer)"
 msgstr "தேர்ந்தெடு வயிரம் வகை பெறுநர் monitor (integer)"
 
-#: main.cpp:70
+#: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
 msgstr "தேர்ந்தெடு சிபியு வயிரம் பெறுநர் monitor (integer)"
 
-#: main.cpp:71
+#: main.cpp:70
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "கணம் தனிப்பயன் பட்டை அகலம் தேர்வு க்கு சிபியு caches விரைவு (integer)"
 
-#: main.cpp:72
+#: main.cpp:71
 msgid "Select default memory stick (integer)"
 msgstr "தேர்ந்தெடு இயல்புநிலை memory stick (integer)"
 
-#: main.cpp:73
+#: main.cpp:72
 msgid "Select default graphic card (integer)"
 msgstr "தேர்ந்தெடு இயல்புநிலை graphic card (integer)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
+#: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "தொடங்கு and இணை பெறுநர் daemon"
 
-#: main.cpp:75
+#: main.cpp:74
 msgid "Verbose output"
 msgstr "சொற்களஞ்சியம் வெளியீடு"
 
-#: main.cpp:76
+#: main.cpp:75
 msgid "Print help and exit"
 msgstr "அச்சிடுக உதவி and exit"
 
-#: main.cpp:77
+#: main.cpp:76
 msgid "Print version and exit"
 msgstr "அச்சிடுக version and exit"
 
-#: main.cpp:78
+#: main.cpp:77
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "அச்சிடுக CPUID values in decimal (default is hexadeximal)"
 
-#: main.cpp:79
+#: main.cpp:78
 msgid "Disable colored output"
 msgstr "முடக்கு colored output"
 
-#: main.cpp:80
+#: main.cpp:79
 msgid "Print information for debugging"
 msgstr "அச்சிடுக செய்தி க்கு debugging"
 
-#: main.cpp:81
+#: main.cpp:80
 msgid "Print required information to paste in an issue"
 msgstr "அச்சிடுக required செய்தி பெறுநர் ஒட்டு in an சிக்கல்"
 
-#: main.cpp:82
+#: main.cpp:81
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "கணம் key கோர்ப்பு க்கு NCurses பயன்முறை (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 
-#: main.cpp:93
+#: main.cpp:92
 msgid "Add default command line arguments"
 msgstr "கூட்டு இயல்புநிலை கட்டளை வரி arguments"
 
-#: main.cpp:94
+#: main.cpp:93
 msgid "Enforce the bus clock"
 msgstr "Enforce the bus கடிகை"
 
-#: main.cpp:95
+#: main.cpp:94
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
@@ -1085,48 +1216,48 @@ msgstr ""
 "லிப்க்பூயிட் ('டெம்ப்', 'வோல்ட்', 'ஃப்ரீக்' மற்றும் 'பல' ஆகியவற்றில் கமாவால் பிரிக்கப்பட்ட "
 "மதிப்புகள் என அறிவிக்கப்பட்ட சிபியு மதிப்புகளை புறக்கணிக்கவும்)"
 
-#: main.cpp:96
+#: main.cpp:95
 msgid "Read CPUID raw data from a given file"
 msgstr "Read CPUID raw தகவல்கள் இருந்து a given கோப்பு"
 
-#: main.cpp:122
+#: main.cpp:121
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "பயன்பாடு: %s காட்சி [விருப்பங்கள்]\n"
 
-#: main.cpp:123
+#: main.cpp:122
 msgid "Available DISPLAY:"
 msgstr "கிடைக்கும் காட்சி:"
 
-#: main.cpp:131
+#: main.cpp:130
 msgid "Available OPTIONS:"
 msgstr "கிடைக்கும் விருப்பங்கள்:"
 
-#: main.cpp:140
+#: main.cpp:139
 msgid "Influenceable environment variables:"
 msgstr "செல்வாக்கு செலுத்தக்கூடிய சுற்றுச்சூழல் மாறிகள்:"
 
-#: main.cpp:171
+#: main.cpp:170
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "இது இலவச மென்பொருள்: அதை மாற்றவும் மறுபகிர்வு செய்யவும் நீங்கள் சுதந்திரமாக இருக்கிறீர்கள்."
 
-#: main.cpp:173
+#: main.cpp:172
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s உரிமத்தைக் காண்க: < %s>\n"
 
-#: main.cpp:180
+#: main.cpp:179
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s பதிப்பு: %s"
 
-#: main.cpp:356
+#: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr ""
 
-#: main.cpp:408
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1136,7 +1267,7 @@ msgstr ""
 "\n"
 "அச்சச்சோ, ஏதோ தவறு! %s(பிஐடி %i) சிக்னல் %d (%s) ஐப் பெற்றுள்ளன, மேலும் செயலிழந்தன."
 
-#: main.cpp:410
+#: main.cpp:415
 #, c-format
 msgid ""
 "\n"
@@ -1147,11 +1278,11 @@ msgstr ""
 "அச்சச்சோ, ஏதோ தவறு! %s (பிஐடி %i) சமிக்ஞை %d (%s) ஐப் பெற்றுள்ளன, மேலும் மீட்க "
 "முயற்சிக்கிறது."
 
-#: main.cpp:434
+#: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "கோரியபடி வார்ப்புருவை நிரப்புவதன் மூலம், புதிய சிக்கலை இங்கே திறக்கலாம்:"
 
-#: main.cpp:475
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "இருப்பிடத்தை அமைக்கும் போது பிழை ஏற்பட்டது"
 
@@ -1415,68 +1546,92 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "%s முனையத்தை அமைப்பதில் தோல்வி (பிழை = %i); %s க்கு விழும்"
 
-#: util.cpp:189
+#: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "'%s' சரத்தில் %i நிலையில் அலகு கண்டுபிடிக்க முடியவில்லை"
 
-#: util.cpp:276
+#: util.cpp:312
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "'%s' கோப்பைத் திறக்கும்போது பிழை ஏற்பட்டது"
 
-#: util.cpp:321
+#: util.cpp:357
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "'%s' கட்டளையை இயக்கும் போது பிழை ஏற்பட்டது"
 
-#: util.cpp:461
+#: util.cpp:497
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "இந்த இயக்க முறைமையில் set_cpu_affinity () ஆதரிக்கப்படவில்லை"
 
-#: util.hpp:77
+#: util.hpp:78
 msgid "bytes"
 msgstr "பைட்டுகள்"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: util.hpp:80
+#: util.hpp:81
 msgid "kB"
 msgstr "கே.பி."
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: util.hpp:82
+#: util.hpp:83
 msgid "MB"
 msgstr "எம்பி"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: util.hpp:84
+#: util.hpp:85
 msgid "GB"
 msgstr "சிபி"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: util.hpp:86
+#: util.hpp:87
 msgid "TB"
 msgstr "காசநோய்"
 
-#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
+msgid "PB"
+msgstr ""
+
+#. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
+#: util.hpp:91
+msgid "EB"
+msgstr ""
+
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#: util.hpp:94
 msgid "KiB"
 msgstr "வினோதமாக"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: util.hpp:91
+#: util.hpp:96
 msgid "MiB"
 msgstr "Mib"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: util.hpp:93
+#: util.hpp:98
 msgid "GiB"
 msgstr "கிப்"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: util.hpp:95
+#: util.hpp:100
 msgid "TiB"
 msgstr "திப்"
+
+#. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
+#: util.hpp:102
+#, fuzzy
+#| msgid "KiB"
+msgid "PiB"
+msgstr "வினோதமாக"
+
+#. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
+#: util.hpp:104
+#, fuzzy
+#| msgid "KiB"
+msgid "EiB"
+msgstr "வினோதமாக"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1571,6 +1726,12 @@ msgstr "CPU, மதர்போர்டு மற்றும் பலவற�
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU; அமைப்பு; கோர்; வேகம்; கடிகாரம்; வீதம்; இன்டெல்; AMD; மதர்போர்டு;"
+
+#~ msgid "Run embedded command dmidecode and exit"
+#~ msgstr "ஓடு embedded கட்டளை dmidecode and exit"
+
+#~ msgid "Run embedded command bandwidth and exit"
+#~ msgstr "ஓடு embedded கட்டளை பட்டை அகலம் and exit"
 
 #, c-format
 #~ msgid ""

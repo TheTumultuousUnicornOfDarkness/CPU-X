@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-05-15 16:08+0000\n"
+"POT-Creation-Date: 2025-08-16 17:47+0000\n"
 "PO-Revision-Date: 2025-04-01 21:52+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -26,11 +26,138 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:54
+#: core/bandwidth/libbandwidth.cpp:55
 msgid "Calling bandwidth"
 msgstr "帯域幅を呼び出し中"
 
-#: core/bandwidth/main.c:2992
+#: core/bandwidth/main.c:1467
+#, c-format
+msgid "Sequential %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1468
+msgid "Sequential 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1469
+msgid "Sequential 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1470
+msgid "Sequential 512-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1472
+#, c-format
+msgid "Sequential %i-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1473
+msgid "Sequential 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1474
+msgid "Sequential 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1475
+msgid "Sequential 512-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1477
+#, c-format
+msgid "Sequential %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1478
+msgid "Sequential 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1479
+msgid "Sequential 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1480
+msgid "Sequential 512-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1482
+#, c-format
+msgid "Sequential %i-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1483
+msgid "Sequential 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1484
+msgid "Sequential 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1485
+msgid "Sequential 512-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1487
+#, c-format
+msgid "Random %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1488
+msgid "Random 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1489
+msgid "Random 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1491
+msgid "Random 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1492
+msgid "Random 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1494
+#, c-format
+msgid "Random %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1495
+msgid "Random 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1496
+msgid "Random 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1498
+msgid "Random 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1499
+msgid "Random 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1501
+#, c-format
+msgid "Sequential %i-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1502
+msgid "Sequential 128-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1503
+msgid "Sequential 256-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1504
+msgid "Sequential 512-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1524
 msgid "(unavailable)"
 msgstr "(利用不可)"
 
@@ -138,25 +265,25 @@ msgstr "fallback モードでCPU クロック周波数の取得"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "CPU クロック周波数の取得に失敗（fallback モード）"
 
-#: core/dmidecode/dmidecode.c:5801
+#: core/dmidecode/dmidecode.c:5806
 msgid "Unknown"
 msgstr "不明"
 
-#: core/dmidecode/libdmidecode.cpp:47
+#: core/dmidecode/libdmidecode.cpp:50
 msgid "Calling dmidecode"
 msgstr "dmidecode を呼び出し中"
 
-#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#: core/dmidecode/libdmidecode.cpp:92 core/dmidecode/libdmidecode.cpp:111
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (設定値)"
 
-#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#: core/dmidecode/libdmidecode.cpp:99 core/dmidecode/libdmidecode.cpp:118
 #, c-format
 msgid "%s (max)"
 msgstr "%s (最大)"
 
-#: core/dmidecode/libdmidecode.cpp:101
+#: core/dmidecode/libdmidecode.cpp:104
 #, c-format
 msgid "%s (min)"
 msgstr "%s (最小)"
@@ -711,7 +838,7 @@ msgstr "ライセンス"
 msgid "This software is distributed under the terms of %s"
 msgstr "このソフトウェアは%sのもとで配布されています"
 
-#: data.cpp:779 main.cpp:172
+#: data.cpp:779 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "このプログラムには一切保証がありません"
 
@@ -993,105 +1120,109 @@ msgstr "実行"
 msgid "Duration"
 msgstr "デュレーション"
 
-#: main.cpp:61
+#: main.cpp:60
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "グラフィカルユーザインタフェース（GUI）を開始する（デフォルト）"
 
-#: main.cpp:62
+#: main.cpp:61
 msgid "Start text-based user interface (TUI)"
 msgstr "テキストユーザインタフェース（TUI）を開始する"
 
-#: main.cpp:63
+#: main.cpp:62
 msgid "Dump all data on standard output and exit"
 msgstr "すべてのデータを標準出力にダンプして終了する"
 
+#: main.cpp:63
+msgid ""
+"Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
+"arguments accepted by dmidecode)"
+msgstr ""
+
 #: main.cpp:64
-msgid "Run embedded command dmidecode and exit"
-msgstr "埋め込みコマンド dmidecode を実行して終了します"
+msgid ""
+"Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
+"arguments accepted by bandwidth)"
+msgstr ""
 
 #: main.cpp:65
-msgid "Run embedded command bandwidth and exit"
-msgstr "埋め込みコマンド bandwidth を実行して終了します"
-
-#: main.cpp:66
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr "温度の単位を設定する (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
-#: main.cpp:67
+#: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "更新の間隔を設定します（秒）"
 
-#: main.cpp:68
+#: main.cpp:67
 msgid "Set default tab (integer)"
 msgstr "デフォルトのタブを設定します（整数）"
 
-#: main.cpp:69
+#: main.cpp:68
 msgid "Select core type to monitor (integer)"
 msgstr "モニターするコアタイプを選択します（整数）"
 
-#: main.cpp:70
+#: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
 msgstr "モニターするCPUコアを選択します（整数）"
 
-#: main.cpp:71
+#: main.cpp:70
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr "CPUキャッシュ速度の帯域幅テストを設定します（整数）"
 
-#: main.cpp:72
+#: main.cpp:71
 msgid "Select default memory stick (integer)"
 msgstr "デフォルトのメモリースティックを選択（整数）"
 
-#: main.cpp:73
+#: main.cpp:72
 msgid "Select default graphic card (integer)"
 msgstr "デフォルトのグラフィックカードの選択（整数）"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
+#: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "起動時にデーモンを開始する"
 
-#: main.cpp:75
+#: main.cpp:74
 msgid "Verbose output"
 msgstr "詳細な出力を有効化します"
 
-#: main.cpp:76
+#: main.cpp:75
 msgid "Print help and exit"
 msgstr "ヘルプメッセージを表示して終了します"
 
-#: main.cpp:77
+#: main.cpp:76
 msgid "Print version and exit"
 msgstr "バージョンを表示して終了します"
 
-#: main.cpp:78
+#: main.cpp:77
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr "CPUIDの値を10進数で表示します (デフォルトでは16進数です)"
 
-#: main.cpp:79
+#: main.cpp:78
 msgid "Disable colored output"
 msgstr "色のついた出力を無効化します"
 
-#: main.cpp:80
+#: main.cpp:79
 msgid "Print information for debugging"
 msgstr "デバッグのための情報を表示します"
 
-#: main.cpp:81
+#: main.cpp:80
 msgid "Print required information to paste in an issue"
 msgstr "Issueに貼り付けるために必要な情報を表示します"
 
-#: main.cpp:82
+#: main.cpp:81
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "NCursesモードのキーマッピングを設定します(a[rrows]|e[macs]|i[nverted-T]|"
 "v[im])"
 
-#: main.cpp:93
+#: main.cpp:92
 msgid "Add default command line arguments"
 msgstr "デフォルトのコマンドライン引数を追加します"
 
-#: main.cpp:94
+#: main.cpp:93
 msgid "Enforce the bus clock"
 msgstr "バスクロックを適用する"
 
-#: main.cpp:95
+#: main.cpp:94
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
@@ -1099,47 +1230,47 @@ msgstr ""
 "libcpuid が報告する CPU の値（'temp', 'volt', 'freq', 'mult' をカンマ区切りに"
 "した値）を無視する"
 
-#: main.cpp:96
+#: main.cpp:95
 msgid "Read CPUID raw data from a given file"
 msgstr "生のCPUIDデータを与えられたファイルから読み込みます"
 
-#: main.cpp:122
+#: main.cpp:121
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "使い方: %s 表示（オプション）\n"
 
-#: main.cpp:123
+#: main.cpp:122
 msgid "Available DISPLAY:"
 msgstr "利用可能な表示方法:"
 
-#: main.cpp:131
+#: main.cpp:130
 msgid "Available OPTIONS:"
 msgstr "利用可能なオプション:"
 
-#: main.cpp:140
+#: main.cpp:139
 msgid "Influenceable environment variables:"
 msgstr "影響力のある環境変数:"
 
-#: main.cpp:171
+#: main.cpp:170
 msgid "This is free software: you are free to change and redistribute it."
 msgstr "これはフリーソフトウェアです: 自由に変更して再配布することができます。"
 
-#: main.cpp:173
+#: main.cpp:172
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "%s ライセンスを見てください: <%s>\n"
 
-#: main.cpp:180
+#: main.cpp:179
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s バージョン: %s"
 
-#: main.cpp:356
+#: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr ""
 
-#: main.cpp:408
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1150,7 +1281,7 @@ msgstr ""
 "問題が発生しました！ %s (PID %i) がシグナル %d (%s) を受信してクラッシュしま"
 "した。"
 
-#: main.cpp:410
+#: main.cpp:415
 #, c-format
 msgid ""
 "\n"
@@ -1161,11 +1292,11 @@ msgstr ""
 "問題が発生しました！ %s (PID %i) はシグナル %d (%s) を受信し、回復を試みてい"
 "ます。"
 
-#: main.cpp:434
+#: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr "ここで新しい問題をテンプレートを使って報告することが出来ます。"
 
-#: main.cpp:475
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "ロケールの設定中にエラーが発生しました"
 
@@ -1428,69 +1559,93 @@ msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr ""
 "ターミナル %s のセットアップに失敗しました（エラー%i）; %sにFalbackします"
 
-#: util.cpp:189
+#: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "「%s」の %i 番目の文字列にはユニットがない"
 
-#: util.cpp:276
+#: util.cpp:312
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "ファイル '%s' を開くときにエラーが発生しました"
 
-#: util.cpp:321
+#: util.cpp:357
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "コマンド '%s' の実行中にエラーが発生しました"
 
-#: util.cpp:461
+#: util.cpp:497
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 "set_cpu_affinity() はこのオペレーティング システムではサポートされていません"
 
-#: util.hpp:77
+#: util.hpp:78
 msgid "bytes"
 msgstr "bytes"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: util.hpp:80
+#: util.hpp:81
 msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: util.hpp:82
+#: util.hpp:83
 msgid "MB"
 msgstr "MB"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: util.hpp:84
+#: util.hpp:85
 msgid "GB"
 msgstr "GB"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: util.hpp:86
+#: util.hpp:87
 msgid "TB"
 msgstr "TB"
 
-#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
+msgid "PB"
+msgstr ""
+
+#. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
+#: util.hpp:91
+msgid "EB"
+msgstr ""
+
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#: util.hpp:94
 msgid "KiB"
 msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: util.hpp:91
+#: util.hpp:96
 msgid "MiB"
 msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: util.hpp:93
+#: util.hpp:98
 msgid "GiB"
 msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: util.hpp:95
+#: util.hpp:100
 msgid "TiB"
 msgstr "TiB"
+
+#. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
+#: util.hpp:102
+#, fuzzy
+#| msgid "KiB"
+msgid "PiB"
+msgstr "KiB"
+
+#. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
+#: util.hpp:104
+#, fuzzy
+#| msgid "KiB"
+msgid "EiB"
+msgstr "KiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1585,6 +1740,12 @@ msgstr "CPU、マザーボードなどの情報を収集する"
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr "CPU;システム;コア;速度;クロック;レート;Intel;AMD;マザーボード;"
+
+#~ msgid "Run embedded command dmidecode and exit"
+#~ msgstr "埋め込みコマンド dmidecode を実行して終了します"
+
+#~ msgid "Run embedded command bandwidth and exit"
+#~ msgstr "埋め込みコマンド bandwidth を実行して終了します"
 
 #, c-format
 #~ msgid ""

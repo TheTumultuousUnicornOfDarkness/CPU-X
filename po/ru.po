@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-05-15 16:08+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-08-16 17:47+0000\n"
 "PO-Revision-Date: 2025-07-17 13:01+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
@@ -32,15 +32,142 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:54
+#: core/bandwidth/libbandwidth.cpp:55
 msgid "Calling bandwidth"
 msgstr "Вызов bandwidth"
 
-#: core/bandwidth/main.c:2992
+#: core/bandwidth/main.c:1467
+#, c-format
+msgid "Sequential %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1468
+msgid "Sequential 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1469
+msgid "Sequential 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1470
+msgid "Sequential 512-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1472
+#, c-format
+msgid "Sequential %i-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1473
+msgid "Sequential 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1474
+msgid "Sequential 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1475
+msgid "Sequential 512-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1477
+#, c-format
+msgid "Sequential %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1478
+msgid "Sequential 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1479
+msgid "Sequential 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1480
+msgid "Sequential 512-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1482
+#, c-format
+msgid "Sequential %i-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1483
+msgid "Sequential 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1484
+msgid "Sequential 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1485
+msgid "Sequential 512-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1487
+#, c-format
+msgid "Random %i-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1488
+msgid "Random 128-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1489
+msgid "Random 256-bit reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1491
+msgid "Random 128-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1492
+msgid "Random 256-bit nontemporal reads"
+msgstr ""
+
+#: core/bandwidth/main.c:1494
+#, c-format
+msgid "Random %i-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1495
+msgid "Random 128-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1496
+msgid "Random 256-bit writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1498
+msgid "Random 128-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1499
+msgid "Random 256-bit nontemporal writes"
+msgstr ""
+
+#: core/bandwidth/main.c:1501
+#, c-format
+msgid "Sequential %i-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1502
+msgid "Sequential 128-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1503
+msgid "Sequential 256-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1504
+msgid "Sequential 512-bit copy"
+msgstr ""
+
+#: core/bandwidth/main.c:1524
 msgid "(unavailable)"
 msgstr "(недоступно)"
 
@@ -148,25 +275,25 @@ msgstr "Получение частоты ЦП в запасном режиме"
 msgid "failed to retrieve CPU frequency (fallback mode)"
 msgstr "не удалось получить частоту ЦП (запасной режим)"
 
-#: core/dmidecode/dmidecode.c:5801
+#: core/dmidecode/dmidecode.c:5806
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: core/dmidecode/libdmidecode.cpp:47
+#: core/dmidecode/libdmidecode.cpp:50
 msgid "Calling dmidecode"
 msgstr "Вызывается dmidecode"
 
-#: core/dmidecode/libdmidecode.cpp:89 core/dmidecode/libdmidecode.cpp:108
+#: core/dmidecode/libdmidecode.cpp:92 core/dmidecode/libdmidecode.cpp:111
 #, c-format
 msgid "%s (configured)"
 msgstr "%s (задано)"
 
-#: core/dmidecode/libdmidecode.cpp:96 core/dmidecode/libdmidecode.cpp:115
+#: core/dmidecode/libdmidecode.cpp:99 core/dmidecode/libdmidecode.cpp:118
 #, c-format
 msgid "%s (max)"
 msgstr "%s (макс.)"
 
-#: core/dmidecode/libdmidecode.cpp:101
+#: core/dmidecode/libdmidecode.cpp:104
 #, c-format
 msgid "%s (min)"
 msgstr "%s (мин.)"
@@ -719,7 +846,7 @@ msgstr "Лицензия"
 msgid "This software is distributed under the terms of %s"
 msgstr "Эта программа распространяется на условиях %s"
 
-#: data.cpp:779 main.cpp:172
+#: data.cpp:779 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Эта программа предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ"
 
@@ -1001,110 +1128,114 @@ msgstr "Запустить"
 msgid "Duration"
 msgstr "Длительность"
 
-#: main.cpp:61
+#: main.cpp:60
 msgid "Start graphical user interface (GUI) (default)"
 msgstr "Запустить графический интерфейс (GUI) (по умолчанию)"
 
-#: main.cpp:62
+#: main.cpp:61
 msgid "Start text-based user interface (TUI)"
 msgstr "Запустить текстовый интерфейс (TUI)"
 
-#: main.cpp:63
+#: main.cpp:62
 msgid "Dump all data on standard output and exit"
 msgstr "Вывести все данные в стандартный вывод и выйти"
 
+#: main.cpp:63
+msgid ""
+"Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
+"arguments accepted by dmidecode)"
+msgstr ""
+
 #: main.cpp:64
-msgid "Run embedded command dmidecode and exit"
-msgstr "Запустить встроенную команду dmidecode и выйти"
+msgid ""
+"Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
+"arguments accepted by bandwidth)"
+msgstr ""
 
 #: main.cpp:65
-msgid "Run embedded command bandwidth and exit"
-msgstr "Запустить встроенную команду bandwidth и выйти"
-
-#: main.cpp:66
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 msgstr ""
 "Задать единицу измерения температуры (c[elsius]|f[ahrenheit]|k[elvin]|"
 "r[ankine])"
 
-#: main.cpp:67
+#: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
 msgstr "Установить время между обновлениями (в секундах)"
 
-#: main.cpp:68
+#: main.cpp:67
 msgid "Set default tab (integer)"
 msgstr "Установить вкладку по умолчанию (целое число)"
 
-#: main.cpp:69
+#: main.cpp:68
 msgid "Select core type to monitor (integer)"
 msgstr "Выберите тип ядра для мониторинга (целое число)"
 
-#: main.cpp:70
+#: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
 msgstr "Выберите ядро ЦП для мониторинга (целое число)"
 
-#: main.cpp:71
+#: main.cpp:70
 msgid "Set custom bandwidth test for CPU caches speed (integer)"
 msgstr ""
 "Установить тест пропускной способности для скорости кэша ЦП (целое число)"
 
-#: main.cpp:72
+#: main.cpp:71
 msgid "Select default memory stick (integer)"
 msgstr "Выберите модуль памяти по умолчанию (целое число)"
 
-#: main.cpp:73
+#: main.cpp:72
 msgid "Select default graphic card (integer)"
 msgstr "Выбрать графическую карту по умолчанию (целое число)"
 
-#: main.cpp:74 cpu-x-gtk-3.12.ui:6135
+#: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
 msgstr "Запускать демона и подключаться к нему"
 
-#: main.cpp:75
+#: main.cpp:74
 msgid "Verbose output"
 msgstr "Подробный вывод"
 
-#: main.cpp:76
+#: main.cpp:75
 msgid "Print help and exit"
 msgstr "Показать помощь и выйти"
 
-#: main.cpp:77
+#: main.cpp:76
 msgid "Print version and exit"
 msgstr "Показать версию и выйти"
 
-#: main.cpp:78
+#: main.cpp:77
 msgid "Print CPUID values in decimal (default is hexadeximal)"
 msgstr ""
 "Выводить значения CPUID в десятичном формате (по умолчанию — "
 "шестнадцатеричном)"
 
-#: main.cpp:79
+#: main.cpp:78
 msgid "Disable colored output"
 msgstr "Отключить цветной вывод"
 
-#: main.cpp:80
+#: main.cpp:79
 msgid "Print information for debugging"
 msgstr "Вывод информации для отладки"
 
-#: main.cpp:81
+#: main.cpp:80
 msgid "Print required information to paste in an issue"
 msgstr "Вывести требуемую информацию для вставки в отчёт об ошибке"
 
-#: main.cpp:82
+#: main.cpp:81
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Установить сопоставление клавиш для режима NCurses (a[rrows]|e[macs]|"
 "i[nverted-T]|v[im])"
 
-#: main.cpp:93
+#: main.cpp:92
 msgid "Add default command line arguments"
 msgstr "Добавить аргументы командной строки по умолчанию"
 
-#: main.cpp:94
+#: main.cpp:93
 msgid "Enforce the bus clock"
 msgstr "Принудительно установить тактовую частоту шины"
 
-#: main.cpp:95
+#: main.cpp:94
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
@@ -1112,49 +1243,49 @@ msgstr ""
 "Игнорировать показатели процессора, сообщаемые libcpuid (разделённые "
 "запятыми, выбранные из списка: «temp», «volt», «freq» и «mult»)"
 
-#: main.cpp:96
+#: main.cpp:95
 msgid "Read CPUID raw data from a given file"
 msgstr "Прочитать сырые данные CPUID из заданного файла"
 
-#: main.cpp:122
+#: main.cpp:121
 #, c-format
 msgid "Usage: %s DISPLAY [OPTIONS]\n"
 msgstr "Использование: %s ВЫВЕСТИ [ПАРАМЕТРЫ]\n"
 
-#: main.cpp:123
+#: main.cpp:122
 msgid "Available DISPLAY:"
 msgstr "Доступный ДИСПЛЕЙ:"
 
-#: main.cpp:131
+#: main.cpp:130
 msgid "Available OPTIONS:"
 msgstr "Доступные ОПЦИИ:"
 
-#: main.cpp:140
+#: main.cpp:139
 msgid "Influenceable environment variables:"
 msgstr "Затрагиваемые переменные окружения:"
 
-#: main.cpp:171
+#: main.cpp:170
 msgid "This is free software: you are free to change and redistribute it."
 msgstr ""
 "Это свободное программное обеспечение. Вы можете изменять и распространять "
 "его."
 
-#: main.cpp:173
+#: main.cpp:172
 #, c-format
 msgid "See the %s license: <%s>\n"
 msgstr "Посмотреть лицензию %s: <%s>\n"
 
-#: main.cpp:180
+#: main.cpp:179
 #, c-format
 msgid "-- %-11s version: %s"
 msgstr "-- %-11s версия: %s"
 
-#: main.cpp:356
+#: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
 msgstr "Запись журнала в файл '%s'..."
 
-#: main.cpp:408
+#: main.cpp:413
 #, c-format
 msgid ""
 "\n"
@@ -1165,7 +1296,7 @@ msgstr ""
 "Ой, что-то пошло не так! %s (PID %i) получил сигнал %d (%s) и аварийно "
 "завершился."
 
-#: main.cpp:410
+#: main.cpp:415
 #, c-format
 msgid ""
 "\n"
@@ -1176,13 +1307,13 @@ msgstr ""
 "Ой, что-то пошло не так! %s (PID %i) получил сигнал %d (%s) и пытается "
 "восстановиться."
 
-#: main.cpp:434
+#: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
 "Здесь вы можете создать новый отчет об ошибке, заполнив шаблон следующим "
 "образом:"
 
-#: main.cpp:475
+#: main.cpp:480
 msgid "an error occurred while setting locale"
 msgstr "ошибка при установке локализации"
 
@@ -1458,68 +1589,92 @@ msgstr ""
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
 msgstr "Ошибка установки %s (err=%i); откат к %s"
 
-#: util.cpp:189
+#: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "не удаётся найти блок в строке «%s» на позиции %i"
 
-#: util.cpp:276
+#: util.cpp:312
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "ошибка при открытии файла «%s»"
 
-#: util.cpp:321
+#: util.cpp:357
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "ошибка при выполнении команды «%s»"
 
-#: util.cpp:461
+#: util.cpp:497
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() не поддерживается в этой операционной системе"
 
-#: util.hpp:77
+#: util.hpp:78
 msgid "bytes"
 msgstr "байта"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
-#: util.hpp:80
+#: util.hpp:81
 msgid "kB"
 msgstr "КБ"
 
 #. TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
-#: util.hpp:82
+#: util.hpp:83
 msgid "MB"
 msgstr "МБ"
 
 #. TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
-#: util.hpp:84
+#: util.hpp:85
 msgid "GB"
 msgstr "ГБ"
 
 #. TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
-#: util.hpp:86
+#: util.hpp:87
 msgid "TB"
 msgstr "ТБ"
 
-#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
+msgid "PB"
+msgstr ""
+
+#. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
+#: util.hpp:91
+msgid "EB"
+msgstr ""
+
+#. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
+#: util.hpp:94
 msgid "KiB"
 msgstr "КиБ"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#: util.hpp:91
+#: util.hpp:96
 msgid "MiB"
 msgstr "МиБ"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#: util.hpp:93
+#: util.hpp:98
 msgid "GiB"
 msgstr "ГиБ"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#: util.hpp:95
+#: util.hpp:100
 msgid "TiB"
 msgstr "ТиБ"
+
+#. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
+#: util.hpp:102
+#, fuzzy
+#| msgid "KiB"
+msgid "PiB"
+msgstr "КиБ"
+
+#. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
+#: util.hpp:104
+#, fuzzy
+#| msgid "KiB"
+msgid "EiB"
+msgstr "КиБ"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1616,6 +1771,12 @@ msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
 msgstr ""
 "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;процессор;система;"
 "ядро;скорость;тактовая;частота;материнская плата;"
+
+#~ msgid "Run embedded command dmidecode and exit"
+#~ msgstr "Запустить встроенную команду dmidecode и выйти"
+
+#~ msgid "Run embedded command bandwidth and exit"
+#~ msgstr "Запустить встроенную команду bandwidth и выйти"
 
 #, c-format
 #~ msgid ""
