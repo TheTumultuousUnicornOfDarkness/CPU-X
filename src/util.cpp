@@ -278,6 +278,21 @@ std::string read_string_from_pipe(int pfd_in)
 	return (read_bytes > 0) ? str : std::string();
 }
 
+/* Transform a list of strings to a compatible array for argv */
+char **transform_string_list_to_char_array(const char *arg0, std::list<std::string> &args)
+{
+	size_t index = 0;
+	const size_t count = args.size();
+	char **argv = new char*[count + 2]; // arg0 + null terminator
+
+	argv[index++] = const_cast<char*>(arg0);
+	for(auto& arg : args)
+		argv[index++] = const_cast<char*>(arg.c_str());
+	argv[index++] = nullptr;
+
+	return argv;
+}
+
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...)
 {

@@ -6453,7 +6453,7 @@ static int address_from_efi(off_t *address)
 	return ret;
 }
 
-int dmidecode(int quiet, void *cpux_pdata)
+int dmidecode(int argc, char *const argv[], int quiet, void *cpux_pdata)
 {
 	int ret = 0;                /* Returned value */
 	int found = 0;
@@ -6461,7 +6461,6 @@ int dmidecode(int quiet, void *cpux_pdata)
 	size_t size;
 	int efi;
 	u8 *buf = NULL;
-	char *argv[] = { "dmidecode (built-in with CPU-X)", NULL };
 	cpux_data = (DmidecodeData *)cpux_pdata;
 
 	if(cpux_pdata != NULL)
@@ -6500,7 +6499,6 @@ int dmidecode(int quiet, void *cpux_pdata)
 	if(quiet)
 		opt.flags |= FLAG_QUIET;
 
-#if 0
 	if (parse_command_line(argc, argv)<0)
 	{
 		ret = 2;
@@ -6524,7 +6522,7 @@ int dmidecode(int quiet, void *cpux_pdata)
 		printf("%s\n", VERSION);
 		goto exit_free;
 	}
-#endif
+
 	if (cpux_data == NULL)
 		pr_comment("%s %s\n", argv[0], VERSION);
 

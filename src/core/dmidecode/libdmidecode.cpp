@@ -22,6 +22,7 @@
 */
 
 #include <cstring>
+#include <list>
 #include "libdmidecode.h"
 #include "util.hpp"
 #include "options.hpp"
@@ -31,9 +32,11 @@
 
 
 /* Call Dmidecode through CPU-X but do nothing else */
-int run_dmidecode(void)
+int run_dmidecode(std::list<std::string> &args)
 {
-	return dmidecode(Logger::get_verbosity() > LOG_VERBOSE, NULL);
+	char **argv = transform_string_list_to_char_array("dmidecode (built-in with CPU-X)", args);
+
+	return dmidecode(args.size() + 1, argv, Logger::get_verbosity() > LOG_VERBOSE, NULL);
 }
 
 /* Elements provided by dmidecode */

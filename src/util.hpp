@@ -27,6 +27,7 @@
 #include <unistd.h>
 #include <cstdint>
 #include <string>
+#include <list>
 #include "logger.hpp"
 
 #if HAS_GETTEXT
@@ -168,6 +169,9 @@ void write_string_to_pipe(std::string str, int pfd_out);
 
 /* Read a string from a pipe */
 std::string read_string_from_pipe(int pfd_in);
+
+/* Transform a list of strings to a compatible array for argv */
+char **transform_string_list_to_char_array(const char *arg0, std::list<std::string> &args);
 
 /* Open a file and put its content in a variable ('str' accept printf-like format) */
 int fopen_to_str(std::string &out, const char *str, ...);

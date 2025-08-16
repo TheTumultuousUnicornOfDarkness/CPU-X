@@ -143,6 +143,8 @@ static int __call_libcpuid_msr_dynamic(int *fd)
 #if HAS_DMIDECODE
 static int __call_dmidecode(int *fd)
 {
+	std::list<std::string> args;
+	char **argv = transform_string_list_to_char_array("dmidecode (built-in with CPU-X)", args);
 	DmidecodeData msg{};
 	msg.ret                = -1;
 	msg.stick_count        = 0;
@@ -150,7 +152,7 @@ static int __call_dmidecode(int *fd)
 	msg.memory             = NULL;
 
 	MSG_DEBUG("%s: fd=%i", __func__, *fd);
-	msg.ret = dmidecode(1, &msg);
+	msg.ret = dmidecode(args.size() + 1, argv, 1, &msg);
 	SEND_DATA(fd, &msg.ret,         sizeof(int));
 	SEND_DATA(fd, &msg.processor,   sizeof(DmidecodeCPUData));
 	SEND_DATA(fd, &msg.mb,          sizeof(DmidecodeMBData));

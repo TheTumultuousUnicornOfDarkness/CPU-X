@@ -29,7 +29,7 @@ extern "C" {
 #endif
 
 
-int dmidecode(int quiet, void *cpux_pdata);
+int dmidecode(int argc, char *const argv[], int quiet, void *cpux_pdata);
 
 
 #ifdef __cplusplus

@@ -24,6 +24,7 @@
 #ifndef _CORE_CORE_HPP_
 #define _CORE_CORE_HPP_
 
+#include <list>
 #include "data.hpp"
 
 
@@ -48,7 +49,7 @@ int fill_labels(Data &data);
 int do_refresh(Data &data, TabNumber tab_number);
 
 /* Call Dmidecode through CPU-X but do nothing else */
-int run_dmidecode(void);
+int run_dmidecode(std::list<std::string> &args);
 
 /* Call Bandwidth through CPU-X but do nothing else */
 int run_bandwidth(void);

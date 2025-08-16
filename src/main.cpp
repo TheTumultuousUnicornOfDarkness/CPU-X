@@ -35,7 +35,6 @@
 #include <sstream>
 #include <algorithm>
 #include <list>
-#include <forward_list>
 #include "options.hpp"
 #include "util.hpp"
 #include "data.hpp"
@@ -61,7 +60,7 @@ static const std::list<struct Getopt> cpux_options =
 	{ HAS_GTK,         'G', "gtk",           no_argument,       N_("Start graphical user interface (GUI) (default)")           },
 	{ HAS_NCURSES,     'N', "ncurses",       no_argument,       N_("Start text-based user interface (TUI)")                    },
 	{ true,            'D', "dump",          no_argument,       N_("Dump all data on standard output and exit")                },
-	{ HAS_DMIDECODE,   'M', "dmidecode",     no_argument,       N_("Run embedded command dmidecode and exit")                  },
+	{ HAS_DMIDECODE,   'M', "dmidecode",     no_argument,       N_("Run embedded command dmidecode and exit (use '--dmidecode --help' to print arguments accepted by dmidecode)") },
 	{ HAS_BANDWIDTH,   'B', "bandwidth",     no_argument,       N_("Run embedded command bandwidth and exit")                  },
 	{ true,            'u', "temp-unit",     required_argument, N_("Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])") },
 	{ true,            'r', "refresh",       required_argument, N_("Set custom time between two refreshes (in seconds)")       },
@@ -213,7 +212,7 @@ static bool check_required_argument_is_digit(const std::string binary_name)
 }
 
 /* Parse arguments and set some flags */
-static void parse_arguments(std::forward_list<std::string> &cmd_args)
+static void parse_arguments(std::list<std::string> &cmd_args)
 {
 	int c, longindex;
 	std::string shortopts;
@@ -224,7 +223,7 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 	/* Inject arguments from CPUX_ARGS environment variable */
 	cmd_args.pop_front();
 	std::vector<std::string> env_args = get_arguments_from_environment(binary_name);
-	env_args.insert(env_args.end(), std::make_move_iterator(cmd_args.begin()), std::make_move_iterator(cmd_args.end()));
+	env_args.insert(env_args.end(), cmd_args.begin(), cmd_args.end());
 	std::transform(env_args.begin(), env_args.end(), std::back_inserter(cargs), [](const std::string& str)
 	{
 		return const_cast<char*>(str.c_str());
@@ -270,7 +269,10 @@ static void parse_arguments(std::forward_list<std::string> &cmd_args)
 				break;
 			case 'M':
 				Options::set_output_type(OUT_DMIDECODE);
-				break;
+				cmd_args.remove("-M");
+				cmd_args.remove("--dmidecode");
+				optind = 1; // reset to 1 to scan a new argument vector
+				return;
 			case 'B':
 				Options::set_output_type(OUT_BANDWIDTH);
 				break;
@@ -494,7 +496,7 @@ int main(int argc, char *argv[])
 	std::signal(SIGABRT, sighandler_abrt);
 
 	/* Init variables */
-	std::forward_list<std::string> args(argv, argv + argc);
+	std::list<std::string> args(argv, argv + argc);
 	Data data; // Note: must be done after set_locales() to translate all labels
 	Options::init_page_visibility();
 
@@ -530,7 +532,7 @@ int main(int argc, char *argv[])
 		std::cout << data;
 skip_init:
 	if(HAS_DMIDECODE && Options::output_type_is(OUT_DMIDECODE))
-		return run_dmidecode();
+		return run_dmidecode(args);
 	if(HAS_BANDWIDTH && Options::output_type_is(OUT_BANDWIDTH))
 		return run_bandwidth();
 
