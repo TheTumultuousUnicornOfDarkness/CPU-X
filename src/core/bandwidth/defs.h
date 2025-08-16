@@ -1,6 +1,6 @@
 /*============================================================================
   bandwidth, a benchmark to estimate memory transfer bandwidth.
-  Copyright (C) 2005-2017 by Zack T Smith.
+  Copyright (C) 2005-2023 by Zack T Smith.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,12 +16,12 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-  The author may be reached at 1@zsmith.co.
+  The author may be reached at 1 at zsmith dot co.
  *===========================================================================*/
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Change log
-// 0.18	Grand unified version supports x86/intel64/arm, linux/win32/winmo.
+// 0.18	Grand unified release supports x86/intel64/arm, Linux/Win32/WinMobile.
 // 0.19	Now have 128-bit writer that goes to cache AND one that bypasses.
 // 0.20	Added my bmplib and graphing of output. Also added --slow option.
 // 0.21	Adds random testing. Min chunk size = 256 B. Allows non-2^n chunks.
@@ -36,133 +36,59 @@
 // 0.30 Adds cache identification for Intel CPUs in 64-bit mode.
 // 0.31 Adds cache identification for Intel CPUs in 32-bit mode.
 // 0.32 Added AVX support.
-// 1.0	Moved graphing logic into BMPGraphing. Added LODS support.
+// 1.0	Moved graphing logic into BMPGraphing. Added string-instruction test.
 // 1.1	Switched to larger font in graphing module.
 // 1.2	Re-added ARM 32 support.
 // 1.3	Added CSV output support. Added 32-bit Raspberry π 3 support.
 // 1.4	Added 256-bit routines RandomReaderAVX, RandomWriterAVX.
 // 1.4.1 Added --limit parameter.
 // 1.4.2 Fixed compiler warnings.
-// 1.5 Fixed AVX writer bug that gave inaccurate results. Added nice mode.
+// 1.5	Fixed AVX writer bug that gave inaccurate results. Added nice mode.
 // 1.5.1 Fixed crashing bug.
-//---------------------------------------------------------------------------
+// 1.5.2 Disabled AVX tests if AMD CPU.
+// 1.6	Converted the code to object-oriented C.
+// 1.6.1 Moved CPUID calls into utility*asm. Detection of SHA, SGX, CET.
+// 1.6.2 Converted some code to Object-Oriented C.
+// 1.6.3 Removed string instruction tests. Improved Object-Oriented C.
+// 1.6.4 Code cleanup.
+// 1.6.5 Fixed Linux issues.
+// 1.7	Separated object-oriented C (OOC) from bandwidth.
+// 1.8	OO improvements. Makefile improvements. Added Win64 support.
+// 1.9	OO improvements. Win64. Removed Linux fbdev.
+// 1.10 ARM64 support and improved ARM32. Apple M1 support. AVX512 detection.
+// 1.11	AVX-512 support. PK fonts.
+// 1.11.2 Fixes for Windows 64-bit Cygwin.
+// 1.11.3 Subclassed tests per CPU architecture.
+// 1.12.0 RISC-V support. OO class hierarchy improvements. Changed line colors.
+// 1.12.1 Apple M2 support.
+// 1.12.3 Fixed Windows bug. Added --reverse option. Added x86 mfence.
+// 1.12.4 Added: OperatingSystem CPU Hardware Set Dictionary URL FontFreetype.
+// 1.12.5 Fixes for ARM CPUs. Fixed i386 issue.
+// 1.13	Added more AVX-512 support e.g. non-temporal transfers, 512-bit copy.
+// 1.13.1 Changed "cache-bypassing" to nontemporal. Added option -nonontemporal.
+// 1.13.2 Added aarch64 nontemporal transfers
+// 1.13.3 Added aarch64 memory barriers.
+// 1.14.0 Added aarch64 Android support which requires using Termux app.
+// 1.14.1 Fixed Cygwin issue. Fixed Darwin x86 issue.
+// 1.14.2 Improved MacOS use of sysctl in OOC.
+// 1.14.3 Fix for aarch64 vector-to-vector xfer.
+// 1.14.4 Improved graph title construction. 
+// 1.14.5 Fixed Raspberry Pi Desktop for PC/Mac issues (32+64-bit x86 Debian).
+// 1.14.6 Improved temperature sensing.
+// 1.14.7 Reinstated x86_64 assembly code for retrieving cache info.
+// 1.14.8 Makefile renovation.
+// 1.14.9 Android makefile fix.
+// 1.14.10 Small aarch32 fix.
+//-----------------------------------------------------------------------------
 
 #ifndef _DEFS_H
 #define _DEFS_H
 
-#define RELEASE "1.5.1"
+#define RELEASE "1.14.10"
 
-#ifdef __WIN32__
-typedef char bool; 
-enum {
-        true=1,
-        false=0
-};
-#else
-#include <stdbool.h>
-#endif
+#define RESULTS_IMAGE_FILENAME "bandwidth.bmp"
 
-#define NETWORK_DEFAULT_PORTNUM (49000)
-#define NETSIZE_MIN (15)
-#define NETSIZE_MAX (28)
-#define NETWORK_CHUNK_SIZE (1<<NETSIZE_MIN)
-
-#ifndef __arm__
-#define DOING_LODS // lodsq and lodsd (amusement purposes only)
-#endif
-
-extern int Reader (void *ptr, unsigned long size, unsigned long loops);
-
-extern int ReaderLODSQ (void *ptr, unsigned long size, unsigned long loops);
-extern int ReaderLODSD (void *ptr, unsigned long size, unsigned long loops);
-extern int ReaderLODSW (void *ptr, unsigned long size, unsigned long loops);
-extern int ReaderLODSB (void *ptr, unsigned long size, unsigned long loops);
-
-extern int Reader_128bytes (void *ptr, unsigned long size, unsigned long loops);
-extern int RandomReader (void *ptr, unsigned long n_chunks, unsigned long loops);
-
-extern int Writer (void *ptr, unsigned long size, unsigned long loops, unsigned long value);
-extern int Writer_128bytes (void *ptr, unsigned long size, unsigned long loops, unsigned long value);
-extern int RandomWriter (void *ptr, unsigned long size, unsigned long loops, unsigned long value);
-
-extern int RegisterToRegister (unsigned long);
-
-extern int StackReader (unsigned long);
-extern int StackWriter (unsigned long);
-
-extern int RegisterToVector (unsigned long);	// SSE2
-extern int Register8ToVector (unsigned long);	// SSE2
-extern int Register16ToVector (unsigned long);	// SSE2
-extern int Register32ToVector (unsigned long);	// SSE2
-extern int Register64ToVector (unsigned long);	// SSE2
-
-extern int VectorToVector (unsigned long);	// SSE2
-
-extern int VectorToVectorAVX (unsigned long);	
-
-extern int VectorToRegister (unsigned long);	// SSE2
-extern int Vector8ToRegister (unsigned long);	// SSE2
-extern int Vector16ToRegister (unsigned long);	// SSE2
-extern int Vector32ToRegister (unsigned long);	// SSE2
-extern int Vector64ToRegister (unsigned long);	// SSE2
-
-extern int Copy (void*, void*, unsigned long, unsigned long);	
-extern int CopySSE (void*, void*, unsigned long, unsigned long);
-extern int CopyAVX (void*, void*, unsigned long, unsigned long);
-extern int CopySSE_128bytes (void*, void*, unsigned long, unsigned long);
-
-extern int ReaderAVX (void *ptr, unsigned long, unsigned long);
-extern int RandomReaderAVX (void *ptr, unsigned long, unsigned long);
-
-extern int ReaderSSE2 (void *ptr, unsigned long, unsigned long);
-extern int ReaderSSE2_bypass (void *ptr, unsigned long, unsigned long);
-extern int RandomReaderSSE2 (unsigned long **ptr, unsigned long, unsigned long);
-extern int RandomReaderSSE2_bypass (unsigned long **ptr, unsigned long, unsigned long);
-
-extern int WriterAVX (void *ptr, unsigned long, unsigned long, unsigned long);
-extern int RandomWriterAVX (void *ptr, unsigned long, unsigned long, unsigned long);
-
-extern int WriterSSE2 (void *ptr, unsigned long, unsigned long, unsigned long);
-extern int RandomWriterSSE2(unsigned long **ptr, unsigned long, unsigned long, unsigned long);
-
-extern int ReaderSSE2_128bytes(void *ptr, unsigned long, unsigned long);
-extern int WriterSSE2_128bytes(void *ptr, unsigned long, unsigned long, unsigned long);
-
-extern int ReaderSSE2_128bytes_bypass (void *ptr, unsigned long, unsigned long);
-extern int WriterSSE2_128bytes_bypass (void *ptr, unsigned long, unsigned long, unsigned long);
-
-extern int WriterAVX_bypass (void *ptr, unsigned long, unsigned long, unsigned long);
-extern int WriterSSE2_bypass (void *ptr, unsigned long, unsigned long, unsigned long);
-extern int RandomWriterSSE2_bypass (unsigned long **ptr, unsigned long, unsigned long, unsigned long);
-
-extern void IncrementRegisters (unsigned long count);
-extern void IncrementStack (unsigned long count);
-
-extern void get_cpuid_family (char *family_return);
-extern void get_cpuid_cache_info (uint32_t *array, int index);
-extern unsigned get_cpuid1_ecx ();
-extern unsigned get_cpuid1_edx ();
-extern unsigned get_cpuid7_ebx ();
-extern unsigned get_cpuid_80000001_ecx ();
-extern unsigned get_cpuid_80000001_edx ();
-
-#define CPUID_EDX_MMX (1<<23)
-#define CPUID_EDX_SSE (1<<25)
-#define CPUID_EDX_SSE2 (1<<26)
-#define CPUID_EDX_INTEL64 (1<<29)	// "Long Mode" on AMD.
-#define CPUID_EDX_XD (1<<20)
-#define CPUID_ECX_SSE3 (1)
-#define CPUID_ECX_SSSE3 (1<<9)
-#define CPUID_ECX_SSE4A (1<<6)
-#define CPUID_ECX_SSE41 (1<<19)
-#define CPUID_ECX_SSE42 (1<<20)
-#define CPUID_ECX_AES (1<<25)	// Encryption.
-#define CPUID_ECX_AVX (1<<28)	// 256-bit YMM registers.
-#define CPUID_EBX_AVX2 (0x20)
-
-#define FBLOOPS_R 400
-#define FBLOOPS_W 800
-#define FB_SIZE (640*480*2)
+extern unsigned long usec_per_test;
 
 #endif
 

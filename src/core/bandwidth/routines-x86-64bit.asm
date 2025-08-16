@@ -1,6 +1,6 @@
 ;============================================================================
 ;  bandwidth, a benchmark to estimate memory transfer bandwidth.
-;  Copyright (C) 2005-2017 by Zack T Smith.
+;  Copyright (C) 2005-2023 by Zack T Smith.
 ;
 ;  This program is free software; you can redistribute it and/or modify
 ;  it under the terms of the GNU General Public License as published by
@@ -16,49 +16,64 @@
 ;  along with this program; if not, write to the Free Software
 ;  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ;
-;  The author may be reached at veritas@comcast.net.
+;  The author may be reached at 1 at zsmith dot co.
 ;=============================================================================
+
+%ifidn __OUTPUT_FORMAT__, win64
+; Windows 64 ABI says integer param are put in these registers in this order:
+;	rcx, rdx, r8, r9 (floating point is xmm0)
+	%define P1 rcx
+	%define P2 rdx
+	%define P3 r8
+	%define P4 r9
+%else
+; Unix ABI says integer param are put in these registers in this order:
+;	rdi, rsi, rdx, rcx, r8, r9
+	%define P1 rdi
+	%define P2 rsi
+	%define P3 rdx
+	%define P4 rcx
+	%define P5 r8
+	%define P6 r9
+%endif
 
 bits	64
 cpu	ia64
 
+global	CopyWithMainRegisters
+global	_CopyWithMainRegisters
 global	CopySSE
-global	CopySSE_128bytes
-
-global CopyAVX
-global _CopyAVX
-
-global	ReaderLODSQ
-global	_ReaderLODSQ
-
-global	ReaderLODSD
-global	_ReaderLODSD
-
-global	ReaderLODSW
-global	_ReaderLODSW
-
-global	ReaderLODSB
-global	_ReaderLODSB
+global	_CopySSE
+global	CopyAVX
+global	_CopyAVX
+global	CopyAVX512
+global	_CopyAVX512
 
 global	IncrementRegisters
 global	_IncrementRegisters
 global	IncrementStack
 global	_IncrementStack
 
+global	Reader_nontemporal
+global	_Reader_nontemporal
+global	Writer_nontemporal
+global	_Writer_nontemporal
 global	RandomReader
 global	RandomReaderSSE2
-global	RandomReaderSSE2_bypass
+global	RandomReaderSSE4_nontemporal
 global	RandomWriter
 global	RandomWriterSSE2
-global	RandomWriterSSE2_bypass
+global	RandomWriterSSE2_nontemporal
 global	Reader
-global	Reader_128bytes
 global	ReaderAVX
+global	ReaderAVX512
 global	RandomReaderAVX
 global	ReaderSSE2
-global	ReaderSSE2_128bytes
-global	ReaderSSE2_bypass
-global	ReaderSSE2_128bytes_bypass
+global	ReaderSSE4_nontemporal
+global	ReaderAVX_nontemporal
+global	_ReaderAVX_nontemporal
+global	ReaderAVX512_nontemporal
+global	_ReaderAVX512_nontemporal
 global	Register16ToVector
 global	Register32ToVector
 global	Register64ToVector
@@ -72,34 +87,32 @@ global	Vector32ToRegister
 global	Vector64ToRegister
 global	Vector8ToRegister
 global	VectorToRegister
-global	VectorToVector
-global	VectorToVectorAVX
+global	VectorToVector128
+global	VectorToVector256
+global	VectorToVector512
 global	Writer
-global	Writer_128bytes
 global	WriterAVX
+global	WriterAVX512
 global	RandomWriterAVX
+global	RandomWriterAVX_nontemporal
 global	WriterSSE2
-global	WriterSSE2_128bytes
-global	WriterSSE2_bypass
-global	WriterSSE2_128bytes_bypass
-global	WriterAVX_bypass
-global	_WriterAVX_bypass
-global	_CopySSE
-global	_CopySSE_128bytes
+global	WriterSSE2_nontemporal
+global	WriterAVX_nontemporal
+global	_WriterAVX_nontemporal
+global	WriterAVX512_nontemporal
+global	_WriterAVX512_nontemporal
 global	_RandomReader
 global	_RandomReaderSSE2
-global	_RandomReaderSSE2_bypass
+global	_RandomReaderSSE4_nontemporal
 global	_RandomWriter
 global	_RandomWriterSSE2
-global	_RandomWriterSSE2_bypass
+global	_RandomWriterSSE2_nontemporal
 global	_Reader
 global	_ReaderAVX
+global	_ReaderAVX512
 global	_RandomReaderAVX
-global	_Reader_128bytes
 global	_ReaderSSE2
-global	_ReaderSSE2_bypass
-global	_ReaderSSE2_128bytes
-global	_ReaderSSE2_128bytes_bypass
+global	_ReaderSSE4_nontemporal
 global	_Register16ToVector
 global	_Register32ToVector
 global	_Register64ToVector
@@ -115,305 +128,40 @@ global	_Vector8ToRegister
 global	_VectorToRegister
 global	_VectorToVector
 global	_VectorToVectorAVX
+global	_VectorToVector128
+global	_VectorToVector256
+global	_VectorToVector512
 global	_Writer
-global	_Writer_128bytes
 global	_WriterSSE2
 global	_WriterAVX
+global	_WriterAVX512
 global	_RandomWriterAVX
-global	_WriterSSE2_128bytes
-global	_WriterSSE2_bypass
-global	_WriterSSE2_128bytes_bypass
+global	_RandomWriterAVX_nontemporal
+global	_WriterSSE2_nontemporal
 
-global  get_cpuid_cache_info
-global  _get_cpuid_cache_info
-
-global	get_cpuid_family
-global	_get_cpuid_family
-
-global	get_cpuid1_ecx
-global	_get_cpuid1_ecx
-
-global	get_cpuid1_edx
-global	_get_cpuid1_edx
-
-global	get_cpuid7_ebx
-global	_get_cpuid7_ebx
-
-global	get_cpuid_80000001_ecx
-global	_get_cpuid_80000001_ecx
-
-global	get_cpuid_80000001_edx
-global	_get_cpuid_80000001_edx
-
-; Note:
-; Unix ABI says integer param are put in these registers in this order:
-;	rdi, rsi, rdx, rcx, r8, r9
+%ifidn __OUTPUT_FORMAT__, elf64
+	; Not compatible with macOS:
+	section .note.GNU-stack 
+%endif
 
 	section .text
 
 ;------------------------------------------------------------------------------
-; Name:         get_cpuid_cache_info
-; 
-get_cpuid_cache_info:
-_get_cpuid_cache_info:
-        push    rbx
-        push    rcx
-        push    rdx
-        mov     rax, 4
-	mov	rcx, rsi
-        cpuid
-	mov	[rdi], eax
-	mov	[rdi+4], ebx
-	mov	[rdi+8], ecx
-	mov	[rdi+12], edx
-        pop     rdx
-        pop     rcx
-        pop     rbx
-        ret
-
-;------------------------------------------------------------------------------
-; Name:		get_cpuid_family
-; 
-get_cpuid_family:
-_get_cpuid_family:
-	push	rbx
-	push 	rcx
-	push 	rdx
-	xor	rax, rax
-	cpuid
-	mov	[rdi], ebx
-	mov	[rdi+4], edx
-	mov	[rdi+8], ecx
-	mov	byte [rdi+12], 0
-	pop	rdx
-	pop	rcx
-	pop	rbx
-	ret
-
-;------------------------------------------------------------------------------
-; Name:		get_cpuid1_ecx
-; 
-get_cpuid1_ecx:
-_get_cpuid1_ecx:
-	push	rbx
-	push 	rcx
-	push 	rdx
-	mov	rax, 1
-	cpuid
-        mov	rax, rcx
-	pop	rdx
-	pop	rcx
-	pop	rbx
-	ret
-
-;------------------------------------------------------------------------------
-; Name:		get_cpuid7_ebx
-; 
-get_cpuid7_ebx:
-_get_cpuid7_ebx:
-	push	rbx
-	push 	rcx
-	push 	rdx
-	mov	rax, 7
-	xor	rcx, rcx
-	cpuid
-        mov	rax, rbx
-	pop	rdx
-	pop	rcx
-	pop	rbx
-	ret
-
-;------------------------------------------------------------------------------
-; Name:		get_cpuid1_edx
-; 
-get_cpuid1_edx:
-_get_cpuid1_edx:
-	push	rbx
-	push 	rcx
-	push 	rdx
-	mov	rax, 1
-	cpuid
-        mov	rax, rdx
-	pop	rdx
-	pop	rcx
-	pop	rbx
-	ret
-
-;------------------------------------------------------------------------------
-; Name:		get_cpuid_80000001_ecx
-; 
-get_cpuid_80000001_ecx:
-_get_cpuid_80000001_ecx:
-	push	rbx
-	push 	rcx
-	push 	rdx
-	mov	rax, 0x80000001
-	cpuid
-        mov	rax, rcx
-	pop	rdx
-	pop	rcx
-	pop	rbx
-	ret
-
-;------------------------------------------------------------------------------
-; Name:		get_cpuid_80000001_edx
-; 
-get_cpuid_80000001_edx:
-_get_cpuid_80000001_edx:
-	push	rbx
-	push 	rcx
-	push 	rdx
-	mov	rax, 0x80000001
-	cpuid
-        mov	rax, rdx
-	pop	rdx
-	pop	rcx
-	pop	rbx
-	ret
-
-;------------------------------------------------------------------------------
-; Name:		ReaderLODSQ
-; Purpose:	Reads 64-bit values sequentially from an area of memory
-;		using LODSQ instruction.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 32
-ReaderLODSQ:
-_ReaderLODSQ:
-	push	rcx	; REP counter
-	push	r10
-	push	r11
-	mov	r10, rdi
-	mov	r11, rsi
-	shr	r11, 3  	; length in quadwords rounded down.
-
-.L1:
-	mov	rsi, r10	; buffer start
-	mov	rcx, r11	; # of quadwords
-
-	rep	lodsq
-
-	dec	rdx
-	jnz	.L1
-
-	pop	r11
-	pop	r10
-	pop	rcx
-	ret 
-
-;------------------------------------------------------------------------------
-; Name:		ReaderLODSD
-; Purpose:	Reads 32-bit values sequentially from an area of memory
-;		using LODSD instruction.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 32
-ReaderLODSD:
-_ReaderLODSD:
-	push	rcx	; REP counter
-	push	r10
-	push	r11
-	mov	r10, rdi
-	mov	r11, rsi
-	shr	r11, 2  	; length in double words rounded down.
-
-.L1:
-	mov	rsi, r10	; buffer start
-	mov	rcx, r11	; # of double words
-
-	rep	lodsd
-
-	dec	rdx
-	jnz	.L1
-
-	pop	r11
-	pop	r10
-	pop	rcx
-	ret 
-
-;------------------------------------------------------------------------------
-; Name:		ReaderLODSW
-; Purpose:	Reads 16-bit values sequentially from an area of memory
-;		using LODSW instruction.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 32
-ReaderLODSW:
-_ReaderLODSW:
-	push	rcx	; REP counter
-	push	r10
-	push	r11
-	mov	r10, rdi
-	mov	r11, rsi
-	shr	r11, 1  	; length in words rounded down.
-
-.L1:
-	mov	rsi, r10	; buffer start
-	mov	rcx, r11	; # of words
-
-	rep	lodsw
-
-	dec	rdx
-	jnz	.L1
-
-	pop	r11
-	pop	r10
-	pop	rcx
-	ret 
-
-;------------------------------------------------------------------------------
-; Name:		ReaderLODSB
-; Purpose:	Reads 8-bit values sequentially from an area of memory
-;		using LODSB instruction.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 32
-ReaderLODSB:
-_ReaderLODSB:
-	push	rcx	; REP counter
-	push	r10
-	push	r11
-	mov	r10, rdi
-	mov	r11, rsi
-
-.L1:
-	mov	rsi, r10	; buffer start
-	mov	rcx, r11	; # of bytes
-
-	rep	lodsb
-
-	dec	rdx
-	jnz	.L1
-
-	pop	r11
-	pop	r10
-	pop	rcx
-	ret 
-
-;------------------------------------------------------------------------------
 ; Name:		Reader
 ; Purpose:	Reads 64-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Reader:
 _Reader:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
 	mov	rax, [r10]
@@ -450,66 +198,23 @@ _Reader:
 	mov	rax, [248+r10]
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
-	ret
 
-;------------------------------------------------------------------------------
-; Name:		Reader_128bytes
-; Purpose:	Reads 64-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 64
-Reader_128bytes:
-_Reader_128bytes:
-	push	r10
-
-	add	rsi, rdi	; rdi now points to end.
-
-.L1:
-	mov	r10, rdi
-
-.L2:
-	mov	rax, [r10]
-	mov	rax, [8+r10]
-	mov	rax, [16+r10]
-	mov	rax, [24+r10]
-	mov	rax, [32+r10]
-	mov	rax, [40+r10]
-	mov	rax, [48+r10]
-	mov	rax, [56+r10]
-	mov	rax, [64+r10]
-	mov	rax, [72+r10]
-	mov	rax, [80+r10]
-	mov	rax, [88+r10]
-	mov	rax, [96+r10]
-	mov	rax, [104+r10]
-	mov	rax, [112+r10]
-	mov	rax, [120+r10]
-
-	add	r10, 128
-	cmp	r10, rsi
-	jb	.L2
-
-	dec	rdx
-	jnz	.L1
-
-	pop	r10
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RandomReader
 ; Purpose:	Reads 64-bit values randomly from an area of memory.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
 RandomReader:
@@ -521,7 +226,7 @@ _RandomReader:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]	; Note, 64-bit pointers.
+	mov	r10, [P1 + 8*r11]	; Note, 64-bit pointers.
 
 	mov	rax, [96+r10]
 	mov	rax, [r10]
@@ -557,22 +262,24 @@ _RandomReader:
 	mov	rax, [168+r10]
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RandomReaderSSE2
 ; Purpose:	Reads 128-bit values randomly from an area of memory.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
 RandomReaderSSE2:
@@ -584,7 +291,7 @@ _RandomReaderSSE2:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]
+	mov	r10, [P1 + 8*r11]
 
 	movdqa	xmm0, [240+r10]
 	movdqa	xmm0, [128+r10]
@@ -604,26 +311,28 @@ _RandomReaderSSE2:
 	movdqa	xmm0, [80+r10]
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		RandomReaderSSE2_bypass
+; Name:		RandomReaderSSE4_nontemporal
 ; Purpose:	Reads 128-bit values randomly from an area of memory.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
-RandomReaderSSE2_bypass:
-_RandomReaderSSE2_bypass:
+RandomReaderSSE4_nontemporal:
+_RandomReaderSSE4_nontemporal:
 	push	r10
 	push	r11
 
@@ -631,9 +340,8 @@ _RandomReaderSSE2_bypass:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]
+	mov	r10, [P1 + 8*r11]
 
-	; SSE 4.1 required
 	prefetchnta	[r10+192]
 	movntdqa	xmm0, [240+r10]
 	prefetchnta	[r10]
@@ -656,23 +364,25 @@ _RandomReaderSSE2_bypass:
 	movntdqa	xmm0, [192+r10]
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RandomWriter
 ; Purpose:	Writes 64-bit values randomly to an area of memory.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
-; 		rcx = datum to write
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
+; 		P4 = datum to write
 ;------------------------------------------------------------------------------
 	align 64
 RandomWriter:
@@ -684,59 +394,61 @@ _RandomWriter:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]	; Note, 64-bit pointers.
+	mov	r10, [P1 + 8*r11]	; Note, 64-bit pointers.
 
-	mov	[96+r10], rcx
-	mov	[r10], rcx
-	mov	[120+r10], rcx
-	mov	[184+r10], rcx
-	mov	[160+r10], rcx
-	mov	[176+r10], rcx
-	mov	[112+r10], rcx
-	mov	[80+r10], rcx
-	mov	[32+r10], rcx
-	mov	[128+r10], rcx
-	mov	[88+r10], rcx
-	mov	[40+r10], rcx
-	mov	[48+r10], rcx
-	mov	[72+r10], rcx
-	mov	[200+r10], rcx
-	mov	[24+r10], rcx
-	mov	[152+r10], rcx
-	mov	[16+r10], rcx
-	mov	[248+r10], rcx
-	mov	[56+r10], rcx
-	mov	[240+r10], rcx
-	mov	[208+r10], rcx
-	mov	[104+r10], rcx
-	mov	[216+r10], rcx
-	mov	[136+r10], rcx
-	mov	[232+r10], rcx
-	mov	[64+r10], rcx
-	mov	[224+r10], rcx
-	mov	[144+r10], rcx
-	mov	[192+r10], rcx
-	mov	[8+r10], rcx
-	mov	[168+r10], rcx
+	mov	[96+r10], P4
+	mov	[r10], P4
+	mov	[120+r10], P4
+	mov	[184+r10], P4
+	mov	[160+r10], P4
+	mov	[176+r10], P4
+	mov	[112+r10], P4
+	mov	[80+r10], P4
+	mov	[32+r10], P4
+	mov	[128+r10], P4
+	mov	[88+r10], P4
+	mov	[40+r10], P4
+	mov	[48+r10], P4
+	mov	[72+r10], P4
+	mov	[200+r10], P4
+	mov	[24+r10], P4
+	mov	[152+r10], P4
+	mov	[16+r10], P4
+	mov	[248+r10], P4
+	mov	[56+r10], P4
+	mov	[240+r10], P4
+	mov	[208+r10], P4
+	mov	[104+r10], P4
+	mov	[216+r10], P4
+	mov	[136+r10], P4
+	mov	[232+r10], P4
+	mov	[64+r10], P4
+	mov	[224+r10], P4
+	mov	[144+r10], P4
+	mov	[192+r10], P4
+	mov	[8+r10], P4
+	mov	[168+r10], P4
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RandomWriterSSE2
 ; Purpose:	Writes 128-bit values randomly to an area of memory.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
-; 		rcx = datum to write
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
+; 		P4 = datum to write
 ;------------------------------------------------------------------------------
 	align 64
 RandomWriterSSE2:
@@ -744,8 +456,8 @@ _RandomWriterSSE2:
 	push	r10
 	push	r11
 
-	movq	xmm0, rcx	; Create duplicated 128-bit datum
-	movq	xmm1, rcx
+	movq	xmm0, P4	; Create duplicated 128-bit datum
+	movq	xmm1, P4
 	pslldq	xmm1, 64
 	por	xmm0, xmm1
 
@@ -753,7 +465,7 @@ _RandomWriterSSE2:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]	; Note, 64-bit pointers.
+	mov	r10, [P1 + 8*r11]	; Note, 64-bit pointers.
 
 	movdqa	[240+r10], xmm0
 	movdqa	[128+r10], xmm0
@@ -773,32 +485,34 @@ _RandomWriterSSE2:
 	movdqa	[80+r10], xmm0
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		RandomWriterSSE2_bypass
-; Purpose:	Writes 128-bit values randomly into memory, bypassing caches.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
-; 		rcx = datum to write
+; Name:		RandomWriterSSE2_nontemporal
+; Purpose:	Nontemporal writes of 128-bit values randomly into memory.
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
+; 		P4 = datum to write
 ;------------------------------------------------------------------------------
 	align 64
-RandomWriterSSE2_bypass:
-_RandomWriterSSE2_bypass:
+RandomWriterSSE2_nontemporal:
+_RandomWriterSSE2_nontemporal:
 	push	r10
 	push	r11
 
-	movq	xmm0, rcx	; Create duplicated 128-bit datum
-	movq	xmm1, rcx
+	movq	xmm0, P4	; Create duplicated 128-bit datum
+	movq	xmm1, P4
 	pslldq	xmm1, 64
 	por	xmm0, xmm1
 
@@ -806,7 +520,7 @@ _RandomWriterSSE2_bypass:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]	; Note, 64-bit pointers.
+	mov	r10, [P1 + 8*r11]	; Note, 64-bit pointers.
 
 	movntdq	[240+r10], xmm0
 	movntdq	[128+r10], xmm0
@@ -826,70 +540,34 @@ _RandomWriterSSE2_bypass:
 	movntdq	[80+r10], xmm0
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
+
+	sfence
 	ret
-
-;------------------------------------------------------------------------------
-; Name:		ReaderSSE2_128bytes
-; Purpose:	Reads 128-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 64
-ReaderSSE2_128bytes:
-_ReaderSSE2_128bytes:
-	push	r10
-
-	add	rsi, rdi	; rsi now points to end.
-
-.L1:
-	mov	r10, rdi
-
-.L2:
-	movdqa	xmm0, [r10]	; Read aligned to 16-byte boundary.
-	movdqa	xmm0, [16+r10]
-	movdqa	xmm0, [32+r10]
-	movdqa	xmm0, [48+r10]
-	movdqa	xmm0, [64+r10]
-	movdqa	xmm0, [80+r10]
-	movdqa	xmm0, [96+r10]
-	movdqa	xmm0, [112+r10]
-
-	add	r10, 128
-	cmp	r10, rsi
-	jb	.L2
-
-	dec	rdx
-	jnz	.L1
-	
-	pop	r10
-	ret
-
 
 ;------------------------------------------------------------------------------
 ; Name:		ReaderSSE2
 ; Purpose:	Reads 128-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
 ReaderSSE2:
 _ReaderSSE2:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
 	movdqa	xmm0, [r10]	; Read aligned to 16-byte boundary.
@@ -911,26 +589,27 @@ _ReaderSSE2:
 	movdqa	xmm0, [240+r10]
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 	
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		ReaderAVX
 ; Purpose:	Reads 256-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
 ReaderAVX:
 _ReaderAVX:
-	; vzeroupper
 	sub	rsp, 32
 	vmovdqu	[rsp], ymm0
 	sub	rsp, 32
@@ -942,10 +621,10 @@ _ReaderAVX:
 
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
 	vmovdqa	ymm0, [r10]	; Read aligned to 32-byte boundary.
@@ -958,10 +637,10 @@ _ReaderAVX:
 	vmovdqa	ymm3, [224+r10]
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 	
 	pop	r10
@@ -973,14 +652,69 @@ _ReaderAVX:
 	add	rsp, 32
 	vmovdqu	ymm0, [rsp]
 	add	rsp, 32
+
+	mfence
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		ReaderAVX512
+; Purpose:	Reads 512-bit values sequentially from an area of memory.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+;------------------------------------------------------------------------------
+	align 64
+ReaderAVX512:
+_ReaderAVX512:
+	sub	rsp, 64
+	vmovdqu64	[rsp], zmm0
+	sub	rsp, 64
+	vmovdqu64	[rsp], zmm1
+	sub	rsp, 64
+	vmovdqu64	[rsp], zmm2
+	sub	rsp, 64
+	vmovdqu64	[rsp], zmm3
+
+	push	r10
+
+	add	P2, P1	; P2 now points to end.
+
+.L1:
+	mov	r10, P1
+
+.L2:
+	vmovdqu64	zmm0, [r10]	; Read aligned to 64-byte boundary.
+	vmovdqu64	zmm1, [64+r10]
+	vmovdqu64	zmm2, [128+r10]
+	vmovdqu64	zmm3, [192+r10]
+
+	add	r10, 256
+	cmp	r10, P2
+	jb	.L2
+
+	dec	P3
+	jnz	.L1
+	
+	pop	r10
+
+	vmovdqu64	zmm3, [rsp]
+	add	rsp, 64
+	vmovdqu64	zmm2, [rsp]
+	add	rsp, 64
+	vmovdqu64	zmm1, [rsp]
+	add	rsp, 64
+	vmovdqu64	zmm0, [rsp]
+	add	rsp, 64
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RandomReaderAVX
 ; Purpose:	Reads 256-bit values in somewhat random order from RAM.
-; Params:	rdi = ptr to chunk pointers 
-; 		rsi = # chunks
-; 		rdx = loops
+; Params:	P1 = ptr to chunk pointers 
+; 		P2 = # chunks
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
 RandomReaderAVX:
@@ -1000,23 +734,23 @@ _RandomReaderAVX:
 .L1:
 	xor	r11, r11
 .L2:
-        mov     r10, [rdi + 8*r11]
+        mov     r10, [P1 + 8*r11]
 
 	; Read aligned to 32-byte boundary.
 	vmovdqa	ymm0, [96+r10]
 	vmovdqa	ymm1, [192+r10]
 	vmovdqa	ymm2, [64+r10]
 	vmovdqa	ymm3, [224+r10]
-	vmovdqa	ymm0, [r10]
+	vmovdqa	ymm0, [r10]	
 	vmovdqa	ymm1, [160+r10]
 	vmovdqa	ymm2, [128+r10]
 	vmovdqa	ymm3, [32+r10]
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 	
 	pop	r11
@@ -1030,24 +764,26 @@ _RandomReaderAVX:
 	add	rsp, 32
 	vmovdqu	ymm0, [rsp]
 	add	rsp, 32
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		ReaderSSE2_bypass
+; Name:		ReaderSSE4_nontemporal
 ; Purpose:	Reads 128-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
-ReaderSSE2_bypass:
-_ReaderSSE2_bypass:
+ReaderSSE4_nontemporal:
+_ReaderSSE4_nontemporal:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
 	prefetchnta	[r10]
@@ -1075,183 +811,164 @@ _ReaderSSE2_bypass:
 	movntdqa	xmm0, [240+r10]
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 	
 	pop	r10
+
+	sfence
 	ret
-
-
-;------------------------------------------------------------------------------
-; Name:		ReaderSSE2_128bytes_bypass
-; Purpose:	Reads 128-bit values sequentially from an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-;------------------------------------------------------------------------------
-	align 64
-ReaderSSE2_128bytes_bypass:
-_ReaderSSE2_128bytes_bypass:
-	push	r10
-
-	add	rsi, rdi	; rsi now points to end.
-
-.L1:
-	mov	r10, rdi
-
-.L2:
-	prefetchnta	[r10]
-	movntdqa	xmm0, [r10]	; Read aligned to 16-byte boundary.
-	movntdqa	xmm0, [16+r10]
-	movntdqa	xmm0, [32+r10]
-	movntdqa	xmm0, [48+r10]
-	prefetchnta	[r10+64]
-	movntdqa	xmm0, [64+r10]
-	movntdqa	xmm0, [80+r10]
-	movntdqa	xmm0, [96+r10]
-	movntdqa	xmm0, [112+r10]
-
-	add	r10, 128
-	cmp	r10, rsi
-	jb	.L2
-
-	dec	rdx
-	jnz	.L1
-	
-	pop	r10
-	ret
-
 
 ;------------------------------------------------------------------------------
 ; Name:		Writer
 ; Purpose:	Writes 64-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
 ;------------------------------------------------------------------------------
 	align 64
 Writer:
 _Writer:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
-	mov	[r10], rcx
-	mov	[8+r10], rcx
-	mov	[16+r10], rcx
-	mov	[24+r10], rcx
-	mov	[32+r10], rcx
-	mov	[40+r10], rcx
-	mov	[48+r10], rcx
-	mov	[56+r10], rcx
-	mov	[64+r10], rcx
-	mov	[72+r10], rcx
-	mov	[80+r10], rcx
-	mov	[88+r10], rcx
-	mov	[96+r10], rcx
-	mov	[104+r10], rcx
-	mov	[112+r10], rcx
-	mov	[120+r10], rcx
-	mov	[128+r10], rcx
-	mov	[136+r10], rcx
-	mov	[144+r10], rcx
-	mov	[152+r10], rcx
-	mov	[160+r10], rcx
-	mov	[168+r10], rcx
-	mov	[176+r10], rcx
-	mov	[184+r10], rcx
-	mov	[192+r10], rcx
-	mov	[200+r10], rcx
-	mov	[208+r10], rcx
-	mov	[216+r10], rcx
-	mov	[224+r10], rcx
-	mov	[232+r10], rcx
-	mov	[240+r10], rcx
-	mov	[248+r10], rcx
+	mov	[r10], P4
+	mov	[8+r10], P4
+	mov	[16+r10], P4
+	mov	[24+r10], P4
+	mov	[32+r10], P4
+	mov	[40+r10], P4
+	mov	[48+r10], P4
+	mov	[56+r10], P4
+	mov	[64+r10], P4
+	mov	[72+r10], P4
+	mov	[80+r10], P4
+	mov	[88+r10], P4
+	mov	[96+r10], P4
+	mov	[104+r10], P4
+	mov	[112+r10], P4
+	mov	[120+r10], P4
+	mov	[128+r10], P4
+	mov	[136+r10], P4
+	mov	[144+r10], P4
+	mov	[152+r10], P4
+	mov	[160+r10], P4
+	mov	[168+r10], P4
+	mov	[176+r10], P4
+	mov	[184+r10], P4
+	mov	[192+r10], P4
+	mov	[200+r10], P4
+	mov	[208+r10], P4
+	mov	[216+r10], P4
+	mov	[224+r10], P4
+	mov	[232+r10], P4
+	mov	[240+r10], P4
+	mov	[248+r10], P4
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		Writer_128bytes
-; Purpose:	Writes 64-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Name:		Writer_nontemporal
+; Purpose:	Writes 64-bit value sequentially to memory w/nontemporal hint.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
 ;------------------------------------------------------------------------------
 	align 64
-Writer_128bytes:
-_Writer_128bytes:
+Writer_nontemporal:
+_Writer_nontemporal:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
-	mov	[r10], rcx
-	mov	[8+r10], rcx
-	mov	[16+r10], rcx
-	mov	[24+r10], rcx
-	mov	[32+r10], rcx
-	mov	[40+r10], rcx
-	mov	[48+r10], rcx
-	mov	[56+r10], rcx
-	mov	[64+r10], rcx
-	mov	[72+r10], rcx
-	mov	[80+r10], rcx
-	mov	[88+r10], rcx
-	mov	[96+r10], rcx
-	mov	[104+r10], rcx
-	mov	[112+r10], rcx
-	mov	[120+r10], rcx
+	movnti	[r10], P4
+	movnti	[8+r10], P4
+	movnti	[16+r10], P4
+	movnti	[24+r10], P4
+	movnti	[32+r10], P4
+	movnti	[40+r10], P4
+	movnti	[48+r10], P4
+	movnti	[56+r10], P4
+	movnti	[64+r10], P4
+	movnti	[72+r10], P4
+	movnti	[80+r10], P4
+	movnti	[88+r10], P4
+	movnti	[96+r10], P4
+	movnti	[104+r10], P4
+	movnti	[112+r10], P4
+	movnti	[120+r10], P4
+	movnti	[128+r10], P4
+	movnti	[136+r10], P4
+	movnti	[144+r10], P4
+	movnti	[152+r10], P4
+	movnti	[160+r10], P4
+	movnti	[168+r10], P4
+	movnti	[176+r10], P4
+	movnti	[184+r10], P4
+	movnti	[192+r10], P4
+	movnti	[200+r10], P4
+	movnti	[208+r10], P4
+	movnti	[216+r10], P4
+	movnti	[224+r10], P4
+	movnti	[232+r10], P4
+	movnti	[240+r10], P4
+	movnti	[248+r10], P4
 
-	add	r10, 128
-	cmp	r10, rsi
+	add	r10, 256
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		WriterSSE2
 ; Purpose:	Writes 128-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
 ;------------------------------------------------------------------------------
 	align 64
 WriterSSE2:
 _WriterSSE2:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
-	movq	xmm0, rcx
+	movq	xmm0, P4
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
 	movdqa	[r10], xmm0
@@ -1273,22 +990,24 @@ _WriterSSE2:
 	movdqa	[240+r10], xmm0
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		WriterAVX
 ; Purpose:	Writes 256-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
 ;------------------------------------------------------------------------------
 	align 64
 WriterAVX:
@@ -1297,13 +1016,13 @@ _WriterAVX:
 
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
-	pinsrq	xmm0, rcx, 0
-	pinsrq	xmm0, rcx, 1
+	pinsrq	xmm0, P4, 0
+	pinsrq	xmm0, P4, 1
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
 	vmovdqa	[r10], ymm0
@@ -1316,23 +1035,118 @@ _WriterAVX:
 	vmovdqa	[224+r10], ymm0
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
-	vzeroall
+
+	mfence
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		WriterAVX512
+; Purpose:	Writes 512-bit value sequentially to an area of memory.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
+;------------------------------------------------------------------------------
+	align 64
+WriterAVX512:
+_WriterAVX512:
+	sub	rsp, 64
+	vmovdqu64	[rsp], zmm0
+
+	push	r10
+
+	add	P2, P1	; P2 now points to end.
+
+	push	P4
+	push	P4
+	vbroadcasti64x2	zmm0, [rsp]
+	add	rsp, 16
+
+.L1:
+	mov	r10, P1
+
+.L2:
+	vmovdqa64	[r10], zmm0
+	vmovdqa64	[64+r10], zmm0
+	vmovdqa64	[128+r10], zmm0
+	vmovdqa64	[192+r10], zmm0
+
+	add	r10, 256
+	cmp	r10, P2
+	jb	.L2
+
+	dec	P3
+	jnz	.L1
+
+	pop	r10
+
+	vmovdqu64	zmm0, [rsp]
+	add	rsp, 64
+
+	mfence
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		WriterAVX512_nontemporal
+; Purpose:	Writes 512-bit value sequentially to an area of memory.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
+;------------------------------------------------------------------------------
+	align 64
+WriterAVX512_nontemporal:
+_WriterAVX512_nontemporal:
+	sub	rsp, 64
+	vmovdqu64	[rsp], zmm0
+
+	push	r10
+
+	add	P2, P1	; P2 now points to end.
+
+	push	P4
+	push	P4
+	vbroadcasti64x2	zmm0, [rsp]
+	add	rsp, 16
+
+.L1:
+	mov	r10, P1
+
+.L2:
+	vmovntdq	[r10], zmm0
+	vmovntdq	[64+r10], zmm0
+	vmovntdq	[128+r10], zmm0
+	vmovntdq	[192+r10], zmm0
+
+	add	r10, 256
+	cmp	r10, P2
+	jb	.L2
+
+	dec	P3
+	jnz	.L1
+
+	pop	r10
+
+	vmovdqu64	zmm0, [rsp]
+	add	rsp, 64
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RandomWriterAVX
 ; Purpose:	Writes 256-bit value in somewhat random order to RAM.
-; Params:	rdi = ptr to array of chunk pointers
-; 		rsi = # of chunks
-; 		rdx = loops
-; 		rcx = datum to write
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
+; 		P4 = datum to write
 ;------------------------------------------------------------------------------
 	align 64
 RandomWriterAVX:
@@ -1341,10 +1155,10 @@ _RandomWriterAVX:
 	push	r11
 
 	sub	rsp, 32
-	mov	[rsp], rcx
-	mov	[rsp+8], rcx
-	mov	[rsp+16], rcx
-	mov	[rsp+24], rcx
+	mov	[rsp], P4
+	mov	[rsp+8], P4
+	mov	[rsp+16], P4
+	mov	[rsp+24], P4
 	vmovdqu	ymm0, [rsp]
 	add	rsp, 32
 
@@ -1352,7 +1166,7 @@ _RandomWriterAVX:
 	xor	r11, r11
 
 .L2:
-	mov	r10, [rdi + 8*r11]	; Note, 64-bit pointers.
+	mov	r10, [P1 + 8*r11]	; Note, 64-bit pointers.
 
 	vmovdqa	[192+r10], ymm0
 	vmovdqa	[224+r10], ymm0
@@ -1364,80 +1178,90 @@ _RandomWriterAVX:
 	vmovdqa	[32+r10], ymm0
 
 	inc	r11
-	cmp	r11, rsi
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r11
 	pop	r10
-	vzeroall
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		WriterSSE2_128bytes
-; Purpose:	Writes 128-bit value sequentially to an area of memory,
-;		chunks are 128 bytes rather than 256.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Name:		RandomWriterAVX_nontemporal
+; Purpose:	Writes 256-bit value in somewhat random order to RAM.
+; Params:	P1 = ptr to array of chunk pointers
+; 		P2 = # of chunks
+; 		P3 = loops
+; 		P4 = datum to write
 ;------------------------------------------------------------------------------
 	align 64
-WriterSSE2_128bytes:
-_WriterSSE2_128bytes:
+RandomWriterAVX_nontemporal:
+_RandomWriterAVX_nontemporal:
 	push	r10
+	push	r11
 
-	add	rsi, rdi	; rsi now points to end.
-
-	movq	xmm0, rcx
+	sub	rsp, 32
+	mov	[rsp], P4
+	mov	[rsp+8], P4
+	mov	[rsp+16], P4
+	mov	[rsp+24], P4
+	vmovdqu	ymm0, [rsp]
+	add	rsp, 32
 
 .L1:
-	mov	r10, rdi
+	xor	r11, r11
 
 .L2:
-	movdqa	[r10], xmm0
-	movdqa	[16+r10], xmm0
-	movdqa	[32+r10], xmm0
-	movdqa	[48+r10], xmm0
-	movdqa	[64+r10], xmm0
-	movdqa	[80+r10], xmm0
-	movdqa	[96+r10], xmm0
-	movdqa	[112+r10], xmm0
+	mov	r10, [P1 + 8*r11]	; Note, 64-bit pointers.
 
-	add	r10, 128
-	cmp	r10, rsi
+	vmovntdq	[192+r10], ymm0
+	vmovntdq	[64+r10], ymm0
+	vmovntdq	[224+r10], ymm0
+	vmovntdq	[r10], ymm0
+	vmovntdq	[128+r10], ymm0
+	vmovntdq	[32+r10], ymm0
+	vmovntdq	[96+r10], ymm0
+	vmovntdq	[160+r10], ymm0
+
+	inc	r11
+	cmp	r11, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
+	pop	r11
 	pop	r10
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		WriterSSE2_bypass
+; Name:		WriterSSE2_nontemporal
 ; Purpose:	Writes 128-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
 ;------------------------------------------------------------------------------
 	align 64
-WriterSSE2_bypass:
-_WriterSSE2_bypass:
+WriterSSE2_nontemporal:
+_WriterSSE2_nontemporal:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
-	movq	xmm0, rcx
+	movq	xmm0, P4
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
-	movntdq	[r10], xmm0	; Write bypassing cache.
+	movntdq	[r10], xmm0	
 	movntdq	[16+r10], xmm0
 	movntdq	[32+r10], xmm0
 	movntdq	[48+r10], xmm0
@@ -1456,39 +1280,41 @@ _WriterSSE2_bypass:
 	movntdq	[240+r10], xmm0
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		WriterAVX_bypass
-; Purpose:	Writes 256-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Name:		WriterAVX_nontemporal
+; Purpose:	Nontemporal writes of 256-bit values sequentially into memory.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+; 		P4 = quad to write
 ;------------------------------------------------------------------------------
 	align 64
-WriterAVX_bypass:
-_WriterAVX_bypass:
+WriterAVX_nontemporal:
+_WriterAVX_nontemporal:
 	vzeroupper
 
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
+	add	P2, P1	; P2 now points to end.
 
-	movq	xmm0, rcx
+	movq	xmm0, P4
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
-	vmovntdq	[r10], ymm0	; Write bypassing cache.
+	vmovntdq	[r10], ymm0	
 	vmovntdq	[32+r10], ymm0
 	vmovntdq	[64+r10], ymm0
 	vmovntdq	[96+r10], ymm0
@@ -1498,54 +1324,91 @@ _WriterAVX_bypass:
 	vmovntdq	[224+r10], ymm0
 
 	add	r10, 256
-	cmp	r10, rsi
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
-	vzeroall
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		WriterSSE2_128bytes_bypass
-; Purpose:	Writes 128-bit value sequentially to an area of memory.
-; Params:	rdi = ptr to memory area
-; 		rsi = length in bytes
-; 		rdx = loops
-; 		rcx = quad to write
+; Name:		ReaderAVX_nontemporal
+; Purpose:	Nontemporal reads of 256-bit values sequentially from memory.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
 ;------------------------------------------------------------------------------
 	align 64
-WriterSSE2_128bytes_bypass:
-_WriterSSE2_128bytes_bypass:
+ReaderAVX_nontemporal:
+_ReaderAVX_nontemporal:
 	push	r10
 
-	add	rsi, rdi	; rsi now points to end.
-
-	movq	xmm0, rcx
+	add	P2, P1	; P2 now points to end.
 
 .L1:
-	mov	r10, rdi
+	mov	r10, P1
 
 .L2:
-	movntdq	[r10], xmm0	; Write bypassing cache.
-	movntdq	[16+r10], xmm0
-	movntdq	[32+r10], xmm0
-	movntdq	[48+r10], xmm0
-	movntdq	[64+r10], xmm0
-	movntdq	[80+r10], xmm0
-	movntdq	[96+r10], xmm0
-	movntdq	[112+r10], xmm0
+	; This requires AVX512F.
+	vmovntdqa	ymm0, [r10]	
+	vmovntdqa	ymm0, [32+r10]
+	vmovntdqa	ymm0, [64+r10]
+	vmovntdqa	ymm0, [96+r10]
+	vmovntdqa	ymm0, [128+r10]
+	vmovntdqa	ymm0, [160+r10]
+	vmovntdqa	ymm0, [192+r10]
+	vmovntdqa	ymm0, [224+r10]
 
-	add	r10, 128
-	cmp	r10, rsi
+	add	r10, 256
+	cmp	r10, P2
 	jb	.L2
 
-	dec	rdx
+	dec	P3
 	jnz	.L1
 
 	pop	r10
+
+	sfence
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		ReaderAVX512_nontemporal
+; Purpose:	Nontemporal reads of 512-bit values sequentially from memory.
+; Params:	P1 = ptr to memory area
+; 		P2 = length in bytes
+; 		P3 = loops
+;------------------------------------------------------------------------------
+	align 64
+ReaderAVX512_nontemporal:
+_ReaderAVX512_nontemporal:
+	push	r10
+
+	add	P2, P1	; P2 now points to end.
+
+.L1:
+	mov	r10, P1
+
+.L2:
+	; This requires AVX512F.
+	vmovntdqa	zmm0, [r10]	
+	vmovntdqa	zmm0, [64+r10]
+	vmovntdqa	zmm0, [128+r10]
+	vmovntdqa	zmm0, [192+r10]
+
+	add	r10, 256
+	cmp	r10, P2
+	jb	.L2
+
+	dec	P3
+	jnz	.L1
+
+	pop	r10
+
+	sfence
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1553,11 +1416,12 @@ _WriterSSE2_128bytes_bypass:
 ; Purpose:	Reads 64-bit values off the stack into registers of
 ;		the main register set, effectively testing L1 cache access
 ;		*and* effective-address calculation speed.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 StackReader:
 _StackReader:
+	push	qword 8000	; [rsp+56]
 	push	qword 7000	; [rsp+48]
 	push	qword 6000	; [rsp+40]
 	push	qword 5000	; [rsp+32]
@@ -1567,6 +1431,7 @@ _StackReader:
 	push	qword 1000	; [rsp]
 
 .L1:
+	; 64 transfers
 	mov	rax, [rsp]
 	mov	rax, [rsp+16]
 	mov	rax, [rsp+24]
@@ -1575,6 +1440,14 @@ _StackReader:
 	mov	rax, [rsp+8]
 	mov	rax, [rsp+48]
 	mov	rax, [rsp]
+	mov	rax, [rsp+56]
+	mov	rax, [rsp+16]
+	mov	rax, [rsp+24]
+	mov	rax, [rsp+32]
+	mov	rax, [rsp+40]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+48]
+	mov	rax, [rsp+56]
 	mov	rax, [rsp]
 	mov	rax, [rsp+16]
 	mov	rax, [rsp+24]
@@ -1582,28 +1455,55 @@ _StackReader:
 	mov	rax, [rsp+40]
 	mov	rax, [rsp+8]
 	mov	rax, [rsp+48]
-	mov	rax, [rsp]
-	mov	rax, [rsp]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+56]
 	mov	rax, [rsp+16]
 	mov	rax, [rsp+24]
 	mov	rax, [rsp+32]
 	mov	rax, [rsp+40]
 	mov	rax, [rsp+8]
 	mov	rax, [rsp+48]
-	mov	rax, [rsp+8]
-	mov	rax, [rsp+8]
-	mov	rax, [rsp+16]
-	mov	rax, [rsp+24]
-	mov	rax, [rsp+32]
-	mov	rax, [rsp+40]
-	mov	rax, [rsp+8]
-	mov	rax, [rsp+48]
-	mov	rax, [rsp+8]
+	mov	rax, [rsp+56]
+	mov	rax, [rsp]
 
-	sub	rdi, 1
+	mov	rax, [rsp+16]
+	mov	rax, [rsp+24]
+	mov	rax, [rsp+32]
+	mov	rax, [rsp+40]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+48]
+	mov	rax, [rsp]
+	mov	rax, [rsp+56]
+	mov	rax, [rsp+16]
+	mov	rax, [rsp+24]
+	mov	rax, [rsp+32]
+	mov	rax, [rsp+40]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+48]
+	mov	rax, [rsp+56]
+	mov	rax, [rsp]
+	mov	rax, [rsp+16]
+	mov	rax, [rsp+24]
+	mov	rax, [rsp+32]
+	mov	rax, [rsp+40]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+48]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+56]
+	mov	rax, [rsp+16]
+	mov	rax, [rsp+24]
+	mov	rax, [rsp+32]
+	mov	rax, [rsp+40]
+	mov	rax, [rsp+8]
+	mov	rax, [rsp+48]
+	mov	rax, [rsp+56]
+
+	sub	P1, 1
 	jnz	.L1
 
-	add	rsp, 56
+	add	rsp, 64
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
@@ -1611,11 +1511,12 @@ _StackReader:
 ; Purpose:	Writes 64-bit values into the stack from registers of
 ;		the main register set, effectively testing L1 cache access
 ;		*and* effective-address calculation speed.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 StackWriter:
 _StackWriter:
+	push	qword 8000	; [rsp+56]
 	push	qword 7000	; [rsp+48]
 	push	qword 6000	; [rsp+40]
 	push	qword 5000	; [rsp+32]
@@ -1627,6 +1528,7 @@ _StackWriter:
 	xor	rax, rax
 
 .L1:
+	; 64 transfers
 	mov	[rsp], rax
 	mov	[rsp+16], rax
 	mov	[rsp+24], rax
@@ -1635,6 +1537,14 @@ _StackWriter:
 	mov	[rsp+8], rax
 	mov	[rsp+48], rax
 	mov	[rsp], rax
+	mov	[rsp+56], rax
+	mov	[rsp+16], rax
+	mov	[rsp+24], rax
+	mov	[rsp+32], rax
+	mov	[rsp+40], rax
+	mov	[rsp+8], rax
+	mov	[rsp+48], rax
+	mov	[rsp+56], rax
 	mov	[rsp], rax
 	mov	[rsp+16], rax
 	mov	[rsp+24], rax
@@ -1642,89 +1552,150 @@ _StackWriter:
 	mov	[rsp+40], rax
 	mov	[rsp+8], rax
 	mov	[rsp+48], rax
-	mov	[rsp], rax
-	mov	[rsp], rax
+	mov	[rsp+8], rax
+	mov	[rsp+56], rax
 	mov	[rsp+16], rax
 	mov	[rsp+24], rax
 	mov	[rsp+32], rax
 	mov	[rsp+40], rax
 	mov	[rsp+8], rax
 	mov	[rsp+48], rax
-	mov	[rsp+8], rax
-	mov	[rsp+8], rax
-	mov	[rsp+16], rax
-	mov	[rsp+24], rax
-	mov	[rsp+32], rax
-	mov	[rsp+40], rax
-	mov	[rsp+8], rax
-	mov	[rsp+48], rax
-	mov	[rsp+8], rax
+	mov	[rsp+56], rax
 
-	sub	rdi, 1
+	mov	[rsp], rax
+	mov	[rsp+16], rax
+	mov	[rsp+24], rax
+	mov	[rsp+32], rax
+	mov	[rsp+40], rax
+	mov	[rsp+8], rax
+	mov	[rsp+48], rax
+	mov	[rsp], rax
+	mov	[rsp+56], rax
+	mov	[rsp+16], rax
+	mov	[rsp+24], rax
+	mov	[rsp+32], rax
+	mov	[rsp+40], rax
+	mov	[rsp+8], rax
+	mov	[rsp+48], rax
+	mov	[rsp+56], rax
+	mov	[rsp], rax
+	mov	[rsp+16], rax
+	mov	[rsp+24], rax
+	mov	[rsp+32], rax
+	mov	[rsp+40], rax
+	mov	[rsp+8], rax
+	mov	[rsp+48], rax
+	mov	[rsp+8], rax
+	mov	[rsp+56], rax
+	mov	[rsp+16], rax
+	mov	[rsp+24], rax
+	mov	[rsp+32], rax
+	mov	[rsp+40], rax
+	mov	[rsp+8], rax
+	mov	[rsp+48], rax
+	mov	[rsp+56], rax
+
+	sub	P1, 1
 	jnz	.L1
 
-	add	rsp, 56
+	add	rsp, 64
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RegisterToRegister
 ; Purpose:	Reads/writes 64-bit values between registers of 
-;		the main register set.
-; Params:	rdi = loops
+;		the main register set. Total bytes transferred is 8*32=256.
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 RegisterToRegister:
 _RegisterToRegister:
 .L1:
-	mov	rax, rbx
-	mov	rax, rcx
-	mov	rax, rdx
-	mov	rax, rsi
-	mov	rax, rdi
+	mov	rax, rbx	; 64 transfers
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
 	mov	rax, rbp
 	mov	rax, rsp
 	mov	rax, rbx
 	mov	rax, rbx
-	mov	rax, rcx
-	mov	rax, rdx
-	mov	rax, rsi
-	mov	rax, rdi
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
 	mov	rax, rbp
 	mov	rax, rsp
 	mov	rax, rbx
 	mov	rax, rbx
-	mov	rax, rcx
-	mov	rax, rdx
-	mov	rax, rsi
-	mov	rax, rdi
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
 	mov	rax, rbp
 	mov	rax, rsp
 	mov	rax, rbx
 	mov	rax, rbx
-	mov	rax, rcx
-	mov	rax, rdx
-	mov	rax, rsi
-	mov	rax, rdi
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
 	mov	rax, rbp
 	mov	rax, rsp
 	mov	rax, rbx
 
-	sub	rdi, 1
+	mov	rax, rbx
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
+	mov	rax, rbp
+	mov	rax, rsp
+	mov	rax, rbx
+	mov	rax, rbx
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
+	mov	rax, rbp
+	mov	rax, rsp
+	mov	rax, rbx
+	mov	rax, rbx
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
+	mov	rax, rbp
+	mov	rax, rsp
+	mov	rax, rbx
+	mov	rax, rbx
+	mov	rax, P4
+	mov	rax, P3
+	mov	rax, P2
+	mov	rax, P1
+	mov	rax, rbp
+	mov	rax, rsp
+	mov	rax, rbx
+
+	sub	P1, 1
 	jnz	.L1
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		VectorToVector
+; Name:		VectorToVector128
 ; Purpose:	Reads/writes 128-bit values between registers of 
 ;		the vector register set, in this case XMM.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
-VectorToVector:
-_VectorToVector:
+VectorToVector128:
+_VectorToVector128:
 .L1:
-	movq	xmm0, xmm1	; Each move moves 16 bytes, so we need 16
-	movq	xmm14, xmm2	; moves to transfer a 256 byte chunk.
+	; 32 transfers
+	movq	xmm0, xmm1
+	movq	xmm14, xmm2
 	movq	xmm0, xmm4
 	movq	xmm9, xmm0
 	movq	xmm1, xmm12
@@ -1741,24 +1712,43 @@ _VectorToVector:
 	movq	xmm0, xmm3
 	movq	xmm3, xmm14
 
-	sub	rdi, 1
+	movq	xmm0, xmm1
+	movq	xmm14, xmm2
+	movq	xmm0, xmm4
+	movq	xmm9, xmm0
+	movq	xmm1, xmm12
+	movq	xmm7, xmm1
+	movq	xmm8, xmm3
+	movq	xmm3, xmm1
+
+	movq	xmm13, xmm2
+	movq	xmm11, xmm3
+	movq	xmm2, xmm10
+	movq	xmm6, xmm1
+	movq	xmm1, xmm2
+	movq	xmm15, xmm1
+	movq	xmm0, xmm3
+	movq	xmm3, xmm14
+
+	sub	P1, 1
 	jnz	.L1
 	ret
 
 ;------------------------------------------------------------------------------
-; Name:		VectorToVectorAVX
-; Purpose:	Reads/writes 256-bit values between registers of 
-;		the vector register set, in this case YMM.
-; Params:	rdi = loops
+; Name:		VectorToVector256
+; Purpose:	Reads/writes 256-bit values between vector registers,
+;		which on the x86 are YMM registers.
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
-VectorToVectorAVX:
-_VectorToVectorAVX:
+VectorToVector256:
+_VectorToVector256:
 	vzeroupper
 
 .L1:
-	vmovdqa	ymm0, ymm1	; Each move moves 32 bytes, so we need 8
-	vmovdqa	ymm0, ymm2	; moves to transfer a 256 byte chunk.
+	; 32 transfers
+	vmovdqa	ymm0, ymm1	
+	vmovdqa	ymm0, ymm2
 	vmovdqa	ymm0, ymm3
 	vmovdqa	ymm2, ymm0
 	vmovdqa	ymm1, ymm2
@@ -1766,66 +1756,144 @@ _VectorToVectorAVX:
 	vmovdqa	ymm0, ymm3
 	vmovdqa	ymm3, ymm1
 
-	sub	rdi, 1
+	vmovdqa	ymm0, ymm1	
+	vmovdqa	ymm0, ymm2
+	vmovdqa	ymm0, ymm3
+	vmovdqa	ymm2, ymm0
+	vmovdqa	ymm1, ymm2
+	vmovdqa	ymm2, ymm1
+	vmovdqa	ymm0, ymm3
+	vmovdqa	ymm3, ymm1
+
+	vmovdqa	ymm0, ymm1	
+	vmovdqa	ymm0, ymm2
+	vmovdqa	ymm0, ymm3
+	vmovdqa	ymm2, ymm0
+	vmovdqa	ymm1, ymm2
+	vmovdqa	ymm2, ymm1
+	vmovdqa	ymm0, ymm3
+	vmovdqa	ymm3, ymm1
+
+	vmovdqa	ymm0, ymm1	
+	vmovdqa	ymm0, ymm2
+	vmovdqa	ymm0, ymm3
+	vmovdqa	ymm2, ymm0
+	vmovdqa	ymm1, ymm2
+	vmovdqa	ymm2, ymm1
+	vmovdqa	ymm0, ymm3
+	vmovdqa	ymm3, ymm1
+
+	sub	P1, 1
 	jnz	.L1
-	vzeroall
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		VectorToVector512
+; Purpose:	Reads/writes 512-bit values between vector registers,
+;		which on the x86 are ZMM registers.
+; Params:	P1 = loops
+;------------------------------------------------------------------------------
+	align 64
+VectorToVector512:
+_VectorToVector512:
+
+.L1:
+	; 32 transfers
+	vmovdqa64	zmm0, zmm1	
+	vmovdqa64	zmm0, zmm2
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm2, zmm0
+	vmovdqa64	zmm1, zmm2
+	vmovdqa64	zmm2, zmm1
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm3, zmm1
+
+	vmovdqa64	zmm0, zmm1	
+	vmovdqa64	zmm0, zmm2
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm2, zmm0
+	vmovdqa64	zmm1, zmm2
+	vmovdqa64	zmm2, zmm1
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm3, zmm1
+
+	vmovdqa64	zmm0, zmm1	
+	vmovdqa64	zmm0, zmm2
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm2, zmm0
+	vmovdqa64	zmm1, zmm2
+	vmovdqa64	zmm2, zmm1
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm3, zmm1
+
+	vmovdqa64	zmm0, zmm1	
+	vmovdqa64	zmm0, zmm2
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm2, zmm0
+	vmovdqa64	zmm1, zmm2
+	vmovdqa64	zmm2, zmm1
+	vmovdqa64	zmm0, zmm3
+	vmovdqa64	zmm3, zmm1
+
+	sub	P1, 1
+	jnz	.L1
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		RegisterToVector
 ; Purpose:	Writes 64-bit main register values into 128-bit vector register
 ;		clearing the upper unused bits.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 RegisterToVector:
 _RegisterToVector:
 .L1:
 	movq	xmm1, rax 	; Each movq transfers 8 bytes, so we need
-	movq	xmm2, rsi	; 32 transfers to move a 256-byte chunk.
+	movq	xmm2, P2	; 32 transfers to move a 256-byte chunk.
 	movq	xmm3, rbx
-	movq	xmm1, rcx
-	movq	xmm2, rsi
+	movq	xmm1, P4
+	movq	xmm2, P2
 	movq	xmm3, rsp
-	movq	xmm0, rdi
-	movq	xmm0, rdx
+	movq	xmm0, P1
+	movq	xmm0, P3
 
 	movq	xmm0, rax 	
-	movq	xmm1, rsi
+	movq	xmm1, P2
 	movq	xmm2, rbx
-	movq	xmm3, rcx
-	movq	xmm0, rsi
+	movq	xmm3, P4
+	movq	xmm0, P2
 	movq	xmm3, rsp
-	movq	xmm2, rdi
-	movq	xmm1, rdx
+	movq	xmm2, P1
+	movq	xmm1, P3
 
 	movq	xmm0, rax 	
-	movq	xmm1, rsi
+	movq	xmm1, P2
 	movq	xmm2, rbx
-	movq	xmm3, rcx
-	movq	xmm0, rsi
+	movq	xmm3, P4
+	movq	xmm0, P2
 	movq	xmm3, rsp
-	movq	xmm2, rdi
-	movq	xmm1, rdx
+	movq	xmm2, P1
+	movq	xmm1, P3
 
 	movq	xmm0, rax 	
-	movq	xmm1, rsi
+	movq	xmm1, P2
 	movq	xmm2, rbx
-	movq	xmm3, rcx
-	movq	xmm0, rsi
+	movq	xmm3, P4
+	movq	xmm0, P2
 	movq	xmm3, rsp
-	movq	xmm2, rdi
-	movq	xmm1, rdx
+	movq	xmm2, P1
+	movq	xmm1, P3
 
-	dec	rdi
-	jnz .L1
+	dec	P1
+	jnz	.L1
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		VectorToRegister
 ; Purpose:	Writes lower 64 bits of vector register into 64-bit main 
 ;		register.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 VectorToRegister:
@@ -1867,7 +1935,7 @@ _VectorToRegister:
 	movq	rax, xmm2
 	movq	rax, xmm1
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
@@ -1875,12 +1943,12 @@ _VectorToRegister:
 ; Name:		Register8ToVector
 ; Purpose:	Writes 8-bit main register values into 128-bit vector register
 ;		without clearing the unused bits.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Register8ToVector:
 _Register8ToVector:
-	sal	rdi, 2  	; Force some repetition.
+
 .L1:
 	pinsrb	xmm1, al, 0	; 64 transfers x 1 byte = 64 bytes
 	pinsrb	xmm2, bl, 1
@@ -1954,7 +2022,7 @@ _Register8ToVector:
 	pinsrb	xmm0, cl, 6
 	pinsrb	xmm0, bl, 7
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
@@ -1962,12 +2030,12 @@ _Register8ToVector:
 ; Name:		Register16ToVector
 ; Purpose:	Writes 16-bit main register values into 128-bit vector register
 ;		without clearing the unused bits.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Register16ToVector:
 _Register16ToVector:
-	sal	rdi, 1  	; Force some repetition.
+
 .L1:
 	pinsrw	xmm1, ax, 0	; 64 transfers x 2 bytes = 128 bytes
 	pinsrw	xmm2, bx, 1
@@ -2041,7 +2109,7 @@ _Register16ToVector:
 	pinsrw	xmm0, bp, 6
 	pinsrw	xmm0, bx, 7
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
@@ -2049,11 +2117,12 @@ _Register16ToVector:
 ; Name:		Register32ToVector
 ; Purpose:	Writes 32-bit main register values into 128-bit vector register
 ;		without clearing the unused bits.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Register32ToVector:
 _Register32ToVector:
+	mov	eax, 0xcafef00d
 .L1:
 	pinsrd	xmm1, eax, 0	; Each xfer moves 4 bytes so to move 256 bytes
 	pinsrd	xmm2, ebx, 1	; we need 64 transfers.
@@ -2127,7 +2196,7 @@ _Register32ToVector:
 	pinsrd	xmm0, ebp, 0
 	pinsrd	xmm0, ebx, 0
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
@@ -2135,12 +2204,12 @@ _Register32ToVector:
 ; Name:		Register64ToVector
 ; Purpose:	Writes 64-bit main register values into 128-bit vector register
 ;		without clearing the unused bits.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Register64ToVector:
 _Register64ToVector:
-	add	rdi, rdi
+
 .L1:
 	pinsrq	xmm1, r8, 0	; Each xfer moves 8 bytes, therefore to do
 	pinsrq	xmm2, r9, 1	; 256 bytes we need 32 transfers.
@@ -2178,7 +2247,43 @@ _Register64ToVector:
 	pinsrq	xmm0, rbp, 0
 	pinsrq	xmm0, rbx, 0
 
-	dec	rdi
+	pinsrq	xmm1, r8, 0	; Each xfer moves 8 bytes, therefore to do
+	pinsrq	xmm2, r9, 1	; 256 bytes we need 32 transfers.
+	pinsrq	xmm3, r10, 0
+	pinsrq	xmm1, r11, 1
+	pinsrq	xmm2, r12, 0
+	pinsrq	xmm3, rax, 1
+	pinsrq	xmm0, rbp, 0
+	pinsrq	xmm0, rbx, 1
+
+	pinsrq	xmm0, r8, 0
+	pinsrq	xmm0, r9, 1
+	pinsrq	xmm0, r10, 1
+	pinsrq	xmm0, r11, 1
+	pinsrq	xmm0, r12, 0
+	pinsrq	xmm0, rax, 0
+	pinsrq	xmm0, rbp, 0
+	pinsrq	xmm0, rbx, 0
+
+	pinsrq	xmm0, r8, 0
+	pinsrq	xmm0, r9, 1
+	pinsrq	xmm0, r10, 1
+	pinsrq	xmm0, r11, 1
+	pinsrq	xmm0, r12, 0
+	pinsrq	xmm0, rax, 0
+	pinsrq	xmm0, rbp, 0
+	pinsrq	xmm0, rbx, 0
+
+	pinsrq	xmm0, r8, 0
+	pinsrq	xmm0, r9, 1
+	pinsrq	xmm0, r10, 1
+	pinsrq	xmm0, r11, 1
+	pinsrq	xmm0, r12, 0
+	pinsrq	xmm0, rax, 0
+	pinsrq	xmm0, rbp, 0
+	pinsrq	xmm0, rbx, 0
+
+	dec	P1
 	jnz .L1
 	ret
 
@@ -2186,12 +2291,12 @@ _Register64ToVector:
 ;------------------------------------------------------------------------------
 ; Name:		Vector8ToRegister
 ; Purpose:	Writes 8-bit vector register values into main register.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Vector8ToRegister:
 _Vector8ToRegister:
-	sal	rdi, 3  	; Force some repetition.
+
 .L1:
 	pextrb	eax, xmm1, 0	; 64 transfers x 1 bytes = 64 bytes 
 	pextrb	eax, xmm2, 1
@@ -2265,19 +2370,19 @@ _Vector8ToRegister:
 	pextrb	eax, xmm0, 6
 	pextrb	eax, xmm0, 7
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		Vector16ToRegister
 ; Purpose:	Writes 16-bit vector register values into main register.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Vector16ToRegister:
 _Vector16ToRegister:
-	sal	rdi, 2  	; Force some repetition.
+
 .L1:
 	pextrw	eax, xmm1, 0	; 64 transfers x 2 bytes = 128 bytes 
 	pextrw	eax, xmm2, 1
@@ -2351,19 +2456,19 @@ _Vector16ToRegister:
 	pextrw	eax, xmm0, 6
 	pextrw	eax, xmm0, 7
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		Vector32ToRegister
 ; Purpose:	Writes 32-bit vector register values into main register.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Vector32ToRegister:
 _Vector32ToRegister:
-	add 	rdi, rdi
+	
 .L1:
 	pextrd	eax, xmm1, 0	; 64 xfers x 4 bytes = 256 bytes
 	pextrd	eax, xmm2, 1
@@ -2437,21 +2542,21 @@ _Vector32ToRegister:
 	pextrd	eax, xmm0, 2
 	pextrd	eax, xmm0, 3
 
-	dec	rdi
+	dec	P1
 	jnz .L1
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		Vector64ToRegister
 ; Purpose:	Writes 64-bit vector register values into main register.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 Vector64ToRegister:
 _Vector64ToRegister:
-	add	rdi, rdi
+	
 .L1:
-	pextrq	rax, xmm1, 0	; 32 transfers by 8 bytes = 256 bytes 
+	pextrq	rax, xmm1, 0	; 64 transfers 
 	pextrq	rax, xmm2, 1
 	pextrq	rax, xmm3, 0
 	pextrq	rax, xmm1, 1
@@ -2487,17 +2592,223 @@ _Vector64ToRegister:
 	pextrq	rax, xmm0, 0
 	pextrq	rax, xmm0, 1
 
-	dec	rdi
+	pextrq	rax, xmm1, 0	; 64 transfers 
+	pextrq	rax, xmm2, 1
+	pextrq	rax, xmm3, 0
+	pextrq	rax, xmm1, 1
+	pextrq	rax, xmm2, 0
+	pextrq	rax, xmm3, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+
+	pextrq	rax, xmm1, 0
+	pextrq	rax, xmm2, 1
+	pextrq	rax, xmm3, 0
+	pextrq	rax, xmm1, 1
+	pextrq	rax, xmm2, 0
+	pextrq	rax, xmm3, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+	pextrq	rax, xmm0, 0
+	pextrq	rax, xmm0, 1
+
+	dec	P1
 	jnz .L1
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		CopyWithMainRegisters
+; Purpose:	Copies memory chunks that are 32-byte aligned.
+; Params:	P1 = ptr to destination memory area
+;		P2 = ptr to source memory area
+; 		P3 = length in bytes
+; 		P4 = loops
+;------------------------------------------------------------------------------
+	align 64
+CopyWithMainRegisters:
+_CopyWithMainRegisters:
+
+	push	r10
+	push	r11
+	push	r12
+	push	r13
+	push	r14
+
+	shr	P3, 8	; Ensure length is multiple of 256.
+	shl	P3, 8
+
+	prefetcht0	[P2]
+
+.L1:
+	mov	r10, P3
+
+.L2:
+	mov	r11, [P2]
+	mov	r12, [8+P2]
+	mov	r13, [16+P2]
+	mov	r14, [24+P2]
+	mov	[P1], r11
+	mov	[8+P1], r12
+	mov	[16+P1], r13
+	mov	[24+P1], r14
+
+	mov	r11, [32+P2]
+	mov	r12, [40+P2]
+	mov	r13, [48+P2]
+	mov	r14, [56+P2]
+	mov	[32+P1], r11
+	mov	[40+P1], r12
+	mov	[48+P1], r13
+	mov	[56+P1], r14
+
+	mov	r11, [64+P2]
+	mov	r12, [72+P2]
+	mov	r13, [80+P2]
+	mov	r14, [88+P2]
+	mov	[64+P1], r11
+	mov	[72+P1], r12
+	mov	[80+P1], r13
+	mov	[88+P1], r14
+
+	mov	r11, [96+P2]
+	mov	r12, [104+P2]
+	mov	r13, [112+P2]
+	mov	r14, [120+P2]
+	mov	[96+P1], r11
+	mov	[104+P1], r12
+	mov	[112+P1], r13
+	mov	[120+P1], r14
+
+	mov	r11, [128+P2]
+	mov	r12, [128+8+P2]
+	mov	r13, [128+16+P2]
+	mov	r14, [128+24+P2]
+	mov	[128+P1], r11
+	mov	[128+8+P1], r12
+	mov	[128+16+P1], r13
+	mov	[128+24+P1], r14
+
+	mov	r11, [128+32+P2]
+	mov	r12, [128+40+P2]
+	mov	r13, [128+48+P2]
+	mov	r14, [128+56+P2]
+	mov	[128+32+P1], r11
+	mov	[128+40+P1], r12
+	mov	[128+48+P1], r13
+	mov	[128+56+P1], r14
+
+	mov	r11, [128+64+P2]
+	mov	r12, [128+72+P2]
+	mov	r13, [128+80+P2]
+	mov	r14, [128+88+P2]
+	mov	[128+64+P1], r11
+	mov	[128+72+P1], r12
+	mov	[128+80+P1], r13
+	mov	[128+88+P1], r14
+
+	mov	r11, [128+96+P2]
+	mov	r12, [128+104+P2]
+	mov	r13, [128+112+P2]
+	mov	r14, [128+120+P2]
+	mov	[128+96+P1], r11
+	mov	[128+104+P1], r12
+	mov	[128+112+P1], r13
+	mov	[128+120+P1], r14
+
+	add	P2, 256
+	add	P1, 256
+
+	sub	r10, 256
+	jnz	.L2
+
+	sub	P2, P3	; P2 now points to start.
+	sub	P1, P3	; P1 now points to start.
+
+	dec	P4
+	jnz	.L1
+
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	r11
+	pop	r10
+
+	mfence
+	ret
+
+;------------------------------------------------------------------------------
+; Name:		CopyAVX512
+; Purpose:	Copies memory chunks that are 64-byte aligned.
+; Params:	P1 = ptr to destination memory area
+;		P2 = ptr to source memory area
+; 		P3 = length in bytes
+; 		P4 = loops
+;------------------------------------------------------------------------------
+	align 64
+CopyAVX512:
+_CopyAVX512:
+
+	push	r10
+
+	shr	P3, 8	; Ensure length is multiple of 256.
+	shl	P3, 8
+
+	prefetcht0	[P2]
+
+.L1:
+	mov	r10, P3
+
+.L2:
+	vmovdqa64	zmm0, [P2]
+	vmovdqa64	zmm1, [64+P2]
+	vmovdqa64	zmm2, [128+P2]
+	vmovdqa64	zmm3, [192+P2]
+
+	vmovdqa64	[P1], zmm0
+	vmovdqa64	[64+P1], zmm1
+	vmovdqa64	[128+P1], zmm2
+	vmovdqa64	[192+P1], zmm3
+
+	add	P2, 256
+	add	P1, 256
+
+	sub	r10, 256
+	jnz	.L2
+
+	sub	P2, P3	; P2 now points to start.
+	sub	P1, P3	; P1 now points to start.
+
+	dec	P4
+	jnz	.L1
+
+	pop	r10
+
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		CopyAVX
 ; Purpose:	Copies memory chunks that are 32-byte aligned.
-; Params:	rdi = ptr to destination memory area
-;		rsi = ptr to source memory area
-; 		rdx = length in bytes
-; 		rcx = loops
+; Params:	P1 = ptr to destination memory area
+;		P2 = ptr to source memory area
+; 		P3 = length in bytes
+; 		P4 = loops
 ;------------------------------------------------------------------------------
 	align 64
 CopyAVX:
@@ -2506,70 +2817,69 @@ _CopyAVX:
 
 	push	r10
 
-	shr	rdx, 8	; Ensure length is multiple of 256.
-	shl	rdx, 8
+	shr	P3, 8	; Ensure length is multiple of 256.
+	shl	P3, 8
 
-	prefetcht0	[rsi]
+	prefetcht0	[P2]
 
 .L1:
-	mov	r10, rdx
+	mov	r10, P3
 
 .L2:
-	vmovdqa	ymm0, [rsi]
-	vmovdqa	ymm1, [32+rsi]
-	vmovdqa	ymm2, [64+rsi]
-	vmovdqa	ymm3, [96+rsi]
+	vmovdqa	ymm0, [P2]
+	vmovdqa	ymm1, [32+P2]
+	vmovdqa	ymm2, [64+P2]
+	vmovdqa	ymm3, [96+P2]
 
-	vmovdqa	[rdi], ymm0
-	vmovdqa	[32+rdi], ymm1
-	vmovdqa	[64+rdi], ymm2
-	vmovdqa	[96+rdi], ymm3
+	vmovdqa	[P1], ymm0
+	vmovdqa	[32+P1], ymm1
+	vmovdqa	[64+P1], ymm2
+	vmovdqa	[96+P1], ymm3
 
-	vmovdqa	ymm0, [128+rsi]
-	vmovdqa	ymm1, [128+32+rsi]
-	vmovdqa	ymm2, [128+64+rsi]
-	vmovdqa	ymm3, [128+96+rsi]
+	vmovdqa	ymm0, [128+P2]
+	vmovdqa	ymm1, [128+32+P2]
+	vmovdqa	ymm2, [128+64+P2]
+	vmovdqa	ymm3, [128+96+P2]
 
-	vmovdqa	[128+rdi], ymm0
-	vmovdqa	[128+32+rdi], ymm1
-	vmovdqa	[128+64+rdi], ymm2
-	vmovdqa	[128+96+rdi], ymm3
+	vmovdqa	[128+P1], ymm0
+	vmovdqa	[128+32+P1], ymm1
+	vmovdqa	[128+64+P1], ymm2
+	vmovdqa	[128+96+P1], ymm3
 
-	add	rsi, 256
-	add	rdi, 256
+	add	P2, 256
+	add	P1, 256
 
 	sub	r10, 256
 	jnz	.L2
 
-	sub	rsi, rdx	; rsi now points to start.
-	sub	rdi, rdx	; rdi now points to start.
+	sub	P2, P3	; P2 now points to start.
+	sub	P1, P3	; P1 now points to start.
 
-	dec	rcx
+	dec	P4
 	jnz	.L1
 
 	pop	r10
 
-	vzeroall
+	mfence
 	ret
-
 
 ;------------------------------------------------------------------------------
 ; Name:		CopySSE
 ; Purpose:	Copies memory chunks that are 16-byte aligned.
-; Params:	rdi = ptr to destination memory area
-;		rsi = ptr to source memory area
-; 		rdx = length in bytes
-; 		rcx = loops
+; Params:	P1 = ptr to destination memory area
+;		P2 = ptr to source memory area
+; 		P3 = length in bytes
+; 		P4 = loops
 ;------------------------------------------------------------------------------
 	align 64
 CopySSE:
 _CopySSE:
 	push	r10
 
-	shr	rdx, 8	; Ensure length is multiple of 256.
-	shl	rdx, 8
+	shr	P3, 8	; Ensure length is multiple of 256.
+	shl	P3, 8
 
-	prefetcht0	[rsi]
+	prefetcht0	[P2]
 
 	; Save our non-parameter XMM registers.
 	sub	rsp, 192
@@ -2587,59 +2897,59 @@ _CopySSE:
 	movdqu	[176+rsp], xmm15
 
 .L1:
-	mov	r10, rdx
+	mov	r10, P3
 
 .L2:
-	movdqa	xmm0, [rsi]
-	movdqa	xmm1, [16+rsi]
-	movdqa	xmm2, [32+rsi]
-	movdqa	xmm3, [48+rsi]
+	movdqa	xmm0, [P2]
+	movdqa	xmm1, [16+P2]
+	movdqa	xmm2, [32+P2]
+	movdqa	xmm3, [48+P2]
 
-	movdqa	[rdi], xmm0
-	movdqa	[16+rdi], xmm1
-	movdqa	[32+rdi], xmm2
-	movdqa	[48+rdi], xmm3
+	movdqa	[P1], xmm0
+	movdqa	[16+P1], xmm1
+	movdqa	[32+P1], xmm2
+	movdqa	[48+P1], xmm3
 
-	movdqa	xmm4, [64+rsi]
-	movdqa	xmm5, [80+rsi]
-	movdqa	xmm6, [96+rsi]
-	movdqa	xmm7, [112+rsi]
+	movdqa	xmm4, [64+P2]
+	movdqa	xmm5, [80+P2]
+	movdqa	xmm6, [96+P2]
+	movdqa	xmm7, [112+P2]
 
-	movdqa	[64+rdi], xmm4
-	movdqa	[80+rdi], xmm5
-	movdqa	[96+rdi], xmm6
-	movdqa	[112+rdi], xmm7
+	movdqa	[64+P1], xmm4
+	movdqa	[80+P1], xmm5
+	movdqa	[96+P1], xmm6
+	movdqa	[112+P1], xmm7
 
-	movdqa	xmm8, [128+rsi]
-	movdqa	xmm9, [144+rsi]
-	movdqa	xmm10, [160+rsi]
-	movdqa	xmm11, [176+rsi]
+	movdqa	xmm8, [128+P2]
+	movdqa	xmm9, [144+P2]
+	movdqa	xmm10, [160+P2]
+	movdqa	xmm11, [176+P2]
 
-	movdqa	[128+rdi], xmm8
-	movdqa	[144+rdi], xmm9
-	movdqa	[160+rdi], xmm10
-	movdqa	[176+rdi], xmm11
+	movdqa	[128+P1], xmm8
+	movdqa	[144+P1], xmm9
+	movdqa	[160+P1], xmm10
+	movdqa	[176+P1], xmm11
 
-	movdqa	xmm12, [192+rsi]
-	movdqa	xmm13, [208+rsi]
-	movdqa	xmm14, [224+rsi]
-	movdqa	xmm15, [240+rsi]
+	movdqa	xmm12, [192+P2]
+	movdqa	xmm13, [208+P2]
+	movdqa	xmm14, [224+P2]
+	movdqa	xmm15, [240+P2]
 
-	movdqa	[192+rdi], xmm12
-	movdqa	[208+rdi], xmm13
-	movdqa	[224+rdi], xmm14
-	movdqa	[240+rdi], xmm15
+	movdqa	[192+P1], xmm12
+	movdqa	[208+P1], xmm13
+	movdqa	[224+P1], xmm14
+	movdqa	[240+P1], xmm15
 
-	add	rsi, 256
-	add	rdi, 256
+	add	P2, 256
+	add	P1, 256
 
 	sub	r10, 256
 	jnz	.L2
 
-	sub	rsi, rdx	; rsi now points to start.
-	sub	rdi, rdx	; rdi now points to start.
+	sub	P2, P3	; P2 now points to start.
+	sub	P1, P3	; P1 now points to start.
 
-	dec	rcx
+	dec	P4
 	jnz	.L1
 
 	movdqu	xmm4, [rsp]
@@ -2657,83 +2967,14 @@ _CopySSE:
 	add	rsp, 192
 
 	pop	r10
-	ret
 
-
-;------------------------------------------------------------------------------
-; Name:		CopySSE_128bytes
-; Purpose:	Copies memory chunks that are 16-byte aligned.
-; Params:	rdi = ptr to destination memory area
-;		rsi = ptr to source memory area
-; 		rdx = length in bytes
-; 		rcx = loops
-;------------------------------------------------------------------------------
-	align 64
-CopySSE_128bytes:
-_CopySSE_128bytes:
-	push	r10
-
-	shr	rdx, 7	; Ensure length is multiple of 128.
-	shl	rdx, 7
-
-	prefetcht0	[rsi]
-
-	; Save our non-parameter XMM registers.
-	sub	rsp, 64
-	movdqu	[rsp], xmm4
-	movdqu	[16+rsp], xmm5
-	movdqu	[32+rsp], xmm6
-	movdqu	[48+rsp], xmm7
-
-.L1:
-	mov	r10, rdx
-
-.L2:
-	movdqa	xmm0, [rsi]
-	movdqa	xmm1, [16+rsi]
-	movdqa	xmm2, [32+rsi]
-	movdqa	xmm3, [48+rsi]
-
-	movdqa	[rdi], xmm0
-	movdqa	[16+rdi], xmm1
-	movdqa	[32+rdi], xmm2
-	movdqa	[48+rdi], xmm3
-
-	movdqa	xmm4, [64+rsi]
-	movdqa	xmm5, [80+rsi]
-	movdqa	xmm6, [96+rsi]
-	movdqa	xmm7, [112+rsi]
-
-	movdqa	[64+rdi], xmm4
-	movdqa	[80+rdi], xmm5
-	movdqa	[96+rdi], xmm6
-	movdqa	[112+rdi], xmm7
-
-	add	rsi, 128
-	add	rdi, 128
-
-	sub	r10, 128
-	jnz	.L2
-
-	sub	rsi, rdx	; rsi now points to start.
-	sub	rdi, rdx	; rdi now points to start.
-
-	dec	rcx
-	jnz	.L1
-
-	movdqu	xmm4, [rsp]
-	movdqu	xmm5, [16+rsp]
-	movdqu	xmm6, [32+rsp]
-	movdqu	xmm7, [48+rsp]
-	add	rsp, 64
-
-	pop	r10
+	mfence
 	ret
 
 ;------------------------------------------------------------------------------
 ; Name:		IncrementRegisters
 ; Purpose:	Increments 64-bit values in registers.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 IncrementRegisters:
@@ -2741,10 +2982,10 @@ _IncrementRegisters:
 .L1:
 	inc	rax
 	inc	rbx
-	inc	rcx
-	inc	rdx
-	inc	rsi
-	inc	rdi
+	inc	P4
+	inc	P3
+	inc	P2
+	inc	P1
 	inc	rbp
 	inc	rsp
 	inc	r8
@@ -2758,10 +2999,10 @@ _IncrementRegisters:
 
 	dec	rax
 	dec	rbx
-	dec	rcx
-	dec	rdx
-	dec	rsi
-	dec	rdi
+	dec	P4
+	dec	P3
+	dec	P2
+	dec	P1
 	dec	rbp
 	dec	rsp
 	dec	r8
@@ -2773,7 +3014,7 @@ _IncrementRegisters:
 	dec	r14
 	dec	r15
 
-	dec	rdi
+	dec	P1
 	jnz	.L1
 	ret
 
@@ -2781,7 +3022,7 @@ _IncrementRegisters:
 ;------------------------------------------------------------------------------
 ; Name:		IncrementStack
 ; Purpose:	Increments 64-bit values on stack.
-; Params:	rdi = loops
+; Params:	P1 = loops
 ;------------------------------------------------------------------------------
 	align 64
 IncrementStack:
@@ -2822,9 +3063,15 @@ _IncrementStack:
 	dec	qword [rsp+112]
 	dec	qword [rsp+120]
 
-	dec	rdi
+	dec	P1
 	jnz	.L1
 
 	add	rsp, 128
+
+	mfence
+	ret
+
+Reader_nontemporal:
+_Reader_nontemporal:
 	ret
 

@@ -1,0 +1,62 @@
+
+Rules that underpin OOC
+
+Names
+-----
+
+* The object pointer is the first parameter of every method function, and it is called "self" in order to differentiate it from C++, which uses "this".
+* When the type of a parameter can be any class, use the "Any*" type, and then validate that pointer's type.
+
+Important methods
+-----------------
+
+* Every class must have a globally-accessible class init method e.g. ObjectClass_init, which does the following
+    1. It initializes the class struct (vtable);
+    2. It makes sure all method pointers are present;
+    3. It locks the class struct's memory so that it can't be modified.
+
+* Every class must have a globally-accessible instance init method e.g. Object_init, which does the following:
+    1. Calls the superclass's init method to initialize inherited instance variables;
+    2. Sets the is_a pointer;
+    3. Initializes its own instance variables.
+
+* Every class must have a globally-accessible destroy method, either its own or Object_destroy, which does:
+    1. Releases any resources that it has retained.
+    2. Subclasses should call superclass's destructors.
+
+* Because each destructor can potentially be called directly by a subclass, it must take an Any* parameter and validate the class of self.
+
+* Always set released pointers to NULL, to avoid use-after-free situations.
+
+Init methods
+------------
+
+* The init method must always begin by ensuring that the class struct has been created and initialized, by making a call to ENSURE_CLASS_READY(Classname).
+* The init method should not assume that self is non-NULL, because the allocator may return NULL if the malloc call fails.
+* The init method should always return self.
+* The init methods are guaranteed to receive a zero-filled piece of memory for the object.
+
+How to implement methods
+------------------------
+
+* It is always best to immediately check whether 
+    A) self != NULL;
+    B) the self pointer is the correct type (i.e. correct is_a pointer);
+    C) object parameters that shoulnd't be NULL aren't NULL.
+    D) object parameters are the correct type;
+    E) required resources are present.
+  While these checks may be not be strictly necessary in every single case, they usually are, so don't waste time pondering it, lest you make a mistake.
+* If an object parameter can be one of multiple types (e.g. String, MutableString), use an Any* parameter type. This way, the callers do not need to cast the pointer everywhere.
+* In cases where you know all of the above will be true, a non-method function or even an inline might be a better choice.
+
+Memory management
+-----------------
+
+* Each object must be retained and released, to keep track of how many owners the object has. 
+* Thus each object has a retainCount instance variable that is incremented and decremented respectively.
+* When an object is created, its retain count is zero, indicating it is not owned.
+* When a nonzero retain count is decremented to zero, the object is destroyed and the pointer that was released is set to NULL.
+* When an object's memory is allocated, all of its bytes are first set to zero, to set its instance variables to a known state.
+* When an object is destroyed and deallocated, all of its bytes are first set to zero.
+* In the object destructors, you should always set released pointers to NULL for the sake of clarity and to avoid use-after-free situations.
+

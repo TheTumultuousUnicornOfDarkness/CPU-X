@@ -30,62 +30,70 @@
 extern "C" {
 #endif
 
-#define BANDWIDTH_MAX_CACHE_LEVEL 4
-
+#define BANDWIDTH_MAX_CACHE_LEVEL  4
+#define TEST_NAME_BUFFER_LEN      64
 
 enum EnTests
 {
+	// Sequential reads
+	SEQ_WS_R,
 	SEQ_128_R,
 	SEQ_256_R,
+	SEQ_512_R,
+	// Sequential nontemporal reads
+	SEQ_WS_NT_R,
+	SEQ_128_NT_R,
+	SEQ_256_NT_R,
+	SEQ_512_NT_R,
+	// Sequential writes
+	SEQ_WS_W,
+	SEQ_128_W,
+	SEQ_256_W,
+	SEQ_512_W,
+	// Sequential nontemporal writes
+	SEQ_WS_NT_W,
+	SEQ_128_NT_W,
+	SEQ_256_NT_W,
+	SEQ_512_NT_W,
+	// Random reads
+	RAND_WS_R,
 	RAND_128_R,
-	SEQ_128_CACHE_W,
-	SEQ_256_CACHE_W,
-	RAND_128_CACHE_W,
-	SEQ_128_BYPASS_R,
-	RAND_128_BYPASS_R,
-	SEQ_128_BYPASS_W,
-	SEQ_256_BYPASS_W,
-	RAND_128_BYPASS_W,
+	RAND_256_R,
+	// Random nontemporal reads
+	RAND_128_NT_R,
+	RAND_256_NT_R,
+	// Random writes
+	RAND_WS_W,
+	RAND_128_W,
+	RAND_256_W,
+	// Random nontemporal writes
+	RAND_128_NT_W,
+	RAND_256_NT_W,
+	// Sequential copy
+	SEQ_WS_C,
 	SEQ_128_C,
 	SEQ_256_C,
-	SEQ_32_LR,
-	SEQ_16_LR,
-	SEQ_8_LR,
-#ifdef __x86_64__
-	SEQ_64_R,
-	RAND_64_R,
-	SEQ_64_W,
-	RAND_64_W,
-	SEQ_64_LR,
-	RAND_256_R,
-	RAND_256_W,
-#else
-	SEQ_32_R,
-	RAND_32_R,
-	SEQ_32_W,
-	RAND_32_W,
-#endif
+	SEQ_512_C,
+	// Sentinel value
 	BANDWIDTH_LAST_TEST
 };
 
 struct Tests
 {
 	enum EnTests test;
-	char     *name;
-	uint32_t color;
-	bool     need_flag;
-	bool     need_mask;
-	int      (*func_ptr)(unsigned long, int, bool);
-	int      mode;
-	bool     random;
+	char         *name;
+	bool         support_instr;
+	long         (*func_ptr) (void*, unsigned long, int, bool);
+	int          testing_mode;
+	bool         random;
 };
 
 struct BandwidthData
 {
-	bool     is_amd_cpu;
 	uint8_t  selected_test;
 	uint32_t cache_size[BANDWIDTH_MAX_CACHE_LEVEL];
 	uint32_t cache_speed[BANDWIDTH_MAX_CACHE_LEVEL];
+	bool     *test_supported;
 	char     **test_name;
 	pthread_mutex_t mutex;
 };

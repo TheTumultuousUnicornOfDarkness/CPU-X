@@ -52,12 +52,11 @@ int call_bandwidth([[maybe_unused]] Data &data)
 		bwd.cache_size[i] = data.caches.get_selected_cpu_type().caches[i].size_i;
 
 	MSG_VERBOSE("%s", _("Calling bandwidth"));
+	bwd.selected_test = Options::get_selected_test();
 	if(first)
 	{
 		/* Init BandwidthData */
-		bwd.is_amd_cpu    = (data.cpu.vendor == VENDOR_AMD),
-		bwd.selected_test = Options::get_selected_test(),
-		bwd.test_name     = NULL,
+		bwd.test_name = NULL;
 		pthread_mutex_init(&bwd.mutex, NULL);
 
 		/* Call bandwidth */

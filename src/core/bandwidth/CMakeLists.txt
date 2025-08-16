@@ -1,10 +1,10 @@
 project(bandwidth
-	VERSION "1.5.1"
+	VERSION "1.14.10"
 	LANGUAGES C
 )
 
 # Config (bandwidth)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-strict-prototypes -Wno-sign-compare")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-sign-compare -Wno-type-limits -Wno-unused-parameter")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
 	set(NASM_FLAGS_DEBUG "-gdwarf")
@@ -19,13 +19,19 @@ if(CMAKE_ASM_NASM_COMPILER)
 
 	# NASM routines build
 	if(CMAKE_ASM_NASM_OBJECT_FORMAT MATCHES "elf64" OR CMAKE_ASM_NASM_OBJECT_FORMAT MATCHES "elfx32")
-		set(NASM_SRC "routines-x86-64bit.asm")
+		set(ROUTINES "routines-x86-64bit")
+		set(UTILITY  "utility-x86-64bit")
 	else()
-		set(NASM_SRC "routines-x86-32bit.asm")
+		set(ROUTINES "routines-x86-32bit")
+		set(UTILITY  "utility-x86-32bit")
 	endif()
 	add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
-		COMMAND ${CMAKE_ASM_NASM_COMPILER} ${NASM_FLAGS_DEBUG} -f ${CMAKE_ASM_NASM_OBJECT_FORMAT} ${NASM_SRC} -o ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
+		COMMAND ${CMAKE_ASM_NASM_COMPILER} ${NASM_FLAGS_DEBUG} -f ${CMAKE_ASM_NASM_OBJECT_FORMAT} ${ROUTINES}.asm -o ${CMAKE_CURRENT_BINARY_DIR}/${ROUTINES}.o
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+	)
+	add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${UTILITY}.o
+		COMMAND ${CMAKE_ASM_NASM_COMPILER} ${NASM_FLAGS_DEBUG} -f ${CMAKE_ASM_NASM_OBJECT_FORMAT} ${UTILITY}.asm -o ${CMAKE_CURRENT_BINARY_DIR}/${UTILITY}.o
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/OOC
 	)
 
 	if(LIBCPUID_FOUND AND WITH_LIBCPUID)
@@ -34,15 +40,19 @@ if(CMAKE_ASM_NASM_COMPILER)
 		add_definitions(-DHAS_LIBCPUID=0)
 	endif(LIBCPUID_FOUND AND WITH_LIBCPUID)
 
+	file(GLOB OOC_FILES
+		"OOC/*.c"
+		"OOC/*.h"
+	)
 	add_library(bandwidth
 		STATIC
-		BMP.c
-		BMPGraphing.c
-		font.c
+		${OOC_FILES}
 		main.c
-		minifont.c
 		libbandwidth.h
+		Testing.c
+		TestingX86.c
 		${ROUTINES}.o
+		${UTILITY}.o
 	)
 
 	target_link_libraries(bandwidth)

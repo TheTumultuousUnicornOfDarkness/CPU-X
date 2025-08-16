@@ -1,30 +1,28 @@
-
 /*=============================================================================
-  bmplib, a simple library to create, modify, and write BMP image files.
+  minifont, a narrow font 8 pixels high.
   Copyright (C) 2009-2014 by Zack T Smith.
 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 2 
-  as published by the Free Software Foundation.
-
-  This program is distributed in the hope that it will be useful,
+  Object-Oriented C is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published
+  by the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  Object-Oriented C is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  GNU Lesser General Public License for more details.
+ 
+  You should have received a copy of the GNU Lesser General Public License
+  along with this software.  If not, see <http://www.gnu.org/licenses/>.
 
   The author may be reached at 1@zsmith.co.
  *============================================================================*/
 
-#include <stdio.h>
-
-#include "BMP.h"
+#ifndef _OOC_MINIFONT_H
+#define _OOC_MINIFONT_H
 
 // Mini characters, 8 pixels high.
-static const char *mini_chars_ [] = 
+static const char *mini_chars [] = 
 {
 	"#",
 	"#",
@@ -835,11 +833,7 @@ static const char *mini_chars_ [] =
 	" # ",
 	"#####",
 	"",
-
 };
 
-const char **get_minifont_chars ()
-{
-	return mini_chars_;
-}
+#endif
 

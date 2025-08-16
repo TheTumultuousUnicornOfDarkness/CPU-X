@@ -1,43 +1,54 @@
 
-This is the README file for my program, "bandwidth".
+This is the README file for my program "bandwidth".
 
-Bandwidth is a benchmark that attempts to measure
-memory bandwidth. In December 2010 (and as of
-release 0.24), I extended 'bandwidth' to measure 
-network bandwidth as well.
+Bandwidth is a benchmark that measures memory bandwidth. 
 
-Bandwidth is useful because both memory bandwidth
-and network bandwidth need to be measured to
-give you a clear idea of what your computer(s) can do.
-Merely relying on specs does not give a full picture
-and indeed specs can be misleading.
+This utility is useful because memory bandwidth needs to
+measured to give you a clear idea of what your computer
+is capable of. 
+
+Merely relying on specs and marketing materials does not 
+provide a full or even true picture of how the hardware
+performs in real life.
 
 --------------------------------------------------
-MEMORY BANDWIDTH 
 
-My program bandwidth performs sequential and random
-reads and writes of varying sizes. This permits 
-you to infer from the graph how each type of memory 
+My program "bandwidth" performs sequential and random
+reads and writes and copies of varying sizes. This permits 
+you to infer from the graph how well each type of memory 
 is performing. So for instance when bandwidth
 writes a 256-byte chunk, you know that because
 caches are normally write-back, this chunk
 will reside entirely in the L1 cache. Whereas
-a 512 kB chunk will mainly reside in L2.
+a 256-kilobyte chunk will mainly reside in L2.
 
 You could run a non-artificial benchmark and 
 observe that a general performance number is lower 
-on one machine or higher on anotehr, but that may
-conceal the cause. 
+on one machine or higher on another, but that will
+conceal the cause(s). 
 
-So the purpose of this program is to help you 
-pinpoint the cause of a performance problem,
-or to affirm a general impression about a memory-
-intensive program. 
+So the purpose of this program is to help you hone in
+on one cause of good or bad system performance.
 
-It also tells you the best-case scenario e.g.
-the maximum bandwidth achieved using sequential,
-128-bit memory accesses.
+This utility also attempts to show you the best-case scenario,
+such as the maximum bandwidth achievable using sequential read
+accesses, even if in the real world few programs or libraries
+achieves that.
 
+Release 1.12:
+	- RISC-V support. Apple M2 support. Better OO organization. Fixed ARM bug.
+Release 1.11:
+	- AVX-512 support.
+Release 1.10:
+	- ARM 64 support, ARM 32 refinements. Apple M1 support.
+Release 1.9:
+	- More object-oriented improvements. Fixed Windows 64-bit support. Removed Linux framebuffer test.
+Release 1.8:
+	- More object-oriented improvements. Windows 64-bit supported.
+Release 1.7:
+	- Separated object-oriented C (OOC) from bandwidth app.
+Release 1.6:
+	- Converted the code to my conception of object-oriented C.
 Release 1.5:
 	- Fixed AVX bug. Added --nice mode and CPU temperature monitoring (OS/X only).
 Release 1.4:
@@ -45,7 +56,7 @@ Release 1.4:
 Release 1.3:
         - Added CSV output. Updated ARM code for Raspberry π 3.
 Release 1.2:
-        - Added ARM code back in.
+        - Put 32-bit ARM code back in.
 Release 1.1:
 	- Added larger font.
 Release 1.0:
@@ -121,57 +132,10 @@ and two processor architectures:
 I've written custom assembly routines for
 each architecture.
 
-Total run time for the default speed, which
-has 5 seconds per test, is about 35 minutes.
-
---------------------------------------------------
-NETWORK BANDWIDTH (beginning with release 0.24)
-
-[Update: This feature may no longer be working.]
-
-In mid-December 2010, I extended bandwidth to measure
-network bandwidth, which is useful for testing
-your home or workplace network setup, and in theory
-could be used to test machines across the Internet.
-
-Release 0.25 adds:
-	- Bidirectional network bandwidth testing.
-	- Specifiable port# (default is 49000).
-
-In the graph:
-	- Sent data appears as a solid line.
-	- Received data appears as a dashed line.
-
-The network test is pretty simple. It sends chunks
-of data of varying sizes to whatever computers
-(nodes) that you specify. Each of those must be
-running 'bandwidth' in transponder mode.
-
-The chunks of data range of 32 kB up to 32 MB.
-These are actually send as a stream of 1 or more
-32 kB sub-chunks.
-
-Sample output:
-	output/Network-Linux2.6-Celeron-2.8GHz-32bit-loopback.bmp
-	output/Network-MacOSX32-Corei5-2.4GHz-64bit-loopback.bmp
-	output/Network-Mac64-Linux32.bmp
-
-How to start a transponder:
-	./bandwidth-mac64 --transponder
-
-Example invocation of the test leader:
-	./bandwidth64 --network 192.168.1.104
-
-I've tested network mode on:
-	Linux 32-bit
-	Mac OS/X 32- and 64-bit
-	Win/Cygwin 32-bit.
-
 --------------------------------------------------
 This program is provided without any warranty
-and AS-IS. See the file COPYING for details.
+and AS-IS. See the file GPL.txt for details.
 
 Zack Smith
 1@zsmith.co
-March 2013
 
