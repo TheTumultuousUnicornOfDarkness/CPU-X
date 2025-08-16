@@ -97,7 +97,7 @@ public:
 	static bool set_selected_page_next();
 	static bool set_selected_page_prev();
 	static TabNumber get_selected_page();
-	static bool set_selected_type(uint8_t num_cpu_types, uint8_t selected_type);
+	static bool set_selected_type(uint8_t selected_type, uint8_t num_cpu_types);
 	static uint8_t get_selected_type();
 	static bool set_selected_test(uint8_t selected_test);
 	static uint8_t get_selected_test();
