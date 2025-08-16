@@ -84,6 +84,10 @@
 #define UNIT_GB               _("GB")
 // TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #define UNIT_TB               _("TB")
+// TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
+#define UNIT_PB               _("PB")
+// TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
+#define UNIT_EB               _("EB")
 /* Binary unit prefixes  */
 // TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #define UNIT_KIB               _("KiB")
@@ -93,6 +97,10 @@
 #define UNIT_GIB               _("GiB")
 // TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #define UNIT_TIB               _("TiB")
+// TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
+#define UNIT_PIB               _("PiB")
+// TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
+#define UNIT_EIB               _("EiB")
 
 /* Linux-specific paths definition */
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"
@@ -120,7 +128,9 @@ public:
 		MULT_M    = 2,
 		MULT_G    = 3,
 		MULT_T    = 4,
-		MULT_LAST = 5
+		MULT_P    = 5,
+		MULT_E    = 6,
+		MULT_LAST = 7
 	};
 
 	bool       init;

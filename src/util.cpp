@@ -57,6 +57,9 @@ void PrefixUnit::find_best_prefix(uint64_t value, PrefixUnit::Multipliers multip
 		{ MULT_M,     UNIT_MB, static_cast<uint64_t>(1e6)  },
 		{ MULT_G,     UNIT_GB, static_cast<uint64_t>(1e9)  },
 		{ MULT_T,     UNIT_TB, static_cast<uint64_t>(1e12) },
+		{ MULT_P,     UNIT_PB, static_cast<uint64_t>(1e15) },
+		{ MULT_E,     UNIT_EB, static_cast<uint64_t>(1e18) },
+
 	}};
 	const std::array<struct Table, PrefixUnit::Multipliers::MULT_LAST> binary_prefixes
 	{{
@@ -65,6 +68,8 @@ void PrefixUnit::find_best_prefix(uint64_t value, PrefixUnit::Multipliers multip
 		{ MULT_M,     UNIT_MIB, static_cast<uint64_t>(1ULL << 20) },
 		{ MULT_G,     UNIT_GIB, static_cast<uint64_t>(1ULL << 30) },
 		{ MULT_T,     UNIT_TIB, static_cast<uint64_t>(1ULL << 40) },
+		{ MULT_P,     UNIT_PIB, static_cast<uint64_t>(1ULL << 50) },
+		{ MULT_E,     UNIT_EIB, static_cast<uint64_t>(1ULL << 60) },
 	}};
 	const std::array prefixes = use_si_prefixes ? si_prefixes : binary_prefixes;
 
@@ -185,6 +190,22 @@ std::string string_set_size_unit(char *str_src)
 				buff = UNIT_GB;
 			else if(!strncmp(&str_src[i], "@TB@", TOKEN_LEN))
 				buff = UNIT_TB;
+			else if(!strncmp(&str_src[i], "@PB@", TOKEN_LEN))
+				buff = UNIT_PB;
+			else if(!strncmp(&str_src[i], "@EB@", TOKEN_LEN))
+				buff = UNIT_EB;
+			else if(!strncmp(&str_src[i], "@KIB@", TOKEN_LEN))
+				buff = UNIT_KIB;
+			else if(!strncmp(&str_src[i], "@MIB@", TOKEN_LEN))
+				buff = UNIT_MIB;
+			else if(!strncmp(&str_src[i], "@GIB@", TOKEN_LEN))
+				buff = UNIT_GIB;
+			else if(!strncmp(&str_src[i], "@TIB@", TOKEN_LEN))
+				buff = UNIT_TIB;
+			else if(!strncmp(&str_src[i], "@PIB@", TOKEN_LEN))
+				buff = UNIT_PIB;
+			else if(!strncmp(&str_src[i], "@EIB@", TOKEN_LEN))
+				buff = UNIT_EIB;
 			else
 				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str_src, i);
 			str_dst += buff;

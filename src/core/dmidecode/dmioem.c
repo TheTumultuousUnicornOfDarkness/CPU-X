@@ -2,8 +2,8 @@
  * Decoding of OEM-specific entries
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2007-2024 Jean Delvare <jdelvare@suse.de>
- *   Copyright (C) 2017-2024 Jerry Hoemann <jerry.hoemann@hpe.com>
+ *   Copyright (C) 2007-2025 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2017-2025 Jerry Hoemann <jerry.hoemann@hpe.com>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -141,19 +141,20 @@ static void dmi_dell_bios_flags(u64 flags)
 	/*
 	 * TODO: The meaning of the other bits is unknown.
 	 */
-	pr_attr("ACPI WMI Supported", "%s", (flags.l & (1 << 1)) ? "Yes" : "No");
+	pr_attr("ACPI WMI Supported", "%s", (flags & (1ULL << 1)) ? "Yes" : "No");
 }
 
 static void dmi_dell_hotkeys(const struct dmi_header *h)
 {
 	int count = (h->length - 0x04) / 0x04;
 	u8 *hotkey = h->data + 0x04;
+	int i;
 
 	if (!count)
 		return;
 
 	pr_list_start("Hotkey Mappings", NULL);
-	for (int i = 0; i < count; i++)
+	for (i = 0; i < count; i++)
 	{
 		pr_list_item("Scancode 0x%04hx -> Keycode 0x%04hx",
 			     WORD(hotkey + 0x00), WORD(hotkey + 0x02));
@@ -175,6 +176,7 @@ static void dmi_dell_indexed_io_access(const struct dmi_header *h)
 	u8 *data = h->data;
 	u8 *token;
 	u8 type;
+	int i;
 
 	pr_attr("Index Port", "0x%04hx", WORD(data + 0x04));
 	pr_attr("Data Port", "0x%04hx", WORD(data + 0x06));
@@ -195,7 +197,7 @@ static void dmi_dell_indexed_io_access(const struct dmi_header *h)
 		return;
 
 	pr_list_start("Tokens", NULL);
-	for (int i = 0; i < tokens - 1; i++)
+	for (i = 0; i < tokens - 1; i++)
 	{
 		token = data + 0x0C + 0x05 * i;
                 pr_list_item("0x%04hx (location 0x%02hhx, AND mask 0x%02hhx, OR mask 0x%02hhx)",
@@ -209,6 +211,7 @@ static void dmi_dell_token_interface(const struct dmi_header *h)
 	int tokens = (h->length - 0x0B) / 0x06;
 	u8 *data = h->data;
 	u8 *token;
+	int i;
 
 	pr_attr("Command I/O Address", "0x%04x", WORD(data + 0x04));
 	pr_attr("Command I/O Code", "0x%02x", data[0x06]);
@@ -221,7 +224,7 @@ static void dmi_dell_token_interface(const struct dmi_header *h)
 		return;
 
 	pr_list_start("Tokens", NULL);
-	for (int i = 0; i < tokens - 1; i++)
+	for (i = 0; i < tokens - 1; i++)
 	{
 		token = data + 0x0B + 0x06 * i;
 		pr_list_item("0x%04hx (location 0x%04hx, value 0x%04hx)",
@@ -300,11 +303,12 @@ static void dmi_print_hp_net_iface_rec(u8 id, u8 bus, u8 dev, const u8 *mac)
 	}
 }
 
-typedef enum { G6 = 6, G7, G8, G9, G10, G10P, G11 } dmi_hpegen_t;
+typedef enum { G6 = 6, G7, G8, G9, G10, G10P, G11, G12 } dmi_hpegen_t;
 
 static int dmi_hpegen(const char *s)
 {
 	struct { const char *name; dmi_hpegen_t gen; } table[] = {
+		{ "Gen12",	G12 },
 		{ "Gen11",	G11 },
 		{ "Gen10 Plus",	G10P },
 		{ "Gen10",	G10 },
@@ -353,14 +357,6 @@ static void dmi_hp_203_assoc_hndl(const char *fname, u16 num)
 		pr_attr(fname, "N/A");
 	else
 		pr_attr(fname, "0x%04X", num);
-}
-
-static void dmi_hp_203_pciinfo(const char *fname, u16 num)
-{
-	if (num == 0xFFFF)
-		pr_attr(fname, "Device Not Present");
-	else
-		pr_attr(fname, "0x%04x", num);
 }
 
 static void dmi_hp_203_bayenc(const char *fname, u8 num)
@@ -467,8 +463,8 @@ static void dmi_hp_216_fw_type(u16 code)
 		"SPI Descriptor Version",
 		"Innovation Engine Firmware (IE Firmware)",
 		"UMB Backplane Firmware",
-		"Reserved", /* 0x14 */
-		"Reserved",
+		"Embedded Diagnostics",
+		"Reserved", /* 0x15 */
 		"Reserved",
 		"Reserved",
 		"Reserved",
@@ -511,6 +507,10 @@ static void dmi_hp_216_fw_type(u16 code)
 		"Power Distribution Board CPLD",
 		"PCIe Switch Board CPLD",
 		"Sideband Board CPLD",
+		"PCIe Riser MCU Firmware", /* 0x40 */
+		"PCIe Switch Board Firmware",
+		"Power Supply Firmware",
+		"BMC Firmware",
 	};
 
 	if (code < ARRAY_SIZE(type))
@@ -580,7 +580,7 @@ static void dmi_hp_216_version(u8 format, u8 *data)
 		pr_attr(name, "%d", data[0]);
 		break;
 	case 14:
-		pr_attr(name, "%d.%d.%d.%d", data[0], data[1], data[2], data[3]);
+		pr_attr(name, "%d.%d.%d.%d", data[0], data[1], data[2], WORD(data+3));
 		break;
 	case 15:
 		pr_attr(name, "%d.%d.%d.%d (%.2d/%.2d/%d)",
@@ -595,7 +595,13 @@ static void dmi_hp_216_version(u8 format, u8 *data)
 		pr_attr(name, "%08X", DWORD(data));
 		break;
 	case 18:
-		pr_attr(name, "%d.%2d", data[0], data[1]);
+		pr_attr(name, "%d.%02d", data[0], data[1]);
+		break;
+	case 19:
+		pr_attr(name, "0x%02x.0x%02x.0x%02x", data[0], data[1], data[2]);
+		break;
+	case 20:
+		pr_attr(name, "%d.%d.%d.%d", data[0], data[1], data[2], data[3]);
 		break;
 	case 3: /* fall through */
 	default:
@@ -717,6 +723,22 @@ static void dmi_hp_230_method_bus_seg_addr(u8 code, u8 bus_seg, u8 addr)
 	}
 	if (addr != 0xFF)
 		pr_attr("I2C Address", "0x%02x", addr >> 1);
+}
+
+static void dmi_hp_232_encrypt(u8 code)
+{
+	const char *str = "Reserved";
+	static const char * const status[] = {
+		"Not Encrypted",
+		"Encrypted",
+		"Unknown",
+		"Not Supported",
+	};
+
+	if (code < ARRAY_SIZE(status))
+		str = status[code];
+
+	pr_attr("Encryption Status", "%s", str);
 }
 
 static void dmi_hp_238_loc(const char *fname, unsigned int code)
@@ -865,9 +887,9 @@ static void dmi_hp_240_attr(u64 defined, u64 set)
 	pr_list_start("Attributes Defined/Set", NULL);
 	for (i = 0; i < ARRAY_SIZE(attributes); i++)
 	{
-		if (!(defined.l & (1UL << i)))
+		if (!(defined & (1ULL << i)))
 			continue;
-		pr_list_item("%s: %s", attributes[i], set.l & (1UL << i) ? "Yes" : "No");
+		pr_list_item("%s: %s", attributes[i], set & (1ULL << i) ? "Yes" : "No");
 	}
 	pr_list_end();
 }
@@ -952,6 +974,27 @@ static void dmi_hp_245_pcie_riser(const struct dmi_header *h)
 	pr_attr("Riser Name", dmi_string(h, data[0x08]));
 }
 
+static void dmi_hp_245_pcie_mhs_riser(const struct dmi_header *h)
+{
+	u8 *data = h->data;
+	u8 i, count;
+	int len = h->length;
+
+	pr_attr("Board Type", "PCIe Riser (MHS Platform)");
+	if (h->length < 0x0B) return;
+	pr_attr("Riser ID", "%d", data[0x05]);
+	if (data[0x06])
+		pr_attr("Firmware Version", "%x.%x", data[0x06], data[0x07]);
+	pr_attr("Downgradable", "%s", data[0x08] & 0x01 ? "Yes" : "No");
+	pr_attr("Riser Name", dmi_string(h, data[0x09]));
+	count = data[0x0A];
+	pr_attr("Slot Count", "%d", count);
+	pr_list_start("Slot IDs", NULL);
+	for (i = 0; (i < count) && ((0x0B + i) < len); i++)
+		pr_list_item("0x%x", data[0x0B + i]);
+	pr_list_end();
+}
+
 static int dmi_decode_hp(const struct dmi_header *h)
 {
 	u8 *data = h->data;
@@ -966,6 +1009,37 @@ static int dmi_decode_hp(const struct dmi_header *h)
 
 	switch (h->type)
 	{
+		case 193:
+			/*
+			 * Vendor Specific: Other ROM Info
+			 *
+			 * Offset |  Name      | Width | Description
+			 * -------------------------------------
+			 *  0x00  | Type       | BYTE  | 0xC1, ROM Structure Indicator
+			 *  0x01  | Length     | BYTE  | Length of structure
+			 *  0x02  | Handle     | WORD  | Unique handle
+			 *  0x04  | ROM        | BYTE  | 01: Redundant ROM installed
+			 *  0x05  | ROM vers   | STRING| Version of the Redundant ROM
+			 *  0x06  | Reserved   | BYTE  | Reserved in Gen9 forward
+			 *  0x07  | OEM ROM    | STRING| If not blank, OEM ROM binary file name
+			 *  0x08  | OEM Date   | STRING| If not blank, OEM ROM binary build date
+			 */
+			if (gen < G9) return 0;
+			pr_handle_name("%s ProLiant Other ROM Info", company);
+			if (h->length < 0x09) break;
+			if ((gen < G12) && (data[0x04] & 0x01))
+				pr_attr("Redundant ROM Version", "%s", dmi_string(h, data[0x05]));
+			if (data[0x07])
+			{
+				const char *str = dmi_string(h, data[0x07]);
+				if (strncmp(str, "  ", 2))
+				{
+					pr_attr("OEM ROM Binary Filename", "%s", str);
+					pr_attr("OEM ROM Binary Build Date", "%s", dmi_string(h, data[0x08]));
+				}
+			}
+			break;
+
 		case 194:
 			/*
 			 * Vendor Specific: Super IO Enable/Disable Features
@@ -1065,20 +1139,117 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			pr_handle_name("%s ProLiant CPU Microcode Patch Support Info", company);
 
 			for (ptr = 0x4; ptr + 12 <= h->length; ptr += 12) {
-				u32 cpuid = DWORD(data + ptr + 2 * 4);
+				u8 cpuid[4];
 				u32 date;
 
+				memcpy(cpuid, data + ptr + 2 * 4, 4);
 				/* AMD omits BaseFamily. Reconstruction valid on family >= 15. */
 				if (cpuid_type == cpuid_x86_amd)
-					cpuid = ((cpuid & 0xfff00) << 8) | 0x0f00 | (cpuid & 0xff);
+				{
+					cpuid[3] = cpuid[2] & 0x0f;
+					cpuid[2] = cpuid[1];
+					cpuid[1] = 0x0f;
+				}
 
-				dmi_print_cpuid(pr_attr, "CPU ID", cpuid_type, (u8 *) &cpuid);
+				dmi_print_cpuid(pr_attr, "CPU ID", cpuid_type, cpuid);
 
 				date = DWORD(data + ptr + 4);
 				pr_subattr("Date", "%04x-%02x-%02x",
 					date & 0xffff, (date >> 24) & 0xff, (date >> 16) & 0xff);
 				pr_subattr("Patch", "0x%X", DWORD(data + ptr));
 			}
+			break;
+
+		case 202:
+			/*
+			 * Vendor Specific: HPE DIMM Location Record
+			 *
+			 * This record allows software to correlate a Type 17 Memory Device Record
+			 * with a specific DIMM (DIMM, Board, and/or Processor number if appropriate).
+			 *
+			 * There will be one Record Type 202 for each DIMM socket possible in the system.
+			 * A system will include a record for each DIMM socket even if that DIMM socket
+			 * is on a memory board which is not currently installed.
+			 *
+			 * Offset |  Name        | Width | Description
+			 * -------------------------------------
+			 *  0x00  | Type         | BYTE  | 0xCA, DIMM Location Record
+			 *  0x01  | Length       | BYTE  | Length of structure
+			 *  0x02  | Handle       | WORD  | Unique handle
+			 *  0x04  | Assoc Record | WORD  | Handle of Associated Type 17 Memory Record
+			 *  0x06  | Board Number | BYTE  | 1-based Memory Board number. 0FFh: DIMM on system board
+			 *  0x07  | DIMM Number  | BYTE  | 1-based DIMM number
+			 *  0x08  | Proc Number  | BYTE  | 1-based procssor number. 0FFh don't display
+			 *  0x09  | Log DIMM Num | BYTE  | 1-based Logical DIMM number mapping to ACPI numbering
+			 *  0x0A  | UEFI Dev Path| STRING| String number for UEFI Device Path
+			 *  0x0B  | UEFI Dev Name| STRING| String number for UEFI Device Structured Name
+			 *  0x0C  | Device Name  | STRING| String number for Device Name
+			 *  0x0D  | Mem Cntrl Num| BYTE  | 1-based Memory controller number
+			 *  0x0E  | Mem Chan Num | BYTE  | 1-based memory channel number (matches silk screen)
+			 *  0x0F  | IE DIMM Num  | BYTE  | 0-based DIMM number repored by IE. FF -> not supported
+			 *				 | Reserved G12 or later
+			 *  0x10  | IE PLDM ID   | BYTE  | IE PLDM Sensor ID. FF -> not supported
+			 *				 | Reserved G12 or later
+			 *  0x11  | Vendor ID    | WORD  | Module manufacturers ID code as read by SPD
+			 *  0x13  | Device ID    | WORD  | (NVDIMM only) Module product ID code from SPD
+			 *  0x15  | Sub Cntrl Ven| WORD  | (NVDIMM only) Controller manufacturer ID from SPD
+			 *  0x17  | Sub Cntrl Dev| WORD  | (NVDIMM only) Controller product ID from SPD
+			 *  0x19  | Interleave   | BYTE  | 1-based unique interleave set within Procssor Number
+			 *  0x1A  | Part Number  | STRING| String number for HPE part number from OEM SPD
+			 *  0x1B  | DIMM Index   | BYTE  | 0-based DIMM Index Per Channel
+			 */
+
+			if (gen < G9) return 0;
+			pr_handle_name("%s DIMM Location Record", company);
+
+			if (h->length < 0x09) break;
+			if (!(opt.flags & FLAG_QUIET))
+				pr_attr("Associated Memory Record", "0x%04X", WORD(data + 0x04));
+			if (data[0x06] == 0xFF)
+				pr_attr("Board Number", "%s", "System Board");
+			else
+				pr_attr("Board Number", "%d", data[0x06]);
+			pr_attr("DIMM Number", "%d", data[0x07]);
+			if (data[0x08] != 0xFF)
+				pr_attr("Processor Number", "%d", data[0x08]);
+
+			if (h->length < 0x0A) break;
+			pr_attr("Logical DIMM Number", "%d", data[0x09]);
+
+			if (h->length < 0x0D) break;
+			if (data[0x0A])
+				pr_attr("UEFI Device Path", "%s", dmi_string(h, data[0x0A]));
+			if (data[0x0B])
+				pr_attr("UEFI Device Name", "%s", dmi_string(h, data[0x0B]));
+			if (data[0x0C])
+				pr_attr("Device Name", "%s", dmi_string(h, data[0x0C]));
+
+			if (h->length < 0x19) break;
+			if (data[0x0D])
+				pr_attr("Memory Controller Number", "%d", data[0x0D]);
+			if (data[0x0E])
+				pr_attr("Memory Channel Number", "%d", data[0x0E]);
+			if (gen < G12 && data[0x0F] != 0xFF)
+				pr_attr("IE DIMM Number", "%d", data[0x0F]);
+			if (gen < G12 && data[0x10] != 0xFF)
+				pr_attr("IE PLDM ID", "%d", data[0x10]);
+			if (data[0x11] || data[0x12])
+				pr_attr("Vendor ID", "0x%04X", WORD(data + 0x11));
+			if (data[0x13] || data[0x14])
+				pr_attr("Device ID", "0x%04X", WORD(data + 0x13));
+			if (data[0x15] || data[0x16])
+				dmi_memory_manufacturer_id("Controller Manufacturer ID", WORD(data + 0x15));
+			if (data[0x17] || data[0x18])
+				dmi_memory_product_id("Controller Product ID", WORD(data + 0x17));
+
+			if (h->length < 0x1A) break;
+			if (data[0x19])
+				pr_attr("Best Interleave", "%d", data[0x19]);
+			if (h->length < 0x1B) break;
+			pr_attr("Part Number", "%s", dmi_string(h, data[0x1A]));
+
+			if (h->length < 0x1C) break;
+			pr_attr("DIMM Index", "%d", data[0x1B]);
 			break;
 
 		case 203:
@@ -1130,12 +1301,12 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			}
 			else
 			{
-				dmi_hp_203_pciinfo("PCI Vendor ID", WORD(data + 0x08));
-				dmi_hp_203_pciinfo("PCI Device ID", WORD(data + 0x0A));
-				dmi_hp_203_pciinfo("PCI Sub Vendor ID", WORD(data + 0x0C));
-				dmi_hp_203_pciinfo("PCI Sub Device ID", WORD(data + 0x0E));
-				dmi_hp_203_pciinfo("PCI Class Code", (char)data[0x10]);
-				dmi_hp_203_pciinfo("PCI Sub Class Code", (char)data[0x11]);
+				pr_attr("PCI Vendor ID", "0x%04x", WORD(data + 0x08));
+				pr_attr("PCI Device ID", "0x%04x", WORD(data + 0x0A));
+				pr_attr("PCI Sub Vendor ID", "0x%04x", WORD(data + 0x0C));
+				pr_attr("PCI Sub Device ID", "0x%04x", WORD(data + 0x0E));
+				pr_attr("PCI Class Code", "0x%02x", data[0x10]);
+				pr_attr("PCI Sub Class Code", "0x%02x", data[0x11]);
 			}
 			dmi_hp_203_assoc_hndl("Parent Handle", WORD(data + 0x12));
 			pr_attr("Flags", "0x%04X", WORD(data + 0x14));
@@ -1243,11 +1414,8 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			if (DWORD(data + 0x04) == 0x55524324)
 			{
 				u64 paddr = QWORD(data + 0x08);
-				paddr.l += DWORD(data + 0x14);
-				if (paddr.l < DWORD(data + 0x14))
-					paddr.h++;
-				pr_attr("Physical Address", "0x%08x%08x",
-					paddr.h, paddr.l);
+				paddr += DWORD(data + 0x14);
+				pr_attr("Physical Address", "0x%016llx", paddr);
 				pr_attr("Length", "0x%08x", DWORD(data + 0x10));
 			}
 			break;
@@ -1373,6 +1541,75 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			dmi_hp_230_method_bus_seg_addr(data[0x08], data[0x09], data[0x0A]);
 			break;
 
+		case 232:
+			/*
+			 * Vendor Specific: DIMM Attributes Record
+			 *
+			 * This record is used to communicate information about DIMMs that is not
+			 * available via Industry Standard SMBIOS Records.
+			 *
+			 * There will be one Record Type 232 for each DIMM socket possible in the
+			 * system (just like Type 17 Records).
+			 *
+			 * Offset| Name        | Width | Description
+			 * -----------------------------------------
+			 *  0x00 | Type        | BYTE  | 0xE8, DIMM Attributes Record
+			 *  0x01 | Length      | BYTE  | Length of structure
+			 *  0x02 | Handle      | WORD  | Unique handle
+			 *  0x04 | Assoc Handle| WORD  | Associated Handle (Type 17)
+			 *  0x06 | DIMM Attr   | DWORD | Attributes Bitfield (Defined in code)
+			 *  0x0A | Min Voltage | WORD  | Minimum operating voltage in millivolts
+			 *  0x0C | Cfg Voltage | WORD  | Configured operating voltage in millivolts
+			 *  0x0E | RESERVED    |
+			 *  .... | RESERVED    |
+			 *  0x21 | RESERVED    |
+			 *  0x22 | Map-Out     | BYTE  | Bit Field reason for DIMM being mapped out
+			 *  0x23 | Encryption  | BYTE  | Encryption status
+			 */
+			if (gen < G9) return 0;
+			pr_handle_name("%s DIMM Attributes Record", company);
+
+			if (h->length < 0x0E) break;
+			if (!(opt.flags & FLAG_QUIET))
+				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x04));
+
+			feat = DWORD(data + 0x06);
+			pr_attr("Attributes", "0x%08X", feat);
+			/* Bit [1:0] HP SmartMemory */
+			pr_subattr("HPE Smart Memory",
+					(feat & 0x03) == 0 ? "No" :
+					(feat & 0x03) == 1 ? "Yes" : "Unknown");
+			/* Bit [3:2] Indicator if DIMM is Load Reduced (LR) */
+			/* Bit [2]: 1 = Field Supported */
+			if (feat & (1 << 2))
+				pr_subattr("Load Reduced DIMM installed",
+					(feat & (1 << 3)) ? "Yes" : "No");
+			/* Bit [5:4] HP Standard DIMM Indicator */
+			/* Bit [4]: 1 = Field Supported */
+			if (feat & (1 << 4))
+				pr_subattr("HPE Standard Memory Installed",
+					(feat & (1 << 5)) ? "Yes" : "No");
+			if (WORD(data + 0x0A))
+				pr_attr("Minimum Voltage", "%d mV", WORD(data + 0x0A));
+			else
+				pr_attr("Minimum Voltage", "Unknown");
+
+			if (WORD(data + 0x0C))
+				pr_attr("Configured Voltage", "%d mV", WORD(data + 0x0C));
+			else
+				pr_attr("Configured Voltage", "Unknown");
+
+			if (h->length < 0x23) break;
+			feat = data[0x22];
+			if (feat) {
+				pr_attr("Map-Out Reason", "0x%0X", feat);
+				pr_subattr("Configuration Error", (feat & 0x01) ? "Yes" : "No");
+				pr_subattr("Training Error", (feat & 0x02) ? "Yes" : "No");
+			}
+			if (h->length < 0x24) break;
+			dmi_hp_232_encrypt(data[0x23]);
+			break;
+
 		case 233:
 			/*
 			 * Vendor Specific: HPE ProLiant NIC MAC Information
@@ -1492,7 +1729,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x0F  | PCI Seg    | WORD  | PCI Segment number of the USB controller
 			 */
 			if (gen < G9) return 0;
-			pr_handle_name("%s Proliant USB Port Connector Correlation Record", company);
+			pr_handle_name("%s ProLiant USB Port Connector Correlation Record", company);
 			if (h->length < 0x0F) break;
 			if (!(opt.flags & FLAG_QUIET))
 				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x4));
@@ -1564,7 +1801,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 
 		case 240:
 			/*
-			 * Vendor Specific: HPE Proliant Inventory Record
+			 * Vendor Specific: HPE ProLiant Inventory Record
 			 *
 			 * Reports firmware version information for devices that report their
 			 * firmware using their UEFI drivers. Additionally provides association
@@ -1584,7 +1821,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x1B  | Attr Set   | QWORD | BitField: If defined, is attribute set?
 			 *  0x23  | Version    | DWORD | Lowest supported version.
 			 */
-			pr_handle_name("%s Proliant Inventory Record", company);
+			pr_handle_name("%s ProLiant Inventory Record", company);
 			if (h->length < 0x27) break;
 			if (!(opt.flags & FLAG_QUIET))
 				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x4));
@@ -1642,15 +1879,15 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 */
 			if (gen < G10) return 0;
 			pr_handle_name("%s ProLiant Hard Drive Inventory Record", company);
-			if (h->length < 0x2C) break;
+			if (h->length < 0x2A) break;
 			if (!(opt.flags & FLAG_QUIET))
 				pr_attr("Associated Handle", "0x%04X", WORD(data + 0x4));
 			dmi_hp_242_hdd_type(data[0x06]);
 			pr_attr("ID", "%llx", QWORD(data + 0x07));
 			if (h->length < 0x3E)
-				pr_attr("Capacity", "%u MB", DWORD(data + 0x0F));
+				dmi_print_storage_size("Capacity", DWORD(data + 0x0F), 2);
 			else
-				dmi_print_memory_size("Capacity", QWORD(data + 0x2C), 0);
+				dmi_print_storage_size("Capacity", QWORD(data + 0x2C), 0);
 			/* NB: Poweron low QWORD good for 2,104,351,365,926,255 years */
 			pr_attr("Poweron", "%ld hours", QWORD(data + 0x13));
 			if (data[0x24])
@@ -1666,6 +1903,7 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			pr_attr("Serial Number", dmi_string(h, data[0x27]));
 			pr_attr("Model Number", dmi_string(h, data[0x28]));
 			pr_attr("Firmware Revision", dmi_string(h, data[0x29]));
+			if (h->length < 0x2C) break;
 			pr_attr("Location", dmi_string(h, data[0x2A]));
 			feat = data[0x2B];
 			pr_attr("Encryption Status", "%s", (feat == 0) ? "Not Encrypted" :
@@ -1700,18 +1938,33 @@ static int dmi_decode_hp(const struct dmi_header *h)
 			 *  0x00  | Type       | BYTE  | 0xF5, Extension Board Inventory Record
 			 *  0x01  | Length     | BYTE  | Length of structure
 			 *  0x02  | Handle     | WORD  | Unique handle
-			 *  0x04  | Board Type | WORD  | 0: PCIe Riser, Other Reserved
+			 *  0x04  | Board Type | WORD  | See below
 			 *
 			 *  If Board Type == 0
 			 *  0x05  | Riser Pos  | WORD  |
 			 *  0x06  | Riser ID   | BYTE  |
 			 *  0x07  | CPLD Vers  | BTYE  | 0-> No CPLD. Bits [7][6:0] Release:Vers
 			 *  0x08  | Riser Name | STRING|
+			 *
+			 *  If Board Type == 1
+			 *  0x05  | Riser ID       | BYTE  |
+			 *  0x06  | Riser FW Major | BYTE  |
+			 *  0x07  | Riser FW Minor | BYTE  |
+			 *  0x08  | Misc Attr      | BYTE  |
+			 *  0x09  | Riser Name     | STRING|
+			 *  0x0A  | Slot Count     | BYTE  |
+			 *  0x0B  | Slot ID        | Varies| One per slot
 			 */
 			pr_handle_name("%s ProLiant Extension Board Inventory Record", company);
 			if (h->length < 0x05) break;
-			if (data[0x04] == 0)
+			switch (data[0x04]) {
+			case 0:
 				dmi_hp_245_pcie_riser(h);
+				break;
+			case 1:
+				dmi_hp_245_pcie_mhs_riser(h);
+				break;
+			}
 			break;
 
 		default:

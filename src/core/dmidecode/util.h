@@ -27,4 +27,3 @@
 int checksum(const u8 *buf, size_t len);
 void *read_file(off_t base, size_t *len, const char *filename);
 void *mem_chunk(off_t base, size_t len, const char *devmem);
-u64 u64_range(u64 start, u64 end);

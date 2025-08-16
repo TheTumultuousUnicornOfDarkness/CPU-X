@@ -1,7 +1,7 @@
 /*
  * This file is part of the dmidecode project.
  *
- *   Copyright (C) 2005-2023 Jean Delvare <jdelvare@suse.de>
+ *   Copyright (C) 2005-2025 Jean Delvare <jdelvare@suse.de>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -49,8 +49,11 @@ extern enum cpuid_type cpuid_type;
 
 int is_printable(const u8 *data, int len);
 const char *dmi_string(const struct dmi_header *dm, u8 s);
-void dmi_print_memory_size(const char *addr, u64 code, int shift);
+void dmi_print_memory_size(const char *attr, u64 code, int shift);
+void dmi_print_storage_size(const char *attr, u64 code, unsigned int shift);
 void dmi_print_cpuid(void (*print_cb)(const char *name, const char *format, ...),
 		     const char *label, enum cpuid_type sig, const u8 *p);
+void dmi_memory_manufacturer_id(const char *attr, u16 code);
+void dmi_memory_product_id(const char *attr, u16 code);
 
 #endif
