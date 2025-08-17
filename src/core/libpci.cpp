@@ -59,11 +59,10 @@ static bool gpu_is_on([[maybe_unused]] std::string device_path)
 	return ret;
 }
 
-/* Find driver name for a device */
-static std::string get_gpu_device_path(struct pci_dev *dev)
+/* Find bus ID path for a PCI device */
+static int set_gpu_pci_bus_id(struct pci_dev *dev, Data::Graphics::Card &card)
 {
-	int err = -1;
-	std::string device_path;
+	std::string bus_id, bus_path;
 #ifdef __linux__
 	/* Adapted from http://git.kernel.org/cgit/utils/pciutils/pciutils.git/tree/ls-kernel.c */
 	char *base = NULL;
@@ -72,31 +71,43 @@ static std::string get_gpu_device_path(struct pci_dev *dev)
 	{
 		MSG_ERROR(_("pci_access is not properly initialized: it is a common issue when %s was built with a lower libpci version.\n"
 		          "Check that libpci %s library is present on your system. Otherwise, please rebuild %s."), PRGNAME, LIBPCI_VERSION, PRGNAME);
-		return std::string();
+		return 1;
 	}
 
 	if(dev->access->method != PCI_ACCESS_SYS_BUS_PCI)
 	{
 		MSG_ERROR("dev->access->method=%u", dev->access->method);
-		return std::string();
+		return 2;
 	}
 
 	if((base = pci_get_param(dev->access, const_cast<char*>("sysfs.path"))) == NULL)
 	{
-		MSG_ERROR("%s", "pci_get_param (sysfs.path)");
-		return std::string();
+		MSG_ERROR("%s", "pci_get_param(sysfs.path)");
+		return 3;
 	}
 
-	device_path = string_format("%s/devices/%04x:%02x:%02x.%d", base, dev->domain, dev->bus, dev->dev, dev->func);
-	err         = !fs::is_directory(device_path);
+	bus_id   = string_format("%04x:%02x:%02x.%d", dev->domain, dev->bus, dev->dev, dev->func);
+	bus_path = string_format("%s/devices/%s", base, bus_id.c_str());
+	if(!fs::is_directory(bus_path))
+	{
+		MSG_ERROR(_("Bus path is invalid: %s"), bus_path.c_str());
+		return 4;
+	}
 #else /* __linux__ */
-	err = popen_to_str(device_path, "sysctl hw.dri | grep busid | grep %04x:%02x:%02x.%d | cut -d. -f1-3", dev->domain, dev->bus, dev->dev, dev->func);
+	bus_id = string_format("%04x:%02x:%02x.%d", dev->domain, dev->bus, dev->dev, dev->func);
+	if(popen_to_str(bus_path, "sysctl hw.dri | grep busid | grep %s | cut -d. -f1-3", bus_id.c_str()))
+		return 1;
+
 #endif /* __linux__ */
 
-	MSG_DEBUG("find_gpu_device_path: ret=%s", device_path.c_str());
-	return (err == 0) ? device_path : std::string();
+	MSG_DEBUG("set_gpu_pci_bus_id: bus_id=%s bus_path=%s", bus_id.c_str(), bus_path.c_str());
+	card.bus_id   = bus_id;
+	card.bus_path = bus_path;
+
+	return 0;
 }
 
+/* Find kernel driver name for a device */
 static int set_gpu_kernel_driver(Data::Graphics::Card &card)
 {
 	std::string cmd;
@@ -112,9 +123,9 @@ static int set_gpu_kernel_driver(Data::Graphics::Card &card)
 	};
 
 	/* Check GPU state */
-	if(!gpu_is_on(card.device_path))
+	if(!gpu_is_on(card.bus_path))
 	{
-		MSG_WARNING(_("No kernel driver in use for graphic card at path %s"), card.device_path.c_str());
+		MSG_WARNING(_("No kernel driver in use for graphic card at path %s"), card.bus_path.c_str());
 		return 1;
 	}
 
@@ -122,21 +133,21 @@ static int set_gpu_kernel_driver(Data::Graphics::Card &card)
 	fs::path driver_path;
 	std::error_code fs_code;
 
-	driver_path = fs::read_symlink(fs::path(card.device_path) / "driver", fs_code);
+	driver_path = fs::read_symlink(fs::path(card.bus_path) / "driver", fs_code);
 	if(fs_code)
 	{
-		MSG_ERROR("set_gpu_kernel_driver(%s): read_symlink: value=%i message=%s", card.device_path.c_str(), fs_code.value(), fs_code.message().c_str());
+		MSG_ERROR("set_gpu_kernel_driver(%s): read_symlink: value=%i message=%s", card.bus_path.c_str(), fs_code.value(), fs_code.message().c_str());
 		return 1;
 	}
 	card.kernel_driver.value = driver_path.filename();
 #else /* __linux__ */
 	size_t len                    = MAXSTR;
 	char driver_name[MAXSTR]      = "";
-	const std::string sysctl_name = card.device_path + ".name";
+	const std::string sysctl_name = card.bus_path + ".name";
 
 	if(sysctlbyname(sysctl_name.c_str(), driver_name, &len, NULL, 0) != 0)
 	{
-		MSG_ERRNO("set_gpu_kernel_driver(%s): sysctlbyname: sysctl_name=%s", card.device_path.c_str(), sysctl_name.c_str());
+		MSG_ERRNO("set_gpu_kernel_driver(%s): sysctlbyname: sysctl_name=%s", card.bus_path.c_str(), sysctl_name.c_str());
 		return 1;
 	}
 	card.kernel_driver.value = driver_name;
@@ -402,11 +413,11 @@ static int set_gpu_information(struct pci_access *pacc, struct pci_dev *dev, Dat
 	}
 
 	graphics.grow_cards_vector();
-	graphics.cards[card_index].device_path     = get_gpu_device_path(dev);
 	graphics.cards[card_index].vendor.value    = gpu_vendor;
 	graphics.cards[card_index].model.value     = DEVICE_PRODUCT_STR(dev);
 	graphics.cards[card_index].device_id.value = string_format("0x%04X:0x%04X", dev->vendor_id, dev->device_id);
-	err = set_gpu_kernel_driver(graphics.cards[card_index]);
+	err  = set_gpu_pci_bus_id(dev, graphics.cards[card_index]);
+	err += set_gpu_kernel_driver(graphics.cards[card_index]);
 
 #if HAS_LIBEGL
 	err += set_gpu_opengl_version_dedicated_process(graphics.cards[card_index]);
@@ -633,7 +644,7 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 
 #ifdef __linux__
 	static bool init_done = false;
-	uint8_t failed_count = 0, fglrx_count = 0, nvidia_count = 0;
+	uint8_t failed_count = 0, fglrx_count = 0;
 
 	MSG_VERBOSE("%s", _("Retrieving GPU clocks"));
 	for(auto& card : data.graphics.cards)
@@ -642,7 +653,7 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 		Item vbios_version, interface, temperature, usage, core_voltage, power_avg, core_clock, mem_clock, mem_used, mem_total;
 
 		/* Set kernel driver name in case of changed state for GPU */
-		const bool gpu_ok = gpu_is_on(card.device_path);
+		const bool gpu_ok = gpu_is_on(card.bus_path);
 		if(gpu_ok && (card.driver == GpuDrv::GPUDRV_UNKNOWN))
 			set_gpu_kernel_driver(card);
 		else if(!gpu_ok)
@@ -655,7 +666,7 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 		/* Get DRM path and card number */
 		if(!init_done)
 		{
-			card.drm_path = get_device_path_drm(card.device_path);
+			card.drm_path = get_device_path_drm(card.bus_path);
 			if(card.drm_path.empty())
 				MSG_WARNING(_("DRM path for %s is unknown"), card.name.c_str());
 			else
@@ -677,7 +688,7 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 			case GpuDrv::GPUDRV_NOUVEAU_BUMBLEBEE:
 				temperature.divisor = 1e3;
 				if(!init_done)
-					card.hwmon_path = get_device_path_hwmon(card.device_path);
+					card.hwmon_path = get_device_path_hwmon(card.bus_path);
 				if(!card.hwmon_path.empty())
 					FOPEN_TO_ITEM(temperature, "%s/temp1_input", card.hwmon_path.c_str());
 				break;
@@ -770,7 +781,7 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 				/* Doc: https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries
 				        https://briot-jerome.developpez.com/fichiers/blog/nvidia-smi/list.txt */
 				const std::string nvidia_cmd_base = (card.driver == GpuDrv::GPUDRV_NVIDIA_BUMBLEBEE) ? "optirun -b none nvidia-smi -c :8" : "nvidia-smi";
-				const std::string nvidia_cmd_args = nvidia_cmd_base + " --format=csv,noheader,nounits --id=" + std::to_string(nvidia_count);
+				const std::string nvidia_cmd_args = nvidia_cmd_base + " --format=csv,noheader,nounits --id=" + card.bus_id;
 				MSG_DEBUG("gpu_monitoring: nvidia: nvidia_cmd_args=%s", nvidia_cmd_args.c_str());
 				POPEN_TO_ITEM(vbios_version, "%s --query-gpu=vbios_version",   nvidia_cmd_args.c_str());
 				POPEN_TO_ITEM(temperature,   "%s --query-gpu=temperature.gpu", nvidia_cmd_args.c_str());
@@ -781,7 +792,6 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 				POPEN_TO_ITEM(mem_clock,     "%s --query-gpu=clocks.mem",      nvidia_cmd_args.c_str());
 				POPEN_TO_ITEM(mem_used,      "%s --query-gpu=memory.used",     nvidia_cmd_args.c_str());
 				POPEN_TO_ITEM(mem_total,     "%s --query-gpu=memory.total",    nvidia_cmd_args.c_str());
-				nvidia_count++;
 				break;
 			}
 			case GpuDrv::GPUDRV_NOUVEAU:

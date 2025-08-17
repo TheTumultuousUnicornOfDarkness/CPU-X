@@ -362,7 +362,8 @@ struct Data
 			Label opencl_version   {_("OpenCL Version")};
 			int drm_card_number    = -1;
 			uint64_t vram_size     = 0;
-			std::string device_path{};
+			std::string bus_id     {};
+			std::string bus_path   {};
 			std::string drm_path   {};
 			std::string hwmon_path {};
 			GpuDrv driver          {GPUDRV_UNKNOWN};
