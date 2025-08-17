@@ -287,7 +287,7 @@ bool Options::set_selected_core(uint16_t selected_core, uint16_t num_cpu_cores)
 	{
 		Options::selected_core = selected_core;
 		if(!set_cpu_affinity(selected_core))
-			MSG_ERROR(_("failed to change CPU affinitiy to core %u"), selected_core);
+			MSG_ERROR(_("failed to change CPU affinity to core %u"), selected_core);
 		return true;
 	}
 	else
