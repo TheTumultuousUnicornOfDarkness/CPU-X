@@ -19,6 +19,8 @@
   The author may be reached at 1 at zsmith dot co.
  *===========================================================================*/
 
+#define _GNU_SOURCE
+#include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
