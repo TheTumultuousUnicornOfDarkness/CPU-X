@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-08-11 04:01+0000\n"
 "Last-Translator: neko0xff <neko_0xff@protonmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -483,7 +483,7 @@ msgstr "沒有可用的 Vulkan 設備"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -494,93 +494,98 @@ msgstr ""
 "pci_access 未正確初始化：這是使用較低 libpci 版本建立 %s 時的常見問題。\n"
 "檢查您的系統上是否存在 libpci %s 版本函式庫。否則，請重建 %s。"
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "路徑 %s 沒有顯示卡核心驅動程式正在使用"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "無法得知您的 GPU 核心驅動程式：%s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 #, fuzzy
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to create pipe"
 msgstr "呼叫 libcpuid 失敗 (%s)"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
 msgstr "取得 GPU 時脈頻率時失敗"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "無法得知您的 GPU 供應商：%s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "啟用"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "關閉"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "正在尋找裝置"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 #, fuzzy
 #| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "略過搜尋裝置 ( %s 裝置不允許權限)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "找不到晶片組供應商及型號"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "找不到顯示卡供應商及型號"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "正在取得 GPU 時脈"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "無"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s 的 DRM 路徑未知"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s 的卡號未知"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s（目前）/%s（最大值）"
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s 的驅動程式沒有報告頻率"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
@@ -951,7 +956,7 @@ msgstr "L3 快取"
 msgid "Cores"
 msgstr "核心"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "線程"
 
@@ -1129,15 +1134,15 @@ msgstr "Vulkan 版本"
 msgid "OpenCL Version"
 msgstr "OpenCL 版本"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "分數"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "執行"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "持續時間"
 

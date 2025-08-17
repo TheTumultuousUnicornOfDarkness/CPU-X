@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -487,7 +487,7 @@ msgstr "هیچ دستگاه Vulkan موجود نیست"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -500,96 +500,101 @@ msgstr ""
 "بررسی کنید که کتابخانه libpci %s در سیستم شما وجود دارد. در غیر اینصورت،‌ "
 "لطفا %s را بازسازی کنید."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "هیچ درایور کرنلی برای کارت گرافیک در مسیر %s استفاده نمی شود"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "راه انداز هسته پردازنده گرافیکی شما نامشخص است: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 #, fuzzy
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
 msgstr "خطا در فراخوانی wordexp (%i)"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
 msgstr "دریافت ناموفق زمان سنج های پردازنده گرافیکی"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "سازنده پردازنده گرافیکی شما نامشخص است: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "فعال شده"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "غیرفعال شده"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "در حال بررسی دستگاه ها"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 #, fuzzy
 #| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "جستجوی سازنده و مدل chipset ناموفق بود"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "سازنده و مدل کارت گرافیک پیدا نشد"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "در حال دریافت زمان سنج های پردازنده گرافیکی"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "هیچ کدام"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "DRM path for %s is unknown"
 msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "Card number for %s is unknown"
 msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "راه انداز پردازنده گرافیکی %u فرکانس ها را گزارش نمی دهد"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
@@ -970,7 +975,7 @@ msgstr "سطح 3"
 msgid "Cores"
 msgstr "هسته‌ها"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "رشته ها"
 
@@ -1160,15 +1165,15 @@ msgstr "نسخه Vulkan"
 msgid "OpenCL Version"
 msgstr "نسخه OpenCL"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "امتیاز"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "اجرا"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "مدت زمان"
 

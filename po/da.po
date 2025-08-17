@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2022-12-17 05:50+0000\n"
 "Last-Translator: Magnus Jørgensen <magnusmj@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/cpu-x/"
@@ -483,7 +483,7 @@ msgstr "Ingen tilgængelig Vulkan enhed"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -496,94 +496,99 @@ msgstr ""
 "Verificer at libpci %s bibliotek er tilstede på dit system. Ellers, venligst "
 "genopbygge %s."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Ingen kernedriver i brug til grafikkort ved stien %s"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Din GPU-driver er ukendt: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 #, fuzzy
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
 msgstr "kunne ikke kalde wordexp (%i)"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
 msgstr "kunne ikke tilgå GPU frekvenser"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU leverandør er ukendt: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "Aktiveret"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "Deaktiveret"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "Finder enheder"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 #, fuzzy
 #| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Springer over enhedssøgning (forkerte tilladelser til %s enhed)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "kunne ikke finde chipset leverandør og model"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "kunne ikke finde grafik kort leverandør og model"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "Finder GPU frekvenser"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "Ingen"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Driveren til GPU %u rapporterer ikke frekvenser"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
@@ -954,7 +959,7 @@ msgstr "Niveau 3"
 msgid "Cores"
 msgstr "Kerner"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Tråde"
 
@@ -1144,15 +1149,15 @@ msgstr "Vulkan Version"
 msgid "OpenCL Version"
 msgstr "OpenCL Version"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "Score"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "Kør"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "Varighed"
 

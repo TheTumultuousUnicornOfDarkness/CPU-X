@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-05-12 13:01+0000\n"
 "Last-Translator: Emre <emregokcew10@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
@@ -479,7 +479,7 @@ msgstr "Kullanılabilir EGL aygıtı yok"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "%s sağlayıcısı için OpenGL sürücüsü bulunamıyor"
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -492,87 +492,92 @@ msgstr ""
 "Sisteminizde libpci %s kütüphanesinin bulunup bulunmadığına bakın. Aksi "
 "takdirde, lütfen %s'i yeniden derleyin."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "%s yolundaki grafik kartı için kullanılan çekirdek sürücüsü yok"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPU çekirdek sürücünüz bilinmiyor: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 msgid "failed to create pipe"
 msgstr "pipe oluşturulamadı"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 msgid "failed to create process"
 msgstr "süreç oluşturulamadı"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "GPU markanız bilinmiyor: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "Etkinleştirildi"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "Devre dışı"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "Aygıtlar bulunuyor"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "Aygıt aramayı atla (PCI aygıtı mevcut değil)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Aygıt aramayı atla (%s aygıtında yanlış izinler)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "yonga seti üreticisi ve model bulunamadı"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "ekran kartı üreticisi ve modeli bulunamadı"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "GPU saatleri alınıyor"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "Hiçbiri"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s için DRM yolu bilinmiyor"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s için kart numarası bilinmiyor"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (geçerli) / %s (azami)"
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s sürücüsü frekansları bildirmiyor"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "%s için tüm izmele verileri alınamadı"
@@ -933,7 +938,7 @@ msgstr "Seviye 3"
 msgid "Cores"
 msgstr "Çekirdekler"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "İş Parçacıkları"
 
@@ -1111,15 +1116,15 @@ msgstr "Vulkan Sürümü"
 msgid "OpenCL Version"
 msgstr "OpenCL Sürümü"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "Puan"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "Çalıştır"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "Süre"
 

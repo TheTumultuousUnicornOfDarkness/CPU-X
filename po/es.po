@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-06-06 12:01+0000\n"
 "Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
@@ -480,7 +480,7 @@ msgstr "No hay dispositivos EGL disponibles"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "No es capaz de encontrar controlador OpenGL para proveedor %s"
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -493,89 +493,94 @@ msgstr ""
 "Verifique que la biblioteca libpci %s esté presente en su sistema. De lo "
 "contrario, reconstruya %s."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 "No hay controlador kernel en uso para la tarjeta gráfica en la ubicación %s"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Su controlador de GPU es desconocido: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 msgid "failed to create pipe"
 msgstr "no se pudo crear la canalización"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 msgid "failed to create process"
 msgstr "no se pudo crear el proceso"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Su proveedor de GPU es desconocido: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "Activado"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "Buscando dispositivos"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "Omitir búsqueda de dispositivos (dispositivo PCI no existe)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Omitir búsqueda de dispositivos (permisos equivocados en dispositivo %s)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "No se encontró el proveedor y el modelo del chipset"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "no se pudo encontrar el proveedor de la tarjeta gráfica y el modelo"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "Recuperando relojes de GPU"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "Ninguno"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "La ruta DRM para %s es desconocida"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "El número de la tarjeta para %s es desconocido"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (actual) / %s (máx)"
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "El controlador para %s no informa de las frecuencias"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "no se han podido recuperar todos los datos de seguimiento de %s"
@@ -935,7 +940,7 @@ msgstr "Nivel 3"
 msgid "Cores"
 msgstr "Núcleos"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Hilos"
 
@@ -1113,15 +1118,15 @@ msgstr "Versión de Vulkan"
 msgid "OpenCL Version"
 msgstr "Versión de OpenCL"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "Puntuación"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "Ejecutar"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "Duración"
 

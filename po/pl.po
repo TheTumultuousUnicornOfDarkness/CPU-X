@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-08-17 06:14+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/cpu-x/"
@@ -25,8 +25,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
-"n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Generator: Weblate 5.13\n"
 
@@ -475,7 +475,7 @@ msgstr "Brak dostępnych urządzeń EGL"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "Nie można znaleźć sterownika OpenGL dla producenta %s"
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -488,87 +488,92 @@ msgstr ""
 "Sprawdź, czy biblioteka libpci %s jest obecna w Twoim systemie. W przeciwnym "
 "razie należy przebudować %s."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Brak sterownika jądra dla karty graficznej przy ścieżce %s"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Nieznany sterownik jądra GPU: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 msgid "failed to create pipe"
 msgstr "nie udało się utworzyć potoku"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 msgid "failed to create process"
 msgstr "nie udało się utworzyć procesu"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Dostawca procesora GPU jest nieznany: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "Włączone"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "Wyłączone"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "Wyszukiwanie urządzeń"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "Pomiń wyszukiwanie urządzeń (urządzenie PCI nie istnieje)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Pomiń wyszukiwanie urządzeń (brak uprawnień do urządzenia %s)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu chipsetu"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "nie udało się znaleźć producenta i modelu GPU"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "Pobieranie zegarów GPU"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "Żaden"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "Ścieżka DRM dla %s jest nieznana"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "Numer karty %s jest nieznany"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (bieżąca) / %s (maks.)"
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Sterownik dla %s nie raportuje częstotliwości"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "nie udało się pobrać wszystkich danych monitorowania dla %s"
@@ -930,7 +935,7 @@ msgstr "Poziom 3"
 msgid "Cores"
 msgstr "Rdzenie"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Wątki"
 
@@ -1108,15 +1113,15 @@ msgstr "Wersja Vulkan"
 msgid "OpenCL Version"
 msgstr "Wersja OpenCL"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "Wynik"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "Uruchom"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "Czas trwania"
 

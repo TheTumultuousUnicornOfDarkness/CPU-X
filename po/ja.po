@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-04-01 21:52+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/cpu-x/"
@@ -473,7 +473,7 @@ msgstr "利用可能なEGLデバイスがありません"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "ベンダー %s の OpenGL ドライバが見つかりません"
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -486,87 +486,92 @@ msgstr ""
 "あなたのシステムにlibpci %s ライブラリが存在することを確かめてください。そう"
 "でなければ%sを再ビルドして下さい。"
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "パス %s にグラフィックカードに使用するカーネルドライバがありません"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "不明な GPU カーネル ドライバー: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 msgid "failed to create pipe"
 msgstr "パイプの作成に失敗しました"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 msgid "failed to create process"
 msgstr "プロセスの作成に失敗しました"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "不明な GPU ベンダー : %s（0x %X）"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "有効"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "無効"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "デバイスを識別中"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "デバイス検索をスキップ (PCI デバイスが存在しません)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "デバイス判定の除外（ %s デバイス上の不正な権限）"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "チップセットのベンダーとモデルの判別に失敗しました"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "グラフィック カードのベンダーとモデルの取得に失敗しました"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "GPU クロックを取得中"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "なし"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s の DRM パスが不明です"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s のカード番号が不明です"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (現在) / %s (最大)"
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s のドライバーは周波数を報告しません"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr ""
@@ -930,7 +935,7 @@ msgstr "レベル3"
 msgid "Cores"
 msgstr "コア"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "スレッド"
 
@@ -1108,15 +1113,15 @@ msgstr "Vulkan バージョン"
 msgid "OpenCL Version"
 msgstr "OpenCL バージョン"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "スコア"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "実行"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "デュレーション"
 

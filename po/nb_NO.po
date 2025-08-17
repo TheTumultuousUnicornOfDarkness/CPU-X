@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-08-09 08:02+0000\n"
 "Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
@@ -466,7 +466,7 @@ msgstr "Ingen tilgjengelige EGL-enheter (%s)"
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "Kunne ikke finne OpenGL-driver for leverandøren %s"
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -479,88 +479,93 @@ msgstr ""
 "Sjekk at libpci %s-biblioteket er å finne på systemet ditt. Ellers må du "
 "bygge %s igjen."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "Ingen kjernedriver i bruk for grafikkort på stien %s"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Kjernedriveren til GPU-en din er ukjent: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 msgid "failed to create pipe"
 msgstr "kunne ikke skape pipe"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 msgid "failed to create process"
 msgstr "kunne ikke skape prosess"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Din GPU-tilvirker er ukjent: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "Avskrudd"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "Finner enheter"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "Hopp over søk etter enheter (PCI-enhet eksisterer ikke)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "Hopp over søk etter enheter (feil tilganger på %s-enhet)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "klarte ikke å finne brikkesetttilverker eller modell"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "klarte ikke å finne grafikkorttilvirker eller modell"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "Henter GPU-klokker"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "Ingen"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "Driver for GPU %u rapporterer ikke frekvenser"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
@@ -953,7 +958,7 @@ msgstr "Nivå 3"
 msgid "Cores"
 msgstr "Kjerne(r)"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Tråder"
 
@@ -1155,15 +1160,15 @@ msgstr "Versjon"
 msgid "OpenCL Version"
 msgstr "Versjon"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "Poengsum"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "Kjør"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "Varighet"
 

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-16 17:47+0000\n"
+"POT-Creation-Date: 2025-08-17 08:00+0000\n"
 "PO-Revision-Date: 2025-04-28 12:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/cpu-x/translations/"
@@ -463,7 +463,7 @@ msgstr "கிடைக்கக்கூடிய EGL சாதனங்கள�
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "விற்பனையாளர் %s ஓபன்சிஎல் டிரைவரைக் கண்டுபிடிக்க முடியவில்லை"
 
-#: core/libpci.cpp:73
+#: core/libpci.cpp:72
 #, c-format
 msgid ""
 "pci_access is not properly initialized: it is a common issue when %s was "
@@ -476,87 +476,92 @@ msgstr ""
 "உங்கள் கணினியில் libpci %s நூலகம் உள்ளதா எனச் சரிபார்க்கவும். இல்லையெனில், %s ஐ மீண்டும் "
 "உருவாக்கவும்."
 
-#: core/libpci.cpp:117
+#: core/libpci.cpp:93
+#, c-format
+msgid "Bus path is invalid: %s"
+msgstr ""
+
+#: core/libpci.cpp:128
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "பாதை %s இல் கிராஃபிக் கார்டுக்கு கர்னல் இயக்கி இல்லை"
 
-#: core/libpci.cpp:153
+#: core/libpci.cpp:164
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "உங்கள் GPU கர்னல் இயக்கி தெரியவில்லை: %s"
 
-#: core/libpci.cpp:238 core/libpci.cpp:286 core/libpci.cpp:337
+#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
 msgid "failed to create pipe"
 msgstr "குழாய் உருவாக்கத் தவறிவிட்டது"
 
-#: core/libpci.cpp:244 core/libpci.cpp:292 core/libpci.cpp:343
+#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
 msgid "failed to create process"
 msgstr "செயல்முறையை உருவாக்கத் தவறிவிட்டது"
 
-#: core/libpci.cpp:401
+#: core/libpci.cpp:412
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "உங்கள் GPU விற்பனையாளர் தெரியவில்லை: %s (0x%X)"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
 
-#: core/libpci.cpp:424 core/libvulkan.cpp:288
+#: core/libpci.cpp:435 core/libvulkan.cpp:288
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
 
-#: core/libpci.cpp:450
+#: core/libpci.cpp:461
 msgid "Finding devices"
 msgstr "சாதனங்களைக் கண்டறிதல்"
 
-#: core/libpci.cpp:454
+#: core/libpci.cpp:465
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "சாதனங்கள் தேடலைத் தவிர்க்கவும் (பிசிஐ சாதனம் இல்லை)"
 
-#: core/libpci.cpp:467
+#: core/libpci.cpp:478
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "சாதனத் தேடலைத் தவிர்க்கவும் (%s சாதனத்தில் தவறான அனுமதிகள்)"
 
-#: core/libpci.cpp:504
+#: core/libpci.cpp:515
 msgid "failed to find chipset vendor and model"
 msgstr "சிப்செட் விற்பனையாளரையும் மாதிரியையும் கண்டுபிடிக்க முடியவில்லை"
 
-#: core/libpci.cpp:507
+#: core/libpci.cpp:518
 msgid "failed to find graphic card vendor and model"
 msgstr "கிராஃபிக் கார்டு விற்பனையாளரையும் மாடலையும் கண்டுபிடிக்க முடியவில்லை"
 
-#: core/libpci.cpp:638
+#: core/libpci.cpp:649
 msgid "Retrieving GPU clocks"
 msgstr "GPU கடிகாரங்களை மீட்டெடுக்கிறது"
 
-#: core/libpci.cpp:651
+#: core/libpci.cpp:662
 msgid "None"
 msgstr "எதுவும் இல்லை"
 
-#: core/libpci.cpp:660
+#: core/libpci.cpp:671
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s க்கான DRM பாதை தெரியவில்லை"
 
-#: core/libpci.cpp:667
+#: core/libpci.cpp:678
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s க்கான கார்டு எண் தெரியவில்லை"
 
-#: core/libpci.cpp:692
+#: core/libpci.cpp:703
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (தற்போதைய) / %s (அதிகபட்சம்)"
 
-#: core/libpci.cpp:807
+#: core/libpci.cpp:817
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s க்கான இயக்கி அதிர்வெண்களைப் புகாரளிக்கவில்லை"
 
-#: core/libpci.cpp:828
+#: core/libpci.cpp:838
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "%s க்கான அனைத்து கண்காணிப்புத் தரவையும் மீட்டெடுக்க முடியவில்லை"
@@ -917,7 +922,7 @@ msgstr "நிலை 3"
 msgid "Cores"
 msgstr "கோர்கள்"
 
-#: data.hpp:148 data.hpp:419 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "நூல்கள்"
 
@@ -1095,15 +1100,15 @@ msgstr "Vulkan பதிப்பு"
 msgid "OpenCL Version"
 msgstr "OpenCL பதிப்பு"
 
-#: data.hpp:398
+#: data.hpp:399
 msgid "Score"
 msgstr "மதிப்பெண்"
 
-#: data.hpp:399
+#: data.hpp:400
 msgid "Run"
 msgstr "ஓடு"
 
-#: data.hpp:418
+#: data.hpp:419
 msgid "Duration"
 msgstr "கால அளவு"
 
