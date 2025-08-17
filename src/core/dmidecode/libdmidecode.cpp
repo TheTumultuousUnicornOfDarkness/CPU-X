@@ -118,6 +118,7 @@ int call_dmidecode(Data &data)
 			data.memory.sticks[i].voltage.value += string_format(_("%s (max)"), msg_memory.voltage_maximum);
 		}
 	}
+	Options::set_num_sticks(data.memory.sticks.size());
 
 	return 0;
 }

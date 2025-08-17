@@ -26,6 +26,8 @@
 
 #include <cstdint>
 #include <array>
+#include <utility>
+#include <vector>
 #include "data.hpp"
 
 /* Options definition */
@@ -97,15 +99,19 @@ public:
 	static bool set_selected_page_next();
 	static bool set_selected_page_prev();
 	static TabNumber get_selected_page();
-	static bool set_selected_type(uint8_t selected_type, uint8_t num_cpu_types);
+	static void set_num_types(uint8_t num_types);
+	static bool set_selected_type(uint8_t selected_type);
 	static uint8_t get_selected_type();
 	static bool set_selected_test(uint8_t selected_test);
 	static uint8_t get_selected_test();
-	static bool set_selected_stick(uint8_t selected_stick, uint8_t num_sticks);
+	static void set_num_sticks(uint8_t num_sticks);
+	static bool set_selected_stick(uint8_t selected_stick);
 	static uint8_t get_selected_stick();
-	static bool set_selected_gpu(uint8_t selected_gpu, uint8_t num_gpus);
+	static void set_num_gpus(uint8_t num_gpus);
+	static bool set_selected_gpu(uint8_t selected_gpu);
 	static uint8_t get_selected_gpu();
-	static bool set_selected_core(uint16_t selected_core, uint16_t num_cpu_cores);
+	static void set_num_cores(uint8_t selected_type, uint16_t num_cores);
+	static bool set_selected_core(uint16_t selected_core);
 	static uint16_t get_selected_core();
 	static bool set_output_type(uint16_t output_type);
 	static bool output_type_is(uint16_t output_type);
@@ -127,20 +133,29 @@ private:
 	static inline bool fallback_cpu_freq = false;
 	static inline bool fallback_cpu_mult = false;
 
-	static inline uint8_t selected_type  = 0;
-	static inline uint8_t selected_test  = 0;
-	static inline uint8_t selected_stick = 0;
-	static inline uint8_t selected_gpu   = 0;
+	/* Note abouts std::pair:
+	   - .first stores the current value
+	   - .second stores the maximum allowed value
+	*/
+	static inline std::pair<uint8_t, uint8_t> selected_type  = { 0, -1 };
+	static inline uint8_t                     selected_test  = 0;
+	static inline std::pair<uint8_t, uint8_t> selected_stick = { 0, -1 };
+	static inline std::pair<uint8_t, uint8_t> selected_gpu   = { 0, -1 };
 
-	static inline uint16_t selected_core = 0;
-	static inline uint16_t output_type   = 0;
-	static inline uint16_t refr_time     = 1;
+	static inline std::pair<uint16_t, std::vector<uint16_t>> selected_core = { 0, {} };
+	static inline uint16_t output_type                                     = 0;
+	static inline uint16_t refr_time                                       = 1;
 
 	static inline TabNumber selected_page = TAB_CPU;
 	static inline OptKeymap keymap        = ARROWS;
 	static inline OptTempUnit temp_unit   = CELSIUS;
 
 	static inline std::array<bool, LAST_TAB_NUMBER> page_visible {};
+
+	static bool check_selected_type_valid(uint8_t selected_type);
+	static bool check_selected_stick_valid(uint8_t selected_stick);
+	static bool check_selected_gpu_valid(uint8_t selected_gpu);
+	static bool check_selected_core_valid(uint16_t selected_core);
 
 	Options() = delete;
 	~Options() = delete;

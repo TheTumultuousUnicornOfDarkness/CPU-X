@@ -304,11 +304,11 @@ static void parse_arguments(std::list<std::string> &cmd_args)
 				break;
 			case 'p':
 				if(check_required_argument_is_digit(binary_name))
-					Options::set_selected_type(std::stoul(optarg), -1);
+					Options::set_selected_type(std::stoul(optarg));
 				break;
 			case 'c':
 				if(check_required_argument_is_digit(binary_name))
-					Options::set_selected_core(std::stoul(optarg), -1);
+					Options::set_selected_core(std::stoul(optarg));
 				break;
 			case 'b':
 				if(check_required_argument_is_digit(binary_name))
@@ -316,11 +316,11 @@ static void parse_arguments(std::list<std::string> &cmd_args)
 				break;
 			case 's':
 				if(check_required_argument_is_digit(binary_name))
-					Options::set_selected_stick(std::stoul(optarg), -1);
+					Options::set_selected_stick(std::stoul(optarg));
 				break;
 			case 'g':
 				if(check_required_argument_is_digit(binary_name))
-					Options::set_selected_gpu(std::stoul(optarg), -1);
+					Options::set_selected_gpu(std::stoul(optarg));
 				break;
 			case 'd':
 				Options::set_with_daemon(true);

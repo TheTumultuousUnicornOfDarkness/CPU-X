@@ -516,7 +516,7 @@ int find_devices(Data &data)
 	if(data.graphics.cards.size() == 0)
 		MSG_ERROR("%s", _("failed to find graphic card vendor and model"));
 	else
-		Options::set_selected_gpu(Options::get_selected_gpu(), data.graphics.cards.size());
+		Options::set_num_gpus(data.graphics.cards.size());
 
 	return (chipset_found == false) + (data.graphics.cards.size() == 0);
 }

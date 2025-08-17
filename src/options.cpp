@@ -196,25 +196,43 @@ TabNumber Options::get_selected_page()
 	return Options::selected_page;
 }
 
-bool Options::set_selected_type(uint8_t selected_type, uint8_t num_cpu_types)
+bool Options::check_selected_type_valid(uint8_t selected_type)
 {
-	Options::set_selected_core(0, -1);
-	if(selected_type < num_cpu_types)
-	{
-		Options::selected_type = selected_type;
+	if(selected_type < Options::selected_type.second)
 		return true;
-	}
 	else
 	{
-		Options::selected_type = 0;
-		MSG_WARNING(_("Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"), selected_type, num_cpu_types - 1);
+		Options::selected_type.first = 0;
+		MSG_WARNING(_("Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"), selected_type, Options::selected_type.second - 1);
 		return false;
 	}
 }
 
+void Options::set_num_types(uint8_t num_types)
+{
+	Options::selected_type.second = num_types;
+
+	/* selected_core allowed values depend of cpu_type */
+	Options::selected_core.second.resize(num_types);
+	for(auto& cpu_type_num_cores : Options::selected_core.second)
+		cpu_type_num_cores = -1;
+}
+
+bool Options::set_selected_type(uint8_t selected_type)
+{
+	if(Options::check_selected_type_valid(selected_type))
+	{
+		Options::selected_type.first = selected_type;
+		return true;
+	}
+	else
+		return false;
+}
+
 uint8_t Options::get_selected_type()
 {
-	return Options::selected_type;
+	Options::check_selected_type_valid(Options::selected_type.first);
+	return Options::selected_type.first;
 }
 
 bool Options::set_selected_test([[maybe_unused]] uint8_t selected_test)
@@ -241,66 +259,110 @@ uint8_t Options::get_selected_test()
 	return Options::selected_test;
 }
 
-bool Options::set_selected_stick(uint8_t selected_stick, uint8_t num_sticks)
+bool Options::check_selected_stick_valid(uint8_t selected_stick)
 {
-	if(selected_stick < num_sticks)
+	if(selected_stick < Options::selected_stick.second)
+		return true;
+	else
 	{
-		Options::selected_stick = selected_stick;
+		Options::selected_stick.first = 0;
+		MSG_WARNING(_("Selected RAM stick (%u) is not a valid number (%u is the maximum for this system)"), selected_stick, Options::selected_stick.second - 1);
+		return false;
+	}
+}
+
+void Options::set_num_sticks(uint8_t num_sticks)
+{
+	Options::selected_stick.second = num_sticks;
+}
+
+bool Options::set_selected_stick(uint8_t selected_stick)
+{
+	if(Options::check_selected_stick_valid(selected_stick))
+	{
+		Options::selected_stick.first = selected_stick;
 		return true;
 	}
 	else
-	{
-		Options::selected_stick = 0;
-		MSG_WARNING(_("Selected RAM stick (%u) is not a valid number (%u is the maximum for this system)"), selected_stick, num_sticks - 1);
 		return false;
-	}
 }
 
 uint8_t Options::get_selected_stick()
 {
-	return Options::selected_stick;
+	Options::check_selected_stick_valid(Options::selected_stick.first);
+	return Options::selected_stick.first;
 }
 
-bool Options::set_selected_gpu(uint8_t selected_gpu, uint8_t num_gpus)
+bool Options::check_selected_gpu_valid(uint8_t selected_gpu)
 {
-	if(selected_gpu < num_gpus)
+	if(selected_gpu < Options::selected_gpu.second)
+		return true;
+	else
 	{
-		Options::selected_gpu = selected_gpu;
+		Options::selected_gpu.first = 0;
+		MSG_WARNING(_("Selected graphic card (%u) is not a valid number (%u is the maximum for this system)"), selected_gpu, Options::selected_gpu.second - 1);
+		return false;
+	}
+}
+
+void Options::set_num_gpus(uint8_t num_gpus)
+{
+	Options::selected_gpu.second = num_gpus;
+}
+
+bool Options::set_selected_gpu(uint8_t selected_gpu)
+{
+	if(Options::check_selected_gpu_valid(selected_gpu))
+	{
+		Options::selected_gpu.first = selected_gpu;
 		return true;
 	}
 	else
-	{
-		Options::selected_gpu = 0;
-		MSG_WARNING(_("Selected graphic card (%u) is not a valid number (%u is the maximum for this system)"), selected_gpu, num_gpus - 1);
 		return false;
-	}
 }
 
 uint8_t Options::get_selected_gpu()
 {
-	return Options::selected_gpu;
+	Options::check_selected_gpu_valid(Options::selected_gpu.first);
+	return Options::selected_gpu.first;
 }
 
-bool Options::set_selected_core(uint16_t selected_core, uint16_t num_cpu_cores)
+bool Options::check_selected_core_valid(uint16_t selected_core)
 {
-	if(selected_core < num_cpu_cores)
-	{
-		Options::selected_core = selected_core;
-		if(!set_cpu_affinity(selected_core))
-			MSG_ERROR(_("failed to change CPU affinity to core %u"), selected_core);
+	/* During early load (e.g. load_settings()), the vector is not yet initialized, but we need to set the value anyway. */
+	if(Options::selected_core.second.size() == 0)
 		return true;
-	}
+	else if(selected_core < Options::selected_core.second.at(Options::get_selected_type()))
+		return true;
 	else
 	{
-		Options::selected_core = 0;
-		MSG_WARNING(_("Selected CPU core (%u) is not a valid number (%u is the maximum for this type of core)"), selected_core, num_cpu_cores - 1);
+		Options::selected_core.first = 0;
+		MSG_WARNING(_("Selected CPU core (%u) is not a valid number (%u is the maximum for this type of core)"), selected_core, Options::selected_core.second.at(Options::get_selected_type()) - 1);
 		return false;
 	}
 }
 
+void Options::set_num_cores(uint8_t selected_type, uint16_t num_cores)
+{
+	if(Options::selected_core.second.size() > 0)
+		Options::selected_core.second.at(selected_type) = num_cores;
+}
+
+bool Options::set_selected_core(uint16_t selected_core)
+{
+	if(Options::check_selected_core_valid(selected_core))
+	{
+		Options::selected_core.first = selected_core;
+		return true;
+	}
+	else
+		return false;
+}
+
 uint16_t Options::get_selected_core()
 {
-	return Options::selected_core;
+	Options::check_selected_core_valid(Options::selected_core.first);
+	return Options::selected_core.first;
 }
 
 bool Options::set_output_type(uint16_t output_type)

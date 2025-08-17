@@ -789,7 +789,7 @@ void GtkData::change_active_type()
 	if(type < 0)
 		return;
 
-	Options::set_selected_type(type, data.cpu.cpu_types.size());
+	Options::set_selected_type(type);
 	this->fill_box_active_core();
 	this->grefresh();
 }
@@ -800,7 +800,7 @@ void GtkData::change_active_core()
 	if(core < 0)
 		return;
 
-	Options::set_selected_core(core, data.cpu.get_selected_cpu_type().footer.num_threads);
+	Options::set_selected_core(core);
 }
 
 
@@ -976,7 +976,7 @@ void GtkData::change_active_stick()
 	if(stick < 0)
 		return;
 
-	Options::set_selected_stick(stick, this->data.memory.sticks.size());
+	Options::set_selected_stick(stick);
 	this->gtab_memory();
 }
 
@@ -1194,7 +1194,7 @@ void GtkData::change_active_card()
 	if(card < 0)
 		return;
 
-	Options::set_selected_gpu(card, this->data.graphics.cards.size());
+	Options::set_selected_gpu(card);
 	this->grefresh();
 }
 
@@ -1343,11 +1343,11 @@ void load_settings()
 	Options::set_temp_unit     (static_cast<OptTempUnit>(settings->get_enum("temperature-unit")));
 	Options::set_refr_time     (settings->get_uint("refresh-time"));
 	Options::set_selected_page (static_cast<TabNumber>(settings->get_enum("default-tab")));
-	Options::set_selected_type (settings->get_uint("default-core-type"), -1);
-	Options::set_selected_core (settings->get_uint("default-cpu-core"), -1);
+	Options::set_selected_type (settings->get_uint("default-core-type"));
+	Options::set_selected_core (settings->get_uint("default-cpu-core"));
 	Options::set_selected_test (settings->get_uint("default-cache-test"));
-	Options::set_selected_stick(settings->get_uint("default-memory-stick"), -1);
-	Options::set_selected_gpu  (settings->get_uint("default-active-card"), -1);
+	Options::set_selected_stick(settings->get_uint("default-memory-stick"));
+	Options::set_selected_gpu  (settings->get_uint("default-active-card"));
 	Options::set_cpuid_decimal (settings->get_boolean("print-cpuid-decimal"));
 	Options::set_with_daemon   (settings->get_boolean("always-start-daemon"));
 }

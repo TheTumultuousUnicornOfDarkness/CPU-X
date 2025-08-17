@@ -188,6 +188,7 @@ int call_libcpuid_static(Data &data)
 		MSG_ERROR(_("failed to call libcpuid (%s)"), cpuid_error());
 		return 1;
 	}
+	Options::set_num_types(system_id.num_cpu_types);
 
 	/* Basically fill CPU tab */
 	for(uint8_t cpu_type = 0; cpu_type < system_id.num_cpu_types; cpu_type++)
@@ -196,6 +197,7 @@ int call_libcpuid_static(Data &data)
 		cpu_purpose = cpu_purpose_str(cpu_id->purpose);
 		data.cpu.grow_cpu_types_vector(cpu_type, cpu_purpose);
 		data.caches.grow_cpu_types_vector(cpu_type, cpu_purpose);
+		Options::set_num_cores(cpu_type, cpu_id->num_logical_cpus);
 
 		/* Find kernel module for CPU temperature (used by cputab_temp_fallback()) only for the first type */
 		if(cpu_type == 0)
@@ -295,8 +297,7 @@ int call_libcpuid_static(Data &data)
 			data.cpu.cpu_types[cpu_type].processor.instructions.value += cpu_flags[i].str;
 		}
 	}
-	Options::set_selected_type(Options::get_selected_type(), system_id.num_cpu_types);
-	Options::set_selected_core(Options::get_selected_core(), data.cpu.get_selected_cpu_type().footer.num_threads);
+
 	if(Options::get_issue())
 	{
 		cpuid_serialize_all_raw_data(&raw_data, "");

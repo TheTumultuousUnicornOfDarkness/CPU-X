@@ -735,7 +735,7 @@ void start_tui_ncurses(Data &data)
 			case KEY_DOWN:
 				if((Options::get_selected_page() == TAB_CPU) && (Options::get_selected_core() > 0))
 				{
-					Options::set_selected_core(Options::get_selected_core() - 1, data.cpu.get_selected_cpu_type().footer.num_threads);
+					Options::set_selected_core(Options::get_selected_core() - 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_CACHES) && (Options::get_selected_test() > 0))
@@ -745,12 +745,12 @@ void start_tui_ncurses(Data &data)
 				}
 				else if((Options::get_selected_page() == TAB_MEMORY) && (Options::get_selected_stick() > 0))
 				{
-					Options::set_selected_stick(Options::get_selected_stick() - 1, data.memory.sticks.size());
+					Options::set_selected_stick(Options::get_selected_stick() - 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_GRAPHICS) && (Options::get_selected_gpu() > 0))
 				{
-					Options::set_selected_gpu(Options::get_selected_gpu() - 1, data.graphics.cards.size());
+					Options::set_selected_gpu(Options::get_selected_gpu() - 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_BENCH) && data.bench.parameters.set_duration(data.bench.parameters.duration_i - 1))
@@ -759,7 +759,7 @@ void start_tui_ncurses(Data &data)
 			case KEY_NPAGE:
 				if((Options::get_selected_page() == TAB_CPU) && (Options::get_selected_type() > 0))
 				{
-					Options::set_selected_type(Options::get_selected_type() - 1, data.cpu.cpu_types.size());
+					Options::set_selected_type(Options::get_selected_type() - 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_BENCH) && !data.bench.is_running && (data.bench.parameters.threads_i > 0))
@@ -769,7 +769,7 @@ void start_tui_ncurses(Data &data)
 			case KEY_UP:
 				if((Options::get_selected_page() == TAB_CPU) && (Options::get_selected_core() < data.cpu.get_selected_cpu_type().footer.num_threads - 1))
 				{
-					Options::set_selected_core(Options::get_selected_core() + 1, data.cpu.get_selected_cpu_type().footer.num_threads);
+					Options::set_selected_core(Options::get_selected_core() + 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_CACHES) && (Options::get_selected_test() < data.caches.test.names.size() - 1))
@@ -779,12 +779,12 @@ void start_tui_ncurses(Data &data)
 				}
 				else if((Options::get_selected_page() == TAB_MEMORY) && (Options::get_selected_stick() < data.memory.sticks.size() - 1))
 				{
-					Options::set_selected_stick(Options::get_selected_stick() + 1, data.memory.sticks.size());
+					Options::set_selected_stick(Options::get_selected_stick() + 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_GRAPHICS) && (Options::get_selected_gpu() < data.graphics.cards.size() - 1))
 				{
-					Options::set_selected_gpu(Options::get_selected_gpu() + 1, data.graphics.cards.size());
+					Options::set_selected_gpu(Options::get_selected_gpu() + 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_BENCH) && data.bench.parameters.set_duration(data.bench.parameters.duration_i + 1))
@@ -793,7 +793,7 @@ void start_tui_ncurses(Data &data)
 			case KEY_PPAGE:
 				if((Options::get_selected_page() == TAB_CPU) && (Options::get_selected_type() < data.cpu.cpu_types.size() - 1))
 				{
-					Options::set_selected_type(Options::get_selected_type() + 1, data.cpu.cpu_types.size());
+					Options::set_selected_type(Options::get_selected_type() + 1);
 					draw_window(win, data);
 				}
 				else if((Options::get_selected_page() == TAB_BENCH) && !data.bench.is_running && (data.bench.parameters.threads_i < std::thread::hardware_concurrency()))

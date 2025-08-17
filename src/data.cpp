@@ -522,7 +522,7 @@ void Data::Memory::grow_sticks_vector()
 Data::Memory::Stick& Data::Memory::get_selected_stick()
 {
 	/* Check selected stick is a valid index */
-	Options::set_selected_stick(Options::get_selected_stick(), this->sticks.size());
+	Options::set_selected_stick(Options::get_selected_stick());
 
 	/* Check that vector is not empty */
 	if(this->sticks.size() == 0)
@@ -621,9 +621,6 @@ void Data::Graphics::grow_cards_vector()
 
 Data::Graphics::Card& Data::Graphics::get_selected_card()
 {
-	/* Check selected card is a valid index */
-	Options::set_selected_gpu(Options::get_selected_gpu(), this->cards.size());
-
 	/* Check that vector is not empty */
 	if(this->cards.size() == 0)
 		this->grow_cards_vector();
