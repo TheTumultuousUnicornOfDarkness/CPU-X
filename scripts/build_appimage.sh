@@ -41,7 +41,7 @@ while getopts "s:a:u:v:h" opt; do
 		s) SRC_DIR="$(realpath "$OPTARG")";;
 		a) APPDIR="$(realpath "$OPTARG")";;
 		u) GH_USERNAME="$OPTARG";;
-		v) VERSION="$OPTARG";;
+		v) VERSION="$OPTARG"; export VERSION;;
 		h) display_help; exit 0;;
 		*) display_help; exit 1;;
 	esac
@@ -128,7 +128,7 @@ echo "Create AppImage from '$APPDIR' AppDir"
 mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
 download_file "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
 download_file "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
-APPIMAGE_EXTRACT_AND_RUN=1 VERSION="$VERSION" "./appimagetool-$ARCH.AppImage" \
+APPIMAGE_EXTRACT_AND_RUN=1 "./appimagetool-$ARCH.AppImage" \
 	--mksquashfs-opt -Xcompression-level --mksquashfs-opt 22 \
 	--mksquashfs-opt -b --mksquashfs-opt 1M \
 	--runtime-file "./uruntime-appimage-squashfs-lite-$ARCH" \
