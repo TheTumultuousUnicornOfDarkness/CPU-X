@@ -1509,7 +1509,7 @@ int bandwidth_cpux(struct BandwidthData *bwd)
 	};
 #undef TESTING_FUNC
 
-	/* Set test names */
+	/* Set test names and quit */
 	if(bwd->test_name == NULL)
 	{
 		bwd->test_supported = malloc(BANDWIDTH_LAST_TEST * sizeof(bool));
@@ -1525,6 +1525,7 @@ int bandwidth_cpux(struct BandwidthData *bwd)
 				strncpy(test_name, tests[i].name, TEST_NAME_BUFFER_LEN);
 			asprintf(&bwd->test_name[i], G_("#%2i: %s %s"), i, test_name, bwd->test_supported[i] ? "" : _("(unavailable)"));
 		}
+		goto clean;
 	}
 
 	/* Run test if supported */
