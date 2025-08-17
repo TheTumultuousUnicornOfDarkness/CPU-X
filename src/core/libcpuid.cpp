@@ -49,7 +49,6 @@ static int call_libcpuid_msr_debug(Data &data, uint16_t all_cpu_count)
 int call_libcpuid_static(Data &data)
 {
 	int err = 0;
-	uint16_t core_id_offset = 0;
 	const char *cpu_purpose = NULL;
 	struct cpu_id_t *cpu_id  = NULL;
 	struct cpu_raw_data_array_t raw_data;
@@ -246,10 +245,6 @@ int call_libcpuid_static(Data &data)
 		data.cpu.cpu_types[cpu_type].footer.num_threads            = cpu_id->num_logical_cpus;
 		string_trim(data.cpu.cpu_types[cpu_type].processor.specification.value);
 
-		/* Add core offset */
-		data.cpu.cpu_types[cpu_type].footer.core_id_offset = core_id_offset;
-		core_id_offset = cpu_id->num_logical_cpus;
-
 		/* Cache level 1 (instruction) */
 		if(cpu_id->l1_instruction_cache > 0)
 			data.cpu.cpu_types[cpu_type].caches.level1i.value = Data::Cpu::CpuType::Caches::format_cache_level(cpu_id->l1_instruction_instances, cpu_id->l1_instruction_cache, UNIT_KB, cpu_id->l1_instruction_assoc);
@@ -324,7 +319,7 @@ int call_libcpuid_msr_static(Data &data)
 {
 	auto& cpu_type = data.cpu.get_selected_cpu_type();
 	const DaemonCommand cmd = LIBCPUID_MSR_STATIC;
-	const uint16_t current_core_id = data.cpu.get_selected_core_id();
+	const uint16_t current_core_id = Options::get_selected_core_id();
 	MsrStaticData msg;
 
 	if(cpu_type.processor.architecture != ARCHITECTURE_X86)
@@ -353,7 +348,7 @@ int call_libcpuid_msr_static(Data &data)
 int call_libcpuid_msr_dynamic(Data &data)
 {
 	auto& cpu_type = data.cpu.get_selected_cpu_type();
-	const uint16_t current_core_id = data.cpu.get_selected_core_id();
+	const uint16_t current_core_id = Options::get_selected_core_id();
 	const DaemonCommand cmd = LIBCPUID_MSR_DYNAMIC;
 	MsrDynamicData msg;
 

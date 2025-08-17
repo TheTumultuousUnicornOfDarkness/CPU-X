@@ -177,7 +177,7 @@ static int cputab_multipliers_fallback(Data &data) noexcept
 
 #ifdef __linux__
 	std::string min_freq_str, max_freq_str;
-	const uint16_t current_core_id = data.cpu.get_selected_core_id();
+	const uint16_t current_core_id = Options::get_selected_core_id();
 
 	MSG_VERBOSE("%s", _("Calculating CPU multipliers in fallback mode"));
 	/* Minimum multiplier */
@@ -262,7 +262,7 @@ static int cputab_temp_fallback(Data &data)
 {
 	int err = 0;
 	auto& cpu_type = data.cpu.get_selected_cpu_type();
-	const uint16_t current_core_id = data.cpu.get_selected_core_id();
+	const uint16_t current_core_id = Options::get_selected_core_id();
 
 	MSG_VERBOSE("%s", _("Retrieving CPU temperature in fallback mode"));
 #ifdef __linux__
@@ -325,7 +325,7 @@ static int cputab_volt_fallback([[maybe_unused]] Data &data)
 #ifdef __linux__
 	std::string voltage;
 	auto& cpu_type = data.cpu.get_selected_cpu_type();
-	const uint16_t current_core_id = data.cpu.get_selected_core_id();
+	const uint16_t current_core_id = Options::get_selected_core_id();
 
 	MSG_VERBOSE("%s", _("Retrieving CPU voltage in fallback mode"));
 	/* Get sensor path */
@@ -358,7 +358,7 @@ static int cputab_freq_fallback([[maybe_unused]] Data &data)
 
 #ifdef __linux__
 	std::string freq;
-	const uint16_t current_core_id = data.cpu.get_selected_core_id();
+	const uint16_t current_core_id = Options::get_selected_core_id();
 
 	MSG_VERBOSE("%s", _("Retrieving CPU frequency in fallback mode"));
 	if(!(err = fopen_to_str(freq, "%s%i/cpufreq/scaling_cur_freq", SYS_CPU, current_core_id)))

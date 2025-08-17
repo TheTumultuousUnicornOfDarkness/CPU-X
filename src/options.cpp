@@ -223,6 +223,7 @@ bool Options::set_selected_type(uint8_t selected_type)
 	if(Options::check_selected_type_valid(selected_type))
 	{
 		Options::selected_type.first = selected_type;
+		Options::set_selected_core(0); // Reset selected core number to a safe value
 		return true;
 	}
 	else
@@ -342,6 +343,21 @@ bool Options::check_selected_core_valid(uint16_t selected_core)
 	}
 }
 
+uint16_t Options::get_selected_core_id()
+{
+	uint16_t core_offset = 0;
+
+	/* Do nothing if selected_core vector is not yet initialized */
+	if(Options::selected_core.second.size() == 0)
+		return 0;
+
+	/* Calculate offset for CPU core ID */
+	for(auto core_type = 0; core_type < Options::get_selected_type(); core_type++)
+		core_offset += Options::selected_core.second.at(core_type);
+
+	return core_offset + Options::get_selected_core();
+}
+
 void Options::set_num_cores(uint8_t selected_type, uint16_t num_cores)
 {
 	if(Options::selected_core.second.size() > 0)
@@ -353,6 +369,8 @@ bool Options::set_selected_core(uint16_t selected_core)
 	if(Options::check_selected_core_valid(selected_core))
 	{
 		Options::selected_core.first = selected_core;
+		if(!set_cpu_affinity(Options::get_selected_core_id()))
+			MSG_ERROR(_("failed to change CPU affinitiy to core %u"), Options::get_selected_core_id());
 		return true;
 	}
 	else

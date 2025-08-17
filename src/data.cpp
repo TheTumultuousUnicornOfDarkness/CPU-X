@@ -133,19 +133,6 @@ void Data::Cpu::grow_cpu_types_vector(uint8_t index, const char *purpose)
 	this->cpu_types.push_back({index, purpose});
 }
 
-uint16_t Data::Cpu::get_selected_core_id()
-{
-	return this->get_selected_cpu_type().footer.core_id_offset + Options::get_selected_core();
-}
-
-uint16_t Data::Cpu::get_first_core_id_for_type(uint8_t cpu_type)
-{
-	if(cpu_type < this->cpu_types.size())
-		return this->cpu_types.at(cpu_type).footer.core_id_offset;
-	else
-		return 0;
-}
-
 Data::Cpu::CpuType& Data::Cpu::get_selected_cpu_type()
 {
 	/* Check that vector is not empty */

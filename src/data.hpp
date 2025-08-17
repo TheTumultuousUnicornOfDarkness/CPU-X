@@ -147,7 +147,6 @@ struct Data
 				Label cores   {_("Cores")};
 				Label threads {_("Threads")};
 				uint16_t num_threads    = 0;
-				uint16_t core_id_offset = 0;
 
 				Footer();
 				friend std::ostream& operator<<(std::ostream& os, const Footer& footer);
@@ -181,8 +180,6 @@ struct Data
 
 		Cpu();
 		void grow_cpu_types_vector(uint8_t index, const char *purpose);
-		uint16_t get_selected_core_id();
-		uint16_t get_first_core_id_for_type(uint8_t cpu_type);
 		CpuType& get_selected_cpu_type();
 		const std::string get_selected_cpu_type_formatted();
 		const std::string get_selected_cpu_core_formatted();

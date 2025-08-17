@@ -110,6 +110,7 @@ public:
 	static void set_num_gpus(uint8_t num_gpus);
 	static bool set_selected_gpu(uint8_t selected_gpu);
 	static uint8_t get_selected_gpu();
+	static uint16_t get_selected_core_id();
 	static void set_num_cores(uint8_t selected_type, uint16_t num_cores);
 	static bool set_selected_core(uint16_t selected_core);
 	static uint16_t get_selected_core();
