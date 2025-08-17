@@ -4,7 +4,7 @@ project(bandwidth
 )
 
 # Config (bandwidth)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-sign-compare -Wno-type-limits -Wno-unused-parameter")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wno-sign-compare -Wno-type-limits -Wno-strict-prototypes -Wno-unused-parameter")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
 	set(NASM_FLAGS_DEBUG "-gdwarf")
