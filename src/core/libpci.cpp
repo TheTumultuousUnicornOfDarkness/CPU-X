@@ -113,7 +113,6 @@ static int set_gpu_kernel_driver(Data::Graphics::Card &card)
 	std::string cmd;
 	std::unordered_map<std::string, Data::Graphics::Card::GpuDrv> gpu_drivers =
 	{
-		{ "fglrx",    GpuDrv::GPUDRV_FGLRX   },
 		{ "radeon",   GpuDrv::GPUDRV_RADEON  },
 		{ "amdgpu",   GpuDrv::GPUDRV_AMDGPU  },
 		{ "i915",     GpuDrv::GPUDRV_INTEL   },
@@ -644,7 +643,7 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 
 #ifdef __linux__
 	static bool init_done = false;
-	uint8_t failed_count = 0, fglrx_count = 0;
+	uint8_t failed_count = 0;
 
 	MSG_VERBOSE("%s", _("Retrieving GPU clocks"));
 	for(auto& card : data.graphics.cards)
@@ -730,20 +729,6 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 				core_clock.divisor   = 1e6;
 				mem_clock.divisor    = 1e6;
 				mem_used.divisor     = mem_total.divisor = 1 << 20;
-				break;
-			}
-			case GpuDrv::GPUDRV_FGLRX:
-			{
-				// vbios_version not available
-				POPEN_TO_ITEM(temperature,  "aticonfig --adapter=%1u --odgt | awk '/Sensor/ { print $5 }'",                       fglrx_count);
-				POPEN_TO_ITEM(usage,        "aticonfig --adapter=%1u --odgc | awk '/GPU load/ { sub(\"%\",\"\",$4); print $4 }'", fglrx_count);
-				// core_voltage not available
-				// power_avg not available
-				POPEN_TO_ITEM(core_clock,   "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $4 }'",               fglrx_count);
-				POPEN_TO_ITEM(mem_clock,    "aticonfig --adapter=%1u --odgc | awk '/Current Clocks/ { print $5 }'",               fglrx_count);
-				// mem_used not available
-				// mem_total not available
-				fglrx_count++;
 				break;
 			}
 			case GpuDrv::GPUDRV_INTEL:

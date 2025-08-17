@@ -333,7 +333,7 @@ struct Data
 		{
 			enum GpuDrv
 			{
-				GPUDRV_FGLRX, GPUDRV_AMDGPU, GPUDRV_RADEON,                                       // AMD
+				GPUDRV_AMDGPU, GPUDRV_RADEON,                                                     // AMD
 				GPUDRV_INTEL,                                                                     // Intel
 				GPUDRV_NVIDIA, GPUDRV_NVIDIA_BUMBLEBEE, GPUDRV_NOUVEAU, GPUDRV_NOUVEAU_BUMBLEBEE, // NVIDIA
 				GPUDRV_VFIO,
