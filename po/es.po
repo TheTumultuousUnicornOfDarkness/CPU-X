@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-17 08:00+0000\n"
+"POT-Creation-Date: 2025-08-18 17:39+0000\n"
 "PO-Revision-Date: 2025-06-06 12:01+0000\n"
 "Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/cpu-x/"
@@ -30,138 +30,138 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:55
+#: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
 msgstr "Invocando al ancho de banda"
 
-#: core/bandwidth/main.c:1467
+#: core/bandwidth/main.c:1469
 #, c-format
 msgid "Sequential %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1468
+#: core/bandwidth/main.c:1470
 msgid "Sequential 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1469
+#: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1470
+#: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1472
+#: core/bandwidth/main.c:1474
 #, c-format
 msgid "Sequential %i-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1473
+#: core/bandwidth/main.c:1475
 msgid "Sequential 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1474
+#: core/bandwidth/main.c:1476
 msgid "Sequential 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1475
+#: core/bandwidth/main.c:1477
 msgid "Sequential 512-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1477
+#: core/bandwidth/main.c:1479
 #, c-format
 msgid "Sequential %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1478
+#: core/bandwidth/main.c:1480
 msgid "Sequential 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1479
+#: core/bandwidth/main.c:1481
 msgid "Sequential 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1480
+#: core/bandwidth/main.c:1482
 msgid "Sequential 512-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1482
+#: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1483
+#: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1484
+#: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1485
+#: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1487
+#: core/bandwidth/main.c:1489
 #, c-format
 msgid "Random %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1488
+#: core/bandwidth/main.c:1490
 msgid "Random 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1489
+#: core/bandwidth/main.c:1491
 msgid "Random 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1491
+#: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1492
+#: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1494
+#: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1495
+#: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1496
+#: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1498
+#: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1499
+#: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1501
+#: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1502
+#: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1503
+#: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1504
+#: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1524
+#: core/bandwidth/main.c:1526
 msgid "(unavailable)"
 msgstr "(no disponible)"
 
@@ -293,62 +293,62 @@ msgstr "%s (máx.)"
 msgid "%s (min)"
 msgstr "%s (mín.)"
 
-#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:89 data.cpp:140 data.cpp:351
 msgid "unknown"
 msgstr "desconocido"
 
-#: core/libcpuid.cpp:174
+#: core/libcpuid.cpp:173
 msgid "Calling libcpuid for retrieving static data"
 msgstr "Llamado a libcpuid para recuperar datos estáticos"
 
-#: core/libcpuid.cpp:188
+#: core/libcpuid.cpp:187
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "No se pudo llamar a libcpuid (%s)"
 
-#: core/libcpuid.cpp:315
+#: core/libcpuid.cpp:311
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Invocando a libcpuid para recuperar datos dinámicos"
 
-#: core/libcpuid.cpp:332
+#: core/libcpuid.cpp:328
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "Invocando a libcpuid para recuperar valores estáticos de CPU MSR"
 
-#: core/libcpuid.cpp:362
+#: core/libcpuid.cpp:358
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "Invocando a libcpuid para recuperar valores dinámicos de CPU MSR"
 
-#: core/libcpuid.cpp:391
+#: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
 msgstr "Cómo encontrar el paquete de CPU en modo alternativo"
 
-#: core/libcpuid.cpp:421
+#: core/libcpuid.cpp:417
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr ""
 "Su zócalo de CPU no se encuentra dentro de la base de datos ==> %s, nombre "
 "clave: %s"
 
-#: core/libopencl.cpp:56
+#: core/libopencl.cpp:62
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "Controlador OpenCL para «%s %s» no admite CL_DEVICE_TOPOLOGY_AMD (%s)"
 
-#: core/libopencl.cpp:71
+#: core/libopencl.cpp:77
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "Controlador OpenCL para «%s %s» no admite CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 
-#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#: core/libopencl.cpp:85 core/libopencl.cpp:112 core/libopencl.cpp:156
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "Controlador OpenCL para «%s %s» no admite CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 
-#: core/libopencl.cpp:136
+#: core/libopencl.cpp:140
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -357,125 +357,125 @@ msgstr ""
 "Controlador OpenCL para «%s %s» no admite CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
 "CL_DEVICE_PCI_BUS_ID_NV (%s) o CL_DEVICE_PCI_SLOT_ID_NV (%s)"
 
-#: core/libopencl.cpp:175
+#: core/libopencl.cpp:178
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "Su proveedor de GPU no admite OpenCL (0x%X)"
 
-#: core/libopencl.cpp:201
+#: core/libopencl.cpp:204
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "erróneo al obtener nombre para el dispositivo %u (%s)"
 
-#: core/libopencl.cpp:209
+#: core/libopencl.cpp:212
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "erróneo al obtener la versión del dispositivo %u (%s)"
 
-#: core/libopencl.cpp:241
+#: core/libopencl.cpp:243
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "No se pudo obtener el nombre de la plataforma%u%s"
 
-#: core/libopencl.cpp:249
+#: core/libopencl.cpp:251
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "error al obtener la versión para la plataforma %u (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "error al encontrar el número de dispositivos OpenCL para la plataforma «%s "
 "%s» (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 msgid "0 device"
 msgstr "0 dispositivos"
 
-#: core/libopencl.cpp:266
+#: core/libopencl.cpp:268
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr ""
 "erróneo al obtener todos los dispositivos OpenCL para la plataforma «%s "
 "%s» (%s)"
 
-#: core/libopencl.cpp:283
+#: core/libopencl.cpp:286
 msgid "Finding OpenCL API version"
 msgstr "Encontrar la versión de la API OpenCL"
 
-#: core/libopencl.cpp:287
+#: core/libopencl.cpp:290
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "No hay ninguna plataforma con capacidad OpenCL (%s)"
 
-#: core/libopencl.cpp:296
+#: core/libopencl.cpp:299
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "error al obtener todas las plataformas OpenCL (%s)"
 
-#: core/libopencl.cpp:305
+#: core/libopencl.cpp:307
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
 msgstr "No se puede encontrar el controlador OpenCL para el proveedor %s"
 
-#: core/libopengl.cpp:172
+#: core/libopengl.cpp:178
 msgid "failed to create EGL context"
 msgstr "No se pudo crear el contexto EGL"
 
-#: core/libopengl.cpp:183
+#: core/libopengl.cpp:189
 #, c-format
 msgid "failed to destroy EGL context (%s)"
 msgstr "no se pudo destruir el contexto EGL (%s)"
 
-#: core/libopengl.cpp:206
+#: core/libopengl.cpp:212
 #, c-format
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "no se pudo llamar a eglChooseConfig (%s)"
 
-#: core/libopengl.cpp:221
+#: core/libopengl.cpp:227
 #, c-format
 msgid "failed to call eglInitialize (%s)"
 msgstr "no se pudo llamar a eglInitialize (%s)"
 
-#: core/libopengl.cpp:236
+#: core/libopengl.cpp:242
 msgid "EGL has not OpenGL client API"
 msgstr "EGL no tiene API de cliente OpenGL"
 
-#: core/libopengl.cpp:242
+#: core/libopengl.cpp:248
 #, c-format
 msgid "failed to call eglBindAPI (%s)"
 msgstr "no se pudo llamar a eglBindAPI (%s)"
 
-#: core/libopengl.cpp:267
+#: core/libopengl.cpp:273
 #, c-format
 msgid "failed to destroy EGL display (%s)"
 msgstr "no se pudo destruir la visualización EGL (%s)"
 
-#: core/libopengl.cpp:279
+#: core/libopengl.cpp:285
 #, c-format
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "no se pudo llamar a getPlatformDisplay (%s)"
 
-#: core/libopengl.cpp:300
+#: core/libopengl.cpp:307
 msgid "Finding OpenGL API version"
 msgstr "Encontrando la versión de la API OpenGL"
 
-#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#: core/libopengl.cpp:315 core/libvulkan.cpp:172
 #, c-format
 msgid "%s is not supported"
 msgstr "%s no se admite"
 
-#: core/libopengl.cpp:315 core/libopengl.cpp:329
+#: core/libopengl.cpp:322 core/libopengl.cpp:336
 #, c-format
 msgid "failed to call queryDevices (%s)"
 msgstr "no se pudo llamar a queryDevices (%s)"
 
-#: core/libopengl.cpp:322
+#: core/libopengl.cpp:329
 msgid "No available EGL devices"
 msgstr "No hay dispositivos EGL disponibles"
 
-#: core/libopengl.cpp:341
+#: core/libopengl.cpp:347
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "No es capaz de encontrar controlador OpenGL para proveedor %s"
@@ -498,89 +498,89 @@ msgstr ""
 msgid "Bus path is invalid: %s"
 msgstr ""
 
-#: core/libpci.cpp:128
+#: core/libpci.cpp:127
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr ""
 "No hay controlador kernel en uso para la tarjeta gráfica en la ubicación %s"
 
-#: core/libpci.cpp:164
+#: core/libpci.cpp:163
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "Su controlador de GPU es desconocido: %s"
 
-#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
+#: core/libpci.cpp:248 core/libpci.cpp:296 core/libpci.cpp:347
 msgid "failed to create pipe"
 msgstr "no se pudo crear la canalización"
 
-#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
+#: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
 msgid "failed to create process"
 msgstr "no se pudo crear el proceso"
 
-#: core/libpci.cpp:412
+#: core/libpci.cpp:411
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "Su proveedor de GPU es desconocido: %s (0x%X)"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Enabled"
 msgstr "Activado"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: core/libpci.cpp:461
+#: core/libpci.cpp:460
 msgid "Finding devices"
 msgstr "Buscando dispositivos"
 
-#: core/libpci.cpp:465
+#: core/libpci.cpp:464
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "Omitir búsqueda de dispositivos (dispositivo PCI no existe)"
 
-#: core/libpci.cpp:478
+#: core/libpci.cpp:477
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr ""
 "Omitir búsqueda de dispositivos (permisos equivocados en dispositivo %s)"
 
-#: core/libpci.cpp:515
+#: core/libpci.cpp:514
 msgid "failed to find chipset vendor and model"
 msgstr "No se encontró el proveedor y el modelo del chipset"
 
-#: core/libpci.cpp:518
+#: core/libpci.cpp:517
 msgid "failed to find graphic card vendor and model"
 msgstr "no se pudo encontrar el proveedor de la tarjeta gráfica y el modelo"
 
-#: core/libpci.cpp:649
+#: core/libpci.cpp:648
 msgid "Retrieving GPU clocks"
 msgstr "Recuperando relojes de GPU"
 
-#: core/libpci.cpp:662
+#: core/libpci.cpp:661
 msgid "None"
 msgstr "Ninguno"
 
-#: core/libpci.cpp:671
+#: core/libpci.cpp:670
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "La ruta DRM para %s es desconocida"
 
-#: core/libpci.cpp:678
+#: core/libpci.cpp:677
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "El número de la tarjeta para %s es desconocido"
 
-#: core/libpci.cpp:703
+#: core/libpci.cpp:702
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (actual) / %s (máx)"
 
-#: core/libpci.cpp:817
+#: core/libpci.cpp:802
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "El controlador para %s no informa de las frecuencias"
 
-#: core/libpci.cpp:838
+#: core/libpci.cpp:823
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "no se han podido recuperar todos los datos de seguimiento de %s"
@@ -606,40 +606,40 @@ msgstr "Llamando a «libstatgrab»"
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i días, %i horas, %i minutos, %i segundos"
 
-#: core/libvulkan.cpp:147
+#: core/libvulkan.cpp:154
 msgid "Finding Vulkan API version"
 msgstr "Buscando la versión de la API de Vulkan"
 
-#: core/libvulkan.cpp:163
+#: core/libvulkan.cpp:170
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "error al llamar a vkCreateInstance (%s)"
 
-#: core/libvulkan.cpp:173
+#: core/libvulkan.cpp:180
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "error al llamar a vkEnumeratePhysicalDevices (%s)"
 
-#: core/libvulkan.cpp:180
+#: core/libvulkan.cpp:187
 msgid "No available Vulkan devices"
 msgstr "No hay dispositivos Vulkan disponibles"
 
-#: core/libvulkan.cpp:188
+#: core/libvulkan.cpp:195
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "No hay dispositivos físicos disponibles (%s)"
 
-#: core/libvulkan.cpp:251
+#: core/libvulkan.cpp:258
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "Error al crear Vulkan para el dispositivo %u (%s)"
 
-#: core/libvulkan.cpp:255
+#: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr "%s no se admite en el dispositivo %u; use solo deviceID para emparejar"
 
-#: core/libvulkan.cpp:314
+#: core/libvulkan.cpp:322
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
 msgstr "No se pudo encontrar un controlador Vulkan para el proveedor %s"
@@ -680,138 +680,138 @@ msgstr "Conectando a daemon…"
 msgid "CPU"
 msgstr "CPU"
 
-#: data.cpp:190
+#: data.cpp:177
 msgid "P-core"
 msgstr "P-core"
 
-#: data.cpp:191
+#: data.cpp:178
 msgid "E-core"
 msgstr "E-core"
 
-#: data.cpp:192
+#: data.cpp:179
 msgid "LP E-core"
 msgstr "LP E-core"
 
-#: data.cpp:193 data.cpp:196
+#: data.cpp:180 data.cpp:183
 msgid "Core"
 msgstr "Núcleo"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:841
+#: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "Procesador"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
+#: data.cpp:243 data.cpp:338 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "Antememorias"
 
-#: data.cpp:263
+#: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%2d x %4d %s, %2d-forma"
 
-#: data.cpp:265
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-vias"
 
-#: data.cpp:279
+#: data.cpp:266
 msgid "Count"
 msgstr "Contar"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
+#: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "Relojes"
 
-#: data.cpp:400 data.cpp:404
+#: data.cpp:387 data.cpp:391
 #, c-format
 msgid "L%u Cache"
 msgstr "Antememoria L%u"
 
-#: data.cpp:406
+#: data.cpp:393
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s asociativo, %d-%s tamaño de línea"
 
-#: data.cpp:419
+#: data.cpp:406
 msgid "Test"
 msgstr "Prueba"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
+#: data.cpp:417 data.cpp:434 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "Placa madre"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
+#: data.cpp:448 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
+#: data.cpp:464 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "Chipset"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
+#: data.cpp:479 data.cpp:581 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "Memoria"
 
-#: data.cpp:508
+#: data.cpp:495
 #, c-format
 msgid "Stick %u"
 msgstr "Stick %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
+#: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr "Sticks"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
+#: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "Sistema"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "Sistema operativo"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
+#: data.cpp:599 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: data.cpp:646
+#: data.cpp:630
 #, c-format
 msgid "Card %u"
 msgstr "Tarjeta %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
+#: data.cpp:634 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "Tarjetas"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
+#: data.cpp:681 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "Rendimiento"
 
-#: data.cpp:710
+#: data.cpp:694
 msgid "Not started"
 msgstr "Sin iniciar"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "Números primos (lento)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
+#: data.cpp:701 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "Números primos (rápido)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
+#: data.cpp:705 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "Parámetros"
 
-#: data.cpp:746 data.cpp:752
+#: data.cpp:730 data.cpp:736
 #, c-format
 msgid "%u mins"
 msgstr "%u min"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
+#: data.cpp:743 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "Acerca de"
 
-#: data.cpp:764
+#: data.cpp:748
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -820,39 +820,39 @@ msgstr ""
 "%s es un programa libre que recopila información\n"
 "sobre la CPU, la placa madre y más."
 
-#: data.cpp:769
+#: data.cpp:753
 msgid "About CPU-X"
 msgstr "Acerca de CPU-X"
 
-#: data.cpp:770
+#: data.cpp:754
 #, c-format
 msgid "Version %s"
 msgstr "Versión %s"
 
-#: data.cpp:771
+#: data.cpp:755
 #, c-format
 msgid "Author: %s"
 msgstr "Autor: %s"
 
-#: data.cpp:772
+#: data.cpp:756
 #, c-format
 msgid "Site: %s"
 msgstr "Sitio: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
+#: data.cpp:760 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "Licencia"
 
-#: data.cpp:778
+#: data.cpp:762
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "Este software se distribuye bajo los términos de %s"
 
-#: data.cpp:779 main.cpp:171
+#: data.cpp:763 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "Este programa viene ABSOLUTAMENTE SIN GARANTÍA"
 
-#: data.hpp:103 data.hpp:255 data.hpp:343
+#: data.hpp:103 data.hpp:252 data.hpp:340
 msgid "Vendor"
 msgstr "Proveedor"
 
@@ -868,7 +868,7 @@ msgstr "Paquete"
 msgid "Technology"
 msgstr "Tecnología"
 
-#: data.hpp:107 data.hpp:279
+#: data.hpp:107 data.hpp:276
 msgid "Voltage"
 msgstr "Voltaje"
 
@@ -884,7 +884,7 @@ msgstr "Familia"
 msgid "Disp. Family"
 msgstr "Familia de disps."
 
-#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
+#: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "Modelo"
 
@@ -904,11 +904,11 @@ msgstr "Implementador"
 msgid "Variant"
 msgstr "Variante"
 
-#: data.hpp:118 data.hpp:271
+#: data.hpp:118 data.hpp:268
 msgid "Part Number"
 msgstr "Número de la pieza"
 
-#: data.hpp:119 data.hpp:235
+#: data.hpp:119 data.hpp:232
 msgid "Revision"
 msgstr "Revisión"
 
@@ -940,193 +940,193 @@ msgstr "Nivel 3"
 msgid "Cores"
 msgstr "Núcleos"
 
-#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "Hilos"
 
-#: data.hpp:165
+#: data.hpp:164
 msgid "Core Speed"
 msgstr "Velocidad del núcleo"
 
-#: data.hpp:166
+#: data.hpp:165
 msgid "Multiplier"
 msgstr "Multiplicador"
 
-#: data.hpp:167
+#: data.hpp:166
 msgid "Bus Speed"
 msgstr "Velocidad de bus"
 
-#: data.hpp:168 data.hpp:352
+#: data.hpp:167 data.hpp:349
 msgid "Usage"
 msgstr "Empleo"
 
-#: data.hpp:198 data.hpp:276
+#: data.hpp:195 data.hpp:273
 msgid "Size"
 msgstr "Tamaño"
 
-#: data.hpp:199 data.hpp:278
+#: data.hpp:196 data.hpp:275
 msgid "Speed"
 msgstr "Velocidad"
 
-#: data.hpp:233 data.hpp:270
+#: data.hpp:230 data.hpp:267
 msgid "Manufacturer"
 msgstr "Fabricante"
 
-#: data.hpp:243
+#: data.hpp:240
 msgid "Brand"
 msgstr "Marca"
 
-#: data.hpp:244
+#: data.hpp:241
 msgid "Version"
 msgstr "Versión"
 
-#: data.hpp:245
+#: data.hpp:242
 msgid "Date"
 msgstr "Fecha"
 
-#: data.hpp:246
+#: data.hpp:243
 msgid "ROM Size"
 msgstr "Tamaño de la ROM"
 
-#: data.hpp:247
+#: data.hpp:244
 msgid "EFI PK"
 msgstr "EFI PK"
 
-#: data.hpp:272
+#: data.hpp:269
 msgid "Type"
 msgstr "Tipo"
 
-#: data.hpp:273
+#: data.hpp:270
 msgid "Type Detail"
 msgstr "Detalles de tipo"
 
-#: data.hpp:274
+#: data.hpp:271
 msgid "Device Locator"
 msgstr "Localizador de dispositivos"
 
-#: data.hpp:275
+#: data.hpp:272
 msgid "Bank Locator"
 msgstr "Localizador de bancos"
 
-#: data.hpp:277
+#: data.hpp:274
 msgid "Rank"
 msgstr "Proporción"
 
-#: data.hpp:303
+#: data.hpp:300
 msgid "Name"
 msgstr "Nombre"
 
-#: data.hpp:304
+#: data.hpp:301
 msgid "Kernel"
 msgstr "Núcleo"
 
-#: data.hpp:305
+#: data.hpp:302
 msgid "Hostname"
 msgstr "Nombre del anfitrión"
 
-#: data.hpp:306
+#: data.hpp:303
 msgid "Uptime"
 msgstr "Tiempo de actividad"
 
-#: data.hpp:314
+#: data.hpp:311
 msgid "Used"
 msgstr "Usado"
 
-#: data.hpp:315
+#: data.hpp:312
 msgid "Buffers"
 msgstr "Búferes"
 
-#: data.hpp:316
+#: data.hpp:313
 msgid "Cached"
 msgstr "En antememoria"
 
-#: data.hpp:317
+#: data.hpp:314
 msgid "Free"
 msgstr "Libre"
 
-#: data.hpp:318
+#: data.hpp:315
 msgid "Swap"
 msgstr "Intercambio"
 
-#: data.hpp:344
+#: data.hpp:341
 msgid "Driver"
 msgstr "Controlador"
 
-#: data.hpp:345
+#: data.hpp:342
 msgid "UMD Version"
 msgstr "Versión UMD"
 
-#: data.hpp:347
+#: data.hpp:344
 msgid "Compute Unit"
 msgstr "Unidad de cómputo"
 
-#: data.hpp:348
+#: data.hpp:345
 msgid "Device ID"
 msgstr "Id. de dispositivo"
 
-#: data.hpp:349
+#: data.hpp:346
 msgid "VBIOS Version"
 msgstr "Versión de VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
+#: data.hpp:347 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "Interfaz"
 
-#: data.hpp:351
+#: data.hpp:348
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: data.hpp:353
+#: data.hpp:350
 msgid "Core Voltage"
 msgstr "Voltaje de núcleo"
 
-#: data.hpp:354
+#: data.hpp:351
 msgid "Power Avg"
 msgstr "Potencia media"
 
-#: data.hpp:355
+#: data.hpp:352
 msgid "Core Clock"
 msgstr "Reloj de núcleo"
 
-#: data.hpp:356
+#: data.hpp:353
 msgid "Memory Clock"
 msgstr "Reloj de memoria"
 
-#: data.hpp:357
+#: data.hpp:354
 msgid "Memory Used"
 msgstr "Memoria utilizada"
 
-#: data.hpp:358
+#: data.hpp:355
 msgid "Resizable BAR"
 msgstr "RDB redimensionable"
 
-#: data.hpp:359
+#: data.hpp:356
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: data.hpp:360
+#: data.hpp:357
 msgid "OpenGL Version"
 msgstr "Versión de OpenGL"
 
-#: data.hpp:361
+#: data.hpp:358
 msgid "Vulkan Version"
 msgstr "Versión de Vulkan"
 
-#: data.hpp:362
+#: data.hpp:359
 msgid "OpenCL Version"
 msgstr "Versión de OpenCL"
 
-#: data.hpp:399
+#: data.hpp:396
 msgid "Score"
 msgstr "Puntuación"
 
-#: data.hpp:400
+#: data.hpp:397
 msgid "Run"
 msgstr "Ejecutar"
 
-#: data.hpp:419
+#: data.hpp:416
 msgid "Duration"
 msgstr "Duración"
 
@@ -1326,7 +1326,7 @@ msgstr "La pestaña seleccionada (%u) no es visible"
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "La pestaña seleccionada (%u) no es un número válido (%u es el máximo)"
 
-#: options.cpp:210
+#: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
@@ -1334,7 +1334,7 @@ msgstr ""
 "El tipo de CPU seleccionada (%u) no es un número válido (%u es el máximo "
 "para esta CPU)"
 
-#: options.cpp:231
+#: options.cpp:250
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -1343,7 +1343,7 @@ msgstr ""
 "La prueba del ancho de banda seleccionado (%u) no es un número válido (%u es "
 "el máximo para este sistema)"
 
-#: options.cpp:254
+#: options.cpp:270
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -1352,7 +1352,7 @@ msgstr ""
 "La memoria RAM seleccionada (%u) no es un número válido (%u es el máximo "
 "para este sistema)"
 
-#: options.cpp:274
+#: options.cpp:304
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -1361,12 +1361,7 @@ msgstr ""
 "La tarjeta gráfica seleccionada (%u) no es un número válido (%u es el máximo "
 "para este sistema)"
 
-#: options.cpp:290
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr "no se pudo cambiar la afinidad de la CPU al núcleo %u"
-
-#: options.cpp:296
+#: options.cpp:341
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1374,6 +1369,11 @@ msgid ""
 msgstr ""
 "El núcleo de CPU seleccionado (%u) no es un número válido (%u es el máximo "
 "para este tipo de núcleo)"
+
+#: options.cpp:373
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr "no se pudo cambiar la afinidad de la CPU al núcleo %u"
 
 #: ui/gtk.cpp:87
 #, c-format
@@ -1600,17 +1600,17 @@ msgstr "No se pudo establecer terminal %s (err=%i); devuelto a %s"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "no se pudo encontrar la unidad en la cadena «%s» en la posición %i"
 
-#: util.cpp:312
+#: util.cpp:327
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "se ha producido un error al abrir el archivo «%s»"
 
-#: util.cpp:357
+#: util.cpp:372
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "se ha producido un error al ejecutar la orden «%s»"
 
-#: util.cpp:497
+#: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity() no se admite en este sistema operativo"
 

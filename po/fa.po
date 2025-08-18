@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cpu-x\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-17 08:00+0000\n"
+"POT-Creation-Date: 2025-08-18 17:39+0000\n"
 "PO-Revision-Date: 2023-05-10 10:49+0000\n"
 "Last-Translator: M <bafandehmajid@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cpu-x/"
@@ -21,138 +21,138 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.18-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:55
+#: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
 msgstr "در حال فراخوانی پهنای باند"
 
-#: core/bandwidth/main.c:1467
+#: core/bandwidth/main.c:1469
 #, c-format
 msgid "Sequential %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1468
+#: core/bandwidth/main.c:1470
 msgid "Sequential 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1469
+#: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1470
+#: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1472
+#: core/bandwidth/main.c:1474
 #, c-format
 msgid "Sequential %i-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1473
+#: core/bandwidth/main.c:1475
 msgid "Sequential 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1474
+#: core/bandwidth/main.c:1476
 msgid "Sequential 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1475
+#: core/bandwidth/main.c:1477
 msgid "Sequential 512-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1477
+#: core/bandwidth/main.c:1479
 #, c-format
 msgid "Sequential %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1478
+#: core/bandwidth/main.c:1480
 msgid "Sequential 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1479
+#: core/bandwidth/main.c:1481
 msgid "Sequential 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1480
+#: core/bandwidth/main.c:1482
 msgid "Sequential 512-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1482
+#: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1483
+#: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1484
+#: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1485
+#: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1487
+#: core/bandwidth/main.c:1489
 #, c-format
 msgid "Random %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1488
+#: core/bandwidth/main.c:1490
 msgid "Random 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1489
+#: core/bandwidth/main.c:1491
 msgid "Random 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1491
+#: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1492
+#: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1494
+#: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1495
+#: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1496
+#: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1498
+#: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1499
+#: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1501
+#: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1502
+#: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1503
+#: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1504
+#: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1524
+#: core/bandwidth/main.c:1526
 msgid "(unavailable)"
 msgstr ""
 
@@ -286,48 +286,48 @@ msgstr ""
 msgid "%s (min)"
 msgstr ""
 
-#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:89 data.cpp:140 data.cpp:351
 msgid "unknown"
 msgstr "ناشناخته"
 
-#: core/libcpuid.cpp:174
+#: core/libcpuid.cpp:173
 msgid "Calling libcpuid for retrieving static data"
 msgstr "در حال فراخوانی libcpuid برای دریافت اطلاعات ایستا"
 
-#: core/libcpuid.cpp:188
+#: core/libcpuid.cpp:187
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libcpuid.cpp:315
+#: core/libcpuid.cpp:311
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "در حال فراخوانی کتابخانه شناسه پردازنده برای دریافت اطلاعات پویا"
 
-#: core/libcpuid.cpp:332
+#: core/libcpuid.cpp:328
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr ""
 "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر ایستای MSR پردازنده"
 
-#: core/libcpuid.cpp:362
+#: core/libcpuid.cpp:358
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "فراخوانی کتابخانه شناسه پردازنده برای دریافت مقادیر پویای MSR پردازنده"
 
-#: core/libcpuid.cpp:391
+#: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
 msgstr "در حال یافتن بسته پردازنده در حالت جایگزینی"
 
-#: core/libcpuid.cpp:421
+#: core/libcpuid.cpp:417
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "سوکت پردازنده شما در پایگاه داده یافت نشد ==> %s, نام کد: %s"
 
-#: core/libopencl.cpp:56
+#: core/libopencl.cpp:62
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_TOPOLOGY_AMD پشتیبانی نمی کند (%s)"
 
-#: core/libopencl.cpp:71
+#: core/libopencl.cpp:77
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -335,7 +335,7 @@ msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_GFXIP_MAJOR_AMD (%s) پشتیبانی نمی "
 "کند"
 
-#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#: core/libopencl.cpp:85 core/libopencl.cpp:112 core/libopencl.cpp:156
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -343,7 +343,7 @@ msgstr ""
 "راه انداز OpenCL برای '%s %s' از CL_DEVICE_MAX_COMPUTE_UNITS (%s) پشتیبانی "
 "نمی کند"
 
-#: core/libopencl.cpp:136
+#: core/libopencl.cpp:140
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -353,136 +353,136 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) یا CL_DEVICE_PCI_SLOT_ID_NV (%s) پشتیبانی نمی "
 "کند"
 
-#: core/libopencl.cpp:175
+#: core/libopencl.cpp:178
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL توسط سازنده پردازنده گرافیکی شما پشتیبانی نمی شود (0x%X)"
 
-#: core/libopencl.cpp:201
+#: core/libopencl.cpp:204
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 
-#: core/libopencl.cpp:209
+#: core/libopencl.cpp:212
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "دریافت ناموفق نسخه دستگاه %u (%s)"
 
-#: core/libopencl.cpp:241
+#: core/libopencl.cpp:243
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "دریافت ناموفق نام پلتفرم %u (%s)"
 
-#: core/libopencl.cpp:249
+#: core/libopencl.cpp:251
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "دریافت ناموفق نسخه پلتفرم %u (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "یافتن ناموفق دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 msgid "0 device"
 msgstr "صفر دستگاه"
 
-#: core/libopencl.cpp:266
+#: core/libopencl.cpp:268
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "دریافت ناموفق تمام دستگاه های OpenCL برای پلتفرم '%s %s' (%s)"
 
-#: core/libopencl.cpp:283
+#: core/libopencl.cpp:286
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenCL API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core/libopencl.cpp:287
+#: core/libopencl.cpp:290
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "پلتفرمی با پشتیبانی از OpenCL وجود ندارد (%s)"
 
-#: core/libopencl.cpp:296
+#: core/libopencl.cpp:299
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core/libopencl.cpp:305
+#: core/libopencl.cpp:307
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
 msgstr ""
 
-#: core/libopengl.cpp:172
+#: core/libopengl.cpp:178
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
 msgstr "دریافت ناموفق زمان سنج های پردازنده گرافیکی"
 
-#: core/libopengl.cpp:183
+#: core/libopengl.cpp:189
 #, fuzzy, c-format
 #| msgid "failed to get version for device %u (%s)"
 msgid "failed to destroy EGL context (%s)"
 msgstr "دریافت ناموفق نسخه دستگاه %u (%s)"
 
-#: core/libopengl.cpp:206
+#: core/libopengl.cpp:212
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:221
+#: core/libopengl.cpp:227
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglInitialize (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:236
+#: core/libopengl.cpp:242
 msgid "EGL has not OpenGL client API"
 msgstr ""
 
-#: core/libopengl.cpp:242
+#: core/libopengl.cpp:248
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglBindAPI (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:267
+#: core/libopengl.cpp:273
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "دریافت ناموفق نسخه پلتفرم %u (%s)"
 
-#: core/libopengl.cpp:279
+#: core/libopengl.cpp:285
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "دریافت ناموفق تمام پلتفرم های OpenCL (%s)"
 
-#: core/libopengl.cpp:300
+#: core/libopengl.cpp:307
 #, fuzzy
 #| msgid "Finding Vulkan API version"
 msgid "Finding OpenGL API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#: core/libopengl.cpp:315 core/libvulkan.cpp:172
 #, c-format
 msgid "%s is not supported"
 msgstr "%s پشتیبانی نمی‌شود"
 
-#: core/libopengl.cpp:315 core/libopengl.cpp:329
+#: core/libopengl.cpp:322 core/libopengl.cpp:336
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libopengl.cpp:322
+#: core/libopengl.cpp:329
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "هیچ دستگاه Vulkan موجود نیست"
 
-#: core/libopengl.cpp:341
+#: core/libopengl.cpp:347
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -505,96 +505,96 @@ msgstr ""
 msgid "Bus path is invalid: %s"
 msgstr ""
 
-#: core/libpci.cpp:128
+#: core/libpci.cpp:127
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "هیچ درایور کرنلی برای کارت گرافیک در مسیر %s استفاده نمی شود"
 
-#: core/libpci.cpp:164
+#: core/libpci.cpp:163
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "راه انداز هسته پردازنده گرافیکی شما نامشخص است: %s"
 
-#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
+#: core/libpci.cpp:248 core/libpci.cpp:296 core/libpci.cpp:347
 #, fuzzy
 #| msgid "failed to call wordexp (%i)"
 msgid "failed to create pipe"
 msgstr "خطا در فراخوانی wordexp (%i)"
 
-#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
+#: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
 msgstr "دریافت ناموفق زمان سنج های پردازنده گرافیکی"
 
-#: core/libpci.cpp:412
+#: core/libpci.cpp:411
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "سازنده پردازنده گرافیکی شما نامشخص است: %s (0x%X)"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Enabled"
 msgstr "فعال شده"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Disabled"
 msgstr "غیرفعال شده"
 
-#: core/libpci.cpp:461
+#: core/libpci.cpp:460
 msgid "Finding devices"
 msgstr "در حال بررسی دستگاه ها"
 
-#: core/libpci.cpp:465
+#: core/libpci.cpp:464
 #, fuzzy
 #| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core/libpci.cpp:478
+#: core/libpci.cpp:477
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "لغو جستجوی دستگاه ها (دسترسی نادرست به دستگاه %s)"
 
-#: core/libpci.cpp:515
+#: core/libpci.cpp:514
 msgid "failed to find chipset vendor and model"
 msgstr "جستجوی سازنده و مدل chipset ناموفق بود"
 
-#: core/libpci.cpp:518
+#: core/libpci.cpp:517
 msgid "failed to find graphic card vendor and model"
 msgstr "سازنده و مدل کارت گرافیک پیدا نشد"
 
-#: core/libpci.cpp:649
+#: core/libpci.cpp:648
 msgid "Retrieving GPU clocks"
 msgstr "در حال دریافت زمان سنج های پردازنده گرافیکی"
 
-#: core/libpci.cpp:662
+#: core/libpci.cpp:661
 msgid "None"
 msgstr "هیچ کدام"
 
-#: core/libpci.cpp:671
+#: core/libpci.cpp:670
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "DRM path for %s is unknown"
 msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
-#: core/libpci.cpp:678
+#: core/libpci.cpp:677
 #, fuzzy, c-format
 #| msgid "Card number for GPU %u is unknown"
 msgid "Card number for %s is unknown"
 msgstr "شماره کارت برای پردازنده گرافیکی %u ناشناخته است"
 
-#: core/libpci.cpp:703
+#: core/libpci.cpp:702
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core/libpci.cpp:817
+#: core/libpci.cpp:802
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "راه انداز پردازنده گرافیکی %u فرکانس ها را گزارش نمی دهد"
 
-#: core/libpci.cpp:838
+#: core/libpci.cpp:823
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
@@ -623,45 +623,45 @@ msgstr "در حال فراخوانی libstatgrab"
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i روز و %i ساعت و %i دقیقه و %i ثانیه"
 
-#: core/libvulkan.cpp:147
+#: core/libvulkan.cpp:154
 msgid "Finding Vulkan API version"
 msgstr "پیدا کردن نسخه Vulkan API"
 
-#: core/libvulkan.cpp:163
+#: core/libvulkan.cpp:170
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libvulkan.cpp:173
+#: core/libvulkan.cpp:180
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libvulkan.cpp:180
+#: core/libvulkan.cpp:187
 msgid "No available Vulkan devices"
 msgstr "هیچ دستگاه Vulkan موجود نیست"
 
-#: core/libvulkan.cpp:188
+#: core/libvulkan.cpp:195
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "No available physical devices (%s)"
 msgstr "فراخوانی ناموفق libcpuid (%s)"
 
-#: core/libvulkan.cpp:251
+#: core/libvulkan.cpp:258
 #, fuzzy, c-format
 #| msgid "failed to get name for device %u (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "دریافت ناموفق نام دستگاه %u (%s)"
 
-#: core/libvulkan.cpp:255
+#: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 "%s برای دستگاه %u پشتیبانی نمی‌شود، فقط از deviceID برای تطابق استفاده کنید"
 
-#: core/libvulkan.cpp:314
+#: core/libvulkan.cpp:322
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
 msgstr ""
@@ -704,147 +704,147 @@ msgstr "ارتباط با برنامه پس زمینه برقرار شد"
 msgid "CPU"
 msgstr "پردازنده"
 
-#: data.cpp:190
+#: data.cpp:177
 #, fuzzy
 #| msgid "Score"
 msgid "P-core"
 msgstr "امتیاز"
 
-#: data.cpp:191
+#: data.cpp:178
 msgid "E-core"
 msgstr ""
 
-#: data.cpp:192
+#: data.cpp:179
 #, fuzzy
 #| msgid "Score"
 msgid "LP E-core"
 msgstr "امتیاز"
 
-#: data.cpp:193 data.cpp:196
+#: data.cpp:180 data.cpp:183
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Core"
 msgstr "هسته (ها)"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:841
+#: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "پردازنده"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
+#: data.cpp:243 data.cpp:338 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "کش"
 
-#: data.cpp:263
+#: data.cpp:250
 #, fuzzy, c-format
 #| msgid "%d x %d %s, %d-way"
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%d x %d %s، %d-راه"
 
-#: data.cpp:265
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s، %d-راه"
 
-#: data.cpp:279
+#: data.cpp:266
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
+#: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "زمان سنج ها"
 
-#: data.cpp:400 data.cpp:404
+#: data.cpp:387 data.cpp:391
 #, fuzzy, c-format
 #| msgid "L%i Cache"
 msgid "L%u Cache"
 msgstr "کش L%i"
 
-#: data.cpp:406
+#: data.cpp:393
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s وابسته, %d-%s اندازه خط"
 
-#: data.cpp:419
+#: data.cpp:406
 msgid "Test"
 msgstr "آزمون"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
+#: data.cpp:417 data.cpp:434 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "مادربرد"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
+#: data.cpp:448 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "بایوس"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
+#: data.cpp:464 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "چیپست"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
+#: data.cpp:479 data.cpp:581 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "حافظه"
 
-#: data.cpp:508
+#: data.cpp:495
 #, c-format
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
+#: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
+#: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "سیستم"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "سیستم عامل"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
+#: data.cpp:599 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "گرافیک ها"
 
-#: data.cpp:646
+#: data.cpp:630
 #, fuzzy, c-format
 #| msgid "Card %i"
 msgid "Card %u"
 msgstr "کارت %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
+#: data.cpp:634 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "کارت ها"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
+#: data.cpp:681 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "نیمکت"
 
-#: data.cpp:710
+#: data.cpp:694
 msgid "Not started"
 msgstr "آغاز نشده"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "شماره های اولیه (آهسته)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
+#: data.cpp:701 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "شماره های اولیه (سریع)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
+#: data.cpp:705 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "پارامترها"
 
-#: data.cpp:746 data.cpp:752
+#: data.cpp:730 data.cpp:736
 #, c-format
 msgid "%u mins"
 msgstr "%u دقیقه"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
+#: data.cpp:743 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "درباره"
 
-#: data.cpp:764
+#: data.cpp:748
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -853,41 +853,41 @@ msgstr ""
 "%s یک نرم افزار مجانی است که اطلاعاتی\n"
 "در مورد پردازنده، مادربرد و غیره جمع آوری می کند."
 
-#: data.cpp:769
+#: data.cpp:753
 #, fuzzy
 #| msgid "About"
 msgid "About CPU-X"
 msgstr "درباره"
 
-#: data.cpp:770
+#: data.cpp:754
 #, c-format
 msgid "Version %s"
 msgstr "نسخه %s"
 
-#: data.cpp:771
+#: data.cpp:755
 #, c-format
 msgid "Author: %s"
 msgstr "نویسنده: %s"
 
-#: data.cpp:772
+#: data.cpp:756
 #, c-format
 msgid "Site: %s"
 msgstr "سایت: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
+#: data.cpp:760 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "مجوز"
 
-#: data.cpp:778
+#: data.cpp:762
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "این نرم افزار تحت ضوابط %s توزیع شده است"
 
-#: data.cpp:779 main.cpp:171
+#: data.cpp:763 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "این برنامه به طور مطلق بدون ضمانت ارائه می شود"
 
-#: data.hpp:103 data.hpp:255 data.hpp:343
+#: data.hpp:103 data.hpp:252 data.hpp:340
 msgid "Vendor"
 msgstr "سازنده"
 
@@ -903,7 +903,7 @@ msgstr "بسته"
 msgid "Technology"
 msgstr "فناوری"
 
-#: data.hpp:107 data.hpp:279
+#: data.hpp:107 data.hpp:276
 msgid "Voltage"
 msgstr "ولتاژ"
 
@@ -919,7 +919,7 @@ msgstr "خانواده"
 msgid "Disp. Family"
 msgstr "خانواده نمایشی"
 
-#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
+#: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "مدل"
 
@@ -939,11 +939,11 @@ msgstr ""
 msgid "Variant"
 msgstr ""
 
-#: data.hpp:118 data.hpp:271
+#: data.hpp:118 data.hpp:268
 msgid "Part Number"
 msgstr ""
 
-#: data.hpp:119 data.hpp:235
+#: data.hpp:119 data.hpp:232
 msgid "Revision"
 msgstr "اصلاحیه"
 
@@ -975,205 +975,205 @@ msgstr "سطح 3"
 msgid "Cores"
 msgstr "هسته‌ها"
 
-#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "رشته ها"
 
-#: data.hpp:165
+#: data.hpp:164
 msgid "Core Speed"
 msgstr "سرعت هسته"
 
-#: data.hpp:166
+#: data.hpp:165
 msgid "Multiplier"
 msgstr "افزاینده"
 
-#: data.hpp:167
+#: data.hpp:166
 msgid "Bus Speed"
 msgstr "سرعت گذرگاه"
 
-#: data.hpp:168 data.hpp:352
+#: data.hpp:167 data.hpp:349
 msgid "Usage"
 msgstr "میزان استفاده"
 
-#: data.hpp:198 data.hpp:276
+#: data.hpp:195 data.hpp:273
 msgid "Size"
 msgstr "اندازه"
 
-#: data.hpp:199 data.hpp:278
+#: data.hpp:196 data.hpp:275
 msgid "Speed"
 msgstr "سرعت"
 
-#: data.hpp:233 data.hpp:270
+#: data.hpp:230 data.hpp:267
 msgid "Manufacturer"
 msgstr "سازنده"
 
-#: data.hpp:243
+#: data.hpp:240
 msgid "Brand"
 msgstr "نام تجاری"
 
-#: data.hpp:244
+#: data.hpp:241
 msgid "Version"
 msgstr "نسخه"
 
-#: data.hpp:245
+#: data.hpp:242
 msgid "Date"
 msgstr "تاریخ"
 
-#: data.hpp:246
+#: data.hpp:243
 msgid "ROM Size"
 msgstr "اندازه ROM"
 
-#: data.hpp:247
+#: data.hpp:244
 msgid "EFI PK"
 msgstr ""
 
-#: data.hpp:272
+#: data.hpp:269
 #, fuzzy
 #| msgid "Core #%i"
 msgid "Type"
 msgstr "هسته #%i"
 
-#: data.hpp:273
+#: data.hpp:270
 #, fuzzy
 #| msgid "Core #%i"
 msgid "Type Detail"
 msgstr "هسته #%i"
 
-#: data.hpp:274
+#: data.hpp:271
 msgid "Device Locator"
 msgstr ""
 
-#: data.hpp:275
+#: data.hpp:272
 msgid "Bank Locator"
 msgstr ""
 
-#: data.hpp:277
+#: data.hpp:274
 msgid "Rank"
 msgstr ""
 
-#: data.hpp:303
+#: data.hpp:300
 #, fuzzy
 #| msgid "Code Name"
 msgid "Name"
 msgstr "نام کد"
 
-#: data.hpp:304
+#: data.hpp:301
 msgid "Kernel"
 msgstr "هسته اصلی"
 
-#: data.hpp:305
+#: data.hpp:302
 msgid "Hostname"
 msgstr "نام هاست"
 
-#: data.hpp:306
+#: data.hpp:303
 msgid "Uptime"
 msgstr "مدت زمان اجرا"
 
-#: data.hpp:314
+#: data.hpp:311
 msgid "Used"
 msgstr "استفاده شده"
 
-#: data.hpp:315
+#: data.hpp:312
 msgid "Buffers"
 msgstr "بافرها"
 
-#: data.hpp:316
+#: data.hpp:313
 msgid "Cached"
 msgstr "کش شده"
 
-#: data.hpp:317
+#: data.hpp:314
 msgid "Free"
 msgstr "آزاد"
 
-#: data.hpp:318
+#: data.hpp:315
 msgid "Swap"
 msgstr "جایگزین"
 
-#: data.hpp:344
+#: data.hpp:341
 msgid "Driver"
 msgstr "راه انداز"
 
-#: data.hpp:345
+#: data.hpp:342
 msgid "UMD Version"
 msgstr "نسخه UMD"
 
-#: data.hpp:347
+#: data.hpp:344
 msgid "Compute Unit"
 msgstr "واحد محاسبه"
 
-#: data.hpp:348
+#: data.hpp:345
 #, fuzzy
 #| msgid "DeviceID"
 msgid "Device ID"
 msgstr "شناسه دستگاه"
 
-#: data.hpp:349
+#: data.hpp:346
 msgid "VBIOS Version"
 msgstr "نسخه VBIOS"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
+#: data.hpp:347 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "رابط"
 
-#: data.hpp:351
+#: data.hpp:348
 msgid "Temperature"
 msgstr "دما"
 
-#: data.hpp:353
+#: data.hpp:350
 msgid "Core Voltage"
 msgstr "ولتاژ هسته"
 
-#: data.hpp:354
+#: data.hpp:351
 msgid "Power Avg"
 msgstr "قدرت میانگین"
 
-#: data.hpp:355
+#: data.hpp:352
 #, fuzzy
 #| msgid "Memory clock"
 msgid "Core Clock"
 msgstr "زمان سنج حافظه"
 
-#: data.hpp:356
+#: data.hpp:353
 #, fuzzy
 #| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "زمان سنج حافظه"
 
-#: data.hpp:357
+#: data.hpp:354
 msgid "Memory Used"
 msgstr "حافظه استفاده شده"
 
-#: data.hpp:358
+#: data.hpp:355
 msgid "Resizable BAR"
 msgstr "BAR قابل تغییر اندازه"
 
-#: data.hpp:359
+#: data.hpp:356
 msgid "Vulkan RT"
 msgstr ""
 
-#: data.hpp:360
+#: data.hpp:357
 msgid "OpenGL Version"
 msgstr "نسخه OpenGL"
 
-#: data.hpp:361
+#: data.hpp:358
 msgid "Vulkan Version"
 msgstr "نسخه Vulkan"
 
-#: data.hpp:362
+#: data.hpp:359
 msgid "OpenCL Version"
 msgstr "نسخه OpenCL"
 
-#: data.hpp:399
+#: data.hpp:396
 msgid "Score"
 msgstr "امتیاز"
 
-#: data.hpp:400
+#: data.hpp:397
 msgid "Run"
 msgstr "اجرا"
 
-#: data.hpp:419
+#: data.hpp:416
 msgid "Duration"
 msgstr "مدت زمان"
 
@@ -1381,13 +1381,13 @@ msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u �
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:210
+#: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:231
+#: options.cpp:250
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1397,7 +1397,7 @@ msgid ""
 "this system)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:254
+#: options.cpp:270
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU type (%u) is not a valid number (%u is the maximum for this "
@@ -1407,7 +1407,7 @@ msgid ""
 "system)"
 msgstr "نوع CPU انتخاب شده (%u)یک عدد معتبر نیست (%u حداکثر برای این CPU)"
 
-#: options.cpp:274
+#: options.cpp:304
 #, fuzzy, c-format
 #| msgid ""
 #| "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1418,18 +1418,18 @@ msgid ""
 msgstr ""
 "هسته پردازنده انتخابی (%u) عدد معتبری نیست (%u حداکثر برای این نوع هسته است)"
 
-#: options.cpp:290
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
-
-#: options.cpp:296
+#: options.cpp:341
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
 "هسته پردازنده انتخابی (%u) عدد معتبری نیست (%u حداکثر برای این نوع هسته است)"
+
+#: options.cpp:373
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr ""
 
 #: ui/gtk.cpp:87
 #, c-format
@@ -1646,19 +1646,19 @@ msgstr "راه اندازی ناموفق ترمینال %s (err=%i); برگشت�
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "واحدی در متن '%s' در موقعیت %i یافت نشد"
 
-#: util.cpp:312
+#: util.cpp:327
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "خطایی در هنگام باز کردن فایل '%s' رخ داده است (%s)"
 
-#: util.cpp:357
+#: util.cpp:372
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "خطایی در هنگام اجرای دستور '%s' رخ داده است (%s)"
 
-#: util.cpp:497
+#: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 

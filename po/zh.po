@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-17 08:00+0000\n"
+"POT-Creation-Date: 2025-08-18 17:39+0000\n"
 "PO-Revision-Date: 2025-07-08 04:01+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -36,138 +36,138 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:55
+#: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
 msgstr "正在调用 bandwidth"
 
-#: core/bandwidth/main.c:1467
+#: core/bandwidth/main.c:1469
 #, c-format
 msgid "Sequential %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1468
+#: core/bandwidth/main.c:1470
 msgid "Sequential 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1469
+#: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1470
+#: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1472
+#: core/bandwidth/main.c:1474
 #, c-format
 msgid "Sequential %i-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1473
+#: core/bandwidth/main.c:1475
 msgid "Sequential 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1474
+#: core/bandwidth/main.c:1476
 msgid "Sequential 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1475
+#: core/bandwidth/main.c:1477
 msgid "Sequential 512-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1477
+#: core/bandwidth/main.c:1479
 #, c-format
 msgid "Sequential %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1478
+#: core/bandwidth/main.c:1480
 msgid "Sequential 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1479
+#: core/bandwidth/main.c:1481
 msgid "Sequential 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1480
+#: core/bandwidth/main.c:1482
 msgid "Sequential 512-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1482
+#: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1483
+#: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1484
+#: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1485
+#: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1487
+#: core/bandwidth/main.c:1489
 #, c-format
 msgid "Random %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1488
+#: core/bandwidth/main.c:1490
 msgid "Random 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1489
+#: core/bandwidth/main.c:1491
 msgid "Random 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1491
+#: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1492
+#: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1494
+#: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1495
+#: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1496
+#: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1498
+#: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1499
+#: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1501
+#: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1502
+#: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1503
+#: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1504
+#: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1524
+#: core/bandwidth/main.c:1526
 msgid "(unavailable)"
 msgstr "不可用"
 
@@ -298,58 +298,58 @@ msgstr "%s (最大)"
 msgid "%s (min)"
 msgstr "%s (最小)"
 
-#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:89 data.cpp:140 data.cpp:351
 msgid "unknown"
 msgstr "未知"
 
-#: core/libcpuid.cpp:174
+#: core/libcpuid.cpp:173
 msgid "Calling libcpuid for retrieving static data"
 msgstr "正在调用 libcpuid 以检索静态数据"
 
-#: core/libcpuid.cpp:188
+#: core/libcpuid.cpp:187
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "无法调用 libcpuid（%s）"
 
-#: core/libcpuid.cpp:315
+#: core/libcpuid.cpp:311
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "正在调用 libcpuid 以检索动态数据"
 
-#: core/libcpuid.cpp:332
+#: core/libcpuid.cpp:328
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "正在调用 libcpuid 以检索 CPU MSR 静态值"
 
-#: core/libcpuid.cpp:362
+#: core/libcpuid.cpp:358
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "正在调用 libcpuid 以检索 CPU MSR 动态值"
 
-#: core/libcpuid.cpp:391
+#: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
 msgstr "正在故障预置模式下查找 CPU 封装"
 
-#: core/libcpuid.cpp:421
+#: core/libcpuid.cpp:417
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "数据库中没有您的 CPU 插槽 ==> %s，架构：%s"
 
-#: core/libopencl.cpp:56
+#: core/libopencl.cpp:62
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_TOPOLOGY_AMD（%s）"
 
-#: core/libopencl.cpp:71
+#: core/libopencl.cpp:77
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_GFXIP_MAJOR_AMD（%s）"
 
-#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#: core/libopencl.cpp:85 core/libopencl.cpp:112 core/libopencl.cpp:156
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr "'%s %s' 的 OpenCL 驱动不支持 CL_DEVICE_MAX_COMPUTE_UNITS（%s）"
 
-#: core/libopencl.cpp:136
+#: core/libopencl.cpp:140
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -358,121 +358,121 @@ msgstr ""
 "'%s %s' 的 OpenCL 驱动不支持CL_DEVICE_PCI_DOMAIN_ID_NV（%s）、"
 "CL_DEVICE_PCI_BUS_ID_NV（%s） 或CL_DEVICE_PCI_SLOT_ID_NV（%s）"
 
-#: core/libopencl.cpp:175
+#: core/libopencl.cpp:178
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "GPU 厂商 (0x%X) 不支持 OpenCL"
 
-#: core/libopencl.cpp:201
+#: core/libopencl.cpp:204
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "未能获得设备 %u 的名称（%s）"
 
-#: core/libopencl.cpp:209
+#: core/libopencl.cpp:212
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "未能获得设备 %u 的版本（%s）"
 
-#: core/libopencl.cpp:241
+#: core/libopencl.cpp:243
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "未能获得平台名称 %u（%s）"
 
-#: core/libopencl.cpp:249
+#: core/libopencl.cpp:251
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "未能获得平台 %u 的版本（%s）"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "查找平台 '%s %s'（%s） 的 OpenCL 设备数失败"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 msgid "0 device"
 msgstr "0 设备"
 
-#: core/libopencl.cpp:266
+#: core/libopencl.cpp:268
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "未能获得平台 '%s %s'（%s） 所有的 OpenCL 设备"
 
-#: core/libopencl.cpp:283
+#: core/libopencl.cpp:286
 msgid "Finding OpenCL API version"
 msgstr "查找 OpenCL API 版本"
 
-#: core/libopencl.cpp:287
+#: core/libopencl.cpp:290
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "没有支持 OpenCL 的平台（%s）"
 
-#: core/libopencl.cpp:296
+#: core/libopencl.cpp:299
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "未能获得所有 OpenCL 平台（%s）"
 
-#: core/libopencl.cpp:305
+#: core/libopencl.cpp:307
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
 msgstr "无法找到供应商 %s 的 OpenCL 驱动程序"
 
-#: core/libopengl.cpp:172
+#: core/libopengl.cpp:178
 msgid "failed to create EGL context"
 msgstr "无法检索 GPU 时钟"
 
-#: core/libopengl.cpp:183
+#: core/libopengl.cpp:189
 #, c-format
 msgid "failed to destroy EGL context (%s)"
 msgstr "销毁 EGL 上下文失败 (%s)"
 
-#: core/libopengl.cpp:206
+#: core/libopengl.cpp:212
 #, c-format
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "无法调用 libcpuid（%s）"
 
-#: core/libopengl.cpp:221
+#: core/libopengl.cpp:227
 #, c-format
 msgid "failed to call eglInitialize (%s)"
 msgstr "无法调用 libcpuid（%s）"
 
-#: core/libopengl.cpp:236
+#: core/libopengl.cpp:242
 msgid "EGL has not OpenGL client API"
 msgstr "EGL没有OpenGL客户端API"
 
-#: core/libopengl.cpp:242
+#: core/libopengl.cpp:248
 #, c-format
 msgid "failed to call eglBindAPI (%s)"
 msgstr "无法调用 eglBindAPI （%s）"
 
-#: core/libopengl.cpp:267
+#: core/libopengl.cpp:273
 #, c-format
 msgid "failed to destroy EGL display (%s)"
 msgstr "无法销毁 EGL 显示（%s）"
 
-#: core/libopengl.cpp:279
+#: core/libopengl.cpp:285
 #, c-format
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "无法调用 getPlatformDisplay (%s)"
 
-#: core/libopengl.cpp:300
+#: core/libopengl.cpp:307
 msgid "Finding OpenGL API version"
 msgstr "查找 OpenGL API 版本"
 
-#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#: core/libopengl.cpp:315 core/libvulkan.cpp:172
 #, c-format
 msgid "%s is not supported"
 msgstr "不支持 %s"
 
-#: core/libopengl.cpp:315 core/libopengl.cpp:329
+#: core/libopengl.cpp:322 core/libopengl.cpp:336
 #, c-format
 msgid "failed to call queryDevices (%s)"
 msgstr "调用 queryDevices 失败 (%s)"
 
-#: core/libopengl.cpp:322
+#: core/libopengl.cpp:329
 msgid "No available EGL devices"
 msgstr "没有可用的 EGL 设备"
 
-#: core/libopengl.cpp:341
+#: core/libopengl.cpp:347
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr "无法找到供应商%s的OpenGL驱动程序"
@@ -493,87 +493,87 @@ msgstr ""
 msgid "Bus path is invalid: %s"
 msgstr ""
 
-#: core/libpci.cpp:128
+#: core/libpci.cpp:127
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "路径 %s 中没有驱动图形卡的内核驱动程序"
 
-#: core/libpci.cpp:164
+#: core/libpci.cpp:163
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "GPU 内核驱动未知：%s"
 
-#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
+#: core/libpci.cpp:248 core/libpci.cpp:296 core/libpci.cpp:347
 msgid "failed to create pipe"
 msgstr "创建管道失败"
 
-#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
+#: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
 msgid "failed to create process"
 msgstr "创建进程失败"
 
-#: core/libpci.cpp:412
+#: core/libpci.cpp:411
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "您的 GPU 供应商未知：%s (0x%X)"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Enabled"
 msgstr "已启用"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Disabled"
 msgstr "已禁用"
 
-#: core/libpci.cpp:461
+#: core/libpci.cpp:460
 msgid "Finding devices"
 msgstr "正在搜索设备"
 
-#: core/libpci.cpp:465
+#: core/libpci.cpp:464
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "跳过设备搜索 (PCI 设备不存在)"
 
-#: core/libpci.cpp:478
+#: core/libpci.cpp:477
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "跳过设备搜索 (%s设备上的权限错误)"
 
-#: core/libpci.cpp:515
+#: core/libpci.cpp:514
 msgid "failed to find chipset vendor and model"
 msgstr "未找到芯片组供应商和型号"
 
-#: core/libpci.cpp:518
+#: core/libpci.cpp:517
 msgid "failed to find graphic card vendor and model"
 msgstr "未找到显卡供应商和型号"
 
-#: core/libpci.cpp:649
+#: core/libpci.cpp:648
 msgid "Retrieving GPU clocks"
 msgstr "正在检索 GPU 时钟"
 
-#: core/libpci.cpp:662
+#: core/libpci.cpp:661
 msgid "None"
 msgstr "无"
 
-#: core/libpci.cpp:671
+#: core/libpci.cpp:670
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s 的 DRM 路径未知"
 
-#: core/libpci.cpp:678
+#: core/libpci.cpp:677
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s 的卡号未知"
 
-#: core/libpci.cpp:703
+#: core/libpci.cpp:702
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s(电流) / %s (最大)"
 
-#: core/libpci.cpp:817
+#: core/libpci.cpp:802
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s 无法报告频率"
 
-#: core/libpci.cpp:838
+#: core/libpci.cpp:823
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "无法检索 %s 的所有监视数据"
@@ -599,40 +599,40 @@ msgstr "正在调用 libstatgrab"
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 天，%i 小时，%i 分钟，%i 秒"
 
-#: core/libvulkan.cpp:147
+#: core/libvulkan.cpp:154
 msgid "Finding Vulkan API version"
 msgstr "查找 Vulkan API 版本"
 
-#: core/libvulkan.cpp:163
+#: core/libvulkan.cpp:170
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "调用 vkCreateInstance 失败 (%s)"
 
-#: core/libvulkan.cpp:173
+#: core/libvulkan.cpp:180
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "调用 vkEnumeratePhysicalDevices 失败 (%s)"
 
-#: core/libvulkan.cpp:180
+#: core/libvulkan.cpp:187
 msgid "No available Vulkan devices"
 msgstr "没有可用的 Vulkan 设备"
 
-#: core/libvulkan.cpp:188
+#: core/libvulkan.cpp:195
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "没有可用的物理设备 (%s)"
 
-#: core/libvulkan.cpp:251
+#: core/libvulkan.cpp:258
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "无法为设备 %u (%s) 创建 Vulkan"
 
-#: core/libvulkan.cpp:255
+#: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr "%s 在设备 %u 上不受支持。仅使用 deviceID 进行匹配"
 
-#: core/libvulkan.cpp:314
+#: core/libvulkan.cpp:322
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
 msgstr "无法找到供应商 %s 的 Vulkan 驱动程序"
@@ -671,138 +671,138 @@ msgstr "连接到守护程序…"
 msgid "CPU"
 msgstr "CPU"
 
-#: data.cpp:190
+#: data.cpp:177
 msgid "P-core"
 msgstr "高性能核心"
 
-#: data.cpp:191
+#: data.cpp:178
 msgid "E-core"
 msgstr "高能效核心"
 
-#: data.cpp:192
+#: data.cpp:179
 msgid "LP E-core"
 msgstr "低功耗能效核心"
 
-#: data.cpp:193 data.cpp:196
+#: data.cpp:180 data.cpp:183
 msgid "Core"
 msgstr "核心"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:841
+#: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "处理器"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
+#: data.cpp:243 data.cpp:338 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "缓存"
 
-#: data.cpp:263
+#: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%2d x %4d %s， %2d-路"
 
-#: data.cpp:265
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s，%d-路"
 
-#: data.cpp:279
+#: data.cpp:266
 msgid "Count"
 msgstr "分数"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
+#: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "时钟"
 
-#: data.cpp:400 data.cpp:404
+#: data.cpp:387 data.cpp:391
 #, c-format
 msgid "L%u Cache"
 msgstr "%u 级缓存"
 
-#: data.cpp:406
+#: data.cpp:393
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s 关联，%d-%s 最小缓存单元大小"
 
-#: data.cpp:419
+#: data.cpp:406
 msgid "Test"
 msgstr "测试"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
+#: data.cpp:417 data.cpp:434 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "主板"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
+#: data.cpp:448 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
+#: data.cpp:464 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "芯片组"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
+#: data.cpp:479 data.cpp:581 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "内存"
 
-#: data.cpp:508
+#: data.cpp:495
 #, c-format
 msgid "Stick %u"
 msgstr "条 %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
+#: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr "条"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
+#: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "系统"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "操作系统"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
+#: data.cpp:599 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "显卡"
 
-#: data.cpp:646
+#: data.cpp:630
 #, c-format
 msgid "Card %u"
 msgstr "卡 %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
+#: data.cpp:634 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "卡"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
+#: data.cpp:681 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "基准测试"
 
-#: data.cpp:710
+#: data.cpp:694
 msgid "Not started"
 msgstr "未启动"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "素数 (慢速)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
+#: data.cpp:701 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "素数 (快速)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
+#: data.cpp:705 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "参数"
 
-#: data.cpp:746 data.cpp:752
+#: data.cpp:730 data.cpp:736
 #, c-format
 msgid "%u mins"
 msgstr "%u 分钟"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
+#: data.cpp:743 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "关于"
 
-#: data.cpp:764
+#: data.cpp:748
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -811,39 +811,39 @@ msgstr ""
 "%s 是一个自由软件，收集有关\n"
 " CPU 和主板等的信息。"
 
-#: data.cpp:769
+#: data.cpp:753
 msgid "About CPU-X"
 msgstr "关于 CPU-X"
 
-#: data.cpp:770
+#: data.cpp:754
 #, c-format
 msgid "Version %s"
 msgstr "版本 %s"
 
-#: data.cpp:771
+#: data.cpp:755
 #, c-format
 msgid "Author: %s"
 msgstr "作者：%s"
 
-#: data.cpp:772
+#: data.cpp:756
 #, c-format
 msgid "Site: %s"
 msgstr "网站：%s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
+#: data.cpp:760 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "许可证"
 
-#: data.cpp:778
+#: data.cpp:762
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "本软件依照 %s 条款分发"
 
-#: data.cpp:779 main.cpp:171
+#: data.cpp:763 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "本软件不作任何保修"
 
-#: data.hpp:103 data.hpp:255 data.hpp:343
+#: data.hpp:103 data.hpp:252 data.hpp:340
 msgid "Vendor"
 msgstr "制造商"
 
@@ -859,7 +859,7 @@ msgstr "接口"
 msgid "Technology"
 msgstr "工艺"
 
-#: data.hpp:107 data.hpp:279
+#: data.hpp:107 data.hpp:276
 msgid "Voltage"
 msgstr "电压"
 
@@ -875,7 +875,7 @@ msgstr "系列"
 msgid "Disp. Family"
 msgstr "显示系列"
 
-#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
+#: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "型号"
 
@@ -895,11 +895,11 @@ msgstr "执行器"
 msgid "Variant"
 msgstr "变体编号"
 
-#: data.hpp:118 data.hpp:271
+#: data.hpp:118 data.hpp:268
 msgid "Part Number"
 msgstr "零件号"
 
-#: data.hpp:119 data.hpp:235
+#: data.hpp:119 data.hpp:232
 msgid "Revision"
 msgstr "版本修订"
 
@@ -931,193 +931,193 @@ msgstr "三级缓存"
 msgid "Cores"
 msgstr "核心"
 
-#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "线程"
 
-#: data.hpp:165
+#: data.hpp:164
 msgid "Core Speed"
 msgstr "核心速度"
 
-#: data.hpp:166
+#: data.hpp:165
 msgid "Multiplier"
 msgstr "倍频"
 
-#: data.hpp:167
+#: data.hpp:166
 msgid "Bus Speed"
 msgstr "总线速度"
 
-#: data.hpp:168 data.hpp:352
+#: data.hpp:167 data.hpp:349
 msgid "Usage"
 msgstr "使用率"
 
-#: data.hpp:198 data.hpp:276
+#: data.hpp:195 data.hpp:273
 msgid "Size"
 msgstr "大小"
 
-#: data.hpp:199 data.hpp:278
+#: data.hpp:196 data.hpp:275
 msgid "Speed"
 msgstr "速度"
 
-#: data.hpp:233 data.hpp:270
+#: data.hpp:230 data.hpp:267
 msgid "Manufacturer"
 msgstr "制造商"
 
-#: data.hpp:243
+#: data.hpp:240
 msgid "Brand"
 msgstr "品牌"
 
-#: data.hpp:244
+#: data.hpp:241
 msgid "Version"
 msgstr "版本"
 
-#: data.hpp:245
+#: data.hpp:242
 msgid "Date"
 msgstr "日期"
 
-#: data.hpp:246
+#: data.hpp:243
 msgid "ROM Size"
 msgstr "ROM 大小"
 
-#: data.hpp:247
+#: data.hpp:244
 msgid "EFI PK"
 msgstr "EFI 平台密钥"
 
-#: data.hpp:272
+#: data.hpp:269
 msgid "Type"
 msgstr "类型"
 
-#: data.hpp:273
+#: data.hpp:270
 msgid "Type Detail"
 msgstr "类型详情"
 
-#: data.hpp:274
+#: data.hpp:271
 msgid "Device Locator"
 msgstr "设备定位器"
 
-#: data.hpp:275
+#: data.hpp:272
 msgid "Bank Locator"
 msgstr "Bank 定位器"
 
-#: data.hpp:277
+#: data.hpp:274
 msgid "Rank"
 msgstr "排列"
 
-#: data.hpp:303
+#: data.hpp:300
 msgid "Name"
 msgstr "名称"
 
-#: data.hpp:304
+#: data.hpp:301
 msgid "Kernel"
 msgstr "内核"
 
-#: data.hpp:305
+#: data.hpp:302
 msgid "Hostname"
 msgstr "主机名"
 
-#: data.hpp:306
+#: data.hpp:303
 msgid "Uptime"
 msgstr "运行时间"
 
-#: data.hpp:314
+#: data.hpp:311
 msgid "Used"
 msgstr "已用"
 
-#: data.hpp:315
+#: data.hpp:312
 msgid "Buffers"
 msgstr "缓冲"
 
-#: data.hpp:316
+#: data.hpp:313
 msgid "Cached"
 msgstr "缓存"
 
-#: data.hpp:317
+#: data.hpp:314
 msgid "Free"
 msgstr "可用"
 
-#: data.hpp:318
+#: data.hpp:315
 msgid "Swap"
 msgstr "交换"
 
-#: data.hpp:344
+#: data.hpp:341
 msgid "Driver"
 msgstr "驱动"
 
-#: data.hpp:345
+#: data.hpp:342
 msgid "UMD Version"
 msgstr "UMD 版本"
 
-#: data.hpp:347
+#: data.hpp:344
 msgid "Compute Unit"
 msgstr "计算单元"
 
-#: data.hpp:348
+#: data.hpp:345
 msgid "Device ID"
 msgstr "设备 ID"
 
-#: data.hpp:349
+#: data.hpp:346
 msgid "VBIOS Version"
 msgstr "VBIOS 版本"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
+#: data.hpp:347 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "界面"
 
-#: data.hpp:351
+#: data.hpp:348
 msgid "Temperature"
 msgstr "温度"
 
-#: data.hpp:353
+#: data.hpp:350
 msgid "Core Voltage"
 msgstr "核心电压"
 
-#: data.hpp:354
+#: data.hpp:351
 msgid "Power Avg"
 msgstr "平均功率"
 
-#: data.hpp:355
+#: data.hpp:352
 msgid "Core Clock"
 msgstr "核心时钟"
 
-#: data.hpp:356
+#: data.hpp:353
 msgid "Memory Clock"
 msgstr "内存时钟"
 
-#: data.hpp:357
+#: data.hpp:354
 msgid "Memory Used"
 msgstr "所用内存"
 
-#: data.hpp:358
+#: data.hpp:355
 msgid "Resizable BAR"
 msgstr "可调整大小的 BAR"
 
-#: data.hpp:359
+#: data.hpp:356
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: data.hpp:360
+#: data.hpp:357
 msgid "OpenGL Version"
 msgstr "OpenGL 版本"
 
-#: data.hpp:361
+#: data.hpp:358
 msgid "Vulkan Version"
 msgstr "Vulkan 版本"
 
-#: data.hpp:362
+#: data.hpp:359
 msgid "OpenCL Version"
 msgstr "OpenCL 版本"
 
-#: data.hpp:399
+#: data.hpp:396
 msgid "Score"
 msgstr "分数"
 
-#: data.hpp:400
+#: data.hpp:397
 msgid "Run"
 msgstr "运行"
 
-#: data.hpp:419
+#: data.hpp:416
 msgid "Duration"
 msgstr "持续时间"
 
@@ -1307,44 +1307,44 @@ msgstr "所选标签页 (%u) 不可见"
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "所选标签页 (%u) 不是有效数字（%u 是最大值）"
 
-#: options.cpp:210
+#: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr "所选 CPU 类型 (%u) 不是有效数字（%u 是此 CPU 的最大值）"
 
-#: options.cpp:231
+#: options.cpp:250
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr "所选带宽测试 (%u) 不是有效数字（%u 是此 系统的最大值）"
 
-#: options.cpp:254
+#: options.cpp:270
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr "所选 RAM 内存条 (%u) 不是有效数字（%u 是此系统的最大值）"
 
-#: options.cpp:274
+#: options.cpp:304
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr "所选显卡 (%u) 不是有效数字（%u 是此系统的最大值）"
 
-#: options.cpp:290
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr "未能将 CPU 关联性更改为核心 %u"
-
-#: options.cpp:296
+#: options.cpp:341
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr "所选 CPU 核心 (%u) 不是有效数字（%u 是此类核心的最大值）"
+
+#: options.cpp:373
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr "未能将 CPU 关联性更改为核心 %u"
 
 #: ui/gtk.cpp:87
 #, c-format
@@ -1542,17 +1542,17 @@ msgstr "无法设置%s终端（err = %i）；退回至%s"
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "在字符串 '%s' 的位置%i找不到单元"
 
-#: util.cpp:312
+#: util.cpp:327
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "打开文件 '%s' 时发生错误"
 
-#: util.cpp:357
+#: util.cpp:372
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "运行命令 '%s' 时发生错误"
 
-#: util.cpp:497
+#: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "此操作系统不支持 set_cpu_affinity()"
 

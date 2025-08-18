@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-17 08:00+0000\n"
+"POT-Creation-Date: 2025-08-18 17:39+0000\n"
 "PO-Revision-Date: 2025-02-04 16:02+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/cpu-x/"
@@ -20,138 +20,138 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:55
+#: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
 msgstr "कॉलिंग बँडविड्थ"
 
-#: core/bandwidth/main.c:1467
+#: core/bandwidth/main.c:1469
 #, c-format
 msgid "Sequential %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1468
+#: core/bandwidth/main.c:1470
 msgid "Sequential 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1469
+#: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1470
+#: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1472
+#: core/bandwidth/main.c:1474
 #, c-format
 msgid "Sequential %i-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1473
+#: core/bandwidth/main.c:1475
 msgid "Sequential 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1474
+#: core/bandwidth/main.c:1476
 msgid "Sequential 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1475
+#: core/bandwidth/main.c:1477
 msgid "Sequential 512-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1477
+#: core/bandwidth/main.c:1479
 #, c-format
 msgid "Sequential %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1478
+#: core/bandwidth/main.c:1480
 msgid "Sequential 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1479
+#: core/bandwidth/main.c:1481
 msgid "Sequential 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1480
+#: core/bandwidth/main.c:1482
 msgid "Sequential 512-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1482
+#: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1483
+#: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1484
+#: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1485
+#: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1487
+#: core/bandwidth/main.c:1489
 #, c-format
 msgid "Random %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1488
+#: core/bandwidth/main.c:1490
 msgid "Random 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1489
+#: core/bandwidth/main.c:1491
 msgid "Random 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1491
+#: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1492
+#: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1494
+#: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1495
+#: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1496
+#: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1498
+#: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1499
+#: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1501
+#: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1502
+#: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1503
+#: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1504
+#: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1524
+#: core/bandwidth/main.c:1526
 #, fuzzy
 #| msgid "(version %s is available)"
 msgid "(unavailable)"
@@ -285,61 +285,61 @@ msgstr ""
 msgid "%s (min)"
 msgstr ""
 
-#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:89 data.cpp:140 data.cpp:351
 msgid "unknown"
 msgstr ""
 
-#: core/libcpuid.cpp:174
+#: core/libcpuid.cpp:173
 msgid "Calling libcpuid for retrieving static data"
 msgstr "स्थिर डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core/libcpuid.cpp:188
+#: core/libcpuid.cpp:187
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libcpuid.cpp:315
+#: core/libcpuid.cpp:311
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "डायनॅमिक डेटा पुनर्प्राप्त करण्यासाठी libcpuid वर कॉल करीत आहे"
 
-#: core/libcpuid.cpp:332
+#: core/libcpuid.cpp:328
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "सीपीयू एमएसआर स्थिर मूल्ये प्राप्त करण्यासाठी लिबकप्यूईडवर कॉल करीत आहे"
 
-#: core/libcpuid.cpp:362
+#: core/libcpuid.cpp:358
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "सीपीयू एमएसआर डायनॅमिक मूल्ये पुनर्प्राप्त करण्यासाठी लिबकप्यूईड कॉल करीत आहे"
 
-#: core/libcpuid.cpp:391
+#: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
 msgstr "फॉलबॅक मोडमध्ये सीपीयू पॅकेज शोधत आहे"
 
-#: core/libcpuid.cpp:421
+#: core/libcpuid.cpp:417
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "आपला सीपीयू सॉकेट डेटाबेसमध्ये उपस्थित नाही==>%s, कोडनाव:%s मध्ये संबंधित नाही"
 
-#: core/libopencl.cpp:56
+#: core/libopencl.cpp:62
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_TOPOLOGY_AMD (%s) ला समर्थन देत नाही"
 
-#: core/libopencl.cpp:71
+#: core/libopencl.cpp:77
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
 msgstr ""
 "'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_GFXIP_MAJOR_AMD (%s) ला समर्थन देत नाही"
 
-#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#: core/libopencl.cpp:85 core/libopencl.cpp:112 core/libopencl.cpp:156
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
 msgstr ""
 "'%s %s' साठी OpenCL ड्राइव्हर CL_DEVICE_MAX_COMPUTE_UNITS (%s) ला समर्थन देत नाही"
 
-#: core/libopencl.cpp:136
+#: core/libopencl.cpp:140
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -349,140 +349,140 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) किंवा CL_DEVICE_PCI_SLOT_ID_NV (%s) ला समर्थन देत "
 "नाही"
 
-#: core/libopencl.cpp:175
+#: core/libopencl.cpp:178
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "तुमच्या चित्रक प्रक्रीयक एकक(GPU) विक्रेत्यासह ओपन सीएल समर्थित नाही (0x%X)"
 
-#: core/libopencl.cpp:201
+#: core/libopencl.cpp:204
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to get name for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libopencl.cpp:209
+#: core/libopencl.cpp:212
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to get version for device %u (%s)"
 msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
 
-#: core/libopencl.cpp:241
+#: core/libopencl.cpp:243
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "प्लॅटफॉर्म %u (%s) चे नाव मिळविण्यात अयशस्वी"
 
-#: core/libopencl.cpp:249
+#: core/libopencl.cpp:251
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "व्यासपीठासाठी ओपन सीएल उपकरणांची संख्या शोधण्यात अयशस्वी '%s %s' (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 #, fuzzy
 #| msgid "Finding devices"
 msgid "0 device"
 msgstr "उपकरणे शोधत आहे"
 
-#: core/libopencl.cpp:266
+#: core/libopencl.cpp:268
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "व्यासपीठासाठी ओपन सीएल सर्व उपकरणे मिळविण्यात अयशस्वी '%s %s' (%s)"
 
-#: core/libopencl.cpp:283
+#: core/libopencl.cpp:286
 #, fuzzy
 #| msgid "Version"
 msgid "Finding OpenCL API version"
 msgstr "आवृत्ती"
 
-#: core/libopencl.cpp:287
+#: core/libopencl.cpp:290
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL समर्थनासह कोणतेही प्लॅटफॉर्म नाही (%s)"
 
-#: core/libopencl.cpp:296
+#: core/libopencl.cpp:299
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core/libopencl.cpp:305
+#: core/libopencl.cpp:307
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
 msgstr ""
 
-#: core/libopengl.cpp:172
+#: core/libopengl.cpp:178
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
 msgstr "GPU घड्याळे प्राप्त करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:183
+#: core/libopengl.cpp:189
 #, fuzzy, c-format
 #| msgid "failed to find graphic card driver (%s)"
 msgid "failed to destroy EGL context (%s)"
 msgstr "ग्राफिक कार्ड ड्राइव्हर (%s) शोधण्यात अयशस्वी"
 
-#: core/libopengl.cpp:206
+#: core/libopengl.cpp:212
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:221
+#: core/libopengl.cpp:227
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglInitialize (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:236
+#: core/libopengl.cpp:242
 msgid "EGL has not OpenGL client API"
 msgstr ""
 
-#: core/libopengl.cpp:242
+#: core/libopengl.cpp:248
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglBindAPI (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:267
+#: core/libopengl.cpp:273
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "कर्ल हस्तांतरण (%s) करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:279
+#: core/libopengl.cpp:285
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "सर्व OpenCL प्लॅटफॉर्म (%s) मिळविण्यात अयशस्वी"
 
-#: core/libopengl.cpp:300
+#: core/libopengl.cpp:307
 #, fuzzy
 #| msgid "Version"
 msgid "Finding OpenGL API version"
 msgstr "आवृत्ती"
 
-#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#: core/libopengl.cpp:315 core/libvulkan.cpp:172
 #, c-format
 msgid "%s is not supported"
 msgstr ""
 
-#: core/libopengl.cpp:315 core/libopengl.cpp:329
+#: core/libopengl.cpp:322 core/libopengl.cpp:336
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call queryDevices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:322
+#: core/libopengl.cpp:329
 #, fuzzy
 #| msgid "failed to call dmidecode"
 msgid "No available EGL devices"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libopengl.cpp:341
+#: core/libopengl.cpp:347
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -501,94 +501,94 @@ msgstr ""
 msgid "Bus path is invalid: %s"
 msgstr ""
 
-#: core/libpci.cpp:128
+#: core/libpci.cpp:127
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "पथ %s वर ग्राफिक कार्ड करीता कर्नल ड्राइव्हर वापरात नाही"
 
-#: core/libpci.cpp:164
+#: core/libpci.cpp:163
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "आपला GPU कर्नल ड्राइव्हर अज्ञात आहे: %s"
 
-#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
+#: core/libpci.cpp:248 core/libpci.cpp:296 core/libpci.cpp:347
 #, fuzzy
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to create pipe"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
+#: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
 #, fuzzy
 #| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
 msgstr "GPU घड्याळे प्राप्त करण्यात अयशस्वी"
 
-#: core/libpci.cpp:412
+#: core/libpci.cpp:411
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "आपला GPU विक्रेता अज्ञात आहे: %s (0x%X)"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Enabled"
 msgstr "सक्षम केले आहे"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Disabled"
 msgstr "अक्षम केले आहे"
 
-#: core/libpci.cpp:461
+#: core/libpci.cpp:460
 msgid "Finding devices"
 msgstr "उपकरणे शोधत आहे"
 
-#: core/libpci.cpp:465
+#: core/libpci.cpp:464
 #, fuzzy
 #| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
 
-#: core/libpci.cpp:478
+#: core/libpci.cpp:477
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "डिव्हाइस शोध वगळा (%s डिव्हाइसवर चुकीच्या परवानग्या)"
 
-#: core/libpci.cpp:515
+#: core/libpci.cpp:514
 msgid "failed to find chipset vendor and model"
 msgstr "चिपसेट विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core/libpci.cpp:518
+#: core/libpci.cpp:517
 msgid "failed to find graphic card vendor and model"
 msgstr "ग्राफिक कार्ड विक्रेता आणि मॉडेल शोधण्यात अयशस्वी"
 
-#: core/libpci.cpp:649
+#: core/libpci.cpp:648
 msgid "Retrieving GPU clocks"
 msgstr "GPU घड्याळे प्राप्त करीत आहे"
 
-#: core/libpci.cpp:662
+#: core/libpci.cpp:661
 msgid "None"
 msgstr "काहीही नाही"
 
-#: core/libpci.cpp:671
+#: core/libpci.cpp:670
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr ""
 
-#: core/libpci.cpp:678
+#: core/libpci.cpp:677
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr ""
 
-#: core/libpci.cpp:703
+#: core/libpci.cpp:702
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr ""
 
-#: core/libpci.cpp:817
+#: core/libpci.cpp:802
 #, fuzzy, c-format
 #| msgid "Driver for GPU %u doesn't report frequencies"
 msgid "Driver for %s doesn't report frequencies"
 msgstr "GPU %u साठी ड्राइव्हर वारंवारिता नोंदवत नाही"
 
-#: core/libpci.cpp:838
+#: core/libpci.cpp:823
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to retrieve all monitoring data for %s"
@@ -615,48 +615,48 @@ msgstr "libstatgrab ला कॉल करीत आहे"
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i दिवस, %i तास, %i मिनिटे, %i सेकंद"
 
-#: core/libvulkan.cpp:147
+#: core/libvulkan.cpp:154
 #, fuzzy
 #| msgid "Version"
 msgid "Finding Vulkan API version"
 msgstr "आवृत्ती"
 
-#: core/libvulkan.cpp:163
+#: core/libvulkan.cpp:170
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libvulkan.cpp:173
+#: core/libvulkan.cpp:180
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libvulkan.cpp:180
+#: core/libvulkan.cpp:187
 #, fuzzy
 #| msgid "failed to call dmidecode"
 msgid "No available Vulkan devices"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libvulkan.cpp:188
+#: core/libvulkan.cpp:195
 #, fuzzy, c-format
 #| msgid "failed to call dmidecode"
 msgid "No available physical devices (%s)"
 msgstr "dmidecode वर कॉल करण्यात अयशस्वी"
 
-#: core/libvulkan.cpp:251
+#: core/libvulkan.cpp:258
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "libcpuid (%s) वर कॉल करण्यात अयशस्वी"
 
-#: core/libvulkan.cpp:255
+#: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
 
-#: core/libvulkan.cpp:314
+#: core/libvulkan.cpp:322
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
 msgstr ""
@@ -699,151 +699,151 @@ msgstr "डिमनशी कनेक्ट केले"
 msgid "CPU"
 msgstr "सीपीयू"
 
-#: data.cpp:190
+#: data.cpp:177
 #, fuzzy
 #| msgid "Score"
 msgid "P-core"
 msgstr "गुण"
 
-#: data.cpp:191
+#: data.cpp:178
 #, fuzzy
 #| msgid "Score"
 msgid "E-core"
 msgstr "गुण"
 
-#: data.cpp:192
+#: data.cpp:179
 #, fuzzy
 #| msgid "Score"
 msgid "LP E-core"
 msgstr "गुण"
 
-#: data.cpp:193 data.cpp:196
+#: data.cpp:180 data.cpp:183
 #, fuzzy
 #| msgid "Core(s)"
 msgid "Core"
 msgstr "कोअर"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:841
+#: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "प्रोसेसर"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
+#: data.cpp:243 data.cpp:338 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "कॅशे"
 
-#: data.cpp:263
+#: data.cpp:250
 #, fuzzy, c-format
 #| msgid "%d x %d %s, %d-way"
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%d x %d %s, %d-way"
 
-#: data.cpp:265
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s,%d-वे"
 
-#: data.cpp:279
+#: data.cpp:266
 msgid "Count"
 msgstr ""
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
+#: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "घड्याळे"
 
-#: data.cpp:400 data.cpp:404
+#: data.cpp:387 data.cpp:391
 #, fuzzy, c-format
 #| msgid "L%i Cache"
 msgid "L%u Cache"
 msgstr "L%i कॅशे"
 
-#: data.cpp:406
+#: data.cpp:393
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s सहकारी,%d-%s लाइन आकार"
 
-#: data.cpp:419
+#: data.cpp:406
 msgid "Test"
 msgstr "चाचणी"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
+#: data.cpp:417 data.cpp:434 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "मदरबोर्ड"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
+#: data.cpp:448 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "BIOS"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
+#: data.cpp:464 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "चिपसेट"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
+#: data.cpp:479 data.cpp:581 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "स्मृती"
 
-#: data.cpp:508
+#: data.cpp:495
 #, c-format
 msgid "Stick %u"
 msgstr ""
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
+#: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr ""
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
+#: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "प्रणाली"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "ऑपरेटिंग सिस्टम"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
+#: data.cpp:599 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "ग्राफिक्स"
 
-#: data.cpp:646
+#: data.cpp:630
 #, fuzzy, c-format
 #| msgid "Card %i"
 msgid "Card %u"
 msgstr "कार्ड %i"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
+#: data.cpp:634 cpu-x-gtk-3.12.ui:5151
 #, fuzzy
 #| msgid "Card %i"
 msgid "Cards"
 msgstr "कार्ड %i"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
+#: data.cpp:681 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "बेन्च"
 
-#: data.cpp:710
+#: data.cpp:694
 msgid "Not started"
 msgstr "सुरू झाले नाही"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "मूळ संख्या(हळु)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
+#: data.cpp:701 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "मूळ संख्या (जलद)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
+#: data.cpp:705 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "घटक"
 
-#: data.cpp:746 data.cpp:752
+#: data.cpp:730 data.cpp:736
 #, c-format
 msgid "%u mins"
 msgstr "%u मि"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
+#: data.cpp:743 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "बद्दल"
 
-#: data.cpp:764
+#: data.cpp:748
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -852,41 +852,41 @@ msgstr ""
 "%s हे एक विनामूल्य सॉफ्टवेअर आहे जे\n"
 "सीपीयू, मदरबोर्ड आणि बरेच काहीची माहिती एकत्रित करते."
 
-#: data.cpp:769
+#: data.cpp:753
 #, fuzzy
 #| msgid "About"
 msgid "About CPU-X"
 msgstr "बद्दल"
 
-#: data.cpp:770
+#: data.cpp:754
 #, c-format
 msgid "Version %s"
 msgstr "आवृत्ती %s"
 
-#: data.cpp:771
+#: data.cpp:755
 #, c-format
 msgid "Author: %s"
 msgstr "लेखक: %s"
 
-#: data.cpp:772
+#: data.cpp:756
 #, c-format
 msgid "Site: %s"
 msgstr "साइट: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
+#: data.cpp:760 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "परवाना"
 
-#: data.cpp:778
+#: data.cpp:762
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "हे सॉफ्टवेअर %s च्या अटी अंतर्गत वितरीत केले गेले आहे"
 
-#: data.cpp:779 main.cpp:171
+#: data.cpp:763 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "हा प्रोग्राम पूर्णपणे कोणतीही हमी देत नाही"
 
-#: data.hpp:103 data.hpp:255 data.hpp:343
+#: data.hpp:103 data.hpp:252 data.hpp:340
 msgid "Vendor"
 msgstr "विक्रेता"
 
@@ -902,7 +902,7 @@ msgstr "पॅकेज"
 msgid "Technology"
 msgstr "तंत्रज्ञान"
 
-#: data.hpp:107 data.hpp:279
+#: data.hpp:107 data.hpp:276
 msgid "Voltage"
 msgstr "विद्युतदाब"
 
@@ -920,7 +920,7 @@ msgstr "परिवार"
 msgid "Disp. Family"
 msgstr "Ext. परिवार"
 
-#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
+#: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "मॉडेल"
 
@@ -942,11 +942,11 @@ msgstr "अंमलबजावणी करणारा"
 msgid "Variant"
 msgstr ""
 
-#: data.hpp:118 data.hpp:271
+#: data.hpp:118 data.hpp:268
 msgid "Part Number"
 msgstr ""
 
-#: data.hpp:119 data.hpp:235
+#: data.hpp:119 data.hpp:232
 msgid "Revision"
 msgstr "पुनरावृत्ती"
 
@@ -980,139 +980,139 @@ msgstr "पातळी 3"
 msgid "Cores"
 msgstr "कोअर"
 
-#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "थ्रेड"
 
-#: data.hpp:165
+#: data.hpp:164
 msgid "Core Speed"
 msgstr "कोर गती"
 
-#: data.hpp:166
+#: data.hpp:165
 msgid "Multiplier"
 msgstr "गुणक"
 
-#: data.hpp:167
+#: data.hpp:166
 msgid "Bus Speed"
 msgstr "बस गती"
 
-#: data.hpp:168 data.hpp:352
+#: data.hpp:167 data.hpp:349
 msgid "Usage"
 msgstr "वापर"
 
-#: data.hpp:198 data.hpp:276
+#: data.hpp:195 data.hpp:273
 msgid "Size"
 msgstr "आकार"
 
-#: data.hpp:199 data.hpp:278
+#: data.hpp:196 data.hpp:275
 msgid "Speed"
 msgstr "वेग"
 
-#: data.hpp:233 data.hpp:270
+#: data.hpp:230 data.hpp:267
 msgid "Manufacturer"
 msgstr "निर्माता"
 
-#: data.hpp:243
+#: data.hpp:240
 msgid "Brand"
 msgstr "ब्रँड"
 
-#: data.hpp:244
+#: data.hpp:241
 msgid "Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:245
+#: data.hpp:242
 msgid "Date"
 msgstr "तारीख"
 
-#: data.hpp:246
+#: data.hpp:243
 msgid "ROM Size"
 msgstr "रॉम आकार"
 
-#: data.hpp:247
+#: data.hpp:244
 msgid "EFI PK"
 msgstr ""
 
-#: data.hpp:272
+#: data.hpp:269
 #, fuzzy
 #| msgid "Core #%i"
 msgid "Type"
 msgstr "कोर #%i"
 
-#: data.hpp:273
+#: data.hpp:270
 #, fuzzy
 #| msgid "Core #%i"
 msgid "Type Detail"
 msgstr "कोर #%i"
 
-#: data.hpp:274
+#: data.hpp:271
 msgid "Device Locator"
 msgstr ""
 
-#: data.hpp:275
+#: data.hpp:272
 msgid "Bank Locator"
 msgstr ""
 
-#: data.hpp:277
+#: data.hpp:274
 msgid "Rank"
 msgstr ""
 
-#: data.hpp:303
+#: data.hpp:300
 #, fuzzy
 #| msgid "Code Name"
 msgid "Name"
 msgstr "सांकेतिक नाव"
 
-#: data.hpp:304
+#: data.hpp:301
 msgid "Kernel"
 msgstr "कर्नल"
 
-#: data.hpp:305
+#: data.hpp:302
 msgid "Hostname"
 msgstr "होस्टनाव"
 
-#: data.hpp:306
+#: data.hpp:303
 msgid "Uptime"
 msgstr "अपटाइम"
 
-#: data.hpp:314
+#: data.hpp:311
 msgid "Used"
 msgstr "वापरलेले"
 
-#: data.hpp:315
+#: data.hpp:312
 msgid "Buffers"
 msgstr "बफर"
 
-#: data.hpp:316
+#: data.hpp:313
 msgid "Cached"
 msgstr "कॅश"
 
-#: data.hpp:317
+#: data.hpp:314
 msgid "Free"
 msgstr "मॊकळी"
 
-#: data.hpp:318
+#: data.hpp:315
 msgid "Swap"
 msgstr "स्वॅप"
 
-#: data.hpp:344
+#: data.hpp:341
 msgid "Driver"
 msgstr "ड्रायव्हर"
 
-#: data.hpp:345
+#: data.hpp:342
 #, fuzzy
 #| msgid "Version"
 msgid "UMD Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:347
+#: data.hpp:344
 msgid "Compute Unit"
 msgstr ""
 
-#: data.hpp:348
+#: data.hpp:345
 msgid "Device ID"
 msgstr ""
 
-#: data.hpp:349
+#: data.hpp:346
 #, fuzzy
 #| msgid "Version"
 msgid "VBIOS Version"
@@ -1120,77 +1120,77 @@ msgstr "आवृत्ती"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
+#: data.hpp:347 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr ""
 
-#: data.hpp:351
+#: data.hpp:348
 msgid "Temperature"
 msgstr "तापमान"
 
-#: data.hpp:353
+#: data.hpp:350
 #, fuzzy
 #| msgid "Voltage"
 msgid "Core Voltage"
 msgstr "विद्युतदाब"
 
-#: data.hpp:354
+#: data.hpp:351
 msgid "Power Avg"
 msgstr ""
 
-#: data.hpp:355
+#: data.hpp:352
 #, fuzzy
 #| msgid "Memory clock"
 msgid "Core Clock"
 msgstr "स्मृती घड्याळ"
 
-#: data.hpp:356
+#: data.hpp:353
 #, fuzzy
 #| msgid "Memory clock"
 msgid "Memory Clock"
 msgstr "स्मृती घड्याळ"
 
-#: data.hpp:357
+#: data.hpp:354
 #, fuzzy
 #| msgid "Memory"
 msgid "Memory Used"
 msgstr "स्मृती"
 
-#: data.hpp:358
+#: data.hpp:355
 msgid "Resizable BAR"
 msgstr ""
 
-#: data.hpp:359
+#: data.hpp:356
 msgid "Vulkan RT"
 msgstr ""
 
-#: data.hpp:360
+#: data.hpp:357
 #, fuzzy
 #| msgid "Version"
 msgid "OpenGL Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:361
+#: data.hpp:358
 #, fuzzy
 #| msgid "Version"
 msgid "Vulkan Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:362
+#: data.hpp:359
 #, fuzzy
 #| msgid "Version"
 msgid "OpenCL Version"
 msgstr "आवृत्ती"
 
-#: data.hpp:399
+#: data.hpp:396
 msgid "Score"
 msgstr "गुण"
 
-#: data.hpp:400
+#: data.hpp:397
 msgid "Run"
 msgstr "चालवा"
 
-#: data.hpp:419
+#: data.hpp:416
 msgid "Duration"
 msgstr "कालावधी"
 
@@ -1393,43 +1393,43 @@ msgstr ""
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr ""
 
-#: options.cpp:210
+#: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
 
-#: options.cpp:231
+#: options.cpp:250
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
 
-#: options.cpp:254
+#: options.cpp:270
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
 
-#: options.cpp:274
+#: options.cpp:304
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
 
-#: options.cpp:290
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
-
-#: options.cpp:296
+#: options.cpp:341
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
+msgstr ""
+
+#: options.cpp:373
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
 msgstr ""
 
 #: ui/gtk.cpp:87
@@ -1715,19 +1715,19 @@ msgstr "%s टर्मिनल स्थापित करण्यात अ
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "'%s' स्ट्रिंगमध्ये %i स्थानावर युनिट शोधू शकत नाही"
 
-#: util.cpp:312
+#: util.cpp:327
 #, fuzzy, c-format
 #| msgid "an error occurred while opening file '%s' (%s)"
 msgid "an error occurred while opening file '%s'"
 msgstr "फाइल '%s' (%s) उघडताना त्रुटी आली"
 
-#: util.cpp:357
+#: util.cpp:372
 #, fuzzy, c-format
 #| msgid "an error occurred while running command '%s' (%s)"
 msgid "an error occurred while running command '%s'"
 msgstr "'%s' (%s) कमांड चालू करताना त्रुटी आली"
 
-#: util.cpp:497
+#: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr ""
 

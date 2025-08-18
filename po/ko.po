@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
-"POT-Creation-Date: 2025-08-17 08:00+0000\n"
+"POT-Creation-Date: 2025-08-18 17:39+0000\n"
 "PO-Revision-Date: 2025-07-20 05:02+0000\n"
 "Last-Translator: 안세훈 <on9686@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
@@ -23,138 +23,138 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: core/bandwidth/libbandwidth.cpp:55
+#: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
 msgstr "대역폭 호출 중"
 
-#: core/bandwidth/main.c:1467
+#: core/bandwidth/main.c:1469
 #, c-format
 msgid "Sequential %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1468
+#: core/bandwidth/main.c:1470
 msgid "Sequential 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1469
+#: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1470
+#: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1472
+#: core/bandwidth/main.c:1474
 #, c-format
 msgid "Sequential %i-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1473
+#: core/bandwidth/main.c:1475
 msgid "Sequential 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1474
+#: core/bandwidth/main.c:1476
 msgid "Sequential 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1475
+#: core/bandwidth/main.c:1477
 msgid "Sequential 512-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1477
+#: core/bandwidth/main.c:1479
 #, c-format
 msgid "Sequential %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1478
+#: core/bandwidth/main.c:1480
 msgid "Sequential 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1479
+#: core/bandwidth/main.c:1481
 msgid "Sequential 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1480
+#: core/bandwidth/main.c:1482
 msgid "Sequential 512-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1482
+#: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1483
+#: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1484
+#: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1485
+#: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1487
+#: core/bandwidth/main.c:1489
 #, c-format
 msgid "Random %i-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1488
+#: core/bandwidth/main.c:1490
 msgid "Random 128-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1489
+#: core/bandwidth/main.c:1491
 msgid "Random 256-bit reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1491
+#: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1492
+#: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
 msgstr ""
 
-#: core/bandwidth/main.c:1494
+#: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1495
+#: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1496
+#: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1498
+#: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1499
+#: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
 msgstr ""
 
-#: core/bandwidth/main.c:1501
+#: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1502
+#: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1503
+#: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1504
+#: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
 msgstr ""
 
-#: core/bandwidth/main.c:1524
+#: core/bandwidth/main.c:1526
 msgid "(unavailable)"
 msgstr "(사용 불가)"
 
@@ -287,47 +287,47 @@ msgstr "%s (최대)"
 msgid "%s (min)"
 msgstr "%s (최소)"
 
-#: core/libcpuid.cpp:90 data.cpp:153 data.cpp:364
+#: core/libcpuid.cpp:89 data.cpp:140 data.cpp:351
 msgid "unknown"
 msgstr "알 수 없음"
 
-#: core/libcpuid.cpp:174
+#: core/libcpuid.cpp:173
 msgid "Calling libcpuid for retrieving static data"
 msgstr "정적 자료 검색을 위한 libcpuid 호출 중"
 
-#: core/libcpuid.cpp:188
+#: core/libcpuid.cpp:187
 #, c-format
 msgid "failed to call libcpuid (%s)"
 msgstr "libcpuid 호출 실패 (%s)"
 
-#: core/libcpuid.cpp:315
+#: core/libcpuid.cpp:311
 msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "동적 자료 검색을 위한 libcpuid 호출 중"
 
-#: core/libcpuid.cpp:332
+#: core/libcpuid.cpp:328
 msgid "Calling libcpuid for retrieving CPU MSR static values"
 msgstr "CPU MSR의 정적 값 검색을 위한 libcpuid 호출 중"
 
-#: core/libcpuid.cpp:362
+#: core/libcpuid.cpp:358
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
 msgstr "CPU MSR의 동적 값 검색을 위한 libcpuid 호출 중"
 
-#: core/libcpuid.cpp:391
+#: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
 msgstr "fallback 방식에서 CPU 패키지 검색 중"
 
-#: core/libcpuid.cpp:421
+#: core/libcpuid.cpp:417
 #, c-format
 msgid "Your CPU socket is not present in the database ==> %s, codename: %s"
 msgstr "CPU 소켓이 데이터베이스에 존재하지 않습니다 ==> %s, 코드네임: %s"
 
-#: core/libopencl.cpp:56
+#: core/libopencl.cpp:62
 #, c-format
 msgid "OpenCL driver for '%s %s' does not support CL_DEVICE_TOPOLOGY_AMD (%s)"
 msgstr ""
 "'%s %s'용 OpenCL 드라이버는 CL_DEVICE_TOPOLOGY_AMD를 지원하지 않습니다 (%s)"
 
-#: core/libopencl.cpp:71
+#: core/libopencl.cpp:77
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_GFXIP_MAJOR_AMD (%s)"
@@ -335,7 +335,7 @@ msgstr ""
 "'%s %s'용 OpenCL 드라이버는 CL_DEVICE_GFXIP_MAJOR_AMD를 지원하지 않습니다 "
 "(%s)"
 
-#: core/libopencl.cpp:79 core/libopencl.cpp:107 core/libopencl.cpp:152
+#: core/libopencl.cpp:85 core/libopencl.cpp:112 core/libopencl.cpp:156
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_MAX_COMPUTE_UNITS (%s)"
@@ -343,7 +343,7 @@ msgstr ""
 "'%s %s'용 OpenCL 드라이버는 CL_DEVICE_MAX_COMPUTE_UNITS를 지원하지 않습니다 "
 "(%s)"
 
-#: core/libopencl.cpp:136
+#: core/libopencl.cpp:140
 #, c-format
 msgid ""
 "OpenCL driver for '%s %s' does not support CL_DEVICE_PCI_DOMAIN_ID_NV (%s), "
@@ -353,132 +353,132 @@ msgstr ""
 "CL_DEVICE_PCI_BUS_ID_NV (%s) 또는 CL_DEVICE_PCI_SLOT_ID_NV (%s)를 지원하지 않"
 "습니다"
 
-#: core/libopencl.cpp:175
+#: core/libopencl.cpp:178
 #, c-format
 msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL이 GPU 제조사 (0x%X)를 지원하지 않습니다"
 
-#: core/libopencl.cpp:201
+#: core/libopencl.cpp:204
 #, c-format
 msgid "failed to get name for device %u (%s)"
 msgstr "장치를 위한 이름을 가져오는 데 실패했습니다 %u (%s)"
 
-#: core/libopencl.cpp:209
+#: core/libopencl.cpp:212
 #, c-format
 msgid "failed to get version for device %u (%s)"
 msgstr "장치를 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
 
-#: core/libopencl.cpp:241
+#: core/libopencl.cpp:243
 #, c-format
 msgid "failed to get name for platform %u (%s)"
 msgstr "플랫폼을 위해 이름을 가져오는 데 실패했습니다 %u (%s)"
 
-#: core/libopencl.cpp:249
+#: core/libopencl.cpp:251
 #, c-format
 msgid "failed to get version for platform %u (%s)"
 msgstr "플랫폼을 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 #, c-format
 msgid "failed to find number of OpenCL devices for platform '%s %s' (%s)"
 msgstr "플랫폼을 위해 OpenCL 장치 수를 찾는 데 실패했습니다 '%s %s' (%s)"
 
-#: core/libopencl.cpp:257
+#: core/libopencl.cpp:259
 msgid "0 device"
 msgstr "0 장치"
 
-#: core/libopencl.cpp:266
+#: core/libopencl.cpp:268
 #, c-format
 msgid "failed to get all of OpenCL devices for platform '%s %s' (%s)"
 msgstr "플랫폼을 위해 모든 OpenCL 장치를 가져오는 데 실패했습니다 '%s %s' (%s)"
 
-#: core/libopencl.cpp:283
+#: core/libopencl.cpp:286
 msgid "Finding OpenCL API version"
 msgstr "OpenCL API 버전 검색 중"
 
-#: core/libopencl.cpp:287
+#: core/libopencl.cpp:290
 #, c-format
 msgid "There is no platform with OpenCL support (%s)"
 msgstr "OpenCL을 지원하는 플랫폼이 없습니다 (%s)"
 
-#: core/libopencl.cpp:296
+#: core/libopencl.cpp:299
 #, c-format
 msgid "failed to get all OpenCL platforms (%s)"
 msgstr "모든 OpenCL 플랫폼을 가져오는 데 실패했습니다 (%s)"
 
-#: core/libopencl.cpp:305
+#: core/libopencl.cpp:307
 #, c-format
 msgid "Unable to find OpenCL driver for vendor %s"
 msgstr ""
 
-#: core/libopengl.cpp:172
+#: core/libopengl.cpp:178
 msgid "failed to create EGL context"
 msgstr ""
 
-#: core/libopengl.cpp:183
+#: core/libopengl.cpp:189
 #, fuzzy, c-format
 #| msgid "failed to get version for device %u (%s)"
 msgid "failed to destroy EGL context (%s)"
 msgstr "장치를 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
 
-#: core/libopengl.cpp:206
+#: core/libopengl.cpp:212
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglChooseConfig (%s)"
 msgstr "libcpuid 호출 실패 (%s)"
 
-#: core/libopengl.cpp:221
+#: core/libopengl.cpp:227
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglInitialize (%s)"
 msgstr "libcpuid 호출 실패 (%s)"
 
-#: core/libopengl.cpp:236
+#: core/libopengl.cpp:242
 msgid "EGL has not OpenGL client API"
 msgstr ""
 
-#: core/libopengl.cpp:242
+#: core/libopengl.cpp:248
 #, fuzzy, c-format
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to call eglBindAPI (%s)"
 msgstr "libcpuid 호출 실패 (%s)"
 
-#: core/libopengl.cpp:267
+#: core/libopengl.cpp:273
 #, fuzzy, c-format
 #| msgid "failed to get version for platform %u (%s)"
 msgid "failed to destroy EGL display (%s)"
 msgstr "플랫폼을 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
 
-#: core/libopengl.cpp:279
+#: core/libopengl.cpp:285
 #, fuzzy, c-format
 #| msgid "failed to get all OpenCL platforms (%s)"
 msgid "failed to call getPlatformDisplay (%s)"
 msgstr "모든 OpenCL 플랫폼을 가져오는 데 실패했습니다 (%s)"
 
-#: core/libopengl.cpp:300
+#: core/libopengl.cpp:307
 #, fuzzy
 #| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
 msgstr "OpenCL API 버전 검색 중"
 
-#: core/libopengl.cpp:308 core/libvulkan.cpp:165
+#: core/libopengl.cpp:315 core/libvulkan.cpp:172
 #, c-format
 msgid "%s is not supported"
 msgstr "%s 는 지원되지 않습니다"
 
-#: core/libopengl.cpp:315 core/libopengl.cpp:329
+#: core/libopengl.cpp:322 core/libopengl.cpp:336
 #, fuzzy, c-format
 #| msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgid "failed to call queryDevices (%s)"
 msgstr "vkEnumeratePhysicalDevices 호출 실패 (%s)"
 
-#: core/libopengl.cpp:322
+#: core/libopengl.cpp:329
 #, fuzzy
 #| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
 msgstr "사용 가능한 Vulkan 장치가 없습니다"
 
-#: core/libopengl.cpp:341
+#: core/libopengl.cpp:347
 #, c-format
 msgid "Unable to find OpenGL driver for vendor %s"
 msgstr ""
@@ -501,93 +501,93 @@ msgstr ""
 msgid "Bus path is invalid: %s"
 msgstr ""
 
-#: core/libpci.cpp:128
+#: core/libpci.cpp:127
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
 msgstr "경로 %s에 그래픽 카드를 사용하기 위한 커널 드라이버가 없습니다"
 
-#: core/libpci.cpp:164
+#: core/libpci.cpp:163
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
 msgstr "당신의 GPU 커널 드라이버를 알 수 없음: %s"
 
-#: core/libpci.cpp:249 core/libpci.cpp:297 core/libpci.cpp:348
+#: core/libpci.cpp:248 core/libpci.cpp:296 core/libpci.cpp:347
 #, fuzzy
 #| msgid "failed to call libcpuid (%s)"
 msgid "failed to create pipe"
 msgstr "libcpuid 호출 실패 (%s)"
 
-#: core/libpci.cpp:255 core/libpci.cpp:303 core/libpci.cpp:354
+#: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
 #, fuzzy
 #| msgid "failed to call vkCreateInstance (%s)"
 msgid "failed to create process"
 msgstr "vkCreateInstance 호출 실패(%s)"
 
-#: core/libpci.cpp:412
+#: core/libpci.cpp:411
 #, c-format
 msgid "Your GPU vendor is unknown: %s (0x%X)"
 msgstr "GPU 제조사를 알 수 없음: %s (0x%X)"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Enabled"
 msgstr "활성화됨"
 
-#: core/libpci.cpp:435 core/libvulkan.cpp:288
+#: core/libpci.cpp:434 core/libvulkan.cpp:300
 msgid "Disabled"
 msgstr "비활성화됨"
 
-#: core/libpci.cpp:461
+#: core/libpci.cpp:460
 msgid "Finding devices"
 msgstr "장치 검색 중"
 
-#: core/libpci.cpp:465
+#: core/libpci.cpp:464
 #, fuzzy
 #| msgid "Skip devices search (wrong permissions on %s device)"
 msgid "Skip devices search (PCI device does not exist)"
 msgstr "장치 검색 제외 (%s 장치에서 잘못된 권한)"
 
-#: core/libpci.cpp:478
+#: core/libpci.cpp:477
 #, c-format
 msgid "Skip devices search (wrong permissions on %s device)"
 msgstr "장치 검색 제외 (%s 장치에서 잘못된 권한)"
 
-#: core/libpci.cpp:515
+#: core/libpci.cpp:514
 msgid "failed to find chipset vendor and model"
 msgstr "칩셋의 제조사와 모델을 찾는 데 실패함"
 
-#: core/libpci.cpp:518
+#: core/libpci.cpp:517
 msgid "failed to find graphic card vendor and model"
 msgstr "그래픽카드의 제조사와 모델을 찾는 데 실패함"
 
-#: core/libpci.cpp:649
+#: core/libpci.cpp:648
 msgid "Retrieving GPU clocks"
 msgstr "GPU 클럭 검색 중"
 
-#: core/libpci.cpp:662
+#: core/libpci.cpp:661
 msgid "None"
 msgstr "없음"
 
-#: core/libpci.cpp:671
+#: core/libpci.cpp:670
 #, c-format
 msgid "DRM path for %s is unknown"
 msgstr "%s의 DRM 경로를 알 수 없습니다"
 
-#: core/libpci.cpp:678
+#: core/libpci.cpp:677
 #, c-format
 msgid "Card number for %s is unknown"
 msgstr "%s의 카드 번호를 알 수 없습니다"
 
-#: core/libpci.cpp:703
+#: core/libpci.cpp:702
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
 msgstr "PCIe %s (현재) / %s (최대)"
 
-#: core/libpci.cpp:817
+#: core/libpci.cpp:802
 #, c-format
 msgid "Driver for %s doesn't report frequencies"
 msgstr "%s의 드라이버가 주파수를 응답하지 않습니다"
 
-#: core/libpci.cpp:838
+#: core/libpci.cpp:823
 #, c-format
 msgid "failed to retrieve all monitoring data for %s"
 msgstr "%s의 모든 모니터링 자료를 검색하는 데 실패했습니다"
@@ -613,40 +613,40 @@ msgstr "libstatgrab 호출 중"
 msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i 일, %i 시간, %i, 분 %i 초"
 
-#: core/libvulkan.cpp:147
+#: core/libvulkan.cpp:154
 msgid "Finding Vulkan API version"
 msgstr "Vulkan API 버전 검색 중"
 
-#: core/libvulkan.cpp:163
+#: core/libvulkan.cpp:170
 #, c-format
 msgid "failed to call vkCreateInstance (%s)"
 msgstr "vkCreateInstance 호출 실패(%s)"
 
-#: core/libvulkan.cpp:173
+#: core/libvulkan.cpp:180
 #, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
 msgstr "vkEnumeratePhysicalDevices 호출 실패 (%s)"
 
-#: core/libvulkan.cpp:180
+#: core/libvulkan.cpp:187
 msgid "No available Vulkan devices"
 msgstr "사용 가능한 Vulkan 장치가 없습니다"
 
-#: core/libvulkan.cpp:188
+#: core/libvulkan.cpp:195
 #, c-format
 msgid "No available physical devices (%s)"
 msgstr "사용 가능한 물리 장치가 없습니다 (%s)"
 
-#: core/libvulkan.cpp:251
+#: core/libvulkan.cpp:258
 #, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
 msgstr "장치를 위해 Vulkan을 생성하는 데 실패함 %u (%s)"
 
-#: core/libvulkan.cpp:255
+#: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr "%s는 장치 %u에서 지원하지 않으며, 일치하는 deviceID만을 사용하세요"
 
-#: core/libvulkan.cpp:314
+#: core/libvulkan.cpp:322
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
 msgstr ""
@@ -685,138 +685,138 @@ msgstr "데몬에 연결 중…"
 msgid "CPU"
 msgstr "CPU"
 
-#: data.cpp:190
+#: data.cpp:177
 msgid "P-core"
 msgstr "P-코어"
 
-#: data.cpp:191
+#: data.cpp:178
 msgid "E-core"
 msgstr "E-코어"
 
-#: data.cpp:192
+#: data.cpp:179
 msgid "LP E-core"
 msgstr "LP-코어"
 
-#: data.cpp:193 data.cpp:196
+#: data.cpp:180 data.cpp:183
 msgid "Core"
 msgstr "코어"
 
-#: data.cpp:212 cpu-x-gtk-3.12.ui:841
+#: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
 msgstr "중앙처리장치"
 
-#: data.cpp:256 data.cpp:351 cpu-x-gtk-3.12.ui:2099
+#: data.cpp:243 data.cpp:338 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
 msgstr "캐쉬"
 
-#: data.cpp:263
+#: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
 msgstr "%2d x %4d %s, %2d-방식"
 
-#: data.cpp:265
+#: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
 msgstr "%d %s, %d-방식"
 
-#: data.cpp:279
+#: data.cpp:266
 msgid "Count"
 msgstr "카운트"
 
-#: data.cpp:292 cpu-x-gtk-3.12.ui:1071
+#: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "클럭"
 
-#: data.cpp:400 data.cpp:404
+#: data.cpp:387 data.cpp:391
 #, c-format
 msgid "L%u Cache"
 msgstr "L%u 캐쉬"
 
-#: data.cpp:406
+#: data.cpp:393
 #, c-format
 msgid "%s associative, %d-%s line size"
 msgstr "%s 연관, %d-%s 행 크기"
 
-#: data.cpp:419
+#: data.cpp:406
 msgid "Test"
 msgstr "시험"
 
-#: data.cpp:430 data.cpp:447 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
+#: data.cpp:417 data.cpp:434 cpu-x-gtk-3.12.ui:2283 cpu-x-gtk-3.12.ui:2713
 msgid "Motherboard"
 msgstr "마더보드"
 
-#: data.cpp:461 cpu-x-gtk-3.12.ui:2559
+#: data.cpp:448 cpu-x-gtk-3.12.ui:2559
 msgid "BIOS"
 msgstr "바이오스"
 
-#: data.cpp:477 cpu-x-gtk-3.12.ui:2694
+#: data.cpp:464 cpu-x-gtk-3.12.ui:2694
 msgid "Chipset"
 msgstr "칩셋"
 
-#: data.cpp:492 data.cpp:594 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
+#: data.cpp:479 data.cpp:581 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
 msgstr "메모리"
 
-#: data.cpp:508
+#: data.cpp:495
 #, c-format
 msgid "Stick %u"
 msgstr "스틱 %u"
 
-#: data.cpp:512 cpu-x-gtk-3.12.ui:3330
+#: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
 msgstr "스틱"
 
-#: data.cpp:566 cpu-x-gtk-3.12.ui:3994
+#: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
 msgstr "시스템"
 
-#: data.cpp:579 cpu-x-gtk-3.12.ui:3584
+#: data.cpp:566 cpu-x-gtk-3.12.ui:3584
 msgid "Operating System"
 msgstr "운영체제"
 
-#: data.cpp:612 cpu-x-gtk-3.12.ui:5173
+#: data.cpp:599 cpu-x-gtk-3.12.ui:5173
 msgid "Graphics"
 msgstr "그래픽"
 
-#: data.cpp:646
+#: data.cpp:630
 #, c-format
 msgid "Card %u"
 msgstr "카드 %u"
 
-#: data.cpp:650 cpu-x-gtk-3.12.ui:5151
+#: data.cpp:634 cpu-x-gtk-3.12.ui:5151
 msgid "Cards"
 msgstr "카드"
 
-#: data.cpp:697 cpu-x-gtk-3.12.ui:5525
+#: data.cpp:681 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
 msgstr "측정"
 
-#: data.cpp:710
+#: data.cpp:694
 msgid "Not started"
 msgstr "시작되지 않음"
 
-#: data.cpp:713 cpu-x-gtk-3.12.ui:5287
+#: data.cpp:697 cpu-x-gtk-3.12.ui:5287
 msgid "Prime numbers (slow)"
 msgstr "소수 (저속)"
 
-#: data.cpp:717 cpu-x-gtk-3.12.ui:5399
+#: data.cpp:701 cpu-x-gtk-3.12.ui:5399
 msgid "Prime numbers (fast)"
 msgstr "소수 (고속)"
 
-#: data.cpp:721 cpu-x-gtk-3.12.ui:5506
+#: data.cpp:705 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
 msgstr "매개변수"
 
-#: data.cpp:746 data.cpp:752
+#: data.cpp:730 data.cpp:736
 #, c-format
 msgid "%u mins"
 msgstr "%u 분"
 
-#: data.cpp:759 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
+#: data.cpp:743 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
 msgstr "정보"
 
-#: data.cpp:764
+#: data.cpp:748
 #, c-format
 msgid ""
 "%s is a Free software that gathers information\n"
@@ -825,39 +825,39 @@ msgstr ""
 "%s는 CPU나 마더보드 등의 정보를\n"
 "수집하는 무료 소프트웨어입니다."
 
-#: data.cpp:769
+#: data.cpp:753
 msgid "About CPU-X"
 msgstr "CPU-X 정보"
 
-#: data.cpp:770
+#: data.cpp:754
 #, c-format
 msgid "Version %s"
 msgstr "버전 %s"
 
-#: data.cpp:771
+#: data.cpp:755
 #, c-format
 msgid "Author: %s"
 msgstr "저자: %s"
 
-#: data.cpp:772
+#: data.cpp:756
 #, c-format
 msgid "Site: %s"
 msgstr "사이트: %s"
 
-#: data.cpp:776 cpu-x-gtk-3.12.ui:5758
+#: data.cpp:760 cpu-x-gtk-3.12.ui:5758
 msgid "License"
 msgstr "저작권"
 
-#: data.cpp:778
+#: data.cpp:762
 #, c-format
 msgid "This software is distributed under the terms of %s"
 msgstr "이 소프트웨어는 %s에 의거해 배포되고 있습니다"
 
-#: data.cpp:779 main.cpp:171
+#: data.cpp:763 main.cpp:171
 msgid "This program comes with ABSOLUTELY NO WARRANTY"
 msgstr "이 프로그램은 자기 책임 하에 사용해주세요"
 
-#: data.hpp:103 data.hpp:255 data.hpp:343
+#: data.hpp:103 data.hpp:252 data.hpp:340
 msgid "Vendor"
 msgstr "제조사"
 
@@ -873,7 +873,7 @@ msgstr "패키지"
 msgid "Technology"
 msgstr "제조공정"
 
-#: data.hpp:107 data.hpp:279
+#: data.hpp:107 data.hpp:276
 msgid "Voltage"
 msgstr "전압"
 
@@ -889,7 +889,7 @@ msgstr "계열"
 msgid "Disp. Family"
 msgstr "Disp. 계열"
 
-#: data.hpp:112 data.hpp:234 data.hpp:256 data.hpp:346
+#: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "모델"
 
@@ -909,11 +909,11 @@ msgstr "구현자"
 msgid "Variant"
 msgstr "변형"
 
-#: data.hpp:118 data.hpp:271
+#: data.hpp:118 data.hpp:268
 msgid "Part Number"
 msgstr "부품 번호"
 
-#: data.hpp:119 data.hpp:235
+#: data.hpp:119 data.hpp:232
 msgid "Revision"
 msgstr "개정"
 
@@ -945,193 +945,193 @@ msgstr "레벨 3"
 msgid "Cores"
 msgstr "코어"
 
-#: data.hpp:148 data.hpp:420 cpu-x-gtk-3.12.ui:1365
+#: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
 msgstr "쓰레드"
 
-#: data.hpp:165
+#: data.hpp:164
 msgid "Core Speed"
 msgstr "코어 속도"
 
-#: data.hpp:166
+#: data.hpp:165
 msgid "Multiplier"
 msgstr "배율기"
 
-#: data.hpp:167
+#: data.hpp:166
 msgid "Bus Speed"
 msgstr "버스 속도"
 
-#: data.hpp:168 data.hpp:352
+#: data.hpp:167 data.hpp:349
 msgid "Usage"
 msgstr "사용량"
 
-#: data.hpp:198 data.hpp:276
+#: data.hpp:195 data.hpp:273
 msgid "Size"
 msgstr "사이즈"
 
-#: data.hpp:199 data.hpp:278
+#: data.hpp:196 data.hpp:275
 msgid "Speed"
 msgstr "속도"
 
-#: data.hpp:233 data.hpp:270
+#: data.hpp:230 data.hpp:267
 msgid "Manufacturer"
 msgstr "제조사"
 
-#: data.hpp:243
+#: data.hpp:240
 msgid "Brand"
 msgstr "브랜드"
 
-#: data.hpp:244
+#: data.hpp:241
 msgid "Version"
 msgstr "버전"
 
-#: data.hpp:245
+#: data.hpp:242
 msgid "Date"
 msgstr "날짜"
 
-#: data.hpp:246
+#: data.hpp:243
 msgid "ROM Size"
 msgstr "ROM 크기"
 
-#: data.hpp:247
+#: data.hpp:244
 msgid "EFI PK"
 msgstr ""
 
-#: data.hpp:272
+#: data.hpp:269
 msgid "Type"
 msgstr "유형"
 
-#: data.hpp:273
+#: data.hpp:270
 msgid "Type Detail"
 msgstr "유형 상세"
 
-#: data.hpp:274
+#: data.hpp:271
 msgid "Device Locator"
 msgstr "장치 위치"
 
-#: data.hpp:275
+#: data.hpp:272
 msgid "Bank Locator"
 msgstr "뱅크 위치"
 
-#: data.hpp:277
+#: data.hpp:274
 msgid "Rank"
 msgstr "랭크"
 
-#: data.hpp:303
+#: data.hpp:300
 msgid "Name"
 msgstr "이름"
 
-#: data.hpp:304
+#: data.hpp:301
 msgid "Kernel"
 msgstr "커널"
 
-#: data.hpp:305
+#: data.hpp:302
 msgid "Hostname"
 msgstr "호스트명"
 
-#: data.hpp:306
+#: data.hpp:303
 msgid "Uptime"
 msgstr "가동시간"
 
-#: data.hpp:314
+#: data.hpp:311
 msgid "Used"
 msgstr "사용됨"
 
-#: data.hpp:315
+#: data.hpp:312
 msgid "Buffers"
 msgstr "버퍼"
 
-#: data.hpp:316
+#: data.hpp:313
 msgid "Cached"
 msgstr "캐쉬됨"
 
-#: data.hpp:317
+#: data.hpp:314
 msgid "Free"
 msgstr "여유"
 
-#: data.hpp:318
+#: data.hpp:315
 msgid "Swap"
 msgstr "스왑"
 
-#: data.hpp:344
+#: data.hpp:341
 msgid "Driver"
 msgstr "드라이버"
 
-#: data.hpp:345
+#: data.hpp:342
 msgid "UMD Version"
 msgstr "UMD 버전"
 
-#: data.hpp:347
+#: data.hpp:344
 msgid "Compute Unit"
 msgstr "연산 단위"
 
-#: data.hpp:348
+#: data.hpp:345
 msgid "Device ID"
 msgstr "장치 ID"
 
-#: data.hpp:349
+#: data.hpp:346
 msgid "VBIOS Version"
 msgstr "VBIOS 버전"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
-#: data.hpp:350 cpu-x-gtk-3.12.ui:6032
+#: data.hpp:347 cpu-x-gtk-3.12.ui:6032
 msgid "Interface"
 msgstr "연결장치"
 
-#: data.hpp:351
+#: data.hpp:348
 msgid "Temperature"
 msgstr "온도"
 
-#: data.hpp:353
+#: data.hpp:350
 msgid "Core Voltage"
 msgstr "코어 전압"
 
-#: data.hpp:354
+#: data.hpp:351
 msgid "Power Avg"
 msgstr "평균 전력"
 
-#: data.hpp:355
+#: data.hpp:352
 msgid "Core Clock"
 msgstr "코어 클럭"
 
-#: data.hpp:356
+#: data.hpp:353
 msgid "Memory Clock"
 msgstr "메모리 클럭"
 
-#: data.hpp:357
+#: data.hpp:354
 msgid "Memory Used"
 msgstr "메모리 사용량"
 
-#: data.hpp:358
+#: data.hpp:355
 msgid "Resizable BAR"
 msgstr "크기 조정 바"
 
-#: data.hpp:359
+#: data.hpp:356
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
-#: data.hpp:360
+#: data.hpp:357
 msgid "OpenGL Version"
 msgstr "OpenGL 버전"
 
-#: data.hpp:361
+#: data.hpp:358
 msgid "Vulkan Version"
 msgstr "Vulkan 버전"
 
-#: data.hpp:362
+#: data.hpp:359
 msgid "OpenCL Version"
 msgstr "OpenCL 버전"
 
-#: data.hpp:399
+#: data.hpp:396
 msgid "Score"
 msgstr "점수"
 
-#: data.hpp:400
+#: data.hpp:397
 msgid "Run"
 msgstr "실행"
 
-#: data.hpp:419
+#: data.hpp:416
 msgid "Duration"
 msgstr "지속시간"
 
@@ -1336,14 +1336,14 @@ msgstr "선택한 탭 (%u)은 볼 수 없습니다"
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
 msgstr "선택한 탭 (%u)은 유효한 수치가 아닙니다 (%u가 최대치입니다)"
 
-#: options.cpp:210
+#: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
 "선택한 CPU 타입 (%u)은 유효한 수치가 아닙니다 (%u가 이 CPU의 최대치입니다)"
 
-#: options.cpp:231
+#: options.cpp:250
 #, c-format
 msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
@@ -1352,7 +1352,7 @@ msgstr ""
 "선택한 대역폭 테스트 (%u)는 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입"
 "니다)"
 
-#: options.cpp:254
+#: options.cpp:270
 #, c-format
 msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
@@ -1360,7 +1360,7 @@ msgid ""
 msgstr ""
 "선택한 RAM 스틱 (%u)은 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입니다)"
 
-#: options.cpp:274
+#: options.cpp:304
 #, c-format
 msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
@@ -1369,12 +1369,7 @@ msgstr ""
 "선택한 그래픽 카드 (%u)는 유효한 수치가 아닙니다 (%u가 이 시스템의 최대치입니"
 "다)"
 
-#: options.cpp:290
-#, c-format
-msgid "failed to change CPU affinitiy to core %u"
-msgstr "CPU affinity를 코어 %u로 변경하는 데 실패했습니다"
-
-#: options.cpp:296
+#: options.cpp:341
 #, c-format
 msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
@@ -1382,6 +1377,11 @@ msgid ""
 msgstr ""
 "선택한 CPU 코어 (%u)는 유효한 수치가 아닙니다 (%u가 이 타입의 코어에서 최대치"
 "입니다)"
+
+#: options.cpp:373
+#, c-format
+msgid "failed to change CPU affinitiy to core %u"
+msgstr "CPU affinity를 코어 %u로 변경하는 데 실패했습니다"
 
 #: ui/gtk.cpp:87
 #, c-format
@@ -1582,17 +1582,17 @@ msgstr "터미널 %s의 셋업에 실패했습니다 (에러 %i); %s로 돌아�
 msgid "cannot find unit in '%s' string at position %i"
 msgstr "'%s'의 위치 %i에서 유닛을 찾을 수 없습니다"
 
-#: util.cpp:312
+#: util.cpp:327
 #, c-format
 msgid "an error occurred while opening file '%s'"
 msgstr "파일 '%s'를 여는 도중 에러가 발생했습니다"
 
-#: util.cpp:357
+#: util.cpp:372
 #, c-format
 msgid "an error occurred while running command '%s'"
 msgstr "커맨드 '%s'의 실행 중 에러가 발생했습니다"
 
-#: util.cpp:497
+#: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
 msgstr "set_cpu_affinity()는 이 운영체제에서 지원되지 않습니다"
 
