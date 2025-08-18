@@ -258,6 +258,7 @@ std::string string_with_temperature_unit(const double temp_celsius)
 void write_string_to_pipe(std::string str, int pfd_out)
 {
 	std::string::size_type size = str.size();
+	MSG_DEBUG("write_string_to_pipe: write '%s' (%u bytes)", str.c_str(), size);
 	write(pfd_out, &size, sizeof(size));
 	write(pfd_out, str.c_str(), str.size());
 }
@@ -269,13 +270,27 @@ std::string read_string_from_pipe(int pfd_in)
 	ssize_t read_bytes;
 
 	read_bytes = read(pfd_in, &size, sizeof(size));
-	if((read_bytes <= 0) && (size <= 0))
+	if(read_bytes <= 0)
+	{
+		MSG_DEBUG("read_string_from_pipe: read %i bytes for size", read_bytes);
 		return std::string();
+	}
+	else if(size == 0)
+	{
+		MSG_DEBUG("read_string_from_pipe: size is %u", size);
+		return std::string();
+	}
 
 	std::string str(size, ' ');
 	read_bytes = read(pfd_in, str.data(), size);
+	if(read_bytes <= 0)
+	{
+		MSG_DEBUG("read_string_from_pipe: read %i bytes for data", read_bytes);
+		return std::string();
+	}
 
-	return (read_bytes > 0) ? str : std::string();
+	MSG_DEBUG("read_string_from_pipe: '%s' (%u bytes)",  str.c_str(), size);
+	return str;
 }
 
 /* Transform a list of strings to a compatible array for argv */
