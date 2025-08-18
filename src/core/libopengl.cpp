@@ -36,6 +36,12 @@
 #include "internal.hpp"
 
 
+struct PipeDataOpenGL
+{
+	std::string user_mode_driver;
+	std::string opengl_version;
+};
+
 /* Credits to genpfault: https://stackoverflow.com/a/49236965 */
 #define CASE_STR(value) case value: return #value;
 static inline const char* egl_get_error_string()
@@ -212,7 +218,7 @@ static EGLConfig egl_choose_config(EGLDisplay display, EGLint api_bitmask)
 }
 #undef MAX_CONFIGS
 
-static int egl_info_display(std::string card_vendor, int pfd_out, bool &gpu_found, EGLDisplay display)
+static int egl_info_display(std::string card_vendor, struct PipeDataOpenGL *pdata, bool &gpu_found, EGLDisplay display)
 {
 	EGLint major, minor;
 
@@ -257,8 +263,8 @@ static int egl_info_display(std::string card_vendor, int pfd_out, bool &gpu_foun
 	if(gpu_found)
 	{
 		MSG_DEBUG("%s", "EGL device matches card");
-		write_string_to_pipe(umd_compat, pfd_out);
-		write_string_to_pipe(string_format("%s (Core) / %s (Compatibility)", gl_version_core.c_str(), gl_version_compat.c_str()), pfd_out);
+		pdata->user_mode_driver = umd_compat;
+		pdata->opengl_version   = string_format("%s (Core) / %s (Compatibility)", gl_version_core.c_str(), gl_version_compat.c_str());
 	}
 	else
 		MSG_DEBUG("EGL device ignored: found '%s' but is expecting '%s'", vendor_compat.c_str(), card_vendor.c_str());
@@ -269,7 +275,7 @@ static int egl_info_display(std::string card_vendor, int pfd_out, bool &gpu_foun
 	return 0;
 }
 
-static int egl_info_device(std::string card_vendor, int pfd_out, bool &gpu_found, EGLDeviceEXT device)
+static int egl_info_device(std::string card_vendor, struct PipeDataOpenGL *pdata, bool &gpu_found, EGLDeviceEXT device)
 {
 	PFNEGLGETPLATFORMDISPLAYEXTPROC getPlatformDisplay = (PFNEGLGETPLATFORMDISPLAYEXTPROC) eglGetProcAddress("eglGetPlatformDisplayEXT");
 
@@ -280,7 +286,7 @@ static int egl_info_device(std::string card_vendor, int pfd_out, bool &gpu_found
 		return 1;
 	}
 
-	return egl_info_display(card_vendor, pfd_out, gpu_found, display);
+	return egl_info_display(card_vendor, pdata, gpu_found, display);
 }
 
 /* Set the OpenGL version for GPU */
@@ -288,6 +294,7 @@ int set_gpu_opengl_version(std::string card_vendor, int pfd_out)
 {
 	int err = 0;
 	bool gpu_found = false;
+	struct PipeDataOpenGL pdata = { std::string(), std::string() };
 	EGLint max_devices, num_devices;
 	std::vector<EGLDeviceEXT> devices;
 	PFNEGLQUERYDEVICESEXTPROC queryDevices = (PFNEGLQUERYDEVICESEXTPROC) eglGetProcAddress("eglQueryDevicesEXT");
@@ -333,15 +340,14 @@ int set_gpu_opengl_version(std::string card_vendor, int pfd_out)
 	for(EGLint i = 0; (i < max_devices) && !gpu_found; i++)
 	{
 		MSG_DEBUG("Looping into EGL device %i", i);
-		err = egl_info_device(card_vendor, pfd_out, gpu_found, devices[i]);
+		err = egl_info_device(card_vendor, &pdata, gpu_found, devices[i]);
 	}
 
 	if(!gpu_found)
-	{
 		MSG_WARNING(_("Unable to find OpenGL driver for vendor %s"), card_vendor.c_str());
-		write_string_to_pipe(std::string(), pfd_out); // UMD
-		write_string_to_pipe(std::string(), pfd_out); // OpenGL version
-	}
+
+	write_string_to_pipe(pdata.user_mode_driver, pfd_out);
+	write_string_to_pipe(pdata.opengl_version,   pfd_out);
 
 	return err;
 }

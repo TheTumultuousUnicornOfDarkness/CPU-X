@@ -34,6 +34,13 @@ extern "C" {
 }
 
 
+struct PipeDataVulkan
+{
+	uint64_t vram_size;
+	std::string vulkan_rt;
+	std::string vulkan_version;
+};
+
 #define CASE_STR(value) case value: return #value;
 static inline const char* vk_get_error_string(VkResult vk_err)
 {
@@ -137,9 +144,9 @@ static inline const char* vk_get_error_string(VkResult vk_err)
 int set_gpu_vulkan_version(std::string card_vendor, struct pci_dev *dev, int pfd_out)
 {
 	uint32_t device_count = 0;
-	uint64_t vram_size = 0;
 	bool gpu_found = false;
 	bool use_device_id = false;
+	struct PipeDataVulkan pdata = { std::uint64_t(0), std::string(), std::string() };
 	VkResult vk_err;
 	VkInstance instance{};
 	std::vector<VkPhysicalDevice> devices;
@@ -279,19 +286,23 @@ int set_gpu_vulkan_version(std::string card_vendor, struct pci_dev *dev, int pfd
 
 		vkGetPhysicalDeviceMemoryProperties2(devices[i], &heap_info);
 		for(uint32_t heap = 0; heap < heap_info.memoryProperties.memoryHeapCount; heap++)
+		{
 			if(VK_MEMORY_HEAP_DEVICE_LOCAL_BIT == heap_info.memoryProperties.memoryHeaps[heap].flags)
-				vram_size = heap_info.memoryProperties.memoryHeaps[heap].size;
-		write(pfd_out, &vram_size, sizeof(vram_size));
+			{
+				pdata.vram_size = heap_info.memoryProperties.memoryHeaps[heap].size;
+				MSG_DEBUG("Vulkan device %lu: VRAM size is %lu bytes", i, pdata.vram_size);
+				break;
+			}
+		}
 
 #ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
 		VkDevice vk_dev_rt{};
-		const std::string vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS) ? _("Enabled") : _("Disabled");
-		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, vulkan_rt.c_str());
-		write_string_to_pipe(vulkan_rt, pfd_out);
+		pdata.vulkan_rt = (vkCreateDevice(devices[i], &check_rt, NULL, &vk_dev_rt) == VK_SUCCESS) ? _("Enabled") : _("Disabled");
+		MSG_DEBUG("Vulkan device %lu: Ray Tracing support is %s", i, pdata.vulkan_rt.c_str());
 		vkDestroyDevice(vk_dev_rt, NULL);
 #endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
 
-		const std::string vulkan_version = string_format("%d.%d.%d",
+		pdata.vulkan_version = string_format("%d.%d.%d",
 #if(VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH)
 			VK_API_VERSION_MAJOR(prop2.properties.apiVersion),
 			VK_API_VERSION_MINOR(prop2.properties.apiVersion),
@@ -302,22 +313,19 @@ int set_gpu_vulkan_version(std::string card_vendor, struct pci_dev *dev, int pfd
 			VK_VERSION_PATCH(prop2.properties.apiVersion)
 #endif /* (VK_API_VERSION_MAJOR && VK_API_VERSION_MINOR && VK_API_VERSION_PATCH) */
 		);
-		MSG_DEBUG("Vulkan device %lu: version is '%s'", i, vulkan_version.c_str());
-		write_string_to_pipe(vulkan_version, pfd_out);
+		MSG_DEBUG("Vulkan device %lu: version is '%s'", i, pdata.vulkan_version.c_str());
 		gpu_found = true;
 	}
 	vkDestroyInstance(instance, NULL);
 
 	if(!gpu_found)
-	{
-		uint64_t vram_size = 0;
 		MSG_WARNING(_("Unable to find Vulkan driver for vendor %s"), card_vendor.c_str());
-		write(pfd_out, &vram_size, sizeof(vram_size)); // VRAM size
+
+	write(pfd_out, &pdata.vram_size, sizeof(pdata.vram_size));
 #ifdef VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME
-		write_string_to_pipe(std::string(), pfd_out); // Vulkan RT
+	write_string_to_pipe(pdata.vulkan_rt, pfd_out);
 #endif /* VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME */
-		write_string_to_pipe(std::string(), pfd_out); // Vulkan version
-	}
+	write_string_to_pipe(pdata.vulkan_version, pfd_out);
 
 	return 0;
 }

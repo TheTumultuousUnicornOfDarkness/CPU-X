@@ -36,9 +36,15 @@ extern "C" {
 }
 
 
+struct PipeDataOpenCL
+{
+	std::string opencl_version;
+	std::string comp_unit;
+};
+
 #define CLINFO(dev_id, PARAM, prop) \
 	clGetDeviceInfo(dev_id, PARAM, sizeof(prop), &prop, NULL)
-static bool opencl_get_vendor_amd(int pfd_out,
+static bool opencl_get_vendor_amd(struct PipeDataOpenCL *pdata,
 	cl_uint platform_num,
 	cl_uint device_num, cl_device_id device_id,
 	char *device_name, char *device_version,
@@ -85,14 +91,13 @@ static bool opencl_get_vendor_amd(int pfd_out,
 		- Workgroup Processor (WGP): RDNA, i.e. GFX10+
 	*/
 	const std::string comp_unit_type = (amd_gfx_major < 10) ? "CU" : "WGP";
-	const std::string comp_unit_str  = std::to_string(comp_unit) + " " + comp_unit_type;
-	MSG_DEBUG("OpenCL platform %u, device %u: found %s", platform_num, device_num, comp_unit_str.c_str());
-	write_string_to_pipe(comp_unit_str, pfd_out);
+	pdata->comp_unit = std::to_string(comp_unit) + " " + comp_unit_type;
+	MSG_DEBUG("OpenCL platform %u, device %u: found %s", platform_num, device_num, pdata->comp_unit.c_str());
 
 	return true;
 }
 
-static bool opencl_get_vendor_intel(int pfd_out,
+static bool opencl_get_vendor_intel(struct PipeDataOpenCL *pdata,
 	cl_uint platform_num,
 	cl_uint device_num, cl_device_id device_id,
 	char *device_name, char *device_version)
@@ -108,14 +113,13 @@ static bool opencl_get_vendor_intel(int pfd_out,
 		return false;
 	}
 
-	const std::string comp_unit_str = std::to_string(comp_unit) + " EU"; // Execution Unit
-	MSG_DEBUG("OpenCL platform %u, device %u: found %s", platform_num, device_num, comp_unit_str.c_str());
-	write_string_to_pipe(comp_unit_str, pfd_out);
+	pdata->comp_unit = std::to_string(comp_unit) + " EU"; // Execution Unit
+	MSG_DEBUG("OpenCL platform %u, device %u: found %s", platform_num, device_num, pdata->comp_unit.c_str());
 
 	return true;
 }
 
-static bool opencl_get_vendor_nvidia(int pfd_out,
+static bool opencl_get_vendor_nvidia(struct PipeDataOpenCL *pdata,
 	cl_uint platform_num,
 	cl_uint device_num, cl_device_id device_id,
 	char *device_name, char *device_version,
@@ -153,15 +157,14 @@ static bool opencl_get_vendor_nvidia(int pfd_out,
 		return false;
 	}
 
-	const std::string comp_unit_str = std::to_string(comp_unit) + " SM"; // Streaming Multiprocessor
-	MSG_DEBUG("OpenCL platform %u, device %u: found %s", platform_num, device_num, comp_unit_str.c_str());
-	write_string_to_pipe(comp_unit_str, pfd_out);
+	pdata->comp_unit = std::to_string(comp_unit) + " SM"; // Streaming Multiprocessor
+	MSG_DEBUG("OpenCL platform %u, device %u: found %s", platform_num, device_num, pdata->comp_unit.c_str());
 
 	return true;
 }
 
 /* Get compute units depending on vendor */
-static bool opencl_get_vendor(int pfd_out,
+static bool opencl_get_vendor(struct PipeDataOpenCL *pdata,
 	cl_uint platform_num,
 	cl_uint device_num, cl_device_id device_id,
 	cl_uint ocl_vendor, char *device_name, char *device_version,
@@ -169,9 +172,9 @@ static bool opencl_get_vendor(int pfd_out,
 {
 	switch(ocl_vendor)
 	{
-		case DEV_VENDOR_ID_AMD:    return opencl_get_vendor_amd   (pfd_out, platform_num, device_num, device_id, device_name, device_version, pci_dev);
-		case DEV_VENDOR_ID_INTEL:  return opencl_get_vendor_intel (pfd_out, platform_num, device_num, device_id, device_name, device_version);
-		case DEV_VENDOR_ID_NVIDIA: return opencl_get_vendor_nvidia(pfd_out, platform_num, device_num, device_id, device_name, device_version, pci_dev);
+		case DEV_VENDOR_ID_AMD:    return opencl_get_vendor_amd   (pdata, platform_num, device_num, device_id, device_name, device_version, pci_dev);
+		case DEV_VENDOR_ID_INTEL:  return opencl_get_vendor_intel (pdata, platform_num, device_num, device_id, device_name, device_version);
+		case DEV_VENDOR_ID_NVIDIA: return opencl_get_vendor_nvidia(pdata, platform_num, device_num, device_id, device_name, device_version, pci_dev);
 		default: MSG_WARNING(_("OpenCL is not supported with your GPU vendor (0x%X)"), ocl_vendor);
 	}
 
@@ -179,7 +182,7 @@ static bool opencl_get_vendor(int pfd_out,
 }
 
 #define OPENCL_INFO_BUFFER_SIZE 1024
-static bool opencl_get_device(int pfd_out,
+static bool opencl_get_device(struct PipeDataOpenCL *pdata,
 	cl_uint platform_num,
 	cl_uint device_num, cl_device_id device_id,
 	struct pci_dev *pci_dev)
@@ -212,20 +215,19 @@ static bool opencl_get_device(int pfd_out,
 	MSG_DEBUG("OpenCL platform %u, device %u: version is '%s'", platform_num, device_num, device_version);
 
 	/* Set OpenCL version */
-	std::string opencl_version = device_version;
-	const size_t cl_index = opencl_version.find("OpenCL");
+	pdata->opencl_version = device_version;
+	const size_t cl_index = pdata->opencl_version.find("OpenCL");
 	if(cl_index != std::string::npos)
-		opencl_version.erase(cl_index, 6 + 1); // 6 = "OpenCL" string
-	const size_t mesa_index = opencl_version.find("Mesa");
+		pdata->opencl_version.erase(cl_index, 6 + 1); // 6 = "OpenCL" string
+	const size_t mesa_index = pdata->opencl_version.find("Mesa");
 	if(mesa_index != std::string::npos)
-		opencl_version.erase(mesa_index, std::string::npos);
-	write_string_to_pipe(opencl_version, pfd_out);
+		pdata->opencl_version.erase(mesa_index, std::string::npos);
 
-	return opencl_get_vendor(pfd_out, platform_num, device_num, device_id, ocl_vendor, device_name, device_version, pci_dev);
+	return opencl_get_vendor(pdata, platform_num, device_num, device_id, ocl_vendor, device_name, device_version, pci_dev);
 }
 #undef CLINFO
 
-static bool opencl_get_platform(int pfd_out,
+static bool opencl_get_platform(struct PipeDataOpenCL *pdata,
 	cl_uint platform_num, cl_platform_id platform_id,
 	struct pci_dev *pci_dev)
 {
@@ -268,7 +270,7 @@ static bool opencl_get_platform(int pfd_out,
 	}
 
 	for(cl_uint device_num = 0; (device_num < num_devices) && !gpu_found; device_num++)
-		gpu_found = opencl_get_device(pfd_out, platform_num, device_num, devices[device_num], pci_dev);
+		gpu_found = opencl_get_device(pdata, platform_num, device_num, devices[device_num], pci_dev);
 
 	return gpu_found;
 }
@@ -277,6 +279,7 @@ static bool opencl_get_platform(int pfd_out,
 int set_gpu_opencl_version(std::string card_vendor, struct pci_dev *pci_dev, int pfd_out)
 {
 	bool gpu_found = false;
+	struct PipeDataOpenCL pdata = { std::string(), std::string() };
 	cl_int ret_cl = 0;
 	cl_uint num_platforms = 0;
 
@@ -298,14 +301,13 @@ int set_gpu_opencl_version(std::string card_vendor, struct pci_dev *pci_dev, int
 	}
 
 	for(cl_uint platform_num = 0; (platform_num < num_platforms) && !gpu_found; platform_num++) // find GPU devices
-		gpu_found = opencl_get_platform(pfd_out, platform_num, platforms[platform_num], pci_dev);
+		gpu_found = opencl_get_platform(&pdata, platform_num, platforms[platform_num], pci_dev);
 
 	if(!gpu_found)
-	{
 		MSG_WARNING(_("Unable to find OpenCL driver for vendor %s"), card_vendor.c_str());
-		write_string_to_pipe(std::string(), pfd_out); // OpenCL version
-		write_string_to_pipe(std::string(), pfd_out); // Compute units
-	}
+
+	write_string_to_pipe(pdata.opencl_version, pfd_out);
+	write_string_to_pipe(pdata.comp_unit,      pfd_out);
 
 	return (int) ret_cl;
 }
