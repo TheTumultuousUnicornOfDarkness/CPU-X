@@ -22,11 +22,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-08-17 08:00+0000\n"
-"PO-Revision-Date: 2025-05-12 13:01+0000\n"
-"Last-Translator: Emre <emregokcew10@gmail.com>\n"
+"PO-Revision-Date: 2025-08-18 09:02+0000\n"
+"Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -34,7 +34,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: core/bandwidth/libbandwidth.cpp:55
 msgid "Calling bandwidth"
@@ -47,15 +47,15 @@ msgstr ""
 
 #: core/bandwidth/main.c:1468
 msgid "Sequential 128-bit reads"
-msgstr ""
+msgstr "Ardışık 128-bit okuma"
 
 #: core/bandwidth/main.c:1469
 msgid "Sequential 256-bit reads"
-msgstr ""
+msgstr "Ardışık 256-bit okuma"
 
 #: core/bandwidth/main.c:1470
 msgid "Sequential 512-bit reads"
-msgstr ""
+msgstr "Ardışık 512-bit okuma"
 
 #: core/bandwidth/main.c:1472
 #, c-format
@@ -77,19 +77,19 @@ msgstr ""
 #: core/bandwidth/main.c:1477
 #, c-format
 msgid "Sequential %i-bit writes"
-msgstr ""
+msgstr "Ardışık %i-bit yazma"
 
 #: core/bandwidth/main.c:1478
 msgid "Sequential 128-bit writes"
-msgstr ""
+msgstr "Ardışık 128-bit yazma"
 
 #: core/bandwidth/main.c:1479
 msgid "Sequential 256-bit writes"
-msgstr ""
+msgstr "Ardışık 256-bit yazma"
 
 #: core/bandwidth/main.c:1480
 msgid "Sequential 512-bit writes"
-msgstr ""
+msgstr "Ardışık 512-bit yazma"
 
 #: core/bandwidth/main.c:1482
 #, c-format
@@ -111,15 +111,15 @@ msgstr ""
 #: core/bandwidth/main.c:1487
 #, c-format
 msgid "Random %i-bit reads"
-msgstr ""
+msgstr "Rastgele %i-bit okuma"
 
 #: core/bandwidth/main.c:1488
 msgid "Random 128-bit reads"
-msgstr ""
+msgstr "Rastgele 128-bit okuma"
 
 #: core/bandwidth/main.c:1489
 msgid "Random 256-bit reads"
-msgstr ""
+msgstr "Rastgele 256-bit okuma"
 
 #: core/bandwidth/main.c:1491
 msgid "Random 128-bit nontemporal reads"
@@ -132,15 +132,15 @@ msgstr ""
 #: core/bandwidth/main.c:1494
 #, c-format
 msgid "Random %i-bit writes"
-msgstr ""
+msgstr "Rastgele %i-bit yazma"
 
 #: core/bandwidth/main.c:1495
 msgid "Random 128-bit writes"
-msgstr ""
+msgstr "Rastgele 128-bit yazma"
 
 #: core/bandwidth/main.c:1496
 msgid "Random 256-bit writes"
-msgstr ""
+msgstr "Rastgele 256-bit yazma"
 
 #: core/bandwidth/main.c:1498
 msgid "Random 128-bit nontemporal writes"
@@ -153,19 +153,19 @@ msgstr ""
 #: core/bandwidth/main.c:1501
 #, c-format
 msgid "Sequential %i-bit copy"
-msgstr ""
+msgstr "Ardışık %i-bit çoğaltma"
 
 #: core/bandwidth/main.c:1502
 msgid "Sequential 128-bit copy"
-msgstr ""
+msgstr "Ardışık 128-bit çoğaltma"
 
 #: core/bandwidth/main.c:1503
 msgid "Sequential 256-bit copy"
-msgstr ""
+msgstr "Ardışık 256-bit çoğaltma"
 
 #: core/bandwidth/main.c:1504
 msgid "Sequential 512-bit copy"
-msgstr ""
+msgstr "Ardışık 512-bit çoğaltma"
 
 #: core/bandwidth/main.c:1524
 msgid "(unavailable)"
@@ -1620,12 +1620,12 @@ msgstr "TB"
 #. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
 msgid "PB"
-msgstr ""
+msgstr "PB"
 
 #. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
 #: util.hpp:91
 msgid "EB"
-msgstr ""
+msgstr "EB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:94
@@ -1649,17 +1649,13 @@ msgstr "TiB"
 
 #. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
 #: util.hpp:102
-#, fuzzy
-#| msgid "KiB"
 msgid "PiB"
-msgstr "KiB"
+msgstr "PiB"
 
 #. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
 #: util.hpp:104
-#, fuzzy
-#| msgid "KiB"
 msgid "EiB"
-msgstr "KiB"
+msgstr "EiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
