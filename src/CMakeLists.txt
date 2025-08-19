@@ -143,7 +143,7 @@ endif(CPU_ISA_X86 AND WITH_BANDWIDTH)
 
 ### FINAL CONFIG
 
-message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION} configuration (${CMAKE_SYSTEM_PROCESSOR}) **${ColourReset}")
+message("${BoldCyan}** ${CMAKE_PROJECT_NAME} ${PROJECT_VERSION}${GIT_REVISION} configuration (${CMAKE_SYSTEM_PROCESSOR}) **${ColourReset}")
 
 # UI libraries
 print_config("GTK"                 "${GTK3_VERSION}"            WITH_GTK)
