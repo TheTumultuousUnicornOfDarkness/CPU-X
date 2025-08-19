@@ -159,24 +159,28 @@ endmacro(print_config)
 ### HELPERS / SUBDIRECTORIES
 
 set(GIT_REVISION "")
-if(EXISTS ${CMAKE_SOURCE_DIR}/.git)
-	find_package(Git)
-	if(GIT_FOUND)
-		execute_process(COMMAND sh -c "${GIT_EXECUTABLE} describe --long --tags --exclude continuous --abbrev=40 --dirty | cut --delimiter=- --fields=2-"
-			WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-			OUTPUT_VARIABLE GIT_DESCRIBE_REVISION
-			ERROR_QUIET
-			OUTPUT_STRIP_TRAILING_WHITESPACE
-		)
-		if(NOT GIT_DESCRIBE_REVISION STREQUAL "")
-			set(GIT_REVISION "+git-r${GIT_DESCRIBE_REVISION}")
-		else(NOT GIT_DESCRIBE_REVISION STREQUAL "")
-			message(WARNING "Unknown Git revision.")
-		endif(NOT GIT_DESCRIBE_REVISION STREQUAL "")
-	else(GIT_FOUND)
-		message(WARNING "Git package not found, GIT_REVISION cannot be set.")
-	endif(GIT_FOUND)
-endif(EXISTS ${CMAKE_SOURCE_DIR}/.git)
+if(EXISTS ${CMAKE_SOURCE_DIR}/.git OR DEFINED ENV{GITHUB_SHA})
+	if(DEFINED ENV{GITHUB_SHA})
+		set(GIT_REVISION_TMP "$ENV{GITHUB_SHA}")
+	else(DEFINED ENV{GITHUB_SHA})
+		find_package(Git)
+		if(GIT_FOUND)
+			execute_process(COMMAND sh -c "${GIT_EXECUTABLE} describe --long --tags --exclude continuous --abbrev=40 --dirty | cut --delimiter=- --fields=2-"
+				WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+				OUTPUT_VARIABLE GIT_REVISION_TMP
+				ERROR_QUIET
+				OUTPUT_STRIP_TRAILING_WHITESPACE
+			)
+		else(GIT_FOUND)
+			message(WARNING "Git package not found, GIT_REVISION cannot be set.")
+		endif(GIT_FOUND)
+	endif(DEFINED ENV{GITHUB_SHA})
+	if(DEFINED GIT_REVISION_TMP)
+		set(GIT_REVISION "+git-r${GIT_REVISION_TMP}")
+	else(DEFINED GIT_REVISION_TMP)
+		message(WARNING "Unknown Git revision.")
+	endif(DEFINED GIT_REVISION_TMP)
+endif(EXISTS ${CMAKE_SOURCE_DIR}/.git OR DEFINED ENV{GITHUB_SHA})
 
 enable_testing()
 find_package(PkgConfig REQUIRED)
