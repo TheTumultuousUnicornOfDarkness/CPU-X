@@ -15,7 +15,7 @@ jobs:
       output1: ${{ steps.step1.outputs.check_ret }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: '0'
 
@@ -30,7 +30,7 @@ jobs:
     if: ${{ needs.check_new_string.outputs.output1 == 'REGEN' }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - uses: abbbi/github-actions-tune@v1
 

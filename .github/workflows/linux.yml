@@ -57,7 +57,7 @@ jobs:
           apt-get install -y -qq sudo
         fi
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Build libcpuid
       run: ./scripts/build_libcpuid.sh -t "$BUILD_TYPE"
