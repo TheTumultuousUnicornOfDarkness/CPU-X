@@ -60,6 +60,8 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
+    - uses: actions/checkout@v5
+
     - name: Download all artifacts
       uses: actions/download-artifact@v5
       with:
@@ -68,6 +70,11 @@ jobs:
 
     - name: Display structure of downloaded files
       run: ls -lhR AppImage/
+
+    - name: Delete previous continuous release
+      run: gh release delete continuous --cleanup-tag
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create continuous release
       uses: ncipollo/release-action@v1
