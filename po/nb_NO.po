@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-08-20 14:02+0000\n"
+"PO-Revision-Date: 2025-08-21 23:02+0000\n"
 "Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -80,78 +80,78 @@ msgstr "Sekvensielle 512-bit skrivinger"
 #: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
-msgstr ""
+msgstr "Sekvensielle %i-bit ikke-temporale skrivinger"
 
 #: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
-msgstr ""
+msgstr "Sekvensielle 128-bit ikke-temporale skrivinger"
 
 #: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
-msgstr ""
+msgstr "Sekvensielle 256-bit ikke-temporale skrivinger"
 
 #: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
-msgstr ""
+msgstr "Sekvensielle 512-bit ikke-temporale skrivinger"
 
 #: core/bandwidth/main.c:1489
 #, c-format
 msgid "Random %i-bit reads"
-msgstr ""
+msgstr "Tilfeldige %i-bit avlesninger"
 
 #: core/bandwidth/main.c:1490
 msgid "Random 128-bit reads"
-msgstr ""
+msgstr "Tilfeldige 128-bit avlesninger"
 
 #: core/bandwidth/main.c:1491
 msgid "Random 256-bit reads"
-msgstr ""
+msgstr "Tilfeldige 256-bit avlesninger"
 
 #: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
-msgstr ""
+msgstr "Tilfeldige 128-bit ikke-temporale avlesninger"
 
 #: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
-msgstr ""
+msgstr "Tilfeldige 256-bit ikke-temporale avlesninger"
 
 #: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
-msgstr ""
+msgstr "Tilfeldige %i-bit skrivinger"
 
 #: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
-msgstr ""
+msgstr "Tilfeldige 128-bit skrivinger"
 
 #: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
-msgstr ""
+msgstr "Tilfeldige 256-bit skrivinger"
 
 #: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
-msgstr ""
+msgstr "Tilfeldige 128-bit ikke-temporale skrivinger"
 
 #: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
-msgstr ""
+msgstr "Tilfeldige 256-bit ikke-temporale skrivinger"
 
 #: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
-msgstr ""
+msgstr "Sekvensiell %i-bit kopiering"
 
 #: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
-msgstr ""
+msgstr "Sekvensiell 128-bit kopiering"
 
 #: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
-msgstr ""
+msgstr "Sekvensiell 256-bit kopiering"
 
 #: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
-msgstr ""
+msgstr "Sekvensiell 512-bit kopiering"
 
 #: core/bandwidth/main.c:1526
 msgid "(unavailable)"
@@ -552,24 +552,22 @@ msgstr ""
 #: core/libpci.cpp:677
 #, c-format
 msgid "Card number for %s is unknown"
-msgstr ""
+msgstr "Kortnummer for %s er ukjent"
 
 #: core/libpci.cpp:702
 #, c-format
 msgid "PCIe %s (current) / %s (max)"
-msgstr ""
+msgstr "PCIe %s (gjeldende) / %s (maks)"
 
 #: core/libpci.cpp:802
-#, fuzzy, c-format
-#| msgid "Driver for GPU %u doesn't report frequencies"
+#, c-format
 msgid "Driver for %s doesn't report frequencies"
-msgstr "Driver for GPU %u rapporterer ikke frekvenser"
+msgstr "Driver for %s rapporterer ikke frekvenser"
 
 #: core/libpci.cpp:823
-#, fuzzy, c-format
-#| msgid "failed to get all OpenCL platforms (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "klarte ikke å hente alle OpenCL-plattformer (%s)"
+msgstr "klarte ikke å hente alle overvåkningsdata for %s"
 
 #: core/libsystem.cpp:51 core/libsystem.cpp:80
 msgid "Calling libprocps"
@@ -593,32 +591,25 @@ msgid "%i days, %i hours, %i minutes, %i seconds"
 msgstr "%i dager, %i timer, %i minutter, %i sekunder"
 
 #: core/libvulkan.cpp:154
-#, fuzzy
-#| msgid "Version"
 msgid "Finding Vulkan API version"
-msgstr "Versjon"
+msgstr "Finner Vulkan API-versjon"
 
 #: core/libvulkan.cpp:170
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "kall til dmidecode mislyktes"
+msgstr "kunne ikke kalle vkCreateInstance (%s)"
 
 #: core/libvulkan.cpp:180
-#, fuzzy, c-format
-#| msgid "failed to call dmidecode"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "kall til dmidecode mislyktes"
+msgstr "kunne ikke kalle vkEnumeratePhysicalDevices (%s)"
 
 #: core/libvulkan.cpp:187
-#, fuzzy
-#| msgid "There is no available physical device (%s)"
 msgid "No available Vulkan devices"
-msgstr "Ingen tilgjengelige fysiske enheter (%s)"
+msgstr "Ingen Vulkan-enheter tilgjengelige"
 
 #: core/libvulkan.cpp:195
-#, fuzzy, c-format
-#| msgid "There is no available physical device (%s)"
+#, c-format
 msgid "No available physical devices (%s)"
 msgstr "Ingen tilgjengelige fysiske enheter (%s)"
 
