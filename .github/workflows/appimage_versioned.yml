@@ -111,13 +111,13 @@ jobs:
 
           ### To users
           -
-        commit: ${{ github.sha }}
+        commit: "${{ github.sha }}"
         draft: true
-        name: ${{ env.VERSION }}
+        name: "v${{ env.VERSION }}"
         prerelease: false
         replacesArtifacts: true
         skipIfReleaseExists: true
-        tag: ${{ env.VERSION }}
+        tag: "v${{ env.VERSION }}"
         token: "${{ secrets.GITHUB_TOKEN }}"
       env:
         VERSION: ${{ needs.linux-appimage-versioned-build.outputs.version }}
