@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-08-21 23:02+0000\n"
+"PO-Revision-Date: 2025-08-23 11:01+0000\n"
 "Last-Translator: Telaneo <post@telaneo.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/cpu-x/"
 "translations/nb_NO/>\n"
@@ -299,15 +299,15 @@ msgstr "Klarte ikke å kalle libcpuid (%s)"
 
 #: core/libcpuid.cpp:311
 msgid "Calling libcpuid for retrieving dynamic data"
-msgstr "Kaller libcpuid for innhenting av dynamiske data …"
+msgstr "Kaller libcpuid for innhenting av dynamiske data"
 
 #: core/libcpuid.cpp:328
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "Kaller libcpuid for mottak av statiske CPU MSR-verdier …"
+msgstr "Kaller libcpuid for mottak av statiske CPU MSR-verdier"
 
 #: core/libcpuid.cpp:358
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Kaller libcpuid for mottak av dynamiske CPU MSR-verdier …"
+msgstr "Kaller libcpuid for mottak av dynamiske CPU MSR-verdier"
 
 #: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
@@ -482,7 +482,7 @@ msgstr ""
 #: core/libpci.cpp:93
 #, c-format
 msgid "Bus path is invalid: %s"
-msgstr ""
+msgstr "Bussti er ugyldig: %s"
 
 #: core/libpci.cpp:127
 #, c-format
@@ -547,7 +547,7 @@ msgstr "Ingen"
 #: core/libpci.cpp:670
 #, c-format
 msgid "DRM path for %s is unknown"
-msgstr ""
+msgstr "DRM-sti for %s er ukjent"
 
 #: core/libpci.cpp:677
 #, c-format
@@ -614,32 +614,31 @@ msgid "No available physical devices (%s)"
 msgstr "Ingen tilgjengelige fysiske enheter (%s)"
 
 #: core/libvulkan.cpp:258
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "Failed to create Vulkan for device %u (%s)"
-msgstr "klarte ikke å hente navn på enhet %u (%s)"
+msgstr "Kunne ikke opprette Vulkan for enheten %u (%s)"
 
 #: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
+msgstr "%s er ikke støttet for enhet %u, bruk bare deviceID for matching"
 
 #: core/libvulkan.cpp:322
 #, c-format
 msgid "Unable to find Vulkan driver for vendor %s"
-msgstr ""
+msgstr "Kunne ikke finne Vulkan-driver for leverandør %s"
 
 #: daemon/client.cpp:65
-#, fuzzy
-#| msgid "Ask password to start daemon in background"
 msgid "Starting daemon in background…"
-msgstr "Forespør passord for å starte nisse i bakgrunnen"
+msgstr "Starter daemon i bakgrunnen…"
 
 #: daemon/client.cpp:103
 msgid ""
 "APPDIR environment variable is not set, cannot copy the daemon to the "
 "temporary directory"
 msgstr ""
+"APPDIR-variabelet er ikke satt, kunne ikke kopiere daemon til den "
+"midlertidige mappa"
 
 #: daemon/client.cpp:181
 msgid "pkexec: authorization could not be obtained (dialog dismissed)"
@@ -658,38 +657,28 @@ msgid "pkexec: unexpected error code"
 msgstr "pkexec: Uventet feilkode"
 
 #: daemon/client.cpp:220
-#, fuzzy
-#| msgid "Connected to daemon"
 msgid "Connecting to daemon…"
-msgstr "Tilkoblet nisse"
+msgstr "Kobler til daemon…"
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1485
 msgid "CPU"
 msgstr "Prosessor"
 
 #: data.cpp:177
-#, fuzzy
-#| msgid "Score"
 msgid "P-core"
-msgstr "Poengsum"
+msgstr "P-kjerne"
 
 #: data.cpp:178
-#, fuzzy
-#| msgid "Score"
 msgid "E-core"
-msgstr "Poengsum"
+msgstr "E-kjerne"
 
 #: data.cpp:179
-#, fuzzy
-#| msgid "Score"
 msgid "LP E-core"
-msgstr "Poengsum"
+msgstr "LP E-kjerne"
 
 #: data.cpp:180 data.cpp:183
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Core"
-msgstr "Kjerne(r)"
+msgstr "Kjerne"
 
 #: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
@@ -700,10 +689,9 @@ msgid "Caches"
 msgstr "Hurtiglagre"
 
 #: data.cpp:250
-#, fuzzy, c-format
-#| msgid "%d x %d %s, %d-way"
+#, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr "%d x %d %s, %d-veis"
+msgstr "%2d x %4d %s, %2d-way"
 
 #: data.cpp:252
 #, c-format
@@ -712,22 +700,21 @@ msgstr "%d %s, %d-veis"
 
 #: data.cpp:266
 msgid "Count"
-msgstr ""
+msgstr "Antall"
 
 #: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
 msgstr "Klokker"
 
 #: data.cpp:387 data.cpp:391
-#, fuzzy, c-format
-#| msgid "L%i Cache"
+#, c-format
 msgid "L%u Cache"
-msgstr "L%i-hurtiglager"
+msgstr "L%u-hurtiglager"
 
 #: data.cpp:393
-#, fuzzy, c-format
+#, c-format
 msgid "%s associative, %d-%s line size"
-msgstr "%s-tilknytning, %d-%s-bytelinjestørrelse"
+msgstr "%s-assosiativ, %d-%s-linjestørrelse"
 
 #: data.cpp:406
 msgid "Test"
@@ -752,11 +739,11 @@ msgstr "Minne"
 #: data.cpp:495
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Brikke %u"
 
 #: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
-msgstr ""
+msgstr "Brikker"
 
 #: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
@@ -771,16 +758,13 @@ msgid "Graphics"
 msgstr "Grafikk"
 
 #: data.cpp:630
-#, fuzzy, c-format
-#| msgid "Card %i"
+#, c-format
 msgid "Card %u"
-msgstr "Kort %i"
+msgstr "Kort %u"
 
 #: data.cpp:634 cpu-x-gtk-3.12.ui:5151
-#, fuzzy
-#| msgid "Card %i"
 msgid "Cards"
-msgstr "Kort %i"
+msgstr "Kort"
 
 #: data.cpp:681 cpu-x-gtk-3.12.ui:5525
 msgid "Bench"
@@ -821,10 +805,8 @@ msgstr ""
 "prosessor, hovedkort, med mer."
 
 #: data.cpp:753
-#, fuzzy
-#| msgid "About"
 msgid "About CPU-X"
-msgstr "Om"
+msgstr "Om CPU-X"
 
 #: data.cpp:754
 #, c-format
@@ -837,12 +819,11 @@ msgid "Author: %s"
 msgstr "Utvikler: %s"
 
 #: data.cpp:756
-#, fuzzy, c-format
+#, c-format
 msgid "Site: %s"
 msgstr "Nettside: %s"
 
 #: data.cpp:760 cpu-x-gtk-3.12.ui:5758
-#, fuzzy
 msgid "License"
 msgstr "Lisens"
 
@@ -884,21 +865,18 @@ msgid "Family"
 msgstr "Familie"
 
 #: data.hpp:111
-#, fuzzy
 msgid "Disp. Family"
-msgstr "Ekst. familie"
+msgstr "Vist familie"
 
 #: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "Modell"
 
 #: data.hpp:113
-#, fuzzy
 msgid "Disp. Model"
-msgstr "Ekst. modell"
+msgstr "Vist modell"
 
 #: data.hpp:114
-#, fuzzy
 msgid "Stepping"
 msgstr "Stepping"
 
@@ -912,14 +890,13 @@ msgstr "Variant"
 
 #: data.hpp:118 data.hpp:268
 msgid "Part Number"
-msgstr ""
+msgstr "Delenummer"
 
 #: data.hpp:119 data.hpp:232
 msgid "Revision"
 msgstr "Revisjon"
 
 #: data.hpp:121
-#, fuzzy
 msgid "Temp."
 msgstr "Temp."
 
@@ -944,10 +921,8 @@ msgid "Level 3"
 msgstr "Nivå 3"
 
 #: data.hpp:147 cpu-x-gtk-3.12.ui:1343
-#, fuzzy
-#| msgid "Core(s)"
 msgid "Cores"
-msgstr "Kjerne(r)"
+msgstr "Kjerner"
 
 #: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
@@ -999,37 +974,31 @@ msgstr "ROM-størrelse"
 
 #: data.hpp:244
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI PK"
 
 #: data.hpp:269
-#, fuzzy
-#| msgid "Core #%i"
 msgid "Type"
-msgstr "Kjerne #%i"
+msgstr "Type"
 
 #: data.hpp:270
-#, fuzzy
-#| msgid "Core #%i"
 msgid "Type Detail"
-msgstr "Kjerne #%i"
+msgstr "Tyoedetalj"
 
 #: data.hpp:271
 msgid "Device Locator"
-msgstr ""
+msgstr "Enhetslokasjon"
 
 #: data.hpp:272
 msgid "Bank Locator"
-msgstr ""
+msgstr "Banklokasjon"
 
 #: data.hpp:274
 msgid "Rank"
-msgstr ""
+msgstr "Rang"
 
 #: data.hpp:300
-#, fuzzy
-#| msgid "Code Name"
 msgid "Name"
-msgstr "Kodenavn"
+msgstr "Navn"
 
 #: data.hpp:301
 msgid "Kernel"
@@ -1068,27 +1037,20 @@ msgid "Driver"
 msgstr "Driver"
 
 #: data.hpp:342
-#, fuzzy
-#| msgid "Version"
 msgid "UMD Version"
-msgstr "Versjon"
+msgstr "UMD-versjon"
 
 #: data.hpp:344
-#, fuzzy
 msgid "Compute Unit"
 msgstr "Regneenhet"
 
 #: data.hpp:345
-#, fuzzy
-#| msgid "DeviceID"
 msgid "Device ID"
 msgstr "Enhets-ID"
 
 #: data.hpp:346
-#, fuzzy
-#| msgid "Version"
 msgid "VBIOS Version"
-msgstr "Versjon"
+msgstr "VBIOS-versjon"
 
 #. #-#-#-#-#  source_ui.pot (cpu-x )  #-#-#-#-#
 #. Setting: "Interface" tab
@@ -1109,47 +1071,36 @@ msgid "Power Avg"
 msgstr "Effektgjennomsnitt"
 
 #: data.hpp:352
-#, fuzzy
 msgid "Core Clock"
-msgstr "Minne-klokke"
+msgstr "Kjernefrekvens"
 
 #: data.hpp:353
-#, fuzzy
 msgid "Memory Clock"
-msgstr "Minne-klokke"
+msgstr "Minnefrekvens"
 
 #: data.hpp:354
-#, fuzzy
-#| msgid "Memory"
 msgid "Memory Used"
-msgstr "Minne"
+msgstr "Minne i bruk"
 
 #: data.hpp:355
-#, fuzzy
 msgid "Resizable BAR"
-msgstr "Tilpassbar BAR"
+msgstr "Justerbar BAR"
 
 #: data.hpp:356
 msgid "Vulkan RT"
 msgstr "Vulkan RT"
 
 #: data.hpp:357
-#, fuzzy
-#| msgid "Version"
 msgid "OpenGL Version"
-msgstr "Versjon"
+msgstr "OpenGL-versjon"
 
 #: data.hpp:358
-#, fuzzy
-#| msgid "Version"
 msgid "Vulkan Version"
-msgstr "Versjon"
+msgstr "Vulkan-versjon"
 
 #: data.hpp:359
-#, fuzzy
-#| msgid "Version"
 msgid "OpenCL Version"
-msgstr "Versjon"
+msgstr "OpenCL-versjon"
 
 #: data.hpp:396
 msgid "Score"
@@ -1172,25 +1123,28 @@ msgid "Start text-based user interface (TUI)"
 msgstr "Start tekstbasert brukergrensesnitt (TUI)"
 
 #: main.cpp:62
-#, fuzzy
 msgid "Dump all data on standard output and exit"
-msgstr "Dump all data til forvalgt utdata og avslutt"
+msgstr "Dump all data til standard utdata og avslutt"
 
 #: main.cpp:63
 msgid ""
 "Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
 "arguments accepted by dmidecode)"
 msgstr ""
+"Kjør den innebygde kommandoen dmidecode og avslutt (bruk «--dmidecode --help»"
+" for å skrive ut argumenter dmidecode kan ta)"
 
 #: main.cpp:64
 msgid ""
 "Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
 "arguments accepted by bandwidth)"
 msgstr ""
+"Kjør den innebygde kommandoen bandwidth og avslutt (bruk «--bandwidth --help»"
+" for å skrive ut argumenter bandwidth kan ta)"
 
 #: main.cpp:65
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
-msgstr ""
+msgstr "Sett temperaturenhet (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
@@ -1201,10 +1155,8 @@ msgid "Set default tab (integer)"
 msgstr "Sett forvalgt fane (heltall)"
 
 #: main.cpp:68
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "Velg prosessor-kjerne å overvåke (heltall)"
+msgstr "Velg kjernetype å overvåke (heltall)"
 
 #: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
@@ -1217,16 +1169,12 @@ msgstr ""
 "(heltall)"
 
 #: main.cpp:71
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Sett forvalgt fane (heltall)"
+msgstr "Sett standard minnebrikke (heltall)"
 
 #: main.cpp:72
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Sett forvalgt fane (heltall)"
+msgstr "Sett standard grafikkort (heltall)"
 
 #: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
@@ -1245,9 +1193,8 @@ msgid "Print version and exit"
 msgstr "Skriv ut versjon og avslutt"
 
 #: main.cpp:77
-#, fuzzy
 msgid "Print CPUID values in decimal (default is hexadeximal)"
-msgstr "Skriv ut CPUID-verdier i desimalform (forvalget er heksadesimaler)"
+msgstr "Skriv ut CPUID-verdier i desimalform (standard er heksadesimalform)"
 
 #: main.cpp:78
 msgid "Disable colored output"
@@ -1262,7 +1209,6 @@ msgid "Print required information to paste in an issue"
 msgstr "Skriv ut påkrevd informasjon å lime inn i en feilrapport"
 
 #: main.cpp:81
-#, fuzzy
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
 "Sett tastetildeling for NCurses-modus (a[rrows]|e[macs]|i[nverted-T]|v[im])"
@@ -1280,6 +1226,8 @@ msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
+"Ignorer CPU-verdier rapportert av libcpuid (kommeseparerte verdier blant "
+"annet «temp», «volt», «freq» og «mult»)"
 
 #: main.cpp:95
 msgid "Read CPUID raw data from a given file"
@@ -1313,43 +1261,35 @@ msgid "See the %s license: <%s>\n"
 msgstr "Vis %s-linsensen: <%s>\n"
 
 #: main.cpp:179
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s versjon: %s"
+msgstr "-- %-11s-versjon: %s"
 
 #: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "Skriver logg til filen «%s»..."
 
 #: main.cpp:413
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"%s! %s has received signal %d (%s) and has crashed.%s"
+"Noe er ikke helt riktig! %s (PID %i) har mottatt signalet %d (%s) og krasjet."
 
 #: main.cpp:415
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "%sOops, something was wrong! %s has received signal %d (%s) and has "
-#| "crashed.%s"
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"%s! %s has received signal %d (%s) and has crashed.%s"
+"Noe er ikke helt riktig! %s (PID %i) har mottatt signalet %d (%s) og prøver "
+"å tilbakestille seg."
 
 #: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1357,25 +1297,26 @@ msgstr ""
 "Du kan åpne en ny problemrapport her ved å fylle ut malen som forespurt:"
 
 #: main.cpp:480
-#, fuzzy
 msgid "an error occurred while setting locale"
-msgstr "Kunne ikke sette lokalitet"
+msgstr "en feil oppsto ved oppsett av regionale data"
 
 #: options.cpp:156
 #, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr ""
+msgstr "Den valgte fanen (%u) er ikke synlig"
 
 #: options.cpp:161
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
+msgstr "Den valgte fanen (%u) er ikke et gyldig nummer (%u er maks)"
 
 #: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Den valgte prosessortypen (%u) er ikke et gyldig nummer (%u er maks for "
+"denne prosessoren)"
 
 #: options.cpp:250
 #, c-format
@@ -1383,6 +1324,8 @@ msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
+"Den valgte båndbreddetesten (%u) er ikke et gyldig nummer (%u er maks for "
+"dette systemet)"
 
 #: options.cpp:270
 #, c-format
@@ -1390,6 +1333,8 @@ msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
+"Den valgte minnebrikken (%u) er ikke et gyldig nummer (%u er maks for dette "
+"systemet)"
 
 #: options.cpp:304
 #, c-format
@@ -1397,6 +1342,8 @@ msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
+"Det valgte grafikkortet (%u) er ikke et gyldig nummer (%u er maks for dette "
+"systemet)"
 
 #: options.cpp:341
 #, c-format
@@ -1404,16 +1351,18 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Den valgte prosessorkjernen (%u) er ikke et gyldig nummer (%u er maks for "
+"denne kjernetypen)"
 
 #: options.cpp:373
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "kunne ikke endre prosessortilhørighet til kjerne %u"
 
 #: ui/gtk.cpp:87
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Kunne ikke finne sti for «%s»-filen"
 
 #: ui/gtk.cpp:460
 msgid "No polkit authentication agent found"
@@ -1428,10 +1377,8 @@ msgid "Settings"
 msgstr "Innstillinger"
 
 #: ui/gtk.cpp:711
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Familie"
+msgstr "Basefamilie"
 
 #: ui/gtk.cpp:712
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
@@ -1440,10 +1387,8 @@ msgstr ""
 "BaseFamily+ExtendeFamily)"
 
 #: ui/gtk.cpp:713
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Modell"
+msgstr "Basemodell"
 
 #: ui/gtk.cpp:714
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
@@ -1453,30 +1398,29 @@ msgstr ""
 
 #: ui/gtk.cpp:908
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "Informasjon om EFI-plattformnøkkelens sertifikat"
 
 #: ui/gtk.cpp:943
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Identifiser prosessorsokkelen eller hvor på hovedkortet minneenheten "
+"befinner seg"
 
 #: ui/gtk.cpp:944
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
+msgstr "Identifiser banken hvor minneenheten befinner seg"
 
 #: ui/gtk.cpp:1149
-#, fuzzy
-#| msgid "Version"
 msgid "User Mode Driver Version"
-msgstr "Versjon"
+msgstr "Brukermodus driverversjon"
 
 #: ui/gtk.cpp:1163
 msgid "Vulkan Ray Tracing"
 msgstr "Strålesporing (Vulkan)"
 
 #: ui/gtk.cpp:1358
-#, fuzzy
 msgid "Starting GTK GUI…"
 msgstr "Starter grafisk GTK-brukergrensesnitt…"
 
@@ -1493,9 +1437,9 @@ msgid "Press 'h' to see help."
 msgstr "Trykk \"h\" for å vise hjelp."
 
 #: ui/ncurses.cpp:237
-#, fuzzy, c-format
+#, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr "Velkommen til %s-ncurseshjelpen!\n"
+msgstr "Velkommen til %s-NCurses-hjelpen!\n"
 
 #: ui/ncurses.cpp:238
 msgid "This help describes how to use this Text-based User Interface."
@@ -1518,111 +1462,88 @@ msgstr ""
 "fane."
 
 #: ui/ncurses.cpp:243
-#, fuzzy
 msgid "Press 'h' key to see this help."
-msgstr "\tTrykk \"h\"-tasten for å se denne hjelpen.\n"
+msgstr "Trykk «h»-tasten for å se denne hjelpen."
 
 #: ui/ncurses.cpp:244
-#, fuzzy
 msgid "Press 'q' key to exit."
-msgstr "\tTrykk \"q\"-tast for å avslutte.\n"
+msgstr "Trykk på «q»-tasten for å avslutte."
 
 #: ui/ncurses.cpp:246
 msgid "CPU tab:"
 msgstr "Prosessor-fane:"
 
 #: ui/ncurses.cpp:247
-#, fuzzy
 msgid "Press 'next page' key to decrease core type number to monitor."
 msgstr ""
-"\tTrykk \"nedover-piltast\" ↓ for å senke kjerneantall å holde oppsikt med.\n"
+"Trykk på «neste side»-tasten for å senke antall kjernetyper som overvåkes."
 
 #: ui/ncurses.cpp:248
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'previous page' key to increase core type number to monitor."
 msgstr ""
-"\tTrykk \"oppover-piltast\" ↑ for å øke kjerneantallet å holde oppsyn med.\n"
+"Trykk på «forrige side»-tasten for å øke antall kjernetyper som overvåkes."
 
 #: ui/ncurses.cpp:249
-#, fuzzy
 msgid "Press 'down' key to decrease CPU core number to monitor."
 msgstr ""
-"\tTrykk \"nedover-piltast\" ↓ for å senke kjerneantall å holde oppsikt med.\n"
+"Trykk på «ned»-tasten for å gå nedover prosessorkjernene for overvåking."
 
 #: ui/ncurses.cpp:250
-#, fuzzy
-#| msgid "\tPress 'up' key to increase core number to monitor.\n"
 msgid "Press 'up' key to increase CPU core number to monitor."
 msgstr ""
-"\tTrykk \"oppover-piltast\" ↑ for å øke kjerneantallet å holde oppsyn med.\n"
+"Trykk på «opp»-tasten for å gå oppover prosessorkjernene for overvåking."
 
 #: ui/ncurses.cpp:252
 msgid "Caches tab:"
 msgstr "Fane for hurtiglagre:"
 
 #: ui/ncurses.cpp:253
-#, fuzzy
 msgid "Press 'down' key to switch to previous test."
-msgstr "\tTrykk \"nedovertast\" ↓ for å bytte til forrige test.\n"
+msgstr "Trykk på «ned»-tasten for å bytte til den forrige testen."
 
 #: ui/ncurses.cpp:254
-#, fuzzy
 msgid "Press 'up' key to switch to next test."
-msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
+msgstr "Trykk på «opp»-tasten for å bytte til den neste testen."
 
 #: ui/ncurses.cpp:256
 msgid "Bench tab:"
 msgstr "Ytelsestestfane:"
 
 #: ui/ncurses.cpp:257
-#, fuzzy
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr "\tTrykk \"nedover-piltast\" ↓ for å senke ytelsestestens varighet.\n"
+msgstr "Trykk på «ned»-tasten for å senke testens varighet."
 
 #: ui/ncurses.cpp:258
-#, fuzzy
-#| msgid "\tPress 'up' key to increment benchmark duration.\n"
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "\tTrykk \"oppovertast\" ↑ for å endre ytelsestestens varighet.\n"
+msgstr "Trykk på «opp»-tasten for å øke testens varighet."
 
 #: ui/ncurses.cpp:259
-#, fuzzy
-#| msgid "\tPress 'next page' key to decrement number of threads to use.\n"
 msgid "Press 'next page' key to decrement number of threads to use."
-msgstr "\tTrykk \"neste side-tast\" for å senke antall tråder i bruk.\n"
+msgstr "Trykk på «neste side»-tasten for å senke antallet tråder som brukes."
 
 #: ui/ncurses.cpp:260
-#, fuzzy
-#| msgid "\tPress 'previous page' key to increment number of threads to use.\n"
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "\tTrykk \"forrige side-tast\" for å øke antall tråder i bruk.\n"
+msgstr "Trykk på «forrige side»-tasten for å øke antallet tråder som brukes."
 
 #: ui/ncurses.cpp:261
-#, fuzzy
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "\tTrykk \"s\"-tast for å starte/stoppe primtall (treg) ytelsestest.\n"
+msgstr "Trykk på «s»-tasten for å starte/stoppe primtall (treg)-testen."
 
 #: ui/ncurses.cpp:262
-#, fuzzy
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "\tTrykk \"f\"-tast for å starte/stoppe primtall (rask) ytelsestest.\n"
+msgstr "Trykk på «f»-tasten for å starte/stoppe primtall (rask)-testen."
 
 #: ui/ncurses.cpp:264
-#, fuzzy
-#| msgid "Graphics"
 msgid "Graphics tab:"
-msgstr "Grafikk"
+msgstr "Grafikkfane:"
 
 #: ui/ncurses.cpp:265
-#, fuzzy
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "\tTrykk \"nedovertast\" ↓ for å bytte til forrige test.\n"
+msgstr "Trykk på «ned»-tasten for å bytte til forrige grafikkort."
 
 #: ui/ncurses.cpp:266
-#, fuzzy
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "\tTrykk \"nedovertast\" ↑ for å bytte til neste test.\n"
+msgstr "Trykk på «opp»-tasten for å bytte til neste grafikkort."
 
 #: ui/ncurses.cpp:268
 msgid "Press any key to exit this help."
@@ -1651,19 +1572,18 @@ msgid "cannot find unit in '%s' string at position %i"
 msgstr "finner ikke enheten «%s»-streng i posisjon %i"
 
 #: util.cpp:327
-#, fuzzy, c-format
-#| msgid "an error occurred while opening file '%s' (%s)"
+#, c-format
 msgid "an error occurred while opening file '%s'"
-msgstr "Kunne ikke åpne fil \"%s\" (%s)"
+msgstr "en feil oppsto under åpning av filen «%s»"
 
 #: util.cpp:372
-#, fuzzy, c-format
+#, c-format
 msgid "an error occurred while running command '%s'"
-msgstr "Kunne ikke kjøre kommandoen \"%s\" (%s)"
+msgstr "en feil oppsto under kjøring av kommandoen «%s»"
 
 #: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() er ikke støttet på dette operativsystemet"
 
 #: util.hpp:78
 msgid "bytes"
@@ -1692,12 +1612,12 @@ msgstr "TB"
 #. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
 msgid "PB"
-msgstr ""
+msgstr "PB"
 
 #. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
 #: util.hpp:91
 msgid "EB"
-msgstr ""
+msgstr "EB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:94
@@ -1706,47 +1626,36 @@ msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: util.hpp:96
-#, fuzzy
-#| msgid "MB"
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: util.hpp:98
-#, fuzzy
-#| msgid "GB"
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: util.hpp:100
-#, fuzzy
-#| msgid "TB"
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
 #: util.hpp:102
-#, fuzzy
-#| msgid "KiB"
 msgid "PiB"
-msgstr "KiB"
+msgstr "PiB"
 
 #. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
 #: util.hpp:104
-#, fuzzy
-#| msgid "KiB"
 msgid "EiB"
-msgstr "KiB"
+msgstr "EiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
 msgstr "Start nisse"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
 msgid "Privileges are required to gather some information"
-msgstr "Superbrukerprivilegier kreves for at ting skal virke"
+msgstr "Ekstra rettigheter trengs for å innsamle noe informasjon"
 
 #: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
@@ -1754,20 +1663,17 @@ msgstr "Hurtiglager"
 
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5946
-#, fuzzy
 msgid "Refresh time"
-msgstr "Gjenoppfriskningstid"
+msgstr "Oppdateringshastighet"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5970
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "Drakt"
+msgstr "Tekstdrakt"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5985
@@ -1777,19 +1683,17 @@ msgstr "Automatisk"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
-msgstr ""
+msgstr "Blå for lys drakt"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "Gul for mørk drakt"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:6000
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Temperatur"
+msgstr "Temperaturenhet"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6051
@@ -1808,30 +1712,23 @@ msgstr "Forvalgt hurtiglagertekst"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6120
-#, fuzzy
 msgid "Print CPUID values in decimal"
-msgstr "Skriv ut CPUID-verdier i desimalform (forvalget er heksadesimaler)"
+msgstr "Skriv ut CPUID-verdier i desimalform"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6153
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Default graphic card"
-msgstr "Sett forvalgt fane (heltall)"
+msgstr "Standardgrafikkort"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6177
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default core type"
-msgstr "Forvalgt hurtiglagertekst"
+msgstr "Standard kjernetype"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6201
-#, fuzzy
-#| msgid "Default cache test"
 msgid "Default memory stick"
-msgstr "Forvalgt hurtiglagertekst"
+msgstr "Standard minnebrikke"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6229
@@ -1839,18 +1736,12 @@ msgid "Startup"
 msgstr "Oppstart"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s er fri programvare som henter info om\n"
-"prosessor, hovedkort, med mer."
+msgstr "Samler inn informasjon om CPU, hovedkort og mer"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;system;kjerne;fart;klokkehastighet;Intel;AMD;hovedkort;"
 
 #~ msgid "Run embedded command dmidecode and exit"
 #~ msgstr "Kjør den innebygde kommandoen dmidecode og avslutt"
