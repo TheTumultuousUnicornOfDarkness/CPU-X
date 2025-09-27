@@ -1,18 +1,18 @@
 # Copyright © 2014-2025 The Tumultuous Unicorn Of Darkness
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2017-2018
+# Pavel Borecki <pavel.borecki@gmail.com>, 2017-2018, 2025.
 # Jiri Tersel <jiri.tersel@seznam.cz>, 2019.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
 # cosita official <kokosove18@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2022-11-03 07:08+0000\n"
-"Last-Translator: cosita official <kokosove18@gmail.com>\n"
+"PO-Revision-Date: 2025-09-27 20:01+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
 "cs/>\n"
 "Language: cs_CZ\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
@@ -38,7 +38,7 @@ msgstr ""
 
 #: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
-msgstr ""
+msgstr "Sekvenční 256 bitová čtení"
 
 #: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
@@ -203,10 +203,9 @@ msgid "in %u seconds"
 msgstr "za %u sekund"
 
 #: core/benchmarks.cpp:130
-#, fuzzy, c-format
-#| msgid "Starting benchmark"
+#, c-format
 msgid "Starting benchmark with %u threads"
-msgstr "Spouštění výkonnostního testu"
+msgstr "Spouštění výkonnostního testu s %u vlákny"
 
 #: core/benchmarks.cpp:153
 msgid "an error occurred while starting benchmark"
@@ -362,10 +361,9 @@ msgid "OpenCL is not supported with your GPU vendor (0x%X)"
 msgstr "OpenCL není podporován vaším vendorem GPU (0x%X)"
 
 #: core/libopencl.cpp:204
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get name for device %u (%s)"
-msgstr "nepodařilo se zavolat knihovnu libcpuid (%s)"
+msgstr "nepodařilo se získat název pro zařízení %u (%s)"
 
 #: core/libopencl.cpp:212
 #, fuzzy, c-format
@@ -1810,52 +1808,52 @@ msgstr ""
 #. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
 msgid "PB"
-msgstr ""
+msgstr "PB"
 
 #. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
 #: util.hpp:91
 msgid "EB"
-msgstr ""
+msgstr "EB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:94
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
 #: util.hpp:96
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
 #: util.hpp:98
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
 #: util.hpp:100
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
 #: util.hpp:102
 msgid "PiB"
-msgstr ""
+msgstr "PiB"
 
 #. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
 #: util.hpp:104
 msgid "EiB"
-msgstr ""
+msgstr "EiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
-msgstr ""
+msgstr "Spustit proces služby"
 
 #: cpu-x-gtk-3.12.ui:56
-#, fuzzy
-#| msgid "Root privileges are required to work properly"
 msgid "Privileges are required to gather some information"
-msgstr "Pro správné fungování je třeba oprávnění správce systému"
+msgstr ""
+"Pro získání některých informací jsou zapotřebí oprávnění na úrovni správce "
+"systému"
 
 #: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
@@ -1863,7 +1861,7 @@ msgstr "Mezipaměť"
 
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5946
@@ -1873,71 +1871,67 @@ msgstr ""
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5970
 msgid "Text theme"
-msgstr ""
+msgstr "Vzhled textu"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5985
 msgid "Automatic"
-msgstr ""
+msgstr "Automaticky"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
-msgstr ""
+msgstr "Modré pro světlý vzhled"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "Žluté pro tmavý vzhled"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:6000
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit"
-msgstr "Teplota"
+msgstr "Jednotka teploty"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6051
 msgid "Default tab"
-msgstr ""
+msgstr "Výchozí panel"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6064
 msgid "Default CPU core"
-msgstr ""
+msgstr "Výchozí jádro procesoru"
 
 #. Setting: default cache test at startup
 #: cpu-x-gtk-3.12.ui:6077
 msgid "Default cache test"
-msgstr ""
+msgstr "Výchozí test mezipaměti"
 
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6120
 msgid "Print CPUID values in decimal"
-msgstr ""
+msgstr "Vypsat hodnoty CPUID desítkově"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6153
-#, fuzzy
-#| msgid "Set default tab (integer)"
 msgid "Default graphic card"
-msgstr "Nastavit výchozí kartu (celočíselná hodnota)"
+msgstr "Výchozí grafická karta"
 
 #. Setting: default CPU core at startup
 #: cpu-x-gtk-3.12.ui:6177
 msgid "Default core type"
-msgstr ""
+msgstr "Výchozí typ jádra"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6201
 msgid "Default memory stick"
-msgstr ""
+msgstr "Výchozí modul paměti"
 
 #. Setting: "Startup" tab
 #: cpu-x-gtk-3.12.ui:6229
 msgid "Startup"
-msgstr ""
+msgstr "Po spuštění"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 msgid "Gathers information on CPU, motherboard and more"
@@ -1945,7 +1939,7 @@ msgstr "Shromažďuje informace o procesoru, základní desce a další"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "Procesor;CPU;systém;jádro;rychlost;takt;Intel;AMD;základní deska;"
 
 #~ msgid "Run embedded command dmidecode and exit"
 #~ msgstr "Spustit vestavěný příkaz dmidecode a skončit"
