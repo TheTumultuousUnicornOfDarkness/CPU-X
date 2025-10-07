@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
 "CPU-X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-10-02 12:02+0000\n"
+"PO-Revision-Date: 2025-10-08 20:07+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/cpu-x/translations/"
 "cs/>\n"
@@ -19,8 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
-"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : "
+"(n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
@@ -256,7 +256,7 @@ msgstr "nepodařilo se zjistit provozní napětí procesoru (náhradní režim)"
 
 #: core/core.cpp:363
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Takty graf. čipu zjišťovány v náhradním režimu"
+msgstr "Takty procesoru zjišťovány v náhradním režimu"
 
 #: core/core.cpp:374
 msgid "failed to retrieve CPU frequency (fallback mode)"
@@ -610,12 +610,12 @@ msgstr "nepodařilo se zavolat vkEnumeratePhysicalDevices (%s)"
 
 #: core/libvulkan.cpp:187
 msgid "No available Vulkan devices"
-msgstr "Žádné dostupné Vulkan zařízení"
+msgstr "Nejsou k dispozici žádná Vulkan zařízení"
 
 #: core/libvulkan.cpp:195
 #, c-format
 msgid "No available physical devices (%s)"
-msgstr "Žádné dostupné fyzické zařízení (%s)"
+msgstr "Nejsou dostupná žádná fyzická zařízení (%s)"
 
 #: core/libvulkan.cpp:258
 #, c-format
@@ -1153,7 +1153,8 @@ msgstr "Nastavit jednotku teploty (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
 
 #: main.cpp:66
 msgid "Set custom time between two refreshes (in seconds)"
-msgstr "Nastavit vlastní prodlevu mezi dvěma obnoveními (v sekundách)"
+msgstr ""
+"Nastavit uživatelsky určenou prodlevu mezi dvěma znovunačteními (v sekundách)"
 
 #: main.cpp:67
 msgid "Set default tab (integer)"
@@ -1319,8 +1320,8 @@ msgstr "Vybraný panel (%u) není platné číslo (%u je maximum)"
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
-"Vybraný typ procesoru (CPU) (%u) není správné číslo (%u je maximum pro tento "
-"procesor)"
+"Vybraný typ procesoru (CPU) (%u) není platné číslo "
+"(%u je pro tento procesor maximum)"
 
 #: options.cpp:250
 #, c-format
@@ -1345,8 +1346,8 @@ msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
-"Vybraná grafická karta (%u) není platné číslo (%u je pro tento systém "
-"maximem)"
+"Vybraná grafická karta (%u) není platné číslo "
+"(%u je pro tento systém maximum)"
 
 #: options.cpp:341
 #, c-format
@@ -1354,8 +1355,8 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
-"Vybrané jádro procesoru (%u) není správné číslo (%u je maximum pro tento typ "
-"jádra)"
+"Vybrané jádro procesoru (%u) není platné číslo "
+"(%u je pro tento typ jádra maximum)"
 
 #: options.cpp:373
 #, c-format
@@ -1396,8 +1397,8 @@ msgstr "BaseModel"
 #: ui/gtk.cpp:714
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
-"Zobrazení procesoru („true“) modelu (computed as "
-"(ExtendedModel<<4)+BaseModel)"
+"Zobrazení procesoru („true“) modelu (vypočítáno jako (ExtendedModel<<4)"
+"+BaseModel)"
 
 #: ui/gtk.cpp:908
 msgid "EFI Platform Key certificate information"
@@ -1418,7 +1419,7 @@ msgstr ""
 
 #: ui/gtk.cpp:1149
 msgid "User Mode Driver Version"
-msgstr "Použit verzi ovladače režimu"
+msgstr "Verze ovladače uživatelského režimu"
 
 #: ui/gtk.cpp:1163
 msgid "Vulkan Ray Tracing"
@@ -1477,7 +1478,7 @@ msgstr "Stiskem klávesy „Q“ aplikaci ukončíte."
 
 #: ui/ncurses.cpp:246
 msgid "CPU tab:"
-msgstr "Procesor:"
+msgstr "Karta Procesor:"
 
 #: ui/ncurses.cpp:247
 msgid "Press 'next page' key to decrease core type number to monitor."
@@ -1563,7 +1564,7 @@ msgstr "Stiskem klávesy „Šipka nahoru“ přejdete na následující grafick
 
 #: ui/ncurses.cpp:268
 msgid "Press any key to exit this help."
-msgstr "Tuto nápovědu uzavřete stiskem libovolné klávesy."
+msgstr "Tuto nápovědu ukončíte stiskem libovolné klávesy."
 
 #: ui/ncurses.cpp:676
 msgid "Starting NCurses TUI…"
