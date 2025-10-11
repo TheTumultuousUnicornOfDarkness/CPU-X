@@ -44,6 +44,8 @@
 
 #define LOG_FILE "/tmp/cpu-x.log"
 
+static int set_locales();
+
 
 /************************* Options-related functions *************************/
 
@@ -214,6 +216,7 @@ static bool check_required_argument_is_digit(const std::string binary_name)
 /* Parse arguments and set some flags */
 static void parse_arguments(std::list<std::string> &cmd_args)
 {
+	bool call_set_locales = true;
 	int c, longindex;
 	std::string shortopts;
 	std::vector<char*> cargs;
@@ -354,6 +357,7 @@ static void parse_arguments(std::list<std::string> &cmd_args)
 				}
 				else if(!strcmp(longopts[longindex].name, "issue-fmt"))
 				{
+					call_set_locales = false;
 					Options::set_color(false);
 					Options::set_issue(true);
 					Options::set_output_type(OUT_DUMP);
@@ -390,6 +394,10 @@ static void parse_arguments(std::list<std::string> &cmd_args)
 				exit(EXIT_FAILURE);
 		}
 	}
+
+	/* Text localization */
+	if(call_set_locales)
+		set_locales();
 }
 
 
@@ -461,11 +469,11 @@ static void sighandler_abrt(int signum)
 	common_sighandler(signum, false);
 }
 
- /* Enable internationalization support */
-#if HAS_GETTEXT
+/* Enable internationalization support */
 static int set_locales(void)
 {
-	int err;
+	int err = 0;
+#if HAS_GETTEXT
 	const char *TEXTDOMAINDIR = std::getenv("TEXTDOMAINDIR") ? std::getenv("TEXTDOMAINDIR") : LOCALEDIR;
 
 	/* Apply locale */
@@ -476,21 +484,17 @@ static int set_locales(void)
 
 	/* Check if something is wrong */
 	if(err)
-	{
 		MSG_ERROR("%s", _("an error occurred while setting locale"));
-		return 1;
-	}
-	else
-		return 0;
-}
 #endif /* HAS_GETTEXT */
+
+	return err;
+}
 
 int main(int argc, char *argv[])
 {
-#if HAS_GETTEXT
-	/* Text localization */
-	set_locales();
-#endif /* HAS_GETTEXT */
+	/* Parse arguments */
+	std::list<std::string> args(argv, argv + argc);
+	parse_arguments(args);
 
 	/* Signal handlers */
 	std::signal(SIGILL,  sighandler_fatal);
@@ -499,7 +503,6 @@ int main(int argc, char *argv[])
 	std::signal(SIGABRT, sighandler_abrt);
 
 	/* Init variables */
-	std::list<std::string> args(argv, argv + argc);
 	Data data; // Note: must be done after set_locales() to translate all labels
 	Options::init_page_visibility();
 
@@ -507,7 +510,6 @@ int main(int argc, char *argv[])
 #if HAS_GTK
 	load_settings();
 #endif /* HAS_GTK */
-	parse_arguments(args);
 	check_environment_variables(data);
 	MSG_DEBUG("Started %s with PID %i", PRGNAME, getppid());
 	if(Options::get_output_type() > OUT_NO_CPUX)
