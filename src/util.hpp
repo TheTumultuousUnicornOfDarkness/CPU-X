@@ -80,32 +80,45 @@
 #define MAXSTR                80       /* Max string */
 
 #define UNIT_B                _("bytes")
+#define TOKEN_UNIT_B          "@0B@"
 /* SI unit prefixes */
 // TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #define UNIT_KB               _("kB")
+#define TOKEN_UNIT_KB         "@KB@"
 // TRANSLATORS: initials for megabyte (10⁶): please put initials (keep it short)
 #define UNIT_MB               _("MB")
+#define TOKEN_UNIT_MB         "@MB@"
 // TRANSLATORS: initials for gigabyte (10⁹): please put initials (keep it short)
 #define UNIT_GB               _("GB")
+#define TOKEN_UNIT_GB         "@GB@"
 // TRANSLATORS: initials for terabyte (10¹²): please put initials (keep it short)
 #define UNIT_TB               _("TB")
+#define TOKEN_UNIT_TB         "@TB@"
 // TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #define UNIT_PB               _("PB")
+#define TOKEN_UNIT_PB         "@PB@"
 // TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
 #define UNIT_EB               _("EB")
+#define TOKEN_UNIT_EB         "@EB@"
 /* Binary unit prefixes  */
 // TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
-#define UNIT_KIB               _("KiB")
+#define UNIT_KIB              _("KiB")
+#define TOKEN_UNIT_KIB        "@KIB@"
 // TRANSLATORS: initials for mebibyte (2²⁰): please put initials (keep it short)
-#define UNIT_MIB               _("MiB")
+#define UNIT_MIB              _("MiB")
+#define TOKEN_UNIT_MIB        "@MIB@"
 // TRANSLATORS: initials for gibibyte (2³⁰): please put initials (keep it short)
-#define UNIT_GIB               _("GiB")
+#define UNIT_GIB              _("GiB")
+#define TOKEN_UNIT_GIB        "@GIB@"
 // TRANSLATORS: initials for tebibyte (2⁴⁰): please put initials (keep it short)
-#define UNIT_TIB               _("TiB")
+#define UNIT_TIB              _("TiB")
+#define TOKEN_UNIT_TIB        "@TIB@"
 // TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
-#define UNIT_PIB               _("PiB")
+#define UNIT_PIB              _("PiB")
+#define TOKEN_UNIT_PIB        "@PIB@"
 // TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
-#define UNIT_EIB               _("EiB")
+#define UNIT_EIB              _("EiB")
+#define TOKEN_UNIT_EIB        "@EIB@"
 
 /* Linux-specific paths definition */
 #define SYS_DMI               "/sys/devices/virtual/dmi/id"

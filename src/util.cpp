@@ -163,7 +163,8 @@ void string_trim(std::string &str)
 	string_ltrim(str);
 }
 
-#define TOKEN_LEN 4
+#define SI_UNIT_TOKEN_LEN 4
+#define TOKEN_BINARY_UNIT_LEN 5
 /* Duplicate a string and set data size unit */
 std::string string_set_size_unit(char *str_src)
 {
@@ -176,40 +177,48 @@ std::string string_set_size_unit(char *str_src)
 
 	while(i < len)
 	{
-		if((str_src[i] == '@') && (i + TOKEN_LEN - 1 < len) && (str_src[i + TOKEN_LEN - 1] == '@'))
+		if(str_src[i] == '@')
 		{
 			std::string buff = "";
 			/* Set unit in destination string */
-			if(!strncmp(&str_src[i], "@0B@", TOKEN_LEN))
-				buff = UNIT_B;
-			else if(!strncmp(&str_src[i], "@KB@", TOKEN_LEN))
-				buff = UNIT_KB;
-			else if(!strncmp(&str_src[i], "@MB@", TOKEN_LEN))
-				buff = UNIT_MB;
-			else if(!strncmp(&str_src[i], "@GB@", TOKEN_LEN))
-				buff = UNIT_GB;
-			else if(!strncmp(&str_src[i], "@TB@", TOKEN_LEN))
-				buff = UNIT_TB;
-			else if(!strncmp(&str_src[i], "@PB@", TOKEN_LEN))
-				buff = UNIT_PB;
-			else if(!strncmp(&str_src[i], "@EB@", TOKEN_LEN))
-				buff = UNIT_EB;
-			else if(!strncmp(&str_src[i], "@KIB@", TOKEN_LEN))
-				buff = UNIT_KIB;
-			else if(!strncmp(&str_src[i], "@MIB@", TOKEN_LEN))
-				buff = UNIT_MIB;
-			else if(!strncmp(&str_src[i], "@GIB@", TOKEN_LEN))
-				buff = UNIT_GIB;
-			else if(!strncmp(&str_src[i], "@TIB@", TOKEN_LEN))
-				buff = UNIT_TIB;
-			else if(!strncmp(&str_src[i], "@PIB@", TOKEN_LEN))
-				buff = UNIT_PIB;
-			else if(!strncmp(&str_src[i], "@EIB@", TOKEN_LEN))
-				buff = UNIT_EIB;
-			else
+			if((i + SI_UNIT_TOKEN_LEN - 1 < len) && (str_src[i + SI_UNIT_TOKEN_LEN - 1] == '@'))
+			{
+				if(!strncmp(&str_src[i], TOKEN_UNIT_B, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_B;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_KB, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_KB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_MB, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_MB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_GB, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_GB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_TB, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_TB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_PB, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_PB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_EB, SI_UNIT_TOKEN_LEN))
+					buff = UNIT_EB;
+				i += SI_UNIT_TOKEN_LEN;
+			}
+			else if((i + TOKEN_BINARY_UNIT_LEN - 1 < len) && (str_src[i + TOKEN_BINARY_UNIT_LEN - 1] == '@'))
+			{
+				if(!strncmp(&str_src[i], TOKEN_UNIT_KIB, TOKEN_BINARY_UNIT_LEN))
+					buff = UNIT_KIB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_MIB, TOKEN_BINARY_UNIT_LEN))
+					buff = UNIT_MIB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_GIB, TOKEN_BINARY_UNIT_LEN))
+					buff = UNIT_GIB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_TIB, TOKEN_BINARY_UNIT_LEN))
+					buff = UNIT_TIB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_PIB, TOKEN_BINARY_UNIT_LEN))
+					buff = UNIT_PIB;
+				else if(!strncmp(&str_src[i], TOKEN_UNIT_EIB, TOKEN_BINARY_UNIT_LEN))
+					buff = UNIT_EIB;
+				i += TOKEN_BINARY_UNIT_LEN;
+			}
+			if(buff.length() == 0)
 				MSG_ERROR(_("cannot find unit in '%s' string at position %i"), str_src, i);
-			str_dst += buff;
-			i += TOKEN_LEN;
+			else
+				str_dst += buff;
 		}
 		else
 		{
@@ -220,7 +229,8 @@ std::string string_set_size_unit(char *str_src)
 
 	return str_dst;
 }
-#undef TOKEN_LEN
+#undef SI_UNIT_TOKEN_LEN
+#undef TOKEN_BINARY_UNIT_LEN
 
 /* Get a string containing temperature with proper unit */
 std::string string_with_temperature_unit(const double temp_celsius)
