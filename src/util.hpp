@@ -24,11 +24,13 @@
 #ifndef _UTIL_HPP_
 #define _UTIL_HPP_
 
-#include <unistd.h>
-#include <cstdint>
-#include <string>
-#include <list>
-#include "logger.hpp"
+#ifdef __cplusplus
+# include <unistd.h>
+# include <cstdint>
+# include <string>
+# include <list>
+# include "logger.hpp"
+#endif /* __cplusplus */
 
 #if HAS_GETTEXT
 # include <libintl.h>
@@ -67,8 +69,10 @@
 #define MSG_ERRNO(fmt, ...)   Logger::log(LOG_ERROR,    true,  string_format(fmt, __VA_ARGS__))
 #if HAS_GETTEXT
 # define _(msg)               gettext(msg)
+# define G_(msg)              gettext(msg)
 #else
 # define _(msg)               msg
+# define G_(msg)              msg
 #endif /* HAS_GETTEXT */
 #define N_(msg)               msg
 
@@ -117,6 +121,7 @@
 #define DEV_VENDOR_ID_NVIDIA 0x10DE
 
 
+#ifdef __cplusplus
 /* PrefixUnit class */
 
 class PrefixUnit
@@ -223,6 +228,7 @@ int execvp_cpp(const char* file, const char* const (&argv)[N])
 	MSG_DEBUG("execvp: %s", args.c_str());
 	return execvp(file, const_cast<char* const*>(argv));
 }
+#endif /* __cplusplus */
 
 
 #endif /* _UTIL_HPP_ */

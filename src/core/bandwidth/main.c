@@ -50,17 +50,10 @@
 /* Needed by CPU-X */
 #include <pthread.h>
 #include "libbandwidth.h"
+#include "../../util.hpp"
 #if HAS_LIBCPUID
 # include <libcpuid/libcpuid.h>
 #endif
-#if HAS_GETTEXT
-# define _(msg)               gettext(msg)
-# define G_(msg)              gettext(msg)
-#else
-# define _(msg)               msg
-# define G_(msg)              msg
-#endif /* HAS_GETTEXT */
-#define N_(msg)               msg
 
 static enum {
 	OUTPUT_MODE_GRAPH=1,

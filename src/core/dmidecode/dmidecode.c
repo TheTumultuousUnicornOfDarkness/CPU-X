@@ -86,12 +86,7 @@
 
 /* CPU-X */
 #include "../../daemon/daemon.h"
-#if HAS_GETTEXT
-# define _(msg)               gettext(msg)
-#else
-# define _(msg)               msg
-#endif /* HAS_GETTEXT */
-#define N_(msg)               msg
+#include "../../util.hpp"
 DmidecodeData *cpux_data;
 #define STR_LEN 24
 
