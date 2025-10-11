@@ -620,7 +620,6 @@ static std::string get_gpu_interface_info(std::string drm_path, std::string type
 
 #define FOPEN_TO_ITEM(item, ...)        item.ret = fopen_to_str(item.value, ##__VA_ARGS__)
 #define POPEN_TO_ITEM(item, ...)        item.ret = popen_to_str(item.value, ##__VA_ARGS__)
-#define POPEN_DRI_TO_ITEM(item, ...)    item.ret = can_access_sys_debug_dri(data) ? popen_to_str(item.value, ##__VA_ARGS__) : -1
 #define SET_LABEL_VALUE_NO_CONV(item, fmt, ...) item_count++; \
                                         if(!item.ret) card.item.value = string_format(fmt, ##__VA_ARGS__); \
                                         else error_count++
@@ -749,12 +748,15 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 				// vbios_version not available
 				// temperature obtained above
 				// usage not available
-				POPEN_DRI_TO_ITEM(core_voltage, "awk -F '(vddc: | vddci:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card.drm_card_number);
 				// power_avg not available
-				POPEN_DRI_TO_ITEM(core_clock,   "awk -F '(sclk: | mclk:)'  'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card.drm_card_number);
-				POPEN_DRI_TO_ITEM(mem_clock,    "awk -F '(mclk: | vddc:)'  'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card.drm_card_number);
 				// mem_used not available
 				// mem_total not available
+				if(can_access_sys_debug_dri(data))
+				{
+					POPEN_TO_ITEM(core_voltage, "awk -F '(vddc: | vddci:)' 'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card.drm_card_number);
+					POPEN_TO_ITEM(core_clock,   "awk -F '(sclk: | mclk:)'  'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card.drm_card_number);
+					POPEN_TO_ITEM(mem_clock,    "awk -F '(mclk: | vddc:)'  'NR==2 { print $2 }' %s/%u/radeon_pm_info", SYS_DEBUG_DRI, card.drm_card_number);
+				}
 				core_voltage.divisor = 1e3;
 				core_clock.divisor   = 100.0;
 				mem_clock.divisor    = 100.0;
@@ -782,19 +784,22 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 			case GpuDrv::GPUDRV_NOUVEAU:
 			case GpuDrv::GPUDRV_NOUVEAU_BUMBLEBEE:
 			{
-				std::string pstate;
-				if(popen_to_str(pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ", SYS_DEBUG_DRI, card.drm_card_number))
-					break;
-				MSG_DEBUG("gpu_monitoring: nouveau: pstate=%s", pstate.c_str());
 				// vbios_version not available
 				// temperature obtained above
 				// usage not available
 				// core_voltage not available
 				// power_avg not available
-				POPEN_DRI_TO_ITEM(core_clock, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate.c_str());
-				POPEN_DRI_TO_ITEM(mem_clock,  "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate.c_str());
 				// mem_used not available
 				// mem_total not available
+				if(can_access_sys_debug_dri(data))
+				{
+					std::string pstate;
+					if(popen_to_str(pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ", SYS_DEBUG_DRI, card.drm_card_number))
+						break;
+					MSG_DEBUG("gpu_monitoring: nouveau: pstate=%s", pstate.c_str());
+					POPEN_TO_ITEM(core_clock, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate.c_str());
+					POPEN_TO_ITEM(mem_clock,  "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate.c_str());
+				}
 				break;
 			}
 			default:
