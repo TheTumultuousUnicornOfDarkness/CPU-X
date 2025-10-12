@@ -171,6 +171,7 @@ const Package_DB package_amd[] = {
 	{ "Hawk Point",               NULL,                       "FP7/FP8"          },
 	/* Zen 5 */
 	{ "Turin",                    NULL,                       "SP5 (LGA-6096)"   },
+	{ "Shimada Peak",             NULL,                       "sTR5 (LGA-4844)"  },
 	{ "Granite Ridge",            NULL,                       "AM5 (LGA-1718)"   },
 	{ "Strix Point",              NULL,                       "FP8"              },
 	{ "Krackan Point",            NULL,                       "FP8"              },
