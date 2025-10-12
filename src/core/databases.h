@@ -54,6 +54,7 @@ const Package_DB package_intel[] = {
 	{ NULL,                     "Intel(R) Core(TM) i5-4300U CPU",    "BGA 1168"   },
 	{ NULL,                     "Intel(R) Core(TM) i7-4600U CPU",    "BGA 1168"   },
 	{ NULL,                     "Intel(R) Core(TM) i7-4790 CPU",     "LGA 1150"   },
+	{ NULL,                     "Intel(R) Core(TM) i7-4930K CPU",    "LGA 2011"   },
 	{ NULL,                     "Intel(R) Core(TM) i7-5775C CPU",    "LGA 1150"   },
 	{ NULL,                     "Intel(R) Core(TM) i7-6560U CPU",    "BGA 1356"   },
 	{ NULL,                     "Intel(R) Core(TM) i5-6400 CPU",     "LGA 1151"   },
