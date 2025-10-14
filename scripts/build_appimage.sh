@@ -114,7 +114,7 @@ download_file "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main
 	/usr/lib/gvfs/* \
 	/usr/lib/gio/modules/libdconfsettings.so \
 	/usr/lib/gtk-*/*/immodules/*.so \
-	/usr/lib/gdk-pixbuf-*/*/loaders/*
+	/usr/lib/gdk-pixbuf-*/*/loaders/*svg*
 ./lib4bin \
 	--strip \
 	--with-wrappe \
