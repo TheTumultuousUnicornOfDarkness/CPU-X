@@ -20,7 +20,7 @@
 ;=============================================================================
 
 bits	64
-cpu	ia64
+cpu	default
 
 ; Note:
 ; Unix ABI says integer param are put in these registers in this order:
