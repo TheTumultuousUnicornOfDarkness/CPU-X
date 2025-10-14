@@ -38,7 +38,7 @@
 %endif
 
 bits	64
-cpu	ia64
+cpu	default
 
 global	CopyWithMainRegisters
 global	_CopyWithMainRegisters
