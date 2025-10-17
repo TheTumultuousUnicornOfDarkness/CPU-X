@@ -132,7 +132,7 @@ download_file "https://github.com/AppImage/appimagetool/releases/download/contin
 download_file "https://github.com/VHSgunzo/uruntime/releases/latest/download/uruntime-appimage-squashfs-lite-$ARCH"
 APPIMAGE_EXTRACT_AND_RUN=1 "./appimagetool-$ARCH.AppImage" \
 	--mksquashfs-opt -Xcompression-level --mksquashfs-opt 22 \
-	--mksquashfs-opt -b --mksquashfs-opt 1M \
+	--mksquashfs-opt -b --mksquashfs-opt 1M --no-appstream \
 	--runtime-file "./uruntime-appimage-squashfs-lite-$ARCH" \
 	"${APPIMAGETOOL_OPTIONS[@]}" \
 	"$APPDIR"
