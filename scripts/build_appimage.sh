@@ -81,8 +81,9 @@ case "$ID" in
 		pushd "/tmp"
 		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/libxml2-mini-$PKG_TYPE"
 		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/gdk-pixbuf2-mini-$PKG_TYPE"
+		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/librsvg-mini-$PKG_TYPE"
 		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/gtk3-mini-$PKG_TYPE"
-		sudo pacman -U --noconfirm "libxml2-mini-$PKG_TYPE" "gtk3-mini-$PKG_TYPE" "gdk-pixbuf2-mini-$PKG_TYPE"
+		sudo pacman -U --noconfirm "libxml2-mini-$PKG_TYPE" "gtk3-mini-$PKG_TYPE" "librsvg-mini-$PKG_TYPE" "gdk-pixbuf2-mini-$PKG_TYPE"
 		popd
 		;;
 
