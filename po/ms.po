@@ -5,14 +5,15 @@
 # Kazuki278 <muadz.hakim.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Amirul Azhj <amirulazhajzul00@gmail.com>, 2025.
+# Respire <hi@respire.my>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
-"X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
+"CPU-X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-08-11 04:01+0000\n"
-"Last-Translator: Amirul Azhj <amirulazhajzul00@gmail.com>\n"
+"PO-Revision-Date: 2025-10-27 11:02+0000\n"
+"Last-Translator: Respire <hi@respire.my>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/cpu-x/translations/"
 "ms/>\n"
 "Language: ms\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
@@ -652,7 +653,7 @@ msgstr "gagal memanggil libcpuid (%s)"
 #: core/libvulkan.cpp:262
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
-msgstr ""
+msgstr "%s tidak tersokong untuk peranti %u, gunakan deviceID untuk padanan"
 
 #: core/libvulkan.cpp:322
 #, c-format
@@ -1583,11 +1584,11 @@ msgstr ""
 
 #: ui/ncurses.cpp:266
 msgid "Press 'up' key to switch to next graphic card."
-msgstr ""
+msgstr "Tekan butang 'atas' untuk ke kad grafik seterusnya."
 
 #: ui/ncurses.cpp:268
 msgid "Press any key to exit this help."
-msgstr ""
+msgstr "Tekan mana-mana butang untuk keluar."
 
 #: ui/ncurses.cpp:676
 #, fuzzy
@@ -1600,16 +1601,18 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"RALAT: pangkalan data terminfo tidak dapat ditemui "
+"(cuba tetapkan pembolehubah TERMINFO)"
 
 #: ui/ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "Gagal menyediakan terminal %s (err=%i); Menggunakan semula %s"
 
 #: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "`%s` tidak ditemui pada rentetan di kedudukan %i"
 
 #: util.cpp:327
 #, fuzzy, c-format
@@ -1625,7 +1628,7 @@ msgstr "satu ralat berlaku ketika memulakan tanda aras"
 
 #: util.cpp:512
 msgid "set_cpu_affinity() not supported on this operating system"
-msgstr ""
+msgstr "set_cpu_affinity() tidak disokong untuk sistem operasi ini"
 
 #: util.hpp:78
 msgid "bytes"
@@ -1711,7 +1714,7 @@ msgstr "Cache"
 
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
-msgstr ""
+msgstr "Tutup"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5946
@@ -1721,12 +1724,12 @@ msgstr ""
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5970
 msgid "Text theme"
-msgstr ""
+msgstr "Tema tulisan"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5985
 msgid "Automatic"
-msgstr ""
+msgstr "Automatik"
 
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5986
@@ -1741,7 +1744,7 @@ msgstr ""
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:6000
 msgid "Temperature unit"
-msgstr ""
+msgstr "Unit suhu"
 
 #. Setting: default tab at startup
 #: cpu-x-gtk-3.12.ui:6051
@@ -1761,7 +1764,7 @@ msgstr ""
 #. Setting: print CPUID values in decimal or hexadecimal
 #: cpu-x-gtk-3.12.ui:6120
 msgid "Print CPUID values in decimal"
-msgstr ""
+msgstr "Paparkan nilai CPUID dalam format perpuluhan"
 
 #. Setting: default graphic card at startup
 #: cpu-x-gtk-3.12.ui:6153
@@ -1787,11 +1790,11 @@ msgstr ""
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
+msgstr "Mengumpul maklumat dari CPU, papan induk dan komponen lain"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;sistem;teras;kelajuan;jam;kadar;Intel;AMD;papan induk;"
 
 #, c-format
 #~ msgid ""
