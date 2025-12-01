@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cpu-x\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-11-30 12:00+0000\n"
+"PO-Revision-Date: 2025-12-01 15:13+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/cpu-x/"
 "translations/fi/>\n"
@@ -158,10 +158,8 @@ msgid "(unavailable)"
 msgstr "(ei saatavilla)"
 
 #: core/benchmarks.cpp:92
-#, fuzzy
-#| msgid "Starting benchmark with %u threads"
 msgid "Updating benchmark status"
-msgstr "Aloitetaan suorituskykymittausta %u säikeellä"
+msgstr "Päivitetään suorituskykymittausten tilaa"
 
 #: core/benchmarks.cpp:95
 msgid "Active"
@@ -208,7 +206,7 @@ msgstr "Aloitetaan suorituskykymittausta %u säikeellä"
 
 #: core/benchmarks.cpp:153
 msgid "an error occurred while starting benchmark"
-msgstr "suorituskykymittausta aloittaessa tapahtui virhe"
+msgstr "suorituskykymittausten aloittamisen aikana tapahtui virhe"
 
 #: core/core.cpp:67
 msgid "Calculating CPU usage"
@@ -224,62 +222,48 @@ msgid "Identifying running system"
 msgstr "Tunnistetaan käynnissä olevaa järjestelmää"
 
 #: core/core.cpp:123
-#, fuzzy
-#| msgid "Identifying running system"
 msgid "failed to identify running system"
-msgstr "Tunnistetaan käynnissä olevaa järjestelmää"
+msgstr "käynnissä olevan järjestelmän tunnistaminen epäonnistui"
 
 #: core/core.cpp:182
-#, fuzzy
-#| msgid "Calculating CPU multipliers"
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Lasketaan CPU-kertoimia"
+msgstr "Lasketaan CPU-kertoimia varatilassa"
 
 #: core/core.cpp:208
 msgid "Retrieving motherboard information in fallback mode"
 msgstr "Emolevyn tietojen hakeminen varatilassa"
 
 #: core/core.cpp:224
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "emolevyn tietojen hakeminen epäonnistui (varatila)"
 
 #: core/core.cpp:267
 msgid "Retrieving CPU temperature in fallback mode"
 msgstr "Suorittimen lämpötilan hakeminen varatilassa"
 
 #: core/core.cpp:315
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "GPU-kellotaajuuksien haku epäonnistui"
+msgstr "Suorittimen lämpötilan hakeminen epäonnistui (varatila)"
 
 #: core/core.cpp:330
 msgid "Retrieving CPU voltage in fallback mode"
 msgstr "Suorittimen jännitteen hakeminen varatilassa"
 
 #: core/core.cpp:349
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "GPU-kellotaajuuksien haku epäonnistui"
+msgstr "Suorittimen jännitteen hakeminen epäonnistui (varatila)"
 
 #: core/core.cpp:363
 msgid "Retrieving CPU frequency in fallback mode"
 msgstr "Suorittimen taajuuden hakeminen varatilassa"
 
 #: core/core.cpp:374
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "GPU-kellotaajuuksien haku epäonnistui"
+msgstr "Suorittimen taajuuden hakeminen epäonnistui (varatila)"
 
 #: core/dmidecode/dmidecode.c:5806
-#, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
-msgstr "tuntematon"
+msgstr "Tuntematon"
 
 #: core/dmidecode/libdmidecode.cpp:50
 msgid "Calling dmidecode"
@@ -318,16 +302,14 @@ msgid "Calling libcpuid for retrieving dynamic data"
 msgstr "Kutsutaan libcpuid jotta saadaan noudettua dynaaminen data"
 
 #: core/libcpuid.cpp:328
-#, fuzzy
-#| msgid "Calling libcpuid for retrieving static data"
 msgid "Calling libcpuid for retrieving CPU MSR static values"
-msgstr "libcpuidin kutsuminen staattisen datan noutamiseksi"
+msgstr ""
+"libcpuidin kutsuminen suorittimen MSR-staattisten arvojen hakemista varten"
 
 #: core/libcpuid.cpp:358
-#, fuzzy
-#| msgid "Calling libcpuid for retrieving dynamic data"
 msgid "Calling libcpuid for retrieving CPU MSR dynamic values"
-msgstr "Kutsutaan libcpuid jotta saadaan noudettua dynaaminen data"
+msgstr ""
+"libcpuidin kutsuminen suorittimen MSR-dynaamisten arvojen hakemista varten"
 
 #: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
@@ -375,16 +357,14 @@ msgid "failed to get name for device %u (%s)"
 msgstr "laitteelle %u (%s) nimen saaminen epäonnistui"
 
 #: core/libopencl.cpp:212
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "failed to get version for device %u (%s)"
-msgstr "laitteelle %u (%s) nimen saaminen epäonnistui"
+msgstr "laitteelle %u (%s) version saaminen epäonnistui"
 
 #: core/libopencl.cpp:243
-#, fuzzy, c-format
-#| msgid "failed to get name for device %u (%s)"
+#, c-format
 msgid "failed to get name for platform %u (%s)"
-msgstr "laitteelle %u (%s) nimen saaminen epäonnistui"
+msgstr "alustalle %u (%s) nimen saaminen epäonnistui"
 
 #: core/libopencl.cpp:251
 #, c-format
@@ -398,10 +378,8 @@ msgstr ""
 "OpenCL-laitteiden lukumäärän löytäminen alustalle '%s %s' (%s) epäonnistui"
 
 #: core/libopencl.cpp:259
-#, fuzzy
-#| msgid "DeviceID"
 msgid "0 device"
-msgstr "Laite-ID"
+msgstr "0 laite"
 
 #: core/libopencl.cpp:268
 #, c-format
@@ -418,10 +396,9 @@ msgid "There is no platform with OpenCL support (%s)"
 msgstr "Ei alustaa OpenCL-tuella (%s)"
 
 #: core/libopencl.cpp:299
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to get all OpenCL platforms (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "kaikkien OpenCL-alustojen hakeminen epäonnistui (%s)"
 
 #: core/libopencl.cpp:307
 #, c-format
@@ -429,10 +406,8 @@ msgid "Unable to find OpenCL driver for vendor %s"
 msgstr "OpenCL-ajuria ei löydy toimittajalle %s"
 
 #: core/libopengl.cpp:178
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create EGL context"
-msgstr "GPU-kellotaajuuksien haku epäonnistui"
+msgstr "EGL-kontekstin luominen epäonnistui"
 
 #: core/libopengl.cpp:189
 #, c-format
@@ -440,44 +415,37 @@ msgid "failed to destroy EGL context (%s)"
 msgstr "EGL-kontekstin (%s) tuhoaminen epäonnistui"
 
 #: core/libopengl.cpp:212
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglChooseConfig (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "eglChooseConfigin kutsuminen epäonnistui (%s)"
 
 #: core/libopengl.cpp:227
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglInitialize (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "eglInitializen kutsuminen epäonnistui (%s)"
 
 #: core/libopengl.cpp:242
 msgid "EGL has not OpenGL client API"
 msgstr "EGL:ssa ei ole OpenGL-asiakassovellusliittymää"
 
 #: core/libopengl.cpp:248
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call eglBindAPI (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "eglBindAPI:n kutsuminen epäonnistui (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "EGL-näytön (%s) tuhoaminen epäonnistui"
 
 #: core/libopengl.cpp:285
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call getPlatformDisplay (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "getPlatformDisplay:n kutsuminen epäonnistui (%s)"
 
 #: core/libopengl.cpp:307
-#, fuzzy
-#| msgid "Finding OpenCL API version"
 msgid "Finding OpenGL API version"
-msgstr "Etsitään OpenCL:n API-versiota"
+msgstr "Etsitään OpenGL:n API-versiota"
 
 #: core/libopengl.cpp:315 core/libvulkan.cpp:172
 #, c-format
@@ -485,16 +453,13 @@ msgid "%s is not supported"
 msgstr "%s ei ole tuettu"
 
 #: core/libopengl.cpp:322 core/libopengl.cpp:336
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call queryDevices (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "queryDevices:n kutsuminen epäonnistui (%s)"
 
 #: core/libopengl.cpp:329
-#, fuzzy
-#| msgid "No available Vulkan devices"
 msgid "No available EGL devices"
-msgstr "Vulkan-laitteita ei ole käytettävissä"
+msgstr "Ei saatavilla olevia EGL-laitteita"
 
 #: core/libopengl.cpp:347
 #, c-format
@@ -522,24 +487,20 @@ msgstr "Väyläpolku on virheellinen: %s"
 #: core/libpci.cpp:127
 #, c-format
 msgid "No kernel driver in use for graphic card at path %s"
-msgstr "Näytönohjaimelle polussa %s ei ole käytössä kernel-ajuria"
+msgstr "Polussa %s ei ole käytössä kernel-ajuria grafiikkakortille"
 
 #: core/libpci.cpp:163
 #, c-format
 msgid "Your GPU kernel driver is unknown: %s"
-msgstr "Näytönohjaimen kernel-ajuri on tuntematon: %s"
+msgstr "GPU-kernel-ajuri on tuntematon: %s"
 
 #: core/libpci.cpp:248 core/libpci.cpp:296 core/libpci.cpp:347
-#, fuzzy
-#| msgid "failed to call libcpuid (%s)"
 msgid "failed to create pipe"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "putken luominen epäonnistui"
 
 #: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "GPU-kellotaajuuksien haku epäonnistui"
+msgstr "prosessin luominen epäonnistui"
 
 #: core/libpci.cpp:411
 #, c-format
@@ -573,7 +534,7 @@ msgstr "piirisarjan valmistajan ja mallin löytäminen epäonnistui"
 
 #: core/libpci.cpp:517
 msgid "failed to find graphic card vendor and model"
-msgstr "näytönohjaimen valmistajan ja mallin löytäminen epäonnistui"
+msgstr "grafiikkakortin valmistajan ja mallin löytäminen epäonnistui"
 
 #: core/libpci.cpp:648
 msgid "Retrieving GPU clocks"
@@ -604,10 +565,9 @@ msgid "Driver for %s doesn't report frequencies"
 msgstr "Ajuri %s:lle ei ilmoita taajuuksia"
 
 #: core/libpci.cpp:823
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to retrieve all monitoring data for %s"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "kaikkien %s:lle valvontatietojen hakeminen epäonnistui"
 
 #: core/libsystem.cpp:51 core/libsystem.cpp:80
 msgid "Calling libprocps"
@@ -635,16 +595,14 @@ msgid "Finding Vulkan API version"
 msgstr "Etsitään Vulkanin API-versiota"
 
 #: core/libvulkan.cpp:170
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkCreateInstance (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "vkCreateInstance:n kutsuminen epäonnistui (%s)"
 
 #: core/libvulkan.cpp:180
-#, fuzzy, c-format
-#| msgid "failed to call libcpuid (%s)"
+#, c-format
 msgid "failed to call vkEnumeratePhysicalDevices (%s)"
-msgstr "libcpuid:n kutsuminen epäonnistui (%s)"
+msgstr "vkEnumeratePhysicalDevices:n kutsuminen epäonnistui (%s)"
 
 #: core/libvulkan.cpp:187
 msgid "No available Vulkan devices"
@@ -664,6 +622,8 @@ msgstr "Vulkanin luominen laitteelle %u (%s) epäonnistui"
 #, c-format
 msgid "%s is not supported for device %u, use only deviceID for matching"
 msgstr ""
+"%s ei ole tuettu laitteelle %u; käytä vain laitetunnusta yhteensovittamista "
+"varten"
 
 #: core/libvulkan.cpp:322
 #, c-format
@@ -715,10 +675,8 @@ msgid "E-core"
 msgstr "E-ydin"
 
 #: data.cpp:179
-#, fuzzy
-#| msgid "E-core"
 msgid "LP E-core"
-msgstr "E-ydin"
+msgstr "LP E-ydin"
 
 #: data.cpp:180 data.cpp:183
 msgid "Core"
@@ -735,12 +693,12 @@ msgstr "Välimuistit"
 #: data.cpp:250
 #, c-format
 msgid "%2d x %4d %s, %2d-way"
-msgstr ""
+msgstr "%2d x %4d %s, %2d-suuntainen"
 
 #: data.cpp:252
 #, c-format
 msgid "%d %s, %d-way"
-msgstr ""
+msgstr "%d %s, %d-suuntainen"
 
 #: data.cpp:266
 msgid "Count"
@@ -758,7 +716,7 @@ msgstr "L%u-välimuisti"
 #: data.cpp:393
 #, c-format
 msgid "%s associative, %d-%s line size"
-msgstr ""
+msgstr "%s assosiatiivinen, %d-%s rivin koko"
 
 #: data.cpp:406
 msgid "Test"
@@ -783,11 +741,11 @@ msgstr "Muisti"
 #: data.cpp:495
 #, c-format
 msgid "Stick %u"
-msgstr ""
+msgstr "Tikku %u"
 
 #: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
-msgstr ""
+msgstr "Tikut"
 
 #: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
@@ -909,24 +867,20 @@ msgid "Family"
 msgstr "Perhe"
 
 #: data.hpp:111
-#, fuzzy
-#| msgid "Family"
 msgid "Disp. Family"
-msgstr "Perhe"
+msgstr "Disp. Perhe"
 
 #: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
 msgstr "Malli"
 
 #: data.hpp:113
-#, fuzzy
-#| msgid "Model"
 msgid "Disp. Model"
-msgstr "Malli"
+msgstr "Disp. Malli"
 
 #: data.hpp:114
 msgid "Stepping"
-msgstr ""
+msgstr "Askeltaminen"
 
 #: data.hpp:116
 msgid "Implementer"
@@ -1022,17 +976,15 @@ msgstr "ROM:in koko"
 
 #: data.hpp:244
 msgid "EFI PK"
-msgstr ""
+msgstr "EFI-alusta-avain"
 
 #: data.hpp:269
 msgid "Type"
 msgstr "Tyyppi"
 
 #: data.hpp:270
-#, fuzzy
-#| msgid "Core #%i"
 msgid "Type Detail"
-msgstr "Ydin #%i"
+msgstr "Tyypin yksityiskohdat"
 
 #: data.hpp:271
 msgid "Device Locator"
@@ -1202,13 +1154,11 @@ msgstr "Aseta kahden virkistyksen välinen mukautettu aika (sekunteina)"
 
 #: main.cpp:67
 msgid "Set default tab (integer)"
-msgstr "Aseta oletusarkain (kokonaisluku)"
+msgstr "Aseta oletusvälilehti (kokonaisluku)"
 
 #: main.cpp:68
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select core type to monitor (integer)"
-msgstr "Valitse tarkkailtava suoritinydin (numero)"
+msgstr "Valitse tarkkailtava suoritinydin (kokonaisluku)"
 
 #: main.cpp:69
 msgid "Select CPU core to monitor (integer)"
@@ -1221,16 +1171,12 @@ msgstr ""
 "(kokonaisluku)"
 
 #: main.cpp:71
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select default memory stick (integer)"
-msgstr "Valitse tarkkailtava suoritinydin (numero)"
+msgstr "Valitse oletusmuistitikku (kokonaisluku)"
 
 #: main.cpp:72
-#, fuzzy
-#| msgid "Select CPU core to monitor (integer)"
 msgid "Select default graphic card (integer)"
-msgstr "Valitse tarkkailtava suoritinydin (numero)"
+msgstr "Valitse oletusgrafiikkakortti (kokonaisluku)"
 
 #: main.cpp:73 cpu-x-gtk-3.12.ui:6135
 msgid "Start and connect to daemon"
@@ -1267,24 +1213,27 @@ msgstr "Tulosta tarvittavat tiedot liitettäväksi vikaraporttiin"
 #: main.cpp:81
 msgid "Set key mapping for NCurses mode (a[rrows]|e[macs]|i[nverted-T]|v[im])"
 msgstr ""
+"Aseta NCurses-tilalle näppäinkartoitus (a[arrows]|e[macs]|i[nverted-T]|v[im])"
 
 #: main.cpp:92
 msgid "Add default command line arguments"
-msgstr ""
+msgstr "Lisää oletusarvoiset komentoriviargumentit"
 
 #: main.cpp:93
 msgid "Enforce the bus clock"
-msgstr ""
+msgstr "Pakota väyläkello"
 
 #: main.cpp:94
 msgid ""
 "Ignore CPU values reported by libcpuid (comma-separated values among 'temp', "
 "'volt', 'freq' and 'mult')"
 msgstr ""
+"Ohita libcpuidin raportoimat CPU-arvot (pilkuilla erotetut arvot joukossa "
+"'temp', 'volt', 'freq' ja 'mult')"
 
 #: main.cpp:95
 msgid "Read CPUID raw data from a given file"
-msgstr ""
+msgstr "Lue CPUID-raakadatan annetusta tiedostosta"
 
 #: main.cpp:121
 #, c-format
@@ -1293,15 +1242,15 @@ msgstr "Käyttö: %s DISPLAY [OPTIONS]\n"
 
 #: main.cpp:122
 msgid "Available DISPLAY:"
-msgstr ""
+msgstr "Saatavilla oleva NÄYTTÖ:"
 
 #: main.cpp:130
 msgid "Available OPTIONS:"
-msgstr ""
+msgstr "Saatavilla olevat VAIHTOEHDOT:"
 
 #: main.cpp:139
 msgid "Influenceable environment variables:"
-msgstr ""
+msgstr "Vaikuttavat ympäristömuuttujat:"
 
 #: main.cpp:170
 msgid "This is free software: you are free to change and redistribute it."
@@ -1320,7 +1269,7 @@ msgstr "-- %-11s versio: %s"
 #: main.cpp:361
 #, c-format
 msgid "Writing log to '%s' file..."
-msgstr ""
+msgstr "Kirjoitetaan lokia tiedostoon '%s'..."
 
 #: main.cpp:413
 #, c-format
@@ -1329,6 +1278,9 @@ msgid ""
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
+"\n"
+"Hupsista, jokin meni pieleen! %s (PID %i) on vastaanottanut signaalin %d "
+"(%s) ja kaatunut."
 
 #: main.cpp:415
 #, c-format
@@ -1337,30 +1289,36 @@ msgid ""
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
+"\n"
+"Hupsista, jokin meni pieleen! %s (PID %i) on vastaanottanut signaalin %d "
+"(%s) ja yrittää toipua."
 
 #: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
 msgstr ""
+"Voit avata uuden vikaraportin tästä, täyttämällä mallin pyydetyllä tavalla:"
 
 #: main.cpp:480
 msgid "an error occurred while setting locale"
-msgstr ""
+msgstr "kieliasetuksen asettamisen aikana tapahtui virhe"
 
 #: options.cpp:156
 #, c-format
 msgid "Selected tab (%u) is not visible"
-msgstr ""
+msgstr "Valittu välilehti (%u) ei ole näkyvissä"
 
 #: options.cpp:161
 #, c-format
 msgid "Selected tab (%u) is not a valid number (%u is the maximum)"
-msgstr ""
+msgstr "Valittu välilehti (%u) ei ole kelvollinen numero (%u on maksimi)"
 
 #: options.cpp:206
 #, c-format
 msgid ""
 "Selected CPU type (%u) is not a valid number (%u is the maximum for this CPU)"
 msgstr ""
+"Valittu suorittimen tyyppi (%u) ei ole kelvollinen numero (%u on tälle "
+"suorittimelle maksimi)"
 
 #: options.cpp:250
 #, c-format
@@ -1368,6 +1326,8 @@ msgid ""
 "Selected bandwidth test (%u) is not a valid number (%u is the maximum for "
 "this system)"
 msgstr ""
+"Valittu kaistanleveystesti (%u) ei ole kelvollinen numero (%u on tälle "
+"järjestelmälle maksimi)"
 
 #: options.cpp:270
 #, c-format
@@ -1375,6 +1335,8 @@ msgid ""
 "Selected RAM stick (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
+"Valittu RAM-muistitikku (%u) ei ole kelvollinen numero (%u on tälle "
+"järjestelmälle maksimi)"
 
 #: options.cpp:304
 #, c-format
@@ -1382,6 +1344,8 @@ msgid ""
 "Selected graphic card (%u) is not a valid number (%u is the maximum for this "
 "system)"
 msgstr ""
+"Valittu grafiikkakortti (%u) ei ole kelvollinen numero (%u on tälle "
+"järjestelmälle maksimi)"
 
 #: options.cpp:341
 #, c-format
@@ -1389,16 +1353,18 @@ msgid ""
 "Selected CPU core (%u) is not a valid number (%u is the maximum for this "
 "type of core)"
 msgstr ""
+"Valittu suorittimen ydin (%u) ei ole kelvollinen numero (%u on maksimi tämän "
+"tyyppiselle ytimelle)"
 
 #: options.cpp:373
 #, c-format
 msgid "failed to change CPU affinitiy to core %u"
-msgstr ""
+msgstr "suorittimen yhteenkuuluvuuden muuttaminen ytimeen %u epäonnistui"
 
 #: ui/gtk.cpp:87
 #, c-format
 msgid "Cannot find path for '%s' file"
-msgstr ""
+msgstr "Tiedoston '%s' polkua ei löydy"
 
 #: ui/gtk.cpp:460
 msgid "No polkit authentication agent found"
@@ -1413,50 +1379,47 @@ msgid "Settings"
 msgstr "Asetukset"
 
 #: ui/gtk.cpp:711
-#, fuzzy
-#| msgid "Family"
 msgid "BaseFamily"
-msgstr "Perhe"
+msgstr "BaseFamily"
 
 #: ui/gtk.cpp:712
 msgid "CPU display (\"true\") family (computed as BaseFamily+ExtendedFamily)"
 msgstr ""
+"Suorittimen (\"oikea\") näyttöperhe (laskettu BaseFamily+ExtendedFamily:na)"
 
 #: ui/gtk.cpp:713
-#, fuzzy
-#| msgid "Model"
 msgid "BaseModel"
-msgstr "Malli"
+msgstr "BaseModel"
 
 #: ui/gtk.cpp:714
 msgid "CPU display (\"true\") model (computed as (ExtendedModel<<4)+BaseModel)"
 msgstr ""
+"Suorittimen (\"oikea\") näyttömalli (laskettu (ExtendedModel<<4)"
+"+BaseModel:na)"
 
 #: ui/gtk.cpp:908
 msgid "EFI Platform Key certificate information"
-msgstr ""
+msgstr "EFI-alusta-avaimen varmennetiedot"
 
 #: ui/gtk.cpp:943
 msgid ""
 "Identify the physically-labeled socket or board position where the memory "
 "device is located"
 msgstr ""
+"Tunnista fyysisesti merkitty kanta tai piirilevyn sijainti, jossa "
+"muistilaite sijaitsee"
 
 #: ui/gtk.cpp:944
 msgid "Identify the physically labeled bank where the memory device is located"
-msgstr ""
+msgstr "Tunnista fyysisesti merkitty pankki, jossa muistilaite sijaitsee"
 
 #: ui/gtk.cpp:1149
-#, fuzzy
-#| msgid "UMD Version"
 msgid "User Mode Driver Version"
-msgstr "UMD-versio"
+msgstr "Käyttäjätilan ajuri (UMD)-versio"
 
 #: ui/gtk.cpp:1163
-#, fuzzy
-#| msgid "Vulkan Version"
 msgid "Vulkan Ray Tracing"
-msgstr "Vulkan-versio"
+msgstr "Vulkan - Ray Tracing"
 
 #: ui/gtk.cpp:1358
 msgid "Starting GTK GUI…"
@@ -1464,7 +1427,7 @@ msgstr "Käynnistetään GTK-käyttöliittymä…"
 
 #: ui/gtk.cpp:1369
 msgid "failed to import UI in GtkBuilder"
-msgstr ""
+msgstr "Käyttöliittymän tuonti GtkBuilderiin epäonnistui"
 
 #: ui/ncurses.cpp:116
 msgid "Window is too small!"
@@ -1477,26 +1440,26 @@ msgstr "Paina 'h' nähdäksesi ohjeen."
 #: ui/ncurses.cpp:237
 #, c-format
 msgid "Welcome in %s NCurses help!\n"
-msgstr ""
+msgstr "Tervetuloa %s NCurses -apuun!\n"
 
 #: ui/ncurses.cpp:238
 msgid "This help describes how to use this Text-based User Interface."
-msgstr ""
+msgstr "Tämä apu kuvaa, miten tätä tekstipohjaista käyttöliittymää käytetään."
 
 #: ui/ncurses.cpp:240
 msgid "Global keys:"
-msgstr ""
+msgstr "Yleisesti pätevät näppäimet:"
 
 #: ui/ncurses.cpp:241
 msgid "Press 'left' key or 'tab' key to switch in left tab."
 msgstr ""
-"Siirry vasemmalle välilehdelle painamalla vasenta näppäintä tai "
+"Siirry vasemmalle välilehdelle painamalla 'vasenta' näppäintä tai "
 "sarkainnäppäintä."
 
 #: ui/ncurses.cpp:242
 msgid "Press 'right' key or 'shift + tab' keys to switch in right tab."
 msgstr ""
-"Paina 'oikea'-näppäintä tai 'vaihto+sarkain' -näppäimiä vaihtaaksesi "
+"Paina 'oikea'-näppäintä tai 'vaihto + sarkain' -näppäimiä vaihtaaksesi "
 "oikeanpuoleiseen välilehteen."
 
 #: ui/ncurses.cpp:243
@@ -1512,22 +1475,22 @@ msgid "CPU tab:"
 msgstr "Suorittimen välilehti:"
 
 #: ui/ncurses.cpp:247
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 'next page' key to decrease core type number to monitor."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr ""
+"Paina 'seuraava sivu' -näppäintä valvottavan ydintyypin lukumäärän "
+"pienentämiseksi."
 
 #: ui/ncurses.cpp:248
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 'previous page' key to increase core type number to monitor."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr ""
+"Paina 'edellinen sivu' -näppäintä valvottavan ydintyypin lukumäärän "
+"kasvattamiseksi."
 
 #: ui/ncurses.cpp:249
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 'down' key to decrease CPU core number to monitor."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr ""
+"Paina 'alas'-näppäintä valvottavien suorittimen ytimien lukumäärän "
+"pienentämiseksi."
 
 #: ui/ncurses.cpp:250
 msgid "Press 'up' key to increase CPU core number to monitor."
@@ -1538,10 +1501,8 @@ msgid "Caches tab:"
 msgstr "Välimuistien välilehti:"
 
 #: ui/ncurses.cpp:253
-#, fuzzy
-#| msgid "Press 'up' key to switch to next test."
 msgid "Press 'down' key to switch to previous test."
-msgstr "Paina 'ylös'-näppäintä siirtyäksesi seuraavaan testiin."
+msgstr "Paina 'alas'-näppäintä siirtyäksesi edelliseen testiin."
 
 #: ui/ncurses.cpp:254
 msgid "Press 'up' key to switch to next test."
@@ -1553,51 +1514,47 @@ msgstr "Mittaus-välilehti:"
 
 #: ui/ncurses.cpp:257
 msgid "Press 'down' key to decrement benchmark duration."
-msgstr ""
+msgstr "Paina 'alas'-näppäintä suorituskykymittausten kestom pienentäämiseksi."
 
 #: ui/ncurses.cpp:258
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 'up' key to increment benchmark duration."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr "Paina 'ylös'-näppäintä suorituskykymittausten keston kasvattamiseksi."
 
 #: ui/ncurses.cpp:259
 msgid "Press 'next page' key to decrement number of threads to use."
 msgstr ""
+"Paina 'seuraava sivu' -näppäintä käytettävien säikeiden lukumäärän "
+"vähentämiseksi."
 
 #: ui/ncurses.cpp:260
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 'previous page' key to increment number of threads to use."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr ""
+"Paina 'edellinen sivu' -näppäintä käytettävien säikeiden lukumäärän "
+"kasvattamiseksi."
 
 #: ui/ncurses.cpp:261
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 's' key to start/stop prime numbers (slow) benchmark."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr ""
+"Paina 's'-näppäintä suorituskykymittausten alkulukujen (hidas) "
+"käynnistämiseksi/pysäytämiseksi."
 
 #: ui/ncurses.cpp:262
-#, fuzzy
-#| msgid "Press 'up' key to increase CPU core number to monitor."
 msgid "Press 'f' key to start/stop prime numbers (fast) benchmark."
-msgstr "Paina 'ylös'-näppäintä lisätäksesi valvottavan suorittimen ydinmäärää."
+msgstr ""
+"Paina 'f'-näppäintä suorituskykymittausten alkulukujen (nopea) "
+"käynnistämiseksi/pysäytämiseksi."
 
 #: ui/ncurses.cpp:264
 msgid "Graphics tab:"
 msgstr "Grafiikan välilehti:"
 
 #: ui/ncurses.cpp:265
-#, fuzzy
-#| msgid "Press 'up' key to switch to next test."
 msgid "Press 'down' key to switch to previous graphic card."
-msgstr "Paina 'ylös'-näppäintä siirtyäksesi seuraavaan testiin."
+msgstr "Paina 'alas'-näppäintä vaihtaaksesi edelliseen näytönkorttiin."
 
 #: ui/ncurses.cpp:266
-#, fuzzy
-#| msgid "Press 'up' key to switch to next test."
 msgid "Press 'up' key to switch to next graphic card."
-msgstr "Paina 'ylös'-näppäintä siirtyäksesi seuraavaan testiin."
+msgstr "Paina 'ylös'-näppäintä vaihtaaksesi seuraavaan näytönkorttiin."
 
 #: ui/ncurses.cpp:268
 msgid "Press any key to exit this help."
@@ -1612,16 +1569,18 @@ msgid ""
 "FATAL ERROR: terminfo database could not be found (try to set TERMINFO "
 "environment variable)"
 msgstr ""
+"VAKAVA VIRHE: terminfo-tietokantaa ei löytynyt (kokeile asettaa TERMINFO-"
+"ympäristömuuttuja)"
 
 #: ui/ncurses.cpp:690
 #, c-format
 msgid "Failed to set up %s terminal (err=%i); falling back to %s"
-msgstr ""
+msgstr "%s-päätteen asettaminen epäonnistui (err=%i); siirrytään varakohtaan %s"
 
 #: util.cpp:210
 #, c-format
 msgid "cannot find unit in '%s' string at position %i"
-msgstr ""
+msgstr "merkkijonossa '%s' okevaa yksikköä ei löydy sijainnilla %i"
 
 #: util.cpp:327
 #, c-format
@@ -1664,12 +1623,12 @@ msgstr "Tt"
 #. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
 msgid "PB"
-msgstr ""
+msgstr "Pt"
 
 #. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
 #: util.hpp:91
 msgid "EB"
-msgstr ""
+msgstr "Et"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:94
@@ -1693,17 +1652,13 @@ msgstr "TiB"
 
 #. TRANSLATORS: initials for pebibyte (2⁵⁰): please put initials (keep it short)
 #: util.hpp:102
-#, fuzzy
-#| msgid "KiB"
 msgid "PiB"
-msgstr "KiB"
+msgstr "PiB"
 
 #. TRANSLATORS: initials for exbibyte (2⁶⁰): please put initials (keep it short)
 #: util.hpp:104
-#, fuzzy
-#| msgid "KiB"
 msgid "EiB"
-msgstr "KiB"
+msgstr "EiB"
 
 #: cpu-x-gtk-3.12.ui:29
 msgid "Start daemon"
@@ -1711,7 +1666,7 @@ msgstr "Käynnistä daemon"
 
 #: cpu-x-gtk-3.12.ui:56
 msgid "Privileges are required to gather some information"
-msgstr ""
+msgstr "Lupia tarvitaan joidenkin tietojen keräämiseen"
 
 #: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
@@ -1719,19 +1674,17 @@ msgstr "Välimuisti"
 
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
-msgstr ""
+msgstr "Sulje"
 
 #. Setting: refresh time for UI
 #: cpu-x-gtk-3.12.ui:5946
 msgid "Refresh time"
-msgstr "Päivitysaika"
+msgstr "Virkistysaika"
 
 #. Setting: GUI theme
 #: cpu-x-gtk-3.12.ui:5970
-#, fuzzy
-#| msgid "Theme"
 msgid "Text theme"
-msgstr "Teema"
+msgstr "Tekstiteema"
 
 #. Setting: automatic GUI theme
 #: cpu-x-gtk-3.12.ui:5985
@@ -1741,12 +1694,12 @@ msgstr "Automaattinen"
 #. Setting: light GUI theme
 #: cpu-x-gtk-3.12.ui:5986
 msgid "Blue for light theme"
-msgstr ""
+msgstr "Sininen vaalealle teemalle"
 
 #. Setting: dark GUI theme
 #: cpu-x-gtk-3.12.ui:5987
 msgid "Yellow for dark theme"
-msgstr ""
+msgstr "Keltainen tummalle teemalle"
 
 #. Setting: temperature unit
 #: cpu-x-gtk-3.12.ui:6000
@@ -1799,7 +1752,7 @@ msgstr "Kerää tietoja suorittimesta, emolevystä ja muusta"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
-msgstr ""
+msgstr "CPU;järjestelmä;ydin;nopeus;kello;taajuus;AMD;Intel;emolevy;"
 
 #, c-format
 #~ msgid ""
