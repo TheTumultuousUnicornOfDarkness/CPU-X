@@ -127,6 +127,9 @@ glib-compile-schemas "$APPDIR/share/glib-"*/schemas
 ln --verbose "$APPDIR/sharun" "$APPDIR/AppRun"
 "$APPDIR/sharun" --gen-lib-path
 
+sed -i -e 's|/usr/share/locale|././/share/locale|g' "$APPDIR/shared/bin/cpu-x"
+echo 'SHARUN_WORKING_DIR=${SHARUN_DIR}' >> "$APPDIR/.env"
+
 echo "Create AppImage from '$APPDIR' AppDir"
 mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
 download_file "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
