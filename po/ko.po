@@ -6,14 +6,15 @@
 # tabby <tabby4442@gmail.com>, 2024.
 # Hyeonho Kang <hyeonhokang10@o365.ice.go.kr>, 2024.
 # 안세훈 <on9686@gmail.com>, 2025.
+# 김인수 <simmon@nplob.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-07-20 05:02+0000\n"
-"Last-Translator: 안세훈 <on9686@gmail.com>\n"
+"PO-Revision-Date: 2025-12-18 10:00+0000\n"
+"Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ko/>\n"
 "Language: ko\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
@@ -416,10 +417,9 @@ msgid "failed to create EGL context"
 msgstr ""
 
 #: core/libopengl.cpp:189
-#, fuzzy, c-format
-#| msgid "failed to get version for device %u (%s)"
+#, c-format
 msgid "failed to destroy EGL context (%s)"
-msgstr "장치를 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
+msgstr "EGL 문맥 (%s) 를 없애는 데 실패함"
 
 #: core/libopengl.cpp:212
 #, fuzzy, c-format
@@ -444,10 +444,9 @@ msgid "failed to call eglBindAPI (%s)"
 msgstr "libcpuid 호출 실패 (%s)"
 
 #: core/libopengl.cpp:273
-#, fuzzy, c-format
-#| msgid "failed to get version for platform %u (%s)"
+#, c-format
 msgid "failed to destroy EGL display (%s)"
-msgstr "플랫폼을 위해 버전을 가져오는 데 실패했습니다 %u (%s)"
+msgstr "EGL 표시장치 (%s) 를 없애는 데 실패함"
 
 #: core/libopengl.cpp:285
 #, fuzzy, c-format
@@ -1279,10 +1278,9 @@ msgid "See the %s license: <%s>\n"
 msgstr "%s 저작권을 참고하세요: <%s>\n"
 
 #: main.cpp:179
-#, fuzzy, c-format
-#| msgid "-- %-9s version: %s"
+#, c-format
 msgid "-- %-11s version: %s"
-msgstr "-- %-9s 버전: %s"
+msgstr "-- %-11s 버전: %s"
 
 #: main.cpp:361
 #, c-format
@@ -1290,33 +1288,26 @@ msgid "Writing log to '%s' file..."
 msgstr ""
 
 #: main.cpp:413
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and has crashed."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and has "
 "crashed."
 msgstr ""
 "\n"
-"이런, 무언가가 잘못되었습니다! %s 가 시그널 %d (%s)를 받아 충돌이 발생했습니"
-"다."
+"이런, 무언가가 잘못되었습니다! %s (PID %i) 가 신호 %d (%s) 를 받았고 충돌이 "
+"발생했습니다."
 
 #: main.cpp:415
-#, fuzzy, c-format
-#| msgid ""
-#| "\n"
-#| "Oops, something was wrong! %s has received signal %d (%s) and is trying "
-#| "to recover."
+#, c-format
 msgid ""
 "\n"
 "Oops, something was wrong! %s (PID %i) has received signal %d (%s) and is "
 "trying to recover."
 msgstr ""
 "\n"
-"이런, 무언가가 잘못되었습니다! %s 가 시그널 %d (%s)를 받아 복구를 시도하고 있"
-"습니다."
+"이런, 무언가가 잘못되었습니다! %s (PID %i) 가 신호 %d (%s) 를 받았고 복구를 "
+"시도하고 있습니다."
 
 #: main.cpp:439
 msgid "You can open a new issue here, by filling the template as requested:"
@@ -1751,14 +1742,8 @@ msgid "Startup"
 msgstr "시작"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:4
-#, fuzzy
-#| msgid ""
-#| "%s is a Free software that gathers information\n"
-#| "on CPU, motherboard and more."
 msgid "Gathers information on CPU, motherboard and more"
-msgstr ""
-"%s는 CPU나 마더보드 등의 정보를\n"
-"수집하는 무료 소프트웨어입니다."
+msgstr "CPU, 메인보드 등에서 정보를 수집합니다"
 
 #: io.github.thetumultuousunicornofdarkness.cpu-x.desktop.in:10
 msgid "CPU;system;core;speed;clock;rate;Intel;AMD;motherboard;"
