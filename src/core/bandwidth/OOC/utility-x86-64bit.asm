@@ -85,9 +85,9 @@ _get_cpuid_family1:
 	push 	rcx
 	push 	rdx
 	push 	rdi
-	xor	rax, rax
+	xor	eax, eax
 	cpuid
-	xor	rax, rax
+	xor	eax, eax
 	mov	eax, ebx
 	pop	rdi
 	pop	rdx
@@ -104,9 +104,9 @@ _get_cpuid_family2:
 	push 	rcx
 	push 	rdx
 	push 	rdi
-	xor	rax, rax
+	xor	eax, eax
 	cpuid
-	xor	rax, rax
+	xor	eax, eax
 	mov	eax, edx
 	pop	rdi
 	pop	rdx
@@ -123,9 +123,9 @@ _get_cpuid_family3:
 	push 	rcx
 	push 	rdx
 	push 	rdi
-	xor	rax, rax
+	xor	eax, eax
 	cpuid
-	xor	rax, rax
+	xor	eax, eax
 	mov	eax, ecx
 	pop	rdi
 	pop	rdx
@@ -159,7 +159,7 @@ _get_cpuid7_ebx:
 	push 	rdx
 	push 	rdi
 	mov	rax, 7
-	xor	rcx, rcx
+	xor	ecx, ecx
 	cpuid
         mov	rax, rbx
 	pop	rdi
@@ -178,7 +178,7 @@ _get_cpuid7_ecx:
 	push 	rdx
 	push 	rdi
 	mov	rax, 7
-	xor	rcx, rcx
+	xor	ecx, ecx
 	cpuid
         mov	rax, rcx
 	pop	rdi
@@ -197,7 +197,7 @@ _get_cpuid7_edx:
 	push 	rdx
 	push 	rdi
 	mov	rax, 7
-	xor	rcx, rcx
+	xor	ecx, ecx
 	cpuid
         mov	rax, rdx
 	pop	rdi
