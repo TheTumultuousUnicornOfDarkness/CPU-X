@@ -1525,7 +1525,7 @@ _StackWriter:
 	push	qword 2000	; [rsp+8]
 	push	qword 1000	; [rsp]
 
-	xor	rax, rax
+	xor	eax, eax
 
 .L1:
 	; 64 transfers
