@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the CPU-X package.
 # Translators:
 # TotalCaesar659 <x24cm5b8c54q6szxw@yandex.ru>, 2016,2018
-# Andrei Stepanov <adem4ik@gmail.com>, 2020, 2021, 2022, 2023, 2024, 2025.
+# Andrei Stepanov <adem4ik@gmail.com>, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 # Artem <KovalevArtem.ru@gmail.com>, 2020.
 # Alex <theavganec@gmail.com>, 2020.
 # Виктор Ерухин <official159ru@mail.ru>, 2021.
@@ -20,10 +20,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
-"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/"
-"CPU-X/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
+"X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2025-08-20 14:02+0000\n"
+"PO-Revision-Date: 2026-01-07 21:01+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/ru/>\n"
@@ -32,9 +32,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.13\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
@@ -224,7 +224,7 @@ msgstr "ошибка при запуске бенчмарка"
 
 #: core/core.cpp:67
 msgid "Calculating CPU usage"
-msgstr "Вычисление использования ЦП"
+msgstr "Расчёт использования ЦП"
 
 #: core/core.cpp:109
 #, c-format
@@ -241,39 +241,39 @@ msgstr "не удалось определить запущенную систе
 
 #: core/core.cpp:182
 msgid "Calculating CPU multipliers in fallback mode"
-msgstr "Подсчёт множителей ЦП в запасном режиме"
+msgstr "Подсчёт множителей ЦП в аварийном режиме"
 
 #: core/core.cpp:208
 msgid "Retrieving motherboard information in fallback mode"
-msgstr "Получение информации о материнской плате в запасном режиме"
+msgstr "Получение информации о материнской плате в аварийном режиме"
 
 #: core/core.cpp:224
 msgid "failed to retrieve motherboard information (fallback mode)"
-msgstr "не удалось получить информацию о материнской плате (запасной режим)"
+msgstr "не удалось получить информацию о материнской плате (аварийный режим)"
 
 #: core/core.cpp:267
 msgid "Retrieving CPU temperature in fallback mode"
-msgstr "Получение температуры ЦП в запасном режиме"
+msgstr "Получение температуры ЦП в аварийном режиме"
 
 #: core/core.cpp:315
 msgid "failed to retrieve CPU temperature (fallback mode)"
-msgstr "не удалось получить температуру ЦП (запасной режим)"
+msgstr "не удалось получить температуру ЦП (аварийный режим)"
 
 #: core/core.cpp:330
 msgid "Retrieving CPU voltage in fallback mode"
-msgstr "Получение напряжения ЦП в запасном режиме"
+msgstr "Получение напряжения ЦП в аварийном режиме"
 
 #: core/core.cpp:349
 msgid "failed to retrieve CPU voltage (fallback mode)"
-msgstr "не удалось получить напряжение ЦП (запасной режим)"
+msgstr "не удалось получить напряжение ЦП (аварийный режим)"
 
 #: core/core.cpp:363
 msgid "Retrieving CPU frequency in fallback mode"
-msgstr "Получение частоты ЦП в запасном режиме"
+msgstr "Получение частоты ЦП в аварийном режиме"
 
 #: core/core.cpp:374
 msgid "failed to retrieve CPU frequency (fallback mode)"
-msgstr "не удалось получить частоту ЦП (запасной режим)"
+msgstr "не удалось получить частоту ЦП (аварийный режим)"
 
 #: core/dmidecode/dmidecode.c:5806
 msgid "Unknown"
@@ -329,7 +329,7 @@ msgstr ""
 
 #: core/libcpuid.cpp:387
 msgid "Finding CPU package in fallback mode"
-msgstr "Поиск корпусировки ЦП в запасном режиме"
+msgstr "Поиск корпусировки ЦП в аварийном режиме"
 
 #: core/libcpuid.cpp:417
 #, c-format
@@ -758,11 +758,11 @@ msgstr "Память"
 #: data.cpp:495
 #, c-format
 msgid "Stick %u"
-msgstr "Модуль %u"
+msgstr "Модуль памяти %u"
 
 #: data.cpp:499 cpu-x-gtk-3.12.ui:3330
 msgid "Sticks"
-msgstr "Модули"
+msgstr "Модули памяти"
 
 #: data.cpp:553 cpu-x-gtk-3.12.ui:3994
 msgid "System"
@@ -917,7 +917,7 @@ msgstr "Ревизия"
 
 #: data.hpp:121
 msgid "Temp."
-msgstr "Температура."
+msgstr "Темп."
 
 #: data.hpp:122
 msgid "Instructions"
