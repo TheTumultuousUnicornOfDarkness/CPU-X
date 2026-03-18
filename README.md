@@ -117,6 +117,7 @@ In alphabetical order:
 - [openSUSE Leap (since version 15.2 from **utilities** project)](https://software.opensuse.org//download.html?project=utilities&package=cpu-x): `zypper install cpu-x`
 - [Solus](https://packages.getsol.us/shannon/c/cpu-x/): `eopkg install cpu-x`
 - [Ubuntu (since version 20.04 "Focal Fossa")](https://packages.ubuntu.com/search?suite=default&section=all&arch=any&keywords=cpu-x&searchon=names) : `apt install cpu-x`
+- [Void Linux](https://voidlinux.org/packages/?arch=x86_64&q=CPU-X): `xbps-install -S CPU-X`
 
 All packages:  
 [![Packaging status](https://repology.org/badge/vertical-allrepos/cpu-x.svg?exclude_unsupported=1)](https://repology.org/project/cpu-x/versions)
