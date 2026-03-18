@@ -630,6 +630,24 @@ void GtkData::set_signals()
 		this->settingswindow->hide();
 
 	});
+
+	/* Reload theme colors when system GTK theme changes */
+	auto gtk_settings = Gtk::Settings::get_default();
+	gtk_settings->property_gtk_theme_name().signal_changed().connect([this, gtk_settings]()
+	{
+		const GtkTheme current_theme = static_cast<GtkTheme>(settings->get_enum("gui-theme"));
+		if(current_theme == AUTO)
+		{
+			const std::string theme_name = gtk_settings->property_gtk_theme_name().get_value();
+			this->is_dark_theme = (theme_name.find("-dark") != std::string::npos || theme_name.find("-Dark") != std::string::npos);
+		}
+		else
+		{
+			this->is_dark_theme = (current_theme == DARK);
+		}
+
+		this->set_colors();
+	});
 }
 
 void GtkData::bind_settings()
