@@ -630,6 +630,15 @@ void GtkData::set_signals()
 		this->settingswindow->hide();
 
 	});
+
+	/* Reload theme colors when system GTK theme changes */
+	auto gtk_settings = Gtk::Settings::get_default();
+	gtk_settings->property_gtk_theme_name().signal_changed().connect([this, gtk_settings]()
+	{
+		/* Apply new color theme */
+		this->check_theme_color();
+		this->set_colors();
+	});
 }
 
 void GtkData::bind_settings()
