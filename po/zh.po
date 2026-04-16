@@ -21,14 +21,15 @@
 # Integral <integral@member.fsf.org>, 2025.
 # Qing Yun <kf@aosc.io>, 2025.
 # Jerry L <2109731454@qq.com>, 2026.
+# sakay <ys7716253443526177@163.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2026-02-24 07:09+0000\n"
-"Last-Translator: Jerry L <2109731454@qq.com>\n"
+"PO-Revision-Date: 2026-04-17 10:09+0000\n"
+"Last-Translator: sakay <ys7716253443526177@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/cpu-x/translations/zh_Hans/>\n"
 "Language: zh\n"
@@ -36,7 +37,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16.1-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
 msgid "Calling bandwidth"
@@ -45,70 +46,70 @@ msgstr "正在调用 bandwidth"
 #: core/bandwidth/main.c:1469
 #, c-format
 msgid "Sequential %i-bit reads"
-msgstr ""
+msgstr "连续 %i 位读取"
 
 #: core/bandwidth/main.c:1470
 msgid "Sequential 128-bit reads"
-msgstr ""
+msgstr "以 128 位数据块为单位进行顺序读取操作"
 
 #: core/bandwidth/main.c:1471
 msgid "Sequential 256-bit reads"
-msgstr ""
+msgstr "以 256 位数据块为单位进行顺序读取操作"
 
 #: core/bandwidth/main.c:1472
 msgid "Sequential 512-bit reads"
-msgstr ""
+msgstr "以 512 位数据块为单位进行顺序读取操作"
 
 #: core/bandwidth/main.c:1474
 #, c-format
 msgid "Sequential %i-bit nontemporal reads"
-msgstr ""
+msgstr "顺序 %i 位流式（非时间局部性）读取"
 
 #: core/bandwidth/main.c:1475
 msgid "Sequential 128-bit nontemporal reads"
-msgstr ""
+msgstr "顺序 128 位流式（非时间局部性）读取"
 
 #: core/bandwidth/main.c:1476
 msgid "Sequential 256-bit nontemporal reads"
-msgstr ""
+msgstr "顺序 256 位流式（非时间局部性）读取"
 
 #: core/bandwidth/main.c:1477
 msgid "Sequential 512-bit nontemporal reads"
-msgstr ""
+msgstr "顺序 512 位流式（非时间局部性）读取"
 
 #: core/bandwidth/main.c:1479
 #, c-format
 msgid "Sequential %i-bit writes"
-msgstr ""
+msgstr "以 %i 位数据块为单位进行顺序写入操作"
 
 #: core/bandwidth/main.c:1480
 msgid "Sequential 128-bit writes"
-msgstr ""
+msgstr "以 128 位数据块为单位进行顺序写入操作"
 
 #: core/bandwidth/main.c:1481
 msgid "Sequential 256-bit writes"
-msgstr ""
+msgstr "以 256 位数据块为单位进行顺序写入操作"
 
 #: core/bandwidth/main.c:1482
 msgid "Sequential 512-bit writes"
-msgstr ""
+msgstr "以 512 位数据块为单位进行顺序写入操作"
 
 #: core/bandwidth/main.c:1484
 #, c-format
 msgid "Sequential %i-bit nontemporal writes"
-msgstr ""
+msgstr "顺序 %i 位流式（非时间局部性）写入"
 
 #: core/bandwidth/main.c:1485
 msgid "Sequential 128-bit nontemporal writes"
-msgstr ""
+msgstr "顺序 128 位流式（非时间局部性）写入"
 
 #: core/bandwidth/main.c:1486
 msgid "Sequential 256-bit nontemporal writes"
-msgstr ""
+msgstr "顺序 256 位流式（非时间局部性）写入"
 
 #: core/bandwidth/main.c:1487
 msgid "Sequential 512-bit nontemporal writes"
-msgstr ""
+msgstr "顺序 512 位流式（非时间局部性）写入"
 
 #: core/bandwidth/main.c:1489
 #, c-format
@@ -125,49 +126,49 @@ msgstr "随机256比特读取"
 
 #: core/bandwidth/main.c:1493
 msgid "Random 128-bit nontemporal reads"
-msgstr ""
+msgstr "随机 128 位流式（非时间局部性）读取"
 
 #: core/bandwidth/main.c:1494
 msgid "Random 256-bit nontemporal reads"
-msgstr ""
+msgstr "随机 256 位流式（非时间局部性）读取"
 
 #: core/bandwidth/main.c:1496
 #, c-format
 msgid "Random %i-bit writes"
-msgstr ""
+msgstr "随机 %i 位写入"
 
 #: core/bandwidth/main.c:1497
 msgid "Random 128-bit writes"
-msgstr ""
+msgstr "随机256比特写入"
 
 #: core/bandwidth/main.c:1498
 msgid "Random 256-bit writes"
-msgstr ""
+msgstr "随机 256 位写入"
 
 #: core/bandwidth/main.c:1500
 msgid "Random 128-bit nontemporal writes"
-msgstr ""
+msgstr "随机 128 位流式（非时间局部性）写入"
 
 #: core/bandwidth/main.c:1501
 msgid "Random 256-bit nontemporal writes"
-msgstr ""
+msgstr "随机 256 位流式（非时间局部性）写入"
 
 #: core/bandwidth/main.c:1503
 #, c-format
 msgid "Sequential %i-bit copy"
-msgstr ""
+msgstr "顺序 %i 位内存拷贝（读+写）"
 
 #: core/bandwidth/main.c:1504
 msgid "Sequential 128-bit copy"
-msgstr ""
+msgstr "顺序 128 位内存拷贝（读+写）"
 
 #: core/bandwidth/main.c:1505
 msgid "Sequential 256-bit copy"
-msgstr ""
+msgstr "顺序 256 位内存拷贝（读+写）"
 
 #: core/bandwidth/main.c:1506
 msgid "Sequential 512-bit copy"
-msgstr ""
+msgstr "顺序 512 位内存拷贝（读+写）"
 
 #: core/bandwidth/main.c:1526
 msgid "(unavailable)"
@@ -493,7 +494,7 @@ msgstr ""
 #: core/libpci.cpp:93
 #, c-format
 msgid "Bus path is invalid: %s"
-msgstr ""
+msgstr "无效的总线路径：%s"
 
 #: core/libpci.cpp:127
 #, c-format
@@ -1140,12 +1141,16 @@ msgid ""
 "Run embedded command dmidecode and exit (use '--dmidecode --help' to print "
 "arguments accepted by dmidecode)"
 msgstr ""
+"运行内嵌命令 dmidecode 并退出（使用 --dmidecode --help 可显示 dmidecode 接受"
+"的参数）"
 
 #: main.cpp:64
 msgid ""
 "Run embedded command bandwidth and exit (use '--bandwidth --help' to print "
 "arguments accepted by bandwidth)"
 msgstr ""
+"运行内嵌命令 bandwidth 并退出（使用 --bandwidth --help 可显示 bandwidth 接受"
+"的参数）"
 
 #: main.cpp:65
 msgid "Set temperature unit (c[elsius]|f[ahrenheit]|k[elvin]|r[ankine])"
@@ -1585,12 +1590,12 @@ msgstr "TB"
 #. TRANSLATORS: initials for petabyte (10¹⁵): please put initials (keep it short)
 #: util.hpp:89
 msgid "PB"
-msgstr ""
+msgstr "PB"
 
 #. TRANSLATORS: initials for exabyte (10¹⁸): please put initials (keep it short)
 #: util.hpp:91
 msgid "EB"
-msgstr ""
+msgstr "EB"
 
 #. TRANSLATORS: initials for kibibyte (2¹⁰): please put initials (keep it short)
 #: util.hpp:94
