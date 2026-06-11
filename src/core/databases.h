@@ -97,10 +97,12 @@ const Package_DB package_intel[] = {
 	{ NULL,                     "Intel(R) Xeon(R) CPU E5-2690 v2",   "LGA 2011"   },
 	{ NULL,                     "Intel(R) Xeon(R) CPU E5-2690 v3",   "LGA 2011-3" },
 	{ NULL,                     "Intel(R) Xeon(R) CPU E5-2690 v4",   "LGA 2011-3" },
-	/* ArrowLake */
-	{ NULL,                     "Intel(R) Core(TM) Ultra 9 285k",   "LGA 1851" },
-	{ NULL,                     "Intel(R) Core(TM) Ultra 7 265k",   "LGA 1851" },
-	{ NULL,                     "Intel(R) Core(TM) Ultra 5 245k",   "LGA 1851" },
+	/* Arrow Lake */
+	{ NULL,                     "Intel(R) Core(TM) Ultra 9 285K",    "LGA 1851" },
+	{ NULL,                     "Intel(R) Core(TM) Ultra 7 265K",    "LGA 1851" },
+	{ NULL,                     "Intel(R) Core(TM) Ultra 5 245K",    "LGA 1851" },
+	/* Raptor Lake */
+	{ NULL,                     "Intel(R) Core(TM) i7-14700KF",      "LGA 1700" },
 	{ NULL,                     NULL,                                NULL         }
 	// Codename                          Model                               Socket
 };
