@@ -97,7 +97,8 @@ const char *start_daemon(bool graphical)
 	{
 		const std::string appdir_daemon_path = std::string(appdir) + std::string(DAEMON_PATH);
 		MSG_DEBUG("start_daemon: copy '%s' to '%s'", appdir_daemon_path.c_str(), daemon_exec);
-		fs::copy(appdir_daemon_path, daemon_exec, fs::copy_options::overwrite_existing);
+		fs::remove(daemon_exec);
+		fs::copy(appdir_daemon_path, daemon_exec);
 	}
 	else
 		MSG_ERROR("%s", _("APPDIR environment variable is not set, cannot copy the daemon to the temporary directory"));
