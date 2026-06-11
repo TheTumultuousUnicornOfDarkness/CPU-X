@@ -140,6 +140,7 @@ const Package_DB package_amd[] = {
 	{ "Kabini X4",                "Athlon",                   "AM1 (PGA-721)"    },
 	{ "Kabini X4",                "Sempron",                  "AM1 (PGA-721)"    },
 	{ "Trinity X4",               NULL,                       "FM2 (PGA-904)"    },
+	{ "A-Series (Carrizo)",       NULL,                       "FM2+ (PGA-906)"   },
 	/* Zen */
 	{ "Naples",                   NULL,                       "SP3 (LGA-4094)"   },
 	{ "Whitehaven",               NULL,                       "SP3r2 (LGA-4094)" },
