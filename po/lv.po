@@ -2,14 +2,15 @@
 # This file is distributed under the same license as the CPU-X package.
 # Anton Kochubey <anton@kochubey.eu>, 2020.
 # Allan Nordhøy <epost@anotheragency.no>, 2020.
+# "ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝)" <coool@mail.lv>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPU-X\n"
 "Report-Msgid-Bugs-To: https://github.com/TheTumultuousUnicornOfDarkness/CPU-"
 "X/issues\n"
 "POT-Creation-Date: 2025-08-18 17:39+0000\n"
-"PO-Revision-Date: 2020-07-11 09:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2026-06-19 16:01+0000\n"
+"Last-Translator: \"ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝)\" <coool@mail.lv>\n"
 "Language-Team: Latvian <https://hosted.weblate.org/projects/cpu-x/"
 "translations/lv/>\n"
 "Language: lv\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= "
 "19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: core/bandwidth/libbandwidth.cpp:91
 #, fuzzy
@@ -299,7 +300,7 @@ msgstr ""
 
 #: core/libcpuid.cpp:89 data.cpp:140 data.cpp:351
 msgid "unknown"
-msgstr ""
+msgstr "nezināms"
 
 #: core/libcpuid.cpp:173
 msgid "Calling libcpuid for retrieving static data"
@@ -531,10 +532,8 @@ msgid "failed to create pipe"
 msgstr "libcpuid izsaukšana neveiksmīga (%s)"
 
 #: core/libpci.cpp:254 core/libpci.cpp:302 core/libpci.cpp:353
-#, fuzzy
-#| msgid "failed to retrieve GPU clocks"
 msgid "failed to create process"
-msgstr "GPU frekvenču nolasīšana neveiksmīga"
+msgstr "neizdevās izveidot procesu"
 
 #: core/libpci.cpp:411
 #, c-format
@@ -705,7 +704,7 @@ msgstr ""
 
 #: data.cpp:127 cpu-x-gtk-3.12.ui:1485
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: data.cpp:177
 msgid "P-core"
@@ -725,11 +724,11 @@ msgstr ""
 
 #: data.cpp:199 cpu-x-gtk-3.12.ui:841
 msgid "Processor"
-msgstr ""
+msgstr "Procesors"
 
 #: data.cpp:243 data.cpp:338 cpu-x-gtk-3.12.ui:2099
 msgid "Caches"
-msgstr ""
+msgstr "Kešatmiņas"
 
 #: data.cpp:250
 #, fuzzy, c-format
@@ -748,7 +747,7 @@ msgstr ""
 
 #: data.cpp:279 cpu-x-gtk-3.12.ui:1071
 msgid "Clocks"
-msgstr ""
+msgstr "Takts frekvences"
 
 #: data.cpp:387 data.cpp:391
 #, c-format
@@ -773,12 +772,13 @@ msgid "BIOS"
 msgstr ""
 
 #: data.cpp:464 cpu-x-gtk-3.12.ui:2694
+#, fuzzy
 msgid "Chipset"
-msgstr ""
+msgstr "Mikroshēmojums"
 
 #: data.cpp:479 data.cpp:581 cpu-x-gtk-3.12.ui:3352 cpu-x-gtk-3.12.ui:3975
 msgid "Memory"
-msgstr ""
+msgstr "Atmiņa"
 
 #: data.cpp:495
 #, c-format
@@ -828,7 +828,7 @@ msgstr ""
 
 #: data.cpp:705 cpu-x-gtk-3.12.ui:5506
 msgid "Parameters"
-msgstr ""
+msgstr "Parametri"
 
 #: data.cpp:730 data.cpp:736
 #, c-format
@@ -837,7 +837,7 @@ msgstr "%u minūtes"
 
 #: data.cpp:743 cpu-x-gtk-3.12.ui:5669 cpu-x-gtk-3.12.ui:5777
 msgid "About"
-msgstr ""
+msgstr "Par programmu"
 
 #: data.cpp:748
 #, c-format
@@ -867,7 +867,7 @@ msgstr ""
 
 #: data.cpp:760 cpu-x-gtk-3.12.ui:5758
 msgid "License"
-msgstr ""
+msgstr "Licence"
 
 #: data.cpp:762
 #, c-format
@@ -880,7 +880,7 @@ msgstr ""
 
 #: data.hpp:103 data.hpp:252 data.hpp:340
 msgid "Vendor"
-msgstr ""
+msgstr "Piegādātājs"
 
 #: data.hpp:104
 msgid "Code Name"
@@ -892,15 +892,15 @@ msgstr ""
 
 #: data.hpp:106
 msgid "Technology"
-msgstr ""
+msgstr "Tehnoloģija"
 
 #: data.hpp:107 data.hpp:276
 msgid "Voltage"
-msgstr ""
+msgstr "Spriegums"
 
 #: data.hpp:108
 msgid "Specification"
-msgstr ""
+msgstr "Specifikācija"
 
 #: data.hpp:110
 msgid "Family"
@@ -912,7 +912,7 @@ msgstr ""
 
 #: data.hpp:112 data.hpp:231 data.hpp:253 data.hpp:343
 msgid "Model"
-msgstr ""
+msgstr "Modelis"
 
 #: data.hpp:113
 msgid "Disp. Model"
@@ -944,7 +944,7 @@ msgstr ""
 
 #: data.hpp:122
 msgid "Instructions"
-msgstr ""
+msgstr "Instrukcijas"
 
 #: data.hpp:135
 msgid "L1 Data"
@@ -968,7 +968,7 @@ msgstr ""
 
 #: data.hpp:148 data.hpp:417 cpu-x-gtk-3.12.ui:1365
 msgid "Threads"
-msgstr ""
+msgstr "Pavedieni"
 
 #: data.hpp:164
 msgid "Core Speed"
@@ -976,7 +976,7 @@ msgstr ""
 
 #: data.hpp:165
 msgid "Multiplier"
-msgstr ""
+msgstr "Reizinātājs"
 
 #: data.hpp:166
 msgid "Bus Speed"
@@ -988,15 +988,15 @@ msgstr ""
 
 #: data.hpp:195 data.hpp:273
 msgid "Size"
-msgstr ""
+msgstr "Izmērs"
 
 #: data.hpp:196 data.hpp:275
 msgid "Speed"
-msgstr ""
+msgstr "Ātrums"
 
 #: data.hpp:230 data.hpp:267
 msgid "Manufacturer"
-msgstr ""
+msgstr "Ražotājs"
 
 #: data.hpp:240
 msgid "Brand"
@@ -1004,11 +1004,11 @@ msgstr ""
 
 #: data.hpp:241
 msgid "Version"
-msgstr ""
+msgstr "Versija"
 
 #: data.hpp:242
 msgid "Date"
-msgstr ""
+msgstr "Datums"
 
 #: data.hpp:243
 msgid "ROM Size"
@@ -1071,12 +1071,13 @@ msgid "Free"
 msgstr ""
 
 #: data.hpp:315
+#, fuzzy
 msgid "Swap"
-msgstr ""
+msgstr "Mijmaiņa"
 
 #: data.hpp:341
 msgid "Driver"
-msgstr ""
+msgstr "Draiveris"
 
 #: data.hpp:342
 msgid "UMD Version"
@@ -1154,7 +1155,7 @@ msgstr ""
 
 #: data.hpp:416
 msgid "Duration"
-msgstr ""
+msgstr "Ilgums"
 
 #: main.cpp:60
 msgid "Start graphical user interface (GUI) (default)"
@@ -1591,7 +1592,7 @@ msgstr ""
 
 #: util.hpp:78
 msgid "bytes"
-msgstr ""
+msgstr "baiti"
 
 #. TRANSLATORS: initials for kilobyte (10³): please put initials (keep it short)
 #: util.hpp:81
@@ -1663,7 +1664,7 @@ msgstr ""
 
 #: cpu-x-gtk-3.12.ui:1295
 msgid "Cache"
-msgstr ""
+msgstr "Kešatmiņa"
 
 #: cpu-x-gtk-3.12.ui:5852
 msgid "Close"
