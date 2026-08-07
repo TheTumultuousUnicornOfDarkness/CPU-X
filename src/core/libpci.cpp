@@ -797,8 +797,8 @@ int gpu_monitoring([[maybe_unused]] Data &data)
 					if(popen_to_str(pstate, "grep '*' %1$s/%2$u/pstate || sed -n 1p %1$s/%2$u/pstate ", SYS_DEBUG_DRI, card.drm_card_number))
 						break;
 					MSG_DEBUG("gpu_monitoring: nouveau: pstate=%s", pstate.c_str());
-					POPEN_TO_ITEM(core_clock, "echo %s | grep -oP '(?<=core )[^ ]*' | cut -d- -f2", pstate.c_str());
-					POPEN_TO_ITEM(mem_clock,  "echo %s | grep -oP '(?<=memory )[^ ]*'",             pstate.c_str());
+					POPEN_TO_ITEM(core_clock, "echo %s | awk '{ for(i=1;i<=NF;i++) if($i ~ /^core$/) print $(i+1) }' | cut -d- -f2", pstate.c_str());
+					POPEN_TO_ITEM(mem_clock,  "echo %s | awk '{ for(i=1;i<=NF;i++) if($i ~ /^memory$/) print $(i+1) }'",             pstate.c_str());
 				}
 				break;
 			}
