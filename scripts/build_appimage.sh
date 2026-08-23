@@ -80,10 +80,9 @@ case "$ID" in
 		esac
 		pushd "/tmp"
 		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/libxml2-mini-$PKG_TYPE"
-		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/gdk-pixbuf2-mini-$PKG_TYPE"
-		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/librsvg-mini-$PKG_TYPE"
+		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/glycin-mini-$PKG_TYPE"
 		download_file "https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/gtk3-mini-$PKG_TYPE"
-		sudo pacman -U --noconfirm "libxml2-mini-$PKG_TYPE" "gtk3-mini-$PKG_TYPE" "librsvg-mini-$PKG_TYPE" "gdk-pixbuf2-mini-$PKG_TYPE"
+		sudo pacman -U --noconfirm --ask 4 "libxml2-mini-$PKG_TYPE" "gtk3-mini-$PKG_TYPE" "glycin-mini-$PKG_TYPE"
 		popd
 		;;
 
@@ -94,38 +93,30 @@ esac
 
 echo "Prepare '$APPDIR' AppDir"
 mkdir --verbose --parents "$APPDIR"
-cp --verbose "$APPDIR/usr/share/applications/io.github.thetumultuousunicornofdarkness.cpu-x.desktop" "$APPDIR"
-cp --verbose "$APPDIR/usr/share/icons/hicolor/256x256/apps/io.github.thetumultuousunicornofdarkness.cpu-x.png" "$APPDIR"
-mv --verbose "$APPDIR"/usr "$APPDIR/shared"
-ln --verbose --symbolic "./" "$APPDIR/usr"
+
+echo "Download quick-sharun"
+download_file "https://raw.githubusercontent.com/pkgforge-dev/Anylinux-AppImages/refs/heads/main/useful-tools/quick-sharun.sh"
+chmod --verbose a+x "quick-sharun.sh"
+
+export APPDIR
+export DESKTOP=/usr/share/applications/io.github.thetumultuousunicornofdarkness.cpu-x.desktop
+export ICON=/usr/share/icons/hicolor/256x256/apps/io.github.thetumultuousunicornofdarkness.cpu-x.png
+# CPU-X is meant to dlopen host drivers, so these need to be set to 0
+export DEPLOY_OPENGL=0
+export DEPLOY_VULKAN=0
+export STRACE_MODE=0
 
 echo "Bundle binaries in '$APPDIR' AppDir"
-download_file "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin"
-./lib4bin \
-	--verbose \
-	--hard-links \
-	--strip \
-	--with-hooks \
-	--dst-dir "$APPDIR" \
-	"$APPDIR"/shared/bin/cpu-x \
-	/usr/lib/libcpuid.so* \
+./quick-sharun.sh \
+	/usr/bin/cpu-x \
+	/usr/share/cpu-x \
 	/usr/lib/libvulkan*.so* \
-	/usr/lib/libEGL.so* \
-	/usr/lib/libgirepository-*.so* \
-	/usr/lib/gvfs/* \
-	/usr/lib/gio/modules/libdconfsettings.so \
-	/usr/lib/gtk-*/*/immodules/*.so \
-	/usr/lib/gdk-pixbuf-*/*/loaders/*svg*
-./lib4bin \
-	--strip \
-	--with-wrappe \
-	--dst-dir "$APPDIR/bin" \
-	"$APPDIR/shared/bin/cpu-x-daemon"
-cp --verbose --recursive "$APPDIR/shared/share/"* "$APPDIR/share"
-rm --verbose --recursive --force "$APPDIR/shared/share"
-glib-compile-schemas "$APPDIR/share/glib-"*/schemas
-ln --verbose "$APPDIR/sharun" "$APPDIR/AppRun"
-"$APPDIR/sharun" --gen-lib-path
+	/usr/lib/libEGL.so*
+
+echo "Copy static daemon to '$APPDIR' AppDir"
+cp --verbose /usr/bin/cpu-x-daemon "$APPDIR/bin/cpu-x-daemon"
+
+ln --verbose --symbolic "./" "$APPDIR/usr"
 
 echo "Create AppImage from '$APPDIR' AppDir"
 mkdir --parents --verbose "$SRC_DIR/AppImage" && cd "$_"
