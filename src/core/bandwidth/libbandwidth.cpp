@@ -57,6 +57,7 @@ static int init_bandwidth(Data &data, struct BandwidthData &bwd)
 		free(bwd.test_name[i]);
 	}
 	free(bwd.test_name);
+	bwd.test_name = NULL;
 
 	return err;
 }
@@ -111,7 +112,7 @@ int call_bandwidth([[maybe_unused]] Data &data)
 				return 1;
 
 			/* Initialize cache sizes for CPU types */
-			for(std::size_t i = 0; i < data.caches.get_selected_cpu_type().caches.size(); i++)
+			for(std::size_t i = 0; (i < data.caches.get_selected_cpu_type().caches.size()) && (i < BANDWIDTH_MAX_CACHE_LEVEL); i++)
 				bwd.cache_size[i] = data.caches.get_selected_cpu_type().caches[i].size_i;
 
 			/* Call bandwidth */

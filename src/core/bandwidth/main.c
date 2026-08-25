@@ -1537,7 +1537,7 @@ int bandwidth_cpux(struct BandwidthData *bwd)
 				total_amount = 0;
 				cache_level++;
 
-				if(bwd->cache_size[cache_level] == 0)
+				if((cache_level >= BANDWIDTH_MAX_CACHE_LEVEL) || (bwd->cache_size[cache_level] == 0))
 					goto clean;
 			}
 
