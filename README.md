@@ -10,9 +10,9 @@
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://GitHub.com/TheTumultuousUnicornOfDarkness/CPU-X/pull)
 [![Translation status](https://hosted.weblate.org/widgets/cpu-x/-/svg-badge.svg)](https://hosted.weblate.org/engage/cpu-x/?utm_source=widget)
 
-| Linux | FreeBSD | AppImage |
-| :---: | :---: | :---: |
-| [![Build Status (Linux)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/linux.yml/badge.svg?branch=master)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/linux.yml) | [![Build Status (FreeBSD)](https://api.cirrus-ci.com/github/TheTumultuousUnicornOfDarkness/CPU-X.svg)](https://cirrus-ci.com/github/TheTumultuousUnicornOfDarkness/CPU-X) | [![AppImage Continuous](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/appimage_continuous.yml/badge.svg?branch=master)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/appimage_continuous.yml) |
+| Linux | AppImage |
+| :---: | :---: |
+| [![Build Status (Linux)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/linux.yml/badge.svg?branch=master)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/linux.yml) | [![AppImage Continuous](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/appimage_continuous.yml/badge.svg?branch=master)](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X/actions/workflows/appimage_continuous.yml) |
 
 **CPU-X** is a Free software that gathers information on CPU, motherboard and more.  
 CPU-X is a system profiling and monitoring application (similar to [CPU-Z for Windows](https://www.cpuid.com/softwares/cpu-z.html)), but CPU-X is a Free and Open Source software designed for GNU/Linux and FreeBSD.  
