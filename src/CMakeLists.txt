@@ -332,6 +332,8 @@ if(APPIMAGE)
 	add_definitions(-DAPPIMAGE
 		-DDAEMON_TMP_EXEC="/tmp/${DAEMON_EXEC}"
 	)
+	# Statically link the daemon so it can be copied to /tmp and run standalone by pkexec
+	set_target_properties(${DAEMON_EXEC} PROPERTIES LINK_FLAGS "-static")
 endif(APPIMAGE)
 
 # Flatpak workarounds
