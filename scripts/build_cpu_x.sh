@@ -76,18 +76,6 @@ case "$ID" in
 		;;
 
 	debian)
-		case "$VERSION_ID" in
-			"11") # Bullseye
-				DEBIAN_PACKAGES=('procps' 'libprocps-dev')
-				;;
-			"12") # Bookworm
-				DEBIAN_PACKAGES=('libproc2-0' 'libproc2-dev')
-				;;
-			*)
-				echo "Unsupported Debian version: $VERSION_ID"
-				exit 1
-				;;
-		esac
 		sudo apt-get install -y -qq \
 			build-essential \
 			cmake \
@@ -102,6 +90,8 @@ case "$ID" in
 			libncurses-dev \
 			libpci3 \
 			libpci-dev \
+			libproc2-0 \
+			libproc2-dev \
 			libglvnd0 \
 			libglvnd-dev \
 			libvulkan1 \
@@ -164,8 +154,10 @@ case "$ID" in
 	opensuse-leap)
 		sudo zypper install -y -t pattern devel_basis
 		sudo zypper install -y \
-			gcc14-c++ \
-			libstdc++6-devel-gcc14 \
+			gcc \
+			gcc-c++ \
+			libc++-devel \
+			libstdc++-devel \
 			cmake \
 			ninja \
 			pkg-config \
@@ -179,22 +171,16 @@ case "$ID" in
 			pciutils-devel \
 			libglvnd \
 			libglvnd-devel \
-			vulkan \
+			libvulkan1 \
 			vulkan-devel \
 			libOpenCL1 \
 			ocl-icd-devel \
-			libprocps8 \
+			libproc2-1 \
 			procps-devel
-		sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-14" 9001
-		sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/g++-14" 9002
 		;;
 
 	ubuntu)
 		case "$VERSION_ID" in
-			"20.04") # Focal Fossa
-				GCC_VER=10
-				UBUNTU_PACKAGES=('libprocps-dev' 'libprocps8')
-				;;
 			"22.04") # Jammy Jellyfish
 				GCC_VER=12
 				UBUNTU_PACKAGES=('libprocps-dev' 'libprocps8')
@@ -203,8 +189,8 @@ case "$ID" in
 				GCC_VER=14
 				UBUNTU_PACKAGES=('libproc2-dev' 'libproc2-0')
 				;;
-			"25.04") # Plucky Puffin
-				GCC_VER=15
+			"26.04") # Resolute Raccoon
+				GCC_VER=16
 				UBUNTU_PACKAGES=('libproc2-dev' 'libproc2-0')
 				;;
 			*)

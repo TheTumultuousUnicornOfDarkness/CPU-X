@@ -21,23 +21,23 @@ jobs:
         os:
           # x86_64 (https://github.com/actions/runner-images/tree/main/images/ubuntu)
           - { arch: x86_64,  label: ubuntu-24.04,     image: archlinux:base-devel }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: debian:11 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: debian:12 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:40 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:41 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: opensuse/leap:15.6 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:22.04 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:24.04 }
-          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:25.04 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: debian:12 } # Bookworm
+          - { arch: x86_64,  label: ubuntu-24.04,     image: debian:13 } # Trixie
+          - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:43 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: fedora:44 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: opensuse/leap:16.0 }
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:22.04 } # Jammy Jellyfish
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:24.04 } # Noble Numbat
+          - { arch: x86_64,  label: ubuntu-24.04,     image: ubuntu:26.04 } # Resolute Raccoon
           # ARM64 (https://github.com/actions/partner-runner-images)
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:11 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:12 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:40 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:41 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: opensuse/leap:15.6 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:22.04 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:24.04 }
-          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:25.04 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:12 } # Bookworm
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: debian:12 } # Trixie
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:43 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: fedora:44 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: opensuse/leap:16.0 }
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:22.04 } # Jammy Jellyfish
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:24.04 } # Noble Numbat
+          - { arch: aarch64, label: ubuntu-24.04-arm, image: ubuntu:26.04 } # Resolute Raccoon
 
     container: ${{ matrix.os.image }}
 
