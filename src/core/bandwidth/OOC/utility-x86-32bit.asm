@@ -20,7 +20,7 @@
 ;=============================================================================
 
 bits	32
-cpu	ia64
+cpu	default
 
 global	_get_cpuid1_ecx
 global	_get_cpuid1_edx
