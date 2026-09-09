@@ -20,7 +20,7 @@
 ;=============================================================================
 
 bits	32
-cpu	ia64
+cpu	default
 
 global  IncrementRegisters
 global  _IncrementRegisters
