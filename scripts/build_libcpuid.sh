@@ -75,6 +75,7 @@ case "$ID" in
 	ubuntu)
 		sudo apt-get install -y -qq \
 			gcc \
+			libc-dev \
 			cmake \
 			ninja-build \
 			git
