@@ -1,0 +1,57 @@
+name: FreeBSD build
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  freebsd-build:
+    name: FreeBSD ${{ matrix.release }} (Build)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Only the leading part of the version is needed, the newest matching
+        # release is used (https://www.freebsd.org/releases).
+        release: ['14', '15']
+
+    steps:
+    - uses: actions/checkout@v5
+
+    # The VM is provided by the vmactions action, so the job itself runs on a
+    # regular Linux runner.
+    - name: Build and run in a FreeBSD VM
+      uses: vmactions/freebsd-vm@v1
+      timeout-minutes: 60
+      with:
+        release: ${{ matrix.release }}
+        usesh: true
+        copyback: false
+        cache-after-prepare: true
+        # The build scripts are bash and call sudo; neither is in the base
+        # system. Everything else they install themselves, from their
+        # existing freebsd branch.
+        prepare: |
+          pkg install -y bash sudo
+        run: |
+          set -e
+
+          ./scripts/build_libcpuid.sh -t "${{ env.BUILD_TYPE }}"
+
+          ./scripts/build_cpu_x.sh -s "$GITHUB_WORKSPACE" -t "${{ env.BUILD_TYPE }}"
+
+          ninja -C build test
+
+          error=0
+          sudo CPUX_BCLK=100 cpu-x --issue-fmt || error=1
+          cat /tmp/cpu-x.log
+          cat /tmp/cpu-x-daemon.log
+          exit $error

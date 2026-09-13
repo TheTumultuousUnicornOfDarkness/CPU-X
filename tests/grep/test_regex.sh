@@ -10,8 +10,8 @@ failed=0
 for samplefile in samples/nouveau_pstate_*; do
 	file=$(basename "$samplefile")
 	pstate=$(grep '\*' "$samplefile" || sed -n 1p "$samplefile")
-	samplecore=$(echo "$pstate" | grep -oP '(?<=core )[^ ]*' | cut -d- -f2)
-	samplememory=$(echo "$pstate" | grep -oP '(?<=memory )[^ ]*')
+	samplecore=$(echo "$pstate" | awk '{ for(i=1;i<=NF;i++) if($i ~ /^core$/) print $(i+1) }' | cut -d- -f2)
+	samplememory=$(echo "$pstate" | awk '{ for(i=1;i<=NF;i++) if($i ~ /^memory$/) print $(i+1) }')
 	resultcore=$(< "results/${file}_core")
 	resultmemory=$(< "results/${file}_memory")
 	printf "%-41s: " "$file"
