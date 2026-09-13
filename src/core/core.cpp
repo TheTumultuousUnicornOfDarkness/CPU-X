@@ -235,7 +235,8 @@ static int fallback_mode_static(Data &data)
 	const auto& cpu_type = data.cpu.get_selected_cpu_type();
 	if((cpu_type.processor.package.value.empty()                                      ||
 	   (cpu_type.processor.package.value.find("CPU")            != std::string::npos) ||
-	   (cpu_type.processor.package.value.find("Microprocessor") != std::string::npos)))
+	   (cpu_type.processor.package.value.find("Microprocessor") != std::string::npos) ||
+	   (cpu_type.processor.package.value.find("SOCKET 0")       != std::string::npos)))
 		err += cputab_package_fallback(data);
 #endif /* HAS_LIBCPUID */
 
